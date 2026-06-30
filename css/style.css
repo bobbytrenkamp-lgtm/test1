@@ -564,9 +564,7 @@ html, body {
 .legend-minimize-btn:hover,
 .legend-expand-btn:hover { color: var(--text); border-color: var(--accent); }
 
-/* Expand button only visible in mini state */
-.legend-expand-btn { display: none; }
-#legend.legend-mini .legend-expand-btn { display: flex; }
+/* Expand button visibility is driven entirely by JS inline style */
 
 #legend h3 {
   font-size: 10px;

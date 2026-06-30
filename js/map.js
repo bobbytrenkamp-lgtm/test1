@@ -525,12 +525,15 @@ function renderLegend() {
   const legend = document.getElementById("legend");
   legend.innerHTML = "";
 
-  // Toolbar: drag handle + title + minimize button
-  const minIcon = legendState === 1
+  // Toolbar: drag handle + title + expand (mini only) + minimize button
+  // Inline display style set here so CSS cascade cannot interfere
+  const isMini    = legendState === 1;
+  const expandDsp = isMini ? "flex" : "none";
+  const minIcon   = isMini
     ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
     : `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
-  const minTitle = legendState === 1 ? "Hide legend" : "Minimize legend";
-  const toolbar = document.createElement("div");
+  const minTitle  = isMini ? "Hide legend" : "Minimize legend";
+  const toolbar   = document.createElement("div");
   toolbar.className = "legend-toolbar";
   toolbar.innerHTML = `
     <span class="legend-drag-handle" title="Drag to reposition">
@@ -541,7 +544,7 @@ function renderLegend() {
       </svg>
     </span>
     <span class="legend-toolbar-title">Legend</span>
-    <button class="legend-expand-btn" title="Expand legend">
+    <button class="legend-expand-btn" style="display:${expandDsp}" title="Expand legend">
       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
     </button>
     <button class="legend-minimize-btn" title="${minTitle}">${minIcon}</button>
