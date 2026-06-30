@@ -1,0 +1,4 @@
+# No external dependencies required for the base processing script.
+# Add packages here if scraping or API fetching is added in future iterations.
+# requests>=2.31.0
+# pandas>=2.0.0

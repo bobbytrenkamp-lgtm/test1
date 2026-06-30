@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>US Data Center & AI Restrictions Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <!-- Header -->
+  <header id="header">
+    <h1>US <span>Data Center &amp; AI Restrictions</span> Map</h1>
+    <div id="last-updated">Loading data…</div>
+  </header>
+
+  <!-- Main -->
+  <div id="main">
+
+    <!-- Map Container -->
+    <div id="map-container">
+      <svg id="map-svg"></svg>
+
+      <!-- Stats bar -->
+      <div id="stats-bar"></div>
+
+      <!-- Legend -->
+      <div id="legend"></div>
+
+      <!-- Tooltip -->
+      <div id="tooltip">
+        <div class="tip-name"></div>
+        <div class="tip-level"></div>
+      </div>
+
+      <!-- Loading overlay -->
+      <div id="loading">
+        <div class="spinner"></div>
+        <span>Loading map data…</span>
+      </div>
+    </div>
+
+    <!-- Detail Panel -->
+    <aside id="detail-panel">
+      <div id="detail-header">
+        <h2>County Details</h2>
+        <div id="detail-state"></div>
+      </div>
+      <div id="detail-body">
+        <div id="detail-empty">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4M12 8h.01"/>
+          </svg>
+          <p>Click any county on the map to see its restriction details.</p>
+        </div>
+      </div>
+    </aside>
+
+  </div><!-- /main -->
+
+</div><!-- /app -->
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="js/map.js"></script>
+</body>
+</html>
