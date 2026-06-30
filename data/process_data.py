@@ -39,7 +39,7 @@ def build_county_map(restrictions):
 
 
 def compute_stats(counties, meta):
-    level_counts = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0}
+    level_counts = {-1: 0, 0: 0, 1: 0, 2: 0, 3: 0, 4: 0}
     for c in counties.values():
         lvl = c["level"]
         level_counts[lvl] = level_counts.get(lvl, 0) + 1

@@ -1,9 +1,10 @@
 {
-  "generated_at": "2026-06-30T18:49:13.431369+00:00",
+  "generated_at": "2026-06-30T19:47:40.035944+00:00",
   "source_last_updated": "2025-08-01",
   "stats": {
-    "total_counties_tracked": 42,
+    "total_counties_tracked": 48,
     "by_level": {
+      "-1": 6,
       "0": 0,
       "1": 25,
       "2": 11,
@@ -11,13 +12,14 @@
       "4": 1
     },
     "by_type": {
-      "data_center": 37,
+      "data_center": 43,
       "crypto": 12,
       "energy": 21,
       "water": 4,
       "ai": 10
     },
     "level_labels": {
+      "-1": "Pro data center (active tax incentives, enterprise zones, major industry hubs)",
       "0": "No known specific restrictions",
       "1": "Light regulations (environmental review, AI ordinances, minor requirements)",
       "2": "Moderate restrictions (pending legislation, proposed moratoriums, significant permitting)",
@@ -33,6 +35,102 @@
     }
   },
   "counties": {
+    "41059": {
+      "name": "Umatilla County",
+      "state": "Oregon",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Oregon Enterprise Zone \u2014 Google Mega-Campus Hub",
+      "description": "Home to one of Google's largest data center campuses. Oregon's enterprise zone property tax exemptions, zero sales tax, and cheap Columbia River hydropower make Umatilla County one of the most data center-friendly jurisdictions in the U.S.",
+      "effective_date": "2006-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        "Oregon Enterprise Zone program; Google Dalles Campus (2006-present)"
+      ]
+    },
+    "19113": {
+      "name": "Linn County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Iowa Data Center Tax Exemption Hub",
+      "description": "Iowa eliminated sales and use taxes on data center equipment in 2010. Linn County (Cedar Rapids) hosts major Microsoft and Google facilities. Iowa's 0% equipment sales tax, competitive energy costs, and central location make it a premier data center market.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        "Iowa Code \u00a7423.3 data center exemption (2010); Microsoft & Google data centers, Cedar Rapids"
+      ]
+    },
+    "45015": {
+      "name": "Berkeley County",
+      "state": "South Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "South Carolina Data Center Incentive Zone \u2014 Amazon/AWS Hub",
+      "description": "South Carolina offers some of the strongest data center incentives in the nation: 20-year sales tax exemptions on equipment and 20-year property tax abatements. Berkeley County hosts major Amazon/AWS facilities and has become one of the East Coast's fastest-growing data center markets.",
+      "effective_date": "2012-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        "SC Code \u00a712-6-3360 data center incentives; Amazon/AWS data centers, Berkeley County"
+      ]
+    },
+    "32029": {
+      "name": "Storey County",
+      "state": "Nevada",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Nevada Incentives \u2014 Switch SUPERNAP Campus",
+      "description": "Storey County (Tahoe Reno Industrial Center) hosts Switch's massive SUPERNAP data center campus. Nevada offers no corporate income tax, no personal income tax, and significant sales/use tax abatements for data center operators.",
+      "effective_date": "2007-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        "NRS \u00a7374.357 data center exemptions; Switch SUPERNAP campus, Tahoe Reno Industrial Center"
+      ]
+    },
+    "31055": {
+      "name": "Douglas County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Nebraska Advantage Data Center Act \u2014 Google Hub",
+      "description": "Nebraska's Advantage Data Center Act (LB 775) provides sales tax exemptions on equipment for qualifying data centers. Douglas County (Omaha) hosts major Google data center facilities and benefits from low energy costs and central location.",
+      "effective_date": "2012-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        "Nebraska LB 775, Advantage Data Center Act; Google data center, Omaha"
+      ]
+    },
+    "18057": {
+      "name": "Hamilton County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Indiana Data Center Tax Exemption Hub",
+      "description": "Indiana's HEA 1450 (2014) provides a 100% sales tax exemption on data center equipment. Hamilton County (Fishers/Noblesville) is a fast-growing data center hub leveraging Indiana's incentives, central US location, and competitive power rates.",
+      "effective_date": "2014-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        "Indiana HEA 1450 (2014), IC 6-2.5-5-59 data center exemption"
+      ]
+    },
     "41027": {
       "name": "Hood River County",
       "state": "Oregon",
