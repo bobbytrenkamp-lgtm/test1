@@ -60,6 +60,18 @@ const STATUS_LABELS = {
   expired:  "Expired / Lapsed",
 };
 
+// State FIPS code (first 2 digits of county FIPS) → abbreviation
+const STATE_FIPS = {
+  "01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT",
+  "10":"DE","11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL",
+  "18":"IN","19":"IA","20":"KS","21":"KY","22":"LA","23":"ME","24":"MD",
+  "25":"MA","26":"MI","27":"MN","28":"MS","29":"MO","30":"MT","31":"NE",
+  "32":"NV","33":"NH","34":"NJ","35":"NM","36":"NY","37":"NC","38":"ND",
+  "39":"OH","40":"OK","41":"OR","42":"PA","44":"RI","45":"SC","46":"SD",
+  "47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA","54":"WV",
+  "55":"WI","56":"WY",
+};
+
 // Counties to annotate — 3 most restrictive, 3 most pro
 const ANNOTATIONS = [
   { fips: "41027", label: "Hood River, OR",   sub: "Only U.S. data center ban",     type: "restrictive", dx: -115, dy: -45 },
@@ -123,7 +135,9 @@ function fipsKey(id) {
 }
 
 function getColor(fips) {
-  return getSeverityColor(mapData[fips]);
+  const county = mapData[fips];
+  if (!county) return "#1e2235";
+  return getSeverityColor(county);
 }
 
 function addArrowMarkers(svg) {
@@ -322,12 +336,19 @@ function renderSampleMarkerLayers(g, projection) {
 
 function renderMap(us) {
   const container = document.getElementById("map-container");
-  const width  = container.clientWidth;
-  const height = container.clientHeight;
+  const width  = container.clientWidth  || 800;
+  const height = container.clientHeight || 500;
+
+  // Extract features first so fitExtent can compute the right scale/translate
+  const counties   = topojson.feature(us, us.objects.counties);
+  const stateMesh  = topojson.mesh(us, us.objects.states, (a, b) => a !== b);
+  const nationMesh = topojson.mesh(us, us.objects.nation);
+
+  countyFipsIndex = {};
+  counties.features.forEach(f => { countyFipsIndex[fipsKey(f.id)] = f; });
 
   const projection = d3.geoAlbersUsa()
-    .scale(Math.min(width, height) * 1.4)
-    .translate([width / 2, height / 2]);
+    .fitExtent([[20, 20], [width - 20, height - 20]], counties);
 
   const path = d3.geoPath().projection(projection);
 
@@ -338,14 +359,6 @@ function renderMap(us) {
   addArrowMarkers(svg);
 
   const g = svg.append("g");
-
-  const counties  = topojson.feature(us, us.objects.counties);
-  const stateMesh = topojson.mesh(us, us.objects.states, (a, b) => a !== b);
-  const nationMesh = topojson.mesh(us, us.objects.nation);
-
-  // Index features by FIPS for search/zoom-to lookups
-  countyFipsIndex = {};
-  counties.features.forEach(f => { countyFipsIndex[fipsKey(f.id)] = f; });
 
   // Counties
   countySelection = g.selectAll("path.county")
@@ -673,18 +686,18 @@ function closeFilterPanel() {
 }
 
 function initFilterPanelControls() {
-  const toggleBtn = document.getElementById("filter-toggle");
-  const closeBtn  = document.getElementById("filter-panel-close");
-  const backdrop  = document.getElementById("filter-panel-backdrop");
-  const panel     = document.getElementById("filter-panel");
+  const toggleBtn  = document.getElementById("filter-toggle");
+  const closeBtn   = document.getElementById("filter-panel-close");
+  const backdrop   = document.getElementById("filter-panel-backdrop");
+  const panel      = document.getElementById("filter-panel");
+  const detailClose = document.getElementById("detail-panel-close");
 
-  toggleBtn.addEventListener("click", () => {
+  if (toggleBtn) toggleBtn.addEventListener("click", () => {
     panel.classList.contains("open") ? closeFilterPanel() : openFilterPanel();
   });
-  closeBtn.addEventListener("click", closeFilterPanel);
-  backdrop.addEventListener("click", closeFilterPanel);
-
-  document.getElementById("detail-panel-close").addEventListener("click", closeMobileSheet);
+  if (closeBtn)   closeBtn.addEventListener("click", closeFilterPanel);
+  if (backdrop)   backdrop.addEventListener("click", closeFilterPanel);
+  if (detailClose) detailClose.addEventListener("click", closeMobileSheet);
 }
 
 function animateCounter(el, target, duration = 900) {
@@ -908,7 +921,7 @@ function setDetailCounty(fips, county) {
 }
 
 function setDetailNoRestriction(name, state, fips) {
-  document.getElementById("detail-header").querySelector("h2").textContent = name || "Unknown County";
+  document.getElementById("detail-header").querySelector("h2").textContent = name || "County";
   document.getElementById("detail-state").textContent = state || "";
   document.getElementById("detail-body").innerHTML = `
     <div class="restriction-badge badge-none">
@@ -1012,12 +1025,22 @@ const tooltip = document.getElementById("tooltip");
 function onMouseMove(event, d) {
   const fips   = fipsKey(d.id);
   const county = mapData[fips];
-  if (!county) { tooltip.style.display = "none"; return; }
+
+  const name = county
+    ? `${county.name}, ${county.state}`
+    : (() => {
+        const propName = d.properties && d.properties.name;
+        const stAbbr   = STATE_FIPS[fips.slice(0, 2)];
+        return propName ? `${propName}${stAbbr ? ", " + stAbbr : ""}` : (stAbbr || fips);
+      })();
+
+  const level = county
+    ? (county.level === -1 ? "Pro Data Center" : `Level ${county.level} — ${LEVEL_LABELS[county.level]}`)
+    : "No restriction data";
 
   tooltip.style.display = "block";
-  tooltip.querySelector(".tip-name").textContent  = `${county.name}, ${county.state}`;
-  tooltip.querySelector(".tip-level").textContent =
-    county.level === -1 ? "Pro Data Center" : `Level ${county.level} — ${LEVEL_LABELS[county.level]}`;
+  tooltip.querySelector(".tip-name").textContent  = name;
+  tooltip.querySelector(".tip-level").textContent = level;
 
   const rect = document.getElementById("map-container").getBoundingClientRect();
   let x = event.clientX - rect.left + 12;
@@ -1036,7 +1059,13 @@ function onCountyClick(event, d) {
   d3.selectAll(".county").classed("selected", false);
   d3.select(this).classed("selected", true);
   selectedFips = fips;
-  county ? setDetailCounty(fips, county) : setDetailNoRestriction(undefined, undefined, fips);
+  if (county) {
+    setDetailCounty(fips, county);
+  } else {
+    const propName = d.properties && d.properties.name;
+    const stAbbr   = STATE_FIPS[fips.slice(0, 2)] || "";
+    setDetailNoRestriction(propName || null, stAbbr, fips);
+  }
 }
 
 function setLastUpdated(data) {
@@ -1107,7 +1136,8 @@ function initSearch() {
       } else {
         item.innerHTML = `${escHtml(m.name)} <span class="sample-tag" style="margin-left:6px;">Sample</span>`;
       }
-      item.addEventListener("mousedown", () => {
+      item.addEventListener("pointerdown", (e) => {
+        e.preventDefault(); // prevents input blur firing before selection completes
         input.value = m.kind === "county" ? `${m.name}, ${m.state}` : m.name;
         results.style.display = "none";
         const feature = countyFipsIndex[m.fips];
