@@ -18,6 +18,30 @@
     <div id="last-updated">Loading data…</div>
   </header>
 
+  <!-- Dashboard -->
+  <section id="dashboard"></section>
+
+  <!-- Search -->
+  <div id="search-bar">
+    <button id="filter-toggle" aria-label="Toggle map layers" aria-expanded="false">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="4" y1="6" x2="20" y2="6"/>
+        <line x1="4" y1="12" x2="20" y2="12"/>
+        <line x1="4" y1="18" x2="20" y2="18"/>
+        <circle cx="9" cy="6" r="1.5" fill="currentColor"/>
+        <circle cx="16" cy="12" r="1.5" fill="currentColor"/>
+        <circle cx="11" cy="18" r="1.5" fill="currentColor"/>
+      </svg>
+      <span>Layers</span>
+    </button>
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="7"/>
+      <path d="M21 21l-4.3-4.3"/>
+    </svg>
+    <input id="search-input" type="text" placeholder="Search county, state, or facility…" autocomplete="off" />
+    <div id="search-results"></div>
+  </div>
+
   <!-- Main -->
   <div id="main">
 
@@ -27,6 +51,16 @@
 
       <!-- Stats bar -->
       <div id="stats-bar"></div>
+
+      <!-- Filter / layers panel -->
+      <div id="filter-panel-backdrop"></div>
+      <aside id="filter-panel">
+        <div id="filter-panel-header">
+          <h3>Map Layers</h3>
+          <button id="filter-panel-close" aria-label="Close layers panel">&times;</button>
+        </div>
+        <div id="filter-panel-body"></div>
+      </aside>
 
       <!-- Legend -->
       <div id="legend"></div>
@@ -46,7 +80,9 @@
 
     <!-- Detail Panel -->
     <aside id="detail-panel">
+      <div id="detail-panel-handle"></div>
       <div id="detail-header">
+        <button id="detail-panel-close" aria-label="Close panel">&times;</button>
         <h2>County Details</h2>
         <div id="detail-state"></div>
       </div>
