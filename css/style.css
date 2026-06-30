@@ -66,6 +66,101 @@ html, body {
   color: var(--text-muted);
 }
 
+/* ── Dashboard ── */
+#dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.stat-card {
+  background: var(--surface);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-card-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.stat-card-text {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.stat-card-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Search ── */
+#search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+#search-input {
+  flex: 1;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 13px;
+  color: var(--text);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+#search-input:focus {
+  border-color: var(--accent);
+}
+
+#search-results {
+  position: absolute;
+  top: 100%;
+  left: 20px;
+  right: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 30;
+  display: none;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+}
+
+.search-result-item {
+  padding: 8px 14px;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.search-result-item:hover {
+  background: var(--surface-2);
+}
+
 /* ── Main content ── */
 #main {
   display: flex;
@@ -78,6 +173,7 @@ html, body {
   flex: 1;
   position: relative;
   overflow: hidden;
+  background: #06070b;
 }
 
 #map-svg {
@@ -92,35 +188,38 @@ html, body {
 }
 
 .county {
-  stroke: #1a1d27;
-  stroke-width: 0.3px;
-  transition: opacity 0.15s;
+  stroke: #05060a;
+  stroke-width: 0.35px;
+  transition: opacity 0.15s, filter 0.15s, stroke-width 0.15s;
   cursor: pointer;
 }
 
 .county:hover {
-  opacity: 0.75;
+  opacity: 0.88;
   stroke: #ffffff;
-  stroke-width: 0.8px;
+  stroke-width: 1px;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.55));
 }
 
 .county.selected {
   stroke: #ffffff;
-  stroke-width: 1.2px;
+  stroke-width: 1.4px;
   opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
 }
 
 .state-borders {
   fill: none;
-  stroke: #2e3352;
-  stroke-width: 0.8px;
+  stroke: #4a5180;
+  stroke-width: 0.9px;
   pointer-events: none;
+  transition: stroke 0.2s;
 }
 
 .nation-border {
   fill: none;
-  stroke: #3a4060;
-  stroke-width: 1px;
+  stroke: #6a72a8;
+  stroke-width: 1.2px;
   pointer-events: none;
 }
 
@@ -190,12 +289,12 @@ html, body {
   margin-bottom: 12px;
 }
 
-.badge-neg1 { background: #14532d; color: #4ade80; }
-.badge-0 { background: #2a2e45; color: var(--text-muted); }
-.badge-1 { background: #3d2b1f; color: #f4a261; }
-.badge-2 { background: #4a2a10; color: #e76f51; }
-.badge-3 { background: #5a1a0a; color: #ff6b35; }
-.badge-4 { background: #6a0a00; color: #ff3b2c; }
+.badge-pro      { background: #14532d; color: #4ade80; }
+.badge-none     { background: #14321f; color: #16a34a; }
+.badge-proposed { background: #4a3c0a; color: #eab308; }
+.badge-moderate { background: #4a2a10; color: #f97316; }
+.badge-high     { background: #5a1a0a; color: #dc2626; }
+.badge-ban      { background: #3f0a0a; color: #ff6b5e; }
 
 .detail-section {
   margin-bottom: 16px;
@@ -428,4 +527,10 @@ html, body {
 @media (max-width: 700px) {
   #detail-panel { display: none; }
   #stats-bar { display: none; }
+  #dashboard { grid-template-columns: repeat(2, 1fr); }
+  .stat-card { padding: 8px 10px; }
+  .stat-card-value { font-size: 17px; }
+  #search-bar { padding: 6px 12px; }
+  #search-results { left: 12px; right: 12px; }
+  #legend { left: 10px; bottom: 10px; padding: 8px 10px; min-width: 160px; }
 }
