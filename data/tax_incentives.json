@@ -1,0 +1,323 @@
+{
+  "_disclaimer": "APPROXIMATE DATA \u2014 Tax incentive programs change frequently. Data is from public state legislation and economic development websites. Verify with state officials before making investment decisions.",
+  "_sources": [
+    "National Conference of State Legislatures (ncsl.org) - public",
+    "State economic development agency websites - public",
+    "Data Center Knowledge news analysis - public",
+    "State legislature bill tracking websites - public"
+  ],
+  "_last_updated": "2024-01",
+  "tax_incentives": [
+    {
+      "state": "VA",
+      "program_name": "Virginia Data Center Investment Grant",
+      "incentive_type": "Sales & Use Tax Exemption + Grant",
+      "min_investment_m": 150,
+      "notes": "Machinery/equipment sales tax exempt; grant up to $35M for qualifying projects",
+      "fips_list": [
+        "51107",
+        "51153",
+        "51683",
+        "51059",
+        "51013",
+        "51061",
+        "51177",
+        "51143"
+      ]
+    },
+    {
+      "state": "OR",
+      "program_name": "Oregon Enterprise Zone / Data Center Tax Exemption",
+      "incentive_type": "Property Tax Exemption",
+      "min_investment_m": 25,
+      "notes": "Up to 5-year property tax exemption in enterprise zones; Morrow, Umatilla, Hood River counties",
+      "fips_list": [
+        "41059",
+        "41049",
+        "41027",
+        "41013"
+      ]
+    },
+    {
+      "state": "WA",
+      "program_name": "Washington High-Tech Sales Tax Deferral",
+      "incentive_type": "Sales Tax Deferral + B&O Tax Credit",
+      "min_investment_m": 10,
+      "notes": "Sales tax deferral on construction; B&O tax reduction for rural counties",
+      "fips_list": [
+        "53025",
+        "53007",
+        "53047",
+        "53017"
+      ]
+    },
+    {
+      "state": "IA",
+      "program_name": "Iowa Data Center Sales Tax Exemption",
+      "incentive_type": "Sales Tax Exemption + Property Tax Abatement",
+      "min_investment_m": 1,
+      "notes": "100% sales tax exemption on DP equipment; up to 20-year property tax abatement",
+      "fips_list": [
+        "19153",
+        "19155",
+        "19113",
+        "19163"
+      ]
+    },
+    {
+      "state": "AZ",
+      "program_name": "Arizona Data Center Tax Incentive",
+      "incentive_type": "Sales Tax Exemption + Property Tax",
+      "min_investment_m": 50,
+      "notes": "Transaction privilege tax exemption on equipment; property tax valuation reduction",
+      "fips_list": [
+        "04013",
+        "04021",
+        "04019",
+        "04027"
+      ]
+    },
+    {
+      "state": "TX",
+      "program_name": "Texas Chapter 313 / Economic Development",
+      "incentive_type": "Property Tax Limitation + Sales Tax Exemption",
+      "min_investment_m": 20,
+      "notes": "Sales tax exemption on DC hardware; local school district property tax limitations",
+      "fips_list": [
+        "48439",
+        "48113",
+        "48029",
+        "48085",
+        "48453",
+        "48201",
+        "48139",
+        "48141"
+      ]
+    },
+    {
+      "state": "GA",
+      "program_name": "Georgia Data Center Tax Exemption",
+      "incentive_type": "Sales Tax Exemption",
+      "min_investment_m": 15,
+      "notes": "Sales tax exemption on computer equipment and electricity for qualifying DCs",
+      "fips_list": [
+        "13097",
+        "13089",
+        "13057",
+        "13067",
+        "13121",
+        "13135",
+        "13151",
+        "13247"
+      ]
+    },
+    {
+      "state": "NV",
+      "program_name": "Nevada Data Center Abatement Program",
+      "incentive_type": "Sales/Use Tax Abatement + Property Tax Abatement",
+      "min_investment_m": 25,
+      "notes": "Up to 75% sales tax abatement; 50% personal property tax abatement for 10 years",
+      "fips_list": [
+        "32003",
+        "32031",
+        "32029"
+      ]
+    },
+    {
+      "state": "OH",
+      "program_name": "Ohio Data Center Tax Exemption",
+      "incentive_type": "Sales Tax Exemption + Job Creation Tax Credit",
+      "min_investment_m": 100,
+      "notes": "Sales tax exemption on equipment; job creation tax credit through Ohio Development",
+      "fips_list": [
+        "39049",
+        "39041",
+        "39035",
+        "39061",
+        "39099",
+        "39103",
+        "39109",
+        "39113"
+      ]
+    },
+    {
+      "state": "IN",
+      "program_name": "Indiana EDGE Tax Credit / IT Equipment Exemption",
+      "incentive_type": "Sales Tax Exemption + EDGE Credit",
+      "min_investment_m": 50,
+      "notes": "IT equipment sales tax exemption; EDGE credit for job creation",
+      "fips_list": [
+        "18011",
+        "18059",
+        "18057",
+        "18097",
+        "18163",
+        "18141",
+        "18145"
+      ]
+    },
+    {
+      "state": "NC",
+      "program_name": "North Carolina Data Center Tax Incentive",
+      "incentive_type": "Sales Tax Refund + Property Tax",
+      "min_investment_m": 250,
+      "notes": "Sales tax refund on server equipment; local property tax incentive agreements",
+      "fips_list": [
+        "37035",
+        "37111",
+        "37161",
+        "37119",
+        "37067",
+        "37081",
+        "37101",
+        "37183"
+      ]
+    },
+    {
+      "state": "SC",
+      "program_name": "South Carolina Data Center Incentive Program",
+      "incentive_type": "Sales Tax Exemption + Jobs Tax Credit",
+      "min_investment_m": 50,
+      "notes": "Full sales tax exemption on equipment; jobs tax credit $1,500-8,000 per job",
+      "fips_list": [
+        "45015",
+        "45019",
+        "45057",
+        "45063",
+        "45071",
+        "45079",
+        "45083",
+        "45091"
+      ]
+    },
+    {
+      "state": "NE",
+      "program_name": "Nebraska ImagiNE Act Data Center Incentive",
+      "incentive_type": "Sales Tax Exemption + Investment Credit",
+      "min_investment_m": 5,
+      "notes": "Sales tax exemption; refundable income tax credit based on investment/jobs",
+      "fips_list": [
+        "31055",
+        "31153",
+        "31109",
+        "31055",
+        "31177",
+        "31079",
+        "31053"
+      ]
+    },
+    {
+      "state": "WY",
+      "program_name": "Wyoming Data Center Tax Policy",
+      "incentive_type": "Low Property Tax + No Income Tax",
+      "min_investment_m": 0,
+      "notes": "No state income tax; low property tax rates; competitive power costs",
+      "fips_list": [
+        "56021",
+        "56009",
+        "56001",
+        "56033",
+        "56041"
+      ]
+    },
+    {
+      "state": "IL",
+      "program_name": "Illinois Data Center Investment Credit",
+      "incentive_type": "Investment Tax Credit",
+      "min_investment_m": 250,
+      "notes": "20% investment tax credit on qualifying spend; expanded 2021",
+      "fips_list": [
+        "17031",
+        "17043",
+        "17097",
+        "17197",
+        "17089",
+        "17115",
+        "17119"
+      ]
+    },
+    {
+      "state": "TN",
+      "program_name": "Tennessee FastTrack Infrastructure + Sales Tax Exemption",
+      "incentive_type": "Sales Tax Exemption + Grant",
+      "min_investment_m": 10,
+      "notes": "Industrial machinery exemption; FastTrack job training grants",
+      "fips_list": [
+        "47157",
+        "47037",
+        "47093",
+        "47149",
+        "47163",
+        "47187",
+        "47065"
+      ]
+    },
+    {
+      "state": "KY",
+      "program_name": "Kentucky Economic Development Incentives",
+      "incentive_type": "Sales Tax Exemption + KEDFA Incentives",
+      "min_investment_m": 10,
+      "notes": "Machinery and equipment sales tax exemption; KEDFA incentive program",
+      "fips_list": [
+        "21015",
+        "21037",
+        "21067",
+        "21111",
+        "21113",
+        "21117",
+        "21239"
+      ]
+    },
+    {
+      "state": "WI",
+      "program_name": "Wisconsin Economic Development Tax Credit",
+      "incentive_type": "Enterprise Zone Tax Credits",
+      "min_investment_m": 50,
+      "notes": "Enterprise zone tax credits; sales tax exemptions on qualifying equipment",
+      "fips_list": [
+        "55025",
+        "55101",
+        "55079",
+        "55133",
+        "55105",
+        "55059",
+        "55039"
+      ]
+    },
+    {
+      "state": "CO",
+      "program_name": "Colorado OEDIT Advanced Industry Grant",
+      "incentive_type": "Grant + Property Tax",
+      "min_investment_m": 5,
+      "notes": "Advanced industry grant program; enterprise zone investment tax credits",
+      "fips_list": [
+        "08031",
+        "08059",
+        "08013",
+        "08001",
+        "08005",
+        "08035",
+        "08041",
+        "08101",
+        "08123"
+      ]
+    },
+    {
+      "state": "MO",
+      "program_name": "Missouri Works + Data Center Incentives",
+      "incentive_type": "Tax Withholding + Sales Tax Exemption",
+      "min_investment_m": 2,
+      "notes": "Missouri Works job creation incentive; computer equipment sales tax exemption",
+      "fips_list": [
+        "29189",
+        "29183",
+        "29510",
+        "29019",
+        "29095",
+        "29099",
+        "29165",
+        "29077"
+      ]
+    }
+  ]
+}
