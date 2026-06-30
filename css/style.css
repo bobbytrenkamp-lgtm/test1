@@ -659,7 +659,7 @@ html, body {
   top: 12px;
   left: 20px;
   width: 270px;
-  max-height: calc(100% - 24px);
+  max-height: min(520px, calc(100% - 24px));
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -712,8 +712,12 @@ html, body {
 }
 
 #filter-panel-body {
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
   padding: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
 
 .filter-group-label {
@@ -988,7 +992,7 @@ html, body {
     left: 0;
     width: 85vw;
     max-width: 300px;
-    max-height: 100%;
+    max-height: min(88vh, 100%);
     border-radius: 0;
     transform: translateX(-100%);
   }

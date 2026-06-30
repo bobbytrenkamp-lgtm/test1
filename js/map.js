@@ -87,6 +87,7 @@ const ANNOTATIONS = [
 // labeled sample/placeholder data until verified sources are wired in.
 const LAYER_DEFS = [
   { id: "restrictions", label: "Restrictions",               group: "Core",            color: "#dc2626", sample: false },
+  { id: "annotations",  label: "County Annotations",         group: "Core",            color: "#ef4444", sample: false },
   { id: "dc_existing",  label: "Existing Data Centers",       group: "Facilities",      color: "#5b8def", sample: true  },
   { id: "dc_planned",   label: "Planned Data Centers",        group: "Facilities",      color: "#5b8def", sample: true  },
   { id: "ai_campus",    label: "AI Campuses",                 group: "Facilities",      color: "#a78bfa", sample: true  },
@@ -111,6 +112,7 @@ let countySelection = null;
 const layerGroups = {};
 const layerState = {
   restrictions: true,
+  annotations: true,
   dc_existing: false,
   dc_planned: false,
   ai_campus: false,
@@ -234,6 +236,7 @@ function addAnnotations(g, counties, path) {
       .attr("font-weight", "400")
       .attr("opacity", 0.85);
   }
+  return annGroup;
 }
 
 const UTILITY_COLORS = ["#f472b6", "#fb923c", "#38bdf8", "#a3e635"];
@@ -428,8 +431,9 @@ function renderMap(us) {
     .attr("class", "nation-border")
     .attr("d", path);
 
-  // Annotations (arrows + labels)
-  addAnnotations(g, counties, path);
+  // Annotations (arrows + labels) — stored in layerGroups so the toggle works
+  layerGroups["annotations"] = addAnnotations(g, counties, path);
+  if (!layerState.annotations) layerGroups["annotations"].style("display", "none");
 
   // Sample facility / infrastructure layers (points + lines)
   if (sampleLayers) renderSampleMarkerLayers(g, projection);
