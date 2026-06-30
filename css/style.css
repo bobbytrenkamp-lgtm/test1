@@ -499,7 +499,68 @@ html, body {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
+  transition: max-height 0.25s ease;
 }
+
+#legend.legend-mini { max-height: 116px; }
+#legend.legend-hidden { display: none; }
+
+/* Toolbar is sticky so it stays visible while scrolling in mini mode */
+.legend-toolbar {
+  position: sticky;
+  top: -12px;
+  margin: -12px -16px 10px;
+  padding: 8px 10px 8px 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 1;
+  user-select: none;
+}
+
+.legend-drag-handle {
+  cursor: grab;
+  color: var(--text-muted);
+  padding: 3px 5px;
+  border-radius: 4px;
+  touch-action: none;
+  flex-shrink: 0;
+  line-height: 0;
+  transition: color 0.15s, background 0.15s;
+}
+.legend-drag-handle:hover { color: var(--text); background: var(--surface-2); }
+.legend-drag-handle:active { cursor: grabbing; }
+
+.legend-toolbar-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  pointer-events: none;
+}
+
+.legend-minimize-btn {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: color 0.15s, border-color 0.15s;
+  padding: 0;
+}
+.legend-minimize-btn:hover { color: var(--text); border-color: var(--accent); }
 
 #legend h3 {
   font-size: 10px;
@@ -541,6 +602,29 @@ html, body {
   color: var(--text-muted);
   line-height: 1.3;
 }
+
+/* Restore pill — shows when legend is fully hidden */
+#legend-restore {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px 5px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+#legend-restore.visible { display: flex; }
+#legend-restore:hover { color: var(--text); border-color: var(--accent); }
 
 /* ── Filter Panel ── */
 #filter-panel-backdrop {
@@ -879,7 +963,7 @@ html, body {
   .stat-card-value { font-size: 17px; }
   #search-bar { padding: 6px 12px; }
   #search-results { left: 12px; right: 12px; }
-  #legend { left: 10px; top: 10px; bottom: auto; padding: 8px 10px; min-width: 160px; max-width: 60vw; max-height: calc(100% - 20px); }
+  #legend { left: 10px; top: 10px; padding: 8px 10px; min-width: 160px; max-width: 64vw; max-height: calc(100% - 20px); }
   #filter-toggle span { display: none; }
   #filter-toggle { padding: 7px 8px; }
 

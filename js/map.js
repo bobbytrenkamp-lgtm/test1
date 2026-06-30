@@ -102,6 +102,7 @@ const SAMPLE_DISCLAIMER = "Sample data — for UI demonstration only. Replace wi
 
 let mapData = {};
 let sampleLayers = null;
+let legendState = 0; // 0 = full, 1 = mini, 2 = hidden
 let selectedFips = null;
 let currentK = 1;
 let mapHandles = null;
@@ -524,6 +525,30 @@ function renderLegend() {
   const legend = document.getElementById("legend");
   legend.innerHTML = "";
 
+  // Toolbar: drag handle + title + minimize button
+  const minIcon = legendState === 1
+    ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
+    : `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
+  const minTitle = legendState === 1 ? "Hide legend" : "Minimize legend";
+  const toolbar = document.createElement("div");
+  toolbar.className = "legend-toolbar";
+  toolbar.innerHTML = `
+    <span class="legend-drag-handle" title="Drag to reposition">
+      <svg width="12" height="16" viewBox="0 0 12 16" fill="currentColor">
+        <circle cx="3" cy="3"  r="1.5"/><circle cx="9" cy="3"  r="1.5"/>
+        <circle cx="3" cy="8"  r="1.5"/><circle cx="9" cy="8"  r="1.5"/>
+        <circle cx="3" cy="13" r="1.5"/><circle cx="9" cy="13" r="1.5"/>
+      </svg>
+    </span>
+    <span class="legend-toolbar-title">Legend</span>
+    <button class="legend-minimize-btn" title="${minTitle}">${minIcon}</button>
+  `;
+  legend.appendChild(toolbar);
+
+  // Reapply size state (classes persist on the element across renders)
+  legend.classList.toggle("legend-mini",   legendState === 1);
+  legend.classList.toggle("legend-hidden", legendState === 2);
+
   if (layerState.restrictions) {
     const header = document.createElement("h3");
     header.textContent = "Restriction Severity";
@@ -706,6 +731,83 @@ function initTopToggle() {
   btn.addEventListener("click", () => {
     document.getElementById("app").classList.toggle("top-hidden");
   });
+}
+
+function initLegendControls() {
+  const legend  = document.getElementById("legend");
+  const restore = document.getElementById("legend-restore");
+  if (!legend) return;
+
+  // ── Minimize / restore cycling ──────────────────────────────────────────
+  function applyLegendState() {
+    legend.classList.toggle("legend-mini",   legendState === 1);
+    legend.classList.toggle("legend-hidden", legendState === 2);
+    if (restore) {
+      restore.classList.toggle("visible", legendState === 2);
+      // Restore pill appears where the legend currently sits
+      restore.style.left = legend.style.left || "";
+      restore.style.top  = legend.style.top  || "";
+    }
+    // Re-render toolbar icon to match new state
+    const btn = legend.querySelector(".legend-minimize-btn");
+    if (btn) {
+      const isMin = legendState === 1;
+      btn.title = isMin ? "Hide legend" : "Minimize legend";
+      btn.innerHTML = isMin
+        ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
+        : `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
+    }
+  }
+
+  // Event delegation — minimize button is recreated on every renderLegend()
+  legend.addEventListener("click", (e) => {
+    if (!e.target.closest(".legend-minimize-btn")) return;
+    legendState = (legendState + 1) % 3;
+    applyLegendState();
+  });
+
+  if (restore) {
+    restore.addEventListener("click", () => {
+      legendState = 0;
+      applyLegendState();
+    });
+  }
+
+  // ── Drag ────────────────────────────────────────────────────────────────
+  const container = document.getElementById("map-container");
+  let dragging = false;
+  let startPX, startPY, startLeft, startTop;
+
+  legend.addEventListener("pointerdown", (e) => {
+    if (!e.target.closest(".legend-drag-handle")) return;
+    e.preventDefault();
+    dragging = true;
+    const lRect = legend.getBoundingClientRect();
+    const cRect = container.getBoundingClientRect();
+    startPX   = e.clientX;
+    startPY   = e.clientY;
+    startLeft = lRect.left - cRect.left;
+    startTop  = lRect.top  - cRect.top;
+    legend.setPointerCapture(e.pointerId);
+    legend.style.cursor = "grabbing";
+  });
+
+  legend.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    const cRect = container.getBoundingClientRect();
+    const lRect = legend.getBoundingClientRect();
+    let nl = startLeft + (e.clientX - startPX);
+    let nt = startTop  + (e.clientY - startPY);
+    nl = Math.max(0, Math.min(nl, cRect.width  - lRect.width));
+    nt = Math.max(0, Math.min(nt, cRect.height - lRect.height));
+    legend.style.left = nl + "px";
+    legend.style.top  = nt + "px";
+    // Keep restore pill in sync with legend position
+    if (restore) { restore.style.left = legend.style.left; restore.style.top = legend.style.top; }
+  });
+
+  legend.addEventListener("pointerup",     () => { dragging = false; legend.style.cursor = ""; });
+  legend.addEventListener("pointercancel", () => { dragging = false; legend.style.cursor = ""; });
 }
 
 function animateCounter(el, target, duration = 900) {
@@ -1194,6 +1296,7 @@ async function init() {
     mapHandles = renderMap(us);
     initFilterPanelControls();
     initTopToggle();
+    initLegendControls();
     initSearch();
     setDetailEmpty();
     setLastUpdated(data);
