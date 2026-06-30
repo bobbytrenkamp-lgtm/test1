@@ -70,18 +70,52 @@ const ANNOTATIONS = [
   { fips: "19113", label: "Cedar Rapids, IA", sub: "Iowa 0% equipment tax",         type: "pro",         dx:   10, dy:  -65 },
 ];
 
+// Layer toggle definitions for the filter panel. "Restrictions" is the only
+// layer backed by real curated data — everything else ships as clearly
+// labeled sample/placeholder data until verified sources are wired in.
+const LAYER_DEFS = [
+  { id: "restrictions", label: "Restrictions",               group: "Core",            color: "#dc2626", sample: false },
+  { id: "dc_existing",  label: "Existing Data Centers",       group: "Facilities",      color: "#5b8def", sample: true  },
+  { id: "dc_planned",   label: "Planned Data Centers",        group: "Facilities",      color: "#5b8def", sample: true  },
+  { id: "ai_campus",    label: "AI Campuses",                 group: "Facilities",      color: "#a78bfa", sample: true  },
+  { id: "power",        label: "Power Infrastructure",        group: "Infrastructure",  color: "#34d399", sample: true  },
+  { id: "transmission", label: "Transmission Lines",          group: "Infrastructure",  color: "#fbbf24", sample: true  },
+  { id: "fiber",        label: "Fiber Network",                group: "Infrastructure",  color: "#60a5fa", sample: true  },
+  { id: "water",        label: "Water Availability",          group: "Land & Policy",   color: "#1d4ed8", sample: true  },
+  { id: "utility",      label: "Utility Service Territories", group: "Land & Policy",   color: "#f472b6", sample: true  },
+  { id: "tax",          label: "Tax Incentive Areas",         group: "Land & Policy",   color: "#fbbf24", sample: true  },
+];
+
+const SAMPLE_DISCLAIMER = "Sample data — for UI demonstration only. Replace with verified source before public release.";
+
 let mapData = {};
+let sampleLayers = null;
 let selectedFips = null;
 let currentK = 1;
 let mapHandles = null;
 let countyFipsIndex = {};
+let countySelection = null;
+const layerGroups = {};
+const layerState = {
+  restrictions: true,
+  dc_existing: false,
+  dc_planned: false,
+  ai_campus: false,
+  power: false,
+  transmission: false,
+  fiber: false,
+  water: false,
+  utility: false,
+  tax: false,
+};
 
 async function loadData() {
-  const [us, data] = await Promise.all([
+  const [us, data, sample] = await Promise.all([
     d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"),
     d3.json("data/map_data.json"),
+    d3.json("data/sample_layers.json"),
   ]);
-  return { us, data };
+  return { us, data, sample };
 }
 
 function fipsKey(id) {
@@ -187,6 +221,105 @@ function addAnnotations(g, counties, path) {
   }
 }
 
+const UTILITY_COLORS = ["#f472b6", "#fb923c", "#38bdf8", "#a3e635"];
+function utilityColor(territoryId) {
+  const idx = (sampleLayers.utility_territories || []).findIndex(t => t.id === territoryId);
+  return UTILITY_COLORS[idx % UTILITY_COLORS.length];
+}
+
+const capacityRadius = d3.scaleSqrt().domain([0, 800]).range([3, 16]).clamp(true);
+
+function renderSampleMarkerLayers(g, projection) {
+  const project = ([lon, lat]) => projection([lon, lat]) || [-9999, -9999];
+
+  // Transmission lines
+  const transmissionGroup = g.append("g").attr("class", "layer-group layer-transmission").style("display", "none");
+  layerGroups.transmission = transmissionGroup;
+  const lineGen = d3.line().x(d => d[0]).y(d => d[1]);
+  transmissionGroup.selectAll("path")
+    .data(sampleLayers.transmission_lines || [])
+    .join("path")
+    .attr("class", "layer-line line-transmission")
+    .attr("data-sw", 1.1)
+    .attr("stroke-width", 1.1)
+    .attr("d", d => lineGen(d.path.map(project)))
+    .append("title")
+    .text(d => `${d.name} (${d.voltage_kv} kV) — ${SAMPLE_DISCLAIMER}`);
+
+  // Fiber network
+  const fiberGroup = g.append("g").attr("class", "layer-group layer-fiber").style("display", "none");
+  layerGroups.fiber = fiberGroup;
+  fiberGroup.selectAll("path")
+    .data(sampleLayers.fiber_network || [])
+    .join("path")
+    .attr("class", "layer-line line-fiber")
+    .attr("data-sw", 1)
+    .attr("stroke-width", 1)
+    .attr("d", d => lineGen(d.path.map(project)))
+    .append("title")
+    .text(d => `${d.name} — ${SAMPLE_DISCLAIMER}`);
+
+  // Power infrastructure (fixed-size circles)
+  const powerGroup = g.append("g").attr("class", "layer-group layer-power").style("display", "none");
+  layerGroups.power = powerGroup;
+  powerGroup.selectAll("circle")
+    .data(sampleLayers.power_infrastructure || [])
+    .join("circle")
+    .attr("class", "map-marker marker-power")
+    .attr("data-r", 5)
+    .attr("r", 5)
+    .attr("cx", d => project([d.lon, d.lat])[0])
+    .attr("cy", d => project([d.lon, d.lat])[1])
+    .on("click", (event, d) => { event.stopPropagation(); setDetailFacility(d, "power"); })
+    .append("title")
+    .text(d => `${d.name} — ${SAMPLE_DISCLAIMER}`);
+
+  // AI campuses
+  const aiGroup = g.append("g").attr("class", "layer-group layer-ai_campus").style("display", "none");
+  layerGroups.ai_campus = aiGroup;
+  aiGroup.selectAll("circle")
+    .data(sampleLayers.ai_campuses || [])
+    .join("circle")
+    .attr("class", "map-marker marker-ai-campus")
+    .attr("data-r", 6)
+    .attr("r", 6)
+    .attr("cx", d => project([d.lon, d.lat])[0])
+    .attr("cy", d => project([d.lon, d.lat])[1])
+    .on("click", (event, d) => { event.stopPropagation(); setDetailFacility(d, "ai_campus"); })
+    .append("title")
+    .text(d => `${d.name} — ${SAMPLE_DISCLAIMER}`);
+
+  // Planned data centers (drawn before existing so existing sits on top)
+  const plannedGroup = g.append("g").attr("class", "layer-group layer-dc_planned").style("display", "none");
+  layerGroups.dc_planned = plannedGroup;
+  plannedGroup.selectAll("circle")
+    .data((sampleLayers.data_centers || []).filter(d => d.status === "planned"))
+    .join("circle")
+    .attr("class", "map-marker marker-dc-planned")
+    .attr("data-r", d => capacityRadius(d.capacity_mw))
+    .attr("r", d => capacityRadius(d.capacity_mw))
+    .attr("cx", d => project([d.lon, d.lat])[0])
+    .attr("cy", d => project([d.lon, d.lat])[1])
+    .on("click", (event, d) => { event.stopPropagation(); setDetailFacility(d, "dc_planned"); })
+    .append("title")
+    .text(d => `${d.name} — ${SAMPLE_DISCLAIMER}`);
+
+  // Existing data centers
+  const existingGroup = g.append("g").attr("class", "layer-group layer-dc_existing").style("display", "none");
+  layerGroups.dc_existing = existingGroup;
+  existingGroup.selectAll("circle")
+    .data((sampleLayers.data_centers || []).filter(d => d.status === "existing"))
+    .join("circle")
+    .attr("class", "map-marker marker-dc-existing")
+    .attr("data-r", d => capacityRadius(d.capacity_mw))
+    .attr("r", d => capacityRadius(d.capacity_mw))
+    .attr("cx", d => project([d.lon, d.lat])[0])
+    .attr("cy", d => project([d.lon, d.lat])[1])
+    .on("click", (event, d) => { event.stopPropagation(); setDetailFacility(d, "dc_existing"); })
+    .append("title")
+    .text(d => `${d.name} — ${SAMPLE_DISCLAIMER}`);
+}
+
 function renderMap(us) {
   const container = document.getElementById("map-container");
   const width  = container.clientWidth;
@@ -215,7 +348,7 @@ function renderMap(us) {
   counties.features.forEach(f => { countyFipsIndex[fipsKey(f.id)] = f; });
 
   // Counties
-  g.selectAll("path.county")
+  countySelection = g.selectAll("path.county")
     .data(counties.features)
     .join("path")
     .attr("class", "county")
@@ -226,6 +359,48 @@ function renderMap(us) {
     .on("mousemove", onMouseMove)
     .on("mouseleave", onMouseLeave)
     .on("click", onCountyClick);
+
+  // Water / utility / tax overlays — appended after counties so they paint on top
+  const waterGroup = g.append("g").attr("class", "layer-group layer-water").style("display", "none");
+  layerGroups.water = waterGroup;
+
+  const utilityGroup = g.append("g").attr("class", "layer-group layer-utility").style("display", "none");
+  layerGroups.utility = utilityGroup;
+
+  const taxGroup = g.append("g").attr("class", "layer-group layer-tax").style("display", "none");
+  layerGroups.tax = taxGroup;
+
+  if (sampleLayers) {
+    const waterStress = sampleLayers.water_stress || {};
+    const waterOpacity = { 0: 0, 1: 0.16, 2: 0.32, 3: 0.5 };
+    waterGroup.selectAll("path")
+      .data(counties.features.filter(f => waterStress[fipsKey(f.id)] !== undefined))
+      .join("path")
+      .attr("class", "water-overlay")
+      .attr("d", path)
+      .attr("fill", "#1d4ed8")
+      .attr("opacity", d => waterOpacity[waterStress[fipsKey(d.id)]] || 0);
+
+    (sampleLayers.utility_territories || []).forEach(territory => {
+      const fipsSet = new Set(territory.fips_list);
+      const color = utilityColor(territory.id);
+      utilityGroup.selectAll(`path.ut-${territory.id}`)
+        .data(counties.features.filter(f => fipsSet.has(fipsKey(f.id))))
+        .join("path")
+        .attr("class", `utility-overlay ut-${territory.id}`)
+        .attr("d", path)
+        .attr("fill", "none")
+        .attr("stroke", color)
+        .attr("stroke-width", 1.3);
+    });
+
+    const taxSet = new Set(sampleLayers.tax_incentive_counties || []);
+    taxGroup.selectAll("path")
+      .data(counties.features.filter(f => taxSet.has(fipsKey(f.id))))
+      .join("path")
+      .attr("class", "tax-overlay")
+      .attr("d", path);
+  }
 
   // State borders
   g.append("path")
@@ -241,6 +416,9 @@ function renderMap(us) {
 
   // Annotations (arrows + labels)
   addAnnotations(g, counties, path);
+
+  // Sample facility / infrastructure layers (points + lines)
+  if (sampleLayers) renderSampleMarkerLayers(g, projection);
 
   // Zoom
   const zoom = d3.zoom()
@@ -262,6 +440,13 @@ function renderMap(us) {
         .attr("width", (110 + 6) / k)
         .attr("height", 28 / k)
         .attr("rx", 3 / k);
+      // Keep markers + lines at consistent visual size while zoomed
+      g.selectAll(".map-marker[data-r]").attr("r", function() {
+        return (+this.getAttribute("data-r")) / k;
+      });
+      g.selectAll(".layer-line").attr("stroke-width", function() {
+        return (+this.getAttribute("data-sw")) / k;
+      });
     });
 
   svg.call(zoom);
@@ -269,7 +454,7 @@ function renderMap(us) {
     svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
   });
 
-  return { svg, g, path, zoom, width, height };
+  return { svg, g, path, projection, zoom, width, height };
 }
 
 function renderStats(data) {
@@ -297,54 +482,209 @@ function renderStats(data) {
   bar.appendChild(total);
 }
 
+const SAMPLE_LEGEND_ENTRIES = {
+  dc_existing:  { swatch: "circle", color: "#5b8def", label: "Data Center (existing)" },
+  dc_planned:   { swatch: "ring",   color: "#5b8def", label: "Data Center (planned)" },
+  ai_campus:    { swatch: "circle", color: "#a78bfa", label: "AI Campus" },
+  power:        { swatch: "circle", color: "#34d399", label: "Power Infrastructure" },
+  transmission: { swatch: "line",   color: "#fbbf24", label: "Transmission Line" },
+  fiber:        { swatch: "line",   color: "#60a5fa", label: "Fiber Route" },
+  water:        { swatch: "square", color: "#1d4ed8", label: "Water Stress" },
+  utility:      { swatch: "outline",color: "#f472b6", label: "Utility Territory" },
+  tax:          { swatch: "outline",color: "#fbbf24", label: "Tax Incentive Area" },
+};
+
+function legendSwatchHtml(entry) {
+  if (entry.swatch === "line") {
+    return `<svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink:0"><line x1="1" y1="7" x2="13" y2="7" stroke="${entry.color}" stroke-width="2" stroke-dasharray="3,2"/></svg>`;
+  }
+  if (entry.swatch === "ring") {
+    return `<svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink:0"><circle cx="7" cy="7" r="5" fill="none" stroke="${entry.color}" stroke-width="1.6" stroke-dasharray="2,1.5"/></svg>`;
+  }
+  if (entry.swatch === "outline") {
+    return `<svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink:0"><rect x="1.5" y="1.5" width="11" height="11" rx="2" fill="none" stroke="${entry.color}" stroke-width="1.6"/></svg>`;
+  }
+  return `<div class="legend-swatch" style="background:${entry.color};"></div>`;
+}
+
 function renderLegend() {
   const legend = document.getElementById("legend");
-  legend.innerHTML = `<h3>Restriction Severity</h3>`;
+  legend.innerHTML = "";
 
-  const items = [
-    { key: "ban",      sub: "Outright prohibition" },
-    { key: "high",      sub: "Active, significant limits" },
-    { key: "moderate",  sub: "Active, light-to-moderate limits" },
-    { key: "proposed",  sub: "Pending / not yet enacted" },
-    { key: "none",      sub: "No known restrictions" },
-    { key: "pro",        sub: "Tax incentives / major hub" },
-  ];
+  if (layerState.restrictions) {
+    const header = document.createElement("h3");
+    header.textContent = "Restriction Severity";
+    legend.appendChild(header);
 
-  for (const item of items) {
-    const el = document.createElement("div");
-    el.className = "legend-item";
+    const items = [
+      { key: "ban",      sub: "Outright prohibition" },
+      { key: "high",      sub: "Active, significant limits" },
+      { key: "moderate",  sub: "Active, light-to-moderate limits" },
+      { key: "proposed",  sub: "Pending / not yet enacted" },
+      { key: "none",      sub: "No known restrictions" },
+      { key: "pro",        sub: "Tax incentives / major hub" },
+    ];
 
-    el.innerHTML = `
-      <div class="legend-swatch" style="background:${SEVERITY[item.key].color};"></div>
-      <div>
-        <div class="legend-label-main">${SEVERITY[item.key].label}</div>
-        <div class="legend-label-sub">${item.sub}</div>
-      </div>
-    `;
-    legend.appendChild(el);
+    for (const item of items) {
+      const el = document.createElement("div");
+      el.className = "legend-item";
+      el.innerHTML = `
+        <div class="legend-swatch" style="background:${SEVERITY[item.key].color};"></div>
+        <div>
+          <div class="legend-label-main">${SEVERITY[item.key].label}</div>
+          <div class="legend-label-sub">${item.sub}</div>
+        </div>
+      `;
+      legend.appendChild(el);
+    }
+
+    const divider = document.createElement("div");
+    divider.style.cssText = "border-top:1px solid #2e3352; margin: 8px 0;";
+    legend.appendChild(divider);
+
+    const arrows = [
+      { color: "#ef4444", label: "Most restrictive areas" },
+      { color: "#22c55e", label: "Most pro-data-center areas" },
+    ];
+    for (const a of arrows) {
+      const el = document.createElement("div");
+      el.className = "legend-item";
+      el.innerHTML = `
+        <svg width="18" height="10" viewBox="0 0 18 10" style="flex-shrink:0">
+          <line x1="0" y1="5" x2="12" y2="5" stroke="${a.color}" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <polygon points="12,1 18,5 12,9" fill="${a.color}"/>
+        </svg>
+        <div class="legend-label-main" style="font-size:10px">${a.label}</div>
+      `;
+      legend.appendChild(el);
+    }
   }
 
-  // Arrow key
-  const divider = document.createElement("div");
-  divider.style.cssText = "border-top:1px solid #2e3352; margin: 8px 0;";
-  legend.appendChild(divider);
+  // Active sample-layer entries
+  const activeSampleKeys = Object.keys(SAMPLE_LEGEND_ENTRIES).filter(k => layerState[k]);
+  if (activeSampleKeys.length) {
+    if (legend.children.length) {
+      const divider = document.createElement("div");
+      divider.style.cssText = "border-top:1px solid #2e3352; margin: 8px 0;";
+      legend.appendChild(divider);
+    }
+    const header = document.createElement("h3");
+    header.innerHTML = `Active Layers <span class="sample-tag" style="margin-left:4px;">Sample</span>`;
+    legend.appendChild(header);
 
-  const arrows = [
-    { color: "#ef4444", label: "Most restrictive areas" },
-    { color: "#22c55e", label: "Most pro-data-center areas" },
-  ];
-  for (const a of arrows) {
-    const el = document.createElement("div");
-    el.className = "legend-item";
-    el.innerHTML = `
-      <svg width="18" height="10" viewBox="0 0 18 10" style="flex-shrink:0">
-        <line x1="0" y1="5" x2="12" y2="5" stroke="${a.color}" stroke-width="1.5" stroke-dasharray="3,2"/>
-        <polygon points="12,1 18,5 12,9" fill="${a.color}"/>
-      </svg>
-      <div class="legend-label-main" style="font-size:10px">${a.label}</div>
-    `;
-    legend.appendChild(el);
+    for (const key of activeSampleKeys) {
+      const entry = SAMPLE_LEGEND_ENTRIES[key];
+      const el = document.createElement("div");
+      el.className = "legend-item";
+      el.innerHTML = `${legendSwatchHtml(entry)}<div class="legend-label-main">${entry.label}</div>`;
+      legend.appendChild(el);
+    }
   }
+
+  if (!legend.children.length) {
+    legend.innerHTML = `<div class="legend-label-sub">No layers active. Use the Layers panel to add one.</div>`;
+  }
+}
+
+function renderFilterPanel() {
+  const body = document.getElementById("filter-panel-body");
+  body.innerHTML = "";
+
+  const groups = [];
+  for (const def of LAYER_DEFS) {
+    let group = groups.find(g => g.name === def.group);
+    if (!group) { group = { name: def.group, items: [] }; groups.push(group); }
+    group.items.push(def);
+  }
+
+  let sampleBannerAdded = false;
+
+  for (const group of groups) {
+    const label = document.createElement("div");
+    label.className = "filter-group-label";
+    label.textContent = group.name;
+    body.appendChild(label);
+
+    for (const def of group.items) {
+      if (def.sample && !sampleBannerAdded) {
+        const banner = document.createElement("div");
+        banner.className = "sample-banner";
+        banner.style.margin = "4px 8px 8px";
+        banner.innerHTML = `<span>⚠</span><span>${SAMPLE_DISCLAIMER}</span>`;
+        body.appendChild(banner);
+        sampleBannerAdded = true;
+      }
+
+      const row = document.createElement("div");
+      row.className = "filter-row";
+      row.innerHTML = `
+        <label class="filter-row-label">
+          <span class="filter-row-dot" style="background:${def.color}"></span>
+          <span class="name">${def.label}</span>
+          ${def.sample ? '<span class="sample-tag">Sample</span>' : ""}
+        </label>
+        <span class="toggle-switch">
+          <input type="checkbox" data-layer="${def.id}" ${layerState[def.id] ? "checked" : ""} />
+          <span class="toggle-slider"></span>
+        </span>
+      `;
+      body.appendChild(row);
+    }
+  }
+
+  body.querySelectorAll('input[type="checkbox"][data-layer]').forEach(input => {
+    input.addEventListener("change", () => {
+      setLayerVisible(input.dataset.layer, input.checked);
+    });
+  });
+}
+
+function setLayerVisible(id, visible, syncUI = false) {
+  layerState[id] = visible;
+
+  if (id === "restrictions") {
+    if (countySelection) {
+      countySelection.attr("fill", d => visible ? getColor(fipsKey(d.id)) : "#1e2235");
+    }
+  } else if (layerGroups[id]) {
+    layerGroups[id].style("display", visible ? null : "none");
+  }
+
+  if (syncUI) {
+    const input = document.querySelector(`#filter-panel-body input[data-layer="${id}"]`);
+    if (input) input.checked = visible;
+  }
+
+  renderLegend();
+}
+
+function openFilterPanel() {
+  document.getElementById("filter-panel").classList.add("open");
+  document.getElementById("filter-panel-backdrop").classList.add("open");
+  document.getElementById("filter-toggle").classList.add("active");
+  document.getElementById("filter-toggle").setAttribute("aria-expanded", "true");
+}
+
+function closeFilterPanel() {
+  document.getElementById("filter-panel").classList.remove("open");
+  document.getElementById("filter-panel-backdrop").classList.remove("open");
+  document.getElementById("filter-toggle").classList.remove("active");
+  document.getElementById("filter-toggle").setAttribute("aria-expanded", "false");
+}
+
+function initFilterPanelControls() {
+  const toggleBtn = document.getElementById("filter-toggle");
+  const closeBtn  = document.getElementById("filter-panel-close");
+  const backdrop  = document.getElementById("filter-panel-backdrop");
+  const panel     = document.getElementById("filter-panel");
+
+  toggleBtn.addEventListener("click", () => {
+    panel.classList.contains("open") ? closeFilterPanel() : openFilterPanel();
+  });
+  closeBtn.addEventListener("click", closeFilterPanel);
+  backdrop.addEventListener("click", closeFilterPanel);
+
+  document.getElementById("detail-panel-close").addEventListener("click", closeMobileSheet);
 }
 
 function animateCounter(el, target, duration = 900) {
@@ -373,12 +713,16 @@ function renderDashboard(data) {
     lastUpdated = new Date(data.generated_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
   }
 
+  const dcs = (sampleLayers && sampleLayers.data_centers) || [];
+  const existingMW = dcs.filter(d => d.status === "existing").reduce((s, d) => s + d.capacity_mw, 0);
+  const plannedMW  = dcs.filter(d => d.status === "planned").reduce((s, d) => s + d.capacity_mw, 0);
+
   const cards = [
     { label: "Counties — Active Restrictions",   value: activeRestrictions },
     { label: "Counties — Proposed Restrictions", value: proposedRestrictions },
     { label: "States w/ AI / DC Legislation",    value: statesWithLegislation.size },
-    { label: "Existing Data Center Capacity",    text: "Not yet tracked" },
-    { label: "Planned Capacity",                 text: "Not yet tracked" },
+    { label: "Existing Data Center Capacity",    text: `${(existingMW / 1000).toFixed(1)} GW`, sample: true },
+    { label: "Planned Capacity",                 text: `${(plannedMW / 1000).toFixed(1)} GW`, sample: true },
     { label: "Last Updated",                     text: lastUpdated },
   ];
 
@@ -388,8 +732,9 @@ function renderDashboard(data) {
   for (const card of cards) {
     const el = document.createElement("div");
     el.className = "stat-card";
+    const tag = card.sample ? `<span class="sample-tag" style="margin-left:6px;">Sample</span>` : "";
     if (card.text) {
-      el.innerHTML = `<div class="stat-card-value stat-card-text">${card.text}</div><div class="stat-card-label">${card.label}</div>`;
+      el.innerHTML = `<div class="stat-card-value stat-card-text">${card.text}${tag}</div><div class="stat-card-label">${card.label}</div>`;
     } else {
       el.innerHTML = `<div class="stat-card-value">0</div><div class="stat-card-label">${card.label}</div>`;
     }
@@ -398,6 +743,80 @@ function renderDashboard(data) {
       animateCounter(el.querySelector(".stat-card-value"), card.value);
     }
   }
+}
+
+function openMobileSheet() {
+  document.getElementById("detail-panel").classList.add("sheet-open");
+}
+
+function closeMobileSheet() {
+  document.getElementById("detail-panel").classList.remove("sheet-open");
+}
+
+const WATER_STRESS_LABELS = { 0: "Low stress", 1: "Moderate stress", 2: "Elevated stress", 3: "High stress" };
+
+function buildSampleInfraHtml(fips) {
+  if (!sampleLayers) return "";
+
+  const facilities = (sampleLayers.data_centers || []).filter(d => d.county_fips === fips);
+  const campuses    = (sampleLayers.ai_campuses || []).filter(d => d.county_fips === fips);
+  const waterLevel  = sampleLayers.water_stress ? sampleLayers.water_stress[fips] : undefined;
+  const hasTaxIncentive = (sampleLayers.tax_incentive_counties || []).includes(fips);
+  const utility = (sampleLayers.utility_territories || []).find(t => t.fips_list.includes(fips));
+
+  if (!facilities.length && !campuses.length && waterLevel === undefined && !hasTaxIncentive && !utility) {
+    return "";
+  }
+
+  let html = `
+    <div class="divider"></div>
+    <div class="sample-banner">
+      <span>⚠</span><span>${SAMPLE_DISCLAIMER}</span>
+    </div>
+  `;
+
+  if (facilities.length) {
+    html += `
+    <div class="detail-section">
+      <div class="detail-label">Infrastructure <span class="sample-tag">Sample</span></div>
+      <div class="detail-value">
+        ${facilities.map(f => `${escHtml(f.name)} — ${f.capacity_mw} MW (${f.status})`).join("<br>")}
+      </div>
+    </div>`;
+  }
+
+  const operators = [...new Set([...facilities, ...campuses].map(f => f.operator))];
+  if (operators.length) {
+    html += `
+    <div class="detail-section">
+      <div class="detail-label">Major Operators <span class="sample-tag">Sample</span></div>
+      <div class="type-chips">
+        ${operators.map(o => `<span class="type-chip">${escHtml(o)}</span>`).join("")}
+      </div>
+    </div>`;
+  }
+
+  if (campuses.length) {
+    html += `
+    <div class="detail-section">
+      <div class="detail-label">AI Campuses <span class="sample-tag">Sample</span></div>
+      <div class="detail-value">${campuses.map(c => escHtml(c.name)).join("<br>")}</div>
+    </div>`;
+  }
+
+  if (waterLevel !== undefined || hasTaxIncentive || utility) {
+    html += `
+    <div class="detail-section">
+      <div class="detail-label">Site Factors <span class="sample-tag">Sample</span></div>
+      <div class="detail-value">
+        ${waterLevel !== undefined ? `Water availability: ${WATER_STRESS_LABELS[waterLevel]}<br>` : ""}
+        ${utility ? `Utility territory: ${escHtml(utility.name)}<br>` : ""}
+        ${hasTaxIncentive ? `Tax incentive area: Yes` : ""}
+      </div>
+    </div>`;
+  }
+
+  return html;
 }
 
 function setDetailEmpty() {
@@ -412,6 +831,7 @@ function setDetailEmpty() {
       <p>Click any county on the map to see its restriction details.</p>
     </div>
   `;
+  closeMobileSheet();
 }
 
 function setDetailCounty(fips, county) {
@@ -481,10 +901,13 @@ function setDetailCounty(fips, county) {
         ${county.sources.map(s => `<li>${escHtml(s)}</li>`).join("")}
       </ul>
     </div>` : ""}
+
+    ${buildSampleInfraHtml(fips)}
   `;
+  openMobileSheet();
 }
 
-function setDetailNoRestriction(name, state) {
+function setDetailNoRestriction(name, state, fips) {
   document.getElementById("detail-header").querySelector("h2").textContent = name || "Unknown County";
   document.getElementById("detail-state").textContent = state || "";
   document.getElementById("detail-body").innerHTML = `
@@ -498,7 +921,73 @@ function setDetailNoRestriction(name, state) {
         Standard state and federal regulations apply only.
       </div>
     </div>
+
+    ${fips ? buildSampleInfraHtml(fips) : ""}
   `;
+  openMobileSheet();
+}
+
+const FACILITY_KIND_LABELS = {
+  dc_existing: "Data Center — Existing",
+  dc_planned:  "Data Center — Planned",
+  ai_campus:   "AI Campus",
+  power:       "Power Infrastructure",
+};
+
+function setDetailFacility(facility, kind) {
+  document.getElementById("detail-header").querySelector("h2").textContent = facility.name;
+  document.getElementById("detail-state").textContent = FACILITY_KIND_LABELS[kind] || "";
+
+  const county = mapData[facility.county_fips];
+
+  document.getElementById("detail-body").innerHTML = `
+    <div class="sample-banner">
+      <span>⚠</span><span>${SAMPLE_DISCLAIMER}</span>
+    </div>
+
+    ${facility.operator ? `
+    <div class="detail-section">
+      <div class="detail-label">Operator</div>
+      <div class="detail-value">${escHtml(facility.operator)}</div>
+    </div>` : ""}
+
+    ${facility.capacity_mw ? `
+    <div class="detail-section">
+      <div class="detail-label">Capacity</div>
+      <div class="detail-value">${facility.capacity_mw.toLocaleString("en-US")} MW</div>
+    </div>` : ""}
+
+    ${facility.status ? `
+    <div class="detail-section">
+      <div class="detail-label">Status</div>
+      <div class="detail-value" style="text-transform:capitalize;">${facility.status}</div>
+    </div>` : ""}
+
+    ${facility.year_built ? `
+    <div class="detail-section">
+      <div class="detail-label">Year Built</div>
+      <div class="detail-value">${facility.year_built}</div>
+    </div>` : ""}
+
+    ${facility.type ? `
+    <div class="detail-section">
+      <div class="detail-label">Type</div>
+      <div class="detail-value" style="text-transform:capitalize;">${facility.type}</div>
+    </div>` : ""}
+
+    ${facility.notes ? `
+    <div class="detail-section">
+      <div class="detail-label">Notes</div>
+      <div class="detail-value">${escHtml(facility.notes)}</div>
+    </div>` : ""}
+
+    ${county ? `
+    <div class="detail-section">
+      <div class="detail-label">County</div>
+      <div class="detail-value">${escHtml(county.name)}, ${escHtml(county.state)}</div>
+    </div>` : ""}
+  `;
+  openMobileSheet();
 }
 
 function levelDot(level, status) {
@@ -547,7 +1036,7 @@ function onCountyClick(event, d) {
   d3.selectAll(".county").classed("selected", false);
   d3.select(this).classed("selected", true);
   selectedFips = fips;
-  county ? setDetailCounty(fips, county) : setDetailNoRestriction();
+  county ? setDetailCounty(fips, county) : setDetailNoRestriction(undefined, undefined, fips);
 }
 
 function setLastUpdated(data) {
@@ -575,18 +1064,37 @@ function selectCounty(fips) {
   d3.selectAll(".county").classed("selected", false);
   d3.selectAll(".county").filter(d => fipsKey(d.id) === fips).classed("selected", true);
   selectedFips = fips;
-  county ? setDetailCounty(fips, county) : setDetailNoRestriction(county?.name, county?.state);
+  county ? setDetailCounty(fips, county) : setDetailNoRestriction(county?.name, county?.state, fips);
 }
 
 function initSearch() {
   const input   = document.getElementById("search-input");
   const results = document.getElementById("search-results");
 
-  const index = Object.keys(mapData).map(fips => ({
+  const countyIndex = Object.keys(mapData).map(fips => ({
+    kind: "county",
     fips,
     name: mapData[fips].name,
     state: mapData[fips].state,
+    searchText: `${mapData[fips].name} ${mapData[fips].state}`.toLowerCase(),
   }));
+
+  const facilityIndex = [];
+  if (sampleLayers) {
+    const facilityKindOf = d => (d.status === "planned" ? "dc_planned" : "dc_existing");
+    (sampleLayers.data_centers || []).forEach(d => facilityIndex.push({
+      kind: "facility", facilityKind: facilityKindOf(d), raw: d,
+      name: d.name, sub: d.operator, fips: d.county_fips,
+      searchText: `${d.name} ${d.operator}`.toLowerCase(),
+    }));
+    (sampleLayers.ai_campuses || []).forEach(d => facilityIndex.push({
+      kind: "facility", facilityKind: "ai_campus", raw: d,
+      name: d.name, sub: d.operator, fips: d.county_fips,
+      searchText: `${d.name} ${d.operator}`.toLowerCase(),
+    }));
+  }
+
+  const index = [...countyIndex, ...facilityIndex];
 
   function renderResults(matches) {
     results.innerHTML = "";
@@ -594,13 +1102,24 @@ function initSearch() {
     for (const m of matches) {
       const item = document.createElement("div");
       item.className = "search-result-item";
-      item.textContent = `${m.name}, ${m.state}`;
+      if (m.kind === "county") {
+        item.textContent = `${m.name}, ${m.state}`;
+      } else {
+        item.innerHTML = `${escHtml(m.name)} <span class="sample-tag" style="margin-left:6px;">Sample</span>`;
+      }
       item.addEventListener("mousedown", () => {
-        input.value = `${m.name}, ${m.state}`;
+        input.value = m.kind === "county" ? `${m.name}, ${m.state}` : m.name;
         results.style.display = "none";
         const feature = countyFipsIndex[m.fips];
         if (feature) zoomToFeature(feature);
-        selectCounty(m.fips);
+        if (m.kind === "county") {
+          selectCounty(m.fips);
+        } else {
+          setLayerVisible(m.facilityKind, true, true);
+          selectedFips = null;
+          d3.selectAll(".county").classed("selected", false);
+          setDetailFacility(m.raw, m.facilityKind);
+        }
       });
       results.appendChild(item);
     }
@@ -611,7 +1130,7 @@ function initSearch() {
     const q = input.value.trim().toLowerCase();
     if (!q) { results.style.display = "none"; return; }
     const matches = index
-      .filter(c => c.name.toLowerCase().includes(q) || c.state.toLowerCase().includes(q))
+      .filter(c => c.searchText.includes(q))
       .slice(0, 8);
     renderResults(matches);
   });
@@ -627,12 +1146,15 @@ function initSearch() {
 
 async function init() {
   try {
-    const { us, data } = await loadData();
+    const { us, data, sample } = await loadData();
     mapData = data.counties || {};
+    sampleLayers = sample || null;
     renderDashboard(data);
+    renderFilterPanel();
     renderLegend();
     renderStats(data);
     mapHandles = renderMap(us);
+    initFilterPanelControls();
     initSearch();
     setDetailEmpty();
     setLastUpdated(data);

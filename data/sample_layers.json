@@ -1,0 +1,457 @@
+{
+  "_disclaimer": "SAMPLE DATA \u2014 for UI/UX demonstration only. Not sourced or verified. Replace with verified data before public release.",
+  "data_centers": [
+    {
+      "id": "dc-001",
+      "name": "Sample Hyperscale Campus A",
+      "operator": "Sample Operator (Unverified)",
+      "status": "existing",
+      "capacity_mw": 650,
+      "year_built": 2015,
+      "county_fips": "51107",
+      "notes": "Sample expansion: +200MW under sample evaluation (unverified).",
+      "lon": -77.64,
+      "lat": 39.08
+    },
+    {
+      "id": "dc-002",
+      "name": "Sample Cloud Region East",
+      "operator": "Sample Operator (Unverified)",
+      "status": "existing",
+      "capacity_mw": 310,
+      "year_built": 2018,
+      "county_fips": "51153",
+      "notes": "",
+      "lon": -77.49,
+      "lat": 38.71
+    },
+    {
+      "id": "dc-003",
+      "name": "Sample Edge Facility",
+      "operator": "Sample Operator (Unverified)",
+      "status": "existing",
+      "capacity_mw": 45,
+      "year_built": 2012,
+      "county_fips": "51059",
+      "notes": "",
+      "lon": -77.29,
+      "lat": 38.83
+    },
+    {
+      "id": "dc-004",
+      "name": "Sample Hyperscale Campus B",
+      "operator": "Sample Operator (Unverified)",
+      "status": "existing",
+      "capacity_mw": 420,
+      "year_built": 2013,
+      "county_fips": "41059",
+      "notes": "",
+      "lon": -118.67,
+      "lat": 45.68
+    },
+    {
+      "id": "dc-005",
+      "name": "Sample Hydro-Powered Data Center",
+      "operator": "Sample Operator (Unverified)",
+      "status": "existing",
+      "capacity_mw": 180,
+      "year_built": 2017,
+      "county_fips": "53007",
+      "notes": "",
+      "lon": -120.66,
+      "lat": 47.84
+    },
+    {
+      "id": "dc-006",
+      "name": "Sample Planned Mega-Campus",
+      "operator": "Sample Operator (Unverified)",
+      "status": "planned",
+      "capacity_mw": 800,
+      "year_built": null,
+      "county_fips": "53025",
+      "notes": "Sample: reported in permitting, sample target 2028 (unverified).",
+      "lon": -119.49,
+      "lat": 47.21
+    },
+    {
+      "id": "dc-007",
+      "name": "Sample Planned Campus C",
+      "operator": "Sample Operator (Unverified)",
+      "status": "planned",
+      "capacity_mw": 500,
+      "year_built": null,
+      "county_fips": "04013",
+      "notes": "",
+      "lon": -112.46,
+      "lat": 33.35
+    },
+    {
+      "id": "dc-008",
+      "name": "Sample Colocation Facility",
+      "operator": "Sample Operator (Unverified)",
+      "status": "existing",
+      "capacity_mw": 90,
+      "year_built": 2009,
+      "county_fips": "06085",
+      "notes": "",
+      "lon": -121.78,
+      "lat": 37.22
+    },
+    {
+      "id": "dc-009",
+      "name": "Sample Regional Data Center",
+      "operator": "Sample Operator (Unverified)",
+      "status": "existing",
+      "capacity_mw": 150,
+      "year_built": 2016,
+      "county_fips": "48113",
+      "notes": "",
+      "lon": -96.81,
+      "lat": 32.77
+    },
+    {
+      "id": "dc-010",
+      "name": "Sample Planned Campus D",
+      "operator": "Sample Operator (Unverified)",
+      "status": "planned",
+      "capacity_mw": 350,
+      "year_built": null,
+      "county_fips": "32029",
+      "notes": "",
+      "lon": -119.48,
+      "lat": 39.39
+    }
+  ],
+  "ai_campuses": [
+    {
+      "id": "ai-001",
+      "name": "Sample AI Training Campus",
+      "operator": "Sample Operator (Unverified)",
+      "county_fips": "51107",
+      "notes": "",
+      "lon": -77.64,
+      "lat": 39.08
+    },
+    {
+      "id": "ai-002",
+      "name": "Sample AI Supercluster",
+      "operator": "Sample Operator (Unverified)",
+      "county_fips": "41059",
+      "notes": "",
+      "lon": -118.67,
+      "lat": 45.68
+    },
+    {
+      "id": "ai-003",
+      "name": "Sample AI R&D Campus",
+      "operator": "Sample Operator (Unverified)",
+      "county_fips": "06085",
+      "notes": "",
+      "lon": -121.78,
+      "lat": 37.22
+    },
+    {
+      "id": "ai-004",
+      "name": "Sample AI Inference Hub",
+      "operator": "Sample Operator (Unverified)",
+      "county_fips": "48201",
+      "notes": "",
+      "lon": -95.36,
+      "lat": 29.86
+    },
+    {
+      "id": "ai-005",
+      "name": "Sample AI Campus (Planned)",
+      "operator": "Sample Operator (Unverified)",
+      "county_fips": "18057",
+      "notes": "",
+      "lon": -86.03,
+      "lat": 40.08
+    }
+  ],
+  "power_infrastructure": [
+    {
+      "id": "pw-001",
+      "name": "Sample Substation Alpha",
+      "type": "substation",
+      "county_fips": "51107",
+      "lon": -77.64,
+      "lat": 39.08
+    },
+    {
+      "id": "pw-002",
+      "name": "Sample Hydro Plant",
+      "type": "plant",
+      "county_fips": "53007",
+      "lon": -120.66,
+      "lat": 47.84
+    },
+    {
+      "id": "pw-003",
+      "name": "Sample Gas Peaker Plant",
+      "type": "plant",
+      "county_fips": "48201",
+      "lon": -95.36,
+      "lat": 29.86
+    },
+    {
+      "id": "pw-004",
+      "name": "Sample Substation Beta",
+      "type": "substation",
+      "county_fips": "53025",
+      "lon": -119.49,
+      "lat": 47.21
+    },
+    {
+      "id": "pw-005",
+      "name": "Sample Power Plant",
+      "type": "plant",
+      "county_fips": "18057",
+      "lon": -86.03,
+      "lat": 40.08
+    }
+  ],
+  "transmission_lines": [
+    {
+      "id": "tl-001",
+      "name": "Sample 500kV Line A",
+      "voltage_kv": 500,
+      "path": [
+        [
+          -77.64,
+          39.08
+        ],
+        [
+          -77.49,
+          38.71
+        ],
+        [
+          -77.29,
+          38.83
+        ]
+      ]
+    },
+    {
+      "id": "tl-002",
+      "name": "Sample 230kV Line B",
+      "voltage_kv": 230,
+      "path": [
+        [
+          -120.66,
+          47.84
+        ],
+        [
+          -119.85,
+          47.69
+        ],
+        [
+          -119.49,
+          47.21
+        ]
+      ]
+    },
+    {
+      "id": "tl-003",
+      "name": "Sample 345kV Line C",
+      "voltage_kv": 345,
+      "path": [
+        [
+          -96.81,
+          32.77
+        ],
+        [
+          -95.36,
+          29.86
+        ]
+      ]
+    }
+  ],
+  "fiber_network": [
+    {
+      "id": "fb-001",
+      "name": "Sample Fiber Route 1",
+      "path": [
+        [
+          -77.64,
+          39.08
+        ],
+        [
+          -77.29,
+          38.83
+        ],
+        [
+          -77.49,
+          38.71
+        ]
+      ]
+    },
+    {
+      "id": "fb-002",
+      "name": "Sample Fiber Route 2",
+      "path": [
+        [
+          -121.78,
+          37.22
+        ],
+        [
+          -112.46,
+          33.35
+        ]
+      ]
+    },
+    {
+      "id": "fb-003",
+      "name": "Sample Fiber Route 3",
+      "path": [
+        [
+          -96.81,
+          32.77
+        ],
+        [
+          -95.36,
+          29.86
+        ],
+        [
+          -97.77,
+          30.29
+        ]
+      ]
+    }
+  ],
+  "water_stress": {
+    "04013": 0,
+    "04019": 2,
+    "04021": 3,
+    "06001": 3,
+    "06037": 0,
+    "06075": 2,
+    "06085": 3,
+    "08031": 0,
+    "09003": 0,
+    "13097": 0,
+    "17031": 0,
+    "18057": 1,
+    "19113": 3,
+    "24031": 2,
+    "24033": 0,
+    "25017": 3,
+    "27053": 1,
+    "30029": 2,
+    "30053": 3,
+    "31055": 2,
+    "32029": 0,
+    "34035": 3,
+    "36005": 2,
+    "36019": 3,
+    "36047": 0,
+    "36061": 0,
+    "36081": 2,
+    "36085": 2,
+    "37035": 2,
+    "39049": 1,
+    "41027": 2,
+    "41059": 3,
+    "42077": 0,
+    "45015": 3,
+    "47157": 0,
+    "48085": 1,
+    "48113": 1,
+    "48201": 3,
+    "48453": 0,
+    "51059": 0,
+    "51107": 2,
+    "51153": 3,
+    "53007": 3,
+    "53017": 0,
+    "53025": 3,
+    "53033": 2,
+    "53047": 3,
+    "56021": 2
+  },
+  "tax_incentive_counties": [
+    "19113",
+    "45015",
+    "41059",
+    "32029",
+    "18057",
+    "31055",
+    "47157",
+    "39049",
+    "37035",
+    "56021"
+  ],
+  "utility_territories": [
+    {
+      "id": "ut-001",
+      "name": "Sample Pacific Utility Co.",
+      "fips_list": [
+        "41027",
+        "41059",
+        "53007",
+        "53017",
+        "53025",
+        "53033",
+        "53047"
+      ]
+    },
+    {
+      "id": "ut-002",
+      "name": "Sample Atlantic Power Co.",
+      "fips_list": [
+        "51059",
+        "51107",
+        "51153",
+        "24031",
+        "24033",
+        "36005",
+        "36019",
+        "36047",
+        "36061",
+        "36081",
+        "36085",
+        "34035"
+      ]
+    },
+    {
+      "id": "ut-003",
+      "name": "Sample Central Grid Co.",
+      "fips_list": [
+        "19113",
+        "17031",
+        "18057",
+        "39049",
+        "27053",
+        "31055",
+        "30029",
+        "30053",
+        "56021"
+      ]
+    },
+    {
+      "id": "ut-004",
+      "name": "Sample Sunbelt Energy Co.",
+      "fips_list": [
+        "04013",
+        "04019",
+        "04021",
+        "06001",
+        "06037",
+        "06075",
+        "06085",
+        "08031",
+        "09003",
+        "13097",
+        "25017",
+        "32029",
+        "37035",
+        "42077",
+        "45015",
+        "47157",
+        "48085",
+        "48113",
+        "48201",
+        "48453"
+      ]
+    }
+  ]
+}
