@@ -541,6 +541,9 @@ function renderLegend() {
       </svg>
     </span>
     <span class="legend-toolbar-title">Legend</span>
+    <button class="legend-expand-btn" title="Expand legend">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
     <button class="legend-minimize-btn" title="${minTitle}">${minIcon}</button>
   `;
   legend.appendChild(toolbar);
@@ -759,11 +762,15 @@ function initLegendControls() {
     }
   }
 
-  // Event delegation — minimize button is recreated on every renderLegend()
+  // Event delegation — buttons are recreated on every renderLegend()
   legend.addEventListener("click", (e) => {
-    if (!e.target.closest(".legend-minimize-btn")) return;
-    legendState = (legendState + 1) % 3;
-    applyLegendState();
+    if (e.target.closest(".legend-expand-btn")) {
+      legendState = 0;
+      applyLegendState();
+    } else if (e.target.closest(".legend-minimize-btn")) {
+      legendState = (legendState + 1) % 3;
+      applyLegendState();
+    }
   });
 
   if (restore) {
