@@ -636,10 +636,10 @@ function renderFilterPanel() {
           <span class="name">${def.label}</span>
           ${def.sample ? '<span class="sample-tag">Sample</span>' : ""}
         </label>
-        <span class="toggle-switch">
+        <label class="toggle-switch">
           <input type="checkbox" data-layer="${def.id}" ${layerState[def.id] ? "checked" : ""} />
           <span class="toggle-slider"></span>
-        </span>
+        </label>
       `;
       body.appendChild(row);
     }
@@ -698,6 +698,14 @@ function initFilterPanelControls() {
   if (closeBtn)   closeBtn.addEventListener("click", closeFilterPanel);
   if (backdrop)   backdrop.addEventListener("click", closeFilterPanel);
   if (detailClose) detailClose.addEventListener("click", closeMobileSheet);
+}
+
+function initTopToggle() {
+  const btn = document.getElementById("top-toggle");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    document.getElementById("app").classList.toggle("top-hidden");
+  });
 }
 
 function animateCounter(el, target, duration = 900) {
@@ -1185,6 +1193,7 @@ async function init() {
     renderStats(data);
     mapHandles = renderMap(us);
     initFilterPanelControls();
+    initTopToggle();
     initSearch();
     setDetailEmpty();
     setLastUpdated(data);
