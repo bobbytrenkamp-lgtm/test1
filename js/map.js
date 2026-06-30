@@ -1037,7 +1037,12 @@ function setDetailCounty(fips, county) {
     <div class="detail-section">
       <div class="detail-label">Sources</div>
       <ul class="sources-list">
-        ${county.sources.map(s => `<li>${escHtml(s)}</li>`).join("")}
+        ${county.sources.map(s => {
+          if (s && typeof s === "object" && s.url) {
+            return `<li><a href="${escHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escHtml(s.label)}</a></li>`;
+          }
+          return `<li>${escHtml(typeof s === "string" ? s : s.label || "")}</li>`;
+        }).join("")}
       </ul>
     </div>` : ""}
 

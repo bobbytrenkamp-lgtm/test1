@@ -478,6 +478,18 @@ html, body {
   color: var(--accent);
 }
 
+.sources-list a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.sources-list a:hover {
+  color: #93b4f5;
+  border-bottom-color: #93b4f5;
+}
+
 .divider {
   height: 1px;
   background: var(--border);
