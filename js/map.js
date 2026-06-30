@@ -625,6 +625,10 @@ function renderLegend() {
   if (!legend.children.length) {
     legend.innerHTML = `<div class="legend-label-sub">No layers active. Use the Layers panel to add one.</div>`;
   }
+
+  // Sync expand button visibility after DOM rebuild
+  const expandBtn = legend.querySelector(".legend-expand-btn");
+  if (expandBtn) expandBtn.style.display = legendState === 1 ? "flex" : "none";
 }
 
 function renderFilterPanel() {
@@ -747,16 +751,18 @@ function initLegendControls() {
     legend.classList.toggle("legend-hidden", legendState === 2);
     if (restore) {
       restore.classList.toggle("visible", legendState === 2);
-      // Restore pill appears where the legend currently sits
       restore.style.left = legend.style.left || "";
       restore.style.top  = legend.style.top  || "";
     }
-    // Re-render toolbar icon to match new state
-    const btn = legend.querySelector(".legend-minimize-btn");
-    if (btn) {
+    // Drive expand button visibility directly — don't rely on CSS cascade alone
+    const expandBtn = legend.querySelector(".legend-expand-btn");
+    if (expandBtn) expandBtn.style.display = legendState === 1 ? "flex" : "none";
+    // Update minimize button icon
+    const minBtn = legend.querySelector(".legend-minimize-btn");
+    if (minBtn) {
       const isMin = legendState === 1;
-      btn.title = isMin ? "Hide legend" : "Minimize legend";
-      btn.innerHTML = isMin
+      minBtn.title = isMin ? "Hide legend" : "Minimize legend";
+      minBtn.innerHTML = isMin
         ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
         : `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
     }
