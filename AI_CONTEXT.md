@@ -104,7 +104,7 @@ let legendState = 0; // 0 = full, 1 = mini, 2 = hidden
 - ✓ Legend drag-to-reposition (pointer capture API, constrained to map container)
 - ✓ Legend restore button (appears when legend is hidden)
 - ✓ Arrow annotations layer for 3 most-restrictive + 3 most-pro counties
-- ✓ Annotations as toggleable map layer (not just default-on)
+- ✓ Arrow annotations permanently embedded in map layout (always visible, non-toggleable)
 - ✓ County sources rendered as clickable hotlinks (`<a target="_blank">`)
 - ✓ Sample data disclaimer shown on all placeholder layer tooltips
 - ✓ All 9 overlay layer types wired: water, utility, tax, power, fiber, transmission, dc_existing, dc_planned, ai_campus
@@ -288,7 +288,7 @@ User explicitly requested "I prefer the title to stay when I hide the county sum
 ### 2026-07-01 — Filter panel scroll + annotations as layer
 **Summary:** Fixed filter panel body not scrolling (added `flex:1; min-height:0`). Capped panel max-height to `min(520px, calc(100%-24px))`. Made county annotations a toggleable layer (was always-on).
 **Files modified:** `css/style.css`, `js/map.js`
-**Key decisions:** `flex: 1; min-height: 0` is the required flexbox scroll pattern. `addAnnotations()` now returns its D3 group, stored in `layerGroups["annotations"]`.
+**Key decisions:** `flex: 1; min-height: 0` is the required flexbox scroll pattern. Annotations were initially made toggleable, then moved back to always-on permanent map layout per user request.
 **Commit:** `ccd9d2a`
 
 ---
