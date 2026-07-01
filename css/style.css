@@ -35,6 +35,7 @@ html, body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh; /* iOS Safari dynamic viewport */
 }
 
 /* ── Header ── */
@@ -415,6 +416,7 @@ html, body {
 #detail-body {
   flex: 1;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 16px 20px;
 }
 
@@ -997,38 +999,119 @@ html, body {
 #detail-body::-webkit-scrollbar-track { background: transparent; }
 #detail-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
+/* ── Policy scope sections (state / county / city) ── */
+.policy-scope-section {
+  margin-bottom: 4px;
+}
+
+.policy-scope-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0 6px;
+}
+
+.scope-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 2px 5px;
+  flex-shrink: 0;
+  width: 26px;
+}
+
+.scope-label-state  { background: rgba(139,92,246,0.2); color: #a78bfa; }
+.scope-label-county { background: rgba(220,38,38,0.2);  color: #f87171; }
+.scope-label-city   { background: rgba(59,130,246,0.2); color: #60a5fa; }
+
+.scope-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.policy-scope-none {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 4px 0 10px 34px;
+  line-height: 1.5;
+}
+
+.policy-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0 12px;
+}
+
+.filter-row-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.no-data-tag {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
 /* ── Responsive ── */
 @media (max-width: 700px) {
   #stats-bar { display: none; }
   #dashboard { grid-template-columns: repeat(2, 1fr); }
   .stat-card { padding: 8px 10px; }
   .stat-card-value { font-size: 17px; }
-  #search-bar { padding: 6px 12px; }
+
+  /* Keep header + search above the map at all times */
+  #header   { position: relative; z-index: 50; }
+  #search-bar { position: relative; z-index: 50; padding: 6px 12px; }
   #search-results { left: 12px; right: 12px; }
+
   #legend { left: 10px; top: 10px; padding: 8px 10px; min-width: 160px; max-width: 64vw; max-height: calc(100% - 20px); }
   #filter-toggle span { display: none; }
   #filter-toggle { padding: 7px 8px; }
 
+  /* Filter drawer: full height, scrollable, safe-area bottom */
   #filter-panel {
     top: 0;
     bottom: 0;
     left: 0;
-    width: 85vw;
-    max-width: 300px;
-    max-height: 88vh;
+    width: 78vw;
+    max-width: 280px;
+    max-height: 100dvh;
     border-radius: 0;
     transform: translateX(-100%);
   }
   #filter-panel.open { transform: translateX(0); }
   #filter-panel-backdrop.open { background: rgba(0,0,0,0.5); }
+  #filter-panel-body {
+    padding-bottom: max(env(safe-area-inset-bottom), 16px);
+  }
 
+  /* Detail bottom sheet: scrollable, safe-area bottom */
   #detail-panel {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     width: auto;
-    max-height: 65vh;
+    max-height: calc(72dvh - env(safe-area-inset-bottom));
     border-left: none;
     border-top: 1px solid var(--border);
     border-radius: 14px 14px 0 0;
@@ -1041,4 +1124,9 @@ html, body {
   #detail-panel-handle { display: block; }
   #detail-header { padding-right: 40px; }
   #detail-panel-close { display: flex; }
+
+  /* Ensure detail body scrolls smoothly and clears the Safari bottom bar */
+  #detail-body {
+    padding-bottom: calc(28px + env(safe-area-inset-bottom));
+  }
 }

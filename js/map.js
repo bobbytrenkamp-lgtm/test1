@@ -80,8 +80,9 @@ const ANNOTATIONS = [
 
 /* ── Layer definitions ── */
 const LAYER_DEFS = [
-  { id: "restrictions",  label: "Restrictions",               group: "Core",           color: "#dc2626", sample: false },
-  { id: "state_policy",  label: "State Policy",               group: "Core",           color: "#8b5cf6", sample: false },
+  { id: "restrictions",  label: "County Policy",              group: "Policy Scope",   color: "#dc2626", sample: false },
+  { id: "state_policy",  label: "State Policy",               group: "Policy Scope",   color: "#8b5cf6", sample: false },
+  { id: "city_policy",   label: "City Policy",                group: "Policy Scope",   color: "#3b82f6", sample: false, noData: true },
   { id: "dc_existing",   label: "Existing Data Centers",      group: "Facilities",     color: "#5b8def", sample: true  },
   { id: "dc_planned",    label: "Planned Data Centers",       group: "Facilities",     color: "#5b8def", sample: true  },
   { id: "ai_campus",     label: "AI Campuses",                group: "Facilities",     color: "#a78bfa", sample: true  },
@@ -110,6 +111,7 @@ const leafletLayerGroups = {};
 const layerState = {
   restrictions: true,
   state_policy: true,
+  city_policy:  false,  // no data yet
   dc_existing:  false,
   dc_planned:   false,
   ai_campus:    false,
@@ -121,11 +123,12 @@ const layerState = {
   tax:          false,
 };
 
-let mapData      = {};
-let sampleLayers = null;
-let stateRegData = {};
-let legendState  = 0; // 0=full, 1=mini, 2=hidden
-let selectedFips = null;
+let mapData         = {};
+let sampleLayers    = null;
+let stateRegData    = {};
+let legendState     = 0; // 0=full, 1=mini, 2=hidden
+let selectedFips    = null;
+let cityLabelsLayer = null;
 
 /* ── Helpers ── */
 function fipsKey(id) { return String(id).padStart(5, "0"); }
@@ -212,6 +215,14 @@ function initBasemaps() {
     "https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png",
     { subdomains: "abcd", maxZoom: 20, pane: "tooltipPane" }
   );
+
+  // City/place labels always visible above county fills regardless of basemap
+  cityLabelsLayer = L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png",
+    { subdomains: "abcd", maxZoom: 20, pane: "labelsPane", opacity: 0.9 }
+  );
+  cityLabelsLayer.addTo(leafletMap);
+
   baseTileLayers.standard.addTo(leafletMap);
 }
 
@@ -530,6 +541,12 @@ function initLeafletMap() {
 
   L.control.zoom({ position: "bottomright" }).addTo(leafletMap);
   leafletMap.fitBounds([[24.5, -125], [49.5, -66.5]]);
+
+  // Pane for city/place labels sitting above county fills but below markers
+  leafletMap.createPane("labelsPane");
+  leafletMap.getPane("labelsPane").style.zIndex = 450;
+  leafletMap.getPane("labelsPane").style.pointerEvents = "none";
+
   initBasemaps();
 
   leafletMap.on("click", () => {
@@ -716,22 +733,23 @@ function renderFilterPanel() {
       }
 
       const row = document.createElement("div");
-      row.className = "filter-row";
+      row.className = "filter-row" + (def.noData ? " filter-row-disabled" : "");
       row.innerHTML = `
         <label class="filter-row-label">
           <span class="filter-row-dot" style="background:${def.color}"></span>
           <span class="name">${def.label}</span>
-          ${def.sample ? '<span class="sample-tag">Sample</span>' : ""}
+          ${def.sample  ? '<span class="sample-tag">Sample</span>' : ""}
+          ${def.noData  ? '<span class="no-data-tag">No data</span>' : ""}
         </label>
         <label class="toggle-switch">
-          <input type="checkbox" data-layer="${def.id}" ${layerState[def.id] ? "checked" : ""} />
+          <input type="checkbox" data-layer="${def.id}" ${layerState[def.id] ? "checked" : ""} ${def.noData ? "disabled" : ""} />
           <span class="toggle-slider"></span>
         </label>`;
       body.appendChild(row);
     }
   }
 
-  body.querySelectorAll('input[type="checkbox"][data-layer]').forEach(input => {
+  body.querySelectorAll('input[type="checkbox"][data-layer]:not([disabled])').forEach(input => {
     input.addEventListener("change", () => setLayerVisible(input.dataset.layer, input.checked));
   });
 }
@@ -932,6 +950,77 @@ function buildSampleInfraHtml(fips) {
   return html;
 }
 
+/* ── Policy section builders ── */
+function buildStatePolicySectionHtml(stateFips2) {
+  const st = stateRegData[stateFips2];
+  const header = `<div class="policy-scope-header">
+    <span class="scope-label scope-label-state">ST</span>
+    <span class="scope-title">Statewide Policy</span>
+    ${st ? `<span class="restriction-badge badge-${getSeverityKey(st)}" style="margin:0;font-size:10px;padding:2px 7px;">${SEVERITY[getSeverityKey(st)].label}</span>` : ""}
+  </div>`;
+
+  if (!st) return `<div class="policy-scope-section">${header}<p class="policy-scope-none">No known statewide policy found.</p></div>`;
+
+  const types  = st.types || [];
+  const status = st.status || "active";
+  return `<div class="policy-scope-section">
+    ${header}
+    ${st.summary ? `<div class="detail-section"><div class="detail-value">${escHtml(st.summary)}</div></div>` : ""}
+    ${types.length ? `<div class="detail-section"><div class="detail-label">Types</div><div class="type-chips">${types.map(t => `<span class="type-chip ${t}">${TYPE_LABELS[t]||t}</span>`).join("")}</div></div>` : ""}
+    <div class="detail-section"><div class="detail-label">Status</div><div class="detail-value"><span class="status-indicator"><span class="status-dot ${status}"></span>${STATUS_LABELS[status]||status}</span></div></div>
+    ${st.sources && st.sources.length ? `<div class="detail-section"><div class="detail-label">Sources</div><ul class="sources-list">${st.sources.map(s => {
+      if (s && typeof s === "object" && s.url) return `<li><a href="${escHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escHtml(s.label)}</a></li>`;
+      return `<li>${escHtml(typeof s === "string" ? s : s.label || "")}</li>`;
+    }).join("")}</ul></div>` : ""}
+  </div>`;
+}
+
+function buildCountyPolicySectionHtml(fips, county) {
+  const sevKey = getSeverityKey(county);
+  const level  = county.level;
+  const status = county.status || "active";
+  const types  = county.types || [];
+  const header = `<div class="policy-scope-header">
+    <span class="scope-label scope-label-county">CO</span>
+    <span class="scope-title">Countywide Policy</span>
+    <span class="restriction-badge badge-${sevKey}" style="margin:0;font-size:10px;padding:2px 7px;">${level === -1 ? "Pro Data Center" : LEVEL_LABELS[level]}</span>
+  </div>`;
+
+  return `<div class="policy-scope-section">
+    ${header}
+    ${county.title ? `<div class="detail-section"><div class="detail-label">Restriction / Policy</div><div class="detail-value">${escHtml(county.title)}</div></div>` : ""}
+    ${county.description ? `<div class="detail-section"><div class="detail-label">Description</div><div class="detail-value">${escHtml(county.description)}</div></div>` : ""}
+    ${types.length ? `<div class="detail-section"><div class="detail-label">Types</div><div class="type-chips">${types.map(t => `<span class="type-chip ${t}">${TYPE_LABELS[t]||t}</span>`).join("")}</div></div>` : ""}
+    <div class="detail-section"><div class="detail-label">Status</div><div class="detail-value"><span class="status-indicator"><span class="status-dot ${status}"></span>${STATUS_LABELS[status]||status}</span></div></div>
+    ${county.effective_date ? `<div class="detail-section"><div class="detail-label">Effective Date</div><div class="detail-value">${formatDate(county.effective_date)}</div></div>` : ""}
+    ${county.notes ? `<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(county.notes)}</div></div>` : ""}
+    ${county.sources && county.sources.length ? `<div class="detail-section"><div class="detail-label">Sources</div><ul class="sources-list">${county.sources.map(s => {
+      if (s && typeof s === "object" && s.url) return `<li><a href="${escHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escHtml(s.label)}</a></li>`;
+      return `<li>${escHtml(typeof s === "string" ? s : s.label || "")}</li>`;
+    }).join("")}</ul></div>` : ""}
+  </div>`;
+}
+
+function buildCityPolicySectionHtml() {
+  return `<div class="policy-scope-section">
+    <div class="policy-scope-header">
+      <span class="scope-label scope-label-city">CT</span>
+      <span class="scope-title">Citywide Policy</span>
+    </div>
+    <p class="policy-scope-none">No known city or municipal policy found.</p>
+  </div>`;
+}
+
+function buildNoCountyPolicySectionHtml() {
+  return `<div class="policy-scope-section">
+    <div class="policy-scope-header">
+      <span class="scope-label scope-label-county">CO</span>
+      <span class="scope-title">Countywide Policy</span>
+    </div>
+    <p class="policy-scope-none">No specific county restrictions identified. Standard state and federal regulations apply.</p>
+  </div>`;
+}
+
 function setDetailEmpty() {
   document.getElementById("detail-header").querySelector("h2").textContent = "County Details";
   document.getElementById("detail-state").textContent = "";
@@ -949,50 +1038,14 @@ function setDetailCounty(fips, county) {
   document.getElementById("detail-header").querySelector("h2").textContent = county.name;
   document.getElementById("detail-state").textContent = county.state;
 
-  const level  = county.level;
-  const types  = county.types || [];
-  const status = county.status || "active";
-  const sevKey = getSeverityKey(county);
+  const stateFips2 = fips.slice(0, 2);
 
   document.getElementById("detail-body").innerHTML = `
-    <div class="restriction-badge badge-${sevKey}">
-      ${levelDot(level, status)}
-      ${level === -1 ? "Pro Data Center" : `Level ${level} — ${LEVEL_LABELS[level]}`}
-    </div>
-
-    ${county.title ? `<div class="detail-section"><div class="detail-label">Restriction / Policy</div><div class="detail-value">${escHtml(county.title)}</div></div>` : ""}
-    ${county.description ? `<div class="detail-section"><div class="detail-label">Description</div><div class="detail-value">${escHtml(county.description)}</div></div>` : ""}
-
-    ${types.length ? `
-    <div class="detail-section">
-      <div class="detail-label">Types</div>
-      <div class="type-chips">${types.map(t => `<span class="type-chip ${t}">${TYPE_LABELS[t] || t}</span>`).join("")}</div>
-    </div>` : ""}
-
-    <div class="divider"></div>
-
-    <div class="detail-section">
-      <div class="detail-label">Status</div>
-      <div class="detail-value">
-        <span class="status-indicator"><span class="status-dot ${status}"></span>${STATUS_LABELS[status] || status}</span>
-      </div>
-    </div>
-
-    ${county.effective_date ? `<div class="detail-section"><div class="detail-label">Effective Date</div><div class="detail-value">${formatDate(county.effective_date)}</div></div>` : ""}
-    ${county.notes ? `<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(county.notes)}</div></div>` : ""}
-
-    ${county.sources && county.sources.length ? `
-    <div class="detail-section">
-      <div class="detail-label">Sources</div>
-      <ul class="sources-list">
-        ${county.sources.map(s => {
-          if (s && typeof s === "object" && s.url)
-            return `<li><a href="${escHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escHtml(s.label)}</a></li>`;
-          return `<li>${escHtml(typeof s === "string" ? s : s.label || "")}</li>`;
-        }).join("")}
-      </ul>
-    </div>` : ""}
-
+    ${buildStatePolicySectionHtml(stateFips2)}
+    <div class="policy-divider"></div>
+    ${buildCountyPolicySectionHtml(fips, county)}
+    <div class="policy-divider"></div>
+    ${buildCityPolicySectionHtml()}
     ${buildSampleInfraHtml(fips)}`;
   openMobileSheet();
 }
@@ -1000,14 +1053,13 @@ function setDetailCounty(fips, county) {
 function setDetailNoRestriction(name, state, fips) {
   document.getElementById("detail-header").querySelector("h2").textContent = name || "County";
   document.getElementById("detail-state").textContent = state || "";
+  const stateFips2 = fips ? fips.slice(0, 2) : null;
   document.getElementById("detail-body").innerHTML = `
-    <div class="restriction-badge badge-none">${levelDot(0, "active")} No Specific Law</div>
-    <div class="detail-section">
-      <div class="detail-value" style="color:var(--text-muted);font-size:13px;line-height:1.6;">
-        No specific data center or AI restrictions have been identified for this county.<br><br>
-        Standard state and federal regulations apply only.
-      </div>
-    </div>
+    ${stateFips2 ? buildStatePolicySectionHtml(stateFips2) : ""}
+    ${stateFips2 ? '<div class="policy-divider"></div>' : ""}
+    ${buildNoCountyPolicySectionHtml()}
+    <div class="policy-divider"></div>
+    ${buildCityPolicySectionHtml()}
     ${fips ? buildSampleInfraHtml(fips) : ""}`;
   openMobileSheet();
 }
