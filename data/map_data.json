@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-30T19:47:40.035944+00:00",
+  "generated_at": "2026-07-01T09:25:54.307202+00:00",
   "source_last_updated": "2025-08-01",
   "stats": {
     "total_counties_tracked": 48,
@@ -48,14 +48,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Oregon Enterprise Zone Program",
-          "url": "https://www.oregon.gov/biz/programs/Pages/EZ.aspx"
-        },
-        {
-          "label": "Oregon Revised Statutes \u00a7285C.050 \u2013 Enterprise Zones",
-          "url": "https://oregon.public.law/statutes/ors_285c.050"
-        }
+        "Oregon Enterprise Zone program; Google Dalles Campus (2006-present)"
       ]
     },
     "19113": {
@@ -71,14 +64,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Iowa Code \u00a7423.3 \u2013 Sales Tax Exemption (Data Centers)",
-          "url": "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=423&session=90"
-        },
-        {
-          "label": "Iowa Economic Development Authority \u2013 Data Center Program",
-          "url": "https://www.iowaeda.com/tax-incentives/data-center/"
-        }
+        "Iowa Code \u00a7423.3 data center exemption (2010); Microsoft & Google data centers, Cedar Rapids"
       ]
     },
     "45015": {
@@ -94,14 +80,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "SC Code \u00a712-6-3360 \u2013 Data Center Tax Incentives",
-          "url": "https://www.scstatehouse.gov/code/t12c006.php"
-        },
-        {
-          "label": "SC Department of Commerce \u2013 Incentives",
-          "url": "https://www.sccommerce.com/doing-business-in-sc/incentives"
-        }
+        "SC Code \u00a712-6-3360 data center incentives; Amazon/AWS data centers, Berkeley County"
       ]
     },
     "32029": {
@@ -117,14 +96,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "NRS \u00a7374.357 \u2013 Nevada Data Center Sales Tax Exemption",
-          "url": "https://www.leg.state.nv.us/NRS/NRS-374.html#NRS374Sec357"
-        },
-        {
-          "label": "Nevada Governor's Office of Economic Development",
-          "url": "https://goed.nv.gov/incentives/abatements/"
-        }
+        "NRS \u00a7374.357 data center exemptions; Switch SUPERNAP campus, Tahoe Reno Industrial Center"
       ]
     },
     "31055": {
@@ -140,14 +112,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Nebraska LB 775 \u2013 Advantage Act (2020)",
-          "url": "https://nebraskalegislature.gov/bills/view_bill.php?DocumentID=43382"
-        },
-        {
-          "label": "Nebraska ImagiNE Act \u2013 Data Center Incentives",
-          "url": "https://opportunity.nebraska.gov/incentives/imagine/"
-        }
+        "Nebraska LB 775, Advantage Data Center Act; Google data center, Omaha"
       ]
     },
     "18057": {
@@ -163,14 +128,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Indiana HEA 1450 (2014) \u2013 IC 6-2.5-5-59 Data Center Exemption",
-          "url": "https://iga.in.gov/legislative/2014/bills/house/1450"
-        },
-        {
-          "label": "Indiana Economic Development Corp \u2013 Data Centers",
-          "url": "https://iedc.in.gov/programs/tax-credits/headquarters-relocation-tax-credit"
-        }
+        "Indiana HEA 1450 (2014), IC 6-2.5-5-59 data center exemption"
       ]
     },
     "41027": {
@@ -188,14 +146,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Hood River County Commission \u2013 Data Center Ban Resolution (2022)",
-          "url": "https://www.hoodrivercounty.gov/government/board_of_county_commissioners/index.php"
-        },
-        {
-          "label": "Oregon Land Use Board of Appeals \u2013 Hood River Ruling",
-          "url": "https://www.oregon.gov/luba/pages/index.aspx"
-        }
+        "Hood River County Commissioner vote, June 2022"
       ]
     },
     "53007": {
@@ -213,14 +164,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Chelan County PUD \u2013 Moratorium on Large Load Interconnections (2019)",
-          "url": "https://www.chelanpud.org/about-us/newsroom/2019"
-        },
-        {
-          "label": "Chelan PUD \u2013 Large Load Application Process",
-          "url": "https://www.chelanpud.org/energy/large-power-customers"
-        }
+        "Chelan County PUD Board resolution, 2019"
       ]
     },
     "53017": {
@@ -238,14 +182,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Douglas County PUD \u2013 Moratorium Policy (2019)",
-          "url": "https://www.douglaspud.org/customer-service/rates-and-regulations/"
-        },
-        {
-          "label": "Douglas County PUD \u2013 Electric Service Rules",
-          "url": "https://www.douglaspud.org/"
-        }
+        "Douglas County PUD Board resolution, 2019"
       ]
     },
     "51107": {
@@ -261,14 +198,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Loudoun County ZOAM 2019-0004 \u2013 Data Center Zoning Amendment",
-          "url": "https://www.loudoun.gov/5738/ZOAM-2019-0004-Data-Centers"
-        },
-        {
-          "label": "Loudoun County \u2013 Data Center Policy and Land Use",
-          "url": "https://www.loudoun.gov/5028/Data-Centers"
-        }
+        "Loudoun County Zoning Ordinance Amendment, ZOAM 2019-0004, 2023"
       ]
     },
     "30053": {
@@ -285,10 +215,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Lincoln County MT \u2013 Commissioner Ordinance on Cryptocurrency Mining (2018)",
-          "url": "https://www.lincolncountymt.us/government/commissioners/"
-        }
+        "Lincoln County Commissioner ordinance, 2018"
       ]
     },
     "36019": {
@@ -305,14 +232,7 @@
       "status": "expired",
       "notes": "Moratorium expired but resulted in permanent permitting requirements",
       "sources": [
-        {
-          "label": "Plattsburgh City Council \u2013 Cryptocurrency Mining Moratorium (March 2018)",
-          "url": "https://www.cityofplattsburgh-ny.gov/citycouncil"
-        },
-        {
-          "label": "Plattsburgh Municipal Lighting Dept \u2013 Rate Surcharge Order",
-          "url": "https://www.plattsburghcity.org/"
-        }
+        "Plattsburgh City Council, March 2018"
       ]
     },
     "53025": {
@@ -330,14 +250,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Grant County PUD \u2013 Cryptocurrency / Large Load Policy (2018)",
-          "url": "https://www.grantpud.org/customer-service/rates-tariffs/"
-        },
-        {
-          "label": "Grant County PUD \u2013 Electric Tariff Schedule 14",
-          "url": "https://www.grantpud.org/"
-        }
+        "Grant County PUD policy, 2018"
       ]
     },
     "53047": {
@@ -355,10 +268,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Okanogan County PUD \u2013 Large Load Interconnection Policy",
-          "url": "https://www.okanoganpud.org/rates-and-regulations/"
-        }
+        "Okanogan County PUD policy"
       ]
     },
     "51153": {
@@ -374,14 +284,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Prince William County \u2013 Data Center Overlay District Policy (2022)",
-          "url": "https://www.pwcva.gov/department/planning-office/data-centers"
-        },
-        {
-          "label": "Prince William Board of Supervisors \u2013 Land Use Ordinance",
-          "url": "https://www.pwcva.gov/department/county-executive/board-of-county-supervisors"
-        }
+        "Prince William County Board of Supervisors, 2022"
       ]
     },
     "36061": {
@@ -398,14 +301,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "NYC Local Law 97 (2019) \u2013 Building Emissions Limits",
-          "url": "https://www.nyc.gov/site/sustainablebuildings/ll97/local-law-97.page"
-        },
-        {
-          "label": "NYC Mayor's Office of Climate and Sustainability",
-          "url": "https://www.nyc.gov/site/sustainability/index.page"
-        }
+        "NYC Local Law 97, 2019; NYC Mayor's Office of Climate and Sustainability"
       ]
     },
     "36047": {
@@ -423,14 +319,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "NY Senate Bill S6486C \u2013 Climate Leadership and Community Protection Act",
-          "url": "https://www.nysenate.gov/legislation/bills/2021/S6486"
-        },
-        {
-          "label": "NYC Local Law 97 (2019) \u2013 Building Emissions Limits",
-          "url": "https://www.nyc.gov/site/sustainablebuildings/ll97/local-law-97.page"
-        }
+        "NY Climate Law S6486C, 2022; NYC Local Law 97"
       ]
     },
     "36081": {
@@ -448,14 +337,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "NY Senate Bill S6486C \u2013 Climate Leadership and Community Protection Act",
-          "url": "https://www.nysenate.gov/legislation/bills/2021/S6486"
-        },
-        {
-          "label": "NYC Local Law 97 (2019) \u2013 Building Emissions Limits",
-          "url": "https://www.nyc.gov/site/sustainablebuildings/ll97/local-law-97.page"
-        }
+        "NY Climate Law S6486C, 2022; NYC Local Law 97"
       ]
     },
     "36005": {
@@ -473,14 +355,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "NY Senate Bill S6486C \u2013 Climate Leadership and Community Protection Act",
-          "url": "https://www.nysenate.gov/legislation/bills/2021/S6486"
-        },
-        {
-          "label": "NYC Local Law 97 (2019) \u2013 Building Emissions Limits",
-          "url": "https://www.nyc.gov/site/sustainablebuildings/ll97/local-law-97.page"
-        }
+        "NY Climate Law S6486C, 2022; NYC Local Law 97"
       ]
     },
     "36085": {
@@ -497,10 +372,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "NYC Local Law 97 (2019) \u2013 Building Emissions Limits",
-          "url": "https://www.nyc.gov/site/sustainablebuildings/ll97/local-law-97.page"
-        }
+        "NYC Local Law 97, 2019"
       ]
     },
     "04013": {
@@ -517,14 +389,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "ADWR \u2013 Water Shortage Regulations (2022)",
-          "url": "https://www.azwater.gov/adwr/water-management/drought-planning"
-        },
-        {
-          "label": "Arizona SB 1117 (2022) \u2013 Data Center Water Use Reporting",
-          "url": "https://www.azleg.gov/legtext/55leg/2R/bills/SB1117P.htm"
-        }
+        "ADWR Water Shortage Regulations, 2022; AZ Senate Bill 1117"
       ]
     },
     "04021": {
@@ -541,14 +406,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "ADWR \u2013 Pinal AMA Groundwater Supply Designation (2022)",
-          "url": "https://www.azwater.gov/adwr/water-management/active-management-areas/pinal-ama"
-        },
-        {
-          "label": "Arizona Department of Water Resources",
-          "url": "https://www.azwater.gov/"
-        }
+        "ADWR Groundwater Supply Designation, 2022"
       ]
     },
     "30029": {
@@ -565,10 +423,7 @@
       "status": "proposed",
       "notes": "",
       "sources": [
-        {
-          "label": "Flathead County Commissioner \u2013 Cryptocurrency Mining Discussions (2019)",
-          "url": "https://www.flatheadcounty.com/commissioners/"
-        }
+        "Flathead County Commissioner discussions, 2019"
       ]
     },
     "06037": {
@@ -586,18 +441,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "California CEQA \u2013 Environmental Review Requirements",
-          "url": "https://opr.ca.gov/ceqa/"
-        },
-        {
-          "label": "LA Green New Deal (2019) \u2013 Sustainable City pLAn",
-          "url": "https://plan.lamayor.org/"
-        },
-        {
-          "label": "LA County AI Procurement Policy",
-          "url": "https://lacountyboardofsupervisors.com/"
-        }
+        "CEQA, LA Green New Deal (2019), LA County AI Procurement Policy"
       ]
     },
     "06075": {
@@ -614,14 +458,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "SF Ordinance 181184 \u2013 Surveillance Technology Ordinance (2019)",
-          "url": "https://sfbos.org/sites/default/files/o0181-19.pdf"
-        },
-        {
-          "label": "SF Planning \u2013 CEQA Environmental Review",
-          "url": "https://sfplanning.org/ceqa"
-        }
+        "SF Ordinance 181184 (Surveillance Technology ban, 2019); CEQA"
       ]
     },
     "06085": {
@@ -638,18 +475,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "California CEQA \u2013 Environmental Review",
-          "url": "https://opr.ca.gov/ceqa/"
-        },
-        {
-          "label": "San Jose Data Center Policy \u2013 Department of Planning",
-          "url": "https://www.sanjoseca.gov/your-government/departments-offices/planning-building-code-enforcement"
-        },
-        {
-          "label": "Santa Clara Valley Water District \u2013 Water Use Rules",
-          "url": "https://www.valleywater.org/"
-        }
+        "CEQA, San Jose Data Center Policy, Santa Clara Valley Water District rules"
       ]
     },
     "06001": {
@@ -666,14 +492,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Oakland Ordinance 13537 \u2013 Surveillance and Community Safety (2019)",
-          "url": "https://www.oaklandca.gov/resources/oakland-privacy-commission"
-        },
-        {
-          "label": "California CEQA \u2013 Environmental Review",
-          "url": "https://opr.ca.gov/ceqa/"
-        }
+        "Oakland Ordinance 13537 (2019); CEQA"
       ]
     },
     "17031": {
@@ -689,14 +508,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Illinois AI Video Interview Act \u2013 820 ILCS 42 (2020)",
-          "url": "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3982&ChapterID=68"
-        },
-        {
-          "label": "Illinois General Assembly \u2013 SB 1608 (2019)",
-          "url": "https://www.ilga.gov/legislation/billstatus.asp?DocNum=1608&GAID=15&GA=101&DocTypeID=SB&LegID=118388&SessionID=108"
-        }
+        "Illinois AI Video Interview Act, 820 ILCS 42 (2020)"
       ]
     },
     "08031": {
@@ -712,14 +524,7 @@
       "status": "pending",
       "notes": "",
       "sources": [
-        {
-          "label": "Colorado SB 24-205 \u2013 Artificial Intelligence Act (2024)",
-          "url": "https://leg.colorado.gov/bills/sb24-205"
-        },
-        {
-          "label": "Colorado Governor's Office \u2013 AI Executive Order (2023)",
-          "url": "https://www.colorado.gov/governor"
-        }
+        "Colorado SB 24-205 (2024), signed by Gov. Polis May 17, 2024"
       ]
     },
     "48201": {
@@ -736,14 +541,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "ERCOT \u2013 Demand Response & Large Load Programs",
-          "url": "https://www.ercot.com/services/programs/load"
-        },
-        {
-          "label": "Texas SB 3 (2021) \u2013 Weatherization and Grid Reliability",
-          "url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=87R&Bill=SB3"
-        }
+        "ERCOT demand response programs; Texas SB 3 (2021)"
       ]
     },
     "48453": {
@@ -761,14 +559,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "ERCOT \u2013 Demand Response Programs",
-          "url": "https://www.ercot.com/services/programs/load"
-        },
-        {
-          "label": "Austin AI Procurement Policy (2021)",
-          "url": "https://www.austintexas.gov/department/innovation-technology"
-        }
+        "ERCOT demand response; Austin AI Procurement Policy (2021)"
       ]
     },
     "48113": {
@@ -785,14 +576,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "ERCOT \u2013 Demand Response & Large Load Programs",
-          "url": "https://www.ercot.com/services/programs/load"
-        },
-        {
-          "label": "Texas SB 3 (2021) \u2013 Weatherization and Grid Reliability",
-          "url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=87R&Bill=SB3"
-        }
+        "ERCOT demand response programs; Texas SB 3 (2021)"
       ]
     },
     "48085": {
@@ -809,14 +593,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "ERCOT \u2013 Demand Response Programs",
-          "url": "https://www.ercot.com/services/programs/load"
-        },
-        {
-          "label": "Texas SB 3 (2021) \u2013 Weatherization and Grid Reliability",
-          "url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=87R&Bill=SB3"
-        }
+        "ERCOT demand response programs; Texas SB 3 (2021)"
       ]
     },
     "24031": {
@@ -833,14 +610,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Montgomery County Climate Action Plan",
-          "url": "https://www.montgomerycountymd.gov/green/climate/climate-action-plan.html"
-        },
-        {
-          "label": "Montgomery County BEPS Regulations \u2013 Building Energy Performance Standards",
-          "url": "https://www.montgomerycountymd.gov/green/energy/beps.html"
-        }
+        "Montgomery County Climate Action Plan; BEPS regulations"
       ]
     },
     "24033": {
@@ -856,14 +626,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Prince George's County Zoning Ordinance \u2013 CB-076-2022",
-          "url": "https://www.princegeorgescountymd.gov/government/county-government/county-council/legislation"
-        },
-        {
-          "label": "PG County Planning \u2013 Zoning Review",
-          "url": "https://www.pgplanning.org/"
-        }
+        "Prince George's County Zoning Ordinance"
       ]
     },
     "51059": {
@@ -879,14 +642,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Fairfax County Comprehensive Plan Amendment \u2013 Data Centers (2022)",
-          "url": "https://www.fairfaxcounty.gov/planning-development/sites/planning-development/files/assets/documents/complan/area-plans-review/2020/data-centers-policies.pdf"
-        },
-        {
-          "label": "Fairfax County Planning and Development",
-          "url": "https://www.fairfaxcounty.gov/planning-development/"
-        }
+        "Fairfax County Comprehensive Plan Amendment (2022)"
       ]
     },
     "53033": {
@@ -903,14 +659,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "King County Ordinance 19022 \u2013 Technology Procurement (2021)",
-          "url": "https://kingcounty.gov/council/legislation/kc_ordinances/"
-        },
-        {
-          "label": "Washington State SEPA \u2013 Environmental Review",
-          "url": "https://ecology.wa.gov/regulations-permits/sepa"
-        }
+        "King County Ordinance 19022 (2021); WA SEPA"
       ]
     },
     "27053": {
@@ -926,14 +675,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Minneapolis City Council Resolution \u2013 AI Surveillance Moratorium (2021)",
-          "url": "https://minneapolismn.gov/government/city-council/"
-        },
-        {
-          "label": "Minneapolis Department of Civil Rights \u2013 Technology Policy",
-          "url": "https://www.minneapolismn.gov/government/departments/civil-rights/"
-        }
+        "Minneapolis City Council resolution (2021)"
       ]
     },
     "25017": {
@@ -949,14 +691,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Cambridge City Council \u2013 AI Surveillance Technology Order (2019)",
-          "url": "https://www.cambridgema.gov/government/citycouncil"
-        },
-        {
-          "label": "Massachusetts AI Regulations \u2013 Proposed Legislation",
-          "url": "https://malegislature.gov/Bills/Search?SearchTerms=artificial+intelligence"
-        }
+        "Cambridge AI Procurement Policy; MA proposed AI regulations"
       ]
     },
     "47157": {
@@ -973,14 +708,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "TVA \u2013 Large Power Customer Requirements and Load Management",
-          "url": "https://www.tva.com/energy/commercial-industrial-solutions/large-power-customers"
-        },
-        {
-          "label": "TVA \u2013 Rate Schedule MCC (Cryptocurrency/Data Center)",
-          "url": "https://www.tva.com/energy/rates-and-tariffs"
-        }
+        "TVA Large Power Customer requirements"
       ]
     },
     "04019": {
@@ -997,14 +725,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "ADWR \u2013 Tucson AMA Groundwater Regulations",
-          "url": "https://www.azwater.gov/adwr/water-management/active-management-areas/tucson-ama"
-        },
-        {
-          "label": "Tucson Water \u2013 Water Use Policies",
-          "url": "https://www.tucsonaz.gov/water"
-        }
+        "ADWR regulations; Tucson Water policies"
       ]
     },
     "09003": {
@@ -1020,14 +741,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Connecticut SB 1103 (2022) \u2013 AI and Automated Decision Systems Act",
-          "url": "https://www.cga.ct.gov/asp/cgabillstatus/cgabillstatus.asp?selBillType=Bill&bill_num=SB01103&which_year=2022"
-        },
-        {
-          "label": "Connecticut General Assembly \u2013 Technology Legislation",
-          "url": "https://www.cga.ct.gov/"
-        }
+        "Connecticut SB 1103 (2022)"
       ]
     },
     "34035": {
@@ -1044,14 +758,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "NJ DEP \u2013 Stormwater Regulation for Data Centers",
-          "url": "https://www.nj.gov/dep/stormwater/"
-        },
-        {
-          "label": "NJ DEP \u2013 Environmental Impact Statement Requirements",
-          "url": "https://www.nj.gov/dep/eia/"
-        }
+        "NJ DEP Stormwater Rules; NJ Environmental Impact Statement requirements"
       ]
     },
     "37035": {
@@ -1068,14 +775,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Duke Energy \u2013 Interconnection Requirements NC",
-          "url": "https://www.duke-energy.com/home/products/interconnection"
-        },
-        {
-          "label": "NC Utilities Commission \u2013 Large Load Interconnection Rules",
-          "url": "https://www.ncuc.net/"
-        }
+        "Duke Energy interconnection requirements; NC Utilities Commission"
       ]
     },
     "13097": {
@@ -1091,14 +791,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Douglas County Board of Commissioners \u2013 Data Center Policy (2023)",
-          "url": "https://www.celebratedouglascounty.com/government/commissioners/"
-        },
-        {
-          "label": "Georgia Department of Economic Development \u2013 Data Centers",
-          "url": "https://www.georgia.org/competitive-advantages/tax-credits-incentives/data-centers"
-        }
+        "Douglas County Board of Commissioners, 2023"
       ]
     },
     "56021": {
@@ -1115,14 +808,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "Wyoming Digital Asset Mining Regulations \u2013 HB 0057 (2019)",
-          "url": "https://wyoleg.gov/Legislation/2019/HB0057"
-        },
-        {
-          "label": "Laramie County Zoning \u2013 Data Center Land Use",
-          "url": "https://www.laramiecounty.com/175/Planning-Development"
-        }
+        "Wyoming Digital Asset regulations; Laramie County zoning"
       ]
     },
     "39049": {
@@ -1139,14 +825,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "AEP Ohio \u2013 Interconnection Queue Management (2023)",
-          "url": "https://www.aepohio.com/globalassets/save-energy/for-your-business/large-power-customers/"
-        },
-        {
-          "label": "PJM Interconnection \u2013 Queue Reform Rules (FERC Order 2023)",
-          "url": "https://www.pjm.com/planning/interconnection-process"
-        }
+        "AEP Ohio interconnection queue management (2023)"
       ]
     },
     "42077": {
@@ -1163,14 +842,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        {
-          "label": "PJM Interconnection \u2013 Queue Reform Rules (FERC Order 2023)",
-          "url": "https://www.pjm.com/planning/interconnection-process"
-        },
-        {
-          "label": "FERC Order 2023 \u2013 Improvements to Generator Interconnection",
-          "url": "https://www.ferc.gov/media/order-2023"
-        }
+        "PJM Interconnection queue reform rules (2022)"
       ]
     }
   }
