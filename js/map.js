@@ -148,10 +148,20 @@ const UTILITY_COLORS = ["#f472b6", "#fb923c", "#38bdf8", "#a3e635"];
 
 /* ── County / state style functions ── */
 function countyStyle(feature) {
-  const fips = fipsKey(feature.id);
+  const fips   = fipsKey(feature.id);
+  const isSat  = activeTile !== "standard";
+
+  if (!layerState.restrictions) {
+    return { fillColor: "#1e2235", fillOpacity: isSat ? 0 : 0.12, color: "#05060a", weight: 0.35 };
+  }
+
+  const county     = mapData[fips];
+  const sevKey     = getSeverityKey(county);
+  const hasData    = sevKey !== "none";  // pro/proposed/moderate/high/ban are all visible on satellite
+
   return {
-    fillColor:   layerState.restrictions ? getColor(fips) : "#1e2235",
-    fillOpacity: layerState.restrictions ? 0.75 : 0.12,
+    fillColor:   getColor(fips),
+    fillOpacity: isSat ? (hasData ? 0.70 : 0) : 0.75,
     color:       "#05060a",
     weight:      0.35,
   };
@@ -222,6 +232,14 @@ function switchBasemap(type) {
   document.querySelectorAll(".basemap-chip").forEach(b => {
     b.classList.toggle("active", b.dataset.basemap === type);
   });
+
+  // Re-apply county opacity rules (satellite hides "no restriction" fills)
+  if (countyGeoLayer) {
+    countyGeoLayer.setStyle(countyStyle);
+    if (selectedFips && countyLayerByFips[selectedFips]) {
+      countyLayerByFips[selectedFips].setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
+    }
+  }
 }
 
 /* ── Tooltip ── */
@@ -475,10 +493,7 @@ function setLayerVisible(id, visible, syncUI = false) {
 
   if (id === "restrictions") {
     if (countyGeoLayer) {
-      countyGeoLayer.setStyle(f => ({
-        fillColor:   visible ? getColor(fipsKey(f.id)) : "#1e2235",
-        fillOpacity: visible ? 0.75 : 0.12,
-      }));
+      countyGeoLayer.setStyle(countyStyle);
       if (selectedFips && countyLayerByFips[selectedFips]) {
         countyLayerByFips[selectedFips].setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
       }
