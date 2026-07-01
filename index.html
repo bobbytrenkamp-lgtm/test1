@@ -6,7 +6,7 @@
   <title>US Data Center & AI Restrictions Map</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="vendor/leaflet.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -41,6 +41,11 @@
     </svg>
     <input id="search-input" type="text" placeholder="Search county, state, or facility…" autocomplete="off" />
     <div id="search-results"></div>
+    <button id="top-toggle" aria-label="Toggle top panel" title="Show / hide header">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
+    </button>
   </div>
 
   <!-- Main -->
@@ -65,6 +70,10 @@
 
       <!-- Legend -->
       <div id="legend"></div>
+      <button id="legend-restore" aria-label="Restore legend">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Legend
+      </button>
 
       <!-- Tooltip -->
       <div id="tooltip">
@@ -102,8 +111,8 @@
 
 </div><!-- /app -->
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="vendor/leaflet.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
 <script src="js/map.js"></script>
 </body>
 </html>

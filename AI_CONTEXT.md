@@ -1,0 +1,220 @@
+# AI Development Context — US Data Center & AI Restrictions Map
+
+## Project Overview
+Interactive county-level choropleth map tracking data center and AI regulations across US counties. Built as a single-page static app (HTML/CSS/JS) deployed via GitHub Pages on `bobbytrenkamp-lgtm/test1`.
+
+**Live URL**: https://bobbytrenkamp-lgtm.github.io/test1/
+
+## Architecture
+
+### Stack
+- **Leaflet.js v1.9.4** (vendored locally at `vendor/leaflet.js`) — GIS tile map, native zoom/pan/touch
+- **topojson-client v3** (vendored at `vendor/topojson-client.min.js`) — TopoJSON → GeoJSON conversion
+- **us-atlas counties-10m.json** (vendored at `vendor/counties-10m.json`) — US county/state topology
+- **No frameworks** — plain vanilla JS; no bundler, no build step
+- **GitHub Pages** — static hosting, auto-deployed from `main` branch
+
+### File Structure
+```
+index.html                  — App shell (no inline scripts/styles)
+css/style.css               — All styles; dark theme, responsive
+js/map.js                   — All app logic (~1200 lines)
+data/
+  map_data.json             — County restriction data (FIPS-keyed)
+  sample_layers.json        — Sample facility/infra overlay data
+  state_regulations.json    — State-level policy data (22 states)
+vendor/
+  leaflet.js                — Leaflet v1.9.4 (vendored, no CDN)
+  leaflet.css               — Leaflet v1.9.4 CSS
+  topojson-client.min.js    — topojson-client v3
+  counties-10m.json         — us-atlas county+state topology (823KB)
+restrictions_raw.json       — Source data for map_data.json
+process_data.py             — Data processing script
+```
+
+### Key Globals (map.js)
+```javascript
+let leafletMap       = null;  // L.Map instance
+let countyGeoLayer   = null;  // L.geoJSON county layer
+let stateGeoLayer    = null;  // L.geoJSON state layer (below counties)
+let annotationGroup  = null;  // L.layerGroup permanent callout tooltips
+let baseTileLayers   = {};    // { standard, satellite }
+let activeTile       = "standard";
+let hybridLabels     = null;  // Carto labels overlay for hybrid mode
+const countyLayerByFips = {}; // FIPS → individual Leaflet layer ref
+const leafletLayerGroups = {}; // layer id → L.layerGroup
+const layerState = { restrictions, state_policy, dc_existing, ... };
+let mapData      = {};        // FIPS → county restriction object
+let sampleLayers = null;      // sample_layers.json data
+let stateRegData = {};        // state FIPS → state regulation object
+```
+
+## Features Completed
+
+### Map Rendering
+- **Leaflet GIS map** — fully interactive, native zoom/pan, touch-enabled (iOS/Android)
+- **County choropleth** — 3,143 US counties colored by restriction severity
+- **State policy layer** — state-level AI/DC regulation coloring beneath county layer; toggle in Layers panel
+- **6-level severity model**: ban → high → moderate → proposed → none → pro
+- **County click** — highlights selected county with white border, opens detail panel
+
+### Basemaps
+- **Standard**: Carto Dark Matter (dark tiles matching UI theme)
+- **Satellite**: Esri World Imagery
+- **Hybrid**: Esri satellite + Carto label overlay
+- Switcher in the Layers panel (Standard / Satellite / Hybrid chips)
+
+### Permanent Annotations
+6 always-visible callout labels on the map (Leaflet permanent tooltips):
+- Hood River, OR — Only U.S. data center ban (red)
+- Loudoun Co., VA — Strictest zoning restrictions (red)
+- Chelan Co., WA — PUD moratorium (red)
+- Umatilla, OR — Google mega-campus (green)
+- Berkeley Co., SC — Amazon/AWS + SC incentives (green)
+- Cedar Rapids, IA — Iowa 0% equipment tax (green)
+
+### Sample Overlay Layers (toggle in Layers panel)
+- Existing & Planned Data Centers (circle markers, sized by MW capacity)
+- AI Campuses (purple markers)
+- Power Infrastructure (green markers)
+- Transmission Lines (yellow dashed polylines)
+- Fiber Network (blue dashed polylines)
+- Water Stress (county fill overlay, blue shading by level)
+- Utility Territories (county outline overlay, color-coded)
+- Tax Incentive Areas (county outline, gold)
+
+All sample layers labeled with "Sample" badge — placeholder for real data.
+
+### UI Components
+- **Header** — title, last-updated timestamp
+- **Dashboard** — 6 animated stat cards (restriction counts, capacity, updated date)
+- **Search** — county + facility search with autocomplete dropdown
+- **Layers panel** — basemap switcher + all layer toggles with on/off states
+- **Legend** — draggable, minimizable (full/mini/hidden), restore pill button
+- **Detail panel** — county/facility info on click; mobile bottom sheet
+- **Stats bar** — floating chips showing restriction counts by severity
+- **Top toggle** — collapses dashboard section to maximize map area
+
+### Mobile UX
+- Detail panel slides up from bottom as a sheet
+- Filter panel is full-height drawer from left edge
+- Dashboard collapses via top toggle
+- Legend constrained to 64vw max, anchored top-left
+
+## Data Sources
+
+### County Restriction Data (`data/map_data.json`)
+- Primary research source (see `restrictions_raw.json`)
+- Processed via `process_data.py`
+- Structure: `{ counties: { "FIPS": { name, state, level (-1..4), status, types, sources, ... } } }`
+
+### State Policy Data (`data/state_regulations.json`)
+- 22 states covered as of 2025-07
+- Sources: NCSL AI legislation tracker, state legislature websites, Data Center Knowledge
+- Pro states (level -1): AZ, GA, IN, IA, NE, NV, NC, OH, OR, SC, TN, TX, VA, WI, WY
+- Regulated states: CA (1), CO (2), CT (1 proposed), IL (1), MA (1 proposed), NY (1), WA (1)
+
+### Sample Data (`data/sample_layers.json`)
+- Fictional facility/infra data for UI demonstration
+- Must be replaced with verified data before production use
+
+## Important Design Decisions
+
+### Vendored Dependencies (vs CDN)
+All JS/CSS/data dependencies are vendored locally in `vendor/`. This ensures the app works in restricted network environments and doesn't depend on CDN availability. Dependencies installed via `npm install` and copied manually.
+
+### State Layer Z-Order
+State GeoJSON layer must be added to Leaflet BEFORE the county layer to appear beneath counties in the SVG DOM order. Never use `removeLayer/addLayer` to toggle state visibility — this would re-add it on top. Use `setStyle()` with `fillOpacity: 0` to hide it instead.
+
+### Leaflet Stacking Context Fix
+`#leaflet-map` has `isolation: isolate` in CSS. Without this, Leaflet's internal panes (z-index 400, 600, etc.) would render above `#legend` (z-index 5) and block UI interactions. `isolation: isolate` confines Leaflet's z-index hierarchy within the map div.
+
+### County Selection After Layer Toggle
+When `setLayerVisible('restrictions')` calls `countyGeoLayer.setStyle()`, it resets ALL county styles including the selected county highlight. Re-apply `{ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 }` to `countyLayerByFips[selectedFips]` immediately after.
+
+### Touch Support
+Leaflet handles all touch events natively (iOS/Android). No custom touch code needed. Set `preferCanvas: false` to keep SVG rendering (better for interaction).
+
+## UI/UX Standards
+
+### Color System
+```css
+--bg: #0f1117          /* page background */
+--surface: #1a1d27     /* panels, cards */
+--surface-2: #22263a   /* inputs, hover states */
+--border: #2e3352      /* dividers, control borders */
+--text: #e4e6f0        /* primary text */
+--text-muted: #8a8fa8  /* secondary text, labels */
+--accent: #5b8def      /* blue, active states, links */
+```
+
+### Severity Colors
+```
+pro:      #4ade80  (green)    — tax incentives / major hub
+none:     #16a34a  (dark green) — no restrictions
+proposed: #eab308  (yellow)   — pending legislation
+moderate: #f97316  (orange)   — active, light restrictions
+high:     #dc2626  (red)      — active, significant limits
+ban:      #7f1d1d  (dark red) — moratorium / outright ban
+```
+
+### Annotation Colors
+```
+pro (green):         border/text #22c55e
+restrictive (red):   border/text #ef4444
+```
+
+## Known Issues / Limitations
+
+1. **Tile network dependency**: Carto Dark Matter and Esri satellite tiles require outbound internet access. In air-gapped environments, the map renders county polygons but no background tiles. This is expected behavior.
+
+2. **County name lookup**: Counties without restriction data show FIPS code as fallback name. A `county_names.json` lookup file would improve this (not yet implemented).
+
+3. **Alaska/Hawaii position**: Leaflet uses geographic coordinates (WGS84), so AK and HI appear at their actual geographic positions rather than the traditional lower-left inset of Albers USA projections.
+
+4. **Sample data**: All facility/infrastructure overlay data is fabricated for demonstration. Real data files need to be connected.
+
+## Session Log
+
+### Session 1
+- Created project skeleton (HTML/CSS/JS)
+- D3-based SVG choropleth map with Albers USA projection
+- County severity coloring, detail panel, search
+- Legend with drag, minimize/restore
+
+### Session 2
+- Added filter panel, layer system (11 overlay layers)
+- Expanded detail panel with sources, types, status
+- Mobile UX: bottom sheet, drawer filter panel
+- Dashboard with animated stat cards
+- County annotations as D3 SVG arrows
+
+### Session 3
+- Made county annotations permanent (removed from layer toggle)
+- Fixed filter panel overflow (bottom anchor vs max-height percentage)
+- Created AI_CONTEXT.md (this file)
+
+### Session 4 — Leaflet GIS Migration
+- **Full migration from D3 SVG to Leaflet.js**
+- Replaced `<svg id="map-svg">` with `<div id="leaflet-map">`
+- Removed D3 dependency; using `fetch()` for data loading
+- Added Carto Dark Matter basemap, Esri satellite, hybrid mode
+- Added basemap switcher (Standard/Satellite/Hybrid) in Layers panel
+- Added statewide data layer (`data/state_regulations.json`, 22 states)
+- Annotations converted to Leaflet permanent tooltips on invisible markers
+- Vendored all CDN dependencies locally (`vendor/` directory)
+- Fixed z-index stacking: `isolation: isolate` on `#leaflet-map`
+- Verified: 3293 county paths, 6 annotations, 5 stat chips, all UI controls
+
+## AI Handoff Summary
+
+**Current state**: The map is a fully functional Leaflet GIS app. All dependencies are vendored. The app loads and renders correctly in both connected and restricted-network environments (county polygons render even without tile access).
+
+**Branch**: `claude/us-datacenter-restrictions-map-skooi7` — merge to `main` to deploy to GitHub Pages.
+
+**Next steps (not yet requested)**:
+1. Connect real facility/infra data files (replace sample_layers.json)
+2. Add county name lookup for counties without restriction data
+3. Add state-level detail panel content (currently only county detail shows state policy)
+4. Performance: consider canvas rendering for lower-end mobile devices
+5. Add a "share link" feature (URL hash with selected county FIPS)

@@ -173,7 +173,7 @@ function stateStyle(feature) {
 async function loadData() {
   const load = url => fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
   const [us, data, sample, stateReg] = await Promise.all([
-    load("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"),
+    load("vendor/counties-10m.json"),
     load("data/map_data.json"),
     load("data/sample_layers.json"),
     load("data/state_regulations.json"),
