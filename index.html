@@ -6,6 +6,7 @@
   <title>US Data Center & AI Restrictions Map</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="vendor/leaflet.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -52,7 +53,7 @@
 
     <!-- Map Container -->
     <div id="map-container">
-      <svg id="map-svg"></svg>
+      <div id="leaflet-map"></div>
 
       <!-- Stats bar -->
       <div id="stats-bar"></div>
@@ -110,8 +111,8 @@
 
 </div><!-- /app -->
 
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="vendor/leaflet.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
 <script src="js/map.js"></script>
 </body>
 </html>

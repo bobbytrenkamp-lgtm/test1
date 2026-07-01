@@ -1,7 +1,6 @@
-/* US Data Center & AI Restrictions Map */
+/* US Data Center & AI Restrictions Map — Leaflet Edition */
 
-// Severity buckets drive map fill, legend, stats, and badges.
-// Derived from each county's level (-1..4) plus its enactment status.
+/* ── Severity model ── */
 const SEVERITY = {
   pro:      { color: "#4ade80", label: "Pro / Incentive Hub" },
   none:     { color: "#16a34a", label: "No Restrictions" },
@@ -16,11 +15,11 @@ function getSeverityKey(county) {
   const level  = county.level;
   const status = county.status || "active";
   if (level === -1) return "pro";
-  if (level <= 0) return "none";
+  if (level <= 0)   return "none";
   if (status === "proposed" || status === "pending") return "proposed";
-  if (level >= 4) return "ban";
-  if (level === 3) return "high";
-  return "moderate"; // levels 1-2, active
+  if (level >= 4)   return "ban";
+  if (level === 3)  return "high";
+  return "moderate";
 }
 
 function getSeverityColor(county) {
@@ -30,9 +29,7 @@ function getSeverityColor(county) {
 function computeSeverityCounts(counties) {
   const counts = {};
   for (const key of Object.keys(SEVERITY)) counts[key] = 0;
-  for (const fips in counties) {
-    counts[getSeverityKey(counties[fips])]++;
-  }
+  for (const fips in counties) counts[getSeverityKey(counties[fips])]++;
   return counts;
 }
 
@@ -60,7 +57,6 @@ const STATUS_LABELS = {
   expired:  "Expired / Lapsed",
 };
 
-// State FIPS code (first 2 digits of county FIPS) → abbreviation
 const STATE_FIPS = {
   "01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT",
   "10":"DE","11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL",
@@ -72,453 +68,503 @@ const STATE_FIPS = {
   "55":"WI","56":"WY",
 };
 
-// Counties to annotate — 3 most restrictive, 3 most pro
+/* ── Annotations (always-on callout labels) ── */
 const ANNOTATIONS = [
-  { fips: "41027", label: "Hood River, OR",   sub: "Only U.S. data center ban",     type: "restrictive", dx: -115, dy: -45 },
-  { fips: "51107", label: "Loudoun Co., VA",  sub: "Strictest zoning restrictions", type: "restrictive", dx:   75, dy: -35 },
-  { fips: "53007", label: "Chelan Co., WA",   sub: "PUD moratorium",                type: "restrictive", dx:  -95, dy: -30 },
-  { fips: "41059", label: "Umatilla, OR",     sub: "Google mega-campus",            type: "pro",         dx:  -95, dy:   55 },
-  { fips: "45015", label: "Berkeley Co., SC", sub: "Amazon/AWS + SC incentives",   type: "pro",         dx:   75, dy:   20 },
-  { fips: "19113", label: "Cedar Rapids, IA", sub: "Iowa 0% equipment tax",         type: "pro",         dx:   10, dy:  -65 },
+  { fips: "41027", label: "Hood River, OR",   sub: "Only U.S. data center ban",     type: "restrictive" },
+  { fips: "51107", label: "Loudoun Co., VA",  sub: "Strictest zoning restrictions", type: "restrictive" },
+  { fips: "53007", label: "Chelan Co., WA",   sub: "PUD moratorium",                type: "restrictive" },
+  { fips: "41059", label: "Umatilla, OR",     sub: "Google mega-campus",            type: "pro" },
+  { fips: "45015", label: "Berkeley Co., SC", sub: "Amazon/AWS + SC incentives",    type: "pro" },
+  { fips: "19113", label: "Cedar Rapids, IA", sub: "Iowa 0% equipment tax",         type: "pro" },
 ];
 
-// Layer toggle definitions for the filter panel. "Restrictions" is the only
-// layer backed by real curated data — everything else ships as clearly
-// labeled sample/placeholder data until verified sources are wired in.
+/* ── Layer definitions ── */
 const LAYER_DEFS = [
-  { id: "restrictions", label: "Restrictions",               group: "Core",            color: "#dc2626", sample: false },
-  { id: "dc_existing",  label: "Existing Data Centers",       group: "Facilities",      color: "#5b8def", sample: true  },
-  { id: "dc_planned",   label: "Planned Data Centers",        group: "Facilities",      color: "#5b8def", sample: true  },
-  { id: "ai_campus",    label: "AI Campuses",                 group: "Facilities",      color: "#a78bfa", sample: true  },
-  { id: "power",        label: "Power Infrastructure",        group: "Infrastructure",  color: "#34d399", sample: true  },
-  { id: "transmission", label: "Transmission Lines",          group: "Infrastructure",  color: "#fbbf24", sample: true  },
-  { id: "fiber",        label: "Fiber Network",                group: "Infrastructure",  color: "#60a5fa", sample: true  },
-  { id: "water",        label: "Water Availability",          group: "Land & Policy",   color: "#1d4ed8", sample: true  },
-  { id: "utility",      label: "Utility Service Territories", group: "Land & Policy",   color: "#f472b6", sample: true  },
-  { id: "tax",          label: "Tax Incentive Areas",         group: "Land & Policy",   color: "#fbbf24", sample: true  },
+  { id: "restrictions",  label: "Restrictions",               group: "Core",           color: "#dc2626", sample: false },
+  { id: "state_policy",  label: "State Policy",               group: "Core",           color: "#8b5cf6", sample: false },
+  { id: "dc_existing",   label: "Existing Data Centers",      group: "Facilities",     color: "#5b8def", sample: true  },
+  { id: "dc_planned",    label: "Planned Data Centers",       group: "Facilities",     color: "#5b8def", sample: true  },
+  { id: "ai_campus",     label: "AI Campuses",                group: "Facilities",     color: "#a78bfa", sample: true  },
+  { id: "power",         label: "Power Infrastructure",       group: "Infrastructure", color: "#34d399", sample: true  },
+  { id: "transmission",  label: "Transmission Lines",         group: "Infrastructure", color: "#fbbf24", sample: true  },
+  { id: "fiber",         label: "Fiber Network",              group: "Infrastructure", color: "#60a5fa", sample: true  },
+  { id: "water",         label: "Water Availability",         group: "Land & Policy",  color: "#1d4ed8", sample: true  },
+  { id: "utility",       label: "Utility Territories",        group: "Land & Policy",  color: "#f472b6", sample: true  },
+  { id: "tax",           label: "Tax Incentive Areas",        group: "Land & Policy",  color: "#fbbf24", sample: true  },
 ];
 
 const SAMPLE_DISCLAIMER = "Sample data — for UI demonstration only. Replace with verified source before public release.";
 
-let mapData = {};
-let sampleLayers = null;
-let legendState = 0; // 0 = full, 1 = mini, 2 = hidden
-let selectedFips = null;
-let currentK = 1;
-let mapHandles = null;
-let countyFipsIndex = {};
-let countySelection = null;
-const layerGroups = {};
+/* ── Global state ── */
+let leafletMap      = null;
+let countyGeoLayer  = null;
+let stateGeoLayer   = null;
+let annotationGroup = null;
+let baseTileLayers  = {};
+let activeTile      = "standard";
+let hybridLabels    = null;
+
+const countyLayerByFips = {};
+const leafletLayerGroups = {};
+
 const layerState = {
   restrictions: true,
-  dc_existing: false,
-  dc_planned: false,
-  ai_campus: false,
-  power: false,
+  state_policy: true,
+  dc_existing:  false,
+  dc_planned:   false,
+  ai_campus:    false,
+  power:        false,
   transmission: false,
-  fiber: false,
-  water: false,
-  utility: false,
-  tax: false,
+  fiber:        false,
+  water:        false,
+  utility:      false,
+  tax:          false,
 };
 
-async function loadData() {
-  const [us, data, sample] = await Promise.all([
-    d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"),
-    d3.json("data/map_data.json"),
-    d3.json("data/sample_layers.json"),
-  ]);
-  return { us, data, sample };
-}
+let mapData      = {};
+let sampleLayers = null;
+let stateRegData = {};
+let legendState  = 0; // 0=full, 1=mini, 2=hidden
+let selectedFips = null;
 
-function fipsKey(id) {
-  return String(id).padStart(5, "0");
-}
+/* ── Helpers ── */
+function fipsKey(id) { return String(id).padStart(5, "0"); }
 
 function getColor(fips) {
   const county = mapData[fips];
-  if (!county) return "#1e2235";
-  return getSeverityColor(county);
+  return county ? getSeverityColor(county) : "#1e2235";
 }
 
-function addArrowMarkers(svg) {
-  const defs = svg.append("defs");
+function getStateColor(fips2) {
+  const st = stateRegData[fips2];
+  return st ? SEVERITY[getSeverityKey(st)].color : "#1e2235";
+}
 
-  const makeMarker = (id, color) => {
-    defs.append("marker")
-      .attr("id", id)
-      .attr("viewBox", "0 -4 8 8")
-      .attr("refX", 6)
-      .attr("refY", 0)
-      .attr("markerWidth", 5)
-      .attr("markerHeight", 5)
-      .attr("orient", "auto")
-      .append("path")
-      .attr("d", "M0,-4L8,0L0,4Z")
-      .attr("fill", color);
+function capacityRadius(mw) {
+  return 3 + 13 * Math.sqrt(Math.max(0, Math.min(800, mw || 0)) / 800);
+}
+
+const UTILITY_COLORS = ["#f472b6", "#fb923c", "#38bdf8", "#a3e635"];
+
+/* ── County / state style functions ── */
+function countyStyle(feature) {
+  const fips = fipsKey(feature.id);
+  return {
+    fillColor:   layerState.restrictions ? getColor(fips) : "#1e2235",
+    fillOpacity: layerState.restrictions ? 0.75 : 0.12,
+    color:       "#05060a",
+    weight:      0.35,
   };
-
-  makeMarker("arrow-restrictive", "#ef4444");
-  makeMarker("arrow-pro",         "#22c55e");
 }
 
-function addAnnotations(g, counties, path) {
-  const fipsMap = {};
-  counties.features.forEach(f => {
-    fipsMap[fipsKey(f.id)] = f;
-  });
+function stateStyle(feature) {
+  const fips2 = String(feature.id).padStart(2, "0");
+  const has   = !!stateRegData[fips2];
+  return {
+    fillColor:   getStateColor(fips2),
+    fillOpacity: layerState.state_policy ? (has ? 0.28 : 0.06) : 0,
+    color:       "#4a5180",
+    weight:      layerState.state_policy ? 0.7 : 0,
+    opacity:     layerState.state_policy ? 0.6 : 0,
+  };
+}
 
-  const annGroup = g.append("g").attr("class", "annotations");
+/* ── Data loading ── */
+async function loadData() {
+  const load = url => fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
+  const [us, data, sample, stateReg] = await Promise.all([
+    load("vendor/counties-10m.json"),
+    load("data/map_data.json"),
+    load("data/sample_layers.json"),
+    load("data/state_regulations.json"),
+  ]);
+  return { us, data, sample, stateReg };
+}
+
+/* ── Basemap management ── */
+function initBasemaps() {
+  baseTileLayers.standard = L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+    {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: "abcd",
+      maxZoom: 20,
+    }
+  );
+  baseTileLayers.satellite = L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {
+      attribution: "&copy; Esri, DigitalGlobe, GeoEye, USDA FSA, USGS, AeroGRID, IGN, and the GIS User Community",
+      maxZoom: 19,
+    }
+  );
+  hybridLabels = L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png",
+    { subdomains: "abcd", maxZoom: 20, pane: "tooltipPane" }
+  );
+  baseTileLayers.standard.addTo(leafletMap);
+}
+
+function switchBasemap(type) {
+  activeTile = type;
+  Object.values(baseTileLayers).forEach(l => { if (leafletMap.hasLayer(l)) leafletMap.removeLayer(l); });
+  if (leafletMap.hasLayer(hybridLabels)) leafletMap.removeLayer(hybridLabels);
+
+  if (type === "standard") {
+    baseTileLayers.standard.addTo(leafletMap);
+  } else if (type === "satellite") {
+    baseTileLayers.satellite.addTo(leafletMap);
+  } else {
+    baseTileLayers.satellite.addTo(leafletMap);
+    hybridLabels.addTo(leafletMap);
+  }
+
+  document.querySelectorAll(".basemap-chip").forEach(b => {
+    b.classList.toggle("active", b.dataset.basemap === type);
+  });
+}
+
+/* ── Tooltip ── */
+const tooltip = document.getElementById("tooltip");
+
+function showTooltip(mouseEvent, fips) {
+  const county = mapData[fips];
+  const stAbbr = STATE_FIPS[fips.slice(0, 2)] || "";
+  const name   = county ? `${county.name}, ${county.state}` : (stAbbr ? `County, ${stAbbr}` : fips);
+  const level  = county
+    ? (county.level === -1 ? "Pro Data Center" : `Level ${county.level} — ${LEVEL_LABELS[county.level]}`)
+    : "No restriction data";
+
+  tooltip.querySelector(".tip-name").textContent  = name;
+  tooltip.querySelector(".tip-level").textContent = level;
+  tooltip.style.display = "block";
+
+  const rect = document.getElementById("map-container").getBoundingClientRect();
+  let x = mouseEvent.clientX - rect.left + 14;
+  let y = mouseEvent.clientY - rect.top  - 44;
+  if (x + 240 > rect.width) x = mouseEvent.clientX - rect.left - 240;
+  if (y < 0)                 y = mouseEvent.clientY - rect.top  + 14;
+  tooltip.style.left = x + "px";
+  tooltip.style.top  = y + "px";
+}
+
+/* ── County interactions ── */
+function handleCountyMouseover(e, fips) {
+  if (fips !== selectedFips) {
+    e.target.setStyle({ color: "#f97316", weight: 2, fillOpacity: 0.88 });
+    e.target.bringToFront();
+  }
+  showTooltip(e.originalEvent, fips);
+}
+
+function handleCountyMousemove(e) {
+  if (tooltip.style.display === "block") {
+    const rect = document.getElementById("map-container").getBoundingClientRect();
+    let x = e.originalEvent.clientX - rect.left + 14;
+    let y = e.originalEvent.clientY - rect.top  - 44;
+    if (x + 240 > rect.width) x = e.originalEvent.clientX - rect.left - 240;
+    if (y < 0)                 y = e.originalEvent.clientY - rect.top  + 14;
+    tooltip.style.left = x + "px";
+    tooltip.style.top  = y + "px";
+  }
+}
+
+function handleCountyMouseout(e, fips) {
+  tooltip.style.display = "none";
+  if (fips !== selectedFips) {
+    countyGeoLayer.resetStyle(e.target);
+  }
+}
+
+function handleCountyClick(e, fips) {
+  L.DomEvent.stopPropagation(e);
+  if (selectedFips && countyLayerByFips[selectedFips]) {
+    countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
+  }
+  selectedFips = fips;
+  e.target.setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
+  e.target.bringToFront();
+
+  const county = mapData[fips];
+  if (county) {
+    setDetailCounty(fips, county);
+  } else {
+    const stAbbr = STATE_FIPS[fips.slice(0, 2)] || "";
+    setDetailNoRestriction(null, stAbbr, fips);
+  }
+}
+
+/* ── County layer init ── */
+function initCountyLayer(countiesGeoJSON) {
+  countyGeoLayer = L.geoJSON(countiesGeoJSON, {
+    style:         countyStyle,
+    onEachFeature: (feature, layer) => {
+      const fips = fipsKey(feature.id);
+      countyLayerByFips[fips] = layer;
+      layer.on({
+        mouseover: e => handleCountyMouseover(e, fips),
+        mousemove: e => handleCountyMousemove(e),
+        mouseout:  e => handleCountyMouseout(e, fips),
+        click:     e => handleCountyClick(e, fips),
+      });
+    },
+  });
+  countyGeoLayer.addTo(leafletMap);
+}
+
+/* ── State layer init ── */
+function initStateLayer(statesGeoJSON) {
+  stateGeoLayer = L.geoJSON(statesGeoJSON, {
+    style:       stateStyle,
+    interactive: false,
+  });
+  stateGeoLayer.addTo(leafletMap);
+}
+
+/* ── Annotations ── */
+function addAnnotations(countiesGeoJSON) {
+  if (annotationGroup) { leafletMap.removeLayer(annotationGroup); }
+  annotationGroup = L.layerGroup();
+
+  const fipsMap = {};
+  countiesGeoJSON.features.forEach(f => { fipsMap[fipsKey(f.id)] = f; });
 
   for (const ann of ANNOTATIONS) {
     const feature = fipsMap[ann.fips];
     if (!feature) continue;
 
-    const centroid = path.centroid(feature);
-    if (!centroid || isNaN(centroid[0]) || isNaN(centroid[1])) continue;
+    const bounds = L.geoJSON(feature).getBounds();
+    const center = bounds.getCenter();
 
-    const [cx, cy] = centroid;
-    const lx = cx + ann.dx;
-    const ly = cy + ann.dy;
-
-    const color  = ann.type === "pro" ? "#22c55e" : "#ef4444";
-    const marker = ann.type === "pro" ? "url(#arrow-pro)" : "url(#arrow-restrictive)";
-
-    const g_ann = annGroup.append("g").attr("class", `annotation annotation-${ann.type}`);
-
-    // Connector line
-    g_ann.append("line")
-      .attr("class", "annotation-line")
-      .attr("x1", lx).attr("y1", ly)
-      .attr("x2", cx).attr("y2", cy)
-      .attr("stroke", color)
-      .attr("stroke-width", 0.8)
-      .attr("stroke-dasharray", "3,2")
-      .attr("marker-end", marker)
-      .attr("opacity", 0.85);
-
-    // Label background
-    const bgW = 110, bgH = 28;
-    const bgX = ann.dx < 0 ? lx - bgW : lx;
-    g_ann.append("rect")
-      .attr("x", bgX - 3)
-      .attr("y", ly - 20)
-      .attr("width", bgW + 6)
-      .attr("height", bgH)
-      .attr("rx", 3)
-      .attr("fill", "#0f1117")
-      .attr("opacity", 0.75);
-
-    // Label text
-    const anchor = ann.dx < 0 ? "end" : "start";
-    const tx = ann.dx < 0 ? lx - 2 : lx + 2;
-
-    const txt = g_ann.append("text")
-      .attr("class", "annotation-text")
-      .attr("x", tx)
-      .attr("y", ly - 8)
-      .attr("text-anchor", anchor)
-      .attr("font-family", "'Inter', system-ui, sans-serif")
-      .attr("fill", color);
-
-    txt.append("tspan")
-      .text(ann.label)
-      .attr("font-size", "9px")
-      .attr("font-weight", "700");
-
-    txt.append("tspan")
-      .text(ann.sub)
-      .attr("x", tx)
-      .attr("dy", "11px")
-      .attr("font-size", "7.5px")
-      .attr("font-weight", "400")
-      .attr("opacity", 0.85);
+    const marker = L.circleMarker(center, { radius: 0, fillOpacity: 0, stroke: false, interactive: false });
+    marker.bindTooltip(
+      `<strong>${ann.label}</strong><span class="ann-sub">${ann.sub}</span>`,
+      {
+        permanent:   true,
+        className:   `ann-tooltip ann-${ann.type}`,
+        direction:   "top",
+        offset:      [0, -2],
+        interactive: false,
+      }
+    );
+    annotationGroup.addLayer(marker);
   }
-  return annGroup;
+
+  annotationGroup.addTo(leafletMap);
 }
 
-const UTILITY_COLORS = ["#f472b6", "#fb923c", "#38bdf8", "#a3e635"];
-function utilityColor(territoryId) {
-  const idx = (sampleLayers.utility_territories || []).findIndex(t => t.id === territoryId);
-  return UTILITY_COLORS[idx % UTILITY_COLORS.length];
-}
+/* ── Sample overlay layers ── */
+function renderSampleMarkerLayers(countiesGeoJSON) {
+  if (!sampleLayers) return;
 
-const capacityRadius = d3.scaleSqrt().domain([0, 800]).range([3, 16]).clamp(true);
-
-function renderSampleMarkerLayers(g, projection) {
-  const project = ([lon, lat]) => projection([lon, lat]) || [-9999, -9999];
+  const project = ([lng, lat]) => [lat, lng];
 
   // Transmission lines
-  const transmissionGroup = g.append("g").attr("class", "layer-group layer-transmission").style("display", "none");
-  layerGroups.transmission = transmissionGroup;
-  const lineGen = d3.line().x(d => d[0]).y(d => d[1]);
-  transmissionGroup.selectAll("path")
-    .data(sampleLayers.transmission_lines || [])
-    .join("path")
-    .attr("class", "layer-line line-transmission")
-    .attr("data-sw", 1.1)
-    .attr("stroke-width", 1.1)
-    .attr("d", d => lineGen(d.path.map(project)))
-    .append("title")
-    .text(d => `${d.name} (${d.voltage_kv} kV) — ${SAMPLE_DISCLAIMER}`);
+  const transmissionGroup = L.layerGroup();
+  (sampleLayers.transmission_lines || []).forEach(d => {
+    L.polyline(d.path.map(project), {
+      color: "#fbbf24", weight: 1.1, opacity: 0.85, dashArray: "4,2",
+    })
+      .bindTooltip(`${d.name} (${d.voltage_kv} kV) — ${SAMPLE_DISCLAIMER}`)
+      .addTo(transmissionGroup);
+  });
+  leafletLayerGroups.transmission = transmissionGroup;
 
-  // Fiber network
-  const fiberGroup = g.append("g").attr("class", "layer-group layer-fiber").style("display", "none");
-  layerGroups.fiber = fiberGroup;
-  fiberGroup.selectAll("path")
-    .data(sampleLayers.fiber_network || [])
-    .join("path")
-    .attr("class", "layer-line line-fiber")
-    .attr("data-sw", 1)
-    .attr("stroke-width", 1)
-    .attr("d", d => lineGen(d.path.map(project)))
-    .append("title")
-    .text(d => `${d.name} — ${SAMPLE_DISCLAIMER}`);
+  // Fiber
+  const fiberGroup = L.layerGroup();
+  (sampleLayers.fiber_network || []).forEach(d => {
+    L.polyline(d.path.map(project), {
+      color: "#60a5fa", weight: 1, opacity: 0.85, dashArray: "1,2",
+    })
+      .bindTooltip(`${d.name} — ${SAMPLE_DISCLAIMER}`)
+      .addTo(fiberGroup);
+  });
+  leafletLayerGroups.fiber = fiberGroup;
 
-  // Power infrastructure (fixed-size circles)
-  const powerGroup = g.append("g").attr("class", "layer-group layer-power").style("display", "none");
-  layerGroups.power = powerGroup;
-  powerGroup.selectAll("circle")
-    .data(sampleLayers.power_infrastructure || [])
-    .join("circle")
-    .attr("class", "map-marker marker-power")
-    .attr("data-r", 5)
-    .attr("r", 5)
-    .attr("cx", d => project([d.lon, d.lat])[0])
-    .attr("cy", d => project([d.lon, d.lat])[1])
-    .on("click", (event, d) => { event.stopPropagation(); setDetailFacility(d, "power"); })
-    .append("title")
-    .text(d => `${d.name} — ${SAMPLE_DISCLAIMER}`);
+  // Power infrastructure
+  const powerGroup = L.layerGroup();
+  (sampleLayers.power_infrastructure || []).forEach(d => {
+    L.circleMarker([d.lat, d.lon], { radius: 5, color: "#0b0d14", weight: 0.8, fillColor: "#34d399", fillOpacity: 1 })
+      .bindTooltip(`${d.name} — ${SAMPLE_DISCLAIMER}`)
+      .on("click", () => setDetailFacility(d, "power"))
+      .addTo(powerGroup);
+  });
+  leafletLayerGroups.power = powerGroup;
 
   // AI campuses
-  const aiGroup = g.append("g").attr("class", "layer-group layer-ai_campus").style("display", "none");
-  layerGroups.ai_campus = aiGroup;
-  aiGroup.selectAll("circle")
-    .data(sampleLayers.ai_campuses || [])
-    .join("circle")
-    .attr("class", "map-marker marker-ai-campus")
-    .attr("data-r", 6)
-    .attr("r", 6)
-    .attr("cx", d => project([d.lon, d.lat])[0])
-    .attr("cy", d => project([d.lon, d.lat])[1])
-    .on("click", (event, d) => { event.stopPropagation(); setDetailFacility(d, "ai_campus"); })
-    .append("title")
-    .text(d => `${d.name} — ${SAMPLE_DISCLAIMER}`);
+  const aiGroup = L.layerGroup();
+  (sampleLayers.ai_campuses || []).forEach(d => {
+    L.circleMarker([d.lat, d.lon], { radius: 6, color: "#0b0d14", weight: 1, fillColor: "#a78bfa", fillOpacity: 0.9 })
+      .bindTooltip(`${d.name} — ${SAMPLE_DISCLAIMER}`)
+      .on("click", e => { L.DomEvent.stopPropagation(e); setDetailFacility(d, "ai_campus"); })
+      .addTo(aiGroup);
+  });
+  leafletLayerGroups.ai_campus = aiGroup;
 
-  // Planned data centers (drawn before existing so existing sits on top)
-  const plannedGroup = g.append("g").attr("class", "layer-group layer-dc_planned").style("display", "none");
-  layerGroups.dc_planned = plannedGroup;
-  plannedGroup.selectAll("circle")
-    .data((sampleLayers.data_centers || []).filter(d => d.status === "planned"))
-    .join("circle")
-    .attr("class", "map-marker marker-dc-planned")
-    .attr("data-r", d => capacityRadius(d.capacity_mw))
-    .attr("r", d => capacityRadius(d.capacity_mw))
-    .attr("cx", d => project([d.lon, d.lat])[0])
-    .attr("cy", d => project([d.lon, d.lat])[1])
-    .on("click", (event, d) => { event.stopPropagation(); setDetailFacility(d, "dc_planned"); })
-    .append("title")
-    .text(d => `${d.name} — ${SAMPLE_DISCLAIMER}`);
+  // Planned data centers
+  const plannedGroup = L.layerGroup();
+  (sampleLayers.data_centers || []).filter(d => d.status === "planned").forEach(d => {
+    const r = capacityRadius(d.capacity_mw);
+    L.circleMarker([d.lat, d.lon], { radius: r, color: "#5b8def", weight: 1.5, fillColor: "rgba(91,141,239,0.18)", fillOpacity: 1, dashArray: "2,1.5" })
+      .bindTooltip(`${d.name} — ${SAMPLE_DISCLAIMER}`)
+      .on("click", e => { L.DomEvent.stopPropagation(e); setDetailFacility(d, "dc_planned"); })
+      .addTo(plannedGroup);
+  });
+  leafletLayerGroups.dc_planned = plannedGroup;
 
   // Existing data centers
-  const existingGroup = g.append("g").attr("class", "layer-group layer-dc_existing").style("display", "none");
-  layerGroups.dc_existing = existingGroup;
-  existingGroup.selectAll("circle")
-    .data((sampleLayers.data_centers || []).filter(d => d.status === "existing"))
-    .join("circle")
-    .attr("class", "map-marker marker-dc-existing")
-    .attr("data-r", d => capacityRadius(d.capacity_mw))
-    .attr("r", d => capacityRadius(d.capacity_mw))
-    .attr("cx", d => project([d.lon, d.lat])[0])
-    .attr("cy", d => project([d.lon, d.lat])[1])
-    .on("click", (event, d) => { event.stopPropagation(); setDetailFacility(d, "dc_existing"); })
-    .append("title")
-    .text(d => `${d.name} — ${SAMPLE_DISCLAIMER}`);
+  const existingGroup = L.layerGroup();
+  (sampleLayers.data_centers || []).filter(d => d.status === "existing").forEach(d => {
+    const r = capacityRadius(d.capacity_mw);
+    L.circleMarker([d.lat, d.lon], { radius: r, color: "#0b0d14", weight: 1, fillColor: "#5b8def", fillOpacity: 0.88 })
+      .bindTooltip(`${d.name} — ${SAMPLE_DISCLAIMER}`)
+      .on("click", e => { L.DomEvent.stopPropagation(e); setDetailFacility(d, "dc_existing"); })
+      .addTo(existingGroup);
+  });
+  leafletLayerGroups.dc_existing = existingGroup;
+
+  // Water stress (county fill overlay)
+  const waterGroup = L.layerGroup();
+  const waterStress   = sampleLayers.water_stress || {};
+  const waterOpacity  = { 0: 0, 1: 0.15, 2: 0.30, 3: 0.48 };
+  countiesGeoJSON.features
+    .filter(f => waterStress[fipsKey(f.id)] !== undefined)
+    .forEach(f => {
+      const level = waterStress[fipsKey(f.id)];
+      if (!level) return;
+      L.geoJSON(f, {
+        style: { fillColor: "#1d4ed8", fillOpacity: waterOpacity[level] || 0, color: "none", weight: 0 },
+        interactive: false,
+      }).addTo(waterGroup);
+    });
+  leafletLayerGroups.water = waterGroup;
+
+  // Utility territories
+  const utilityGroup = L.layerGroup();
+  (sampleLayers.utility_territories || []).forEach((territory, idx) => {
+    const color  = UTILITY_COLORS[idx % UTILITY_COLORS.length];
+    const fipsSet = new Set(territory.fips_list);
+    countiesGeoJSON.features
+      .filter(f => fipsSet.has(fipsKey(f.id)))
+      .forEach(f => {
+        L.geoJSON(f, {
+          style: { fill: false, color, weight: 1.3, opacity: 0.8 },
+          interactive: false,
+        }).addTo(utilityGroup);
+      });
+  });
+  leafletLayerGroups.utility = utilityGroup;
+
+  // Tax incentive areas
+  const taxGroup = L.layerGroup();
+  const taxSet   = new Set(sampleLayers.tax_incentive_counties || []);
+  countiesGeoJSON.features
+    .filter(f => taxSet.has(fipsKey(f.id)))
+    .forEach(f => {
+      L.geoJSON(f, {
+        style: { fill: false, color: "#fbbf24", weight: 1.6, opacity: 0.8 },
+        interactive: false,
+      }).addTo(taxGroup);
+    });
+  leafletLayerGroups.tax = taxGroup;
 }
 
-function renderMap(us) {
-  const container = document.getElementById("map-container");
-  const width  = container.clientWidth  || 800;
-  const height = container.clientHeight || 500;
+/* ── Layer visibility toggle ── */
+function setLayerVisible(id, visible, syncUI = false) {
+  layerState[id] = visible;
 
-  // Extract features first so fitExtent can compute the right scale/translate
-  const counties   = topojson.feature(us, us.objects.counties);
-  const stateMesh  = topojson.mesh(us, us.objects.states, (a, b) => a !== b);
-  const nationMesh = topojson.mesh(us, us.objects.nation);
-
-  countyFipsIndex = {};
-  counties.features.forEach(f => { countyFipsIndex[fipsKey(f.id)] = f; });
-
-  const projection = d3.geoAlbersUsa()
-    .fitExtent([[20, 20], [width - 20, height - 20]], counties);
-
-  const path = d3.geoPath().projection(projection);
-
-  const svg = d3.select("#map-svg")
-    .attr("viewBox", `0 0 ${width} ${height}`)
-    .attr("preserveAspectRatio", "xMidYMid meet");
-
-  addArrowMarkers(svg);
-
-  const g = svg.append("g");
-
-  // Counties
-  countySelection = g.selectAll("path.county")
-    .data(counties.features)
-    .join("path")
-    .attr("class", "county")
-    .attr("d", path)
-    .attr("fill", d => getColor(fipsKey(d.id)))
-    .attr("stroke", "#05060a")
-    .attr("stroke-width", 0.35)
-    .on("mousemove", onMouseMove)
-    .on("mouseleave", onMouseLeave)
-    .on("click", onCountyClick);
-
-  // Water / utility / tax overlays — appended after counties so they paint on top
-  const waterGroup = g.append("g").attr("class", "layer-group layer-water").style("display", "none");
-  layerGroups.water = waterGroup;
-
-  const utilityGroup = g.append("g").attr("class", "layer-group layer-utility").style("display", "none");
-  layerGroups.utility = utilityGroup;
-
-  const taxGroup = g.append("g").attr("class", "layer-group layer-tax").style("display", "none");
-  layerGroups.tax = taxGroup;
-
-  if (sampleLayers) {
-    const waterStress = sampleLayers.water_stress || {};
-    const waterOpacity = { 0: 0, 1: 0.16, 2: 0.32, 3: 0.5 };
-    waterGroup.selectAll("path")
-      .data(counties.features.filter(f => waterStress[fipsKey(f.id)] !== undefined))
-      .join("path")
-      .attr("class", "water-overlay")
-      .attr("d", path)
-      .attr("fill", "#1d4ed8")
-      .attr("opacity", d => waterOpacity[waterStress[fipsKey(d.id)]] || 0);
-
-    (sampleLayers.utility_territories || []).forEach(territory => {
-      const fipsSet = new Set(territory.fips_list);
-      const color = utilityColor(territory.id);
-      utilityGroup.selectAll(`path.ut-${territory.id}`)
-        .data(counties.features.filter(f => fipsSet.has(fipsKey(f.id))))
-        .join("path")
-        .attr("class", `utility-overlay ut-${territory.id}`)
-        .attr("d", path)
-        .attr("fill", "none")
-        .attr("stroke", color)
-        .attr("stroke-width", 1.3);
-    });
-
-    const taxSet = new Set(sampleLayers.tax_incentive_counties || []);
-    taxGroup.selectAll("path")
-      .data(counties.features.filter(f => taxSet.has(fipsKey(f.id))))
-      .join("path")
-      .attr("class", "tax-overlay")
-      .attr("d", path);
+  if (id === "restrictions") {
+    if (countyGeoLayer) {
+      countyGeoLayer.setStyle(f => ({
+        fillColor:   visible ? getColor(fipsKey(f.id)) : "#1e2235",
+        fillOpacity: visible ? 0.75 : 0.12,
+      }));
+      if (selectedFips && countyLayerByFips[selectedFips]) {
+        countyLayerByFips[selectedFips].setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
+      }
+    }
+  } else if (id === "state_policy") {
+    if (stateGeoLayer) {
+      stateGeoLayer.setStyle(stateStyle);
+    }
+  } else {
+    const group = leafletLayerGroups[id];
+    if (group) {
+      if (visible) group.addTo(leafletMap);
+      else leafletMap.removeLayer(group);
+    }
   }
 
-  // State borders
-  g.append("path")
-    .datum(stateMesh)
-    .attr("class", "state-borders")
-    .attr("d", path);
+  if (syncUI) {
+    const input = document.querySelector(`#filter-panel-body input[data-layer="${id}"]`);
+    if (input) input.checked = visible;
+  }
+  renderLegend();
+}
 
-  // Nation border
-  g.append("path")
-    .datum(nationMesh)
-    .attr("class", "nation-border")
-    .attr("d", path);
-
-  // Annotations (arrows + labels) — always part of the map layout
-  addAnnotations(g, counties, path);
-
-  // Sample facility / infrastructure layers (points + lines)
-  if (sampleLayers) renderSampleMarkerLayers(g, projection);
-
-  // Zoom
-  const zoom = d3.zoom()
-    .scaleExtent([1, 10])
-    .translateExtent([
-      [-width * 0.3, -height * 0.3],
-      [width * 1.3, height * 1.3],
-    ])
-    .on("zoom", event => {
-      const k = event.transform.k;
-      currentK = k;
-      g.attr("transform", event.transform);
-      // Keep annotation text + lines at consistent visual size
-      g.selectAll(".annotation-text").attr("font-size", null);
-      g.selectAll(".annotation-text tspan:first-child").attr("font-size", `${9 / k}px`);
-      g.selectAll(".annotation-text tspan:last-child").attr("font-size", `${7.5 / k}px`);
-      g.selectAll(".annotation-line").attr("stroke-width", `${0.8 / k}px`);
-      g.selectAll(".annotations rect")
-        .attr("width", (110 + 6) / k)
-        .attr("height", 28 / k)
-        .attr("rx", 3 / k);
-      // Keep markers + lines at consistent visual size while zoomed
-      g.selectAll(".map-marker[data-r]").attr("r", function() {
-        return (+this.getAttribute("data-r")) / k;
-      });
-      g.selectAll(".layer-line").attr("stroke-width", function() {
-        return (+this.getAttribute("data-sw")) / k;
-      });
-    });
-
-  svg.call(zoom);
-  svg.on("dblclick.zoom", () => {
-    svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+/* ── Map init ── */
+function initLeafletMap() {
+  leafletMap = L.map("leaflet-map", {
+    center:       [38, -96],
+    zoom:         4,
+    maxZoom:      18,
+    minZoom:      3,
+    zoomControl:  false,
+    preferCanvas: false,
   });
 
-  return { svg, g, path, projection, zoom, width, height };
+  L.control.zoom({ position: "bottomright" }).addTo(leafletMap);
+  leafletMap.fitBounds([[24.5, -125], [49.5, -66.5]]);
+  initBasemaps();
+
+  leafletMap.on("click", () => {
+    if (selectedFips && countyLayerByFips[selectedFips]) {
+      countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
+    }
+    selectedFips = null;
+    setDetailEmpty();
+  });
 }
 
-function renderStats(data) {
+/* ── Stats bar ── */
+function renderStats() {
   const counts = computeSeverityCounts(mapData);
-  const bar = document.getElementById("stats-bar");
+  const bar    = document.getElementById("stats-bar");
   bar.innerHTML = "";
-
-  const order = ["ban", "high", "moderate", "proposed", "pro"];
-
+  const order  = ["ban", "high", "moderate", "proposed", "pro"];
   for (const key of order) {
     const count = counts[key] || 0;
-    if (count === 0) continue;
+    if (!count) continue;
     const chip = document.createElement("div");
     chip.className = "stat-chip";
-    chip.innerHTML = `
-      <div class="dot" style="background:${SEVERITY[key].color}"></div>
-      <strong>${count}</strong> ${SEVERITY[key].label}
-    `;
+    chip.innerHTML = `<div class="dot" style="background:${SEVERITY[key].color}"></div><strong>${count}</strong> ${SEVERITY[key].label}`;
     bar.appendChild(chip);
   }
-
-  const total = document.createElement("div");
-  total.className = "stat-chip";
-  total.innerHTML = `<strong>${data.stats.total_counties_tracked}</strong>&nbsp;counties tracked`;
-  bar.appendChild(total);
 }
 
+/* ── Legend ── */
 const SAMPLE_LEGEND_ENTRIES = {
-  dc_existing:  { swatch: "circle", color: "#5b8def", label: "Data Center (existing)" },
-  dc_planned:   { swatch: "ring",   color: "#5b8def", label: "Data Center (planned)" },
-  ai_campus:    { swatch: "circle", color: "#a78bfa", label: "AI Campus" },
-  power:        { swatch: "circle", color: "#34d399", label: "Power Infrastructure" },
-  transmission: { swatch: "line",   color: "#fbbf24", label: "Transmission Line" },
-  fiber:        { swatch: "line",   color: "#60a5fa", label: "Fiber Route" },
-  water:        { swatch: "square", color: "#1d4ed8", label: "Water Stress" },
-  utility:      { swatch: "outline",color: "#f472b6", label: "Utility Territory" },
-  tax:          { swatch: "outline",color: "#fbbf24", label: "Tax Incentive Area" },
+  state_policy:  { swatch: "square",  color: "#8b5cf6", label: "State Policy" },
+  dc_existing:   { swatch: "circle",  color: "#5b8def", label: "Data Center (existing)" },
+  dc_planned:    { swatch: "ring",    color: "#5b8def", label: "Data Center (planned)" },
+  ai_campus:     { swatch: "circle",  color: "#a78bfa", label: "AI Campus" },
+  power:         { swatch: "circle",  color: "#34d399", label: "Power Infrastructure" },
+  transmission:  { swatch: "line",    color: "#fbbf24", label: "Transmission Line" },
+  fiber:         { swatch: "line",    color: "#60a5fa", label: "Fiber Route" },
+  water:         { swatch: "square",  color: "#1d4ed8", label: "Water Stress" },
+  utility:       { swatch: "outline", color: "#f472b6", label: "Utility Territory" },
+  tax:           { swatch: "outline", color: "#fbbf24", label: "Tax Incentive Area" },
 };
 
 function legendSwatchHtml(entry) {
-  if (entry.swatch === "line") {
+  if (entry.swatch === "line")
     return `<svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink:0"><line x1="1" y1="7" x2="13" y2="7" stroke="${entry.color}" stroke-width="2" stroke-dasharray="3,2"/></svg>`;
-  }
-  if (entry.swatch === "ring") {
+  if (entry.swatch === "ring")
     return `<svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink:0"><circle cx="7" cy="7" r="5" fill="none" stroke="${entry.color}" stroke-width="1.6" stroke-dasharray="2,1.5"/></svg>`;
-  }
-  if (entry.swatch === "outline") {
+  if (entry.swatch === "outline")
     return `<svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink:0"><rect x="1.5" y="1.5" width="11" height="11" rx="2" fill="none" stroke="${entry.color}" stroke-width="1.6"/></svg>`;
-  }
+  if (entry.swatch === "circle")
+    return `<svg width="14" height="14" viewBox="0 0 14 14" style="flex-shrink:0"><circle cx="7" cy="7" r="5" fill="${entry.color}"/></svg>`;
   return `<div class="legend-swatch" style="background:${entry.color};"></div>`;
 }
 
@@ -526,15 +572,13 @@ function renderLegend() {
   const legend = document.getElementById("legend");
   legend.innerHTML = "";
 
-  // Toolbar: drag handle + title + expand (mini only) + minimize button
-  // Inline display style set here so CSS cascade cannot interfere
   const isMini    = legendState === 1;
   const expandDsp = isMini ? "flex" : "none";
   const minIcon   = isMini
     ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
     : `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
-  const minTitle  = isMini ? "Hide legend" : "Minimize legend";
-  const toolbar   = document.createElement("div");
+
+  const toolbar = document.createElement("div");
   toolbar.className = "legend-toolbar";
   toolbar.innerHTML = `
     <span class="legend-drag-handle" title="Drag to reposition">
@@ -548,28 +592,25 @@ function renderLegend() {
     <button class="legend-expand-btn" style="display:${expandDsp}" title="Expand legend">
       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
     </button>
-    <button class="legend-minimize-btn" title="${minTitle}">${minIcon}</button>
+    <button class="legend-minimize-btn" title="${isMini ? "Hide legend" : "Minimize legend"}">${minIcon}</button>
   `;
   legend.appendChild(toolbar);
-
-  // Reapply size state (classes persist on the element across renders)
-  legend.classList.toggle("legend-mini",   legendState === 1);
+  legend.classList.toggle("legend-mini",   isMini);
   legend.classList.toggle("legend-hidden", legendState === 2);
 
   if (layerState.restrictions) {
-    const header = document.createElement("h3");
-    header.textContent = "Restriction Severity";
-    legend.appendChild(header);
+    const h = document.createElement("h3");
+    h.textContent = "Restriction Severity";
+    legend.appendChild(h);
 
     const items = [
       { key: "ban",      sub: "Outright prohibition" },
-      { key: "high",      sub: "Active, significant limits" },
-      { key: "moderate",  sub: "Active, light-to-moderate limits" },
-      { key: "proposed",  sub: "Pending / not yet enacted" },
-      { key: "none",      sub: "No known restrictions" },
-      { key: "pro",        sub: "Tax incentives / major hub" },
+      { key: "high",     sub: "Active, significant limits" },
+      { key: "moderate", sub: "Active, light-to-moderate limits" },
+      { key: "proposed", sub: "Pending / not yet enacted" },
+      { key: "none",     sub: "No known restrictions" },
+      { key: "pro",      sub: "Tax incentives / major hub" },
     ];
-
     for (const item of items) {
       const el = document.createElement("div");
       el.className = "legend-item";
@@ -578,75 +619,70 @@ function renderLegend() {
         <div>
           <div class="legend-label-main">${SEVERITY[item.key].label}</div>
           <div class="legend-label-sub">${item.sub}</div>
-        </div>
-      `;
+        </div>`;
       legend.appendChild(el);
     }
 
-    const divider = document.createElement("div");
-    divider.style.cssText = "border-top:1px solid #2e3352; margin: 8px 0;";
-    legend.appendChild(divider);
-
-    const arrows = [
-      { color: "#ef4444", label: "Most restrictive areas" },
-      { color: "#22c55e", label: "Most pro-data-center areas" },
-    ];
-    for (const a of arrows) {
-      const el = document.createElement("div");
-      el.className = "legend-item";
-      el.innerHTML = `
-        <svg width="18" height="10" viewBox="0 0 18 10" style="flex-shrink:0">
-          <line x1="0" y1="5" x2="12" y2="5" stroke="${a.color}" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <polygon points="12,1 18,5 12,9" fill="${a.color}"/>
-        </svg>
-        <div class="legend-label-main" style="font-size:10px">${a.label}</div>
-      `;
-      legend.appendChild(el);
-    }
+    const div = document.createElement("div");
+    div.style.cssText = "border-top:1px solid #2e3352; margin:8px 0;";
+    legend.appendChild(div);
   }
 
-  // Active sample-layer entries
-  const activeSampleKeys = Object.keys(SAMPLE_LEGEND_ENTRIES).filter(k => layerState[k]);
-  if (activeSampleKeys.length) {
-    if (legend.children.length) {
-      const divider = document.createElement("div");
-      divider.style.cssText = "border-top:1px solid #2e3352; margin: 8px 0;";
-      legend.appendChild(divider);
-    }
-    const header = document.createElement("h3");
-    header.innerHTML = `Active Layers <span class="sample-tag" style="margin-left:4px;">Sample</span>`;
-    legend.appendChild(header);
-
-    for (const key of activeSampleKeys) {
+  const activeOverlays = Object.keys(SAMPLE_LEGEND_ENTRIES).filter(k => layerState[k]);
+  if (activeOverlays.length) {
+    const h = document.createElement("h3");
+    h.innerHTML = `Active Layers`;
+    legend.appendChild(h);
+    for (const key of activeOverlays) {
       const entry = SAMPLE_LEGEND_ENTRIES[key];
-      const el = document.createElement("div");
+      const el    = document.createElement("div");
       el.className = "legend-item";
       el.innerHTML = `${legendSwatchHtml(entry)}<div class="legend-label-main">${entry.label}</div>`;
       legend.appendChild(el);
     }
   }
 
-  if (!legend.children.length) {
-    legend.innerHTML = `<div class="legend-label-sub">No layers active. Use the Layers panel to add one.</div>`;
+  if (!legend.children.length || (legend.children.length === 1 && legend.querySelector(".legend-toolbar"))) {
+    const empty = document.createElement("div");
+    empty.className = "legend-label-sub";
+    empty.textContent = "No layers active.";
+    legend.appendChild(empty);
   }
 
-  // Sync expand button visibility after DOM rebuild
   const expandBtn = legend.querySelector(".legend-expand-btn");
   if (expandBtn) expandBtn.style.display = legendState === 1 ? "flex" : "none";
 }
 
+/* ── Filter Panel ── */
 function renderFilterPanel() {
   const body = document.getElementById("filter-panel-body");
   body.innerHTML = "";
 
+  const bmLabel = document.createElement("div");
+  bmLabel.className = "filter-group-label";
+  bmLabel.textContent = "Basemap";
+  body.appendChild(bmLabel);
+
+  const bmRow = document.createElement("div");
+  bmRow.className = "basemap-chips";
+  ["standard", "satellite", "hybrid"].forEach(type => {
+    const btn = document.createElement("button");
+    btn.className = "basemap-chip" + (activeTile === type ? " active" : "");
+    btn.dataset.basemap = type;
+    btn.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+    btn.addEventListener("click", () => switchBasemap(type));
+    bmRow.appendChild(btn);
+  });
+  body.appendChild(bmRow);
+
   const groups = [];
   for (const def of LAYER_DEFS) {
-    let group = groups.find(g => g.name === def.group);
-    if (!group) { group = { name: def.group, items: [] }; groups.push(group); }
-    group.items.push(def);
+    let g = groups.find(x => x.name === def.group);
+    if (!g) { g = { name: def.group, items: [] }; groups.push(g); }
+    g.items.push(def);
   }
 
-  let sampleBannerAdded = false;
+  let sampleBannerShown = false;
 
   for (const group of groups) {
     const label = document.createElement("div");
@@ -655,13 +691,13 @@ function renderFilterPanel() {
     body.appendChild(label);
 
     for (const def of group.items) {
-      if (def.sample && !sampleBannerAdded) {
+      if (def.sample && !sampleBannerShown) {
         const banner = document.createElement("div");
         banner.className = "sample-banner";
         banner.style.margin = "4px 8px 8px";
         banner.innerHTML = `<span>⚠</span><span>${SAMPLE_DISCLAIMER}</span>`;
         body.appendChild(banner);
-        sampleBannerAdded = true;
+        sampleBannerShown = true;
       }
 
       const row = document.createElement("div");
@@ -675,45 +711,23 @@ function renderFilterPanel() {
         <label class="toggle-switch">
           <input type="checkbox" data-layer="${def.id}" ${layerState[def.id] ? "checked" : ""} />
           <span class="toggle-slider"></span>
-        </label>
-      `;
+        </label>`;
       body.appendChild(row);
     }
   }
 
   body.querySelectorAll('input[type="checkbox"][data-layer]').forEach(input => {
-    input.addEventListener("change", () => {
-      setLayerVisible(input.dataset.layer, input.checked);
-    });
+    input.addEventListener("change", () => setLayerVisible(input.dataset.layer, input.checked));
   });
 }
 
-function setLayerVisible(id, visible, syncUI = false) {
-  layerState[id] = visible;
-
-  if (id === "restrictions") {
-    if (countySelection) {
-      countySelection.attr("fill", d => visible ? getColor(fipsKey(d.id)) : "#1e2235");
-    }
-  } else if (layerGroups[id]) {
-    layerGroups[id].style("display", visible ? null : "none");
-  }
-
-  if (syncUI) {
-    const input = document.querySelector(`#filter-panel-body input[data-layer="${id}"]`);
-    if (input) input.checked = visible;
-  }
-
-  renderLegend();
-}
-
+/* ── Panel open/close ── */
 function openFilterPanel() {
   document.getElementById("filter-panel").classList.add("open");
   document.getElementById("filter-panel-backdrop").classList.add("open");
   document.getElementById("filter-toggle").classList.add("active");
   document.getElementById("filter-toggle").setAttribute("aria-expanded", "true");
 }
-
 function closeFilterPanel() {
   document.getElementById("filter-panel").classList.remove("open");
   document.getElementById("filter-panel-backdrop").classList.remove("open");
@@ -722,34 +736,29 @@ function closeFilterPanel() {
 }
 
 function initFilterPanelControls() {
-  const toggleBtn  = document.getElementById("filter-toggle");
-  const closeBtn   = document.getElementById("filter-panel-close");
-  const backdrop   = document.getElementById("filter-panel-backdrop");
-  const panel      = document.getElementById("filter-panel");
+  const toggleBtn   = document.getElementById("filter-toggle");
+  const closeBtn    = document.getElementById("filter-panel-close");
+  const backdrop    = document.getElementById("filter-panel-backdrop");
+  const panel       = document.getElementById("filter-panel");
   const detailClose = document.getElementById("detail-panel-close");
 
-  if (toggleBtn) toggleBtn.addEventListener("click", () => {
-    panel.classList.contains("open") ? closeFilterPanel() : openFilterPanel();
-  });
-  if (closeBtn)   closeBtn.addEventListener("click", closeFilterPanel);
-  if (backdrop)   backdrop.addEventListener("click", closeFilterPanel);
+  if (toggleBtn)   toggleBtn.addEventListener("click", () => panel.classList.contains("open") ? closeFilterPanel() : openFilterPanel());
+  if (closeBtn)    closeBtn.addEventListener("click", closeFilterPanel);
+  if (backdrop)    backdrop.addEventListener("click", closeFilterPanel);
   if (detailClose) detailClose.addEventListener("click", closeMobileSheet);
 }
 
 function initTopToggle() {
   const btn = document.getElementById("top-toggle");
-  if (!btn) return;
-  btn.addEventListener("click", () => {
-    document.getElementById("app").classList.toggle("top-hidden");
-  });
+  if (btn) btn.addEventListener("click", () => document.getElementById("app").classList.toggle("top-hidden"));
 }
 
+/* ── Legend controls (drag + minimize) ── */
 function initLegendControls() {
   const legend  = document.getElementById("legend");
   const restore = document.getElementById("legend-restore");
   if (!legend) return;
 
-  // ── Minimize / restore cycling ──────────────────────────────────────────
   function applyLegendState() {
     legend.classList.toggle("legend-mini",   legendState === 1);
     legend.classList.toggle("legend-hidden", legendState === 2);
@@ -758,10 +767,8 @@ function initLegendControls() {
       restore.style.left = legend.style.left || "";
       restore.style.top  = legend.style.top  || "";
     }
-    // Drive expand button visibility directly — don't rely on CSS cascade alone
     const expandBtn = legend.querySelector(".legend-expand-btn");
     if (expandBtn) expandBtn.style.display = legendState === 1 ? "flex" : "none";
-    // Update minimize button icon
     const minBtn = legend.querySelector(".legend-minimize-btn");
     if (minBtn) {
       const isMin = legendState === 1;
@@ -772,189 +779,140 @@ function initLegendControls() {
     }
   }
 
-  // Event delegation — buttons are recreated on every renderLegend()
-  legend.addEventListener("click", (e) => {
-    if (e.target.closest(".legend-expand-btn")) {
-      legendState = 0;
-      applyLegendState();
-    } else if (e.target.closest(".legend-minimize-btn")) {
-      legendState = (legendState + 1) % 3;
-      applyLegendState();
-    }
+  legend.addEventListener("click", e => {
+    if (e.target.closest(".legend-expand-btn"))  { legendState = 0; applyLegendState(); }
+    else if (e.target.closest(".legend-minimize-btn")) { legendState = (legendState + 1) % 3; applyLegendState(); }
   });
 
-  if (restore) {
-    restore.addEventListener("click", () => {
-      legendState = 0;
-      applyLegendState();
-    });
-  }
+  if (restore) restore.addEventListener("click", () => { legendState = 0; applyLegendState(); });
 
-  // ── Drag ────────────────────────────────────────────────────────────────
   const container = document.getElementById("map-container");
-  let dragging = false;
-  let startPX, startPY, startLeft, startTop;
+  let dragging = false, startPX, startPY, startLeft, startTop;
 
-  legend.addEventListener("pointerdown", (e) => {
+  legend.addEventListener("pointerdown", e => {
     if (!e.target.closest(".legend-drag-handle")) return;
     e.preventDefault();
-    dragging = true;
-    const lRect = legend.getBoundingClientRect();
-    const cRect = container.getBoundingClientRect();
-    startPX   = e.clientX;
-    startPY   = e.clientY;
-    startLeft = lRect.left - cRect.left;
-    startTop  = lRect.top  - cRect.top;
+    dragging  = true;
+    const lr  = legend.getBoundingClientRect();
+    const cr  = container.getBoundingClientRect();
+    startPX   = e.clientX; startPY = e.clientY;
+    startLeft = lr.left - cr.left; startTop = lr.top - cr.top;
     legend.setPointerCapture(e.pointerId);
     legend.style.cursor = "grabbing";
   });
-
-  legend.addEventListener("pointermove", (e) => {
+  legend.addEventListener("pointermove", e => {
     if (!dragging) return;
-    const cRect = container.getBoundingClientRect();
-    const lRect = legend.getBoundingClientRect();
-    let nl = startLeft + (e.clientX - startPX);
-    let nt = startTop  + (e.clientY - startPY);
-    nl = Math.max(0, Math.min(nl, cRect.width  - lRect.width));
-    nt = Math.max(0, Math.min(nt, cRect.height - lRect.height));
+    const cr = container.getBoundingClientRect();
+    const lr = legend.getBoundingClientRect();
+    let nl = Math.max(0, Math.min(startLeft + (e.clientX - startPX), cr.width  - lr.width));
+    let nt = Math.max(0, Math.min(startTop  + (e.clientY - startPY), cr.height - lr.height));
     legend.style.left = nl + "px";
     legend.style.top  = nt + "px";
-    // Keep restore pill in sync with legend position
     if (restore) { restore.style.left = legend.style.left; restore.style.top = legend.style.top; }
   });
-
   legend.addEventListener("pointerup",     () => { dragging = false; legend.style.cursor = ""; });
   legend.addEventListener("pointercancel", () => { dragging = false; legend.style.cursor = ""; });
 }
 
+/* ── Dashboard ── */
 function animateCounter(el, target, duration = 900) {
-  const startTime = performance.now();
-  function tick(now) {
-    const progress = Math.min((now - startTime) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(target * eased).toLocaleString("en-US");
-    if (progress < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
+  const t0 = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - t0) / duration, 1);
+    el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))).toLocaleString("en-US");
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
 }
 
 function renderDashboard(data) {
   const counts = computeSeverityCounts(mapData);
-  const activeRestrictions = counts.moderate + counts.high + counts.ban;
-  const proposedRestrictions = counts.proposed;
-
   const statesWithLegislation = new Set();
   for (const fips in mapData) {
     if (mapData[fips].level >= 1) statesWithLegislation.add(mapData[fips].state);
   }
 
-  let lastUpdated = "Unknown";
-  if (data.generated_at) {
-    lastUpdated = new Date(data.generated_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-  }
+  const lastUpdated = data.generated_at
+    ? new Date(data.generated_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+    : "Unknown";
 
   const dcs = (sampleLayers && sampleLayers.data_centers) || [];
   const existingMW = dcs.filter(d => d.status === "existing").reduce((s, d) => s + d.capacity_mw, 0);
-  const plannedMW  = dcs.filter(d => d.status === "planned").reduce((s, d) => s + d.capacity_mw, 0);
+  const plannedMW  = dcs.filter(d => d.status === "planned") .reduce((s, d) => s + d.capacity_mw, 0);
 
   const cards = [
-    { label: "Counties — Active Restrictions",   value: activeRestrictions },
-    { label: "Counties — Proposed Restrictions", value: proposedRestrictions },
-    { label: "States w/ AI / DC Legislation",    value: statesWithLegislation.size },
-    { label: "Existing Data Center Capacity",    text: `${(existingMW / 1000).toFixed(1)} GW`, sample: true },
-    { label: "Planned Capacity",                 text: `${(plannedMW / 1000).toFixed(1)} GW`, sample: true },
-    { label: "Last Updated",                     text: lastUpdated },
+    { label: "Counties — Active Restrictions",   value: counts.moderate + counts.high + counts.ban },
+    { label: "Counties — Proposed Restrictions", value: counts.proposed },
+    { label: "States w/ AI / DC Legislation",   value: statesWithLegislation.size },
+    { label: "Existing Data Center Capacity",   text: `${(existingMW / 1000).toFixed(1)} GW`, sample: true },
+    { label: "Planned Capacity",                text: `${(plannedMW  / 1000).toFixed(1)} GW`, sample: true },
+    { label: "Last Updated",                    text: lastUpdated },
   ];
 
   const dashboard = document.getElementById("dashboard");
   dashboard.innerHTML = "";
-
   for (const card of cards) {
-    const el = document.createElement("div");
+    const el  = document.createElement("div");
     el.className = "stat-card";
     const tag = card.sample ? `<span class="sample-tag" style="margin-left:6px;">Sample</span>` : "";
     if (card.text) {
       el.innerHTML = `<div class="stat-card-value stat-card-text">${card.text}${tag}</div><div class="stat-card-label">${card.label}</div>`;
     } else {
       el.innerHTML = `<div class="stat-card-value">0</div><div class="stat-card-label">${card.label}</div>`;
+      dashboard.appendChild(el);
+      animateCounter(el.querySelector(".stat-card-value"), card.value);
+      continue;
     }
     dashboard.appendChild(el);
-    if (!card.text) {
-      animateCounter(el.querySelector(".stat-card-value"), card.value);
-    }
   }
 }
 
-function openMobileSheet() {
-  document.getElementById("detail-panel").classList.add("sheet-open");
-}
+/* ── Mobile sheet ── */
+function openMobileSheet()  { document.getElementById("detail-panel").classList.add("sheet-open"); }
+function closeMobileSheet() { document.getElementById("detail-panel").classList.remove("sheet-open"); }
 
-function closeMobileSheet() {
-  document.getElementById("detail-panel").classList.remove("sheet-open");
-}
-
+/* ── Detail panel ── */
 const WATER_STRESS_LABELS = { 0: "Low stress", 1: "Moderate stress", 2: "Elevated stress", 3: "High stress" };
 
 function buildSampleInfraHtml(fips) {
   if (!sampleLayers) return "";
+  const facilities = (sampleLayers.data_centers     || []).filter(d => d.county_fips === fips);
+  const campuses   = (sampleLayers.ai_campuses      || []).filter(d => d.county_fips === fips);
+  const wLevel     = sampleLayers.water_stress ? sampleLayers.water_stress[fips] : undefined;
+  const hasTax     = (sampleLayers.tax_incentive_counties || []).includes(fips);
+  const utility    = (sampleLayers.utility_territories  || []).find(t => t.fips_list.includes(fips));
 
-  const facilities = (sampleLayers.data_centers || []).filter(d => d.county_fips === fips);
-  const campuses    = (sampleLayers.ai_campuses || []).filter(d => d.county_fips === fips);
-  const waterLevel  = sampleLayers.water_stress ? sampleLayers.water_stress[fips] : undefined;
-  const hasTaxIncentive = (sampleLayers.tax_incentive_counties || []).includes(fips);
-  const utility = (sampleLayers.utility_territories || []).find(t => t.fips_list.includes(fips));
+  if (!facilities.length && !campuses.length && wLevel === undefined && !hasTax && !utility) return "";
 
-  if (!facilities.length && !campuses.length && waterLevel === undefined && !hasTaxIncentive && !utility) {
-    return "";
-  }
+  let html = `<div class="divider"></div><div class="sample-banner"><span>⚠</span><span>${SAMPLE_DISCLAIMER}</span></div>`;
 
-  let html = `
-    <div class="divider"></div>
-    <div class="sample-banner">
-      <span>⚠</span><span>${SAMPLE_DISCLAIMER}</span>
-    </div>
-  `;
-
-  if (facilities.length) {
-    html += `
+  if (facilities.length) html += `
     <div class="detail-section">
       <div class="detail-label">Infrastructure <span class="sample-tag">Sample</span></div>
-      <div class="detail-value">
-        ${facilities.map(f => `${escHtml(f.name)} — ${f.capacity_mw} MW (${f.status})`).join("<br>")}
-      </div>
+      <div class="detail-value">${facilities.map(f => `${escHtml(f.name)} — ${f.capacity_mw} MW (${f.status})`).join("<br>")}</div>
     </div>`;
-  }
 
   const operators = [...new Set([...facilities, ...campuses].map(f => f.operator))];
-  if (operators.length) {
-    html += `
+  if (operators.length) html += `
     <div class="detail-section">
       <div class="detail-label">Major Operators <span class="sample-tag">Sample</span></div>
-      <div class="type-chips">
-        ${operators.map(o => `<span class="type-chip">${escHtml(o)}</span>`).join("")}
-      </div>
+      <div class="type-chips">${operators.map(o => `<span class="type-chip">${escHtml(o)}</span>`).join("")}</div>
     </div>`;
-  }
 
-  if (campuses.length) {
-    html += `
+  if (campuses.length) html += `
     <div class="detail-section">
       <div class="detail-label">AI Campuses <span class="sample-tag">Sample</span></div>
       <div class="detail-value">${campuses.map(c => escHtml(c.name)).join("<br>")}</div>
     </div>`;
-  }
 
-  if (waterLevel !== undefined || hasTaxIncentive || utility) {
-    html += `
+  if (wLevel !== undefined || hasTax || utility) html += `
     <div class="detail-section">
       <div class="detail-label">Site Factors <span class="sample-tag">Sample</span></div>
       <div class="detail-value">
-        ${waterLevel !== undefined ? `Water availability: ${WATER_STRESS_LABELS[waterLevel]}<br>` : ""}
+        ${wLevel !== undefined ? `Water availability: ${WATER_STRESS_LABELS[wLevel]}<br>` : ""}
         ${utility ? `Utility territory: ${escHtml(utility.name)}<br>` : ""}
-        ${hasTaxIncentive ? `Tax incentive area: Yes` : ""}
+        ${hasTax ? "Tax incentive area: Yes" : ""}
       </div>
     </div>`;
-  }
 
   return html;
 }
@@ -965,12 +923,10 @@ function setDetailEmpty() {
   document.getElementById("detail-body").innerHTML = `
     <div id="detail-empty">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M12 16v-4M12 8h.01"/>
+        <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
       </svg>
       <p>Click any county on the map to see its restriction details.</p>
-    </div>
-  `;
+    </div>`;
   closeMobileSheet();
 }
 
@@ -981,33 +937,21 @@ function setDetailCounty(fips, county) {
   const level  = county.level;
   const types  = county.types || [];
   const status = county.status || "active";
-
-  const severityKey = getSeverityKey(county);
+  const sevKey = getSeverityKey(county);
 
   document.getElementById("detail-body").innerHTML = `
-    <div class="restriction-badge badge-${severityKey}">
+    <div class="restriction-badge badge-${sevKey}">
       ${levelDot(level, status)}
       ${level === -1 ? "Pro Data Center" : `Level ${level} — ${LEVEL_LABELS[level]}`}
     </div>
 
-    ${county.title ? `
-    <div class="detail-section">
-      <div class="detail-label">Restriction / Policy</div>
-      <div class="detail-value">${escHtml(county.title)}</div>
-    </div>` : ""}
-
-    ${county.description ? `
-    <div class="detail-section">
-      <div class="detail-label">Description</div>
-      <div class="detail-value">${escHtml(county.description)}</div>
-    </div>` : ""}
+    ${county.title ? `<div class="detail-section"><div class="detail-label">Restriction / Policy</div><div class="detail-value">${escHtml(county.title)}</div></div>` : ""}
+    ${county.description ? `<div class="detail-section"><div class="detail-label">Description</div><div class="detail-value">${escHtml(county.description)}</div></div>` : ""}
 
     ${types.length ? `
     <div class="detail-section">
       <div class="detail-label">Types</div>
-      <div class="type-chips">
-        ${types.map(t => `<span class="type-chip ${t}">${TYPE_LABELS[t] || t}</span>`).join("")}
-      </div>
+      <div class="type-chips">${types.map(t => `<span class="type-chip ${t}">${TYPE_LABELS[t] || t}</span>`).join("")}</div>
     </div>` : ""}
 
     <div class="divider"></div>
@@ -1015,40 +959,26 @@ function setDetailCounty(fips, county) {
     <div class="detail-section">
       <div class="detail-label">Status</div>
       <div class="detail-value">
-        <span class="status-indicator">
-          <span class="status-dot ${status}"></span>
-          ${STATUS_LABELS[status] || status}
-        </span>
+        <span class="status-indicator"><span class="status-dot ${status}"></span>${STATUS_LABELS[status] || status}</span>
       </div>
     </div>
 
-    ${county.effective_date ? `
-    <div class="detail-section">
-      <div class="detail-label">Effective Date</div>
-      <div class="detail-value">${formatDate(county.effective_date)}</div>
-    </div>` : ""}
-
-    ${county.notes ? `
-    <div class="detail-section">
-      <div class="detail-label">Notes</div>
-      <div class="detail-value">${escHtml(county.notes)}</div>
-    </div>` : ""}
+    ${county.effective_date ? `<div class="detail-section"><div class="detail-label">Effective Date</div><div class="detail-value">${formatDate(county.effective_date)}</div></div>` : ""}
+    ${county.notes ? `<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(county.notes)}</div></div>` : ""}
 
     ${county.sources && county.sources.length ? `
     <div class="detail-section">
       <div class="detail-label">Sources</div>
       <ul class="sources-list">
         ${county.sources.map(s => {
-          if (s && typeof s === "object" && s.url) {
+          if (s && typeof s === "object" && s.url)
             return `<li><a href="${escHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escHtml(s.label)}</a></li>`;
-          }
           return `<li>${escHtml(typeof s === "string" ? s : s.label || "")}</li>`;
         }).join("")}
       </ul>
     </div>` : ""}
 
-    ${buildSampleInfraHtml(fips)}
-  `;
+    ${buildSampleInfraHtml(fips)}`;
   openMobileSheet();
 }
 
@@ -1056,19 +986,14 @@ function setDetailNoRestriction(name, state, fips) {
   document.getElementById("detail-header").querySelector("h2").textContent = name || "County";
   document.getElementById("detail-state").textContent = state || "";
   document.getElementById("detail-body").innerHTML = `
-    <div class="restriction-badge badge-none">
-      ${levelDot(0, "active")}
-      No Specific Law
-    </div>
+    <div class="restriction-badge badge-none">${levelDot(0, "active")} No Specific Law</div>
     <div class="detail-section">
       <div class="detail-value" style="color:var(--text-muted);font-size:13px;line-height:1.6;">
         No specific data center or AI restrictions have been identified for this county.<br><br>
         Standard state and federal regulations apply only.
       </div>
     </div>
-
-    ${fips ? buildSampleInfraHtml(fips) : ""}
-  `;
+    ${fips ? buildSampleInfraHtml(fips) : ""}`;
   openMobileSheet();
 }
 
@@ -1082,175 +1007,81 @@ const FACILITY_KIND_LABELS = {
 function setDetailFacility(facility, kind) {
   document.getElementById("detail-header").querySelector("h2").textContent = facility.name;
   document.getElementById("detail-state").textContent = FACILITY_KIND_LABELS[kind] || "";
-
   const county = mapData[facility.county_fips];
 
   document.getElementById("detail-body").innerHTML = `
-    <div class="sample-banner">
-      <span>⚠</span><span>${SAMPLE_DISCLAIMER}</span>
-    </div>
-
-    ${facility.operator ? `
-    <div class="detail-section">
-      <div class="detail-label">Operator</div>
-      <div class="detail-value">${escHtml(facility.operator)}</div>
-    </div>` : ""}
-
-    ${facility.capacity_mw ? `
-    <div class="detail-section">
-      <div class="detail-label">Capacity</div>
-      <div class="detail-value">${facility.capacity_mw.toLocaleString("en-US")} MW</div>
-    </div>` : ""}
-
-    ${facility.status ? `
-    <div class="detail-section">
-      <div class="detail-label">Status</div>
-      <div class="detail-value" style="text-transform:capitalize;">${facility.status}</div>
-    </div>` : ""}
-
-    ${facility.year_built ? `
-    <div class="detail-section">
-      <div class="detail-label">Year Built</div>
-      <div class="detail-value">${facility.year_built}</div>
-    </div>` : ""}
-
-    ${facility.type ? `
-    <div class="detail-section">
-      <div class="detail-label">Type</div>
-      <div class="detail-value" style="text-transform:capitalize;">${facility.type}</div>
-    </div>` : ""}
-
-    ${facility.notes ? `
-    <div class="detail-section">
-      <div class="detail-label">Notes</div>
-      <div class="detail-value">${escHtml(facility.notes)}</div>
-    </div>` : ""}
-
-    ${county ? `
-    <div class="detail-section">
-      <div class="detail-label">County</div>
-      <div class="detail-value">${escHtml(county.name)}, ${escHtml(county.state)}</div>
-    </div>` : ""}
-  `;
+    <div class="sample-banner"><span>⚠</span><span>${SAMPLE_DISCLAIMER}</span></div>
+    ${facility.operator  ? `<div class="detail-section"><div class="detail-label">Operator</div><div class="detail-value">${escHtml(facility.operator)}</div></div>` : ""}
+    ${facility.capacity_mw ? `<div class="detail-section"><div class="detail-label">Capacity</div><div class="detail-value">${facility.capacity_mw.toLocaleString("en-US")} MW</div></div>` : ""}
+    ${facility.status    ? `<div class="detail-section"><div class="detail-label">Status</div><div class="detail-value" style="text-transform:capitalize;">${facility.status}</div></div>` : ""}
+    ${facility.year_built ? `<div class="detail-section"><div class="detail-label">Year Built</div><div class="detail-value">${facility.year_built}</div></div>` : ""}
+    ${facility.type      ? `<div class="detail-section"><div class="detail-label">Type</div><div class="detail-value" style="text-transform:capitalize;">${facility.type}</div></div>` : ""}
+    ${facility.notes     ? `<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(facility.notes)}</div></div>` : ""}
+    ${county ? `<div class="detail-section"><div class="detail-label">County</div><div class="detail-value">${escHtml(county.name)}, ${escHtml(county.state)}</div></div>` : ""}`;
   openMobileSheet();
 }
 
+/* ── Utilities ── */
 function levelDot(level, status) {
   const col = SEVERITY[getSeverityKey({ level, status })].color;
   return `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${col};border:1px solid rgba(255,255,255,0.2)"></span>`;
 }
 
 function escHtml(str) {
-  return String(str)
-    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 }
 
 function formatDate(d) {
-  try {
-    return new Date(d + "T00:00:00").toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
-  } catch { return d; }
+  try { return new Date(d + "T00:00:00").toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}); }
+  catch { return d; }
 }
 
-// Tooltip
-const tooltip = document.getElementById("tooltip");
-
-function onMouseMove(event, d) {
-  const fips   = fipsKey(d.id);
-  const county = mapData[fips];
-
-  const name = county
-    ? `${county.name}, ${county.state}`
-    : (() => {
-        const propName = d.properties && d.properties.name;
-        const stAbbr   = STATE_FIPS[fips.slice(0, 2)];
-        return propName ? `${propName}${stAbbr ? ", " + stAbbr : ""}` : (stAbbr || fips);
-      })();
-
-  const level = county
-    ? (county.level === -1 ? "Pro Data Center" : `Level ${county.level} — ${LEVEL_LABELS[county.level]}`)
-    : "No restriction data";
-
-  tooltip.style.display = "block";
-  tooltip.querySelector(".tip-name").textContent  = name;
-  tooltip.querySelector(".tip-level").textContent = level;
-
-  const rect = document.getElementById("map-container").getBoundingClientRect();
-  let x = event.clientX - rect.left + 12;
-  let y = event.clientY - rect.top  - 40;
-  if (x + 230 > rect.width)  x = event.clientX - rect.left - 230;
-  if (y < 0)                  y = event.clientY - rect.top  + 12;
-  tooltip.style.left = x + "px";
-  tooltip.style.top  = y + "px";
-}
-
-function onMouseLeave() { tooltip.style.display = "none"; }
-
-function onCountyClick(event, d) {
-  const fips   = fipsKey(d.id);
-  const county = mapData[fips];
-  d3.selectAll(".county").classed("selected", false);
-  d3.select(this).classed("selected", true);
-  selectedFips = fips;
-  if (county) {
-    setDetailCounty(fips, county);
-  } else {
-    const propName = d.properties && d.properties.name;
-    const stAbbr   = STATE_FIPS[fips.slice(0, 2)] || "";
-    setDetailNoRestriction(propName || null, stAbbr, fips);
-  }
-}
-
-function setLastUpdated(data) {
-  const el = document.getElementById("last-updated");
-  if (data.generated_at) {
-    const d = new Date(data.generated_at);
-    el.textContent = `Data updated ${d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})}`;
-  }
-}
-
-function zoomToFeature(feature) {
-  if (!mapHandles) return;
-  const { svg, path, zoom, width, height } = mapHandles;
-  const [[x0, y0], [x1, y1]] = path.bounds(feature);
-  const dx = x1 - x0, dy = y1 - y0;
-  const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  const scale = Math.max(1, Math.min(8, 0.85 / Math.max(dx / width, dy / height)));
-  const translate = [width / 2 - scale * cx, height / 2 - scale * cy];
-  svg.transition().duration(700)
-    .call(zoom.transform, d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale));
+/* ── County selection / zoom ── */
+function zoomToFeature(fips) {
+  const layer = countyLayerByFips[fips];
+  if (layer) leafletMap.flyToBounds(layer.getBounds(), { duration: 0.5, maxZoom: 10 });
 }
 
 function selectCounty(fips) {
-  const county = mapData[fips];
-  d3.selectAll(".county").classed("selected", false);
-  d3.selectAll(".county").filter(d => fipsKey(d.id) === fips).classed("selected", true);
+  if (selectedFips && countyLayerByFips[selectedFips]) {
+    countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
+  }
   selectedFips = fips;
-  county ? setDetailCounty(fips, county) : setDetailNoRestriction(county?.name, county?.state, fips);
+  const layer  = countyLayerByFips[fips];
+  if (layer) {
+    layer.setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
+    layer.bringToFront();
+  }
+  const county = mapData[fips];
+  if (county) setDetailCounty(fips, county);
+  else {
+    const stAbbr = STATE_FIPS[fips.slice(0, 2)] || "";
+    setDetailNoRestriction(null, stAbbr, fips);
+  }
 }
 
+/* ── Search ── */
 function initSearch() {
   const input   = document.getElementById("search-input");
   const results = document.getElementById("search-results");
 
   const countyIndex = Object.keys(mapData).map(fips => ({
-    kind: "county",
-    fips,
-    name: mapData[fips].name,
-    state: mapData[fips].state,
+    kind: "county", fips,
+    name: mapData[fips].name, state: mapData[fips].state,
     searchText: `${mapData[fips].name} ${mapData[fips].state}`.toLowerCase(),
   }));
 
   const facilityIndex = [];
   if (sampleLayers) {
-    const facilityKindOf = d => (d.status === "planned" ? "dc_planned" : "dc_existing");
+    const kindOf = d => d.status === "planned" ? "dc_planned" : "dc_existing";
     (sampleLayers.data_centers || []).forEach(d => facilityIndex.push({
-      kind: "facility", facilityKind: facilityKindOf(d), raw: d,
-      name: d.name, sub: d.operator, fips: d.county_fips,
+      kind: "facility", facilityKind: kindOf(d), raw: d,
+      name: d.name, fips: d.county_fips,
       searchText: `${d.name} ${d.operator}`.toLowerCase(),
     }));
     (sampleLayers.ai_campuses || []).forEach(d => facilityIndex.push({
       kind: "facility", facilityKind: "ai_campus", raw: d,
-      name: d.name, sub: d.operator, fips: d.county_fips,
+      name: d.name, fips: d.county_fips,
       searchText: `${d.name} ${d.operator}`.toLowerCase(),
     }));
   }
@@ -1268,18 +1099,16 @@ function initSearch() {
       } else {
         item.innerHTML = `${escHtml(m.name)} <span class="sample-tag" style="margin-left:6px;">Sample</span>`;
       }
-      item.addEventListener("pointerdown", (e) => {
-        e.preventDefault(); // prevents input blur firing before selection completes
+      item.addEventListener("pointerdown", e => {
+        e.preventDefault();
         input.value = m.kind === "county" ? `${m.name}, ${m.state}` : m.name;
         results.style.display = "none";
-        const feature = countyFipsIndex[m.fips];
-        if (feature) zoomToFeature(feature);
+        zoomToFeature(m.fips);
         if (m.kind === "county") {
           selectCounty(m.fips);
         } else {
           setLayerVisible(m.facilityKind, true, true);
           selectedFips = null;
-          d3.selectAll(".county").classed("selected", false);
           setDetailFacility(m.raw, m.facilityKind);
         }
       });
@@ -1291,44 +1120,58 @@ function initSearch() {
   input.addEventListener("input", () => {
     const q = input.value.trim().toLowerCase();
     if (!q) { results.style.display = "none"; return; }
-    const matches = index
-      .filter(c => c.searchText.includes(q))
-      .slice(0, 8);
-    renderResults(matches);
+    renderResults(index.filter(c => c.searchText.includes(q)).slice(0, 8));
   });
-
-  input.addEventListener("focus", () => {
-    if (input.value.trim()) input.dispatchEvent(new Event("input"));
-  });
-
-  input.addEventListener("blur", () => {
-    setTimeout(() => { results.style.display = "none"; }, 100);
-  });
+  input.addEventListener("focus", () => { if (input.value.trim()) input.dispatchEvent(new Event("input")); });
+  input.addEventListener("blur",  () => { setTimeout(() => { results.style.display = "none"; }, 100); });
 }
 
+/* ── Last updated label ── */
+function setLastUpdated(data) {
+  const el = document.getElementById("last-updated");
+  if (data.generated_at) {
+    const d = new Date(data.generated_at);
+    el.textContent = `Data updated ${d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})}`;
+  }
+}
+
+/* ── Init ── */
 async function init() {
   try {
-    const { us, data, sample } = await loadData();
-    mapData = data.counties || {};
+    const { us, data, sample, stateReg } = await loadData();
+    mapData      = data.counties || {};
     sampleLayers = sample || null;
+    stateRegData = stateReg.states || {};
+
+    const countiesGeoJSON = topojson.feature(us, us.objects.counties);
+    const statesGeoJSON   = topojson.feature(us, us.objects.states);
+
+    initLeafletMap();
+
+    // z-order: state (bottom) → counties → markers (top)
+    initStateLayer(statesGeoJSON);
+    initCountyLayer(countiesGeoJSON);
+    renderSampleMarkerLayers(countiesGeoJSON);
+    addAnnotations(countiesGeoJSON);
+
     renderDashboard(data);
     renderFilterPanel();
     renderLegend();
-    renderStats(data);
-    mapHandles = renderMap(us);
+    renderStats();
+
     initFilterPanelControls();
     initTopToggle();
     initLegendControls();
     initSearch();
     setDetailEmpty();
     setLastUpdated(data);
+
     document.getElementById("loading").style.display = "none";
   } catch (err) {
     console.error(err);
     document.getElementById("loading").innerHTML = `
       <div style="color:#e05252;font-size:14px;">Failed to load map data. Please refresh.</div>
-      <div style="color:#888;font-size:12px;margin-top:8px;">${escHtml(err.message)}</div>
-    `;
+      <div style="color:#888;font-size:12px;margin-top:8px;">${escHtml(err.message)}</div>`;
   }
 }
 
