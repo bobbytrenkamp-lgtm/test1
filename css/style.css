@@ -29,13 +29,17 @@ html, body {
   background: var(--bg);
   color: var(--text);
   overflow: hidden;
+  /* Prevent rubber-band scroll revealing white background on iOS */
+  overscroll-behavior: none;
 }
 
+/* position:fixed + inset:0 pins to the visual viewport on iOS Safari,
+   surviving address-bar show/hide without layout jumps */
 #app {
+  position: fixed;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  height: 100dvh; /* iOS Safari dynamic viewport */
 }
 
 /* ── Header ── */
@@ -708,6 +712,17 @@ html, body {
 #legend-restore.visible { display: flex; }
 #legend-restore:hover { color: var(--text); border-color: var(--accent); }
 
+/* ── Filter panel drag handle (visible on mobile as bottom sheet) ── */
+#filter-panel-drag-handle {
+  display: none;
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  margin: 8px auto 0;
+  flex-shrink: 0;
+}
+
 /* ── Filter Panel ── */
 #filter-panel-backdrop {
   position: absolute;
@@ -718,6 +733,12 @@ html, body {
 
 #filter-panel-backdrop.open {
   display: block;
+}
+
+/* On mobile the backdrop is fixed (overridden in media query) so needs higher z-index */
+@media (max-width: 700px) {
+  #filter-panel-backdrop { z-index: 38; }
+  #filter-panel { z-index: 39; }
 }
 
 #filter-panel {
@@ -1078,55 +1099,77 @@ html, body {
   .stat-card { padding: 8px 10px; }
   .stat-card-value { font-size: 17px; }
 
-  /* Keep header + search above the map at all times */
+  /* Header + search: always above the map */
   #header   { position: relative; z-index: 50; }
   #search-bar { position: relative; z-index: 50; padding: 6px 12px; }
   #search-results { left: 12px; right: 12px; }
 
-  #legend { left: 10px; top: 10px; padding: 8px 10px; min-width: 160px; max-width: 64vw; max-height: calc(100% - 20px); }
+  /* Thumb-friendly touch targets */
+  #filter-toggle { min-height: 44px; padding: 0 10px; }
   #filter-toggle span { display: none; }
-  #filter-toggle { padding: 7px 8px; }
+  #top-toggle { min-width: 44px; min-height: 44px; }
+  #filter-panel-close { min-width: 44px; min-height: 44px; font-size: 22px; }
+  #detail-panel-close { min-width: 44px; min-height: 44px; font-size: 22px; }
 
-  /* Filter drawer: full height, scrollable, safe-area bottom */
-  #filter-panel {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 78vw;
-    max-width: 280px;
-    max-height: 100dvh;
-    border-radius: 0;
-    transform: translateX(-100%);
+  /* Legend: compact, top-left, no wider than 60vw */
+  #legend {
+    left: 10px; top: 10px;
+    padding: 8px 10px;
+    min-width: 150px;
+    max-width: 60vw;
+    max-height: calc(50dvh);
   }
-  #filter-panel.open { transform: translateX(0); }
+
+  /* Filter panel → bottom sheet on mobile
+     position:fixed so it escapes overflow:hidden on #map-container */
+  #filter-panel-drag-handle { display: block; }
+  #filter-panel {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    max-height: 72dvh;
+    border-radius: 14px 14px 0 0;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid var(--border);
+    transform: translateY(110%);
+    box-shadow: 0 -8px 32px rgba(0,0,0,0.6);
+  }
+  #filter-panel.open { transform: translateY(0); }
+  /* Backdrop must also be fixed on mobile */
+  #filter-panel-backdrop { position: fixed; }
   #filter-panel-backdrop.open { background: rgba(0,0,0,0.5); }
   #filter-panel-body {
-    padding-bottom: max(env(safe-area-inset-bottom), 16px);
+    padding-bottom: max(env(safe-area-inset-bottom), 20px);
   }
 
-  /* Detail bottom sheet: scrollable, safe-area bottom */
+  /* Detail panel → bottom sheet */
   #detail-panel {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     width: auto;
-    max-height: calc(72dvh - env(safe-area-inset-bottom));
+    max-height: 72dvh;
     border-left: none;
     border-top: 1px solid var(--border);
     border-radius: 14px 14px 0 0;
-    transform: translateY(100%);
-    transition: transform 0.25s ease;
+    transform: translateY(110%);
+    transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
     z-index: 40;
-    box-shadow: 0 -8px 24px rgba(0,0,0,0.5);
+    box-shadow: 0 -8px 32px rgba(0,0,0,0.6);
   }
   #detail-panel.sheet-open { transform: translateY(0); }
   #detail-panel-handle { display: block; }
-  #detail-header { padding-right: 40px; }
+  #detail-header { padding-right: 44px; }
   #detail-panel-close { display: flex; }
 
-  /* Ensure detail body scrolls smoothly and clears the Safari bottom bar */
+  /* Detail body: momentum scroll + safe-area clearance */
   #detail-body {
-    padding-bottom: calc(28px + env(safe-area-inset-bottom));
+    padding-bottom: calc(32px + env(safe-area-inset-bottom));
   }
 }

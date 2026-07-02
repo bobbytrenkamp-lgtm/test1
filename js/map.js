@@ -660,6 +660,33 @@ function renderLegend() {
     legend.appendChild(div);
   }
 
+  // Policy scope section
+  if (layerState.restrictions || layerState.state_policy) {
+    const sh = document.createElement("h3");
+    sh.textContent = "Policy Scope";
+    legend.appendChild(sh);
+
+    const scopeItems = [
+      { color: "#8b5cf6", opacity: 0.32, label: "Statewide",  sub: "State-level overlay" },
+      { color: "#dc2626", opacity: 0.75, label: "Countywide", sub: "County restriction" },
+      { color: "#3b82f6", opacity: 0.75, label: "Citywide",   sub: "Municipal (no data yet)" },
+    ];
+    for (const s of scopeItems) {
+      const el = document.createElement("div");
+      el.className = "legend-item";
+      el.innerHTML = `
+        <div class="legend-swatch" style="background:${s.color};opacity:${s.opacity};border:1px solid ${s.color};"></div>
+        <div>
+          <div class="legend-label-main">${s.label}</div>
+          <div class="legend-label-sub">${s.sub}</div>
+        </div>`;
+      legend.appendChild(el);
+    }
+    const sd = document.createElement("div");
+    sd.style.cssText = "border-top:1px solid #2e3352; margin:8px 0;";
+    legend.appendChild(sd);
+  }
+
   const activeOverlays = Object.keys(SAMPLE_LEGEND_ENTRIES).filter(k => layerState[k]);
   if (activeOverlays.length) {
     const h = document.createElement("h3");
@@ -1029,7 +1056,7 @@ function setDetailEmpty() {
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
       </svg>
-      <p>Click any county on the map to see its restriction details.</p>
+      <p>Tap any county on the map to see statewide, county, and city regulations.</p>
     </div>`;
   closeMobileSheet();
 }
@@ -1204,8 +1231,14 @@ function setLastUpdated(data) {
 
 /* ── Init ── */
 async function init() {
+  const loadEl = document.getElementById("loading");
+  const setMsg = msg => { const s = loadEl.querySelector("span"); if (s) s.textContent = msg; };
+
   try {
+    setMsg("Loading county data…");
     const { us, data, sample, stateReg } = await loadData();
+
+    setMsg("Processing map data…");
     mapData      = data.counties || {};
     sampleLayers = sample || null;
     stateRegData = stateReg.states || {};
@@ -1213,6 +1246,7 @@ async function init() {
     const countiesGeoJSON = topojson.feature(us, us.objects.counties);
     const statesGeoJSON   = topojson.feature(us, us.objects.states);
 
+    setMsg("Rendering map…");
     initLeafletMap();
 
     // z-order: state (bottom) → counties → markers (top)
@@ -1233,12 +1267,20 @@ async function init() {
     setDetailEmpty();
     setLastUpdated(data);
 
-    document.getElementById("loading").style.display = "none";
+    loadEl.style.display = "none";
   } catch (err) {
     console.error(err);
-    document.getElementById("loading").innerHTML = `
-      <div style="color:#e05252;font-size:14px;">Failed to load map data. Please refresh.</div>
-      <div style="color:#888;font-size:12px;margin-top:8px;">${escHtml(err.message)}</div>`;
+    loadEl.innerHTML = `
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#e05252" stroke-width="1.5" style="flex-shrink:0;margin-bottom:4px">
+        <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+      </svg>
+      <div style="color:#e05252;font-size:15px;font-weight:600;text-align:center;">Map data could not be loaded</div>
+      <div style="color:#8a8fa8;font-size:12px;margin-top:8px;text-align:center;max-width:280px;line-height:1.6;padding:0 16px;">
+        ${escHtml(err.message)}<br>Check the data file path or browser console for details.
+      </div>
+      <button onclick="location.reload()" style="margin-top:20px;padding:11px 28px;background:#5b8def;border:none;border-radius:8px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:0.02em;">
+        Retry
+      </button>`;
   }
 }
 
