@@ -802,9 +802,26 @@ function initFilterPanelControls() {
   const panel       = document.getElementById("filter-panel");
   const detailClose = document.getElementById("detail-panel-close");
 
-  if (toggleBtn)   toggleBtn.addEventListener("click", () => panel.classList.contains("open") ? closeFilterPanel() : openFilterPanel());
-  if (closeBtn)    closeBtn.addEventListener("click", closeFilterPanel);
-  if (backdrop)    backdrop.addEventListener("click", closeFilterPanel);
+  if (toggleBtn) toggleBtn.addEventListener("click", () =>
+    panel.classList.contains("open") ? closeFilterPanel() : openFilterPanel());
+  if (closeBtn) closeBtn.addEventListener("click", closeFilterPanel);
+
+  // Only close when the backdrop itself is tapped — not when a child tap bubbles up
+  if (backdrop) backdrop.addEventListener("click", e => {
+    if (e.target === backdrop) closeFilterPanel();
+  });
+
+  // Stop all pointer events inside the panel from reaching the backdrop or the map
+  if (panel) {
+    panel.addEventListener("click",      e => e.stopPropagation());
+    panel.addEventListener("touchstart", e => e.stopPropagation(), { passive: true });
+    // Allow vertical scroll inside the body without triggering Leaflet pan
+    const body = document.getElementById("filter-panel-body");
+    if (body) {
+      body.addEventListener("touchmove", e => e.stopPropagation(), { passive: true });
+    }
+  }
+
   if (detailClose) detailClose.addEventListener("click", closeMobileSheet);
 }
 

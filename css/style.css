@@ -803,6 +803,9 @@ html, body {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior-y: contain;
   padding: 6px;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
