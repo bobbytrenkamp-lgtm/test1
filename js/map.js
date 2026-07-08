@@ -1059,6 +1059,40 @@ function buildStatePolicySectionHtml(stateFips2) {
   </div>`;
 }
 
+const CONFIDENCE_LABELS = {
+  verified: "Verified",
+  high:     "High",
+  medium:   "Medium",
+  low:      "Low",
+};
+
+const TIER_LABELS = {
+  1: "Government / Official",
+  2: "Industry / Press",
+  3: "Community / News",
+};
+
+function buildConfidenceBadgeHtml(county) {
+  const conf  = county.confidence || "low";
+  const score = county.confidence_score;
+  const tier  = county.source_tier;
+
+  const label     = CONFIDENCE_LABELS[conf] || conf;
+  const tierLabel = TIER_LABELS[tier] || "";
+  const scoreText = typeof score === "number" ? `${score}/100` : "";
+
+  return `<div class="confidence-info-row">
+    <div class="confidence-bar">
+      <span class="confidence-badge conf-${conf}">
+        <span class="confidence-dot"></span>
+        ${escHtml(label)} Confidence
+      </span>
+      ${scoreText ? `<span class="confidence-score-text">${escHtml(scoreText)}</span>` : ""}
+    </div>
+    ${tierLabel ? `<span class="conf-tier-label">Source tier: <span>${escHtml(tierLabel)}</span></span>` : ""}
+  </div>`;
+}
+
 function buildCountyPolicySectionHtml(fips, county) {
   const sevKey = getSeverityKey(county);
   const level  = county.level;
@@ -1072,6 +1106,7 @@ function buildCountyPolicySectionHtml(fips, county) {
 
   return `<div class="policy-scope-section">
     ${header}
+    ${county.confidence ? buildConfidenceBadgeHtml(county) : ""}
     ${county.title ? `<div class="detail-section"><div class="detail-label">Restriction / Policy</div><div class="detail-value">${escHtml(county.title)}</div></div>` : ""}
     ${county.description ? `<div class="detail-section"><div class="detail-label">Description</div><div class="detail-value">${escHtml(county.description)}</div></div>` : ""}
     ${types.length ? `<div class="detail-section"><div class="detail-label">Types</div><div class="type-chips">${types.map(t => `<span class="type-chip ${t}">${TYPE_LABELS[t]||t}</span>`).join("")}</div></div>` : ""}

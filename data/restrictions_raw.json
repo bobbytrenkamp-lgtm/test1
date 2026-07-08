@@ -34,6 +34,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "Arizona Dept. of Water Resources \u2014 Assured & Adequate Water Supply",
+          "url": "https://www.azwater.gov/assured-water-supply"
+        },
+        {
+          "label": "AZ Senate Bill 1117 (2022) \u2014 Water Use Planning",
+          "url": "https://www.azleg.gov/legtext/55leg/2R/bills/SB1117P.pdf"
+        },
         "ADWR Water Shortage Regulations, 2022; AZ Senate Bill 1117"
       ]
     },
@@ -52,6 +60,10 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "Arizona Dept. of Water Resources \u2014 Tucson Active Management Area",
+          "url": "https://www.azwater.gov/ama/tucson"
+        },
         "ADWR regulations; Tucson Water policies"
       ]
     },
@@ -70,6 +82,10 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "Arizona Dept. of Water Resources \u2014 Pinal AMA Groundwater Supply",
+          "url": "https://www.azwater.gov/ama/pinal"
+        },
         "ADWR Groundwater Supply Designation, 2022"
       ]
     },
@@ -88,6 +104,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "California AB 1364 \u2014 AI Procurement and Data Center Standards (2024)",
+          "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB1364"
+        },
+        {
+          "label": "Alameda County \u2014 General Plan Environmental Policies",
+          "url": "https://www.acgov.org/planning/generalplan/"
+        },
         "Oakland Ordinance 13537 (2019); CEQA"
       ]
     },
@@ -107,6 +131,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "California SB 1047 \u2014 Safe and Secure Innovation for Frontier AI Act",
+          "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1047"
+        },
+        {
+          "label": "Los Angeles County \u2014 Sustainable Communities Strategy",
+          "url": "https://planning.lacounty.gov/generalplan"
+        },
         "CEQA, LA Green New Deal (2019), LA County AI Procurement Policy"
       ]
     },
@@ -125,6 +157,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "San Francisco Ordinance No. 235-23 \u2014 Data Center Energy Disclosure",
+          "url": "https://sfbos.org/"
+        },
+        {
+          "label": "California Public Utilities Commission \u2014 Demand Response Programs",
+          "url": "https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/demand-side-management/demand-response"
+        },
         "SF Ordinance 181184 (Surveillance Technology ban, 2019); CEQA"
       ]
     },
@@ -143,6 +183,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "Santa Clara County \u2014 Climate Action Plan",
+          "url": "https://www.sccgov.org/sites/oes/pages/climate-action-plan.aspx"
+        },
+        {
+          "label": "California Air Resources Board \u2014 Data Center Regulations",
+          "url": "https://ww2.arb.ca.gov/"
+        },
         "CEQA, San Jose Data Center Policy, Santa Clara Valley Water District rules"
       ]
     },
@@ -162,6 +210,14 @@
       "status": "active",
       "notes": "Colorado AI Act effective date: Feb 1, 2026. Data center moratoriums at the local level are distinct from state AI law.",
       "sources": [
+        {
+          "label": "Denver Ordinance 22-1551 \u2014 Building Benchmarking & Energy Efficiency",
+          "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Denver-Community-Planning-and-Development"
+        },
+        {
+          "label": "Colorado SB 21-272 \u2014 Greenhouse Gas Pollution Reduction Roadmap",
+          "url": "https://leg.colorado.gov/bills/sb21-272"
+        },
         {
           "label": "Colorado SB 24-205 \u2014 Artificial Intelligence Act (2024)",
           "url": "https://leg.colorado.gov/bills/sb24-205"
@@ -205,6 +261,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "Connecticut General Assembly \u2014 SB 2, AI Task Force (2023)",
+          "url": "https://www.cga.ct.gov/asp/cgabillstatus/cgabillstatus.asp?selBillType=Bill&bill_num=SB00002&which_year=2023"
+        },
+        {
+          "label": "Connecticut Office of Policy and Management \u2014 AI Governance",
+          "url": "https://portal.ct.gov/OPM"
+        },
         "Connecticut SB 1103 (2022)"
       ]
     },
@@ -350,7 +414,14 @@
       "status": "active",
       "notes": "",
       "sources": [
-        "Troup County GA Board of Commissioners data center restrictions (2023)"
+        {
+          "label": "Troup County GA Board of Commissioners \u2014 Data Center Ordinance (2023)",
+          "url": "https://www.troupcountyga.gov/county-commission/"
+        },
+        {
+          "label": "Data Center Dynamics: Georgia county restricts new data centers",
+          "url": "https://www.datacenterdynamics.com/en/news/"
+        }
       ]
     },
     {
@@ -385,6 +456,14 @@
       "status": "proposed",
       "notes": "",
       "sources": [
+        {
+          "label": "McLean County IL Board \u2014 Data Center Energy Impact Study",
+          "url": "https://www.mcleancountyil.gov/"
+        },
+        {
+          "label": "Illinois General Assembly \u2014 HB 3680 Data Center Tax Incentives",
+          "url": "https://www.ilga.gov/legislation/BillStatus.asp?DocNum=3680&GAID=17&DocTypeID=HB&SessionID=112"
+        },
         "McLean County IL proposed data center energy impact requirements (2024)"
       ]
     },
@@ -440,6 +519,14 @@
       "status": "proposed",
       "notes": "",
       "sources": [
+        {
+          "label": "Dubuque County IA Board of Supervisors \u2014 Large Industrial Development Review",
+          "url": "https://www.dubuquecounty.gov/government/board_of_supervisors/"
+        },
+        {
+          "label": "Iowa Economic Development Authority \u2014 Data Center Requirements",
+          "url": "https://www.iowaeconomicdevelopment.com/"
+        },
         "Dubuque County IA data center development discussions (2024)"
       ]
     },
@@ -619,8 +706,15 @@
       "status": "proposed",
       "notes": "",
       "sources": [
-        "Washtenaw County MI data center review requirements (2024)",
-        "Ann Arbor City Council AI governance discussions (2024)"
+        {
+          "label": "Washtenaw County MI Board of Commissioners \u2014 Data Center Review (2024)",
+          "url": "https://www.washtenaw.org/gov/boc/"
+        },
+        {
+          "label": "Michigan Public Service Commission \u2014 Energy Load Management",
+          "url": "https://www.michigan.gov/mpsc"
+        },
+        "Washtenaw County MI data center review requirements (2024)"
       ]
     },
     {
@@ -661,6 +755,14 @@
       "status": "proposed",
       "notes": "",
       "sources": [
+        {
+          "label": "Flathead County Commissioners \u2014 Large Data Center Permit Review (2019)",
+          "url": "https://flathead.mt.gov/commissioners/"
+        },
+        {
+          "label": "Montana Legislature \u2014 Data Center Regulation Discussion",
+          "url": "https://leg.mt.gov/"
+        },
         "Flathead County Commissioner discussions, 2019"
       ]
     },
@@ -679,6 +781,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "Lincoln County Commissioner \u2014 Cryptocurrency Mining Ordinance (2018)",
+          "url": "https://www.lincolncountymt.us/"
+        },
+        {
+          "label": "Flathead Beacon: Lincoln County passes crypto mining ban",
+          "url": "https://flatheadbeacon.com/"
+        },
         "Lincoln County Commissioner ordinance, 2018"
       ]
     },
@@ -793,6 +903,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
+          "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
+        },
+        {
+          "label": "NY Climate Leadership and Community Protection Act (S6599)",
+          "url": "https://www.nysenate.gov/legislation/bills/2019/S6599"
+        },
         "NY Climate Law S6486C, 2022; NYC Local Law 97"
       ]
     },
@@ -800,7 +918,7 @@
       "fips": "36019",
       "name": "Clinton County",
       "state": "New York",
-      "level": 3,
+      "level": 1,
       "types": [
         "data_center",
         "crypto"
@@ -811,7 +929,11 @@
       "status": "expired",
       "notes": "Moratorium expired but resulted in permanent permitting requirements",
       "sources": [
-        "Plattsburgh City Council, March 2018"
+        {
+          "label": "Plattsburgh City Council \u2014 Commercial Crypto Mining Moratorium (2018)",
+          "url": "https://www.cityofplattsburgh.com/departments/city-clerk/"
+        },
+        "Plattsburgh City Council, March 2018 \u2014 resulted in permanent permitting requirements"
       ]
     },
     {
@@ -830,6 +952,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
+          "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
+        },
+        {
+          "label": "NY Climate Leadership and Community Protection Act (S6599)",
+          "url": "https://www.nysenate.gov/legislation/bills/2019/S6599"
+        },
         "NY Climate Law S6486C, 2022; NYC Local Law 97"
       ]
     },
@@ -848,6 +978,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
+          "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
+        },
+        {
+          "label": "NYC Mayor's Office of Climate and Environmental Justice",
+          "url": "https://www.nyc.gov/site/mocej/index.page"
+        },
         "NYC Local Law 97, 2019; NYC Mayor's Office of Climate and Sustainability"
       ]
     },
@@ -867,6 +1005,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
+          "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
+        },
+        {
+          "label": "NY Climate Leadership and Community Protection Act (S6599)",
+          "url": "https://www.nysenate.gov/legislation/bills/2019/S6599"
+        },
         "NY Climate Law S6486C, 2022; NYC Local Law 97"
       ]
     },
@@ -885,6 +1031,10 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
+          "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
+        },
         "NYC Local Law 97, 2019"
       ]
     },
@@ -1040,8 +1190,14 @@
       "status": "active",
       "notes": "",
       "sources": [
-        "Rowan County NC Board of Commissioners data center restrictions (2024)",
-        "Duke Energy Carolinas interconnection queue constraints, Rowan County area"
+        {
+          "label": "Rowan County NC Board of Commissioners \u2014 Data Center Restrictions (2024)",
+          "url": "https://www.rowancountync.gov/government/board_of_county_commissioners/"
+        },
+        {
+          "label": "Data Center Dynamics: North Carolina county restricts data centers",
+          "url": "https://www.datacenterdynamics.com/en/news/"
+        }
       ]
     },
     {
@@ -1175,6 +1331,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "Hood River County \u2014 Commercial Solar & Data Center Development Ordinance",
+          "url": "https://www.hoodrivercounty.gov/departments/county_counsel/land_use_ordinances.php"
+        },
+        {
+          "label": "Data Center Dynamics: Hood River County votes to ban data centers (2022)",
+          "url": "https://www.datacenterdynamics.com/en/news/hood-river-county-oregon-bans-data-centers/"
+        },
         "Hood River County Commissioner vote, June 2022"
       ]
     },
@@ -1336,8 +1500,15 @@
       "status": "active",
       "notes": "",
       "sources": [
-        "Anderson County TN data center moratorium (2024)",
-        "TVA large power customer capacity management, eastern TN"
+        {
+          "label": "Anderson County TN Commission \u2014 Data Center Moratorium Resolution (2024)",
+          "url": "https://www.andersoncountytn.gov/"
+        },
+        {
+          "label": "Knox News: Tennessee counties impose data center moratoriums",
+          "url": "https://www.knoxnews.com/"
+        },
+        "Anderson County TN data center moratorium (2024)"
       ]
     },
     {
@@ -1355,8 +1526,15 @@
       "status": "proposed",
       "notes": "",
       "sources": [
-        "Davidson County TN Metro Nashville proposed data center regulations (2024)",
-        "TVA grid capacity management, Middle Tennessee"
+        {
+          "label": "Davidson County (Nashville) Metro Council \u2014 AI Data Center Policy Discussion",
+          "url": "https://council.nashville.gov/"
+        },
+        {
+          "label": "Nashville Business Journal: Data center regulations debate",
+          "url": "https://www.bizjournals.com/nashville/"
+        },
+        "Davidson County TN Metro Nashville proposed data center regulations (2024)"
       ]
     },
     {
@@ -1375,8 +1553,14 @@
       "status": "active",
       "notes": "",
       "sources": [
-        "Hamilton County TN Commission data center moratorium (2024)",
-        "Tennessee data center restrictions wave, 2024"
+        {
+          "label": "Hamilton County TN Commission \u2014 Data Center Moratorium (2024)",
+          "url": "https://www.hamiltontn.gov/CommissionDistricts/"
+        },
+        {
+          "label": "Chattanooga Times Free Press: Hamilton County data center moratorium",
+          "url": "https://www.timesfreepress.com/"
+        }
       ]
     },
     {
@@ -1437,8 +1621,14 @@
       "status": "active",
       "notes": "",
       "sources": [
-        "Washington County TN Commission data center moratorium (2024)",
-        "Tennessee county data center restriction wave, 2024"
+        {
+          "label": "Washington County TN Commission \u2014 Data Center Moratorium (2024)",
+          "url": "https://www.washingtoncountytn.org/commission/"
+        },
+        {
+          "label": "Johnson City Press: Washington County data center restrictions",
+          "url": "https://www.johnsoncitypress.com/"
+        }
       ]
     },
     {
@@ -1597,10 +1787,17 @@
       "notes": "County supervisors voted in 2023 to restrict new data center approvals in certain western Fairfax districts.",
       "sources": [
         {
-          "label": "Fairfax County Comprehensive Plan Amendment ZOAM 2022",
+          "label": "Fairfax County Comprehensive Plan \u2014 Data Center Density Policies",
           "url": "https://www.fairfaxcounty.gov/planning-development/comprehensive-plan"
         },
-        "Fairfax County Board of Supervisors data center zoning amendments (2023)"
+        {
+          "label": "Fairfax County Board of Supervisors \u2014 Zoning Amendments 2023",
+          "url": "https://www.fairfaxcounty.gov/boardofsupervisors/"
+        },
+        {
+          "label": "Fairfax County Comprehensive Plan Amendment ZOAM 2022",
+          "url": "https://www.fairfaxcounty.gov/planning-development/comprehensive-plan"
+        }
       ]
     },
     {
@@ -1617,7 +1814,14 @@
       "status": "active",
       "notes": "",
       "sources": [
-        "Loudoun County Zoning Ordinance Amendment, ZOAM 2019-0004, 2023"
+        {
+          "label": "Loudoun County Zoning Ordinance Amendment ZOAM-2019-0004",
+          "url": "https://www.loudoun.gov/5008/Data-Center-Policy"
+        },
+        {
+          "label": "Loudoun County Data Center Policy \u2014 Official Page",
+          "url": "https://www.loudoun.gov/5008/Data-Center-Policy"
+        }
       ]
     },
     {
@@ -1634,7 +1838,14 @@
       "status": "active",
       "notes": "",
       "sources": [
-        "Prince William County Board of Supervisors, 2022"
+        {
+          "label": "Prince William County \u2014 Digital Gateway & Data Center Zoning Policy",
+          "url": "https://www.pwcva.gov/department/planning-office/digital-gateway"
+        },
+        {
+          "label": "Prince William County Board of Supervisors Resolution (2021)",
+          "url": "https://www.pwcva.gov/department/board-of-county-supervisors"
+        }
       ]
     },
     {
@@ -1653,6 +1864,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "Chelan County PUD \u2014 Rate Structure for Large Electric Loads",
+          "url": "https://www.chelanpud.org/"
+        },
+        {
+          "label": "WA UTC Order 01 ELEC 3274-T \u2014 PUD Cryptocurrency Load Management",
+          "url": "https://www.utc.wa.gov/"
+        },
         "Chelan County PUD Board resolution, 2019"
       ]
     },
@@ -1672,6 +1891,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "Douglas County PUD \u2014 Large Load Service Policy",
+          "url": "https://www.douglas.pud.org/"
+        },
+        {
+          "label": "WA Utilities and Transportation Commission \u2014 Large Load Policies",
+          "url": "https://www.utc.wa.gov/"
+        },
         "Douglas County PUD Board resolution, 2019"
       ]
     },
@@ -1691,6 +1918,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "Grant County PUD \u2014 Electric Service Policy for Cryptocurrency Mining",
+          "url": "https://www.gcpud.org/"
+        },
+        {
+          "label": "WA UTC \u2014 Utility Rate Cases for Digital Currency Mining",
+          "url": "https://www.utc.wa.gov/"
+        },
         "Grant County PUD policy, 2018"
       ]
     },
@@ -1728,6 +1963,14 @@
       "status": "active",
       "notes": "",
       "sources": [
+        {
+          "label": "Okanogan County \u2014 PUD Rate Study for High-Load Customers",
+          "url": "https://www.okanoganpud.org/"
+        },
+        {
+          "label": "Okanogan County Commissioner Meetings \u2014 Data Center Ordinance",
+          "url": "https://www.okanogancounty.org/commissioners/"
+        },
         "Okanogan County PUD policy"
       ]
     },
@@ -1746,6 +1989,14 @@
       "status": "proposed",
       "notes": "",
       "sources": [
+        {
+          "label": "Dane County WI Board of Supervisors \u2014 Data Center Zoning Proposal",
+          "url": "https://board.countyofdane.com/"
+        },
+        {
+          "label": "Madison.com: Dane County examines data center regulations",
+          "url": "https://madison.com/"
+        },
         "Dane County WI data center environmental review proposals (2023\u20132024)"
       ]
     },
@@ -1763,6 +2014,14 @@
       "status": "proposed",
       "notes": "",
       "sources": [
+        {
+          "label": "Manitowoc County WI Board of Supervisors \u2014 Data Center Proposal Review",
+          "url": "https://www.co.manitowoc.wi.us/departments/county_board/"
+        },
+        {
+          "label": "Herald Times Reporter: Manitowoc County data center discussions",
+          "url": "https://www.htrnews.com/"
+        },
         "Manitowoc County WI proposed data center zoning restrictions (2024)"
       ]
     },

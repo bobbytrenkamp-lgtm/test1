@@ -34,6 +34,14 @@ jobs:
       - name: Rebuild map_data.json from restrictions_raw.json
         run: python data/process_data.py
 
+      - name: Multi-layer data integrity validation
+        id: validate_all
+        # Runs all 8 validation layers; continue even if warnings found
+        continue-on-error: true
+        run: |
+          python data/validate_all.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
       - name: Validate all source URLs
         id: validate
         # Continue even if broken URLs are found — we report them, not fail the deploy
@@ -54,8 +62,8 @@ jobs:
             git push origin main
           fi
 
-      - name: Open issue if broken URLs found
-        if: steps.validate.outcome == 'failure'
+      - name: Open issue if data integrity or URL problems found
+        if: steps.validate_all.outcome == 'failure' || steps.validate.outcome == 'failure'
         uses: actions/github-script@v7
         with:
           script: |
@@ -64,21 +72,42 @@ jobs:
             const report = mapData.validation_report || {};
             const broken = report.broken_urls || [];
 
-            if (broken.length === 0) return;
+            const sections = [];
 
-            const lines = broken.map(b =>
-              `- **[${b.status || 'ERR'}]** \`${b.url}\`\n  _${b.context}_`
-            ).join('\n');
+            // Section 1: broken URLs from validate_sources.py
+            if (broken.length > 0) {
+              const lines = broken.map(b =>
+                `- **[${b.status || 'ERR'}]** \`${b.url}\`\n  _${b.context}_`
+              ).join('\n');
+              sections.push(
+                `### Broken Source URLs (${broken.length})\n\n` +
+                `**Total checked:** ${report.total_checked || '?'} | ` +
+                `**OK:** ${report.ok || '?'} | **Broken:** ${broken.length}\n\n` +
+                lines + '\n\n' +
+                `_Fix: update the \`sources\` entry in \`data/restrictions_raw.json\` or \`data/sample_layers.json\`._`
+              );
+            }
 
-            const title = `[Data] ${broken.length} broken source URL(s) detected`;
-            const body = `## Weekly Source URL Validation — Broken Links\n\n` +
-              `**Run date:** ${report.last_run || 'unknown'}\n` +
-              `**Total checked:** ${report.total_checked || '?'} | ` +
-              `**OK:** ${report.ok || '?'} | **Broken:** ${broken.length}\n\n` +
-              `### Broken URLs\n\n${lines}\n\n` +
-              `_Update the relevant \`sources\` entry in \`data/restrictions_raw.json\` or \`data/sample_layers.json\` to fix._`;
+            // Section 2: data integrity note (validate_all.py writes full log to Actions output)
+            if ('${{ steps.validate_all.outcome }}' === 'failure') {
+              sections.push(
+                `### Data Integrity Validation Failures\n\n` +
+                `The multi-layer validator (\`data/validate_all.py\`) reported critical or error-level ` +
+                `findings. See the [workflow run logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) ` +
+                `for the full report.\n\n` +
+                `Common causes: wrong FIPS code, county name mismatch, missing required fields, ` +
+                `invalid level/status values.`
+              );
+            }
 
-            // Check for existing open issue to avoid duplicates
+            if (sections.length === 0) return;
+
+            const runDate = report.last_run || new Date().toISOString();
+            const title = `[Data] Validation issues detected — ${runDate.slice(0, 10)}`;
+            const body = `## Weekly Data Validation Report\n\n**Run date:** ${runDate}\n\n` +
+              sections.join('\n\n---\n\n');
+
+            // Deduplicate: update existing open issue or create new one
             const existing = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -86,13 +115,13 @@ jobs:
               labels: 'data-validation'
             });
 
-            const dupe = existing.data.find(i => i.title === title);
+            const dupe = existing.data.find(i => i.title.startsWith('[Data] Validation'));
             if (dupe) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: dupe.number,
-                body: `_Updated ${report.last_run}:_\n\n${lines}`
+                body: `_Updated ${runDate}:_\n\n` + sections.join('\n\n---\n\n')
               });
             } else {
               await github.rest.issues.create({
