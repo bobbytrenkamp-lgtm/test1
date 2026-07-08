@@ -82,7 +82,7 @@ const STATE_NAMES = {
   VA:"Virginia", WA:"Washington", WV:"West Virginia", WI:"Wisconsin", WY:"Wyoming",
 };
 
-/* ── Annotations (always-on callout labels) ── */
+/* ── Annotations (callout labels, togglable) ── */
 const ANNOTATIONS = [
   { fips: "41027", label: "Hood River, OR",   sub: "Only U.S. data center ban",     type: "restrictive" },
   { fips: "51107", label: "Loudoun Co., VA",  sub: "Strictest zoning restrictions", type: "restrictive" },
@@ -106,6 +106,7 @@ const LAYER_DEFS = [
   { id: "water",         label: "Water Availability",         group: "Land & Policy",  color: "#1d4ed8", sample: true  },
   { id: "utility",       label: "Utility Territories",        group: "Land & Policy",  color: "#f472b6", sample: true  },
   { id: "tax",           label: "Tax Incentive Areas",        group: "Land & Policy",  color: "#fbbf24", sample: true  },
+  { id: "annotations",  label: "Best & Worst Markets",       group: "Highlights",     color: "#e4e6f0", sample: false },
 ];
 
 const SAMPLE_DISCLAIMER = "Sample data — for UI demonstration only. Replace with verified source before public release.";
@@ -135,6 +136,7 @@ const layerState = {
   water:        false,
   utility:      false,
   tax:          false,
+  annotations:  true,
 };
 
 let mapData         = {};
@@ -394,7 +396,7 @@ function addAnnotations(countiesGeoJSON) {
     annotationGroup.addLayer(marker);
   }
 
-  annotationGroup.addTo(leafletMap);
+  if (layerState.annotations) annotationGroup.addTo(leafletMap);
 }
 
 /* ── Sample overlay layers ── */
@@ -527,6 +529,11 @@ function setLayerVisible(id, visible, syncUI = false) {
   } else if (id === "state_policy") {
     if (stateGeoLayer) {
       stateGeoLayer.setStyle(stateStyle);
+    }
+  } else if (id === "annotations") {
+    if (annotationGroup) {
+      if (visible) annotationGroup.addTo(leafletMap);
+      else leafletMap.removeLayer(annotationGroup);
     }
   } else {
     const group = leafletLayerGroups[id];
