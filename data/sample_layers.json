@@ -9,11 +9,14 @@
       "capacity_mw": 900,
       "year_built": 1999,
       "county_fips": "51107",
-      "notes": "Ashburn, VA — the world's largest internet exchange point. Equinix operates 15+ data centers in Loudoun County.",
+      "notes": "Ashburn, VA \u2014 the world's largest internet exchange point. Equinix operates 15+ data centers in Loudoun County.",
       "lon": -77.49,
       "lat": 39.04,
       "sources": [
-        { "label": "Equinix Ashburn Campus", "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/ashburn-data-centers" }
+        {
+          "label": "Equinix Ashburn Campus",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/ashburn-data-centers"
+        }
       ]
     },
     {
@@ -28,7 +31,10 @@
       "lon": -77.51,
       "lat": 39.02,
       "sources": [
-        { "label": "Digital Realty Northern Virginia", "url": "https://www.digitalrealty.com/data-centers/americas/northern-virginia" }
+        {
+          "label": "Digital Realty Northern Virginia",
+          "url": "https://www.digitalrealty.com/data-centers/americas/northern-virginia"
+        }
       ]
     },
     {
@@ -41,9 +47,12 @@
       "county_fips": "41065",
       "notes": "Google's first owned data center, continuously expanded. Leverages Columbia River hydropower and Oregon enterprise zone exemptions.",
       "lon": -121.18,
-      "lat": 45.60,
+      "lat": 45.6,
       "sources": [
-        { "label": "Google The Dalles Data Center", "url": "https://www.google.com/about/datacenters/locations/the-dalles/" }
+        {
+          "label": "Google The Dalles Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/the-dalles/"
+        }
       ]
     },
     {
@@ -58,8 +67,14 @@
       "lon": -82.79,
       "lat": 40.08,
       "sources": [
-        { "label": "AWS US East (Ohio) Region", "url": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/" },
-        { "label": "Amazon Ohio data center investment", "url": "https://aboutamazon.com/news/aws/amazon-web-services-expands-ohio" }
+        {
+          "label": "AWS US East (Ohio) Region",
+          "url": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/"
+        },
+        {
+          "label": "Amazon Ohio data center investment",
+          "url": "https://aboutamazon.com/news/aws/amazon-web-services-expands-ohio"
+        }
       ]
     },
     {
@@ -74,7 +89,10 @@
       "lon": -95.86,
       "lat": 41.26,
       "sources": [
-        { "label": "Google Council Bluffs Data Center", "url": "https://www.google.com/about/datacenters/locations/council-bluffs/" }
+        {
+          "label": "Google Council Bluffs Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/council-bluffs/"
+        }
       ]
     },
     {
@@ -89,7 +107,10 @@
       "lon": -93.79,
       "lat": 41.57,
       "sources": [
-        { "label": "Microsoft Iowa data centers", "url": "https://datacenters.microsoft.com/globe/fact-sheets/" }
+        {
+          "label": "Microsoft Iowa data centers",
+          "url": "https://datacenters.microsoft.com/globe/fact-sheets/"
+        }
       ]
     },
     {
@@ -104,7 +125,10 @@
       "lon": -119.52,
       "lat": 39.56,
       "sources": [
-        { "label": "Switch Tahoe Reno Campus", "url": "https://www.switch.com/tahoe-reno/" }
+        {
+          "label": "Switch Tahoe Reno Campus",
+          "url": "https://www.switch.com/tahoe-reno/"
+        }
       ]
     },
     {
@@ -119,7 +143,10 @@
       "lon": -96.99,
       "lat": 32.48,
       "sources": [
-        { "label": "Google Midlothian Texas Data Center", "url": "https://www.google.com/about/datacenters/locations/midlothian/" }
+        {
+          "label": "Google Midlothian Texas Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/midlothian/"
+        }
       ]
     },
     {
@@ -134,8 +161,14 @@
       "lon": -90.05,
       "lat": 35.15,
       "sources": [
-        { "label": "xAI Colossus announcement", "url": "https://x.ai/blog/colossus" },
-        { "label": "xAI Colossus Memphis — Data Center Dynamics", "url": "https://www.datacenterdynamics.com/en/news/elon-musk-says-xai-colossus-is-now-the-worlds-most-powerful-ai-training-cluster/" }
+        {
+          "label": "xAI Colossus announcement",
+          "url": "https://x.ai/blog/colossus"
+        },
+        {
+          "label": "xAI Colossus Memphis \u2014 Data Center Dynamics",
+          "url": "https://www.datacenterdynamics.com/en/news/elon-musk-says-xai-colossus-is-now-the-worlds-most-powerful-ai-training-cluster/"
+        }
       ]
     },
     {
@@ -150,7 +183,10 @@
       "lon": -81.22,
       "lat": 35.57,
       "sources": [
-        { "label": "Apple Maiden Data Center — Data Center Knowledge", "url": "https://www.datacenters.com/providers/apple-data-center-maiden-nc" }
+        {
+          "label": "Apple Maiden Data Center \u2014 Data Center Knowledge",
+          "url": "https://www.datacenters.com/providers/apple-data-center-maiden-nc"
+        }
       ]
     },
     {
@@ -165,7 +201,10 @@
       "lon": -93.47,
       "lat": 41.65,
       "sources": [
-        { "label": "Meta Altoona Iowa Data Center", "url": "https://about.fb.com/news/2011/01/facebook-to-build-data-center-in-iowa/" }
+        {
+          "label": "Meta Altoona Iowa Data Center",
+          "url": "https://about.fb.com/news/2011/01/facebook-to-build-data-center-in-iowa/"
+        }
       ]
     },
     {
@@ -180,7 +219,10 @@
       "lon": -119.69,
       "lat": 45.84,
       "sources": [
-        { "label": "AWS US West (Oregon) Region", "url": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/" }
+        {
+          "label": "AWS US West (Oregon) Region",
+          "url": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/"
+        }
       ]
     },
     {
@@ -195,7 +237,10 @@
       "lon": -96.96,
       "lat": 32.84,
       "sources": [
-        { "label": "CyrusOne Dallas Campus", "url": "https://cyrusone.com/locations/texas/dallas-area/" }
+        {
+          "label": "CyrusOne Dallas Campus",
+          "url": "https://cyrusone.com/locations/texas/dallas-area/"
+        }
       ]
     },
     {
@@ -210,7 +255,10 @@
       "lon": -81.54,
       "lat": 35.91,
       "sources": [
-        { "label": "Google Lenoir North Carolina Data Center", "url": "https://www.google.com/about/datacenters/locations/lenoir/" }
+        {
+          "label": "Google Lenoir North Carolina Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/lenoir/"
+        }
       ]
     },
     {
@@ -225,7 +273,10 @@
       "lon": -84.07,
       "lat": 34.05,
       "sources": [
-        { "label": "QTS Atlanta-Suwanee", "url": "https://www.qtsdatacenters.com/data-centers/atlanta-suwanee" }
+        {
+          "label": "QTS Atlanta-Suwanee",
+          "url": "https://www.qtsdatacenters.com/data-centers/atlanta-suwanee"
+        }
       ]
     },
     {
@@ -236,11 +287,14 @@
       "capacity_mw": 480,
       "year_built": 2011,
       "county_fips": "41013",
-      "notes": "Meta's Prineville, OR campus (Crook County) — one of its first purpose-built data centers. Oregon enterprise zone and renewable hydro/wind.",
+      "notes": "Meta's Prineville, OR campus (Crook County) \u2014 one of its first purpose-built data centers. Oregon enterprise zone and renewable hydro/wind.",
       "lon": -120.83,
-      "lat": 44.30,
+      "lat": 44.3,
       "sources": [
-        { "label": "Meta Prineville Data Center", "url": "https://engineering.fb.com/2011/04/07/data-center-engineering/introducing-the-open-compute-project/" }
+        {
+          "label": "Meta Prineville Data Center",
+          "url": "https://engineering.fb.com/2011/04/07/data-center-engineering/introducing-the-open-compute-project/"
+        }
       ]
     },
     {
@@ -255,7 +309,10 @@
       "lon": -79.97,
       "lat": 33.19,
       "sources": [
-        { "label": "Google Berkeley County South Carolina Data Center", "url": "https://www.google.com/about/datacenters/locations/berkeley-county/" }
+        {
+          "label": "Google Berkeley County South Carolina Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/berkeley-county/"
+        }
       ]
     },
     {
@@ -270,7 +327,10 @@
       "lon": -78.38,
       "lat": 36.67,
       "sources": [
-        { "label": "Microsoft Azure Boydton, Virginia", "url": "https://datacenters.microsoft.com/globe/fact-sheets/" }
+        {
+          "label": "Microsoft Azure Boydton, Virginia",
+          "url": "https://datacenters.microsoft.com/globe/fact-sheets/"
+        }
       ]
     },
     {
@@ -285,7 +345,10 @@
       "lon": -77.47,
       "lat": 38.75,
       "sources": [
-        { "label": "Iron Mountain Northern Virginia", "url": "https://www.ironmountain.com/data-centers/locations/united-states/northern-virginia" }
+        {
+          "label": "Iron Mountain Northern Virginia",
+          "url": "https://www.ironmountain.com/data-centers/locations/united-states/northern-virginia"
+        }
       ]
     },
     {
@@ -295,17 +358,20 @@
       "status": "existing",
       "capacity_mw": 250,
       "year_built": 2007,
-      "county_fips": "13223",
+      "county_fips": "13217",
       "notes": "Google's Covington, GA campus (Newton County). One of Google's original US data centers; expanded continuously.",
       "lon": -83.86,
-      "lat": 33.60,
+      "lat": 33.6,
       "sources": [
-        { "label": "Google Covington Georgia Data Center", "url": "https://www.google.com/about/datacenters/locations/covington/" }
+        {
+          "label": "Google Covington Georgia Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/covington/"
+        }
       ]
     },
     {
       "id": "dc-021",
-      "name": "Stargate Texas Campus (Abilene, TX) — Planned",
+      "name": "Stargate Texas Campus (Abilene, TX) \u2014 Planned",
       "operator": "OpenAI / SoftBank / Oracle (Project Stargate)",
       "status": "planned",
       "capacity_mw": 1200,
@@ -316,13 +382,19 @@
       "lon": -99.73,
       "lat": 32.45,
       "sources": [
-        { "label": "Stargate Project announcement — OpenAI", "url": "https://openai.com/blog/announcing-the-stargate-project" },
-        { "label": "Stargate Texas campus — CNBC", "url": "https://www.cnbc.com/2025/01/21/openai-softbank-oracle-to-invest-500-billion-in-us-ai-infrastructure.html" }
+        {
+          "label": "Stargate Project announcement \u2014 OpenAI",
+          "url": "https://openai.com/blog/announcing-the-stargate-project"
+        },
+        {
+          "label": "Stargate Texas campus \u2014 CNBC",
+          "url": "https://www.cnbc.com/2025/01/21/openai-softbank-oracle-to-invest-500-billion-in-us-ai-infrastructure.html"
+        }
       ]
     },
     {
       "id": "dc-022",
-      "name": "Microsoft Mount Pleasant AI Campus (Wisconsin) — Planned",
+      "name": "Microsoft Mount Pleasant AI Campus (Wisconsin) \u2014 Planned",
       "operator": "Microsoft",
       "status": "planned",
       "capacity_mw": 1000,
@@ -333,12 +405,15 @@
       "lon": -87.78,
       "lat": 42.73,
       "sources": [
-        { "label": "Microsoft Wisconsin AI Campus announcement", "url": "https://news.microsoft.com/2024/05/07/microsoft-expands-digital-infrastructure-in-wisconsin/" }
+        {
+          "label": "Microsoft Wisconsin AI Campus announcement",
+          "url": "https://news.microsoft.com/2024/05/07/microsoft-expands-digital-infrastructure-in-wisconsin/"
+        }
       ]
     },
     {
       "id": "dc-023",
-      "name": "Meta Aiken Campus (South Carolina) — Planned",
+      "name": "Meta Aiken Campus (South Carolina) \u2014 Planned",
       "operator": "Meta",
       "status": "planned",
       "capacity_mw": 600,
@@ -349,12 +424,15 @@
       "lon": -81.72,
       "lat": 33.56,
       "sources": [
-        { "label": "Meta Aiken SC data center", "url": "https://about.fb.com/news/2023/09/meta-aiken-south-carolina-data-center/" }
+        {
+          "label": "Meta Aiken SC data center",
+          "url": "https://about.fb.com/news/2023/09/meta-aiken-south-carolina-data-center/"
+        }
       ]
     },
     {
       "id": "dc-024",
-      "name": "Stargate Ohio Campus — Planned",
+      "name": "Stargate Ohio Campus \u2014 Planned",
       "operator": "OpenAI / SoftBank / Oracle (Project Stargate)",
       "status": "planned",
       "capacity_mw": 800,
@@ -365,12 +443,15 @@
       "lon": -82.99,
       "lat": 39.96,
       "sources": [
-        { "label": "Stargate Project announcement — OpenAI", "url": "https://openai.com/blog/announcing-the-stargate-project" }
+        {
+          "label": "Stargate Project announcement \u2014 OpenAI",
+          "url": "https://openai.com/blog/announcing-the-stargate-project"
+        }
       ]
     },
     {
       "id": "dc-025",
-      "name": "CoreWeave Chicago Metro Campus — Planned",
+      "name": "CoreWeave Chicago Metro Campus \u2014 Planned",
       "operator": "CoreWeave",
       "status": "planned",
       "capacity_mw": 450,
@@ -381,12 +462,15 @@
       "lon": -88.08,
       "lat": 41.52,
       "sources": [
-        { "label": "CoreWeave data center expansion", "url": "https://www.coreweave.com/about" }
+        {
+          "label": "CoreWeave data center expansion",
+          "url": "https://www.coreweave.com/about"
+        }
       ]
     },
     {
       "id": "dc-026",
-      "name": "Meta Richland Parish Campus (Louisiana) — Planned",
+      "name": "Meta Richland Parish Campus (Louisiana) \u2014 Planned",
       "operator": "Meta",
       "status": "planned",
       "capacity_mw": 800,
@@ -397,12 +481,15 @@
       "lon": -91.75,
       "lat": 32.48,
       "sources": [
-        { "label": "Meta Louisiana data center announcement", "url": "https://about.fb.com/news/2023/09/meta-richland-parish-louisiana-data-center/" }
+        {
+          "label": "Meta Louisiana data center announcement",
+          "url": "https://about.fb.com/news/2023/09/meta-richland-parish-louisiana-data-center/"
+        }
       ]
     },
     {
       "id": "dc-027",
-      "name": "Amazon Morrow County Exascale Campus (Oregon) — Planned",
+      "name": "Amazon Morrow County Exascale Campus (Oregon) \u2014 Planned",
       "operator": "Amazon Web Services",
       "status": "planned",
       "capacity_mw": 1000,
@@ -413,12 +500,15 @@
       "lon": -119.55,
       "lat": 45.71,
       "sources": [
-        { "label": "AWS Oregon expansion — Data Center Dynamics", "url": "https://www.datacenterdynamics.com/en/news/aws-expands-oregon-region/" }
+        {
+          "label": "AWS Oregon expansion \u2014 Data Center Dynamics",
+          "url": "https://www.datacenterdynamics.com/en/news/aws-expands-oregon-region/"
+        }
       ]
     },
     {
       "id": "dc-028",
-      "name": "Stargate Wisconsin Campus — Planned",
+      "name": "Stargate Wisconsin Campus \u2014 Planned",
       "operator": "OpenAI / SoftBank / Oracle (Project Stargate)",
       "status": "planned",
       "capacity_mw": 800,
@@ -427,9 +517,12 @@
       "county_fips": "55133",
       "notes": "One of the announced Stargate sites in Wisconsin (Waukesha County area). Part of the multi-state AI infrastructure buildout.",
       "lon": -88.23,
-      "lat": 43.00,
+      "lat": 43.0,
       "sources": [
-        { "label": "Stargate Project — OpenAI", "url": "https://openai.com/blog/announcing-the-stargate-project" }
+        {
+          "label": "Stargate Project \u2014 OpenAI",
+          "url": "https://openai.com/blog/announcing-the-stargate-project"
+        }
       ]
     }
   ],
@@ -443,7 +536,10 @@
       "lon": -90.05,
       "lat": 35.15,
       "sources": [
-        { "label": "xAI Colossus", "url": "https://x.ai/blog/colossus" }
+        {
+          "label": "xAI Colossus",
+          "url": "https://x.ai/blog/colossus"
+        }
       ]
     },
     {
@@ -455,19 +551,25 @@
       "lon": -82.78,
       "lat": 40.09,
       "sources": [
-        { "label": "AWS Project Rainier announcement", "url": "https://aws.amazon.com/blogs/aws/new-aws-trainium-clusters-with-hundreds-of-thousands-of-chips-project-rainier/" }
+        {
+          "label": "AWS Project Rainier announcement",
+          "url": "https://aws.amazon.com/blogs/aws/new-aws-trainium-clusters-with-hundreds-of-thousands-of-chips-project-rainier/"
+        }
       ]
     },
     {
       "id": "ai-003",
-      "name": "Microsoft AI Supercomputer Campus (Racine Co, WI) — Planned",
+      "name": "Microsoft AI Supercomputer Campus (Racine Co, WI) \u2014 Planned",
       "operator": "Microsoft",
       "county_fips": "55101",
       "notes": "Microsoft's Mount Pleasant, WI campus is specifically designed for AI workloads. Part of the $3.3B Racine County investment announced May 2024.",
       "lon": -87.77,
       "lat": 42.74,
       "sources": [
-        { "label": "Microsoft Wisconsin AI Campus", "url": "https://news.microsoft.com/2024/05/07/microsoft-expands-digital-infrastructure-in-wisconsin/" }
+        {
+          "label": "Microsoft Wisconsin AI Campus",
+          "url": "https://news.microsoft.com/2024/05/07/microsoft-expands-digital-infrastructure-in-wisconsin/"
+        }
       ]
     },
     {
@@ -479,7 +581,10 @@
       "lon": -122.15,
       "lat": 37.48,
       "sources": [
-        { "label": "Meta AI Research", "url": "https://ai.meta.com/" }
+        {
+          "label": "Meta AI Research",
+          "url": "https://ai.meta.com/"
+        }
       ]
     },
     {
@@ -491,7 +596,10 @@
       "lon": -99.72,
       "lat": 32.46,
       "sources": [
-        { "label": "Stargate Project — OpenAI", "url": "https://openai.com/blog/announcing-the-stargate-project" }
+        {
+          "label": "Stargate Project \u2014 OpenAI",
+          "url": "https://openai.com/blog/announcing-the-stargate-project"
+        }
       ]
     }
   ],
@@ -503,7 +611,9 @@
       "county_fips": "51107",
       "lon": -77.42,
       "lat": 38.96,
-      "sources": ["Dominion Energy Northern Virginia transmission infrastructure"]
+      "sources": [
+        "Dominion Energy Northern Virginia transmission infrastructure"
+      ]
     },
     {
       "id": "pw-002",
@@ -512,7 +622,9 @@
       "county_fips": "39089",
       "lon": -82.72,
       "lat": 40.08,
-      "sources": ["AEP Ohio New Albany data center interconnection"]
+      "sources": [
+        "AEP Ohio New Albany data center interconnection"
+      ]
     },
     {
       "id": "pw-003",
@@ -522,7 +634,10 @@
       "lon": -121.13,
       "lat": 45.63,
       "sources": [
-        { "label": "Bonneville Power Administration — The Dalles Dam", "url": "https://www.bpa.gov/energy-and-services/power/generating-facilities/the-dalles-dam" }
+        {
+          "label": "Bonneville Power Administration \u2014 The Dalles Dam",
+          "url": "https://www.bpa.gov/energy-and-services/power/generating-facilities/the-dalles-dam"
+        }
       ]
     },
     {
@@ -533,7 +648,10 @@
       "lon": -114.97,
       "lat": 36.55,
       "sources": [
-        { "label": "NV Energy Harry Allen Generation Station", "url": "https://www.nvenergy.com/cleanenergy/power-plants" }
+        {
+          "label": "NV Energy Harry Allen Generation Station",
+          "url": "https://www.nvenergy.com/cleanenergy/power-plants"
+        }
       ]
     },
     {
@@ -544,7 +662,10 @@
       "lon": -95.93,
       "lat": 41.37,
       "sources": [
-        { "label": "MidAmerican Energy Wind Generation", "url": "https://www.midamericanenergy.com/green-energy" }
+        {
+          "label": "MidAmerican Energy Wind Generation",
+          "url": "https://www.midamericanenergy.com/green-energy"
+        }
       ]
     },
     {
@@ -555,7 +676,10 @@
       "lon": -90.11,
       "lat": 35.08,
       "sources": [
-        { "label": "TVA Allen Combined Cycle Plant", "url": "https://www.tva.com/energy/our-power-system/natural-gas/allen-combined-cycle-plant" }
+        {
+          "label": "TVA Allen Combined Cycle Plant",
+          "url": "https://www.tva.com/energy/our-power-system/natural-gas/allen-combined-cycle-plant"
+        }
       ]
     }
   ],
@@ -565,10 +689,22 @@
       "name": "BPA Columbia River Gorge 500kV (OR/WA)",
       "voltage_kv": 500,
       "path": [
-        [-121.13, 45.63],
-        [-120.68, 45.73],
-        [-119.69, 45.84],
-        [-119.09, 46.20]
+        [
+          -121.13,
+          45.63
+        ],
+        [
+          -120.68,
+          45.73
+        ],
+        [
+          -119.69,
+          45.84
+        ],
+        [
+          -119.09,
+          46.2
+        ]
       ]
     },
     {
@@ -576,9 +712,18 @@
       "name": "Dominion Energy Northern Virginia 345kV",
       "voltage_kv": 345,
       "path": [
-        [-77.51, 39.02],
-        [-77.47, 38.99],
-        [-77.47, 38.75]
+        [
+          -77.51,
+          39.02
+        ],
+        [
+          -77.47,
+          38.99
+        ],
+        [
+          -77.47,
+          38.75
+        ]
       ]
     },
     {
@@ -586,9 +731,18 @@
       "name": "ERCOT North Texas 345kV (Dallas-Fort Worth)",
       "voltage_kv": 345,
       "path": [
-        [-96.99, 32.48],
-        [-96.96, 32.84],
-        [-97.10, 33.21]
+        [
+          -96.99,
+          32.48
+        ],
+        [
+          -96.96,
+          32.84
+        ],
+        [
+          -97.1,
+          33.21
+        ]
       ]
     }
   ],
@@ -597,29 +751,62 @@
       "id": "fb-001",
       "name": "Zayo Northern Virginia Dark Fiber Ring",
       "path": [
-        [-77.51, 39.02],
-        [-77.47, 38.99],
-        [-77.21, 38.90],
-        [-77.03, 38.89]
+        [
+          -77.51,
+          39.02
+        ],
+        [
+          -77.47,
+          38.99
+        ],
+        [
+          -77.21,
+          38.9
+        ],
+        [
+          -77.03,
+          38.89
+        ]
       ]
     },
     {
       "id": "fb-002",
       "name": "Lumen/CenturyLink Iowa Backbone",
       "path": [
-        [-93.79, 41.57],
-        [-93.47, 41.65],
-        [-95.86, 41.26]
+        [
+          -93.79,
+          41.57
+        ],
+        [
+          -93.47,
+          41.65
+        ],
+        [
+          -95.86,
+          41.26
+        ]
       ]
     },
     {
       "id": "fb-003",
       "name": "Zayo Pacific NW Fiber Route",
       "path": [
-        [-122.67, 45.52],
-        [-121.18, 45.60],
-        [-119.69, 45.84],
-        [-118.97, 45.67]
+        [
+          -122.67,
+          45.52
+        ],
+        [
+          -121.18,
+          45.6
+        ],
+        [
+          -119.69,
+          45.84
+        ],
+        [
+          -118.97,
+          45.67
+        ]
       ]
     }
   ],
