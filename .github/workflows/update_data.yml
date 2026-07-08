@@ -1,22 +1,25 @@
-name: Update Restriction Data
+name: Refresh & Validate Data
 
 on:
   schedule:
-    # Runs daily at 06:00 UTC
-    - cron: "0 6 * * *"
+    # Weekly on Sunday at 06:00 UTC — regulatory data changes slowly
+    - cron: "0 6 * * 0"
   # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
-  update:
+  refresh:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -26,20 +29,77 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          # Install from requirements.txt if packages are listed
           grep -v '^\s*#' data/requirements.txt | grep -v '^\s*$' | pip install -r /dev/stdin || true
 
-      - name: Run data processing script
+      - name: Rebuild map_data.json from restrictions_raw.json
         run: python data/process_data.py
 
-      - name: Commit and push if data changed
+      - name: Validate all source URLs
+        id: validate
+        # Continue even if broken URLs are found — we report them, not fail the deploy
+        continue-on-error: true
+        run: |
+          python data/validate_sources.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push updated data
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/map_data.json
+          git add data/map_data.json data/restrictions_raw.json
           if git diff --staged --quiet; then
-            echo "No changes to data/map_data.json — skipping commit."
+            echo "No data changes — skipping commit."
           else
-            git commit -m "chore: auto-update map data [skip ci]"
-            git push
+            git commit -m "chore: weekly data refresh [skip ci]"
+            git push origin main
           fi
+
+      - name: Open issue if broken URLs found
+        if: steps.validate.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const mapData = JSON.parse(fs.readFileSync('data/map_data.json', 'utf8'));
+            const report = mapData.validation_report || {};
+            const broken = report.broken_urls || [];
+
+            if (broken.length === 0) return;
+
+            const lines = broken.map(b =>
+              `- **[${b.status || 'ERR'}]** \`${b.url}\`\n  _${b.context}_`
+            ).join('\n');
+
+            const title = `[Data] ${broken.length} broken source URL(s) detected`;
+            const body = `## Weekly Source URL Validation — Broken Links\n\n` +
+              `**Run date:** ${report.last_run || 'unknown'}\n` +
+              `**Total checked:** ${report.total_checked || '?'} | ` +
+              `**OK:** ${report.ok || '?'} | **Broken:** ${broken.length}\n\n` +
+              `### Broken URLs\n\n${lines}\n\n` +
+              `_Update the relevant \`sources\` entry in \`data/restrictions_raw.json\` or \`data/sample_layers.json\` to fix._`;
+
+            // Check for existing open issue to avoid duplicates
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'data-validation'
+            });
+
+            const dupe = existing.data.find(i => i.title === title);
+            if (dupe) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: dupe.number,
+                body: `_Updated ${report.last_run}:_\n\n${lines}`
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['data-validation']
+              });
+            }

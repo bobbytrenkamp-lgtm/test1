@@ -3,9 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  # Also redeploy after the data update workflow runs
+  # Redeploy after the weekly data refresh runs
   workflow_run:
-    workflows: ["Update Restriction Data"]
+    workflows: ["Refresh & Validate Data"]
     types: [completed]
   workflow_dispatch:
 

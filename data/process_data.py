@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Process raw restriction data into the map_data.json format consumed by the frontend.
-Designed to run daily via GitHub Actions.
+Rebuild map_data.json from restrictions_raw.json.
+Runs on schedule via GitHub Actions. Also invoked by validate_sources.py.
 """
 
 import json
@@ -39,9 +39,9 @@ def build_county_map(restrictions):
 
 
 def compute_stats(counties, meta):
-    level_counts = {-1: 0, 0: 0, 1: 0, 2: 0, 3: 0, 4: 0}
+    level_counts = {"-1": 0, "0": 0, "1": 0, "2": 0, "3": 0, "4": 0}
     for c in counties.values():
-        lvl = c["level"]
+        lvl = str(c["level"])
         level_counts[lvl] = level_counts.get(lvl, 0) + 1
 
     type_counts = {}
@@ -58,6 +58,13 @@ def compute_stats(counties, meta):
     }
 
 
+def load_existing_output():
+    if os.path.exists(OUTPUT_PATH):
+        with open(OUTPUT_PATH, "r") as f:
+            return json.load(f)
+    return None
+
+
 def main():
     print("Loading raw restriction data...")
     raw = load_raw_data()
@@ -70,12 +77,18 @@ def main():
     counties = build_county_map(restrictions)
     stats = compute_stats(counties, meta)
 
+    existing = load_existing_output()
+    prev_validation = existing.get("validation_report") if existing else None
+
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "source_last_updated": meta.get("last_manually_updated", "unknown"),
         "stats": stats,
         "counties": counties,
     }
+
+    if prev_validation:
+        output["validation_report"] = prev_validation
 
     with open(OUTPUT_PATH, "w") as f:
         json.dump(output, f, indent=2)
