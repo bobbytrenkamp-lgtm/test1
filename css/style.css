@@ -275,6 +275,26 @@ html, body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
 }
 
+/* Home / reset-view button */
+.map-home-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 30px !important;
+  height: 30px !important;
+  padding: 0 !important;
+  cursor: pointer;
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: none !important;
+  border-radius: 4px !important;
+  margin-top: 4px !important;
+}
+.map-home-btn:hover {
+  background: var(--surface-2) !important;
+  color: var(--accent) !important;
+}
+
 .leaflet-bar a {
   background: var(--surface) !important;
   border-color: var(--border) !important;
@@ -867,6 +887,20 @@ html, body {
   border-radius: 3px;
   padding: 1px 5px;
   flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.search-result-tag {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(91, 141, 239, 0.12);
+  border: 1px solid rgba(91, 141, 239, 0.3);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-left: 6px;
   white-space: nowrap;
 }
 

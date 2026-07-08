@@ -68,6 +68,20 @@ const STATE_FIPS = {
   "55":"WI","56":"WY",
 };
 
+const STATE_NAMES = {
+  AL:"Alabama", AK:"Alaska", AZ:"Arizona", AR:"Arkansas", CA:"California",
+  CO:"Colorado", CT:"Connecticut", DE:"Delaware", DC:"District of Columbia",
+  FL:"Florida", GA:"Georgia", HI:"Hawaii", ID:"Idaho", IL:"Illinois",
+  IN:"Indiana", IA:"Iowa", KS:"Kansas", KY:"Kentucky", LA:"Louisiana",
+  ME:"Maine", MD:"Maryland", MA:"Massachusetts", MI:"Michigan", MN:"Minnesota",
+  MS:"Mississippi", MO:"Missouri", MT:"Montana", NE:"Nebraska", NV:"Nevada",
+  NH:"New Hampshire", NJ:"New Jersey", NM:"New Mexico", NY:"New York",
+  NC:"North Carolina", ND:"North Dakota", OH:"Ohio", OK:"Oklahoma",
+  OR:"Oregon", PA:"Pennsylvania", RI:"Rhode Island", SC:"South Carolina",
+  SD:"South Dakota", TN:"Tennessee", TX:"Texas", UT:"Utah", VT:"Vermont",
+  VA:"Virginia", WA:"Washington", WV:"West Virginia", WI:"Wisconsin", WY:"Wyoming",
+};
+
 /* ── Annotations (always-on callout labels) ── */
 const ANNOTATIONS = [
   { fips: "41027", label: "Hood River, OR",   sub: "Only U.S. data center ban",     type: "restrictive" },
@@ -84,7 +98,7 @@ const LAYER_DEFS = [
   { id: "state_policy",  label: "State Policy",               group: "Policy Scope",   color: "#8b5cf6", sample: false },
   { id: "city_policy",   label: "City Policy",                group: "Policy Scope",   color: "#3b82f6", sample: false, noData: true },
   { id: "dc_existing",   label: "Existing Data Centers",      group: "Facilities",     color: "#5b8def", sample: true  },
-  { id: "dc_planned",    label: "Planned Data Centers",       group: "Facilities",     color: "#5b8def", sample: true  },
+  { id: "dc_planned",    label: "Planned Data Centers",       group: "Facilities",     color: "#f59e0b", sample: true  },
   { id: "ai_campus",     label: "AI Campuses",                group: "Facilities",     color: "#a78bfa", sample: true  },
   { id: "power",         label: "Power Infrastructure",       group: "Infrastructure", color: "#34d399", sample: true  },
   { id: "transmission",  label: "Transmission Lines",         group: "Infrastructure", color: "#fbbf24", sample: true  },
@@ -311,6 +325,7 @@ function handleCountyClick(e, fips) {
     countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
   }
   selectedFips = fips;
+  setLocationHash(fips);
   e.target.setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
   e.target.bringToFront();
 
@@ -434,8 +449,8 @@ function renderSampleMarkerLayers(countiesGeoJSON) {
   const plannedGroup = L.layerGroup();
   (sampleLayers.data_centers || []).filter(d => d.status === "planned").forEach(d => {
     const r = capacityRadius(d.capacity_mw);
-    L.circleMarker([d.lat, d.lon], { radius: r, color: "#5b8def", weight: 1.5, fillColor: "rgba(91,141,239,0.18)", fillOpacity: 1, dashArray: "2,1.5" })
-      .bindTooltip(`${d.name} — ${SAMPLE_DISCLAIMER}`)
+    L.circleMarker([d.lat, d.lon], { radius: r, color: "#f59e0b", weight: 1.8, fillColor: "rgba(245,158,11,0.15)", fillOpacity: 1, dashArray: "3,2" })
+      .bindTooltip(`${d.name}${d.year_planned ? ` (target ${d.year_planned})` : ""} — ${SAMPLE_DISCLAIMER}`)
       .on("click", e => { L.DomEvent.stopPropagation(e); setDetailFacility(d, "dc_planned"); })
       .addTo(plannedGroup);
   });
@@ -542,6 +557,22 @@ function initLeafletMap() {
   L.control.zoom({ position: "bottomright" }).addTo(leafletMap);
   leafletMap.fitBounds([[24.5, -125], [49.5, -66.5]]);
 
+  // Home button — resets view to full US
+  const HomeControl = L.Control.extend({
+    options: { position: "bottomright" },
+    onAdd() {
+      const btn = L.DomUtil.create("button", "leaflet-bar leaflet-control map-home-btn");
+      btn.title = "Reset view to full US";
+      btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`;
+      L.DomEvent.on(btn, "click", e => {
+        L.DomEvent.stopPropagation(e);
+        leafletMap.flyToBounds([[24.5, -125], [49.5, -66.5]], { duration: 0.7 });
+      });
+      return btn;
+    },
+  });
+  new HomeControl().addTo(leafletMap);
+
   // Pane for city/place labels sitting above county fills but below markers
   leafletMap.createPane("labelsPane");
   leafletMap.getPane("labelsPane").style.zIndex = 450;
@@ -578,7 +609,7 @@ function renderStats() {
 const SAMPLE_LEGEND_ENTRIES = {
   state_policy:  { swatch: "square",  color: "#8b5cf6", label: "State Policy" },
   dc_existing:   { swatch: "circle",  color: "#5b8def", label: "Data Center (existing)" },
-  dc_planned:    { swatch: "ring",    color: "#5b8def", label: "Data Center (planned)" },
+  dc_planned:    { swatch: "ring",    color: "#f59e0b", label: "Data Center (planned)" },
   ai_campus:     { swatch: "circle",  color: "#a78bfa", label: "AI Campus" },
   power:         { swatch: "circle",  color: "#34d399", label: "Power Infrastructure" },
   transmission:  { swatch: "line",    color: "#fbbf24", label: "Transmission Line" },
@@ -913,15 +944,17 @@ function renderDashboard(data) {
     : "Unknown";
 
   const dcs = (sampleLayers && sampleLayers.data_centers) || [];
-  const existingMW = dcs.filter(d => d.status === "existing").reduce((s, d) => s + d.capacity_mw, 0);
-  const plannedMW  = dcs.filter(d => d.status === "planned") .reduce((s, d) => s + d.capacity_mw, 0);
+  const existingDCs  = dcs.filter(d => d.status === "existing");
+  const plannedDCs   = dcs.filter(d => d.status === "planned");
+  const existingMW   = existingDCs.reduce((s, d) => s + d.capacity_mw, 0);
+  const plannedMW    = plannedDCs .reduce((s, d) => s + d.capacity_mw, 0);
 
   const cards = [
     { label: "Counties — Active Restrictions",   value: counts.moderate + counts.high + counts.ban },
     { label: "Counties — Proposed Restrictions", value: counts.proposed },
     { label: "States w/ AI / DC Legislation",   value: statesWithLegislation.size },
-    { label: "Existing Data Center Capacity",   text: `${(existingMW / 1000).toFixed(1)} GW`, sample: true },
-    { label: "Planned Capacity",                text: `${(plannedMW  / 1000).toFixed(1)} GW`, sample: true },
+    { label: "Existing Capacity",               text: `${existingDCs.length} sites · ${(existingMW / 1000).toFixed(1)} GW`, sample: true },
+    { label: "Planned Data Centers",            text: `${plannedDCs.length} sites · ${(plannedMW / 1000).toFixed(1)} GW`, sample: true },
     { label: "Last Updated",                    text: lastUpdated },
   ];
 
@@ -1066,6 +1099,7 @@ function buildNoCountyPolicySectionHtml() {
 }
 
 function setDetailEmpty() {
+  setLocationHash(null);
   document.getElementById("detail-header").querySelector("h2").textContent = "County Details";
   document.getElementById("detail-state").textContent = "";
   document.getElementById("detail-body").innerHTML = `
@@ -1125,7 +1159,8 @@ function setDetailFacility(facility, kind) {
     ${facility.operator  ? `<div class="detail-section"><div class="detail-label">Operator</div><div class="detail-value">${escHtml(facility.operator)}</div></div>` : ""}
     ${facility.capacity_mw ? `<div class="detail-section"><div class="detail-label">Capacity</div><div class="detail-value">${facility.capacity_mw.toLocaleString("en-US")} MW</div></div>` : ""}
     ${facility.status    ? `<div class="detail-section"><div class="detail-label">Status</div><div class="detail-value" style="text-transform:capitalize;">${facility.status}</div></div>` : ""}
-    ${facility.year_built ? `<div class="detail-section"><div class="detail-label">Year Built</div><div class="detail-value">${facility.year_built}</div></div>` : ""}
+    ${facility.year_built   ? `<div class="detail-section"><div class="detail-label">Year Built</div><div class="detail-value">${facility.year_built}</div></div>` : ""}
+    ${facility.year_planned ? `<div class="detail-section"><div class="detail-label">Target Year</div><div class="detail-value">${facility.year_planned}</div></div>` : ""}
     ${facility.type      ? `<div class="detail-section"><div class="detail-label">Type</div><div class="detail-value" style="text-transform:capitalize;">${facility.type}</div></div>` : ""}
     ${facility.notes     ? `<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(facility.notes)}</div></div>` : ""}
     ${county ? `<div class="detail-section"><div class="detail-label">County</div><div class="detail-value">${escHtml(county.name)}, ${escHtml(county.state)}</div></div>` : ""}`;
@@ -1147,6 +1182,52 @@ function formatDate(d) {
   catch { return d; }
 }
 
+/* ── URL hash permalink ── */
+function setLocationHash(fips) {
+  if (history.replaceState) {
+    history.replaceState(null, "", fips ? `#${fips}` : window.location.pathname + window.location.search);
+  }
+}
+
+function restoreFromHash() {
+  const hash = window.location.hash.replace("#", "");
+  if (/^\d{5}$/.test(hash)) {
+    selectCounty(hash);
+    zoomToFeature(hash);
+  }
+}
+
+/* ── Keyboard shortcuts ── */
+function initKeyboardShortcuts() {
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Escape") return;
+    const filterOpen = document.getElementById("filter-panel").classList.contains("open");
+    const sheetOpen  = document.getElementById("detail-panel").classList.contains("sheet-open");
+    if (filterOpen) {
+      closeFilterPanel();
+    } else if (sheetOpen) {
+      closeMobileSheet();
+      if (selectedFips && countyLayerByFips[selectedFips]) countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
+      selectedFips = null;
+      setDetailEmpty();
+    } else if (selectedFips) {
+      if (countyLayerByFips[selectedFips]) countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
+      selectedFips = null;
+      setDetailEmpty();
+    }
+  });
+}
+
+/* ── State detail ── */
+function showStateDetail(fips2) {
+  const abbr = STATE_FIPS[fips2] || "";
+  const name = STATE_NAMES[abbr] || abbr;
+  document.getElementById("detail-header").querySelector("h2").textContent = name;
+  document.getElementById("detail-state").textContent = "State Policy";
+  document.getElementById("detail-body").innerHTML = buildStatePolicySectionHtml(fips2);
+  openMobileSheet();
+}
+
 /* ── County selection / zoom ── */
 function zoomToFeature(fips) {
   const layer = countyLayerByFips[fips];
@@ -1158,6 +1239,7 @@ function selectCounty(fips) {
     countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
   }
   selectedFips = fips;
+  setLocationHash(fips);
   const layer  = countyLayerByFips[fips];
   if (layer) {
     layer.setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
@@ -1197,7 +1279,14 @@ function initSearch() {
     }));
   }
 
-  const index = [...countyIndex, ...facilityIndex];
+  // State entries — type a state name or abbreviation to zoom + show state policy
+  const stateIndex = Object.entries(STATE_FIPS).map(([fips2, abbr]) => ({
+    kind: "state", fips2, abbr,
+    name: STATE_NAMES[abbr] || abbr,
+    searchText: `${STATE_NAMES[abbr] || ""} ${abbr}`.toLowerCase(),
+  }));
+
+  const index = [...countyIndex, ...stateIndex, ...facilityIndex];
 
   function renderResults(matches) {
     results.innerHTML = "";
@@ -1207,6 +1296,8 @@ function initSearch() {
       item.className = "search-result-item";
       if (m.kind === "county") {
         item.textContent = `${m.name}, ${m.state}`;
+      } else if (m.kind === "state") {
+        item.innerHTML = `${escHtml(m.name)} <span class="search-result-tag">State</span>`;
       } else {
         item.innerHTML = `${escHtml(m.name)} <span class="sample-tag" style="margin-left:6px;">Sample</span>`;
       }
@@ -1214,10 +1305,15 @@ function initSearch() {
         e.preventDefault();
         input.value = m.kind === "county" ? `${m.name}, ${m.state}` : m.name;
         results.style.display = "none";
-        zoomToFeature(m.fips);
         if (m.kind === "county") {
+          zoomToFeature(m.fips);
           selectCounty(m.fips);
+        } else if (m.kind === "state") {
+          const stLayer = stateGeoLayer.getLayers().find(l => String(l.feature.id).padStart(2, "0") === m.fips2);
+          if (stLayer) leafletMap.flyToBounds(stLayer.getBounds(), { duration: 0.6, padding: [20, 20] });
+          showStateDetail(m.fips2);
         } else {
+          zoomToFeature(m.fips);
           setLayerVisible(m.facilityKind, true, true);
           selectedFips = null;
           setDetailFacility(m.raw, m.facilityKind);
@@ -1280,9 +1376,11 @@ async function init() {
     initFilterPanelControls();
     initTopToggle();
     initLegendControls();
+    initKeyboardShortcuts();
     initSearch();
     setDetailEmpty();
     setLastUpdated(data);
+    restoreFromHash();
 
     loadEl.style.display = "none";
   } catch (err) {
