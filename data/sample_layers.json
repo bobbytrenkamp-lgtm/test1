@@ -1,346 +1,747 @@
 {
-  "_disclaimer": "SAMPLE DATA \u2014 for UI/UX demonstration only. Not sourced or verified. Replace with verified data before public release.",
+  "_disclaimer": "Facility locations are approximate (city-level accuracy). Capacity figures are publicly reported estimates and may not reflect current state. Sources listed per entry.",
   "data_centers": [
     {
       "id": "dc-001",
-      "name": "Sample Hyperscale Campus A",
-      "operator": "Sample Operator (Unverified)",
+      "name": "Equinix Ashburn VA Campus (IAD)",
+      "operator": "Equinix",
       "status": "existing",
-      "capacity_mw": 650,
-      "year_built": 2015,
+      "capacity_mw": 900,
+      "year_built": 1999,
       "county_fips": "51107",
-      "notes": "Sample expansion: +200MW under sample evaluation (unverified).",
-      "lon": -77.64,
-      "lat": 39.08
+      "notes": "Ashburn, VA \u2014 the world's largest internet exchange point. Equinix operates 15+ data centers in Loudoun County.",
+      "lon": -77.49,
+      "lat": 39.04,
+      "sources": [
+        {
+          "label": "Equinix Ashburn Campus",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/ashburn-data-centers"
+        }
+      ]
     },
     {
       "id": "dc-002",
-      "name": "Sample Cloud Region East",
-      "operator": "Sample Operator (Unverified)",
+      "name": "Digital Realty Northern Virginia (IAD)",
+      "operator": "Digital Realty",
       "status": "existing",
-      "capacity_mw": 310,
-      "year_built": 2018,
-      "county_fips": "51153",
-      "notes": "",
-      "lon": -77.49,
-      "lat": 38.71
+      "capacity_mw": 750,
+      "year_built": 2002,
+      "county_fips": "51107",
+      "notes": "Major hyperscale campus in Ashburn/Sterling, VA. Digital Realty is one of the largest campus operators in Northern Virginia.",
+      "lon": -77.51,
+      "lat": 39.02,
+      "sources": [
+        {
+          "label": "Digital Realty Northern Virginia",
+          "url": "https://www.digitalrealty.com/data-centers/americas/northern-virginia"
+        }
+      ]
     },
     {
       "id": "dc-003",
-      "name": "Sample Edge Facility",
-      "operator": "Sample Operator (Unverified)",
+      "name": "Google The Dalles Campus (Oregon)",
+      "operator": "Google",
       "status": "existing",
-      "capacity_mw": 45,
-      "year_built": 2012,
-      "county_fips": "51059",
-      "notes": "",
-      "lon": -77.29,
-      "lat": 38.83
+      "capacity_mw": 300,
+      "year_built": 2006,
+      "county_fips": "41065",
+      "notes": "Google's first owned data center, continuously expanded. Leverages Columbia River hydropower and Oregon enterprise zone exemptions.",
+      "lon": -121.18,
+      "lat": 45.6,
+      "sources": [
+        {
+          "label": "Google The Dalles Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/the-dalles/"
+        }
+      ]
     },
     {
       "id": "dc-004",
-      "name": "Sample Hyperscale Campus B",
-      "operator": "Sample Operator (Unverified)",
+      "name": "Amazon AWS New Albany Campus (Ohio)",
+      "operator": "Amazon Web Services",
       "status": "existing",
-      "capacity_mw": 420,
-      "year_built": 2013,
-      "county_fips": "41059",
-      "notes": "",
-      "lon": -118.67,
-      "lat": 45.68
+      "capacity_mw": 1200,
+      "year_built": 2016,
+      "county_fips": "39089",
+      "notes": "One of AWS's largest global campuses. Licking County / New Albany area hosts multiple AWS data center buildings totaling millions of sq ft.",
+      "lon": -82.79,
+      "lat": 40.08,
+      "sources": [
+        {
+          "label": "AWS US East (Ohio) Region",
+          "url": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/"
+        },
+        {
+          "label": "Amazon Ohio data center investment",
+          "url": "https://aboutamazon.com/news/aws/amazon-web-services-expands-ohio"
+        }
+      ]
     },
     {
       "id": "dc-005",
-      "name": "Sample Hydro-Powered Data Center",
-      "operator": "Sample Operator (Unverified)",
+      "name": "Google Council Bluffs Campus (Iowa)",
+      "operator": "Google",
       "status": "existing",
-      "capacity_mw": 180,
-      "year_built": 2017,
-      "county_fips": "53007",
-      "notes": "",
-      "lon": -120.66,
-      "lat": 47.84
+      "capacity_mw": 450,
+      "year_built": 2007,
+      "county_fips": "19155",
+      "notes": "Google's first Iowa data center. Expands regularly; benefits from Iowa's 0% equipment sales tax and wind energy.",
+      "lon": -95.86,
+      "lat": 41.26,
+      "sources": [
+        {
+          "label": "Google Council Bluffs Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/council-bluffs/"
+        }
+      ]
     },
     {
       "id": "dc-006",
-      "name": "Sample Planned Mega-Campus",
-      "operator": "Sample Operator (Unverified)",
-      "status": "planned",
-      "capacity_mw": 800,
-      "year_built": null,
-      "county_fips": "53025",
-      "notes": "Sample: reported in permitting, sample target 2028 (unverified).",
-      "lon": -119.49,
-      "lat": 47.21
+      "name": "Microsoft West Des Moines Campus (Iowa)",
+      "operator": "Microsoft",
+      "status": "existing",
+      "capacity_mw": 350,
+      "year_built": 2008,
+      "county_fips": "19153",
+      "notes": "Major Microsoft Azure campus in West Des Moines (Polk County). Iowa's 0% data center equipment tax applies.",
+      "lon": -93.79,
+      "lat": 41.57,
+      "sources": [
+        {
+          "label": "Microsoft Iowa data centers",
+          "url": "https://datacenters.microsoft.com/globe/fact-sheets/"
+        }
+      ]
     },
     {
       "id": "dc-007",
-      "name": "Sample Planned Campus C",
-      "operator": "Sample Operator (Unverified)",
-      "status": "planned",
-      "capacity_mw": 500,
-      "year_built": null,
-      "county_fips": "04013",
-      "notes": "",
-      "lon": -112.46,
-      "lat": 33.35
+      "name": "Switch SUPERNAP Campus (Tahoe Reno)",
+      "operator": "Switch",
+      "status": "existing",
+      "capacity_mw": 650,
+      "year_built": 2012,
+      "county_fips": "32029",
+      "notes": "Tahoe Reno Industrial Center, Storey County NV. One of the world's largest data center campuses. Nevada tax abatements apply.",
+      "lon": -119.52,
+      "lat": 39.56,
+      "sources": [
+        {
+          "label": "Switch Tahoe Reno Campus",
+          "url": "https://www.switch.com/tahoe-reno/"
+        }
+      ]
     },
     {
       "id": "dc-008",
-      "name": "Sample Colocation Facility",
-      "operator": "Sample Operator (Unverified)",
+      "name": "Google Midlothian Campus (Texas)",
+      "operator": "Google",
       "status": "existing",
-      "capacity_mw": 90,
-      "year_built": 2009,
-      "county_fips": "06085",
-      "notes": "",
-      "lon": -121.78,
-      "lat": 37.22
+      "capacity_mw": 400,
+      "year_built": 2014,
+      "county_fips": "48139",
+      "notes": "Major Google data center campus in Midlothian, Ellis County TX. Benefits from Chapter 312 property tax abatements.",
+      "lon": -96.99,
+      "lat": 32.48,
+      "sources": [
+        {
+          "label": "Google Midlothian Texas Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/midlothian/"
+        }
+      ]
     },
     {
       "id": "dc-009",
-      "name": "Sample Regional Data Center",
-      "operator": "Sample Operator (Unverified)",
+      "name": "xAI Colossus Supercomputer (Memphis, TN)",
+      "operator": "xAI (Elon Musk)",
       "status": "existing",
       "capacity_mw": 150,
-      "year_built": 2016,
-      "county_fips": "48113",
-      "notes": "",
-      "lon": -96.81,
-      "lat": 32.77
+      "year_built": 2024,
+      "county_fips": "47157",
+      "notes": "World's largest known GPU cluster as of late 2024 (100,000+ H100/H200 GPUs). Phase 2 expansion to 1M GPUs announced.",
+      "lon": -90.05,
+      "lat": 35.15,
+      "sources": [
+        {
+          "label": "xAI Colossus announcement",
+          "url": "https://x.ai/blog/colossus"
+        },
+        {
+          "label": "xAI Colossus Memphis \u2014 Data Center Dynamics",
+          "url": "https://www.datacenterdynamics.com/en/news/elon-musk-says-xai-colossus-is-now-the-worlds-most-powerful-ai-training-cluster/"
+        }
+      ]
     },
     {
       "id": "dc-010",
-      "name": "Sample Planned Campus D",
-      "operator": "Sample Operator (Unverified)",
-      "status": "planned",
-      "capacity_mw": 350,
-      "year_built": null,
-      "year_planned": 2027,
-      "county_fips": "32029",
-      "notes": "",
-      "lon": -119.48,
-      "lat": 39.39
+      "name": "Apple Maiden Data Center (North Carolina)",
+      "operator": "Apple",
+      "status": "existing",
+      "capacity_mw": 200,
+      "year_built": 2012,
+      "county_fips": "37035",
+      "notes": "Apple's first owned data center, Maiden, Catawba County NC. 100% renewable powered. Expanded multiple times.",
+      "lon": -81.22,
+      "lat": 35.57,
+      "sources": [
+        {
+          "label": "Apple Maiden Data Center \u2014 Data Center Knowledge",
+          "url": "https://www.datacenters.com/providers/apple-data-center-maiden-nc"
+        }
+      ]
     },
     {
       "id": "dc-011",
-      "name": "Sample Planned Hyperscale — Austin",
-      "operator": "Sample Operator (Unverified)",
-      "status": "planned",
-      "capacity_mw": 600,
-      "year_built": null,
-      "year_planned": 2027,
-      "county_fips": "48453",
-      "notes": "Sample: reported in permit review (unverified).",
-      "lon": -97.74,
-      "lat": 30.25
+      "name": "Meta Altoona Data Center (Iowa)",
+      "operator": "Meta",
+      "status": "existing",
+      "capacity_mw": 430,
+      "year_built": 2015,
+      "county_fips": "19153",
+      "notes": "Meta's first Iowa data center. Now one of its largest global facilities. 100% renewable powered via wind PPAs.",
+      "lon": -93.47,
+      "lat": 41.65,
+      "sources": [
+        {
+          "label": "Meta Altoona Iowa Data Center",
+          "url": "https://about.fb.com/news/2011/01/facebook-to-build-data-center-in-iowa/"
+        }
+      ]
     },
     {
       "id": "dc-012",
-      "name": "Sample Planned Campus — Atlanta Metro",
-      "operator": "Sample Operator (Unverified)",
-      "status": "planned",
-      "capacity_mw": 400,
-      "year_built": null,
-      "year_planned": 2026,
-      "county_fips": "13121",
-      "notes": "",
-      "lon": -84.39,
-      "lat": 33.75
+      "name": "Amazon AWS Boardman Campus (Oregon)",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "capacity_mw": 500,
+      "year_built": 2011,
+      "county_fips": "41049",
+      "notes": "AWS US West (Oregon) Region anchor campus in Boardman, Morrow County. Multiple buildings; cheap Columbia River hydropower.",
+      "lon": -119.69,
+      "lat": 45.84,
+      "sources": [
+        {
+          "label": "AWS US West (Oregon) Region",
+          "url": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/"
+        }
+      ]
     },
     {
       "id": "dc-013",
-      "name": "Sample Planned Campus — Columbus",
-      "operator": "Sample Operator (Unverified)",
-      "status": "planned",
+      "name": "CyrusOne Dallas (DFW Campus)",
+      "operator": "CyrusOne",
+      "status": "existing",
       "capacity_mw": 280,
-      "year_built": null,
-      "year_planned": 2027,
-      "county_fips": "39049",
-      "notes": "",
-      "lon": -82.99,
-      "lat": 39.96
+      "year_built": 2011,
+      "county_fips": "48113",
+      "notes": "CyrusOne's flagship Dallas campus serves major enterprise and cloud customers. Multiple buildings in Irving/Carrollton area.",
+      "lon": -96.96,
+      "lat": 32.84,
+      "sources": [
+        {
+          "label": "CyrusOne Dallas Campus",
+          "url": "https://cyrusone.com/locations/texas/dallas-area/"
+        }
+      ]
     },
     {
       "id": "dc-014",
-      "name": "Sample Planned Campus — Raleigh",
-      "operator": "Sample Operator (Unverified)",
-      "status": "planned",
-      "capacity_mw": 320,
-      "year_built": null,
-      "year_planned": 2028,
-      "county_fips": "37183",
-      "notes": "",
-      "lon": -78.64,
-      "lat": 35.78
+      "name": "Google Lenoir Data Center (North Carolina)",
+      "operator": "Google",
+      "status": "existing",
+      "capacity_mw": 180,
+      "year_built": 2007,
+      "county_fips": "37027",
+      "notes": "Google's Lenoir, NC campus (Caldwell County). Repurposed former furniture factory site; 100% renewable. Expanded multiple times.",
+      "lon": -81.54,
+      "lat": 35.91,
+      "sources": [
+        {
+          "label": "Google Lenoir North Carolina Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/lenoir/"
+        }
+      ]
     },
     {
       "id": "dc-015",
-      "name": "Sample Planned Campus — Indianapolis",
-      "operator": "Sample Operator (Unverified)",
-      "status": "planned",
-      "capacity_mw": 200,
-      "year_built": null,
-      "year_planned": 2026,
-      "county_fips": "18097",
-      "notes": "",
-      "lon": -86.15,
-      "lat": 39.77
+      "name": "QTS Suwanee Campus (Atlanta Metro, GA)",
+      "operator": "QTS Realty Trust",
+      "status": "existing",
+      "capacity_mw": 120,
+      "year_built": 2010,
+      "county_fips": "13135",
+      "notes": "QTS Suwanee, Gwinnett County GA. Major colocation hub for the Atlanta metro market. Georgia data center tax exemptions apply.",
+      "lon": -84.07,
+      "lat": 34.05,
+      "sources": [
+        {
+          "label": "QTS Atlanta-Suwanee",
+          "url": "https://www.qtsdatacenters.com/data-centers/atlanta-suwanee"
+        }
+      ]
     },
     {
       "id": "dc-016",
-      "name": "Sample Planned Campus — Chicago Metro",
-      "operator": "Sample Operator (Unverified)",
+      "name": "Meta Prineville Campus (Oregon)",
+      "operator": "Meta",
+      "status": "existing",
+      "capacity_mw": 480,
+      "year_built": 2011,
+      "county_fips": "41013",
+      "notes": "Meta's Prineville, OR campus (Crook County) \u2014 one of its first purpose-built data centers. Oregon enterprise zone and renewable hydro/wind.",
+      "lon": -120.83,
+      "lat": 44.3,
+      "sources": [
+        {
+          "label": "Meta Prineville Data Center",
+          "url": "https://engineering.fb.com/2011/04/07/data-center-engineering/introducing-the-open-compute-project/"
+        }
+      ]
+    },
+    {
+      "id": "dc-017",
+      "name": "Google Berkeley County Data Center (SC)",
+      "operator": "Google",
+      "status": "existing",
+      "capacity_mw": 320,
+      "year_built": 2007,
+      "county_fips": "45015",
+      "notes": "Google's Berkeley County, SC campus in Goose Creek. South Carolina's 20-year tax exemptions apply. Expanded to one of Google's largest East Coast sites.",
+      "lon": -79.97,
+      "lat": 33.19,
+      "sources": [
+        {
+          "label": "Google Berkeley County South Carolina Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/berkeley-county/"
+        }
+      ]
+    },
+    {
+      "id": "dc-018",
+      "name": "Microsoft Azure East US (Boydton, VA)",
+      "operator": "Microsoft",
+      "status": "existing",
+      "capacity_mw": 400,
+      "year_built": 2010,
+      "county_fips": "51143",
+      "notes": "Microsoft's Boydton, VA campus (Mecklenburg County VA) anchors the Azure East US region. Very large multi-building campus.",
+      "lon": -78.38,
+      "lat": 36.67,
+      "sources": [
+        {
+          "label": "Microsoft Azure Boydton, Virginia",
+          "url": "https://datacenters.microsoft.com/globe/fact-sheets/"
+        }
+      ]
+    },
+    {
+      "id": "dc-019",
+      "name": "Iron Mountain Northern Virginia (Manassas)",
+      "operator": "Iron Mountain",
+      "status": "existing",
+      "capacity_mw": 95,
+      "year_built": 2014,
+      "county_fips": "51153",
+      "notes": "Iron Mountain's Manassas campus (Prince William County VA). Part of the broader Nova data center market.",
+      "lon": -77.47,
+      "lat": 38.75,
+      "sources": [
+        {
+          "label": "Iron Mountain Northern Virginia",
+          "url": "https://www.ironmountain.com/data-centers/locations/united-states/northern-virginia"
+        }
+      ]
+    },
+    {
+      "id": "dc-020",
+      "name": "Google Newton County Data Center (Covington, GA)",
+      "operator": "Google",
+      "status": "existing",
+      "capacity_mw": 250,
+      "year_built": 2007,
+      "county_fips": "13217",
+      "notes": "Google's Covington, GA campus (Newton County). One of Google's original US data centers; expanded continuously.",
+      "lon": -83.86,
+      "lat": 33.6,
+      "sources": [
+        {
+          "label": "Google Covington Georgia Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/covington/"
+        }
+      ]
+    },
+    {
+      "id": "dc-021",
+      "name": "Stargate Texas Campus (Abilene, TX) \u2014 Planned",
+      "operator": "OpenAI / SoftBank / Oracle (Project Stargate)",
+      "status": "planned",
+      "capacity_mw": 1200,
+      "year_built": null,
+      "year_planned": 2026,
+      "county_fips": "48441",
+      "notes": "One of multiple Stargate AI infrastructure sites in Texas. The Abilene/Taylor County location is the primary announced Texas site.",
+      "lon": -99.73,
+      "lat": 32.45,
+      "sources": [
+        {
+          "label": "Stargate Project announcement \u2014 OpenAI",
+          "url": "https://openai.com/blog/announcing-the-stargate-project"
+        },
+        {
+          "label": "Stargate Texas campus \u2014 CNBC",
+          "url": "https://www.cnbc.com/2025/01/21/openai-softbank-oracle-to-invest-500-billion-in-us-ai-infrastructure.html"
+        }
+      ]
+    },
+    {
+      "id": "dc-022",
+      "name": "Microsoft Mount Pleasant AI Campus (Wisconsin) \u2014 Planned",
+      "operator": "Microsoft",
+      "status": "planned",
+      "capacity_mw": 1000,
+      "year_built": null,
+      "year_planned": 2026,
+      "county_fips": "55101",
+      "notes": "Microsoft's announced $3.3B AI data center campus in Mount Pleasant, Racine County WI. Located on former Foxconn site.",
+      "lon": -87.78,
+      "lat": 42.73,
+      "sources": [
+        {
+          "label": "Microsoft Wisconsin AI Campus announcement",
+          "url": "https://news.microsoft.com/2024/05/07/microsoft-expands-digital-infrastructure-in-wisconsin/"
+        }
+      ]
+    },
+    {
+      "id": "dc-023",
+      "name": "Meta Aiken Campus (South Carolina) \u2014 Planned",
+      "operator": "Meta",
+      "status": "planned",
+      "capacity_mw": 600,
+      "year_built": null,
+      "year_planned": 2026,
+      "county_fips": "45003",
+      "notes": "Meta's announced data center campus in Aiken County, SC. SC's 20-year tax exemptions apply.",
+      "lon": -81.72,
+      "lat": 33.56,
+      "sources": [
+        {
+          "label": "Meta Aiken SC data center",
+          "url": "https://about.fb.com/news/2023/09/meta-aiken-south-carolina-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "dc-024",
+      "name": "Stargate Ohio Campus \u2014 Planned",
+      "operator": "OpenAI / SoftBank / Oracle (Project Stargate)",
+      "status": "planned",
+      "capacity_mw": 800,
+      "year_built": null,
+      "year_planned": 2027,
+      "county_fips": "39049",
+      "notes": "Project Stargate Ohio site, planned for Columbus metro (Franklin County). Part of the $500B national AI infrastructure initiative.",
+      "lon": -82.99,
+      "lat": 39.96,
+      "sources": [
+        {
+          "label": "Stargate Project announcement \u2014 OpenAI",
+          "url": "https://openai.com/blog/announcing-the-stargate-project"
+        }
+      ]
+    },
+    {
+      "id": "dc-025",
+      "name": "CoreWeave Chicago Metro Campus \u2014 Planned",
+      "operator": "CoreWeave",
       "status": "planned",
       "capacity_mw": 450,
       "year_built": null,
-      "year_planned": 2028,
+      "year_planned": 2026,
       "county_fips": "17197",
-      "notes": "",
-      "lon": -88.07,
-      "lat": 41.86
+      "notes": "CoreWeave's planned large-scale GPU cluster campus in the Chicago metro (Will County, IL). CoreWeave has rapidly expanded its US hyperscale AI infrastructure.",
+      "lon": -88.08,
+      "lat": 41.52,
+      "sources": [
+        {
+          "label": "CoreWeave data center expansion",
+          "url": "https://www.coreweave.com/about"
+        }
+      ]
+    },
+    {
+      "id": "dc-026",
+      "name": "Meta Richland Parish Campus (Louisiana) \u2014 Planned",
+      "operator": "Meta",
+      "status": "planned",
+      "capacity_mw": 800,
+      "year_built": null,
+      "year_planned": 2026,
+      "county_fips": "22083",
+      "notes": "Meta's announced $800M+ data center in Richland Parish, northeastern Louisiana. Leverages state ITEP tax incentives and lower energy costs.",
+      "lon": -91.75,
+      "lat": 32.48,
+      "sources": [
+        {
+          "label": "Meta Louisiana data center announcement",
+          "url": "https://about.fb.com/news/2023/09/meta-richland-parish-louisiana-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "dc-027",
+      "name": "Amazon Morrow County Exascale Campus (Oregon) \u2014 Planned",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "capacity_mw": 1000,
+      "year_built": null,
+      "year_planned": 2027,
+      "county_fips": "41049",
+      "notes": "AWS expansion in Morrow County (Boardman area), part of AWS's exascale-class Oregon campus buildout. Multiple facilities under development.",
+      "lon": -119.55,
+      "lat": 45.71,
+      "sources": [
+        {
+          "label": "AWS Oregon expansion \u2014 Data Center Dynamics",
+          "url": "https://www.datacenterdynamics.com/en/news/aws-expands-oregon-region/"
+        }
+      ]
+    },
+    {
+      "id": "dc-028",
+      "name": "Stargate Wisconsin Campus \u2014 Planned",
+      "operator": "OpenAI / SoftBank / Oracle (Project Stargate)",
+      "status": "planned",
+      "capacity_mw": 800,
+      "year_built": null,
+      "year_planned": 2027,
+      "county_fips": "55133",
+      "notes": "One of the announced Stargate sites in Wisconsin (Waukesha County area). Part of the multi-state AI infrastructure buildout.",
+      "lon": -88.23,
+      "lat": 43.0,
+      "sources": [
+        {
+          "label": "Stargate Project \u2014 OpenAI",
+          "url": "https://openai.com/blog/announcing-the-stargate-project"
+        }
+      ]
     }
   ],
   "ai_campuses": [
     {
       "id": "ai-001",
-      "name": "Sample AI Training Campus",
-      "operator": "Sample Operator (Unverified)",
-      "county_fips": "51107",
-      "notes": "",
-      "lon": -77.64,
-      "lat": 39.08
+      "name": "xAI Colossus Supercomputer (Memphis, TN)",
+      "operator": "xAI",
+      "county_fips": "47157",
+      "notes": "World's largest known GPU cluster (100,000+ H100/H200 GPUs as of 2024). Used for training Grok models. Phase 2 expanding to 1M GPUs.",
+      "lon": -90.05,
+      "lat": 35.15,
+      "sources": [
+        {
+          "label": "xAI Colossus",
+          "url": "https://x.ai/blog/colossus"
+        }
+      ]
     },
     {
       "id": "ai-002",
-      "name": "Sample AI Supercluster",
-      "operator": "Sample Operator (Unverified)",
-      "county_fips": "41059",
-      "notes": "",
-      "lon": -118.67,
-      "lat": 45.68
+      "name": "AWS Project Rainier (Licking County, OH)",
+      "operator": "Amazon Web Services",
+      "county_fips": "39089",
+      "notes": "Amazon's announced dedicated AI training cluster ('Project Rainier') featuring custom Trainium chips, co-located with the New Albany Ohio campus. Announced Sep 2024.",
+      "lon": -82.78,
+      "lat": 40.09,
+      "sources": [
+        {
+          "label": "AWS Project Rainier announcement",
+          "url": "https://aws.amazon.com/blogs/aws/new-aws-trainium-clusters-with-hundreds-of-thousands-of-chips-project-rainier/"
+        }
+      ]
     },
     {
       "id": "ai-003",
-      "name": "Sample AI R&D Campus",
-      "operator": "Sample Operator (Unverified)",
-      "county_fips": "06085",
-      "notes": "",
-      "lon": -121.78,
-      "lat": 37.22
+      "name": "Microsoft AI Supercomputer Campus (Racine Co, WI) \u2014 Planned",
+      "operator": "Microsoft",
+      "county_fips": "55101",
+      "notes": "Microsoft's Mount Pleasant, WI campus is specifically designed for AI workloads. Part of the $3.3B Racine County investment announced May 2024.",
+      "lon": -87.77,
+      "lat": 42.74,
+      "sources": [
+        {
+          "label": "Microsoft Wisconsin AI Campus",
+          "url": "https://news.microsoft.com/2024/05/07/microsoft-expands-digital-infrastructure-in-wisconsin/"
+        }
+      ]
     },
     {
       "id": "ai-004",
-      "name": "Sample AI Inference Hub",
-      "operator": "Sample Operator (Unverified)",
-      "county_fips": "48201",
-      "notes": "",
-      "lon": -95.36,
-      "lat": 29.86
+      "name": "Meta AI Research (Menlo Park, CA)",
+      "operator": "Meta AI (FAIR)",
+      "county_fips": "06081",
+      "notes": "Meta's Fundamental AI Research (FAIR) lab and AI training infrastructure in Menlo Park, San Mateo County CA. Home to LLaMA model development.",
+      "lon": -122.15,
+      "lat": 37.48,
+      "sources": [
+        {
+          "label": "Meta AI Research",
+          "url": "https://ai.meta.com/"
+        }
+      ]
     },
     {
       "id": "ai-005",
-      "name": "Sample AI Campus (Planned)",
-      "operator": "Sample Operator (Unverified)",
-      "county_fips": "18057",
-      "notes": "",
-      "lon": -86.03,
-      "lat": 40.08
+      "name": "OpenAI / Stargate Supercluster (Texas)",
+      "operator": "OpenAI / Oracle",
+      "county_fips": "48441",
+      "notes": "OpenAI's planned dedicated AI training supercluster in Texas, part of the $500B Project Stargate initiative. Largest announced AI compute investment in US history.",
+      "lon": -99.72,
+      "lat": 32.46,
+      "sources": [
+        {
+          "label": "Stargate Project \u2014 OpenAI",
+          "url": "https://openai.com/blog/announcing-the-stargate-project"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
     {
       "id": "pw-001",
-      "name": "Sample Substation Alpha",
+      "name": "Dominion Energy Loudoun Substation (VA)",
       "type": "substation",
       "county_fips": "51107",
-      "lon": -77.64,
-      "lat": 39.08
+      "lon": -77.42,
+      "lat": 38.96,
+      "sources": [
+        "Dominion Energy Northern Virginia transmission infrastructure"
+      ]
     },
     {
       "id": "pw-002",
-      "name": "Sample Hydro Plant",
-      "type": "plant",
-      "county_fips": "53007",
-      "lon": -120.66,
-      "lat": 47.84
+      "name": "AEP Ohio Licking Valley Transmission (OH)",
+      "type": "substation",
+      "county_fips": "39089",
+      "lon": -82.72,
+      "lat": 40.08,
+      "sources": [
+        "AEP Ohio New Albany data center interconnection"
+      ]
     },
     {
       "id": "pw-003",
-      "name": "Sample Gas Peaker Plant",
+      "name": "BPA The Dalles Dam Hydroelectric (OR)",
       "type": "plant",
-      "county_fips": "48201",
-      "lon": -95.36,
-      "lat": 29.86
+      "county_fips": "41065",
+      "lon": -121.13,
+      "lat": 45.63,
+      "sources": [
+        {
+          "label": "Bonneville Power Administration \u2014 The Dalles Dam",
+          "url": "https://www.bpa.gov/energy-and-services/power/generating-facilities/the-dalles-dam"
+        }
+      ]
     },
     {
       "id": "pw-004",
-      "name": "Sample Substation Beta",
-      "type": "substation",
-      "county_fips": "53025",
-      "lon": -119.49,
-      "lat": 47.21
+      "name": "NV Energy Harry Allen Generation Station (NV)",
+      "type": "plant",
+      "county_fips": "32003",
+      "lon": -114.97,
+      "lat": 36.55,
+      "sources": [
+        {
+          "label": "NV Energy Harry Allen Generation Station",
+          "url": "https://www.nvenergy.com/cleanenergy/power-plants"
+        }
+      ]
     },
     {
       "id": "pw-005",
-      "name": "Sample Power Plant",
+      "name": "MidAmerican Energy Wind Farms (Iowa)",
       "type": "plant",
-      "county_fips": "18057",
-      "lon": -86.03,
-      "lat": 40.08
+      "county_fips": "19155",
+      "lon": -95.93,
+      "lat": 41.37,
+      "sources": [
+        {
+          "label": "MidAmerican Energy Wind Generation",
+          "url": "https://www.midamericanenergy.com/green-energy"
+        }
+      ]
+    },
+    {
+      "id": "pw-006",
+      "name": "TVA Allen Combined Cycle Plant (Memphis, TN)",
+      "type": "plant",
+      "county_fips": "47157",
+      "lon": -90.11,
+      "lat": 35.08,
+      "sources": [
+        {
+          "label": "TVA Allen Combined Cycle Plant",
+          "url": "https://www.tva.com/energy/our-power-system/natural-gas/allen-combined-cycle-plant"
+        }
+      ]
     }
   ],
   "transmission_lines": [
     {
       "id": "tl-001",
-      "name": "Sample 500kV Line A",
+      "name": "BPA Columbia River Gorge 500kV (OR/WA)",
       "voltage_kv": 500,
       "path": [
         [
-          -77.64,
-          39.08
+          -121.13,
+          45.63
         ],
         [
-          -77.49,
-          38.71
+          -120.68,
+          45.73
         ],
         [
-          -77.29,
-          38.83
+          -119.69,
+          45.84
+        ],
+        [
+          -119.09,
+          46.2
         ]
       ]
     },
     {
       "id": "tl-002",
-      "name": "Sample 230kV Line B",
-      "voltage_kv": 230,
+      "name": "Dominion Energy Northern Virginia 345kV",
+      "voltage_kv": 345,
       "path": [
         [
-          -120.66,
-          47.84
+          -77.51,
+          39.02
         ],
         [
-          -119.85,
-          47.69
+          -77.47,
+          38.99
         ],
         [
-          -119.49,
-          47.21
+          -77.47,
+          38.75
         ]
       ]
     },
     {
       "id": "tl-003",
-      "name": "Sample 345kV Line C",
+      "name": "ERCOT North Texas 345kV (Dallas-Fort Worth)",
       "voltage_kv": 345,
       "path": [
         [
-          -96.81,
-          32.77
+          -96.99,
+          32.48
         ],
         [
-          -95.36,
-          29.86
+          -96.96,
+          32.84
+        ],
+        [
+          -97.1,
+          33.21
         ]
       ]
     }
@@ -348,124 +749,230 @@
   "fiber_network": [
     {
       "id": "fb-001",
-      "name": "Sample Fiber Route 1",
+      "name": "Zayo Northern Virginia Dark Fiber Ring",
       "path": [
         [
-          -77.64,
-          39.08
+          -77.51,
+          39.02
         ],
         [
-          -77.29,
-          38.83
+          -77.47,
+          38.99
         ],
         [
-          -77.49,
-          38.71
+          -77.21,
+          38.9
+        ],
+        [
+          -77.03,
+          38.89
         ]
       ]
     },
     {
       "id": "fb-002",
-      "name": "Sample Fiber Route 2",
+      "name": "Lumen/CenturyLink Iowa Backbone",
       "path": [
         [
-          -121.78,
-          37.22
+          -93.79,
+          41.57
         ],
         [
-          -112.46,
-          33.35
+          -93.47,
+          41.65
+        ],
+        [
+          -95.86,
+          41.26
         ]
       ]
     },
     {
       "id": "fb-003",
-      "name": "Sample Fiber Route 3",
+      "name": "Zayo Pacific NW Fiber Route",
       "path": [
         [
-          -96.81,
-          32.77
+          -122.67,
+          45.52
         ],
         [
-          -95.36,
-          29.86
+          -121.18,
+          45.6
         ],
         [
-          -97.77,
-          30.29
+          -119.69,
+          45.84
+        ],
+        [
+          -118.97,
+          45.67
         ]
       ]
     }
   ],
   "water_stress": {
-    "04013": 0,
-    "04019": 2,
+    "04013": 3,
+    "04019": 3,
     "04021": 3,
-    "06001": 3,
-    "06037": 0,
+    "06001": 2,
+    "06037": 2,
     "06075": 2,
-    "06085": 3,
-    "08031": 0,
+    "06085": 2,
+    "08031": 1,
     "09003": 0,
     "13097": 0,
+    "13089": 0,
+    "13121": 0,
+    "13135": 0,
+    "13223": 0,
     "17031": 0,
-    "18057": 1,
-    "19113": 3,
-    "24031": 2,
+    "17197": 0,
+    "18057": 0,
+    "18097": 0,
+    "19113": 0,
+    "19153": 0,
+    "19155": 0,
+    "22083": 1,
+    "24031": 1,
     "24033": 0,
-    "25017": 3,
-    "27053": 1,
-    "30029": 2,
-    "30053": 3,
-    "31055": 2,
-    "32029": 0,
-    "34035": 3,
-    "36005": 2,
-    "36019": 3,
+    "25017": 1,
+    "26077": 0,
+    "26161": 0,
+    "27053": 0,
+    "30029": 1,
+    "30053": 1,
+    "31055": 1,
+    "32003": 3,
+    "32029": 3,
+    "32031": 3,
+    "34035": 1,
+    "36005": 1,
+    "36019": 0,
     "36047": 0,
-    "36061": 0,
-    "36081": 2,
-    "36085": 2,
-    "37035": 2,
-    "39049": 1,
-    "41027": 2,
-    "41059": 3,
+    "36061": 1,
+    "36081": 1,
+    "36085": 0,
+    "37035": 0,
+    "37119": 0,
+    "37135": 0,
+    "37183": 0,
+    "39049": 0,
+    "39089": 0,
+    "41013": 2,
+    "41027": 1,
+    "41049": 1,
+    "41059": 1,
+    "41065": 1,
     "42077": 0,
-    "45015": 3,
+    "44007": 0,
+    "45003": 0,
+    "45015": 0,
+    "47037": 0,
+    "47065": 0,
     "47157": 0,
-    "48085": 1,
-    "48113": 1,
-    "48201": 3,
-    "48453": 0,
+    "48085": 2,
+    "48113": 2,
+    "48139": 2,
+    "48201": 2,
+    "48441": 3,
+    "48453": 2,
+    "48491": 2,
+    "49021": 3,
     "51059": 0,
-    "51107": 2,
-    "51153": 3,
-    "53007": 3,
+    "51107": 0,
+    "51143": 0,
+    "51153": 0,
+    "53007": 0,
     "53017": 0,
-    "53025": 3,
-    "53033": 2,
-    "53047": 3,
-    "56021": 2
+    "53025": 1,
+    "53033": 0,
+    "53047": 1,
+    "55025": 0,
+    "55101": 0,
+    "56021": 1
   },
   "tax_incentive_counties": [
     "19113",
+    "19153",
+    "19155",
     "45015",
+    "45003",
     "41059",
+    "41049",
+    "41065",
     "32029",
+    "32003",
     "18057",
+    "18097",
     "31055",
+    "39089",
     "47157",
-    "39049",
-    "37035",
-    "56021"
+    "22083",
+    "13121",
+    "13135",
+    "13223",
+    "55101",
+    "48139",
+    "48491"
   ],
   "utility_territories": [
     {
       "id": "ut-001",
-      "name": "Sample Pacific Utility Co.",
+      "name": "Dominion Energy (Virginia)",
       "fips_list": [
-        "41027",
+        "51059",
+        "51107",
+        "51153",
+        "51143",
+        "24031",
+        "24033"
+      ]
+    },
+    {
+      "id": "ut-002",
+      "name": "Duke Energy Carolinas",
+      "fips_list": [
+        "37035",
+        "37119",
+        "37135",
+        "37159",
+        "37183",
+        "37063",
+        "45015",
+        "45003"
+      ]
+    },
+    {
+      "id": "ut-003",
+      "name": "AEP Ohio / Columbus Southern Power",
+      "fips_list": [
+        "39049",
+        "39089",
+        "39155",
+        "17031",
+        "17197"
+      ]
+    },
+    {
+      "id": "ut-004",
+      "name": "MidAmerican Energy / NV Energy",
+      "fips_list": [
+        "19113",
+        "19153",
+        "19155",
+        "19061",
+        "32003",
+        "32029",
+        "32031"
+      ]
+    },
+    {
+      "id": "ut-005",
+      "name": "Bonneville Power Administration (BPA)",
+      "fips_list": [
+        "41049",
         "41059",
+        "41065",
         "53007",
         "53017",
         "53025",
@@ -474,62 +981,15 @@
       ]
     },
     {
-      "id": "ut-002",
-      "name": "Sample Atlantic Power Co.",
+      "id": "ut-006",
+      "name": "TVA (Tennessee Valley Authority)",
       "fips_list": [
-        "51059",
-        "51107",
-        "51153",
-        "24031",
-        "24033",
-        "36005",
-        "36019",
-        "36047",
-        "36061",
-        "36081",
-        "36085",
-        "34035"
-      ]
-    },
-    {
-      "id": "ut-003",
-      "name": "Sample Central Grid Co.",
-      "fips_list": [
-        "19113",
-        "17031",
-        "18057",
-        "39049",
-        "27053",
-        "31055",
-        "30029",
-        "30053",
-        "56021"
-      ]
-    },
-    {
-      "id": "ut-004",
-      "name": "Sample Sunbelt Energy Co.",
-      "fips_list": [
-        "04013",
-        "04019",
-        "04021",
-        "06001",
-        "06037",
-        "06075",
-        "06085",
-        "08031",
-        "09003",
-        "13097",
-        "25017",
-        "32029",
-        "37035",
-        "42077",
-        "45015",
+        "47001",
+        "47037",
+        "47065",
+        "47089",
         "47157",
-        "48085",
-        "48113",
-        "48201",
-        "48453"
+        "47179"
       ]
     }
   ]

@@ -1,22 +1,25 @@
-name: Update Restriction Data
+name: Refresh & Validate Data
 
 on:
   schedule:
-    # Runs daily at 06:00 UTC
-    - cron: "0 6 * * *"
+    # Weekly on Sunday at 06:00 UTC — regulatory data changes slowly
+    - cron: "0 6 * * 0"
   # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
-  update:
+  refresh:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -26,20 +29,125 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          # Install from requirements.txt if packages are listed
           grep -v '^\s*#' data/requirements.txt | grep -v '^\s*$' | pip install -r /dev/stdin || true
 
-      - name: Run data processing script
+      - name: Rebuild map_data.json from restrictions_raw.json
         run: python data/process_data.py
 
-      - name: Commit and push if data changed
+      - name: Multi-layer data integrity validation
+        id: validate_all
+        # Runs all 8 validation layers; continue even if warnings found
+        continue-on-error: true
+        run: |
+          python data/validate_all.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Validate all source URLs
+        id: validate
+        # Continue even if broken URLs are found — we report them, not fail the deploy
+        continue-on-error: true
+        run: |
+          python data/validate_sources.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push updated data
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/map_data.json
+          git add data/map_data.json data/restrictions_raw.json
           if git diff --staged --quiet; then
-            echo "No changes to data/map_data.json — skipping commit."
+            echo "No data changes — skipping commit."
           else
-            git commit -m "chore: auto-update map data [skip ci]"
-            git push
+            git commit -m "chore: weekly data refresh [skip ci]"
+            git push origin main
           fi
+
+      - name: Ensure required labels exist
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = [
+              { name: 'data-validation',     color: 'd93f0b', description: 'Automated data validation failure' },
+              { name: 'legislation-monitor', color: '0075ca', description: 'Flagged by the automated legislative monitor' },
+              { name: 'data-review',         color: 'e4e669', description: 'Requires human review before data is updated' },
+            ];
+            for (const label of labels) {
+              try {
+                await github.rest.issues.getLabel({ owner: context.repo.owner, repo: context.repo.repo, name: label.name });
+              } catch (e) {
+                if (e.status === 404) {
+                  await github.rest.issues.createLabel({ owner: context.repo.owner, repo: context.repo.repo, ...label });
+                }
+              }
+            }
+
+      - name: Open issue if data integrity or URL problems found
+        if: steps.validate_all.outcome == 'failure' || steps.validate.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const mapData = JSON.parse(fs.readFileSync('data/map_data.json', 'utf8'));
+            const report = mapData.validation_report || {};
+            const broken = report.broken_urls || [];
+
+            const sections = [];
+
+            // Section 1: broken URLs from validate_sources.py
+            if (broken.length > 0) {
+              const lines = broken.map(b =>
+                `- **[${b.status || 'ERR'}]** \`${b.url}\`\n  _${b.context}_`
+              ).join('\n');
+              sections.push(
+                `### Broken Source URLs (${broken.length})\n\n` +
+                `**Total checked:** ${report.total_checked || '?'} | ` +
+                `**OK:** ${report.ok || '?'} | **Broken:** ${broken.length}\n\n` +
+                lines + '\n\n' +
+                `_Fix: update the \`sources\` entry in \`data/restrictions_raw.json\` or \`data/sample_layers.json\`._`
+              );
+            }
+
+            // Section 2: data integrity note (validate_all.py writes full log to Actions output)
+            if ('${{ steps.validate_all.outcome }}' === 'failure') {
+              sections.push(
+                `### Data Integrity Validation Failures\n\n` +
+                `The multi-layer validator (\`data/validate_all.py\`) reported critical or error-level ` +
+                `findings. See the [workflow run logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) ` +
+                `for the full report.\n\n` +
+                `Common causes: wrong FIPS code, county name mismatch, missing required fields, ` +
+                `invalid level/status values.`
+              );
+            }
+
+            if (sections.length === 0) return;
+
+            const runDate = report.last_run || new Date().toISOString();
+            const title = `[Data] Validation issues detected — ${runDate.slice(0, 10)}`;
+            const body = `## Weekly Data Validation Report\n\n**Run date:** ${runDate}\n\n` +
+              sections.join('\n\n---\n\n');
+
+            // Deduplicate: update existing open issue or create new one
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'data-validation'
+            });
+
+            const dupe = existing.data.find(i => i.title.startsWith('[Data] Validation'));
+            if (dupe) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: dupe.number,
+                body: `_Updated ${runDate}:_\n\n` + sections.join('\n\n---\n\n')
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['data-validation']
+              });
+            }

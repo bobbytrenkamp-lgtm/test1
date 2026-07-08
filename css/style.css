@@ -548,6 +548,68 @@ html, body {
 .status-dot.proposed { background: #60a5fa; }
 .status-dot.expired { background: #6b7280; }
 
+/* Confidence badge — shown in county detail panel */
+.confidence-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.confidence-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.confidence-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.conf-verified  { background: #14532d; color: #4ade80; }
+.conf-verified .confidence-dot  { background: #4ade80; }
+.conf-high      { background: #1e3a1e; color: #86efac; }
+.conf-high .confidence-dot      { background: #86efac; }
+.conf-medium    { background: #4a3500; color: #fbbf24; }
+.conf-medium .confidence-dot    { background: #fbbf24; }
+.conf-low       { background: #4a1a0a; color: #f87171; }
+.conf-low .confidence-dot       { background: #f87171; }
+
+.confidence-score-text {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.confidence-info-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.conf-tier-label {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.conf-tier-label span {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .sources-list {
   list-style: none;
 }
@@ -848,6 +910,14 @@ html, body {
   padding: 7px 8px;
   border-radius: 6px;
   transition: background 0.12s;
+  cursor: pointer;
+  /* label resets */
+  font: inherit;
+  color: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .filter-row:hover {
@@ -1147,6 +1217,15 @@ html, body {
   #top-toggle { min-width: 44px; min-height: 44px; }
   #filter-panel-close { min-width: 44px; min-height: 44px; font-size: 22px; }
   #detail-panel-close { min-width: 44px; min-height: 44px; font-size: 22px; }
+
+  /* Filter rows: taller touch targets on mobile */
+  .filter-row { min-height: 44px; padding: 10px 8px; }
+
+  /* Larger toggle switch on mobile */
+  .toggle-switch { width: 40px; height: 24px; }
+  .toggle-slider { border-radius: 12px; }
+  .toggle-slider::before { width: 16px; height: 16px; top: 3px; left: 3px; }
+  .toggle-switch input:checked + .toggle-slider::before { transform: translateX(16px); }
 
   /* Legend: compact, top-left, no wider than 60vw */
   #legend {
