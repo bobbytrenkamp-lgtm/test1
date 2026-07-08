@@ -797,19 +797,20 @@ function renderFilterPanel() {
         sampleBannerShown = true;
       }
 
-      const row = document.createElement("div");
+      // Use <label> as the row so tapping anywhere on the row toggles the checkbox
+      const row = document.createElement("label");
       row.className = "filter-row" + (def.noData ? " filter-row-disabled" : "");
       row.innerHTML = `
-        <label class="filter-row-label">
+        <span class="filter-row-label">
           <span class="filter-row-dot" style="background:${def.color}"></span>
           <span class="name">${def.label}</span>
           ${def.sample  ? '<span class="sample-tag">Sample</span>' : ""}
           ${def.noData  ? '<span class="no-data-tag">No data</span>' : ""}
-        </label>
-        <label class="toggle-switch">
+        </span>
+        <span class="toggle-switch">
           <input type="checkbox" data-layer="${def.id}" ${layerState[def.id] ? "checked" : ""} ${def.noData ? "disabled" : ""} />
           <span class="toggle-slider"></span>
-        </label>`;
+        </span>`;
       body.appendChild(row);
     }
   }
@@ -849,11 +850,14 @@ function initFilterPanelControls() {
     if (e.target === backdrop) closeFilterPanel();
   });
 
-  // Stop all pointer events inside the panel from reaching the backdrop or the map
+  // Prevent clicks inside the panel from closing it via the backdrop click handler
   if (panel) {
-    panel.addEventListener("click",      e => e.stopPropagation());
-    panel.addEventListener("touchstart", e => e.stopPropagation(), { passive: true });
-    // Allow vertical scroll inside the body without triggering Leaflet pan
+    panel.addEventListener("click", e => e.stopPropagation());
+    // On desktop (where the panel is position:absolute inside the map), stop touch
+    // events from reaching Leaflet. On mobile the panel is position:fixed and already
+    // outside the map hit area, so this is a no-op there.
+    panel.addEventListener("pointerdown", e => e.stopPropagation());
+    // Allow vertical scroll inside the body without Leaflet intercepting the drag
     const body = document.getElementById("filter-panel-body");
     if (body) {
       body.addEventListener("touchmove", e => e.stopPropagation(), { passive: true });
