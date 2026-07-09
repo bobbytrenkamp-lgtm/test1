@@ -81,3 +81,29 @@ Next Recommended Actions:
 - Refresh `README.md` in a future pass so its public-facing tech stack matches the current Leaflet implementation.
 - Continue appending to `AI_CHANGELOG.md` after each AI coding or documentation session.
 - Keep `AI_CONTEXT.md` as the detailed historical handoff and `PROJECT_CONTEXT.md` as the concise source of truth.
+
+---
+
+Date: 2026-07-09
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
+- `js/map.js`
+
+Changes Made:
+- Fixed Map Layers panel staying open on desktop: added `if (window.innerWidth > 700) return;` guard inside `onOutsideTap` in `initFilterPanelControls()`. The 700px breakpoint matches the existing CSS `@media (max-width: 700px)` rule. On desktop, the panel now only closes via the X button or the Layers toggle button. On mobile it still closes on outside tap.
+- Fixed layer toggles only working once on desktop: added `e.preventDefault()` to the `click` handler on each `.filter-row` label in `renderFilterPanel()`. Without this, the browser's native label→input click-forwarding dispatched a second synthetic click on the wrapped `<input>`, which toggled `input.checked` back via checkbox pre-activation, then bubbled through the label and triggered `handleToggle` a second time — net effect was the layer toggled and immediately toggled back. `e.preventDefault()` stops the native forwarding so `handleToggle` fires exactly once per user click.
+
+Reasoning:
+- The outside-click handler was closing the panel for ALL viewport sizes. On mobile this is correct (panel blocks the map). On desktop the panel is small and should persist so users can toggle multiple layers without constantly reopening it.
+- The toggle double-fire bug is a well-known browser behavior: clicking a `<label>` that wraps an `<input>` fires the click on the label, then the browser's label activation behavior fires a second click on the input, which bubbles back through the label and re-triggers any click listeners registered on the label element. Calling `e.preventDefault()` on the label click stops the second browser-generated click entirely.
+
+Problems Found:
+- No regressions observed. Mobile touchend path is unchanged (touchend still calls e.preventDefault() to suppress the synthetic click after touch).
+- iOS Safari toggle fix from session PR #9 is preserved — touchend handler is still in place and takes priority on touch devices.
+- Drag-guard fix from session PR #10 is preserved — isDraggingMap/isMouseDown guards on county hover/click are unaffected.
+
+Next Recommended Actions:
+- Test the layer panel on an actual mobile device to confirm outside-tap-to-close still works after the 700px guard was added.
+- Add more counties and states to `data/map_data.json` and `data/state_regulations.json` as policy data is verified.
+- Replace `data/sample_layers.json` facility data with verified real data before public launch.
