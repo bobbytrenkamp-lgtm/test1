@@ -811,6 +811,7 @@ html, body {
   inset: 0;
   z-index: 14;
   display: none;
+  pointer-events: none; /* purely visual — close-on-outside-tap handled in JS */
 }
 
 #filter-panel-backdrop.open {
