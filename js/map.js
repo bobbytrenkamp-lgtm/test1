@@ -849,7 +849,12 @@ function initFilterPanelControls() {
   // iOS doesn't intercept taps meant for the panel (z-index hit-test unreliable on iOS).
   // Tapping anywhere outside the panel closes it.
   const onOutsideTap = e => {
-    if (panel && panel.classList.contains("open") && !panel.contains(e.target)) {
+    // Exclude the toggle button itself — its own handler manages open/close.
+    // Without this exclusion the click bubbles to document and closes the panel
+    // that the button's handler just opened (same-event race).
+    if (panel && panel.classList.contains("open") &&
+        !panel.contains(e.target) &&
+        !(toggleBtn && toggleBtn.contains(e.target))) {
       closeFilterPanel();
     }
   };
