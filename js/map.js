@@ -146,6 +146,15 @@ let legendState     = 0; // 0=full, 1=mini, 2=hidden
 let selectedFips    = null;
 let cityLabelsLayer = null;
 
+/* ── Drag-guard state ──
+   Prevents county hover/selection from firing while the user pans the map.
+   hoveredCountyLayer tracks the single layer with transient hover styling so
+   it can be cleanly reset on mouseout, dragstart, and dragend. */
+let isMouseDown        = false;
+let isDraggingMap      = false;
+let suppressClickUntil = 0;
+let hoveredCountyLayer = null;
+
 /* ── Helpers ── */
 function fipsKey(id) { return String(id).padStart(5, "0"); }
 
@@ -294,7 +303,26 @@ function showTooltip(mouseEvent, fips) {
 }
 
 /* ── County interactions ── */
+function clearHoveredCounty() {
+  tooltip.style.display = "none";
+  if (hoveredCountyLayer) {
+    const hFips = hoveredCountyLayer.feature ? fipsKey(hoveredCountyLayer.feature.id) : null;
+    if (countyGeoLayer && (!hFips || hFips !== selectedFips)) {
+      countyGeoLayer.resetStyle(hoveredCountyLayer);
+    }
+    hoveredCountyLayer = null;
+  }
+}
+
 function handleCountyMouseover(e, fips) {
+  if (isDraggingMap || isMouseDown) return;
+
+  // Clear any previously hovered layer before setting the new one
+  if (hoveredCountyLayer && hoveredCountyLayer !== e.target) {
+    clearHoveredCounty();
+  }
+
+  hoveredCountyLayer = e.target;
   if (fips !== selectedFips) {
     e.target.setStyle({ color: "#f97316", weight: 2, fillOpacity: 0.88 });
     e.target.bringToFront();
@@ -303,6 +331,10 @@ function handleCountyMouseover(e, fips) {
 }
 
 function handleCountyMousemove(e) {
+  if (isDraggingMap || isMouseDown) {
+    tooltip.style.display = "none";
+    return;
+  }
   if (tooltip.style.display === "block") {
     const rect = document.getElementById("map-container").getBoundingClientRect();
     let x = e.originalEvent.clientX - rect.left + 14;
@@ -314,20 +346,21 @@ function handleCountyMousemove(e) {
   }
 }
 
-function handleCountyMouseout(e, fips) {
-  tooltip.style.display = "none";
-  if (fips !== selectedFips) {
-    countyGeoLayer.resetStyle(e.target);
+function handleCountyMouseout(e) {
+  if (hoveredCountyLayer === e.target) {
+    clearHoveredCounty();
   }
 }
 
 function handleCountyClick(e, fips) {
+  if (isDraggingMap || Date.now() < suppressClickUntil) return;
   L.DomEvent.stopPropagation(e);
   if (selectedFips && countyLayerByFips[selectedFips]) {
     countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
   }
   selectedFips = fips;
   setLocationHash(fips);
+  clearHoveredCounty();
   e.target.setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
   e.target.bringToFront();
 
@@ -350,7 +383,7 @@ function initCountyLayer(countiesGeoJSON) {
       layer.on({
         mouseover: e => handleCountyMouseover(e, fips),
         mousemove: e => handleCountyMousemove(e),
-        mouseout:  e => handleCountyMouseout(e, fips),
+        mouseout:  e => handleCountyMouseout(e),
         click:     e => handleCountyClick(e, fips),
       });
     },
@@ -587,7 +620,22 @@ function initLeafletMap() {
 
   initBasemaps();
 
+  // Drag-guard: set/clear flags so county hover/select is suppressed during pan
+  leafletMap.on("mousedown", () => { isMouseDown = true; });
+  leafletMap.on("mouseup",   () => { isMouseDown = false; });
+  leafletMap.on("dragstart", () => {
+    isDraggingMap = true;
+    clearHoveredCounty();
+  });
+  leafletMap.on("dragend", () => {
+    isDraggingMap      = false;
+    isMouseDown        = false;
+    suppressClickUntil = Date.now() + 150; // swallow the synthetic click that follows dragend
+    clearHoveredCounty();
+  });
+
   leafletMap.on("click", () => {
+    if (isDraggingMap || Date.now() < suppressClickUntil) return;
     if (selectedFips && countyLayerByFips[selectedFips]) {
       countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
     }
