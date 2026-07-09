@@ -823,11 +823,22 @@ function renderFilterPanel() {
 /* ── Panel open/close ── */
 function openFilterPanel() {
   const panel = document.getElementById("filter-panel");
-  // On mobile, cap the panel height to the map container so it never
-  // slides up over the search bar / stats area
-  if (window.innerWidth <= 700) {
-    const mapContainer = document.getElementById("map-container");
-    if (mapContainer) panel.style.maxHeight = mapContainer.getBoundingClientRect().height + "px";
+  const mc    = document.getElementById("map-container");
+  if (mc) {
+    const rect = mc.getBoundingClientRect();
+    if (window.innerWidth > 700) {
+      // Desktop: float the panel over the map at the same position it had
+      // when it was absolutely-positioned inside #map-container.
+      panel.style.left      = (rect.left + 20) + "px";
+      panel.style.top       = (rect.top  + 12) + "px";
+      panel.style.maxHeight = (rect.height - 24) + "px";
+    } else {
+      // Mobile: bottom sheet — CSS handles left/right/bottom; just cap height
+      // so the panel never slides up over the search bar.
+      panel.style.left      = "";
+      panel.style.top       = "";
+      panel.style.maxHeight = rect.height + "px";
+    }
   }
   panel.classList.add("open");
   document.getElementById("filter-panel-backdrop").classList.add("open");
@@ -836,7 +847,7 @@ function openFilterPanel() {
 }
 function closeFilterPanel() {
   const panel = document.getElementById("filter-panel");
-  panel.style.maxHeight = "";
+  panel.style.left = panel.style.top = panel.style.maxHeight = "";
   panel.classList.remove("open");
   document.getElementById("filter-panel-backdrop").classList.remove("open");
   document.getElementById("filter-toggle").classList.remove("active");
