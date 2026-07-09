@@ -841,31 +841,24 @@ function initFilterPanelControls() {
   const panel       = document.getElementById("filter-panel");
   const detailClose = document.getElementById("detail-panel-close");
 
-  if (toggleBtn) toggleBtn.addEventListener("click", () =>
-    panel.classList.contains("open") ? closeFilterPanel() : openFilterPanel());
+  // stopPropagation keeps the click from reaching the backdrop and double-firing
+  if (toggleBtn) toggleBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    panel.classList.contains("open") ? closeFilterPanel() : openFilterPanel();
+  });
   if (closeBtn) closeBtn.addEventListener("click", closeFilterPanel);
 
-  // Backdrop is purely visual — pointer-events are handled at document level so
-  // iOS doesn't intercept taps meant for the panel (z-index hit-test unreliable on iOS).
-  // Tapping anywhere outside the panel closes it.
-  const onOutsideTap = e => {
-    // Exclude the toggle button itself — its own handler manages open/close.
-    // Without this exclusion the click bubbles to document and closes the panel
-    // that the button's handler just opened (same-event race).
-    if (panel && panel.classList.contains("open") &&
-        !panel.contains(e.target) &&
-        !(toggleBtn && toggleBtn.contains(e.target))) {
-      closeFilterPanel();
-    }
-  };
-  document.addEventListener("click",      onOutsideTap);
-  document.addEventListener("touchstart", onOutsideTap, { passive: true });
+  // Backdrop directly captures taps/clicks outside the panel and closes it.
+  // (pointer-events on the backdrop are driven by its .open class in CSS)
+  if (backdrop) {
+    backdrop.addEventListener("click",      closeFilterPanel);
+    backdrop.addEventListener("touchstart", closeFilterPanel, { passive: true });
+  }
 
-  // Stop events inside the panel from bubbling to the document close handler
+  // Stop events inside the panel from reaching the backdrop
   if (panel) {
     panel.addEventListener("click",      e => e.stopPropagation());
     panel.addEventListener("touchstart", e => e.stopPropagation(), { passive: true });
-    // Allow vertical scroll inside the body without Leaflet intercepting the drag
     const body = document.getElementById("filter-panel-body");
     if (body) {
       body.addEventListener("touchmove", e => e.stopPropagation(), { passive: true });
