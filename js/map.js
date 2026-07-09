@@ -431,7 +431,7 @@ function renderSampleMarkerLayers(countiesGeoJSON) {
   const powerGroup = L.layerGroup();
   (sampleLayers.power_infrastructure || []).forEach(d => {
     L.circleMarker([d.lat, d.lon], { radius: 5, color: "#0b0d14", weight: 0.8, fillColor: "#34d399", fillOpacity: 1 })
-      .bindTooltip(`${d.name} — ${SAMPLE_DISCLAIMER}`)
+      .bindTooltip(d.name)
       .on("click", () => setDetailFacility(d, "power"))
       .addTo(powerGroup);
   });
@@ -441,7 +441,7 @@ function renderSampleMarkerLayers(countiesGeoJSON) {
   const aiGroup = L.layerGroup();
   (sampleLayers.ai_campuses || []).forEach(d => {
     L.circleMarker([d.lat, d.lon], { radius: 6, color: "#0b0d14", weight: 1, fillColor: "#a78bfa", fillOpacity: 0.9 })
-      .bindTooltip(`${d.name} — ${SAMPLE_DISCLAIMER}`)
+      .bindTooltip(d.name)
       .on("click", e => { L.DomEvent.stopPropagation(e); setDetailFacility(d, "ai_campus"); })
       .addTo(aiGroup);
   });
@@ -452,7 +452,7 @@ function renderSampleMarkerLayers(countiesGeoJSON) {
   (sampleLayers.data_centers || []).filter(d => d.status === "planned").forEach(d => {
     const r = capacityRadius(d.capacity_mw);
     L.circleMarker([d.lat, d.lon], { radius: r, color: "#f59e0b", weight: 1.8, fillColor: "rgba(245,158,11,0.15)", fillOpacity: 1, dashArray: "3,2" })
-      .bindTooltip(`${d.name}${d.year_planned ? ` (target ${d.year_planned})` : ""} — ${SAMPLE_DISCLAIMER}`)
+      .bindTooltip(`${d.name}${d.year_planned ? ` (target ${d.year_planned})` : ""}`)
       .on("click", e => { L.DomEvent.stopPropagation(e); setDetailFacility(d, "dc_planned"); })
       .addTo(plannedGroup);
   });
@@ -463,7 +463,7 @@ function renderSampleMarkerLayers(countiesGeoJSON) {
   (sampleLayers.data_centers || []).filter(d => d.status === "existing").forEach(d => {
     const r = capacityRadius(d.capacity_mw);
     L.circleMarker([d.lat, d.lon], { radius: r, color: "#0b0d14", weight: 1, fillColor: "#5b8def", fillOpacity: 0.88 })
-      .bindTooltip(`${d.name} — ${SAMPLE_DISCLAIMER}`)
+      .bindTooltip(d.name)
       .on("click", e => { L.DomEvent.stopPropagation(e); setDetailFacility(d, "dc_existing"); })
       .addTo(existingGroup);
   });
@@ -1007,30 +1007,30 @@ function buildSampleInfraHtml(fips) {
 
   if (!facilities.length && !campuses.length && wLevel === undefined && !hasTax && !utility) return "";
 
-  let html = `<div class="divider"></div><div class="sample-banner"><span>⚠</span><span>${SAMPLE_DISCLAIMER}</span></div>`;
+  let html = `<div class="divider"></div>`;
 
   if (facilities.length) html += `
     <div class="detail-section">
-      <div class="detail-label">Infrastructure <span class="sample-tag">Sample</span></div>
+      <div class="detail-label">Infrastructure</div>
       <div class="detail-value">${facilities.map(f => `${escHtml(f.name)} — ${f.capacity_mw} MW (${f.status})`).join("<br>")}</div>
     </div>`;
 
   const operators = [...new Set([...facilities, ...campuses].map(f => f.operator))];
   if (operators.length) html += `
     <div class="detail-section">
-      <div class="detail-label">Major Operators <span class="sample-tag">Sample</span></div>
+      <div class="detail-label">Major Operators</div>
       <div class="type-chips">${operators.map(o => `<span class="type-chip">${escHtml(o)}</span>`).join("")}</div>
     </div>`;
 
   if (campuses.length) html += `
     <div class="detail-section">
-      <div class="detail-label">AI Campuses <span class="sample-tag">Sample</span></div>
+      <div class="detail-label">AI Campuses</div>
       <div class="detail-value">${campuses.map(c => escHtml(c.name)).join("<br>")}</div>
     </div>`;
 
   if (wLevel !== undefined || hasTax || utility) html += `
     <div class="detail-section">
-      <div class="detail-label">Site Factors <span class="sample-tag">Sample</span></div>
+      <div class="detail-label">Site Factors</div>
       <div class="detail-value">
         ${wLevel !== undefined ? `Water availability: ${WATER_STRESS_LABELS[wLevel]}<br>` : ""}
         ${utility ? `Utility territory: ${escHtml(utility.name)}<br>` : ""}
@@ -1204,7 +1204,6 @@ function setDetailFacility(facility, kind) {
   const county = mapData[facility.county_fips];
 
   document.getElementById("detail-body").innerHTML = `
-    <div class="sample-banner"><span>⚠</span><span>${SAMPLE_DISCLAIMER}</span></div>
     ${facility.operator  ? `<div class="detail-section"><div class="detail-label">Operator</div><div class="detail-value">${escHtml(facility.operator)}</div></div>` : ""}
     ${facility.capacity_mw ? `<div class="detail-section"><div class="detail-label">Capacity</div><div class="detail-value">${facility.capacity_mw.toLocaleString("en-US")} MW</div></div>` : ""}
     ${facility.status    ? `<div class="detail-section"><div class="detail-label">Status</div><div class="detail-value" style="text-transform:capitalize;">${facility.status}</div></div>` : ""}
