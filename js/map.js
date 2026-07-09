@@ -797,7 +797,6 @@ function renderFilterPanel() {
         sampleBannerShown = true;
       }
 
-      // Use <label> as the row so tapping anywhere on the row toggles the checkbox
       const row = document.createElement("label");
       row.className = "filter-row" + (def.noData ? " filter-row-disabled" : "");
       row.innerHTML = `
@@ -811,13 +810,30 @@ function renderFilterPanel() {
           <input type="checkbox" data-layer="${def.id}" ${layerState[def.id] ? "checked" : ""} ${def.noData ? "disabled" : ""} />
           <span class="toggle-slider"></span>
         </span>`;
+
+      if (!def.noData) {
+        const input = row.querySelector("input[type='checkbox']");
+        const handleToggle = () => {
+          const newState = !input.checked;
+          input.checked = newState;
+          setLayerVisible(def.id, newState);
+        };
+        // iOS Safari doesn't forward label taps to wrapped inputs when
+        // -webkit-user-select:none is set on the label. Use touchend directly.
+        row.addEventListener("touchend", e => {
+          handleToggle();
+          e.preventDefault(); // suppress the synthetic click that would double-fire
+        }, { passive: false });
+        // Desktop fallback: mouse click (not preceded by touch, so not prevented)
+        row.addEventListener("click", e => {
+          if (e.defaultPrevented) return;
+          handleToggle();
+        });
+      }
+
       body.appendChild(row);
     }
   }
-
-  body.querySelectorAll('input[type="checkbox"][data-layer]:not([disabled])').forEach(input => {
-    input.addEventListener("change", () => setLayerVisible(input.dataset.layer, input.checked));
-  });
 }
 
 /* ── Panel open/close ── */

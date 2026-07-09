@@ -907,6 +907,7 @@ html, body {
   border-radius: 6px;
   transition: background 0.12s;
   cursor: pointer;
+  touch-action: manipulation;
   /* label resets */
   font: inherit;
   color: inherit;
