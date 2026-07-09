@@ -872,9 +872,14 @@ function renderFilterPanel() {
           handleToggle();
           e.preventDefault(); // suppress the synthetic click that would double-fire
         }, { passive: false });
-        // Desktop fallback: mouse click (not preceded by touch, so not prevented)
+        // Desktop fallback: mouse click (not preceded by touch, so not prevented).
+        // e.preventDefault() stops the browser's native label→input click-forwarding,
+        // which would otherwise dispatch a second synthetic click on the wrapped
+        // <input>, flip input.checked back via pre-activation, then bubble to this
+        // handler again — causing handleToggle to fire twice and undo the first call.
         row.addEventListener("click", e => {
           if (e.defaultPrevented) return;
+          e.preventDefault();
           handleToggle();
         });
       }
@@ -942,6 +947,9 @@ function initFilterPanelControls() {
   // regardless of z-index when both elements share a position:fixed ancestor.
   const onOutsideTap = e => {
     if (panel && panel.classList.contains("open") && !panel.contains(e.target)) {
+      // Desktop: keep the panel open when the user clicks elsewhere on the map.
+      // Mobile (≤700px): allow outside tap to close because the panel covers the full screen.
+      if (window.innerWidth > 700) return;
       closeFilterPanel();
     }
   };
