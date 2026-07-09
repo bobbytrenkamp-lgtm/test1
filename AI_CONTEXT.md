@@ -1,5 +1,27 @@
 # AI Development Context — US Data Center & AI Restrictions Map
 
+## Mandatory Shared AI Memory Workflow
+
+This repository uses root-level shared memory files so multiple AI coding assistants can collaborate without losing context.
+
+Before coding, every AI assistant must read:
+1. `PROJECT_CONTEXT.md`
+2. `AI_CHANGELOG.md`
+3. `BUG_TRACKER.md`
+4. This `AI_CONTEXT.md` file
+
+While coding:
+1. Make targeted changes.
+2. Preserve existing working features.
+3. Do not rewrite large sections unnecessarily.
+4. Never remove existing functionality without explaining why.
+
+After coding:
+1. Commit code changes when the work is complete and commit access is available.
+2. Update `AI_CHANGELOG.md` with the session summary.
+3. Update `BUG_TRACKER.md` when fixing or discovering bugs.
+4. Leave clear instructions for the next AI assistant.
+
 ## Project Overview
 Interactive county-level choropleth map tracking data center and AI regulations across US counties. Built as a single-page static app (HTML/CSS/JS) deployed via GitHub Pages on `bobbytrenkamp-lgtm/test1`.
 
