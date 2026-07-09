@@ -805,11 +805,14 @@ html, body {
   flex-shrink: 0;
 }
 
-/* ── Filter Panel ── */
+/* ── Filter Panel ──
+   Both elements live at <body> level (outside #app and #map-container) so that
+   position:fixed is truly viewport-relative, avoiding the iOS Safari bug where
+   overflow:hidden ancestors clip the touch hit-area of fixed-position descendants. */
 #filter-panel-backdrop {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 14;
+  z-index: 499; /* below panel, above everything in #app */
   display: none;
   pointer-events: none; /* purely visual — close-on-outside-tap handled in JS */
 }
@@ -818,23 +821,15 @@ html, body {
   display: block;
 }
 
-/* On mobile the backdrop is fixed (overridden in media query) so needs higher z-index */
-@media (max-width: 700px) {
-  #filter-panel-backdrop { z-index: 38; }
-  #filter-panel { z-index: 39; }
-}
-
 #filter-panel {
-  position: absolute;
-  top: 12px;
-  bottom: 12px;
-  left: 20px;
+  position: fixed;
+  /* Desktop: left/top/maxHeight positioned over the map by openFilterPanel() */
   width: 270px;
   max-height: 540px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
-  z-index: 15;
+  z-index: 500; /* above backdrop and all #app content */
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1237,11 +1232,9 @@ html, body {
     max-height: calc(50dvh);
   }
 
-  /* Filter panel → bottom sheet on mobile
-     position:fixed so it escapes overflow:hidden on #map-container */
+  /* Filter panel → bottom sheet on mobile */
   #filter-panel-drag-handle { display: block; }
   #filter-panel {
-    position: fixed;
     top: auto;
     left: 0;
     right: 0;
@@ -1257,8 +1250,6 @@ html, body {
     box-shadow: 0 -8px 32px rgba(0,0,0,0.6);
   }
   #filter-panel.open { transform: translateY(0); }
-  /* Backdrop must also be fixed on mobile */
-  #filter-panel-backdrop { position: fixed; }
   #filter-panel-backdrop.open { background: rgba(0,0,0,0.5); }
   #filter-panel-body {
     padding-bottom: max(env(safe-area-inset-bottom), 20px);
