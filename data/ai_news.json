@@ -1,0 +1,137 @@
+{
+  "_note": "SAMPLE DATA — for demonstration only. Replace with verified real news before public launch.",
+  "articles": [
+    {
+      "id": "1",
+      "title": "Virginia Proposes New Zoning Rules for Data Centers in Northern Virginia",
+      "source": "Virginia Mercury",
+      "publishedAt": "2026-07-08",
+      "url": "#",
+      "summary": "Loudoun County, already home to the world's largest concentration of data centers, is considering stricter setback and noise ordinances that would effectively pause new construction in some residential-adjacent zones.",
+      "category": "State/Local Policy",
+      "tags": ["zoning", "data centers", "Virginia"],
+      "location": { "state": "VA", "county": "Loudoun" }
+    },
+    {
+      "id": "2",
+      "title": "Senate Bill Would Require AI Impact Assessments Before Federal Contracts",
+      "source": "The Hill",
+      "publishedAt": "2026-07-05",
+      "url": "#",
+      "summary": "A bipartisan group of senators introduced the AI Transparency in Procurement Act, requiring federal agencies to conduct algorithmic impact assessments before deploying AI systems on contracts exceeding $10 million.",
+      "category": "Federal Policy",
+      "tags": ["AI regulation", "federal", "procurement"],
+      "location": { "state": null, "county": null }
+    },
+    {
+      "id": "3",
+      "title": "Texas Power Grid Authority Warns of Summer Strain from AI Demand Surge",
+      "source": "Texas Tribune",
+      "publishedAt": "2026-07-03",
+      "url": "#",
+      "summary": "ERCOT projects that AI and cryptocurrency data centers could add 40 GW of load by 2030, raising reliability concerns for the isolated Texas grid during extreme heat events.",
+      "category": "Energy/Grid",
+      "tags": ["power grid", "energy", "ERCOT", "Texas"],
+      "location": { "state": "TX", "county": null }
+    },
+    {
+      "id": "4",
+      "title": "Microsoft Pauses Data Center Expansion in Oregon Amid Water Use Scrutiny",
+      "source": "Portland Business Journal",
+      "publishedAt": "2026-07-01",
+      "url": "#",
+      "summary": "Microsoft has temporarily halted permitting for a new campus in Umatilla County after environmental groups filed a challenge citing the facility's projected 1.6 million gallon-per-day water draw from the Columbia River watershed.",
+      "category": "Companies",
+      "tags": ["Microsoft", "water", "Oregon", "environment"],
+      "location": { "state": "OR", "county": "Umatilla" }
+    },
+    {
+      "id": "5",
+      "title": "California AB 2013 Advances: Mandatory AI Training Data Disclosure",
+      "source": "CalMatters",
+      "publishedAt": "2026-06-28",
+      "url": "#",
+      "summary": "California's Assembly Bill 2013 passed committee with amendments, requiring AI developers deploying models in California to publish summaries of training datasets used in high-risk AI systems.",
+      "category": "AI Regulation",
+      "tags": ["California", "AI regulation", "transparency"],
+      "location": { "state": "CA", "county": null }
+    },
+    {
+      "id": "6",
+      "title": "Google Announces 20 GW Nuclear Power Deal to Fuel AI Data Centers",
+      "source": "Reuters",
+      "publishedAt": "2026-06-25",
+      "url": "#",
+      "summary": "Alphabet's Google signed agreements with multiple nuclear energy providers to deliver carbon-free baseload power to its expanding network of AI inference and training facilities across the United States.",
+      "category": "Energy/Grid",
+      "tags": ["Google", "nuclear", "clean energy", "data centers"],
+      "location": { "state": null, "county": null }
+    },
+    {
+      "id": "7",
+      "title": "NVIDIA Faces Export Scrutiny as New Chip Controls Take Effect",
+      "source": "Wall Street Journal",
+      "publishedAt": "2026-06-22",
+      "url": "#",
+      "summary": "The Commerce Department's latest semiconductor export controls extend licensing requirements to additional H100-class GPU configurations, complicating NVIDIA's sales strategy in several markets while boosting domestic data center construction.",
+      "category": "Chips/Semiconductors",
+      "tags": ["NVIDIA", "export controls", "semiconductors"],
+      "location": { "state": null, "county": null }
+    },
+    {
+      "id": "8",
+      "title": "Hood River County Reaffirms Data Center Ban After Public Hearing",
+      "source": "The Oregonian",
+      "publishedAt": "2026-06-20",
+      "url": "#",
+      "summary": "Hood River County commissioners voted unanimously to maintain their 2012 ban on commercial data centers after a public hearing drew hundreds of residents opposed to loosening restrictions on agricultural and scenic land.",
+      "category": "State/Local Policy",
+      "tags": ["Hood River", "Oregon", "moratorium"],
+      "location": { "state": "OR", "county": "Hood River" }
+    },
+    {
+      "id": "9",
+      "title": "AWS Announces $15B Investment in South Carolina Cloud Region",
+      "source": "Bloomberg",
+      "publishedAt": "2026-06-18",
+      "url": "#",
+      "summary": "Amazon Web Services plans a new cloud availability zone anchored in Berkeley County, citing the state's favorable tax incentives, available land, and fiber corridor access along I-26.",
+      "category": "Cloud/Hyperscalers",
+      "tags": ["AWS", "Amazon", "South Carolina", "investment"],
+      "location": { "state": "SC", "county": "Berkeley" }
+    },
+    {
+      "id": "10",
+      "title": "FTC Opens Investigation Into AI Model Training Data Practices",
+      "source": "Politico",
+      "publishedAt": "2026-06-15",
+      "url": "#",
+      "summary": "The Federal Trade Commission launched a formal inquiry into whether leading AI developers are obtaining training data through means that may constitute unfair or deceptive practices, targeting six companies for initial document requests.",
+      "category": "AI Regulation",
+      "tags": ["FTC", "AI regulation", "data privacy", "federal"],
+      "location": { "state": null, "county": null }
+    },
+    {
+      "id": "11",
+      "title": "Iowa Expands Data Center Tax Exemption to Include AI Infrastructure",
+      "source": "Iowa Capital Dispatch",
+      "publishedAt": "2026-06-10",
+      "url": "#",
+      "summary": "Iowa's legislature passed an expansion of its existing sales tax exemption for data center equipment to include dedicated AI inference hardware, positioning the state as a lower-cost alternative to coastal markets.",
+      "category": "State/Local Policy",
+      "tags": ["Iowa", "tax incentives", "AI", "data centers"],
+      "location": { "state": "IA", "county": null }
+    },
+    {
+      "id": "12",
+      "title": "Washington State PUD Lifts Moratorium on Chelan County Data Centers",
+      "source": "Seattle Times",
+      "publishedAt": "2026-06-05",
+      "url": "#",
+      "summary": "Chelan County Public Utility District voted to end its two-year pause on new data center interconnection agreements after completing a grid upgrade study, though applicants will face a new tiered pricing structure tied to renewable capacity.",
+      "category": "Energy/Grid",
+      "tags": ["Washington", "PUD", "moratorium", "Chelan"],
+      "location": { "state": "WA", "county": "Chelan" }
+    }
+  ]
+}

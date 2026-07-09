@@ -16,6 +16,10 @@
   <!-- Header -->
   <header id="header">
     <h1>US <span>Data Center &amp; AI Restrictions</span> Map</h1>
+    <nav id="header-tabs" role="tablist">
+      <button class="header-tab active" data-tab="map" role="tab" aria-selected="true">Map</button>
+      <button class="header-tab" data-tab="news" role="tab" aria-selected="false">AI News</button>
+    </nav>
     <div id="last-updated">Loading data…</div>
   </header>
 
@@ -24,6 +28,12 @@
 
   <!-- Search -->
   <div id="search-bar">
+    <button id="adv-filter-toggle" aria-label="Open advanced filters" title="Advanced Filters">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+      </svg>
+      <span>Filters</span>
+    </button>
     <button id="filter-toggle" aria-label="Toggle map layers" aria-expanded="false">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <line x1="4" y1="6" x2="20" y2="6"/>
@@ -57,6 +67,9 @@
 
       <!-- Stats bar -->
       <div id="stats-bar"></div>
+
+      <!-- Filter status bar -->
+      <div id="filter-status" hidden></div>
 
       <!-- Legend -->
       <div id="legend"></div>
@@ -99,12 +112,71 @@
 
   </div><!-- /main -->
 
+  <!-- AI News view -->
+  <div id="news-view" hidden>
+    <div id="news-toolbar">
+      <input id="news-search" type="text" placeholder="Search articles…" autocomplete="off" />
+      <select id="news-cat-filter">
+        <option value="">All Categories</option>
+        <option value="AI Regulation">AI Regulation</option>
+        <option value="Data Centers">Data Centers</option>
+        <option value="Energy/Grid">Energy/Grid</option>
+        <option value="Federal Policy">Federal Policy</option>
+        <option value="State/Local Policy">State/Local Policy</option>
+        <option value="Companies">Companies</option>
+        <option value="Chips/Semiconductors">Chips/Semiconductors</option>
+        <option value="Cloud/Hyperscalers">Cloud/Hyperscalers</option>
+      </select>
+      <select id="news-state-filter">
+        <option value="">All States</option>
+      </select>
+    </div>
+    <div id="news-sample-banner">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      Sample data — for demonstration only. Replace <code>data/ai_news.json</code> with verified real news before launch.
+    </div>
+    <div id="news-grid"></div>
+    <div id="news-empty" hidden>No articles match your filters.</div>
+  </div>
+
 </div><!-- /app -->
 
 <!-- Filter / layers panel — at body level so position:fixed is truly viewport-relative,
      avoiding the iOS touch hit-area clipping bug that occurs when position:fixed is
      nested inside overflow:hidden or position:fixed ancestors. -->
 <div id="filter-panel-backdrop"></div>
+<div id="adv-filter-backdrop"></div>
+<aside id="adv-filter-panel">
+  <div id="adv-filter-header">
+    <h3>Advanced Filters</h3>
+    <button id="adv-filter-clear" class="adv-clear-btn" hidden>Clear all</button>
+    <button id="adv-filter-close" aria-label="Close filters">&times;</button>
+  </div>
+  <div id="adv-filter-body">
+    <!-- Restriction Severity section -->
+    <div class="adv-section">
+      <div class="adv-section-label">Restriction Severity</div>
+      <div id="adv-severity-chips" class="adv-chip-row"></div>
+    </div>
+    <!-- State section -->
+    <div class="adv-section">
+      <div class="adv-section-label">State</div>
+      <select id="adv-state-select" class="adv-select">
+        <option value="">All States</option>
+      </select>
+    </div>
+    <!-- Policy Scope section -->
+    <div class="adv-section">
+      <div class="adv-section-label">Policy Scope</div>
+      <div id="adv-scope-toggles" class="adv-chip-row"></div>
+    </div>
+    <!-- Facilities & Infrastructure — synced with layer panel -->
+    <div class="adv-section">
+      <div class="adv-section-label">Facilities &amp; Infrastructure</div>
+      <div id="adv-facilities-list" class="adv-facilities"></div>
+    </div>
+  </div>
+</aside>
 <aside id="filter-panel">
   <div id="filter-panel-drag-handle"></div>
   <div id="filter-panel-header">
