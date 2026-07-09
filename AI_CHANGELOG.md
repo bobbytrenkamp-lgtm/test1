@@ -107,3 +107,39 @@ Next Recommended Actions:
 - Test the layer panel on an actual mobile device to confirm outside-tap-to-close still works after the 700px guard was added.
 - Add more counties and states to `data/map_data.json` and `data/state_regulations.json` as policy data is verified.
 - Replace `data/sample_layers.json` facility data with verified real data before public launch.
+
+---
+
+Date: 2026-07-09
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
+- `index.html`
+- `css/style.css`
+- `js/map.js`
+
+Changes Made:
+- Added 6-dot waffle drag handle (`#filter-panel-drag-icon`, class `fp-drag-handle`) to Map Layers panel header for drag-to-move on desktop.
+- Implemented pointer-event drag for Map Layers panel on desktop (`window.innerWidth > 700` guard). Saved position in `fpSavedPos`; restored on next open. Panel animates close from its current (dragged) position.
+- Added bottom-right resize grip (`#filter-panel-resize-handle`, class `panel-resize-handle`) to Map Layers panel. Resize saves to `fpSavedSize` (width + maxHeight) and is restored on next open.
+- Replaced Legend 3-state cycle (full → mini → hidden) with 2-state (visible → collapsed to restore button). `legendState` replaced with `legendOpen: boolean`. Legend now has a single × close button in its toolbar.
+- Restructured `#legend` from a single-element scroll box to a flex column: `.legend-toolbar` (flex-shrink:0) + `.legend-body` (flex:1, scrollable) + `.panel-resize-handle` (absolutely positioned at bottom-right). This lets the resize grip always sit at the visual corner regardless of content scroll.
+- Added pointer-event drag and resize for Legend panel on desktop. Position saved to `lgSavedPos`, size to `lgSavedSize`. Drag uses container-relative coordinates (legend is `position:absolute` inside `#map-container`).
+- All drag/resize handlers add `body.is-dragging-floating-panel` / `body.is-resizing-floating-panel` during interaction to force cursor and suppress text selection globally.
+- Drag and resize handles hidden on mobile via `display:none` default + `@media (min-width:701px)` override; all JS handlers guard with `window.innerWidth <= 700`.
+
+Reasoning:
+- Draggable panels let desktop users position controls without covering map features they care about.
+- Resizable panels allow users to see more legend entries or more layer toggles depending on screen size.
+- 2-state Legend is simpler UX: one click hides, one click restores. The 3-state mini mode added confusion with two separate buttons.
+- Moving all legend items into `.legend-body` (separate scroll container inside the flex column) was required so the resize handle could be a non-scrolling sibling at the bottom corner of the legend box.
+- `fpSavedPos`/`fpSavedSize`/`lgSavedPos`/`lgSavedSize` persist across panel open/close within the session so the user's layout is respected.
+
+Problems Found:
+- No regressions to existing functionality observed. Mobile bottom-sheet behavior, iOS Safari toggle fix, and drag-guard county hover/click suppression are all preserved.
+
+Next Recommended Actions:
+- Test drag and resize on actual desktop browser (Chrome, Safari, Firefox).
+- Test that mobile shows no drag handle or resize grip and that panels still function as bottom sheets.
+- Add more counties and states to `data/map_data.json` and `data/state_regulations.json` as policy data is verified.
+- Replace `data/sample_layers.json` facility data with verified real data before public launch.
