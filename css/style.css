@@ -811,11 +811,11 @@ html, body {
   inset: 0;
   z-index: 14;
   display: none;
-  cursor: default;
+  pointer-events: none; /* purely visual — close-on-outside-tap handled in JS */
 }
 
 #filter-panel-backdrop.open {
-  display: block; /* pointer-events auto by default — backdrop captures outside taps */
+  display: block;
 }
 
 /* On mobile the backdrop is fixed (overridden in media query) so needs higher z-index */

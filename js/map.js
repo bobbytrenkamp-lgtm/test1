@@ -846,25 +846,34 @@ function closeFilterPanel() {
 function initFilterPanelControls() {
   const toggleBtn   = document.getElementById("filter-toggle");
   const closeBtn    = document.getElementById("filter-panel-close");
-  const backdrop    = document.getElementById("filter-panel-backdrop");
   const panel       = document.getElementById("filter-panel");
   const detailClose = document.getElementById("detail-panel-close");
 
-  // stopPropagation keeps the click from reaching the backdrop and double-firing
-  if (toggleBtn) toggleBtn.addEventListener("click", e => {
-    e.stopPropagation();
-    panel.classList.contains("open") ? closeFilterPanel() : openFilterPanel();
-  });
+  // Stop propagation on BOTH touchstart AND click so neither reaches the
+  // document-level outside-tap handler (touchstart fires before click on mobile,
+  // causing an open-then-immediately-close race if not stopped).
+  if (toggleBtn) {
+    toggleBtn.addEventListener("touchstart", e => e.stopPropagation(), { passive: true });
+    toggleBtn.addEventListener("click", e => {
+      e.stopPropagation();
+      panel.classList.contains("open") ? closeFilterPanel() : openFilterPanel();
+    });
+  }
   if (closeBtn) closeBtn.addEventListener("click", closeFilterPanel);
 
-  // Backdrop directly captures taps/clicks outside the panel and closes it.
-  // (pointer-events on the backdrop are driven by its .open class in CSS)
-  if (backdrop) {
-    backdrop.addEventListener("click",      closeFilterPanel);
-    backdrop.addEventListener("touchstart", closeFilterPanel, { passive: true });
-  }
+  // Backdrop is pointer-events:none (CSS) — purely visual.
+  // Close-on-outside-tap is handled here at document level to avoid the iOS
+  // position:fixed hit-testing bug where the backdrop intercepts all touches
+  // regardless of z-index when both elements share a position:fixed ancestor.
+  const onOutsideTap = e => {
+    if (panel && panel.classList.contains("open") && !panel.contains(e.target)) {
+      closeFilterPanel();
+    }
+  };
+  document.addEventListener("click",      onOutsideTap);
+  document.addEventListener("touchstart", onOutsideTap, { passive: true });
 
-  // Stop events inside the panel from reaching the backdrop
+  // Stop events inside the panel from bubbling to the document close handler.
   if (panel) {
     panel.addEventListener("click",      e => e.stopPropagation());
     panel.addEventListener("touchstart", e => e.stopPropagation(), { passive: true });
