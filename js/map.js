@@ -97,19 +97,19 @@ const LAYER_DEFS = [
   { id: "restrictions",  label: "County Policy",              group: "Policy Scope",   color: "#dc2626", sample: false },
   { id: "state_policy",  label: "State Policy",               group: "Policy Scope",   color: "#8b5cf6", sample: false },
   { id: "city_policy",   label: "City Policy",                group: "Policy Scope",   color: "#3b82f6", sample: false, noData: true },
-  { id: "dc_existing",   label: "Existing Data Centers",      group: "Facilities",     color: "#5b8def", sample: true  },
-  { id: "dc_planned",    label: "Planned Data Centers",       group: "Facilities",     color: "#f59e0b", sample: true  },
-  { id: "ai_campus",     label: "AI Campuses",                group: "Facilities",     color: "#a78bfa", sample: true  },
-  { id: "power",         label: "Power Infrastructure",       group: "Infrastructure", color: "#34d399", sample: true  },
+  { id: "dc_existing",   label: "Existing Data Centers",      group: "Facilities",     color: "#5b8def", sample: false },
+  { id: "dc_planned",    label: "Planned Data Centers",       group: "Facilities",     color: "#f59e0b", sample: false },
+  { id: "ai_campus",     label: "AI Campuses",                group: "Facilities",     color: "#a78bfa", sample: false },
+  { id: "power",         label: "Power Infrastructure",       group: "Infrastructure", color: "#34d399", sample: false },
   { id: "transmission",  label: "Transmission Lines",         group: "Infrastructure", color: "#fbbf24", sample: true  },
   { id: "fiber",         label: "Fiber Network",              group: "Infrastructure", color: "#60a5fa", sample: true  },
-  { id: "water",         label: "Water Availability",         group: "Land & Policy",  color: "#1d4ed8", sample: true  },
-  { id: "utility",       label: "Utility Territories",        group: "Land & Policy",  color: "#f472b6", sample: true  },
-  { id: "tax",           label: "Tax Incentive Areas",        group: "Land & Policy",  color: "#fbbf24", sample: true  },
+  { id: "water",         label: "Water Availability",         group: "Land & Policy",  color: "#1d4ed8", sample: false },
+  { id: "utility",       label: "Utility Territories",        group: "Land & Policy",  color: "#f472b6", sample: false },
+  { id: "tax",           label: "Tax Incentive Areas",        group: "Land & Policy",  color: "#fbbf24", sample: false },
   { id: "annotations",  label: "Best & Worst Markets",       group: "Highlights",     color: "#e4e6f0", sample: false },
 ];
 
-const SAMPLE_DISCLAIMER = "Sample data — for UI demonstration only. Replace with verified source before public release.";
+const SAMPLE_DISCLAIMER = "Approximate route — exact alignment unverified.";
 
 /* ── Global state ── */
 let leafletMap      = null;
@@ -845,18 +845,21 @@ function initFilterPanelControls() {
     panel.classList.contains("open") ? closeFilterPanel() : openFilterPanel());
   if (closeBtn) closeBtn.addEventListener("click", closeFilterPanel);
 
-  // Only close when the backdrop itself is tapped — not when a child tap bubbles up
-  if (backdrop) backdrop.addEventListener("click", e => {
-    if (e.target === backdrop) closeFilterPanel();
-  });
+  // Backdrop is purely visual — pointer-events are handled at document level so
+  // iOS doesn't intercept taps meant for the panel (z-index hit-test unreliable on iOS).
+  // Tapping anywhere outside the panel closes it.
+  const onOutsideTap = e => {
+    if (panel && panel.classList.contains("open") && !panel.contains(e.target)) {
+      closeFilterPanel();
+    }
+  };
+  document.addEventListener("click",      onOutsideTap);
+  document.addEventListener("touchstart", onOutsideTap, { passive: true });
 
-  // Prevent clicks inside the panel from closing it via the backdrop click handler
+  // Stop events inside the panel from bubbling to the document close handler
   if (panel) {
-    panel.addEventListener("click", e => e.stopPropagation());
-    // On desktop (where the panel is position:absolute inside the map), stop touch
-    // events from reaching Leaflet. On mobile the panel is position:fixed and already
-    // outside the map hit area, so this is a no-op there.
-    panel.addEventListener("pointerdown", e => e.stopPropagation());
+    panel.addEventListener("click",      e => e.stopPropagation());
+    panel.addEventListener("touchstart", e => e.stopPropagation(), { passive: true });
     // Allow vertical scroll inside the body without Leaflet intercepting the drag
     const body = document.getElementById("filter-panel-body");
     if (body) {
