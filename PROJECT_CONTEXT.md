@@ -76,3 +76,20 @@ The long-term vision is to become a reliable nationwide intelligence tool for da
 - Update `AI_CHANGELOG.md` after every coding session.
 - Update `BUG_TRACKER.md` when fixing or discovering bugs.
 - Leave clear instructions for the next AI assistant.
+
+# Existing Documentation Inventory
+
+These files existed before the current documentation-preservation pass and must be treated as project history:
+
+- `AI_CONTEXT.md`: Detailed AI handoff notes, architecture, feature history, design decisions, known limitations, and session log. This is the richest historical record and must be preserved.
+- `AI_CHANGELOG.md`: Shared AI session log introduced for cross-assistant collaboration. New AI work should append entries rather than replacing prior entries.
+- `BUG_TRACKER.md`: Shared active/fixed/regression bug tracker. Existing "Do Not Reintroduce" items should be preserved unless they are intentionally superseded with explanation.
+- `PROJECT_CONTEXT.md`: Permanent source of truth for project direction, requirements, and assistant rules.
+- `README.md`: Public-facing project README. Some implementation details in this file may lag behind `AI_CONTEXT.md`; when conflicts exist, mark outdated sections clearly instead of deleting useful history.
+
+Preservation rules:
+
+- Do not restart or replace AI documentation when improving it.
+- Preserve previous decisions, completed work, known bugs, limitations, and design choices.
+- Reorganize only when it improves readability and keeps the historical meaning intact.
+- Mark outdated information explicitly and point to the current source of truth.

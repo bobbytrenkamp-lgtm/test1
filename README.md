@@ -2,6 +2,10 @@
 
 An interactive choropleth map tracking data center construction restrictions, AI regulations, and high-intensity computing moratoriums at the US county level.
 
+## Documentation Status
+
+Some sections of this README preserve earlier project setup notes and may reference the original D3 implementation. The current AI-maintained source of truth is `PROJECT_CONTEXT.md`, with detailed technical history in `AI_CONTEXT.md`. When this README conflicts with those files, treat the README wording as historical until it is intentionally refreshed.
+
 ## Live Site
 
 Hosted on GitHub Pages — enable Pages on the `main` branch to activate.  
