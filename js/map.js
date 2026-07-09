@@ -822,13 +822,22 @@ function renderFilterPanel() {
 
 /* ── Panel open/close ── */
 function openFilterPanel() {
-  document.getElementById("filter-panel").classList.add("open");
+  const panel = document.getElementById("filter-panel");
+  // On mobile, cap the panel height to the map container so it never
+  // slides up over the search bar / stats area
+  if (window.innerWidth <= 700) {
+    const mapContainer = document.getElementById("map-container");
+    if (mapContainer) panel.style.maxHeight = mapContainer.getBoundingClientRect().height + "px";
+  }
+  panel.classList.add("open");
   document.getElementById("filter-panel-backdrop").classList.add("open");
   document.getElementById("filter-toggle").classList.add("active");
   document.getElementById("filter-toggle").setAttribute("aria-expanded", "true");
 }
 function closeFilterPanel() {
-  document.getElementById("filter-panel").classList.remove("open");
+  const panel = document.getElementById("filter-panel");
+  panel.style.maxHeight = "";
+  panel.classList.remove("open");
   document.getElementById("filter-panel-backdrop").classList.remove("open");
   document.getElementById("filter-toggle").classList.remove("active");
   document.getElementById("filter-toggle").setAttribute("aria-expanded", "false");
