@@ -142,9 +142,16 @@ const layerState = {
 let mapData         = {};
 let sampleLayers    = null;
 let stateRegData    = {};
-let legendState     = 0; // 0=full, 1=mini, 2=hidden
+let legendOpen      = true;  // true=visible, false=collapsed to restore button
 let selectedFips    = null;
 let cityLabelsLayer = null;
+
+/* ── Floating-panel saved state ──
+   Preserved across open/close so the panel re-opens where the user left it. */
+let fpSavedPos  = null;  // {left, top} for Map Layers panel
+let fpSavedSize = null;  // {width, maxHeight} for Map Layers panel
+let lgSavedPos  = null;  // {left, top} for Legend
+let lgSavedSize = null;  // {width, height} for Legend
 
 /* ── Drag-guard state ──
    Prevents county hover/selection from firing while the user pans the map.
@@ -687,15 +694,27 @@ function legendSwatchHtml(entry) {
 }
 
 function renderLegend() {
-  const legend = document.getElementById("legend");
+  const legend  = document.getElementById("legend");
+  const restore = document.getElementById("legend-restore");
+
+  if (!legendOpen) {
+    legend.style.display = "none";
+    if (restore) restore.classList.add("visible");
+    return;
+  }
+
   legend.innerHTML = "";
+  legend.style.display = "";
+  if (restore) restore.classList.remove("visible");
 
-  const isMini    = legendState === 1;
-  const expandDsp = isMini ? "flex" : "none";
-  const minIcon   = isMini
-    ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
-    : `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
+  // Apply user-saved size when legend has been resized
+  if (lgSavedSize) {
+    legend.style.width  = lgSavedSize.width;
+    legend.style.height = lgSavedSize.height;
+    legend.style.maxHeight = "none";
+  }
 
+  // Toolbar: drag handle + title + close button
   const toolbar = document.createElement("div");
   toolbar.className = "legend-toolbar";
   toolbar.innerHTML = `
@@ -707,19 +726,18 @@ function renderLegend() {
       </svg>
     </span>
     <span class="legend-toolbar-title">Legend</span>
-    <button class="legend-expand-btn" style="display:${expandDsp}" title="Expand legend">
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-    </button>
-    <button class="legend-minimize-btn" title="${isMini ? "Hide legend" : "Minimize legend"}">${minIcon}</button>
+    <button class="legend-close-btn" title="Hide legend" aria-label="Hide legend">&times;</button>
   `;
   legend.appendChild(toolbar);
-  legend.classList.toggle("legend-mini",   isMini);
-  legend.classList.toggle("legend-hidden", legendState === 2);
+
+  // Scrollable body containing all legend items
+  const legendBody = document.createElement("div");
+  legendBody.className = "legend-body";
 
   if (layerState.restrictions) {
     const h = document.createElement("h3");
     h.textContent = "Restriction Severity";
-    legend.appendChild(h);
+    legendBody.appendChild(h);
 
     const items = [
       { key: "ban",      sub: "Outright prohibition" },
@@ -738,19 +756,18 @@ function renderLegend() {
           <div class="legend-label-main">${SEVERITY[item.key].label}</div>
           <div class="legend-label-sub">${item.sub}</div>
         </div>`;
-      legend.appendChild(el);
+      legendBody.appendChild(el);
     }
 
     const div = document.createElement("div");
     div.style.cssText = "border-top:1px solid #2e3352; margin:8px 0;";
-    legend.appendChild(div);
+    legendBody.appendChild(div);
   }
 
-  // Policy scope section
   if (layerState.restrictions || layerState.state_policy) {
     const sh = document.createElement("h3");
     sh.textContent = "Policy Scope";
-    legend.appendChild(sh);
+    legendBody.appendChild(sh);
 
     const scopeItems = [
       { color: "#8b5cf6", opacity: 0.32, label: "Statewide",  sub: "State-level overlay" },
@@ -766,36 +783,41 @@ function renderLegend() {
           <div class="legend-label-main">${s.label}</div>
           <div class="legend-label-sub">${s.sub}</div>
         </div>`;
-      legend.appendChild(el);
+      legendBody.appendChild(el);
     }
     const sd = document.createElement("div");
     sd.style.cssText = "border-top:1px solid #2e3352; margin:8px 0;";
-    legend.appendChild(sd);
+    legendBody.appendChild(sd);
   }
 
   const activeOverlays = Object.keys(SAMPLE_LEGEND_ENTRIES).filter(k => layerState[k]);
   if (activeOverlays.length) {
     const h = document.createElement("h3");
-    h.innerHTML = `Active Layers`;
-    legend.appendChild(h);
+    h.textContent = "Active Layers";
+    legendBody.appendChild(h);
     for (const key of activeOverlays) {
       const entry = SAMPLE_LEGEND_ENTRIES[key];
       const el    = document.createElement("div");
       el.className = "legend-item";
       el.innerHTML = `${legendSwatchHtml(entry)}<div class="legend-label-main">${entry.label}</div>`;
-      legend.appendChild(el);
+      legendBody.appendChild(el);
     }
   }
 
-  if (!legend.children.length || (legend.children.length === 1 && legend.querySelector(".legend-toolbar"))) {
+  if (!legendBody.children.length) {
     const empty = document.createElement("div");
     empty.className = "legend-label-sub";
     empty.textContent = "No layers active.";
-    legend.appendChild(empty);
+    legendBody.appendChild(empty);
   }
 
-  const expandBtn = legend.querySelector(".legend-expand-btn");
-  if (expandBtn) expandBtn.style.display = legendState === 1 ? "flex" : "none";
+  legend.appendChild(legendBody);
+
+  // Resize handle (visible on desktop via CSS)
+  const resizeHandle = document.createElement("div");
+  resizeHandle.className = "panel-resize-handle";
+  resizeHandle.id = "legend-resize-handle";
+  legend.appendChild(resizeHandle);
 }
 
 /* ── Filter Panel ── */
@@ -896,16 +918,22 @@ function openFilterPanel() {
   if (mc) {
     const rect = mc.getBoundingClientRect();
     if (window.innerWidth > 700) {
-      // Desktop: float the panel over the map at the same position it had
-      // when it was absolutely-positioned inside #map-container.
-      panel.style.left      = (rect.left + 20) + "px";
-      panel.style.top       = (rect.top  + 12) + "px";
-      panel.style.maxHeight = (rect.height - 24) + "px";
+      // Restore user-dragged position or default to top-left of map area
+      panel.style.left = fpSavedPos ? fpSavedPos.left : (rect.left + 20) + "px";
+      panel.style.top  = fpSavedPos ? fpSavedPos.top  : (rect.top  + 12) + "px";
+      if (fpSavedSize) {
+        panel.style.width     = fpSavedSize.width;
+        panel.style.maxHeight = fpSavedSize.maxHeight;
+        panel.style.height    = "";
+      } else {
+        panel.style.width     = "";
+        panel.style.height    = "";
+        panel.style.maxHeight = (rect.height - 24) + "px";
+      }
     } else {
       // Mobile: bottom sheet — CSS handles left/right/bottom; just cap height
-      // so the panel never slides up over the search bar.
-      panel.style.left      = "";
-      panel.style.top       = "";
+      panel.style.left = panel.style.top = "";
+      panel.style.width = panel.style.height = "";
       panel.style.maxHeight = rect.height + "px";
     }
   }
@@ -916,7 +944,9 @@ function openFilterPanel() {
 }
 function closeFilterPanel() {
   const panel = document.getElementById("filter-panel");
-  panel.style.left = panel.style.top = panel.style.maxHeight = "";
+  // Position/size styles are left in place so the close animation plays from
+  // the panel's current location. openFilterPanel() always re-applies them on
+  // next open (from fpSavedPos/fpSavedSize or defaults).
   panel.classList.remove("open");
   document.getElementById("filter-panel-backdrop").classList.remove("open");
   document.getElementById("filter-toggle").classList.remove("active");
@@ -967,6 +997,80 @@ function initFilterPanelControls() {
   }
 
   if (detailClose) detailClose.addEventListener("click", closeMobileSheet);
+
+  // ── Map Layers panel drag (desktop only) ──
+  let fpDragging = false, fpDragStartX, fpDragStartY, fpDragStartLeft, fpDragStartTop;
+
+  panel.addEventListener("pointerdown", e => {
+    if (window.innerWidth <= 700) return;
+    if (!e.target.closest("#filter-panel-drag-icon")) return;
+    e.preventDefault();
+    e.stopPropagation();
+    fpDragging = true;
+    const pr = panel.getBoundingClientRect();
+    fpDragStartX    = e.clientX;
+    fpDragStartY    = e.clientY;
+    fpDragStartLeft = pr.left;
+    fpDragStartTop  = pr.top;
+    panel.setPointerCapture(e.pointerId);
+    document.body.classList.add("is-dragging-floating-panel");
+  });
+
+  panel.addEventListener("pointermove", e => {
+    if (!fpDragging) return;
+    const pr = panel.getBoundingClientRect();
+    const nl = Math.max(0, Math.min(fpDragStartLeft + (e.clientX - fpDragStartX), window.innerWidth  - pr.width));
+    const nt = Math.max(0, Math.min(fpDragStartTop  + (e.clientY - fpDragStartY), window.innerHeight - pr.height));
+    panel.style.left = nl + "px";
+    panel.style.top  = nt + "px";
+    fpSavedPos = { left: panel.style.left, top: panel.style.top };
+  });
+
+  const endFpDrag = () => {
+    if (!fpDragging) return;
+    fpDragging = false;
+    document.body.classList.remove("is-dragging-floating-panel");
+  };
+  panel.addEventListener("pointerup",     endFpDrag);
+  panel.addEventListener("pointercancel", endFpDrag);
+
+  // ── Map Layers panel resize (desktop only) ──
+  let fpResizing = false, fpResizeStartX, fpResizeStartY, fpResizeStartW, fpResizeStartH;
+
+  panel.addEventListener("pointerdown", e => {
+    if (window.innerWidth <= 700) return;
+    if (!e.target.closest("#filter-panel-resize-handle")) return;
+    e.preventDefault();
+    e.stopPropagation();
+    fpResizing = true;
+    const pr = panel.getBoundingClientRect();
+    fpResizeStartX = e.clientX;
+    fpResizeStartY = e.clientY;
+    fpResizeStartW = pr.width;
+    fpResizeStartH = pr.height;
+    panel.setPointerCapture(e.pointerId);
+    document.body.classList.add("is-resizing-floating-panel");
+  });
+
+  panel.addEventListener("pointermove", e => {
+    if (!fpResizing) return;
+    const pr = panel.getBoundingClientRect();
+    const minW = 220, minH = 200;
+    const nw = Math.max(minW, Math.min(fpResizeStartW + (e.clientX - fpResizeStartX), window.innerWidth  - pr.left));
+    const nh = Math.max(minH, Math.min(fpResizeStartH + (e.clientY - fpResizeStartY), window.innerHeight - pr.top));
+    panel.style.width     = nw + "px";
+    panel.style.maxHeight = nh + "px";
+    panel.style.height    = "";
+    fpSavedSize = { width: panel.style.width, maxHeight: panel.style.maxHeight };
+  });
+
+  const endFpResize = () => {
+    if (!fpResizing) return;
+    fpResizing = false;
+    document.body.classList.remove("is-resizing-floating-panel");
+  };
+  panel.addEventListener("pointerup",     endFpResize);
+  panel.addEventListener("pointercancel", endFpResize);
 }
 
 function initTopToggle() {
@@ -974,65 +1078,116 @@ function initTopToggle() {
   if (btn) btn.addEventListener("click", () => document.getElementById("app").classList.toggle("top-hidden"));
 }
 
-/* ── Legend controls (drag + minimize) ── */
+/* ── Legend controls (2-state open/close + drag + resize) ── */
 function initLegendControls() {
   const legend  = document.getElementById("legend");
   const restore = document.getElementById("legend-restore");
   if (!legend) return;
 
-  function applyLegendState() {
-    legend.classList.toggle("legend-mini",   legendState === 1);
-    legend.classList.toggle("legend-hidden", legendState === 2);
+  const container = document.getElementById("map-container");
+
+  function closeLegend() {
+    legendOpen = false;
+    legend.style.display = "none";
     if (restore) {
-      restore.classList.toggle("visible", legendState === 2);
+      restore.classList.add("visible");
       restore.style.left = legend.style.left || "";
       restore.style.top  = legend.style.top  || "";
     }
-    const expandBtn = legend.querySelector(".legend-expand-btn");
-    if (expandBtn) expandBtn.style.display = legendState === 1 ? "flex" : "none";
-    const minBtn = legend.querySelector(".legend-minimize-btn");
-    if (minBtn) {
-      const isMin = legendState === 1;
-      minBtn.title = isMin ? "Hide legend" : "Minimize legend";
-      minBtn.innerHTML = isMin
-        ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
-        : `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
-    }
   }
 
+  function showLegend() {
+    legendOpen = true;
+    if (lgSavedPos)  { legend.style.left = lgSavedPos.left; legend.style.top = lgSavedPos.top; }
+    if (restore) restore.classList.remove("visible");
+    renderLegend(); // rebuild with current layer state and apply lgSavedSize
+  }
+
+  // Close/restore button events — delegated since toolbar is rebuilt by renderLegend()
   legend.addEventListener("click", e => {
-    if (e.target.closest(".legend-expand-btn"))  { legendState = 0; applyLegendState(); }
-    else if (e.target.closest(".legend-minimize-btn")) { legendState = (legendState + 1) % 3; applyLegendState(); }
+    if (e.target.closest(".legend-close-btn")) closeLegend();
   });
+  if (restore) restore.addEventListener("click", showLegend);
 
-  if (restore) restore.addEventListener("click", () => { legendState = 0; applyLegendState(); });
-
-  const container = document.getElementById("map-container");
-  let dragging = false, startPX, startPY, startLeft, startTop;
+  // ── Legend drag (desktop only) ──
+  let lgDragging = false, lgDragStartX, lgDragStartY, lgDragStartLeft, lgDragStartTop;
 
   legend.addEventListener("pointerdown", e => {
+    if (window.innerWidth <= 700) return;
     if (!e.target.closest(".legend-drag-handle")) return;
     e.preventDefault();
-    dragging  = true;
-    const lr  = legend.getBoundingClientRect();
-    const cr  = container.getBoundingClientRect();
-    startPX   = e.clientX; startPY = e.clientY;
-    startLeft = lr.left - cr.left; startTop = lr.top - cr.top;
+    e.stopPropagation();
+    lgDragging = true;
+    const lr = legend.getBoundingClientRect();
+    const cr = container.getBoundingClientRect();
+    lgDragStartX    = e.clientX;
+    lgDragStartY    = e.clientY;
+    lgDragStartLeft = lr.left - cr.left;
+    lgDragStartTop  = lr.top  - cr.top;
     legend.setPointerCapture(e.pointerId);
-    legend.style.cursor = "grabbing";
+    document.body.classList.add("is-dragging-floating-panel");
   });
+
   legend.addEventListener("pointermove", e => {
-    if (!dragging) return;
+    if (!lgDragging) return;
     const cr = container.getBoundingClientRect();
     const lr = legend.getBoundingClientRect();
-    let nl = Math.max(0, Math.min(startLeft + (e.clientX - startPX), cr.width  - lr.width));
-    let nt = Math.max(0, Math.min(startTop  + (e.clientY - startPY), cr.height - lr.height));
+    const nl = Math.max(0, Math.min(lgDragStartLeft + (e.clientX - lgDragStartX), cr.width  - lr.width));
+    const nt = Math.max(0, Math.min(lgDragStartTop  + (e.clientY - lgDragStartY), cr.height - lr.height));
     legend.style.left = nl + "px";
     legend.style.top  = nt + "px";
+    lgSavedPos = { left: legend.style.left, top: legend.style.top };
     if (restore) { restore.style.left = legend.style.left; restore.style.top = legend.style.top; }
   });
-  legend.addEventListener("pointerup",     () => { dragging = false; legend.style.cursor = ""; });
-  legend.addEventListener("pointercancel", () => { dragging = false; legend.style.cursor = ""; });
+
+  const endLgDrag = () => {
+    if (!lgDragging) return;
+    lgDragging = false;
+    document.body.classList.remove("is-dragging-floating-panel");
+  };
+  legend.addEventListener("pointerup",     endLgDrag);
+  legend.addEventListener("pointercancel", endLgDrag);
+
+  // ── Legend resize (desktop only) ──
+  let lgResizing = false, lgResizeStartX, lgResizeStartY, lgResizeStartW, lgResizeStartH;
+
+  legend.addEventListener("pointerdown", e => {
+    if (window.innerWidth <= 700) return;
+    if (!e.target.closest(".panel-resize-handle")) return;
+    e.preventDefault();
+    e.stopPropagation();
+    lgResizing = true;
+    const lr = legend.getBoundingClientRect();
+    lgResizeStartX = e.clientX;
+    lgResizeStartY = e.clientY;
+    lgResizeStartW = lr.width;
+    lgResizeStartH = lr.height;
+    legend.setPointerCapture(e.pointerId);
+    document.body.classList.add("is-resizing-floating-panel");
+  });
+
+  legend.addEventListener("pointermove", e => {
+    if (!lgResizing) return;
+    const cr = container.getBoundingClientRect();
+    const lr = legend.getBoundingClientRect();
+    const minW = 180, minH = 150;
+    const maxW = cr.width  - (lr.left - cr.left);
+    const maxH = cr.height - (lr.top  - cr.top);
+    const nw = Math.max(minW, Math.min(lgResizeStartW + (e.clientX - lgResizeStartX), maxW));
+    const nh = Math.max(minH, Math.min(lgResizeStartH + (e.clientY - lgResizeStartY), maxH));
+    legend.style.width     = nw + "px";
+    legend.style.height    = nh + "px";
+    legend.style.maxHeight = "none";
+    lgSavedSize = { width: legend.style.width, height: legend.style.height };
+  });
+
+  const endLgResize = () => {
+    if (!lgResizing) return;
+    lgResizing = false;
+    document.body.classList.remove("is-resizing-floating-panel");
+  };
+  legend.addEventListener("pointerup",     endLgResize);
+  legend.addEventListener("pointercancel", endLgResize);
 }
 
 /* ── Dashboard ── */
