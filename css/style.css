@@ -1604,6 +1604,35 @@ body.is-resizing-floating-panel * {
   scrollbar-color: var(--border) transparent;
 }
 
+/* Done/Show-results footer — mobile only */
+#adv-filter-footer {
+  display: none;
+  padding: 12px 14px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+#adv-filter-done {
+  width: 100%;
+  padding: 13px;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background 0.15s;
+  letter-spacing: 0.01em;
+}
+#adv-filter-done:hover { background: #4a7de0; }
+@media (max-width: 700px) {
+  #adv-filter-footer { display: block; }
+}
+
 .adv-section {
   margin-bottom: 16px;
 }

@@ -1773,6 +1773,17 @@ function syncAdvancedFilterUI() {
   // Sync adv-filter-toggle button
   const advBtn = document.getElementById("adv-filter-toggle");
   if (advBtn) advBtn.classList.toggle("active", hasActiveMapFilters());
+  // Update Done button label with live match count
+  const doneBtn = document.getElementById("adv-filter-done");
+  if (doneBtn) {
+    if (hasActiveMapFilters()) {
+      let n = 0;
+      for (const fips in mapData) { if (countyMatchesFilters(fips)) n++; }
+      doneBtn.textContent = n === 0 ? "No areas match" : `Show ${n} area${n !== 1 ? "s" : ""}`;
+    } else {
+      doneBtn.textContent = "Done";
+    }
+  }
 }
 
 function initAdvancedFiltersPanel() {
@@ -1795,6 +1806,9 @@ function initAdvancedFiltersPanel() {
     openBtn.setAttribute("aria-expanded", "false");
     if (!hasActiveMapFilters()) openBtn.classList.remove("active");
   }
+
+  const doneBtn = document.getElementById("adv-filter-done");
+  if (doneBtn) doneBtn.addEventListener("click", closePanel);
 
   openBtn.addEventListener("click", () => {
     panel.classList.contains("open") ? closePanel() : openPanel();
