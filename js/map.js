@@ -277,16 +277,59 @@ function stateStyle(feature) {
 }
 
 /* ── Data loading ── */
-async function loadData() {
-  const load = url => fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
-  const [us, data, sample, stateReg, newsData] = await Promise.all([
-    load("vendor/counties-10m.json"),
-    load("data/map_data.json"),
-    load("data/sample_layers.json"),
-    load("data/state_regulations.json"),
-    fetch("data/ai_news.json", { cache: "no-store" }).then(r => { if (!r.ok) throw new Error("data/ai_news.json"); return r.json(); }).catch(() => ({ articles: [] })),
+/* Core data (small JSON files) — loaded immediately on page start */
+async function loadCoreData() {
+  const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
+  const [data, sample, stateReg, newsData] = await Promise.all([
+    get("data/map_data.json"),
+    get("data/sample_layers.json").catch(() => null),
+    get("data/state_regulations.json").catch(() => ({ states: {} })),
+    fetch("data/ai_news.json", { cache: "no-store" }).then(r => r.json()).catch(() => ({ articles: [] })),
   ]);
-  return { us, data, sample, stateReg, newsData };
+  return { data, sample, stateReg, newsData };
+}
+
+/* County TopoJSON (~2 MB) — lazy-loaded only when Map tab is opened */
+let _geoPromise = null;
+function fetchGeoData() {
+  if (!_geoPromise) {
+    _geoPromise = fetch("vendor/counties-10m.json")
+      .then(r => { if (!r.ok) throw new Error("vendor/counties-10m.json"); return r.json(); });
+  }
+  return _geoPromise;
+}
+
+/* Initialize Leaflet map from already-fetched geo data */
+async function initMapFromGeo() {
+  const loadEl = document.getElementById("loading");
+  if (loadEl) loadEl.style.display = "";
+  try {
+    const us = await fetchGeoData();
+    const countiesGeoJSON = topojson.feature(us, us.objects.counties);
+    const statesGeoJSON   = topojson.feature(us, us.objects.states);
+    initLeafletMap();
+    initStateLayer(statesGeoJSON);
+    initCountyLayer(countiesGeoJSON);
+    renderSampleMarkerLayers(countiesGeoJSON);
+    addAnnotations(countiesGeoJSON);
+    renderFilterPanel();
+    renderLegend();
+    renderStats();
+    initFilterPanelControls();
+    initTopToggle();
+    initLegendControls();
+    setDetailEmpty();
+    if (loadEl) loadEl.style.display = "none";
+  } catch (err) {
+    console.error(err);
+    if (loadEl) loadEl.innerHTML = `
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#e05252" stroke-width="1.5" style="flex-shrink:0;margin-bottom:4px">
+        <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+      </svg>
+      <div style="color:#e05252;font-size:15px;font-weight:600;text-align:center;">Map could not be loaded</div>
+      <div style="color:#8a8fa8;font-size:12px;margin-top:8px;text-align:center;max-width:280px;line-height:1.6;padding:0 16px;">${escHtml(err.message)}</div>
+      <button onclick="location.reload()" style="margin-top:20px;padding:11px 28px;background:#5b8def;border:none;border-radius:8px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;">Retry</button>`;
+  }
 }
 
 /* ── Basemap management ── */
@@ -1993,8 +2036,13 @@ function switchTab(tab) {
   } else {
     mainEl.hidden = false;
     searchBar.classList.remove("news-mode");
-    // If the map was initialized while #main was hidden, Leaflet needs a size refresh
-    if (leafletMap) setTimeout(() => leafletMap.invalidateSize(), 50);
+    if (!leafletMap) {
+      // Map not yet initialized — load geo data and init now
+      initMapFromGeo();
+    } else {
+      // Already initialized while hidden — force re-render
+      setTimeout(() => leafletMap.invalidateSize(), 50);
+    }
   }
 }
 
@@ -2453,67 +2501,62 @@ function initThemeToggle() {
 
 /* ── Init ── */
 async function init() {
-  const loadEl = document.getElementById("loading");
-  const setMsg = msg => { const s = loadEl.querySelector("span"); if (s) s.textContent = msg; };
-
-  // Theme toggle has no data dependency — run immediately so the icon appears before map loads
   initThemeToggle();
 
+  // Show UI immediately — no data dependency
+  initNavTabs();
+  initKeyboardShortcuts();
+
+  const hasHashFips = /^\d{5}$/.test(window.location.hash.replace("#", ""));
+
+  if (!hasHashFips) {
+    // Default: show Home tab right away (skeleton until data arrives)
+    switchTab("home");
+    // Start pre-fetching geo data in the background so it's ready when user taps Map
+    fetchGeoData();
+  }
+
+  // Load lightweight JSON (~50 KB total) — home page, news, and search all need this
   try {
-    setMsg("Loading data…");
-    const { us, data, sample, stateReg, newsData } = await loadData();
+    const { data, sample, stateReg, newsData } = await loadCoreData();
 
     mapData      = data.counties || {};
     sampleLayers = sample || null;
     stateRegData = stateReg.states || {};
     newsArticles = (newsData && newsData.articles) ? newsData.articles : [];
 
-    // Wire up nav and switch to Home (or map via hash) immediately.
-    // This hides #main, making the loading overlay invisible while the
-    // map initializes in the background — users see the home page right away.
-    initNavTabs();
-    initKeyboardShortcuts();
+    // Re-render home with real data (clears skeleton state)
+    if (activeTab === "home") {
+      const hv = document.getElementById("home-view");
+      if (hv) delete hv.dataset.built;
+      if (typeof renderHomePage === "function") renderHomePage();
+    }
+
+    initSearch();
+    initAdvancedFiltersPanel();
     initNewsView();
     renderNewsStatusBar(newsData);
     setLastUpdated(data);
-    if (!restoreFromHash()) switchTab("home");
-
-    // Map initialization (not visible to user on Home tab)
-    const countiesGeoJSON = topojson.feature(us, us.objects.counties);
-    const statesGeoJSON   = topojson.feature(us, us.objects.states);
-
-    initLeafletMap();
-    initStateLayer(statesGeoJSON);
-    initCountyLayer(countiesGeoJSON);
-    renderSampleMarkerLayers(countiesGeoJSON);
-    addAnnotations(countiesGeoJSON);
-
     renderDashboard(data);
-    renderFilterPanel();
-    renderLegend();
-    renderStats();
 
-    initFilterPanelControls();
-    initTopToggle();
-    initLegendControls();
-    initSearch();
-    initAdvancedFiltersPanel();
-    setDetailEmpty();
+    // If URL had a FIPS hash, now initialize nav + map
+    if (hasHashFips) {
+      initNavTabs();
+      await initMapFromGeo();
+      restoreFromHash();
+    }
 
-    loadEl.style.display = "none";
   } catch (err) {
-    console.error(err);
-    loadEl.innerHTML = `
-      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#e05252" stroke-width="1.5" style="flex-shrink:0;margin-bottom:4px">
-        <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
-      </svg>
-      <div style="color:#e05252;font-size:15px;font-weight:600;text-align:center;">Map data could not be loaded</div>
-      <div style="color:#8a8fa8;font-size:12px;margin-top:8px;text-align:center;max-width:280px;line-height:1.6;padding:0 16px;">
-        ${escHtml(err.message)}<br>Check the data file path or browser console for details.
-      </div>
-      <button onclick="location.reload()" style="margin-top:20px;padding:11px 28px;background:#5b8def;border:none;border-radius:8px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:0.02em;">
-        Retry
-      </button>`;
+    console.error("Core data failed:", err);
+    // Home page is already visible — show a banner instead of a blocking overlay
+    const hv = document.getElementById("home-view");
+    if (hv && !hv.dataset.built) {
+      hv.innerHTML = `<div style="padding:40px 24px;text-align:center;color:#e05252;">
+        <p style="font-size:15px;font-weight:600;">Could not load data</p>
+        <p style="font-size:13px;margin-top:8px;color:#8a8fa8;">${escHtml(err.message)}</p>
+        <button onclick="location.reload()" style="margin-top:20px;padding:10px 24px;background:#4874e8;border:none;border-radius:8px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;">Retry</button>
+      </div>`;
+    }
   }
 }
 

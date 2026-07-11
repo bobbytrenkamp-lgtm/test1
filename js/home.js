@@ -281,6 +281,13 @@ function renderHomeTicker(container) {
   container.appendChild(script);
 }
 
+/* ── Skeleton placeholder for data-dependent sections ── */
+function homeSkeletonRows(n) {
+  return Array.from({ length: n }, () =>
+    `<div class="home-skeleton-row"><div class="home-skel home-skel-line"></div><div class="home-skel home-skel-short"></div></div>`
+  ).join("");
+}
+
 /* ── Main render ── */
 function renderHomePage() {
   const view = document.getElementById("home-view");
@@ -288,6 +295,57 @@ function renderHomePage() {
   if (view.dataset.built === "1") {
     /* Re-render ticker on theme changes */
     renderHomeTicker(view.querySelector(".home-ticker-inner") || document.createElement("div"));
+    return;
+  }
+
+  /* If core data isn't loaded yet, show skeleton so the page is immediately visible */
+  const dataReady = mapData && Object.keys(mapData).length > 0;
+  if (!dataReady) {
+    view.innerHTML = `
+<div class="home-wrap">
+  <section class="home-hero">
+    <div class="home-hero-inner">
+      <div class="home-live-row">
+        <span class="home-live-dot"></span>
+        <span class="home-live-label">Live Intelligence Platform</span>
+      </div>
+      <h1 class="home-hero-title">US Data Center &amp; AI<br>Policy Intelligence</h1>
+      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across every US county. Updated daily.</p>
+      <div class="home-search-wrap">
+        <div class="home-search-box">
+          ${HOME_ICONS.search}
+          <input id="home-search-input" type="text" placeholder="Search counties, states, companies, news…" autocomplete="off" aria-label="Global search" disabled />
+          <button class="home-search-submit" disabled>Search</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="home-kpi-strip">
+    ${["Counties Tracked","Active Bans","Significant","Moderate","States"].map(l =>
+      `<div class="home-kpi-card"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">${l}</div></div>`
+    ).join("")}
+  </section>
+  <section class="home-section home-nav-section">
+    <h2 class="home-section-title">Explore the Platform</h2>
+    <div class="home-nav-grid">
+      <button class="home-nav-card home-nav-map"       onclick="switchTab('map')"       type="button"><span class="home-nav-icon">${HOME_ICONS.map}</span><span class="home-nav-name">Policy Map</span><span class="home-nav-desc">County-level choropleth of data center &amp; AI restrictions</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
+      <button class="home-nav-card home-nav-news"      onclick="switchTab('news')"      type="button"><span class="home-nav-icon">${HOME_ICONS.news}</span><span class="home-nav-name">AI News</span><span class="home-nav-desc">Curated AI regulation &amp; industry news</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
+      <button class="home-nav-card home-nav-stocks"    onclick="switchTab('stocks')"    type="button"><span class="home-nav-icon">${HOME_ICONS.stocks}</span><span class="home-nav-name">AI Stocks</span><span class="home-nav-desc">Live market data for 50+ publicly traded AI companies</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
+      <button class="home-nav-card home-nav-analytics" onclick="switchTab('analytics')" type="button"><span class="home-nav-icon">${HOME_ICONS.analytics}</span><span class="home-nav-name">Analytics</span><span class="home-nav-desc">Policy distribution, state rankings, and trend analysis</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
+    </div>
+  </section>
+  <section class="home-section home-two-col">
+    <div class="home-col">
+      <div class="home-col-header"><h2 class="home-section-title">Recent Restrictions</h2></div>
+      <div class="home-reg-list home-skeleton-list">${homeSkeletonRows(4)}</div>
+    </div>
+    <div class="home-col">
+      <div class="home-col-header"><h2 class="home-section-title">Latest News</h2></div>
+      <div class="home-news-list home-skeleton-list">${homeSkeletonRows(4)}</div>
+    </div>
+  </section>
+</div>`;
+    /* Don't set dataset.built — allows re-render when real data arrives */
     return;
   }
 
