@@ -33,6 +33,29 @@ function computeSeverityCounts(counties) {
   return counts;
 }
 
+/* ── Theme helpers ── */
+function isDarkTheme() {
+  const t = localStorage.getItem('theme') || 'system';
+  if (t === 'dark')  return true;
+  if (t === 'light') return false;
+  return !window.matchMedia('(prefers-color-scheme: light)').matches;
+}
+
+function themeColors() {
+  const dark = isDarkTheme();
+  return {
+    noData:          dark ? '#1e2235' : '#dde3f0',
+    countyBorder:    dark ? '#05060a' : '#b0b8cc',
+    stateBorder:     dark ? '#4a5180' : '#8a94b4',
+    selectedOutline: dark ? '#ffffff' : '#1a1d2e',
+    dotBorder:       dark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.15)',
+  };
+}
+
+function selectedCountyStyle() {
+  return { color: themeColors().selectedOutline, weight: 2.5, fillOpacity: 0.92 };
+}
+
 const LEVEL_LABELS = {
   "-1": "Pro Data Center",
   0:    "No Specific Law",
@@ -195,12 +218,12 @@ function fipsKey(id) { return String(id).padStart(5, "0"); }
 
 function getColor(fips) {
   const county = mapData[fips];
-  return county ? getSeverityColor(county) : "#1e2235";
+  return county ? getSeverityColor(county) : themeColors().noData;
 }
 
 function getStateColor(fips2) {
   const st = stateRegData[fips2];
-  return st ? SEVERITY[getSeverityKey(st)].color : "#1e2235";
+  return st ? SEVERITY[getSeverityKey(st)].color : themeColors().noData;
 }
 
 function capacityRadius(mw) {
@@ -213,9 +236,10 @@ const UTILITY_COLORS = ["#f472b6", "#fb923c", "#38bdf8", "#a3e635"];
 function countyStyle(feature) {
   const fips   = fipsKey(feature.id);
   const isSat  = activeTile !== "standard";
+  const tc     = themeColors();
 
   if (!layerState.restrictions) {
-    return { fillColor: "#1e2235", fillOpacity: isSat ? 0 : 0.12, color: "#05060a", weight: 0.35 };
+    return { fillColor: tc.noData, fillOpacity: isSat ? 0 : 0.12, color: tc.countyBorder, weight: 0.35 };
   }
 
   const county     = mapData[fips];
@@ -224,9 +248,9 @@ function countyStyle(feature) {
 
   if (hasActiveMapFilters() && !countyMatchesFilters(fips)) {
     return {
-      fillColor:   "#1e2235",
+      fillColor:   tc.noData,
       fillOpacity: isSat ? 0 : 0.08,
-      color:       "#05060a",
+      color:       tc.countyBorder,
       weight:      0.2,
     };
   }
@@ -234,7 +258,7 @@ function countyStyle(feature) {
   return {
     fillColor:   getColor(fips),
     fillOpacity: isSat ? (hasData ? 0.70 : 0) : 0.75,
-    color:       "#05060a",
+    color:       tc.countyBorder,
     weight:      0.35,
   };
 }
@@ -242,10 +266,11 @@ function countyStyle(feature) {
 function stateStyle(feature) {
   const fips2 = String(feature.id).padStart(2, "0");
   const has   = !!stateRegData[fips2];
+  const tc    = themeColors();
   return {
     fillColor:   getStateColor(fips2),
     fillOpacity: layerState.state_policy ? (has ? 0.28 : 0.06) : 0,
-    color:       "#4a5180",
+    color:       tc.stateBorder,
     weight:      layerState.state_policy ? 0.7 : 0,
     opacity:     layerState.state_policy ? 0.6 : 0,
   };
@@ -318,7 +343,7 @@ function switchBasemap(type) {
   if (countyGeoLayer) {
     countyGeoLayer.setStyle(countyStyle);
     if (selectedFips && countyLayerByFips[selectedFips]) {
-      countyLayerByFips[selectedFips].setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
+      countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
     }
   }
 }
@@ -408,7 +433,7 @@ function handleCountyClick(e, fips) {
   selectedFips = fips;
   setLocationHash(fips);
   clearHoveredCounty();
-  e.target.setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
+  e.target.setStyle(selectedCountyStyle());
   e.target.bringToFront();
 
   const county = mapData[fips];
@@ -603,7 +628,7 @@ function setLayerVisible(id, visible, syncUI = false) {
     if (countyGeoLayer) {
       countyGeoLayer.setStyle(countyStyle);
       if (selectedFips && countyLayerByFips[selectedFips]) {
-        countyLayerByFips[selectedFips].setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
+        countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
       }
     }
   } else if (id === "state_policy") {
@@ -751,7 +776,7 @@ function applyFilters() {
         selectedFips = null;
         setDetailEmpty();
       } else if (countyLayerByFips[selectedFips]) {
-        countyLayerByFips[selectedFips].setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
+        countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
       }
     }
   }
@@ -1595,7 +1620,7 @@ function setDetailFacility(facility, kind) {
 /* ── Utilities ── */
 function levelDot(level, status) {
   const col = SEVERITY[getSeverityKey({ level, status })].color;
-  return `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${col};border:1px solid rgba(255,255,255,0.2)"></span>`;
+  return `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${col};border:1px solid ${themeColors().dotBorder}"></span>`;
 }
 
 function escHtml(str) {
@@ -1667,7 +1692,7 @@ function selectCounty(fips) {
   setLocationHash(fips);
   const layer  = countyLayerByFips[fips];
   if (layer) {
-    layer.setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
+    layer.setStyle(selectedCountyStyle());
     layer.bringToFront();
   }
   const county = mapData[fips];
@@ -2301,6 +2326,57 @@ function setLastUpdated(data) {
   }
 }
 
+/* ── Theme toggle ── */
+function initThemeToggle() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+
+  const SVG = {
+    system: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    light:  `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`,
+    dark:   `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
+  };
+  const LABELS  = { system: 'System', light: 'Light', dark: 'Dark' };
+  const THEMES  = ['system', 'light', 'dark'];
+
+  function applyTheme(t) {
+    const el = document.documentElement;
+    const light = t === 'light' || (t === 'system' && window.matchMedia('(prefers-color-scheme: light)').matches);
+    if (t === 'system') el.removeAttribute('data-theme');
+    else el.setAttribute('data-theme', t);
+    el.classList.toggle('is-light-theme', light);
+    btn.innerHTML = SVG[t];
+    btn.title = `Appearance: ${LABELS[t]}`;
+    btn.setAttribute('aria-label', `Color theme: ${LABELS[t]}`);
+    // Re-apply Leaflet layer styles so map colors update immediately
+    if (countyGeoLayer) {
+      countyGeoLayer.setStyle(countyStyle);
+      if (selectedFips && countyLayerByFips[selectedFips]) {
+        countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
+      }
+    }
+    if (stateGeoLayer) stateGeoLayer.setStyle(stateStyle);
+  }
+
+  btn.addEventListener('click', () => {
+    const cur = localStorage.getItem('theme') || 'system';
+    const next = THEMES[(THEMES.indexOf(cur) + 1) % THEMES.length];
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  });
+
+  // Respond to OS theme changes when in system mode
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if ((localStorage.getItem('theme') || 'system') === 'system') {
+      applyTheme('system');
+    }
+  });
+
+  // Apply saved theme on init (inline script already set data-theme / .is-light-theme,
+  // but we still need to set the button icon and label)
+  applyTheme(localStorage.getItem('theme') || 'system');
+}
+
 /* ── Init ── */
 async function init() {
   const loadEl = document.getElementById("loading");
@@ -2320,6 +2396,7 @@ async function init() {
     const statesGeoJSON   = topojson.feature(us, us.objects.states);
 
     setMsg("Rendering map…");
+    initThemeToggle();
     initLeafletMap();
 
     // z-order: state (bottom) → counties → markers (top)

@@ -8,6 +8,15 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Runs before paint to apply saved theme and prevent flash -->
+  <script>
+    (function(){
+      var t = localStorage.getItem('theme') || 'system';
+      var light = t === 'light' || (t === 'system' && window.matchMedia('(prefers-color-scheme: light)').matches);
+      if (t !== 'system') document.documentElement.setAttribute('data-theme', t);
+      if (light) document.documentElement.classList.add('is-light-theme');
+    })();
+  </script>
 </head>
 <body>
 
@@ -20,7 +29,10 @@
       <button class="header-tab active" data-tab="map" role="tab" aria-selected="true">Map</button>
       <button class="header-tab" data-tab="news" role="tab" aria-selected="false">AI News</button>
     </nav>
-    <div id="last-updated">Loading data…</div>
+    <div id="header-right">
+      <button id="theme-toggle" aria-label="Color theme: System" title="Appearance: System"></button>
+      <div id="last-updated">Loading data…</div>
+    </div>
   </header>
 
   <!-- Dashboard -->

@@ -5,6 +5,7 @@
 }
 
 :root {
+  /* Dark theme (default) */
   --bg: #0f1117;
   --surface: #1a1d27;
   --surface-2: #22263a;
@@ -21,6 +22,87 @@
   --level-2-bright: #e76f51;
   --level-3-bright: #d62828;
   --level-4-bright: #9b1003;
+  /* Map / Leaflet chrome */
+  --map-bg: #06070b;
+  --county-no-data: #1e2235;
+  --county-border: #05060a;
+  --state-border: #4a5180;
+  --selected-outline: #ffffff;
+  --adv-facility-divider: rgba(255,255,255,0.04);
+  color-scheme: dark;
+}
+
+/* ── Light theme ── */
+html[data-theme="light"] {
+  --bg: #f4f5f9;
+  --surface: #ffffff;
+  --surface-2: #eef0f6;
+  --border: #dde1ee;
+  --text: #1a1d2e;
+  --text-muted: #6b7080;
+  --accent: #3b6fd4;
+  --map-bg: #e8edf5;
+  --county-no-data: #dde3f0;
+  --county-border: #b0b8cc;
+  --state-border: #8a94b4;
+  --selected-outline: #1a1d2e;
+  --adv-facility-divider: rgba(0,0,0,0.06);
+  color-scheme: light;
+}
+
+/* ── System → light (when OS preference is light and no explicit dark override) ── */
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) {
+    --bg: #f4f5f9;
+    --surface: #ffffff;
+    --surface-2: #eef0f6;
+    --border: #dde1ee;
+    --text: #1a1d2e;
+    --text-muted: #6b7080;
+    --accent: #3b6fd4;
+    --map-bg: #e8edf5;
+    --county-no-data: #dde3f0;
+    --county-border: #b0b8cc;
+    --state-border: #8a94b4;
+    --selected-outline: #1a1d2e;
+    --adv-facility-divider: rgba(0,0,0,0.06);
+    color-scheme: light;
+  }
+}
+
+/* ── Light-specific overrides for hardcoded dark backgrounds ── */
+/* Restriction severity badges */
+html.is-light-theme .badge-pro      { background: #dcfce7; color: #166534; }
+html.is-light-theme .badge-none     { background: #f0fdf4; color: #15803d; }
+html.is-light-theme .badge-proposed { background: #fefce8; color: #a16207; }
+html.is-light-theme .badge-moderate { background: #fff7ed; color: #c2410c; }
+html.is-light-theme .badge-high     { background: #fef2f2; color: #b91c1c; }
+html.is-light-theme .badge-ban      { background: #fef2f2; color: #991b1b; }
+/* Confidence level badges */
+html.is-light-theme .conf-verified                      { background: #dcfce7; color: #166534; }
+html.is-light-theme .conf-verified .confidence-dot      { background: #166534; }
+html.is-light-theme .conf-high                          { background: #f0fdf4; color: #15803d; }
+html.is-light-theme .conf-high .confidence-dot          { background: #15803d; }
+html.is-light-theme .conf-medium                        { background: #fefce8; color: #92400e; }
+html.is-light-theme .conf-medium .confidence-dot        { background: #92400e; }
+html.is-light-theme .conf-low                           { background: #fef2f2; color: #b91c1c; }
+html.is-light-theme .conf-low .confidence-dot           { background: #b91c1c; }
+/* Restriction type chips */
+html.is-light-theme .type-chip.data_center { border-color: #bfdbfe; }
+html.is-light-theme .type-chip.ai          { border-color: #ddd6fe; }
+html.is-light-theme .type-chip.crypto      { border-color: #fde68a; }
+html.is-light-theme .type-chip.energy      { border-color: #a7f3d0; }
+html.is-light-theme .type-chip.water       { border-color: #bae6fd; }
+/* Leaflet attribution pill */
+html.is-light-theme .leaflet-control-attribution {
+  background: rgba(255,255,255,0.85) !important;
+  color: #6b7080 !important;
+}
+/* Annotation tooltips */
+html.is-light-theme .leaflet-tooltip.ann-tooltip {
+  background: rgba(255,255,255,0.96);
+  color: #1a1d2e;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 
 html, body {
@@ -66,9 +148,36 @@ html, body {
   color: var(--accent);
 }
 
+#header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
 #last-updated {
   font-size: 12px;
   color: var(--text-muted);
+}
+
+#theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  transition: color 0.15s, border-color 0.15s;
+}
+#theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 /* ── Header nav tabs ── */
@@ -319,19 +428,19 @@ html, body {
   flex: 1;
   position: relative;
   overflow: hidden;
-  background: #06070b;
+  background: var(--map-bg);
 }
 
 #leaflet-map {
   width: 100%;
   height: 100%;
-  background: #06070b;
+  background: var(--map-bg);
   isolation: isolate; /* confines Leaflet's internal z-index hierarchy */
 }
 
-/* Leaflet dark theme overrides */
+/* Leaflet theme overrides */
 .leaflet-container {
-  background: #06070b;
+  background: var(--map-bg);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
@@ -1377,7 +1486,7 @@ body.is-resizing-floating-panel * {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--text-muted);
-  background: rgba(255,255,255,0.06);
+  background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: 3px;
   padding: 1px 5px;
@@ -1411,7 +1520,9 @@ body.is-resizing-floating-panel * {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  #last-updated { font-size: 10px; flex-shrink: 0; }
+  #header-right { gap: 6px; }
+  #last-updated { font-size: 10px; }
+  #theme-toggle { width: 28px; height: 28px; }
   #header-tabs {
     width: 100%;
     background: var(--surface-2);
@@ -1713,7 +1824,7 @@ body.is-resizing-floating-panel * {
   justify-content: space-between;
   padding: 6px 0;
   gap: 8px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid var(--adv-facility-divider);
   cursor: pointer;
 }
 .adv-facility-row:last-child { border-bottom: none; }
