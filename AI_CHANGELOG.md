@@ -117,6 +117,37 @@ Files Changed:
 - `index.html`
 - `css/style.css`
 - `js/map.js`
+- `data/ai_news.json` (new)
+
+Changes Made:
+- Feature 1 — Clickable restriction filter chips on #stats-bar: converted stat-chip divs to <button> elements; multi-select via activeRestrictFilters (Set); active chips get accent border/glow; countyStyle() dims non-matching counties; hover/click handlers guard against filtered-out counties; Clear button; #filter-status bar shows match count and active filter labels.
+- Feature 2 — Advanced Filters panel (#adv-filter-panel): new "Filters" button in search bar; panel opens at body level (same position:fixed pattern as #filter-panel); sections: Restriction Severity (synced with chips), State dropdown, Policy Scope toggles (synced to layer panel), Facilities & Infrastructure list (synced to layer panel); bidirectional sync; Clear all button.
+- Feature 3 — AI News Feed tab: "Map" / "AI News" nav tabs in header; #news-view shows/hides when switching; 12 sample articles in data/ai_news.json (clearly labeled SAMPLE DATA); article cards with category tag, source, date, title, summary, tags, location link; location link switches to Map tab and applies state filter; filters: search, category dropdown, state dropdown.
+
+Reasoning:
+- Filter chips give power users a one-click way to isolate counties by severity without entering the full Advanced Filters panel.
+- Advanced Filters panel consolidates state filter, scope toggles, and facility toggles in one place, synced with the existing layer panel to avoid dual-truth issues.
+- AI News tab gives the map a home for policy context without disrupting the map view; switching between tabs preserves map state (zoom, selection, filters).
+- All three features are desktop+mobile compatible: chips and news toolbar reflow on narrow viewports; advanced filters panel becomes a bottom sheet on mobile (same pattern as existing Map Layers panel).
+
+Problems Found:
+- None. All existing functionality (drag panels, resize, layer toggles, county hover/click, iOS Safari toggle fix) was preserved. JS syntax check passed with no errors.
+
+Next Recommended Actions:
+- Replace data/ai_news.json with real verified news data (or add a backend feed) before public launch.
+- Consider persisting activeRestrictFilters and activeStateFilter to URL hash so filtered views can be bookmarked/shared.
+- Add county count to Advanced Filters panel as a live preview of how many counties match the current filter combination.
+- Test advanced filters panel on mobile to confirm bottom-sheet behavior and scrollability.
+
+---
+
+Date: 2026-07-09
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
+- `index.html`
+- `css/style.css`
+- `js/map.js`
 
 Changes Made:
 - Added 6-dot waffle drag handle (`#filter-panel-drag-icon`, class `fp-drag-handle`) to Map Layers panel header for drag-to-move on desktop.

@@ -162,6 +162,34 @@ let isDraggingMap      = false;
 let suppressClickUntil = 0;
 let hoveredCountyLayer = null;
 
+/* ── Filter state ── */
+const activeRestrictFilters = new Set();  // severity keys e.g. "high", "ban"
+let   activeStateFilter     = "";          // 2-letter state abbr or ""
+const activeScopeFilters    = new Set();   // "restrictions", "state_policy", "city_policy"
+
+/* ── Tab / news state ── */
+let activeTab    = "map";
+let newsArticles = [];
+let newsFilters  = { search: "", category: "", state: "" };
+
+/* ── Filter helpers ── */
+function countyMatchesFilters(fips) {
+  const county = mapData[fips];
+  if (activeRestrictFilters.size > 0) {
+    const sevKey = getSeverityKey(county);
+    if (!activeRestrictFilters.has(sevKey)) return false;
+  }
+  if (activeStateFilter) {
+    const stAbbr = STATE_FIPS[fips.slice(0, 2)] || "";
+    if (stAbbr !== activeStateFilter) return false;
+  }
+  return true;
+}
+
+function hasActiveMapFilters() {
+  return activeRestrictFilters.size > 0 || activeStateFilter !== "";
+}
+
 /* ── Helpers ── */
 function fipsKey(id) { return String(id).padStart(5, "0"); }
 
@@ -192,7 +220,16 @@ function countyStyle(feature) {
 
   const county     = mapData[fips];
   const sevKey     = getSeverityKey(county);
-  const hasData    = sevKey !== "none";  // pro/proposed/moderate/high/ban are all visible on satellite
+  const hasData    = sevKey !== "none";
+
+  if (hasActiveMapFilters() && !countyMatchesFilters(fips)) {
+    return {
+      fillColor:   "#1e2235",
+      fillOpacity: isSat ? 0 : 0.08,
+      color:       "#05060a",
+      weight:      0.2,
+    };
+  }
 
   return {
     fillColor:   getColor(fips),
@@ -217,13 +254,14 @@ function stateStyle(feature) {
 /* ── Data loading ── */
 async function loadData() {
   const load = url => fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
-  const [us, data, sample, stateReg] = await Promise.all([
+  const [us, data, sample, stateReg, newsData] = await Promise.all([
     load("vendor/counties-10m.json"),
     load("data/map_data.json"),
     load("data/sample_layers.json"),
     load("data/state_regulations.json"),
+    load("data/ai_news.json").catch(() => ({ articles: [] })),
   ]);
-  return { us, data, sample, stateReg };
+  return { us, data, sample, stateReg, newsData };
 }
 
 /* ── Basemap management ── */
@@ -323,6 +361,7 @@ function clearHoveredCounty() {
 
 function handleCountyMouseover(e, fips) {
   if (isDraggingMap || isMouseDown) return;
+  if (hasActiveMapFilters() && !countyMatchesFilters(fips)) return;
 
   // Clear any previously hovered layer before setting the new one
   if (hoveredCountyLayer && hoveredCountyLayer !== e.target) {
@@ -361,6 +400,7 @@ function handleCountyMouseout(e) {
 
 function handleCountyClick(e, fips) {
   if (isDraggingMap || Date.now() < suppressClickUntil) return;
+  if (hasActiveMapFilters() && !countyMatchesFilters(fips)) return;
   L.DomEvent.stopPropagation(e);
   if (selectedFips && countyLayerByFips[selectedFips]) {
     countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
@@ -660,10 +700,93 @@ function renderStats() {
   for (const key of order) {
     const count = counts[key] || 0;
     if (!count) continue;
-    const chip = document.createElement("div");
-    chip.className = "stat-chip";
+    const chip = document.createElement("button");
+    chip.className = "stat-chip" + (activeRestrictFilters.has(key) ? " active" : "");
+    chip.dataset.key = key;
+    chip.setAttribute("type", "button");
+    chip.setAttribute("title", `Filter map to ${SEVERITY[key].label}`);
     chip.innerHTML = `<div class="dot" style="background:${SEVERITY[key].color}"></div><strong>${count}</strong> ${SEVERITY[key].label}`;
+    chip.addEventListener("click", () => toggleRestrictFilter(key));
     bar.appendChild(chip);
+  }
+
+  // Clear button
+  let clearBtn = document.getElementById("stats-bar-clear");
+  if (!clearBtn) {
+    clearBtn = document.createElement("button");
+    clearBtn.id = "stats-bar-clear";
+    clearBtn.setAttribute("type", "button");
+    clearBtn.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Clear`;
+    clearBtn.addEventListener("click", clearAllFilters);
+    bar.parentNode.insertBefore(clearBtn, bar.nextSibling);
+  }
+  clearBtn.classList.toggle("visible", hasActiveMapFilters());
+}
+
+/* ── Filter actions ── */
+function toggleRestrictFilter(key) {
+  if (activeRestrictFilters.has(key)) {
+    activeRestrictFilters.delete(key);
+  } else {
+    activeRestrictFilters.add(key);
+  }
+  applyFilters();
+}
+
+function clearAllFilters() {
+  activeRestrictFilters.clear();
+  activeStateFilter = "";
+  applyFilters();
+  syncAdvancedFilterUI();
+}
+
+function applyFilters() {
+  if (countyGeoLayer) {
+    countyGeoLayer.setStyle(countyStyle);
+    // Re-apply selected county highlight if still visible
+    if (selectedFips) {
+      if (hasActiveMapFilters() && !countyMatchesFilters(selectedFips)) {
+        // Selected county is now filtered out — clear detail panel
+        if (countyLayerByFips[selectedFips]) countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
+        selectedFips = null;
+        setDetailEmpty();
+      } else if (countyLayerByFips[selectedFips]) {
+        countyLayerByFips[selectedFips].setStyle({ color: "#ffffff", weight: 2.5, fillOpacity: 0.92 });
+      }
+    }
+  }
+  renderStats();
+  renderFilterStatus();
+  syncAdvancedFilterUI();
+}
+
+function renderFilterStatus() {
+  const el = document.getElementById("filter-status");
+  if (!el) return;
+
+  if (!hasActiveMapFilters()) {
+    el.hidden = true;
+    return;
+  }
+
+  // Count matching counties
+  let matchCount = 0;
+  for (const fips in mapData) {
+    if (countyMatchesFilters(fips)) matchCount++;
+  }
+
+  let parts = [];
+  if (activeRestrictFilters.size > 0) {
+    const labels = [...activeRestrictFilters].map(k => SEVERITY[k].label).join(", ");
+    parts.push(labels);
+  }
+  if (activeStateFilter) parts.push(STATE_NAMES[activeStateFilter] || activeStateFilter);
+
+  el.hidden = false;
+  if (matchCount === 0) {
+    el.textContent = `No areas match: ${parts.join(" · ")}`;
+  } else {
+    el.textContent = `Showing ${matchCount} area${matchCount !== 1 ? "s" : ""} — ${parts.join(" · ")}`;
   }
 }
 
@@ -1635,6 +1758,251 @@ function initSearch() {
   input.addEventListener("blur",  () => { setTimeout(() => { results.style.display = "none"; }, 100); });
 }
 
+/* ── Advanced Filters Panel ── */
+function syncAdvancedFilterUI() {
+  // Sync severity chips
+  document.querySelectorAll("#adv-severity-chips .adv-chip").forEach(chip => {
+    chip.classList.toggle("active", activeRestrictFilters.has(chip.dataset.key));
+  });
+  // Sync state select
+  const stSel = document.getElementById("adv-state-select");
+  if (stSel) stSel.value = activeStateFilter;
+  // Sync clear button visibility
+  const clearBtn = document.getElementById("adv-filter-clear");
+  if (clearBtn) clearBtn.hidden = !hasActiveMapFilters();
+  // Sync adv-filter-toggle button
+  const advBtn = document.getElementById("adv-filter-toggle");
+  if (advBtn) advBtn.classList.toggle("active", hasActiveMapFilters());
+}
+
+function initAdvancedFiltersPanel() {
+  const panel    = document.getElementById("adv-filter-panel");
+  const backdrop = document.getElementById("adv-filter-backdrop");
+  const closeBtn = document.getElementById("adv-filter-close");
+  const clearBtn = document.getElementById("adv-filter-clear");
+  const openBtn  = document.getElementById("adv-filter-toggle");
+
+  function openPanel() {
+    panel.classList.add("open");
+    backdrop.classList.add("open");
+    openBtn.classList.add("active");
+    openBtn.setAttribute("aria-expanded", "true");
+    syncAdvancedFilterUI();
+  }
+  function closePanel() {
+    panel.classList.remove("open");
+    backdrop.classList.remove("open");
+    openBtn.setAttribute("aria-expanded", "false");
+    if (!hasActiveMapFilters()) openBtn.classList.remove("active");
+  }
+
+  openBtn.addEventListener("click", () => {
+    panel.classList.contains("open") ? closePanel() : openPanel();
+  });
+  closeBtn.addEventListener("click", closePanel);
+  backdrop.addEventListener("click", closePanel);
+
+  // Clear all
+  clearBtn.addEventListener("click", () => {
+    clearAllFilters();
+    clearBtn.hidden = true;
+  });
+
+  // Severity chips
+  const chipRow = document.getElementById("adv-severity-chips");
+  const order   = ["ban", "high", "moderate", "proposed", "pro"];
+  for (const key of order) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "adv-chip" + (activeRestrictFilters.has(key) ? " active" : "");
+    btn.dataset.key = key;
+    btn.title = SEVERITY[key].label;
+    btn.innerHTML = `<span class="adv-chip-dot" style="background:${SEVERITY[key].color}"></span>${SEVERITY[key].label}`;
+    btn.addEventListener("click", () => {
+      toggleRestrictFilter(key);
+      btn.classList.toggle("active", activeRestrictFilters.has(key));
+      clearBtn.hidden = !hasActiveMapFilters();
+      if (!hasActiveMapFilters()) openBtn.classList.remove("active");
+      else openBtn.classList.add("active");
+    });
+    chipRow.appendChild(btn);
+  }
+
+  // State select
+  const stSel = document.getElementById("adv-state-select");
+  for (const abbr of Object.values(STATE_FIPS).sort()) {
+    const opt = document.createElement("option");
+    opt.value = abbr;
+    opt.textContent = `${STATE_NAMES[abbr] || abbr} (${abbr})`;
+    stSel.appendChild(opt);
+  }
+  stSel.addEventListener("change", () => {
+    activeStateFilter = stSel.value;
+    applyFilters();
+  });
+
+  // Policy scope toggles (synced to layer panel)
+  const scopeRow = document.getElementById("adv-scope-toggles");
+  const scopeDefs = [
+    { id: "restrictions", label: "County", color: "#dc2626" },
+    { id: "state_policy", label: "State",  color: "#8b5cf6" },
+    { id: "city_policy",  label: "City",   color: "#3b82f6" },
+  ];
+  for (const def of scopeDefs) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "adv-chip" + (layerState[def.id] ? " active" : "");
+    btn.dataset.scope = def.id;
+    btn.innerHTML = `<span class="adv-chip-dot" style="background:${def.color}"></span>${def.label}`;
+    btn.addEventListener("click", () => {
+      setLayerVisible(def.id, !layerState[def.id], true);
+      btn.classList.toggle("active", layerState[def.id]);
+    });
+    scopeRow.appendChild(btn);
+  }
+
+  // Facilities list (synced to layer panel)
+  const facilityDefs = LAYER_DEFS.filter(d => d.group === "Facilities" || d.group === "Infrastructure");
+  const facilList = document.getElementById("adv-facilities-list");
+  for (const def of facilityDefs) {
+    const row = document.createElement("div");
+    row.className = "adv-facility-row";
+    row.innerHTML = `
+      <span class="adv-facility-label">
+        <span class="adv-facility-dot" style="background:${def.color}"></span>${def.label}
+      </span>
+      <span class="toggle-switch" style="pointer-events:none">
+        <input type="checkbox" ${layerState[def.id] ? "checked" : ""} data-layer="${def.id}" tabindex="-1">
+        <span class="toggle-slider"></span>
+      </span>`;
+    const cb = row.querySelector("input");
+    row.addEventListener("click", () => {
+      setLayerVisible(def.id, !layerState[def.id], true);
+      cb.checked = layerState[def.id];
+    });
+    facilList.appendChild(row);
+  }
+}
+
+/* ── Nav Tabs (Map / AI News) ── */
+function switchTab(tab) {
+  activeTab = tab;
+  const mainEl  = document.getElementById("main");
+  const newsEl  = document.getElementById("news-view");
+  const searchBar = document.getElementById("search-bar");
+
+  document.querySelectorAll(".header-tab").forEach(btn => {
+    const isActive = btn.dataset.tab === tab;
+    btn.classList.toggle("active", isActive);
+    btn.setAttribute("aria-selected", isActive ? "true" : "false");
+  });
+
+  if (tab === "news") {
+    mainEl.hidden  = true;
+    newsEl.hidden  = false;
+    searchBar.hidden = true;
+    renderNews();
+  } else {
+    mainEl.hidden  = false;
+    newsEl.hidden  = true;
+    searchBar.hidden = false;
+  }
+}
+
+function initNavTabs() {
+  document.querySelectorAll(".header-tab").forEach(btn => {
+    btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+  });
+}
+
+/* ── AI News Feed ── */
+function categoryClass(cat) {
+  return "cat-" + cat.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+$/, "");
+}
+
+function formatDate(iso) {
+  const d = new Date(iso + "T12:00:00Z");
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+function initNewsStateDropdown() {
+  const sel = document.getElementById("news-state-filter");
+  if (!sel) return;
+  for (const abbr of Object.values(STATE_FIPS).sort()) {
+    const opt = document.createElement("option");
+    opt.value = abbr;
+    opt.textContent = `${STATE_NAMES[abbr] || abbr} (${abbr})`;
+    sel.appendChild(opt);
+  }
+}
+
+function filterNewsArticles() {
+  return newsArticles.filter(a => {
+    if (newsFilters.category && a.category !== newsFilters.category) return false;
+    if (newsFilters.state && a.location?.state !== newsFilters.state) return false;
+    if (newsFilters.search) {
+      const q = newsFilters.search.toLowerCase();
+      const haystack = `${a.title} ${a.summary} ${a.source} ${(a.tags||[]).join(" ")}`.toLowerCase();
+      if (!haystack.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+function renderNews() {
+  const grid  = document.getElementById("news-grid");
+  const empty = document.getElementById("news-empty");
+  if (!grid) return;
+  const matches = filterNewsArticles();
+  grid.innerHTML = "";
+  empty.hidden = matches.length > 0;
+  for (const art of matches) {
+    const catCls = categoryClass(art.category);
+    const tagsHtml = (art.tags || []).map(t => `<span class="news-tag">${escHtml(t)}</span>`).join("");
+    const locHtml  = art.location?.state
+      ? `<button class="news-location-link" data-state="${escHtml(art.location.state)}" type="button">${escHtml(art.location.state)}${art.location.county ? " – " + escHtml(art.location.county) : ""}</button>`
+      : "";
+    const card = document.createElement("div");
+    card.className = "news-card";
+    card.innerHTML = `
+      <div class="news-card-meta">
+        <span class="news-category-tag ${catCls}">${escHtml(art.category)}</span>
+        <span class="news-source">${escHtml(art.source)}</span>
+        <span class="news-date">${formatDate(art.publishedAt)}</span>
+      </div>
+      <div class="news-card-title"><a href="${escHtml(art.url)}" target="_blank" rel="noopener">${escHtml(art.title)}</a></div>
+      <div class="news-card-summary">${escHtml(art.summary)}</div>
+      <div class="news-card-tags">${tagsHtml}${locHtml}</div>`;
+    // Location link → switch to map tab and filter
+    const locBtn = card.querySelector(".news-location-link");
+    if (locBtn) {
+      locBtn.addEventListener("click", () => {
+        activeStateFilter = locBtn.dataset.state;
+        applyFilters();
+        switchTab("map");
+      });
+    }
+    grid.appendChild(card);
+  }
+}
+
+function initNewsView() {
+  initNewsStateDropdown();
+
+  document.getElementById("news-search").addEventListener("input", e => {
+    newsFilters.search = e.target.value.trim();
+    renderNews();
+  });
+  document.getElementById("news-cat-filter").addEventListener("change", e => {
+    newsFilters.category = e.target.value;
+    renderNews();
+  });
+  document.getElementById("news-state-filter").addEventListener("change", e => {
+    newsFilters.state = e.target.value;
+    renderNews();
+  });
+}
+
 /* ── Last updated label ── */
 function setLastUpdated(data) {
   const el = document.getElementById("last-updated");
@@ -1651,12 +2019,13 @@ async function init() {
 
   try {
     setMsg("Loading county data…");
-    const { us, data, sample, stateReg } = await loadData();
+    const { us, data, sample, stateReg, newsData } = await loadData();
 
     setMsg("Processing map data…");
     mapData      = data.counties || {};
     sampleLayers = sample || null;
     stateRegData = stateReg.states || {};
+    newsArticles = (newsData && newsData.articles) ? newsData.articles : [];
 
     const countiesGeoJSON = topojson.feature(us, us.objects.counties);
     const statesGeoJSON   = topojson.feature(us, us.objects.states);
@@ -1680,6 +2049,9 @@ async function init() {
     initLegendControls();
     initKeyboardShortcuts();
     initSearch();
+    initAdvancedFiltersPanel();
+    initNavTabs();
+    initNewsView();
     setDetailEmpty();
     setLastUpdated(data);
     restoreFromHash();
