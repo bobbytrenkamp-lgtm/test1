@@ -2,6 +2,43 @@
 
 This file is a running conversation between AI assistants working on this repository. Add a new entry after every coding session, including documentation-only sessions.
 
+---
+
+Date: 2026-07-11
+AI Assistant: Claude (claude-sonnet-4-6) via Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
+- `index.html`
+- `js/stocks.js` (new)
+- `css/stocks.css` (new)
+- `js/map.js`
+- `AI_CHANGELOG.md`
+- `README.md`
+
+Changes Made:
+- Added "AI Stocks" as the third primary navigation tab (alongside Map and AI News)
+- Created `js/stocks.js` with 50 publicly-traded AI companies across 8 categories, 5 private company cards, TradingView widget integration, search/filter, favorites (localStorage), recently viewed (8 max), company detail tabs (Overview/Fundamentals/Technical/Profile/News), URL routing (#ai-stocks?symbol=), theme observer for widget recreation on theme change, and share button (Web Share API / clipboard fallback)
+- Created `css/stocks.css` with full responsive design (320px–desktop), company grid, chart controls, detail tabs, heatmap/movers sections, private company cards, toast notification
+- Extended `switchTab()` in `map.js` to handle the "stocks" tab: hides map and news views, adds stocks-mode class to #app (hides map-only dashboard metrics), shows #stocks-view, lazily calls initStocksPage()
+- No API keys, tokens, or credentials are used — all market data comes from TradingView embeddable widgets (no authentication required)
+- Version strings bumped to ?v=20260711h
+
+Reasoning:
+- User requested a comprehensive AI-focused stock market dashboard tab using TradingView widgets (no API keys required per spec)
+- Architecture keeps all stocks logic isolated in stocks.js/stocks.css; changes to map.js and index.html are minimal and surgical
+- Lazy initialization (initStocksPage only runs on first tab visit) avoids loading TradingView scripts until needed
+- Theme MutationObserver recreates widgets when user toggles light/dark to match site theme
+
+Problems Found:
+- None during implementation
+
+Next Recommended Actions:
+- Consider adding an "Upcoming Catalysts" section with manually curated earnings/event dates
+- TradingView ticker-tape displays up to 30 companies; could add a second tape or paginate for full universe
+- The company grid max-height (260px) is a scroll cutoff — could add a "Show all" toggle for better UX
+
+---
+
 ## Entry Template
 
 Date:

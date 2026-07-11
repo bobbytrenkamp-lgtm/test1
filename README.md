@@ -1,6 +1,11 @@
 # US Data Center & AI Restrictions Map
 
-An interactive choropleth map tracking data center construction restrictions, AI regulations, and high-intensity computing moratoriums at the US county level.
+An interactive three-tab web application tracking US data center and AI policy, AI news, and AI stock market data.
+
+**Tabs:**
+- **Map** — Choropleth map of data center construction restrictions, AI regulations, and computing moratoriums at the US county level
+- **AI News** — Curated AI industry news feed updated hourly
+- **AI Stocks** — Interactive AI company stock tracker with TradingView charts, 50+ companies, favorites, and market heatmap
 
 ## Documentation Status
 
