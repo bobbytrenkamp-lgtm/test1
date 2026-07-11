@@ -1993,6 +1993,8 @@ function switchTab(tab) {
   } else {
     mainEl.hidden = false;
     searchBar.classList.remove("news-mode");
+    // If the map was initialized while #main was hidden, Leaflet needs a size refresh
+    if (leafletMap) setTimeout(() => leafletMap.invalidateSize(), 50);
   }
 }
 
@@ -2458,22 +2460,29 @@ async function init() {
   initThemeToggle();
 
   try {
-    setMsg("Loading county data…");
+    setMsg("Loading data…");
     const { us, data, sample, stateReg, newsData } = await loadData();
 
-    setMsg("Processing map data…");
     mapData      = data.counties || {};
     sampleLayers = sample || null;
     stateRegData = stateReg.states || {};
     newsArticles = (newsData && newsData.articles) ? newsData.articles : [];
 
+    // Wire up nav and switch to Home (or map via hash) immediately.
+    // This hides #main, making the loading overlay invisible while the
+    // map initializes in the background — users see the home page right away.
+    initNavTabs();
+    initKeyboardShortcuts();
+    initNewsView();
+    renderNewsStatusBar(newsData);
+    setLastUpdated(data);
+    if (!restoreFromHash()) switchTab("home");
+
+    // Map initialization (not visible to user on Home tab)
     const countiesGeoJSON = topojson.feature(us, us.objects.counties);
     const statesGeoJSON   = topojson.feature(us, us.objects.states);
 
-    setMsg("Rendering map…");
     initLeafletMap();
-
-    // z-order: state (bottom) → counties → markers (top)
     initStateLayer(statesGeoJSON);
     initCountyLayer(countiesGeoJSON);
     renderSampleMarkerLayers(countiesGeoJSON);
@@ -2487,17 +2496,9 @@ async function init() {
     initFilterPanelControls();
     initTopToggle();
     initLegendControls();
-    initKeyboardShortcuts();
     initSearch();
     initAdvancedFiltersPanel();
-    initNavTabs();
-    initNewsView();
-    renderNewsStatusBar(newsData);
     setDetailEmpty();
-    setLastUpdated(data);
-
-    /* Default to Home tab unless a FIPS hash is in the URL */
-    if (!restoreFromHash()) switchTab("home");
 
     loadEl.style.display = "none";
   } catch (err) {
