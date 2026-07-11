@@ -1861,27 +1861,6 @@ function initAdvancedFiltersPanel() {
     scopeRow.appendChild(btn);
   }
 
-  // Facilities list (synced to layer panel)
-  const facilityDefs = LAYER_DEFS.filter(d => d.group === "Facilities" || d.group === "Infrastructure");
-  const facilList = document.getElementById("adv-facilities-list");
-  for (const def of facilityDefs) {
-    const row = document.createElement("div");
-    row.className = "adv-facility-row";
-    row.innerHTML = `
-      <span class="adv-facility-label">
-        <span class="adv-facility-dot" style="background:${def.color}"></span>${def.label}
-      </span>
-      <span class="toggle-switch" style="pointer-events:none">
-        <input type="checkbox" ${layerState[def.id] ? "checked" : ""} data-layer="${def.id}" tabindex="-1">
-        <span class="toggle-slider"></span>
-      </span>`;
-    const cb = row.querySelector("input");
-    row.addEventListener("click", () => {
-      setLayerVisible(def.id, !layerState[def.id], true);
-      cb.checked = layerState[def.id];
-    });
-    facilList.appendChild(row);
-  }
 }
 
 /* ── Nav Tabs (Map / AI News) ── */
