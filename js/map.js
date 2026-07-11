@@ -259,7 +259,7 @@ async function loadData() {
     load("data/map_data.json"),
     load("data/sample_layers.json"),
     load("data/state_regulations.json"),
-    load("data/ai_news.json").catch(() => ({ articles: [] })),
+    fetch("data/ai_news.json", { cache: "no-store" }).then(r => { if (!r.ok) throw new Error("data/ai_news.json"); return r.json(); }).catch(() => ({ articles: [] })),
   ]);
   return { us, data, sample, stateReg, newsData };
 }
