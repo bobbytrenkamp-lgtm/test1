@@ -1365,13 +1365,29 @@ function renderDashboard(data) {
   const existingMW   = existingDCs.reduce((s, d) => s + d.capacity_mw, 0);
   const plannedMW    = plannedDCs .reduce((s, d) => s + d.capacity_mw, 0);
 
+  const articleCount = (typeof newsArticles !== 'undefined' ? newsArticles.length : 0);
+  const companyCount = (typeof AI_COMPANIES !== 'undefined' ? AI_COMPANIES.length : 50);
+
+  const I = {
+    ban:       `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>`,
+    clock:     `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    home:      `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    bolt:      `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+    chart:     `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+    news:      `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>`,
+    briefcase: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>`,
+    map:       `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>`,
+  };
+
   const cards = [
-    { label: "Active Restrictions",    value: counts.moderate + counts.high + counts.ban, metric: "restrictions" },
-    { label: "Proposed Restrictions",  value: counts.proposed, metric: "proposed" },
-    { label: "States w/ Legislation",  value: statesWithLegislation.size, metric: "legislation" },
-    { label: "Existing Capacity",      text: `${existingDCs.length} sites · ${(existingMW / 1000).toFixed(1)} GW`, sample: true, metric: "capacity" },
-    { label: "Planned Data Centers",   text: `${plannedDCs.length} sites · ${(plannedMW / 1000).toFixed(1)} GW`, sample: true, metric: "planned" },
-    { label: "Data Last Updated",      text: lastUpdated, metric: "updated" },
+    { label: "Active Restrictions",   value: counts.moderate + counts.high + counts.ban, metric: "restrictions", icon: I.ban },
+    { label: "Proposed Restrictions", value: counts.proposed, metric: "proposed", icon: I.clock },
+    { label: "States w/ Legislation", value: statesWithLegislation.size, metric: "legislation", icon: I.home },
+    { label: "Existing Capacity",     text: `${existingDCs.length} sites · ${(existingMW / 1000).toFixed(1)} GW`, sample: true, metric: "capacity", icon: I.bolt },
+    { label: "Planned Data Centers",  text: `${plannedDCs.length} sites · ${(plannedMW / 1000).toFixed(1)} GW`, sample: true, metric: "planned", icon: I.chart },
+    { label: "AI News Articles",      value: articleCount, metric: "articles", icon: I.news },
+    { label: "Companies Monitored",   value: companyCount, metric: "companies", icon: I.briefcase },
+    { label: "Data Last Updated",     text: lastUpdated, metric: "updated", icon: I.map },
   ];
 
   const dashboard = document.getElementById("dashboard");
@@ -1380,11 +1396,12 @@ function renderDashboard(data) {
     const el  = document.createElement("div");
     el.className = "stat-card";
     if (card.metric) el.dataset.metric = card.metric;
-    const tag = card.sample ? `<span class="sample-tag" style="margin-left:6px;">Sample</span>` : "";
+    const tag  = card.sample ? `<span class="sample-tag" style="margin-left:6px;">Sample</span>` : "";
+    const icon = card.icon   ? `<div class="stat-card-icon" aria-hidden="true">${card.icon}</div>` : "";
     if (card.text) {
-      el.innerHTML = `<div class="stat-card-label">${card.label}${tag}</div><div class="stat-card-value stat-card-text">${card.text}</div>`;
+      el.innerHTML = `${icon}<div class="stat-card-label">${card.label}${tag}</div><div class="stat-card-value stat-card-text">${card.text}</div>`;
     } else {
-      el.innerHTML = `<div class="stat-card-label">${card.label}</div><div class="stat-card-value">0</div>`;
+      el.innerHTML = `${icon}<div class="stat-card-label">${card.label}</div><div class="stat-card-value">0</div>`;
       dashboard.appendChild(el);
       animateCounter(el.querySelector(".stat-card-value"), card.value);
       continue;
@@ -1661,6 +1678,13 @@ function restoreFromHash() {
 /* ── Keyboard shortcuts ── */
 function initKeyboardShortcuts() {
   document.addEventListener("keydown", e => {
+    // `/` focuses search (unless already in a text field)
+    if (e.key === "/" && !e.target.matches("input, textarea, select, [contenteditable]")) {
+      e.preventDefault();
+      const searchInput = document.getElementById("search-input");
+      if (searchInput) { searchInput.focus(); searchInput.select(); }
+      return;
+    }
     if (e.key !== "Escape") return;
     const filterOpen = document.getElementById("filter-panel").classList.contains("open");
     const sheetOpen  = document.getElementById("detail-panel").classList.contains("sheet-open");
@@ -1917,11 +1941,13 @@ function initAdvancedFiltersPanel() {
 /* ── Nav Tabs (Map / AI News / AI Stocks) ── */
 function switchTab(tab) {
   activeTab = tab;
-  const mainEl    = document.getElementById("main");
-  const newsEl    = document.getElementById("news-view");
-  const stocksEl  = document.getElementById("stocks-view");
-  const searchBar = document.getElementById("search-bar");
-  const appEl     = document.getElementById("app");
+  const mainEl      = document.getElementById("main");
+  const newsEl      = document.getElementById("news-view");
+  const stocksEl    = document.getElementById("stocks-view");
+  const analyticsEl = document.getElementById("analytics-view");
+  const aboutEl     = document.getElementById("about-view");
+  const searchBar   = document.getElementById("search-bar");
+  const appEl       = document.getElementById("app");
 
   document.querySelectorAll(".header-tab").forEach(btn => {
     const isActive = btn.dataset.tab === tab;
@@ -1929,24 +1955,34 @@ function switchTab(tab) {
     btn.setAttribute("aria-selected", isActive ? "true" : "false");
   });
 
-  appEl.classList.toggle("stocks-mode", tab === "stocks");
+  appEl.classList.toggle("stocks-mode",   tab === "stocks");
+  appEl.classList.toggle("fullpage-mode", tab === "analytics" || tab === "about");
+
+  // Hide all views, show the active one
+  mainEl.hidden = true;
+  newsEl.hidden = true;
+  if (stocksEl)    stocksEl.hidden    = true;
+  if (analyticsEl) analyticsEl.hidden = true;
+  if (aboutEl)     aboutEl.hidden     = true;
 
   if (tab === "news") {
-    mainEl.hidden              = true;
-    newsEl.hidden              = false;
-    if (stocksEl) stocksEl.hidden = true;
+    newsEl.hidden = false;
     searchBar.classList.add("news-mode");
     renderNews();
   } else if (tab === "stocks") {
-    mainEl.hidden              = true;
-    newsEl.hidden              = true;
     if (stocksEl) stocksEl.hidden = false;
     searchBar.classList.add("news-mode");
     if (typeof initStocksPage === "function") initStocksPage();
+  } else if (tab === "analytics") {
+    if (analyticsEl) analyticsEl.hidden = false;
+    searchBar.classList.add("news-mode");
+    if (typeof renderAnalyticsPage === "function") renderAnalyticsPage();
+  } else if (tab === "about") {
+    if (aboutEl) aboutEl.hidden = false;
+    searchBar.classList.add("news-mode");
+    if (typeof renderAboutPage === "function") renderAboutPage();
   } else {
-    mainEl.hidden              = false;
-    newsEl.hidden              = true;
-    if (stocksEl) stocksEl.hidden = true;
+    mainEl.hidden = false;
     searchBar.classList.remove("news-mode");
   }
 }
