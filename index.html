@@ -7,7 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260711g" />
+  <link rel="stylesheet" href="css/style.css?v=20260711h" />
+  <link rel="stylesheet" href="css/stocks.css?v=20260711h" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -28,6 +29,10 @@
     <nav id="header-tabs" role="tablist">
       <button class="header-tab active" data-tab="map" role="tab" aria-selected="true">Map</button>
       <button class="header-tab" data-tab="news" role="tab" aria-selected="false">AI News</button>
+      <button class="header-tab" data-tab="stocks" role="tab" aria-selected="false">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        AI Stocks
+      </button>
     </nav>
     <div id="header-right">
       <button id="theme-toggle" aria-label="Color theme: System" title="Appearance: System"></button>
@@ -125,6 +130,8 @@
   </div><!-- /main -->
 
   <!-- AI News view -->
+  <div id="stocks-view" hidden></div>
+
   <div id="news-view" hidden>
     <div id="news-toolbar">
       <input id="news-search" type="text" placeholder="Search articles, publishers, topics…" autocomplete="off" />
@@ -246,6 +253,7 @@
 
 <script src="vendor/leaflet.js"></script>
 <script src="vendor/topojson-client.min.js"></script>
-<script src="js/map.js?v=20260711g"></script>
+<script src="js/stocks.js?v=20260711h"></script>
+<script src="js/map.js?v=20260711h"></script>
 </body>
 </html>

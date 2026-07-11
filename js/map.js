@@ -1914,12 +1914,14 @@ function initAdvancedFiltersPanel() {
 
 }
 
-/* ── Nav Tabs (Map / AI News) ── */
+/* ── Nav Tabs (Map / AI News / AI Stocks) ── */
 function switchTab(tab) {
   activeTab = tab;
-  const mainEl  = document.getElementById("main");
-  const newsEl  = document.getElementById("news-view");
+  const mainEl    = document.getElementById("main");
+  const newsEl    = document.getElementById("news-view");
+  const stocksEl  = document.getElementById("stocks-view");
   const searchBar = document.getElementById("search-bar");
+  const appEl     = document.getElementById("app");
 
   document.querySelectorAll(".header-tab").forEach(btn => {
     const isActive = btn.dataset.tab === tab;
@@ -1927,14 +1929,24 @@ function switchTab(tab) {
     btn.setAttribute("aria-selected", isActive ? "true" : "false");
   });
 
+  appEl.classList.toggle("stocks-mode", tab === "stocks");
+
   if (tab === "news") {
-    mainEl.hidden  = true;
-    newsEl.hidden  = false;
+    mainEl.hidden              = true;
+    newsEl.hidden              = false;
+    if (stocksEl) stocksEl.hidden = true;
     searchBar.classList.add("news-mode");
     renderNews();
+  } else if (tab === "stocks") {
+    mainEl.hidden              = true;
+    newsEl.hidden              = true;
+    if (stocksEl) stocksEl.hidden = false;
+    searchBar.classList.add("news-mode");
+    if (typeof initStocksPage === "function") initStocksPage();
   } else {
-    mainEl.hidden  = false;
-    newsEl.hidden  = true;
+    mainEl.hidden              = false;
+    newsEl.hidden              = true;
+    if (stocksEl) stocksEl.hidden = true;
     searchBar.classList.remove("news-mode");
   }
 }
