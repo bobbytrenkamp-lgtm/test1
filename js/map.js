@@ -2382,6 +2382,9 @@ async function init() {
   const loadEl = document.getElementById("loading");
   const setMsg = msg => { const s = loadEl.querySelector("span"); if (s) s.textContent = msg; };
 
+  // Theme toggle has no data dependency — run immediately so the icon appears before map loads
+  initThemeToggle();
+
   try {
     setMsg("Loading county data…");
     const { us, data, sample, stateReg, newsData } = await loadData();
@@ -2396,7 +2399,6 @@ async function init() {
     const statesGeoJSON   = topojson.feature(us, us.objects.states);
 
     setMsg("Rendering map…");
-    initThemeToggle();
     initLeafletMap();
 
     // z-order: state (bottom) → counties → markers (top)
