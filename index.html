@@ -3,12 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>US Data Center & AI Restrictions Map</title>
+  <title>US Data Center &amp; AI Policy Tracker — Intelligence Platform</title>
+  <meta name="description" content="Track US data center construction restrictions, AI regulations, and computing moratoriums at the county level. Includes AI news, stock market data, and policy analytics." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="US DC &amp; AI Policy Tracker" />
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="US Data Center &amp; AI Policy Tracker" />
+  <meta property="og:description" content="County-level map of data center restrictions and AI regulations across the United States, with curated news and market data." />
+  <meta property="og:url"         content="https://bobbytrenkamp-lgtm.github.io/test1/" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="US DC &amp; AI Policy Tracker" />
+  <meta name="twitter:description" content="County-level map of data center restrictions and AI regulations across the United States." />
+  <link rel="canonical" href="https://bobbytrenkamp-lgtm.github.io/test1/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260711i" />
-  <link rel="stylesheet" href="css/stocks.css?v=20260711i" />
+  <link rel="stylesheet" href="css/style.css?v=20260711j" />
+  <link rel="stylesheet" href="css/stocks.css?v=20260711j" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -20,6 +33,7 @@
   </script>
 </head>
 <body>
+<a href="#home-view" class="skip-link">Skip to main content</a>
 
 <div id="app">
 
@@ -40,23 +54,23 @@
     <nav id="header-tabs" role="tablist">
       <button class="header-tab active" data-tab="map" role="tab" aria-selected="true">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-        Map
+        <span>Map</span>
       </button>
       <button class="header-tab" data-tab="news" role="tab" aria-selected="false">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
-        AI News
+        <span>AI News</span>
       </button>
       <button class="header-tab" data-tab="stocks" role="tab" aria-selected="false">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-        AI Stocks
+        <span>AI Stocks</span>
       </button>
       <button class="header-tab" data-tab="analytics" role="tab" aria-selected="false">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        Analytics
+        <span>Analytics</span>
       </button>
       <button class="header-tab" data-tab="about" role="tab" aria-selected="false">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        About
+        <span>About</span>
       </button>
     </nav>
     <div id="header-right">
@@ -99,6 +113,9 @@
       </svg>
     </button>
   </div>
+
+  <!-- Home / Command Center -->
+  <div id="home-view" class="page-view" hidden tabindex="-1"></div>
 
   <!-- Main -->
   <div id="main">
@@ -280,8 +297,9 @@
 
 <script src="vendor/leaflet.js"></script>
 <script src="vendor/topojson-client.min.js"></script>
-<script src="js/stocks.js?v=20260711i"></script>
-<script src="js/analytics.js?v=20260711i"></script>
-<script src="js/map.js?v=20260711i"></script>
+<script src="js/stocks.js?v=20260711j"></script>
+<script src="js/analytics.js?v=20260711j"></script>
+<script src="js/home.js?v=20260711j"></script>
+<script src="js/map.js?v=20260711j"></script>
 </body>
 </html>
