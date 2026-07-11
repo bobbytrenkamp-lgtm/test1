@@ -117,7 +117,7 @@ let countyGeoLayer  = null;
 let stateGeoLayer   = null;
 let annotationGroup = null;
 let baseTileLayers  = {};
-let activeTile      = "standard";
+let activeTile      = "satellite";
 let hybridLabels    = null;
 
 const countyLayerByFips = {};
@@ -293,7 +293,7 @@ function initBasemaps() {
   );
   cityLabelsLayer.addTo(leafletMap);
 
-  baseTileLayers.standard.addTo(leafletMap);
+  baseTileLayers.satellite.addTo(leafletMap);
 }
 
 function switchBasemap(type) {
