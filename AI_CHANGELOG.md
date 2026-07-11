@@ -240,3 +240,46 @@ Problems Found:
 
 Next Recommended Actions:
 - No further caching issues expected. The pipeline is now fully automated: hourly news run → commit to main → Pages redeploy → fresh articles served immediately on next page load.
+
+---
+
+Date: 2026-07-11
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
+- `css/style.css`
+- `js/map.js`
+- `index.html`
+
+Changes Made:
+- Institutional-quality UI redesign: refined color palette, typography, and visual hierarchy throughout.
+- Color palette: deepened dark theme to `#07090f` / `#0c1020` / `#111628` navy-blacks with cobalt accent `#4874e8`; light theme refined to clean whites with `#2650c8` accent.
+- Added `-webkit-font-smoothing: antialiased` and `text-rendering: optimizeLegibility` to `html, body` for publication-quality text.
+- Header: 58px height, added `box-shadow` for depth, H1 now shows a 3px cobalt accent rule before title text, increased padding to 24px.
+- Nav tabs (desktop): replaced filled pill active state with full-height underline tabs — `border-bottom: 2px solid var(--accent)` at the bottom of the header chrome. Mobile retains segmented-pill style inside a rounded container.
+- Stat cards: `font-size: 24px` with `font-feature-settings: "tnum"` for tabular numerals and `letter-spacing: -0.03em` for tight large-number display.
+- Stats bar chips: `font-feature-settings: "tnum"`, subtle `box-shadow` for floating depth.
+- News cards: editorial hover with `transform: translateY(-1px)`, bolder title at `font-size: 14.5px font-weight: 700`, publisher name weighted (`font-weight: 600`), 3-line summary clamp via `-webkit-line-clamp`, `border-radius: 8px`.
+- Article detail panel title: `19px font-weight: 700 letter-spacing: -0.02em` for editorial headline feel.
+- All inputs/selects: `border-radius: 7px`, `box-shadow: 0 0 0 3px rgba(accent, 0.12)` on focus.
+- Legend: wider min-width (210px), added `box-shadow` for depth.
+- Tooltip: refined shadow, slightly wider max-width.
+- Detail panel: widened from 320px to 340px.
+- Updated JS `themeColors()` to match new palette (map county/state/border colors).
+- Version string bumped: `?v=20260711c` → `?v=20260711d`.
+
+Reasoning:
+- The previous design was functional but lacked the visual precision expected of institutional data products (Bloomberg, Pitchbook, Capital IQ).
+- Underline tabs are the canonical desktop nav pattern for professional data tools — not filled pills.
+- `font-feature-settings: "tnum"` ensures numeric data columns and stat values align properly and read as authoritative data.
+- Deeper navy palette (`#07090f`) reads as more premium than the previous blue-gray (`#0f1117`) because pure-navy darks reduce eye strain while conveying gravitas.
+- `-webkit-font-smoothing: antialiased` makes Inter render at publication quality on macOS/iOS retina displays.
+- `transform: translateY(-1px)` card lift is a standard editorial-product hover pattern (FT, Bloomberg news cards) that communicates interactivity without garish color shifts.
+
+Problems Found:
+- None. All existing functionality (drag panels, resize, theme toggle, layer toggles, county hover/click, iOS Safari, mobile bottom sheets) preserved. JS syntax unchanged.
+
+Next Recommended Actions:
+- Test desktop nav tab underline on Chrome, Safari, Firefox — verify the bottom border aligns flush with header bottom edge.
+- Test mobile to confirm segmented-pill tab style still works in the mobile header.
+- Increment version string suffix (20260711d → 20260711e) on the next CSS/JS deploy.

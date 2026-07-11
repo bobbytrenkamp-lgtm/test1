@@ -44,11 +44,11 @@ function isDarkTheme() {
 function themeColors() {
   const dark = isDarkTheme();
   return {
-    noData:          dark ? '#1e2235' : '#dde3f0',
-    countyBorder:    dark ? '#05060a' : '#b0b8cc',
-    stateBorder:     dark ? '#4a5180' : '#8a94b4',
-    selectedOutline: dark ? '#ffffff' : '#1a1d2e',
-    dotBorder:       dark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.15)',
+    noData:          dark ? '#0d1228' : '#d2d9ee',
+    countyBorder:    dark ? '#030408' : '#a8b2cc',
+    stateBorder:     dark ? '#2d3868' : '#7880b0',
+    selectedOutline: dark ? '#e8ecf8' : '#0c1020',
+    dotBorder:       dark ? 'rgba(200,210,255,0.18)' : 'rgba(0,0,0,0.14)',
   };
 }
 
