@@ -3898,6 +3898,31 @@ html[data-theme="light"] {
   margin: 0 auto;
 }
 
+/* ── Home skeleton loaders ── */
+.home-skeleton-list { gap: 10px; }
+.home-skeleton-row {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.home-skel {
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 50%, var(--surface-2) 75%);
+  background-size: 200% 100%;
+  animation: home-shimmer 1.4s infinite;
+}
+@keyframes home-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.home-skel-line  { height: 13px; width: 75%; }
+.home-skel-short { height: 11px; width: 45%; }
+.home-skel-num   { height: 28px; width: 60px; margin: 0 auto 4px; border-radius: 6px; }
+
 /* ── Home responsive ── */
 @media (max-width: 900px) {
   .home-nav-grid { grid-template-columns: repeat(2, 1fr); }
