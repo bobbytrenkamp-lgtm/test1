@@ -303,7 +303,16 @@ html, body {
   overflow: hidden;
 }
 #main[hidden] { display: none; }
-#search-bar[hidden] { display: none; }
+
+/* News tab: hide map controls but keep the top-toggle collapse button */
+#search-bar.news-mode > :not(#top-toggle) {
+  display: none !important;
+}
+#search-bar.news-mode {
+  justify-content: flex-end;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
 
 /* ── Map ── */
 #map-container {
