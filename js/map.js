@@ -1366,12 +1366,12 @@ function renderDashboard(data) {
   const plannedMW    = plannedDCs .reduce((s, d) => s + d.capacity_mw, 0);
 
   const cards = [
-    { label: "Counties — Active Restrictions",   value: counts.moderate + counts.high + counts.ban },
-    { label: "Counties — Proposed Restrictions", value: counts.proposed },
-    { label: "States w/ AI / DC Legislation",   value: statesWithLegislation.size },
-    { label: "Existing Capacity",               text: `${existingDCs.length} sites · ${(existingMW / 1000).toFixed(1)} GW`, sample: true },
-    { label: "Planned Data Centers",            text: `${plannedDCs.length} sites · ${(plannedMW / 1000).toFixed(1)} GW`, sample: true },
-    { label: "Last Updated",                    text: lastUpdated },
+    { label: "Active Restrictions",    value: counts.moderate + counts.high + counts.ban, metric: "restrictions" },
+    { label: "Proposed Restrictions",  value: counts.proposed, metric: "proposed" },
+    { label: "States w/ Legislation",  value: statesWithLegislation.size, metric: "legislation" },
+    { label: "Existing Capacity",      text: `${existingDCs.length} sites · ${(existingMW / 1000).toFixed(1)} GW`, sample: true, metric: "capacity" },
+    { label: "Planned Data Centers",   text: `${plannedDCs.length} sites · ${(plannedMW / 1000).toFixed(1)} GW`, sample: true, metric: "planned" },
+    { label: "Data Last Updated",      text: lastUpdated, metric: "updated" },
   ];
 
   const dashboard = document.getElementById("dashboard");
@@ -1379,11 +1379,12 @@ function renderDashboard(data) {
   for (const card of cards) {
     const el  = document.createElement("div");
     el.className = "stat-card";
+    if (card.metric) el.dataset.metric = card.metric;
     const tag = card.sample ? `<span class="sample-tag" style="margin-left:6px;">Sample</span>` : "";
     if (card.text) {
-      el.innerHTML = `<div class="stat-card-value stat-card-text">${card.text}${tag}</div><div class="stat-card-label">${card.label}</div>`;
+      el.innerHTML = `<div class="stat-card-label">${card.label}${tag}</div><div class="stat-card-value stat-card-text">${card.text}</div>`;
     } else {
-      el.innerHTML = `<div class="stat-card-value">0</div><div class="stat-card-label">${card.label}</div>`;
+      el.innerHTML = `<div class="stat-card-label">${card.label}</div><div class="stat-card-value">0</div>`;
       dashboard.appendChild(el);
       animateCounter(el.querySelector(".stat-card-value"), card.value);
       continue;
@@ -1549,7 +1550,14 @@ function buildNoCountyPolicySectionHtml() {
   </div>`;
 }
 
+function setSevClass(key) {
+  const panel = document.getElementById("detail-panel");
+  panel.className = panel.className.split(" ").filter(c => !c.startsWith("sev-")).join(" ");
+  if (key) panel.classList.add("sev-" + key);
+}
+
 function setDetailEmpty() {
+  setSevClass(null);
   setLocationHash(null);
   document.getElementById("detail-header").querySelector("h2").textContent = "County Details";
   document.getElementById("detail-state").textContent = "";
@@ -1564,6 +1572,7 @@ function setDetailEmpty() {
 }
 
 function setDetailCounty(fips, county) {
+  setSevClass(getSeverityKey(county));
   document.getElementById("detail-header").querySelector("h2").textContent = county.name;
   document.getElementById("detail-state").textContent = county.state;
 
@@ -1580,6 +1589,7 @@ function setDetailCounty(fips, county) {
 }
 
 function setDetailNoRestriction(name, state, fips) {
+  setSevClass("none");
   document.getElementById("detail-header").querySelector("h2").textContent = name || "County";
   document.getElementById("detail-state").textContent = state || "";
   const stateFips2 = fips ? fips.slice(0, 2) : null;
@@ -1601,6 +1611,7 @@ const FACILITY_KIND_LABELS = {
 };
 
 function setDetailFacility(facility, kind) {
+  setSevClass(null);
   document.getElementById("detail-header").querySelector("h2").textContent = facility.name;
   document.getElementById("detail-state").textContent = FACILITY_KIND_LABELS[kind] || "";
   const county = mapData[facility.county_fips];
@@ -1670,6 +1681,7 @@ function initKeyboardShortcuts() {
 
 /* ── State detail ── */
 function showStateDetail(fips2) {
+  setSevClass(null);
   const abbr = STATE_FIPS[fips2] || "";
   const name = STATE_NAMES[abbr] || abbr;
   document.getElementById("detail-header").querySelector("h2").textContent = name;
