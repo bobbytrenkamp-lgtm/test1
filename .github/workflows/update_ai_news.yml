@@ -1,0 +1,80 @@
+name: Update AI News Feed
+
+on:
+  schedule:
+    # Run at :17 past every hour — offset from peak minute (00) to reduce GH Actions congestion
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+# Allow the job to write back to the repo
+permissions:
+  contents: write
+
+# Prevent two concurrent news updates from racing on the same commit
+concurrency:
+  group: update-ai-news
+  cancel-in-progress: false  # let the running job finish; queue the next
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install requests beautifulsoup4 python-dateutil
+
+      - name: Run AI news aggregator
+        timeout-minutes: 10
+        run: |
+          python data/update_ai_news.py
+
+      - name: Validate output JSON
+        run: |
+          python - <<'EOF'
+          import json, sys
+          with open("data/ai_news.json") as f:
+              data = json.load(f)
+          articles = data.get("articles", [])
+          # Reject if any sample placeholder URL survived
+          bad = [a for a in articles if not a.get("url","").startswith("http")]
+          if bad:
+              print(f"ERROR: {len(bad)} articles have invalid URLs", file=sys.stderr)
+              sys.exit(1)
+          # Reject if categories are invalid
+          VALID = {
+              "AI Industry","AI Research","AI Products","AI Safety",
+              "Federal Policy","State/Local Policy","International Policy",
+              "Data Centers","Energy & Environment","Chips & Infrastructure",
+              "Business & Investment","Legal & Copyright","Jobs & Society","Other AI News",
+          }
+          bad_cat = [a for a in articles if a.get("category") not in VALID]
+          if bad_cat:
+              print(f"ERROR: {len(bad_cat)} articles have invalid categories", file=sys.stderr)
+              sys.exit(1)
+          print(f"Validation OK: {len(articles)} articles, {data.get('sources_succeeded',0)}/{data.get('sources_checked',0)} sources")
+          EOF
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ai_news.json
+          if git diff --staged --quiet; then
+            echo "No changes to ai_news.json — skipping commit."
+          else
+            git commit -m "Automated AI news update [skip ci]"
+            git push origin main
+          fi
