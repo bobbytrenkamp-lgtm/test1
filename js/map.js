@@ -1900,12 +1900,12 @@ function switchTab(tab) {
   if (tab === "news") {
     mainEl.hidden  = true;
     newsEl.hidden  = false;
-    searchBar.hidden = true;
+    searchBar.classList.add("news-mode");
     renderNews();
   } else {
     mainEl.hidden  = false;
     newsEl.hidden  = true;
-    searchBar.hidden = false;
+    searchBar.classList.remove("news-mode");
   }
 }
 
