@@ -2399,7 +2399,6 @@ async function init() {
     const statesGeoJSON   = topojson.feature(us, us.objects.states);
 
     setMsg("Rendering map…");
-    initThemeToggle();
     initLeafletMap();
 
     // z-order: state (bottom) → counties → markers (top)
