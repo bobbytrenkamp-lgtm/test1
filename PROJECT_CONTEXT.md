@@ -36,6 +36,7 @@ The long-term vision is to become a reliable nationwide intelligence tool for da
 - Clickable counties with detail panel content.
 - Responsive dashboard, legend, layer panel, stats bar, and mobile bottom-sheet detail panel.
 - Vendored map dependencies for more reliable static deployment.
+- AI News Feed tab: hourly-updated real news articles aggregated from 23+ public RSS/Atom feeds via GitHub Actions; article detail panel with summary, key points, "why it matters", source link; publisher and category filters; location link switches to Map tab with state filter applied. See `data/news_sources.json`, `data/update_ai_news.py`, `.github/workflows/update_ai_news.yml`, and the README AI News section for full architecture.
 
 ## Partially Completed Features
 

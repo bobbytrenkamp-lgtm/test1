@@ -1,0 +1,323 @@
+{
+  "_note": "Configurable news sources for update_ai_news.py. Set enabled:false to disable without removing. Verify feed URLs return valid RSS/Atom before enabling.",
+  "settings": {
+    "max_articles_total": 250,
+    "max_articles_per_source": 25,
+    "retention_days": 30,
+    "relevance_threshold": 3,
+    "request_timeout_seconds": 20,
+    "max_response_bytes": 2097152,
+    "user_agent": "USDataCenterMap/1.0 (https://bobbytrenkamp-lgtm.github.io/test1; automated news aggregator)"
+  },
+  "direct_feeds": [
+    {
+      "id": "techcrunch",
+      "name": "TechCrunch",
+      "tier": "tech",
+      "url": "https://techcrunch.com/feed/",
+      "homepage": "https://techcrunch.com",
+      "enabled": true,
+      "note": "General tech; filter by relevance"
+    },
+    {
+      "id": "theverge",
+      "name": "The Verge",
+      "tier": "tech",
+      "url": "https://www.theverge.com/rss/index.xml",
+      "homepage": "https://www.theverge.com",
+      "enabled": true
+    },
+    {
+      "id": "arstechnica",
+      "name": "Ars Technica",
+      "tier": "tech",
+      "url": "https://feeds.arstechnica.com/arstechnica/index",
+      "homepage": "https://arstechnica.com",
+      "enabled": true
+    },
+    {
+      "id": "venturebeat_ai",
+      "name": "VentureBeat",
+      "tier": "tech",
+      "url": "https://venturebeat.com/category/ai/feed/",
+      "homepage": "https://venturebeat.com",
+      "enabled": true,
+      "note": "AI-specific feed — high relevance expected"
+    },
+    {
+      "id": "wired",
+      "name": "Wired",
+      "tier": "tech",
+      "url": "https://www.wired.com/feed/rss",
+      "homepage": "https://www.wired.com",
+      "enabled": true
+    },
+    {
+      "id": "mit_tech_review",
+      "name": "MIT Technology Review",
+      "tier": "tech",
+      "url": "https://www.technologyreview.com/feed/",
+      "homepage": "https://www.technologyreview.com",
+      "enabled": true
+    },
+    {
+      "id": "ieee_spectrum",
+      "name": "IEEE Spectrum",
+      "tier": "tech",
+      "url": "https://spectrum.ieee.org/feed",
+      "homepage": "https://spectrum.ieee.org",
+      "enabled": true
+    },
+    {
+      "id": "bbc_tech",
+      "name": "BBC News Technology",
+      "tier": "general",
+      "url": "https://feeds.bbci.co.uk/news/technology/rss.xml",
+      "homepage": "https://www.bbc.com/news/technology",
+      "enabled": true
+    },
+    {
+      "id": "guardian_tech",
+      "name": "The Guardian",
+      "tier": "general",
+      "url": "https://www.theguardian.com/uk/technology/rss",
+      "homepage": "https://www.theguardian.com/technology",
+      "enabled": true
+    },
+    {
+      "id": "npr_tech",
+      "name": "NPR",
+      "tier": "general",
+      "url": "https://feeds.npr.org/1019/rss.xml",
+      "homepage": "https://www.npr.org/sections/technology/",
+      "enabled": true
+    },
+    {
+      "id": "cnbc_tech",
+      "name": "CNBC",
+      "tier": "general",
+      "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=19854910",
+      "homepage": "https://www.cnbc.com/technology/",
+      "enabled": true
+    },
+    {
+      "id": "google_ai_blog",
+      "name": "Google",
+      "tier": "company",
+      "url": "https://blog.google/technology/ai/rss/",
+      "homepage": "https://blog.google/technology/ai/",
+      "enabled": true,
+      "note": "Google AI blog — expect high relevance"
+    },
+    {
+      "id": "microsoft_ai_blog",
+      "name": "Microsoft",
+      "tier": "company",
+      "url": "https://blogs.microsoft.com/ai/feed/",
+      "homepage": "https://blogs.microsoft.com/ai/",
+      "enabled": true
+    },
+    {
+      "id": "aws_blog",
+      "name": "Amazon Web Services",
+      "tier": "company",
+      "url": "https://aws.amazon.com/blogs/aws/feed/",
+      "homepage": "https://aws.amazon.com/blogs/aws/",
+      "enabled": true
+    },
+    {
+      "id": "meta_engineering",
+      "name": "Meta",
+      "tier": "company",
+      "url": "https://engineering.fb.com/feed/",
+      "homepage": "https://engineering.fb.com",
+      "enabled": true
+    },
+    {
+      "id": "openai_blog",
+      "name": "OpenAI",
+      "tier": "company",
+      "url": "https://openai.com/blog/rss.xml",
+      "homepage": "https://openai.com/blog",
+      "enabled": true,
+      "note": "OpenAI may block automated requests; failure handled gracefully"
+    },
+    {
+      "id": "nist_news",
+      "name": "NIST",
+      "tier": "government",
+      "url": "https://www.nist.gov/news-events/news/rss.xml",
+      "homepage": "https://www.nist.gov/artificial-intelligence",
+      "enabled": true
+    },
+    {
+      "id": "ftc_news",
+      "name": "FTC",
+      "tier": "government",
+      "url": "https://www.ftc.gov/feeds/news.xml",
+      "homepage": "https://www.ftc.gov",
+      "enabled": true,
+      "note": "FTC press releases; relevance filter required"
+    },
+    {
+      "id": "energy_gov",
+      "name": "U.S. Department of Energy",
+      "tier": "government",
+      "url": "https://www.energy.gov/rss.xml",
+      "homepage": "https://www.energy.gov",
+      "enabled": true,
+      "note": "DOE news; relevance filter required"
+    },
+    {
+      "id": "dc_dynamics",
+      "name": "Data Center Dynamics",
+      "tier": "industry",
+      "url": "https://www.datacenterdynamics.com/en/rss/",
+      "homepage": "https://www.datacenterdynamics.com",
+      "enabled": true,
+      "note": "Data center industry news — high relevance expected"
+    },
+    {
+      "id": "dc_knowledge",
+      "name": "Data Center Knowledge",
+      "tier": "industry",
+      "url": "https://www.datacenterknowledge.com/rss.xml",
+      "homepage": "https://www.datacenterknowledge.com",
+      "enabled": true
+    },
+    {
+      "id": "electrek",
+      "name": "Electrek",
+      "tier": "energy",
+      "url": "https://electrek.co/feed/",
+      "homepage": "https://electrek.co",
+      "enabled": true,
+      "note": "Energy/grid news; relevance filter required"
+    },
+    {
+      "id": "anthropic_blog",
+      "name": "Anthropic",
+      "tier": "company",
+      "url": "https://www.anthropic.com/news/rss.xml",
+      "homepage": "https://www.anthropic.com/news",
+      "enabled": true,
+      "note": "Anthropic may not offer a public RSS feed; failure handled gracefully"
+    },
+    {
+      "id": "reuters_tech",
+      "name": "Reuters",
+      "tier": "general",
+      "url": "https://feeds.reuters.com/reuters/technologyNews",
+      "homepage": "https://www.reuters.com/technology",
+      "enabled": false,
+      "note": "Reuters deprecated their free RSS feeds in 2023. Use Google News queries for Reuters coverage."
+    },
+    {
+      "id": "ap_tech",
+      "name": "Associated Press",
+      "tier": "general",
+      "url": "https://rsshub.app/apnews/topics/technology",
+      "homepage": "https://apnews.com/hub/technology",
+      "enabled": false,
+      "note": "AP does not publish an official public RSS feed. The rsshub.app proxy is a third-party service and may be unreliable or blocked. Disabled for reliability."
+    },
+    {
+      "id": "nytimes_tech",
+      "name": "The New York Times",
+      "tier": "general",
+      "url": "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml",
+      "homepage": "https://www.nytimes.com/section/technology",
+      "enabled": false,
+      "note": "NYT Technology RSS may return paywalled articles or redirect. Disabled pending verification."
+    },
+    {
+      "id": "whitehouse",
+      "name": "White House",
+      "tier": "government",
+      "url": "https://www.whitehouse.gov/briefing-room/presidential-actions/feed/",
+      "homepage": "https://www.whitehouse.gov",
+      "enabled": false,
+      "note": "White House feed is inconsistent in format and availability. Disabled pending verification."
+    },
+    {
+      "id": "stanford_hai",
+      "name": "Stanford HAI",
+      "tier": "research",
+      "url": null,
+      "homepage": "https://hai.stanford.edu/news",
+      "enabled": false,
+      "note": "Stanford HAI does not appear to publish a standard RSS or Atom feed as of 2026."
+    },
+    {
+      "id": "congress_gov",
+      "name": "Congress.gov",
+      "tier": "government",
+      "url": null,
+      "homepage": "https://www.congress.gov",
+      "enabled": false,
+      "note": "Congress.gov does not offer a public RSS feed. Bill monitoring is handled separately by monitor_legislation.py."
+    }
+  ],
+  "google_news_queries": [
+    {
+      "id": "gn_ai_regulation",
+      "query": "artificial intelligence regulation",
+      "enabled": true
+    },
+    {
+      "id": "gn_generative_ai",
+      "query": "generative AI",
+      "enabled": true
+    },
+    {
+      "id": "gn_ai_legislation",
+      "query": "AI legislation Congress",
+      "enabled": true
+    },
+    {
+      "id": "gn_ai_policy",
+      "query": "AI policy federal",
+      "enabled": true
+    },
+    {
+      "id": "gn_dc_regulation",
+      "query": "data center regulation zoning",
+      "enabled": true
+    },
+    {
+      "id": "gn_dc_moratorium",
+      "query": "data center moratorium",
+      "enabled": true
+    },
+    {
+      "id": "gn_dc_energy",
+      "query": "data center energy grid power demand",
+      "enabled": true
+    },
+    {
+      "id": "gn_ai_infrastructure",
+      "query": "AI infrastructure hyperscale",
+      "enabled": true
+    },
+    {
+      "id": "gn_openai_anthropic",
+      "query": "OpenAI OR Anthropic",
+      "enabled": true
+    },
+    {
+      "id": "gn_ai_chips",
+      "query": "AI chips semiconductors NVIDIA",
+      "enabled": true
+    },
+    {
+      "id": "gn_ai_safety",
+      "query": "AI safety alignment governance",
+      "enabled": true
+    },
+    {
+      "id": "gn_dc_water",
+      "query": "data center water usage environment",
+      "enabled": true
+    }
+  ]
+}

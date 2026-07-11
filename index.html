@@ -115,28 +115,39 @@
   <!-- AI News view -->
   <div id="news-view" hidden>
     <div id="news-toolbar">
-      <input id="news-search" type="text" placeholder="Search articles…" autocomplete="off" />
+      <input id="news-search" type="text" placeholder="Search articles, publishers, topics…" autocomplete="off" />
       <select id="news-cat-filter">
         <option value="">All Categories</option>
-        <option value="AI Regulation">AI Regulation</option>
-        <option value="Data Centers">Data Centers</option>
-        <option value="Energy/Grid">Energy/Grid</option>
+        <option value="AI Industry">AI Industry</option>
+        <option value="AI Research">AI Research</option>
+        <option value="AI Products">AI Products</option>
+        <option value="AI Safety">AI Safety</option>
         <option value="Federal Policy">Federal Policy</option>
         <option value="State/Local Policy">State/Local Policy</option>
-        <option value="Companies">Companies</option>
-        <option value="Chips/Semiconductors">Chips/Semiconductors</option>
-        <option value="Cloud/Hyperscalers">Cloud/Hyperscalers</option>
+        <option value="International Policy">International Policy</option>
+        <option value="Data Centers">Data Centers</option>
+        <option value="Energy &amp; Environment">Energy &amp; Environment</option>
+        <option value="Chips &amp; Infrastructure">Chips &amp; Infrastructure</option>
+        <option value="Business &amp; Investment">Business &amp; Investment</option>
+        <option value="Legal &amp; Copyright">Legal &amp; Copyright</option>
+        <option value="Jobs &amp; Society">Jobs &amp; Society</option>
+        <option value="Other AI News">Other AI News</option>
       </select>
       <select id="news-state-filter">
         <option value="">All States</option>
       </select>
+      <select id="news-source-filter">
+        <option value="">All Publishers</option>
+      </select>
     </div>
-    <div id="news-sample-banner">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-      Sample data — for demonstration only. Replace <code>data/ai_news.json</code> with verified real news before launch.
-    </div>
+    <div id="news-status-bar"></div>
     <div id="news-grid"></div>
     <div id="news-empty" hidden>No articles match your filters.</div>
+    <div id="news-loading" hidden>
+      <div class="spinner"></div>
+      <span>Loading articles…</span>
+    </div>
+    <div id="news-error" hidden>News feed temporarily unavailable. Articles will reload on the next hourly update.</div>
   </div>
 
 </div><!-- /app -->
@@ -191,6 +202,35 @@
   <div id="filter-panel-body"></div>
   <div class="panel-resize-handle" id="filter-panel-resize-handle"></div>
 </aside>
+
+<!-- Article detail panel — body-level so position:fixed is truly viewport-relative -->
+<div id="article-detail-backdrop"></div>
+<div id="article-detail" role="dialog" aria-modal="true" aria-labelledby="article-detail-title" hidden>
+  <div id="article-detail-header">
+    <button id="article-detail-close" aria-label="Close article detail">&times;</button>
+    <div id="article-detail-meta">
+      <span id="article-detail-cat" class="news-category-tag"></span>
+      <span id="article-detail-source" class="news-source"></span>
+      <span id="article-detail-date" class="news-date"></span>
+    </div>
+  </div>
+  <div id="article-detail-body">
+    <h2 id="article-detail-title"></h2>
+    <div id="article-detail-location"></div>
+    <div id="article-detail-summary-section">
+      <div id="article-detail-summary"></div>
+      <ul id="article-detail-keypoints"></ul>
+      <div id="article-detail-matters-label" class="detail-section-label">Why it matters</div>
+      <div id="article-detail-matters"></div>
+    </div>
+    <div id="article-detail-tags"></div>
+    <p id="article-detail-attribution">Summary generated from publicly available headline and feed information.</p>
+    <a id="article-detail-link" target="_blank" rel="noopener noreferrer" class="detail-read-btn">
+      Read the original article
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
+  </div>
+</div>
 
 <script src="vendor/leaflet.js"></script>
 <script src="vendor/topojson-client.min.js"></script>

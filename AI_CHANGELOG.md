@@ -174,3 +174,49 @@ Next Recommended Actions:
 - Test that mobile shows no drag handle or resize grip and that panels still function as bottom sheets.
 - Add more counties and states to `data/map_data.json` and `data/state_regulations.json` as policy data is verified.
 - Replace `data/sample_layers.json` facility data with verified real data before public launch.
+
+---
+
+Date: 2026-07-11
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: feature/automated-ai-news
+Files Changed:
+- `data/update_ai_news.py` (new)
+- `data/news_sources.json` (new)
+- `.github/workflows/update_ai_news.yml` (new)
+- `tests/test_update_ai_news.py` (new)
+- `data/ai_news.json` (reset to empty — sample articles removed)
+- `data/requirements.txt` (added requests, beautifulsoup4, python-dateutil)
+- `index.html` (new category options, source filter, article detail panel HTML, status bar)
+- `js/map.js` (news section completely rewritten; article detail panel logic; focus trap; back-button support)
+- `css/style.css` (14-category tag classes, article detail panel styles, news status bar, source filter)
+- `README.md` (AI News section: architecture, copyright policy, source config, troubleshooting)
+- `PROJECT_CONTEXT.md` (AI News Feed added to completed features)
+
+Changes Made:
+- Replaced the 12 hardcoded sample articles in ai_news.json with an automated, merging, deduplicated RSS/Atom aggregator (update_ai_news.py). The feed runs hourly via GitHub Actions.
+- New Python script (update_ai_news.py, ~700 lines): custom XML parser (stdlib only, no feedparser), relevance scoring with weighted keyword patterns, category classification (14 controlled categories), US state detection, SHA-256 URL fingerprint IDs, URL canonicalization (strips tracking params), Jaccard similarity deduplication at threshold 0.60, diversity capping per source, deterministic summary/key-points/why-it-matters generation from feed metadata, atomic JSON write, merge-based (new articles added; existing articles preserved up to retention_days), --dry-run and --validate-only flags.
+- New sources file (news_sources.json): 23 enabled direct feeds (TechCrunch, The Verge, Ars Technica, VentureBeat, Wired, MIT Tech Review, IEEE Spectrum, Google/Microsoft/AWS/Meta/OpenAI/Anthropic blogs, NIST, FTC, DOE, data center trades, Electrek) + 12 Google News RSS queries. Disabled feeds documented with reasons.
+- New GitHub Actions workflow: runs at :17 past every hour, validates JSON schema and URL safety before committing. Commits only when ai_news.json actually changes; uses [skip ci] to avoid recursive Pages deploys.
+- 90 unit tests (tests/test_update_ai_news.py): no live internet required; covers URL canonicalization, safety validation, article ID generation, exact deduplication, fuzzy title deduplication, relevance scoring, category classification, state detection, date parsing, description sanitization, feed parsing (RSS 2.0 + Atom 1.0), article safety, diversity capping, schema validation.
+- Frontend: article cards are now interactive <article role="button"> elements; clicking opens an internal article detail panel (right-side drawer on desktop, full-screen on mobile) rather than navigating to the external link directly. Detail panel shows: headline, publisher, date, category tag, state/locality button (switches to Map tab), summary, key points, "Why it matters", tags, "Read the original article on [Publisher]" button. Focus trap + ESC close + browser back button support (history.pushState). No innerHTML from feed data — all article text set via textContent only (XSS prevention). Publisher/source filter dropdown added to news toolbar.
+
+Reasoning:
+- Sample articles were misleading for users and tied the feed to manually maintained fake content. Automated aggregation from real publisher RSS feeds eliminates both problems.
+- feedparser was intentionally avoided — it requires sgmllib which was removed from Python's stdlib in 3.11. The custom XML parser gives full Python 3.11 compatibility with no external XML dependency.
+- The article detail panel keeps users in the app while previewing context, rather than immediately navigating away to external sites. Users who want the full article can still click the "Read the original" button.
+- Strict XSS prevention (textContent only, no innerHTML from RSS data, URL prefix validation) because RSS content is untrusted external data from any number of publishers.
+
+Problems Found:
+- feedparser is incompatible with Python 3.11 (removed sgmllib). Replaced with stdlib xml.etree.ElementTree.
+- requests.get() does not accept max_redirects kwarg. Fixed: use requests.Session() with session.max_redirects = 5.
+- ElementTree Element objects are falsy when they have no children. feed.find("title") or feed.find("{ns}title") chains silently returned None even when the first find succeeded. Fixed: explicit is None checks throughout the Atom parser.
+- RELEVANCE_KEYWORDS patterns were case-sensitive while haystacks were pre-lowercased. Fixed: added re.IGNORECASE to all compiled keyword patterns.
+- Jaccard similarity for short/medium headline pairs is lower than intuition suggests. Adjusted test thresholds to 0.60 to avoid over-deduplication of genuinely different stories.
+
+Next Recommended Actions:
+- Merge PR and let the first hourly Actions run populate ai_news.json with real articles.
+- Monitor the first few runs for any source fetch failures (check Actions logs).
+- Consider adding more verified feeds to news_sources.json as they are identified.
+- Run `python data/update_ai_news.py --dry-run` locally (with internet access) to preview real article output.
+- Replace `data/sample_layers.json` facility data with verified real data before public launch.
