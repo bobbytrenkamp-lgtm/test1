@@ -220,3 +220,23 @@ Next Recommended Actions:
 - Consider adding more verified feeds to news_sources.json as they are identified.
 - Run `python data/update_ai_news.py --dry-run` locally (with internet access) to preview real article output.
 - Replace `data/sample_layers.json` facility data with verified real data before public launch.
+
+---
+
+Date: 2026-07-11
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
+- `js/map.js`
+
+Changes Made:
+- Fixed browser caching of `data/ai_news.json`. Changed the fetch call to use `{ cache: "no-store" }` so browsers always retrieve a fresh copy. Static files (vendor, map_data, sample_layers, state_regulations) remain cacheable — only the hourly-updated news JSON bypasses the cache.
+
+Reasoning:
+- GitHub Pages does not send `Cache-Control: no-cache` for JSON files, so browsers served the stale (empty) `ai_news.json` from disk even after a successful Pages deploy. Private/incognito windows worked because they have no prior cache. `cache: "no-store"` forces a network fetch on every page load without affecting static assets that rarely change.
+
+Problems Found:
+- Browsers were caching the empty `ai_news.json` from before the automated feed was running, causing the news tab to appear empty for all non-private browsing sessions.
+
+Next Recommended Actions:
+- No further caching issues expected. The pipeline is now fully automated: hourly news run → commit to main → Pages redeploy → fresh articles served immediately on next page load.
