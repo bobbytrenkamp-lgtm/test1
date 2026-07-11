@@ -1670,9 +1670,12 @@ function setLocationHash(fips) {
 function restoreFromHash() {
   const hash = window.location.hash.replace("#", "");
   if (/^\d{5}$/.test(hash)) {
+    switchTab("map");
     selectCounty(hash);
     zoomToFeature(hash);
+    return true;
   }
+  return false;
 }
 
 /* ── Keyboard shortcuts ── */
@@ -1938,10 +1941,11 @@ function initAdvancedFiltersPanel() {
 
 }
 
-/* ── Nav Tabs (Map / AI News / AI Stocks) ── */
+/* ── Nav Tabs ── */
 function switchTab(tab) {
   activeTab = tab;
   const mainEl      = document.getElementById("main");
+  const homeEl      = document.getElementById("home-view");
   const newsEl      = document.getElementById("news-view");
   const stocksEl    = document.getElementById("stocks-view");
   const analyticsEl = document.getElementById("analytics-view");
@@ -1956,16 +1960,21 @@ function switchTab(tab) {
   });
 
   appEl.classList.toggle("stocks-mode",   tab === "stocks");
-  appEl.classList.toggle("fullpage-mode", tab === "analytics" || tab === "about");
+  appEl.classList.toggle("fullpage-mode", tab === "analytics" || tab === "about" || tab === "home");
 
   // Hide all views, show the active one
   mainEl.hidden = true;
   newsEl.hidden = true;
+  if (homeEl)      homeEl.hidden      = true;
   if (stocksEl)    stocksEl.hidden    = true;
   if (analyticsEl) analyticsEl.hidden = true;
   if (aboutEl)     aboutEl.hidden     = true;
 
-  if (tab === "news") {
+  if (tab === "home") {
+    if (homeEl) homeEl.hidden = false;
+    searchBar.classList.add("news-mode");
+    if (typeof renderHomePage === "function") renderHomePage();
+  } else if (tab === "news") {
     newsEl.hidden = false;
     searchBar.classList.add("news-mode");
     renderNews();
@@ -1991,6 +2000,8 @@ function initNavTabs() {
   document.querySelectorAll(".header-tab").forEach(btn => {
     btn.addEventListener("click", () => switchTab(btn.dataset.tab));
   });
+  /* Logo / brand click → Home */
+  document.getElementById("header-brand")?.addEventListener("click", () => switchTab("home"));
 }
 
 /* ── AI News Feed ── */
@@ -2484,7 +2495,9 @@ async function init() {
     renderNewsStatusBar(newsData);
     setDetailEmpty();
     setLastUpdated(data);
-    restoreFromHash();
+
+    /* Default to Home tab unless a FIPS hash is in the URL */
+    if (!restoreFromHash()) switchTab("home");
 
     loadEl.style.display = "none";
   } catch (err) {

@@ -1,5 +1,46 @@
 # AI Changelog
 
+---
+
+Date: 2026-07-11
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
+- `js/home.js` (new)
+- `css/style.css` (home page styles + skip-link + mobile tab fix)
+- `index.html` (SEO meta, skip-link, home-view, home.js script, tab span wrappers, version bump to ?v=20260711j)
+- `js/map.js` (switchTab home case, logo click, restoreFromHash default-home)
+- `robots.txt` (new)
+- `sitemap.xml` (new)
+- `AI_CHANGELOG.md`
+
+Changes Made:
+- **Command Center Homepage** (Priority 3): Created `js/home.js` (~350 lines) with `renderHomePage()` and `initHomeSearch()`. Sections: pulsing live indicator hero, global search bar, 5-KPI strip (total counties, bans, significant, moderate, states), 4 quick-nav cards (Map/News/Stocks/Analytics), 2-column layout (recent regulations + latest news), AI Market Pulse TradingView ticker tape, featured jurisdictions grid (6 annotation counties), newsletter placeholder, footer with platform links + restriction legend. All sections are data-driven from existing globals (mapData, newsArticles, AI_COMPANIES). Clicking any regulation/county card switches to Map tab and zooms to that county. Clicking news items opens the article detail panel. Home page is memoized (dataset.built flag) with ticker re-rendered on theme changes.
+- **Global search** (Priority 10): `initHomeSearch()` builds a unified index across counties, states, news articles, and companies. Results grouped by kind with severity badges for counties, source tags for news, ticker labels for companies. Selecting a result navigates to the correct tab and triggers the appropriate action (county zoom/select, state zoom+policy panel, article detail, company selection).
+- **SEO** (Priority 14): Added page title, meta description, robots, author, og:type, og:title, og:description, og:url, twitter:card, twitter:title, twitter:description, canonical link to index.html. Created robots.txt (Allow: /, Sitemap link). Created sitemap.xml with the GitHub Pages URL.
+- **Accessibility** (Priority 13 partial): Added skip-to-content link (.skip-link, keyboard-only visible, jumps to #home-view). Tab button text wrapped in <span> elements for CSS icon-only mobile mode. Skip link CSS appended to style.css.
+- **Navigation default**: `init()` now calls `switchTab("home")` by default; FIPS hash in URL overrides to Map tab. `restoreFromHash()` returns bool so caller knows whether to fall back to home. Logo/brand click always returns to home tab.
+- **Mobile tab bar fix** (Priority 12): `#header-tabs` gets `overflow-x: auto; scrollbar-width: none` so 5 tabs don't clip on narrow screens. `.header-tab` gets `flex-shrink: 0` to prevent squishing. At ≤450px, tab `<span>` text is `display: none` (icon-only mode).
+- **fullpage-mode extended**: Home tab now also sets `#app.fullpage-mode`, hiding the map-specific dashboard cards and search bar chrome just like analytics/about.
+- Version strings bumped: `?v=20260711i` → `?v=20260711j` across all CSS and JS references in index.html.
+
+Reasoning:
+- Homepage lands users on a clear, data-rich entry point rather than directly on the map (which shows an empty county selection panel by default). The hero search instantly surfaces the most common user action (find a county or state). KPI strip gives immediate sense of data scope. The two-column layout balances policy data and news context. TradingView ticker requires no API key and loads asynchronously without blocking.
+- Global search implemented in home.js rather than extending map.js search to keep map.js focused on map functionality; the two search inputs (home search vs. map search bar) serve different contexts — home search navigates between tabs, map search filters/zooms the map.
+- SEO additions are all static meta tags; no server-side rendering required for GitHub Pages.
+- `dataset.built` memoization prevents re-generating the entire home DOM on every tab switch while still re-rendering the ticker (needed because TradingView script must match the current theme).
+
+Problems Found:
+- `#main` cannot have two id attributes; skip link was redirected to `#home-view` (which has tabindex="-1" so it is focusable but not in natural tab order).
+
+Next Recommended Actions:
+- Add theme-change observer in home.js so ticker automatically re-renders when user toggles dark/light without requiring a tab switch (similar to stocks.js MutationObserver pattern).
+- Consider persisting last active tab to localStorage so returning users resume where they left off rather than always landing on Home.
+- Add "recently viewed counties" widget to Home page (read selectedFips history from sessionStorage).
+- Test the TradingView ticker tape on the home page in both dark and light themes.
+
+---
+
 This file is a running conversation between AI assistants working on this repository. Add a new entry after every coding session, including documentation-only sessions.
 
 ---
