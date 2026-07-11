@@ -2201,6 +2201,7 @@ function renderNews() {
 
     const card = document.createElement("article");
     card.className = "news-card";
+    card.dataset.catcls = catCls;
     card.setAttribute("role", "button");
     card.setAttribute("tabindex", "0");
     card.setAttribute("aria-label", `Read more: ${art.title}`);

@@ -147,20 +147,8 @@ html, body {
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Institutional accent mark — vertical rule left of title */
-#header h1::before {
-  content: '';
-  display: block;
-  width: 3px;
-  height: 18px;
-  background: var(--accent);
-  border-radius: 2px;
-  flex-shrink: 0;
+  border-left: 3px solid var(--accent);
+  padding-left: 10px;
 }
 
 #header h1 span {
@@ -2191,6 +2179,22 @@ body.is-resizing-floating-panel * {
 .cat-legal-copyright      { background: rgba(220,38,38,0.15);   color: #dc2626; }
 .cat-jobs-society         { background: rgba(6,182,212,0.15);   color: #22d3ee; }
 .cat-other-ai-news        { background: rgba(107,114,128,0.15); color: #9ca3af; }
+
+/* ── News card — category left-border accent (editorial) ── */
+.news-card[data-catcls="cat-ai-industry"]          { border-left: 3px solid #a78bfa; }
+.news-card[data-catcls="cat-ai-research"]          { border-left: 3px solid #34d399; }
+.news-card[data-catcls="cat-ai-products"]          { border-left: 3px solid #60a5fa; }
+.news-card[data-catcls="cat-ai-safety"]            { border-left: 3px solid #f87171; }
+.news-card[data-catcls="cat-federal-policy"]       { border-left: 3px solid #fbbf24; }
+.news-card[data-catcls="cat-state-local-policy"]   { border-left: 3px solid #f97316; }
+.news-card[data-catcls="cat-international-policy"] { border-left: 3px solid #818cf8; }
+.news-card[data-catcls="cat-data-centers"]         { border-left: 3px solid #5b8def; }
+.news-card[data-catcls="cat-energy-environment"]   { border-left: 3px solid #10b981; }
+.news-card[data-catcls="cat-chips-infrastructure"] { border-left: 3px solid #f472b6; }
+.news-card[data-catcls="cat-business-investment"]  { border-left: 3px solid #eab308; }
+.news-card[data-catcls="cat-legal-copyright"]      { border-left: 3px solid #dc2626; }
+.news-card[data-catcls="cat-jobs-society"]         { border-left: 3px solid #22d3ee; }
+.news-card[data-catcls="cat-other-ai-news"]        { border-left: 3px solid #6b7280; }
 
 /* ── News status bar ── */
 #news-status-bar {
