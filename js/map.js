@@ -2051,6 +2051,9 @@ function switchTab(tab) {
     btn.setAttribute("aria-selected", isActive ? "true" : "false");
   });
 
+  // Restore header whenever leaving the map — top-toggle is hidden on other tabs on mobile
+  if (tab !== "map") appEl.classList.remove("top-hidden");
+
   appEl.classList.toggle("stocks-mode",   tab === "stocks");
   appEl.classList.toggle("fullpage-mode", tab === "analytics" || tab === "about" || tab === "home");
 
