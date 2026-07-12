@@ -3337,10 +3337,16 @@ html[data-theme="light"] {
 #header-tabs::-webkit-scrollbar { display: none; }
 .header-tab { flex-shrink: 0; flex: none; }
 
-/* Icon-only mode at narrow widths — <span> text hidden, icon still shown */
+/* Compact tabs at narrow widths — labels visible but tighter spacing */
 @media (max-width: 450px) {
-  .header-tab span { display: none; }
-  .header-tab { padding: 0 10px; }
+  .header-tab { padding: 5px 7px; font-size: 11px; gap: 3px; }
+  .header-tab svg { width: 11px; height: 11px; }
+}
+
+/* On mobile, the search-bar in news-mode only contains the top-toggle — hide the
+   whole row to reclaim vertical space. Header is auto-restored on tab switch. */
+@media (max-width: 700px) {
+  #search-bar.news-mode { display: none; }
 }
 
 /* ── Scroll wrapper ── */
