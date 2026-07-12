@@ -1543,14 +1543,47 @@ const TIER_LABELS = {
   3: "Community / News",
 };
 
+const LIFECYCLE_LABELS = {
+  effective:  "In Effect",
+  enacted:    "Enacted",
+  proposed:   "Proposed",
+  discovered: "Signal",
+  expired:    "Expired",
+  repealed:   "Repealed",
+  failed:     "Not Enacted",
+};
+
+const LIFECYCLE_BADGE_CLASS = {
+  effective:  "lc-effective",
+  enacted:    "lc-enacted",
+  proposed:   "lc-proposed",
+  discovered: "lc-discovered",
+  expired:    "lc-expired",
+  repealed:   "lc-expired",
+  failed:     "lc-expired",
+};
+
+const GOV_URL_RE = /\.gov(\/|$)|\.mil(\/|$)|state\.[a-z]{2}\.us/i;
+
 function buildConfidenceBadgeHtml(county) {
   const conf  = county.confidence || "low";
   const score = county.confidence_score;
   const tier  = county.source_tier;
+  const stage = county.lifecycle_stage;
 
   const label     = CONFIDENCE_LABELS[conf] || conf;
   const tierLabel = TIER_LABELS[tier] || "";
   const scoreText = typeof score === "number" ? `${score}/100` : "";
+  const stageLabel = stage ? (LIFECYCLE_LABELS[stage] || stage) : "";
+  const stageCls   = stage ? (LIFECYCLE_BADGE_CLASS[stage] || "lc-proposed") : "";
+
+  const verifiedMark = county.pipeline_verified
+    ? `<span class="pipeline-verified-badge" title="Verified by policy pipeline">&#10003; Pipeline verified</span>`
+    : "";
+
+  const reviewedText = county.last_reviewed
+    ? `<span class="conf-tier-label">Reviewed: <span>${escHtml(formatDate(county.last_reviewed))}</span></span>`
+    : "";
 
   return `<div class="confidence-info-row">
     <div class="confidence-bar">
@@ -1559,8 +1592,11 @@ function buildConfidenceBadgeHtml(county) {
         ${escHtml(label)} Confidence
       </span>
       ${scoreText ? `<span class="confidence-score-text">${escHtml(scoreText)}</span>` : ""}
+      ${stageLabel ? `<span class="lifecycle-badge ${stageCls}">${escHtml(stageLabel)}</span>` : ""}
     </div>
     ${tierLabel ? `<span class="conf-tier-label">Source tier: <span>${escHtml(tierLabel)}</span></span>` : ""}
+    ${verifiedMark}
+    ${reviewedText}
   </div>`;
 }
 
@@ -1585,7 +1621,11 @@ function buildCountyPolicySectionHtml(fips, county) {
     ${county.effective_date ? `<div class="detail-section"><div class="detail-label">Effective Date</div><div class="detail-value">${formatDate(county.effective_date)}</div></div>` : ""}
     ${county.notes ? `<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(county.notes)}</div></div>` : ""}
     ${county.sources && county.sources.length ? `<div class="detail-section"><div class="detail-label">Sources</div><ul class="sources-list">${county.sources.map(s => {
-      if (s && typeof s === "object" && s.url) return `<li><a href="${escHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escHtml(s.label)}</a></li>`;
+      if (s && typeof s === "object" && s.url) {
+        const isGov = GOV_URL_RE.test(s.url);
+        const govBadge = isGov ? `<span class="source-gov-badge">Gov</span>` : "";
+        return `<li>${govBadge}<a href="${escHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escHtml(s.label)}</a></li>`;
+      }
       return `<li>${escHtml(typeof s === "string" ? s : s.label || "")}</li>`;
     }).join("")}</ul></div>` : ""}
   </div>`;

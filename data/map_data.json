@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-07-12T08:21:08.293548+00:00",
-  "source_last_updated": "2026-07-08",
+  "generated_at": "2026-07-12T13:56:22.708698+00:00",
+  "source_last_updated": "2026-07-12",
   "stats": {
-    "total_counties_tracked": 92,
+    "total_counties_tracked": 98,
     "by_level": {
-      "-1": 21,
+      "-1": 20,
       "0": 0,
       "1": 24,
-      "2": 31,
-      "3": 14,
-      "4": 2
+      "2": 30,
+      "3": 20,
+      "4": 4
     },
     "by_type": {
-      "data_center": 89,
-      "water": 5,
+      "data_center": 95,
+      "water": 7,
       "ai": 11,
-      "energy": 42,
+      "energy": 44,
       "crypto": 14
     },
     "level_labels": {
@@ -59,6 +59,9 @@
         },
         "ADWR Water Shortage Regulations, 2022; AZ Senate Bill 1117"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -83,6 +86,9 @@
         },
         "ADWR regulations; Tucson Water policies"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 65,
       "source_tier": 1
@@ -107,6 +113,9 @@
         },
         "ADWR Groundwater Supply Designation, 2022"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 65,
       "source_tier": 1
@@ -135,6 +144,9 @@
         },
         "Oakland Ordinance 13537 (2019); CEQA"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -164,6 +176,9 @@
         },
         "CEQA, LA Green New Deal (2019), LA County AI Procurement Policy"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -192,6 +207,9 @@
         },
         "SF Ordinance 181184 (Surveillance Technology ban, 2019); CEQA"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -220,6 +238,9 @@
         },
         "CEQA, San Jose Data Center Policy, Santa Clara Valley Water District rules"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -253,6 +274,9 @@
         },
         "Denver metro data center zoning review requirements (2023\u20132024)"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -277,6 +301,9 @@
         },
         "Jefferson County CO data center review requirements (2024)"
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 65,
       "source_tier": 1
@@ -304,6 +331,9 @@
         },
         "Connecticut SB 1103 (2022)"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -327,6 +357,9 @@
           "url": "https://datacenterbans.com/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 39,
       "source_tier": 3
@@ -334,25 +367,39 @@
     "13089": {
       "name": "DeKalb County",
       "state": "Georgia",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center"
       ],
-      "title": "Stonecrest Data Center Moratorium",
-      "description": "DeKalb County and the City of Stonecrest (east Atlanta suburbs) enacted a moratorium on new large-scale data center approvals in 2024 after a surge of development applications. Community opposition focused on land use impacts, limited jobs per acre, and noise from cooling equipment in residential-adjacent areas.",
-      "effective_date": "2024-01-01",
+      "title": "DeKalb County Data Center Moratorium (Extended through Mar 2027)",
+      "description": "DeKalb County Board of Commissioners enacted a moratorium on new data center approvals in June 2025 (Resolution 2025-0996) and has extended it multiple times. On July 7, 2026 the board extended the pause through March 30, 2027. On June 23, 2026 the board voted to deny the proposed Data Center Text Amendment, requiring new regulations to address water use, sewer capacity, public health, transportation, and environmental impacts before any new data center applications are accepted. Community opposition is centered on land use conflicts, limited local employment, noise from cooling equipment in residential areas, and strain on water infrastructure.",
+      "effective_date": "2025-06-25",
       "status": "active",
-      "notes": "The Stonecrest moratorium has attracted significant media attention as an example of suburban Atlanta communities pushing back on hyperscale data center growth.",
+      "notes": "Moratorium extended July 7, 2026 through March 30, 2027. Data Center Text Amendment denied June 23, 2026. County working on permanent regulations.",
       "sources": [
-        "City of Stonecrest / DeKalb County GA data center moratorium (2024)",
         {
-          "label": "Data Center Bans tracker",
-          "url": "https://datacenterbans.com/"
+          "label": "DeKalb County GA \u2014 Data Center Moratorium Extension Resolution 2025-1694 (official PDF)",
+          "url": "https://www.dekalbcountyga.gov/sites/default/files/2025-12/2025-1694%20Data%20Center%20Moratorium%20Extension.pdf"
+        },
+        {
+          "label": "Engage DeKalb \u2014 Data Center Text Amendment",
+          "url": "https://engagedekalb.dekalbcountyga.gov/data-center-text-amendment"
+        },
+        {
+          "label": "WABE: DeKalb County Commission extends data center moratorium",
+          "url": "https://www.wabe.org/dekalb-county-commission-extends-data-center-moratorium/"
+        },
+        {
+          "label": "Decaturish: DeKalb extends data center moratorium through early 2027",
+          "url": "https://www.decaturish.com/news/dekalb/dekalb-extends-data-center-moratorium-through-early-2027/article_22c7d964-ee2f-49f5-a879-9abaabbd6b45.html"
         }
       ],
-      "confidence": "low",
-      "confidence_score": 39,
-      "source_tier": 3
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-12",
+      "confidence": "verified",
+      "confidence_score": 88,
+      "source_tier": 1
     },
     "13097": {
       "name": "Douglas County",
@@ -369,6 +416,9 @@
       "sources": [
         "Douglas County Board of Commissioners, 2023"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -395,6 +445,9 @@
           "url": "https://www.georgiapower.com/business/industries/data-centers.html"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -418,6 +471,9 @@
         },
         "QTS Suwanee, GA data center; CyrusOne Atlanta campus"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 65,
       "source_tier": 1
@@ -444,6 +500,9 @@
           "url": "https://dor.georgia.gov/data-center-exemptions"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -470,6 +529,9 @@
           "url": "https://www.datacenterdynamics.com/en/news/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -489,6 +551,9 @@
       "sources": [
         "Illinois AI Video Interview Act, 820 ILCS 42 (2020)"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -517,6 +582,9 @@
         },
         "McLean County IL proposed data center energy impact requirements (2024)"
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -536,6 +604,9 @@
       "sources": [
         "Indiana HEA 1450 (2014), IC 6-2.5-5-59 data center exemption"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -559,6 +630,9 @@
         },
         "Indiana Code IC 6-2.5-5-59 data center equipment exemption (HEA 1450, 2014)"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 65,
       "source_tier": 1
@@ -586,6 +660,9 @@
         },
         "Dubuque County IA data center development discussions (2024)"
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -593,21 +670,39 @@
     "19113": {
       "name": "Linn County",
       "state": "Iowa",
-      "level": -1,
+      "level": 3,
       "types": [
         "data_center"
       ],
-      "title": "Iowa Data Center Tax Exemption Hub",
-      "description": "Iowa eliminated sales and use taxes on data center equipment in 2010. Linn County (Cedar Rapids) hosts major Microsoft and Google facilities. Iowa's 0% equipment sales tax, competitive energy costs, and central location make it a premier data center market.",
-      "effective_date": "2010-01-01",
+      "title": "Linn County 18-Month Data Center Moratorium (July 2026)",
+      "description": "Linn County Board of Supervisors voted 2-1 on July 1, 2026 to impose an 18-month moratorium on new applications to rezone unincorporated county land to the EU-3 Large-Scale Data Center Zoning District, effective immediately through January 2028. The moratorium follows a February 2026 data center ordinance that required water studies and community benefit agreements, but additional analysis on cumulative impacts to water resources, electrical infrastructure, emergency response, and long-range land use planning prompted the Board to pause new applications while updating regulations. Linn County (Cedar Rapids) had been a premier Iowa data center market hosting Microsoft and Google facilities. Iowa's \u00a7423.3 sales-tax exemption on data center equipment remains in effect statewide.",
+      "effective_date": "2026-07-01",
       "status": "active",
-      "notes": "",
+      "notes": "Moratorium runs through January 2028. Iowa's statewide data center tax exemption (\u00a7423.3) remains; this moratorium applies only to new rezoning applications in unincorporated Linn County.",
       "sources": [
-        "Iowa Code \u00a7423.3 data center exemption (2010); Microsoft & Google data centers, Cedar Rapids"
+        {
+          "label": "Linn County, IA \u2014 Official moratorium newsflash",
+          "url": "https://www.linncountyiowa.gov/CivicAlerts.aspx?AID=4487"
+        },
+        {
+          "label": "Linn County, IA \u2014 Data Centers in Unincorporated Linn County (official page)",
+          "url": "https://www.linncountyiowa.gov/1862/Data-Centers-in-Unincorporated-Linn-Coun"
+        },
+        {
+          "label": "CBS2 Iowa: Linn County BOS approve 18-month moratorium",
+          "url": "https://cbs2iowa.com/news/local/linn-county-bos-approve-18-month-moratorium-on-new-data-centers-in-unincorporated-areas"
+        },
+        {
+          "label": "Capture Cascade Timeline: July 1, 2026 vote details",
+          "url": "https://capturecascade.org/event/2026-07-01--linn-county-ia-18-month-data-center-moratorium-vote/"
+        }
       ],
-      "confidence": "low",
-      "confidence_score": 23,
-      "source_tier": 3
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-12",
+      "confidence": "verified",
+      "confidence_score": 100,
+      "source_tier": 1
     },
     "19153": {
       "name": "Polk County",
@@ -632,6 +727,9 @@
         },
         "Meta Altoona, Iowa data center campus"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -658,6 +756,9 @@
           "url": "https://www.google.com/about/datacenters/locations/council-bluffs/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -681,6 +782,9 @@
           "url": "https://www.opportunitylouisiana.gov/business-incentives/itep"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 65,
       "source_tier": 1
@@ -701,6 +805,9 @@
       "sources": [
         "Montgomery County Climate Action Plan; BEPS regulations"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -720,6 +827,9 @@
       "sources": [
         "Prince George's County Zoning Ordinance"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "medium",
       "confidence_score": 49,
       "source_tier": 1
@@ -739,6 +849,9 @@
       "sources": [
         "Cambridge AI Procurement Policy; MA proposed AI regulations"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -763,6 +876,9 @@
           "url": "https://datacenterbans.com/"
         }
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 39,
       "source_tier": 3
@@ -791,6 +907,9 @@
         },
         "Washtenaw County MI data center review requirements (2024)"
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -816,6 +935,9 @@
         },
         "Minneapolis-area data center development moratoriums (2023\u20132024)"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 65,
       "source_tier": 1
@@ -844,6 +966,9 @@
         },
         "Flathead County Commissioner discussions, 2019"
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -872,6 +997,9 @@
         },
         "Lincoln County Commissioner ordinance, 2018"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -891,6 +1019,9 @@
       "sources": [
         "Nebraska LB 775, Advantage Data Center Act; Google data center, Omaha"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -906,7 +1037,7 @@
       "description": "Clark County (Las Vegas) is a major data center market anchored by Switch's PYRAMID campus and facilities from DataBank, Evoque, and other operators. Nevada's personal property tax abatements and sales tax exemptions for qualifying data centers (NRS \u00a7374.357) combined with no corporate income tax make Clark County a top Sunbelt data center destination.",
       "effective_date": "2001-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "City of Henderson (within Clark County) proposed a 180-day moratorium on new data center conditional use permits; city council scheduled to vote July 21, 2026. Clark County commissioners signaled intention to develop regulations and consider a freeze on new applications as of July 8, 2026. Neither action is yet enacted; Nevada's tax abatement program remains in effect.",
       "sources": [
         {
           "label": "Nevada Governor's Office of Economic Development \u2014 Data Centers",
@@ -914,6 +1045,9 @@
         },
         "Switch PYRAMID campus, Las Vegas; NRS \u00a7 374.357 data center tax exemptions"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-12",
       "confidence": "high",
       "confidence_score": 65,
       "source_tier": 1
@@ -933,6 +1067,9 @@
       "sources": [
         "NRS \u00a7374.357 data center exemptions; Switch SUPERNAP campus, Tahoe Reno Industrial Center"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -957,6 +1094,9 @@
           "url": "https://datacenterbans.com/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 39,
       "source_tier": 3
@@ -977,6 +1117,9 @@
       "sources": [
         "NJ DEP Stormwater Rules; NJ Environmental Impact Statement requirements"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1006,6 +1149,9 @@
         },
         "NY Climate Law S6486C, 2022; NYC Local Law 97"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -1030,6 +1176,9 @@
         },
         "Plattsburgh City Council, March 2018 \u2014 resulted in permanent permitting requirements"
       ],
+      "lifecycle_stage": "expired",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 39,
       "source_tier": 3
@@ -1059,6 +1208,9 @@
         },
         "NY Climate Law S6486C, 2022; NYC Local Law 97"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -1087,6 +1239,9 @@
         },
         "NYC Local Law 97, 2019; NYC Mayor's Office of Climate and Sustainability"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -1116,6 +1271,9 @@
         },
         "NY Climate Law S6486C, 2022; NYC Local Law 97"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -1140,6 +1298,9 @@
         },
         "NYC Local Law 97, 2019"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 65,
       "source_tier": 1
@@ -1160,6 +1321,9 @@
       "sources": [
         "Duke Energy interconnection requirements; NC Utilities Commission"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1184,6 +1348,9 @@
           "url": "https://www.datacenterdynamics.com/en/news/north-carolina-counties-pass-data-center-moratoriums/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "medium",
       "confidence_score": 53,
       "source_tier": 2
@@ -1204,6 +1371,9 @@
       "sources": [
         "Durham County NC proposed data center review requirements (2024)"
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1227,6 +1397,9 @@
           "url": "https://www.datacenterdynamics.com/en/news/north-carolina-counties-pass-data-center-moratoriums/"
         }
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "medium",
       "confidence_score": 53,
       "source_tier": 2
@@ -1246,6 +1419,9 @@
       "sources": [
         "Madison County NC proposed data center restrictions (2024)"
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1267,6 +1443,9 @@
         "Mecklenburg County NC data center impact review requirements (2023)",
         "Duke Energy Carolinas interconnection queue constraints, Charlotte metro"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 29,
       "source_tier": 3
@@ -1291,6 +1470,9 @@
           "url": "https://www.datacenterdynamics.com/en/news/north-carolina-counties-pass-data-center-moratoriums/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "medium",
       "confidence_score": 53,
       "source_tier": 2
@@ -1318,6 +1500,9 @@
           "url": "https://www.datacenterdynamics.com/en/news/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -1339,6 +1524,9 @@
         "Duke Energy Carolinas interconnection queue management (2023\u20132024)",
         "NC Utilities Commission data center load review requirements"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 29,
       "source_tier": 3
@@ -1358,6 +1546,9 @@
       "sources": [
         "Swain County NC proposed data center restrictions (2024)"
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1379,6 +1570,9 @@
         "Wake County NC data center growth management requirements (2023\u20132024)",
         "Duke Energy Carolinas interconnection queue management, Wake County"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 29,
       "source_tier": 3
@@ -1398,6 +1592,9 @@
       "sources": [
         "Watauga County NC proposed data center restrictions (2024)"
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1418,6 +1615,9 @@
       "sources": [
         "AEP Ohio interconnection queue management (2023)"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1445,6 +1645,9 @@
         },
         "New Albany Data Center district \u2014 Licking County development"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -1474,6 +1677,9 @@
         },
         "Hood River County Commissioner vote, June 2022"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -1497,6 +1703,9 @@
         },
         "Amazon AWS Boardman, OR data center; Meta Boardman data center campus"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 39,
       "source_tier": 3
@@ -1516,6 +1725,9 @@
       "sources": [
         "Oregon Enterprise Zone program; Google Dalles Campus (2006-present)"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1542,6 +1754,9 @@
           "url": "https://www.google.com/about/datacenters/locations/the-dalles/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "medium",
       "confidence_score": 49,
       "source_tier": 3
@@ -1565,6 +1780,9 @@
           "url": "https://www.ferc.gov/media/order-no-2023"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "medium",
       "confidence_score": 59,
       "source_tier": 1
@@ -1589,6 +1807,9 @@
           "url": "https://datacenterbans.com/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 39,
       "source_tier": 3
@@ -1612,6 +1833,9 @@
         },
         "Meta Aiken County, SC data center campus announcement"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 65,
       "source_tier": 1
@@ -1631,6 +1855,9 @@
       "sources": [
         "SC Code \u00a712-6-3360 data center incentives; Amazon/AWS data centers, Berkeley County"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1659,6 +1886,9 @@
         },
         "Anderson County TN data center moratorium (2024)"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -1687,6 +1917,9 @@
         },
         "Davidson County TN Metro Nashville proposed data center regulations (2024)"
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -1715,6 +1948,9 @@
           "url": "https://www.timesfreepress.com/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -1737,6 +1973,9 @@
         "Coffee County TN proposed data center restrictions (2024)",
         "Tennessee county data center moratorium wave, 2024"
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 29,
       "source_tier": 3
@@ -1762,6 +2001,9 @@
         "TVA Large Power Customer interconnection requirements",
         "Tennessee Code Ann. \u00a7 67-6-206 data center sales tax exemption"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "medium",
       "confidence_score": 46,
       "source_tier": 3
@@ -1789,6 +2031,9 @@
           "url": "https://www.johnsoncitypress.com/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "medium",
       "confidence_score": 49,
       "source_tier": 3
@@ -1809,6 +2054,9 @@
       "sources": [
         "ERCOT demand response programs; Texas SB 3 (2021)"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1829,6 +2077,9 @@
       "sources": [
         "ERCOT demand response programs; Texas SB 3 (2021)"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1852,6 +2103,9 @@
         },
         "Google Midlothian, TX data center campus; Ellis County Chapter 312 abatements"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 65,
       "source_tier": 1
@@ -1872,6 +2126,9 @@
       "sources": [
         "ERCOT demand response programs; Texas SB 3 (2021)"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1893,6 +2150,9 @@
       "sources": [
         "ERCOT demand response; Austin AI Procurement Policy (2021)"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
@@ -1919,6 +2179,9 @@
           "url": "https://gov.texas.gov/business/page/incentives"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -1944,6 +2207,9 @@
           "url": "https://datacenterbans.com/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 39,
       "source_tier": 3
@@ -1974,6 +2240,9 @@
           "url": "https://www.fairfaxcounty.gov/planning-development/comprehensive-plan"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -2000,6 +2269,9 @@
           "url": "https://www.loudoun.gov/5008/Data-Center-Policy"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -2026,6 +2298,9 @@
           "url": "https://www.pwcva.gov/department/board-of-county-supervisors"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -2055,6 +2330,9 @@
         },
         "Chelan County PUD Board resolution, 2019"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -2084,6 +2362,9 @@
         },
         "Douglas County PUD Board resolution, 2019"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -2113,6 +2394,9 @@
         },
         "Grant County PUD policy, 2018"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -2133,6 +2417,9 @@
       "sources": [
         "King County Ordinance 19022 (2021); WA SEPA"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "medium",
       "confidence_score": 49,
       "source_tier": 1
@@ -2162,6 +2449,9 @@
         },
         "Okanogan County PUD policy"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "verified",
       "confidence_score": 82,
       "source_tier": 1
@@ -2169,29 +2459,31 @@
     "55025": {
       "name": "Dane County",
       "state": "Wisconsin",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center",
         "energy"
       ],
-      "title": "Madison Area Data Center Environmental Review",
-      "description": "Dane County (Madison, University of Wisconsin) has proposed environmental review requirements for large data center developments as part of the county's sustainability commitments. Community opposition to proposed facilities has led to public hearings and planning commission reviews.",
-      "effective_date": "2023-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "City of Madison Temporary Data Center Moratorium (Jan 2026)",
+      "description": "Madison's Common Council voted 15-4 on January 13, 2026 to approve a temporary moratorium on issuing zoning approvals for new data centers with a floor area larger than 10,000 sq ft. The moratorium gives city staff time to update zoning codes to address energy demands, water consumption, heat generation, air quality, and land use compatibility with residential neighborhoods. Dane County had already been pursuing environmental review requirements for large data center developments since 2023; the Madison city moratorium extends that protective posture into an active pause on new approvals.",
+      "effective_date": "2026-01-13",
+      "status": "active",
+      "notes": "City of Madison moratorium applies to facilities >10,000 sq ft. Dane County environmental review requirements also apply county-wide.",
       "sources": [
         {
-          "label": "Dane County WI Board of Supervisors \u2014 Data Center Zoning Proposal",
-          "url": "https://board.countyofdane.com/"
+          "label": "City of Madison \u2014 Temporary Data Center Moratorium (official page)",
+          "url": "https://www.cityofmadison.com/dpced/about/temporary-data-center-moratorium"
         },
         {
-          "label": "Madison.com: Dane County examines data center regulations",
-          "url": "https://madison.com/"
-        },
-        "Dane County WI data center environmental review proposals (2023\u20132024)"
+          "label": "Dane County Board of Supervisors",
+          "url": "https://board.countyofdane.com/"
+        }
       ],
-      "confidence": "medium",
-      "confidence_score": 56,
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-12",
+      "confidence": "high",
+      "confidence_score": 61,
       "source_tier": 3
     },
     "55071": {
@@ -2217,6 +2509,9 @@
         },
         "Manitowoc County WI proposed data center zoning restrictions (2024)"
       ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "medium",
       "confidence_score": 56,
       "source_tier": 3
@@ -2243,6 +2538,9 @@
           "url": "https://wedc.org/"
         }
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "medium",
       "confidence_score": 49,
       "source_tier": 3
@@ -2263,24 +2561,214 @@
       "sources": [
         "Wyoming Digital Asset regulations; Laramie County zoning"
       ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
       "confidence": "low",
       "confidence_score": 23,
       "source_tier": 3
-    }
-  },
-  "confidence_metadata": {
-    "last_computed": "2026-07-12T08:21:08.359755+00:00",
-    "scoring_weights": {
-      "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
-      "source_count": "20% (capped at 3 sources)",
-      "url_availability": "20% (capped at 2 URLs)",
-      "freshness": "20% (effective_date age)"
     },
-    "labels": {
-      "verified": "Score \u2265 80 \u2014 government sources, multiple URLs, recent date",
-      "high": "Score 60\u201379 \u2014 good sources, some URLs",
-      "medium": "Score 40\u201359 \u2014 industry/news sources, limited URLs",
-      "low": "Score < 40 \u2014 few sources, no URLs, or very stale"
+    "18099": {
+      "name": "Marshall County",
+      "state": "Indiana",
+      "level": 4,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Marshall County Permanent Data Center Ban (April 2026)",
+      "description": "Marshall County Commissioners enacted a permanent ban on new data centers in April 2026, after a one-year moratorium (February 2025 \u2013 February 2026) expired. County leaders reported this may be the first permanent data center ban in Indiana. The ban was accompanied by strict limits on Battery Energy Storage Systems (BESS), requiring a 1,320-foot setback from adjoining property lines, and first-reading restrictions on large-scale solar farms. Community opposition focused on water availability, noise, limited local employment, and conflicts with the county's rural agricultural character.",
+      "effective_date": "2026-04-20",
+      "status": "active",
+      "notes": "Originally a 1-year moratorium (Feb 2025) that was converted to a permanent ban in April 2026. First Indiana county to enact a permanent ban.",
+      "sources": [
+        {
+          "label": "Marshall County, IN \u2014 Official government website",
+          "url": "https://www.marshallcountyindiana.gov/"
+        },
+        {
+          "label": "WSBT: Marshall County approves permanent ban on data centers",
+          "url": "https://wsbt.com/news/local/marshall-county-approves-permanent-ban-on-data-centers-effective-immediately-data-centers-solar-farms-industrial-size-projects-development-county-council-regulations-counties-experts-industries-marshall-county-indiana"
+        },
+        {
+          "label": "WNDU: Marshall County commissioners ban data centers",
+          "url": "https://www.wndu.com/2026/04/20/marshall-county-commissioners-ban-data-centers-limit-solar-projects/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-12",
+      "confidence": "verified",
+      "confidence_score": 100,
+      "source_tier": 1
+    },
+    "18017": {
+      "name": "Cass County",
+      "state": "Indiana",
+      "level": 4,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cass County Permanent Data Center Ban (2026)",
+      "description": "Cass County Commissioners voted to ban new data centers entirely in 2026, making Cass one of only two Indiana counties (alongside Marshall) to enact a permanent prohibition rather than a temporary moratorium. The vote was reported in April 2026, with commissioners stating clearly there would be no data centers in the county. Community concerns mirrored other Indiana counties: water resource impacts, limited local employment, energy infrastructure strain, and incompatibility with the county's existing industrial and agricultural land uses.",
+      "effective_date": "2026-04-21",
+      "status": "active",
+      "notes": "One of two Indiana counties with permanent ban (alongside Marshall County). Exact ordinance number not confirmed from official source; verify at casscounty.in.gov.",
+      "sources": [
+        {
+          "label": "Cass County, IN \u2014 Official government website",
+          "url": "https://www.casscounty.in.gov/"
+        },
+        {
+          "label": "Kokomo Tribune: Cass County officials vote against allowing data centers",
+          "url": "https://www.kokomotribune.com/news/local_news/cass-county-officials-vote-against-allowing-data-centers/article_d809bb76-2a6c-5a95-a347-b4518cc797e3.html"
+        },
+        {
+          "label": "WFYI: Nearly a third of Indiana counties restrict data centers",
+          "url": "https://www.wfyi.org/statewide/2026-07-06/indiana-counties-data-center-moratoriums-bans-2026"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-12",
+      "confidence": "verified",
+      "confidence_score": 100,
+      "source_tier": 1
+    },
+    "18011": {
+      "name": "Boone County",
+      "state": "Indiana",
+      "level": 3,
+      "types": [
+        "data_center"
+      ],
+      "title": "Boone County 1-Year Data Center Moratorium (June 2026)",
+      "description": "Boone County Commissioners voted unanimously on June 15, 2026 to impose a one-year moratorium on new data center development in unincorporated Boone County, effective June 16, 2026. The moratorium pauses filing, processing, and acceptance of applications for new data center facilities while the county updates its Comprehensive Plan and reviews zoning regulations. Boone County's Area Plan Commission unanimously recommended the moratorium following discussions about data center impacts on land use, infrastructure, utilities, agriculture, and the county's rural character. Boone County is part of the Indianapolis metropolitan area and had attracted significant data center interest.",
+      "effective_date": "2026-06-16",
+      "status": "active",
+      "notes": "Moratorium runs June 16, 2026 \u2013 June 16, 2027. Applies to unincorporated Boone County. 12th Indiana county to implement a moratorium.",
+      "sources": [
+        {
+          "label": "Boone County, IN \u2014 Official moratorium announcement (boonecounty.in.gov)",
+          "url": "https://boonecounty.in.gov/2026/06/15/19190/"
+        },
+        {
+          "label": "WTHR: Boone County commissioners approve moratorium on data centers",
+          "url": "https://www.wthr.com/article/news/local/boone-county-commissioners-approve-moratorium-on-data-centers-indiana/531-9bf523f4-f328-4067-890b-ad4db4f72194"
+        },
+        {
+          "label": "IBJ: Boone County passes moratorium on data center development",
+          "url": "https://www.ibj.com/articles/boone-county-passes-moratorium-on-data-center-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-12",
+      "confidence": "verified",
+      "confidence_score": 100,
+      "source_tier": 1
+    },
+    "18181": {
+      "name": "White County",
+      "state": "Indiana",
+      "level": 3,
+      "types": [
+        "data_center",
+        "water"
+      ],
+      "title": "White County Data Center Moratorium (October 2025)",
+      "description": "White County Board of Commissioners passed a moratorium on data center development on October 20, 2025, with Commissioner Mike Smolek the lone dissenting vote. The moratorium followed packed public meetings where residents expressed opposition based on concerns about water availability \u2014 Monticello-area aquifers were identified as a key constraint \u2014 and lack of transparency in the development review process. White County was one of the earliest Indiana counties to act after Marshall County, and the IBJ identified it among the first three to impose a moratorium specifically targeting data centers.",
+      "effective_date": "2025-10-20",
+      "status": "active",
+      "notes": "One of first three Indiana counties to impose a data center-specific moratorium (alongside Marshall and Putnam). Water availability in Monticello area was a primary concern.",
+      "sources": [
+        {
+          "label": "White County, IN \u2014 Official government website",
+          "url": "https://www.whitecounty.in.gov/"
+        },
+        {
+          "label": "IBJ: 3 counties put moratoriums on data center projects",
+          "url": "https://www.ibj.com/articles/3-counties-put-moratoriums-on-data-center-projects"
+        },
+        {
+          "label": "Daily Journal: 3 counties put moratoriums on data center projects",
+          "url": "https://dailyjournal.net/2025/11/24/3-counties-put-moratoriums-on-data-center-projects/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-12",
+      "confidence": "verified",
+      "confidence_score": 94,
+      "source_tier": 1
+    },
+    "18133": {
+      "name": "Putnam County",
+      "state": "Indiana",
+      "level": 3,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Putnam County Data Center Moratorium (November 2025)",
+      "description": "Putnam County enacted a 1-year moratorium on data centers (along with wind energy, solar, and small modular reactors) effective November 1, 2025. Putnam County was one of the three earliest Indiana counties to impose a data-center-specific moratorium, alongside Marshall and White counties. The broad moratorium covering multiple energy infrastructure types reflects community concerns about large-scale industrial development and its effects on Putnam County's rural character, agricultural land, and local infrastructure capacity.",
+      "effective_date": "2025-11-01",
+      "status": "active",
+      "notes": "1-year moratorium covers data centers, wind, solar, and SMRs. Effective November 2025. One of first three Indiana counties to act.",
+      "sources": [
+        {
+          "label": "Putnam County, IN \u2014 Official government website",
+          "url": "https://www.putnamcounty.in.gov/"
+        },
+        {
+          "label": "IBJ: 3 counties put moratoriums on data center projects",
+          "url": "https://www.ibj.com/articles/3-counties-put-moratoriums-on-data-center-projects"
+        },
+        {
+          "label": "WFYI: Nearly a third of Indiana counties restrict data centers",
+          "url": "https://www.wfyi.org/statewide/2026-07-06/indiana-counties-data-center-moratoriums-bans-2026"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-12",
+      "confidence": "verified",
+      "confidence_score": 94,
+      "source_tier": 1
+    },
+    "48209": {
+      "name": "Hays County",
+      "state": "Texas",
+      "level": 2,
+      "types": [
+        "data_center",
+        "water"
+      ],
+      "title": "San Marcos Data Center Ban + Hays County Development Pause (2026)",
+      "description": "San Marcos City Council voted 4-3 on June 16, 2026 to ban data centers from all zoning categories within city limits, becoming the first Texas city to implement such a ban. The city cited water and energy resource conflicts with local community needs. At the county level, the Hays County Commission adopted a non-binding resolution to pause data center development in unincorporated areas due to water shortages \u2014 at least two large data center projects (including the 1.2 GW CloudBurst San Marcos GigaCenter spanning Hays and Guadalupe counties) had been proposed in the unincorporated county surrounding San Marcos. The San Marcos ban faces potential legal challenges under Texas' 2023 Death Star preemption law and 2025 HB 2559, which restricts indefinite municipal moratoriums.",
+      "effective_date": "2026-06-16",
+      "status": "proposed",
+      "notes": "City of San Marcos enacted an outright ban (Tier 4 at city level). Hays County Commission resolution is non-binding. Both face potential preemption challenges under Texas law.",
+      "sources": [
+        {
+          "label": "Texas Tribune: San Marcos bans data centers, testing its local control",
+          "url": "https://www.texastribune.org/2026/06/30/texas-san-marcos-data-center-ban-zoning-laws/"
+        },
+        {
+          "label": "The Real Deal Texas: San Marcos data center ban \u2014 legal challenges",
+          "url": "https://therealdeal.com/texas/2026/06/30/can-san-marcos-data-center-ban-survive-legal-challenges/"
+        },
+        {
+          "label": "Yahoo News: Zoning authority \u2014 San Marcos first Texas city to ban data centers",
+          "url": "https://www.yahoo.com/news/politics/articles/zoning-authority-could-answer-data-210500398.html"
+        }
+      ],
+      "lifecycle_stage": "proposed",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-12",
+      "confidence": "high",
+      "confidence_score": 74,
+      "source_tier": 3
     }
   },
   "validation_report": {
@@ -2755,5 +3243,20 @@
         "error": "HTTP Error 403: Forbidden"
       }
     ]
+  },
+  "confidence_metadata": {
+    "last_computed": "2026-07-12T13:56:27.562073+00:00",
+    "scoring_weights": {
+      "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
+      "source_count": "20% (capped at 3 sources)",
+      "url_availability": "20% (capped at 2 URLs)",
+      "freshness": "20% (effective_date age)"
+    },
+    "labels": {
+      "verified": "Score \u2265 80 \u2014 government sources, multiple URLs, recent date",
+      "high": "Score 60\u201379 \u2014 good sources, some URLs",
+      "medium": "Score 40\u201359 \u2014 industry/news sources, limited URLs",
+      "low": "Score < 40 \u2014 few sources, no URLs, or very stale"
+    }
   }
 }

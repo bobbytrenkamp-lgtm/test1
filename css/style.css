@@ -884,6 +884,56 @@ html, body {
   font-weight: 600;
 }
 
+/* Lifecycle stage badge */
+.lifecycle-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.lc-effective  { background: #14532d; color: #4ade80; }
+.lc-enacted    { background: #1e3a5f; color: #93c5fd; }
+.lc-proposed   { background: #3b2a00; color: #fcd34d; }
+.lc-discovered { background: #1e293b; color: #94a3b8; }
+.lc-expired    { background: #1c1c1c; color: #6b7280; }
+
+/* Pipeline verified badge */
+.pipeline-verified-badge {
+  font-size: 10px;
+  color: #4ade80;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Government source badge in sources list */
+.source-gov-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #1e3a5f;
+  color: #93c5fd;
+  margin-right: 5px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Light theme overrides */
+html.is-light-theme .lc-effective  { background: #dcfce7; color: #166534; }
+html.is-light-theme .lc-enacted    { background: #dbeafe; color: #1e40af; }
+html.is-light-theme .lc-proposed   { background: #fef9c3; color: #854d0e; }
+html.is-light-theme .lc-discovered { background: #f1f5f9; color: #475569; }
+html.is-light-theme .lc-expired    { background: #f3f4f6; color: #6b7280; }
+html.is-light-theme .source-gov-badge { background: #dbeafe; color: #1e40af; }
+html.is-light-theme .pipeline-verified-badge { color: #166534; }
+
 .sources-list {
   list-style: none;
 }
