@@ -28,7 +28,7 @@ data/process_data.py         ← runs daily via GitHub Actions
 data/map_data.json           ← consumed by the frontend
         │
         ▼
-index.html + js/map.js       ← D3.js choropleth map (static, no server needed)
+index.html + js/map.js       ← Leaflet.js choropleth map (static, no server needed)
 ```
 
 The GitHub Actions workflow runs `process_data.py` every day at 06:00 UTC.  

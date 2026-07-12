@@ -250,8 +250,8 @@ function renderHomeTicker(container) {
     : [];
 
   const symbols = companies.map(c => ({
-    "proName": `NASDAQ:${c.ticker}`,
-    "title":   c.ticker,
+    "proName": c.ticker,
+    "title":   c.symbol,
   }));
 
   if (!symbols.length) { container.hidden = true; return; }

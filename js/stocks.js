@@ -126,7 +126,6 @@ const NEWS_ALIASES = {
   'NASDAQ:TSLA':  ['tesla', 'tsla', 'optimus', 'full self-driving', 'fsd', 'dojo'],
   'NASDAQ:SMCI':  ['supermicro', 'super micro', 'smci'],
   'NASDAQ:ISRG':  ['intuitive surgical', 'da vinci'],
-  'NYSE:ANET':    ['arista networks'],
   'NASDAQ:CDNS':  ['cadence', 'jedai'],
   'NASDAQ:SNPS':  ['synopsys'],
 };
@@ -551,19 +550,12 @@ function renderNewsTab(container, ticker) {
       <div class="stocks-news-title">${escHtml(a.title || '')}</div>
       <div class="stocks-news-meta">
         <span class="stocks-news-source">${escHtml(a.source || '')}</span>
-        <span class="stocks-news-date">${escHtml(a.date || '')}</span>
+        <span class="stocks-news-date">${escHtml(formatDate(a.published_at || a.publishedAt || ''))}</span>
       </div>
     </a>`).join('');
   container.appendChild(list);
 }
 
-function escHtml(s) {
-  return String(s)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
 
 /* ─────────────────────────────────────────────────────────────── */
 /* Ticker tape                                                       */
