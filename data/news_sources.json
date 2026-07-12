@@ -1,8 +1,8 @@
 {
   "_note": "Configurable news sources for update_ai_news.py. Set enabled:false to disable without removing. Verify feed URLs return valid RSS/Atom before enabling.",
   "settings": {
-    "max_articles_total": 250,
-    "max_articles_per_source": 25,
+    "max_articles_total": 400,
+    "max_articles_per_source": 30,
     "retention_days": 30,
     "relevance_threshold": 3,
     "request_timeout_seconds": 20,
@@ -186,6 +186,51 @@
       "enabled": true
     },
     {
+      "id": "dc_frontier",
+      "name": "Data Center Frontier",
+      "tier": "industry",
+      "url": "https://datacenterfrontier.com/feed/",
+      "homepage": "https://datacenterfrontier.com",
+      "enabled": true,
+      "note": "Focused coverage of new facility announcements, siting decisions, and hyperscale construction"
+    },
+    {
+      "id": "nextplatform",
+      "name": "The Next Platform",
+      "tier": "industry",
+      "url": "https://www.nextplatform.com/feed/",
+      "homepage": "https://www.nextplatform.com",
+      "enabled": true,
+      "note": "Deep dives on hyperscale infrastructure investments and capacity announcements"
+    },
+    {
+      "id": "theregister_dc",
+      "name": "The Register — Data Centres",
+      "tier": "industry",
+      "url": "https://www.theregister.com/data_centre/headlines.atom",
+      "homepage": "https://www.theregister.com/data_centre/",
+      "enabled": true,
+      "note": "UK-based; covers global data center announcements and infrastructure news"
+    },
+    {
+      "id": "siliconangle",
+      "name": "SiliconAngle",
+      "tier": "tech",
+      "url": "https://siliconangle.com/feed/",
+      "homepage": "https://siliconangle.com",
+      "enabled": true,
+      "note": "Tech industry news with strong hyperscale and cloud infrastructure coverage"
+    },
+    {
+      "id": "fierce_telecom",
+      "name": "Fierce Network",
+      "tier": "industry",
+      "url": "https://www.fierceelectronics.com/rss/xml",
+      "homepage": "https://www.fierceelectronics.com",
+      "enabled": false,
+      "note": "Disabled — URL reliability uncertain; re-enable after manual verification"
+    },
+    {
       "id": "electrek",
       "name": "Electrek",
       "tier": "energy",
@@ -317,6 +362,41 @@
     {
       "id": "gn_dc_water",
       "query": "data center water usage environment",
+      "enabled": true
+    },
+    {
+      "id": "gn_dc_new_construction",
+      "query": "new data center announced construction planned",
+      "enabled": true
+    },
+    {
+      "id": "gn_dc_hyperscale_announce",
+      "query": "hyperscale campus data center megawatt",
+      "enabled": true
+    },
+    {
+      "id": "gn_dc_bigtech_invest",
+      "query": "Amazon OR Google OR Microsoft OR Meta data center investment construction",
+      "enabled": true
+    },
+    {
+      "id": "gn_dc_ai_campus",
+      "query": "AI campus data center site acquisition permit",
+      "enabled": true
+    },
+    {
+      "id": "gn_dc_operators",
+      "query": "CoreWeave OR xAI OR Equinix OR \"Digital Realty\" OR QTS data center",
+      "enabled": true
+    },
+    {
+      "id": "gn_dc_stargate",
+      "query": "Stargate AI infrastructure data center",
+      "enabled": true
+    },
+    {
+      "id": "gn_dc_power_capacity",
+      "query": "data center gigawatt OR megawatt power capacity US",
       "enabled": true
     }
   ]
