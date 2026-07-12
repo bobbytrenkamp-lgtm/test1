@@ -952,7 +952,7 @@ function renderLegend() {
     }
 
     const div = document.createElement("div");
-    div.style.cssText = "border-top:1px solid #2e3352; margin:8px 0;";
+    div.style.cssText = "border-top:1px solid var(--border); margin:8px 0;";
     legendBody.appendChild(div);
   }
 
@@ -978,7 +978,7 @@ function renderLegend() {
       legendBody.appendChild(el);
     }
     const sd = document.createElement("div");
-    sd.style.cssText = "border-top:1px solid #2e3352; margin:8px 0;";
+    sd.style.cssText = "border-top:1px solid var(--border); margin:8px 0;";
     legendBody.appendChild(sd);
   }
 
@@ -1267,7 +1267,12 @@ function initFilterPanelControls() {
 
 function initTopToggle() {
   const btn = document.getElementById("top-toggle");
-  if (btn) btn.addEventListener("click", () => document.getElementById("app").classList.toggle("top-hidden"));
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    const hidden = document.getElementById("app").classList.toggle("top-hidden");
+    btn.setAttribute("aria-label", hidden ? "Show header" : "Hide header");
+    btn.title = hidden ? "Show header" : "Hide header";
+  });
 }
 
 /* ── Legend controls (2-state open/close + drag + resize) ── */
@@ -1667,7 +1672,7 @@ function setDetailEmpty() {
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
       </svg>
-      <p>Tap any county on the map to see statewide, county, and city regulations.</p>
+      <p>${window.matchMedia("(pointer: coarse)").matches ? "Tap" : "Click"} any county on the map to see statewide, county, and city regulations.</p>
     </div>`;
   closeMobileSheet();
 }
@@ -2273,10 +2278,10 @@ function openArticleDetail(art, returnEl) {
     }
   }
 
-  // Show panel
+  // Show panel — unhide first, then add "open" in next frame so CSS transition fires
   panel.hidden = false;
   backdrop.classList.add("open");
-  panel.classList.add("open");
+  requestAnimationFrame(() => panel.classList.add("open"));
 
   // Prevent background scroll on mobile
   document.body.classList.add("detail-open");
@@ -2338,6 +2343,14 @@ function renderNews() {
 
   const matches = filterNewsArticles();
   grid.innerHTML = "";
+
+  // Update status bar count and clear-filters visibility
+  updateNewsStatusCount(matches.length, newsArticles.length);
+  const clearBtn = document.getElementById("news-clear-filters");
+  if (clearBtn) {
+    const isFiltered = newsFilters.search || newsFilters.category || newsFilters.state || newsFilters.source;
+    clearBtn.hidden = !isFiltered;
+  }
 
   if (newsArticles.length === 0) {
     // No articles yet — either feed hasn't run or all were filtered out
@@ -2432,7 +2445,7 @@ function renderNewsStatusBar(newsData) {
         month: "short", day: "numeric", year: "numeric",
         hour: "numeric", minute: "2-digit", timeZoneName: "short",
       });
-      bar.textContent = `Automatically updated from public news feeds. Last updated ${fmt}.`;
+      bar.dataset.baseText = `Automatically updated from public news feeds. Last updated ${fmt}.`;
       bar.hidden = false;
       return;
     }
@@ -2440,8 +2453,30 @@ function renderNewsStatusBar(newsData) {
   bar.hidden = true;
 }
 
+function updateNewsStatusCount(shown, total) {
+  const bar = document.getElementById("news-status-bar");
+  if (!bar || bar.hidden || !bar.dataset.baseText) return;
+  const isFiltered = shown !== total;
+  const countText = isFiltered ? `${shown} of ${total} articles` : `${total} articles`;
+  bar.textContent = `${countText} · ${bar.dataset.baseText}`;
+}
+
 function initNewsView() {
   initNewsDynamicDropdowns();
+
+  const newsClearBtn = document.getElementById("news-clear-filters");
+  if (newsClearBtn) {
+    newsClearBtn.addEventListener("click", () => {
+      newsFilters = { search: "", category: "", state: "", source: "" };
+      document.getElementById("news-search").value = "";
+      document.getElementById("news-cat-filter").value = "";
+      document.getElementById("news-state-filter").value = "";
+      const srcSel = document.getElementById("news-source-filter");
+      if (srcSel) srcSel.value = "";
+      newsClearBtn.hidden = true;
+      renderNews();
+    });
+  }
 
   document.getElementById("news-search").addEventListener("input", e => {
     newsFilters.search = e.target.value.trim();

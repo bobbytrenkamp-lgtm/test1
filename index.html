@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260712g" />
+  <link rel="stylesheet" href="css/style.css?v=20260712j" />
   <link rel="stylesheet" href="css/stocks.css?v=20260712g" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
@@ -52,7 +52,11 @@
       </div>
     </div>
     <nav id="header-tabs" role="tablist">
-      <button class="header-tab active" data-tab="map" role="tab" aria-selected="true">
+      <button class="header-tab active" data-tab="home" role="tab" aria-selected="true">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Home</span>
+      </button>
+      <button class="header-tab" data-tab="map" role="tab" aria-selected="false">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
         <span>Map</span>
       </button>
@@ -131,9 +135,9 @@
       <section class="home-kpi-strip">
         <div class="home-kpi-card"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">Counties Tracked</div></div>
         <div class="home-kpi-card home-kpi-ban"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">Active Bans</div></div>
-        <div class="home-kpi-card home-kpi-high"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">Significant</div></div>
-        <div class="home-kpi-card home-kpi-moderate"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">Moderate</div></div>
-        <div class="home-kpi-card"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">States</div></div>
+        <div class="home-kpi-card home-kpi-high"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">Significant Restrictions</div></div>
+        <div class="home-kpi-card home-kpi-moderate"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">Moderate Restrictions</div></div>
+        <div class="home-kpi-card"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">States with Activity</div></div>
       </section>
       <!-- Shown after 8 s if scripts never loaded (poor mobile connection) -->
       <div id="home-load-error" hidden style="padding:24px 16px;text-align:center;">
@@ -229,6 +233,7 @@
       <select id="news-source-filter">
         <option value="">All Publishers</option>
       </select>
+      <button id="news-clear-filters" type="button" hidden>Clear filters</button>
     </div>
     <div id="news-status-bar"></div>
     <div id="news-grid"></div>
@@ -333,9 +338,9 @@ window.addEventListener('error', function(e) {
 <script src="vendor/leaflet.js" defer onload="window._track.ok.push('leaflet')" onerror="window._track.fail.push('leaflet')"></script>
 <script src="vendor/topojson-client.min.js" defer onload="window._track.ok.push('topo')" onerror="window._track.fail.push('topo')"></script>
 <script src="js/stocks.js?v=20260712i" defer onload="window._track.ok.push('stocks')" onerror="window._track.fail.push('stocks')"></script>
-<script src="js/analytics.js?v=20260712h" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
-<script src="js/home.js?v=20260712h" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
-<script src="js/map.js?v=20260712h" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script src="js/analytics.js?v=20260712j" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
+<script src="js/home.js?v=20260712j" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
+<script src="js/map.js?v=20260712j" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
 <script>
 setTimeout(function() {
   if (!window._pageInitialized) {

@@ -319,7 +319,7 @@ function renderHomePage() {
     </div>
   </section>
   <section class="home-kpi-strip">
-    ${["Counties Tracked","Active Bans","Significant","Moderate","States"].map(l =>
+    ${["Counties Tracked","Active Bans","Significant Restrictions","Moderate Restrictions","States with Activity"].map(l =>
       `<div class="home-kpi-card"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">${l}</div></div>`
     ).join("")}
   </section>
@@ -456,7 +456,7 @@ function renderHomePage() {
           <div class="home-reg-title">${escHtml(c.title || "")}</div>
           <div class="home-reg-meta">
             ${(c.types || []).map(t => `<span class="home-type-chip">${escHtml(TYPE_LABELS[t] || t)}</span>`).join("")}
-            ${c.effective_date ? `<span class="home-reg-date">${escHtml(c.effective_date)}</span>` : ""}
+            ${c.effective_date ? `<span class="home-reg-date">${escHtml(new Date(c.effective_date + "T00:00:00").toLocaleDateString("en-US", {month:"short",day:"numeric",year:"numeric"}))}</span>` : ""}
           </div>
         </div>`).join("") : '<div class="home-empty">No high-restriction counties found.</div>'}
       </div>
@@ -523,7 +523,7 @@ function renderHomePage() {
         <div class="home-newsletter-title">Policy Digest</div>
         <div class="home-newsletter-sub">Weekly summary of new data center restrictions, AI regulations, and policy developments. Coming soon.</div>
       </div>
-      <button class="home-newsletter-btn" type="button" disabled aria-disabled="true">Notify Me</button>
+      <span class="home-newsletter-coming">Coming soon</span>
     </div>
   </section>
 
@@ -588,7 +588,10 @@ function renderHomePage() {
     const handler = () => {
       const fips = el.dataset.fips;
       switchTab("map");
-      setTimeout(() => { selectCounty(fips); zoomToFeature(fips); }, 100);
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise
+        : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
     };
     el.addEventListener("click",   handler);
     el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
@@ -599,7 +602,10 @@ function renderHomePage() {
     const handler = () => {
       const fips = el.dataset.fips;
       switchTab("map");
-      setTimeout(() => { selectCounty(fips); zoomToFeature(fips); }, 100);
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise
+        : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
     };
     el.addEventListener("click",   handler);
     el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
