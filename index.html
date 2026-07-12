@@ -20,8 +20,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260712b" />
-  <link rel="stylesheet" href="css/stocks.css?v=20260712b" />
+  <link rel="stylesheet" href="css/style.css?v=20260712c" />
+  <link rel="stylesheet" href="css/stocks.css?v=20260712c" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -114,11 +114,12 @@
     </button>
   </div>
 
-  <!-- Home / Command Center -->
-  <div id="home-view" class="page-view" hidden tabindex="-1"></div>
+  <!-- Home / Command Center — visible by default so no loading screen shows
+       if JS is slow or blocked. JS fills content and hides/shows views. -->
+  <div id="home-view" class="page-view" tabindex="-1"></div>
 
-  <!-- Main -->
-  <div id="main">
+  <!-- Main — hidden by default; shown when user navigates to Map tab -->
+  <div id="main" hidden>
 
     <!-- Map Container -->
     <div id="map-container">
@@ -297,9 +298,9 @@
 
 <script src="vendor/leaflet.js"></script>
 <script src="vendor/topojson-client.min.js"></script>
-<script src="js/stocks.js?v=20260712b"></script>
-<script src="js/analytics.js?v=20260712b"></script>
-<script src="js/home.js?v=20260712b"></script>
-<script src="js/map.js?v=20260712b"></script>
+<script src="js/stocks.js?v=20260712c"></script>
+<script src="js/analytics.js?v=20260712c"></script>
+<script src="js/home.js?v=20260712c"></script>
+<script src="js/map.js?v=20260712c"></script>
 </body>
 </html>
