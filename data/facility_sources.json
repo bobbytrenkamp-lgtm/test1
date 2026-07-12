@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Registry of data sources for the US facility pipeline",
+    "last_updated": "2026-07-12"
+  },
+  "sources": [
+    {
+      "id": "existing_data_centers",
+      "name": "Existing Hand-Curated Dataset (data_centers.json + ai_campuses.json)",
+      "tier": 2,
+      "adapter": "existing_datasets",
+      "url": null,
+      "active": true,
+      "requires_auth": false,
+      "auth_env_var": "",
+      "rate_limit_rpm": 9999,
+      "notes": "Seed dataset from prior hand-curation. Treated as tier-2 confidence.",
+      "operator_filter": "",
+      "confidence_override": 0.85
+    },
+    {
+      "id": "osm",
+      "name": "OpenStreetMap (Overpass API)",
+      "tier": 3,
+      "adapter": "osm",
+      "url": "https://overpass-api.de/api/interpreter",
+      "active": true,
+      "requires_auth": false,
+      "auth_env_var": "",
+      "rate_limit_rpm": 10,
+      "notes": "Queries building=data_center, building=datacenter, man_made=data_center tags within continental US bounding box.",
+      "operator_filter": "",
+      "confidence_override": null
+    },
+    {
+      "id": "datacentermap",
+      "name": "DataCenterMap.com",
+      "tier": 2,
+      "adapter": "datacentermap",
+      "url": "https://www.datacentermap.com/usa/",
+      "active": true,
+      "requires_auth": false,
+      "auth_env_var": "",
+      "rate_limit_rpm": 30,
+      "notes": "Public directory; polite crawl at 1 req/2s. Robots.txt permits crawling.",
+      "operator_filter": "",
+      "confidence_override": null
+    },
+    {
+      "id": "cloudscene",
+      "name": "Cloudscene",
+      "tier": 1,
+      "adapter": "cloudscene",
+      "url": "https://api.cloudscene.com/v1/facilities",
+      "active": false,
+      "requires_auth": true,
+      "auth_env_var": "CLOUDSCENE_API_KEY",
+      "rate_limit_rpm": 60,
+      "notes": "Paid API. Set CLOUDSCENE_API_KEY to activate. Highest-trust aggregator.",
+      "operator_filter": "",
+      "confidence_override": null
+    }
+  ]
+}
