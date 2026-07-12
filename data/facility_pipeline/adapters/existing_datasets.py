@@ -14,11 +14,13 @@ AI_CAMPUSES_PATH = os.path.join(DATA_DIR, "ai_campuses.json")
 
 # Map legacy operational status strings to canonical values
 _STATUS_MAP = {
+    "existing": "operational",
     "operational": "operational",
     "active": "operational",
     "under construction": "under_construction",
     "under_construction": "under_construction",
     "planned": "planned",
+    "proposed": "planned",
     "decommissioned": "decommissioned",
     "mothballed": "mothballed",
 }
