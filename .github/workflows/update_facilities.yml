@@ -2,8 +2,8 @@ name: Update Facility Dataset
 
 on:
   schedule:
-    # Run weekly on Sunday at 03:00 UTC (after policy pipeline at 02:00)
-    - cron: "0 3 * * 0"
+    # Run daily at 03:00 UTC to pick up newly announced facilities
+    - cron: "0 3 * * *"
   workflow_dispatch:
     inputs:
       source:
