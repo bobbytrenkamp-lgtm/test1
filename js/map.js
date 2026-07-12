@@ -1715,6 +1715,9 @@ function restoreFromHash() {
   const hash = window.location.hash.replace("#", "");
   if (/^\d{5}$/.test(hash)) {
     switchTab("map");
+    // Force Leaflet to recalculate its container size synchronously before
+    // fitBounds — required when the map was initialized while #main was hidden.
+    if (leafletMap) leafletMap.invalidateSize();
     selectCounty(hash);
     zoomToFeature(hash);
     return true;
@@ -2533,11 +2536,15 @@ async function init() {
     setLastUpdated(data);
     renderDashboard(data);
 
-    // If URL had a FIPS hash, switch to map and restore the saved county
+    // If URL had a FIPS hash, initialize the map silently while home stays
+    // visible — #main is hidden so the loading spinner never shows.
+    // fetchGeoData() above already started the 2 MB download in parallel,
+    // so by the time loadCoreData() finished the geo file may be ready or close.
+    // When initMapFromGeo() resolves, restoreFromHash() snaps to the map
+    // and county instantly with no loading overlay.
     if (hasHashFips) {
-      switchTab("map");           // makes #main visible, starts initMapFromGeo → mapInitPromise
-      await mapInitPromise;       // wait for Leaflet to fully initialize
-      restoreFromHash();          // selects + zooms to the county from the hash
+      await initMapFromGeo();
+      restoreFromHash();
     }
 
   } catch (err) {
