@@ -1,0 +1,53 @@
+name: Update Infrastructure Layers
+
+on:
+  schedule:
+    # Run weekly on Monday at 04:00 UTC (after facility pipeline on Sunday)
+    - cron: "0 4 * * 1"
+  workflow_dispatch:
+    inputs:
+      layers:
+        description: "Comma-separated layers to fetch (substations,transmission,power,fiber,water)"
+        required: false
+        default: "substations,transmission,power,fiber,water"
+
+permissions:
+  contents: write
+
+jobs:
+  update-infrastructure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r data/requirements.txt
+
+      - name: Fetch infrastructure layers
+        run: |
+          LAYERS="${{ github.event.inputs.layers }}"
+          if [ -z "$LAYERS" ]; then
+            LAYERS="substations,transmission,power,fiber,water"
+          fi
+          python data/fetch_infrastructure.py --layers "$LAYERS"
+
+      - name: Commit updated infrastructure data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/sample_layers.json
+          if git diff --cached --quiet; then
+            echo "No infrastructure changes to commit"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git commit -m "chore: update infrastructure layers [${TIMESTAMP}] [skip ci]"
+            git push origin HEAD
+          fi
