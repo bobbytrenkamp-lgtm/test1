@@ -24,22 +24,20 @@ const FEATURED_FIPS = ["41027", "51107", "53007", "41059", "45015", "19113"];
 let _dcStats = null;
 
 (function loadFacilityStats() {
-  Promise.all([
-    fetch("data/data_centers.json").then(r => r.json()),
-    fetch("data/ai_campuses.json").then(r => r.json()),
-  ]).then(([dc, ac]) => {
-    const dcs = dc.data_centers || [];
-    const acs = ac.ai_campuses || [];
-    _dcStats = {
-      existing: dcs.filter(d => d.status === "existing").length + acs.length,
-      proposed: dcs.filter(d => d.status === "planned").length,
-    };
-    const view = document.getElementById("home-view");
-    if (view && view.dataset.built === "1") {
-      view.dataset.built = "";
-      renderHomePage();
-    }
-  }).catch(() => {});
+  fetch("data/facilities_master.json")
+    .then(r => r.json())
+    .then(records => {
+      _dcStats = {
+        existing: records.filter(r => r.operational_status === "operational" || r.operational_status === "under_construction").length,
+        proposed: records.filter(r => r.operational_status === "planned").length,
+        total:    records.length,
+      };
+      const view = document.getElementById("home-view");
+      if (view && view.dataset.built === "1") {
+        view.dataset.built = "";
+        renderHomePage();
+      }
+    }).catch(() => {});
 }());
 
 /* ── Home search ── */
