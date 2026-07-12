@@ -375,7 +375,7 @@ function renderCompanyGrid() {
     return `<button class="stocks-co-card${isSel ? ' selected' : ''}" data-ticker="${escHtml(c.ticker)}" aria-pressed="${isSel}">
       <div class="stocks-co-card-top">
         <span class="stocks-co-symbol">${escHtml(c.symbol)}</span>
-        <button class="stocks-fav-star${isFav ? ' is-fav' : ''}" data-ticker="${escHtml(c.ticker)}" aria-label="${isFav ? 'Remove from favorites' : 'Add to favorites'}" title="${isFav ? 'Remove from favorites' : 'Add to favorites'}">★</button>
+        <span role="button" tabindex="0" class="stocks-fav-star${isFav ? ' is-fav' : ''}" data-ticker="${escHtml(c.ticker)}" aria-label="${isFav ? 'Remove from favorites' : 'Add to favorites'}" title="${isFav ? 'Remove from favorites' : 'Add to favorites'}">★</span>
       </div>
       <div class="stocks-co-name">${escHtml(c.shortName)}</div>
       <div class="stocks-co-cat">${escHtml(c.category)}</div>
@@ -389,12 +389,14 @@ function renderCompanyGrid() {
     });
   });
   grid.querySelectorAll('.stocks-fav-star').forEach(btn => {
-    btn.addEventListener('click', e => {
+    const toggle = e => {
       e.stopPropagation();
       stocksToggleFavorite(btn.dataset.ticker);
       renderCompanyGrid();
       if (btn.dataset.ticker === stocksState.selectedSymbol) updateFavButton();
-    });
+    };
+    btn.addEventListener('click', toggle);
+    btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); } });
   });
 }
 
