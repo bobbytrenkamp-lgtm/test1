@@ -93,6 +93,24 @@ jobs:
               print(f"Chronic failures (3+ consecutive): {chronic}")
           EOF
 
+      - name: Ensure required labels exist
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = [
+              { name: 'data-review',      color: 'e4e669', description: 'Requires human review before data is updated' },
+              { name: 'policy-pipeline',  color: '0075ca', description: 'Flagged by the automated policy pipeline' },
+            ];
+            for (const label of labels) {
+              try {
+                await github.rest.issues.getLabel({ owner: context.repo.owner, repo: context.repo.repo, name: label.name });
+              } catch (e) {
+                if (e.status === 404) {
+                  await github.rest.issues.createLabel({ owner: context.repo.owner, repo: context.repo.repo, ...label });
+                }
+              }
+            }
+
       - name: Open issue for new candidates or chronic source failures
         if: steps.pipeline.outputs.exit_code == '1'
         uses: actions/github-script@v7

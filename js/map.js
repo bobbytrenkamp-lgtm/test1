@@ -112,7 +112,7 @@ const ANNOTATIONS = [
   { fips: "53007", label: "Chelan Co., WA",   sub: "PUD moratorium",                type: "restrictive" },
   { fips: "41059", label: "Umatilla, OR",     sub: "Google mega-campus",            type: "pro" },
   { fips: "45015", label: "Berkeley Co., SC", sub: "Amazon/AWS + SC incentives",    type: "pro" },
-  { fips: "19113", label: "Cedar Rapids, IA", sub: "Iowa 0% equipment tax",         type: "pro" },
+  { fips: "19113", label: "Linn Co., IA",      sub: "18-month moratorium (Jul 2026)", type: "restrictive" },
 ];
 
 /* ── Layer definitions ── */
@@ -1582,7 +1582,7 @@ function buildConfidenceBadgeHtml(county) {
     : "";
 
   const reviewedText = county.last_reviewed
-    ? `<span class="conf-tier-label">Reviewed: <span>${escHtml(formatDate(county.last_reviewed))}</span></span>`
+    ? `<span class="conf-tier-label">Reviewed: <span>${escHtml(formatCountyDate(county.last_reviewed))}</span></span>`
     : "";
 
   return `<div class="confidence-info-row">
@@ -1618,7 +1618,7 @@ function buildCountyPolicySectionHtml(fips, county) {
     ${county.description ? `<div class="detail-section"><div class="detail-label">Description</div><div class="detail-value">${escHtml(county.description)}</div></div>` : ""}
     ${types.length ? `<div class="detail-section"><div class="detail-label">Types</div><div class="type-chips">${types.map(t => `<span class="type-chip ${t}">${TYPE_LABELS[t]||t}</span>`).join("")}</div></div>` : ""}
     <div class="detail-section"><div class="detail-label">Status</div><div class="detail-value"><span class="status-indicator"><span class="status-dot ${status}"></span>${STATUS_LABELS[status]||status}</span></div></div>
-    ${county.effective_date ? `<div class="detail-section"><div class="detail-label">Effective Date</div><div class="detail-value">${formatDate(county.effective_date)}</div></div>` : ""}
+    ${county.effective_date ? `<div class="detail-section"><div class="detail-label">Effective Date</div><div class="detail-value">${formatCountyDate(county.effective_date)}</div></div>` : ""}
     ${county.notes ? `<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(county.notes)}</div></div>` : ""}
     ${county.sources && county.sources.length ? `<div class="detail-section"><div class="detail-label">Sources</div><ul class="sources-list">${county.sources.map(s => {
       if (s && typeof s === "object" && s.url) {
@@ -1739,7 +1739,7 @@ function escHtml(str) {
   return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 }
 
-function formatDate(d) {
+function formatCountyDate(d) {
   try { return new Date(d + "T00:00:00").toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}); }
   catch { return d; }
 }

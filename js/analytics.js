@@ -4,15 +4,12 @@
 /* Utilities                                                         */
 /* ─────────────────────────────────────────────────────────────── */
 
-function esc(s) {
-  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
 
 function barChart(rows, colorFn) {
   const max = Math.max(...rows.map(r => r.count), 1);
   return `<div class="bar-chart">${rows.map(r => `
     <div class="bar-row">
-      <div class="bar-row-label" title="${esc(r.label)}">${esc(r.label)}</div>
+      <div class="bar-row-label" title="${escHtml(r.label)}">${escHtml(r.label)}</div>
       <div class="bar-track"><div class="bar-fill" style="width:${Math.round(r.count/max*100)}%;background:${colorFn ? colorFn(r) : 'var(--accent)'}"></div></div>
       <div class="bar-count">${r.count}</div>
     </div>`).join('')}</div>`;
@@ -36,14 +33,9 @@ function analyticsIcon(name) {
 /* Analytics Page                                                    */
 /* ─────────────────────────────────────────────────────────────── */
 
-let analyticsInitialized = false;
-
 function renderAnalyticsPage() {
   const el = document.getElementById('analytics-view');
   if (!el) return;
-
-  // Always re-render so data is fresh if mapData loaded after first visit
-  analyticsInitialized = true;
 
   /* ── Compute stats ── */
   const counties = mapData || {};
@@ -158,7 +150,7 @@ function renderAnalyticsPage() {
               ${Object.entries(levelCounts).filter(([k,v])=>v>0).map(([k,v])=>`
               <div class="ring-stat-item">
                 <div class="ring-stat-dot" style="background:${levelColors[k]||'var(--border)'}"></div>
-                <div class="ring-stat-label">${esc(levelLabels[k]||k)}</div>
+                <div class="ring-stat-label">${escHtml(levelLabels[k]||k)}</div>
                 <div class="ring-stat-val">${v}</div>
               </div>`).join('')}
             </div>
@@ -184,7 +176,7 @@ function renderAnalyticsPage() {
               ${topStates.map(([st,n],i) => `
               <div class="ranked-item">
                 <div class="rank-num">${i+1}</div>
-                <div class="rank-name">${esc(st)}</div>
+                <div class="rank-name">${escHtml(st)}</div>
                 <div class="rank-bar-wrap">
                   <div class="bar-track" style="flex:1"><div class="bar-fill" style="width:${Math.round(n/topStates[0][1]*100)}%;background:#dc2626"></div></div>
                 </div>
@@ -330,7 +322,7 @@ function renderAboutPage() {
             <div class="roadmap-dot done"></div>
             <div class="roadmap-content">
               <div class="roadmap-title">Interactive County Policy Map</div>
-              <div class="roadmap-desc">Leaflet.js choropleth with 92+ tracked jurisdictions, severity scale, and detailed county panels.</div>
+              <div class="roadmap-desc">Leaflet.js choropleth with 98+ tracked jurisdictions, severity scale, and detailed county panels.</div>
             </div>
             <span class="roadmap-badge done">Live</span>
           </div>
