@@ -2503,7 +2503,6 @@ function initThemeToggle() {
 
 /* ── Init ── */
 async function init() {
-  window._pageInitialized = true; // signals load-failure detector in index.html
   initThemeToggle();
   initNavTabs();
   initKeyboardShortcuts();
@@ -2561,4 +2560,14 @@ async function init() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", init);
+// Set the flag here (module level) so the retry-button detector in index.html
+// knows this script executed, even if DOMContentLoaded fires late or is missed.
+window._pageInitialized = true;
+
+// With defer the DOM is already parsed when this runs (readyState "interactive"),
+// so call init() directly rather than waiting for DOMContentLoaded.
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
