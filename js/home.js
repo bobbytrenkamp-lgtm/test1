@@ -20,6 +20,28 @@ const SEV_CLASSES = { 4: "badge-ban", 3: "badge-high", 2: "badge-moderate", 1: "
 /* Featured jurisdictions drawn from ANNOTATIONS (Hood River, Loudoun, Chelan, Umatilla, Berkeley, Cedar Rapids) */
 const FEATURED_FIPS = ["41027", "51107", "53007", "41059", "45015", "19113"];
 
+/* ── Facility statistics (loaded async from data files) ── */
+let _dcStats = null;
+
+(function loadFacilityStats() {
+  Promise.all([
+    fetch("data/data_centers.json").then(r => r.json()),
+    fetch("data/ai_campuses.json").then(r => r.json()),
+  ]).then(([dc, ac]) => {
+    const dcs = dc.data_centers || [];
+    const acs = ac.ai_campuses || [];
+    _dcStats = {
+      existing: dcs.filter(d => d.status === "existing").length + acs.length,
+      proposed: dcs.filter(d => d.status === "planned").length,
+    };
+    const view = document.getElementById("home-view");
+    if (view && view.dataset.built === "1") {
+      view.dataset.built = "";
+      renderHomePage();
+    }
+  }).catch(() => {});
+}());
+
 /* ── Home search ── */
 function initHomeSearch() {
   const input   = document.getElementById("home-search-input");
@@ -218,13 +240,17 @@ function buildFeatured() {
 
 /* ── KPI summary ── */
 function buildKPIs() {
-  if (!mapData) return { total: 0, bans: 0, high: 0, moderate: 0, states: 0 };
+  if (!mapData) return { total: 0, bans: 0, high: 0, moderate: 0, states: 0, dcExisting: null, dcProposed: null };
   const counties = Object.values(mapData);
   const bans     = counties.filter(c => c.level === 4).length;
   const high     = counties.filter(c => c.level === 3).length;
   const moderate = counties.filter(c => c.level === 2).length;
   const stSet    = new Set(counties.map(c => c.state));
-  return { total: counties.length, bans, high, moderate, states: stSet.size };
+  return {
+    total: counties.length, bans, high, moderate, states: stSet.size,
+    dcExisting: _dcStats ? _dcStats.existing : null,
+    dcProposed: _dcStats ? _dcStats.proposed : null,
+  };
 }
 
 /* ── Format relative date ── */
@@ -319,7 +345,7 @@ function renderHomePage() {
     </div>
   </section>
   <section class="home-kpi-strip">
-    ${["Counties Tracked","Active Bans","Significant Restrictions","Moderate Restrictions","States with Activity"].map(l =>
+    ${["Counties Tracked","Active Bans","Significant Restrictions","Moderate Restrictions","States with Activity","Data Centers","Proposed"].map(l =>
       `<div class="home-kpi-card"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">${l}</div></div>`
     ).join("")}
   </section>
@@ -403,6 +429,14 @@ function renderHomePage() {
     <div class="home-kpi-card">
       <div class="home-kpi-num">${kpis.states}</div>
       <div class="home-kpi-label">States with Activity</div>
+    </div>
+    <div class="home-kpi-card home-kpi-dc">
+      <div class="home-kpi-num">${kpis.dcExisting !== null ? kpis.dcExisting : '<span class="home-skel home-skel-num" style="display:inline-block;width:36px;height:28px;border-radius:4px"></span>'}</div>
+      <div class="home-kpi-label">Data Centers</div>
+    </div>
+    <div class="home-kpi-card home-kpi-proposed">
+      <div class="home-kpi-num">${kpis.dcProposed !== null ? kpis.dcProposed : '<span class="home-skel home-skel-num" style="display:inline-block;width:36px;height:28px;border-radius:4px"></span>'}</div>
+      <div class="home-kpi-label">Proposed</div>
     </div>
   </section>
 
