@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T13:53:41.304576+00:00",
+  "generated_at": "2026-07-12T13:56:22.708698+00:00",
   "source_last_updated": "2026-07-12",
   "stats": {
     "total_counties_tracked": 98,
@@ -2771,8 +2771,481 @@
       "source_tier": 3
     }
   },
+  "validation_report": {
+    "last_run": "2026-07-12T08:21:29.627896+00:00",
+    "total_checked": 129,
+    "ok": 52,
+    "broken": 56,
+    "warnings": 21,
+    "broken_urls": [
+      {
+        "url": "https://www.acgov.org/planning/generalplan/",
+        "status": 404,
+        "context": "map_data.json / 06001 (Alameda County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.cga.ct.gov/asp/cgabillstatus/cgabillstatus.asp?selBillType=Bill&bill_num=SB00002&which_year=2023",
+        "status": null,
+        "context": "map_data.json / 09003 (Hartford County)",
+        "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
+      },
+      {
+        "url": "https://www.georgiapower.com/business/industries/data-centers.html",
+        "status": 404,
+        "context": "map_data.json / 13121 (Fulton County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/demand-side-management/demand-response",
+        "status": 404,
+        "context": "map_data.json / 06075 (San Francisco County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.google.com/about/datacenters/locations/covington/",
+        "status": 404,
+        "context": "map_data.json / 13217 (Newton County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.troupcountyga.gov/county-commission/",
+        "status": 404,
+        "context": "map_data.json / 13285 (Troup County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://dor.georgia.gov/data-center-exemptions",
+        "status": 404,
+        "context": "map_data.json / 13121 (Fulton County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.dubuquecounty.gov/government/board_of_supervisors/",
+        "status": null,
+        "context": "map_data.json / 19061 (Dubuque County)",
+        "error": "<urlopen error [Errno -5] No address associated with hostname>"
+      },
+      {
+        "url": "https://www.iowaeconomicdevelopment.com/",
+        "status": null,
+        "context": "map_data.json / 19061 (Dubuque County)",
+        "error": "<urlopen error [Errno -5] No address associated with hostname>"
+      },
+      {
+        "url": "https://www.ilga.gov/legislation/BillStatus.asp?DocNum=3680&GAID=17&DocTypeID=HB&SessionID=112",
+        "status": 404,
+        "context": "map_data.json / 17113 (McLean County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://planning.lacounty.gov/generalplan",
+        "status": 404,
+        "context": "map_data.json / 06037 (Los Angeles County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://iedc.in.gov/business-resources/key-industries/data-centers",
+        "status": 404,
+        "context": "map_data.json / 18097 (Marion County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://council.minneapolismn.gov/",
+        "status": null,
+        "context": "map_data.json / 27053 (Hennepin County)",
+        "error": "<urlopen error [Errno -2] Name or service not known>"
+      },
+      {
+        "url": "https://goed.nv.gov/key-industries/data-centers/",
+        "status": 404,
+        "context": "map_data.json / 32003 (Clark County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.datacenterdynamics.com/en/news/north-carolina-counties-pass-data-center-moratoriums/",
+        "status": 404,
+        "context": "map_data.json / 37037 (Chatham County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.cityofplattsburgh.com/departments/city-clerk/",
+        "status": null,
+        "context": "map_data.json / 36019 (Clinton County)",
+        "error": "<urlopen error [Errno 104] Connection reset by peer>"
+      },
+      {
+        "url": "https://www.opportunitylouisiana.gov/business-incentives/itep",
+        "status": 404,
+        "context": "map_data.json / 22083 (Richland Parish)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.rowancountync.gov/government/board_of_county_commissioners/",
+        "status": 404,
+        "context": "map_data.json / 37159 (Rowan County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.datacenterdynamics.com/en/news/hood-river-county-oregon-bans-data-centers/",
+        "status": 404,
+        "context": "map_data.json / 41027 (Hood River County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Denver-Community-Planning-and-Development",
+        "status": 404,
+        "context": "map_data.json / 08031 (Denver County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://council.nashville.gov/",
+        "status": null,
+        "context": "map_data.json / 47037 (Davidson County)",
+        "error": "<urlopen error [Errno 104] Connection reset by peer>"
+      },
+      {
+        "url": "https://dor.sc.gov/business/corporate-incentives/data-center-incentives",
+        "status": 404,
+        "context": "map_data.json / 45003 (Aiken County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.hamiltontn.gov/CommissionDistricts/",
+        "status": 404,
+        "context": "map_data.json / 47065 (Hamilton County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://x.ai/blog/colossus",
+        "status": 404,
+        "context": "map_data.json / 47157 (Shelby County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.washingtoncountytn.org/commission/",
+        "status": 404,
+        "context": "map_data.json / 47179 (Washington County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/planning-development/comprehensive-plan",
+        "status": 404,
+        "context": "map_data.json / 51059 (Fairfax County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.gcpud.org/",
+        "status": null,
+        "context": "map_data.json / 53025 (Grant County)",
+        "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1016)>"
+      },
+      {
+        "url": "https://www.douglas.pud.org/",
+        "status": null,
+        "context": "map_data.json / 53017 (Douglas County)",
+        "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.douglas.pud.org'. (_ssl.c:1016)>"
+      },
+      {
+        "url": "https://www.co.manitowoc.wi.us/departments/county_board/",
+        "status": null,
+        "context": "map_data.json / 55071 (Manitowoc County)",
+        "error": "<urlopen error [Errno -2] Name or service not known>"
+      },
+      {
+        "url": "https://www.okanogancounty.org/commissioners/",
+        "status": 404,
+        "context": "map_data.json / 53047 (Okanogan County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://news.microsoft.com/2024/05/07/microsoft-expands-digital-infrastructure-in-wisconsin/",
+        "status": 404,
+        "context": "map_data.json / 55101 (Racine County)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.google.com/about/datacenters/locations/midlothian/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / dc-008 (Google Midlothian Campus (Texas))",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://aboutamazon.com/news/aws/amazon-web-services-expands-ohio",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / dc-004 (Amazon AWS New Albany Campus (Ohio))",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.datacenterdynamics.com/en/news/elon-musk-says-xai-colossus-is-now-the-worlds-most-powerful-ai-training-cluster/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / dc-009 (xAI Colossus Supercomputer (Memphis, TN))",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://about.fb.com/news/2011/01/facebook-to-build-data-center-in-iowa/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / dc-011 (Meta Altoona Data Center (Iowa))",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://cyrusone.com/locations/texas/dallas-area/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / dc-013 (CyrusOne Dallas (DFW Campus))",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://engineering.fb.com/2011/04/07/data-center-engineering/introducing-the-open-compute-project/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / dc-016 (Meta Prineville Campus (Oregon))",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.coreweave.com/about",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / dc-025 (CoreWeave Chicago Metro Campus \u2014 Planned)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://about.fb.com/news/2023/09/meta-aiken-south-carolina-data-center/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / dc-023 (Meta Aiken Campus (South Carolina) \u2014 Planned)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.cnbc.com/2025/01/21/openai-softbank-oracle-to-invest-500-billion-in-us-ai-infrastructure.html",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / dc-021 (Stargate Texas Campus (Abilene, TX) \u2014 Planned)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://aws.amazon.com/blogs/aws/new-aws-trainium-clusters-with-hundreds-of-thousands-of-chips-project-rainier/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / ai-002 (AWS Project Rainier (Licking County, OH))",
+        "error": "HTTP Error 404: "
+      },
+      {
+        "url": "https://www.datacenterdynamics.com/en/news/aws-expands-oregon-region/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / dc-027 (Amazon Morrow County Exascale Campus (Oregon) \u2014 Planned)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://about.fb.com/news/2023/09/meta-richland-parish-louisiana-data-center/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / dc-026 (Meta Richland Parish Campus (Louisiana) \u2014 Planned)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.midamericanenergy.com/green-energy",
+        "status": 404,
+        "context": "sample_layers.json / power_infrastructure / pw-005 (MidAmerican Energy Wind Farms (Iowa))",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.cga.ct.gov/",
+        "status": null,
+        "context": "state_regulations.json / 09 (Connecticut)",
+        "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
+      },
+      {
+        "url": "https://www.bpa.gov/energy-and-services/power/generating-facilities/the-dalles-dam",
+        "status": 404,
+        "context": "sample_layers.json / power_infrastructure / pw-003 (BPA The Dalles Dam Hydroelectric (OR))",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=4015&ChapterID=68",
+        "status": 404,
+        "context": "state_regulations.json / 17 (Illinois)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004",
+        "status": 404,
+        "context": "state_regulations.json / 17 (Illinois)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.tn.gov/revenue.html",
+        "status": null,
+        "context": "state_regulations.json / 47 (Tennessee)",
+        "error": "<urlopen error [Errno 104] Connection reset by peer>"
+      },
+      {
+        "url": "https://www.nccommerce.com/business-services/incentive-programs",
+        "status": 404,
+        "context": "state_regulations.json / 37 (North Carolina)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.governor.wa.gov/executive-actions/executive-orders",
+        "status": 404,
+        "context": "state_regulations.json / 53 (Washington)",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://flathead.mt.gov/commissioners/",
+        "status": null,
+        "context": "map_data.json / 30029 (Flathead County)",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://leg.mt.gov/",
+        "status": null,
+        "context": "map_data.json / 30029 (Flathead County)",
+        "error": "The read operation timed out"
+      },
+      {
+        "url": "https://news.samsung.com/us/samsung-electronics-announces-new-us-semiconductor-manufacturing-facility-in-texas/",
+        "status": null,
+        "context": "map_data.json / 48491 (Williamson County)",
+        "error": "The read operation timed out"
+      },
+      {
+        "url": "https://malegislature.gov/",
+        "status": null,
+        "context": "state_regulations.json / 25 (Massachusetts)",
+        "error": "The read operation timed out"
+      },
+      {
+        "url": "https://www.legislature.mi.gov/",
+        "status": null,
+        "context": "state_regulations.json / 26 (Michigan)",
+        "error": "The read operation timed out"
+      }
+    ],
+    "warning_urls": [
+      {
+        "url": "https://www.azwater.gov/ama/tucson",
+        "status": 403,
+        "context": "map_data.json / 04019 (Pima County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.azwater.gov/ama/pinal",
+        "status": 403,
+        "context": "map_data.json / 04021 (Pinal County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.azwater.gov/assured-water-supply",
+        "status": 403,
+        "context": "map_data.json / 04013 (Maricopa County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.sccgov.org/sites/oes/pages/climate-action-plan.aspx",
+        "status": 403,
+        "context": "map_data.json / 06085 (Santa Clara County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.michigan.gov/mpsc",
+        "status": 403,
+        "context": "map_data.json / 26161 (Washtenaw County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page",
+        "status": 403,
+        "context": "map_data.json / 36005 (Bronx County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.nysenate.gov/legislation/bills/2019/S6599",
+        "status": 403,
+        "context": "map_data.json / 36005 (Bronx County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.nyc.gov/site/mocej/index.page",
+        "status": 403,
+        "context": "map_data.json / 36061 (New York County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.hoodrivercounty.gov/departments/county_counsel/land_use_ordinances.php",
+        "status": 403,
+        "context": "map_data.json / 41027 (Hood River County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.ferc.gov/media/order-no-2023",
+        "status": 403,
+        "context": "map_data.json / 42077 (Lehigh County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.knoxnews.com/",
+        "status": 403,
+        "context": "map_data.json / 47001 (Anderson County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.bizjournals.com/nashville/",
+        "status": 403,
+        "context": "map_data.json / 47037 (Davidson County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.pwcva.gov/department/planning-office/digital-gateway",
+        "status": 403,
+        "context": "map_data.json / 51153 (Prince William County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.pwcva.gov/department/board-of-county-supervisors",
+        "status": 403,
+        "context": "map_data.json / 51153 (Prince William County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.htrnews.com/",
+        "status": 403,
+        "context": "map_data.json / 55071 (Manitowoc County)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/ashburn-data-centers",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / dc-001 (Equinix Ashburn VA Campus (IAD))",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.datacenters.com/providers/apple-data-center-maiden-nc",
+        "status": 429,
+        "context": "sample_layers.json / data_centers / dc-010 (Apple Maiden Data Center (North Carolina))",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      {
+        "url": "https://www.ironmountain.com/data-centers/locations/united-states/northern-virginia",
+        "status": 429,
+        "context": "sample_layers.json / data_centers / dc-019 (Iron Mountain Northern Virginia (Manassas))",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      {
+        "url": "https://openai.com/blog/announcing-the-stargate-project",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / dc-021 (Stargate Texas Campus (Abilene, TX) \u2014 Planned)",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.tva.com/energy/our-power-system/natural-gas/allen-combined-cycle-plant",
+        "status": 403,
+        "context": "sample_layers.json / power_infrastructure / pw-006 (TVA Allen Combined Cycle Plant (Memphis, TN))",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page",
+        "status": 403,
+        "context": "state_regulations.json / 36 (New York)",
+        "error": "HTTP Error 403: Forbidden"
+      }
+    ]
+  },
   "confidence_metadata": {
-    "last_computed": "2026-07-12T13:53:41.352316+00:00",
+    "last_computed": "2026-07-12T13:56:27.562073+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",
