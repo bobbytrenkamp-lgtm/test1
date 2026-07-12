@@ -1,0 +1,76 @@
+name: Update Facility Dataset
+
+on:
+  schedule:
+    # Run weekly on Sunday at 03:00 UTC (after policy pipeline at 02:00)
+    - cron: "0 3 * * 0"
+  workflow_dispatch:
+    inputs:
+      source:
+        description: "Source ID to run (leave blank for all)"
+        required: false
+        default: ""
+      full:
+        description: "Force full pull (true/false)"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+jobs:
+  update-facilities:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r data/requirements.txt
+
+      - name: Seed master dataset if absent
+        run: |
+          if [ ! -s data/facilities_master.json ] || [ "$(cat data/facilities_master.json)" = "[]" ]; then
+            echo "Master dataset is empty — running seed script"
+            python data/seed_facilities.py
+          else
+            echo "Master dataset exists, skipping seed"
+          fi
+
+      - name: Run facility pipeline
+        env:
+          CLOUDSCENE_API_KEY: ${{ secrets.CLOUDSCENE_API_KEY }}
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.source }}" ]; then
+            ARGS="$ARGS --source ${{ github.event.inputs.source }}"
+          fi
+          if [ "${{ github.event.inputs.full }}" = "true" ]; then
+            ARGS="$ARGS --full"
+          fi
+          python data/run_facility_pipeline.py $ARGS
+
+      - name: Commit updated facility data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/facilities_master.json \
+            data/facilities_candidates.json \
+            data/facilities_changelog.json \
+            data/facilities_sync_state.json \
+            data/facilities_version_history/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git commit -m "chore: update facility dataset [${TIMESTAMP}] [skip ci]"
+            git push origin HEAD
+          fi
