@@ -20,8 +20,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260712f" />
-  <link rel="stylesheet" href="css/stocks.css?v=20260712f" />
+  <link rel="stylesheet" href="css/style.css?v=20260712g" />
+  <link rel="stylesheet" href="css/stocks.css?v=20260712g" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -322,19 +322,35 @@
   </div>
 </div>
 
-<script src="vendor/leaflet.js" defer></script>
-<script src="vendor/topojson-client.min.js" defer></script>
-<script src="js/stocks.js?v=20260712f" defer></script>
-<script src="js/analytics.js?v=20260712f" defer></script>
-<script src="js/home.js?v=20260712f" defer></script>
-<script src="js/map.js?v=20260712f" defer></script>
 <script>
-// If init() hasn't signalled ready within 15 s the scripts failed to download
-// (e.g. dropped connection on mobile). Show a retry button.
+// Track which scripts load/fail and any JS errors — helps diagnose mobile issues
+window._track = {ok:[], fail:[], err:[]};
+window.addEventListener('error', function(e) {
+  var src = e.filename ? e.filename.replace(/.*\//, '') : '?';
+  window._track.err.push(src + ':' + e.lineno + ' ' + e.message);
+}, true);
+</script>
+<script src="vendor/leaflet.js" defer onload="window._track.ok.push('leaflet')" onerror="window._track.fail.push('leaflet')"></script>
+<script src="vendor/topojson-client.min.js" defer onload="window._track.ok.push('topo')" onerror="window._track.fail.push('topo')"></script>
+<script src="js/stocks.js?v=20260712g" defer onload="window._track.ok.push('stocks')" onerror="window._track.fail.push('stocks')"></script>
+<script src="js/analytics.js?v=20260712g" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
+<script src="js/home.js?v=20260712g" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
+<script src="js/map.js?v=20260712g" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script>
 setTimeout(function() {
   if (!window._pageInitialized) {
     var el = document.getElementById('home-load-error');
-    if (el) el.hidden = false;
+    if (!el) return;
+    el.hidden = false;
+    var t = window._track || {ok:[],fail:[],err:[]};
+    var diag = document.createElement('p');
+    diag.style.cssText = 'color:#666;font-size:10px;margin-top:10px;font-family:monospace;word-break:break-all;text-align:left;padding:0 8px;';
+    diag.textContent =
+      'loaded: [' + t.ok.join(',') + ']' +
+      (t.fail.length ? ' | failed: [' + t.fail.join(',') + ']' : '') +
+      (t.err.length  ? ' | errors: ' + t.err.join('; ') : '') +
+      ' | rs:' + document.readyState;
+    el.appendChild(diag);
   }
 }, 15000);
 </script>
