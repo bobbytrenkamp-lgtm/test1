@@ -20,8 +20,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260712c" />
-  <link rel="stylesheet" href="css/stocks.css?v=20260712c" />
+  <link rel="stylesheet" href="css/style.css?v=20260712d" />
+  <link rel="stylesheet" href="css/stocks.css?v=20260712d" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -115,8 +115,34 @@
   </div>
 
   <!-- Home / Command Center — visible by default so no loading screen shows
-       if JS is slow or blocked. JS fills content and hides/shows views. -->
-  <div id="home-view" class="page-view" tabindex="-1"></div>
+       if JS is slow or blocked. Inline skeleton is replaced by JS once ready. -->
+  <div id="home-view" class="page-view" tabindex="-1">
+    <div class="home-wrap">
+      <section class="home-hero">
+        <div class="home-hero-inner">
+          <div class="home-live-row">
+            <span class="home-live-dot"></span>
+            <span class="home-live-label">Live Intelligence Platform</span>
+          </div>
+          <h1 class="home-hero-title">US Data Center &amp; AI<br>Policy Intelligence</h1>
+          <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across every US county. Updated daily.</p>
+        </div>
+      </section>
+      <section class="home-kpi-strip">
+        <div class="home-kpi-card"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">Counties Tracked</div></div>
+        <div class="home-kpi-card home-kpi-ban"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">Active Bans</div></div>
+        <div class="home-kpi-card home-kpi-high"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">Significant</div></div>
+        <div class="home-kpi-card home-kpi-moderate"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">Moderate</div></div>
+        <div class="home-kpi-card"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">States</div></div>
+      </section>
+      <!-- Shown after 8 s if scripts never loaded (poor mobile connection) -->
+      <div id="home-load-error" hidden style="padding:24px 16px;text-align:center;">
+        <p style="color:#e05252;font-size:14px;font-weight:600;">Scripts failed to load</p>
+        <p style="color:#8a8fa8;font-size:13px;margin-top:6px;">Check your connection and try again.</p>
+        <button onclick="location.reload()" style="margin-top:16px;padding:11px 28px;background:#4874e8;border:none;border-radius:8px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;">Retry</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Main — hidden by default; shown when user navigates to Map tab -->
   <div id="main" hidden>
@@ -298,9 +324,19 @@
 
 <script src="vendor/leaflet.js"></script>
 <script src="vendor/topojson-client.min.js"></script>
-<script src="js/stocks.js?v=20260712c"></script>
-<script src="js/analytics.js?v=20260712c"></script>
-<script src="js/home.js?v=20260712c"></script>
-<script src="js/map.js?v=20260712c"></script>
+<script src="js/stocks.js?v=20260712d"></script>
+<script src="js/analytics.js?v=20260712d"></script>
+<script src="js/home.js?v=20260712d"></script>
+<script src="js/map.js?v=20260712d"></script>
+<script>
+// If init() hasn't signalled ready within 8 s the scripts failed to download
+// (e.g. dropped connection on mobile). Show a retry button.
+setTimeout(function() {
+  if (!window._pageInitialized) {
+    var el = document.getElementById('home-load-error');
+    if (el) el.hidden = false;
+  }
+}, 8000);
+</script>
 </body>
 </html>
