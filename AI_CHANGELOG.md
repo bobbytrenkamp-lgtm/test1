@@ -45,6 +45,74 @@ This file is a running conversation between AI assistants working on this reposi
 
 ---
 
+Date: 2026-07-12
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
+- `data/government_sources.json` (new — 130+ source registry entries)
+- `data/policy_pipeline/__init__.py` (new)
+- `data/policy_pipeline/models.py` (new)
+- `data/policy_pipeline/source_registry.py` (new)
+- `data/policy_pipeline/classify.py` (new)
+- `data/policy_pipeline/lifecycle.py` (new)
+- `data/policy_pipeline/fetch.py` (new)
+- `data/policy_pipeline/normalize.py` (new)
+- `data/policy_pipeline/deduplicate.py` (new)
+- `data/policy_pipeline/validation.py` (new)
+- `data/policy_pipeline/reporting.py` (new)
+- `data/policy_pipeline/adapters/__init__.py` (new)
+- `data/policy_pipeline/adapters/generic_html.py` (new)
+- `data/policy_pipeline/adapters/rss_atom.py` (new)
+- `data/policy_pipeline/adapters/sitemap.py` (new)
+- `data/policy_pipeline/adapters/legistar.py` (new)
+- `data/policy_pipeline/adapters/granicus.py` (new)
+- `data/policy_pipeline/adapters/state_legislature.py` (new)
+- `data/policy_pipeline/adapters/open_data.py` (new)
+- `data/run_policy_pipeline.py` (new)
+- `data/policy_candidates.json` (new)
+- `data/policy_review_queue.json` (new)
+- `data/policy_change_log.json` (new)
+- `data/source_health.json` (new)
+- `data/policy_documents.json` (new)
+- `data/validate_all.py` (updated — lifecycle_stage validation)
+- `data/process_data.py` (updated — pass-through lifecycle fields)
+- `data/restrictions_raw.json` (updated — lifecycle fields migrated to all 92 entries)
+- `DATA_SOURCES.md` (new)
+- `tests/test_policy_pipeline.py` (new — 65 tests, all passing)
+- `.github/workflows/update_policy_sources.yml` (new)
+- `js/map.js` (updated — lifecycle/verification trust indicators in detail panel)
+- `css/style.css` (updated — lifecycle badge, gov badge, pipeline-verified badge CSS)
+- `AI_CHANGELOG.md`
+- `AI_CONTEXT.md`
+
+Changes Made:
+- **Government-source data pipeline** (`data/policy_pipeline/`): A modular Python package that discovers policy signals from official government sources. Source registry (`government_sources.json`) holds ~130 sources across 31 priority states and ~90 local jurisdictions. Pipeline modules: `models`, `source_registry`, `classify`, `lifecycle`, `fetch`, `normalize`, `deduplicate`, `validation`, `reporting`, and 7 adapters (`generic_html`, `rss_atom`, `sitemap`, `legistar`, `granicus`, `state_legislature`, `open_data`). All discovered signals go to `policy_candidates.json` — the pipeline NEVER writes to `restrictions_raw.json` or `map_data.json`. Human review required before any candidate is promoted to map data.
+- **Lifecycle tracking**: `lifecycle.py` manages the `discovered → proposed → enacted → effective → expired/repealed/failed` stage machine. `run_policy_pipeline.py --migrate-lifecycle` adds `lifecycle_stage`, `pipeline_verified`, `last_reviewed` fields to existing `restrictions_raw.json` entries (idempotent). All 92 entries were migrated.
+- **Data validation**: `validate_all.py` updated to validate `lifecycle_stage` (must be a known stage) and check consistency with `status` field (e.g. `effective` must pair with `status: active`). `VALID_LIFECYCLE_STAGES` and `LIFECYCLE_STATUS_COMPAT` constants added.
+- **process_data.py**: Updated `build_county_map()` to pass `lifecycle_stage`, `pipeline_verified`, `last_reviewed` through to `map_data.json` when present (optional for backward compat).
+- **GitHub Actions workflow** (`.github/workflows/update_policy_sources.yml`): Daily at 07:00 UTC. Steps: checkout → setup Python → install deps → migrate lifecycle (idempotent) → run pipeline → commit changed data files → report source health → open GitHub issue for new candidates or chronic source failures.
+- **`DATA_SOURCES.md`**: Full documentation of source tiers, data files, pipeline flow, running instructions, lifecycle table, security constraints, and priority coverage.
+- **Frontend trust indicators** (`js/map.js`, `css/style.css`): County detail panel now shows lifecycle stage badge (`In Effect` / `Enacted` / `Proposed` / `Signal` / `Expired` / `Repealed` / `Not Enacted`), a `Pipeline verified` checkmark when `pipeline_verified: true`, a `Reviewed:` date from `last_reviewed`, and a `Gov` badge on official `.gov` and `.mil` source links.
+- **65 pipeline tests** (`tests/test_policy_pipeline.py`): All offline (no live network calls). Cover: classify (16), lifecycle (12), validation (7), deduplicate (6), normalize (7), RSS parsing (5), models (4), government_sources.json schema (8). All pass in < 0.1s.
+
+Reasoning:
+- Stops dependence on manually-entered news articles as the only data source. Official government sources (ordinances, zoning codes, legislature pages) are authoritative Tier 1; the pipeline monitors them on a daily schedule and surfaces new signals for human review.
+- Candidate isolation is the core safety property: no automated writes to authoritative data files. A human must independently verify each candidate before adding to `restrictions_raw.json`.
+- Lifecycle field migration is idempotent — safe to run multiple times. Existing entries default to `effective`/`active` or `proposed`/`proposed` based on current `status` field.
+- No API keys anywhere. All 130+ sources are public unauthenticated government URLs. robots.txt is checked before every fetch.
+- Frontend trust indicators are additive and backward-compatible — they only render when the new fields are present; the detail panel degrades gracefully for entries that haven't been through the pipeline yet.
+
+Problems Found:
+- No runtime errors. All 65 tests pass. Validator shows 0 critical / 0 errors after migration (131 warnings are pre-existing data quality notices, 21 info items).
+
+Next Recommended Actions:
+- Run `python data/run_policy_pipeline.py --check-health-only` once live network access is available to verify how many of the 130 configured government sources are reachable.
+- After health check, set `url_verified: true` for reachable sources in `government_sources.json`.
+- Run a full pipeline pass (`python data/run_policy_pipeline.py --dry-run`) to see what policy signals are discovered, then review `policy_candidates.json`.
+- Consider adding a `data/requirements.txt` entry check: the pipeline imports `xml.etree.ElementTree` (stdlib) and optionally `feedparser` — confirm `feedparser` is not needed (current RSS adapter uses stdlib XML only).
+
+---
+
 Date: 2026-07-11
 AI Assistant: Claude (claude-sonnet-4-6) via Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7

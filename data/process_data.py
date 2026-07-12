@@ -23,7 +23,7 @@ def build_county_map(restrictions):
     counties = {}
     for r in restrictions:
         fips = r["fips"].zfill(5)
-        counties[fips] = {
+        entry = {
             "name": r["name"],
             "state": r["state"],
             "level": r["level"],
@@ -35,6 +35,14 @@ def build_county_map(restrictions):
             "notes": r.get("notes", ""),
             "sources": r.get("sources", []),
         }
+        # Lifecycle fields — added by the policy pipeline; optional for backward compat
+        if "lifecycle_stage" in r:
+            entry["lifecycle_stage"] = r["lifecycle_stage"]
+        if "pipeline_verified" in r:
+            entry["pipeline_verified"] = r["pipeline_verified"]
+        if "last_reviewed" in r:
+            entry["last_reviewed"] = r["last_reviewed"]
+        counties[fips] = entry
     return counties
 
 

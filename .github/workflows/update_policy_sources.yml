@@ -1,0 +1,146 @@
+name: Update Policy Sources
+
+on:
+  schedule:
+    # Run daily at 07:00 UTC
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+    inputs:
+      state_filter:
+        description: "Only check sources for this state (2-letter abbr, e.g. VA). Leave blank for all."
+        required: false
+        default: ""
+      check_health_only:
+        description: "Only check source URL health, skip adapters"
+        required: false
+        default: "false"
+        type: boolean
+
+jobs:
+  update-policy-sources:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r data/requirements.txt
+
+      - name: Migrate lifecycle fields (idempotent)
+        working-directory: data
+        run: python run_policy_pipeline.py --migrate-lifecycle
+
+      - name: Run policy pipeline
+        id: pipeline
+        working-directory: data
+        env:
+          STATE_FILTER: ${{ github.event.inputs.state_filter || '' }}
+          CHECK_HEALTH_ONLY: ${{ github.event.inputs.check_health_only || 'false' }}
+        run: |
+          ARGS=""
+          if [ -n "$STATE_FILTER" ]; then
+            ARGS="$ARGS --state $STATE_FILTER"
+          fi
+          if [ "$CHECK_HEALTH_ONLY" = "true" ]; then
+            ARGS="$ARGS --check-health-only"
+          fi
+          python run_policy_pipeline.py $ARGS
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+        continue-on-error: true
+
+      - name: Check for data file changes
+        id: changes
+        run: |
+          git diff --quiet data/source_health.json data/policy_candidates.json \
+            data/policy_change_log.json data/restrictions_raw.json || echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Commit updated pipeline data files
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/source_health.json \
+            data/policy_candidates.json \
+            data/policy_change_log.json \
+            data/policy_review_queue.json \
+            data/restrictions_raw.json
+          git commit -m "chore: update policy pipeline data $(date -u +%Y-%m-%d)"
+          git push origin main
+
+      - name: Report source health
+        run: |
+          python - <<'EOF'
+          import json
+          health = json.load(open("data/source_health.json"))
+          sources = health.get("sources", {})
+          reachable = sum(1 for s in sources.values() if s.get("reachable"))
+          total = len(sources)
+          chronic = [sid for sid, s in sources.items() if s.get("consecutive_failures", 0) >= 3]
+          print(f"Source health: {reachable}/{total} reachable")
+          if chronic:
+              print(f"Chronic failures (3+ consecutive): {chronic}")
+          EOF
+
+      - name: Open issue for new candidates or chronic source failures
+        if: steps.pipeline.outputs.exit_code == '1'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            let body = '## Policy Pipeline — Review Required\n\n';
+            body += `Run date: ${new Date().toISOString().split('T')[0]}\n\n`;
+
+            // Summarize new candidates
+            const candidatesRaw = fs.readFileSync('data/policy_candidates.json', 'utf8');
+            const candidates = JSON.parse(candidatesRaw);
+            const pending = (candidates.candidates || []).filter(c => c.review_status === 'pending');
+            if (pending.length > 0) {
+              body += `### New Candidates Awaiting Review (${pending.length})\n\n`;
+              body += 'These policy signals were discovered from official government sources. ';
+              body += 'Each must be independently verified before being added to `restrictions_raw.json`.\n\n';
+              for (const c of pending.slice(0, 15)) {
+                body += `- **${c.jurisdiction_name}** (FIPS: ${c.fips || 'N/A'}): ${c.title}\n`;
+                body += `  - Stage: \`${c.lifecycle_stage}\`, Types: \`${(c.policy_types||[]).join(', ')}\`, Confidence: ${c.confidence}\n`;
+                body += `  - Source: [${c.signal_url}](${c.signal_url})\n\n`;
+              }
+              if (pending.length > 15) {
+                body += `\n_...and ${pending.length - 15} more. See \`data/policy_candidates.json\`._\n`;
+              }
+            }
+
+            // Source health summary
+            const healthRaw = fs.readFileSync('data/source_health.json', 'utf8');
+            const health = JSON.parse(healthRaw);
+            const sources = health.sources || {};
+            const chronic = Object.entries(sources)
+              .filter(([, s]) => (s.consecutive_failures || 0) >= 3)
+              .map(([id]) => id);
+            if (chronic.length > 0) {
+              body += `\n### Chronic Source Failures\n\nThese sources have failed 3+ consecutive runs:\n`;
+              chronic.forEach(id => { body += `- \`${id}\`\n`; });
+              body += '\nUpdate or disable these entries in `data/government_sources.json`.\n';
+            }
+
+            body += '\n_Generated by the [update_policy_sources](.github/workflows/update_policy_sources.yml) workflow._';
+
+            const title = `Policy pipeline: ${pending.length} candidate(s) need review — ${new Date().toISOString().split('T')[0]}`;
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: ['data-review', 'policy-pipeline'],
+            });

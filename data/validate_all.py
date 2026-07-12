@@ -39,6 +39,19 @@ FIPS_REF_PATH  = os.path.join(DATA_DIR, "county_names.json")
 VALID_LEVELS   = {-1, 0, 1, 2, 3, 4}
 VALID_TYPES    = {"data_center", "ai", "crypto", "energy", "water"}
 VALID_STATUSES = {"active", "proposed", "expired"}
+VALID_LIFECYCLE_STAGES = {
+    "discovered", "proposed", "enacted", "effective", "expired", "repealed", "failed"
+}
+# Lifecycle stage must be consistent with status
+LIFECYCLE_STATUS_COMPAT = {
+    "discovered": {"proposed"},
+    "proposed":   {"proposed"},
+    "enacted":    {"proposed"},
+    "effective":  {"active"},
+    "expired":    {"expired"},
+    "repealed":   {"expired"},
+    "failed":     {"expired"},
+}
 
 # US bounds (generous, includes AK/HI/PR/territories)
 US_LAT_MIN, US_LAT_MAX = 17.0, 72.0
@@ -246,6 +259,20 @@ def validate_schema(restrictions):
             issues.append(Issue("critical", "schema", label,
                                 f"FIPS '{fips_val}' must be exactly 5 digits",
                                 "Zero-pad if needed, e.g. '01001'"))
+
+        lc_stage = r.get("lifecycle_stage")
+        if lc_stage is not None:
+            if lc_stage not in VALID_LIFECYCLE_STAGES:
+                issues.append(Issue("error", "schema", label,
+                                    f"Invalid lifecycle_stage '{lc_stage}'; "
+                                    f"must be one of {sorted(VALID_LIFECYCLE_STAGES)}"))
+            else:
+                status_val = r.get("status", "")
+                allowed_statuses = LIFECYCLE_STATUS_COMPAT.get(lc_stage, set())
+                if status_val and status_val not in allowed_statuses:
+                    issues.append(Issue("warning", "consistency", label,
+                                        f"lifecycle_stage '{lc_stage}' is inconsistent with "
+                                        f"status '{status_val}'; expected one of {sorted(allowed_statuses)}"))
 
     return issues
 
