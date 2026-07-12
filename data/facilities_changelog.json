@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "log_id": "0ec571b02a80",
+    "timestamp": "2026-07-12T22:18:51.568279+00:00",
+    "change_type": "verification_failure",
+    "facility_id": "",
+    "source_id": "osm",
+    "summary": "406 Client Error: Not Acceptable for url: https://overpass-api.de/api/interpreter",
+    "field_changes": {},
+    "pipeline_run_id": "c4d1314603fa"
+  }
+]
