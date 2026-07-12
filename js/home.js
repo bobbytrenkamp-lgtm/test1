@@ -17,8 +17,6 @@ const HOME_ICONS = {
 const SEV_LABELS = { 4: "Ban / Moratorium", 3: "Significant", 2: "Moderate", 1: "Light", 0: "No Restrictions", "-1": "Pro-Development" };
 const SEV_CLASSES = { 4: "badge-ban", 3: "badge-high", 2: "badge-moderate", 1: "badge-proposed", 0: "badge-none", "-1": "badge-pro" };
 
-const TYPE_LABELS = { data_center: "Data Center", ai: "AI Policy", crypto: "Crypto", energy: "Energy", water: "Water" };
-
 /* Featured jurisdictions drawn from ANNOTATIONS (Hood River, Loudoun, Chelan, Umatilla, Berkeley, Cedar Rapids) */
 const FEATURED_FIPS = ["41027", "51107", "53007", "41059", "45015", "19113"];
 
