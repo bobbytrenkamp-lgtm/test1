@@ -67,7 +67,7 @@ function renderAnalyticsPage() {
     }
   }
 
-  const activeRestrict = levelCounts[1] + levelCounts[2] + levelCounts[3] + levelCounts[4];
+  const activeRestrict = levelCounts[2] + levelCounts[3] + levelCounts[4];
   const aiCompanyCount = (typeof AI_COMPANIES !== 'undefined' ? AI_COMPANIES.length : 50);
 
   // News by category
