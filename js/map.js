@@ -2503,6 +2503,7 @@ function initThemeToggle() {
 
 /* ── Init ── */
 async function init() {
+  window._pageInitialized = true; // signals load-failure detector in index.html
   initThemeToggle();
   initNavTabs();
   initKeyboardShortcuts();
