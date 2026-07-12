@@ -508,8 +508,8 @@ function renderDetailTab(tab) {
       </div>`;
   } else if (tab === 'technical') {
     createTVWidget(el, 'technical-analysis', {
-      interval: '1m', width: '100%', isTransparent: false, height: 450,
-      symbol: sym, showIntervalTabs: true, displayMode: 'single', locale: 'en', colorTheme: theme,
+      interval: 'D', width: '100%', isTransparent: false, height: 450,
+      symbol: sym, showIntervalTabs: false, displayMode: 'single', locale: 'en', colorTheme: theme,
     });
   } else if (tab === 'profile') {
     const company = AI_COMPANIES.find(c => c.symbol === sym);

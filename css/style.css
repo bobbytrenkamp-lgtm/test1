@@ -482,14 +482,9 @@ html, body {
 }
 #main[hidden] { display: none; }
 
-/* News tab: hide map controls but keep the top-toggle collapse button */
-#search-bar.news-mode > :not(#top-toggle) {
-  display: none !important;
-}
+/* Non-map tabs: hide the search/filter bar entirely */
 #search-bar.news-mode {
-  justify-content: flex-end;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  display: none !important;
 }
 
 /* ── Map ── */
@@ -3340,29 +3335,6 @@ html[data-theme="light"] {
   .header-tab svg { width: 11px; height: 11px; }
 }
 
-/* On mobile, the search-bar in news-mode only contains the top-toggle.
-   Collapse it into a slim full-width strip so it's compact but still tappable. */
-@media (max-width: 700px) {
-  #search-bar.news-mode {
-    padding: 0;
-    background: var(--surface-2);
-    border-bottom: 1px solid var(--border);
-    justify-content: center;
-    min-height: 0;
-  }
-  #search-bar.news-mode #top-toggle {
-    width: 100%;
-    height: 22px;
-    min-height: 22px;
-    min-width: 0;
-    border-radius: 0;
-    border: none;
-    background: transparent;
-    opacity: 0.6;
-  }
-  #search-bar.news-mode #top-toggle:hover,
-  #search-bar.news-mode #top-toggle:active { opacity: 1; }
-}
 
 /* ── Scroll wrapper ── */
 #home-view {
