@@ -495,19 +495,36 @@ function renderDetailTab(tab) {
       symbol: sym, width: '100%', locale: 'en', colorTheme: theme, isTransparent: false,
     });
   } else if (tab === 'fundamentals') {
-    createTVWidget(el, 'fundamental-data', {
-      isTransparent: false, largeChartUrl: '', displayMode: 'regular',
-      width: '100%', height: 830, colorTheme: theme, symbol: sym, locale: 'en',
-    });
+    const company = AI_COMPANIES.find(c => c.symbol === sym);
+    el.innerHTML = `
+      <div class="stocks-data-fallback">
+        <div class="stocks-fallback-heading">Financial Data for ${escHtml(sym)}</div>
+        <div class="stocks-fallback-body">Detailed financial statements and ratios are available on these free platforms:</div>
+        <div class="stocks-fallback-links">
+          <a href="https://finance.yahoo.com/quote/${encodeURIComponent(sym)}/financials/" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance — Financials</a>
+          <a href="https://finance.yahoo.com/quote/${encodeURIComponent(sym)}/balance-sheet/" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance — Balance Sheet</a>
+          <a href="https://finance.yahoo.com/quote/${encodeURIComponent(sym)}/cash-flow/" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance — Cash Flow</a>
+        </div>
+      </div>`;
   } else if (tab === 'technical') {
     createTVWidget(el, 'technical-analysis', {
       interval: '1m', width: '100%', isTransparent: false, height: 450,
       symbol: sym, showIntervalTabs: true, displayMode: 'single', locale: 'en', colorTheme: theme,
     });
   } else if (tab === 'profile') {
-    createTVWidget(el, 'company-profile', {
-      width: '100%', height: 480, isTransparent: false, colorTheme: theme, symbol: sym, locale: 'en',
-    });
+    const company = AI_COMPANIES.find(c => c.symbol === sym);
+    el.innerHTML = `
+      <div class="stocks-data-fallback">
+        ${company ? `
+        <div class="stocks-profile-cat">${escHtml(company.category)}</div>
+        <div class="stocks-profile-name">${escHtml(company.name)}</div>
+        <div class="stocks-profile-desc">${escHtml(company.description)}</div>` : ''}
+        <div class="stocks-fallback-heading" style="margin-top:${company ? '16px' : '0'}">More information</div>
+        <div class="stocks-fallback-links">
+          <a href="https://finance.yahoo.com/quote/${encodeURIComponent(sym)}/profile/" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance — Company Profile</a>
+          <a href="https://finance.yahoo.com/quote/${encodeURIComponent(sym)}/" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance — Summary</a>
+        </div>
+      </div>`;
   } else if (tab === 'news') {
     renderNewsTab(el, sym);
   }

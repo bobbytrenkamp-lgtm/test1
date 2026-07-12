@@ -2787,10 +2787,7 @@ html[data-theme="light"] {
   gap: 8px;
 }
 .page-section-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
+  display: none;
 }
 
 /* ── Analytics: metric grid ── */

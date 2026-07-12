@@ -268,16 +268,19 @@
 #stocks-chart-controls {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 8px 16px;
   border-top: 1px solid var(--border);
   background: var(--surface);
   flex-wrap: wrap;
+  position: relative;
 }
 #stocks-time-btns {
   display: flex;
   gap: 2px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .stocks-time-btn {
   background: none;
@@ -305,7 +308,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-left: auto;
+  margin-left: 0;
 }
 .stocks-compare-label {
   font-size: 0.75rem;
@@ -363,6 +366,69 @@
 
 /* ── Detail body ── */
 #stocks-detail-body { background: var(--bg); min-height: 80px; overflow: hidden; }
+
+/* ── Data fallback (fundamentals / profile) ── */
+.stocks-data-fallback {
+  padding: 24px 20px;
+  max-width: 560px;
+}
+.stocks-fallback-heading {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.stocks-fallback-body {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.stocks-profile-cat {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.stocks-profile-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.stocks-profile-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+.stocks-fallback-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.stocks-fallback-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--accent);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 7px 13px;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.stocks-fallback-btn:hover {
+  border-color: var(--accent);
+  background: var(--surface);
+}
 
 /* ── TradingView widget wrappers ── */
 .tv-widget-wrap { position: relative; overflow: hidden; }
