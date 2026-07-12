@@ -191,9 +191,10 @@ let   activeStateFilter     = "";          // 2-letter state abbr or ""
 const activeScopeFilters    = new Set();   // "restrictions", "state_policy", "city_policy"
 
 /* ── Tab / news state ── */
-let activeTab    = "map";
-let newsArticles = [];
-let newsFilters  = { search: "", category: "", state: "", source: "" };
+let activeTab      = "map";
+let mapInitPromise = null;   // promise from initMapFromGeo(), awaited when restoring a FIPS hash
+let newsArticles   = [];
+let newsFilters    = { search: "", category: "", state: "", source: "" };
 
 /* ── Filter helpers ── */
 function countyMatchesFilters(fips) {
@@ -2037,10 +2038,8 @@ function switchTab(tab) {
     mainEl.hidden = false;
     searchBar.classList.remove("news-mode");
     if (!leafletMap) {
-      // Map not yet initialized — load geo data and init now
-      initMapFromGeo();
+      mapInitPromise = initMapFromGeo();
     } else {
-      // Already initialized while hidden — force re-render
       setTimeout(() => leafletMap.invalidateSize(), 50);
     }
   }
@@ -2502,21 +2501,18 @@ function initThemeToggle() {
 /* ── Init ── */
 async function init() {
   initThemeToggle();
-
-  // Show UI immediately — no data dependency
   initNavTabs();
   initKeyboardShortcuts();
 
   const hasHashFips = /^\d{5}$/.test(window.location.hash.replace("#", ""));
 
-  if (!hasHashFips) {
-    // Default: show Home tab right away (skeleton until data arrives)
-    switchTab("home");
-    // Start pre-fetching geo data in the background so it's ready when user taps Map
-    fetchGeoData();
-  }
+  // Always show home immediately — skeleton renders while data loads.
+  // This prevents the map loading spinner from blocking the UI even when
+  // the URL contains a saved county hash from a prior session.
+  switchTab("home");
+  // Pre-fetch geo data in the background so the Map tab opens quickly.
+  fetchGeoData();
 
-  // Load lightweight JSON (~50 KB total) — home page, news, and search all need this
   try {
     const { data, sample, stateReg, newsData } = await loadCoreData();
 
@@ -2526,11 +2522,9 @@ async function init() {
     newsArticles = (newsData && newsData.articles) ? newsData.articles : [];
 
     // Re-render home with real data (clears skeleton state)
-    if (activeTab === "home") {
-      const hv = document.getElementById("home-view");
-      if (hv) delete hv.dataset.built;
-      if (typeof renderHomePage === "function") renderHomePage();
-    }
+    const hv = document.getElementById("home-view");
+    if (hv) delete hv.dataset.built;
+    if (typeof renderHomePage === "function") renderHomePage();
 
     initSearch();
     initAdvancedFiltersPanel();
@@ -2539,16 +2533,15 @@ async function init() {
     setLastUpdated(data);
     renderDashboard(data);
 
-    // If URL had a FIPS hash, now initialize nav + map
+    // If URL had a FIPS hash, switch to map and restore the saved county
     if (hasHashFips) {
-      initNavTabs();
-      await initMapFromGeo();
-      restoreFromHash();
+      switchTab("map");           // makes #main visible, starts initMapFromGeo → mapInitPromise
+      await mapInitPromise;       // wait for Leaflet to fully initialize
+      restoreFromHash();          // selects + zooms to the county from the hash
     }
 
   } catch (err) {
     console.error("Core data failed:", err);
-    // Home page is already visible — show a banner instead of a blocking overlay
     const hv = document.getElementById("home-view");
     if (hv && !hv.dataset.built) {
       hv.innerHTML = `<div style="padding:40px 24px;text-align:center;color:#e05252;">
