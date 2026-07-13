@@ -157,6 +157,7 @@ html, body {
   box-shadow: 0 1px 12px rgba(0,0,0,0.22);
   flex-shrink: 0;
   z-index: 10;
+  overflow: hidden;
 }
 
 #header h1 {
@@ -3596,6 +3597,11 @@ html[data-theme="light"] {
   border-color: var(--accent);
   box-shadow: 0 4px 20px rgba(72, 116, 232, 0.12);
   transform: translateY(-2px);
+}
+.home-nav-card:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(72, 116, 232, 0.25);
 }
 .home-nav-icon {
   display: flex;
