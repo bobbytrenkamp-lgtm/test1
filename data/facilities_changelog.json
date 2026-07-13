@@ -10,8 +10,8 @@
     "pipeline_run_id": "c4d1314603fa"
   },
   {
-    "log_id": "693911bc7cd6",
-    "timestamp": "2026-07-13T06:24:20.764503+00:00",
+    "log_id": "40044d644367",
+    "timestamp": "2026-07-13T03:47:47.097558+00:00",
     "change_type": "updated",
     "facility_id": "fc-f5f2df8aba",
     "source_id": "existing_data_centers",
@@ -22,16 +22,136 @@
         "to": null
       }
     },
-    "pipeline_run_id": "6601f4716550"
+    "pipeline_run_id": "ae35d4987fa2"
   },
   {
-    "log_id": "b244730d49de",
-    "timestamp": "2026-07-13T06:24:21.452116+00:00",
-    "change_type": "verification_failure",
-    "facility_id": "",
-    "source_id": "osm",
-    "summary": "406 Client Error: Not Acceptable for url: https://overpass-api.de/api/interpreter",
+    "log_id": "88af3646f509",
+    "timestamp": "2026-07-13T03:47:47.098137+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0cfbbf4e00",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
     "field_changes": {},
-    "pipeline_run_id": "6601f4716550"
+    "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "701cf6e70c8f",
+    "timestamp": "2026-07-13T03:47:47.098206+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d4085dae7d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "f976ed46e2e4",
+    "timestamp": "2026-07-13T03:47:47.098287+00:00",
+    "change_type": "added",
+    "facility_id": "fc-3a484574ba",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: xAI - Memphis Supercomputer (Colossus)",
+    "field_changes": {},
+    "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "5c1a6bbd723d",
+    "timestamp": "2026-07-13T03:47:47.098293+00:00",
+    "change_type": "added",
+    "facility_id": "fc-3d3289777f",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: NVIDIA AI Research - Austin Campus",
+    "field_changes": {},
+    "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "d155e14aea05",
+    "timestamp": "2026-07-13T03:47:47.098298+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-9d94f96a4b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "7624f23ffafb",
+    "timestamp": "2026-07-13T03:47:47.098306+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b9fb66a08e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "5e515db22078",
+    "timestamp": "2026-07-13T03:47:47.098314+00:00",
+    "change_type": "added",
+    "facility_id": "fc-d15c9b68c0",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Anthropic AI - San Francisco Area (cloud)",
+    "field_changes": {},
+    "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "0f4d9f792806",
+    "timestamp": "2026-07-13T03:47:47.098320+00:00",
+    "change_type": "added",
+    "facility_id": "fc-1187465b4d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Oracle AI Cloud - Austin Campus",
+    "field_changes": {},
+    "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "d125cd3efd08",
+    "timestamp": "2026-07-13T03:47:47.098325+00:00",
+    "change_type": "added",
+    "facility_id": "fc-5a754d62b8",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Oracle AI Cloud - Nashville Campus",
+    "field_changes": {},
+    "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "9e305c85ae6e",
+    "timestamp": "2026-07-13T03:47:47.098331+00:00",
+    "change_type": "added",
+    "facility_id": "fc-7376e2b4c8",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Cerebras AI - Santa Clara HQ",
+    "field_changes": {},
+    "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "bdfb96d1a87b",
+    "timestamp": "2026-07-13T03:47:47.098335+00:00",
+    "change_type": "added",
+    "facility_id": "fc-ab6a37b665",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Argonne National Lab - AI Campus",
+    "field_changes": {},
+    "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "9e9245dd16f1",
+    "timestamp": "2026-07-13T03:47:47.098341+00:00",
+    "change_type": "added",
+    "facility_id": "fc-bcf2da73d6",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Oak Ridge National Lab - AI Campus",
+    "field_changes": {},
+    "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "f2234d8f6adf",
+    "timestamp": "2026-07-13T03:47:47.098358+00:00",
+    "change_type": "added",
+    "facility_id": "fc-1cfcfef36a",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: NERSC - Lawrence Berkeley AI Campus",
+    "field_changes": {},
+    "pipeline_run_id": "ae35d4987fa2"
   }
 ]

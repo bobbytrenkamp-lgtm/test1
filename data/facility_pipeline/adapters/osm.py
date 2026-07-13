@@ -108,7 +108,7 @@ class OSMAdapter(BaseAdapter):
             OVERPASS_URL,
             data={"data": _QUERY},
             timeout=150,
-            headers={"Accept-Encoding": "gzip, deflate"},
+            headers={"Accept": "application/json", "Accept-Encoding": "gzip, deflate"},
         )
         resp.raise_for_status()
         data = resp.json()

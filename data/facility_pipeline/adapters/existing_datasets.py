@@ -108,7 +108,7 @@ class ExistingDatasetsAdapter(BaseAdapter):
 
         ac = load_json(AI_CAMPUSES_PATH) or []
         if isinstance(ac, dict):
-            ac = ac.get("campuses", ac.get("facilities", []))
+            ac = ac.get("ai_campuses", ac.get("campuses", ac.get("facilities", [])))
         for entry in ac:
             r = _from_legacy(entry, is_campus=True)
             yield self._stamp(r)
