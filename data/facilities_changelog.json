@@ -1033,5 +1033,1470 @@
     "summary": "Needs review: matched existing_data_centers record",
     "field_changes": {},
     "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "8f05dfea1220",
+    "timestamp": "2026-07-13T19:31:06.107871+00:00",
+    "change_type": "updated",
+    "facility_id": "fc-d5aeed450c",
+    "source_id": "existing_data_centers",
+    "summary": "Fields updated from existing_data_centers: operational_date",
+    "field_changes": {
+      "operational_date": {
+        "from": null,
+        "to": null
+      }
+    },
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "d36d83ca80c3",
+    "timestamp": "2026-07-13T19:31:06.109636+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-703b0abca4",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "0a0325afaed8",
+    "timestamp": "2026-07-13T19:31:06.109653+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b1e5b553e3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "401b26a0cf43",
+    "timestamp": "2026-07-13T19:31:06.109660+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-3c56c8b502",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "d70c72693454",
+    "timestamp": "2026-07-13T19:31:06.109665+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-4f276c6831",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "cd6d166d64be",
+    "timestamp": "2026-07-13T19:31:06.109670+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-418a70153e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "072cbb267a3b",
+    "timestamp": "2026-07-13T19:31:06.109675+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-16c555e03d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "38c324d2688a",
+    "timestamp": "2026-07-13T19:31:06.109683+00:00",
+    "change_type": "added",
+    "facility_id": "fc-7aab15c8be",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: STACK Infrastructure - Ashburn",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "4c5ada994ae5",
+    "timestamp": "2026-07-13T19:31:06.109694+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-f05d2e7179",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "d4ef9b4ea3f2",
+    "timestamp": "2026-07-13T19:31:06.109700+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7eeb57b097",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "1f127ddbfa4e",
+    "timestamp": "2026-07-13T19:31:06.109705+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a0be8f3a6d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "6acc74944984",
+    "timestamp": "2026-07-13T19:31:06.109709+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-bd52446a6b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "40d17be26261",
+    "timestamp": "2026-07-13T19:31:06.109713+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-4d18a9cc0e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "78e5f0fce342",
+    "timestamp": "2026-07-13T19:31:06.109725+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-4a71c5ec1f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "268f272559a8",
+    "timestamp": "2026-07-13T19:31:06.109732+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-23eaab6196",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "ba8eb06fa0d6",
+    "timestamp": "2026-07-13T19:31:06.109737+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-798c6b8b6e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "222f0ec5be4a",
+    "timestamp": "2026-07-13T19:31:06.109749+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-5e4d0dcec7",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "d797751db625",
+    "timestamp": "2026-07-13T19:31:06.109756+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-3bc163889e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "b443a74bbfb0",
+    "timestamp": "2026-07-13T19:31:06.109761+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-5c61d69ce3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "1ac766ed5c6f",
+    "timestamp": "2026-07-13T19:31:06.109766+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8a51209efc",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "692b6dd2aed2",
+    "timestamp": "2026-07-13T19:31:06.109770+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-2e7121bf3b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "4c4f8c70714b",
+    "timestamp": "2026-07-13T19:31:06.109774+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6aacaab7ad",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "29b950832db8",
+    "timestamp": "2026-07-13T19:31:06.109778+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-3b25827185",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "db802cb65258",
+    "timestamp": "2026-07-13T19:31:06.109782+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-305ea402f1",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "76e224eccda1",
+    "timestamp": "2026-07-13T19:31:06.109786+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-632e6d6701",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "3a35b33ddfd3",
+    "timestamp": "2026-07-13T19:31:06.109790+00:00",
+    "change_type": "added",
+    "facility_id": "fc-5d51c7b302",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: STACK Infrastructure - Infomart Dallas",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "674b79ff94d9",
+    "timestamp": "2026-07-13T19:31:06.109794+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-abac47a2e3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "79c0fe656486",
+    "timestamp": "2026-07-13T19:31:06.109799+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-22e6a4d7da",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "dab36b0b8778",
+    "timestamp": "2026-07-13T19:31:06.109803+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a815928316",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "2225f34c2962",
+    "timestamp": "2026-07-13T19:31:06.109807+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b4375daae2",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "e856fcc5f956",
+    "timestamp": "2026-07-13T19:31:06.109812+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-220c395383",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "9602d7f49733",
+    "timestamp": "2026-07-13T19:31:06.109828+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e32108f21a",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "c286ed57416c",
+    "timestamp": "2026-07-13T19:31:06.109833+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-52f1be58e2",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "90b447c89a6f",
+    "timestamp": "2026-07-13T19:31:06.109837+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-05c2a27002",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "bc49270fa59d",
+    "timestamp": "2026-07-13T19:31:06.109851+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-5b403351c6",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "c7cba2b82550",
+    "timestamp": "2026-07-13T19:31:06.109855+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d910e3e23b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "fc1aca684d8b",
+    "timestamp": "2026-07-13T19:31:06.109859+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6b4f828faa",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "b91ff2264b46",
+    "timestamp": "2026-07-13T19:31:06.109864+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d39d44ae6d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "41a977ef19ec",
+    "timestamp": "2026-07-13T19:31:06.109868+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6f6d5e8c80",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "6079d9ad9ab9",
+    "timestamp": "2026-07-13T19:31:06.109872+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-51108b6710",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "a2e80ab9955e",
+    "timestamp": "2026-07-13T19:31:06.109875+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-73f3e29f52",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "5c59d2a72124",
+    "timestamp": "2026-07-13T19:31:06.109880+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-5a1b0d0e64",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "bacda6083ccd",
+    "timestamp": "2026-07-13T19:31:06.109884+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-61c3e0bb56",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "f96ff98bce2f",
+    "timestamp": "2026-07-13T19:31:06.109897+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-2ce62246a5",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "7b1025faa06e",
+    "timestamp": "2026-07-13T19:31:06.109903+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0afa91af04",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "49a0c4d3cb89",
+    "timestamp": "2026-07-13T19:31:06.109907+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8528068519",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "b9dd35676da7",
+    "timestamp": "2026-07-13T19:31:06.109911+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0c5720d86e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "f3df4568d663",
+    "timestamp": "2026-07-13T19:31:06.109923+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-cae456e31f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "572864adc2c2",
+    "timestamp": "2026-07-13T19:31:06.109929+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-492300346b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "eb1e443397c5",
+    "timestamp": "2026-07-13T19:31:06.109933+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-61663024d2",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "bfd6de89fac8",
+    "timestamp": "2026-07-13T19:31:06.109938+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0b6a601ccb",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "970e1d996687",
+    "timestamp": "2026-07-13T19:31:06.109942+00:00",
+    "change_type": "added",
+    "facility_id": "fc-c6030a9459",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: STACK Infrastructure - NJ Campus",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "1e812950d198",
+    "timestamp": "2026-07-13T19:31:06.109946+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-ec590f2ca6",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "0bdba2dbf805",
+    "timestamp": "2026-07-13T19:31:06.109951+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6a7dd58401",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "286c9d788c76",
+    "timestamp": "2026-07-13T19:31:06.109955+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a866f67544",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "a9d934271f4b",
+    "timestamp": "2026-07-13T19:31:06.109968+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a718911083",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "aee957d9a51a",
+    "timestamp": "2026-07-13T19:31:06.109982+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-fe0b531493",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "ac5e57a22eb4",
+    "timestamp": "2026-07-13T19:31:06.109987+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-79db059cb4",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "f1463a01139d",
+    "timestamp": "2026-07-13T19:31:06.110003+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-47fd7d4968",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "1db2c26741f0",
+    "timestamp": "2026-07-13T19:31:06.110007+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7f01abfbce",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "d11c0c6c3aae",
+    "timestamp": "2026-07-13T19:31:06.110011+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b1e0c20470",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "22b84fd4cb6c",
+    "timestamp": "2026-07-13T19:31:06.110015+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b82059c19f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "ed6cc30cdc74",
+    "timestamp": "2026-07-13T19:31:06.110019+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b8b875ac24",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "c1cfba57babd",
+    "timestamp": "2026-07-13T19:31:06.110023+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a57f04e6db",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "2225c6cc8324",
+    "timestamp": "2026-07-13T19:31:06.110027+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e047cdfa47",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "0afc3c230c0c",
+    "timestamp": "2026-07-13T19:31:06.110051+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-738768e00a",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "bdd70571ec3d",
+    "timestamp": "2026-07-13T19:31:06.110059+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-693398ef82",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "bb19f9ddc40d",
+    "timestamp": "2026-07-13T19:31:06.110064+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-f079dde243",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "ce0d874a0947",
+    "timestamp": "2026-07-13T19:31:06.110070+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6991a3bf58",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "dc91774c070a",
+    "timestamp": "2026-07-13T19:31:06.110083+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-87a1cc497e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "dcc685cb860b",
+    "timestamp": "2026-07-13T19:31:06.110088+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-66b2e2077c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "bac3677c8f67",
+    "timestamp": "2026-07-13T19:31:06.110111+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-357af4e14d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "3ff91b7d0e29",
+    "timestamp": "2026-07-13T19:31:06.110117+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-3197272917",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "6a9e49c3c15d",
+    "timestamp": "2026-07-13T19:31:06.110122+00:00",
+    "change_type": "added",
+    "facility_id": "fc-1a60850e91",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: STACK Infrastructure - Phoenix",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "31758693f7e7",
+    "timestamp": "2026-07-13T19:31:06.110126+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-06caf4539e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "03d0ae2818ba",
+    "timestamp": "2026-07-13T19:31:06.110130+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-226c8e3364",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "27cb26624f5a",
+    "timestamp": "2026-07-13T19:31:06.110133+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-5cd62e5869",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "f4991d67c011",
+    "timestamp": "2026-07-13T19:31:06.110139+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e923ebc542",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "3ff251eb5853",
+    "timestamp": "2026-07-13T19:31:06.110143+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7191d205bc",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "822912d155eb",
+    "timestamp": "2026-07-13T19:31:06.110147+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-9fbc15a24d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "309c1f6e1e6f",
+    "timestamp": "2026-07-13T19:31:06.110151+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-fc99644886",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "007e7f0d71c6",
+    "timestamp": "2026-07-13T19:31:06.110163+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-c86dfbb63f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "46a92f9c31f5",
+    "timestamp": "2026-07-13T19:31:06.110176+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7e91b70817",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "835eeb235582",
+    "timestamp": "2026-07-13T19:31:06.110184+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-83e998e5cf",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "b42a408bdeac",
+    "timestamp": "2026-07-13T19:31:06.110188+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-515facd301",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "1120ea0ba395",
+    "timestamp": "2026-07-13T19:31:06.110193+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d66d5d958c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "2994f4f513a8",
+    "timestamp": "2026-07-13T19:31:06.110197+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-745c3df862",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "6a769ea2963b",
+    "timestamp": "2026-07-13T19:31:06.110201+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-3660937baa",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "d66075933766",
+    "timestamp": "2026-07-13T19:31:06.110205+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8ab47ec381",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "4a5ccc62bd19",
+    "timestamp": "2026-07-13T19:31:06.110209+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-c804360c4e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "da7bc48707b2",
+    "timestamp": "2026-07-13T19:31:06.110213+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e4c8f77fe8",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "5db2cd21534e",
+    "timestamp": "2026-07-13T19:31:06.110217+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0517f9494b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "2a5adffbaf86",
+    "timestamp": "2026-07-13T19:31:06.110223+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-078abd7ee1",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "8dbca10d5480",
+    "timestamp": "2026-07-13T19:31:06.110227+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8ff7b0622a",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "3b589be0eab8",
+    "timestamp": "2026-07-13T19:31:06.110231+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b15f93512e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "59efcc6fb8dc",
+    "timestamp": "2026-07-13T19:31:06.110234+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b052087bc3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "e00b636d807a",
+    "timestamp": "2026-07-13T19:31:06.110238+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a5aaa9b3da",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "a5911e8f2105",
+    "timestamp": "2026-07-13T19:31:06.110241+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6e01864ae7",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "59c21df8c216",
+    "timestamp": "2026-07-13T19:31:06.110246+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-98b66db228",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "7754adea6a03",
+    "timestamp": "2026-07-13T19:31:06.110250+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-fd3ba1dfd6",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "2c88564d99ad",
+    "timestamp": "2026-07-13T19:31:06.110264+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-3802b1cfbb",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "3b41c95d723a",
+    "timestamp": "2026-07-13T19:31:06.110268+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-05a28f3509",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "e8c45e6870cf",
+    "timestamp": "2026-07-13T19:31:06.110280+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1bb1702832",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "c2cf5091f93e",
+    "timestamp": "2026-07-13T19:31:06.110285+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-ab188884ac",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "d86d4e09a9f3",
+    "timestamp": "2026-07-13T19:31:06.110292+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b09ae6df62",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "e82e8c45df88",
+    "timestamp": "2026-07-13T19:31:06.110296+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-53984071f1",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "8714534034fa",
+    "timestamp": "2026-07-13T19:31:06.110300+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-79764951e9",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "39131915c43e",
+    "timestamp": "2026-07-13T19:31:06.110304+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-851c56c5e6",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "67c3ca58e4e2",
+    "timestamp": "2026-07-13T19:31:06.110308+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-19127cbb6c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "8ce0790a1090",
+    "timestamp": "2026-07-13T19:31:06.110313+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-4363eddbea",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "9cffb8338864",
+    "timestamp": "2026-07-13T19:31:06.110317+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-4e6b3eb155",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "6cc7c1b9dcf7",
+    "timestamp": "2026-07-13T19:31:06.110321+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-f4a96c3db0",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "b01578df0869",
+    "timestamp": "2026-07-13T19:31:06.110324+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b7d0556ffd",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "5ba322f91050",
+    "timestamp": "2026-07-13T19:31:06.110329+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-dbc48ca44e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "6f23923212e8",
+    "timestamp": "2026-07-13T19:31:06.110333+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-5b91b7dcb3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "5c33df6acb76",
+    "timestamp": "2026-07-13T19:31:06.110337+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-f6e867b4f1",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "af46289885f0",
+    "timestamp": "2026-07-13T19:31:06.110341+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e7101fd906",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "3fe60625bd89",
+    "timestamp": "2026-07-13T19:31:06.110344+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-69622c8ae4",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "653114c7fced",
+    "timestamp": "2026-07-13T19:31:06.110348+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8bd77e0e43",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "61f38a070c62",
+    "timestamp": "2026-07-13T19:31:06.110352+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d07f191b81",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "20fed69f3c7d",
+    "timestamp": "2026-07-13T19:31:06.110356+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-61bf03018e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "2c7e83b9f702",
+    "timestamp": "2026-07-13T19:31:06.110366+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d429220288",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "c45e5fb50821",
+    "timestamp": "2026-07-13T19:31:06.110380+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-572406113a",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "9d4859fd3b08",
+    "timestamp": "2026-07-13T19:31:06.110386+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-66a3e11e8d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "962b2b90eaef",
+    "timestamp": "2026-07-13T19:31:06.110390+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-93d5387f0b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "209b2184ae01",
+    "timestamp": "2026-07-13T19:31:06.110394+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-096449aec5",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "f7a4c3563f49",
+    "timestamp": "2026-07-13T19:31:06.110398+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a14373bccb",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "ac86a5ea8fc9",
+    "timestamp": "2026-07-13T19:31:06.110403+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0debb6f872",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "c2f21c4ef092",
+    "timestamp": "2026-07-13T19:31:06.110407+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d29d6b115a",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "60101039da57",
+    "timestamp": "2026-07-13T19:31:06.110412+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7271a4be06",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "6c2fb80a2a93",
+    "timestamp": "2026-07-13T19:31:06.110415+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-16fd6787a6",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "23563b0c29e5",
+    "timestamp": "2026-07-13T19:31:06.110419+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-87b9843ba1",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "d7067fad37be",
+    "timestamp": "2026-07-13T19:31:06.110423+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-2f93f248b0",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "c71537e94b05",
+    "timestamp": "2026-07-13T19:31:06.110428+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1fcd8046cd",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "307ad17c9cda",
+    "timestamp": "2026-07-13T19:31:06.110432+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b4910f0edf",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "446525e064db",
+    "timestamp": "2026-07-13T19:31:06.110435+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1a0da3d157",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "59bcbf909131",
+    "timestamp": "2026-07-13T19:31:06.110439+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-bf182fddbc",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "367551c593bf",
+    "timestamp": "2026-07-13T19:31:06.110443+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a9bd25faee",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "f616ed2c7554",
+    "timestamp": "2026-07-13T19:31:06.110448+00:00",
+    "change_type": "added",
+    "facility_id": "fc-dd2a6df440",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: STACK Infrastructure - Las Vegas",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "f985e808e15c",
+    "timestamp": "2026-07-13T19:31:06.110459+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-eb0877bee5",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "56cbc6740cd4",
+    "timestamp": "2026-07-13T19:31:06.110473+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-637df99cc2",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "bf4691b6f2f9",
+    "timestamp": "2026-07-13T19:31:06.110478+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0d20cd86f2",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "00d80523e4ec",
+    "timestamp": "2026-07-13T19:31:06.110484+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-072a4ed46c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "d0c2dbee5660",
+    "timestamp": "2026-07-13T19:31:06.110488+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-3d7b52fa9c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "b68aa6e55f26",
+    "timestamp": "2026-07-13T19:31:06.110491+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-40db2f7a27",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "9fe2924015b3",
+    "timestamp": "2026-07-13T19:31:06.110495+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-014fb69e05",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "3ec8a515fb60"
   }
 ]
