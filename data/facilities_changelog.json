@@ -153,5 +153,885 @@
     "summary": "New facility from existing_data_centers: NERSC - Lawrence Berkeley AI Campus",
     "field_changes": {},
     "pipeline_run_id": "ae35d4987fa2"
+  },
+  {
+    "log_id": "372ea3e25ee7",
+    "timestamp": "2026-07-13T18:59:50.261132+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-50d9040156",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "dc8528dc46e9",
+    "timestamp": "2026-07-13T18:59:50.261163+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-628ad169b3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "56bd9a7fa30f",
+    "timestamp": "2026-07-13T18:59:50.261173+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e57fd2d142",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Coresite - VA1 Reston",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "440e89e749f3",
+    "timestamp": "2026-07-13T18:59:50.261181+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-aaab1fbf52",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "a306d64e8fc5",
+    "timestamp": "2026-07-13T18:59:50.261187+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-efb91856bb",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "fb724d16e85e",
+    "timestamp": "2026-07-13T18:59:50.261193+00:00",
+    "change_type": "added",
+    "facility_id": "fc-9ba6938631",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: NTT - Ashburn Data Center",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "8b3248132fa1",
+    "timestamp": "2026-07-13T18:59:50.261198+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-755316f07d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "278bc4608840",
+    "timestamp": "2026-07-13T18:59:50.261205+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-4077a6ecfa",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "e2d4ca32b58a",
+    "timestamp": "2026-07-13T18:59:50.261210+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d5aeed450c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "6dfc6b65b7e4",
+    "timestamp": "2026-07-13T18:59:50.261267+00:00",
+    "change_type": "added",
+    "facility_id": "fc-6339e2d3b3",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Flexential - Portland Metro",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "c78625029b00",
+    "timestamp": "2026-07-13T18:59:50.261272+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-cfd79f7de9",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "48159fb5df4b",
+    "timestamp": "2026-07-13T18:59:50.261333+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1a90dcf8f7",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "87e2f1b882bc",
+    "timestamp": "2026-07-13T18:59:50.261340+00:00",
+    "change_type": "added",
+    "facility_id": "fc-2eee0430bc",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Flexential - Tukwila Campus",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "ddec11f15afc",
+    "timestamp": "2026-07-13T18:59:50.261435+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-69522e21c9",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "8e0a11b30620",
+    "timestamp": "2026-07-13T18:59:50.261441+00:00",
+    "change_type": "added",
+    "facility_id": "fc-27c2c50d0d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Coresite - AZ1 Phoenix",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "47b238e52e66",
+    "timestamp": "2026-07-13T18:59:50.261446+00:00",
+    "change_type": "added",
+    "facility_id": "fc-0621a283be",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: DataBank - Phoenix",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "9b5e6d630072",
+    "timestamp": "2026-07-13T18:59:50.261513+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a230baae71",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "f13f68e86e8c",
+    "timestamp": "2026-07-13T18:59:50.261519+00:00",
+    "change_type": "added",
+    "facility_id": "fc-f91d811464",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Coresite - TX1 Dallas",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "a572f3e5dd69",
+    "timestamp": "2026-07-13T18:59:50.261525+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-75f090c2c4",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "4b66f3e558eb",
+    "timestamp": "2026-07-13T18:59:50.261529+00:00",
+    "change_type": "added",
+    "facility_id": "fc-71329357de",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: DataBank - Dallas (DAL1)",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "3eac658d916f",
+    "timestamp": "2026-07-13T18:59:50.261534+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e111e1d449",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "5117109c08ea",
+    "timestamp": "2026-07-13T18:59:50.261539+00:00",
+    "change_type": "added",
+    "facility_id": "fc-f23f812efd",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Compass Datacenters - Dallas",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "0cad517d7b4e",
+    "timestamp": "2026-07-13T18:59:50.261544+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-41edc907ce",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "64c489bd3450",
+    "timestamp": "2026-07-13T18:59:50.261585+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-51f3b97d5f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "cdae45ded426",
+    "timestamp": "2026-07-13T18:59:50.261590+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-f3204f2ddc",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "1965c08fe4a5",
+    "timestamp": "2026-07-13T18:59:50.261595+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7aff986c43",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "fe5d9c975036",
+    "timestamp": "2026-07-13T18:59:50.261600+00:00",
+    "change_type": "added",
+    "facility_id": "fc-dadf9e5b22",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: DataBank - Atlanta",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "5927650f5a61",
+    "timestamp": "2026-07-13T18:59:50.261676+00:00",
+    "change_type": "added",
+    "facility_id": "fc-0895fffb50",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: DataBank - Las Vegas",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "a28bdac4aac8",
+    "timestamp": "2026-07-13T18:59:50.261721+00:00",
+    "change_type": "added",
+    "facility_id": "fc-8afabfe9bf",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Coresite - CH1 Chicago",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "771549b15da7",
+    "timestamp": "2026-07-13T18:59:50.261726+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8f91709794",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "0b69b5e12c61",
+    "timestamp": "2026-07-13T18:59:50.261731+00:00",
+    "change_type": "added",
+    "facility_id": "fc-4d0d8ba94b",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: DataBank - Chicago",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "f95122dc8320",
+    "timestamp": "2026-07-13T18:59:50.261736+00:00",
+    "change_type": "added",
+    "facility_id": "fc-949ea5efc3",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Cologix - Chicago",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "7acce6de3639",
+    "timestamp": "2026-07-13T18:59:50.261741+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8e2b869618",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "82ab3d8aa05e",
+    "timestamp": "2026-07-13T18:59:50.261772+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-90e029fa5f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "c3c2806b1d5b",
+    "timestamp": "2026-07-13T18:59:50.261779+00:00",
+    "change_type": "added",
+    "facility_id": "fc-b0aef277e5",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Cologix - Secaucus",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "46206f54e2db",
+    "timestamp": "2026-07-13T18:59:50.261783+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e396a6bd43",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "d704b71df31a",
+    "timestamp": "2026-07-13T18:59:50.261794+00:00",
+    "change_type": "added",
+    "facility_id": "fc-2ea849d457",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: DataBank - East Rutherford",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "101b9fcd82bb",
+    "timestamp": "2026-07-13T18:59:50.261843+00:00",
+    "change_type": "added",
+    "facility_id": "fc-57a2240c14",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Cologix - Columbus",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "c058a59da499",
+    "timestamp": "2026-07-13T18:59:50.261849+00:00",
+    "change_type": "added",
+    "facility_id": "fc-f2dc90d209",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Flexential - Columbus",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "cea1b83013a2",
+    "timestamp": "2026-07-13T18:59:50.261854+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-35ff943aab",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "ed235aa948b2",
+    "timestamp": "2026-07-13T18:59:50.261885+00:00",
+    "change_type": "added",
+    "facility_id": "fc-d967c95d24",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Flexential - Indianapolis",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "7168ba59f3c0",
+    "timestamp": "2026-07-13T18:59:50.261936+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6d942409f3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "2c27319921d3",
+    "timestamp": "2026-07-13T18:59:50.261941+00:00",
+    "change_type": "added",
+    "facility_id": "fc-2012aed799",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Coresite - Charlotte (NC1)",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "3e88e3ef97cf",
+    "timestamp": "2026-07-13T18:59:50.261947+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e9fa2000be",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "487b9ab86e0c",
+    "timestamp": "2026-07-13T18:59:50.262024+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-cbf1b3b10c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "9a173e37af52",
+    "timestamp": "2026-07-13T18:59:50.262030+00:00",
+    "change_type": "added",
+    "facility_id": "fc-f3fd0fd0d6",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Coresite - SV1 Santa Clara",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "610224329d90",
+    "timestamp": "2026-07-13T18:59:50.262034+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a9c23e1cd4",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "e0a16453b0be",
+    "timestamp": "2026-07-13T18:59:50.262039+00:00",
+    "change_type": "added",
+    "facility_id": "fc-8611c4e031",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: NTT - Silicon Valley Data Center",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "8f0604d3d74a",
+    "timestamp": "2026-07-13T18:59:50.262044+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1017f65642",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "645c7344480f",
+    "timestamp": "2026-07-13T18:59:50.262048+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e741e8094d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "02e42e0b82d5",
+    "timestamp": "2026-07-13T18:59:50.262053+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-2774952fe8",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "a7c171274266",
+    "timestamp": "2026-07-13T18:59:50.262058+00:00",
+    "change_type": "added",
+    "facility_id": "fc-927b6cbc45",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Coresite - LA1 Los Angeles",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "d1a339f900ab",
+    "timestamp": "2026-07-13T18:59:50.262063+00:00",
+    "change_type": "added",
+    "facility_id": "fc-c87e9890b0",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: DataBank - Los Angeles",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "62f72b3105d8",
+    "timestamp": "2026-07-13T18:59:50.262067+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-21d9cd5e47",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "ab53ab8aaf64",
+    "timestamp": "2026-07-13T18:59:50.262073+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b637032810",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "15be25aeb39a",
+    "timestamp": "2026-07-13T18:59:50.262131+00:00",
+    "change_type": "added",
+    "facility_id": "fc-420bee82a4",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Cologix - Philadelphia",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "982760c9c8d2",
+    "timestamp": "2026-07-13T18:59:50.262249+00:00",
+    "change_type": "added",
+    "facility_id": "fc-feb13a22fa",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Coresite - DE1 Denver",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "1087df1df2fe",
+    "timestamp": "2026-07-13T18:59:50.262256+00:00",
+    "change_type": "added",
+    "facility_id": "fc-7505ac805f",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Flexential - Denver Campus",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "50ee1e93d43c",
+    "timestamp": "2026-07-13T18:59:50.262261+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-cac6d2b205",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "efc1b68253f8",
+    "timestamp": "2026-07-13T18:59:50.262266+00:00",
+    "change_type": "added",
+    "facility_id": "fc-8d3e71936b",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: DataBank - Minneapolis (MSP1)",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "69884d6f2415",
+    "timestamp": "2026-07-13T18:59:50.262271+00:00",
+    "change_type": "added",
+    "facility_id": "fc-3c50261c52",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Cologix - Minneapolis",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "f43108093ee2",
+    "timestamp": "2026-07-13T18:59:50.262276+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-c1e9806c64",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "1f66165ca025",
+    "timestamp": "2026-07-13T18:59:50.262280+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0b75839fda",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "ebe899b743ad",
+    "timestamp": "2026-07-13T18:59:50.262306+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-943c530508",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "332e1a8591e7",
+    "timestamp": "2026-07-13T18:59:50.262311+00:00",
+    "change_type": "added",
+    "facility_id": "fc-b758d19665",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: DataBank - Jacksonville",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "7714c68e4ee4",
+    "timestamp": "2026-07-13T18:59:50.262316+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6ea0be7102",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "929f01158095",
+    "timestamp": "2026-07-13T18:59:50.262321+00:00",
+    "change_type": "added",
+    "facility_id": "fc-26fdecfd2d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Coresite - MIA1 Miami",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "68de27c54ccb",
+    "timestamp": "2026-07-13T18:59:50.262325+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e5bdf179bd",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "ff98acead11c",
+    "timestamp": "2026-07-13T18:59:50.262329+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-639d9cd012",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "ab585d47d855",
+    "timestamp": "2026-07-13T18:59:50.262334+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-08415dcfaf",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "a048c6cd5195",
+    "timestamp": "2026-07-13T18:59:50.262338+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-4fac5a5552",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "ed96c7ceb429",
+    "timestamp": "2026-07-13T18:59:50.262342+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0ba9b312ac",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "f01d5765c03d",
+    "timestamp": "2026-07-13T18:59:50.262347+00:00",
+    "change_type": "added",
+    "facility_id": "fc-8bca525d80",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Coresite - BO1 Boston",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "d1098dd8944b",
+    "timestamp": "2026-07-13T18:59:50.262351+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-c1e44134a9",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "b3b4ae29f85f",
+    "timestamp": "2026-07-13T18:59:50.262356+00:00",
+    "change_type": "added",
+    "facility_id": "fc-272c687076",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: DataBank - St. Louis",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "e14332f8aa1c",
+    "timestamp": "2026-07-13T18:59:50.262360+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e1f21736b5",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: DataBank - Detroit",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "6c260f57dd8e",
+    "timestamp": "2026-07-13T18:59:50.262365+00:00",
+    "change_type": "added",
+    "facility_id": "fc-ff3d8af4ac",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Flexential - Detroit Metro",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "5823bd1cc4c9",
+    "timestamp": "2026-07-13T18:59:50.262370+00:00",
+    "change_type": "added",
+    "facility_id": "fc-a9c5836d6b",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: DataBank - New York (NYC1)",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "616b3aaaedf7",
+    "timestamp": "2026-07-13T18:59:50.262374+00:00",
+    "change_type": "added",
+    "facility_id": "fc-a73a61aa39",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Coresite - NY1 New York",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "5fdb3ea9f317",
+    "timestamp": "2026-07-13T18:59:50.262379+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a526e3dbc7",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "ea0100bda01d",
+    "timestamp": "2026-07-13T18:59:50.262384+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-67bd62efdf",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "816948730b3b",
+    "timestamp": "2026-07-13T18:59:50.262416+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-9083745a36",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "8620a158ae7d",
+    "timestamp": "2026-07-13T18:59:50.262420+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-fc1b32061d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "ea5c587b2a49",
+    "timestamp": "2026-07-13T18:59:50.262425+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-5ef7abc095",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "728fb222c7be",
+    "timestamp": "2026-07-13T18:59:50.262429+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-9de23caa4f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "575101038a6d",
+    "timestamp": "2026-07-13T18:59:50.262442+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-cc16a07fe7",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "55423d1ce9a3",
+    "timestamp": "2026-07-13T18:59:50.262530+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-fbf9edf7a2",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
+  },
+  {
+    "log_id": "64b8ca541b1e",
+    "timestamp": "2026-07-13T18:59:50.262535+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d093fd6415",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "fb957dad2295"
   }
 ]
