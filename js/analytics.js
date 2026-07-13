@@ -36,8 +36,6 @@ function analyticsIcon(name) {
 function renderAnalyticsPage() {
   const el = document.getElementById('analytics-view');
   if (!el) return;
-  if (el.dataset.built) return;
-  el.dataset.built = "1";
 
   /* ── Compute stats ── */
   const counties = mapData || {};

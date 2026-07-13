@@ -2057,6 +2057,9 @@ body.is-resizing-floating-panel * {
 #news-state-filter:focus,
 #news-source-filter:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(72,116,232,0.12); }
 
+/* Desktop: hide the mobile-only filter toggle */
+#news-filters-toggle { display: none; }
+
 #news-clear-filters {
   background: none;
   border: 1px solid var(--border);
@@ -2256,7 +2259,36 @@ body.is-resizing-floating-panel * {
     gap: 6px;
     padding: 8px 12px;
   }
-  #news-search { min-width: 100%; order: -1; }
+  #news-search { min-width: 0; flex: 1; order: -1; }
+
+  /* Mobile filter toggle button */
+  #news-filters-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    order: -1;
+    flex-shrink: 0;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 7px 10px;
+    font-size: 12px;
+    font-family: inherit;
+    color: var(--text-muted);
+    cursor: pointer;
+    min-height: 44px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  #news-filters-toggle:hover { color: var(--text); border-color: var(--accent); }
+  .news-filters-chevron { transition: transform 0.2s ease; }
+  #news-toolbar.filters-open .news-filters-chevron { transform: rotate(180deg); }
+
+  /* Filters hidden by default on mobile; shown when .filters-open */
+  #news-toolbar:not(.filters-open) #news-cat-filter,
+  #news-toolbar:not(.filters-open) #news-state-filter,
+  #news-toolbar:not(.filters-open) #news-source-filter,
+  #news-toolbar:not(.filters-open) #news-clear-filters { display: none; }
+
   #news-grid {
     padding: 12px;
     grid-template-columns: 1fr;

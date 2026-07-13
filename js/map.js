@@ -2467,6 +2467,17 @@ function updateNewsStatusCount(shown, total) {
 function initNewsView() {
   initNewsDynamicDropdowns();
 
+  // Mobile filter panel toggle
+  const filtersToggle = document.getElementById("news-filters-toggle");
+  if (filtersToggle) {
+    filtersToggle.addEventListener("click", () => {
+      const toolbar = document.getElementById("news-toolbar");
+      const open = toolbar.classList.toggle("filters-open");
+      filtersToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      filtersToggle.setAttribute("aria-label", open ? "Hide filters" : "Show filters");
+    });
+  }
+
   const newsClearBtn = document.getElementById("news-clear-filters");
   if (newsClearBtn) {
     newsClearBtn.addEventListener("click", () => {
