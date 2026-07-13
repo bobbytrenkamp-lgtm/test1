@@ -2498,5 +2498,3615 @@
     "summary": "Needs review: matched existing_data_centers record",
     "field_changes": {},
     "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "9c380dd0ea7f",
+    "timestamp": "2026-07-13T22:48:31.005911+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e7af645149",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Hartford",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "3ead4010cd9b",
+    "timestamp": "2026-07-13T22:48:31.005943+00:00",
+    "change_type": "added",
+    "facility_id": "fc-97c8e30e96",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Boston Dedham",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "48c2d5ccf6aa",
+    "timestamp": "2026-07-13T22:48:31.005950+00:00",
+    "change_type": "added",
+    "facility_id": "fc-988745fe48",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Philadelphia Berwyn",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "02e34743b680",
+    "timestamp": "2026-07-13T22:48:31.005957+00:00",
+    "change_type": "added",
+    "facility_id": "fc-b05e1fa8b0",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Pittsburgh",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8a4de9ed8eac",
+    "timestamp": "2026-07-13T22:48:31.005963+00:00",
+    "change_type": "added",
+    "facility_id": "fc-d18743c677",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Harrisburg",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "82c4b9ea371c",
+    "timestamp": "2026-07-13T22:48:31.005970+00:00",
+    "change_type": "added",
+    "facility_id": "fc-dcdfacabfd",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Richmond",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9436b0951bae",
+    "timestamp": "2026-07-13T22:48:31.005976+00:00",
+    "change_type": "added",
+    "facility_id": "fc-a9dd365782",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Charleston WV",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "f10ab7283c37",
+    "timestamp": "2026-07-13T22:48:31.005990+00:00",
+    "change_type": "added",
+    "facility_id": "fc-0c1e859596",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Charlotte Westinghouse",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "391d5907a796",
+    "timestamp": "2026-07-13T22:48:31.005995+00:00",
+    "change_type": "added",
+    "facility_id": "fc-1c65808341",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Chattanooga",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "3c29586fd21f",
+    "timestamp": "2026-07-13T22:48:31.006003+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0a92776b60",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e5ad2a7b9088",
+    "timestamp": "2026-07-13T22:48:31.006008+00:00",
+    "change_type": "added",
+    "facility_id": "fc-06c1aa78c9",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Birmingham",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "aa62a1afcb60",
+    "timestamp": "2026-07-13T22:48:31.006014+00:00",
+    "change_type": "added",
+    "facility_id": "fc-3c1a17bffe",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Mobile",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "bf3c9c9d8b41",
+    "timestamp": "2026-07-13T22:48:31.006018+00:00",
+    "change_type": "added",
+    "facility_id": "fc-92f0b7733e",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Little Rock",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "b03bc7f37d7b",
+    "timestamp": "2026-07-13T22:48:31.006023+00:00",
+    "change_type": "added",
+    "facility_id": "fc-641c622211",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Cleveland",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "68dce5d53b25",
+    "timestamp": "2026-07-13T22:48:31.006029+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-2c482d819d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9c6b2fe46a92",
+    "timestamp": "2026-07-13T22:48:31.006034+00:00",
+    "change_type": "added",
+    "facility_id": "fc-c415cba36d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Milwaukee",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "f628b98c1282",
+    "timestamp": "2026-07-13T22:48:31.006039+00:00",
+    "change_type": "added",
+    "facility_id": "fc-7fa84af9df",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Minneapolis Plymouth",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "6d0ad68d0ae1",
+    "timestamp": "2026-07-13T22:48:31.006045+00:00",
+    "change_type": "added",
+    "facility_id": "fc-92197cea1c",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Kansas City",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "41c187f70467",
+    "timestamp": "2026-07-13T22:48:31.006050+00:00",
+    "change_type": "added",
+    "facility_id": "fc-0b4c7efffe",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - St. Louis",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "73acfdae7e67",
+    "timestamp": "2026-07-13T22:48:31.006055+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-501a42d7b6",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "7981e7d9d4f7",
+    "timestamp": "2026-07-13T22:48:31.006060+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6487e69b03",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "4177be2327cb",
+    "timestamp": "2026-07-13T22:48:31.006065+00:00",
+    "change_type": "added",
+    "facility_id": "fc-aa634d5e0a",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - San Antonio",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "97aaad8b17d9",
+    "timestamp": "2026-07-13T22:48:31.006070+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-2550d02104",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "7493f8e802ed",
+    "timestamp": "2026-07-13T22:48:31.006076+00:00",
+    "change_type": "added",
+    "facility_id": "fc-d55e921594",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: TierPoint - Seattle Tukwila",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "223462470ee0",
+    "timestamp": "2026-07-13T22:48:31.006080+00:00",
+    "change_type": "added",
+    "facility_id": "fc-2e8bf682b7",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Atlanta Lenox",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "609bd8e760f5",
+    "timestamp": "2026-07-13T22:48:31.006085+00:00",
+    "change_type": "added",
+    "facility_id": "fc-19777b6887",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Atlanta Spaghetti Junction",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ece56abebf6e",
+    "timestamp": "2026-07-13T22:48:31.006089+00:00",
+    "change_type": "added",
+    "facility_id": "fc-c5e99ebf6d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Dallas Stemmons",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "aa86ae8ba07f",
+    "timestamp": "2026-07-13T22:48:31.006095+00:00",
+    "change_type": "added",
+    "facility_id": "fc-6b9b471a15",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Dallas Inwood",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "b9dfd9b591d0",
+    "timestamp": "2026-07-13T22:48:31.006099+00:00",
+    "change_type": "added",
+    "facility_id": "fc-bca000136e",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Houston Greenway",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e02fcffcac35",
+    "timestamp": "2026-07-13T22:48:31.006104+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d4ee6bdc0e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "b55b15191296",
+    "timestamp": "2026-07-13T22:48:31.006109+00:00",
+    "change_type": "added",
+    "facility_id": "fc-96adc2066b",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Chicago Riverdale",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "34583a21b6d3",
+    "timestamp": "2026-07-13T22:48:31.006113+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1655b1fa20",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8a1b7f810b11",
+    "timestamp": "2026-07-13T22:48:31.006118+00:00",
+    "change_type": "added",
+    "facility_id": "fc-0da4ae4944",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - San Jose North First",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ed0985968af2",
+    "timestamp": "2026-07-13T22:48:31.006123+00:00",
+    "change_type": "added",
+    "facility_id": "fc-c4273200a0",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Sacramento Watt",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "66aaab03ea81",
+    "timestamp": "2026-07-13T22:48:31.006128+00:00",
+    "change_type": "added",
+    "facility_id": "fc-58d99ba814",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Seattle Westin",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9301bfbe17c3",
+    "timestamp": "2026-07-13T22:48:31.006132+00:00",
+    "change_type": "added",
+    "facility_id": "fc-cb8e2520b7",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Bellevue",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "712104a90517",
+    "timestamp": "2026-07-13T22:48:31.006137+00:00",
+    "change_type": "added",
+    "facility_id": "fc-a34247f7e4",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - New York 811 10th Ave",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "43dc23a82f1e",
+    "timestamp": "2026-07-13T22:48:31.006141+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-716dbbef00",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "6fc2af879d78",
+    "timestamp": "2026-07-13T22:48:31.006145+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-28118706a3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "aa48a32dfa8f",
+    "timestamp": "2026-07-13T22:48:31.006149+00:00",
+    "change_type": "added",
+    "facility_id": "fc-3a49fa8b4f",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Miami Brickell",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "11c3bc5bc2ac",
+    "timestamp": "2026-07-13T22:48:31.006154+00:00",
+    "change_type": "added",
+    "facility_id": "fc-0a1f592a96",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Tampa Westshore",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1876826b5f0e",
+    "timestamp": "2026-07-13T22:48:31.006159+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0b45115e9b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "276ca36ad4b3",
+    "timestamp": "2026-07-13T22:48:31.006163+00:00",
+    "change_type": "added",
+    "facility_id": "fc-5b740d092c",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Denver Cherry Creek",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "732af5374acf",
+    "timestamp": "2026-07-13T22:48:31.006176+00:00",
+    "change_type": "added",
+    "facility_id": "fc-cd3bff8207",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Kansas City Wornall",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "37b1f1044037",
+    "timestamp": "2026-07-13T22:48:31.006181+00:00",
+    "change_type": "added",
+    "facility_id": "fc-452fafe114",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Minneapolis 511 11th",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "486f42576ba8",
+    "timestamp": "2026-07-13T22:48:31.006186+00:00",
+    "change_type": "added",
+    "facility_id": "fc-c31e147725",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Evoque - Detroit Woodward",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "df427339ae22",
+    "timestamp": "2026-07-13T22:48:31.006190+00:00",
+    "change_type": "added",
+    "facility_id": "fc-f354b6f438",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Zayo - Denver 1850 Pearl",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e4b6faba8848",
+    "timestamp": "2026-07-13T22:48:31.006195+00:00",
+    "change_type": "added",
+    "facility_id": "fc-658ff62e7a",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Zayo - Boulder",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "77a8b0d9b10e",
+    "timestamp": "2026-07-13T22:48:31.006200+00:00",
+    "change_type": "added",
+    "facility_id": "fc-047c4d1c14",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Zayo - Portland 1201 NE Lloyd",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "4ebb278747d9",
+    "timestamp": "2026-07-13T22:48:31.006204+00:00",
+    "change_type": "added",
+    "facility_id": "fc-4fc8dda405",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Zayo - Los Angeles 900 N Alameda",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "028d3ca5ddb2",
+    "timestamp": "2026-07-13T22:48:31.006209+00:00",
+    "change_type": "added",
+    "facility_id": "fc-8293be7ba7",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Zayo - San Francisco 200 Paul",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "0bbfdf4c29c2",
+    "timestamp": "2026-07-13T22:48:31.006214+00:00",
+    "change_type": "added",
+    "facility_id": "fc-5c2705da84",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Zayo - Dallas 2323 Bryan",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "d2f3b036bf66",
+    "timestamp": "2026-07-13T22:48:31.006219+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b997944969",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "26510591ce04",
+    "timestamp": "2026-07-13T22:48:31.006224+00:00",
+    "change_type": "added",
+    "facility_id": "fc-9d92841fbd",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Zayo - New York 32 Avenue of Americas",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "c90cfc2205b3",
+    "timestamp": "2026-07-13T22:48:31.006228+00:00",
+    "change_type": "added",
+    "facility_id": "fc-54bd74a60e",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Zayo - Minneapolis 511 Marquette",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "eec3626059dd",
+    "timestamp": "2026-07-13T22:48:31.006234+00:00",
+    "change_type": "added",
+    "facility_id": "fc-35e16ae284",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Zayo - Kansas City 1102 Grand",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "2ff9fafeefa2",
+    "timestamp": "2026-07-13T22:48:31.006238+00:00",
+    "change_type": "added",
+    "facility_id": "fc-7dd89d6939",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Zayo - Philadelphia 401 N Broad",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "7b1237f11509",
+    "timestamp": "2026-07-13T22:48:31.006243+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-f99fb083f4",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "774fa8af73db",
+    "timestamp": "2026-07-13T22:48:31.006254+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7f5a4ba506",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "db0cd95508d1",
+    "timestamp": "2026-07-13T22:48:31.006260+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-9c04b6d840",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5c727a87ce36",
+    "timestamp": "2026-07-13T22:48:31.006265+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b4f0f10ca5",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "6850b7ac7737",
+    "timestamp": "2026-07-13T22:48:31.006286+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-aabc6bd788",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "d9d81860ccb7",
+    "timestamp": "2026-07-13T22:48:31.006296+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-9a56acc697",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "60efd652cff8",
+    "timestamp": "2026-07-13T22:48:31.006303+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-771fa8883a",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1ec70d233e35",
+    "timestamp": "2026-07-13T22:48:31.006308+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e00cedf7be",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ccc08db4343f",
+    "timestamp": "2026-07-13T22:48:31.006316+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7a13ec206c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ec4ed8f8a1d2",
+    "timestamp": "2026-07-13T22:48:31.006320+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d9465b99e6",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "40dad6ebce04",
+    "timestamp": "2026-07-13T22:48:31.006325+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b09e215281",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "4895ca82358a",
+    "timestamp": "2026-07-13T22:48:31.006330+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-06cbf010fa",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9ea59eab6446",
+    "timestamp": "2026-07-13T22:48:31.006334+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-4b82a7cee7",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8ac3eacf8e68",
+    "timestamp": "2026-07-13T22:48:31.006339+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7959013792",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "01b9de5ed70f",
+    "timestamp": "2026-07-13T22:48:31.006344+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0a54888c53",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "7e5f2669d44c",
+    "timestamp": "2026-07-13T22:48:31.006349+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-fb56bee09b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "fda9a6260150",
+    "timestamp": "2026-07-13T22:48:31.006353+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-64b7ebbb86",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e0198dcaf658",
+    "timestamp": "2026-07-13T22:48:31.006358+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-4d7bc5cace",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "45acb478bb5a",
+    "timestamp": "2026-07-13T22:48:31.006362+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1c1091d167",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "23d333f00360",
+    "timestamp": "2026-07-13T22:48:31.006367+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-3ee5d3f9b9",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ac20ccaec3b7",
+    "timestamp": "2026-07-13T22:48:31.006374+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-98a0f035f9",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "386b84609567",
+    "timestamp": "2026-07-13T22:48:31.006378+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-96da69be3c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "424f4911c1bd",
+    "timestamp": "2026-07-13T22:48:31.006382+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6571b204eb",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "53decea715c1",
+    "timestamp": "2026-07-13T22:48:31.006387+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7b8d433d28",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e1fc53e36619",
+    "timestamp": "2026-07-13T22:48:31.006392+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-847c37cf71",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "a61f37f4b2e2",
+    "timestamp": "2026-07-13T22:48:31.006396+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-92a6176dce",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "962ab5bb907a",
+    "timestamp": "2026-07-13T22:48:31.006401+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0c3d7747fd",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "841fc626cd83",
+    "timestamp": "2026-07-13T22:48:31.006406+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d0c52b7b4c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "a8a72981621f",
+    "timestamp": "2026-07-13T22:48:31.006410+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-3e18d7289d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "bec36fa8ccd1",
+    "timestamp": "2026-07-13T22:48:31.006415+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-31906ff00b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "46ece9cccd3c",
+    "timestamp": "2026-07-13T22:48:31.006420+00:00",
+    "change_type": "added",
+    "facility_id": "fc-5f99942452",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Involta - Bettendorf IA1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "120fb3a7362a",
+    "timestamp": "2026-07-13T22:48:31.006424+00:00",
+    "change_type": "added",
+    "facility_id": "fc-c49faa64bb",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Involta - Cedar Rapids",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "3acda7dea9cf",
+    "timestamp": "2026-07-13T22:48:31.006429+00:00",
+    "change_type": "added",
+    "facility_id": "fc-5052623159",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Involta - Des Moines",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "28a1c663f94e",
+    "timestamp": "2026-07-13T22:48:31.006433+00:00",
+    "change_type": "added",
+    "facility_id": "fc-2bdd9505a7",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Involta - Rochester MN",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "a0f64f5f274b",
+    "timestamp": "2026-07-13T22:48:31.006438+00:00",
+    "change_type": "added",
+    "facility_id": "fc-fdaef064cb",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Involta - Grand Forks",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "f30cb9777b35",
+    "timestamp": "2026-07-13T22:48:31.006443+00:00",
+    "change_type": "added",
+    "facility_id": "fc-794b44dd0d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Involta - Fargo",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "08f332d3c93b",
+    "timestamp": "2026-07-13T22:48:31.006449+00:00",
+    "change_type": "added",
+    "facility_id": "fc-194a8ff285",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Involta - Sioux Falls",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "42c31f7d8113",
+    "timestamp": "2026-07-13T22:48:31.006453+00:00",
+    "change_type": "added",
+    "facility_id": "fc-a33e3ba7ac",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Involta - Akron",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "c0729d565853",
+    "timestamp": "2026-07-13T22:48:31.006458+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-379f8bacd7",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "6766d3c5f929",
+    "timestamp": "2026-07-13T22:48:31.006462+00:00",
+    "change_type": "added",
+    "facility_id": "fc-af20734d53",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Lumen - Monroe Louisiana",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "38e7e62a6323",
+    "timestamp": "2026-07-13T22:48:31.006467+00:00",
+    "change_type": "added",
+    "facility_id": "fc-2593c7eec2",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Lumen - New Orleans",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "58096d8e04fb",
+    "timestamp": "2026-07-13T22:48:31.006471+00:00",
+    "change_type": "added",
+    "facility_id": "fc-d633a48e50",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Lumen - Broomfield",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "adf1e998a253",
+    "timestamp": "2026-07-13T22:48:31.006477+00:00",
+    "change_type": "added",
+    "facility_id": "fc-ac3e054793",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Lumen - Seattle",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "973693ad0bb7",
+    "timestamp": "2026-07-13T22:48:31.006481+00:00",
+    "change_type": "added",
+    "facility_id": "fc-41f5fc7663",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Lumen - Tempe",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1515655b6c43",
+    "timestamp": "2026-07-13T22:48:31.006485+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e14b0a9df0",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Lumen - Jacksonville Baymeadows",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "41a670e0ad95",
+    "timestamp": "2026-07-13T22:48:31.006490+00:00",
+    "change_type": "added",
+    "facility_id": "fc-0b7eb1fe74",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Lumen - Atlanta",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "83faa7f30b29",
+    "timestamp": "2026-07-13T22:48:31.006495+00:00",
+    "change_type": "added",
+    "facility_id": "fc-9286281d70",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Lumen - Dallas Cedar Springs",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "eb5300c1d8e5",
+    "timestamp": "2026-07-13T22:48:31.006499+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e144e9e92f",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Lumen - Cincinnati Blue Ash",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "34ccd0e08b32",
+    "timestamp": "2026-07-13T22:48:31.006504+00:00",
+    "change_type": "added",
+    "facility_id": "fc-cc443b7c49",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Lumen - Minneapolis 60 S 6th",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ca29b2a5bb25",
+    "timestamp": "2026-07-13T22:48:31.006508+00:00",
+    "change_type": "added",
+    "facility_id": "fc-eb0ccd3424",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: CloudHQ - Piscataway",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "2cdf6307aa7a",
+    "timestamp": "2026-07-13T22:48:31.006513+00:00",
+    "change_type": "added",
+    "facility_id": "fc-7e6aca9b89",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: CloudHQ - Clifton",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "202912f99fdf",
+    "timestamp": "2026-07-13T22:48:31.006518+00:00",
+    "change_type": "added",
+    "facility_id": "fc-ee1ec9f4b6",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: CloudHQ - Bronx",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8a41d4640c25",
+    "timestamp": "2026-07-13T22:48:31.006523+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e449ccc224",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "377fac297db2",
+    "timestamp": "2026-07-13T22:48:31.006528+00:00",
+    "change_type": "added",
+    "facility_id": "fc-68bc52d16c",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: CloudHQ - Waltham",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "88e6cee3f39b",
+    "timestamp": "2026-07-13T22:48:31.006532+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-3dd1cc9b9e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "81e4ef4b4881",
+    "timestamp": "2026-07-13T22:48:31.006537+00:00",
+    "change_type": "added",
+    "facility_id": "fc-3fc39a177c",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: CloudHQ - Chicago Elk Grove",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "6b12593fa27d",
+    "timestamp": "2026-07-13T22:48:31.006541+00:00",
+    "change_type": "added",
+    "facility_id": "fc-af7b8fe04a",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: CloudHQ - Santa Clara",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "7bf958c92cd1",
+    "timestamp": "2026-07-13T22:48:31.006545+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0e5dd692f2",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e55dca7f6ccf",
+    "timestamp": "2026-07-13T22:48:31.006549+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-c9bced0e8d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "dcb49ac1a0ff",
+    "timestamp": "2026-07-13T22:48:31.006554+00:00",
+    "change_type": "added",
+    "facility_id": "fc-50617d8d80",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Vantage - Ashburn VA1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9c79ae16382f",
+    "timestamp": "2026-07-13T22:48:31.006558+00:00",
+    "change_type": "added",
+    "facility_id": "fc-7a4fda0d6d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Vantage - Ashburn VA2",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5af468975cd4",
+    "timestamp": "2026-07-13T22:48:31.006562+00:00",
+    "change_type": "added",
+    "facility_id": "fc-8ac9ad30fd",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Vantage - Ashburn VA3",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ecda1c2be0bc",
+    "timestamp": "2026-07-13T22:48:31.006568+00:00",
+    "change_type": "added",
+    "facility_id": "fc-6f2ec0b3f2",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Vantage - Silicon Valley SV1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e81b52da20e9",
+    "timestamp": "2026-07-13T22:48:31.006572+00:00",
+    "change_type": "added",
+    "facility_id": "fc-6a5185ac4b",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Vantage - Silicon Valley SV2",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "6564d49b42e5",
+    "timestamp": "2026-07-13T22:48:31.006576+00:00",
+    "change_type": "added",
+    "facility_id": "fc-79c5c4ea3f",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Vantage - Phoenix PHX1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "25714f650e96",
+    "timestamp": "2026-07-13T22:48:31.006580+00:00",
+    "change_type": "added",
+    "facility_id": "fc-66705c5d3d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Vantage - Phoenix PHX2",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "c494126e459c",
+    "timestamp": "2026-07-13T22:48:31.006584+00:00",
+    "change_type": "added",
+    "facility_id": "fc-67c87b4bf4",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Vantage - Atlanta ATL1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "01af15a7ea64",
+    "timestamp": "2026-07-13T22:48:31.006589+00:00",
+    "change_type": "added",
+    "facility_id": "fc-9cf4c9a5bd",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Vantage - Atlanta ATL2",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "db60018d0245",
+    "timestamp": "2026-07-13T22:48:31.006593+00:00",
+    "change_type": "added",
+    "facility_id": "fc-cec64ffd32",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Vantage - Fort Worth FW1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5141d7c7d5d1",
+    "timestamp": "2026-07-13T22:48:31.006597+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e10f307f5b",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Vantage - Fort Worth FW2",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "a9b81b61258f",
+    "timestamp": "2026-07-13T22:48:31.006602+00:00",
+    "change_type": "added",
+    "facility_id": "fc-4a4b14713a",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Aligned - Dallas AUS2",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ed2f6520f441",
+    "timestamp": "2026-07-13T22:48:31.006606+00:00",
+    "change_type": "added",
+    "facility_id": "fc-9b862d1f1d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Aligned - Dallas AUS3",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "127e3cc13495",
+    "timestamp": "2026-07-13T22:48:31.006612+00:00",
+    "change_type": "added",
+    "facility_id": "fc-f09ca9e84a",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Aligned - Phoenix PHX2",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9dc5f56cd8ef",
+    "timestamp": "2026-07-13T22:48:31.006616+00:00",
+    "change_type": "added",
+    "facility_id": "fc-37e396f2dd",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Aligned - Phoenix PHX3",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "2a10e3519692",
+    "timestamp": "2026-07-13T22:48:31.006620+00:00",
+    "change_type": "added",
+    "facility_id": "fc-b1510a57cd",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Aligned - Reno",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ac265665c701",
+    "timestamp": "2026-07-13T22:48:31.006624+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e9c0f33f64",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Aligned - Mebane",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5615c43eb121",
+    "timestamp": "2026-07-13T22:48:31.006629+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-29e5fbfaf2",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "94d2e2fa47bc",
+    "timestamp": "2026-07-13T22:48:31.006633+00:00",
+    "change_type": "added",
+    "facility_id": "fc-9d60072e73",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: EdgeCore - Santa Clara I",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ba51470d5a20",
+    "timestamp": "2026-07-13T22:48:31.006638+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-5c4e11e4d8",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "94986d210b91",
+    "timestamp": "2026-07-13T22:48:31.006646+00:00",
+    "change_type": "added",
+    "facility_id": "fc-c85f392b1d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: EdgeCore - Mesa AZ1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "697f44460036",
+    "timestamp": "2026-07-13T22:48:31.006650+00:00",
+    "change_type": "added",
+    "facility_id": "fc-9fa07c2f33",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: EdgeCore - Mesa AZ2",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "402a44071786",
+    "timestamp": "2026-07-13T22:48:31.006655+00:00",
+    "change_type": "added",
+    "facility_id": "fc-ab22ba3d7b",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: EdgeCore - Manassas VA1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "55e823a32c97",
+    "timestamp": "2026-07-13T22:48:31.006659+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-494218079e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "dc1fddead2a6",
+    "timestamp": "2026-07-13T22:48:31.006664+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e00a703d32",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: EdgeCore - San Antonio",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "3efb4af68ecc",
+    "timestamp": "2026-07-13T22:48:31.006668+00:00",
+    "change_type": "added",
+    "facility_id": "fc-6ba091d06c",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: EdgeCore - Atlanta",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ea0abe5377f0",
+    "timestamp": "2026-07-13T22:48:31.006673+00:00",
+    "change_type": "added",
+    "facility_id": "fc-3d63fb8ad2",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Sabey - Intergate.Seattle",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "7619a446152f",
+    "timestamp": "2026-07-13T22:48:31.006678+00:00",
+    "change_type": "added",
+    "facility_id": "fc-648a1b115c",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Sabey - Intergate.Columbia",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "369b2958121b",
+    "timestamp": "2026-07-13T22:48:31.006683+00:00",
+    "change_type": "added",
+    "facility_id": "fc-fa3f3e7729",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Sabey - Intergate.Manhattan",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ac007c6361b8",
+    "timestamp": "2026-07-13T22:48:31.006687+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-5a092b0fbc",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "605c0d93aaf8",
+    "timestamp": "2026-07-13T22:48:31.006693+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-dcea732fce",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "caf014e9c96a",
+    "timestamp": "2026-07-13T22:48:31.006698+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a906d01474",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "05f0a40980d0",
+    "timestamp": "2026-07-13T22:48:31.006718+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-2bcadf6223",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1b8f6860bc4a",
+    "timestamp": "2026-07-13T22:48:31.006725+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-867e6bf136",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ee4e470e2e9b",
+    "timestamp": "2026-07-13T22:48:31.006729+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-ba427aa795",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "da0b8c0fad28",
+    "timestamp": "2026-07-13T22:48:31.006734+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-ec3d0682a2",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "fffa753e1a09",
+    "timestamp": "2026-07-13T22:48:31.006738+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-2dcf472ca7",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "a2134d0a9fee",
+    "timestamp": "2026-07-13T22:48:31.006743+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-5e1e04ed1c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "669e13cc0eac",
+    "timestamp": "2026-07-13T22:48:31.006762+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-45b33662ac",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "740e1ef2ed85",
+    "timestamp": "2026-07-13T22:48:31.006767+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a8fb48edea",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "bf573ca015c3",
+    "timestamp": "2026-07-13T22:48:31.006772+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-dbb1ad8edc",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1bef718d1961",
+    "timestamp": "2026-07-13T22:48:31.006778+00:00",
+    "change_type": "added",
+    "facility_id": "fc-db78b7ba6b",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: 60 Hudson Street - NYC Carrier Hotel",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "adef29c61173",
+    "timestamp": "2026-07-13T22:48:31.006783+00:00",
+    "change_type": "added",
+    "facility_id": "fc-46b135a9f8",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: 350 E Cermak - Chicago CH",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "4602a706dca9",
+    "timestamp": "2026-07-13T22:48:31.006788+00:00",
+    "change_type": "added",
+    "facility_id": "fc-ddeba7b24d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: NAP of the Americas - Miami NAP",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "2b213b38c3e5",
+    "timestamp": "2026-07-13T22:48:31.006792+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-f2ab347f7f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e2659dba4de4",
+    "timestamp": "2026-07-13T22:48:31.006796+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-17768bf68e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "0ae4ea852d42",
+    "timestamp": "2026-07-13T22:48:31.006801+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-c96488ceb1",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8a72fdf916d3",
+    "timestamp": "2026-07-13T22:48:31.006805+00:00",
+    "change_type": "added",
+    "facility_id": "fc-3e59a439c1",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Verizon - Washington DC",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "b3417c1083c4",
+    "timestamp": "2026-07-13T22:48:31.006810+00:00",
+    "change_type": "added",
+    "facility_id": "fc-890c041922",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: AT&T - Washington DC",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "db0b771aaee3",
+    "timestamp": "2026-07-13T22:48:31.006814+00:00",
+    "change_type": "added",
+    "facility_id": "fc-12b2a98899",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Sungard - Wayne PA",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "24d2299e68df",
+    "timestamp": "2026-07-13T22:48:31.006819+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7cdd738f66",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "177f3502deeb",
+    "timestamp": "2026-07-13T22:48:31.006823+00:00",
+    "change_type": "added",
+    "facility_id": "fc-a20c14dc7c",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Sungard - Carlstadt",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "f751010cbcc9",
+    "timestamp": "2026-07-13T22:48:31.006827+00:00",
+    "change_type": "added",
+    "facility_id": "fc-d790725471",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Sungard - Andover MA",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "15469b4599b9",
+    "timestamp": "2026-07-13T22:48:31.006832+00:00",
+    "change_type": "added",
+    "facility_id": "fc-a65ee7d7ef",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Sungard - Schaumburg",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "c6e79814425f",
+    "timestamp": "2026-07-13T22:48:31.006836+00:00",
+    "change_type": "added",
+    "facility_id": "fc-0669827ded",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Sungard - Houston",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "34ae469df1e6",
+    "timestamp": "2026-07-13T22:48:31.006840+00:00",
+    "change_type": "added",
+    "facility_id": "fc-f2cdb473dd",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Sungard - Rancho Cordova",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "808179b48541",
+    "timestamp": "2026-07-13T22:48:31.006844+00:00",
+    "change_type": "added",
+    "facility_id": "fc-857246d3ff",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Sungard - Boca Raton",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "b01e6e87788a",
+    "timestamp": "2026-07-13T22:48:31.006850+00:00",
+    "change_type": "added",
+    "facility_id": "fc-feed559edf",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Sungard - Norcross",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "dbe7fbb6daee",
+    "timestamp": "2026-07-13T22:48:31.006856+00:00",
+    "change_type": "added",
+    "facility_id": "fc-a7f30e0277",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Windstream - Little Rock",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e0f9d7ecddda",
+    "timestamp": "2026-07-13T22:48:31.006860+00:00",
+    "change_type": "added",
+    "facility_id": "fc-3976a9cf16",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Windstream - Tulsa",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "64704fda1760",
+    "timestamp": "2026-07-13T22:48:31.006864+00:00",
+    "change_type": "added",
+    "facility_id": "fc-c2736190ec",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Windstream - Lexington",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "781f900e063f",
+    "timestamp": "2026-07-13T22:48:31.006869+00:00",
+    "change_type": "added",
+    "facility_id": "fc-b01b989a80",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Windstream - Raleigh",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "a0d92cd4a92f",
+    "timestamp": "2026-07-13T22:48:31.006874+00:00",
+    "change_type": "added",
+    "facility_id": "fc-5aaf2aecf8",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Windstream - Columbus",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "035029a5bbca",
+    "timestamp": "2026-07-13T22:48:31.006878+00:00",
+    "change_type": "added",
+    "facility_id": "fc-44274c10fc",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Windstream - Atlanta",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9c37ac60d702",
+    "timestamp": "2026-07-13T22:48:31.006883+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-48a8d50321",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "29087af619f0",
+    "timestamp": "2026-07-13T22:48:31.006887+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-ce080ba2f0",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "57cba9586032",
+    "timestamp": "2026-07-13T22:48:31.006892+00:00",
+    "change_type": "added",
+    "facility_id": "fc-5b4cc20dcf",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Windstream - Huntsville",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "08fab39cc4b6",
+    "timestamp": "2026-07-13T22:48:31.006897+00:00",
+    "change_type": "added",
+    "facility_id": "fc-ccf8691383",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Windstream - Nashville",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e9f4a23d7688",
+    "timestamp": "2026-07-13T22:48:31.006901+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-df6bf4d83d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "2a144125d351",
+    "timestamp": "2026-07-13T22:48:31.006905+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-43a7eb4054",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "570fb964cb7b",
+    "timestamp": "2026-07-13T22:48:31.006909+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8158419664",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "89eb7c78a54f",
+    "timestamp": "2026-07-13T22:48:31.006914+00:00",
+    "change_type": "added",
+    "facility_id": "fc-05c2cdeb8c",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Atrion - Providence",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "78a7a6534bbe",
+    "timestamp": "2026-07-13T22:48:31.006919+00:00",
+    "change_type": "added",
+    "facility_id": "fc-65594a527d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Presidio - Portland ME",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9a1f0efd3bfb",
+    "timestamp": "2026-07-13T22:48:31.006924+00:00",
+    "change_type": "added",
+    "facility_id": "fc-1678b2d88e",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Granite State Networks - Manchester",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "bff22ebaedde",
+    "timestamp": "2026-07-13T22:48:31.006928+00:00",
+    "change_type": "added",
+    "facility_id": "fc-f60624e8ce",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: VTel - Burlington VT",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "882bb660196f",
+    "timestamp": "2026-07-13T22:48:31.006934+00:00",
+    "change_type": "added",
+    "facility_id": "fc-7f40ae29d3",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Expedient - Wilmington",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "d71c8eb1d544",
+    "timestamp": "2026-07-13T22:48:31.006939+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e7e95de009",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: PowerHouse - Trussville AL",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "fc7b769aa13e",
+    "timestamp": "2026-07-13T22:48:31.006943+00:00",
+    "change_type": "added",
+    "facility_id": "fc-a5bbb06950",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Belden - Jackson MS",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "f2171c8ed95a",
+    "timestamp": "2026-07-13T22:48:31.006948+00:00",
+    "change_type": "added",
+    "facility_id": "fc-b5f8f5019b",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Great Plains Communications - Sioux Falls",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "684fec657750",
+    "timestamp": "2026-07-13T22:48:31.006953+00:00",
+    "change_type": "added",
+    "facility_id": "fc-92215fd6c5",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Nemont - Scobey MT",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ed108c62cf0c",
+    "timestamp": "2026-07-13T22:48:31.006958+00:00",
+    "change_type": "added",
+    "facility_id": "fc-d4d33f22cc",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Triangle - Havre MT",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8220ed1c7bab",
+    "timestamp": "2026-07-13T22:48:31.006963+00:00",
+    "change_type": "added",
+    "facility_id": "fc-91a120d31c",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: GCI - Anchorage AK",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "af343bc68307",
+    "timestamp": "2026-07-13T22:48:31.006967+00:00",
+    "change_type": "added",
+    "facility_id": "fc-d23f5c23d5",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Alaska Communications - Fairbanks",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ff7b56d75c96",
+    "timestamp": "2026-07-13T22:48:31.006972+00:00",
+    "change_type": "added",
+    "facility_id": "fc-9270e190df",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Hawaiian Telcom - Honolulu",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "b8fd31438c9e",
+    "timestamp": "2026-07-13T22:48:31.006976+00:00",
+    "change_type": "added",
+    "facility_id": "fc-15df8ac1a8",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Pono Data - Honolulu",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1ba1f0f88d44",
+    "timestamp": "2026-07-13T22:48:31.006981+00:00",
+    "change_type": "added",
+    "facility_id": "fc-311891d1ac",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Lavu - Albuquerque",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "f5fdc78fecfd",
+    "timestamp": "2026-07-13T22:48:31.006985+00:00",
+    "change_type": "added",
+    "facility_id": "fc-36f86334f6",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: New Mexico Fiber - Santa Fe",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "6437968bb0ac",
+    "timestamp": "2026-07-13T22:48:31.006989+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-36bd0b37fc",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "2d4a625f01b4",
+    "timestamp": "2026-07-13T22:48:31.006993+00:00",
+    "change_type": "added",
+    "facility_id": "fc-28b42fb2a1",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Union Wireless - Riverton WY",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8b2627c500e0",
+    "timestamp": "2026-07-13T22:48:31.006998+00:00",
+    "change_type": "added",
+    "facility_id": "fc-8c68731a6a",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Expedient - Pittsburgh PA1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "b1976bf5ec77",
+    "timestamp": "2026-07-13T22:48:31.007002+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e7245bb1e9",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Expedient - Pittsburgh PA2",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9c01d02e448e",
+    "timestamp": "2026-07-13T22:48:31.007007+00:00",
+    "change_type": "added",
+    "facility_id": "fc-2aaef7293b",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Expedient - Cleveland OH1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "c8af42648fff",
+    "timestamp": "2026-07-13T22:48:31.007011+00:00",
+    "change_type": "added",
+    "facility_id": "fc-b92492acb3",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Expedient - Columbus OH1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "b563f5d1e736",
+    "timestamp": "2026-07-13T22:48:31.007015+00:00",
+    "change_type": "added",
+    "facility_id": "fc-8459449f53",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Expedient - Baltimore MD1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5a1a2a6684c3",
+    "timestamp": "2026-07-13T22:48:31.007019+00:00",
+    "change_type": "added",
+    "facility_id": "fc-a5e62b75dc",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Expedient - Baltimore MD2",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "b540f69c03f5",
+    "timestamp": "2026-07-13T22:48:31.007024+00:00",
+    "change_type": "added",
+    "facility_id": "fc-6545de8ef0",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Expedient - Memphis",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9f690d8de7f8",
+    "timestamp": "2026-07-13T22:48:31.007028+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e5d157326c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5f51e1eb3982",
+    "timestamp": "2026-07-13T22:48:31.007033+00:00",
+    "change_type": "added",
+    "facility_id": "fc-235e302e77",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Expedient - Boston",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1226ca51b0ae",
+    "timestamp": "2026-07-13T22:48:31.007037+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-598912b19f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "2505f7f05665",
+    "timestamp": "2026-07-13T22:48:31.007042+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b42816c6eb",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "d3285c31f474",
+    "timestamp": "2026-07-13T22:48:31.007047+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-bfc7e7f92f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "28009e2f6a1c",
+    "timestamp": "2026-07-13T22:48:31.007051+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-993c787bfd",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "79b26a97aa57",
+    "timestamp": "2026-07-13T22:48:31.007056+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-cf5956ef50",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "a0d65b0ad141",
+    "timestamp": "2026-07-13T22:48:31.007060+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-186f438dc0",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e8ac000a3d38",
+    "timestamp": "2026-07-13T22:48:31.007065+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7b158de56c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "78a1175cfd54",
+    "timestamp": "2026-07-13T22:48:31.007069+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6928817365",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "b2f269345f72",
+    "timestamp": "2026-07-13T22:48:31.007074+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-afe5dbcd3c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "c94333e8279a",
+    "timestamp": "2026-07-13T22:48:31.007090+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-4c7d5fef14",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9290c93369ae",
+    "timestamp": "2026-07-13T22:48:31.007095+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0047aafaea",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "2675f542dcb1",
+    "timestamp": "2026-07-13T22:48:31.007100+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-c39310b169",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "0b278d710fbe",
+    "timestamp": "2026-07-13T22:48:31.007105+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d922a075e3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1d34badbd9b5",
+    "timestamp": "2026-07-13T22:48:31.007109+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-39b8da25b3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "514eb3c62074",
+    "timestamp": "2026-07-13T22:48:31.007113+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-064522a53c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5a85d6ef505e",
+    "timestamp": "2026-07-13T22:48:31.007117+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d75d9d99e2",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "d4ef7d32150e",
+    "timestamp": "2026-07-13T22:48:31.007121+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a2d1076c40",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "948fca5c212c",
+    "timestamp": "2026-07-13T22:48:31.007125+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1390bcff94",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "27405bf35c50",
+    "timestamp": "2026-07-13T22:48:31.007130+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7d95bf6f80",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "60896d9cd7de",
+    "timestamp": "2026-07-13T22:48:31.007134+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-15b4264ce3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "29b792bc16f2",
+    "timestamp": "2026-07-13T22:48:31.007139+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-69da06a24b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "409804eed980",
+    "timestamp": "2026-07-13T22:48:31.007155+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-441b05d187",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "0db8739e62f5",
+    "timestamp": "2026-07-13T22:48:31.007160+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-ad6dec8925",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "887bd0613c3c",
+    "timestamp": "2026-07-13T22:48:31.007164+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7180a6e87b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "d349d26bf28d",
+    "timestamp": "2026-07-13T22:48:31.007169+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-fee73bbd06",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e2e05511f787",
+    "timestamp": "2026-07-13T22:48:31.007174+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-69e9156f56",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "f085e0667c97",
+    "timestamp": "2026-07-13T22:48:31.007178+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-03467c4e03",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "0575161ebebb",
+    "timestamp": "2026-07-13T22:48:31.007183+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-cfb811c715",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "c3ae434c7c2d",
+    "timestamp": "2026-07-13T22:48:31.007187+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-17b435111f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "292db64b00ab",
+    "timestamp": "2026-07-13T22:48:31.007192+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-773c67d0f0",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "352bd2cd35a9",
+    "timestamp": "2026-07-13T22:48:31.007196+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-70337486fe",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "c1b647058696",
+    "timestamp": "2026-07-13T22:48:31.007200+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-fcd9b9f202",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8cbc15d11344",
+    "timestamp": "2026-07-13T22:48:31.007205+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7fb65aec03",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "43fba5cb5f44",
+    "timestamp": "2026-07-13T22:48:31.007209+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-c8ff67b6f9",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "bbd021818c45",
+    "timestamp": "2026-07-13T22:48:31.007213+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-2c1cc911d5",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "0c8dec9abe4a",
+    "timestamp": "2026-07-13T22:48:31.007218+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d9ea12bb7c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "23cf42edabdb",
+    "timestamp": "2026-07-13T22:48:31.007222+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-74ebf1eddc",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "cfedfe62646a",
+    "timestamp": "2026-07-13T22:48:31.007227+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-33b0aec3fd",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "c61fa4baeb0b",
+    "timestamp": "2026-07-13T22:48:31.007232+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-c74b3e5f02",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "36e6c0d177f5",
+    "timestamp": "2026-07-13T22:48:31.007236+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-143c49d813",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "418bec3d1e3a",
+    "timestamp": "2026-07-13T22:48:31.007241+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-183d8bd8d6",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e331a0a9dedb",
+    "timestamp": "2026-07-13T22:48:31.007250+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-fa6d56675c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "85f4cddb37d6",
+    "timestamp": "2026-07-13T22:48:31.007256+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-175724959c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "736c8c863624",
+    "timestamp": "2026-07-13T22:48:31.007262+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8105eace9c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "74875fb0138e",
+    "timestamp": "2026-07-13T22:48:31.007266+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b973ef53cd",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "729d326d17a7",
+    "timestamp": "2026-07-13T22:48:31.007286+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1910e9743b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "59a34c1e8136",
+    "timestamp": "2026-07-13T22:48:31.007296+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-91d7a9fd75",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ee74689e4dea",
+    "timestamp": "2026-07-13T22:48:31.007304+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-5dd426607e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "404458e40cff",
+    "timestamp": "2026-07-13T22:48:31.007311+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-930fee475a",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1511b9a4cc5e",
+    "timestamp": "2026-07-13T22:48:31.007316+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1fca188d2b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ea835aeb3303",
+    "timestamp": "2026-07-13T22:48:31.007321+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-171925c6f1",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "6b24c3a10445",
+    "timestamp": "2026-07-13T22:48:31.007325+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-520f6ab30b",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e1dcda03f826",
+    "timestamp": "2026-07-13T22:48:31.007330+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-da7a8e1f93",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "7d7b032a6b25",
+    "timestamp": "2026-07-13T22:48:31.007349+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6a7c3b2abb",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1b3968c39670",
+    "timestamp": "2026-07-13T22:48:31.007353+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b1ed4ac1b9",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "c9dd6bea2d8e",
+    "timestamp": "2026-07-13T22:48:31.007359+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b1cfa7b52a",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "42d65863f081",
+    "timestamp": "2026-07-13T22:48:31.007363+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8eeea2809c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "34213e5308a4",
+    "timestamp": "2026-07-13T22:48:31.007367+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-e7513024f3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "642a502aed02",
+    "timestamp": "2026-07-13T22:48:31.007372+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-9e9f6977ce",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "0981c14bd09b",
+    "timestamp": "2026-07-13T22:48:31.007376+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-887fa5386d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8bc7c47013f6",
+    "timestamp": "2026-07-13T22:48:31.007380+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-119695d368",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5f0633bc4d1b",
+    "timestamp": "2026-07-13T22:48:31.007395+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-73072a650c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5847894633fc",
+    "timestamp": "2026-07-13T22:48:31.007400+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-32d7d77a75",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "90e758103ce9",
+    "timestamp": "2026-07-13T22:48:31.007418+00:00",
+    "change_type": "added",
+    "facility_id": "fc-ced6941c6f",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Meta - Altoona Iowa",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "a3f250f6fd96",
+    "timestamp": "2026-07-13T22:48:31.007423+00:00",
+    "change_type": "added",
+    "facility_id": "fc-78a2beadc3",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Meta - Fort Worth Alliance",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "172aea65b631",
+    "timestamp": "2026-07-13T22:48:31.007427+00:00",
+    "change_type": "added",
+    "facility_id": "fc-2f7c1713ae",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Meta - Gallatin TN",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "13767c80275f",
+    "timestamp": "2026-07-13T22:48:31.007431+00:00",
+    "change_type": "added",
+    "facility_id": "fc-c109a80fce",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Meta - Henrico County VA",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "0a7ace14214c",
+    "timestamp": "2026-07-13T22:48:31.007435+00:00",
+    "change_type": "added",
+    "facility_id": "fc-ef3de10bb9",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Meta - Catawba County NC",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "fd68a7bcff77",
+    "timestamp": "2026-07-13T22:48:31.007440+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-52a47aecfb",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1da93b21fc9a",
+    "timestamp": "2026-07-13T22:48:31.007445+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-369c872755",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "a0cf7fc91c46",
+    "timestamp": "2026-07-13T22:48:31.007449+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-ee9abfc1ed",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5dd0a0e2ad97",
+    "timestamp": "2026-07-13T22:48:31.007453+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-ee587254d0",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "427098ed27b2",
+    "timestamp": "2026-07-13T22:48:31.007457+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-6815c40b6e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "6bed48b5578a",
+    "timestamp": "2026-07-13T22:48:31.007462+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-3886085c2e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1aabce8301c8",
+    "timestamp": "2026-07-13T22:48:31.007466+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-de957b453d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "53b43eedd0a0",
+    "timestamp": "2026-07-13T22:48:31.007470+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-debf4bcb51",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e04eb5086d6b",
+    "timestamp": "2026-07-13T22:48:31.007475+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-87ae994bde",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "7a335073ef5a",
+    "timestamp": "2026-07-13T22:48:31.007479+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-2609caa07d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8def01ad8735",
+    "timestamp": "2026-07-13T22:48:31.007484+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b6e4500bfa",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8ad5be4cd74c",
+    "timestamp": "2026-07-13T22:48:31.007488+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-49d7ca77a0",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "d0f13c49fbbc",
+    "timestamp": "2026-07-13T22:48:31.007492+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1daf87d497",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "2672f6d6102e",
+    "timestamp": "2026-07-13T22:48:31.007497+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-587da31a97",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ec71606bf662",
+    "timestamp": "2026-07-13T22:48:31.007501+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-ea909289fb",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "456a3b3ab4d7",
+    "timestamp": "2026-07-13T22:48:31.007506+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-b5702b79b9",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "44eba914d2dd",
+    "timestamp": "2026-07-13T22:48:31.007510+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-78180e99a3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "c5e4417a1824",
+    "timestamp": "2026-07-13T22:48:31.007515+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-4f8365e894",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "7f8f5965cdc9",
+    "timestamp": "2026-07-13T22:48:31.007519+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-043647186e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e1291cfdaeaa",
+    "timestamp": "2026-07-13T22:48:31.007523+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-c37fd2d2c9",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "66f69d7cd540",
+    "timestamp": "2026-07-13T22:48:31.007527+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-529972b2fe",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "47ac34d6f16f",
+    "timestamp": "2026-07-13T22:48:31.007532+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-ca0331ca7d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "e88b5d18a968",
+    "timestamp": "2026-07-13T22:48:31.007537+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-4becaf56b2",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "281142e98309",
+    "timestamp": "2026-07-13T22:48:31.007541+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0f97171d3c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9a29830288c0",
+    "timestamp": "2026-07-13T22:48:31.007545+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-84235c9abe",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9cc299c93c6f",
+    "timestamp": "2026-07-13T22:48:31.007549+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8da3092913",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "496538090364",
+    "timestamp": "2026-07-13T22:48:31.007553+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d59d1c0cc1",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "d887e52cbf03",
+    "timestamp": "2026-07-13T22:48:31.007559+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-30db255cd3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "aa4f1815bbd1",
+    "timestamp": "2026-07-13T22:48:31.007563+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-edf7fff190",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "28dc2ca8d3ca",
+    "timestamp": "2026-07-13T22:48:31.007568+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-baa56901a5",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "4c9de5399956",
+    "timestamp": "2026-07-13T22:48:31.007572+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a5268b78dd",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "aff3a0cde791",
+    "timestamp": "2026-07-13T22:48:31.007576+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a860b6424e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "cae3adf065fc",
+    "timestamp": "2026-07-13T22:48:31.007582+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-9d85e4c52e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "fd0ae0c22118",
+    "timestamp": "2026-07-13T22:48:31.007589+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-aa2a457461",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "89f3802edd8d",
+    "timestamp": "2026-07-13T22:48:31.007593+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-99a248de6f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "6c2c940965ea",
+    "timestamp": "2026-07-13T22:48:31.007598+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1e21ae994f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8a713a12bc1c",
+    "timestamp": "2026-07-13T22:48:31.007602+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-7bc9d535a3",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "f7049cce6d5f",
+    "timestamp": "2026-07-13T22:48:31.007608+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-07cd11a86f",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "4b31d2b17626",
+    "timestamp": "2026-07-13T22:48:31.007612+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-3d2e8f9325",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ac5883c0a7a0",
+    "timestamp": "2026-07-13T22:48:31.007617+00:00",
+    "change_type": "added",
+    "facility_id": "fc-4c98adb41a",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Latisys - Denver DEN1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "f2b3ede9451d",
+    "timestamp": "2026-07-13T22:48:31.007621+00:00",
+    "change_type": "added",
+    "facility_id": "fc-80cb8e63ad",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Latisys - Irvine CA",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "19da6c279fd7",
+    "timestamp": "2026-07-13T22:48:31.007626+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-cfd8af815d",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "64ab4101e65c",
+    "timestamp": "2026-07-13T22:48:31.007630+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-ffc2efd760",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "ed1c40a35c95",
+    "timestamp": "2026-07-13T22:48:31.007635+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8df1f5d444",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "204e38ca886b",
+    "timestamp": "2026-07-13T22:48:31.007639+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e9eb17b219",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Cosentry - Denver",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "114227e737eb",
+    "timestamp": "2026-07-13T22:48:31.007644+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-0fefdccf3c",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "284390c9b087",
+    "timestamp": "2026-07-13T22:48:31.007649+00:00",
+    "change_type": "added",
+    "facility_id": "fc-1564f48624",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Cosentry - Kansas City",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "4692ad5d4a53",
+    "timestamp": "2026-07-13T22:48:31.007653+00:00",
+    "change_type": "added",
+    "facility_id": "fc-ed21e10137",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Internap - Atlanta ATL1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "235e5fa91e76",
+    "timestamp": "2026-07-13T22:48:31.007657+00:00",
+    "change_type": "added",
+    "facility_id": "fc-1aa1627bc2",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Internap - Seattle SEA1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "3743b900e9b7",
+    "timestamp": "2026-07-13T22:48:31.007662+00:00",
+    "change_type": "added",
+    "facility_id": "fc-0a898a6231",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Internap - Dallas DAL1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "500032b791b8",
+    "timestamp": "2026-07-13T22:48:31.007666+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e7289f2573",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Navisite - Andover MA",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "8b0ab02ecb91",
+    "timestamp": "2026-07-13T22:48:31.007671+00:00",
+    "change_type": "added",
+    "facility_id": "fc-e1782de465",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: RagingWire - Sacramento RT1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "a4fdad385aad",
+    "timestamp": "2026-07-13T22:48:31.007675+00:00",
+    "change_type": "added",
+    "facility_id": "fc-7e9ceb608d",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: RagingWire - Sacramento RT2",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1e4500cfcc7c",
+    "timestamp": "2026-07-13T22:48:31.007679+00:00",
+    "change_type": "added",
+    "facility_id": "fc-194d0a3361",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: RagingWire - Sacramento RT5",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "634eca0f49c1",
+    "timestamp": "2026-07-13T22:48:31.007683+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-38c337b17e",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "21fde3a24e03",
+    "timestamp": "2026-07-13T22:48:31.007688+00:00",
+    "change_type": "added",
+    "facility_id": "fc-09569435f4",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: RagingWire - Dallas TX1",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5642c36aac7e",
+    "timestamp": "2026-07-13T22:48:31.007692+00:00",
+    "change_type": "added",
+    "facility_id": "fc-63589ff87e",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Leidos - Chantilly",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "75056cfcc37a",
+    "timestamp": "2026-07-13T22:48:31.007697+00:00",
+    "change_type": "added",
+    "facility_id": "fc-41cc69efe9",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: SAIC - Linthicum",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "585015ca7388",
+    "timestamp": "2026-07-13T22:48:31.007701+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-a32ed0bca6",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "776c52fe37ce",
+    "timestamp": "2026-07-13T22:48:31.007705+00:00",
+    "change_type": "added",
+    "facility_id": "fc-4a7456dadd",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Quantum Loophole - Leesburg VA",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "4766083a7940",
+    "timestamp": "2026-07-13T22:48:31.007710+00:00",
+    "change_type": "added",
+    "facility_id": "fc-2fc19adf4c",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Quantum Loophole - Frederick MD",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "d028c1ca67d4",
+    "timestamp": "2026-07-13T22:48:31.007714+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-93a0da4779",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "2dd2d0890192",
+    "timestamp": "2026-07-13T22:48:31.007732+00:00",
+    "change_type": "added",
+    "facility_id": "fc-4f0d8c88e6",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Tract - Copiah County MS",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "20efba8ca496",
+    "timestamp": "2026-07-13T22:48:31.007737+00:00",
+    "change_type": "added",
+    "facility_id": "fc-94cde37c63",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: HP Enterprise - Spring TX",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "1caaba44b34a",
+    "timestamp": "2026-07-13T22:48:31.007742+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-9b4637486a",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "79b0b8655aea",
+    "timestamp": "2026-07-13T22:48:31.007785+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-48dc34eb25",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "dbf4255be3c2",
+    "timestamp": "2026-07-13T22:48:31.007790+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-f9c8528c2a",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "a31655348838",
+    "timestamp": "2026-07-13T22:48:31.007794+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-d0745d46ef",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5aacae146fe3",
+    "timestamp": "2026-07-13T22:48:31.007798+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-f04d731773",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "4a8d24b437db",
+    "timestamp": "2026-07-13T22:48:31.007803+00:00",
+    "change_type": "added",
+    "facility_id": "fc-437f8f28fb",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Meta - DeForest WI",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "054cc51aedea",
+    "timestamp": "2026-07-13T22:48:31.007807+00:00",
+    "change_type": "added",
+    "facility_id": "fc-79aba86dd1",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Micron - Boise Memory Campus DC",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "85497f1babb6",
+    "timestamp": "2026-07-13T22:48:31.007812+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-c0f7a7af01",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9f53e467cf37",
+    "timestamp": "2026-07-13T22:48:31.007816+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-2d6bb94e73",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "57041e4e5289",
+    "timestamp": "2026-07-13T22:48:31.007820+00:00",
+    "change_type": "added",
+    "facility_id": "fc-55a2e4ff0e",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Meta - Forest City GA",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9abebf088910",
+    "timestamp": "2026-07-13T22:48:31.007825+00:00",
+    "change_type": "added",
+    "facility_id": "fc-ea0ba656eb",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Meta - Horry County SC",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "9f45bbaa6ce4",
+    "timestamp": "2026-07-13T22:48:31.007829+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-1bf8236db4",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "5b9205a531f4",
+    "timestamp": "2026-07-13T22:48:31.007833+00:00",
+    "change_type": "candidate_added",
+    "facility_id": "fc-8c418e6544",
+    "source_id": "existing_data_centers",
+    "summary": "Needs review: matched existing_data_centers record",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "0fffec5ae116",
+    "timestamp": "2026-07-13T22:48:31.007837+00:00",
+    "change_type": "added",
+    "facility_id": "fc-bd8c8f0559",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Crusoe Energy - Jackson TN",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
+  },
+  {
+    "log_id": "a66fa758dd21",
+    "timestamp": "2026-07-13T22:48:31.007841+00:00",
+    "change_type": "added",
+    "facility_id": "fc-d847b0be79",
+    "source_id": "existing_data_centers",
+    "summary": "New facility from existing_data_centers: Tract - South Texas Campus",
+    "field_changes": {},
+    "pipeline_run_id": "db59ba4d4d2a"
   }
 ]
