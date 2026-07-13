@@ -1,7 +1,143 @@
 {
   "meta": {
     "description": "Log of detected changes in monitored government sources. Used to track what the pipeline has found and acted on.",
-    "last_updated": null
+    "last_updated": "2026-07-13T10:18:18.569921+00:00"
   },
-  "entries": []
+  "entries": [
+    {
+      "log_id": "run-20260713T101818-0000",
+      "source_id": "az-legislature",
+      "detected_at": "2026-07-13T10:17:56.476281+00:00",
+      "change_type": "new_document",
+      "url": "https://www.azleg.gov/bills/?view=all&q=data+center",
+      "summary": "New candidate: Introduced Bills (Arizona State Legislature)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0001",
+      "source_id": "ia-datacenter-exemption",
+      "detected_at": "2026-07-13T10:17:59.367224+00:00",
+      "change_type": "new_document",
+      "url": "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=423&session=90",
+      "summary": "New candidate: Iowa Legislature - Code Section Listings (Iowa Legislature)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0002",
+      "source_id": "md-montgomery-council",
+      "detected_at": "2026-07-13T10:17:59.906797+00:00",
+      "change_type": "new_document",
+      "url": "https://www.montgomerycountymd.gov/council/",
+      "summary": "New candidate: County Council | Montgomery County, MD (Montgomery County)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0003",
+      "source_id": "ia-legislature",
+      "detected_at": "2026-07-13T10:17:59.639970+00:00",
+      "change_type": "new_document",
+      "url": "https://www.legis.iowa.gov/legislation/BillBook?ba=data+center&ga=91",
+      "summary": "New candidate: Iowa Legislature - BillBook (Iowa General Assembly)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0004",
+      "source_id": "oh-development-datacenter",
+      "detected_at": "2026-07-13T10:18:03.845493+00:00",
+      "change_type": "new_document",
+      "url": "https://development.ohio.gov/",
+      "summary": "New candidate: Development (Ohio Development Services Agency)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0005",
+      "source_id": "nj-legislature",
+      "detected_at": "2026-07-13T10:18:07.200171+00:00",
+      "change_type": "new_document",
+      "url": "https://www.njleg.state.nj.us/",
+      "summary": "New candidate: NJ Legislature (New Jersey Legislature)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0006",
+      "source_id": "or-business-oregon",
+      "detected_at": "2026-07-13T10:18:09.354522+00:00",
+      "change_type": "new_document",
+      "url": "https://www.oregon4biz.com/",
+      "summary": "New candidate: Business Oregon : Home : State of Oregon (Business Oregon)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0007",
+      "source_id": "tn-anderson-commission",
+      "detected_at": "2026-07-13T10:18:10.023634+00:00",
+      "change_type": "new_document",
+      "url": "https://www.andersoncountytn.gov/",
+      "summary": "New candidate: Anderson County, Tennessee &#8211; In The Mountains of East Tennessee (Anderson County)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0008",
+      "source_id": "tx-ercot",
+      "detected_at": "2026-07-13T10:18:10.925594+00:00",
+      "change_type": "new_document",
+      "url": "https://www.ercot.com/",
+      "summary": "New candidate: Electric Reliability Council of Texas (ERCOT)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0009",
+      "source_id": "mt-legislature",
+      "detected_at": "2026-07-13T10:18:11.874065+00:00",
+      "change_type": "new_document",
+      "url": "https://leg.mt.gov/",
+      "summary": "New candidate: Home - Montana Legislature (Montana Legislature)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0010",
+      "source_id": "tx-gov-incentives",
+      "detected_at": "2026-07-13T10:18:13.443595+00:00",
+      "change_type": "new_document",
+      "url": "https://gov.texas.gov/business/page/incentives",
+      "summary": "New candidate: Incentive Programs (Office of the Governor of Texas)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0011",
+      "source_id": "va-fairfax-bos",
+      "detected_at": "2026-07-13T10:18:14.090343+00:00",
+      "change_type": "new_document",
+      "url": "https://www.fairfaxcounty.gov/boardofsupervisors/",
+      "summary": "New candidate: Board of Supervisors | Board Of Supervisors (Fairfax County)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0012",
+      "source_id": "wa-utc",
+      "detected_at": "2026-07-13T10:18:14.340081+00:00",
+      "change_type": "new_document",
+      "url": "https://www.utc.wa.gov/",
+      "summary": "New candidate: Washington Utilities and Transportation Commission | UTC (Washington Utilities and Transportation Commission)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0013",
+      "source_id": "wa-okanogan-pud",
+      "detected_at": "2026-07-13T10:18:15.428429+00:00",
+      "change_type": "new_document",
+      "url": "https://www.okanoganpud.org/",
+      "summary": "New candidate: Okanogan County PUD (Okanogan County PUD)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260713T101818-0014",
+      "source_id": "wi-dane-board",
+      "detected_at": "2026-07-13T10:18:17.702275+00:00",
+      "change_type": "new_document",
+      "url": "https://board.countyofdane.com/",
+      "summary": "New candidate: Home Page (Dane County)",
+      "acted_on": false
+    }
+  ]
 }

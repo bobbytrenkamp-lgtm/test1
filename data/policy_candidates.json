@@ -1,9 +1,334 @@
 {
   "meta": {
-    "description": "Policy signals discovered by the government-source pipeline awaiting human review. Entries here are CANDIDATES — they have NOT been verified and must NOT be copied directly to restrictions_raw.json or map_data.json without independent verification of the cited source document.",
-    "last_updated": null,
-    "total": 0,
-    "pending": 0
+    "description": "Policy signals discovered by the pipeline awaiting human review. Do NOT copy entries here directly to restrictions_raw.json without verification.",
+    "last_updated": "2026-07-13T10:18:18.569290+00:00",
+    "total": 15,
+    "pending": 15
   },
-  "candidates": []
+  "candidates": [
+    {
+      "candidate_id": "az-legislature-4b607bce6c53",
+      "source_id": "az-legislature",
+      "discovered_at": "2026-07-13T10:17:56.476281+00:00",
+      "jurisdiction_name": "Arizona State Legislature",
+      "state": "Arizona",
+      "state_abbr": "AZ",
+      "fips": null,
+      "title": "Introduced Bills",
+      "description": "\u2026le HCM2001 Muslim Brotherhood; designation; terrorist organization HCM2002 CAIR; terrorist organization; urging designation HCM2003 campaign finance; state authority HCM2004 urging Congress; repeal NVRA HCM2005 property ownership; communist country; restrictions HCM2006 endangered species act; urging reform HCM2007 state route 69; urge renaming HCM2008 gas tax elimination HCM2009 subsurface minerals; access; federal policy HCM2010 constitutional amendment; U.S. senators; repeal HCM2011 Mexican ",
+      "signal_url": "https://www.azleg.gov/bills/?view=all&q=data+center",
+      "lifecycle_stage": "repealed",
+      "policy_types": [
+        "data_center",
+        "ai",
+        "crypto",
+        "energy",
+        "water"
+      ],
+      "confidence": 1.0,
+      "evidence": "\u2026le HCM2001 Muslim Brotherhood; designation; terrorist organization HCM2002 CAIR; terrorist organization; urging designation HCM2003 campaign finance; state authority HCM2004 urging Congress; repeal NVRA HCM2005 property ownership; communist country; restrictions HCM2006 endangered species act; urging reform HCM2007 state route 69; urge renaming HCM2008 gas tax elimination HCM2009 subsurface minerals; access; federal policy HCM2010 constitutional amendment; U.S. senators; repeal HCM2011 Mexican ",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "ia-datacenter-exemption-4c44c85991e8",
+      "source_id": "ia-datacenter-exemption",
+      "discovered_at": "2026-07-13T10:17:59.367224+00:00",
+      "jurisdiction_name": "Iowa Legislature",
+      "state": "Iowa",
+      "state_abbr": "IA",
+      "fips": null,
+      "title": "Iowa Legislature - Code Section Listings",
+      "description": "\u2026mail sourcing. PDF RTF &#167;423.20 - Telecommunications service sourcing. PDF RTF &#167;423.21 - Bad debt deductions. PDF RTF &#167;423.22 - Taxation in another state. PDF RTF &#167;423.23 - Sellers\u2019 agreements. PDF RTF &#167;423.24 - Absorbing tax prohibited. PDF RTF &#167;423.24A - Reimbursement for the primary road fund. PDF RTF &#167;423.25 - Director\u2019s power to adopt rules. PDF RTF &#167;423.26 - Vehicles subject only to the issuance of title \u2014 vehicle lease transactions not requiring tit",
+      "signal_url": "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=423&session=90",
+      "lifecycle_stage": "effective",
+      "policy_types": [
+        "data_center"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026mail sourcing. PDF RTF &#167;423.20 - Telecommunications service sourcing. PDF RTF &#167;423.21 - Bad debt deductions. PDF RTF &#167;423.22 - Taxation in another state. PDF RTF &#167;423.23 - Sellers\u2019 agreements. PDF RTF &#167;423.24 - Absorbing tax prohibited. PDF RTF &#167;423.24A - Reimbursement for the primary road fund. PDF RTF &#167;423.25 - Director\u2019s power to adopt rules. PDF RTF &#167;423.26 - Vehicles subject only to the issuance of title \u2014 vehicle lease transactions not requiring tit",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "md-montgomery-council-ae32ccb8fb8f",
+      "source_id": "md-montgomery-council",
+      "discovered_at": "2026-07-13T10:17:59.906797+00:00",
+      "jurisdiction_name": "Montgomery County",
+      "state": "Maryland",
+      "state_abbr": "MD",
+      "fips": "24031",
+      "title": "County Council | Montgomery County, MD",
+      "description": "\u2026County Government. The Council has eleven members who are elected by Montgomery County voters to serve four-year terms. Councilmembers Council Meetings Participate Legislation &amp; Resolutions Operating &amp; CIP Budgets Master Plans Land Use &amp; Zoning Boards &amp; Commissions About the Montgomery County Council Welcome to the Montgomery County Council website. We are here to help residents access resources, stay informed about budget, legislative and land use issues and provide opportuniti",
+      "signal_url": "https://www.montgomerycountymd.gov/council/",
+      "lifecycle_stage": "proposed",
+      "policy_types": [
+        "water"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026County Government. The Council has eleven members who are elected by Montgomery County voters to serve four-year terms. Councilmembers Council Meetings Participate Legislation &amp; Resolutions Operating &amp; CIP Budgets Master Plans Land Use &amp; Zoning Boards &amp; Commissions About the Montgomery County Council Welcome to the Montgomery County Council website. We are here to help residents access resources, stay informed about budget, legislative and land use issues and provide opportuniti",
+      "existing_fips_match": "24031",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "ia-legislature-bda77d770d2b",
+      "source_id": "ia-legislature",
+      "discovered_at": "2026-07-13T10:17:59.639970+00:00",
+      "jurisdiction_name": "Iowa General Assembly",
+      "state": "Iowa",
+      "state_abbr": "IA",
+      "fips": null,
+      "title": "Iowa Legislature - BillBook",
+      "description": "\u2026nd Employment Employee Benefits Job Training Occupational safety and health Public employees Retirement Salaries and wages State employees Unemployment Unions Workers' Compensation Local Government City Government County Government Special Districts Zoning Natural Resources Animals Fishing Hunting Land Use Parks Plants Plants (vegetation) Water Wildlife Property Eminent domain Landlord and tenant Personal Property Public Property Real Property Unclaimed property Records and Publications Confide",
+      "signal_url": "https://www.legis.iowa.gov/legislation/BillBook?ba=data+center&ga=91",
+      "lifecycle_stage": "effective",
+      "policy_types": [
+        "energy",
+        "water"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026nd Employment Employee Benefits Job Training Occupational safety and health Public employees Retirement Salaries and wages State employees Unemployment Unions Workers' Compensation Local Government City Government County Government Special Districts Zoning Natural Resources Animals Fishing Hunting Land Use Parks Plants Plants (vegetation) Water Wildlife Property Eminent domain Landlord and tenant Personal Property Public Property Real Property Unclaimed property Records and Publications Confide",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "oh-development-datacenter-d558cd41f9cc",
+      "source_id": "oh-development-datacenter",
+      "discovered_at": "2026-07-13T10:18:03.845493+00:00",
+      "jurisdiction_name": "Ohio Development Services Agency",
+      "state": "Ohio",
+      "state_abbr": "OH",
+      "fips": null,
+      "title": "Development",
+      "description": "\u2026uot;},&quot;com.ohio.gov&quot;:{&quot;index&quot;:74,&quot;value&quot;:&quot;5abcd9dd-177b-4ce8-bc28-fbd04072a189&quot;},&quot;finder.ohio.gov&quot;:{&quot;index&quot;:75,&quot;value&quot;:&quot;08d8bec3-15b0-4df7-9da8-e4536b1387c6&quot;},&quot;broadband.ohio.gov&quot;:{&quot;index&quot;:76,&quot;value&quot;:&quot;aa994253-d426-4db0-87b9-25fd5f909244&quot;},&quot;chirobd.ohio.gov&quot;:{&quot;index&quot;:77,&quot;value&quot;:&quot;8941a714-67b6-4775-9332-6af0c9cd8ff7&quot;},&quot;mha.ohio.gov&q",
+      "signal_url": "https://development.ohio.gov/",
+      "lifecycle_stage": "failed",
+      "policy_types": [
+        "energy"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026uot;},&quot;com.ohio.gov&quot;:{&quot;index&quot;:74,&quot;value&quot;:&quot;5abcd9dd-177b-4ce8-bc28-fbd04072a189&quot;},&quot;finder.ohio.gov&quot;:{&quot;index&quot;:75,&quot;value&quot;:&quot;08d8bec3-15b0-4df7-9da8-e4536b1387c6&quot;},&quot;broadband.ohio.gov&quot;:{&quot;index&quot;:76,&quot;value&quot;:&quot;aa994253-d426-4db0-87b9-25fd5f909244&quot;},&quot;chirobd.ohio.gov&quot;:{&quot;index&quot;:77,&quot;value&quot;:&quot;8941a714-67b6-4775-9332-6af0c9cd8ff7&quot;},&quot;mha.ohio.gov&q",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "nj-legislature-77fd55779202",
+      "source_id": "nj-legislature",
+      "discovered_at": "2026-07-13T10:18:07.200171+00:00",
+      "jurisdiction_name": "New Jersey Legislature",
+      "state": "New Jersey",
+      "state_abbr": "NJ",
+      "fips": null,
+      "title": "NJ Legislature",
+      "description": "\u2026BORTION AGRICULTURE AGRICULTURE - FARMLAND PRESERVATION ALCOHOLIC BEVERAGES ANIMALS ANIMALS - CONTROL AND LICENSING ANIMALS - CRUELTY AND WELFARE ARTS AND CULTURE AUTHORITIES - INTERSTATE AUTHORITIES - LOCAL AUTHORITIES - STATE AND REGIONAL AVIATION BANKING AND FINANCE BANKING AND FINANCE - CONSUMER FINANCE BOATS AND BOAT SAFETY BONDS CHARITIES AND NON PROFIT ORGANIZATIONS CHILD SUPPORT CHILDREN CHILDREN - ADOPTION CHILDREN - CHILD ABUSE CIVIL ACTIONS CIVIL ACTIONS - CHARITABLE IMMUNITY CIVIL A",
+      "signal_url": "https://www.njleg.state.nj.us/",
+      "lifecycle_stage": "repealed",
+      "policy_types": [
+        "energy",
+        "water"
+      ],
+      "confidence": 0.667,
+      "evidence": "\u2026BORTION AGRICULTURE AGRICULTURE - FARMLAND PRESERVATION ALCOHOLIC BEVERAGES ANIMALS ANIMALS - CONTROL AND LICENSING ANIMALS - CRUELTY AND WELFARE ARTS AND CULTURE AUTHORITIES - INTERSTATE AUTHORITIES - LOCAL AUTHORITIES - STATE AND REGIONAL AVIATION BANKING AND FINANCE BANKING AND FINANCE - CONSUMER FINANCE BOATS AND BOAT SAFETY BONDS CHARITIES AND NON PROFIT ORGANIZATIONS CHILD SUPPORT CHILDREN CHILDREN - ADOPTION CHILDREN - CHILD ABUSE CIVIL ACTIONS CIVIL ACTIONS - CHARITABLE IMMUNITY CIVIL A",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "or-business-oregon-b0f7a54dfc71",
+      "source_id": "or-business-oregon",
+      "discovered_at": "2026-07-13T10:18:09.354522+00:00",
+      "jurisdiction_name": "Business Oregon",
+      "state": "Oregon",
+      "state_abbr": "OR",
+      "fips": null,
+      "title": "Business Oregon : Home : State of Oregon",
+      "description": "\u2026Oregon Growth Board Entrepreneur and Business Support Services Cultivate Arts and Culture Oregon Arts Commission Oregon Cultural Trust Oregon Film Build or Maintain Infrastructure Water and Wastewater Livable Communities Seismic Rehabilitation Broadband Ports Land Additional Public Works Market Oregon Products Overseas Oregon&#39;s Global Trade Desk Trade Missions and Trade Shows Help from our Global Strategies Team Trade in Oregon Federal Funding Disclosure Compete for Contracts Certification\u2026",
+      "signal_url": "https://www.oregon4biz.com/",
+      "lifecycle_stage": "proposed",
+      "policy_types": [
+        "water"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026Oregon Growth Board Entrepreneur and Business Support Services Cultivate Arts and Culture Oregon Arts Commission Oregon Cultural Trust Oregon Film Build or Maintain Infrastructure Water and Wastewater Livable Communities Seismic Rehabilitation Broadband Ports Land Additional Public Works Market Oregon Products Overseas Oregon&#39;s Global Trade Desk Trade Missions and Trade Shows Help from our Global Strategies Team Trade in Oregon Federal Funding Disclosure Compete for Contracts Certification\u2026",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "tn-anderson-commission-169b12f01c40",
+      "source_id": "tn-anderson-commission",
+      "discovered_at": "2026-07-13T10:18:10.023634+00:00",
+      "jurisdiction_name": "Anderson County",
+      "state": "Tennessee",
+      "state_abbr": "TN",
+      "fips": "47001",
+      "title": "Anderson County, Tennessee &#8211; In The Mountains of East Tennessee",
+      "description": "\u2026t\":{\"gdpr\":false,\"ccpa\":false}},{\"name\":\"Advertisement\",\"slug\":\"advertisement\",\"isNecessary\":false,\"ccpaDoNotSell\":true,\"cookies\":[],\"active\":true,\"defaultConsent\":{\"gdpr\":false,\"ccpa\":false}}],\"_activeLaw\":\"gdpr\",\"_rootDomain\":\"\",\"_block\":\"1\",\"_showBanner\":\"1\",\"_bannerConfig\":{\"settings\":{\"type\":\"box\",\"preferenceCenterType\":\"popup\",\"position\":\"bottom-left\",\"applicableLaw\":\"ccpa\"},\"behaviours\":{\"reloadBannerOnAccept\":false,\"loadAnalyticsByDefault\":false,\"animations\":{\"onLoad\":\"animate\",\"onHide\"",
+      "signal_url": "https://www.andersoncountytn.gov/",
+      "lifecycle_stage": "expired",
+      "policy_types": [
+        "data_center",
+        "energy"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026t\":{\"gdpr\":false,\"ccpa\":false}},{\"name\":\"Advertisement\",\"slug\":\"advertisement\",\"isNecessary\":false,\"ccpaDoNotSell\":true,\"cookies\":[],\"active\":true,\"defaultConsent\":{\"gdpr\":false,\"ccpa\":false}}],\"_activeLaw\":\"gdpr\",\"_rootDomain\":\"\",\"_block\":\"1\",\"_showBanner\":\"1\",\"_bannerConfig\":{\"settings\":{\"type\":\"box\",\"preferenceCenterType\":\"popup\",\"position\":\"bottom-left\",\"applicableLaw\":\"ccpa\"},\"behaviours\":{\"reloadBannerOnAccept\":false,\"loadAnalyticsByDefault\":false,\"animations\":{\"onLoad\":\"animate\",\"onHide\"",
+      "existing_fips_match": "47001",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "tx-ercot-2c95ea241c10",
+      "source_id": "tx-ercot",
+      "discovered_at": "2026-07-13T10:18:10.925594+00:00",
+      "jurisdiction_name": "ERCOT",
+      "state": "Texas",
+      "state_abbr": "TX",
+      "fips": null,
+      "title": "Electric Reliability Council of Texas",
+      "description": "\u2026t Governance Board of Directors Executive Team Membership Ethics Financial Information HB 4492 Securitization Subchapter M Default Balance Securitization Subchapter N Uplift Balance Securitization Legal Policies and Notices Proposed Brazos and ERCOT Bankruptcy Settlement Board Ethics Agreements Legal Notices February 2021 Extreme Weather Event January 24 and 25, 2026, DOE 202(c) Orders Grid Research Innovation and Transformation Grid Transformation Research and Innovation ERCOT Innovation Summi",
+      "signal_url": "https://www.ercot.com/",
+      "lifecycle_stage": "effective",
+      "policy_types": [
+        "energy"
+      ],
+      "confidence": 0.45,
+      "evidence": "\u2026t Governance Board of Directors Executive Team Membership Ethics Financial Information HB 4492 Securitization Subchapter M Default Balance Securitization Subchapter N Uplift Balance Securitization Legal Policies and Notices Proposed Brazos and ERCOT Bankruptcy Settlement Board Ethics Agreements Legal Notices February 2021 Extreme Weather Event January 24 and 25, 2026, DOE 202(c) Orders Grid Research Innovation and Transformation Grid Transformation Research and Innovation ERCOT Innovation Summi",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "mt-legislature-be692d796423",
+      "source_id": "mt-legislature",
+      "discovered_at": "2026-07-13T10:18:11.874065+00:00",
+      "jurisdiction_name": "Montana Legislature",
+      "state": "Montana",
+      "state_abbr": "MT",
+      "fips": null,
+      "title": "Home - Montana Legislature",
+      "description": "\u20261, 1fr);--grid-auto-flow:row;}.elementor-477 .elementor-element.elementor-element-53ff86c{--divider-border-style:solid;--divider-color:#3D3D40;--divider-border-width:1px;}.elementor-477 .elementor-element.elementor-element-53ff86c .elementor-divider-separator{width:100%;}.elementor-477 .elementor-element.elementor-element-53ff86c .elementor-divider{padding-block-start:2px;padding-block-end:2px;}.elementor-477 .elementor-element.elementor-element-2c62bbc{--display:grid;--e-con-grid-template-colu",
+      "signal_url": "https://leg.mt.gov/",
+      "lifecycle_stage": "proposed",
+      "policy_types": [
+        "energy"
+      ],
+      "confidence": 0.667,
+      "evidence": "\u20261, 1fr);--grid-auto-flow:row;}.elementor-477 .elementor-element.elementor-element-53ff86c{--divider-border-style:solid;--divider-color:#3D3D40;--divider-border-width:1px;}.elementor-477 .elementor-element.elementor-element-53ff86c .elementor-divider-separator{width:100%;}.elementor-477 .elementor-element.elementor-element-53ff86c .elementor-divider{padding-block-start:2px;padding-block-end:2px;}.elementor-477 .elementor-element.elementor-element-2c62bbc{--display:grid;--e-con-grid-template-colu",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "tx-gov-incentives-b332dac79410",
+      "source_id": "tx-gov-incentives",
+      "discovered_at": "2026-07-13T10:18:13.443595+00:00",
+      "jurisdiction_name": "Office of the Governor of Texas",
+      "state": "Texas",
+      "state_abbr": "TX",
+      "fips": null,
+      "title": "Incentive Programs",
+      "description": "\u2026gName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'dataLayer', 'GTM-5BJ2ZX5'); Incentive Programs grunticon([\"/assets/grunticon/icons.data.svg.css\", \"/assets/grunticon/icons.data.png.css\", \"/assets/grunticon/icons.fallback.css\"], grunticon.svgLoadedCallback); Skip to main content Espa\u00f1ol Office of the Texas Governor Texas Econ",
+      "signal_url": "https://gov.texas.gov/business/page/incentives",
+      "lifecycle_stage": "effective",
+      "policy_types": [
+        "ai",
+        "energy"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026gName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'dataLayer', 'GTM-5BJ2ZX5'); Incentive Programs grunticon([\"/assets/grunticon/icons.data.svg.css\", \"/assets/grunticon/icons.data.png.css\", \"/assets/grunticon/icons.fallback.css\"], grunticon.svgLoadedCallback); Skip to main content Espa\u00f1ol Office of the Texas Governor Texas Econ",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "va-fairfax-bos-8f42139fb9dc",
+      "source_id": "va-fairfax-bos",
+      "discovered_at": "2026-07-13T10:18:14.090343+00:00",
+      "jurisdiction_name": "Fairfax County",
+      "state": "Virginia",
+      "state_abbr": "VA",
+      "fips": "51059",
+      "title": "Board of Supervisors | Board Of Supervisors",
+      "description": "\u2026tary &amp; Veterans New Residents Older Adults Parents People with Disabilities Volunteers More Land Use &amp; Planning Comprehensive Plan County Capital Projects Land Records Parks Planning Planning Projects Research Tools Transportation Projects Urban Centers More Library &amp; Education Adult Education Early Childhood Programs Library Branches Library Catalog Search Public Schools More Parks &amp; Recreation Arts Athletic Fields Camps Community Centers Parktakes Classes Rec Centers Senior Ce",
+      "signal_url": "https://www.fairfaxcounty.gov/boardofsupervisors/",
+      "lifecycle_stage": "enacted",
+      "policy_types": [
+        "energy"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026tary &amp; Veterans New Residents Older Adults Parents People with Disabilities Volunteers More Land Use &amp; Planning Comprehensive Plan County Capital Projects Land Records Parks Planning Planning Projects Research Tools Transportation Projects Urban Centers More Library &amp; Education Adult Education Early Childhood Programs Library Branches Library Catalog Search Public Schools More Parks &amp; Recreation Arts Athletic Fields Camps Community Centers Parktakes Classes Rec Centers Senior Ce",
+      "existing_fips_match": "51059",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "wa-utc-a04723313a19",
+      "source_id": "wa-utc",
+      "discovered_at": "2026-07-13T10:18:14.340081+00:00",
+      "jurisdiction_name": "Washington Utilities and Transportation Commission",
+      "state": "Washington",
+      "state_abbr": "WA",
+      "fips": null,
+      "title": "Washington Utilities and Transportation Commission | UTC",
+      "description": "\u2026Metering Performance-Based Regulation (PBR) PBR Framework Performance Incentive Mechanisms (PIMs) Timeline and Participation Key Documents Resource Adequacy in Washington State Wildfires Telecommunications 911 and Other Special Service Numbers Broadband Classifications \u2013 Class A or B Class A CLEC Reporting Requirements Class A ILEC Reporting Requirements Class B CLEC Reporting Requirements Class B ILEC Reporting Requirements Federal Universal Service Funds Eligible Telecommunications Carriers I",
+      "signal_url": "https://www.utc.wa.gov/",
+      "lifecycle_stage": "expired",
+      "policy_types": [
+        "energy",
+        "water"
+      ],
+      "confidence": 0.667,
+      "evidence": "\u2026Metering Performance-Based Regulation (PBR) PBR Framework Performance Incentive Mechanisms (PIMs) Timeline and Participation Key Documents Resource Adequacy in Washington State Wildfires Telecommunications 911 and Other Special Service Numbers Broadband Classifications \u2013 Class A or B Class A CLEC Reporting Requirements Class A ILEC Reporting Requirements Class B CLEC Reporting Requirements Class B ILEC Reporting Requirements Federal Universal Service Funds Eligible Telecommunications Carriers I",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "wa-okanogan-pud-43aae3ad632c",
+      "source_id": "wa-okanogan-pud",
+      "discovered_at": "2026-07-13T10:18:15.428429+00:00",
+      "jurisdiction_name": "Okanogan County PUD",
+      "state": "Washington",
+      "state_abbr": "WA",
+      "fips": "53047",
+      "title": "Okanogan County PUD",
+      "description": "\u2026,.mobile-sidebar-levels-2 .nav > li > ul > li > a {font-weight: 400;font-style: normal;}h1,h2,h3,h4,h5,h6,.heading-font, .off-canvas-center .nav-sidebar.nav-vertical > li > a{font-family: \"Source Sans 3\", sans-serif;}h1,h2,h3,h4,h5,h6,.heading-font,.banner h1,.banner h2 {font-weight: 700;font-style: normal;}.alt-font{font-family: \"Source Sans 3\", sans-serif;}.alt-font {font-weight: 700!important;font-style: normal!important;}.breadcrumbs{text-transform: none;}button,.button{text-transform: none",
+      "signal_url": "https://www.okanoganpud.org/",
+      "lifecycle_stage": "proposed",
+      "policy_types": [
+        "energy"
+      ],
+      "confidence": 0.667,
+      "evidence": "\u2026,.mobile-sidebar-levels-2 .nav > li > ul > li > a {font-weight: 400;font-style: normal;}h1,h2,h3,h4,h5,h6,.heading-font, .off-canvas-center .nav-sidebar.nav-vertical > li > a{font-family: \"Source Sans 3\", sans-serif;}h1,h2,h3,h4,h5,h6,.heading-font,.banner h1,.banner h2 {font-weight: 700;font-style: normal;}.alt-font{font-family: \"Source Sans 3\", sans-serif;}.alt-font {font-weight: 700!important;font-style: normal!important;}.breadcrumbs{text-transform: none;}button,.button{text-transform: none",
+      "existing_fips_match": "53047",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "wi-dane-board-d402deb6a587",
+      "source_id": "wi-dane-board",
+      "discovered_at": "2026-07-13T10:18:17.702275+00:00",
+      "jurisdiction_name": "Dane County",
+      "state": "Wisconsin",
+      "state_abbr": "WI",
+      "fips": "55025",
+      "title": "Home Page",
+      "description": "\u2026ocess Learn More Learn More View Newsletters Learn More Learn More View Press Releases Learn More Learn More Watch County Board Meetings Learn More Learn More Learn About the Legislative Process Learn More &nbsp; Featured Links Advisory Committee on Data Centers Criminal Justice Council Youth Governance Program Equity Plan County Budget &nbsp;Process View County Board Newsletters Copyright &copy; 2026 County of Dane. All rights reserved. This site is protected by reCAPTCHA and the Google Privac",
+      "signal_url": "https://board.countyofdane.com/",
+      "lifecycle_stage": "effective",
+      "policy_types": [
+        "data_center"
+      ],
+      "confidence": 0.45,
+      "evidence": "\u2026ocess Learn More Learn More View Newsletters Learn More Learn More View Press Releases Learn More Learn More Watch County Board Meetings Learn More Learn More Learn About the Legislative Process Learn More &nbsp; Featured Links Advisory Committee on Data Centers Criminal Justice Council Youth Governance Program Equity Plan County Budget &nbsp;Process View County Board Newsletters Copyright &copy; 2026 County of Dane. All rights reserved. This site is protected by reCAPTCHA and the Google Privac",
+      "existing_fips_match": "55025",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    }
+  ]
 }
