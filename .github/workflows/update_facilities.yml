@@ -57,6 +57,9 @@ jobs:
           fi
           python data/run_facility_pipeline.py $ARGS
 
+      - name: Export facilities to map layers
+        run: python data/export_facilities_to_layers.py
+
       - name: Commit updated facility data
         run: |
           git config user.name "github-actions[bot]"
@@ -66,7 +69,8 @@ jobs:
             data/facilities_candidates.json \
             data/facilities_changelog.json \
             data/facilities_sync_state.json \
-            data/facilities_version_history/
+            data/facilities_version_history/ \
+            data/sample_layers.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
