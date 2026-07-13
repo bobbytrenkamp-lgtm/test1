@@ -8,5 +8,30 @@
     "summary": "406 Client Error: Not Acceptable for url: https://overpass-api.de/api/interpreter",
     "field_changes": {},
     "pipeline_run_id": "c4d1314603fa"
+  },
+  {
+    "log_id": "693911bc7cd6",
+    "timestamp": "2026-07-13T06:24:20.764503+00:00",
+    "change_type": "updated",
+    "facility_id": "fc-f5f2df8aba",
+    "source_id": "existing_data_centers",
+    "summary": "Fields updated from existing_data_centers: operational_date",
+    "field_changes": {
+      "operational_date": {
+        "from": null,
+        "to": null
+      }
+    },
+    "pipeline_run_id": "6601f4716550"
+  },
+  {
+    "log_id": "b244730d49de",
+    "timestamp": "2026-07-13T06:24:21.452116+00:00",
+    "change_type": "verification_failure",
+    "facility_id": "",
+    "source_id": "osm",
+    "summary": "406 Client Error: Not Acceptable for url: https://overpass-api.de/api/interpreter",
+    "field_changes": {},
+    "pipeline_run_id": "6601f4716550"
   }
 ]
