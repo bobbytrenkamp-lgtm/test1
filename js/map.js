@@ -310,6 +310,11 @@ async function initMapFromGeo() {
   if (loadEl) loadEl.style.display = "";
   try {
     const us = await fetchGeoData();
+    // Yield to the browser so it can apply the flex layout for #main before
+    // Leaflet reads the container height. When fetchGeoData() resolves from
+    // cache it resolves as a microtask — before the browser has had a chance
+    // to re-compute the flex layout after mainEl.hidden was set to false.
+    await new Promise(r => requestAnimationFrame(r));
     const countiesGeoJSON = topojson.feature(us, us.objects.counties);
     const statesGeoJSON   = topojson.feature(us, us.objects.states);
     initLeafletMap();
@@ -790,6 +795,15 @@ function initLeafletMap() {
       }
     }
   });
+
+  // Resize handlers — keep Leaflet's internal size in sync with the container.
+  // Needed for iOS Safari's dynamic URL bar (visual viewport changes) and any
+  // other viewport resize events.
+  const onResize = () => { if (leafletMap) leafletMap.invalidateSize(); };
+  window.addEventListener("resize", onResize);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", onResize);
+  }
 }
 
 /* ── Stats bar ── */
@@ -2123,7 +2137,7 @@ function switchTab(tab) {
     if (!leafletMap) {
       mapInitPromise = initMapFromGeo();
     } else {
-      setTimeout(() => leafletMap.invalidateSize(), 50);
+      setTimeout(() => leafletMap && leafletMap.invalidateSize(), 200);
     }
   }
 }
