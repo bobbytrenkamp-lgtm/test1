@@ -545,7 +545,18 @@ function addAnnotations(countiesGeoJSON) {
     annotationGroup.addLayer(marker);
   }
 
-  if (layerState.annotations) annotationGroup.addTo(leafletMap);
+  // Show annotations only when zoomed in enough; hide on national overview
+  const ANNOTATION_MIN_ZOOM = 5;
+  function syncAnnotationVisibility() {
+    if (!annotationGroup || !layerState.annotations) return;
+    if (leafletMap.getZoom() >= ANNOTATION_MIN_ZOOM) {
+      if (!leafletMap.hasLayer(annotationGroup)) annotationGroup.addTo(leafletMap);
+    } else {
+      leafletMap.removeLayer(annotationGroup);
+    }
+  }
+  leafletMap.on("zoomend", syncAnnotationVisibility);
+  syncAnnotationVisibility();
 }
 
 /* ── Sample overlay layers ── */
@@ -681,8 +692,12 @@ function setLayerVisible(id, visible, syncUI = false) {
     }
   } else if (id === "annotations") {
     if (annotationGroup) {
-      if (visible) annotationGroup.addTo(leafletMap);
-      else leafletMap.removeLayer(annotationGroup);
+      if (!visible) {
+        leafletMap.removeLayer(annotationGroup);
+      } else if (leafletMap.getZoom() >= 5) {
+        annotationGroup.addTo(leafletMap);
+      }
+      // if zoom < 5 and visible=true, syncAnnotationVisibility handles it on next zoomend
     }
   } else {
     const group = leafletLayerGroups[id];
