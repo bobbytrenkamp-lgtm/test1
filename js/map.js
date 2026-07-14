@@ -800,12 +800,23 @@ function initLeafletMap() {
     }
   });
 
-  // Resize handlers — keep Leaflet's internal size in sync with the container.
-  // Debounced so rapid iOS Safari URL-bar show/hide events don't fire mid-animation.
+  // Primary: ResizeObserver fires after CSS layout so Leaflet reads the correct size.
+  // This catches iOS Safari address-bar show/hide reliably without timing guesswork.
+  const mapContainer = document.getElementById("map-container");
+  if (window.ResizeObserver && mapContainer) {
+    let _roTimer = null;
+    const ro = new ResizeObserver(() => {
+      clearTimeout(_roTimer);
+      _roTimer = setTimeout(() => { if (leafletMap) leafletMap.invalidateSize({ animate: false }); }, 50);
+    });
+    ro.observe(mapContainer);
+  }
+
+  // Fallback for browsers without ResizeObserver.
   let _resizeTimer = null;
   const onResize = () => {
     clearTimeout(_resizeTimer);
-    _resizeTimer = setTimeout(() => { if (leafletMap) leafletMap.invalidateSize(); }, 150);
+    _resizeTimer = setTimeout(() => { if (leafletMap) leafletMap.invalidateSize({ animate: false }); }, 150);
   };
   window.addEventListener("resize", onResize);
   if (window.visualViewport) {
