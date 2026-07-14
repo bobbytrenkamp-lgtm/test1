@@ -30349,6 +30349,237 @@
       "lat": 47.6062,
       "lon": -122.3321,
       "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-99c02009ac",
+      "name": "Equinix Data Center - Sunnyvale SV10",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Equinix Sunnyvale Silicon Valley IBX campus SV10; legacy_id:dc-ca-271",
+      "lat": 37.3688,
+      "lon": -122.0363,
+      "capacity_mw": 14.0
+    },
+    {
+      "id": "fc-33ee9bfe85",
+      "name": "Equinix Data Center - San Jose SJ5",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Equinix San Jose IBX campus SJ5; legacy_id:dc-ca-272",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-b72d14707f",
+      "name": "Equinix Data Center - Los Angeles LA4",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Equinix Los Angeles IBX campus LA4; legacy_id:dc-ca-273",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-738848ad2d",
+      "name": "Equinix Data Center - Chicago CH7",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Equinix Chicago IBX campus CH7; legacy_id:dc-il-138",
+      "lat": 41.915,
+      "lon": -87.66,
+      "capacity_mw": 14.0
+    },
+    {
+      "id": "fc-8f4438407f",
+      "name": "Equinix Data Center - Seattle SE5",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Equinix Seattle IBX campus SE5; legacy_id:dc-wa-091",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-3f761051ef",
+      "name": "Equinix Data Center - Dallas DA7",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Equinix Dallas Texas IBX campus DA7; legacy_id:dc-tx-309",
+      "lat": 32.81,
+      "lon": -96.81,
+      "capacity_mw": 14.0
+    },
+    {
+      "id": "fc-2fbebbf405",
+      "name": "Equinix Data Center - Miami MI3",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "12086",
+      "notes": "Equinix Miami Florida IBX campus MI3; legacy_id:dc-fl-107",
+      "lat": 25.7617,
+      "lon": -80.1918,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-5571cb44f5",
+      "name": "AWS Data Center - Chicago IL ORD70",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "17043",
+      "notes": "AWS ORD70 data center in Chicago area Illinois us-east-1 latency optimization node; legacy_id:dc-il-139",
+      "lat": 41.9742,
+      "lon": -87.9073,
+      "capacity_mw": 60.0
+    },
+    {
+      "id": "fc-15aa3606bb",
+      "name": "AWS Data Center - Chicago IL ORD71",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "17043",
+      "notes": "AWS ORD71 data center in Chicago Illinois area; legacy_id:dc-il-140",
+      "lat": 41.976,
+      "lon": -87.91,
+      "capacity_mw": 65.0
+    },
+    {
+      "id": "fc-36f3803700",
+      "name": "AWS Data Center - New York NY Local Zone",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "36047",
+      "notes": "AWS Local Zone in New York City for low-latency processing; legacy_id:dc-ny-090",
+      "lat": 40.6782,
+      "lon": -73.9442,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-7bdada8478",
+      "name": "AWS Data Center - Dallas TX Local Zone",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "AWS Local Zone in Dallas Texas for low-latency computing; legacy_id:dc-tx-310",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-ee2cf275ca",
+      "name": "ServiceNow Data Center - Santa Clara CA",
+      "operator": "ServiceNow Inc",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "ServiceNow IT workflow platform data center at Santa Clara California headquarters; legacy_id:dc-ca-276",
+      "lat": 37.3875,
+      "lon": -121.9734,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-9bb3b52b2f",
+      "name": "Workday Data Center - Portland OR",
+      "operator": "Workday Inc",
+      "status": "existing",
+      "county_fips": "41051",
+      "notes": "Workday cloud HR platform production data center in Portland Oregon; legacy_id:dc-or-084",
+      "lat": 45.5051,
+      "lon": -122.675,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-9c6d198fcc",
+      "name": "Zendesk Data Center - San Francisco CA",
+      "operator": "Zendesk Inc",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Zendesk customer service platform data center at San Francisco headquarters; legacy_id:dc-ca-278",
+      "lat": 37.78,
+      "lon": -122.41,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-85dc0848e8",
+      "name": "HubSpot Data Center - Cambridge MA",
+      "operator": "HubSpot Inc",
+      "status": "existing",
+      "county_fips": "25017",
+      "notes": "HubSpot CRM marketing platform data center at Cambridge Massachusetts headquarters; legacy_id:dc-ma-052",
+      "lat": 42.3736,
+      "lon": -71.105,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-bcb886f859",
+      "name": "Twilio Data Center - San Francisco CA / Ashburn VA",
+      "operator": "Twilio Inc",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Twilio cloud communications data center in Ashburn Virginia (AWS partner); legacy_id:dc-va-230",
+      "lat": 39.044,
+      "lon": -77.4875,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-8bae80ae4c",
+      "name": "CoStar Group Data Center - Arlington VA",
+      "operator": "CoStar Group",
+      "status": "existing",
+      "county_fips": "51013",
+      "notes": "CoStar real estate data and analytics data center at Arlington Virginia headquarters; legacy_id:dc-va-231",
+      "lat": 38.8817,
+      "lon": -77.1065,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-9e9847a00e",
+      "name": "Zillow Group Data Center - Seattle WA",
+      "operator": "Zillow Group",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Zillow real estate marketplace data center at Seattle Washington headquarters; legacy_id:dc-wa-093",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-1c5986d87c",
+      "name": "Paramount Studios Data Center - Los Angeles CA",
+      "operator": "Paramount Global",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Paramount Studios production data center at Los Angeles California studio lot; legacy_id:dc-ca-279",
+      "lat": 34.0836,
+      "lon": -118.3389,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-23b60c9c51",
+      "name": "Hearst Corporation Data Center - New York NY",
+      "operator": "Hearst Corporation",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Hearst media company data center at New York City headquarters; legacy_id:dc-ny-091",
+      "lat": 40.7651,
+      "lon": -73.984,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-91134eae3e",
+      "name": "News Corp Data Center - New York NY",
+      "operator": "News Corp / Fox Corporation",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "News Corp (Fox News, WSJ) data center at New York City headquarters; legacy_id:dc-ny-092",
+      "lat": 40.76,
+      "lon": -73.99,
+      "capacity_mw": 6.0
     }
   ],
   "ai_campuses": [
@@ -30915,5 +31146,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:59:04Z"
+  "_facilities_exported_at": "2026-07-14T05:03:23Z"
 }
