@@ -27038,6 +27038,270 @@
       "lat": 45.525,
       "lon": -123.0,
       "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-d18ee3645c",
+      "name": "SLB (Schlumberger) Data Center - Houston TX",
+      "operator": "SLB (Schlumberger)",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "SLB (Schlumberger) oilfield tech data center at Houston headquarters; legacy_id:dc-tx-270",
+      "lat": 29.76,
+      "lon": -95.38,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-4364a86325",
+      "name": "AbbVie Data Center - North Chicago IL",
+      "operator": "AbbVie Inc",
+      "status": "existing",
+      "county_fips": "17097",
+      "notes": "AbbVie pharmaceutical data center at North Chicago Illinois headquarters; legacy_id:dc-il-118",
+      "lat": 42.3247,
+      "lon": -87.8667,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-4cd1dad826",
+      "name": "J.B. Hunt Transport Data Center - Lowell AR",
+      "operator": "J.B. Hunt Transport Services",
+      "status": "existing",
+      "county_fips": "05143",
+      "notes": "J.B. Hunt Transportation data center at Lowell Arkansas headquarters; legacy_id:dc-ar-020",
+      "lat": 36.2581,
+      "lon": -94.131,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-1e5302e4dd",
+      "name": "Flexential Data Center - Charlotte NC2",
+      "operator": "Flexential",
+      "status": "existing",
+      "county_fips": "37119",
+      "notes": "Flexential Charlotte colocation campus NC2; legacy_id:dc-nc-090",
+      "lat": 35.23,
+      "lon": -80.85,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-eb4649332e",
+      "name": "Flexential Data Center - Denver DEN2",
+      "operator": "Flexential",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Flexential Denver colocation campus DEN2 Englewood CO; legacy_id:dc-co-087",
+      "lat": 39.6477,
+      "lon": -104.999,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-40125c832c",
+      "name": "Flexential Data Center - Tampa FL1",
+      "operator": "Flexential",
+      "status": "existing",
+      "county_fips": "12057",
+      "notes": "Flexential Tampa Florida colocation campus FL1; legacy_id:dc-fl-098",
+      "lat": 27.9506,
+      "lon": -82.4572,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-5a781a2847",
+      "name": "Expedient Data Center - Pittsburgh PA2",
+      "operator": "Expedient",
+      "status": "existing",
+      "county_fips": "42003",
+      "notes": "Expedient Pittsburgh second colocation facility; legacy_id:dc-pa-069",
+      "lat": 40.45,
+      "lon": -80.0,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-3f3b1f569a",
+      "name": "Expedient Data Center - Boston MA",
+      "operator": "Expedient",
+      "status": "existing",
+      "county_fips": "25017",
+      "notes": "Expedient Boston area colocation facility in Waltham Massachusetts; legacy_id:dc-ma-043",
+      "lat": 42.3765,
+      "lon": -71.2356,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-06c0a62a78",
+      "name": "ExxonMobil Data Center - Spring TX",
+      "operator": "ExxonMobil Corporation",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "ExxonMobil oil and gas company data center at Spring Texas campus (new HQ campus); legacy_id:dc-tx-266",
+      "lat": 30.0794,
+      "lon": -95.4274,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-a7cdf58b7f",
+      "name": "Chevron Data Center - San Ramon CA",
+      "operator": "Chevron Corporation",
+      "status": "existing",
+      "county_fips": "06013",
+      "notes": "Chevron Corporation data center at San Ramon California headquarters; legacy_id:dc-ca-228",
+      "lat": 37.7799,
+      "lon": -121.9658,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-030d0987e3",
+      "name": "BP America Data Center - Houston TX",
+      "operator": "BP America",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "BP America oil and gas data center at Houston Texas operations center; legacy_id:dc-tx-267",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-ac397619ff",
+      "name": "ConocoPhillips Data Center - Houston TX",
+      "operator": "ConocoPhillips",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "ConocoPhillips energy data center at Houston Texas headquarters; legacy_id:dc-tx-268",
+      "lat": 29.758,
+      "lon": -95.365,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-5c77724cad",
+      "name": "Halliburton Data Center - Houston TX",
+      "operator": "Halliburton",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "Halliburton oilfield services data center at Houston Texas headquarters; legacy_id:dc-tx-269",
+      "lat": 29.7747,
+      "lon": -95.4115,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-0a2341800a",
+      "name": "General Motors Data Center - Warren MI",
+      "operator": "General Motors",
+      "status": "existing",
+      "county_fips": "26099",
+      "notes": "General Motors primary data center at Warren Michigan Tech Center campus; legacy_id:dc-mi-040",
+      "lat": 42.49,
+      "lon": -83.027,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-2a1f8abc2c",
+      "name": "General Motors OnStar Data Center - Detroit MI Area",
+      "operator": "General Motors OnStar",
+      "status": "existing",
+      "county_fips": "26099",
+      "notes": "GM OnStar telematics data center in Metro Detroit Michigan; legacy_id:dc-mi-041",
+      "lat": 42.3314,
+      "lon": -83.0458,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-ba5d184069",
+      "name": "Ford Motor Company Data Center - Dearborn MI",
+      "operator": "Ford Motor Company",
+      "status": "existing",
+      "county_fips": "26163",
+      "notes": "Ford Motor Company data center at Dearborn Michigan world headquarters; legacy_id:dc-mi-042",
+      "lat": 42.3223,
+      "lon": -83.1763,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-e8c465426f",
+      "name": "Toyota Motor North America Data Center - Plano TX",
+      "operator": "Toyota Motor North America",
+      "status": "existing",
+      "county_fips": "48085",
+      "notes": "Toyota North America data center at Plano Texas headquarters; legacy_id:dc-tx-271",
+      "lat": 33.0198,
+      "lon": -96.6989,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-a67e0e2477",
+      "name": "Honda North America Data Center - Marysville OH",
+      "operator": "Honda North America",
+      "status": "existing",
+      "county_fips": "39101",
+      "notes": "Honda of America data center near Marysville Ohio manufacturing plant; legacy_id:dc-oh-113",
+      "lat": 40.2367,
+      "lon": -83.3666,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-0f74fdf250",
+      "name": "Pfizer Data Center - New York NY",
+      "operator": "Pfizer Inc",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Pfizer pharmaceutical data center at New York headquarters; legacy_id:dc-ny-072",
+      "lat": 40.75,
+      "lon": -73.94,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-18e5c8379d",
+      "name": "Pfizer Data Center - Groton CT",
+      "operator": "Pfizer Inc",
+      "status": "existing",
+      "county_fips": "09011",
+      "notes": "Pfizer research and R&D data center at Groton Connecticut research campus; legacy_id:dc-ct-025",
+      "lat": 41.354,
+      "lon": -72.0573,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-d631fe1ef6",
+      "name": "Bristol Myers Squibb Data Center - Princeton NJ",
+      "operator": "Bristol Myers Squibb",
+      "status": "existing",
+      "county_fips": "34021",
+      "notes": "Bristol Myers Squibb pharma data center at Princeton New Jersey campus; legacy_id:dc-nj-060",
+      "lat": 40.3573,
+      "lon": -74.6615,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-b2ddf5a3a1",
+      "name": "FedEx Data Center - Memphis TN2",
+      "operator": "FedEx Corporation",
+      "status": "existing",
+      "county_fips": "47157",
+      "notes": "FedEx second operations data center in Memphis Tennessee; legacy_id:dc-tn-059",
+      "lat": 35.05,
+      "lon": -89.999,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-6b5b38f16e",
+      "name": "UPS Data Center - Sandy Springs GA",
+      "operator": "United Parcel Service",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "UPS primary data center at Sandy Springs Georgia headquarters; legacy_id:dc-ga-117",
+      "lat": 33.9304,
+      "lon": -84.3733,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-5ed0429279",
+      "name": "XPO Logistics Data Center - Greenwich CT",
+      "operator": "XPO Logistics",
+      "status": "existing",
+      "county_fips": "09001",
+      "notes": "XPO Logistics freight data center at Greenwich Connecticut headquarters; legacy_id:dc-ct-026",
+      "lat": 41.0534,
+      "lon": -73.6257,
+      "capacity_mw": 5.0
     }
   ],
   "ai_campuses": [
@@ -27604,5 +27868,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:06:05Z"
+  "_facilities_exported_at": "2026-07-14T04:09:24Z"
 }
