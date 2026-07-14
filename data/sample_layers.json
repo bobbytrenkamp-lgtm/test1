@@ -28248,6 +28248,237 @@
       "lat": 33.6846,
       "lon": -117.8265,
       "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-9a91b1ebc1",
+      "name": "PricewaterhouseCoopers Data Center - New York NY",
+      "operator": "PricewaterhouseCoopers LLP",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "PwC accounting and consulting data center at New York headquarters; legacy_id:dc-ny-076",
+      "lat": 40.75,
+      "lon": -74.01,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-69a9df61b8",
+      "name": "KPMG Data Center - Montvale NJ",
+      "operator": "KPMG LLP",
+      "status": "existing",
+      "county_fips": "34031",
+      "notes": "KPMG accounting firm US data center at Montvale New Jersey headquarters; legacy_id:dc-nj-062",
+      "lat": 41.046,
+      "lon": -74.02,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-33eca26572",
+      "name": "Community Health Systems Data Center - Franklin TN",
+      "operator": "Community Health Systems",
+      "status": "existing",
+      "county_fips": "47187",
+      "notes": "Community Health Systems hospital management data center at Franklin TN headquarters; legacy_id:dc-tn-066",
+      "lat": 35.9251,
+      "lon": -86.8689,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-27876c795b",
+      "name": "Lumen Technologies Network Hub - Minneapolis MN",
+      "operator": "Lumen Technologies",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Lumen Technologies (CenturyLink) network hub in Minneapolis Minnesota; legacy_id:dc-mn-070",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-51c0ab547b",
+      "name": "Lumen Technologies Network Hub - New Orleans LA",
+      "operator": "Lumen Technologies",
+      "status": "existing",
+      "county_fips": "22071",
+      "notes": "Lumen Technologies (CenturyLink) network hub in New Orleans Louisiana; legacy_id:dc-la-020",
+      "lat": 29.9511,
+      "lon": -90.0715,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-33f4a92f5c",
+      "name": "Zayo Group Data Center - Denver CO",
+      "operator": "Zayo Group",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Zayo Group fiber network and colocation data center in Denver Colorado; legacy_id:dc-co-091",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-f8670876b3",
+      "name": "Zayo Group Data Center - Chicago IL",
+      "operator": "Zayo Group",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Zayo Group fiber and colocation data center in Chicago Illinois; legacy_id:dc-il-126",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-0881884b81",
+      "name": "Zayo Group Data Center - New York NY",
+      "operator": "Zayo Group",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Zayo Group fiber network and colocation data center in New York City; legacy_id:dc-ny-075",
+      "lat": 40.7154,
+      "lon": -74.0059,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-76536046fe",
+      "name": "Zayo Group Data Center - Seattle WA",
+      "operator": "Zayo Group",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Zayo Group fiber and colocation data center in Seattle Washington; legacy_id:dc-wa-082",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-688c505d0f",
+      "name": "Zayo Group Data Center - Los Angeles CA",
+      "operator": "Zayo Group",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Zayo Group fiber network data center in Los Angeles California; legacy_id:dc-ca-239",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-f23eca6b6e",
+      "name": "Zayo Group Data Center - Atlanta GA",
+      "operator": "Zayo Group",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Zayo Group fiber and colocation data center in Atlanta Georgia; legacy_id:dc-ga-120",
+      "lat": 33.749,
+      "lon": -84.388,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-015073e75f",
+      "name": "WideOpenWest (WOW!) Data Center - Englewood CO / Detroit MI",
+      "operator": "WideOpenWest (WOW!)",
+      "status": "existing",
+      "county_fips": "26163",
+      "notes": "WOW! cable internet provider data center in Detroit Michigan area; legacy_id:dc-mi-043",
+      "lat": 42.3314,
+      "lon": -83.0458,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-c732910096",
+      "name": "Consolidated Communications Data Center - Mattoon IL",
+      "operator": "Consolidated Communications",
+      "status": "existing",
+      "county_fips": "17029",
+      "notes": "Consolidated Communications telephone company data center at Mattoon Illinois HQ; legacy_id:dc-il-127",
+      "lat": 39.4831,
+      "lon": -88.3631,
+      "capacity_mw": 3.0
+    },
+    {
+      "id": "fc-6276596ee3",
+      "name": "Frontier Communications Data Center - Norwalk CT",
+      "operator": "Frontier Communications",
+      "status": "existing",
+      "county_fips": "09001",
+      "notes": "Frontier Communications telecom data center at Norwalk Connecticut headquarters; legacy_id:dc-ct-028",
+      "lat": 41.1176,
+      "lon": -73.4079,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-71beb4a514",
+      "name": "Frontier Communications Data Center - Dallas TX",
+      "operator": "Frontier Communications",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Frontier Communications data center in Dallas Texas operations hub; legacy_id:dc-tx-282",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-c8888f5b1a",
+      "name": "Deloitte Data Center - Arlington VA",
+      "operator": "Deloitte LLP",
+      "status": "existing",
+      "county_fips": "51013",
+      "notes": "Deloitte consulting firm data center at Arlington Virginia US headquarters; legacy_id:dc-va-195",
+      "lat": 38.8817,
+      "lon": -77.1065,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-821cd24373",
+      "name": "Ernst & Young Data Center - New York NY",
+      "operator": "Ernst & Young LLP",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Ernst & Young (EY) accounting and consulting data center in New York; legacy_id:dc-ny-077",
+      "lat": 40.76,
+      "lon": -73.99,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-3145b7d2f0",
+      "name": "McKinsey & Company Data Center - New York NY",
+      "operator": "McKinsey & Company",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "McKinsey management consulting data center at New York headquarters; legacy_id:dc-ny-078",
+      "lat": 40.761,
+      "lon": -73.978,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-a347978153",
+      "name": "NFL Data Center - Mount Laurel NJ",
+      "operator": "National Football League",
+      "status": "existing",
+      "county_fips": "34005",
+      "notes": "NFL data center for video review, statistics, and broadcast operations; legacy_id:dc-ny-079",
+      "lat": 39.953,
+      "lon": -74.919,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-466c1a1384",
+      "name": "MLB Advanced Media Data Center - New York NY",
+      "operator": "MLB Advanced Media (MLBAM)",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "MLB streaming and advanced media data center in New York City; legacy_id:dc-ny-080",
+      "lat": 40.7154,
+      "lon": -74.0059,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-1276681599",
+      "name": "NBA Digital Data Center - Secaucus NJ / Los Angeles CA",
+      "operator": "NBA Entertainment",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "NBA digital media and broadcast operations data center; legacy_id:dc-ca-240",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "capacity_mw": 5.0
     }
   ],
   "ai_campuses": [
@@ -28814,5 +29045,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:23:38Z"
+  "_facilities_exported_at": "2026-07-14T04:27:12Z"
 }
