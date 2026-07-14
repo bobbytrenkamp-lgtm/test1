@@ -23903,6 +23903,347 @@
       "lat": 45.5579,
       "lon": -94.1624,
       "capacity_mw": 50.0
+    },
+    {
+      "id": "fc-6807a464bf",
+      "name": "Cisco Systems Data Center - San Jose HQ Campus",
+      "operator": "Cisco Systems",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Cisco Systems primary data center at San Jose HQ campus, Allen Pond; legacy_id:dc-ca-180",
+      "lat": 37.4139,
+      "lon": -121.9289,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-03bce311c3",
+      "name": "Cisco Systems Data Center - Richardson TX",
+      "operator": "Cisco Systems",
+      "status": "existing",
+      "county_fips": "48085",
+      "notes": "Cisco Systems Texas campus data center in Richardson TX; legacy_id:dc-tx-232",
+      "lat": 32.9483,
+      "lon": -96.7298,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-b6b79b0120",
+      "name": "SAP America Data Center - Newtown Square PA",
+      "operator": "SAP America",
+      "status": "existing",
+      "county_fips": "42045",
+      "notes": "SAP America HQ campus data center in Newtown Square Pennsylvania; legacy_id:dc-pa-062",
+      "lat": 39.9843,
+      "lon": -75.4107,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-5ca054eb62",
+      "name": "Louisiana State Data Center - Baton Rouge",
+      "operator": "Louisiana Office of Technology Services",
+      "status": "existing",
+      "county_fips": "22033",
+      "notes": "Louisiana state government centralized data center in Baton Rouge; legacy_id:dc-la-013",
+      "lat": 30.4515,
+      "lon": -91.1871,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-506a1d5972",
+      "name": "Maine State Data Center - Augusta",
+      "operator": "Maine Office of Information Technology",
+      "status": "existing",
+      "county_fips": "23011",
+      "notes": "Maine state government primary data center in Augusta; legacy_id:dc-me-009",
+      "lat": 44.3106,
+      "lon": -69.7795,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-4ab18bc5b9",
+      "name": "Verizon Business Data Center - Ashburn VA",
+      "operator": "Verizon Business",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Verizon Business major Internet exchange and data center in Ashburn VA; legacy_id:dc-va-153",
+      "lat": 39.0438,
+      "lon": -77.4875,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-f51f9b9aeb",
+      "name": "Verizon Business Data Center - Chicago",
+      "operator": "Verizon Business",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Verizon Business Chicago data center and network hub; legacy_id:dc-il-107",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-790233c754",
+      "name": "Verizon Business Data Center - Los Angeles",
+      "operator": "Verizon Business",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Verizon Business Los Angeles data center and network hub; legacy_id:dc-ca-177",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-d88992460e",
+      "name": "Verizon Business Data Center - Miami FL",
+      "operator": "Verizon Business",
+      "status": "existing",
+      "county_fips": "12086",
+      "notes": "Verizon Business Miami data center and NAP of the Americas hub; legacy_id:dc-fl-087",
+      "lat": 25.7617,
+      "lon": -80.3997,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-92efd6f6a2",
+      "name": "Verizon Business Data Center - Irving TX",
+      "operator": "Verizon Business",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Verizon Business Dallas area data center in Irving TX; legacy_id:dc-tx-231",
+      "lat": 32.814,
+      "lon": -96.9489,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-b8ade79ad1",
+      "name": "AT&T Data Center - Ashburn / Dunwoody GA",
+      "operator": "AT&T",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "AT&T Atlanta area network hub and data center in Dunwoody GA; legacy_id:dc-ga-102",
+      "lat": 33.9462,
+      "lon": -84.3344,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-7d02e0be32",
+      "name": "AT&T Data Center - Chicago 2",
+      "operator": "AT&T",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "AT&T Chicago second network data center and CLLI hub; legacy_id:dc-il-108",
+      "lat": 41.8908,
+      "lon": -87.6504,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-a11af9372c",
+      "name": "AT&T Data Center - Sacramento CA",
+      "operator": "AT&T",
+      "status": "existing",
+      "county_fips": "06067",
+      "notes": "AT&T Sacramento California legacy SBC Pacific Bell data center; legacy_id:dc-ca-178",
+      "lat": 38.5816,
+      "lon": -121.4944,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-02a6ccd56c",
+      "name": "AT&T Data Center - San Diego CA",
+      "operator": "AT&T",
+      "status": "existing",
+      "county_fips": "06073",
+      "notes": "AT&T San Diego legacy Pacific Bell network hub; legacy_id:dc-ca-179",
+      "lat": 32.7157,
+      "lon": -117.161,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-0f5b36200a",
+      "name": "Cisco Systems Data Center - Research Triangle Park",
+      "operator": "Cisco Systems",
+      "status": "existing",
+      "county_fips": "37063",
+      "notes": "Cisco Systems East Coast campus data center at RTP NC; legacy_id:dc-nc-081",
+      "lat": 35.899,
+      "lon": -78.8502,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-9160340341",
+      "name": "Dell Technologies Data Center - Round Rock TX HQ",
+      "operator": "Dell Technologies",
+      "status": "existing",
+      "county_fips": "48491",
+      "notes": "Dell Technologies primary data center at Round Rock TX world headquarters; legacy_id:dc-tx-233",
+      "lat": 30.5083,
+      "lon": -97.6789,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-44e3dbb88e",
+      "name": "Dell EMC Data Center - Hopkinton MA",
+      "operator": "Dell Technologies",
+      "status": "existing",
+      "county_fips": "25017",
+      "notes": "Dell EMC legacy EMC Corporation HQ campus data center in Hopkinton MA; legacy_id:dc-ma-041",
+      "lat": 42.2282,
+      "lon": -71.5225,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-68583f8474",
+      "name": "Hewlett Packard Enterprise Data Center - Houston TX",
+      "operator": "Hewlett Packard Enterprise",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "HPE global headquarters data center in Houston TX campus; legacy_id:dc-tx-235",
+      "lat": 29.7604,
+      "lon": -95.5698,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-6f2d64a818",
+      "name": "HP Inc Data Center - Palo Alto CA",
+      "operator": "HP Inc",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "HP Inc legacy Hewlett-Packard data center at Palo Alto CA campus; legacy_id:dc-ca-181",
+      "lat": 37.4419,
+      "lon": -122.143,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-32af4b0e29",
+      "name": "Oracle Corporation Data Center - Denver CO",
+      "operator": "Oracle Corporation",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Oracle Cloud and corporate data center in Denver Colorado; legacy_id:dc-co-079",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-baa9117ab6",
+      "name": "Oracle Corporation Data Center - Bellevue WA",
+      "operator": "Oracle Corporation",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Oracle Cloud data center in Bellevue Washington; legacy_id:dc-wa-071",
+      "lat": 47.6101,
+      "lon": -122.2015,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-d202e63572",
+      "name": "Oracle Corporation Data Center - Nashville TN",
+      "operator": "Oracle Corporation",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "Oracle Cloud data center campus in Nashville Tennessee; legacy_id:dc-tn-047",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-ee1297aebc",
+      "name": "Oracle Corporation Data Center - Boca Raton FL",
+      "operator": "Oracle Corporation",
+      "status": "existing",
+      "county_fips": "12099",
+      "notes": "Oracle Cloud data center in Boca Raton Florida; legacy_id:dc-fl-088",
+      "lat": 26.3683,
+      "lon": -80.1052,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-4bfd6a96fe",
+      "name": "Salesforce Data Center - San Francisco CA",
+      "operator": "Salesforce",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Salesforce HQ data center in San Francisco California; legacy_id:dc-ca-182",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-051956ae65",
+      "name": "Salesforce Data Center - Indianapolis IN (ExactTarget)",
+      "operator": "Salesforce",
+      "status": "existing",
+      "county_fips": "18097",
+      "notes": "Salesforce Marketing Cloud (legacy ExactTarget) data center in Indianapolis; legacy_id:dc-in-033",
+      "lat": 39.7684,
+      "lon": -86.1581,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-c4e79cafcb",
+      "name": "SAP America Data Center - Atlanta GA",
+      "operator": "SAP America",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "SAP America Southeast data center in Atlanta GA; legacy_id:dc-ga-103",
+      "lat": 33.749,
+      "lon": -84.388,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-6b0a2ded6a",
+      "name": "ServiceNow Data Center - Santa Clara CA",
+      "operator": "ServiceNow",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "ServiceNow production data center at Santa Clara headquarters; legacy_id:dc-ca-183",
+      "lat": 37.3541,
+      "lon": -121.9552,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-80fc0d8b36",
+      "name": "Mississippi State Data Center - Jackson",
+      "operator": "Mississippi Department of Information Technology Services",
+      "status": "existing",
+      "county_fips": "28049",
+      "notes": "Mississippi state government consolidated data center in Jackson; legacy_id:dc-ms-016",
+      "lat": 32.2988,
+      "lon": -90.1848,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-518d2a5fb4",
+      "name": "New Hampshire State Data Center - Concord",
+      "operator": "New Hampshire Division of Information Technology",
+      "status": "existing",
+      "county_fips": "33013",
+      "notes": "New Hampshire state government data center in Concord; legacy_id:dc-nh-011",
+      "lat": 43.2081,
+      "lon": -71.5376,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-72f95ae428",
+      "name": "Rhode Island State Data Center - Providence",
+      "operator": "Rhode Island Division of Information Technology",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "Rhode Island state government data center in Providence; legacy_id:dc-ri-010",
+      "lat": 41.824,
+      "lon": -71.4128,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-1c55f85636",
+      "name": "West Virginia State Data Center - Charleston",
+      "operator": "West Virginia Office of Technology",
+      "status": "existing",
+      "county_fips": "54039",
+      "notes": "West Virginia state government data center in Charleston; legacy_id:dc-wv-009",
+      "lat": 38.3498,
+      "lon": -81.6326,
+      "capacity_mw": 4.0
     }
   ],
   "ai_campuses": [
@@ -24468,5 +24809,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T03:31:50Z"
+  "_facilities_exported_at": "2026-07-14T03:34:57Z"
 }
