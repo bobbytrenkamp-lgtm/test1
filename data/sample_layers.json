@@ -24244,6 +24244,358 @@
       "lat": 38.3498,
       "lon": -81.6326,
       "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-3149a85bc7",
+      "name": "Electronic Arts Data Center - Redwood City CA",
+      "operator": "Electronic Arts",
+      "status": "existing",
+      "county_fips": "06081",
+      "notes": "EA primary data center at Redwood City CA headquarters campus; legacy_id:dc-ca-192",
+      "lat": 37.5341,
+      "lon": -122.2369,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-2dcacfd02c",
+      "name": "Activision Blizzard Data Center - Irvine CA",
+      "operator": "Activision Blizzard (Microsoft)",
+      "status": "existing",
+      "county_fips": "06059",
+      "notes": "Activision Blizzard primary data center at Irvine CA campus; legacy_id:dc-ca-193",
+      "lat": 33.6846,
+      "lon": -117.8203,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-da3c64d29e",
+      "name": "AMD Data Center - Santa Clara CA",
+      "operator": "Advanced Micro Devices (AMD)",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "AMD headquarters data center at Santa Clara California campus; legacy_id:dc-ca-195",
+      "lat": 37.3875,
+      "lon": -121.9734,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-cd7e076627",
+      "name": "NVIDIA Data Center - Santa Clara CA",
+      "operator": "NVIDIA Corporation",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "NVIDIA primary data center at Santa Clara CA headquarters campus; legacy_id:dc-ca-196",
+      "lat": 37.3651,
+      "lon": -121.9624,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-573bb3525e",
+      "name": "Broadcom Data Center - Irvine CA (former Broadcom)",
+      "operator": "Broadcom Inc",
+      "status": "existing",
+      "county_fips": "06059",
+      "notes": "Broadcom legacy Irvine CA data center at historic headquarters; legacy_id:dc-ca-199",
+      "lat": 33.6846,
+      "lon": -117.8203,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-c2b62d356e",
+      "name": "Twitter/X Data Center - Salt Lake City",
+      "operator": "X Corp (formerly Twitter)",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "Twitter/X primary data center in Salt Lake City Utah; major Twitter infrastructure; legacy_id:dc-ut-028",
+      "lat": 40.7608,
+      "lon": -111.891,
+      "capacity_mw": 30.0
+    },
+    {
+      "id": "fc-89e7921c51",
+      "name": "Twitter/X Data Center - Atlanta",
+      "operator": "X Corp (formerly Twitter)",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Twitter/X secondary data center in Atlanta Georgia; legacy_id:dc-ga-104",
+      "lat": 33.749,
+      "lon": -84.388,
+      "capacity_mw": 22.0
+    },
+    {
+      "id": "fc-11d2735ce1",
+      "name": "Twitter/X Data Center - Austin TX",
+      "operator": "X Corp (formerly Twitter)",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "Twitter/X Austin Texas data center following Musk relocation of HQ; legacy_id:dc-tx-236",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-926ab7b981",
+      "name": "Pinterest Data Center - San Francisco CA",
+      "operator": "Pinterest",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Pinterest data center supporting image social platform operations; legacy_id:dc-ca-185",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-ef93846b99",
+      "name": "Reddit Data Center - San Francisco CA",
+      "operator": "Reddit",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Reddit primary data center in San Francisco for forum platform; legacy_id:dc-ca-186",
+      "lat": 37.7841,
+      "lon": -122.4001,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-4475cc258f",
+      "name": "Snap Inc Data Center - Santa Monica CA",
+      "operator": "Snap Inc",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Snap Inc primary data center at Santa Monica CA headquarters; legacy_id:dc-ca-187",
+      "lat": 34.0195,
+      "lon": -118.4912,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-bf41099b68",
+      "name": "Discord Data Center - San Francisco CA",
+      "operator": "Discord",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Discord gaming communication platform data center in San Francisco; legacy_id:dc-ca-188",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-e33f66fadc",
+      "name": "Netflix Data Center - Los Gatos CA HQ",
+      "operator": "Netflix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Netflix primary data center at Los Gatos California headquarters; legacy_id:dc-ca-189",
+      "lat": 37.2333,
+      "lon": -121.9552,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-a41f0e7201",
+      "name": "Netflix Open Connect - Hillsboro OR CDN",
+      "operator": "Netflix",
+      "status": "existing",
+      "county_fips": "41067",
+      "notes": "Netflix Open Connect CDN appliance aggregation data center in Oregon; legacy_id:dc-or-066",
+      "lat": 45.5229,
+      "lon": -122.9898,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-366f12fabf",
+      "name": "Hulu Data Center - Los Angeles CA",
+      "operator": "Hulu (Disney)",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Hulu streaming data center at Los Angeles headquarters; legacy_id:dc-ca-190",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-c4e5b5400b",
+      "name": "Spotify Data Center - New York NY",
+      "operator": "Spotify",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Spotify US headquarters data center in New York NY; legacy_id:dc-ny-059",
+      "lat": 40.758,
+      "lon": -73.9857,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-57a171e4cf",
+      "name": "Twitch Data Center - San Francisco CA",
+      "operator": "Twitch (Amazon)",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Twitch live streaming platform data center in San Francisco; legacy_id:dc-ca-191",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-59e61f16d3",
+      "name": "Electronic Arts Data Center - Orlando FL",
+      "operator": "Electronic Arts",
+      "status": "existing",
+      "county_fips": "12095",
+      "notes": "EA Orlando data center for sports game studios; legacy_id:dc-fl-089",
+      "lat": 28.5383,
+      "lon": -81.3792,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-9712d77514",
+      "name": "Activision Data Center - Austin TX",
+      "operator": "Activision Blizzard (Microsoft)",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "Activision Texas data center at Austin studio campus; legacy_id:dc-tx-237",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-f516c8d35a",
+      "name": "Epic Games Data Center - Cary NC",
+      "operator": "Epic Games",
+      "status": "existing",
+      "county_fips": "37183",
+      "notes": "Epic Games (Fortnite/Unreal Engine) primary data center at Cary NC headquarters; legacy_id:dc-nc-082",
+      "lat": 35.7915,
+      "lon": -78.7811,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-85dea2cd4e",
+      "name": "Roblox Data Center - San Mateo CA",
+      "operator": "Roblox Corporation",
+      "status": "existing",
+      "county_fips": "06081",
+      "notes": "Roblox gaming platform data center at San Mateo CA headquarters; legacy_id:dc-ca-194",
+      "lat": 37.563,
+      "lon": -122.3255,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-871fcc749f",
+      "name": "Intel Data Center - Hillsboro OR D1/D1X Fab",
+      "operator": "Intel Corporation",
+      "status": "existing",
+      "county_fips": "41067",
+      "notes": "Intel primary Oregon campus data center supporting D1/D1X fabs in Hillsboro; legacy_id:dc-or-067",
+      "lat": 45.5288,
+      "lon": -122.9574,
+      "capacity_mw": 18.0
+    },
+    {
+      "id": "fc-d3f84a8ca6",
+      "name": "Intel Data Center - Chandler AZ Fab 42",
+      "operator": "Intel Corporation",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Intel Chandler Arizona Fab 42 campus data center; legacy_id:dc-az-080",
+      "lat": 33.3062,
+      "lon": -111.8413,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-4b68d07d6f",
+      "name": "Intel Data Center - Rio Rancho NM",
+      "operator": "Intel Corporation",
+      "status": "existing",
+      "county_fips": "35043",
+      "notes": "Intel Rio Rancho New Mexico fab campus data center; legacy_id:dc-nm-011",
+      "lat": 35.2328,
+      "lon": -106.6942,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-dfbe718f87",
+      "name": "AMD Data Center - Austin TX",
+      "operator": "Advanced Micro Devices (AMD)",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "AMD Austin Texas data center for engineering operations; legacy_id:dc-tx-238",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-b535e81482",
+      "name": "NVIDIA Data Center - Austin TX",
+      "operator": "NVIDIA Corporation",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "NVIDIA Austin Texas campus data center; legacy_id:dc-tx-239",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-d0e598cad2",
+      "name": "Qualcomm Data Center - San Diego CA",
+      "operator": "Qualcomm",
+      "status": "existing",
+      "county_fips": "06073",
+      "notes": "Qualcomm headquarters campus data center in San Diego California; legacy_id:dc-ca-197",
+      "lat": 32.7157,
+      "lon": -117.161,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-8e86f8920b",
+      "name": "Qualcomm Data Center - Austin TX",
+      "operator": "Qualcomm",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "Qualcomm Austin Texas semiconductor design data center; legacy_id:dc-tx-240",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-90b7e519be",
+      "name": "Micron Technology Data Center - Boise ID",
+      "operator": "Micron Technology",
+      "status": "existing",
+      "county_fips": "16001",
+      "notes": "Micron Technology headquarters campus data center in Boise Idaho; legacy_id:dc-id-017",
+      "lat": 43.615,
+      "lon": -116.2023,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-176549548b",
+      "name": "Micron Technology Data Center - Manassas VA",
+      "operator": "Micron Technology",
+      "status": "existing",
+      "county_fips": "51683",
+      "notes": "Micron Technology memory fab data center in Manassas VA; legacy_id:dc-va-155",
+      "lat": 38.7509,
+      "lon": -77.4761,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-81c022f423",
+      "name": "Broadcom Data Center - San Jose CA",
+      "operator": "Broadcom Inc",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Broadcom headquarters data center at San Jose California campus; legacy_id:dc-ca-198",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-392044677d",
+      "name": "Equinix Data Center - Raleigh-Durham RD1",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "37063",
+      "notes": "Equinix Raleigh-Durham IBX colocation facility RD1; legacy_id:dc-nc-083",
+      "lat": 35.899,
+      "lon": -78.8502,
+      "capacity_mw": 12.0
     }
   ],
   "ai_campuses": [
@@ -24809,5 +25161,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T03:34:57Z"
+  "_facilities_exported_at": "2026-07-14T03:38:05Z"
 }
