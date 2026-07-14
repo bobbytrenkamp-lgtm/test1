@@ -2498,5 +2498,15 @@
     "summary": "Needs review: matched existing_data_centers record",
     "field_changes": {},
     "pipeline_run_id": "3ec8a515fb60"
+  },
+  {
+    "log_id": "00138620d3e6",
+    "timestamp": "2026-07-14T05:36:01.889128+00:00",
+    "change_type": "verification_failure",
+    "facility_id": "",
+    "source_id": "osm",
+    "summary": "406 Client Error: Not Acceptable for url: https://overpass-api.de/api/interpreter",
+    "field_changes": {},
+    "pipeline_run_id": "b212ae70d21a"
   }
 ]
