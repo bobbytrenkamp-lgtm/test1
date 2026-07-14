@@ -24904,6 +24904,347 @@
       "lat": 33.749,
       "lon": -84.388,
       "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-4887202a2a",
+      "name": "Los Alamos National Laboratory Data Center - Los Alamos",
+      "operator": "Los Alamos National Laboratory (DOE/NNSA)",
+      "status": "existing",
+      "county_fips": "35028",
+      "notes": "LANL major data center complex for nuclear weapons computing and research; legacy_id:dc-nm-013",
+      "lat": 35.88,
+      "lon": -106.3031,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-a435faee37",
+      "name": "Argonne National Laboratory Data Center - Lemont IL",
+      "operator": "Argonne National Laboratory (DOE)",
+      "status": "existing",
+      "county_fips": "17043",
+      "notes": "ANL data center hosting Aurora supercomputer and research computing; legacy_id:dc-il-111",
+      "lat": 41.7167,
+      "lon": -87.9798,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-080c0ee2c4",
+      "name": "Oak Ridge National Laboratory Data Center - Oak Ridge",
+      "operator": "Oak Ridge National Laboratory (DOE)",
+      "status": "existing",
+      "county_fips": "47145",
+      "notes": "ORNL data center hosting Frontier supercomputer - world's most powerful (2022); legacy_id:dc-tn-050",
+      "lat": 35.9312,
+      "lon": -84.2529,
+      "capacity_mw": 30.0
+    },
+    {
+      "id": "fc-a9c1714b2c",
+      "name": "Brookhaven National Laboratory Data Center - Upton NY",
+      "operator": "Brookhaven National Laboratory (DOE)",
+      "status": "existing",
+      "county_fips": "36103",
+      "notes": "BNL scientific computing center on Long Island NY; legacy_id:dc-ny-062",
+      "lat": 40.8682,
+      "lon": -72.8735,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-9afada1fa0",
+      "name": "KeyCorp Data Center - Brooklyn OH",
+      "operator": "KeyCorp (KeyBank)",
+      "status": "existing",
+      "county_fips": "39035",
+      "notes": "KeyBank primary data center in Brooklyn Ohio near Cleveland HQ; legacy_id:dc-oh-106",
+      "lat": 41.4298,
+      "lon": -81.7293,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-949165f061",
+      "name": "Regions Financial Data Center - Birmingham AL Campus 2",
+      "operator": "Regions Financial Corporation",
+      "status": "existing",
+      "county_fips": "01073",
+      "notes": "Regions Bank secondary data center in Birmingham Alabama; legacy_id:dc-al-021",
+      "lat": 33.52,
+      "lon": -86.81,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-c7c347e6da",
+      "name": "BancorpSouth Data Center - Tupelo MS",
+      "operator": "BancorpSouth (Cadence Bank)",
+      "status": "existing",
+      "county_fips": "28081",
+      "notes": "BancorpSouth (now Cadence Bank) primary data center in Tupelo Mississippi; legacy_id:dc-ms-017",
+      "lat": 34.2576,
+      "lon": -88.7036,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-df048114d4",
+      "name": "Aligned Data Centers - Dallas TX Campus",
+      "operator": "Aligned Data Centers",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Aligned Data Centers Dallas colocation campus with adaptive UPS technology; legacy_id:dc-tx-245",
+      "lat": 32.9029,
+      "lon": -96.9012,
+      "capacity_mw": 40.0
+    },
+    {
+      "id": "fc-5ecf404dcb",
+      "name": "Aligned Data Centers - Chandler AZ",
+      "operator": "Aligned Data Centers",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Aligned Data Centers Phoenix area campus in Chandler Arizona; legacy_id:dc-az-082",
+      "lat": 33.3062,
+      "lon": -111.8413,
+      "capacity_mw": 35.0
+    },
+    {
+      "id": "fc-7bbb9f6d54",
+      "name": "Aligned Data Centers - Asheville NC",
+      "operator": "Aligned Data Centers",
+      "status": "existing",
+      "county_fips": "37021",
+      "notes": "Aligned Data Centers Asheville North Carolina colocation campus; legacy_id:dc-nc-084",
+      "lat": 35.5951,
+      "lon": -82.5515,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-21afa1dc1b",
+      "name": "Landmark Infrastructure Data Center - Los Angeles",
+      "operator": "Landmark Infrastructure",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Landmark Infrastructure carrier hotel and data center in Los Angeles; legacy_id:dc-ca-207",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-1a2bfa3b03",
+      "name": "PowerHouse Data Centers - Ashburn VA",
+      "operator": "PowerHouse Data Centers",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "PowerHouse Data Centers Ashburn Virginia campus facility; legacy_id:dc-va-159",
+      "lat": 39.0438,
+      "lon": -77.4875,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-f87bcc6ce0",
+      "name": "PowerHouse Data Centers - Columbus OH",
+      "operator": "PowerHouse Data Centers",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "PowerHouse Data Centers Columbus Ohio campus; legacy_id:dc-oh-103",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-e6ac6a256e",
+      "name": "Cologix Data Center - Denver CO",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Cologix Denver Colorado colocation and interconnection facility; legacy_id:dc-co-080",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-096f4cb645",
+      "name": "Cologix Data Center - Columbus OH",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Cologix Columbus Ohio colocation facility; legacy_id:dc-oh-104",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-e58d821178",
+      "name": "Cologix Data Center - New Orleans LA",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "22071",
+      "notes": "Cologix New Orleans Louisiana colocation facility; legacy_id:dc-la-014",
+      "lat": 29.9511,
+      "lon": -90.0715,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-daa743f0f7",
+      "name": "Cologix Data Center - Portland OR",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "41051",
+      "notes": "Cologix Portland Oregon colocation facility; legacy_id:dc-or-069",
+      "lat": 45.5051,
+      "lon": -122.675,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-d989a59e48",
+      "name": "365 Data Centers - Detroit MI",
+      "operator": "365 Data Centers",
+      "status": "existing",
+      "county_fips": "26163",
+      "notes": "365 Data Centers Detroit Michigan colocation and managed hosting; legacy_id:dc-mi-038",
+      "lat": 42.3314,
+      "lon": -83.1099,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-6e86ec7963",
+      "name": "365 Data Centers - Cincinnati OH",
+      "operator": "365 Data Centers",
+      "status": "existing",
+      "county_fips": "39061",
+      "notes": "365 Data Centers Cincinnati Ohio colocation facility; legacy_id:dc-oh-105",
+      "lat": 39.1031,
+      "lon": -84.512,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-f9b2a46337",
+      "name": "Netrality Data Centers - Houston TX",
+      "operator": "Netrality Properties",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "Netrality Properties Houston Texas carrier hotel data center; legacy_id:dc-tx-246",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-9d24a6960b",
+      "name": "Netrality Data Centers - Chicago 1 S Dearborn",
+      "operator": "Netrality Properties",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Netrality Properties Chicago 1 S Dearborn carrier hotel; legacy_id:dc-il-110",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-bcef70a26d",
+      "name": "Lawrence Berkeley National Lab Data Center - Berkeley",
+      "operator": "Lawrence Berkeley National Laboratory (DOE)",
+      "status": "existing",
+      "county_fips": "06001",
+      "notes": "LBNL National Energy Research Scientific Computing Center (NERSC) facility; legacy_id:dc-ca-208",
+      "lat": 37.8755,
+      "lon": -122.2478,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-8556986a4e",
+      "name": "Sandia National Laboratories Data Center - Albuquerque",
+      "operator": "Sandia National Laboratories (DOE/NNSA)",
+      "status": "existing",
+      "county_fips": "35001",
+      "notes": "Sandia National Laboratories data center for nuclear security computing; legacy_id:dc-nm-012",
+      "lat": 35.0503,
+      "lon": -106.5757,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-6ba1be7c19",
+      "name": "Fifth Third Bancorp Data Center - Cincinnati OH",
+      "operator": "Fifth Third Bank",
+      "status": "existing",
+      "county_fips": "39061",
+      "notes": "Fifth Third Bank primary data center at Cincinnati OH headquarters; legacy_id:dc-oh-107",
+      "lat": 39.1031,
+      "lon": -84.512,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-b855271f02",
+      "name": "Washington Federal Data Center - Seattle WA",
+      "operator": "Washington Federal",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Washington Federal Bank data center at Seattle headquarters; legacy_id:dc-wa-073",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-ae9a5726e7",
+      "name": "Regions Financial Data Center - Birmingham AL",
+      "operator": "Regions Financial Corporation",
+      "status": "existing",
+      "county_fips": "01073",
+      "notes": "Regions Bank primary data center at Birmingham Alabama headquarters campus; legacy_id:dc-al-020",
+      "lat": 33.5186,
+      "lon": -86.8025,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-4b6446fa50",
+      "name": "Hancock Whitney Data Center - Gulfport MS / New Orleans",
+      "operator": "Hancock Whitney",
+      "status": "existing",
+      "county_fips": "22071",
+      "notes": "Hancock Whitney regional bank data center serving Gulf Coast market; legacy_id:dc-la-015",
+      "lat": 29.9511,
+      "lon": -90.0715,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-1f63677c81",
+      "name": "Microsoft Data Center - Conway AR",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "05029",
+      "notes": "Microsoft planned data center campus in Conway Arkansas; legacy_id:dc-ar-017",
+      "lat": 35.0887,
+      "lon": -92.4421,
+      "capacity_mw": 100.0
+    },
+    {
+      "id": "fc-a9b8279894",
+      "name": "AWS Data Center - Shreveport LA Area",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "22073",
+      "notes": "AWS planned data center campus near Shreveport Louisiana; legacy_id:dc-la-016",
+      "lat": 32.5252,
+      "lon": -93.7502,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-58047b5dac",
+      "name": "Google Data Center - Pryor Creek OK",
+      "operator": "Google",
+      "status": "existing",
+      "county_fips": "40115",
+      "notes": "Google data center in Pryor Creek Oklahoma at MidAmerica Industrial Park; legacy_id:dc-ok-025",
+      "lat": 36.312,
+      "lon": -95.3176,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-3c2f3fd2c3",
+      "name": "Google Data Center - Pryor Creek OK Building 2",
+      "operator": "Google",
+      "status": "existing",
+      "county_fips": "40115",
+      "notes": "Google second building at Pryor Creek Oklahoma campus; legacy_id:dc-ok-026",
+      "lat": 36.315,
+      "lon": -95.32,
+      "capacity_mw": 80.0
     }
   ],
   "ai_campuses": [
@@ -25470,5 +25811,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T03:41:09Z"
+  "_facilities_exported_at": "2026-07-14T03:44:13Z"
 }
