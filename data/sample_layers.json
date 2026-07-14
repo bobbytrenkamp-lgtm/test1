@@ -24596,6 +24596,314 @@
       "lat": 35.899,
       "lon": -78.8502,
       "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-b9cf3c75d1",
+      "name": "Fiserv Data Center - Brookfield WI",
+      "operator": "Fiserv",
+      "status": "existing",
+      "county_fips": "55133",
+      "notes": "Fiserv payment processing primary data center at Brookfield WI headquarters; legacy_id:dc-wi-022",
+      "lat": 43.0606,
+      "lon": -88.1063,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-a364af2888",
+      "name": "Fiserv Data Center - Alpharetta GA",
+      "operator": "Fiserv",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Fiserv Southeast data center in Alpharetta Georgia; legacy_id:dc-ga-106",
+      "lat": 34.0754,
+      "lon": -84.2941,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-380b3f6c40",
+      "name": "NCR Voyix Data Center - Atlanta GA",
+      "operator": "NCR Voyix",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "NCR Voyix (formerly NCR Corporation) ATM/POS data center in Atlanta GA; legacy_id:dc-ga-108",
+      "lat": 33.76,
+      "lon": -84.4,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-75462b4ecb",
+      "name": "OpenAI Data Center - San Francisco CA",
+      "operator": "OpenAI",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "OpenAI headquarters data center in San Francisco for model training and API ops; legacy_id:dc-ca-200",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-9dcac86435",
+      "name": "OpenAI / Microsoft Stargate - Abilene TX",
+      "operator": "OpenAI / Microsoft / SoftBank",
+      "status": "planned",
+      "county_fips": "48441",
+      "notes": "Project Stargate massive AI data center campus in Abilene TX - $500B commitment announced 2025; legacy_id:dc-tx-241",
+      "lat": 32.4487,
+      "lon": -99.7298,
+      "capacity_mw": 500.0
+    },
+    {
+      "id": "fc-5789a9ca3a",
+      "name": "OpenAI / Microsoft Stargate - Fort Worth TX",
+      "operator": "OpenAI / Microsoft",
+      "status": "planned",
+      "county_fips": "48439",
+      "notes": "Project Stargate AI data center campus in Fort Worth TX area; legacy_id:dc-tx-242",
+      "lat": 32.7357,
+      "lon": -97.3308,
+      "capacity_mw": 300.0
+    },
+    {
+      "id": "fc-5ce26dfea8",
+      "name": "xAI Colossus Data Center - Memphis TN",
+      "operator": "xAI (Elon Musk)",
+      "status": "existing",
+      "county_fips": "47157",
+      "notes": "xAI Colossus supercomputer cluster in Memphis Tennessee, one of world's largest GPU clusters; legacy_id:dc-tn-048",
+      "lat": 35.0456,
+      "lon": -89.9928,
+      "capacity_mw": 150.0
+    },
+    {
+      "id": "fc-cf6d572e24",
+      "name": "xAI Colossus Data Center - Memphis TN Phase 2",
+      "operator": "xAI (Elon Musk)",
+      "status": "planned",
+      "county_fips": "47157",
+      "notes": "xAI Colossus Phase 2 massive expansion in Memphis Tennessee; legacy_id:dc-tn-049",
+      "lat": 35.048,
+      "lon": -89.99,
+      "capacity_mw": 800.0
+    },
+    {
+      "id": "fc-5b3ae74f5e",
+      "name": "Mistral AI US Data Center - Ashburn VA",
+      "operator": "Mistral AI",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Mistral AI US operations data center in Ashburn Virginia; legacy_id:dc-va-156",
+      "lat": 39.0438,
+      "lon": -77.4875,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-3843dde1af",
+      "name": "Cohere Data Center - San Francisco CA",
+      "operator": "Cohere",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Cohere enterprise AI data center in San Francisco California; legacy_id:dc-ca-202",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-950e00a142",
+      "name": "Microsoft AI Campus - Douglas County GA",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "13097",
+      "notes": "Microsoft planned AI data center campus in Douglas County Georgia; legacy_id:dc-ga-105",
+      "lat": 33.6975,
+      "lon": -84.8018,
+      "capacity_mw": 200.0
+    },
+    {
+      "id": "fc-53fe0ecb94",
+      "name": "Microsoft AI Campus - Chicago Suburbs",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "17031",
+      "notes": "Microsoft planned AI/Azure expansion campus in Chicago area Illinois; legacy_id:dc-il-109",
+      "lat": 42.0,
+      "lon": -87.85,
+      "capacity_mw": 150.0
+    },
+    {
+      "id": "fc-75fd140665",
+      "name": "Microsoft Data Center - New Albany OH Campus 2",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "39041",
+      "notes": "Microsoft planned second campus expansion in New Albany Ohio; legacy_id:dc-oh-102",
+      "lat": 40.081,
+      "lon": -82.806,
+      "capacity_mw": 200.0
+    },
+    {
+      "id": "fc-01072127ae",
+      "name": "AWS Data Center - Adams County PA Campus",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "42001",
+      "notes": "AWS planned large data center campus in Adams County Pennsylvania; legacy_id:dc-pa-063",
+      "lat": 39.8676,
+      "lon": -77.2253,
+      "capacity_mw": 200.0
+    },
+    {
+      "id": "fc-ebb54b3b8e",
+      "name": "AWS Data Center - Louisville KY Area",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "21111",
+      "notes": "AWS planned data center campus in Louisville Kentucky area; legacy_id:dc-ky-020",
+      "lat": 38.2527,
+      "lon": -85.7585,
+      "capacity_mw": 150.0
+    },
+    {
+      "id": "fc-e51c0b1fc1",
+      "name": "Google Data Center - Midlothian TX Campus 2",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "48139",
+      "notes": "Google planned second campus at Midlothian Texas site; legacy_id:dc-tx-243",
+      "lat": 32.4751,
+      "lon": -96.9879,
+      "capacity_mw": 150.0
+    },
+    {
+      "id": "fc-8c2202691d",
+      "name": "Google Data Center - Cheyenne WY Campus",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "56021",
+      "notes": "Google planned data center campus in Cheyenne Wyoming; legacy_id:dc-wy-015",
+      "lat": 41.14,
+      "lon": -104.8202,
+      "capacity_mw": 100.0
+    },
+    {
+      "id": "fc-0356619991",
+      "name": "Stripe Data Center - San Francisco CA",
+      "operator": "Stripe",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Stripe payments platform data center in San Francisco; legacy_id:dc-ca-203",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-634973a4c9",
+      "name": "Stripe Data Center - Hillsboro OR",
+      "operator": "Stripe",
+      "status": "existing",
+      "county_fips": "41067",
+      "notes": "Stripe secondary data center at Hillsboro Oregon co-location campus; legacy_id:dc-or-068",
+      "lat": 45.5229,
+      "lon": -122.9898,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-76c3ab1c4d",
+      "name": "Block (Square) Data Center - San Francisco CA",
+      "operator": "Block Inc (Square)",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Block/Square payments and fintech data center in San Francisco; legacy_id:dc-ca-204",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-20a31a8179",
+      "name": "PayPal Data Center - San Jose CA",
+      "operator": "PayPal Holdings",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "PayPal primary data center at San Jose California headquarters campus; legacy_id:dc-ca-205",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-219e8f2719",
+      "name": "PayPal Data Center - Austin TX",
+      "operator": "PayPal Holdings",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "PayPal Texas operations data center in Austin; legacy_id:dc-tx-244",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-50eeab5ad0",
+      "name": "PayPal Data Center - Omaha NE",
+      "operator": "PayPal Holdings",
+      "status": "existing",
+      "county_fips": "31055",
+      "notes": "PayPal Omaha NE major data center inherited from eBay/PayPal split; legacy_id:dc-ne-023",
+      "lat": 41.2565,
+      "lon": -95.9345,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-3e2762b48f",
+      "name": "Visa Data Center - Foster City CA",
+      "operator": "Visa Inc",
+      "status": "existing",
+      "county_fips": "06081",
+      "notes": "Visa global HQ data center at Foster City California campus; legacy_id:dc-ca-206",
+      "lat": 37.5585,
+      "lon": -122.266,
+      "capacity_mw": 18.0
+    },
+    {
+      "id": "fc-f4920f2c97",
+      "name": "Mastercard Data Center - Ashburn VA",
+      "operator": "Mastercard",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Mastercard East Coast data center in Ashburn Virginia; legacy_id:dc-va-158",
+      "lat": 39.0438,
+      "lon": -77.4875,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-c7de3ae2e3",
+      "name": "American Express Data Center - New York NY",
+      "operator": "American Express",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "American Express primary data center at New York City headquarters; legacy_id:dc-ny-060",
+      "lat": 40.758,
+      "lon": -74.006,
+      "capacity_mw": 18.0
+    },
+    {
+      "id": "fc-7559d03d0a",
+      "name": "FIS Data Center - Jacksonville FL HQ",
+      "operator": "FIS (Fidelity National Information Services)",
+      "status": "existing",
+      "county_fips": "12031",
+      "notes": "FIS fintech primary data center at Jacksonville FL headquarters; legacy_id:dc-fl-090",
+      "lat": 30.3322,
+      "lon": -81.6557,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-4f98e894dc",
+      "name": "FIS Data Center - Atlanta GA",
+      "operator": "FIS (Fidelity National Information Services)",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "FIS Southeast operations data center in Atlanta; legacy_id:dc-ga-107",
+      "lat": 33.749,
+      "lon": -84.388,
+      "capacity_mw": 15.0
     }
   ],
   "ai_campuses": [
@@ -24627,7 +24935,8 @@
       "county_fips": "06075",
       "notes": "AI safety research; training conducted via cloud partnerships.; legacy_id:ai-ca-001",
       "lat": 37.77,
-      "lon": -122.41
+      "lon": -122.41,
+      "capacity_mw": 5.0
     },
     {
       "id": "fc-1187465b4d",
@@ -25161,5 +25470,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T03:38:05Z"
+  "_facilities_exported_at": "2026-07-14T03:41:09Z"
 }
