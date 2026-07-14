@@ -22572,6 +22572,50 @@
       "lat": 44.2601,
       "lon": -72.5754,
       "capacity_mw": 3.0
+    },
+    {
+      "id": "fc-89884a842b",
+      "name": "Indiana University Data Center - Bloomington",
+      "operator": "Indiana University",
+      "status": "existing",
+      "county_fips": "18105",
+      "notes": "Indiana University primary data center campus in Bloomington; legacy_id:dc-in-032",
+      "lat": 39.1653,
+      "lon": -86.5264,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-f2b553acfe",
+      "name": "University of Oklahoma Data Center - Norman",
+      "operator": "University of Oklahoma",
+      "status": "existing",
+      "county_fips": "40027",
+      "notes": "University of Oklahoma central data center in Norman OK; legacy_id:dc-ok-023",
+      "lat": 35.2226,
+      "lon": -97.4395,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-3ef42c95d4",
+      "name": "Mississippi State University Data Center - Starkville",
+      "operator": "Mississippi State University",
+      "status": "existing",
+      "county_fips": "28019",
+      "notes": "Mississippi State University central IT data center; legacy_id:dc-ms-013",
+      "lat": 33.4504,
+      "lon": -88.789,
+      "capacity_mw": 3.0
+    },
+    {
+      "id": "fc-e45b054f7e",
+      "name": "University of Alaska Data Center - Fairbanks",
+      "operator": "University of Alaska Fairbanks",
+      "status": "existing",
+      "county_fips": "02090",
+      "notes": "UAF data center supporting Arctic research computing systems; legacy_id:dc-ak-009",
+      "lat": 64.8581,
+      "lon": -147.7249,
+      "capacity_mw": 3.0
     }
   ],
   "ai_campuses": [
@@ -23137,5 +23181,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-13T23:59:04Z"
+  "_facilities_exported_at": "2026-07-14T03:26:28Z"
 }
