@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260714a" />
+  <link rel="stylesheet" href="css/style.css?v=20260714b" />
   <link rel="stylesheet" href="css/stocks.css?v=20260712h" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
@@ -182,6 +182,15 @@
 
       <!-- GIS Toolbar -->
       <div id="map-gis-bar" role="toolbar" aria-label="Map tools">
+        <button class="gis-btn" id="gis-fullscreen" title="Toggle full screen (F)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        </button>
+        <button class="gis-btn" id="gis-locate" title="Find my location">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </button>
+        <button class="gis-btn" id="gis-zoom-filtered" title="Zoom to restricted counties">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </button>
         <button class="gis-btn" id="gis-measure" title="Measure distance (M)" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="2"/><line x1="6" y1="8" x2="6" y2="11"/><line x1="10" y1="8" x2="10" y2="10"/><line x1="14" y1="8" x2="14" y2="10"/><line x1="18" y1="8" x2="18" y2="11"/></svg>
         </button>
@@ -191,9 +200,37 @@
         <button class="gis-btn" id="gis-share" title="Copy share link for current view">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
         </button>
+        <button class="gis-btn" id="gis-print" title="Print map">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        </button>
+        <button class="gis-btn" id="gis-bookmarks" title="Saved views" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        </button>
         <button class="gis-btn" id="gis-minimap" title="Toggle overview map" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><rect x="6" y="8" width="8" height="8" rx="1"/></svg>
         </button>
+      </div>
+
+      <!-- Bookmarks panel -->
+      <div id="bookmarks-panel" hidden>
+        <div id="bookmarks-header">
+          <span>Saved Views</span>
+          <button id="bookmarks-close" aria-label="Close bookmarks">&times;</button>
+        </div>
+        <div id="bookmarks-list"></div>
+        <div id="bookmarks-footer">
+          <button id="bookmark-save-btn">Save current view</button>
+        </div>
+      </div>
+
+      <!-- Right-click context menu -->
+      <div id="map-ctx-menu" hidden role="menu">
+        <button id="ctx-copy-coords" role="menuitem">Copy coordinates</button>
+        <button id="ctx-open-google" role="menuitem">Open in Google Maps</button>
+        <button id="ctx-measure-from" role="menuitem">Measure from here</button>
+        <div class="ctx-divider" role="separator"></div>
+        <button id="ctx-zoom-in" role="menuitem">Zoom in</button>
+        <button id="ctx-zoom-out" role="menuitem">Zoom out</button>
       </div>
 
       <!-- Measure readout -->
@@ -380,7 +417,7 @@ window.addEventListener('error', function(e) {
 <script src="js/stocks.js?v=20260712k" defer onload="window._track.ok.push('stocks')" onerror="window._track.fail.push('stocks')"></script>
 <script src="js/analytics.js?v=20260712k" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
 <script src="js/home.js?v=20260712m" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
-<script src="js/map.js?v=20260714a" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script src="js/map.js?v=20260714b" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
 <script>
 setTimeout(function() {
   if (!window._pageInitialized) {
