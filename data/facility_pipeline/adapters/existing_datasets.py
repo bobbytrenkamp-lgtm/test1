@@ -1,16 +1,33 @@
 """Seed adapter — loads existing data_centers.json and ai_campuses.json."""
 from __future__ import annotations
 
+import json
 import os
 from typing import Iterator
 
 from ..models import FacilityRecord, FacilitySource, SEED_CONFIDENCE, SEED_SOURCE_ID, load_json
-from ..normalize import normalize_record_fields
+from ..normalize import normalize_record_fields, normalize_state
 from . import BaseAdapter
 
 DATA_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DATA_CENTERS_PATH = os.path.join(DATA_DIR, "data_centers.json")
 AI_CAMPUSES_PATH = os.path.join(DATA_DIR, "ai_campuses.json")
+COUNTY_NAMES_PATH = os.path.join(DATA_DIR, "county_names.json")
+
+# Load FIPS → (county_name, state_abbr) lookup once at import time
+_FIPS_LOOKUP: dict[str, tuple[str, str]] = {}
+try:
+    _raw = json.load(open(COUNTY_NAMES_PATH))
+    for fips, info in _raw.get("counties", {}).items():
+        _FIPS_LOOKUP[fips.zfill(5)] = (info.get("name", ""), info.get("state", ""))
+except Exception:
+    pass  # county_names.json missing or malformed — degrade gracefully
+
+# Map state abbreviation → full name (from normalize module)
+from ..normalize import ABBR_TO_NAME as _ABBR_TO_NAME
+
+# Extract state abbreviation embedded in legacy id (e.g. "dc-va-001" → "VA")
+_LEGACY_ID_RE = __import__("re").compile(r"^dc-([a-z]{2})-\d+$")
 
 # Map legacy operational status strings to canonical values
 _STATUS_MAP = {
@@ -80,8 +97,29 @@ def _from_legacy(d: dict, is_campus: bool = False) -> FacilityRecord:
     r.confidence_score = SEED_CONFIDENCE
     r.confidence_tier = 2
 
-    # Preserve any legacy id as a note rather than overwriting the generated facility_id
     legacy_id = d.get("id", "")
+
+    # Derive state from county_fips lookup (most reliable for seed data)
+    if not r.state_abbr and r.county_fips:
+        fips_info = _FIPS_LOOKUP.get(r.county_fips.zfill(5))
+        if fips_info:
+            r.county = r.county or fips_info[0]
+            abbr = fips_info[1]
+            full, _ = normalize_state(abbr)
+            r.state = full or abbr
+            r.state_abbr = abbr
+
+    # Fall back to state encoded in the legacy id (e.g. "dc-va-001" → VA)
+    if not r.state_abbr and legacy_id:
+        m = _LEGACY_ID_RE.match(legacy_id)
+        if m:
+            abbr = m.group(1).upper()
+            full, norm_abbr = normalize_state(abbr)
+            if norm_abbr:
+                r.state = full
+                r.state_abbr = norm_abbr
+
+    # Preserve any legacy id in notes for traceability
     if legacy_id and not r.notes:
         r.notes = f"legacy_id:{legacy_id}"
     elif legacy_id:

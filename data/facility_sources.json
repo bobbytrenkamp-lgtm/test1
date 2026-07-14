@@ -1,8 +1,9 @@
 {
   "meta": {
-    "version": "1.0",
-    "description": "Registry of data sources for the US facility pipeline",
-    "last_updated": "2026-07-12"
+    "version": "2.0",
+    "description": "Registry of data sources for the US AI infrastructure facility pipeline",
+    "last_updated": "2026-07-14",
+    "quality_policy": "Every record in facilities_master.json must have at least one source_url from a verifiable public source. Records from the hand-curated seed (existing_data_centers) are treated as tier-2 confidence and should be verified against tier-1 sources over time. Never invent or estimate facilities to reach an arbitrary count."
   },
   "sources": [
     {
@@ -15,7 +16,7 @@
       "requires_auth": false,
       "auth_env_var": "",
       "rate_limit_rpm": 9999,
-      "notes": "Seed dataset from prior hand-curation. Treated as tier-2 confidence.",
+      "notes": "Seed dataset from prior hand-curation. Treated as tier-2 confidence (0.85). Individual records lack source URLs. Higher-tier pipeline sources will enrich these records with verified URLs and updated metadata when they match spatially or by name. Do not add new records to data_centers.json — use the pipeline adapters instead.",
       "operator_filter": "",
       "confidence_override": 0.85
     },
@@ -29,7 +30,7 @@
       "requires_auth": false,
       "auth_env_var": "",
       "rate_limit_rpm": 10,
-      "notes": "Queries building=data_center, building=datacenter, man_made=data_center tags within continental US bounding box.",
+      "notes": "Queries building=data_center, building=datacenter, man_made=data_center tags within continental US bounding box. Community-maintained; coverage is good for large facilities, sparse for enterprise/edge. Run monthly.",
       "operator_filter": "",
       "confidence_override": null
     },
@@ -43,13 +44,69 @@
       "requires_auth": false,
       "auth_env_var": "",
       "rate_limit_rpm": 30,
-      "notes": "Public directory; polite crawl at 1 req/2s. Robots.txt permits crawling.",
+      "notes": "Public directory of colocation facilities. Polite crawl at 1 req/2s. Robots.txt permits crawling. Good coverage of colocation providers. Run quarterly.",
       "operator_filter": "",
       "confidence_override": null
     },
     {
+      "id": "equinix",
+      "name": "Equinix IBX Locations (Official Website)",
+      "tier": 1,
+      "adapter": "equinix",
+      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/",
+      "active": true,
+      "requires_auth": false,
+      "auth_env_var": "",
+      "rate_limit_rpm": 30,
+      "notes": "Equinix's own published IBX data center location pages. Tier-1 source — operator's own information. Run monthly to catch new IBX openings. Requires requests + beautifulsoup4.",
+      "operator_filter": "Equinix",
+      "confidence_override": 0.92
+    },
+    {
+      "id": "digital_realty",
+      "name": "Digital Realty Trust Locations (Official Website)",
+      "tier": 1,
+      "adapter": "digital_realty",
+      "url": "https://www.digitalrealty.com/data-centers/",
+      "active": true,
+      "requires_auth": false,
+      "auth_env_var": "",
+      "rate_limit_rpm": 30,
+      "notes": "Digital Realty Trust's own published data center location pages. Tier-1 source. Run monthly. Requires requests + beautifulsoup4.",
+      "operator_filter": "Digital Realty",
+      "confidence_override": 0.92
+    },
+    {
+      "id": "ferc_queue",
+      "name": "FERC Interconnection Queue (Active Requests)",
+      "tier": 4,
+      "adapter": "ferc_queue",
+      "url": "https://www.ferc.gov/media/3423/download",
+      "active": true,
+      "requires_auth": false,
+      "auth_env_var": "",
+      "rate_limit_rpm": 6,
+      "notes": "Federal Energy Regulatory Commission active interconnection request queue. Large power requests (>50 MW) may indicate planned data centers. All records are candidates — requires human review to verify that the project is a data center, not another industrial use. Run quarterly. Requires requests + openpyxl.",
+      "operator_filter": "",
+      "confidence_override": 0.40
+    },
+    {
+      "id": "sec_edgar",
+      "name": "SEC EDGAR Full-Text Search (8-K Filings)",
+      "tier": 4,
+      "adapter": "sec_edgar",
+      "url": "https://efts.sec.gov/LATEST/search-index",
+      "active": true,
+      "requires_auth": false,
+      "auth_env_var": "",
+      "rate_limit_rpm": 60,
+      "notes": "SEC EDGAR full-text search for 8-K filings announcing data center facility acquisitions, leases, or construction. All results are candidates — the filing text rarely includes precise coordinates, so records need verification via mapping or operator website. Run monthly. EDGAR fair-use policy requires User-Agent with contact info.",
+      "operator_filter": "",
+      "confidence_override": 0.45
+    },
+    {
       "id": "cloudscene",
-      "name": "Cloudscene",
+      "name": "Cloudscene API",
       "tier": 1,
       "adapter": "cloudscene",
       "url": "https://api.cloudscene.com/v1/facilities",
@@ -57,9 +114,67 @@
       "requires_auth": true,
       "auth_env_var": "CLOUDSCENE_API_KEY",
       "rate_limit_rpm": 60,
-      "notes": "Paid API. Set CLOUDSCENE_API_KEY to activate. Highest-trust aggregator.",
+      "notes": "Paid API with the most comprehensive colocation coverage. Set CLOUDSCENE_API_KEY environment variable to activate. Highest-trust aggregator for colocation facilities. Run weekly when active.",
       "operator_filter": "",
       "confidence_override": null
+    }
+  ],
+  "planned_sources": [
+    {
+      "id": "qts_website",
+      "name": "QTS Realty Trust Locations (Official Website)",
+      "tier": 1,
+      "url": "https://www.qtsdatacenters.com/data-centers/",
+      "status": "not_yet_built",
+      "notes": "QTS (now Iron Mountain Data Centers) official location pages."
+    },
+    {
+      "id": "coresite_website",
+      "name": "CoreSite Realty Locations",
+      "tier": 1,
+      "url": "https://www.coresite.com/data-centers",
+      "status": "not_yet_built",
+      "notes": "CoreSite (American Tower subsidiary) official location pages."
+    },
+    {
+      "id": "cyrusone_website",
+      "name": "CyrusOne Locations",
+      "tier": 1,
+      "url": "https://cyrusone.com/data-centers/",
+      "status": "not_yet_built",
+      "notes": "CyrusOne official location pages."
+    },
+    {
+      "id": "switch_website",
+      "name": "Switch Inc PRIME Locations",
+      "tier": 1,
+      "url": "https://www.switch.com/data-centers/",
+      "status": "not_yet_built",
+      "notes": "Switch Inc (now DigitalBridge) official data center pages."
+    },
+    {
+      "id": "pjm_queue",
+      "name": "PJM Interconnection Queue",
+      "tier": 4,
+      "url": "https://www.pjm.com/planning/interconnection-projects",
+      "status": "not_yet_built",
+      "notes": "PJM (Mid-Atlantic) active interconnection queue. Covers VA, OH, IL, PA, MD, NJ, DE, DC — major data center states."
+    },
+    {
+      "id": "eia_large_consumers",
+      "name": "EIA Form EIA-861 Large Power Consumers",
+      "tier": 4,
+      "url": "https://www.eia.gov/electricity/data/eia861/",
+      "status": "not_yet_built",
+      "notes": "EIA annual electric power industry report. Large commercial consumers (>10 MW) can be cross-referenced against known DC operators."
+    },
+    {
+      "id": "va_bza_permits",
+      "name": "Virginia (Loudoun/Prince William) Building Permits",
+      "tier": 4,
+      "url": "https://aca-prod.accela.com/LOUDOUNCOUNTY/",
+      "status": "not_yet_built",
+      "notes": "Loudoun County VA ('Data Center Alley') building permits. Publicly searchable. Filter for large commercial/industrial applications."
     }
   ]
 }
