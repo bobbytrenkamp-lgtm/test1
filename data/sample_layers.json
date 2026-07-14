@@ -27808,6 +27808,237 @@
       "lat": 39.45,
       "lon": -76.62,
       "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-cc93b3edc5",
+      "name": "TD Bank Data Center - Mount Laurel NJ",
+      "operator": "TD Bank",
+      "status": "existing",
+      "county_fips": "34005",
+      "notes": "TD Bank (TD Ameritrade) primary US data center at Mount Laurel New Jersey; legacy_id:dc-nj-061",
+      "lat": 39.953,
+      "lon": -74.919,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-f1051d36b7",
+      "name": "Charles Schwab Data Center - Westlake TX",
+      "operator": "Charles Schwab Corporation",
+      "status": "existing",
+      "county_fips": "48097",
+      "notes": "Charles Schwab financial services data center at Westlake Texas new campus; legacy_id:dc-tx-277",
+      "lat": 32.993,
+      "lon": -97.205,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-c0184744f7",
+      "name": "Charles Schwab Data Center - Lone Tree CO",
+      "operator": "Charles Schwab Corporation",
+      "status": "existing",
+      "county_fips": "08035",
+      "notes": "Charles Schwab data center at Lone Tree Colorado operations campus; legacy_id:dc-co-088",
+      "lat": 39.52,
+      "lon": -104.87,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-30f9844152",
+      "name": "Edward Jones Data Center - St. Louis MO",
+      "operator": "Edward Jones Investments",
+      "status": "existing",
+      "county_fips": "29189",
+      "notes": "Edward Jones investment firm data center at Des Peres Missouri headquarters; legacy_id:dc-mo-058",
+      "lat": 38.5995,
+      "lon": -90.449,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-8824121bc7",
+      "name": "KeyBank Data Center - Brooklyn OH",
+      "operator": "KeyBank",
+      "status": "existing",
+      "county_fips": "39035",
+      "notes": "KeyBank financial services primary data center in Brooklyn Ohio (Cleveland area); legacy_id:dc-oh-118",
+      "lat": 41.429,
+      "lon": -81.7299,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-708421f043",
+      "name": "Huntington National Bank Data Center - Columbus OH",
+      "operator": "Huntington Bancshares",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Huntington National Bank financial services data center at Columbus Ohio headquarters; legacy_id:dc-oh-119",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-b28f0f897e",
+      "name": "M&T Bank Data Center - Buffalo NY",
+      "operator": "M&T Bank Corporation",
+      "status": "existing",
+      "county_fips": "36029",
+      "notes": "M&T Bank regional banking data center at Buffalo New York headquarters; legacy_id:dc-ny-073",
+      "lat": 42.8864,
+      "lon": -78.8784,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-88c447002b",
+      "name": "Santander US Data Center - Boston MA",
+      "operator": "Santander US",
+      "status": "existing",
+      "county_fips": "25025",
+      "notes": "Santander US bank data center at Boston Massachusetts headquarters; legacy_id:dc-ma-045",
+      "lat": 42.3601,
+      "lon": -71.0589,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-df0399171c",
+      "name": "X (Twitter) Data Center - The Dalles OR",
+      "operator": "X Corp (Twitter)",
+      "status": "existing",
+      "county_fips": "41065",
+      "notes": "X Corp (Twitter) west coast data center in The Dalles Oregon; legacy_id:dc-or-080",
+      "lat": 45.5946,
+      "lon": -121.179,
+      "capacity_mw": 40.0
+    },
+    {
+      "id": "fc-12aa15366a",
+      "name": "Pinterest Data Center - San Francisco CA",
+      "operator": "Pinterest Inc",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Pinterest social media data center at San Francisco headquarters; legacy_id:dc-ca-230",
+      "lat": 37.7765,
+      "lon": -122.4,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-405b0badcb",
+      "name": "Reddit Data Center - San Francisco CA",
+      "operator": "Reddit Inc",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Reddit social platform data center in San Francisco California; legacy_id:dc-ca-231",
+      "lat": 37.774,
+      "lon": -122.41,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-c6f24bf012",
+      "name": "Oracle Cloud Data Center - Ashburn VA OC1",
+      "operator": "Oracle Corporation",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Oracle Cloud Infrastructure US East (Ashburn) region data center OC1; legacy_id:dc-va-182",
+      "lat": 39.0438,
+      "lon": -77.4875,
+      "capacity_mw": 40.0
+    },
+    {
+      "id": "fc-f035f149af",
+      "name": "Oracle Cloud Data Center - Ashburn VA OC2",
+      "operator": "Oracle Corporation",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Oracle Cloud Infrastructure US East second AZ in Ashburn Virginia; legacy_id:dc-va-183",
+      "lat": 39.045,
+      "lon": -77.49,
+      "capacity_mw": 45.0
+    },
+    {
+      "id": "fc-afe6d5ee9a",
+      "name": "Oracle Cloud Data Center - Chicago IL OC1",
+      "operator": "Oracle Corporation",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Oracle Cloud Infrastructure US Midwest (Chicago) region data center; legacy_id:dc-il-125",
+      "lat": 41.885,
+      "lon": -87.64,
+      "capacity_mw": 35.0
+    },
+    {
+      "id": "fc-f25dedcd91",
+      "name": "IBM Cloud Data Center - Dallas TX DAL10",
+      "operator": "IBM Cloud",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "IBM Cloud Dallas Texas data center DAL10 for US South region; legacy_id:dc-tx-278",
+      "lat": 32.9,
+      "lon": -96.85,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-57d3a4bc47",
+      "name": "IBM Cloud Data Center - Dallas TX DAL12",
+      "operator": "IBM Cloud",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "IBM Cloud Dallas Texas data center DAL12 for US South region; legacy_id:dc-tx-279",
+      "lat": 32.91,
+      "lon": -96.86,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-a311846e85",
+      "name": "IBM Cloud Data Center - Washington DC WDC04",
+      "operator": "IBM Cloud",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "IBM Cloud Washington DC data center WDC04 for US East region; legacy_id:dc-va-184",
+      "lat": 38.96,
+      "lon": -77.47,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-dafc83bff1",
+      "name": "IBM Cloud Data Center - Washington DC WDC07",
+      "operator": "IBM Cloud",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "IBM Cloud Washington DC data center WDC07 for US East region; legacy_id:dc-va-185",
+      "lat": 38.962,
+      "lon": -77.475,
+      "capacity_mw": 18.0
+    },
+    {
+      "id": "fc-4cbbb4fe5f",
+      "name": "Texas Instruments Data Center - Dallas TX",
+      "operator": "Texas Instruments",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Texas Instruments semiconductor company data center at Dallas headquarters; legacy_id:dc-tx-280",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-c06cace523",
+      "name": "Western Digital Data Center - San Jose CA",
+      "operator": "Western Digital Corporation",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Western Digital storage technology data center at San Jose California headquarters; legacy_id:dc-ca-234",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-5bed8dd544",
+      "name": "Marvell Technology Data Center - Santa Clara CA",
+      "operator": "Marvell Technology",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Marvell semiconductor data center at Santa Clara California headquarters; legacy_id:dc-ca-235",
+      "lat": 37.3875,
+      "lon": -121.9734,
+      "capacity_mw": 5.0
     }
   ],
   "ai_campuses": [
@@ -28374,5 +28605,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:16:27Z"
+  "_facilities_exported_at": "2026-07-14T04:20:01Z"
 }
