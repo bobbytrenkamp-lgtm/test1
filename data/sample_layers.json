@@ -25949,6 +25949,292 @@
       "lat": 46.8083,
       "lon": -100.7837,
       "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-2fe2094937",
+      "name": "MARA Holdings Bitcoin Mining - Texas",
+      "operator": "MARA Holdings (Marathon Digital)",
+      "status": "existing",
+      "county_fips": "48253",
+      "notes": "Marathon/MARA Holdings large-scale Bitcoin mining operation in Texas; legacy_id:dc-tx-256",
+      "lat": 31.5,
+      "lon": -99.0,
+      "capacity_mw": 200.0
+    },
+    {
+      "id": "fc-636df26752",
+      "name": "Stronghold Digital Mining - Scrubgrass PA",
+      "operator": "Stronghold Digital Mining",
+      "status": "existing",
+      "county_fips": "42019",
+      "notes": "Stronghold Digital Mining coal refuse Bitcoin mining in Pennsylvania; legacy_id:dc-pa-065",
+      "lat": 41.162,
+      "lon": -80.129,
+      "capacity_mw": 85.0
+    },
+    {
+      "id": "fc-4cbe966424",
+      "name": "Google Data Center - Bridgeport AL",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "01071",
+      "notes": "Google planned data center in Bridgeport Alabama (Jackson County); legacy_id:dc-al-022",
+      "lat": 34.936,
+      "lon": -85.714,
+      "capacity_mw": 100.0
+    },
+    {
+      "id": "fc-95084e37cc",
+      "name": "Google Data Center - Reston VA",
+      "operator": "Google",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "Google data center facility in Reston Virginia tech corridor; legacy_id:dc-va-166",
+      "lat": 38.9686,
+      "lon": -77.3564,
+      "capacity_mw": 40.0
+    },
+    {
+      "id": "fc-2cf39e9cb1",
+      "name": "Microsoft Data Center - Clarksville TN",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "47125",
+      "notes": "Microsoft planned data center campus in Clarksville Tennessee; legacy_id:dc-tn-053",
+      "lat": 36.5298,
+      "lon": -87.3595,
+      "capacity_mw": 100.0
+    },
+    {
+      "id": "fc-5ff79a8c36",
+      "name": "Microsoft Data Center - Kansas City MO Area",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "29095",
+      "notes": "Microsoft planned data center near Kansas City Missouri; legacy_id:dc-mo-053",
+      "lat": 39.1011,
+      "lon": -94.5786,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-84d27b6f75",
+      "name": "AWS Data Center - Tulsa OK",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "40143",
+      "notes": "AWS planned data center campus near Tulsa Oklahoma; legacy_id:dc-ok-027",
+      "lat": 36.154,
+      "lon": -95.9928,
+      "capacity_mw": 100.0
+    },
+    {
+      "id": "fc-bb4e5f7350",
+      "name": "AWS Data Center - Horry County SC",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "45051",
+      "notes": "AWS planned data center in Horry County South Carolina (Grand Strand area); legacy_id:dc-sc-018",
+      "lat": 33.7963,
+      "lon": -78.8867,
+      "capacity_mw": 120.0
+    },
+    {
+      "id": "fc-033c62e239",
+      "name": "AWS Data Center - Memphis TN Area",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "47157",
+      "notes": "AWS planned data center campus near Memphis Tennessee; legacy_id:dc-tn-054",
+      "lat": 35.0456,
+      "lon": -89.9928,
+      "capacity_mw": 150.0
+    },
+    {
+      "id": "fc-963e6004e8",
+      "name": "Meta Data Center - Temple TX Campus 2",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "48099",
+      "notes": "Meta planned second data center at Temple Texas campus; legacy_id:dc-tx-255",
+      "lat": 31.0982,
+      "lon": -97.3427,
+      "capacity_mw": 110.0
+    },
+    {
+      "id": "fc-2acd55215a",
+      "name": "Meta Data Center - Rosemount MN Campus",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "27037",
+      "notes": "Meta planned data center campus in Rosemount Minnesota (Dakota County); legacy_id:dc-mn-064",
+      "lat": 44.7399,
+      "lon": -93.096,
+      "capacity_mw": 150.0
+    },
+    {
+      "id": "fc-2ed5ff609e",
+      "name": "Apple Data Center - Catawba NC Building 3",
+      "operator": "Apple",
+      "status": "planned",
+      "county_fips": "37035",
+      "notes": "Apple planned third building at Catawba County North Carolina campus; legacy_id:dc-nc-087",
+      "lat": 35.6635,
+      "lon": -81.1034,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-31ab30dfad",
+      "name": "CleanSpark Bitcoin Mining - College Park GA / FL",
+      "operator": "CleanSpark",
+      "status": "existing",
+      "county_fips": "12057",
+      "notes": "CleanSpark Bitcoin mining facility in Georgia/Florida operations; legacy_id:dc-fl-093",
+      "lat": 27.9506,
+      "lon": -82.4572,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-068606451f",
+      "name": "CleanSpark Bitcoin Mining - College Park GA",
+      "operator": "CleanSpark",
+      "status": "existing",
+      "county_fips": "13097",
+      "notes": "CleanSpark Bitcoin mining campus in College Park Georgia; legacy_id:dc-ga-114",
+      "lat": 33.6499,
+      "lon": -84.4491,
+      "capacity_mw": 100.0
+    },
+    {
+      "id": "fc-8e008ff7ae",
+      "name": "Terawulf Bitcoin Mining - Towanda PA / WY",
+      "operator": "TeraWulf",
+      "status": "existing",
+      "county_fips": "56021",
+      "notes": "TeraWulf Bitcoin mining campus using nuclear and hydroelectric power; legacy_id:dc-wy-016",
+      "lat": 41.14,
+      "lon": -104.8202,
+      "capacity_mw": 160.0
+    },
+    {
+      "id": "fc-0847f11cad",
+      "name": "Bit Digital Bitcoin Mining - Texas",
+      "operator": "Bit Digital",
+      "status": "existing",
+      "county_fips": "48439",
+      "notes": "Bit Digital Bitcoin mining operations in Texas facilities; legacy_id:dc-tx-257",
+      "lat": 32.7357,
+      "lon": -97.3308,
+      "capacity_mw": 50.0
+    },
+    {
+      "id": "fc-ea35e8f9a5",
+      "name": "Unity Technologies Data Center - San Francisco CA",
+      "operator": "Unity Technologies",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Unity Technologies game engine platform data center in San Francisco; legacy_id:dc-ca-213",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-b6ba3d4356",
+      "name": "Harris County Data Center - Houston TX",
+      "operator": "Harris County Information Technology",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "Harris County (Houston area) government data center for county services; legacy_id:dc-tx-258",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-383db8cf28",
+      "name": "Broward County Data Center - Fort Lauderdale FL",
+      "operator": "Broward County Government",
+      "status": "existing",
+      "county_fips": "12011",
+      "notes": "Broward County FL government data center in Fort Lauderdale; legacy_id:dc-fl-094",
+      "lat": 26.1223,
+      "lon": -80.1534,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-895e8d55fe",
+      "name": "Los Angeles County Data Center - Los Angeles CA",
+      "operator": "Los Angeles County ISD",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Los Angeles County government data center for county services; legacy_id:dc-ca-214",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-3d49f6690c",
+      "name": "Cook County Data Center - Chicago IL",
+      "operator": "Cook County Department of Technology",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Cook County Illinois government data center in Chicago; legacy_id:dc-il-115",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-217ee1d48f",
+      "name": "Maricopa County Data Center - Phoenix AZ",
+      "operator": "Maricopa County Government",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Maricopa County Arizona government data center for county IT services; legacy_id:dc-az-084",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-bf761c13be",
+      "name": "New York City DoITT Data Center - Brooklyn NY",
+      "operator": "NYC Department of Information Technology",
+      "status": "existing",
+      "county_fips": "36047",
+      "notes": "NYC DoITT primary government data center for city services; legacy_id:dc-ny-068",
+      "lat": 40.6782,
+      "lon": -73.9442,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-59486823ae",
+      "name": "City of Los Angeles Data Center - Los Angeles CA",
+      "operator": "City of Los Angeles ITA",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "City of Los Angeles government data center for municipal IT; legacy_id:dc-ca-215",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-6cbea7b23e",
+      "name": "City of Chicago Data Center - Chicago IL",
+      "operator": "City of Chicago Department of Technology",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "City of Chicago municipal government data center; legacy_id:dc-il-116",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-d12c346116",
+      "name": "City of Houston Data Center - Houston TX",
+      "operator": "City of Houston Information Technology",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "City of Houston Texas municipal government data center; legacy_id:dc-tx-259",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "capacity_mw": 5.0
     }
   ],
   "ai_campuses": [
@@ -26515,5 +26801,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T03:50:26Z"
+  "_facilities_exported_at": "2026-07-14T03:53:27Z"
 }
