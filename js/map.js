@@ -331,9 +331,12 @@ async function initMapFromGeo() {
     initLegendControls();
     setDetailEmpty();
     if (loadEl) loadEl.style.display = "none";
-    // Belt-and-suspenders: a second invalidateSize after all layers are added
-    // catches any iOS Safari viewport settling that happened during GeoJSON parsing.
-    setTimeout(() => leafletMap && leafletMap.invalidateSize(), 400);
+    // Staggered invalidateSize calls catch iOS Safari layout finalization at
+    // different stages: after layers paint, after first user interaction window,
+    // and well after any address-bar animation settles.
+    [400, 900, 1800].forEach(ms =>
+      setTimeout(() => leafletMap && leafletMap.invalidateSize({ animate: false }), ms)
+    );
   } catch (err) {
     console.error(err);
     if (loadEl) loadEl.innerHTML = `
