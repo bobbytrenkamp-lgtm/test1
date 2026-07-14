@@ -1,0 +1,108 @@
+name: Update Political Risk Data
+
+on:
+  schedule:
+    # Weekly on Mondays at 06:00 UTC — political signals can change rapidly
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: "Force full rebuild of political_risk.json"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+jobs:
+  update-political-risk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild political_risk.json
+        run: python data/political_risk_pipeline.py
+
+      - name: Validate political_risk.json schema
+        run: |
+          python3 - <<'EOF'
+          import json, sys
+
+          with open("data/political_risk.json") as f:
+              data = json.load(f)
+
+          scores = data.get("scores", [])
+          errors = []
+          seen_fips = set()
+
+          for i, r in enumerate(scores):
+              fips = r.get("fips", "")
+              if not fips:
+                  errors.append(f"[{i}] Missing fips")
+              elif fips in seen_fips:
+                  errors.append(f"[{i}] Duplicate fips: {fips}")
+              else:
+                  seen_fips.add(fips)
+
+              score = r.get("risk_score")
+              if score not in (1, 2, 3, 4, 5):
+                  errors.append(f"[{i}] Invalid risk_score: {score} (fips={fips})")
+
+              if not r.get("name"):
+                  errors.append(f"[{i}] Missing name (fips={fips})")
+              if not r.get("signals"):
+                  errors.append(f"[{i}] No signals (fips={fips})")
+
+          if errors:
+              print(f"VALIDATION ERRORS ({len(errors)}):")
+              for e in errors:
+                  print(f"  {e}")
+              sys.exit(1)
+          else:
+              print(f"OK: {len(scores)} political risk records, all valid")
+          EOF
+
+      - name: Print risk coverage report
+        run: |
+          python3 - <<'EOF'
+          import json
+          from collections import Counter
+
+          with open("data/political_risk.json") as f:
+              data = json.load(f)
+
+          scores = data.get("scores", [])
+          by_score = Counter(r["risk_score"] for r in scores)
+          by_conf  = Counter(r.get("confidence","unknown") for r in scores)
+
+          print("=== POLITICAL RISK COVERAGE REPORT ===")
+          print(f"\nTotal scored counties: {len(scores)}")
+          for sc in sorted(by_score):
+              print(f"  Score {sc}: {by_score[sc]}")
+          print("\nConfidence breakdown:")
+          for c, n in by_conf.items():
+              print(f"  {c}: {n}")
+          EOF
+
+      - name: Commit updated political risk data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/political_risk.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git commit -m "chore: weekly political risk data refresh [${TIMESTAMP}] [skip ci]"
+            git push origin main
+          fi

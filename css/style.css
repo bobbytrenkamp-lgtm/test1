@@ -4452,3 +4452,109 @@ html[data-theme="light"] {
     inset: 0 !important;
   }
 }
+
+/* ── Political Risk Layer ── */
+#gis-political-risk.active {
+  background: #1a9850;
+  color: #fff;
+  border-color: #1a9850;
+}
+
+.risk-score-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+.risk-score-badge.risk-1 { background: #1a9850; }
+.risk-score-badge.risk-2 { background: #5aac44; color: #fff; }
+.risk-score-badge.risk-3 { background: #b8860b; }
+.risk-score-badge.risk-4 { background: #d75e00; }
+.risk-score-badge.risk-5 { background: #d73027; }
+
+.risk-section {
+  padding: 10px 0 4px;
+}
+.risk-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.risk-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.risk-evidence-summary {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.55;
+  margin-bottom: 8px;
+  padding: 6px 8px;
+  background: var(--surface-2);
+  border-radius: 5px;
+  border-left: 3px solid var(--border);
+}
+.risk-signals-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.risk-signal-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.45;
+}
+.risk-signal-dot {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-top: 4px;
+  background: var(--text-muted);
+}
+.risk-signal-dot.w-high  { background: #d73027; }
+.risk-signal-dot.w-med   { background: #fc8d59; }
+.risk-signal-dot.w-low   { background: #fee08b; }
+.risk-signal-dot.w-favor { background: #1a9850; }
+.risk-signal-label { font-weight: 600; }
+.risk-signal-date  { color: var(--text-muted); font-size: 10px; margin-left: 2px; }
+.risk-no-data {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 4px 0;
+}
+
+/* Legend bar for risk layer shown in the map legend area */
+.risk-legend-bar {
+  display: flex;
+  gap: 3px;
+  margin-top: 6px;
+}
+.risk-legend-swatch {
+  flex: 1;
+  height: 10px;
+  border-radius: 2px;
+}
+.risk-legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  letter-spacing: 0.02em;
+}

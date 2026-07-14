@@ -179,6 +179,8 @@ let mapData         = {};
 let sampleLayers    = null;
 let stateRegData    = {};
 let legendOpen      = true;  // true=visible, false=collapsed to restore button
+let politicalRiskData = {};   // fips → risk record from political_risk.json
+let showPoliticalRisk = false;
 let selectedFips    = null;
 let cityLabelsLayer = null;
 
@@ -235,6 +237,19 @@ function getColor(fips) {
   return county ? getSeverityColor(county) : themeColors().noData;
 }
 
+const RISK_COLORS = {
+  1: "#1a9850",
+  2: "#5aac44",
+  3: "#b8860b",
+  4: "#d75e00",
+  5: "#d73027",
+};
+
+function getRiskColor(fips) {
+  const r = politicalRiskData[fips];
+  return r ? (RISK_COLORS[r.risk_score] || themeColors().noData) : themeColors().noData;
+}
+
 function getStateColor(fips2) {
   const st = stateRegData[fips2];
   return st ? SEVERITY[getSeverityKey(st)].color : themeColors().noData;
@@ -255,6 +270,16 @@ function countyStyle(feature) {
   // Fade out county fills when zoomed into street level so satellite imagery is visible
   const zoom     = leafletMap ? leafletMap.getZoom() : 7;
   const zoomFade = zoom >= 13 ? 0 : zoom <= 10 ? 1 : (13 - zoom) / 3;
+
+  if (showPoliticalRisk) {
+    const hasRisk = !!politicalRiskData[fips];
+    return {
+      fillColor:   getRiskColor(fips),
+      fillOpacity: hasRisk ? (isSat ? 0.72 * zoomFade : 0.78 * zoomFade) : (isSat ? 0 : 0.06 * zoomFade),
+      color:       tc.countyBorder,
+      weight:      0.35,
+    };
+  }
 
   if (!layerState.restrictions) {
     return { fillColor: tc.noData, fillOpacity: isSat ? 0 : 0.12 * zoomFade, color: tc.countyBorder, weight: 0.35 };
@@ -298,13 +323,19 @@ function stateStyle(feature) {
 /* Core data (small JSON files) — loaded immediately on page start */
 async function loadCoreData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
-  const [data, sample, stateReg, newsData] = await Promise.all([
+  const [data, sample, stateReg, newsData, riskRaw] = await Promise.all([
     get("data/map_data.json"),
     get("data/sample_layers.json").catch(() => null),
     get("data/state_regulations.json").catch(() => ({ states: {} })),
     fetch("data/ai_news.json", { cache: "no-store" }).then(r => r.json()).catch(() => ({ articles: [] })),
+    get("data/political_risk.json").catch(() => ({ scores: [] })),
   ]);
-  return { data, sample, stateReg, newsData };
+  // Index risk scores by fips for O(1) lookup
+  const riskByFips = {};
+  for (const rec of (riskRaw.scores || [])) {
+    if (rec.fips) riskByFips[String(rec.fips).padStart(5, "0")] = rec;
+  }
+  return { data, sample, stateReg, newsData, riskByFips };
 }
 
 /* County TopoJSON (~2 MB) — lazy-loaded only when Map tab is opened */
@@ -437,9 +468,17 @@ function showTooltip(mouseEvent, fips) {
   const county = mapData[fips];
   const stAbbr = STATE_FIPS[fips.slice(0, 2)] || "";
   const name   = county ? `${county.name}, ${county.state}` : (stAbbr ? `County, ${stAbbr}` : fips);
-  const level  = county
-    ? (county.level === -1 ? "Pro Data Center" : `Level ${county.level} — ${LEVEL_LABELS[county.level]}`)
-    : "No restriction data";
+
+  let level;
+  if (showPoliticalRisk) {
+    const rr = politicalRiskData[fips];
+    const RISK_LABELS = {1:"Very Favorable", 2:"Mostly Favorable", 3:"Mixed/Neutral", 4:"Elevated Political Risk", 5:"High Political Risk"};
+    level = rr ? `Risk Score ${rr.risk_score} — ${rr.score_label || RISK_LABELS[rr.risk_score] || ""}` : "No political risk data";
+  } else {
+    level = county
+      ? (county.level === -1 ? "Pro Data Center" : `Level ${county.level} — ${LEVEL_LABELS[county.level]}`)
+      : "No restriction data";
+  }
 
   tooltip.querySelector(".tip-name").textContent  = name;
   tooltip.querySelector(".tip-level").textContent = level;
@@ -938,6 +977,17 @@ function toggleFullscreen() {
   }
 }
 
+function togglePoliticalRiskLayer() {
+  showPoliticalRisk = !showPoliticalRisk;
+  const btn = document.getElementById("gis-political-risk");
+  if (btn) {
+    btn.classList.toggle("active", showPoliticalRisk);
+    btn.setAttribute("aria-pressed", String(showPoliticalRisk));
+  }
+  if (countyLayer) countyLayer.setStyle(countyStyle);
+  renderLegend();
+}
+
 /* ── GPS location ── */
 function locateMe() {
   if (!navigator.geolocation) { showMapToast("Geolocation not supported by this browser"); return; }
@@ -1230,6 +1280,7 @@ function initLeafletMap() {
   document.getElementById("gis-share")         ?.addEventListener("click", shareCurrentView);
   document.getElementById("gis-print")         ?.addEventListener("click", printMap);
   document.getElementById("gis-minimap")       ?.addEventListener("click", toggleMinimap);
+  document.getElementById("gis-political-risk")?.addEventListener("click", togglePoliticalRiskLayer);
   const _clearBtn = document.getElementById("measure-clear-btn");
   if (_clearBtn) {
     const _doClear = () => { clearMeasure(); if (measureMode) toggleMeasure(); };
@@ -1474,6 +1525,32 @@ function renderLegend() {
     const div = document.createElement("div");
     div.style.cssText = "border-top:1px solid var(--border); margin:8px 0;";
     legendBody.appendChild(div);
+  }
+
+  if (showPoliticalRisk) {
+    const rh = document.createElement("h3");
+    rh.textContent = "Political Risk Scale";
+    legendBody.appendChild(rh);
+    const riskItems = [
+      { score: 1, label: "Very Favorable",       color: RISK_COLORS[1] },
+      { score: 2, label: "Mostly Favorable",      color: RISK_COLORS[2] },
+      { score: 3, label: "Mixed / Neutral",       color: RISK_COLORS[3] },
+      { score: 4, label: "Elevated Risk",         color: RISK_COLORS[4] },
+      { score: 5, label: "High Political Risk",   color: RISK_COLORS[5] },
+    ];
+    for (const ri of riskItems) {
+      const el = document.createElement("div");
+      el.className = "legend-item";
+      el.innerHTML = `
+        <div class="legend-swatch" style="background:${ri.color};"></div>
+        <div>
+          <div class="legend-label-main">${ri.score} — ${ri.label}</div>
+        </div>`;
+      legendBody.appendChild(el);
+    }
+    const rd = document.createElement("div");
+    rd.style.cssText = "border-top:1px solid var(--border); margin:8px 0;";
+    legendBody.appendChild(rd);
   }
 
   if (layerState.restrictions || layerState.state_policy) {
@@ -2201,6 +2278,51 @@ function buildNoCountyPolicySectionHtml() {
   </div>`;
 }
 
+const _RISK_SIGNAL_WEIGHT_TIER = {
+  ban_enacted: "w-high", moratorium_enacted: "w-high", moratorium_proposed: "w-high",
+  draft_ordinance: "w-med", public_hearing_opposition: "w-med", organized_campaign: "w-med",
+  election_issue: "w-med", large_petition: "w-med",
+  small_petition: "w-low", advocacy_group_active: "w-low", planning_commission_study: "w-low",
+  water_concern_official: "w-low", grid_concern_official: "w-low",
+  news_opposition: "w-low", public_comment_opposition: "w-low", environmental_group: "w-low",
+  tax_incentive_enacted: "w-favor", economic_dev_support: "w-favor",
+  council_pro_vote: "w-favor", state_incentive_program: "w-favor", dedicated_zoning_created: "w-favor",
+};
+
+function buildPoliticalRiskSectionHtml(fips) {
+  const rec = politicalRiskData[fips];
+  const RISK_LABELS = {1:"Very Favorable", 2:"Mostly Favorable", 3:"Mixed/Neutral", 4:"Elevated Political Risk", 5:"High Political Risk"};
+  if (!rec) {
+    return `<div class="risk-section">
+      <div class="risk-section-header">
+        <span class="risk-section-title">Political Risk</span>
+      </div>
+      <p class="risk-no-data">No documented political risk signals on record for this county.</p>
+    </div>`;
+  }
+  const badge = `<span class="risk-score-badge risk-${rec.risk_score}">Score ${rec.risk_score} — ${escHtml(rec.score_label || RISK_LABELS[rec.risk_score] || "")}</span>`;
+  const summary = rec.evidence_summary ? `<div class="risk-evidence-summary">${escHtml(rec.evidence_summary)}</div>` : "";
+  const signals = (rec.signals || []).map(s => {
+    const tier = _RISK_SIGNAL_WEIGHT_TIER[s.type] || "w-low";
+    const dateStr = s.detected_date ? ` <span class="risk-signal-date">(${s.detected_date.slice(0,7)})</span>` : "";
+    const linkPart = s.source_url ? ` <a href="${escHtml(s.source_url)}" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-size:10px;">source</a>` : "";
+    return `<li class="risk-signal-item">
+      <span class="risk-signal-dot ${tier}"></span>
+      <span><span class="risk-signal-label">${escHtml(s.label || s.type)}</span>${dateStr} — ${escHtml(s.description || "")}${linkPart}</span>
+    </li>`;
+  }).join("");
+  const confTag = rec.confidence ? `<span style="font-size:10px;color:var(--text-muted);margin-left:6px;">${rec.confidence} confidence</span>` : "";
+  return `<div class="risk-section">
+    <div class="risk-section-header">
+      <span class="risk-section-title">Political Risk</span>
+      ${confTag}
+    </div>
+    ${badge}
+    ${summary}
+    ${signals ? `<ul class="risk-signals-list" style="margin-top:6px;">${signals}</ul>` : ""}
+  </div>`;
+}
+
 function setSevClass(key) {
   const panel = document.getElementById("detail-panel");
   panel.className = panel.className.split(" ").filter(c => !c.startsWith("sev-")).join(" ");
@@ -2235,6 +2357,8 @@ function setDetailCounty(fips, county) {
     ${buildCountyPolicySectionHtml(fips, county)}
     <div class="policy-divider"></div>
     ${buildCityPolicySectionHtml()}
+    <div class="policy-divider"></div>
+    ${buildPoliticalRiskSectionHtml(fips)}
     ${buildSampleInfraHtml(fips)}`;
   openMobileSheet();
 }
@@ -2250,6 +2374,8 @@ function setDetailNoRestriction(name, state, fips) {
     ${buildNoCountyPolicySectionHtml()}
     <div class="policy-divider"></div>
     ${buildCityPolicySectionHtml()}
+    <div class="policy-divider"></div>
+    ${fips ? buildPoliticalRiskSectionHtml(fips) : ""}
     ${fips ? buildSampleInfraHtml(fips) : ""}`;
   openMobileSheet();
 }
@@ -3161,12 +3287,13 @@ async function init() {
   fetchGeoData();
 
   try {
-    const { data, sample, stateReg, newsData } = await loadCoreData();
+    const { data, sample, stateReg, newsData, riskByFips } = await loadCoreData();
 
-    mapData      = data.counties || {};
-    sampleLayers = sample || null;
-    stateRegData = stateReg.states || {};
-    newsArticles = (newsData && newsData.articles) ? newsData.articles : [];
+    mapData           = data.counties || {};
+    sampleLayers      = sample || null;
+    stateRegData      = stateReg.states || {};
+    newsArticles      = (newsData && newsData.articles) ? newsData.articles : [];
+    politicalRiskData = riskByFips || {};
 
     // Re-render home with real data (clears skeleton state)
     const hv = document.getElementById("home-view");
