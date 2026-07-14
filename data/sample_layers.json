@@ -28765,6 +28765,215 @@
       "lat": 40.1023,
       "lon": -75.391,
       "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-030a6fec6e",
+      "name": "Genentech Data Center - South San Francisco CA",
+      "operator": "Genentech (Roche)",
+      "status": "existing",
+      "county_fips": "06081",
+      "notes": "Genentech biopharmaceutical data center at South San Francisco headquarters; legacy_id:dc-ca-246",
+      "lat": 37.6547,
+      "lon": -122.4007,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-be34d351d0",
+      "name": "Jack Henry & Associates Data Center - Monett MO",
+      "operator": "Jack Henry & Associates",
+      "status": "existing",
+      "county_fips": "29209",
+      "notes": "Jack Henry banking technology data center at Monett Missouri headquarters; legacy_id:dc-mo-059",
+      "lat": 36.9292,
+      "lon": -93.9232,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-36700e1be2",
+      "name": "NTT Global Data Center - Chicago IL CH2",
+      "operator": "NTT Global Data Centers",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "NTT Global Data Centers Chicago second colocation campus CH2; legacy_id:dc-il-133",
+      "lat": 41.88,
+      "lon": -87.64,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-0958350071",
+      "name": "NTT Global Data Center - Atlanta GA AT1",
+      "operator": "NTT Global Data Centers",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "NTT Global Data Centers Atlanta Georgia colocation campus AT1; legacy_id:dc-ga-123",
+      "lat": 33.749,
+      "lon": -84.388,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-275dfb0927",
+      "name": "NTT Global Data Center - Dallas TX DFW1",
+      "operator": "NTT Global Data Centers",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "NTT Global Data Centers Dallas Fort Worth colocation campus DFW1; legacy_id:dc-tx-287",
+      "lat": 32.8,
+      "lon": -96.8,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-e60c544fe3",
+      "name": "NTT Global Data Center - Los Angeles CA LA1",
+      "operator": "NTT Global Data Centers",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "NTT Global Data Centers Los Angeles California colocation campus LA1; legacy_id:dc-ca-244",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-b6d052992f",
+      "name": "NTT Global Data Center - Sacramento CA SAC1",
+      "operator": "NTT Global Data Centers",
+      "status": "existing",
+      "county_fips": "06067",
+      "notes": "NTT Global Data Centers Sacramento California colocation campus SAC1; legacy_id:dc-ca-245",
+      "lat": 38.5816,
+      "lon": -121.4944,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-7be8db761b",
+      "name": "NTT Global Data Center - New York NY NYC1",
+      "operator": "NTT Global Data Centers",
+      "status": "existing",
+      "county_fips": "34013",
+      "notes": "NTT Global Data Centers New York area colocation campus NYC1 in NJ; legacy_id:dc-ny-082",
+      "lat": 40.73,
+      "lon": -74.15,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-a83a1edb51",
+      "name": "CyrusOne Data Center - Durham NC",
+      "operator": "CyrusOne (KKR)",
+      "status": "existing",
+      "county_fips": "37063",
+      "notes": "CyrusOne data center campus in Durham North Carolina Research Triangle; legacy_id:dc-nc-096",
+      "lat": 35.994,
+      "lon": -78.8986,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-0577fab9d6",
+      "name": "CyrusOne Data Center - Tampa FL",
+      "operator": "CyrusOne (KKR)",
+      "status": "existing",
+      "county_fips": "12057",
+      "notes": "CyrusOne colocation data center campus in Tampa Florida; legacy_id:dc-fl-102",
+      "lat": 27.9506,
+      "lon": -82.4572,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-7b5e72b0ec",
+      "name": "CyrusOne Data Center - Columbus OH",
+      "operator": "CyrusOne (KKR)",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "CyrusOne data center campus in Columbus Ohio; legacy_id:dc-oh-123",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-af617c4a4d",
+      "name": "CyrusOne Data Center - Denver CO",
+      "operator": "CyrusOne (KKR)",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "CyrusOne colocation data center campus in Denver Colorado; legacy_id:dc-co-093",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-ec7d9bd127",
+      "name": "CyrusOne Data Center - Portland OR",
+      "operator": "CyrusOne (KKR)",
+      "status": "existing",
+      "county_fips": "41051",
+      "notes": "CyrusOne data center campus in Portland Oregon; legacy_id:dc-or-081",
+      "lat": 45.5051,
+      "lon": -122.675,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-312af9092d",
+      "name": "Switch Data Center - Las Vegas NV THE KEEP 2",
+      "operator": "Switch",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "Switch SUPERNAP data center The Keep 2 building in Las Vegas Nevada; legacy_id:dc-nv-038",
+      "lat": 36.1,
+      "lon": -115.089,
+      "capacity_mw": 60.0
+    },
+    {
+      "id": "fc-cdce1c8853",
+      "name": "Switch Data Center - Las Vegas NV THE CITADEL",
+      "operator": "Switch",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "Switch SUPERNAP data center The Citadel campus building in Las Vegas Nevada; legacy_id:dc-nv-039",
+      "lat": 36.101,
+      "lon": -115.09,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-f35efde582",
+      "name": "Switch Data Center - Reno NV THE PYRAMID 2",
+      "operator": "Switch",
+      "status": "existing",
+      "county_fips": "32031",
+      "notes": "Switch Pyramid Campus second building in Reno Nevada; legacy_id:dc-nv-040",
+      "lat": 39.52,
+      "lon": -119.7138,
+      "capacity_mw": 60.0
+    },
+    {
+      "id": "fc-af14a9811b",
+      "name": "Switch Data Center - San Antonio TX THE STAR",
+      "operator": "Switch",
+      "status": "existing",
+      "county_fips": "48029",
+      "notes": "Switch data center THE STAR in San Antonio Texas; legacy_id:dc-tx-288",
+      "lat": 29.4241,
+      "lon": -98.4936,
+      "capacity_mw": 40.0
+    },
+    {
+      "id": "fc-7b5858e451",
+      "name": "Iron Mountain Data Center - Minneapolis MN",
+      "operator": "Iron Mountain",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Iron Mountain data center in Minneapolis Minnesota; legacy_id:dc-mn-071",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-232ecffc9b",
+      "name": "Amgen Data Center - Thousand Oaks CA",
+      "operator": "Amgen Inc",
+      "status": "existing",
+      "county_fips": "06111",
+      "notes": "Amgen biopharmaceutical data center at Thousand Oaks California headquarters; legacy_id:dc-ca-248",
+      "lat": 34.1706,
+      "lon": -118.8376,
+      "capacity_mw": 8.0
     }
   ],
   "ai_campuses": [
@@ -29331,5 +29540,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:30:54Z"
+  "_facilities_exported_at": "2026-07-14T04:34:39Z"
 }
