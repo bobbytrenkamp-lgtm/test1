@@ -29205,6 +29205,204 @@
       "lat": 44.9537,
       "lon": -93.09,
       "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-de22ddeeb7",
+      "name": "National Geospatial-Intelligence Agency Data Center - Springfield VA",
+      "operator": "National Geospatial-Intelligence Agency",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "NGA legacy data center at Springfield Virginia campus; legacy_id:dc-va-202",
+      "lat": 38.7882,
+      "lon": -77.1878,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-2f85f4d368",
+      "name": "Defense Logistics Agency Data Center - Fort Belvoir VA",
+      "operator": "Defense Logistics Agency",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "DLA data center at Fort Belvoir Virginia for logistics systems; legacy_id:dc-va-203",
+      "lat": 38.71,
+      "lon": -77.157,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-4c9e5027d4",
+      "name": "Navy Federal Credit Union Data Center - Vienna VA",
+      "operator": "Navy Federal Credit Union",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "Navy Federal Credit Union primary data center at Vienna Virginia headquarters; legacy_id:dc-va-204",
+      "lat": 38.9012,
+      "lon": -77.2653,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-97b08350ea",
+      "name": "Navy Federal Credit Union Data Center - Pensacola FL",
+      "operator": "Navy Federal Credit Union",
+      "status": "existing",
+      "county_fips": "12033",
+      "notes": "Navy Federal Credit Union secondary campus data center in Pensacola Florida; legacy_id:dc-fl-104",
+      "lat": 30.4213,
+      "lon": -87.2169,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-38d62e787f",
+      "name": "Wyoming.com Data Center - Casper WY",
+      "operator": "Wyoming.com Internet Services",
+      "status": "existing",
+      "county_fips": "56025",
+      "notes": "Wyoming.com rural ISP data center in Casper Wyoming; legacy_id:dc-wy-017",
+      "lat": 42.8501,
+      "lon": -106.3126,
+      "capacity_mw": 2.0
+    },
+    {
+      "id": "fc-cf28085cf8",
+      "name": "AWS Data Center - Boardman OR PDX20",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "41049",
+      "notes": "AWS PDX20 data center in Boardman Oregon us-west-2 backup AZ; legacy_id:dc-or-082",
+      "lat": 45.843,
+      "lon": -119.69,
+      "capacity_mw": 60.0
+    },
+    {
+      "id": "fc-c8a2b01da0",
+      "name": "AWS Data Center - Boardman OR PDX21",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "41049",
+      "notes": "AWS PDX21 data center in Boardman Oregon us-west-2 region; legacy_id:dc-or-083",
+      "lat": 45.845,
+      "lon": -119.692,
+      "capacity_mw": 65.0
+    },
+    {
+      "id": "fc-07bc6fe030",
+      "name": "DISA Data Center - Fort Belvoir VA",
+      "operator": "Defense Information Systems Agency",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "DISA primary data center at Fort Belvoir Virginia; legacy_id:dc-va-201",
+      "lat": 38.7131,
+      "lon": -77.1542,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-54467d91e0",
+      "name": "DISA Data Center - San Antonio TX",
+      "operator": "Defense Information Systems Agency",
+      "status": "existing",
+      "county_fips": "48029",
+      "notes": "DISA Defense Megacenter at Fort Sam Houston San Antonio Texas; legacy_id:dc-tx-291",
+      "lat": 29.4241,
+      "lon": -98.4936,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-c446de5e5f",
+      "name": "DISA Data Center - Pearl Harbor HI",
+      "operator": "Defense Information Systems Agency",
+      "status": "existing",
+      "county_fips": "15003",
+      "notes": "DISA data center at Pearl Harbor Hawaii for Pacific Command; legacy_id:dc-hi-010",
+      "lat": 21.3645,
+      "lon": -157.9741,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-209672ded3",
+      "name": "Defense Intelligence Agency Data Center - Bolling AFB DC",
+      "operator": "Defense Intelligence Agency",
+      "status": "existing",
+      "county_fips": "24033",
+      "notes": "Defense Intelligence Agency (DIA) data center at Bolling AFB / Joint Base Anacostia; legacy_id:dc-md-044",
+      "lat": 38.8513,
+      "lon": -77.0107,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-d072914ecd",
+      "name": "National Geospatial-Intelligence Agency Data Center - St. Louis MO",
+      "operator": "National Geospatial-Intelligence Agency",
+      "status": "existing",
+      "county_fips": "29510",
+      "notes": "NGA headquarters data center at new St. Louis Missouri campus; legacy_id:dc-mo-060",
+      "lat": 38.627,
+      "lon": -90.1994,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-dd5c8e367e",
+      "name": "ADM Data Center - Chicago IL",
+      "operator": "Archer-Daniels-Midland Company",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "ADM (Archer-Daniels-Midland) agricultural commodities data center at Chicago IL; legacy_id:dc-il-134",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-a33d97f4ab",
+      "name": "Bunge North America Data Center - Chesterfield MO",
+      "operator": "Bunge North America",
+      "status": "existing",
+      "county_fips": "29189",
+      "notes": "Bunge grain and oilseed processing data center at Chesterfield Missouri HQ; legacy_id:dc-mo-061",
+      "lat": 38.6639,
+      "lon": -90.5773,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-66fe01d4b9",
+      "name": "BECU Data Center - Tukwila WA",
+      "operator": "BECU (Boeing Employees Credit Union)",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "BECU credit union data center at Tukwila Washington headquarters; legacy_id:dc-wa-084",
+      "lat": 47.4697,
+      "lon": -122.2607,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-bf865a9d51",
+      "name": "Pentagon Federal Credit Union Data Center - McLean VA",
+      "operator": "Pentagon Federal Credit Union (PenFed)",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "PenFed Credit Union data center at McLean Virginia headquarters; legacy_id:dc-va-205",
+      "lat": 38.934,
+      "lon": -77.1711,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-905fd5e66f",
+      "name": "SDN Communications Data Center - Rapid City SD",
+      "operator": "SDN Communications",
+      "status": "existing",
+      "county_fips": "46103",
+      "notes": "SDN Communications fiber network data center in Rapid City South Dakota; legacy_id:dc-sd-013",
+      "lat": 44.0805,
+      "lon": -103.231,
+      "capacity_mw": 3.0
+    },
+    {
+      "id": "fc-fd8cb5a31f",
+      "name": "Montana Opticom Data Center - Billings MT",
+      "operator": "Montana Opticom",
+      "status": "existing",
+      "county_fips": "30111",
+      "notes": "Montana rural ISP and data center facility in Billings Montana; legacy_id:dc-mt-012",
+      "lat": 45.7833,
+      "lon": -108.5007,
+      "capacity_mw": 3.0
     }
   ],
   "ai_campuses": [
@@ -29771,5 +29969,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:38:37Z"
+  "_facilities_exported_at": "2026-07-14T04:42:35Z"
 }
