@@ -28479,6 +28479,292 @@
       "lat": 34.0522,
       "lon": -118.2437,
       "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-ab5cd4a638",
+      "name": "CoreWeave AI Data Center - Livingston NJ",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "34013",
+      "notes": "CoreWeave NVIDIA GPU cloud data center in Livingston New Jersey; legacy_id:dc-nj-063",
+      "lat": 40.7984,
+      "lon": -74.3154,
+      "capacity_mw": 40.0
+    },
+    {
+      "id": "fc-18a58e651f",
+      "name": "CoreWeave AI Data Center - Chicago IL",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "CoreWeave GPU cloud data center in Chicago Illinois; legacy_id:dc-il-128",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 50.0
+    },
+    {
+      "id": "fc-75433ae683",
+      "name": "CoreWeave AI Data Center - Plano TX",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "48085",
+      "notes": "CoreWeave NVIDIA GPU cloud campus in Plano Texas; legacy_id:dc-tx-284",
+      "lat": 33.0198,
+      "lon": -96.6989,
+      "capacity_mw": 60.0
+    },
+    {
+      "id": "fc-0993f7c76c",
+      "name": "CoreWeave AI Data Center - Manassas VA",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "51683",
+      "notes": "CoreWeave GPU cloud data center in Manassas Virginia; legacy_id:dc-va-196",
+      "lat": 38.7509,
+      "lon": -77.4761,
+      "capacity_mw": 60.0
+    },
+    {
+      "id": "fc-bc6cd0106f",
+      "name": "CoreWeave AI Data Center - Secaucus NJ",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "34017",
+      "notes": "CoreWeave GPU cloud data center in Secaucus New Jersey; legacy_id:dc-nj-064",
+      "lat": 40.7895,
+      "lon": -74.0566,
+      "capacity_mw": 45.0
+    },
+    {
+      "id": "fc-eb86dbff5b",
+      "name": "Lambda Labs AI Data Center - San Jose CA",
+      "operator": "Lambda Labs",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Lambda Labs GPU cloud compute data center in San Jose California; legacy_id:dc-ca-241",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-14c62af88b",
+      "name": "Lambda Labs AI Data Center - Austin TX",
+      "operator": "Lambda Labs",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "Lambda Labs AI GPU cloud data center in Austin Texas; legacy_id:dc-tx-285",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-b8b0db6ff6",
+      "name": "Crusoe Energy AI Data Center - Denver CO",
+      "operator": "Crusoe Energy Systems",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Crusoe Energy AI cloud computing data center in Denver Colorado; legacy_id:dc-co-092",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "capacity_mw": 30.0
+    },
+    {
+      "id": "fc-0d4a5569ff",
+      "name": "Crusoe Energy Flare Gas Mining - Williston ND",
+      "operator": "Crusoe Energy Systems",
+      "status": "existing",
+      "county_fips": "38105",
+      "notes": "Crusoe Energy natural gas flare mitigation data center in Williston ND Bakken region; legacy_id:dc-nd-016",
+      "lat": 48.147,
+      "lon": -103.6182,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-cdf8ede3df",
+      "name": "Together AI Data Center - San Francisco CA",
+      "operator": "Together AI",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Together AI GPU cloud platform data center in San Francisco California; legacy_id:dc-ca-242",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-2d3bcb6187",
+      "name": "Modal Labs Data Center - New York NY",
+      "operator": "Modal Labs",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Modal Labs serverless AI computing data center in New York area; legacy_id:dc-ny-081",
+      "lat": 40.7154,
+      "lon": -74.0059,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-d9205bd1c0",
+      "name": "Boeing Data Center - Seattle WA",
+      "operator": "Boeing Company",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Boeing aerospace data center at Seattle Washington headquarters; legacy_id:dc-wa-083",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-f94bf164d8",
+      "name": "Boeing Data Center - Chicago IL",
+      "operator": "Boeing Company",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Boeing corporate data center at Chicago Illinois corporate offices; legacy_id:dc-il-129",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-f153c56887",
+      "name": "Boeing Data Center - Arlington VA",
+      "operator": "Boeing Company",
+      "status": "existing",
+      "county_fips": "51013",
+      "notes": "Boeing defense data center at Arlington Virginia defense operations; legacy_id:dc-va-197",
+      "lat": 38.8817,
+      "lon": -77.1065,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-7eb47dd55e",
+      "name": "Lockheed Martin Data Center - Bethesda MD",
+      "operator": "Lockheed Martin Corporation",
+      "status": "existing",
+      "county_fips": "24031",
+      "notes": "Lockheed Martin aerospace defense data center at Bethesda MD headquarters; legacy_id:dc-md-043",
+      "lat": 38.9807,
+      "lon": -77.1068,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-b07e9b6af6",
+      "name": "Lockheed Martin Data Center - Fort Worth TX",
+      "operator": "Lockheed Martin Corporation",
+      "status": "existing",
+      "county_fips": "48439",
+      "notes": "Lockheed Martin F-35 and aeronautics data center at Fort Worth Texas; legacy_id:dc-tx-286",
+      "lat": 32.7357,
+      "lon": -97.3308,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-c4f027cc4a",
+      "name": "RTX (Raytheon) Data Center - Waltham MA",
+      "operator": "RTX Corporation (Raytheon)",
+      "status": "existing",
+      "county_fips": "25017",
+      "notes": "RTX (formerly Raytheon Technologies) defense data center at Waltham Massachusetts HQ; legacy_id:dc-ma-048",
+      "lat": 42.3765,
+      "lon": -71.2356,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-3feecb905b",
+      "name": "RTX (Raytheon) Data Center - Tucson AZ",
+      "operator": "RTX Corporation (Raytheon)",
+      "status": "existing",
+      "county_fips": "04019",
+      "notes": "Raytheon Missiles and Defense data center at Tucson Arizona campus; legacy_id:dc-az-088",
+      "lat": 32.2226,
+      "lon": -110.9747,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-9615d379cb",
+      "name": "Northrop Grumman Data Center - Falls Church VA",
+      "operator": "Northrop Grumman Corporation",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "Northrop Grumman defense data center at Falls Church Virginia headquarters; legacy_id:dc-va-198",
+      "lat": 38.8826,
+      "lon": -77.1711,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-ef94e85761",
+      "name": "Northrop Grumman Data Center - Redondo Beach CA",
+      "operator": "Northrop Grumman Corporation",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Northrop Grumman aerospace data center at Redondo Beach California Space sector; legacy_id:dc-ca-243",
+      "lat": 33.8491,
+      "lon": -118.3884,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-488564f9fa",
+      "name": "General Dynamics Data Center - Reston VA",
+      "operator": "General Dynamics Corporation",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "General Dynamics defense IT data center at Reston Virginia headquarters; legacy_id:dc-va-199",
+      "lat": 38.9686,
+      "lon": -77.3564,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-cba24008dc",
+      "name": "Equinix Data Center - Chicago CH4",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Equinix Chicago Illinois IBX colocation campus CH4; legacy_id:dc-il-130",
+      "lat": 41.9,
+      "lon": -87.65,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-9bcaddd8b2",
+      "name": "Equinix Data Center - Chicago CH6",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Equinix Chicago IBX colocation campus CH6; legacy_id:dc-il-131",
+      "lat": 41.91,
+      "lon": -87.655,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-3156396861",
+      "name": "Equinix Data Center - Atlanta AT4",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Equinix Atlanta Georgia IBX colocation campus AT4; legacy_id:dc-ga-121",
+      "lat": 33.76,
+      "lon": -84.397,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-644633aec5",
+      "name": "Equinix Data Center - Philadelphia PH1",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "42101",
+      "notes": "Equinix Philadelphia Pennsylvania IBX colocation campus PH1; legacy_id:dc-pa-073",
+      "lat": 39.9526,
+      "lon": -75.1652,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-a62250da27",
+      "name": "Equinix Data Center - Philadelphia PH2",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "42091",
+      "notes": "Equinix Philadelphia IBX colocation campus PH2 (King of Prussia PA); legacy_id:dc-pa-074",
+      "lat": 40.1023,
+      "lon": -75.391,
+      "capacity_mw": 8.0
     }
   ],
   "ai_campuses": [
@@ -29045,5 +29331,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:27:12Z"
+  "_facilities_exported_at": "2026-07-14T04:30:54Z"
 }
