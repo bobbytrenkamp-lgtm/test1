@@ -29942,6 +29942,237 @@
       "lat": 38.627,
       "lon": -90.1994,
       "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-34b5854f12",
+      "name": "Stargate AI Data Center - Bartlesville OK",
+      "operator": "Stargate (OpenAI/SoftBank/Oracle)",
+      "status": "planned",
+      "county_fips": "40147",
+      "notes": "Stargate AI project planned data center in Bartlesville Oklahoma; legacy_id:dc-ok-031",
+      "lat": 36.7473,
+      "lon": -95.9808,
+      "capacity_mw": 200.0
+    },
+    {
+      "id": "fc-44091dd2f0",
+      "name": "Okta Data Center - San Francisco CA",
+      "operator": "Okta Inc",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Okta identity security data center at San Francisco California headquarters; legacy_id:dc-ca-265",
+      "lat": 37.79,
+      "lon": -122.42,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-897747c39d",
+      "name": "Databricks Data Center - San Francisco CA",
+      "operator": "Databricks Inc",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Databricks data and AI platform data center at San Francisco headquarters; legacy_id:dc-ca-266",
+      "lat": 37.785,
+      "lon": -122.415,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-61bd116b91",
+      "name": "Snowflake Data Center - Bozeman MT / San Mateo CA",
+      "operator": "Snowflake Inc",
+      "status": "existing",
+      "county_fips": "06081",
+      "notes": "Snowflake cloud data platform company data center in San Mateo California; legacy_id:dc-ca-267",
+      "lat": 37.565,
+      "lon": -122.32,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-84db7c43c9",
+      "name": "Autodesk Data Center - San Rafael CA",
+      "operator": "Autodesk Inc",
+      "status": "existing",
+      "county_fips": "06041",
+      "notes": "Autodesk CAD/design software data center at San Rafael California headquarters; legacy_id:dc-ca-269",
+      "lat": 37.9735,
+      "lon": -122.5311,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-02a2509dce",
+      "name": "Google Data Center - Council Bluffs IA Building 6",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "19155",
+      "notes": "Google planned sixth building at Council Bluffs Iowa existing campus; legacy_id:dc-ia-041",
+      "lat": 41.268,
+      "lon": -95.875,
+      "capacity_mw": 130.0
+    },
+    {
+      "id": "fc-bd0563392b",
+      "name": "Google Data Center - The Plains VA Campus",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "51061",
+      "notes": "Google planned data center campus in Fauquier County Virginia (The Plains area); legacy_id:dc-va-223",
+      "lat": 38.86,
+      "lon": -77.77,
+      "capacity_mw": 150.0
+    },
+    {
+      "id": "fc-a8b49052f6",
+      "name": "Google Data Center - New Madrid MO",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "29143",
+      "notes": "Google planned data center in New Madrid County Missouri near power grid; legacy_id:dc-mo-063",
+      "lat": 36.5959,
+      "lon": -89.5248,
+      "capacity_mw": 120.0
+    },
+    {
+      "id": "fc-6e77c66d12",
+      "name": "Google Data Center - Midlothian TX Campus",
+      "operator": "Google",
+      "status": "existing",
+      "county_fips": "48139",
+      "notes": "Google data center campus in Midlothian Texas (Ellis County) near Dallas; legacy_id:dc-tx-298",
+      "lat": 32.4821,
+      "lon": -96.9959,
+      "capacity_mw": 60.0
+    },
+    {
+      "id": "fc-317057cf8b",
+      "name": "Google Data Center - Midlothian TX Campus 2",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "48139",
+      "notes": "Google planned second building at Midlothian Texas campus; legacy_id:dc-tx-299",
+      "lat": 32.484,
+      "lon": -96.998,
+      "capacity_mw": 100.0
+    },
+    {
+      "id": "fc-63c2ad6a21",
+      "name": "Stargate AI Data Center - Abilene TX Phase 2",
+      "operator": "Stargate (OpenAI/SoftBank/Oracle)",
+      "status": "planned",
+      "county_fips": "48441",
+      "notes": "Stargate AI project Phase 2 planned expansion in Abilene Texas; legacy_id:dc-tx-300",
+      "lat": 32.4487,
+      "lon": -99.732,
+      "capacity_mw": 200.0
+    },
+    {
+      "id": "fc-c4af587ff6",
+      "name": "Microsoft Data Center - Three Mile Island PA",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "42043",
+      "notes": "Microsoft nuclear-powered data center at restarted Three Mile Island nuclear plant (Constellation Energy deal); legacy_id:dc-pa-077",
+      "lat": 40.1535,
+      "lon": -76.7252,
+      "capacity_mw": 837.0
+    },
+    {
+      "id": "fc-698a960902",
+      "name": "Amazon Data Center - Surry County VA Nuclear-Powered",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "51181",
+      "notes": "AWS nuclear-powered data center near Surry Nuclear Power Station in Virginia (Dominion Energy); legacy_id:dc-va-224",
+      "lat": 37.1643,
+      "lon": -76.6978,
+      "capacity_mw": 300.0
+    },
+    {
+      "id": "fc-2629a42e09",
+      "name": "Rackspace Technology - San Antonio TX Campus 2",
+      "operator": "Rackspace Technology",
+      "status": "existing",
+      "county_fips": "48029",
+      "notes": "Rackspace managed cloud hosting campus 2 in San Antonio Texas; legacy_id:dc-tx-302",
+      "lat": 29.43,
+      "lon": -98.5,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-498498bb9d",
+      "name": "Rackspace Technology - San Antonio TX Campus 3",
+      "operator": "Rackspace Technology",
+      "status": "existing",
+      "county_fips": "48029",
+      "notes": "Rackspace managed cloud hosting campus 3 in San Antonio Texas; legacy_id:dc-tx-303",
+      "lat": 29.435,
+      "lon": -98.505,
+      "capacity_mw": 30.0
+    },
+    {
+      "id": "fc-aa34602732",
+      "name": "Cloudflare Data Center - San Jose CA HQ",
+      "operator": "Cloudflare Inc",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Cloudflare CDN and security company data center at San Jose California headquarters; legacy_id:dc-ca-262",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-fe7fef70df",
+      "name": "Fastly CDN Data Center - San Francisco CA",
+      "operator": "Fastly Inc",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Fastly edge cloud and CDN data center at San Francisco headquarters; legacy_id:dc-ca-263",
+      "lat": 37.78,
+      "lon": -122.41,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-df60370997",
+      "name": "Edgio (Limelight) Data Center - Tempe AZ",
+      "operator": "Edgio (formerly Limelight Networks)",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Edgio (Limelight) CDN data center at Tempe Arizona headquarters; legacy_id:dc-az-093",
+      "lat": 33.4255,
+      "lon": -111.94,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-bc45645573",
+      "name": "Imperva Data Center - San Mateo CA",
+      "operator": "Imperva Inc",
+      "status": "existing",
+      "county_fips": "06081",
+      "notes": "Imperva cybersecurity data center at San Mateo California headquarters; legacy_id:dc-ca-264",
+      "lat": 37.563,
+      "lon": -122.3255,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-c8a7c8d191",
+      "name": "Adobe Data Center - San Jose CA",
+      "operator": "Adobe Inc",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Adobe creative cloud and digital media data center at San Jose California headquarters; legacy_id:dc-ca-268",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-f84245afe6",
+      "name": "OpenText Data Center - Waterloo ON / Cleveland OH",
+      "operator": "OpenText Corporation",
+      "status": "existing",
+      "county_fips": "39035",
+      "notes": "OpenText enterprise content management data center in US operations; legacy_id:dc-oh-134",
+      "lat": 41.4993,
+      "lon": -81.6944,
+      "capacity_mw": 6.0
     }
   ],
   "ai_campuses": [
@@ -30508,5 +30739,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:50:42Z"
+  "_facilities_exported_at": "2026-07-14T04:54:52Z"
 }
