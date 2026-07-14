@@ -28974,6 +28974,237 @@
       "lat": 34.1706,
       "lon": -118.8376,
       "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-dbf208bba8",
+      "name": "Lumos Networks Data Center - Waynesboro VA",
+      "operator": "Lumos Networks (Segra)",
+      "status": "existing",
+      "county_fips": "51820",
+      "notes": "Lumos Networks (now Segra) fiber network and data center in Waynesboro Virginia; legacy_id:dc-va-200",
+      "lat": 38.0685,
+      "lon": -78.8898,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-42ec3550aa",
+      "name": "Glacier Bancorp Data Center - Kalispell MT",
+      "operator": "Glacier Bancorp",
+      "status": "existing",
+      "county_fips": "30029",
+      "notes": "Glacier Bancorp regional bank data center at Kalispell Montana headquarters; legacy_id:dc-mt-011",
+      "lat": 48.192,
+      "lon": -114.3125,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-50b40c5b6b",
+      "name": "AWS Data Center - Columbus OH CMH72",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "39089",
+      "notes": "AWS CMH72 data center in New Albany Ohio us-east-2 region; legacy_id:dc-oh-126",
+      "lat": 40.085,
+      "lon": -82.795,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-343f725b7e",
+      "name": "AWS Data Center - Columbus OH CMH73",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "39089",
+      "notes": "AWS CMH73 data center in Columbus Ohio area us-east-2 region; legacy_id:dc-oh-127",
+      "lat": 40.087,
+      "lon": -82.798,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-7a2820cf9a",
+      "name": "AWS Data Center - Columbus OH CMH74",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "39089",
+      "notes": "AWS CMH74 planned data center in New Albany Ohio area; legacy_id:dc-oh-128",
+      "lat": 40.089,
+      "lon": -82.8,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-44d9341ed6",
+      "name": "AWS Data Center - Columbus OH CMH75",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "39089",
+      "notes": "AWS CMH75 planned data center in New Albany Ohio area; legacy_id:dc-oh-129",
+      "lat": 40.091,
+      "lon": -82.802,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-06b1f5c325",
+      "name": "Google Data Center - Omaha NE Campus",
+      "operator": "Google",
+      "status": "existing",
+      "county_fips": "31055",
+      "notes": "Google data center campus in Omaha Nebraska existing building; legacy_id:dc-ne-027",
+      "lat": 41.2565,
+      "lon": -96.0418,
+      "capacity_mw": 50.0
+    },
+    {
+      "id": "fc-18730cb0b6",
+      "name": "Google Data Center - Omaha NE Campus 2",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "31055",
+      "notes": "Google planned second building at Omaha Nebraska campus; legacy_id:dc-ne-028",
+      "lat": 41.258,
+      "lon": -96.043,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-ad732aafcd",
+      "name": "Microsoft Azure Data Center - Phoenix AZ B6",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "04013",
+      "notes": "Microsoft Azure Phoenix Arizona campus planned building 6 for westus3; legacy_id:dc-az-090",
+      "lat": 33.451,
+      "lon": -112.096,
+      "capacity_mw": 90.0
+    },
+    {
+      "id": "fc-3a9d6ead18",
+      "name": "California Department of Technology Data Center - Sacramento CA",
+      "operator": "California Department of Technology",
+      "status": "existing",
+      "county_fips": "06067",
+      "notes": "California state government primary data center at Sacramento; legacy_id:dc-ca-249",
+      "lat": 38.5816,
+      "lon": -121.4944,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-63807c8585",
+      "name": "California Data Center - Vacaville CA",
+      "operator": "California Department of Technology",
+      "status": "existing",
+      "county_fips": "06095",
+      "notes": "California state data center facility in Vacaville Solano County; legacy_id:dc-ca-250",
+      "lat": 38.3566,
+      "lon": -121.9877,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-9903c00212",
+      "name": "Texas Department of Information Resources Data Center - Austin TX",
+      "operator": "Texas Department of Information Resources",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "Texas state government shared data center in Austin Texas; legacy_id:dc-tx-289",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-7610136292",
+      "name": "New York State ITS Data Center - Albany NY",
+      "operator": "New York State ITS",
+      "status": "existing",
+      "county_fips": "36001",
+      "notes": "New York State Office of Information Technology Services data center in Albany; legacy_id:dc-ny-084",
+      "lat": 42.6526,
+      "lon": -73.7562,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-b960883048",
+      "name": "Florida Department of Management Services Data Center - Tallahassee FL",
+      "operator": "Florida Department of Management Services",
+      "status": "existing",
+      "county_fips": "12073",
+      "notes": "State of Florida primary data center in Tallahassee; legacy_id:dc-fl-103",
+      "lat": 30.4383,
+      "lon": -84.2807,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-bccf7bbeab",
+      "name": "Pennsylvania Office of IT Data Center - Harrisburg PA",
+      "operator": "Pennsylvania Office of Administration IT",
+      "status": "existing",
+      "county_fips": "42043",
+      "notes": "Pennsylvania state government data center in Harrisburg; legacy_id:dc-pa-075",
+      "lat": 40.2732,
+      "lon": -76.8844,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-d5259ba030",
+      "name": "Ohio DAS Data Center - Columbus OH",
+      "operator": "Ohio Department of Administrative Services",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Ohio state government data center in Columbus Ohio; legacy_id:dc-oh-130",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-c643b91f09",
+      "name": "Ascent Data Centers - Salt Lake City UT",
+      "operator": "Ascent Data Centers",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "Ascent Data Centers colocation facility in Salt Lake City Utah; legacy_id:dc-ut-032",
+      "lat": 40.7608,
+      "lon": -111.891,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-4c6b5ad94c",
+      "name": "Corelink Data Center - Minneapolis MN",
+      "operator": "Corelink Data Centers",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Corelink Data Centers colocation facility in Minneapolis Minnesota; legacy_id:dc-mn-072",
+      "lat": 44.98,
+      "lon": -93.27,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-6da9930330",
+      "name": "Comerica Bank Data Center - Dallas TX",
+      "operator": "Comerica Bank",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Comerica Bank financial data center at Dallas Texas headquarters; legacy_id:dc-tx-290",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-c024d0fd22",
+      "name": "Synovus Financial Data Center - Columbus GA",
+      "operator": "Synovus Financial Corporation",
+      "status": "existing",
+      "county_fips": "13215",
+      "notes": "Synovus Bank financial data center at Columbus Georgia headquarters; legacy_id:dc-ga-125",
+      "lat": 32.461,
+      "lon": -84.9877,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-185f79e4fe",
+      "name": "Bremer Bank Data Center - St. Paul MN",
+      "operator": "Bremer Bank",
+      "status": "existing",
+      "county_fips": "27123",
+      "notes": "Bremer Bank regional data center at St. Paul Minnesota headquarters; legacy_id:dc-mn-073",
+      "lat": 44.9537,
+      "lon": -93.09,
+      "capacity_mw": 5.0
     }
   ],
   "ai_campuses": [
@@ -29540,5 +29771,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:34:39Z"
+  "_facilities_exported_at": "2026-07-14T04:38:37Z"
 }
