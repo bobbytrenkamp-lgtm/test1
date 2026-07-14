@@ -28039,6 +28039,215 @@
       "lat": 37.3875,
       "lon": -121.9734,
       "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-5862dc82c5",
+      "name": "Texas A&M University Data Center - College Station TX",
+      "operator": "Texas A&M University",
+      "status": "existing",
+      "county_fips": "48041",
+      "notes": "Texas A&M University high performance research computing data center; legacy_id:dc-tx-281",
+      "lat": 30.628,
+      "lon": -96.3344,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-6c69a1cdfb",
+      "name": "Riot Games Data Center - Los Angeles CA",
+      "operator": "Riot Games (Tencent)",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Riot Games (League of Legends) data center at Los Angeles California headquarters; legacy_id:dc-ca-238",
+      "lat": 34.0522,
+      "lon": -118.3917,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-7ceaf601a2",
+      "name": "AWS Data Center - Chantilly VA IAD55",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "AWS IAD55 data center in Chantilly Virginia Loudoun area; legacy_id:dc-va-188",
+      "lat": 38.9013,
+      "lon": -77.4323,
+      "capacity_mw": 65.0
+    },
+    {
+      "id": "fc-ba18fff1fe",
+      "name": "AWS Data Center - Chantilly VA IAD56",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "AWS IAD56 data center in Chantilly Virginia; legacy_id:dc-va-189",
+      "lat": 38.903,
+      "lon": -77.435,
+      "capacity_mw": 65.0
+    },
+    {
+      "id": "fc-ceb2f5f173",
+      "name": "AWS Data Center - Leesburg VA IAD57",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "AWS IAD57 data center in Leesburg Virginia Loudoun County; legacy_id:dc-va-190",
+      "lat": 39.1157,
+      "lon": -77.5636,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-a217227652",
+      "name": "AWS Data Center - Leesburg VA IAD58",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "AWS IAD58 data center in Leesburg Virginia Loudoun County; legacy_id:dc-va-191",
+      "lat": 39.118,
+      "lon": -77.566,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-eb9a878b2b",
+      "name": "AWS Data Center - Purcellville VA IAD59",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "AWS IAD59 data center in Purcellville Virginia Western Loudoun; legacy_id:dc-va-192",
+      "lat": 39.1368,
+      "lon": -77.7052,
+      "capacity_mw": 65.0
+    },
+    {
+      "id": "fc-875b129bde",
+      "name": "AWS Data Center - Gainesville VA IAD81",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "51119",
+      "notes": "AWS IAD81 planned data center in Gainesville Prince William County VA; legacy_id:dc-va-194",
+      "lat": 38.804,
+      "lon": -77.625,
+      "capacity_mw": 75.0
+    },
+    {
+      "id": "fc-2cc06b96c2",
+      "name": "Google Data Center - Storey County NV",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "32029",
+      "notes": "Google planned data center in Storey County Nevada near Reno for hyperscale AI; legacy_id:dc-nv-037",
+      "lat": 39.5,
+      "lon": -119.5,
+      "capacity_mw": 150.0
+    },
+    {
+      "id": "fc-af29fe1124",
+      "name": "Microsoft Data Center - Indianapolis IN Campus",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "18057",
+      "notes": "Microsoft planned major data center campus in Indianapolis Indiana area; legacy_id:dc-in-039",
+      "lat": 39.77,
+      "lon": -86.16,
+      "capacity_mw": 150.0
+    },
+    {
+      "id": "fc-53987e9fb6",
+      "name": "Meta Data Center - Bucks County PA",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "42017",
+      "notes": "Meta planned data center campus in Bucks County Pennsylvania; legacy_id:dc-pa-072",
+      "lat": 40.3,
+      "lon": -75.13,
+      "capacity_mw": 150.0
+    },
+    {
+      "id": "fc-d3631a58f0",
+      "name": "Google Data Center - Jackson MS",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "28049",
+      "notes": "Google planned data center in Jackson Mississippi area (announced 2025); legacy_id:dc-ms-019",
+      "lat": 32.2988,
+      "lon": -90.1848,
+      "capacity_mw": 100.0
+    },
+    {
+      "id": "fc-6129b51632",
+      "name": "University of Florida Data Center - Gainesville FL",
+      "operator": "University of Florida",
+      "status": "existing",
+      "county_fips": "12001",
+      "notes": "University of Florida HiPerGator HPC cluster and data center; legacy_id:dc-fl-100",
+      "lat": 29.6499,
+      "lon": -82.3666,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-6000eac787",
+      "name": "Boston University Data Center - Boston MA",
+      "operator": "Boston University",
+      "status": "existing",
+      "county_fips": "25025",
+      "notes": "Boston University Shared Computing Cluster (SCC) data center; legacy_id:dc-ma-046",
+      "lat": 42.3505,
+      "lon": -71.105,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-e01abd0dd5",
+      "name": "Tufts University Data Center - Medford MA",
+      "operator": "Tufts University",
+      "status": "existing",
+      "county_fips": "25017",
+      "notes": "Tufts University central data center in Medford Massachusetts; legacy_id:dc-ma-047",
+      "lat": 42.4075,
+      "lon": -71.1189,
+      "capacity_mw": 3.0
+    },
+    {
+      "id": "fc-f958372199",
+      "name": "Brown University Data Center - Providence RI",
+      "operator": "Brown University",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "Brown University computing and research data center in Providence Rhode Island; legacy_id:dc-ri-011",
+      "lat": 41.8268,
+      "lon": -71.4025,
+      "capacity_mw": 3.0
+    },
+    {
+      "id": "fc-803cddf45f",
+      "name": "Electronic Arts Data Center - Redwood City CA",
+      "operator": "Electronic Arts (EA)",
+      "status": "existing",
+      "county_fips": "06081",
+      "notes": "Electronic Arts gaming data center at Redwood City California headquarters; legacy_id:dc-ca-236",
+      "lat": 37.536,
+      "lon": -122.2477,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-3b6c9c06d9",
+      "name": "Take-Two Interactive Data Center - New York NY",
+      "operator": "Take-Two Interactive",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Take-Two Interactive (GTA, NBA 2K) data center at New York headquarters; legacy_id:dc-ny-074",
+      "lat": 40.7154,
+      "lon": -74.0059,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-257686f738",
+      "name": "Blizzard Entertainment Data Center - Irvine CA",
+      "operator": "Blizzard Entertainment (Microsoft)",
+      "status": "existing",
+      "county_fips": "06059",
+      "notes": "Blizzard Entertainment gaming data center at Irvine California campus; legacy_id:dc-ca-237",
+      "lat": 33.6846,
+      "lon": -117.8265,
+      "capacity_mw": 8.0
     }
   ],
   "ai_campuses": [
@@ -28605,5 +28814,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:20:01Z"
+  "_facilities_exported_at": "2026-07-14T04:23:38Z"
 }
