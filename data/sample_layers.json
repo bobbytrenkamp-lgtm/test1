@@ -26752,6 +26752,292 @@
       "lat": 41.615,
       "lon": -93.89,
       "capacity_mw": 100.0
+    },
+    {
+      "id": "fc-7552084140",
+      "name": "Nokia Bell Labs Data Center - Murray Hill NJ",
+      "operator": "Nokia Bell Labs",
+      "status": "existing",
+      "county_fips": "34039",
+      "notes": "Nokia Bell Labs research data center at Murray Hill NJ campus; legacy_id:dc-nj-058",
+      "lat": 40.6959,
+      "lon": -74.3988,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-b5eab16bbd",
+      "name": "Cologix Data Center - New York NYC1",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "34003",
+      "notes": "Cologix New York area colocation facility NYC1 in New Jersey; legacy_id:dc-nj-055",
+      "lat": 40.7128,
+      "lon": -74.006,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-b2ee019f05",
+      "name": "Cologix Data Center - Washington DC IAD1",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "Cologix DC area colocation campus IAD1 in Northern Virginia; legacy_id:dc-va-173",
+      "lat": 38.9072,
+      "lon": -77.4756,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-a99a18c10b",
+      "name": "Cologix Data Center - Portland PDX2",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "41051",
+      "notes": "Cologix Portland Oregon colocation campus PDX2 Hillsboro; legacy_id:dc-or-073",
+      "lat": 45.5229,
+      "lon": -122.9898,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-dc12f9a9bd",
+      "name": "Cologix Data Center - Kansas City KC1",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "29095",
+      "notes": "Cologix Kansas City Missouri colocation facility KC1; legacy_id:dc-mo-055",
+      "lat": 39.1011,
+      "lon": -94.5786,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-4d1549a229",
+      "name": "TierPoint Data Center - Omaha NE",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "31055",
+      "notes": "TierPoint Omaha Nebraska colocation facility; legacy_id:dc-ne-025",
+      "lat": 41.2565,
+      "lon": -95.9345,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-4ec70be946",
+      "name": "TierPoint Data Center - Portland ME",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "23005",
+      "notes": "TierPoint Portland Maine colocation facility; legacy_id:dc-me-011",
+      "lat": 43.6591,
+      "lon": -70.2553,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-a5fcb7616c",
+      "name": "DataBank Data Center - Dallas DAL1",
+      "operator": "DataBank",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "DataBank Dallas Texas colocation facility DAL1; legacy_id:dc-tx-262",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-1b07c63701",
+      "name": "DataBank Data Center - Dallas DAL2",
+      "operator": "DataBank",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "DataBank Dallas colocation facility DAL2; legacy_id:dc-tx-263",
+      "lat": 32.78,
+      "lon": -96.81,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-572184efab",
+      "name": "DataBank Data Center - Salt Lake City SLC1",
+      "operator": "DataBank",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "DataBank Salt Lake City Utah colocation facility SLC1; legacy_id:dc-ut-030",
+      "lat": 40.7608,
+      "lon": -111.891,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-048660d7ce",
+      "name": "DataBank Data Center - Kansas City KCI1",
+      "operator": "DataBank",
+      "status": "existing",
+      "county_fips": "20091",
+      "notes": "DataBank Kansas City area colocation facility KCI1 Overland Park KS; legacy_id:dc-ks-017",
+      "lat": 38.9822,
+      "lon": -94.6708,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-086ddeb91c",
+      "name": "DataBank Data Center - Fargo ND",
+      "operator": "DataBank",
+      "status": "existing",
+      "county_fips": "38017",
+      "notes": "DataBank Fargo North Dakota colocation facility; legacy_id:dc-nd-015",
+      "lat": 46.8772,
+      "lon": -96.7898,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-428d9bbf3e",
+      "name": "Samsung Electronics Data Center - Ridgefield Park NJ",
+      "operator": "Samsung Electronics",
+      "status": "existing",
+      "county_fips": "34003",
+      "notes": "Samsung Electronics America data center at Ridgefield Park NJ headquarters; legacy_id:dc-nj-056",
+      "lat": 40.8551,
+      "lon": -74.0137,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-c97f2e2f0f",
+      "name": "Samsung Semiconductor Data Center - Austin TX",
+      "operator": "Samsung Semiconductor",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "Samsung semiconductor manufacturing data center at Austin TX campus; legacy_id:dc-tx-264",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-5cfb83d4bb",
+      "name": "SAP Data Center - Newtown Square PA",
+      "operator": "SAP SE",
+      "status": "existing",
+      "county_fips": "42045",
+      "notes": "SAP Americas data center at Newtown Square Pennsylvania headquarters; legacy_id:dc-pa-067",
+      "lat": 39.987,
+      "lon": -75.4072,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-00afc4fe19",
+      "name": "SAP Data Center - Atlanta GA",
+      "operator": "SAP SE",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "SAP Americas secondary data center in Atlanta Georgia; legacy_id:dc-ga-116",
+      "lat": 33.749,
+      "lon": -84.388,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-5e12e01393",
+      "name": "Ericsson Data Center - Plano TX",
+      "operator": "Ericsson",
+      "status": "existing",
+      "county_fips": "48085",
+      "notes": "Ericsson North America data center at Plano Texas headquarters; legacy_id:dc-tx-265",
+      "lat": 33.0198,
+      "lon": -96.6989,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-bb8b162595",
+      "name": "Walt Disney World Data Center - Orlando FL",
+      "operator": "The Walt Disney Company",
+      "status": "existing",
+      "county_fips": "12095",
+      "notes": "Disney World theme park operations data center near Orlando Florida; legacy_id:dc-fl-097",
+      "lat": 28.3772,
+      "lon": -81.5812,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-54534aee47",
+      "name": "Warner Bros Discovery Data Center - New York NY",
+      "operator": "Warner Bros. Discovery",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Warner Bros Discovery (HBO, CNN, TNT) data center in New York City; legacy_id:dc-ny-069",
+      "lat": 40.7484,
+      "lon": -73.9857,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-42d422fd37",
+      "name": "Warner Bros Discovery Data Center - Burbank CA",
+      "operator": "Warner Bros. Discovery",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Warner Bros studio and Discovery media data center in Burbank California; legacy_id:dc-ca-226",
+      "lat": 34.18,
+      "lon": -118.325,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-d013360c98",
+      "name": "Paramount Global Data Center - New York NY",
+      "operator": "Paramount Global",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Paramount Global (CBS, MTV, Nickelodeon, Showtime) data center in New York; legacy_id:dc-ny-070",
+      "lat": 40.7614,
+      "lon": -73.9993,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-999e8bb744",
+      "name": "AWS Data Center - Herndon VA IAD50",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "AWS IAD50 data center building in Herndon Northern Virginia; legacy_id:dc-va-174",
+      "lat": 38.9696,
+      "lon": -77.386,
+      "capacity_mw": 65.0
+    },
+    {
+      "id": "fc-390844958a",
+      "name": "AWS Data Center - Sterling VA IAD51",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "AWS IAD51 data center building in Sterling Loudoun County Virginia; legacy_id:dc-va-175",
+      "lat": 39.0064,
+      "lon": -77.4119,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-17021bb94f",
+      "name": "AWS Data Center - Ashburn VA IAD52",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "AWS IAD52 data center in Ashburn Virginia data center alley; legacy_id:dc-va-176",
+      "lat": 39.0437,
+      "lon": -77.476,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-678b5fb6b4",
+      "name": "AWS Data Center - Hillsboro OR PDX60",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "41067",
+      "notes": "AWS PDX60 data center in Hillsboro Oregon us-west-2 region; legacy_id:dc-or-074",
+      "lat": 45.5229,
+      "lon": -122.9898,
+      "capacity_mw": 65.0
+    },
+    {
+      "id": "fc-7baa6c03ad",
+      "name": "AWS Data Center - Hillsboro OR PDX61",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "41067",
+      "notes": "AWS PDX61 data center in Hillsboro Oregon us-west-2 region; legacy_id:dc-or-075",
+      "lat": 45.525,
+      "lon": -123.0,
+      "capacity_mw": 70.0
     }
   ],
   "ai_campuses": [
@@ -27318,5 +27604,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:02:54Z"
+  "_facilities_exported_at": "2026-07-14T04:06:05Z"
 }
