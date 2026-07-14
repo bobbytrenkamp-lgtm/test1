@@ -143,8 +143,17 @@ let baseTileLayers  = {};
 let activeTile      = "satellite";
 let hybridLabels    = null;
 
-const countyLayerByFips = {};
+const countyLayerByFips  = {};
 const leafletLayerGroups = {};
+
+/* ── GIS tools state ── */
+let measureMode    = false;
+let measurePoints  = [];
+let measureLayers  = [];
+let minimapInstance = null;
+let minimapRect     = null;
+let minimapVisible  = false;
+let _toastTimer     = null;
 
 const layerState = {
   restrictions: true,
@@ -236,7 +245,7 @@ const UTILITY_COLORS = ["#f472b6", "#fb923c", "#38bdf8", "#a3e635"];
 /* ── County / state style functions ── */
 function countyStyle(feature) {
   const fips   = fipsKey(feature.id);
-  const isSat  = activeTile !== "standard";
+  const isSat  = activeTile === "satellite" || activeTile === "hybrid";
   const tc     = themeColors();
 
   // Fade out county fills when zoomed into street level so satellite imagery is visible
@@ -366,6 +375,13 @@ function initBasemaps() {
       maxZoom: 19,
     }
   );
+  baseTileLayers.terrain = L.tileLayer(
+    "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
+    {
+      attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>',
+      maxZoom: 16,
+    }
+  );
   hybridLabels = L.tileLayer(
     "https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png",
     { subdomains: "abcd", maxZoom: 20, pane: "tooltipPane" }
@@ -390,6 +406,8 @@ function switchBasemap(type) {
     baseTileLayers.standard.addTo(leafletMap);
   } else if (type === "satellite") {
     baseTileLayers.satellite.addTo(leafletMap);
+  } else if (type === "terrain") {
+    baseTileLayers.terrain.addTo(leafletMap);
   } else {
     baseTileLayers.satellite.addTo(leafletMap);
     hybridLabels.addTo(leafletMap);
@@ -445,6 +463,7 @@ function clearHoveredCounty() {
 }
 
 function handleCountyMouseover(e, fips) {
+  if (measureMode) return;
   if (isDraggingMap || isMouseDown) return;
   if (hasActiveMapFilters() && !countyMatchesFilters(fips)) return;
 
@@ -484,6 +503,7 @@ function handleCountyMouseout(e) {
 }
 
 function handleCountyClick(e, fips) {
+  if (measureMode) return; // let click bubble to map for measure point placement
   if (isDraggingMap || Date.now() < suppressClickUntil) return;
   if (hasActiveMapFilters() && !countyMatchesFilters(fips)) return;
   L.DomEvent.stopPropagation(e);
@@ -733,6 +753,178 @@ function setLayerVisible(id, visible, syncUI = false) {
   renderLegend();
 }
 
+/* ── Toast ── */
+function showMapToast(msg, ms = 2500) {
+  const el = document.getElementById("map-toast");
+  if (!el) return;
+  el.textContent = msg;
+  el.hidden = false;
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => { el.hidden = true; }, ms);
+}
+
+/* ── Measure tool ── */
+function _formatDistance(meters) {
+  const mi = meters / 1609.344;
+  const km = meters / 1000;
+  if (mi < 0.1) return `${Math.round(meters)} m`;
+  return `${mi.toFixed(2)} mi  (${km.toFixed(2)} km)`;
+}
+
+function _updateMeasureReadout() {
+  let total = 0;
+  for (let i = 1; i < measurePoints.length; i++) {
+    total += measurePoints[i - 1].distanceTo(measurePoints[i]);
+  }
+  const distEl = document.getElementById("measure-dist-val");
+  const ptsEl  = document.getElementById("measure-pts-val");
+  if (!distEl) return;
+  if (measurePoints.length === 0) {
+    distEl.textContent = "Click map to start";
+    if (ptsEl) ptsEl.textContent = "";
+  } else if (measurePoints.length === 1) {
+    distEl.textContent = "Click again to measure";
+    if (ptsEl) ptsEl.textContent = "1 pt";
+  } else {
+    distEl.textContent = _formatDistance(total);
+    if (ptsEl) ptsEl.textContent = `${measurePoints.length} pts`;
+  }
+}
+
+function addMeasurePoint(latlng) {
+  measurePoints.push(latlng);
+
+  const dot = L.circleMarker(latlng, {
+    radius: 5, fillColor: "#4874e8", color: "#fff",
+    weight: 1.5, fillOpacity: 1, interactive: false,
+  }).addTo(leafletMap);
+  measureLayers.push(dot);
+
+  // Remove old polyline, redraw with all points
+  const oldLine = measureLayers.find(l => l instanceof L.Polyline);
+  if (oldLine) { leafletMap.removeLayer(oldLine); measureLayers.splice(measureLayers.indexOf(oldLine), 1); }
+
+  if (measurePoints.length >= 2) {
+    const line = L.polyline(measurePoints, {
+      color: "#4874e8", weight: 2, dashArray: "6,4", opacity: 0.85, interactive: false,
+    }).addTo(leafletMap);
+    measureLayers.push(line);
+  }
+  _updateMeasureReadout();
+}
+
+function clearMeasure() {
+  measureLayers.forEach(l => leafletMap.removeLayer(l));
+  measureLayers = [];
+  measurePoints = [];
+  const readout = document.getElementById("measure-readout");
+  if (readout) readout.hidden = true;
+}
+
+function toggleMeasure() {
+  measureMode = !measureMode;
+  const btn   = document.getElementById("gis-measure");
+  const mapEl = document.getElementById("leaflet-map");
+  if (btn)   { btn.classList.toggle("active", measureMode); btn.setAttribute("aria-pressed", String(measureMode)); }
+  if (mapEl) mapEl.classList.toggle("measure-active", measureMode);
+
+  if (measureMode) {
+    const readout = document.getElementById("measure-readout");
+    if (readout) { readout.hidden = false; _updateMeasureReadout(); }
+  } else {
+    clearMeasure();
+  }
+}
+
+/* ── CSV Export ── */
+function exportCountiesCSV() {
+  if (!mapData || Object.keys(mapData).length === 0) { showMapToast("No data loaded yet"); return; }
+
+  const headers = ["FIPS","County","State","Level","Severity","Status","Policy Title","Effective Date","Types","Notes"];
+  const rows    = [headers];
+  const active  = hasActiveMapFilters();
+
+  Object.entries(mapData)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .forEach(([fips, c]) => {
+      if (active && !countyMatchesFilters(fips)) return;
+      rows.push([
+        fips, c.name || "", c.state || "",
+        c.level ?? "",
+        LEVEL_LABELS[c.level] || LEVEL_LABELS[String(c.level)] || "",
+        c.status || "", c.title || "", c.effective_date || "",
+        (c.types || []).map(t => TYPE_LABELS[t] || t).join("; "),
+        c.notes || "",
+      ]);
+    });
+
+  const csv  = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), { href: url, download: `dc-restrictions-${new Date().toISOString().slice(0, 10)}.csv` });
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+  showMapToast(`Exported ${rows.length - 1} ${active ? "filtered " : ""}counties`);
+}
+
+/* ── Share URL ── */
+function shareCurrentView() {
+  const c   = leafletMap.getCenter();
+  const url = `${location.origin}${location.pathname}#@${c.lat.toFixed(4)},${c.lng.toFixed(4)},${leafletMap.getZoom()}`;
+  const done = () => showMapToast("Share link copied!");
+  const fail = () => {
+    const ta = Object.assign(document.createElement("textarea"), { value: url, style: "position:fixed;opacity:0" });
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try { document.execCommand("copy"); done(); } catch { showMapToast("Could not copy link"); }
+    ta.remove();
+  };
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(url).then(done).catch(fail);
+  else fail();
+}
+
+/* ── Minimap ── */
+function updateMinimapRect() {
+  if (!minimapInstance) return;
+  try {
+    if (minimapRect) minimapInstance.removeLayer(minimapRect);
+    minimapRect = L.rectangle(leafletMap.getBounds(), {
+      color: "#4874e8", weight: 1.5, fillColor: "#4874e8", fillOpacity: 0.22, interactive: false,
+    }).addTo(minimapInstance);
+  } catch (_) { /* ignore if called before map is ready */ }
+}
+
+function initMinimap() {
+  const el = document.getElementById("minimap");
+  if (!el || minimapInstance) return;
+
+  minimapInstance = L.map("minimap", {
+    center: [39, -96], zoom: 2, zoomControl: false, attributionControl: false,
+    scrollWheelZoom: false, dragging: false, keyboard: false,
+    touchZoom: false, doubleClickZoom: false, boxZoom: false,
+  });
+
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png",
+    { subdomains: "abcd", maxZoom: 4 }
+  ).addTo(minimapInstance);
+
+  updateMinimapRect();
+  leafletMap.on("moveend zoomend", updateMinimapRect);
+  minimapInstance.on("click", e => leafletMap.panTo(e.latlng));
+}
+
+function toggleMinimap() {
+  minimapVisible = !minimapVisible;
+  const wrap = document.getElementById("minimap-wrap");
+  const btn  = document.getElementById("gis-minimap");
+  if (wrap) wrap.hidden = !minimapVisible;
+  if (btn)  { btn.classList.toggle("active", minimapVisible); btn.setAttribute("aria-pressed", String(minimapVisible)); }
+  if (minimapVisible) {
+    if (!minimapInstance) initMinimap();
+    else { minimapInstance.invalidateSize(); updateMinimapRect(); }
+  }
+}
+
 /* ── Map init ── */
 function initLeafletMap() {
   leafletMap = L.map("leaflet-map", {
@@ -763,6 +955,9 @@ function initLeafletMap() {
   });
   new HomeControl().addTo(leafletMap);
 
+  // Scale bar (imperial + metric) — standard GIS element
+  L.control.scale({ imperial: true, metric: true, position: "bottomleft" }).addTo(leafletMap);
+
   // Pane for city/place labels sitting above county fills but below markers
   leafletMap.createPane("labelsPane");
   leafletMap.getPane("labelsPane").style.zIndex = 450;
@@ -784,8 +979,9 @@ function initLeafletMap() {
     clearHoveredCounty();
   });
 
-  leafletMap.on("click", () => {
+  leafletMap.on("click", e => {
     if (isDraggingMap || Date.now() < suppressClickUntil) return;
+    if (measureMode) { addMeasurePoint(e.latlng); return; }
     if (selectedFips && countyLayerByFips[selectedFips]) {
       countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
     }
@@ -825,6 +1021,35 @@ function initLeafletMap() {
   if (window.visualViewport) {
     window.visualViewport.addEventListener("resize", onResize);
   }
+
+  // Coordinate display — updates on mouse move (desktop)
+  const coordEl = document.getElementById("coord-display");
+  if (coordEl) {
+    leafletMap.on("mousemove", e => {
+      const lat = Math.abs(e.latlng.lat).toFixed(4);
+      const lng = Math.abs(e.latlng.lng).toFixed(4);
+      coordEl.textContent = `${lat}°${e.latlng.lat >= 0 ? "N" : "S"}  ${lng}°${e.latlng.lng >= 0 ? "E" : "W"}`;
+    });
+    leafletMap.on("mouseout", () => { coordEl.textContent = ""; });
+  }
+
+  // GIS toolbar button wiring
+  document.getElementById("gis-measure")     ?.addEventListener("click", toggleMeasure);
+  document.getElementById("gis-export")      ?.addEventListener("click", exportCountiesCSV);
+  document.getElementById("gis-share")       ?.addEventListener("click", shareCurrentView);
+  document.getElementById("gis-minimap")     ?.addEventListener("click", toggleMinimap);
+  document.getElementById("measure-clear-btn")?.addEventListener("click", () => {
+    clearMeasure();
+    if (measureMode) toggleMeasure(); // exit measure mode too
+  });
+
+  // Keyboard: M = toggle measure, Escape = exit measure
+  document.addEventListener("keydown", e => {
+    if (!leafletMap) return;
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+    if ((e.key === "m" || e.key === "M") && !e.ctrlKey && !e.metaKey) toggleMeasure();
+    if (e.key === "Escape" && measureMode) toggleMeasure();
+  });
 }
 
 /* ── Stats bar ── */
@@ -1091,7 +1316,7 @@ function renderFilterPanel() {
 
   const bmRow = document.createElement("div");
   bmRow.className = "basemap-chips";
-  ["standard", "satellite", "hybrid"].forEach(type => {
+  ["standard", "satellite", "hybrid", "terrain"].forEach(type => {
     const btn = document.createElement("button");
     btn.className = "basemap-chip" + (activeTile === type ? " active" : "");
     btn.dataset.basemap = type;
@@ -1824,7 +2049,17 @@ function setLocationHash(fips) {
 }
 
 function restoreFromHash() {
-  const hash = window.location.hash.replace("#", "");
+  const hash = window.location.hash.slice(1); // strip leading #
+
+  // Share-view format: #@lat,lng,zoom  (set by shareCurrentView())
+  const viewMatch = hash.match(/^@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?),(\d+)$/);
+  if (viewMatch && leafletMap) {
+    switchTab("map");
+    leafletMap.setView([parseFloat(viewMatch[1]), parseFloat(viewMatch[2])], parseInt(viewMatch[3]));
+    return false; // view restored but no county selected
+  }
+
+  // County FIPS permalink: #12345
   if (/^\d{5}$/.test(hash)) {
     switchTab("map");
     // Force Leaflet to recalculate its container size synchronously before

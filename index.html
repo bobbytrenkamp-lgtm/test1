@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260712n" />
+  <link rel="stylesheet" href="css/style.css?v=20260714a" />
   <link rel="stylesheet" href="css/stocks.css?v=20260712h" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
@@ -179,6 +179,41 @@
         <div class="spinner"></div>
         <span>Loading map data…</span>
       </div>
+
+      <!-- GIS Toolbar -->
+      <div id="map-gis-bar" role="toolbar" aria-label="Map tools">
+        <button class="gis-btn" id="gis-measure" title="Measure distance (M)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="2"/><line x1="6" y1="8" x2="6" y2="11"/><line x1="10" y1="8" x2="10" y2="10"/><line x1="14" y1="8" x2="14" y2="10"/><line x1="18" y1="8" x2="18" y2="11"/></svg>
+        </button>
+        <button class="gis-btn" id="gis-export" title="Export visible counties to CSV">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </button>
+        <button class="gis-btn" id="gis-share" title="Copy share link for current view">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+        <button class="gis-btn" id="gis-minimap" title="Toggle overview map" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><rect x="6" y="8" width="8" height="8" rx="1"/></svg>
+        </button>
+      </div>
+
+      <!-- Measure readout -->
+      <div id="measure-readout" hidden aria-live="polite">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="2"/><line x1="6" y1="8" x2="6" y2="11"/><line x1="18" y1="8" x2="18" y2="11"/></svg>
+        <span id="measure-dist-val"></span>
+        <span id="measure-pts-val"></span>
+        <button id="measure-clear-btn" aria-label="Clear measurement">✕</button>
+      </div>
+
+      <!-- Coordinate display -->
+      <div id="coord-display" aria-live="polite" aria-atomic="true"></div>
+
+      <!-- Minimap overview -->
+      <div id="minimap-wrap" hidden>
+        <div id="minimap"></div>
+      </div>
+
+      <!-- Toast -->
+      <div id="map-toast" role="status" aria-live="polite" hidden></div>
     </div>
 
     <!-- Detail Panel -->
@@ -345,7 +380,7 @@ window.addEventListener('error', function(e) {
 <script src="js/stocks.js?v=20260712k" defer onload="window._track.ok.push('stocks')" onerror="window._track.fail.push('stocks')"></script>
 <script src="js/analytics.js?v=20260712k" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
 <script src="js/home.js?v=20260712m" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
-<script src="js/map.js?v=20260712k" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script src="js/map.js?v=20260714a" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
 <script>
 setTimeout(function() {
   if (!window._pageInitialized) {
