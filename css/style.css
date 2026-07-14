@@ -4099,8 +4099,11 @@ html[data-theme="light"] {
 #measure-readout {
   position: absolute;
   top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  width: -webkit-fit-content;
+  width: fit-content;
+  margin: 0 auto;
   z-index: 460;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -4126,8 +4129,8 @@ html[data-theme="light"] {
   border: none;
   color: var(--text-muted);
   cursor: pointer;
-  font-size: 14px;
-  padding: 2px 4px;
+  font-size: 16px;
+  padding: 6px 8px;
   border-radius: 4px;
   line-height: 1;
   transition: color 0.15s, background 0.15s;
