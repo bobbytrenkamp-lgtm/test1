@@ -1230,10 +1230,18 @@ function initLeafletMap() {
   document.getElementById("gis-share")         ?.addEventListener("click", shareCurrentView);
   document.getElementById("gis-print")         ?.addEventListener("click", printMap);
   document.getElementById("gis-minimap")       ?.addEventListener("click", toggleMinimap);
-  document.getElementById("measure-clear-btn") ?.addEventListener("click", () => {
-    clearMeasure();
-    if (measureMode) toggleMeasure();
-  });
+  const _clearBtn = document.getElementById("measure-clear-btn");
+  if (_clearBtn) {
+    const _doClear = () => { clearMeasure(); if (measureMode) toggleMeasure(); };
+    _clearBtn.addEventListener("click", _doClear);
+    // iOS Safari: Leaflet swallows touch events on the map container — touchend
+    // fires before the synthetic click, so we handle it directly and preventDefault
+    // to stop the redundant click from also firing.
+    _clearBtn.addEventListener("touchend", e => { e.preventDefault(); _doClear(); }, { passive: false });
+  }
+  // Prevent Leaflet from intercepting pointer/touch events on the measure readout
+  const _readoutEl = document.getElementById("measure-readout");
+  if (_readoutEl) L.DomEvent.disableClickPropagation(_readoutEl);
 
   // Fullscreen state sync
   document.addEventListener("fullscreenchange", () => {
@@ -1828,11 +1836,10 @@ function initLegendControls() {
   });
   if (restore) restore.addEventListener("click", showLegend);
 
-  // ── Legend drag (desktop only) ──
+  // ── Legend drag ──
   let lgDragging = false, lgDragStartX, lgDragStartY, lgDragStartLeft, lgDragStartTop;
 
   legend.addEventListener("pointerdown", e => {
-    if (window.innerWidth <= 700) return;
     if (!e.target.closest(".legend-drag-handle")) return;
     e.preventDefault();
     e.stopPropagation();
