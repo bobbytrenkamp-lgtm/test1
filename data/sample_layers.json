@@ -29403,6 +29403,292 @@
       "lat": 45.7833,
       "lon": -108.5007,
       "capacity_mw": 3.0
+    },
+    {
+      "id": "fc-7c2bf228e2",
+      "name": "Digital Realty Data Center - Ashburn VA IAD1",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Digital Realty Ashburn Virginia colocation campus IAD1; legacy_id:dc-va-206",
+      "lat": 39.0438,
+      "lon": -77.4875,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-69c64df070",
+      "name": "Digital Realty Data Center - Ashburn VA IAD2",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Digital Realty Ashburn Virginia colocation campus IAD2; legacy_id:dc-va-207",
+      "lat": 39.045,
+      "lon": -77.49,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-6017fb528a",
+      "name": "Digital Realty Data Center - Sterling VA IAD3",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Digital Realty Sterling Virginia colocation campus IAD3 (Loudoun County); legacy_id:dc-va-208",
+      "lat": 39.007,
+      "lon": -77.41,
+      "capacity_mw": 18.0
+    },
+    {
+      "id": "fc-593ba86094",
+      "name": "Digital Realty Data Center - Dallas TX DFW1",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Digital Realty Dallas Texas colocation campus DFW1; legacy_id:dc-tx-292",
+      "lat": 32.8,
+      "lon": -96.8,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-0e1c714c78",
+      "name": "Digital Realty Data Center - Dallas TX DFW2",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Digital Realty Dallas Texas colocation campus DFW2; legacy_id:dc-tx-293",
+      "lat": 32.805,
+      "lon": -96.805,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-dd826f1514",
+      "name": "Digital Realty Data Center - Dallas TX DFW3",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Digital Realty Dallas Texas hyperscale campus DFW3; legacy_id:dc-tx-294",
+      "lat": 32.81,
+      "lon": -96.81,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-aed85b957a",
+      "name": "Digital Realty Data Center - San Jose CA SJC1",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Digital Realty San Jose California colocation campus SJC1; legacy_id:dc-ca-254",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-045619ee72",
+      "name": "Digital Realty Data Center - San Jose CA SJC2",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Digital Realty San Jose colocation campus SJC2; legacy_id:dc-ca-255",
+      "lat": 37.34,
+      "lon": -121.89,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-44cfccaada",
+      "name": "Digital Realty Data Center - Chicago ORD1",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Digital Realty Chicago Illinois colocation campus ORD1; legacy_id:dc-il-136",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-1dac112bde",
+      "name": "Digital Realty Data Center - Atlanta ATL1",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Digital Realty Atlanta Georgia colocation campus ATL1; legacy_id:dc-ga-126",
+      "lat": 33.749,
+      "lon": -84.388,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-45d506b351",
+      "name": "Equinix Data Center - New York NY9",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Equinix New York City IBX campus NY9 in Manhattan; legacy_id:dc-ny-085",
+      "lat": 40.7154,
+      "lon": -74.0059,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-260158d67a",
+      "name": "Vantage Data Centers - Ashburn VA VA-1",
+      "operator": "Vantage Data Centers",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Vantage Data Centers Ashburn Virginia hyperscale campus VA-1; legacy_id:dc-va-209",
+      "lat": 39.04,
+      "lon": -77.48,
+      "capacity_mw": 36.0
+    },
+    {
+      "id": "fc-920d867b02",
+      "name": "Vantage Data Centers - Ashburn VA VA-2",
+      "operator": "Vantage Data Centers",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Vantage Data Centers Ashburn Virginia hyperscale campus VA-2; legacy_id:dc-va-210",
+      "lat": 39.042,
+      "lon": -77.482,
+      "capacity_mw": 48.0
+    },
+    {
+      "id": "fc-c0a8c093e2",
+      "name": "Vantage Data Centers - Blythewood SC SC-1",
+      "operator": "Vantage Data Centers",
+      "status": "existing",
+      "county_fips": "45063",
+      "notes": "Vantage Data Centers Blythewood South Carolina hyperscale campus SC-1; legacy_id:dc-sc-023",
+      "lat": 34.21,
+      "lon": -81.027,
+      "capacity_mw": 48.0
+    },
+    {
+      "id": "fc-f3abfd8cbc",
+      "name": "Vantage Data Centers - Columbus OH OH-1",
+      "operator": "Vantage Data Centers",
+      "status": "planned",
+      "county_fips": "39089",
+      "notes": "Vantage Data Centers planned hyperscale campus in Columbus Ohio area; legacy_id:dc-oh-132",
+      "lat": 40.09,
+      "lon": -82.8,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-248d8bc4b1",
+      "name": "EdgeCore Data Center - Quincy WA Campus",
+      "operator": "EdgeCore Internet Real Estate",
+      "status": "existing",
+      "county_fips": "53025",
+      "notes": "EdgeCore hyperscale data center campus in Quincy Washington; legacy_id:dc-wa-085",
+      "lat": 47.2342,
+      "lon": -119.8512,
+      "capacity_mw": 120.0
+    },
+    {
+      "id": "fc-c0a4c2c6d6",
+      "name": "EdgeCore Data Center - Mesa AZ Campus",
+      "operator": "EdgeCore Internet Real Estate",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "EdgeCore hyperscale data center campus in Mesa Arizona; legacy_id:dc-az-091",
+      "lat": 33.4152,
+      "lon": -111.8313,
+      "capacity_mw": 120.0
+    },
+    {
+      "id": "fc-3994ec0a4b",
+      "name": "Shopify Data Center - Ashburn VA",
+      "operator": "Shopify Inc",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Shopify e-commerce platform data center in Ashburn Virginia data center alley; legacy_id:dc-va-211",
+      "lat": 39.044,
+      "lon": -77.4875,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-6ca79c2cd8",
+      "name": "eBay Data Center - South Jordan UT",
+      "operator": "eBay Inc",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "eBay e-commerce data center in South Jordan Utah; legacy_id:dc-ut-033",
+      "lat": 40.5621,
+      "lon": -111.9296,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-4daead0271",
+      "name": "eBay Data Center - San Jose CA",
+      "operator": "eBay Inc",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "eBay e-commerce primary data center at San Jose California headquarters; legacy_id:dc-ca-256",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-aa262818ae",
+      "name": "Etsy Data Center - New York NY",
+      "operator": "Etsy Inc",
+      "status": "existing",
+      "county_fips": "36047",
+      "notes": "Etsy marketplace data center in New York area; legacy_id:dc-ny-086",
+      "lat": 40.6782,
+      "lon": -73.9442,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-750f824c1f",
+      "name": "Spotify Technology Data Center - New York NY",
+      "operator": "Spotify Technology",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Spotify music streaming data center at New York US headquarters; legacy_id:dc-ny-087",
+      "lat": 40.7154,
+      "lon": -74.0059,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-f177fa4779",
+      "name": "Twitch Interactive Data Center - San Francisco CA",
+      "operator": "Twitch Interactive (Amazon)",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Twitch live streaming platform data center in San Francisco California; legacy_id:dc-ca-257",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-12fb15ff4c",
+      "name": "Discord Data Center - San Francisco CA",
+      "operator": "Discord Inc",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Discord gaming communication platform data center in San Francisco; legacy_id:dc-ca-258",
+      "lat": 37.78,
+      "lon": -122.4,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-66ecb97c09",
+      "name": "Intuit Data Center - Mountain View CA",
+      "operator": "Intuit Inc",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Intuit (TurboTax, QuickBooks) data center at Mountain View California headquarters; legacy_id:dc-ca-259",
+      "lat": 37.3861,
+      "lon": -122.0838,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-acc0bce9ed",
+      "name": "DocuSign Data Center - San Francisco CA",
+      "operator": "DocuSign Inc",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "DocuSign electronic signature data center in San Francisco California; legacy_id:dc-ca-260",
+      "lat": 37.78,
+      "lon": -122.41,
+      "capacity_mw": 5.0
     }
   ],
   "ai_campuses": [
@@ -29969,5 +30255,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:42:35Z"
+  "_facilities_exported_at": "2026-07-14T04:46:39Z"
 }
