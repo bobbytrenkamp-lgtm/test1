@@ -239,8 +239,12 @@ function countyStyle(feature) {
   const isSat  = activeTile !== "standard";
   const tc     = themeColors();
 
+  // Fade out county fills when zoomed into street level so satellite imagery is visible
+  const zoom     = leafletMap ? leafletMap.getZoom() : 7;
+  const zoomFade = zoom >= 13 ? 0 : zoom <= 10 ? 1 : (13 - zoom) / 3;
+
   if (!layerState.restrictions) {
-    return { fillColor: tc.noData, fillOpacity: isSat ? 0 : 0.12, color: tc.countyBorder, weight: 0.35 };
+    return { fillColor: tc.noData, fillOpacity: isSat ? 0 : 0.12 * zoomFade, color: tc.countyBorder, weight: 0.35 };
   }
 
   const county     = mapData[fips];
@@ -250,7 +254,7 @@ function countyStyle(feature) {
   if (hasActiveMapFilters() && !countyMatchesFilters(fips)) {
     return {
       fillColor:   tc.noData,
-      fillOpacity: isSat ? 0 : 0.08,
+      fillOpacity: isSat ? 0 : 0.08 * zoomFade,
       color:       tc.countyBorder,
       weight:      0.2,
     };
@@ -258,7 +262,7 @@ function countyStyle(feature) {
 
   return {
     fillColor:   getColor(fips),
-    fillOpacity: isSat ? (hasData ? 0.70 : 0) : 0.75,
+    fillOpacity: isSat ? (hasData ? 0.70 * zoomFade : 0) : 0.75 * zoomFade,
     color:       tc.countyBorder,
     weight:      0.35,
   };
@@ -775,6 +779,16 @@ function initLeafletMap() {
     }
     selectedFips = null;
     setDetailEmpty();
+  });
+
+  // Re-apply county fill opacity when zoom changes (fades out at street level)
+  leafletMap.on("zoomend", () => {
+    if (countyGeoLayer) {
+      countyGeoLayer.setStyle(countyStyle);
+      if (selectedFips && countyLayerByFips[selectedFips]) {
+        countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
+      }
+    }
   });
 }
 
