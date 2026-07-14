@@ -27302,6 +27302,248 @@
       "lat": 41.0534,
       "lon": -73.6257,
       "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-c77fedd57f",
+      "name": "Progressive Insurance Data Center - Mayfield Village OH",
+      "operator": "Progressive Insurance",
+      "status": "existing",
+      "county_fips": "39035",
+      "notes": "Progressive Insurance primary data center at Mayfield Village Ohio headquarters; legacy_id:dc-oh-114",
+      "lat": 41.5195,
+      "lon": -81.4551,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-41fc1ef119",
+      "name": "Johns Hopkins Hospital Data Center - Baltimore MD",
+      "operator": "Johns Hopkins Medicine",
+      "status": "existing",
+      "county_fips": "24510",
+      "notes": "Johns Hopkins Medicine health system data center in Baltimore Maryland; legacy_id:dc-md-039",
+      "lat": 39.298,
+      "lon": -76.5926,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-ce9553fb97",
+      "name": "State Farm Data Center - Bloomington IL",
+      "operator": "State Farm Insurance",
+      "status": "existing",
+      "county_fips": "17113",
+      "notes": "State Farm Insurance primary data center at Bloomington Illinois headquarters; legacy_id:dc-il-119",
+      "lat": 40.4842,
+      "lon": -88.9937,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-e48488c188",
+      "name": "State Farm Data Center - Bloomington IL West",
+      "operator": "State Farm Insurance",
+      "status": "existing",
+      "county_fips": "17113",
+      "notes": "State Farm Insurance secondary data center facility in Bloomington IL area; legacy_id:dc-il-120",
+      "lat": 40.49,
+      "lon": -89.0,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-7912e5623b",
+      "name": "State Farm Data Center - Tempe AZ",
+      "operator": "State Farm Insurance",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "State Farm Insurance disaster recovery data center in Tempe Arizona; legacy_id:dc-az-085",
+      "lat": 33.4255,
+      "lon": -111.94,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-43f1f29ffc",
+      "name": "USAA Data Center - San Antonio TX",
+      "operator": "USAA",
+      "status": "existing",
+      "county_fips": "48029",
+      "notes": "USAA insurance and financial services primary data center at San Antonio headquarters; legacy_id:dc-tx-272",
+      "lat": 29.4241,
+      "lon": -98.4936,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-388eb47b51",
+      "name": "USAA Data Center - San Antonio TX2",
+      "operator": "USAA",
+      "status": "existing",
+      "county_fips": "48029",
+      "notes": "USAA second data center facility in San Antonio Texas; legacy_id:dc-tx-273",
+      "lat": 29.43,
+      "lon": -98.5,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-b2b92d6791",
+      "name": "Nationwide Insurance Data Center - Columbus OH",
+      "operator": "Nationwide Insurance",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Nationwide Insurance primary data center at Columbus Ohio headquarters; legacy_id:dc-oh-115",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-04b11310f3",
+      "name": "Duke Energy Data Center - Charlotte NC",
+      "operator": "Duke Energy Corporation",
+      "status": "existing",
+      "county_fips": "37119",
+      "notes": "Duke Energy electric utility data center at Charlotte NC headquarters; legacy_id:dc-nc-091",
+      "lat": 35.2271,
+      "lon": -80.8431,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-f5da637063",
+      "name": "Exelon Data Center - Chicago IL",
+      "operator": "Exelon Corporation",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Exelon energy (ComEd, PECO, BGE) data center at Chicago headquarters; legacy_id:dc-il-122",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-e5bab22b3e",
+      "name": "NextEra Energy Data Center - Juno Beach FL",
+      "operator": "NextEra Energy",
+      "status": "existing",
+      "county_fips": "12099",
+      "notes": "NextEra Energy (FPL, Gulf Power) data center at Juno Beach Florida headquarters; legacy_id:dc-fl-099",
+      "lat": 26.8867,
+      "lon": -80.055,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-6f36e560a4",
+      "name": "American Electric Power Data Center - Columbus OH",
+      "operator": "American Electric Power",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "AEP electric utility data center at Columbus Ohio headquarters; legacy_id:dc-oh-116",
+      "lat": 39.966,
+      "lon": -83.002,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-46c8b419cc",
+      "name": "AWS GovCloud Data Center - Boardman OR US-GOV-WEST-1 B3",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "41049",
+      "notes": "AWS GovCloud us-gov-west-1 region third AZ building in Boardman Oregon; legacy_id:dc-or-077",
+      "lat": 45.845,
+      "lon": -119.7,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-4de6985db6",
+      "name": "AWS GovCloud Data Center - Ashburn VA US-GOV-EAST-1 B2",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "AWS GovCloud us-gov-east-1 region second AZ in Ashburn Virginia; legacy_id:dc-va-178",
+      "lat": 39.044,
+      "lon": -77.485,
+      "capacity_mw": 65.0
+    },
+    {
+      "id": "fc-f8173f7f7d",
+      "name": "AWS GovCloud Data Center - Ashburn VA US-GOV-EAST-1 B3",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "AWS GovCloud us-gov-east-1 region third AZ in Ashburn Virginia; legacy_id:dc-va-179",
+      "lat": 39.046,
+      "lon": -77.49,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-a4b6882c58",
+      "name": "Mayo Clinic Data Center - Rochester MN",
+      "operator": "Mayo Clinic",
+      "status": "existing",
+      "county_fips": "27109",
+      "notes": "Mayo Clinic primary healthcare data center at Rochester Minnesota main campus; legacy_id:dc-mn-069",
+      "lat": 44.0225,
+      "lon": -92.4631,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-cb9889d35d",
+      "name": "Texas Medical Center Data Center - Houston TX",
+      "operator": "Texas Medical Center",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "Texas Medical Center shared data center in Houston for member institutions; legacy_id:dc-tx-274",
+      "lat": 29.7077,
+      "lon": -95.3955,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-fd964372b7",
+      "name": "Aligned Data Centers - Dallas TX",
+      "operator": "Aligned Data Centers",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Aligned Data Centers hyperscale colocation campus in Dallas Texas; legacy_id:dc-tx-275",
+      "lat": 32.8,
+      "lon": -96.83,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-6f664f00df",
+      "name": "Aligned Data Centers - Mesa AZ",
+      "operator": "Aligned Data Centers",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Aligned Data Centers hyperscale colocation campus in Mesa Arizona; legacy_id:dc-az-086",
+      "lat": 33.4152,
+      "lon": -111.8313,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-be556e119c",
+      "name": "vXchnge Data Center - Philadelphia PA",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "42101",
+      "notes": "vXchnge colocation data center in Philadelphia Pennsylvania; legacy_id:dc-pa-071",
+      "lat": 39.9526,
+      "lon": -75.1652,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-bc4b8c60c0",
+      "name": "vXchnge Data Center - Las Vegas NV",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "vXchnge colocation data center in Las Vegas Nevada; legacy_id:dc-nv-036",
+      "lat": 36.1699,
+      "lon": -115.1398,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-eba08a4658",
+      "name": "vXchnge Data Center - Nashville TN",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "vXchnge colocation data center in Nashville Tennessee; legacy_id:dc-tn-060",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "capacity_mw": 5.0
     }
   ],
   "ai_campuses": [
@@ -27868,5 +28110,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:09:24Z"
+  "_facilities_exported_at": "2026-07-14T04:12:54Z"
 }
