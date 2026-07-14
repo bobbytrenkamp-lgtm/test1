@@ -25608,6 +25608,347 @@
       "lat": 44.4759,
       "lon": -73.2121,
       "capacity_mw": 30.0
+    },
+    {
+      "id": "fc-adf7394ee3",
+      "name": "NOAA Data Center - Asheville NC / Silver Spring MD",
+      "operator": "NOAA (National Oceanic and Atmospheric Administration)",
+      "status": "existing",
+      "county_fips": "24031",
+      "notes": "NOAA National Centers for Environmental Information data center operations; legacy_id:dc-md-035",
+      "lat": 38.994,
+      "lon": -77.0381,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-d2e469d0a5",
+      "name": "USDA Data Center - Beltsville MD",
+      "operator": "US Department of Agriculture",
+      "status": "existing",
+      "county_fips": "24033",
+      "notes": "USDA National Agricultural Computing Center at Beltsville MD Agricultural Research Center; legacy_id:dc-md-036",
+      "lat": 39.0295,
+      "lon": -76.9219,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-61ba544eb1",
+      "name": "US State Department Data Center - Washington DC Metro",
+      "operator": "US Department of State",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "State Department classified and unclassified data center in Virginia suburbs; legacy_id:dc-va-165",
+      "lat": 38.8186,
+      "lon": -77.2311,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-08aa703e1c",
+      "name": "QTS Data Center - Richland County MS",
+      "operator": "QTS Realty Trust (Blackstone)",
+      "status": "planned",
+      "county_fips": "28121",
+      "notes": "QTS planned data center campus in Mississippi, new market entry; legacy_id:dc-ms-018",
+      "lat": 32.3645,
+      "lon": -89.9703,
+      "capacity_mw": 50.0
+    },
+    {
+      "id": "fc-fa02d91edd",
+      "name": "Vaulted US Data Center - Boise ID",
+      "operator": "Vaulted US",
+      "status": "existing",
+      "county_fips": "16001",
+      "notes": "Vaulted US sustainable colocation data center in Boise Idaho; legacy_id:dc-id-018",
+      "lat": 43.615,
+      "lon": -116.2023,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-dcfe99524f",
+      "name": "STACK Infrastructure - Dallas Campus",
+      "operator": "STACK Infrastructure",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "STACK Infrastructure Dallas Texas colocation campus; legacy_id:dc-tx-254",
+      "lat": 32.9029,
+      "lon": -96.9012,
+      "capacity_mw": 30.0
+    },
+    {
+      "id": "fc-e043007993",
+      "name": "STACK Infrastructure - Chicago Campus",
+      "operator": "STACK Infrastructure",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "STACK Infrastructure Chicago Illinois colocation campus; legacy_id:dc-il-114",
+      "lat": 41.9986,
+      "lon": -87.974,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-3a173c16c4",
+      "name": "STACK Infrastructure - Ashburn VA Campus",
+      "operator": "STACK Infrastructure",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "STACK Infrastructure Ashburn Virginia colocation campus; legacy_id:dc-va-163",
+      "lat": 39.0438,
+      "lon": -77.4875,
+      "capacity_mw": 35.0
+    },
+    {
+      "id": "fc-c15e0b35b1",
+      "name": "STACK Infrastructure - Hillsboro OR Campus",
+      "operator": "STACK Infrastructure",
+      "status": "existing",
+      "county_fips": "41067",
+      "notes": "STACK Infrastructure Hillsboro Oregon colocation campus; legacy_id:dc-or-070",
+      "lat": 45.5229,
+      "lon": -122.9898,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-e88a7be6e0",
+      "name": "H5 Data Centers - Cleveland OH",
+      "operator": "H5 Data Centers",
+      "status": "existing",
+      "county_fips": "39035",
+      "notes": "H5 Data Centers Cleveland Ohio colocation facility; legacy_id:dc-oh-108",
+      "lat": 41.4993,
+      "lon": -81.6944,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-f3f8ad09f9",
+      "name": "H5 Data Centers - Dayton OH",
+      "operator": "H5 Data Centers",
+      "status": "existing",
+      "county_fips": "39113",
+      "notes": "H5 Data Centers Dayton Ohio colocation facility; legacy_id:dc-oh-109",
+      "lat": 39.7589,
+      "lon": -84.1916,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-16302c1e6c",
+      "name": "H5 Data Centers - Nashville TN",
+      "operator": "H5 Data Centers",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "H5 Data Centers Nashville Tennessee colocation facility; legacy_id:dc-tn-051",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-51159f0bc0",
+      "name": "Sify Technologies Data Center - Piscataway NJ",
+      "operator": "Sify Technologies",
+      "status": "existing",
+      "county_fips": "34023",
+      "notes": "Sify Technologies US data center in Piscataway NJ; legacy_id:dc-nj-054",
+      "lat": 40.4996,
+      "lon": -74.4593,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-e3bdb28368",
+      "name": "Ascent Data Centers - Denver CO",
+      "operator": "Ascent Data Centers",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Ascent Data Centers Denver Colorado colocation facility; legacy_id:dc-co-081",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-c9fdd54c1b",
+      "name": "Appalachian Power Company Data Center - Roanoke VA",
+      "operator": "Appalachian Power (AEP)",
+      "status": "existing",
+      "county_fips": "51161",
+      "notes": "Appalachian Power (AEP subsidiary) utility operations data center in Roanoke VA; legacy_id:dc-va-164",
+      "lat": 37.271,
+      "lon": -79.9414,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-f00ac48823",
+      "name": "News Corp Data Center - New York NY",
+      "operator": "News Corp",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "News Corp (Fox, WSJ, NY Post) data center in New York NY; legacy_id:dc-ny-064",
+      "lat": 40.758,
+      "lon": -74.006,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-db44b083eb",
+      "name": "Condé Nast Data Center - New York NY",
+      "operator": "Condé Nast",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Condé Nast (Vogue, New Yorker, Wired) media data center in New York; legacy_id:dc-ny-065",
+      "lat": 40.758,
+      "lon": -73.9857,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-64df47373b",
+      "name": "New York Times Company Data Center - New York",
+      "operator": "New York Times Company",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "New York Times digital operations data center in NYC; legacy_id:dc-ny-066",
+      "lat": 40.7614,
+      "lon": -73.9857,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-a620a8d0b5",
+      "name": "Hearst Communications Data Center - New York",
+      "operator": "Hearst Communications",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Hearst Communications data center for publishing and media operations; legacy_id:dc-ny-067",
+      "lat": 40.7648,
+      "lon": -73.9832,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-7b21869b85",
+      "name": "NBCUniversal Data Center - Universal City CA",
+      "operator": "NBCUniversal (Comcast)",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "NBCUniversal data center at Universal City California studio campus; legacy_id:dc-ca-212",
+      "lat": 34.1381,
+      "lon": -118.3536,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-532333e3ff",
+      "name": "Social Security Administration Data Center - Woodlawn MD",
+      "operator": "Social Security Administration",
+      "status": "existing",
+      "county_fips": "24005",
+      "notes": "SSA national data center at Woodlawn MD headquarters campus; legacy_id:dc-md-033",
+      "lat": 39.3723,
+      "lon": -76.731,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-ebe23d1a88",
+      "name": "IRS Computing Center - Memphis TN",
+      "operator": "Internal Revenue Service",
+      "status": "existing",
+      "county_fips": "47157",
+      "notes": "IRS Computing Center in Memphis TN processing federal tax data; legacy_id:dc-tn-052",
+      "lat": 35.0456,
+      "lon": -89.9928,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-2877e40196",
+      "name": "IRS Computing Center - Kansas City MO",
+      "operator": "Internal Revenue Service",
+      "status": "existing",
+      "county_fips": "29095",
+      "notes": "IRS Kansas City MO campus data center for tax processing; legacy_id:dc-mo-052",
+      "lat": 39.1011,
+      "lon": -94.5786,
+      "capacity_mw": 18.0
+    },
+    {
+      "id": "fc-237c90d115",
+      "name": "IRS Computing Center - Philadelphia PA",
+      "operator": "Internal Revenue Service",
+      "status": "existing",
+      "county_fips": "42101",
+      "notes": "IRS Computing Center at Philadelphia PA for tax data processing; legacy_id:dc-pa-064",
+      "lat": 39.9526,
+      "lon": -75.1652,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-9c8d7f6768",
+      "name": "US Census Bureau Data Center - Suitland MD",
+      "operator": "US Census Bureau",
+      "status": "existing",
+      "county_fips": "24033",
+      "notes": "US Census Bureau national data center at Suitland Federal Center MD; legacy_id:dc-md-034",
+      "lat": 38.8451,
+      "lon": -76.9219,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-3ea8abe03b",
+      "name": "NOAA National Centers Data Center - Asheville NC",
+      "operator": "NOAA (National Oceanic and Atmospheric Administration)",
+      "status": "existing",
+      "county_fips": "37021",
+      "notes": "NOAA NCEI Asheville NC climate data center for global weather records; legacy_id:dc-nc-086",
+      "lat": 35.5951,
+      "lon": -82.5515,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-6c3c95ed59",
+      "name": "CDC Data Center - Atlanta GA",
+      "operator": "Centers for Disease Control and Prevention",
+      "status": "existing",
+      "county_fips": "13089",
+      "notes": "CDC primary data center at Atlanta Georgia headquarters for public health IT; legacy_id:dc-ga-113",
+      "lat": 33.799,
+      "lon": -84.3318,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-e229729b71",
+      "name": "USDA NASS Data Center - Fairfax VA / NFC Kansas City",
+      "operator": "US Department of Agriculture",
+      "status": "existing",
+      "county_fips": "19153",
+      "notes": "USDA National Finance Center and NASS data center operations for agricultural statistics; legacy_id:dc-ia-031",
+      "lat": 42.0308,
+      "lon": -93.6208,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-ae08b42b10",
+      "name": "Flexential Data Center - Little Rock AR",
+      "operator": "Flexential",
+      "status": "existing",
+      "county_fips": "05119",
+      "notes": "Flexential Little Rock Arkansas colocation facility; legacy_id:dc-ar-018",
+      "lat": 34.7465,
+      "lon": -92.2896,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-3e80a6257e",
+      "name": "Appalachian Power Company Edge DC - Charleston WV",
+      "operator": "AEP / Appalachian Power",
+      "status": "existing",
+      "county_fips": "54039",
+      "notes": "AEP utility edge data center in Charleston West Virginia; legacy_id:dc-wv-010",
+      "lat": 38.3498,
+      "lon": -81.6326,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-0a420ee069",
+      "name": "MDU Communications Data Center - Bismarck ND",
+      "operator": "MDU Communications",
+      "status": "existing",
+      "county_fips": "38015",
+      "notes": "MDU Communications regional data center in Bismarck North Dakota; legacy_id:dc-nd-014",
+      "lat": 46.8083,
+      "lon": -100.7837,
+      "capacity_mw": 4.0
     }
   ],
   "ai_campuses": [
@@ -26174,5 +26515,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T03:47:20Z"
+  "_facilities_exported_at": "2026-07-14T03:50:26Z"
 }
