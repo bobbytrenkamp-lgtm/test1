@@ -1230,10 +1230,18 @@ function initLeafletMap() {
   document.getElementById("gis-share")         ?.addEventListener("click", shareCurrentView);
   document.getElementById("gis-print")         ?.addEventListener("click", printMap);
   document.getElementById("gis-minimap")       ?.addEventListener("click", toggleMinimap);
-  document.getElementById("measure-clear-btn") ?.addEventListener("click", () => {
-    clearMeasure();
-    if (measureMode) toggleMeasure();
-  });
+  const _clearBtn = document.getElementById("measure-clear-btn");
+  if (_clearBtn) {
+    const _doClear = () => { clearMeasure(); if (measureMode) toggleMeasure(); };
+    _clearBtn.addEventListener("click", _doClear);
+    // iOS Safari: Leaflet swallows touch events on the map container — touchend
+    // fires before the synthetic click, so we handle it directly and preventDefault
+    // to stop the redundant click from also firing.
+    _clearBtn.addEventListener("touchend", e => { e.preventDefault(); _doClear(); }, { passive: false });
+  }
+  // Prevent Leaflet from intercepting pointer/touch events on the measure readout
+  const _readoutEl = document.getElementById("measure-readout");
+  if (_readoutEl) L.DomEvent.disableClickPropagation(_readoutEl);
 
   // Fullscreen state sync
   document.addEventListener("fullscreenchange", () => {
@@ -1254,6 +1262,22 @@ function initLeafletMap() {
 
   initContextMenu();
   initBookmarks();
+
+  // Prevent Leaflet from intercepting touch/click events on all map overlay elements.
+  // Without this, Leaflet's touchstart handler on the map can swallow taps on
+  // absolutely-positioned controls on iOS Safari.
+  [
+    "map-gis-bar", "measure-readout", "bookmarks-panel", "map-ctx-menu",
+    "minimap-wrap", "legend", "legend-restore", "stats-bar", "filter-status",
+  ].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) L.DomEvent.disableClickPropagation(el);
+  });
+  // Prevent scroll-wheel/pinch inside overlay panels from zooming the map
+  ["bookmarks-list", "legend"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) L.DomEvent.disableScrollPropagation(el);
+  });
 }
 
 /* ── Stats bar ── */
@@ -1828,11 +1852,10 @@ function initLegendControls() {
   });
   if (restore) restore.addEventListener("click", showLegend);
 
-  // ── Legend drag (desktop only) ──
+  // ── Legend drag ──
   let lgDragging = false, lgDragStartX, lgDragStartY, lgDragStartLeft, lgDragStartTop;
 
   legend.addEventListener("pointerdown", e => {
-    if (window.innerWidth <= 700) return;
     if (!e.target.closest(".legend-drag-handle")) return;
     e.preventDefault();
     e.stopPropagation();

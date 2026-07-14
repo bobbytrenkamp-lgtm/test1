@@ -4385,6 +4385,22 @@ html[data-theme="light"] {
   font-variant-numeric: tabular-nums;
 }
 
+/* ── Map overlay touch targets — remove 300ms iOS tap delay on all interactive
+   elements inside the map container so they register instantly ── */
+.gis-btn,
+#measure-clear-btn,
+#bookmarks-close,
+#bookmark-save-btn,
+.bookmark-go,
+.bookmark-del,
+#map-ctx-menu button,
+#legend-restore,
+.legend-close-btn,
+.leaflet-bar button,
+.map-home-btn {
+  touch-action: manipulation;
+}
+
 /* ── Location marker pulse ── */
 @keyframes loc-pulse {
   0%   { transform: scale(1);   opacity: 0.6; }
