@@ -117,48 +117,110 @@
       "notes": "Paid API with the most comprehensive colocation coverage. Set CLOUDSCENE_API_KEY environment variable to activate. Highest-trust aggregator for colocation facilities. Run weekly when active.",
       "operator_filter": "",
       "confidence_override": null
+    },
+    {
+      "id": "hyperscale_press",
+      "name": "Hyperscale Operator Newsrooms (RSS)",
+      "tier": 4,
+      "adapter": "hyperscale_press",
+      "url": "https://news.microsoft.com/feed/",
+      "active": true,
+      "requires_auth": false,
+      "auth_env_var": "",
+      "rate_limit_rpm": 12,
+      "notes": "Monitors RSS feeds from Microsoft, Meta, Google, and Amazon newsrooms for data center and AI campus announcements. All results are candidates (confidence 0.50) requiring human review. Run weekly to catch new announcements early.",
+      "operator_filter": "",
+      "confidence_override": 0.50
     }
   ],
   "planned_sources": [
     {
       "id": "qts_website",
-      "name": "QTS Realty Trust Locations (Official Website)",
+      "name": "QTS / Iron Mountain Data Centers Locations",
       "tier": 1,
-      "url": "https://www.qtsdatacenters.com/data-centers/",
+      "url": "https://www.ironmountain.com/resources/data-centers",
       "status": "not_yet_built",
-      "notes": "QTS (now Iron Mountain Data Centers) official location pages."
+      "notes": "QTS was acquired by BlackStone in 2021 and rebranded under Iron Mountain Data Centers. Official location pages list all US campuses."
     },
     {
       "id": "coresite_website",
-      "name": "CoreSite Realty Locations",
+      "name": "CoreSite Realty Locations (American Tower)",
       "tier": 1,
       "url": "https://www.coresite.com/data-centers",
       "status": "not_yet_built",
-      "notes": "CoreSite (American Tower subsidiary) official location pages."
+      "notes": "CoreSite (American Tower subsidiary) official location pages. Strong West Coast and Chicago presence."
     },
     {
       "id": "cyrusone_website",
-      "name": "CyrusOne Locations",
+      "name": "CyrusOne Locations (KKR / GIP)",
       "tier": 1,
       "url": "https://cyrusone.com/data-centers/",
       "status": "not_yet_built",
-      "notes": "CyrusOne official location pages."
+      "notes": "CyrusOne official location pages. Major presence in TX, OH, VA, AZ."
     },
     {
       "id": "switch_website",
-      "name": "Switch Inc PRIME Locations",
+      "name": "Switch PRIME Campus Locations (DigitalBridge)",
       "tier": 1,
       "url": "https://www.switch.com/data-centers/",
       "status": "not_yet_built",
-      "notes": "Switch Inc (now DigitalBridge) official data center pages."
+      "notes": "Switch SUPERNAP campuses: Las Vegas (NV), Grand Rapids (MI), Atlanta (GA), Reno (NV). Tier IV design."
+    },
+    {
+      "id": "flexential_website",
+      "name": "Flexential Data Center Locations",
+      "tier": 1,
+      "url": "https://www.flexential.com/data-centers",
+      "status": "not_yet_built",
+      "notes": "Flexential operates 40+ data centers across western/central US. Strong CO, OR, WA, TX presence."
+    },
+    {
+      "id": "vantage_website",
+      "name": "Vantage Data Centers Locations",
+      "tier": 1,
+      "url": "https://vantage-dc.com/data-centers/",
+      "status": "not_yet_built",
+      "notes": "Vantage operates hyperscale-adjacent campuses. Major presence in VA, AZ, CA, WA. Silver Lake-backed."
+    },
+    {
+      "id": "cologix_website",
+      "name": "Cologix Network-Dense Data Centers",
+      "tier": 1,
+      "url": "https://www.cologix.com/locations/",
+      "status": "not_yet_built",
+      "notes": "Cologix operates 40+ carrier-neutral facilities across NA. Strong presence in Columbus OH, Toronto, Montreal, Denver, Jacksonville."
+    },
+    {
+      "id": "expedient_website",
+      "name": "Expedient Data Centers",
+      "tier": 1,
+      "url": "https://www.expedient.com/data-centers/",
+      "status": "not_yet_built",
+      "notes": "Expedient operates 11 facilities in Pittsburgh PA, Cleveland OH, Columbus OH, Louisville KY, Indianapolis IN, Baltimore MD, Memphis TN."
     },
     {
       "id": "pjm_queue",
-      "name": "PJM Interconnection Queue",
+      "name": "PJM Interconnection Queue (Mid-Atlantic)",
       "tier": 4,
       "url": "https://www.pjm.com/planning/interconnection-projects",
       "status": "not_yet_built",
-      "notes": "PJM (Mid-Atlantic) active interconnection queue. Covers VA, OH, IL, PA, MD, NJ, DE, DC — major data center states."
+      "notes": "PJM active interconnection queue. Covers VA, OH, IL, PA, MD, NJ, DE, DC, WV, KY, MI (in part). Large power requests (>50 MW) may signal planned data centers. Cross-reference by county against known DC corridors."
+    },
+    {
+      "id": "miso_queue",
+      "name": "MISO Interconnection Queue (Midwest)",
+      "tier": 4,
+      "url": "https://www.misoenergy.org/planning/resource-and-transmission-planning/resource-interconnection-and-transmission-service/generator-interconnection/",
+      "status": "not_yet_built",
+      "notes": "MISO covers IA, MN, WI, IL, IN, MI, MO, ND, SD, MT (east), MN, LA, MS, AR. Cross-reference large industrial loads against known DC operators."
+    },
+    {
+      "id": "wecc_queue",
+      "name": "WECC / CAISO Interconnection Queue (West)",
+      "tier": 4,
+      "url": "https://www.caiso.com/participate/Pages/GeneratorInterconnection/Default.aspx",
+      "status": "not_yet_built",
+      "notes": "CAISO and WECC interconnection queues cover CA, NV, AZ, WA, OR, ID, UT, CO, WY, MT (west). Cross-reference large loads against data center corridors."
     },
     {
       "id": "eia_large_consumers",
@@ -170,11 +232,43 @@
     },
     {
       "id": "va_bza_permits",
-      "name": "Virginia (Loudoun/Prince William) Building Permits",
+      "name": "Loudoun County VA — Building Permit Search",
       "tier": 4,
       "url": "https://aca-prod.accela.com/LOUDOUNCOUNTY/",
       "status": "not_yet_built",
       "notes": "Loudoun County VA ('Data Center Alley') building permits. Publicly searchable. Filter for large commercial/industrial applications."
+    },
+    {
+      "id": "nc_sos_corp",
+      "name": "NC Secretary of State — Corporation Filings",
+      "tier": 4,
+      "url": "https://www.sosnc.gov/online_services/search/Business_Registration_Search",
+      "status": "not_yet_built",
+      "notes": "NC SOS entity search returns registered addresses. Data center LLCs filing in NC (especially Chatham, Orange, Catawba counties) can indicate planned facilities."
+    },
+    {
+      "id": "epa_air_permits",
+      "name": "EPA Air Quality Permits — Large Generator Sets",
+      "tier": 4,
+      "url": "https://echo.epa.gov/facilities/facility-search",
+      "status": "not_yet_built",
+      "notes": "EPA ECHO facility search. Data centers with large diesel generator sets file air quality permits. Filter by SIC 7374 and NAICS 518210. Provides address-level location data."
+    },
+    {
+      "id": "stargate_newsroom",
+      "name": "OpenAI / SoftBank Stargate Project Newsroom",
+      "tier": 1,
+      "url": "https://openai.com/index/announcing-the-stargate-project/",
+      "status": "not_yet_built",
+      "notes": "Stargate joint venture (OpenAI + SoftBank + Oracle + MGX) announcements. $500B AI infrastructure commitment. First campus: Abilene TX. Monitor OpenAI newsroom for additional campus announcements."
+    },
+    {
+      "id": "xai_newsroom",
+      "name": "xAI (Elon Musk) Official Announcements",
+      "tier": 1,
+      "url": "https://x.ai/news",
+      "status": "not_yet_built",
+      "notes": "xAI Colossus Memphis campus (100,000+ H100 GPUs) operational. Monitor for additional campus announcements (Colossus Phase 2, Memphis expansion)."
     }
   ]
 }

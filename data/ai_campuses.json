@@ -6,7 +6,7 @@
     "State economic development announcements (public)",
     "Technology news and analysis (public)"
   ],
-  "_last_updated": "2024-01",
+  "_last_updated": "2026-07-14",
   "ai_campuses": [
     {
       "id": "ai-va-001",
@@ -227,6 +227,106 @@
       "notes": "Perlmutter AI-optimized supercomputer; NVIDIA A100 GPUs.",
       "lon": -122.25,
       "lat": 37.88
+    },
+    {
+      "id": "ai-tx-004",
+      "name": "Stargate AI Campus — Abilene (Phase 1)",
+      "operator": "OpenAI / SoftBank / Oracle / MGX",
+      "status": "under_construction",
+      "county_fips": "48441",
+      "lat": 32.4487,
+      "lon": -99.7331,
+      "notes": "First Stargate campus; announced January 2025. $500B AI infrastructure joint venture. Hundreds of acres adjacent to ERCOT transmission. Purpose-built for frontier AI model training. AEP Texas provides power."
+    },
+    {
+      "id": "ai-wa-001",
+      "name": "Microsoft AI — Quincy Data Center Expansion",
+      "operator": "Microsoft",
+      "status": "operational",
+      "county_fips": "53025",
+      "lat": 47.2304,
+      "lon": -119.8523,
+      "notes": "Microsoft's largest data center campus; multiple generations of expansion since 2006. Dedicated AI training clusters (Azure AI). BPA hydroelectric power. Grant County PUD provides lowest-cost power in the state."
+    },
+    {
+      "id": "ai-nv-001",
+      "name": "Switch SUPERNAP — Las Vegas AI Cluster",
+      "operator": "Switch (DigitalBridge)",
+      "status": "operational",
+      "county_fips": "32003",
+      "lat": 36.0875,
+      "lon": -115.1535,
+      "notes": "Switch SUPERNAP 7-10 campus; dedicated GPU cluster for AI/ML workloads. 100MW+ capacity. NVIDIA DGX-A100/H100 pods. Tier IV design."
+    },
+    {
+      "id": "ai-id-001",
+      "name": "Meta AI — Eagle Data Center Campus",
+      "operator": "Meta Platforms",
+      "status": "operational",
+      "county_fips": "16001",
+      "lat": 43.6956,
+      "lon": -116.354,
+      "notes": "1.9 million sq ft campus in Eagle, ID (Ada County). Grand Teton AI computing infrastructure for FAIR research and Llama model training. 100% renewable power from Idaho Power hydroelectric and wind."
+    },
+    {
+      "id": "ai-ok-001",
+      "name": "Microsoft AI — Oklahoma City Campus",
+      "operator": "Microsoft",
+      "status": "under_construction",
+      "county_fips": "40109",
+      "lat": 35.4676,
+      "lon": -97.5164,
+      "notes": "Part of Microsoft's announced $3B+ investment in Oklahoma AI infrastructure. Dedicated Azure AI / Copilot training clusters. OG&E power. Multiple campus phases announced 2024-2025."
+    },
+    {
+      "id": "ai-ga-001",
+      "name": "Google AI — Douglas County Data Center",
+      "operator": "Google",
+      "status": "operational",
+      "county_fips": "13097",
+      "lat": 33.6987,
+      "lon": -84.7599,
+      "notes": "Google's primary Atlanta-area AI training campus in Douglasville. TPU v4/v5 pods for Gemini model training. 100% renewable energy. Major capacity expansions ongoing."
+    },
+    {
+      "id": "ai-ms-001",
+      "name": "Google DeepMind / Google AI — Council Bluffs Expansion",
+      "operator": "Google",
+      "status": "operational",
+      "county_fips": "19155",
+      "lat": 41.2619,
+      "lon": -95.8608,
+      "notes": "Expansion of existing Council Bluffs campus with dedicated TPU pods for Gemini Ultra and Gemini Flash training. $600M+ expansion announced 2024."
+    },
+    {
+      "id": "ai-nd-001",
+      "name": "Microsoft AI — North Dakota Hyperscale Campus",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "38015",
+      "lat": 46.8772,
+      "lon": -96.7898,
+      "notes": "Announced 2024 as part of Microsoft's Midwest AI expansion. Cass County (Fargo area). Power provided by Xcel Energy. Dedicated AI inference cluster."
+    },
+    {
+      "id": "ai-mi-001",
+      "name": "Switch SUPERNAP Michigan — Grand Rapids AI Campus",
+      "operator": "Switch (DigitalBridge)",
+      "status": "operational",
+      "county_fips": "26081",
+      "lat": 42.9634,
+      "lon": -85.6681,
+      "notes": "Switch Michigan campus (Grand Rapids). 1 million+ sq ft. AI/GPU cluster for cloud AI workloads. Consumers Energy power. Michigan PA 328 incentive."
+    },
+    {
+      "id": "ai-co-001",
+      "name": "Crusoe Energy AI Cloud — Denver Metro Campus",
+      "operator": "Crusoe Energy Systems",
+      "status": "operational",
+      "county_fips": "08001",
+      "lat": 39.7817,
+      "lon": -104.8772,
+      "notes": "Crusoe's primary Front Range AI cloud campus. NVIDIA DGX SuperPOD clusters. Serves AI startups and frontier model training. Xcel Energy power."
     }
   ]
 }

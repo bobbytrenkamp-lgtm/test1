@@ -62,6 +62,7 @@ def _load_adapter(name: str):
         from data.facility_pipeline.adapters.digital_realty import DigitalRealtyAdapter
         from data.facility_pipeline.adapters.ferc_queue import FERCQueueAdapter
         from data.facility_pipeline.adapters.sec_edgar import SECEdgarAdapter
+        from data.facility_pipeline.adapters.hyperscale_press import HyperscalePressAdapter
         _ADAPTER_MAP = {
             "existing_datasets": ExistingDatasetsAdapter,
             "osm": OSMAdapter,
@@ -71,6 +72,7 @@ def _load_adapter(name: str):
             "digital_realty": DigitalRealtyAdapter,
             "ferc_queue": FERCQueueAdapter,
             "sec_edgar": SECEdgarAdapter,
+            "hyperscale_press": HyperscalePressAdapter,
         }
     cls = _ADAPTER_MAP.get(name)
     if cls is None:
