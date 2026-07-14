@@ -30173,6 +30173,182 @@
       "lat": 41.4993,
       "lon": -81.6944,
       "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-2fd570a32d",
+      "name": "Amtrak Data Center - Washington DC",
+      "operator": "National Railroad Passenger Corporation (Amtrak)",
+      "status": "existing",
+      "county_fips": "11001",
+      "notes": "Amtrak national railroad passenger operations data center in Washington DC area; legacy_id:dc-dc-013",
+      "lat": 38.8951,
+      "lon": -77.009,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-5709b1d476",
+      "name": "TJX Companies Data Center - Framingham MA",
+      "operator": "TJX Companies",
+      "status": "existing",
+      "county_fips": "25017",
+      "notes": "TJX Companies (TJ Maxx, Marshalls) data center at Framingham Massachusetts headquarters; legacy_id:dc-ma-051",
+      "lat": 42.2793,
+      "lon": -71.4162,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-1c1b428ad0",
+      "name": "Ross Stores Data Center - Dublin CA",
+      "operator": "Ross Stores Inc",
+      "status": "existing",
+      "county_fips": "06001",
+      "notes": "Ross Stores (Ross Dress for Less) data center at Dublin California headquarters; legacy_id:dc-ca-270",
+      "lat": 37.7021,
+      "lon": -121.9358,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-a6c752777f",
+      "name": "PVH Corp Data Center - New York NY",
+      "operator": "PVH Corp",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "PVH (Calvin Klein, Tommy Hilfiger) apparel data center at New York headquarters; legacy_id:dc-ny-089",
+      "lat": 40.75,
+      "lon": -74.0,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-6b67797565",
+      "name": "AWS Data Center - Columbus OH CMH76",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "39089",
+      "notes": "AWS CMH76 data center in New Albany Ohio us-east-2 region; legacy_id:dc-oh-135",
+      "lat": 40.082,
+      "lon": -82.804,
+      "capacity_mw": 65.0
+    },
+    {
+      "id": "fc-851c718c65",
+      "name": "AWS Data Center - Columbus OH CMH77",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "39089",
+      "notes": "AWS CMH77 data center in New Albany Ohio us-east-2 region; legacy_id:dc-oh-136",
+      "lat": 40.0835,
+      "lon": -82.806,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-8702853795",
+      "name": "AWS Data Center - Springfield VA IAD68",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "AWS IAD68 data center in Springfield Virginia Fairfax County; legacy_id:dc-va-226",
+      "lat": 38.78,
+      "lon": -77.19,
+      "capacity_mw": 65.0
+    },
+    {
+      "id": "fc-7da15e9c08",
+      "name": "AWS Data Center - Springfield VA IAD69",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "AWS IAD69 data center in Springfield Virginia; legacy_id:dc-va-227",
+      "lat": 38.782,
+      "lon": -77.192,
+      "capacity_mw": 65.0
+    },
+    {
+      "id": "fc-e4b1d5f5dc",
+      "name": "Meta Data Center - New Albany OH Campus",
+      "operator": "Meta Platforms",
+      "status": "existing",
+      "county_fips": "39089",
+      "notes": "Meta Platforms data center campus in New Albany Ohio; legacy_id:dc-oh-137",
+      "lat": 40.08,
+      "lon": -82.81,
+      "capacity_mw": 100.0
+    },
+    {
+      "id": "fc-f1e272787d",
+      "name": "Meta Data Center - New Albany OH Campus 2",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "39089",
+      "notes": "Meta Platforms second planned building at New Albany Ohio campus; legacy_id:dc-oh-138",
+      "lat": 40.082,
+      "lon": -82.812,
+      "capacity_mw": 130.0
+    },
+    {
+      "id": "fc-f79788b1b9",
+      "name": "Delta Air Lines Data Center - Atlanta GA",
+      "operator": "Delta Air Lines",
+      "status": "existing",
+      "county_fips": "13089",
+      "notes": "Delta Air Lines primary data center at Atlanta Georgia headquarters; legacy_id:dc-ga-128",
+      "lat": 33.6367,
+      "lon": -84.4281,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-b221700862",
+      "name": "American Airlines Data Center - Fort Worth TX",
+      "operator": "American Airlines",
+      "status": "existing",
+      "county_fips": "48439",
+      "notes": "American Airlines primary IT data center at Fort Worth Texas headquarters; legacy_id:dc-tx-305",
+      "lat": 32.7357,
+      "lon": -97.3308,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-1d7c02d20b",
+      "name": "American Airlines Data Center - Tulsa OK / Fort Worth TX",
+      "operator": "American Airlines",
+      "status": "existing",
+      "county_fips": "48439",
+      "notes": "American Airlines secondary IT data center in Fort Worth area; legacy_id:dc-tx-306",
+      "lat": 32.74,
+      "lon": -97.34,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-e1ca41ee9d",
+      "name": "Bath & Body Works Data Center - Columbus OH",
+      "operator": "Bath & Body Works Inc",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Bath & Body Works (L Brands) retail data center at Columbus Ohio headquarters; legacy_id:dc-oh-139",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-4fce8e6d81",
+      "name": "AT&T Network Hub - Miami FL",
+      "operator": "AT&T Inc",
+      "status": "existing",
+      "county_fips": "12086",
+      "notes": "AT&T carrier hotel and network hub in Miami Florida; legacy_id:dc-fl-106",
+      "lat": 25.7617,
+      "lon": -80.1918,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-9531092010",
+      "name": "AT&T Network Hub - Seattle WA",
+      "operator": "AT&T Inc",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "AT&T network operations hub and carrier hotel in Seattle Washington; legacy_id:dc-wa-090",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "capacity_mw": 5.0
     }
   ],
   "ai_campuses": [
@@ -30739,5 +30915,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:54:52Z"
+  "_facilities_exported_at": "2026-07-14T04:59:04Z"
 }
