@@ -545,11 +545,13 @@ function addAnnotations(countiesGeoJSON) {
     annotationGroup.addLayer(marker);
   }
 
-  // Show annotations only when zoomed in enough; hide on national overview
+  // Show annotations only at regional zoom (5–8); hide at national overview or when zoomed into a county
   const ANNOTATION_MIN_ZOOM = 5;
+  const ANNOTATION_MAX_ZOOM = 8;
   function syncAnnotationVisibility() {
     if (!annotationGroup || !layerState.annotations) return;
-    if (leafletMap.getZoom() >= ANNOTATION_MIN_ZOOM) {
+    const z = leafletMap.getZoom();
+    if (z >= ANNOTATION_MIN_ZOOM && z <= ANNOTATION_MAX_ZOOM) {
       if (!leafletMap.hasLayer(annotationGroup)) annotationGroup.addTo(leafletMap);
     } else {
       leafletMap.removeLayer(annotationGroup);
@@ -694,10 +696,11 @@ function setLayerVisible(id, visible, syncUI = false) {
     if (annotationGroup) {
       if (!visible) {
         leafletMap.removeLayer(annotationGroup);
-      } else if (leafletMap.getZoom() >= 5) {
-        annotationGroup.addTo(leafletMap);
+      } else {
+        const z = leafletMap.getZoom();
+        if (z >= 5 && z <= 8) annotationGroup.addTo(leafletMap);
+        // outside 5–8 zoom range, syncAnnotationVisibility handles it on next zoomend
       }
-      // if zoom < 5 and visible=true, syncAnnotationVisibility handles it on next zoomend
     }
   } else {
     const group = leafletLayerGroups[id];
