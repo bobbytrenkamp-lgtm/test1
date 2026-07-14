@@ -31064,6 +31064,105 @@
       "lat": 37.3875,
       "lon": -121.9734,
       "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-d66e1f974f",
+      "name": "SpaceX Data Center - Hawthorne CA / Starbase TX",
+      "operator": "SpaceX",
+      "status": "existing",
+      "county_fips": "48489",
+      "notes": "SpaceX Starbase Texas operations and telemetry data center near Boca Chica; legacy_id:dc-tx-313",
+      "lat": 25.9968,
+      "lon": -97.1571,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-e692c81f9e",
+      "name": "Hughes Network Systems Data Center - Germantown MD",
+      "operator": "Hughes Network Systems",
+      "status": "existing",
+      "county_fips": "24031",
+      "notes": "Hughes Network Systems satellite internet operations data center at Germantown Maryland HQ; legacy_id:dc-va-234",
+      "lat": 39.1732,
+      "lon": -77.2681,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-aee6c7222d",
+      "name": "United Launch Alliance Data Center - Centennial CO",
+      "operator": "United Launch Alliance",
+      "status": "existing",
+      "county_fips": "08005",
+      "notes": "United Launch Alliance (ULA) rocket launch operations data center at Centennial Colorado HQ; legacy_id:dc-co-097",
+      "lat": 39.5786,
+      "lon": -104.87,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-a512de7f6b",
+      "name": "Orbital Sciences / Northrop Grumman Innovation Data Center - Dulles VA",
+      "operator": "Northrop Grumman Space Systems",
+      "status": "existing",
+      "county_fips": "24031",
+      "notes": "Northrop Grumman Space Systems satellite mission data center near Dulles Virginia; legacy_id:dc-md-046",
+      "lat": 39.145,
+      "lon": -77.456,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-5013c4c3bf",
+      "name": "Buckeye Broadband Data Center - Toledo OH",
+      "operator": "Buckeye Broadband",
+      "status": "existing",
+      "county_fips": "39095",
+      "notes": "Buckeye Broadband regional cable and internet data center at Toledo Ohio HQ; legacy_id:dc-oh-142",
+      "lat": 41.6639,
+      "lon": -83.5552,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-1fbe1850e1",
+      "name": "Booz Allen Hamilton Data Center - McLean VA",
+      "operator": "Booz Allen Hamilton",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "Booz Allen Hamilton government consulting and IT data center at McLean Virginia HQ; legacy_id:dc-va-237",
+      "lat": 38.9339,
+      "lon": -77.1842,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-6b0c4b1b46",
+      "name": "Quad/Graphics Data Center - Sussex WI",
+      "operator": "Quad/Graphics Inc",
+      "status": "existing",
+      "county_fips": "55131",
+      "notes": "Quad/Graphics commercial printing data center at Sussex Wisconsin headquarters; legacy_id:dc-wi-027",
+      "lat": 43.1311,
+      "lon": -88.224,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-0d6098716c",
+      "name": "Thomson Reuters Data Center - Eagan MN",
+      "operator": "Thomson Reuters Corporation",
+      "status": "existing",
+      "county_fips": "27037",
+      "notes": "Thomson Reuters legal and media data center at Eagan Minnesota US headquarters; legacy_id:dc-mn-079",
+      "lat": 44.8041,
+      "lon": -93.1668,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-c362a34b4b",
+      "name": "Thomson Reuters Data Center - Carrollton TX",
+      "operator": "Thomson Reuters Corporation",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Thomson Reuters secondary US operations data center in Carrollton Texas; legacy_id:dc-tx-315",
+      "lat": 32.954,
+      "lon": -96.89,
+      "capacity_mw": 10.0
     }
   ],
   "ai_campuses": [
@@ -31630,5 +31729,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T05:12:25Z"
+  "_facilities_exported_at": "2026-07-14T05:29:21Z"
 }
