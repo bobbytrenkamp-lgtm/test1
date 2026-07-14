@@ -1262,6 +1262,22 @@ function initLeafletMap() {
 
   initContextMenu();
   initBookmarks();
+
+  // Prevent Leaflet from intercepting touch/click events on all map overlay elements.
+  // Without this, Leaflet's touchstart handler on the map can swallow taps on
+  // absolutely-positioned controls on iOS Safari.
+  [
+    "map-gis-bar", "measure-readout", "bookmarks-panel", "map-ctx-menu",
+    "minimap-wrap", "legend", "legend-restore", "stats-bar", "filter-status",
+  ].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) L.DomEvent.disableClickPropagation(el);
+  });
+  // Prevent scroll-wheel/pinch inside overlay panels from zooming the map
+  ["bookmarks-list", "legend"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) L.DomEvent.disableScrollPropagation(el);
+  });
 }
 
 /* ── Stats bar ── */
