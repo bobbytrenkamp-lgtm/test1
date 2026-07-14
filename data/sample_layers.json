@@ -25245,6 +25245,369 @@
       "lat": 36.315,
       "lon": -95.32,
       "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-2c1ca40c47",
+      "name": "Southwest Airlines Data Center - Dallas TX",
+      "operator": "Southwest Airlines",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Southwest Airlines primary data center at Dallas TX Love Field headquarters; legacy_id:dc-tx-248",
+      "lat": 32.8477,
+      "lon": -96.835,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-c0e8795016",
+      "name": "American Airlines Data Center - Fort Worth TX",
+      "operator": "American Airlines",
+      "status": "existing",
+      "county_fips": "48439",
+      "notes": "American Airlines primary data center at Fort Worth TX DFW corporate campus; legacy_id:dc-tx-249",
+      "lat": 32.8998,
+      "lon": -97.0412,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-60eba535b4",
+      "name": "Delta Air Lines Data Center - Atlanta GA",
+      "operator": "Delta Air Lines",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Delta Air Lines primary data center at Hartsfield-Jackson area campus; legacy_id:dc-ga-110",
+      "lat": 33.6407,
+      "lon": -84.456,
+      "capacity_mw": 14.0
+    },
+    {
+      "id": "fc-8b6c036af3",
+      "name": "New York City Department of Education Data Center - Brooklyn",
+      "operator": "NYC Department of Education",
+      "status": "existing",
+      "county_fips": "36047",
+      "notes": "NYC DOE data center serving nation's largest school district; legacy_id:dc-ny-063",
+      "lat": 40.6782,
+      "lon": -73.9442,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-b8f4dcca8f",
+      "name": "US Marine Corps Data Center - Camp Lejeune NC",
+      "operator": "US Marine Corps",
+      "status": "existing",
+      "county_fips": "37133",
+      "notes": "USMC data center at Camp Lejeune North Carolina base; legacy_id:dc-nc-085",
+      "lat": 34.653,
+      "lon": -77.3534,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-066aae06e9",
+      "name": "US Marine Corps Data Center - Camp Pendleton CA",
+      "operator": "US Marine Corps",
+      "status": "existing",
+      "county_fips": "06073",
+      "notes": "USMC data center at Camp Pendleton California base; legacy_id:dc-ca-211",
+      "lat": 33.2136,
+      "lon": -117.3897,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-997d6b5941",
+      "name": "US Coast Guard Data Center - Alexandria VA",
+      "operator": "US Coast Guard",
+      "status": "existing",
+      "county_fips": "51510",
+      "notes": "US Coast Guard primary data center at Alexandria Virginia headquarters; legacy_id:dc-va-161",
+      "lat": 38.8048,
+      "lon": -77.0469,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-589c78f4e8",
+      "name": "Union Pacific Railroad Data Center - Omaha NE",
+      "operator": "Union Pacific Railroad",
+      "status": "existing",
+      "county_fips": "31055",
+      "notes": "Union Pacific Railroad primary data center at Omaha NE headquarters campus; legacy_id:dc-ne-024",
+      "lat": 41.2565,
+      "lon": -95.9345,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-cc21656c7f",
+      "name": "BNSF Railway Data Center - Fort Worth TX",
+      "operator": "BNSF Railway (Berkshire Hathaway)",
+      "status": "existing",
+      "county_fips": "48439",
+      "notes": "BNSF Railway primary data center at Fort Worth Texas headquarters; legacy_id:dc-tx-247",
+      "lat": 32.7357,
+      "lon": -97.3308,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-32a6bf8768",
+      "name": "CSX Transportation Data Center - Jacksonville FL",
+      "operator": "CSX Transportation",
+      "status": "existing",
+      "county_fips": "12031",
+      "notes": "CSX Transportation railroad data center at Jacksonville FL headquarters; legacy_id:dc-fl-091",
+      "lat": 30.3322,
+      "lon": -81.6557,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-c3171e287b",
+      "name": "Norfolk Southern Data Center - Atlanta GA",
+      "operator": "Norfolk Southern Railway",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Norfolk Southern Railway primary data center at Atlanta GA headquarters; legacy_id:dc-ga-109",
+      "lat": 33.749,
+      "lon": -84.388,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-13791e6d25",
+      "name": "Delta Air Lines Data Center - Minneapolis MN",
+      "operator": "Delta Air Lines",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Delta Air Lines secondary data center in Minneapolis (legacy Northwest Airlines); legacy_id:dc-mn-062",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-3017040803",
+      "name": "United Airlines Data Center - Chicago IL",
+      "operator": "United Airlines",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "United Airlines primary data center at Chicago IL headquarters campus; legacy_id:dc-il-112",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-89983ef7cc",
+      "name": "United Airlines Data Center - Houston TX",
+      "operator": "United Airlines",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "United Airlines operations data center near Houston hub; legacy_id:dc-tx-250",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-77d8537273",
+      "name": "Sabre Corporation Data Center - Southlake TX",
+      "operator": "Sabre Corporation",
+      "status": "existing",
+      "county_fips": "48439",
+      "notes": "Sabre Corporation GDS (Global Distribution System) data center at Southlake TX headquarters; legacy_id:dc-tx-251",
+      "lat": 32.9404,
+      "lon": -97.1331,
+      "capacity_mw": 15.0
+    },
+    {
+      "id": "fc-371095e652",
+      "name": "Marriott International Data Center - Bethesda MD",
+      "operator": "Marriott International",
+      "status": "existing",
+      "county_fips": "24031",
+      "notes": "Marriott International primary data center at Bethesda MD headquarters campus; legacy_id:dc-md-032",
+      "lat": 38.9847,
+      "lon": -77.1068,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-30abb8eae0",
+      "name": "Hilton Worldwide Data Center - McLean VA",
+      "operator": "Hilton Worldwide Holdings",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "Hilton Worldwide data center at McLean VA headquarters campus; legacy_id:dc-va-160",
+      "lat": 38.9339,
+      "lon": -77.1767,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-424f84fd4a",
+      "name": "IHG Americas Data Center - Atlanta GA",
+      "operator": "InterContinental Hotels Group",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "IHG Americas regional data center at Atlanta Georgia campus; legacy_id:dc-ga-111",
+      "lat": 33.749,
+      "lon": -84.388,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-9d8f03e616",
+      "name": "Airbnb Data Center - San Francisco CA",
+      "operator": "Airbnb",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Airbnb operational data center at San Francisco California headquarters; legacy_id:dc-ca-209",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-5d3ef2252e",
+      "name": "Southern Company Data Center - Atlanta GA",
+      "operator": "Southern Company",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Southern Company utility primary data center in Atlanta Georgia; legacy_id:dc-ga-112",
+      "lat": 33.749,
+      "lon": -84.388,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-844e6750fb",
+      "name": "Xcel Energy Data Center - Minneapolis MN",
+      "operator": "Xcel Energy",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Xcel Energy primary data center at Minneapolis MN headquarters; legacy_id:dc-mn-063",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-15f8f97393",
+      "name": "Entergy Data Center - New Orleans LA",
+      "operator": "Entergy Corporation",
+      "status": "existing",
+      "county_fips": "22071",
+      "notes": "Entergy Corporation utility data center at New Orleans headquarters; legacy_id:dc-la-017",
+      "lat": 29.9511,
+      "lon": -90.0715,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-70ae7a6b92",
+      "name": "CenterPoint Energy Data Center - Houston TX",
+      "operator": "CenterPoint Energy",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "CenterPoint Energy utility data center at Houston TX headquarters; legacy_id:dc-tx-252",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-dd3569a0e0",
+      "name": "Miami-Dade County Schools Data Center - Miami FL",
+      "operator": "Miami-Dade County Public Schools",
+      "status": "existing",
+      "county_fips": "12086",
+      "notes": "Miami-Dade County Public Schools central data center for nation's 4th largest school district; legacy_id:dc-fl-092",
+      "lat": 25.7617,
+      "lon": -80.3997,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-e6d0a7d42e",
+      "name": "Los Angeles Unified School District Data Center - Los Angeles",
+      "operator": "Los Angeles Unified School District",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "LAUSD data center for nation's 2nd largest school district; legacy_id:dc-ca-210",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-78fd3a5a76",
+      "name": "Houston ISD Data Center - Houston TX",
+      "operator": "Houston Independent School District",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "HISD data center for large Texas urban school district; legacy_id:dc-tx-253",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-331a4ff727",
+      "name": "Chicago Public Schools Data Center - Chicago IL",
+      "operator": "Chicago Public Schools",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Chicago Public Schools central data center for city's K-12 system; legacy_id:dc-il-113",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 4.0
+    },
+    {
+      "id": "fc-4a6bec333c",
+      "name": "DARPA Data Center - Arlington VA",
+      "operator": "DARPA (Defense Advanced Research Projects Agency)",
+      "status": "existing",
+      "county_fips": "51013",
+      "notes": "DARPA research computing data center in Arlington VA; legacy_id:dc-va-162",
+      "lat": 38.8816,
+      "lon": -77.086,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-f1e79e981b",
+      "name": "Microsoft Data Center - Fargo ND",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "38017",
+      "notes": "Microsoft planned data center in Fargo North Dakota; legacy_id:dc-nd-013",
+      "lat": 46.8772,
+      "lon": -96.8003,
+      "capacity_mw": 60.0
+    },
+    {
+      "id": "fc-a183e21ecd",
+      "name": "AWS Data Center - Sioux Falls SD",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "46099",
+      "notes": "AWS planned data center campus in Sioux Falls South Dakota; legacy_id:dc-sd-012",
+      "lat": 43.546,
+      "lon": -96.7004,
+      "capacity_mw": 50.0
+    },
+    {
+      "id": "fc-c0899f3738",
+      "name": "Google Data Center - Anchorage AK",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "02020",
+      "notes": "Google planned edge data center campus in Anchorage Alaska; legacy_id:dc-ak-011",
+      "lat": 61.2181,
+      "lon": -149.9003,
+      "capacity_mw": 40.0
+    },
+    {
+      "id": "fc-021c99d3fe",
+      "name": "AWS Data Center - Portland ME",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "23005",
+      "notes": "AWS planned data center in Portland Maine; legacy_id:dc-me-010",
+      "lat": 43.6615,
+      "lon": -70.2553,
+      "capacity_mw": 40.0
+    },
+    {
+      "id": "fc-a9c2f3b58b",
+      "name": "Microsoft Data Center - Burlington VT",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "50007",
+      "notes": "Microsoft planned cloud data center in Burlington Vermont; legacy_id:dc-vt-010",
+      "lat": 44.4759,
+      "lon": -73.2121,
+      "capacity_mw": 30.0
     }
   ],
   "ai_campuses": [
@@ -25811,5 +26174,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T03:44:13Z"
+  "_facilities_exported_at": "2026-07-14T03:47:20Z"
 }
