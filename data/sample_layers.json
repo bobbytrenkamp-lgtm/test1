@@ -27544,6 +27544,270 @@
       "lat": 36.1627,
       "lon": -86.7816,
       "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-51117aac83",
+      "name": "Epic Systems Data Center - Verona WI",
+      "operator": "Epic Systems Corporation",
+      "status": "existing",
+      "county_fips": "55025",
+      "notes": "Epic Systems EHR software data center at Verona Wisconsin campus; legacy_id:dc-wi-024",
+      "lat": 42.9911,
+      "lon": -89.539,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-98584c37b1",
+      "name": "Athenahealth Data Center - Watertown MA",
+      "operator": "Athenahealth (Veritas Capital)",
+      "status": "existing",
+      "county_fips": "25017",
+      "notes": "Athenahealth cloud-based medical records data center in Watertown Massachusetts; legacy_id:dc-ma-044",
+      "lat": 42.3668,
+      "lon": -71.1823,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-b26f96a6b7",
+      "name": "USPS Data Center - Eagan MN / National Capital Area",
+      "operator": "US Postal Service",
+      "status": "existing",
+      "county_fips": "24031",
+      "notes": "US Postal Service Information Technology data center in National Capital Region; legacy_id:dc-md-040",
+      "lat": 38.9896,
+      "lon": -77.0877,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-8bcb3d84a4",
+      "name": "Microsoft Azure Data Center - West Des Moines IA B4",
+      "operator": "Microsoft",
+      "status": "existing",
+      "county_fips": "19153",
+      "notes": "Microsoft Azure West Des Moines Iowa campus building 4 for northcentralus; legacy_id:dc-ia-035",
+      "lat": 41.5772,
+      "lon": -93.7199,
+      "capacity_mw": 75.0
+    },
+    {
+      "id": "fc-b1d13fd8cc",
+      "name": "Microsoft Azure Data Center - West Des Moines IA B5",
+      "operator": "Microsoft",
+      "status": "existing",
+      "county_fips": "19153",
+      "notes": "Microsoft Azure West Des Moines Iowa campus building 5 for northcentralus; legacy_id:dc-ia-036",
+      "lat": 41.579,
+      "lon": -93.725,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-868988800d",
+      "name": "Microsoft Azure Data Center - Chicago IL B3",
+      "operator": "Microsoft",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Microsoft Azure Chicago Northcentral campus building 3; legacy_id:dc-il-123",
+      "lat": 41.885,
+      "lon": -87.64,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-4fc7ca8c80",
+      "name": "Microsoft Azure Data Center - San Antonio TX B3",
+      "operator": "Microsoft",
+      "status": "existing",
+      "county_fips": "48029",
+      "notes": "Microsoft Azure San Antonio Texas campus building 3 for southcentralus; legacy_id:dc-tx-276",
+      "lat": 29.425,
+      "lon": -98.5,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-388f7ae7a9",
+      "name": "Microsoft Azure Data Center - Phoenix AZ B4",
+      "operator": "Microsoft",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Microsoft Azure Phoenix Arizona campus building 4 for westus3; legacy_id:dc-az-087",
+      "lat": 33.449,
+      "lon": -112.09,
+      "capacity_mw": 75.0
+    },
+    {
+      "id": "fc-b4ac270768",
+      "name": "Microsoft Azure Data Center - Quincy WA B6",
+      "operator": "Microsoft",
+      "status": "existing",
+      "county_fips": "53025",
+      "notes": "Microsoft Azure Quincy Washington campus building 6 for westus2; legacy_id:dc-wa-080",
+      "lat": 47.236,
+      "lon": -119.855,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-a0c63b9f3c",
+      "name": "Google Data Center - Council Bluffs IA Building 4",
+      "operator": "Google",
+      "status": "existing",
+      "county_fips": "19155",
+      "notes": "Google Council Bluffs Iowa campus fourth building; legacy_id:dc-ia-037",
+      "lat": 41.265,
+      "lon": -95.87,
+      "capacity_mw": 75.0
+    },
+    {
+      "id": "fc-8b6390b2da",
+      "name": "Google Data Center - Lenoir NC Building 4",
+      "operator": "Google",
+      "status": "existing",
+      "county_fips": "37105",
+      "notes": "Google Lenoir North Carolina campus fourth building; legacy_id:dc-nc-092",
+      "lat": 35.906,
+      "lon": -81.54,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-82acdd4945",
+      "name": "Google Data Center - Berkeley County SC Building 3",
+      "operator": "Google",
+      "status": "existing",
+      "county_fips": "45015",
+      "notes": "Google Berkeley County South Carolina campus third building; legacy_id:dc-sc-022",
+      "lat": 33.1,
+      "lon": -80.0,
+      "capacity_mw": 75.0
+    },
+    {
+      "id": "fc-6b2ac48abb",
+      "name": "Google Data Center - Pryor Creek OK Building 3",
+      "operator": "Google",
+      "status": "existing",
+      "county_fips": "40111",
+      "notes": "Google Pryor Creek Oklahoma campus third building (MidAmerica Industrial Park); legacy_id:dc-ok-029",
+      "lat": 36.3048,
+      "lon": -95.3178,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-628bc4867c",
+      "name": "Google Data Center - Jackson TN Building 2",
+      "operator": "Google",
+      "status": "existing",
+      "county_fips": "47113",
+      "notes": "Google Jackson Tennessee campus second building; legacy_id:dc-tn-061",
+      "lat": 35.6145,
+      "lon": -88.8139,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-5050310cac",
+      "name": "Meta Data Center - Hillsboro OR Building 5",
+      "operator": "Meta Platforms",
+      "status": "existing",
+      "county_fips": "41067",
+      "notes": "Meta Platforms Hillsboro Oregon campus fifth building; legacy_id:dc-or-078",
+      "lat": 45.528,
+      "lon": -122.995,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-cd060bfee7",
+      "name": "Meta Data Center - Hillsboro OR Building 6",
+      "operator": "Meta Platforms",
+      "status": "existing",
+      "county_fips": "41067",
+      "notes": "Meta Platforms Hillsboro Oregon campus sixth building; legacy_id:dc-or-079",
+      "lat": 45.53,
+      "lon": -123.0,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-f28763c575",
+      "name": "Meta Data Center - Forest City NC Building 3",
+      "operator": "Meta Platforms",
+      "status": "existing",
+      "county_fips": "37161",
+      "notes": "Meta Platforms Forest City North Carolina campus third building; legacy_id:dc-nc-093",
+      "lat": 35.334,
+      "lon": -81.8655,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-c397ad67c0",
+      "name": "Oracle Health (Cerner) Data Center - Kansas City MO",
+      "operator": "Oracle Health (Cerner)",
+      "status": "existing",
+      "county_fips": "29095",
+      "notes": "Oracle Health (formerly Cerner) healthcare IT data center in Kansas City Missouri; legacy_id:dc-mo-057",
+      "lat": 39.1011,
+      "lon": -94.5786,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-43f8095a80",
+      "name": "Allscripts Healthcare Data Center - Chicago IL",
+      "operator": "Allscripts Healthcare Solutions",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Allscripts electronic health records data center at Chicago Illinois headquarters; legacy_id:dc-il-124",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-14f022660b",
+      "name": "Change Healthcare Data Center - Nashville TN",
+      "operator": "Change Healthcare (Optum)",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "Change Healthcare (now part of Optum) data center at Nashville TN headquarters; legacy_id:dc-tn-062",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-33b2b79faf",
+      "name": "Social Security Administration Data Center - Woodlawn MD",
+      "operator": "Social Security Administration",
+      "status": "existing",
+      "county_fips": "24005",
+      "notes": "SSA primary data center at Woodlawn Maryland headquarters; legacy_id:dc-md-041",
+      "lat": 39.3773,
+      "lon": -76.7373,
+      "capacity_mw": 12.0
+    },
+    {
+      "id": "fc-47d31c58c4",
+      "name": "IRS Data Center - Martinsburg WV / Ogden UT",
+      "operator": "Internal Revenue Service",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "IRS computing center processing tax returns for southeast region; legacy_id:dc-tn-063",
+      "lat": 36.19,
+      "lon": -86.807,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-ab426991ba",
+      "name": "IRS Data Center - Ogden UT",
+      "operator": "Internal Revenue Service",
+      "status": "existing",
+      "county_fips": "49057",
+      "notes": "IRS Ogden Utah computing center for tax return processing; legacy_id:dc-ut-031",
+      "lat": 41.223,
+      "lon": -111.9738,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-cf53d99a18",
+      "name": "VA Data Center - Austin TX / Martinsburg WV",
+      "operator": "Department of Veterans Affairs",
+      "status": "existing",
+      "county_fips": "24003",
+      "notes": "VA enterprise data center for veterans health records - Austin Information Technology Center; legacy_id:dc-md-042",
+      "lat": 39.45,
+      "lon": -76.62,
+      "capacity_mw": 10.0
     }
   ],
   "ai_campuses": [
@@ -28110,5 +28374,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:12:54Z"
+  "_facilities_exported_at": "2026-07-14T04:16:27Z"
 }
