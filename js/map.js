@@ -314,7 +314,8 @@ async function initMapFromGeo() {
     // Leaflet reads the container height. When fetchGeoData() resolves from
     // cache it resolves as a microtask — before the browser has had a chance
     // to re-compute the flex layout after mainEl.hidden was set to false.
-    await new Promise(r => requestAnimationFrame(r));
+    // Two nested RAFs give iOS Safari enough time to finalize the layout.
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
     const countiesGeoJSON = topojson.feature(us, us.objects.counties);
     const statesGeoJSON   = topojson.feature(us, us.objects.states);
     initLeafletMap();
@@ -330,6 +331,9 @@ async function initMapFromGeo() {
     initLegendControls();
     setDetailEmpty();
     if (loadEl) loadEl.style.display = "none";
+    // Belt-and-suspenders: a second invalidateSize after all layers are added
+    // catches any iOS Safari viewport settling that happened during GeoJSON parsing.
+    setTimeout(() => leafletMap && leafletMap.invalidateSize(), 400);
   } catch (err) {
     console.error(err);
     if (loadEl) loadEl.innerHTML = `
@@ -797,9 +801,12 @@ function initLeafletMap() {
   });
 
   // Resize handlers — keep Leaflet's internal size in sync with the container.
-  // Needed for iOS Safari's dynamic URL bar (visual viewport changes) and any
-  // other viewport resize events.
-  const onResize = () => { if (leafletMap) leafletMap.invalidateSize(); };
+  // Debounced so rapid iOS Safari URL-bar show/hide events don't fire mid-animation.
+  let _resizeTimer = null;
+  const onResize = () => {
+    clearTimeout(_resizeTimer);
+    _resizeTimer = setTimeout(() => { if (leafletMap) leafletMap.invalidateSize(); }, 150);
+  };
   window.addEventListener("resize", onResize);
   if (window.visualViewport) {
     window.visualViewport.addEventListener("resize", onResize);
