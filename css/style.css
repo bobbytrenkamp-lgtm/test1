@@ -497,8 +497,8 @@ html, body {
 }
 
 #leaflet-map {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   background: var(--map-bg);
   isolation: isolate; /* confines Leaflet's internal z-index hierarchy */
 }
