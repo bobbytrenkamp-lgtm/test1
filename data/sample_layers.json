@@ -29689,6 +29689,259 @@
       "lat": 37.78,
       "lon": -122.41,
       "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-91e729d1a6",
+      "name": "AWS Data Center - Centreville VA IAD62",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "AWS IAD62 data center in Centreville Virginia Fairfax County; legacy_id:dc-va-214",
+      "lat": 38.84,
+      "lon": -77.4285,
+      "capacity_mw": 60.0
+    },
+    {
+      "id": "fc-f16cbdd027",
+      "name": "AWS Data Center - Reston VA IAD63",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "AWS IAD63 data center in Reston Virginia; legacy_id:dc-va-215",
+      "lat": 38.97,
+      "lon": -77.36,
+      "capacity_mw": 60.0
+    },
+    {
+      "id": "fc-c7c9d2595c",
+      "name": "AWS Data Center - Haymarket VA IAD65",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51119",
+      "notes": "AWS IAD65 data center in Haymarket Prince William County Virginia; legacy_id:dc-va-217",
+      "lat": 38.815,
+      "lon": -77.64,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-ca8642b14c",
+      "name": "AWS Data Center - Warrenton VA IAD66",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "51061",
+      "notes": "AWS IAD66 data center in Warrenton Fauquier County Virginia; legacy_id:dc-va-218",
+      "lat": 38.7218,
+      "lon": -77.799,
+      "capacity_mw": 70.0
+    },
+    {
+      "id": "fc-516480c9e5",
+      "name": "AWS Data Center - Warrenton VA IAD67",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "51061",
+      "notes": "AWS IAD67 planned data center in Warrenton Fauquier County Virginia; legacy_id:dc-va-219",
+      "lat": 38.723,
+      "lon": -77.801,
+      "capacity_mw": 75.0
+    },
+    {
+      "id": "fc-104450ff0a",
+      "name": "Sabey Data Center - Tukwila WA Intergate 1",
+      "operator": "Sabey Data Centers",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Sabey Data Centers Tukwila Washington campus Intergate.Seattle building 1; legacy_id:dc-wa-086",
+      "lat": 47.4697,
+      "lon": -122.2607,
+      "capacity_mw": 20.0
+    },
+    {
+      "id": "fc-837fb4a173",
+      "name": "Sabey Data Center - Tukwila WA Intergate 2",
+      "operator": "Sabey Data Centers",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Sabey Data Centers Tukwila Washington Intergate.Seattle building 2; legacy_id:dc-wa-087",
+      "lat": 47.47,
+      "lon": -122.263,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-77353ca677",
+      "name": "Sabey Data Center - Tukwila WA Intergate 3",
+      "operator": "Sabey Data Centers",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Sabey Data Centers Tukwila Washington Intergate.Seattle building 3; legacy_id:dc-wa-088",
+      "lat": 47.471,
+      "lon": -122.264,
+      "capacity_mw": 25.0
+    },
+    {
+      "id": "fc-a2811bafed",
+      "name": "Sabey Data Center - New York NY Intergate.Manhattan",
+      "operator": "Sabey Data Centers",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Sabey Data Centers Intergate.Manhattan New York City colocation campus; legacy_id:dc-ny-088",
+      "lat": 40.72,
+      "lon": -74.0,
+      "capacity_mw": 30.0
+    },
+    {
+      "id": "fc-08cf1bf9bc",
+      "name": "DC BLOX Data Center - Atlanta GA ATL-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "DC BLOX regional data center in Atlanta Georgia; legacy_id:dc-ga-127",
+      "lat": 33.749,
+      "lon": -84.388,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-dbf6f88f39",
+      "name": "DC BLOX Data Center - Huntsville AL HSV-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "01089",
+      "notes": "DC BLOX data center in Huntsville Alabama tech corridor; legacy_id:dc-al-028",
+      "lat": 34.7304,
+      "lon": -86.5861,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-27e62f2f54",
+      "name": "DC BLOX Data Center - Chattanooga TN CHA-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "47065",
+      "notes": "DC BLOX data center in Chattanooga Tennessee; legacy_id:dc-tn-067",
+      "lat": 35.0456,
+      "lon": -85.3097,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-18d9ac9e88",
+      "name": "Tract Data Centers - Manassas VA VA1",
+      "operator": "Tract Data Centers",
+      "status": "existing",
+      "county_fips": "51683",
+      "notes": "Tract Data Centers campus in Manassas Virginia; legacy_id:dc-va-221",
+      "lat": 38.7509,
+      "lon": -77.4761,
+      "capacity_mw": 35.0
+    },
+    {
+      "id": "fc-36090c2050",
+      "name": "Meta Data Center - Panama City FL",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "12005",
+      "notes": "Meta planned data center campus in Panama City Florida area (announced 2025); legacy_id:dc-fl-105",
+      "lat": 30.1588,
+      "lon": -85.6602,
+      "capacity_mw": 150.0
+    },
+    {
+      "id": "fc-e2bb2897ae",
+      "name": "Apple Data Center - Mesa AZ Campus 3",
+      "operator": "Apple",
+      "status": "planned",
+      "county_fips": "04013",
+      "notes": "Apple planned third building at Mesa Arizona data center campus; legacy_id:dc-az-092",
+      "lat": 33.42,
+      "lon": -111.832,
+      "capacity_mw": 80.0
+    },
+    {
+      "id": "fc-761bbc569e",
+      "name": "Google Data Center - Loudoun County VA Campus",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "51107",
+      "notes": "Google planned large data center campus in Loudoun County Virginia data center alley; legacy_id:dc-va-222",
+      "lat": 39.05,
+      "lon": -77.5,
+      "capacity_mw": 200.0
+    },
+    {
+      "id": "fc-4112335b9d",
+      "name": "AWS Data Center - New Braunfels TX Campus",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "48091",
+      "notes": "AWS planned data center campus in New Braunfels Texas (announced 2025); legacy_id:dc-tx-296",
+      "lat": 29.703,
+      "lon": -98.1245,
+      "capacity_mw": 150.0
+    },
+    {
+      "id": "fc-874d1b2f55",
+      "name": "McKesson Corporation Data Center - Irving TX",
+      "operator": "McKesson Corporation",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "McKesson healthcare distribution data center at Irving Texas headquarters; legacy_id:dc-tx-297",
+      "lat": 32.814,
+      "lon": -96.9489,
+      "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-59be3dab66",
+      "name": "Cardinal Health Data Center - Dublin OH",
+      "operator": "Cardinal Health",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Cardinal Health pharmaceutical distribution data center at Dublin Ohio headquarters; legacy_id:dc-oh-133",
+      "lat": 40.1005,
+      "lon": -83.1141,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-2dcea0ed3c",
+      "name": "Cencora (AmerisourceBergen) Data Center - Conshohocken PA",
+      "operator": "Cencora Corporation",
+      "status": "existing",
+      "county_fips": "42091",
+      "notes": "Cencora (formerly AmerisourceBergen) pharma data center at Conshohocken Pennsylvania HQ; legacy_id:dc-pa-076",
+      "lat": 40.0793,
+      "lon": -75.3013,
+      "capacity_mw": 8.0
+    },
+    {
+      "id": "fc-7c55936639",
+      "name": "DaVita Inc Data Center - Denver CO",
+      "operator": "DaVita Inc",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "DaVita kidney dialysis data center at Denver Colorado headquarters; legacy_id:dc-co-095",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "capacity_mw": 6.0
+    },
+    {
+      "id": "fc-13bf34ec4e",
+      "name": "Molina Healthcare Data Center - Long Beach CA",
+      "operator": "Molina Healthcare",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Molina Healthcare managed care data center at Long Beach California headquarters; legacy_id:dc-ca-261",
+      "lat": 33.7701,
+      "lon": -118.1937,
+      "capacity_mw": 5.0
+    },
+    {
+      "id": "fc-0ba65f262a",
+      "name": "Centene Corporation Data Center - St. Louis MO",
+      "operator": "Centene Corporation",
+      "status": "existing",
+      "county_fips": "29510",
+      "notes": "Centene health insurance data center at St. Louis Missouri headquarters; legacy_id:dc-mo-062",
+      "lat": 38.627,
+      "lon": -90.1994,
+      "capacity_mw": 8.0
     }
   ],
   "ai_campuses": [
@@ -30255,5 +30508,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T04:46:39Z"
+  "_facilities_exported_at": "2026-07-14T04:50:42Z"
 }
