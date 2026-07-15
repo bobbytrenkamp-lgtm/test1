@@ -529,6 +529,66 @@
           "url": "https://www.nj.gov/njbusiness/financing/tax-credits/"
         }
       ]
+    },
+    {
+      "state": "MN",
+      "program_name": "Minnesota Data Center Sales Tax Exemption",
+      "authority": "Minnesota Department of Revenue (Minn. Stat. \u00a7297A.68, Subd. 42)",
+      "description": "Minnesota exempts qualifying computer equipment and peripherals purchased for use in an enterprise data center from the state sales tax. Qualifying facilities must have at least 25,000 sq ft of raised floor space and represent a capital investment of at least $30 million. The exemption covers servers, networking equipment, cooling infrastructure, and power equipment. The program was enacted to attract hyperscale data center investment to the state.",
+      "benefit_type": "sales_tax_exemption",
+      "enacted_year": 2011,
+      "expiration_year": null,
+      "sources": [
+        {
+          "label": "Minnesota Statutes \u00a7297A.68, Subd. 42 \u2014 Data Center Exemption",
+          "url": "https://www.revisor.mn.gov/statutes/cite/297A.68"
+        }
+      ]
+    },
+    {
+      "state": "UT",
+      "program_name": "Utah Data Center Equipment Sales Tax Exemption",
+      "authority": "Utah State Tax Commission (Utah Code Ann. \u00a759-12-104(77))",
+      "description": "Utah exempts qualifying data center equipment and software from state sales and use tax under Utah Code Ann. \u00a759-12-104(77). Qualifying facilities must meet minimum capital investment thresholds and are required to pay prevailing wages. The exemption applies to servers, networking equipment, power and cooling infrastructure. Utah also offers the EDTIF (Economic Development Tax Increment Financing) program for large capital projects.",
+      "benefit_type": "sales_tax_exemption",
+      "enacted_year": 2008,
+      "expiration_year": null,
+      "sources": [
+        {
+          "label": "Utah Code Ann. \u00a759-12-104(77) \u2014 Data Center Tax Exemption",
+          "url": "https://le.utah.gov/xcode/Title59/Chapter12/C59-12-P1_1800010118000101.pdf"
+        }
+      ]
+    },
+    {
+      "state": "NY",
+      "program_name": "New York Data Center Tax Credit (Empire State Digital Program)",
+      "authority": "New York State Department of Taxation and Finance (N.Y. Tax Law \u00a728)",
+      "description": "New York's Empire State Digital Program provides a refundable tax credit of up to 5% on capital investments in qualified data centers. Qualifying facilities must invest at least $100 million in capital expenditures and create or retain qualifying jobs. The credit applies to qualifying computer hardware, software, and related infrastructure. Projects must be approved by Empire State Development.",
+      "benefit_type": "tax_credit",
+      "enacted_year": 2020,
+      "expiration_year": null,
+      "sources": [
+        {
+          "label": "New York Tax Law \u00a728 \u2014 Empire State Digital Credit",
+          "url": "https://www.tax.ny.gov/bus/ads/empirestatedigital.htm"
+        }
+      ]
+    },
+    {
+      "state": "AR",
+      "program_name": "Arkansas Data Center Sales and Use Tax Exemption",
+      "authority": "Arkansas Department of Finance and Administration (Ark. Code Ann. \u00a726-52-465)",
+      "description": "Arkansas provides a sales and use tax exemption for qualifying data center equipment under Ark. Code Ann. \u00a726-52-465. Qualifying facilities must represent a capital investment of at least $25 million in a 48-month period. The exemption covers servers, storage equipment, networking infrastructure, and power and cooling equipment. Arkansas also provides income tax incentives through the ADVANTAGE Arkansas program.",
+      "benefit_type": "sales_tax_exemption",
+      "enacted_year": 2013,
+      "expiration_year": null,
+      "sources": [
+        {
+          "label": "Arkansas DFA \u2014 Data Center Tax Exemption \u00a726-52-465",
+          "url": "https://www.dfa.arkansas.gov/"
+        }
+      ]
     }
   ]
 }

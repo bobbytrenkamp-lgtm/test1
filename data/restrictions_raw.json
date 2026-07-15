@@ -3597,6 +3597,446 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null
+    },
+    {
+      "fips": "08001",
+      "name": "Adams County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Pro Data Center / AI Campus \u2014 Adams County Metro Corridor",
+      "description": "Adams County, north of Denver, hosts Crusoe Energy's AI cloud campus and is part of the I-76 technology corridor. Colorado's OEDIT Advanced Industry Grant program supports qualifying capital investments. Adams County has actively pursued data center and clean-energy computing investment and maintains a favorable land-use posture for hyperscale facilities.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Crusoe Energy \u2014 Denver Metro AI Campus",
+          "url": "https://www.crusoeenergy.com/"
+        },
+        {
+          "label": "Colorado OEDIT \u2014 Advanced Industry Incentives",
+          "url": "https://oedit.colorado.gov/advanced-industries"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "10003",
+      "name": "New Castle County",
+      "state": "Delaware",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Colocation Hub \u2014 Wilmington / New Castle Data Center Corridor",
+      "description": "New Castle County hosts a significant colocation data center cluster in the greater Wilmington area, including facilities operated by Iron Mountain, NTT, and Digital Realty. Delaware's favorable corporate tax environment and proximity to the Philadelphia-Baltimore-DC corridor make it an attractive co-location destination. No state-level data center restrictions exist.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Iron Mountain \u2014 Wilmington, Delaware Data Center",
+          "url": "https://www.ironmountain.com/resources/data-centers"
+        },
+        {
+          "label": "Delaware Division of Corporations \u2014 Business-Friendly Environment",
+          "url": "https://corp.delaware.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "17043",
+      "name": "DuPage County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Major AI / Data Center Hub \u2014 Argonne + CoreWeave DuPage Corridor",
+      "description": "DuPage County hosts Argonne National Laboratory \u2014 home to the Aurora exascale supercomputer, one of the world's most powerful AI/HPC systems \u2014 as well as a CoreWeave AI computing campus. The county benefits from Illinois's data center investment tax credit (up to $250M over 5 years for qualifying investments). DuPage is a key node in the Chicago data center corridor, with fiber density and redundant power from ComEd.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Home to DOE's Argonne National Laboratory (Aurora supercomputer, 2 exaflops).",
+      "sources": [
+        {
+          "label": "Argonne National Laboratory \u2014 Aurora Supercomputer",
+          "url": "https://www.alcf.anl.gov/aurora"
+        },
+        {
+          "label": "Illinois DCEO \u2014 Data Center Tax Credit",
+          "url": "https://www2.illinois.gov/dceo/Pages/default.aspx"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "13157",
+      "name": "Jackson County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Stanton Springs Technology Park",
+      "description": "Jackson County is home to the Stanton Springs Technology Park, one of Georgia's premier hyperscale data center destinations. Meta Platforms operates a major data center campus there. The park was developed with state and local incentives including the Georgia Data Center Tax Exemption and significant utility infrastructure investments by Georgia Power.",
+      "effective_date": "2012-01-01",
+      "status": "active",
+      "notes": "Stanton Springs is a joint economic development initiative of Jackson, Morgan, Newton, and Walton counties.",
+      "sources": [
+        {
+          "label": "Meta \u2014 Stanton Springs, Georgia Data Center",
+          "url": "https://datacenters.atmeta.com/"
+        },
+        {
+          "label": "Georgia Department of Economic Development \u2014 Stanton Springs",
+          "url": "https://www.georgia.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "18063",
+      "name": "Hendricks County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Major AI Campus \u2014 Microsoft Hendricks County Hyperscale Cluster",
+      "description": "Hendricks County, west of Indianapolis, hosts a Microsoft hyperscale AI data center campus. Indiana's EDGE Tax Credit and IT equipment sales tax exemption apply to qualifying capital investments. The county benefits from competitive power rates from Duke Energy Indiana and access to fiber infrastructure along the I-70 corridor. Indiana has actively recruited data center and AI investment.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Microsoft \u2014 Indiana Data Center Investment",
+          "url": "https://azure.microsoft.com/en-us/explore/global-infrastructure/"
+        },
+        {
+          "label": "IEDC \u2014 Indiana EDGE Tax Credit Program",
+          "url": "https://iedc.in.gov/programs/tax-credits/edge"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "county": "Hendricks County"
+    },
+    {
+      "fips": "26081",
+      "name": "Kent County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Switch SUPERNAP Michigan",
+      "description": "Kent County (Grand Rapids area) hosts the Switch SUPERNAP Michigan campus, one of the largest data center campuses in the Midwest. Michigan's PA 328 sales and use tax exemption for data center equipment applies. Kent County actively supports data center investment and Switch has announced continued expansion of the Grand Rapids campus.",
+      "effective_date": "2018-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Switch \u2014 Grand Rapids, Michigan SUPERNAP Campus",
+          "url": "https://www.switch.com/data-centers/"
+        },
+        {
+          "label": "Michigan PA 328 \u2014 Data Center Sales Tax Exemption",
+          "url": "https://www.legislature.mi.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "27037",
+      "name": "Dakota County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Twin Cities South Metro Corridor",
+      "description": "Dakota County (Eagan / Burnsville area) is the core of the Twin Cities data center market, hosting major facilities from CyrusOne, Compass Datacenters, and regional operators. Minnesota's data center sales tax exemption (Minn. Stat. \u00a7297A.68, Subd. 42) applies to qualifying equipment. Eagan's fiber infrastructure and Xcel Energy power access make it the dominant data center submarket in the upper Midwest.",
+      "effective_date": "2012-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "CyrusOne \u2014 Minneapolis/St. Paul Data Center",
+          "url": "https://cyrusone.com/data-centers/"
+        },
+        {
+          "label": "Minnesota Dept. of Revenue \u2014 Data Center Exemption \u00a7297A.68",
+          "url": "https://www.revenue.state.mn.us/businesses/sut/pages/sales-exemptions.aspx"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "38015",
+      "name": "Burleigh County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Microsoft North Dakota Campus",
+      "description": "Burleigh County (Bismarck area) hosts a Microsoft hyperscale data center campus, one of the largest data center investments in North Dakota history. North Dakota's NDCC \u00a757-02-08.31 property tax exemption and cold climate (reducing cooling costs) make the state an attractive hyperscale destination. Basin Electric and MDU Resources provide reliable power supply.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Microsoft \u2014 North Dakota Data Center Investment",
+          "url": "https://azure.microsoft.com/en-us/explore/global-infrastructure/"
+        },
+        {
+          "label": "North Dakota NDCC \u00a757-02-08.31 \u2014 Data Center Exemption",
+          "url": "https://www.legis.nd.gov/cencode/t57c02.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "34027",
+      "name": "Morris County",
+      "state": "New Jersey",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Major AI Campus \u2014 CoreWeave Parsippany AI Computing Cluster",
+      "description": "Morris County hosts the CoreWeave AI computing campus in Parsippany, one of the largest GPU cloud computing clusters on the East Coast. CoreWeave operates thousands of NVIDIA H100/H200 GPUs serving AI model training workloads. The facility benefits from PSE&G power infrastructure and dense fiber connectivity in the New York metro data center corridor. New Jersey's UEZ tax reductions apply to qualifying purchases.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "CoreWeave \u2014 Parsippany, New Jersey AI Campus",
+          "url": "https://www.coreweave.com/"
+        },
+        {
+          "label": "New Jersey UEZ Program \u2014 Morris County",
+          "url": "https://www.nj.gov/njbusiness/financing/tax-credits/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "37067",
+      "name": "Forsyth County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center \u2014 Winston-Salem Data Center Corridor",
+      "description": "Forsyth County (Winston-Salem) hosts a growing data center cluster, including facilities from Windstream, Lumos Networks, and regional colocation operators. The county benefits from North Carolina's data center tax incentive (N.C.G.S. \u00a7105-164.13(55)) and Duke Energy Carolinas power rates. Winston-Salem has actively recruited data center investment as part of its technology sector growth strategy.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "NC Department of Revenue \u2014 Data Center Tax Incentive \u00a7105-164.13",
+          "url": "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/exemptions-exclusions-and-refunds/data-centers"
+        },
+        {
+          "label": "Winston-Salem Business Development \u2014 Technology Sector",
+          "url": "https://www.cityofws.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "47093",
+      "name": "Knox County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai",
+        "energy"
+      ],
+      "title": "Pro AI / HPC Hub \u2014 ORNL Ecosystem and Knoxville Tech Corridor",
+      "description": "Knox County anchors the Oak Ridge / Knoxville technology corridor, adjacent to Oak Ridge National Laboratory (ORNL) \u2014 home to Frontier, the world's first exascale supercomputer, and Inca, its successor. The corridor benefits from TVA's low power rates, the University of Tennessee at Knoxville's research ecosystem, and Tennessee's data center sales tax exemption. The region is actively pursuing follow-on commercial AI computing investment near the DOE complex.",
+      "effective_date": "2022-06-01",
+      "status": "active",
+      "notes": "Frontier (ORNL) became the world's first exascale computer in 2022.",
+      "sources": [
+        {
+          "label": "Oak Ridge National Laboratory \u2014 Frontier Supercomputer",
+          "url": "https://www.olcf.ornl.gov/frontier/"
+        },
+        {
+          "label": "Tennessee Valley Authority \u2014 Power for Computing",
+          "url": "https://www.tva.com/energy/distributed-energy-resources"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "47187",
+      "name": "Williamson County",
+      "state": "Tennessee",
+      "level": 1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Growing Data Center Concerns \u2014 Franklin / Brentwood Area Opposition",
+      "description": "Williamson County (Franklin / Brentwood) has seen organized resident opposition to data center proposals in or adjacent to its upscale suburban communities. Planning commission meetings in 2023\u20132024 included public comment opposing data center rezoning requests near residential neighborhoods, citing traffic, noise, and visual impact. No formal moratorium has been enacted, but developer proposals have faced significant community pushback.",
+      "effective_date": "2023-01-01",
+      "status": "active",
+      "notes": "No formal moratorium; community opposition at planning commission level as of 2024.",
+      "sources": [
+        {
+          "label": "Williamson County Planning Commission \u2014 Meeting Records",
+          "url": "https://www.williamsoncounty-tn.gov/"
+        },
+        {
+          "label": "Williamson Home Page / Tennessee Lookout \u2014 Franklin Data Center Opposition",
+          "url": "https://tennesseelookout.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48439",
+      "name": "Tarrant County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Meta Fort Worth Campus",
+      "description": "Tarrant County (Fort Worth / Arlington area) hosts Meta's Fort Worth AI data center campus, one of Meta's largest North American facilities. Texas Chapter 313 tax abatement agreements and the successor Chapter 403 TEXAS Jobs and Security Act have supported the investment. Oncor Electric provides power; Tarrant County's access to renewable wind energy from West Texas makes it attractive for large-scale compute workloads.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Meta \u2014 Fort Worth, Texas Data Center",
+          "url": "https://datacenters.atmeta.com/"
+        },
+        {
+          "label": "Texas Comptroller \u2014 Chapter 313/403 Economic Development",
+          "url": "https://comptroller.texas.gov/economy/local/ch313/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "49035",
+      "name": "Salt Lake County",
+      "state": "Utah",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Salt Lake City Metro Corridor",
+      "description": "Salt Lake County hosts a growing hyperscale data center corridor including facilities from Google, C7 Data Centers, Novva Data Centers, and others. Google announced a $1 billion+ data center investment in the Salt Lake metro area in 2024. Utah's sales tax exemption for data center equipment (Utah Code Ann. \u00a759-12-104(77)) and competitive Rocky Mountain Power rates make the state one of the fastest-growing data center markets in the West.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Google announced $1B+ Utah data center investment in 2024.",
+      "sources": [
+        {
+          "label": "Google \u2014 Utah Data Center Investment Announcement 2024",
+          "url": "https://blog.google/"
+        },
+        {
+          "label": "Utah Code Ann. \u00a759-12-104(77) \u2014 Data Center Sales Tax Exemption",
+          "url": "https://le.utah.gov/xcode/Title59/Chapter12/C59-12-P1_1800010118000101.pdf"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "51087",
+      "name": "Henrico County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 QTS Richmond Campus",
+      "description": "Henrico County hosts the QTS (now Iron Mountain Data Centers) Richmond hyperscale campus, one of the largest data center campuses in the mid-Atlantic. The facility spans multiple buildings and is one of QTS's flagship campuses. Virginia's Data Center Investment Grant and sales tax exemption for qualifying equipment apply. Henrico County has consistently supported data center investment with local economic development incentives.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "QTS Richmond was acquired by Blackstone in 2021; rebranded under Iron Mountain Data Centers.",
+      "sources": [
+        {
+          "label": "Iron Mountain / QTS \u2014 Richmond, Virginia Data Center",
+          "url": "https://www.ironmountain.com/resources/data-centers"
+        },
+        {
+          "label": "Virginia VEDP \u2014 Data Center Investment Grant Program",
+          "url": "https://www.vedp.org/incentive/data-center-investment-grant"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "county": "Henrico County"
+    },
+    {
+      "fips": "46099",
+      "name": "Minnehaha County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center \u2014 Sioux Falls Data Center Hub",
+      "description": "Minnehaha County (Sioux Falls) has attracted data center investment driven by South Dakota's zero corporate income tax, low property taxes, and competitive electrical rates from Xcel Energy and other utilities. Major data center operators with Sioux Falls facilities include T-Mobile, Midcontinent Communications, and others. The city has actively marketed its data center-friendly environment.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "South Dakota has no corporate income tax, a key data center attraction.",
+      "sources": [
+        {
+          "label": "South Dakota GOED \u2014 No Corporate Income Tax",
+          "url": "https://sdreadytowork.com/why-sd/business-climate/"
+        },
+        {
+          "label": "Sioux Falls Development Foundation \u2014 Technology Sector",
+          "url": "https://www.siouxfalls.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
     }
   ]
 }
