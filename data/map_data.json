@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-07-14T23:01:06.212431+00:00",
+  "generated_at": "2026-07-15T01:05:49.712676+00:00",
   "source_last_updated": "2026-07-14",
   "stats": {
-    "total_counties_tracked": 123,
+    "total_counties_tracked": 136,
     "by_level": {
-      "-1": 38,
+      "-1": 48,
       "0": 0,
       "1": 28,
-      "2": 32,
-      "3": 21,
-      "4": 4
+      "2": 33,
+      "3": 22,
+      "4": 5
     },
     "by_type": {
-      "data_center": 120,
-      "water": 7,
+      "data_center": 133,
+      "water": 10,
       "ai": 11,
       "energy": 47,
       "crypto": 14
@@ -3505,6 +3505,386 @@
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
+    },
+    "01089": {
+      "name": "Madison County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Meta Huntsville Campus",
+      "description": "Madison County is home to Meta's Huntsville data center campus, one of the largest in the southeastern US. Alabama awarded a multi-hundred-million-dollar incentive package under the Alabama Jobs Act. The county and city of Huntsville maintain a strongly favorable posture toward large hyperscale investment.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Meta \u2014 Huntsville, Alabama Data Center",
+          "url": "https://datacenters.atmeta.com/"
+        },
+        {
+          "label": "Alabama Department of Commerce \u2014 Meta Huntsville Announcement",
+          "url": "https://www.madeinalabama.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
+    },
+    "17037": {
+      "name": "DeKalb County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Meta DeKalb Campus",
+      "description": "Meta Platforms operates a large data center campus in DeKalb, Illinois, representing an investment of approximately $800 million. The county actively recruited the facility with enterprise zone incentives. Illinois law provides a 5-year tax credit of up to $250M for qualifying data center investments.",
+      "effective_date": "2012-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Meta \u2014 DeKalb, Illinois Data Center",
+          "url": "https://datacenters.atmeta.com/"
+        },
+        {
+          "label": "Illinois Data Center Tax Credit \u2014 IDOR",
+          "url": "https://www2.illinois.gov/rev/research/taxinformation/Pages/datacenter.aspx"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "19049": {
+      "name": "Dallas County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Apple Waukee Campus",
+      "description": "Apple operates a $1.3 billion data center campus in Waukee, Dallas County, Iowa. The facility is Apple's second Iowa data center and among its largest in North America. Iowa's data center sales tax exemption applies to qualifying equipment. Waukee city and Dallas County granted significant local incentives.",
+      "effective_date": "2017-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Apple \u2014 Waukee, Iowa Data Center Expansion",
+          "url": "https://www.apple.com/newsroom/"
+        },
+        {
+          "label": "Iowa Economic Development Authority \u2014 Apple Waukee Project",
+          "url": "https://www.iowaeda.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
+    },
+    "31153": {
+      "name": "Sarpy County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Google Papillion Campus",
+      "description": "Google operates a major data center campus in Papillion, Sarpy County, Nebraska. The multi-building campus represents a multi-billion-dollar investment and is one of Google's largest facilities in the central US. Nebraska's ImagiNE Act provides sales tax exemptions on data center equipment. Sarpy County actively supports data center development.",
+      "effective_date": "2013-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Google \u2014 Papillion, Nebraska Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/"
+        },
+        {
+          "label": "Nebraska ImagiNE Act \u2014 Data Center Incentives",
+          "url": "https://opportunity.nebraska.gov/programs/business/imagine-nebraska-act/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "35061": {
+      "name": "Valencia County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Meta Los Lunas Campus",
+      "description": "Meta Platforms operates a major data center campus in Los Lunas, Valencia County, New Mexico. The campus represents a $1 billion+ investment and is one of Meta's largest western US facilities. New Mexico's data center gross receipts tax deduction (NMSA \u00a77-9-57) applies. The county and village of Los Lunas granted significant local incentives.",
+      "effective_date": "2011-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Meta \u2014 Los Lunas, New Mexico Data Center",
+          "url": "https://datacenters.atmeta.com/"
+        },
+        {
+          "label": "New Mexico NMSA \u00a77-9-57 \u2014 Gross Receipts Tax Deduction",
+          "url": "https://www.nmlegis.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "40097": {
+      "name": "Mayes County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Google Pryor Creek Campus",
+      "description": "Google's Pryor Creek data center campus in Mayes County is among the largest data center campuses in the United States, representing a multi-billion-dollar investment. The campus is located in the MidAmerica Industrial Park in Pryor, OK. Oklahoma's data center sales and use tax exemption (68 O.S. \u00a71359.2) applies. Mayes County and the state of Oklahoma have been consistently supportive of data center investment.",
+      "effective_date": "2007-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Google \u2014 Pryor Creek, Oklahoma Data Center",
+          "url": "https://www.google.com/about/datacenters/locations/pryor-creek/"
+        },
+        {
+          "label": "Oklahoma Tax Commission \u2014 Data Center Exemption \u00a71359.2",
+          "url": "https://oklahoma.gov/tax/business/tax-types/data-center.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "41013": {
+      "name": "Crook County",
+      "state": "Oregon",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Apple Prineville Campus",
+      "description": "Apple operates a major data center campus in Prineville, Crook County, Oregon, representing approximately $1 billion in capital investment. The campus uses renewable energy and is Apple's only company-owned data center in the western US. Oregon's data center enterprise zone incentives apply. Crook County and the City of Prineville granted significant local property tax exemptions.",
+      "effective_date": "2012-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Apple \u2014 Prineville, Oregon Data Center",
+          "url": "https://www.apple.com/environment/"
+        },
+        {
+          "label": "Oregon Enterprise Zone Program \u2014 Crook County",
+          "url": "https://www.oregon.gov/business/Pages/incentives.aspx"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "47125": {
+      "name": "Montgomery County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Amazon AWS Clarksville",
+      "description": "Amazon Web Services operates a large data center campus in Clarksville, Montgomery County, Tennessee. The facility benefits from Tennessee's sales tax exemption on data center equipment and the state's competitive power rates via TVA. Montgomery County and the City of Clarksville have actively recruited data center investment with local property tax incentives.",
+      "effective_date": "2018-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Amazon AWS \u2014 Tennessee Data Centers",
+          "url": "https://aws.amazon.com/about-aws/global-infrastructure/"
+        },
+        {
+          "label": "Tennessee Department of Revenue \u2014 Data Center Exemption",
+          "url": "https://www.tn.gov/revenue/taxes/sales-and-use-tax/data-center-exemptions.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "47165": {
+      "name": "Sumner County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Meta Gallatin Campus",
+      "description": "Meta Platforms operates a large data center campus in Gallatin, Sumner County, Tennessee, representing approximately $800 million in capital investment. The campus benefits from Tennessee's data center sales tax exemption. Sumner County and the City of Gallatin provided local property tax incentives.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Meta \u2014 Gallatin, Tennessee Data Center",
+          "url": "https://datacenters.atmeta.com/"
+        },
+        {
+          "label": "Tennessee Department of Revenue \u2014 Data Center Exemptions",
+          "url": "https://www.tn.gov/revenue/taxes/sales-and-use-tax/data-center-exemptions.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "48029": {
+      "name": "Bexar County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Major Data Center Investment Hub \u2014 Microsoft Lone Star Campus",
+      "description": "Microsoft operates a major data center campus in San Antonio (Bexar County), Texas, known as the Lone Star Campus. It is one of Microsoft's largest data center campuses globally with multiple buildings and ongoing expansion. Texas Chapter 313 tax abatement agreements (since replaced by Chapter 403 TEXAS Jobs and Security Act) supported the investment. CPS Energy supplies power.",
+      "effective_date": "2007-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Microsoft \u2014 San Antonio Data Center Campus",
+          "url": "https://azure.microsoft.com/en-us/explore/global-infrastructure/"
+        },
+        {
+          "label": "City of San Antonio / CPS Energy \u2014 Data Center Partnership",
+          "url": "https://www.cpsenergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
+    },
+    "51139": {
+      "name": "Page County",
+      "state": "Virginia",
+      "level": 3,
+      "types": [
+        "data_center",
+        "water"
+      ],
+      "title": "Data Center Moratorium Enacted \u2014 Luray Caverns Proximity Concerns",
+      "description": "Page County, Virginia enacted a moratorium on new data center development in 2023 following a proposed Google data center near the nationally significant Luray Caverns. Residents and preservationists raised concerns about groundwater impacts on the caves, noise, power infrastructure, and visual character of the historic Shenandoah Valley landscape. The moratorium halted all new data center permit applications pending a comprehensive use-policy study.",
+      "effective_date": "2023-06-01",
+      "status": "active",
+      "notes": "Moratorium enacted pending comprehensive plan amendment; Google withdrew its application.",
+      "sources": [
+        {
+          "label": "Page County Board of Supervisors \u2014 Data Center Moratorium",
+          "url": "https://www.pagecounty.virginia.gov/"
+        },
+        {
+          "label": "Shenandoah Valley News \u2014 Page County Data Center Moratorium",
+          "url": "https://www.nvdaily.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "51157": {
+      "name": "Rappahannock County",
+      "state": "Virginia",
+      "level": 4,
+      "types": [
+        "data_center",
+        "water"
+      ],
+      "title": "Data Centers Effectively Prohibited \u2014 Comprehensive Plan Amendment",
+      "description": "Rappahannock County, Virginia amended its Comprehensive Plan and zoning ordinances to effectively prohibit large-scale data centers from locating in the county. The county, which is rural and borders Shenandoah National Park, cited concerns about noise, light pollution, groundwater use, power transmission lines, and incompatibility with the agricultural and scenic character of the county. No data center permit applications are accepted.",
+      "effective_date": "2023-11-01",
+      "status": "active",
+      "notes": "Comprehensive Plan explicitly designates data centers as incompatible with county land-use goals.",
+      "sources": [
+        {
+          "label": "Rappahannock County \u2014 Comprehensive Plan Update",
+          "url": "https://www.rappahannockcountyva.gov/"
+        },
+        {
+          "label": "Rappahannock News \u2014 Data Center Ordinance",
+          "url": "https://www.rappnews.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "51171": {
+      "name": "Shenandoah County",
+      "state": "Virginia",
+      "level": 2,
+      "types": [
+        "data_center",
+        "water"
+      ],
+      "title": "Data Center Restrictions Under Study \u2014 Shenandoah Valley Growth Pressure",
+      "description": "Shenandoah County has experienced growing pressure from data center developers seeking to locate near the data center corridor. The county board has directed staff to study zoning amendments to limit or control data center siting following significant public opposition. Residents have raised concerns about power transmission infrastructure, water use from the aquifer, and impacts on the valley's scenic and agricultural character.",
+      "effective_date": "2023-01-01",
+      "status": "active",
+      "notes": "Restrictions under study; no formal moratorium enacted as of 2024.",
+      "sources": [
+        {
+          "label": "Shenandoah County Board of Supervisors \u2014 Land Use Study",
+          "url": "https://www.shenandoahcountyva.us/"
+        },
+        {
+          "label": "Northern Virginia Daily \u2014 Shenandoah Data Center Concerns",
+          "url": "https://www.nvdaily.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
     }
   },
   "validation_report": {
@@ -3981,7 +4361,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-14T23:29:03.175099+00:00",
+    "last_computed": "2026-07-15T01:05:49.766697+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",
