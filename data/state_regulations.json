@@ -729,6 +729,47 @@
           "url": "https://le.utah.gov/xcode/Title59/Chapter12/C59-12-P1_1800010118000101.pdf"
         }
       ]
+    },
+    "23": {
+      "name": "Maine",
+      "abbr": "ME",
+      "level": 2,
+      "status": "proposed",
+      "summary": "Maine has no statewide AI-specific or data center regulation as of 2026. The Act to Establish the Maine Artificial Intelligence Advisory Council (LD 2064, enacted 2024) creates an advisory body to study AI governance but does not impose mandates. The Maine PUC has flagged data center load growth as a grid-planning concern. Portland (Cumberland County) adopted a study resolution on data center siting impacts. Maine's renewable portfolio standard (35% by 2025, 80% by 2030) applies to large load customers including data centers through CMP tariff schedules.",
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "sources": [
+        {
+          "label": "Maine LD 2064 (2024) \u2014 AI Advisory Council Act",
+          "url": "https://legislature.maine.gov/"
+        },
+        {
+          "label": "Maine PUC \u2014 Transmission Interconnection Planning",
+          "url": "https://www.maine.gov/mpuc/"
+        }
+      ]
+    },
+    "30": {
+      "name": "Montana",
+      "abbr": "MT",
+      "level": -1,
+      "status": "active",
+      "summary": "Montana has no statewide data center regulation or AI-specific legislation as of 2026. Data center siting is managed at the county level under local zoning authority. Montana's abundant hydroelectric power and cold climate support free-cooling designs, but grid connectivity to major fiber routes is limited outside Missoula and Billings. Montana has no general sales tax, so data center equipment purchases are exempt by default. The 2025 Legislature considered but did not advance a dedicated data center tax credit bill.",
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Montana DNRC \u2014 Water Rights Administration",
+          "url": "https://dnrc.mt.gov/divisions/water/"
+        },
+        {
+          "label": "Montana Department of Commerce \u2014 Business Resources",
+          "url": "https://commerce.mt.gov/Business/"
+        }
+      ]
     }
   }
 }
