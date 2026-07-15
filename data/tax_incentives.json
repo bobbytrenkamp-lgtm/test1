@@ -663,6 +663,17 @@
         "25025",
         "25017"
       ]
+    },
+    {
+      "state": "ND",
+      "program_name": "North Dakota New/Expanding Business Income Tax Exemption",
+      "incentive_type": "Income Tax Exemption + Sales Tax Exemption",
+      "min_investment_m": 10,
+      "notes": "N.D.C.C. \u00a757-38.5 (New or Expanding Industry Tax Exemption): Provides a full state income tax exemption for up to 5 years for new or expanding businesses making qualifying capital investments, including data center construction and equipment. Additionally, qualified production and processing equipment used in data center operations may qualify for North Dakota sales tax exemptions under N.D.C.C. \u00a757-39.2-04. The Grand Forks Microsoft campus is among the projects benefiting from these programs. The ND Department of Commerce administers both incentives with the State Tax Commissioner.",
+      "fips_list": [
+        "38015",
+        "38035"
+      ]
     }
   ]
 }

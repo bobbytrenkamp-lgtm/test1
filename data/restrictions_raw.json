@@ -5252,6 +5252,362 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null
+    },
+    {
+      "fips": "01073",
+      "name": "Jefferson County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Birmingham Regional Data Center Hub \u2014 Financial & Healthcare IT",
+      "description": "Jefferson County (Birmingham) is Alabama's primary metropolitan data center market. Blue Cross Blue Shield of Alabama's large enterprise IT campus, Encompass Health, and UAB Medicine drive significant healthcare IT demand. Colonial Pipeline's operations center and Southern Company's Southeastern Power Administration create additional enterprise IT loads. Equinix and regional colocation operators serve the market from facilities in the Hoover/Vestavia Hills technology corridor. Alabama Power (Southern Company) provides industrial power. Alabama's Jobs Act (\u00a740-18-376) incentives apply to qualifying capital investments in Jefferson County.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Birmingham is Alabama's second data center market after Huntsville.",
+      "sources": [
+        {
+          "label": "Alabama Power \u2014 Industrial Service Rates",
+          "url": "https://www.alabamapower.com/business/"
+        },
+        {
+          "label": "Greater Birmingham Alliance \u2014 Tech Sector",
+          "url": "https://www.greaterbirminghalliance.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "06059",
+      "name": "Orange County",
+      "state": "California",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Irvine / Santa Ana Data Center Park \u2014 NTT / Iron Mountain",
+      "description": "Orange County hosts a significant data center market in the Irvine Spectrum and Santa Ana technology corridors. NTT Global Data Centers, Iron Mountain, and the Irvine Company's Office Properties data center park serve financial services, biotech, and defense contractor IT workloads. The county's dense carrier ecosystem, Southern California Edison industrial rates, and proximity to Los Angeles without LA's substation constraints attract enterprise DR and colocation deployments. UCI (University of California, Irvine) generates research computing demand. California's data center investment incentives administered through GO-Biz apply to qualifying projects.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Orange County data center market is secondary to LA and Silicon Valley but significant for defense/biotech.",
+      "sources": [
+        {
+          "label": "NTT Global Data Centers \u2014 Southern California",
+          "url": "https://services.global.ntt/en-us/services/data-centers"
+        },
+        {
+          "label": "GO-Biz \u2014 California Competes Tax Credit",
+          "url": "https://business.ca.gov/california-competes-tax-credit/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "09009",
+      "name": "New Haven County",
+      "state": "Connecticut",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "New Haven Data Center Hub \u2014 Yale University / Healthcare IT",
+      "description": "New Haven County hosts data center and IT infrastructure anchored by Yale New Haven Health System's enterprise IT campus and Yale University's research computing facilities. Frontier Communications (Ziply predecessor) maintains significant Central Office data center assets in New Haven and Waterbury. eBRC (eBay Enterprise) operated a major colocation facility in New Haven that transitioned to Sungard; the facility continues under new management. United Illuminating (Avangrid subsidiary) provides industrial power. Connecticut's \u00a712-412(112) data center equipment sales tax exemption applies to qualifying facilities in the county.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Yale YNHH and academic research computing are the primary demand drivers.",
+      "sources": [
+        {
+          "label": "Yale New Haven Health \u2014 IT Infrastructure",
+          "url": "https://www.ynhh.org/"
+        },
+        {
+          "label": "Connecticut Office of Policy & Management \u2014 Economic Development",
+          "url": "https://portal.ct.gov/OPM"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "12073",
+      "name": "Leon County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Tallahassee State Government IT Hub \u2014 Florida Data Center",
+      "description": "Leon County (Tallahassee) hosts the Florida Department of Management Services' (DMS) State Data Center (SDC), the consolidated infrastructure hub for Florida state agency IT workloads. The SDC in Tallahassee provides computing, storage, and networking services to 40+ state agencies under Florida's state data center consolidation mandate (\u00a7282.201 F.S.). Commercial operators including AT&T and Lumen provide connectivity and private cloud services to state agencies. Florida State University and Florida A&M University generate research computing demand. Duke Energy Florida provides reliable power for government IT infrastructure.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Florida's mandatory state data center consolidation makes the SDC one of the largest state government DCs in the US.",
+      "sources": [
+        {
+          "label": "Florida DMS \u2014 State Data Center",
+          "url": "https://www.dms.myflorida.com/agency_administration/office_of_technology/state_data_center"
+        },
+        {
+          "label": "Florida Statute \u00a7282.201 \u2014 State Agency Data Center",
+          "url": "https://www.flsenate.gov/Laws/Statutes/2021/282.201"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "20209",
+      "name": "Wyandotte County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kansas City Kansas Data Center Market \u2014 Evergy / AT&T Infrastructure",
+      "description": "Wyandotte County (Kansas City, Kansas) anchors the Kansas-side data center market for the Kansas City metropolitan area. AT&T's major network hub and Evergy's commercial grid serve enterprise IT demand generated by logistics operators and manufacturing firms. The county hosts T-Mobile's headquarters (Sprint legacy) network operations center infrastructure. The Unified Government of Wyandotte County/KCK Economic Development provides incentives under the Kansas PEAK (Promoting Employment Across Kansas) program and the KS HPIP credit for qualifying technology investments.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "T-Mobile (legacy Sprint) headquarters creates significant network infrastructure demand.",
+      "sources": [
+        {
+          "label": "Unified Government of Wyandotte County/KCK",
+          "url": "https://www.wycokck.org/"
+        },
+        {
+          "label": "Kansas Commerce \u2014 PEAK Program",
+          "url": "https://www.kansascommerce.gov/program/incentives/promoting-employment-across-kansas/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "22017",
+      "name": "Caddo Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Shreveport Regional Data Center Hub \u2014 Lumen / Entergy Northwest LA",
+      "description": "Caddo Parish (Shreveport) is northwest Louisiana's primary technology infrastructure market. Lumen Technologies (formerly CenturyLink) operates a significant Central Office and network data center in Shreveport, serving the Ark-La-Tex regional market. Energy sector IT workloads from oil and gas operations in the Haynesville Shale play generate enterprise demand. Entergy Louisiana's Northwest Region provides industrial power at competitive rates. Louisiana's Quality Jobs Program rebate (R.S. 51:2453) and Digital Media tax credit (R.S. 47:6022) apply to qualifying technology operators in Caddo Parish.",
+      "effective_date": "2012-01-01",
+      "status": "active",
+      "notes": "Caddo Parish serves Ark-La-Tex tri-state regional IT market (Arkansas, Louisiana, Texas).",
+      "sources": [
+        {
+          "label": "Lumen Technologies \u2014 Shreveport Operations",
+          "url": "https://www.lumen.com/"
+        },
+        {
+          "label": "LED \u2014 Louisiana Quality Jobs Program",
+          "url": "https://www.opportunitylouisiana.gov/business-incentives/quality-jobs"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "27109",
+      "name": "Olmsted County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "IBM Rochester / Mayo Clinic AI & HPC Infrastructure",
+      "description": "Olmsted County (Rochester) hosts two of Minnesota's most significant enterprise IT campuses: IBM's Rochester facility, one of IBM's largest North American manufacturing and research sites; and Mayo Clinic's massive healthcare AI and clinical informatics platform. Mayo has partnered with Google Cloud and Amazon AWS for clinical AI workloads, generating significant colocation and edge computing demand. Rochester's fiber infrastructure, built to support IBM and Mayo operations, supports carrier-grade connectivity. Xcel Energy's Rochester district provides reliable industrial power. Minnesota's \u00a7297A.68 data center exemption applies to qualifying Olmsted County projects.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Mayo Clinic's AI and genomics platforms are among the largest healthcare AI workloads in the US.",
+      "sources": [
+        {
+          "label": "Mayo Clinic \u2014 AI and Clinical Informatics Platform",
+          "url": "https://www.mayoclinic.org/"
+        },
+        {
+          "label": "IBM \u2014 Rochester, Minnesota",
+          "url": "https://www.ibm.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "30031",
+      "name": "Gallatin County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bozeman Tech Hub \u2014 Montana State University IT Infrastructure",
+      "description": "Gallatin County (Bozeman) is Montana's fastest-growing technology market, driven by Montana State University and a rapid influx of remote tech workers. Wipfli and several Montana-based managed service providers operate small colocation facilities in Bozeman. NorthWestern Energy's Mountain Division provides power from primarily hydroelectric sources. The county's cold climate enables highly efficient free-cooling for IT equipment. Montana's absence of a general sales tax means no state-level equipment purchase tax for data center operators. The combination of clean power, cold climate, and tech talent migration is attracting edge data center investment.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "Bozeman is one of the fastest-growing small cities in the US; remote tech worker migration drives DC interest.",
+      "sources": [
+        {
+          "label": "NorthWestern Energy \u2014 Business Rates",
+          "url": "https://www.northwesternenergy.com/business"
+        },
+        {
+          "label": "Gallatin County \u2014 Planning & Community Development",
+          "url": "https://www.gallatin.mt.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "30111",
+      "name": "Yellowstone County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Billings Regional Data Center \u2014 Montana's Largest City IT Hub",
+      "description": "Yellowstone County (Billings) is Montana's largest metro and primary regional data center market. Lumen Technologies (CenturyLink) operates the primary carrier-grade network data center serving east Montana; Midcontinent Communications maintains facilities in the county. Energy sector IT workloads from the Williston Basin/Bakken oil fields and Powder River Basin coal operations drive enterprise demand. NorthWestern Energy's Billings division and PPL Montana (now Northwestern) provide industrial power. Billings' fiber hub on the I-90 corridor supports connectivity to Rapid City, SD and Miles City gateway routes.",
+      "effective_date": "2012-01-01",
+      "status": "active",
+      "notes": "Billings is the Williston Basin oil & gas IT hub for eastern Montana and western North Dakota.",
+      "sources": [
+        {
+          "label": "Lumen Technologies \u2014 Billings Montana",
+          "url": "https://www.lumen.com/"
+        },
+        {
+          "label": "Billings EDC \u2014 Business Development",
+          "url": "https://www.billingsedc.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "38035",
+      "name": "Grand Forks County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Microsoft Grand Forks Hyperscale Data Center Campus",
+      "description": "Grand Forks County hosts Microsoft's major data center campus, a multi-billion-dollar hyperscale facility that represents one of the largest private investments in North Dakota history. The campus benefits from Minnkota Power Cooperative's low-cost coal and wind energy mix, Grand Forks' cold climate enabling free-cooling for nine months annually, and North Dakota's favorable regulatory environment. The University of North Dakota in Grand Forks provides a STEM workforce pipeline. North Dakota's incentives include the New/Expanding Business Income Tax Exemption and sales tax exemptions for qualified production equipment.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Microsoft Grand Forks is one of the largest hyperscale campus investments in the Upper Midwest.",
+      "sources": [
+        {
+          "label": "Microsoft \u2014 Grand Forks Data Center Campus",
+          "url": "https://azure.microsoft.com/en-us/global-infrastructure/"
+        },
+        {
+          "label": "ND Department of Commerce \u2014 New/Expanding Business Tax Exemption",
+          "url": "https://www.commerce.nd.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "39153",
+      "name": "Summit County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Akron Data Center Hub \u2014 BW Technology / Healthcare IT",
+      "description": "Summit County (Akron) hosts Ohio's Akron-Canton data center market. BW Technology/Bridgeway Technology Center operates a significant colocation campus in the county; Seginet provides managed hosting. Healthcare IT demand from Summa Health and Cleveland Clinic Akron General drives enterprise colocation requirements. Akron's fiber network along the I-77 and I-76 corridors provides dense carrier access. FirstEnergy's Ohio Edison division provides industrial power from the PJM interconnection. Ohio's Data Center Investment Tax Credit (ORC \u00a75709.65) applies to qualifying investments.",
+      "effective_date": "2016-01-01",
+      "status": "active",
+      "notes": "Akron is a secondary Ohio data center market; healthcare IT is the primary driver.",
+      "sources": [
+        {
+          "label": "BW Technology Center \u2014 Akron, Ohio",
+          "url": "https://www.bwtechohio.com/"
+        },
+        {
+          "label": "JobsOhio \u2014 Data Center Investment Program",
+          "url": "https://www.jobsohio.com/why-ohio/target-industries/data-centers"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "51013",
+      "name": "Arlington County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Pentagon Corridor Data Center Cluster \u2014 Crystal City / Rosslyn",
+      "description": "Arlington County, immediately across the Potomac from Washington DC, hosts a high-density data center and colocation market driven by government contractor and financial services IT. Amazon Web Services' HQ2 (National Landing/Crystal City) brings significant cloud computing management infrastructure. Equinix DC2-DC5 and various SCIF-rated carrier-neutral facilities serve the Pentagon/DoD contractor ecosystem. Dominion Energy's Crystal City feeder substations provide extremely dense urban power delivery. Virginia's Data Center Investment Grant and IT equipment sales tax exemption apply to qualifying Arlington projects meeting the $150 million threshold.",
+      "effective_date": "2005-01-01",
+      "status": "active",
+      "notes": "Amazon HQ2 National Landing is adjacent to established Pentagon-area contractor data center cluster.",
+      "sources": [
+        {
+          "label": "Amazon \u2014 National Landing HQ2, Arlington VA",
+          "url": "https://www.amazon.com/"
+        },
+        {
+          "label": "Arlington Economic Development",
+          "url": "https://www.arlingtoneconomicdevelopment.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "53063",
+      "name": "Spokane County",
+      "state": "Washington",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Eastern Washington Data Center Hub \u2014 Avista Hydroelectric Power",
+      "description": "Spokane County is Eastern Washington's primary data center market. Avista Utilities provides power from a largely hydroelectric portfolio (Columbia River system), enabling competitive industrial rates and clean energy credentials for data center operators. Providence Health and Services, Itron Inc., and Washington State University's Spokane campus generate significant enterprise IT demand. QTS Data Centers and several colocation operators serve the regional market. Washington State's server equipment sales tax exemption (RCW \u00a782.04.29004) provides a 100% B&O tax deduction for eligible server equipment in qualifying data centers.",
+      "effective_date": "2018-01-01",
+      "status": "active",
+      "notes": "Avista's hydroelectric portfolio gives Spokane some of the cleanest power in the West.",
+      "sources": [
+        {
+          "label": "Avista Utilities \u2014 Large Customer Rates",
+          "url": "https://www.avistautilities.com/business/"
+        },
+        {
+          "label": "Spokane County \u2014 Economic Development",
+          "url": "https://www.spokanecounty.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
     }
   ]
 }
