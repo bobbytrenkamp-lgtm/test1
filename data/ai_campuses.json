@@ -817,6 +817,56 @@
       "notes": "Edge data center serving DC-metro overspill demand in Martinsburg WV; benefits from WV EDGE Act incentives.",
       "lon": -77.9639,
       "lat": 39.4565
+    },
+    {
+      "id": "ai-ak-002",
+      "name": "UAF Arctic Region Supercomputing Center (ARSC)",
+      "operator": "University of Alaska Fairbanks",
+      "status": "operational",
+      "county_fips": "02090",
+      "notes": "High-performance computing center supporting Arctic research, climate modeling, and DoD/NOAA computation workloads.",
+      "lon": -147.722,
+      "lat": 64.8401
+    },
+    {
+      "id": "ai-hi-002",
+      "name": "Maui High Performance Computing Center (MHPCC)",
+      "operator": "Amentum Services (for AFRL)",
+      "status": "operational",
+      "county_fips": "15009",
+      "notes": "DoD-funded HPC center operated for the Air Force Research Laboratory; supports Pacific theater defense simulation and AI workloads.",
+      "lon": -156.6825,
+      "lat": 20.8783
+    },
+    {
+      "id": "ai-de-002",
+      "name": "Delaware DTI State Data Center \u2014 Dover",
+      "operator": "Delaware Department of Technology and Information",
+      "status": "operational",
+      "county_fips": "10001",
+      "notes": "Primary state government data center serving Delaware's agency IT infrastructure, hosting enterprise applications and disaster recovery.",
+      "lon": -75.5244,
+      "lat": 39.1582
+    },
+    {
+      "id": "ai-al-002",
+      "name": "Alabama Supercomputer Authority Data Center",
+      "operator": "Alabama Supercomputer Authority (ASA)",
+      "status": "operational",
+      "county_fips": "01101",
+      "notes": "State-operated HPC facility providing supercomputing resources for Alabama universities, state agencies, and research programs.",
+      "lon": -86.2999,
+      "lat": 32.3668
+    },
+    {
+      "id": "ai-sc-003",
+      "name": "Immedion Charleston Data Center",
+      "operator": "Immedion",
+      "status": "operational",
+      "county_fips": "45019",
+      "notes": "Regional colocation data center serving Charleston's growing financial technology, healthcare, and logistics IT sectors.",
+      "lon": -79.9311,
+      "lat": 32.7765
     }
   ]
 }
