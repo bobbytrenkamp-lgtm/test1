@@ -487,6 +487,76 @@
       "notes": "Windstream and Lumos Networks carrier-grade colocation facilities in Winston-Salem, Forsyth County NC. Anchor of the Winston-Salem data center corridor.",
       "lat": 36.1,
       "lon": -80.24
+    },
+    {
+      "id": "ai-fl-001",
+      "name": "CyrusOne Pompano Beach Data Center Campus",
+      "operator": "CyrusOne",
+      "status": "operational",
+      "county_fips": "12011",
+      "notes": "Major enterprise and wholesale colocation campus in Broward County FL.",
+      "lon": -80.1247,
+      "lat": 26.238
+    },
+    {
+      "id": "ai-il-004",
+      "name": "Google Channahon AI Data Center Campus",
+      "operator": "Google",
+      "status": "operational",
+      "county_fips": "17197",
+      "notes": "Google's largest Midwest data center campus; expanded multiple times since 2016.",
+      "lon": -88.2284,
+      "lat": 41.4253
+    },
+    {
+      "id": "ai-ks-001",
+      "name": "AT&T Overland Park Network Data Center",
+      "operator": "AT&T",
+      "status": "operational",
+      "county_fips": "20091",
+      "notes": "AT&T Central Office and data center serving the Kansas City metro.",
+      "lon": -94.6872,
+      "lat": 38.9822
+    },
+    {
+      "id": "ai-oh-002",
+      "name": "AWS Cincinnati Region Infrastructure",
+      "operator": "Amazon Web Services",
+      "status": "operational",
+      "county_fips": "39061",
+      "notes": "Amazon Web Services regional data center supporting Ohio cloud infrastructure.",
+      "lon": -84.512,
+      "lat": 39.1031
+    },
+    {
+      "id": "ai-ut-002",
+      "name": "Novva Data Centers \u2014 North Salt Lake Campus",
+      "operator": "Novva Data Centers",
+      "status": "operational",
+      "county_fips": "49011",
+      "notes": "Purpose-built 120+ MW hyperscale campus in Davis County Utah.",
+      "lon": -111.9068,
+      "lat": 40.8488
+    },
+    {
+      "id": "ai-va-004",
+      "name": "Amazon AWS Chesterfield Data Center Campus",
+      "operator": "Amazon Web Services",
+      "status": "operational",
+      "county_fips": "51041",
+      "notes": "AWS data center cluster in Chesterfield County south of Richmond VA.",
+      "lon": -77.505,
+      "lat": 37.3788
+    },
+    {
+      "id": "ai-wa-002",
+      "name": "Microsoft Marysville AI Infrastructure Campus",
+      "operator": "Microsoft",
+      "status": "under_construction",
+      "county_fips": "53061",
+      "notes": "Microsoft expanding Puget Sound AI training campus in Snohomish County.",
+      "lon": -122.1771,
+      "lat": 48.0518
     }
   ]
 }

@@ -589,6 +589,38 @@
           "url": "https://www.dfa.arkansas.gov/"
         }
       ]
+    },
+    {
+      "state": "CT",
+      "program_name": "Connecticut Data Center Equipment Sales Tax Exemption",
+      "incentive_type": "Sales & Use Tax Exemption",
+      "min_investment_m": null,
+      "notes": "Conn. Gen. Stat. \u00a712-412(112): Exempts servers, storage, and networking equipment purchased for use in an eligible data center from Connecticut sales and use tax. Qualifying facility must maintain a minimum of 10,000 sq ft of data center floor space. Effective since 2013 with subsequent amendments broadening eligible equipment.",
+      "fips_list": [
+        "09003"
+      ]
+    },
+    {
+      "state": "FL",
+      "program_name": "Florida Data Center Equipment Sales Tax Exemption",
+      "incentive_type": "Sales & Use Tax Exemption",
+      "min_investment_m": 150,
+      "notes": "\u00a7212.08(7)(fff) F.S. (enacted 2021): Provides a full sales and use tax exemption for data center equipment including servers, storage, UPS systems, and cooling equipment for qualifying colocation and enterprise data centers meeting a $150M investment threshold and minimum 25 direct jobs. Applies statewide; Broward, Miami-Dade, and Orange counties are primary beneficiaries.",
+      "fips_list": [
+        "12011",
+        "12086",
+        "12057"
+      ]
+    },
+    {
+      "state": "LA",
+      "program_name": "Louisiana Quality Jobs Program \u2014 Technology Sector",
+      "incentive_type": "Payroll Tax Rebate + Sales Tax Rebate",
+      "min_investment_m": 25,
+      "notes": "R.S. 51:2453 (Quality Jobs Program): Provides a 6% annual payroll tax rebate for up to 10 years for qualifying technology companies creating net new jobs paying at or above the state average wage. Data center operators qualifying as technology infrastructure companies may also receive a rebate on sales taxes paid on construction materials. Requires a minimum $25M capital investment and 50 new direct jobs. LED Fast Start workforce training also available.",
+      "fips_list": [
+        "22033"
+      ]
     }
   ]
 }
