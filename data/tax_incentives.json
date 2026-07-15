@@ -621,6 +621,26 @@
       "fips_list": [
         "22033"
       ]
+    },
+    {
+      "state": "NH",
+      "program_name": "New Hampshire Tax-Free Business Environment for Data Centers",
+      "incentive_type": "No Sales Tax + No Income Tax",
+      "min_investment_m": null,
+      "notes": "New Hampshire has no general sales and use tax (RSA ch. 78-A does not apply to equipment sales) and no personal or business income tax, making all data center equipment purchases and operational profits effectively tax-exempt at the state level. Business Profits Tax (BPT) at 7.5% and Business Enterprise Tax (BET) at 0.55% apply to operating revenue but are substantially lower than neighboring Massachusetts. This combination makes NH one of the most tax-efficient states for data center capital equipment procurement.",
+      "fips_list": [
+        "33011"
+      ]
+    },
+    {
+      "state": "WV",
+      "program_name": "West Virginia EDGE Act \u2014 Data Center Investment Tax Credit",
+      "incentive_type": "Investment Tax Credit",
+      "min_investment_m": 25,
+      "notes": "HB 2002 (2023 Legislative Session), codified at W. Va. Code \u00a711-13Z: Provides a 25% nonrefundable tax credit against corporate net income tax for qualified data center equipment, construction, and infrastructure costs. Capped at $200 million per qualified project. Qualifying data centers must invest at least $25 million and create 25 new direct jobs paying at least 150% of the state average wage. Credit may be carried forward 10 years. Applies to colocation, hyperscale, and enterprise data center projects.",
+      "fips_list": [
+        "54039"
+      ]
     }
   ]
 }

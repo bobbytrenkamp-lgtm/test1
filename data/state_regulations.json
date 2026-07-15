@@ -770,6 +770,68 @@
           "url": "https://commerce.mt.gov/Business/"
         }
       ]
+    },
+    "33": {
+      "name": "New Hampshire",
+      "abbr": "NH",
+      "level": -1,
+      "status": "active",
+      "summary": "New Hampshire has no statewide AI-specific regulation or data center siting legislation as of 2026. The state's unique tax profile \u2014 no general sales tax, no income tax \u2014 makes it one of the most favorable states for data center equipment procurement. The NH PUC regulates Eversource and Unitil as electric utilities but has no specific data center provisions. NH's 2025 legislative session considered but did not advance an AI transparency bill. Site Assessment of Market Power (SAMP) proceedings at the PUC may affect large load interconnection in Hillsborough and Rockingham counties.",
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "NH Division of Economic Development",
+          "url": "https://www.nheconomy.com/"
+        },
+        {
+          "label": "NH PUC \u2014 Electric Utility Regulation",
+          "url": "https://www.puc.nh.gov/"
+        }
+      ]
+    },
+    "50": {
+      "name": "Vermont",
+      "abbr": "VT",
+      "level": -1,
+      "status": "active",
+      "summary": "Vermont has no statewide AI-specific regulation or data center legislation as of 2026. The state's Act 174 (2016) Energy Planning framework and Renewable Energy Standard (75% by 2032, 100% by 2035 under 30 V.S.A. \u00a78005) apply to all large load customers including data centers through Green Mountain Power and VELCO. Vermont's Public Utility Commission reviews Certificate of Public Good applications for new large electrical loads. Vermont has no data center-specific tax incentive but the clean energy grid profile is a competitive differentiator. The 2024 Vermont Legislature considered and tabled an AI Impact Assessment bill.",
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "sources": [
+        {
+          "label": "Vermont Agency of Commerce \u2014 Economic Development",
+          "url": "https://accd.vermont.gov/economic-development"
+        },
+        {
+          "label": "Vermont PUC \u2014 Certificate of Public Good",
+          "url": "https://puc.vermont.gov/"
+        }
+      ]
+    },
+    "54": {
+      "name": "West Virginia",
+      "abbr": "WV",
+      "level": -1,
+      "status": "active",
+      "summary": "West Virginia enacted the EDGE Act (HB 2002, 2023) creating a 25% investment tax credit for qualified data center equipment and construction costs, the first dedicated data center incentive in the state. Appalachian Power (AEP) and Appalachian Electric Power provide baseload capacity at among the lowest industrial rates in the eastern US. The Governor's office has designated data center attraction as an economic development priority under the WV Forward strategic plan. No statewide AI-specific regulation has been enacted. The WV Legislature considered an AI transparency bill in 2025 but did not advance it.",
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "sources": [
+        {
+          "label": "WV EDGE Act (HB 2002, 2023)",
+          "url": "https://www.wvlegislature.gov/"
+        },
+        {
+          "label": "WV Department of Economic Development",
+          "url": "https://westvirginia.gov/business/"
+        }
+      ]
     }
   }
 }
