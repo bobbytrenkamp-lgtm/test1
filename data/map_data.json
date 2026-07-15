@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-15T02:18:01.961027+00:00",
+  "generated_at": "2026-07-15T02:23:08.477271+00:00",
   "source_last_updated": "2026-07-14",
   "stats": {
-    "total_counties_tracked": 168,
+    "total_counties_tracked": 182,
     "by_level": {
-      "-1": 75,
+      "-1": 89,
       "0": 0,
       "1": 32,
       "2": 34,
@@ -12,10 +12,10 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 165,
+      "data_center": 179,
       "water": 12,
-      "ai": 24,
-      "energy": 51,
+      "ai": 28,
+      "energy": 54,
       "crypto": 14
     },
     "level_labels": {
@@ -4832,6 +4832,419 @@
       "confidence": "medium",
       "confidence_score": 49,
       "source_tier": 3
+    },
+    "06013": {
+      "name": "Contra Costa County",
+      "state": "California",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "East Bay Data Center Corridor \u2014 Richmond / Concord",
+      "description": "Contra Costa County hosts legacy telecommunications data center infrastructure along the I-80 and SR-4 corridors, anchored by Iron Mountain's Richmond facility and Lumen/CenturyLink Central Office assets in Concord and Martinez. The county's industrial zones in Richmond and Pittsburg provide power access from PG&E's East Bay transmission system and competitive lease rates compared to Santa Clara and Alameda counties. Proximity to the Bay Area fiber backbone and BART corridors makes the county attractive for enterprise disaster recovery deployments.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "East Bay data center market is secondary to Silicon Valley but growing.",
+      "sources": [
+        {
+          "label": "Iron Mountain \u2014 Bay Area Data Centers",
+          "url": "https://www.ironmountain.com/resources/data-centers"
+        },
+        {
+          "label": "Contra Costa County \u2014 Economic Development",
+          "url": "https://www.contracosta.ca.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "06081": {
+      "name": "San Mateo County",
+      "state": "California",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Peninsula Data Center Hub \u2014 Equinix PAIX / Silicon Valley Campus",
+      "description": "San Mateo County is one of the world's most significant data center and internet exchange markets. Equinix operates SV1\u2013SV11 and SY1\u2013SY6 data centers in Redwood City, Menlo Park, and San Jose-adjacent facilities. The PAIX (Palo Alto Internet Exchange) \u2014 now Equinix SV1 \u2014 was among the earliest neutral internet exchanges in the US. LinkedIn, Oracle, and numerous hyperscalers maintain edge and latency-sensitive workloads in the county. PG&E's Peninsula-area substation infrastructure is among the most robust in Northern California.",
+      "effective_date": "1998-01-01",
+      "status": "active",
+      "notes": "Equinix's flagship SV campus in Redwood City is one of the world's largest internet exchange hubs.",
+      "sources": [
+        {
+          "label": "Equinix \u2014 Silicon Valley SV Data Centers",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers"
+        },
+        {
+          "label": "San Mateo County \u2014 Office of Economic Development",
+          "url": "https://www.smcgov.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
+    },
+    "08041": {
+      "name": "El Paso County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Defense & Enterprise Data Center Cluster \u2014 Colorado Springs",
+      "description": "El Paso County (Colorado Springs) hosts a distinctive cluster of defense, government, and enterprise data centers driven by the military presence of Peterson Space Force Base, Schriever Space Force Base, NORAD/NORTHCOM at Cheyenne Mountain, and Fort Carson. Unclassified government contractors including Lockheed Martin, Boeing, and Raytheon maintain facilities for DoD workloads. Commercial operators including Peak 10 Data Centers (now Flexential) and Zetanet serve enterprise clients. Colorado Springs Utilities provides power from a mix of natural gas and renewable sources under competitive large-customer industrial tariffs.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Strong defense IT driver differentiates Colorado Springs from Denver data center market.",
+      "sources": [
+        {
+          "label": "Flexential \u2014 Colorado Springs Data Center",
+          "url": "https://www.flexential.com/data-centers/colorado/colorado-springs"
+        },
+        {
+          "label": "Colorado Springs Utilities \u2014 Industrial Rates",
+          "url": "https://www.csu.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
+    },
+    "12095": {
+      "name": "Orange County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Central Florida Data Center Hub \u2014 Orlando Metro",
+      "description": "Orange County (Orlando) is Central Florida's primary data center market. Expedient Data Centers, T5 Data Centers, and Flexential operate facilities serving the region's hospitality, healthcare, and financial services sectors. The Orlando market benefits from Florida's data center sales tax exemption (\u00a7212.08(7)(fff) F.S., enacted 2021), Duke Energy Florida's competitive industrial rates, and diverse fiber access through the I-4 tech corridor. Disney, Universal, and the region's hospitality IT infrastructure generate consistent enterprise demand for disaster recovery and colocation services.",
+      "effective_date": "2016-01-01",
+      "status": "active",
+      "notes": "Orlando is the primary Tier 2 data center market in Central Florida.",
+      "sources": [
+        {
+          "label": "Expedient Data Centers \u2014 Orlando",
+          "url": "https://www.expedient.com/data-centers/orlando/"
+        },
+        {
+          "label": "Florida Dept. of Revenue \u2014 \u00a7212.08 Data Center Exemption",
+          "url": "https://floridarevenue.com/taxes/taxesfees/Pages/sales_tax.aspx"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
+    },
+    "21067": {
+      "name": "Fayette County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lexington Data Center Hub \u2014 IBM / Healthcare IT",
+      "description": "Fayette County (Lexington) hosts IBM's Lexington Data Center campus and several healthcare IT infrastructure facilities driven by UK HealthCare and the dense concentration of hospital systems in Central Kentucky. Lexington is served by Kentucky Utilities (LG&E and KU Energy) with competitive large-power industrial rates. Kentucky's data center incentive \u2014 KRS \u00a7154.34-030, the Kentucky Data Center Investment Program \u2014 provides a 4% income tax credit on qualified data center equipment purchases. Lexington Electric authority zones also include economic development rate structures for large loads exceeding 5 MW.",
+      "effective_date": "2018-01-01",
+      "status": "active",
+      "notes": "Fayette County is a merged city-county government (Lexington-Fayette Urban County Government).",
+      "sources": [
+        {
+          "label": "IBM \u2014 Lexington, Kentucky Operations",
+          "url": "https://www.ibm.com/"
+        },
+        {
+          "label": "Kentucky Cabinet for Economic Development \u2014 Data Center Program",
+          "url": "https://ced.ky.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "24003": {
+      "name": "Anne Arundel County",
+      "state": "Maryland",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Defense & Intelligence IT Cluster \u2014 Fort Meade / Annapolis Junction",
+      "description": "Anne Arundel County anchors the Maryland defense IT ecosystem. Fort Meade, home to NSA headquarters and US Cyber Command, is located in Annapolis Junction within the county. The classified and unclassified data center density around Fort Meade is among the highest in the US, with numerous government contractors operating facilities under DoD/NSA contracts. Commercial colocation operators including Armor (Rackspace) and Flexential serve the overflow enterprise market. BGE (Baltimore Gas and Electric) provides grid service from the PJM interconnection.",
+      "effective_date": "2005-01-01",
+      "status": "active",
+      "notes": "NSA/USCC data centers are classified; commercial ecosystem at Annapolis Junction is unclassified.",
+      "sources": [
+        {
+          "label": "NSA \u2014 Fort Meade Facility",
+          "url": "https://www.nsa.gov/"
+        },
+        {
+          "label": "Anne Arundel Economic Development Corp.",
+          "url": "https://www.aaedc.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "26099": {
+      "name": "Macomb County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Northeast Detroit Suburb Data Center \u2014 AT&T / Automotive IT",
+      "description": "Macomb County, northeast of Detroit, hosts AT&T's major network data center campus in Sterling Heights, serving as a critical node in AT&T's Midwest MPLS and wireline backbone. Automotive and defense IT workloads from Stellantis, General Dynamics, and L3Harris technologies drive enterprise demand for colocation services in the county. Michigan's data center attraction incentive and DTE Energy's large-power industrial tariffs support the regional market. The county benefits from connectivity along the I-696 and I-94 fiber corridors.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Automotive IT and defense contractor demand drives Macomb County DC market.",
+      "sources": [
+        {
+          "label": "AT&T \u2014 Michigan Network Infrastructure",
+          "url": "https://about.att.com/innovation/labs"
+        },
+        {
+          "label": "Macomb County \u2014 Economic Development",
+          "url": "https://www.macombgov.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
+    },
+    "33011": {
+      "name": "Hillsborough County",
+      "state": "New Hampshire",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Manchester / Nashua Data Center Corridor",
+      "description": "Hillsborough County anchors New Hampshire's data center market in the Manchester\u2013Nashua metropolitan area. Flexential and Granite Telecommunications operate significant facilities in Manchester. New Hampshire's unique tax profile \u2014 no income tax, no sales tax, and no capital gains tax \u2014 makes it an extremely attractive location for data center equipment procurement and operations. Eversource Energy provides power from the New England ISO grid with competitive large-customer rates. The Manchester-Boston Regional Airport and proximity to Boston (50 miles) via I-93 add operational advantages.",
+      "effective_date": "2012-01-01",
+      "status": "active",
+      "notes": "NH has no general sales tax; all data center equipment purchases are tax-exempt by default.",
+      "sources": [
+        {
+          "label": "Flexential \u2014 Manchester NH Data Center",
+          "url": "https://www.flexential.com/data-centers/new-hampshire/manchester"
+        },
+        {
+          "label": "NH Division of Economic Development",
+          "url": "https://www.nheconomy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
+    },
+    "36055": {
+      "name": "Monroe County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Upstate New York Data Center Hub \u2014 Rochester / Paychex",
+      "description": "Monroe County (Rochester) hosts a concentration of enterprise data centers anchored by Paychex's corporate data processing infrastructure, Expedient Data Centers, and legacy Kodak/Xerox technology campus IT facilities. Rochester Gas and Electric (RG&E, an Avangrid subsidiary) provides industrial power at competitive upstate New York rates substantially below Con Edison rates. The county benefits from NYSEG/RG&E grid access and abundant fiber from the I-490 and Finger Lakes fiber network. New York State Empire State Digital Infrastructure Program provides capital assistance for qualifying data center investments.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Paychex's Rochester HQ drives major data processing workloads in Monroe County.",
+      "sources": [
+        {
+          "label": "Expedient Data Centers \u2014 Rochester",
+          "url": "https://www.expedient.com/data-centers/"
+        },
+        {
+          "label": "RGREDC \u2014 Rochester Economic Development",
+          "url": "https://www.rochesterbizjournal.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
+    },
+    "39035": {
+      "name": "Cuyahoga County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cleveland Data Center Market \u2014 Expedient / Healthcare IT",
+      "description": "Cuyahoga County (Cleveland) hosts Ohio's second-largest data center market after the Columbus area. Expedient Data Centers operates its flagship Cleveland campus in Middleburg Heights; MCM Capital and DataBank also have footprints in the county. Cleveland's dense healthcare IT ecosystem \u2014 anchored by Cleveland Clinic and University Hospitals \u2014 drives enterprise demand for HIPAA-compliant colocation services. FirstEnergy's CEI division provides power from the PJM interconnection. Ohio's Data Center Investment Tax Credit (ORC \u00a75709.65) applies to qualifying investments.",
+      "effective_date": "2014-01-01",
+      "status": "active",
+      "notes": "Healthcare IT (Cleveland Clinic, UH) is the primary demand driver for Cuyahoga County DCs.",
+      "sources": [
+        {
+          "label": "Expedient \u2014 Cleveland Data Center",
+          "url": "https://www.expedient.com/data-centers/cleveland/"
+        },
+        {
+          "label": "JobsOhio \u2014 Data Center Investment Program",
+          "url": "https://www.jobsohio.com/why-ohio/target-industries/data-centers"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
+    },
+    "48157": {
+      "name": "Fort Bend County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Houston Metro Data Center Expansion \u2014 Sugar Land / Stafford",
+      "description": "Fort Bend County, southwest of Houston, has emerged as a key overflow market for the Harris County data center ecosystem. CyrusOne operates a data center campus in Sugar Land; Flexential and several enterprise operators serve energy sector IT workloads. CenterPoint Energy's ERCOT-connected grid provides power with large-commercial rates. Fort Bend County's competitive tax abatement programs under Chapter 312 of the Texas Tax Code allow multi-year property tax reductions for qualifying capital investments exceeding $10 million. The county's rapidly growing population and energy industry concentration support long-term demand.",
+      "effective_date": "2018-01-01",
+      "status": "active",
+      "notes": "Texas Chapter 312 abatements are the primary local incentive; no state income tax.",
+      "sources": [
+        {
+          "label": "CyrusOne \u2014 Sugar Land, Texas",
+          "url": "https://cyrusone.com/data-centers/north-america/texas/"
+        },
+        {
+          "label": "Fort Bend County \u2014 Economic Development",
+          "url": "https://www.fortbendcountytx.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "48339": {
+      "name": "Montgomery County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "The Woodlands Data Center Cluster \u2014 North Houston Corridor",
+      "description": "Montgomery County (The Woodlands) is a rapidly growing data center market north of Houston along the I-45 corridor. Oracle maintains a regional infrastructure hub in The Woodlands; several enterprise operators serve the energy sector concentration of ExxonMobil, Chevron, Hewitt Packard Enterprise, and major oil field services firms headquartered in the area. CenterPoint Energy's transmission system and Texas ERCOT grid access provide power supply. Montgomery County Chapter 312 tax abatements support new capital investment in qualifying data center facilities.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "Energy sector IT concentration differentiates Montgomery County from other Houston-area DCs.",
+      "sources": [
+        {
+          "label": "Oracle \u2014 The Woodlands Regional Hub",
+          "url": "https://www.oracle.com/cloud/infrastructure/"
+        },
+        {
+          "label": "Montgomery County Economic Development",
+          "url": "https://www.mctx.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
+    },
+    "50007": {
+      "name": "Chittenden County",
+      "state": "Vermont",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Vermont Data Center Hub \u2014 Burlington / Green Mountain Power",
+      "description": "Chittenden County (Burlington) hosts Vermont's primary data center market. Vermont Information Technology Leaders (VITL) maintains health information exchange infrastructure; Turnkey Internet and several colocation operators serve the region. Green Mountain Power's near-100% renewable electricity portfolio (hydro, wind, nuclear from Vermont Yankee-era PPAs) makes Chittenden County extremely attractive to operators with renewable energy commitments. Vermont's small population limits scale but the county's Burlington International Airport connectivity and proximity to Montreal attract cross-border disaster recovery workloads. Vermont has no specific data center tax incentive but its clean energy grid is a competitive differentiator.",
+      "effective_date": "2018-01-01",
+      "status": "active",
+      "notes": "Vermont adds a new state to coverage; Burlington is the state's only sizable metro.",
+      "sources": [
+        {
+          "label": "Green Mountain Power \u2014 Large Customer Service",
+          "url": "https://greenmountainpower.com/"
+        },
+        {
+          "label": "Vermont Agency of Commerce \u2014 Business Resources",
+          "url": "https://accd.vermont.gov/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "54039": {
+      "name": "Kanawha County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "West Virginia Data Center Opportunity \u2014 Charleston / AEP Grid",
+      "description": "Kanawha County (Charleston), West Virginia's largest county, is emerging as a data center destination driven by the state's 2023 EDGE Act (HB 2002) which provides a 25% investment tax credit for qualified data center equipment and construction costs, capped at $200 million per project. Appalachian Power (AEP subsidiary) provides reliable baseload power from coal and natural gas units with competitive industrial rates well below PJM average. Charleston's central Appalachian location and state government IT infrastructure create an anchor demand base. West Virginia's low land costs and available industrial sites along the Kanawha River valley are attracting initial data center proposals.",
+      "effective_date": "2023-06-01",
+      "status": "active",
+      "notes": "WV EDGE Act (HB 2002, 2023) created the first dedicated DC incentive in the state.",
+      "sources": [
+        {
+          "label": "WV EDGE Act (HB 2002, 2023) \u2014 Data Center Incentive",
+          "url": "https://www.wvlegislature.gov/"
+        },
+        {
+          "label": "Appalachian Power (AEP) \u2014 West Virginia Industrial Rates",
+          "url": "https://www.appalachianpower.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -5308,7 +5721,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-15T02:18:39.677682+00:00",
+    "last_computed": "2026-07-15T02:23:08.553770+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

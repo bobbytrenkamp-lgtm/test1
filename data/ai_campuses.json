@@ -557,6 +557,66 @@
       "notes": "Microsoft expanding Puget Sound AI training campus in Snohomish County.",
       "lon": -122.1771,
       "lat": 48.0518
+    },
+    {
+      "id": "ai-ca-004",
+      "name": "Equinix SV1 \u2014 Redwood City Silicon Valley Campus",
+      "operator": "Equinix",
+      "status": "operational",
+      "county_fips": "06081",
+      "notes": "Equinix's flagship Silicon Valley data center, former PAIX internet exchange hub.",
+      "lon": -122.2363,
+      "lat": 37.4852
+    },
+    {
+      "id": "ai-co-002",
+      "name": "Flexential Colorado Springs Defense Data Center",
+      "operator": "Flexential",
+      "status": "operational",
+      "county_fips": "08041",
+      "notes": "Enterprise and government colocation near Peterson/Schriever Space Force Bases.",
+      "lon": -104.8214,
+      "lat": 38.8339
+    },
+    {
+      "id": "ai-fl-002",
+      "name": "Expedient Orlando Data Center",
+      "operator": "Expedient Data Centers",
+      "status": "operational",
+      "county_fips": "12095",
+      "notes": "Central Florida enterprise colocation facility serving hospitality and healthcare IT.",
+      "lon": -81.3792,
+      "lat": 28.5383
+    },
+    {
+      "id": "ai-md-001",
+      "name": "Annapolis Junction Defense IT Campus",
+      "operator": "Multiple Government Contractors",
+      "status": "operational",
+      "county_fips": "24003",
+      "notes": "Unclassified contractor data center cluster adjacent to NSA/Fort Meade in Annapolis Junction MD.",
+      "lon": -76.8077,
+      "lat": 39.1177
+    },
+    {
+      "id": "ai-oh-003",
+      "name": "Expedient Cleveland Data Center",
+      "operator": "Expedient Data Centers",
+      "status": "operational",
+      "county_fips": "39035",
+      "notes": "Cuyahoga County healthcare IT colocation hub serving Cleveland Clinic and University Hospitals.",
+      "lon": -81.8074,
+      "lat": 41.3934
+    },
+    {
+      "id": "ai-tx-006",
+      "name": "CyrusOne Sugar Land Data Center",
+      "operator": "CyrusOne",
+      "status": "operational",
+      "county_fips": "48157",
+      "notes": "Houston-area overflow data center campus in Fort Bend County serving energy sector clients.",
+      "lon": -95.6352,
+      "lat": 29.6197
     }
   ]
 }
