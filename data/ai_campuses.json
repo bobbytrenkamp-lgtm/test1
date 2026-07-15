@@ -967,6 +967,56 @@
       "notes": "Notre Dame CRC operates the Duda supercomputing cluster and AI/ML platforms supporting computational science, engineering, and social science research.",
       "lon": -86.252,
       "lat": 41.7002
+    },
+    {
+      "id": "ai-ny-002",
+      "name": "New York State ITS Enterprise Data Center \u2014 Albany",
+      "operator": "NYS Office of Information Technology Services",
+      "status": "operational",
+      "county_fips": "36001",
+      "notes": "State-operated enterprise data center providing IT infrastructure for New York State agencies; one of the largest public-sector data centers in the Northeast.",
+      "lon": -73.7562,
+      "lat": 42.6526
+    },
+    {
+      "id": "ai-ny-003",
+      "name": "GlobalFoundries Fab 8 Computing Infrastructure \u2014 Malta",
+      "operator": "GlobalFoundries",
+      "status": "operational",
+      "county_fips": "36091",
+      "notes": "On-premises HPC and EDA compute supporting chip design simulation, manufacturing AI, and yield analytics for one of North America's largest semiconductor fabs.",
+      "lon": -73.8199,
+      "lat": 43.01
+    },
+    {
+      "id": "ai-oh-004",
+      "name": "Air Force Research Laboratory Computing Center \u2014 Wright-Patterson",
+      "operator": "US Air Force Research Laboratory (AFRL)",
+      "status": "operational",
+      "county_fips": "39113",
+      "notes": "AFRL operates DoD HPC resources at Wright-Patterson supporting materials science, aerospace modeling, autonomy AI, and cyber research across the Information, Space, and Sensors directorates.",
+      "lon": -84.0483,
+      "lat": 39.8261
+    },
+    {
+      "id": "ai-la-002",
+      "name": "Louisiana Cyber Innovation Center (LCIC) \u2014 Bossier City",
+      "operator": "State of Louisiana / LCIC",
+      "status": "operational",
+      "county_fips": "22015",
+      "notes": "Public-private cybersecurity R&D hub co-located with defense technology partners near Barksdale AFB; anchors Louisiana's cyber technology corridor.",
+      "lon": -93.7321,
+      "lat": 32.516
+    },
+    {
+      "id": "ai-fl-004",
+      "name": "L3Harris Technologies Mission Operations Data Center",
+      "operator": "L3Harris Technologies",
+      "status": "operational",
+      "county_fips": "12009",
+      "notes": "L3Harris global HQ supports defense electronics, satellite communications, and intelligence systems compute at the Melbourne, FL campus \u2014 among the largest defense-tech data footprints in Florida.",
+      "lon": -80.6081,
+      "lat": 28.0836
     }
   ]
 }
