@@ -1,0 +1,196 @@
+name: Update Regulations & Incentives
+
+on:
+  schedule:
+    # Monthly on the 1st at 08:00 UTC — regulatory data changes slowly
+    - cron: "0 8 1 * *"
+  workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: "Force full rebuild of map_data.json"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+jobs:
+  update-regulations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r data/requirements.txt
+
+      - name: Validate restrictions_raw.json schema
+        run: |
+          python3 - <<'EOF'
+          import json, sys
+
+          with open("data/restrictions_raw.json") as f:
+              data = json.load(f)
+
+          restrictions = data.get("restrictions", [])
+          errors = []
+          seen_fips = set()
+
+          for i, r in enumerate(restrictions):
+              fips = r.get("fips", "")
+              if not fips:
+                  errors.append(f"[{i}] Missing fips")
+              elif fips in seen_fips:
+                  errors.append(f"[{i}] Duplicate fips: {fips}")
+              else:
+                  seen_fips.add(fips)
+
+              lvl = r.get("level")
+              if lvl not in (-1, 0, 1, 2, 3, 4):
+                  errors.append(f"[{i}] Invalid level: {lvl} (fips={fips})")
+
+              if not r.get("name"):
+                  errors.append(f"[{i}] Missing name (fips={fips})")
+              if not r.get("state"):
+                  errors.append(f"[{i}] Missing state (fips={fips})")
+              if not r.get("title"):
+                  errors.append(f"[{i}] Missing title (fips={fips})")
+              if not r.get("sources"):
+                  errors.append(f"[{i}] No sources (fips={fips})")
+
+          if errors:
+              print(f"VALIDATION ERRORS ({len(errors)}):")
+              for e in errors:
+                  print(f"  {e}")
+              sys.exit(1)
+          else:
+              print(f"OK: {len(restrictions)} restriction records, all valid")
+          EOF
+
+      - name: Validate ai_campuses.json schema
+        run: |
+          python3 - <<'EOF'
+          import json, sys
+
+          with open("data/ai_campuses.json") as f:
+              data = json.load(f)
+
+          campuses = data.get("ai_campuses", [])
+          errors = []
+          seen_ids = set()
+
+          for i, c in enumerate(campuses):
+              cid = c.get("id", "")
+              if not cid:
+                  errors.append(f"[{i}] Missing id")
+              elif cid in seen_ids:
+                  errors.append(f"[{i}] Duplicate id: {cid}")
+              else:
+                  seen_ids.add(cid)
+
+              if not c.get("name"):
+                  errors.append(f"[{i}] Missing name (id={cid})")
+              if not c.get("operator"):
+                  errors.append(f"[{i}] Missing operator (id={cid})")
+              if c.get("lat") is None or c.get("lon") is None:
+                  errors.append(f"[{i}] Missing coordinates (id={cid})")
+              valid_statuses = {"operational", "under_construction", "planned", "decommissioned"}
+              if c.get("status") not in valid_statuses:
+                  errors.append(f"[{i}] Invalid status: {c.get('status')} (id={cid})")
+
+          if errors:
+              print(f"VALIDATION ERRORS ({len(errors)}):")
+              for e in errors:
+                  print(f"  {e}")
+              sys.exit(1)
+          else:
+              print(f"OK: {len(campuses)} AI campus records, all valid")
+          EOF
+
+      - name: Validate tax_incentives.json schema
+        run: |
+          python3 - <<'EOF'
+          import json, sys
+
+          with open("data/tax_incentives.json") as f:
+              data = json.load(f)
+
+          incentives = data.get("tax_incentives", [])
+          errors = []
+
+          for i, inc in enumerate(incentives):
+              if not inc.get("state"):
+                  errors.append(f"[{i}] Missing state")
+              if not inc.get("program_name"):
+                  errors.append(f"[{i}] Missing program_name")
+              if not inc.get("authority"):
+                  errors.append(f"[{i}] Missing authority (state={inc.get('state')})")
+
+          if errors:
+              print(f"VALIDATION ERRORS ({len(errors)}):")
+              for e in errors:
+                  print(f"  {e}")
+              sys.exit(1)
+          else:
+              print(f"OK: {len(incentives)} tax incentive records, all valid")
+          EOF
+
+      - name: Rebuild map_data.json
+        run: python data/process_data.py
+
+      - name: Print coverage report
+        run: |
+          python3 - <<'EOF'
+          import json
+          from collections import Counter
+
+          with open("data/restrictions_raw.json") as f:
+              rest = json.load(f)["restrictions"]
+          with open("data/ai_campuses.json") as f:
+              camps = json.load(f)["ai_campuses"]
+          with open("data/tax_incentives.json") as f:
+              incentives = json.load(f)["tax_incentives"]
+          with open("data/state_regulations.json") as f:
+              reg = json.load(f)
+
+          state_counts = Counter(r["state"] for r in rest)
+          level_counts = Counter(r["level"] for r in rest)
+
+          print("=== REGULATION COVERAGE REPORT ===")
+          print(f"\nRestrictions: {len(rest)} records across {len(state_counts)} states")
+          for lvl in sorted(level_counts):
+              print(f"  Level {lvl}: {level_counts[lvl]}")
+          print(f"\nAI Campuses: {len(camps)}")
+          by_status = Counter(c.get("status") for c in camps)
+          for s, c in by_status.items():
+              print(f"  {s}: {c}")
+          print(f"\nTax Incentives: {len(incentives)} programs across {len(set(i['state'] for i in incentives))} states")
+          print(f"State Regulations: {len(reg.get('states', {}))} states tracked")
+          EOF
+
+      - name: Commit updated regulation data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/restrictions_raw.json \
+            data/ai_campuses.json \
+            data/tax_incentives.json \
+            data/state_regulations.json \
+            data/map_data.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git commit -m "chore: monthly regulation & incentive data refresh [${TIMESTAMP}] [skip ci]"
+            git push origin main
+          fi

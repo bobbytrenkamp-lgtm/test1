@@ -5,198 +5,570 @@
     "State legislature websites",
     "Data Center Knowledge industry reports"
   ],
-  "_last_updated": "2025-07",
+  "_last_updated": "2026-07-14",
   "states": {
     "04": {
-      "name": "Arizona", "abbr": "AZ", "level": -1, "status": "active",
+      "name": "Arizona",
+      "abbr": "AZ",
+      "level": -1,
+      "status": "active",
       "summary": "Transaction privilege tax exemption for qualifying data centers. Major hyperscale destination.",
-      "types": ["data_center"],
-      "sources": [{ "label": "Arizona Department of Revenue — Data Center Exemptions", "url": "https://azdor.gov/" }]
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Arizona Department of Revenue — Data Center Exemptions",
+          "url": "https://azdor.gov/"
+        }
+      ]
     },
     "06": {
-      "name": "California", "abbr": "CA", "level": 1, "status": "active",
+      "name": "California",
+      "abbr": "CA",
+      "level": 1,
+      "status": "active",
       "summary": "Multiple AI transparency laws enacted: AB 2013 (AI training disclosure), AB 2885 (AI definitions), AB 1008 (privacy). SB 1047 (high-risk AI) vetoed by Gov. Newsom in Sep 2024. CCPA/CPRA data privacy rules apply broadly to AI systems.",
-      "types": ["ai"],
+      "types": [
+        "ai"
+      ],
       "sources": [
-        { "label": "California Legislative Information — SB 1047 veto", "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1047" },
-        { "label": "AB 2013 — AI Training Data Transparency Act", "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB2013" }
+        {
+          "label": "California Legislative Information — SB 1047 veto",
+          "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1047"
+        },
+        {
+          "label": "AB 2013 — AI Training Data Transparency Act",
+          "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB2013"
+        }
       ]
     },
     "08": {
-      "name": "Colorado", "abbr": "CO", "level": 2, "status": "active",
+      "name": "Colorado",
+      "abbr": "CO",
+      "level": 2,
+      "status": "active",
       "summary": "SB 205 (2024) — Colorado Artificial Intelligence Act: nation's first comprehensive state AI regulation. Requires risk assessments and impact notices for developers and deployers of high-risk AI systems. Signed by Gov. Polis May 2024.",
-      "types": ["ai"],
+      "types": [
+        "ai"
+      ],
       "sources": [
-        { "label": "Colorado SB 205 — Artificial Intelligence Act (2024)", "url": "https://leg.colorado.gov/bills/sb24-205" }
+        {
+          "label": "Colorado SB 205 — Artificial Intelligence Act (2024)",
+          "url": "https://leg.colorado.gov/bills/sb24-205"
+        }
       ]
     },
     "09": {
-      "name": "Connecticut", "abbr": "CT", "level": 1, "status": "proposed",
+      "name": "Connecticut",
+      "abbr": "CT",
+      "level": 1,
+      "status": "proposed",
       "summary": "Multiple AI regulation bills proposed 2024–2025 session. Connecticut Data Privacy Act (CTDPA) applies to AI-driven automated decision-making.",
-      "types": ["ai"],
-      "sources": [{ "label": "Connecticut General Assembly", "url": "https://www.cga.ct.gov/" }]
+      "types": [
+        "ai"
+      ],
+      "sources": [
+        {
+          "label": "Connecticut General Assembly",
+          "url": "https://www.cga.ct.gov/"
+        }
+      ]
     },
     "13": {
-      "name": "Georgia", "abbr": "GA", "level": -1, "status": "active",
+      "name": "Georgia",
+      "abbr": "GA",
+      "level": -1,
+      "status": "active",
       "summary": "Sales and use tax exemption on data center equipment and energy. Major growth market for Google, Microsoft, and NCR.",
-      "types": ["data_center"],
-      "sources": [{ "label": "Georgia Department of Revenue — Technology Tax Exemptions", "url": "https://dor.georgia.gov/" }]
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Georgia Department of Revenue — Technology Tax Exemptions",
+          "url": "https://dor.georgia.gov/"
+        }
+      ]
     },
     "17": {
-      "name": "Illinois", "abbr": "IL", "level": 1, "status": "active",
+      "name": "Illinois",
+      "abbr": "IL",
+      "level": 1,
+      "status": "active",
       "summary": "Artificial Intelligence Video Interview Act (2020): requires disclosure and consent before AI-analyzed video interviews. BIPA biometric data law covers AI facial recognition. Additional AI employment rules.",
-      "types": ["ai"],
+      "types": [
+        "ai"
+      ],
       "sources": [
-        { "label": "IL AIVIA — 820 ILCS 42", "url": "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=4015&ChapterID=68" },
-        { "label": "IL Biometric Information Privacy Act (BIPA)", "url": "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004" }
+        {
+          "label": "IL AIVIA — 820 ILCS 42",
+          "url": "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=4015&ChapterID=68"
+        },
+        {
+          "label": "IL Biometric Information Privacy Act (BIPA)",
+          "url": "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004"
+        }
       ]
     },
     "18": {
-      "name": "Indiana", "abbr": "IN", "level": -1, "status": "active",
+      "name": "Indiana",
+      "abbr": "IN",
+      "level": -1,
+      "status": "active",
       "summary": "Data center tax exemptions on equipment and electricity for qualified facilities. Major hyperscale hub (Meta, Microsoft, Amazon).",
-      "types": ["data_center"],
-      "sources": [{ "label": "Indiana Economic Development Corporation", "url": "https://iedc.in.gov/" }]
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Indiana Economic Development Corporation",
+          "url": "https://iedc.in.gov/"
+        }
+      ]
     },
     "19": {
-      "name": "Iowa", "abbr": "IA", "level": -1, "status": "active",
+      "name": "Iowa",
+      "abbr": "IA",
+      "level": -1,
+      "status": "active",
       "summary": "0% sales and use tax on data center equipment and electricity for qualifying facilities (Iowa Code §423.3). Considered the most aggressive state data center incentive package in the US. Google, Microsoft, Facebook all have large campuses.",
-      "types": ["data_center"],
+      "types": [
+        "data_center"
+      ],
       "sources": [
-        { "label": "Iowa Code § 423.3 — Data Center Exemptions", "url": "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=423&session=90" }
+        {
+          "label": "Iowa Code § 423.3 — Data Center Exemptions",
+          "url": "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=423&session=90"
+        }
       ]
     },
     "25": {
-      "name": "Massachusetts", "abbr": "MA", "level": 1, "status": "proposed",
+      "name": "Massachusetts",
+      "abbr": "MA",
+      "level": 1,
+      "status": "proposed",
       "summary": "Multiple AI oversight bills proposed in 2024–2025 sessions. No comprehensive AI law enacted as of 2025. Consumer protection laws applied to AI systems by AG.",
-      "types": ["ai"],
-      "sources": [{ "label": "Massachusetts General Court", "url": "https://malegislature.gov/" }]
+      "types": [
+        "ai"
+      ],
+      "sources": [
+        {
+          "label": "Massachusetts General Court",
+          "url": "https://malegislature.gov/"
+        }
+      ]
     },
     "31": {
-      "name": "Nebraska", "abbr": "NE", "level": -1, "status": "active",
+      "name": "Nebraska",
+      "abbr": "NE",
+      "level": -1,
+      "status": "active",
       "summary": "LB 1043 data center investment incentive program. Tax credits for qualifying large-scale data center projects. Low energy costs.",
-      "types": ["data_center"],
-      "sources": [{ "label": "Nebraska Legislature — LB 1043", "url": "https://nebraskalegislature.gov/" }]
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Nebraska Legislature — LB 1043",
+          "url": "https://nebraskalegislature.gov/"
+        }
+      ]
     },
     "32": {
-      "name": "Nevada", "abbr": "NV", "level": -1, "status": "active",
+      "name": "Nevada",
+      "abbr": "NV",
+      "level": -1,
+      "status": "active",
       "summary": "Personal property tax abatements and sales tax exemptions for qualifying data centers. Switch Tahoe Reno Industrial Center and other major operators benefit from state incentives.",
-      "types": ["data_center"],
-      "sources": [{ "label": "Nevada Governor's Office of Economic Development", "url": "https://goed.nv.gov/" }]
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Nevada Governor's Office of Economic Development",
+          "url": "https://goed.nv.gov/"
+        }
+      ]
     },
     "36": {
-      "name": "New York", "abbr": "NY", "level": 1, "status": "active",
+      "name": "New York",
+      "abbr": "NY",
+      "level": 1,
+      "status": "active",
       "summary": "NYC Local Law 144 (2023): mandatory bias audits for automated employment decision tools. Additional state-level AI governance legislation proposed. SHIELD Act data privacy rules applicable to AI.",
-      "types": ["ai"],
+      "types": [
+        "ai"
+      ],
       "sources": [
-        { "label": "NYC Local Law 144 — Automated Employment Decision Tools", "url": "https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page" }
+        {
+          "label": "NYC Local Law 144 — Automated Employment Decision Tools",
+          "url": "https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page"
+        }
       ]
     },
     "37": {
-      "name": "North Carolina", "abbr": "NC", "level": -1, "status": "active",
+      "name": "North Carolina",
+      "abbr": "NC",
+      "level": -1,
+      "status": "active",
       "summary": "Data center investment incentives. Sales and property tax exemptions for qualifying facilities. Apple (Maiden), Google (Lenoir), and other hyperscalers operate major campuses.",
-      "types": ["data_center"],
-      "sources": [{ "label": "NC Department of Commerce — Incentives", "url": "https://www.nccommerce.com/business-services/incentive-programs" }]
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "NC Department of Commerce — Incentives",
+          "url": "https://www.nccommerce.com/business-services/incentive-programs"
+        }
+      ]
     },
     "39": {
-      "name": "Ohio", "abbr": "OH", "level": -1, "status": "active",
+      "name": "Ohio",
+      "abbr": "OH",
+      "level": -1,
+      "status": "active",
       "summary": "Data center sales and use tax exemptions on equipment and energy (Ohio R.C. 5739.02). Major AWS, Meta, and Microsoft facilities in the Columbus metro area.",
-      "types": ["data_center"],
-      "sources": [{ "label": "Ohio Development — Data Center Incentives", "url": "https://development.ohio.gov/" }]
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Ohio Development — Data Center Incentives",
+          "url": "https://development.ohio.gov/"
+        }
+      ]
     },
     "41": {
-      "name": "Oregon", "abbr": "OR", "level": -1, "status": "active",
+      "name": "Oregon",
+      "abbr": "OR",
+      "level": -1,
+      "status": "active",
       "summary": "Property tax exemptions for qualifying data centers in the Columbia River corridor. Google (The Dalles), Amazon, Apple have major campuses. Note: Hood River County has enacted a municipal data center ban (see county data).",
-      "types": ["data_center"],
-      "sources": [{ "label": "Business Oregon — Data Center Exemptions", "url": "https://www.oregon4biz.com/" }]
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Business Oregon — Data Center Exemptions",
+          "url": "https://www.oregon4biz.com/"
+        }
+      ]
     },
     "45": {
-      "name": "South Carolina", "abbr": "SC", "level": -1, "status": "active",
+      "name": "South Carolina",
+      "abbr": "SC",
+      "level": -1,
+      "status": "active",
       "summary": "Data center sales tax exemption on equipment and electricity for qualifying investments. Amazon/AWS has major facilities in Berkeley County. State actively courts hyperscale investment.",
-      "types": ["data_center"],
-      "sources": [{ "label": "SCDOR — Manufacturing & Data Center Exemptions", "url": "https://dor.sc.gov/" }]
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "SCDOR — Manufacturing & Data Center Exemptions",
+          "url": "https://dor.sc.gov/"
+        }
+      ]
     },
     "27": {
-      "name": "Minnesota", "abbr": "MN", "level": 1, "status": "active",
+      "name": "Minnesota",
+      "abbr": "MN",
+      "level": 1,
+      "status": "active",
       "summary": "Minnesota enacted the Minnesota Consumer Data Privacy Act (MCDPA) in 2024, creating data privacy obligations for AI systems. Minneapolis (Hennepin County) has banned government facial recognition and requires AI impact assessments. Minneapolis-area municipalities have proposed data center moratoriums. Minnesota does not have a statewide data center tax incentive as of 2025.",
-      "types": ["ai", "data_center"],
+      "types": [
+        "ai",
+        "data_center"
+      ],
       "sources": [
-        { "label": "Minnesota Consumer Data Privacy Act (MCDPA, 2024)", "url": "https://www.revisor.mn.gov/statutes/cite/325M" },
+        {
+          "label": "Minnesota Consumer Data Privacy Act (MCDPA, 2024)",
+          "url": "https://www.revisor.mn.gov/statutes/cite/325M"
+        },
         "Minneapolis City Council facial recognition ban (2021)"
       ]
     },
     "47": {
-      "name": "Tennessee", "abbr": "TN", "level": -1, "status": "active",
+      "name": "Tennessee",
+      "abbr": "TN",
+      "level": -1,
+      "status": "active",
       "summary": "Sales tax exemption on data center equipment for qualifying facilities (Tenn. Code Ann. § 67-6-206). xAI Colossus supercomputer facility (world's largest GPU cluster as of 2024) operates in Memphis (Shelby County). Multiple TN counties enacted data center moratoriums in 2024 citing TVA grid capacity concerns.",
-      "types": ["data_center"],
+      "types": [
+        "data_center"
+      ],
       "sources": [
-        { "label": "Tennessee Department of Revenue — Data Center Exemption", "url": "https://www.tn.gov/revenue.html" },
-        { "label": "xAI Colossus Memphis", "url": "https://x.ai/blog/colossus" }
+        {
+          "label": "Tennessee Department of Revenue — Data Center Exemption",
+          "url": "https://www.tn.gov/revenue.html"
+        },
+        {
+          "label": "xAI Colossus Memphis",
+          "url": "https://x.ai/blog/colossus"
+        }
       ]
     },
     "48": {
-      "name": "Texas", "abbr": "TX", "level": -1, "status": "active",
+      "name": "Texas",
+      "abbr": "TX",
+      "level": -1,
+      "status": "active",
       "summary": "No state income tax. Chapter 403 successor incentive programs for large capital projects. No state AI regulation enacted as of 2025. One of the largest US data center markets.",
-      "types": ["data_center"],
-      "sources": [{ "label": "Texas Economic Development — Incentives", "url": "https://gov.texas.gov/business/page/incentives" }]
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Texas Economic Development — Incentives",
+          "url": "https://gov.texas.gov/business/page/incentives"
+        }
+      ]
     },
     "51": {
-      "name": "Virginia", "abbr": "VA", "level": -1, "status": "active",
+      "name": "Virginia",
+      "abbr": "VA",
+      "level": -1,
+      "status": "active",
       "summary": "Largest US data center market; Northern Virginia is the world's largest data center hub (70%+ of global internet traffic). Virginia Data Center Incentive Package includes sales tax exemptions on equipment and software. Note: individual counties (e.g. Loudoun) have significant local zoning restrictions — see county data.",
-      "types": ["data_center"],
+      "types": [
+        "data_center"
+      ],
       "sources": [
-        { "label": "Virginia DHCD — Data Center Incentive Package", "url": "https://www.dhcd.virginia.gov/" },
-        { "label": "NVTC — Northern Virginia Tech Council Data Center Report", "url": "https://www.nvtc.org/" }
+        {
+          "label": "Virginia DHCD — Data Center Incentive Package",
+          "url": "https://www.dhcd.virginia.gov/"
+        },
+        {
+          "label": "NVTC — Northern Virginia Tech Council Data Center Report",
+          "url": "https://www.nvtc.org/"
+        }
       ]
     },
     "53": {
-      "name": "Washington", "abbr": "WA", "level": 1, "status": "active",
+      "name": "Washington",
+      "abbr": "WA",
+      "level": 1,
+      "status": "active",
       "summary": "Governor's Executive Order 23-03 on AI (2023). SHB 1951 (2024): requires state agencies to inventory AI systems. Multiple additional AI governance bills enacted. Growing data center market in the Columbia Basin.",
-      "types": ["ai"],
+      "types": [
+        "ai"
+      ],
       "sources": [
-        { "label": "WA Governor's Executive Order EO-23-03", "url": "https://www.governor.wa.gov/executive-actions/executive-orders" },
-        { "label": "WA SHB 1951 — AI Accountability in Government (2024)", "url": "https://app.leg.wa.gov/billsummary?BillNumber=1951&Year=2024" }
+        {
+          "label": "WA Governor's Executive Order EO-23-03",
+          "url": "https://www.governor.wa.gov/executive-actions/executive-orders"
+        },
+        {
+          "label": "WA SHB 1951 — AI Accountability in Government (2024)",
+          "url": "https://app.leg.wa.gov/billsummary?BillNumber=1951&Year=2024"
+        }
       ]
     },
     "22": {
-      "name": "Louisiana", "abbr": "LA", "level": -1, "status": "active",
+      "name": "Louisiana",
+      "abbr": "LA",
+      "level": -1,
+      "status": "active",
       "summary": "Industrial Tax Exemption Program (ITEP) provides up to 100% property tax exemptions for 10 years for qualifying industrial facilities including data centers. No state income tax on manufacturing equipment. Meta announced a major data center in Richland Parish ($800M+) in 2023.",
-      "types": ["data_center"],
+      "types": [
+        "data_center"
+      ],
       "sources": [
-        { "label": "Louisiana Economic Development — ITEP Program", "url": "https://www.opportunitylouisiana.gov/business-incentives/itep" },
-        { "label": "Meta Richland Parish Louisiana Data Center", "url": "https://about.fb.com/news/2023/09/meta-richland-parish-louisiana-data-center/" }
+        {
+          "label": "Louisiana Economic Development — ITEP Program",
+          "url": "https://www.opportunitylouisiana.gov/business-incentives/itep"
+        },
+        {
+          "label": "Meta Richland Parish Louisiana Data Center",
+          "url": "https://about.fb.com/news/2023/09/meta-richland-parish-louisiana-data-center/"
+        }
       ]
     },
     "26": {
-      "name": "Michigan", "abbr": "MI", "level": 1, "status": "active",
+      "name": "Michigan",
+      "abbr": "MI",
+      "level": 1,
+      "status": "active",
       "summary": "Michigan has proposed AI governance legislation in 2024–2025 sessions including data privacy bills. Several counties (Kalamazoo, Washtenaw) have proposed data center moratoriums as the state weighs large-scale data center incentive packages. Michigan does not have a statewide data center tax exemption as of 2025.",
-      "types": ["ai", "data_center"],
+      "types": [
+        "ai",
+        "data_center"
+      ],
       "sources": [
-        { "label": "Michigan Legislature — AI and Data Privacy Bills", "url": "https://www.legislature.mi.gov/" }
+        {
+          "label": "Michigan Legislature — AI and Data Privacy Bills",
+          "url": "https://www.legislature.mi.gov/"
+        }
       ]
     },
     "44": {
-      "name": "Rhode Island", "abbr": "RI", "level": 2, "status": "active",
+      "name": "Rhode Island",
+      "abbr": "RI",
+      "level": 2,
+      "status": "active",
       "summary": "Rhode Island has no statewide data center incentive program. The Town of Smithfield (Providence County) enacted a permanent ban on large data centers in 2023 — one of the first US municipalities to do so — citing energy grid, water, and community impacts. This ban has been cited as a model by municipalities in other states.",
-      "types": ["data_center"],
+      "types": [
+        "data_center"
+      ],
       "sources": [
-        { "label": "Smithfield RI data center ban — Data Center Bans", "url": "https://datacenterbans.com/" },
+        {
+          "label": "Smithfield RI data center ban — Data Center Bans",
+          "url": "https://datacenterbans.com/"
+        },
         "Smithfield Town Council zoning prohibition (2023)"
       ]
     },
     "55": {
-      "name": "Wisconsin", "abbr": "WI", "level": -1, "status": "active",
+      "name": "Wisconsin",
+      "abbr": "WI",
+      "level": -1,
+      "status": "active",
       "summary": "Data center property tax exemption for qualifying facilities. Microsoft announced a $3.3B, 1GW+ AI data center campus in Mount Pleasant (Racine County) in May 2024 — one of the largest tech investments in Wisconsin history. Some counties (Dane, Manitowoc) have proposed local oversight requirements.",
-      "types": ["data_center"],
+      "types": [
+        "data_center"
+      ],
       "sources": [
-        { "label": "Wisconsin Economic Development Corporation", "url": "https://wedc.org/" },
-        { "label": "Microsoft Mount Pleasant Wisconsin AI Campus", "url": "https://news.microsoft.com/2024/05/07/microsoft-expands-digital-infrastructure-in-wisconsin/" }
+        {
+          "label": "Wisconsin Economic Development Corporation",
+          "url": "https://wedc.org/"
+        },
+        {
+          "label": "Microsoft Mount Pleasant Wisconsin AI Campus",
+          "url": "https://news.microsoft.com/2024/05/07/microsoft-expands-digital-infrastructure-in-wisconsin/"
+        }
       ]
     },
     "56": {
-      "name": "Wyoming", "abbr": "WY", "level": -1, "status": "active",
+      "name": "Wyoming",
+      "abbr": "WY",
+      "level": -1,
+      "status": "active",
       "summary": "Low energy costs, no state income tax, minimal regulation. Growing destination for crypto mining and data centers. Supports high-performance computing.",
-      "types": ["data_center"],
-      "sources": [{ "label": "Wyoming Business Council", "url": "https://www.wyomingbusiness.org/" }]
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Wyoming Business Council",
+          "url": "https://www.wyomingbusiness.org/"
+        }
+      ]
+    },
+    "12": {
+      "status": "active",
+      "regulatory_posture": "pro_investment",
+      "data_center_law": "HB 7063 (2023)",
+      "ai_policy": "Florida AI in Government Act (SB 1680, 2023) — establishes AI use guidelines for state agencies",
+      "notes": "Florida actively courts data center investment. HB 7063 provides 20-year sales tax exemptions.",
+      "sources": [
+        "https://floridarevenue.com/taxes/taxesfees/Pages/data_centers.aspx",
+        "https://www.flsenate.gov/Session/Bill/2023/1680"
+      ],
+      "policies": [],
+      "last_reviewed": "2026-07-14",
+      "name": "Florida",
+      "abbr": "FL",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "summary": "HB 7063 (2023) provides 20-year sales tax exemptions for qualifying data centers. Actively pro-investment."
+    },
+    "16": {
+      "status": "active",
+      "regulatory_posture": "pro_investment",
+      "data_center_law": "Idaho Code §63-3622O",
+      "ai_policy": "No comprehensive state AI law as of 2024",
+      "notes": "Idaho Power hydroelectric makes this a prime renewable energy data center state.",
+      "sources": [
+        "https://tax.idaho.gov/taxes/sales-use/exemptions/business/data-centers/"
+      ],
+      "policies": [],
+      "last_reviewed": "2026-07-14",
+      "name": "Idaho",
+      "abbr": "ID",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "summary": "IC §63-3622O exempts data center equipment from sales tax. Major Meta campus in Ada County (Eagle)."
+    },
+    "21": {
+      "status": "active",
+      "regulatory_posture": "pro_investment",
+      "data_center_law": "KRS §139.517",
+      "ai_policy": "Kentucky AI Act (HB 4, 2023) — limited scope, state agency AI procurement guidelines",
+      "notes": "Kentucky's low power costs and central US location drive growing data center investment.",
+      "sources": [
+        "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53453"
+      ],
+      "policies": [],
+      "last_reviewed": "2026-07-14",
+      "name": "Kentucky",
+      "abbr": "KY",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "summary": "KRS §139.517 provides sales and use tax exemption for qualifying data centers. Louisville is a growing hub."
+    },
+    "29": {
+      "status": "active",
+      "regulatory_posture": "neutral",
+      "data_center_law": "Missouri Chapters 353 and 100 (property tax abatement programs)",
+      "ai_policy": "Missouri Executive Order on AI (2023) — state agency AI use guidance",
+      "notes": "Missouri lacks a specific data center sales tax exemption law but uses Chapter 353 abatements.",
+      "sources": [
+        "https://ded.mo.gov/content/business-tax-incentives"
+      ],
+      "policies": [],
+      "last_reviewed": "2026-07-14",
+      "name": "Missouri",
+      "abbr": "MO",
+      "level": 0,
+      "types": [
+        "data_center"
+      ],
+      "summary": "Chapter 353 property tax abatement available. No specific data center sales tax exemption law."
+    },
+    "35": {
+      "status": "active",
+      "regulatory_posture": "pro_investment",
+      "data_center_law": "NMSA §7-9-57",
+      "ai_policy": "NM AI in State Government Task Force (2024) — studying AI use in state agencies",
+      "notes": "New Mexico's renewable energy resources and tax incentives attract hyperscale operators.",
+      "sources": [
+        "https://www.tax.newmexico.gov/businesses/industries/data-centers/"
+      ],
+      "policies": [],
+      "last_reviewed": "2026-07-14",
+      "name": "New Mexico",
+      "abbr": "NM",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "summary": "NMSA §7-9-57 provides GRT deduction for qualifying data centers. Meta and Microsoft have invested in Albuquerque."
+    },
+    "40": {
+      "status": "active",
+      "regulatory_posture": "pro_investment",
+      "data_center_law": "68 O.S. §1359.2",
+      "ai_policy": "Oklahoma AI Act (HB 3939, 2024) — AI transparency requirements for state agencies",
+      "notes": "Oklahoma's full sales and use tax exemption has driven significant Microsoft investment.",
+      "sources": [
+        "https://oklahoma.gov/tax/business/industries/data-centers.html"
+      ],
+      "policies": [],
+      "last_reviewed": "2026-07-14",
+      "name": "Oklahoma",
+      "abbr": "OK",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "summary": "68 O.S. §1359.2 provides full sales and use tax exemption for qualifying data centers. Microsoft has announced multi-billion dollar investments in OKC."
     }
   }
 }

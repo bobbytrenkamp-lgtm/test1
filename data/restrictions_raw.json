@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "US county-level data center and AI restriction data. Manually curated and periodically updated.",
-    "last_manually_updated": "2026-07-12",
+    "last_manually_updated": "2026-07-14",
     "levels": {
       "-1": "Pro data center (active tax incentives, enterprise zones, major industry hubs)",
       "0": "No known specific restrictions",
@@ -35,11 +35,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "Arizona Dept. of Water Resources \u2014 Assured & Adequate Water Supply",
+          "label": "Arizona Dept. of Water Resources — Assured & Adequate Water Supply",
           "url": "https://www.azwater.gov/assured-water-supply"
         },
         {
-          "label": "AZ Senate Bill 1117 (2022) \u2014 Water Use Planning",
+          "label": "AZ Senate Bill 1117 (2022) — Water Use Planning",
           "url": "https://www.azleg.gov/legtext/55leg/2R/bills/SB1117P.pdf"
         },
         "ADWR Water Shortage Regulations, 2022; AZ Senate Bill 1117"
@@ -64,7 +64,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "Arizona Dept. of Water Resources \u2014 Tucson Active Management Area",
+          "label": "Arizona Dept. of Water Resources — Tucson Active Management Area",
           "url": "https://www.azwater.gov/ama/tucson"
         },
         "ADWR regulations; Tucson Water policies"
@@ -89,7 +89,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "Arizona Dept. of Water Resources \u2014 Pinal AMA Groundwater Supply",
+          "label": "Arizona Dept. of Water Resources — Pinal AMA Groundwater Supply",
           "url": "https://www.azwater.gov/ama/pinal"
         },
         "ADWR Groundwater Supply Designation, 2022"
@@ -114,11 +114,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "California AB 1364 \u2014 AI Procurement and Data Center Standards (2024)",
+          "label": "California AB 1364 — AI Procurement and Data Center Standards (2024)",
           "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB1364"
         },
         {
-          "label": "Alameda County \u2014 General Plan Environmental Policies",
+          "label": "Alameda County — General Plan Environmental Policies",
           "url": "https://www.acgov.org/planning/generalplan/"
         },
         "Oakland Ordinance 13537 (2019); CEQA"
@@ -144,11 +144,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "California SB 1047 \u2014 Safe and Secure Innovation for Frontier AI Act",
+          "label": "California SB 1047 — Safe and Secure Innovation for Frontier AI Act",
           "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1047"
         },
         {
-          "label": "Los Angeles County \u2014 Sustainable Communities Strategy",
+          "label": "Los Angeles County — Sustainable Communities Strategy",
           "url": "https://planning.lacounty.gov/generalplan"
         },
         "CEQA, LA Green New Deal (2019), LA County AI Procurement Policy"
@@ -173,11 +173,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "San Francisco Ordinance No. 235-23 \u2014 Data Center Energy Disclosure",
+          "label": "San Francisco Ordinance No. 235-23 — Data Center Energy Disclosure",
           "url": "https://sfbos.org/"
         },
         {
-          "label": "California Public Utilities Commission \u2014 Demand Response Programs",
+          "label": "California Public Utilities Commission — Demand Response Programs",
           "url": "https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/demand-side-management/demand-response"
         },
         "SF Ordinance 181184 (Surveillance Technology ban, 2019); CEQA"
@@ -202,11 +202,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "Santa Clara County \u2014 Climate Action Plan",
+          "label": "Santa Clara County — Climate Action Plan",
           "url": "https://www.sccgov.org/sites/oes/pages/climate-action-plan.aspx"
         },
         {
-          "label": "California Air Resources Board \u2014 Data Center Regulations",
+          "label": "California Air Resources Board — Data Center Regulations",
           "url": "https://ww2.arb.ca.gov/"
         },
         "CEQA, San Jose Data Center Policy, Santa Clara Valley Water District rules"
@@ -226,24 +226,24 @@
         "energy"
       ],
       "title": "Colorado AI Act + Active Data Center Moratoriums",
-      "description": "Colorado's AI Act (SB 24-205, signed May 2024) imposes disclosure obligations, impact assessments, and consumer rights for high-risk AI systems \u2014 one of the nation's most comprehensive AI laws. Denver and neighboring jurisdictions have also implemented temporary moratoriums on new large-scale data center approvals amid rapid load growth and grid capacity concerns.",
+      "description": "Colorado's AI Act (SB 24-205, signed May 2024) imposes disclosure obligations, impact assessments, and consumer rights for high-risk AI systems — one of the nation's most comprehensive AI laws. Denver and neighboring jurisdictions have also implemented temporary moratoriums on new large-scale data center approvals amid rapid load growth and grid capacity concerns.",
       "effective_date": "2024-05-17",
       "status": "active",
       "notes": "Colorado AI Act effective date: Feb 1, 2026. Data center moratoriums at the local level are distinct from state AI law.",
       "sources": [
         {
-          "label": "Denver Ordinance 22-1551 \u2014 Building Benchmarking & Energy Efficiency",
+          "label": "Denver Ordinance 22-1551 — Building Benchmarking & Energy Efficiency",
           "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Denver-Community-Planning-and-Development"
         },
         {
-          "label": "Colorado SB 21-272 \u2014 Greenhouse Gas Pollution Reduction Roadmap",
+          "label": "Colorado SB 21-272 — Greenhouse Gas Pollution Reduction Roadmap",
           "url": "https://leg.colorado.gov/bills/sb21-272"
         },
         {
-          "label": "Colorado SB 24-205 \u2014 Artificial Intelligence Act (2024)",
+          "label": "Colorado SB 24-205 — Artificial Intelligence Act (2024)",
           "url": "https://leg.colorado.gov/bills/sb24-205"
         },
-        "Denver metro data center zoning review requirements (2023\u20132024)"
+        "Denver metro data center zoning review requirements (2023–2024)"
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
@@ -265,7 +265,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "Colorado SB 24-205 \u2014 AI Act (2024)",
+          "label": "Colorado SB 24-205 — AI Act (2024)",
           "url": "https://leg.colorado.gov/bills/sb24-205"
         },
         "Jefferson County CO data center review requirements (2024)"
@@ -289,11 +289,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "Connecticut General Assembly \u2014 SB 2, AI Task Force (2023)",
+          "label": "Connecticut General Assembly — SB 2, AI Task Force (2023)",
           "url": "https://www.cga.ct.gov/asp/cgabillstatus/cgabillstatus.asp?selBillType=Bill&bill_num=SB00002&which_year=2023"
         },
         {
-          "label": "Connecticut Office of Policy and Management \u2014 AI Governance",
+          "label": "Connecticut Office of Policy and Management — AI Governance",
           "url": "https://portal.ct.gov/OPM"
         },
         "Connecticut SB 1103 (2022)"
@@ -310,7 +310,7 @@
       "types": [
         "data_center"
       ],
-      "title": "Active Moratorium \u2014 Data Center Development Ban",
+      "title": "Active Moratorium — Data Center Development Ban",
       "description": "Clayton County (south Atlanta suburbs) enacted a moratorium on new data center developments following high-profile rejection of proposed facilities. The county board cited concerns about land use, noise, limited employment relative to acreage consumed, and energy grid impacts.",
       "effective_date": "2023-06-01",
       "status": "active",
@@ -341,11 +341,11 @@
       "notes": "Moratorium extended July 7, 2026 through March 30, 2027. Data Center Text Amendment denied June 23, 2026. County working on permanent regulations.",
       "sources": [
         {
-          "label": "DeKalb County GA \u2014 Data Center Moratorium Extension Resolution 2025-1694 (official PDF)",
+          "label": "DeKalb County GA — Data Center Moratorium Extension Resolution 2025-1694 (official PDF)",
           "url": "https://www.dekalbcountyga.gov/sites/default/files/2025-12/2025-1694%20Data%20Center%20Moratorium%20Extension.pdf"
         },
         {
-          "label": "Engage DeKalb \u2014 Data Center Text Amendment",
+          "label": "Engage DeKalb — Data Center Text Amendment",
           "url": "https://engagedekalb.dekalbcountyga.gov/data-center-text-amendment"
         },
         {
@@ -389,18 +389,18 @@
       "types": [
         "data_center"
       ],
-      "title": "Georgia Data Center Tax Exemptions \u2014 Atlanta Metro Hub",
-      "description": "Fulton County (Atlanta) is a major US data center market and the core of Georgia's rapidly growing data center industry. Georgia's sales and use tax exemption on data center equipment (O.C.G.A. \u00a748-8-3(82)) and the Atlanta area's fiber connectivity, power infrastructure, and business climate have attracted major hyperscale operators including Microsoft, Google, and multiple colocation providers.",
+      "title": "Georgia Data Center Tax Exemptions — Atlanta Metro Hub",
+      "description": "Fulton County (Atlanta) is a major US data center market and the core of Georgia's rapidly growing data center industry. Georgia's sales and use tax exemption on data center equipment (O.C.G.A. §48-8-3(82)) and the Atlanta area's fiber connectivity, power infrastructure, and business climate have attracted major hyperscale operators including Microsoft, Google, and multiple colocation providers.",
       "effective_date": "2008-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Georgia Department of Revenue \u2014 Data Center Tax Exemptions",
+          "label": "Georgia Department of Revenue — Data Center Tax Exemptions",
           "url": "https://dor.georgia.gov/data-center-exemptions"
         },
         {
-          "label": "Georgia Power \u2014 Data Center Solutions",
+          "label": "Georgia Power — Data Center Solutions",
           "url": "https://www.georgiapower.com/business/industries/data-centers.html"
         }
       ],
@@ -416,14 +416,14 @@
       "types": [
         "data_center"
       ],
-      "title": "Georgia Data Center Tax Exemptions \u2014 Atlanta North Corridor Hub",
+      "title": "Georgia Data Center Tax Exemptions — Atlanta North Corridor Hub",
       "description": "Gwinnett County (Suwanee, Lawrenceville, Duluth) is one of Metro Atlanta's fastest-growing data center submarkets. QTS Realty Trust, CyrusOne, and other major operators have significant facilities in the county. Georgia's data center sales tax exemptions and excellent fiber and power infrastructure underpin Gwinnett's growth.",
       "effective_date": "2008-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Georgia Department of Revenue \u2014 Data Center Tax Exemptions",
+          "label": "Georgia Department of Revenue — Data Center Tax Exemptions",
           "url": "https://dor.georgia.gov/data-center-exemptions"
         },
         "QTS Suwanee, GA data center; CyrusOne Atlanta campus"
@@ -440,7 +440,7 @@
       "types": [
         "data_center"
       ],
-      "title": "Georgia Data Center Tax Exemptions \u2014 Google Covington Campus",
+      "title": "Georgia Data Center Tax Exemptions — Google Covington Campus",
       "description": "Newton County (Covington) hosts one of Google's major US data center campuses, opened in 2007 and continuously expanded. Georgia's sales and use tax exemptions on qualifying data center equipment and Georgia Power's competitive rates have made Newton County a significant data center location.",
       "effective_date": "2007-01-01",
       "status": "active",
@@ -451,7 +451,7 @@
           "url": "https://www.google.com/about/datacenters/locations/covington/"
         },
         {
-          "label": "Georgia Department of Revenue \u2014 Data Center Tax Exemptions",
+          "label": "Georgia Department of Revenue — Data Center Tax Exemptions",
           "url": "https://dor.georgia.gov/data-center-exemptions"
         }
       ],
@@ -467,14 +467,14 @@
       "types": [
         "data_center"
       ],
-      "title": "Active Restrictions \u2014 Data Center Development Moratorium",
+      "title": "Active Restrictions — Data Center Development Moratorium",
       "description": "Troup County (LaGrange) enacted restrictions on new large-scale data center approvals following community opposition. Concerns over land use incompatibility, limited local employment, and grid and water demands drove the board's decision to pause new data center development.",
       "effective_date": "2023-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Troup County GA Board of Commissioners \u2014 Data Center Ordinance (2023)",
+          "label": "Troup County GA Board of Commissioners — Data Center Ordinance (2023)",
           "url": "https://www.troupcountyga.gov/county-commission/"
         },
         {
@@ -522,11 +522,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "McLean County IL Board \u2014 Data Center Energy Impact Study",
+          "label": "McLean County IL Board — Data Center Energy Impact Study",
           "url": "https://www.mcleancountyil.gov/"
         },
         {
-          "label": "Illinois General Assembly \u2014 HB 3680 Data Center Tax Incentives",
+          "label": "Illinois General Assembly — HB 3680 Data Center Tax Incentives",
           "url": "https://www.ilga.gov/legislation/BillStatus.asp?DocNum=3680&GAID=17&DocTypeID=HB&SessionID=112"
         },
         "McLean County IL proposed data center energy impact requirements (2024)"
@@ -563,14 +563,14 @@
       "types": [
         "data_center"
       ],
-      "title": "Indiana Data Center Tax Exemption \u2014 Indianapolis Metro Hub",
+      "title": "Indiana Data Center Tax Exemption — Indianapolis Metro Hub",
       "description": "Marion County (Indianapolis) is a growing data center market anchored by Indiana's HEA 1450 (2014) 100% sales tax exemption on qualifying data center equipment and electricity. Indianapolis benefits from central US location, access to multiple fiber routes, and competitive power from AES Indiana. Multiple colocation and hyperscale operators have established facilities in the metro.",
       "effective_date": "2014-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Indiana Economic Development Corporation \u2014 Data Centers",
+          "label": "Indiana Economic Development Corporation — Data Centers",
           "url": "https://iedc.in.gov/business-resources/key-industries/data-centers"
         },
         "Indiana Code IC 6-2.5-5-59 data center equipment exemption (HEA 1450, 2014)"
@@ -594,11 +594,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "Dubuque County IA Board of Supervisors \u2014 Large Industrial Development Review",
+          "label": "Dubuque County IA Board of Supervisors — Large Industrial Development Review",
           "url": "https://www.dubuquecounty.gov/government/board_of_supervisors/"
         },
         {
-          "label": "Iowa Economic Development Authority \u2014 Data Center Requirements",
+          "label": "Iowa Economic Development Authority — Data Center Requirements",
           "url": "https://www.iowaeconomicdevelopment.com/"
         },
         "Dubuque County IA data center development discussions (2024)"
@@ -616,17 +616,17 @@
         "data_center"
       ],
       "title": "Linn County 18-Month Data Center Moratorium (July 2026)",
-      "description": "Linn County Board of Supervisors voted 2-1 on July 1, 2026 to impose an 18-month moratorium on new applications to rezone unincorporated county land to the EU-3 Large-Scale Data Center Zoning District, effective immediately through January 2028. The moratorium follows a February 2026 data center ordinance that required water studies and community benefit agreements, but additional analysis on cumulative impacts to water resources, electrical infrastructure, emergency response, and long-range land use planning prompted the Board to pause new applications while updating regulations. Linn County (Cedar Rapids) had been a premier Iowa data center market hosting Microsoft and Google facilities. Iowa's \u00a7423.3 sales-tax exemption on data center equipment remains in effect statewide.",
+      "description": "Linn County Board of Supervisors voted 2-1 on July 1, 2026 to impose an 18-month moratorium on new applications to rezone unincorporated county land to the EU-3 Large-Scale Data Center Zoning District, effective immediately through January 2028. The moratorium follows a February 2026 data center ordinance that required water studies and community benefit agreements, but additional analysis on cumulative impacts to water resources, electrical infrastructure, emergency response, and long-range land use planning prompted the Board to pause new applications while updating regulations. Linn County (Cedar Rapids) had been a premier Iowa data center market hosting Microsoft and Google facilities. Iowa's §423.3 sales-tax exemption on data center equipment remains in effect statewide.",
       "effective_date": "2026-07-01",
       "status": "active",
-      "notes": "Moratorium runs through January 2028. Iowa's statewide data center tax exemption (\u00a7423.3) remains; this moratorium applies only to new rezoning applications in unincorporated Linn County.",
+      "notes": "Moratorium runs through January 2028. Iowa's statewide data center tax exemption (§423.3) remains; this moratorium applies only to new rezoning applications in unincorporated Linn County.",
       "sources": [
         {
-          "label": "Linn County, IA \u2014 Official moratorium newsflash",
+          "label": "Linn County, IA — Official moratorium newsflash",
           "url": "https://www.linncountyiowa.gov/CivicAlerts.aspx?AID=4487"
         },
         {
-          "label": "Linn County, IA \u2014 Data Centers in Unincorporated Linn County (official page)",
+          "label": "Linn County, IA — Data Centers in Unincorporated Linn County (official page)",
           "url": "https://www.linncountyiowa.gov/1862/Data-Centers-in-Unincorporated-Linn-Coun"
         },
         {
@@ -650,18 +650,18 @@
       "types": [
         "data_center"
       ],
-      "title": "Iowa 0% Data Center Tax Exemption \u2014 Des Moines Hyperscale Hub",
-      "description": "Polk County (Des Moines / West Des Moines) is Iowa's premier data center market. Microsoft operates a large campus in West Des Moines; Meta has a major facility in Altoona; Google, Aligned, and others have substantial presences. Iowa Code \u00a7423.3 eliminates sales and use tax on data center equipment and electricity for qualifying facilities, making Iowa one of the most data center-friendly states in the nation.",
+      "title": "Iowa 0% Data Center Tax Exemption — Des Moines Hyperscale Hub",
+      "description": "Polk County (Des Moines / West Des Moines) is Iowa's premier data center market. Microsoft operates a large campus in West Des Moines; Meta has a major facility in Altoona; Google, Aligned, and others have substantial presences. Iowa Code §423.3 eliminates sales and use tax on data center equipment and electricity for qualifying facilities, making Iowa one of the most data center-friendly states in the nation.",
       "effective_date": "2010-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Iowa Code \u00a7 423.3 \u2014 Data Center Exemptions",
+          "label": "Iowa Code § 423.3 — Data Center Exemptions",
           "url": "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=423&session=90"
         },
         {
-          "label": "Microsoft data centers \u2014 West Des Moines, Iowa",
+          "label": "Microsoft data centers — West Des Moines, Iowa",
           "url": "https://datacenters.microsoft.com/globe/fact-sheets/"
         },
         "Meta Altoona, Iowa data center campus"
@@ -678,14 +678,14 @@
       "types": [
         "data_center"
       ],
-      "title": "Iowa Data Center Exemption \u2014 Google Council Bluffs Campus",
-      "description": "Pottawattamie County (Council Bluffs) hosts one of Google's major data center campuses, operational since 2007. Iowa Code \u00a7423.3's 0% sales and use tax on data center equipment and electricity applies, along with low wind-energy power costs. Council Bluffs has become one of the Midwest's premier data center destinations.",
+      "title": "Iowa Data Center Exemption — Google Council Bluffs Campus",
+      "description": "Pottawattamie County (Council Bluffs) hosts one of Google's major data center campuses, operational since 2007. Iowa Code §423.3's 0% sales and use tax on data center equipment and electricity applies, along with low wind-energy power costs. Council Bluffs has become one of the Midwest's premier data center destinations.",
       "effective_date": "2010-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Iowa Code \u00a7 423.3 \u2014 Data Center Exemptions",
+          "label": "Iowa Code § 423.3 — Data Center Exemptions",
           "url": "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=423&session=90"
         },
         {
@@ -705,7 +705,7 @@
       "types": [
         "data_center"
       ],
-      "title": "Louisiana Incentives \u2014 Meta Louisiana Data Center",
+      "title": "Louisiana Incentives — Meta Louisiana Data Center",
       "description": "Richland Parish hosts Meta's announced large data center campus in rural northeastern Louisiana, a project valued at over $800 million. Louisiana's Industrial Tax Exemption Program (ITEP) and competitive energy costs from Entergy Louisiana make it an emerging data center market. The facility leverages lower land and energy costs versus traditional coastal markets.",
       "effective_date": "2023-01-01",
       "status": "active",
@@ -713,7 +713,7 @@
       "sources": [
         "Meta Richland Parish, Louisiana data center announcement (2023)",
         {
-          "label": "Louisiana Economic Development \u2014 Industrial Tax Exemption Program",
+          "label": "Louisiana Economic Development — Industrial Tax Exemption Program",
           "url": "https://www.opportunitylouisiana.gov/business-incentives/itep"
         }
       ],
@@ -791,7 +791,7 @@
         "data_center",
         "energy"
       ],
-      "title": "Proposed Moratorium \u2014 Data Center Development Restrictions",
+      "title": "Proposed Moratorium — Data Center Development Restrictions",
       "description": "Kalamazoo County has considered and partially implemented restrictions on new large-scale data center development following community opposition to proposed facilities. Concerns focus on energy demand on the Consumers Energy grid, water use, and land use impacts in agricultural and residential areas.",
       "effective_date": "2024-01-01",
       "status": "proposed",
@@ -823,11 +823,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "Washtenaw County MI Board of Commissioners \u2014 Data Center Review (2024)",
+          "label": "Washtenaw County MI Board of Commissioners — Data Center Review (2024)",
           "url": "https://www.washtenaw.org/gov/boc/"
         },
         {
-          "label": "Michigan Public Service Commission \u2014 Energy Load Management",
+          "label": "Michigan Public Service Commission — Energy Load Management",
           "url": "https://www.michigan.gov/mpsc"
         },
         "Washtenaw County MI data center review requirements (2024)"
@@ -856,7 +856,7 @@
           "label": "Minneapolis City Council Resolution 2021",
           "url": "https://council.minneapolismn.gov/"
         },
-        "Minneapolis-area data center development moratoriums (2023\u20132024)"
+        "Minneapolis-area data center development moratoriums (2023–2024)"
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
@@ -878,11 +878,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "Flathead County Commissioners \u2014 Large Data Center Permit Review (2019)",
+          "label": "Flathead County Commissioners — Large Data Center Permit Review (2019)",
           "url": "https://flathead.mt.gov/commissioners/"
         },
         {
-          "label": "Montana Legislature \u2014 Data Center Regulation Discussion",
+          "label": "Montana Legislature — Data Center Regulation Discussion",
           "url": "https://leg.mt.gov/"
         },
         "Flathead County Commissioner discussions, 2019"
@@ -907,7 +907,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "Lincoln County Commissioner \u2014 Cryptocurrency Mining Ordinance (2018)",
+          "label": "Lincoln County Commissioner — Cryptocurrency Mining Ordinance (2018)",
           "url": "https://www.lincolncountymt.us/"
         },
         {
@@ -928,7 +928,7 @@
       "types": [
         "data_center"
       ],
-      "title": "Nebraska Advantage Data Center Act \u2014 Google Hub",
+      "title": "Nebraska Advantage Data Center Act — Google Hub",
       "description": "Nebraska's Advantage Data Center Act (LB 775) provides sales tax exemptions on equipment for qualifying data centers. Douglas County (Omaha) hosts major Google data center facilities and benefits from low energy costs and central location.",
       "effective_date": "2012-01-01",
       "status": "active",
@@ -948,17 +948,17 @@
       "types": [
         "data_center"
       ],
-      "title": "Nevada Tax Abatements \u2014 Las Vegas Data Center Market",
-      "description": "Clark County (Las Vegas) is a major data center market anchored by Switch's PYRAMID campus and facilities from DataBank, Evoque, and other operators. Nevada's personal property tax abatements and sales tax exemptions for qualifying data centers (NRS \u00a7374.357) combined with no corporate income tax make Clark County a top Sunbelt data center destination.",
+      "title": "Nevada Tax Abatements — Las Vegas Data Center Market",
+      "description": "Clark County (Las Vegas) is a major data center market anchored by Switch's PYRAMID campus and facilities from DataBank, Evoque, and other operators. Nevada's personal property tax abatements and sales tax exemptions for qualifying data centers (NRS §374.357) combined with no corporate income tax make Clark County a top Sunbelt data center destination.",
       "effective_date": "2001-01-01",
       "status": "active",
       "notes": "City of Henderson (within Clark County) proposed a 180-day moratorium on new data center conditional use permits; city council scheduled to vote July 21, 2026. Clark County commissioners signaled intention to develop regulations and consider a freeze on new applications as of July 8, 2026. Neither action is yet enacted; Nevada's tax abatement program remains in effect.",
       "sources": [
         {
-          "label": "Nevada Governor's Office of Economic Development \u2014 Data Centers",
+          "label": "Nevada Governor's Office of Economic Development — Data Centers",
           "url": "https://goed.nv.gov/key-industries/data-centers/"
         },
-        "Switch PYRAMID campus, Las Vegas; NRS \u00a7 374.357 data center tax exemptions"
+        "Switch PYRAMID campus, Las Vegas; NRS § 374.357 data center tax exemptions"
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
@@ -972,13 +972,13 @@
       "types": [
         "data_center"
       ],
-      "title": "Nevada Incentives \u2014 Switch SUPERNAP Campus",
+      "title": "Nevada Incentives — Switch SUPERNAP Campus",
       "description": "Storey County (Tahoe Reno Industrial Center) hosts Switch's massive SUPERNAP data center campus. Nevada offers no corporate income tax, no personal income tax, and significant sales/use tax abatements for data center operators.",
       "effective_date": "2007-01-01",
       "status": "active",
       "notes": "",
       "sources": [
-        "NRS \u00a7374.357 data center exemptions; Switch SUPERNAP campus, Tahoe Reno Industrial Center"
+        "NRS §374.357 data center exemptions; Switch SUPERNAP campus, Tahoe Reno Industrial Center"
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
@@ -1047,7 +1047,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
+          "label": "NYC Local Law 97 of 2019 — NYC Carbon Emission Limits for Buildings",
           "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
         },
         {
@@ -1076,10 +1076,10 @@
       "notes": "Moratorium expired but resulted in permanent permitting requirements",
       "sources": [
         {
-          "label": "Plattsburgh City Council \u2014 Commercial Crypto Mining Moratorium (2018)",
+          "label": "Plattsburgh City Council — Commercial Crypto Mining Moratorium (2018)",
           "url": "https://www.cityofplattsburgh.com/departments/city-clerk/"
         },
-        "Plattsburgh City Council, March 2018 \u2014 resulted in permanent permitting requirements"
+        "Plattsburgh City Council, March 2018 — resulted in permanent permitting requirements"
       ],
       "lifecycle_stage": "expired",
       "pipeline_verified": false,
@@ -1102,7 +1102,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
+          "label": "NYC Local Law 97 of 2019 — NYC Carbon Emission Limits for Buildings",
           "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
         },
         {
@@ -1131,7 +1131,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
+          "label": "NYC Local Law 97 of 2019 — NYC Carbon Emission Limits for Buildings",
           "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
         },
         {
@@ -1161,7 +1161,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
+          "label": "NYC Local Law 97 of 2019 — NYC Carbon Emission Limits for Buildings",
           "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
         },
         {
@@ -1190,7 +1190,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
+          "label": "NYC Local Law 97 of 2019 — NYC Carbon Emission Limits for Buildings",
           "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
         },
         "NYC Local Law 97, 2019"
@@ -1229,7 +1229,7 @@
         "data_center",
         "energy"
       ],
-      "title": "Active Moratorium \u2014 Data Center Development Ban",
+      "title": "Active Moratorium — Data Center Development Ban",
       "description": "Chatham County enacted a moratorium on new large-scale data center developments in 2024, amid explosive growth proposals in the Research Triangle region. The moratorium reflects community concerns about grid capacity, water use, noise, and limited employment creation per acre of developed land.",
       "effective_date": "2024-01-01",
       "status": "active",
@@ -1237,7 +1237,7 @@
       "sources": [
         "Chatham County Board of Commissioners data center moratorium (2024)",
         {
-          "label": "NC data center moratorium wave coverage \u2014 Data Center Dynamics",
+          "label": "NC data center moratorium wave coverage — Data Center Dynamics",
           "url": "https://www.datacenterdynamics.com/en/news/north-carolina-counties-pass-data-center-moratoriums/"
         }
       ],
@@ -1341,7 +1341,7 @@
         "data_center",
         "energy"
       ],
-      "title": "Active Restrictions \u2014 Data Center Development Moratorium",
+      "title": "Active Restrictions — Data Center Development Moratorium",
       "description": "Orange County (Chapel Hill/Carrboro) has enacted restrictions and temporary moratoriums on new data center developments. Community opposition in this progressive university county has focused on energy consumption, water use, and incompatibility with the county's climate commitments. Duke Energy transmission constraints in the area have amplified concerns.",
       "effective_date": "2024-01-01",
       "status": "active",
@@ -1349,7 +1349,7 @@
       "sources": [
         "Orange County NC Board of Commissioners data center restrictions (2024)",
         {
-          "label": "NC data center moratorium wave \u2014 Data Center Dynamics",
+          "label": "NC data center moratorium wave — Data Center Dynamics",
           "url": "https://www.datacenterdynamics.com/en/news/north-carolina-counties-pass-data-center-moratoriums/"
         }
       ],
@@ -1366,14 +1366,14 @@
         "data_center",
         "energy"
       ],
-      "title": "Active Restrictions \u2014 Data Center Density Controls",
+      "title": "Active Restrictions — Data Center Density Controls",
       "description": "Rowan County (Salisbury) has enacted active restrictions on new large-scale data center development following rapid growth in applications. Duke Energy capacity constraints in the Piedmont region have contributed to a county-level pause on approvals while infrastructure and policy catch up.",
       "effective_date": "2024-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Rowan County NC Board of Commissioners \u2014 Data Center Restrictions (2024)",
+          "label": "Rowan County NC Board of Commissioners — Data Center Restrictions (2024)",
           "url": "https://www.rowancountync.gov/government/board_of_county_commissioners/"
         },
         {
@@ -1400,7 +1400,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        "Duke Energy Carolinas interconnection queue management (2023\u20132024)",
+        "Duke Energy Carolinas interconnection queue management (2023–2024)",
         "NC Utilities Commission data center load review requirements"
       ],
       "lifecycle_stage": "effective",
@@ -1442,7 +1442,7 @@
       "status": "active",
       "notes": "",
       "sources": [
-        "Wake County NC data center growth management requirements (2023\u20132024)",
+        "Wake County NC data center growth management requirements (2023–2024)",
         "Duke Energy Carolinas interconnection queue management, Wake County"
       ],
       "lifecycle_stage": "effective",
@@ -1498,21 +1498,21 @@
       "types": [
         "data_center"
       ],
-      "title": "Ohio Data Center Tax Exemption \u2014 Amazon AWS New Albany Campus",
+      "title": "Ohio Data Center Tax Exemption — Amazon AWS New Albany Campus",
       "description": "Licking County (New Albany) is home to one of Amazon AWS's largest data center complexes in the world, spanning millions of square feet across multiple campuses. Ohio's sales and use tax exemptions on data center equipment (Ohio R.C. 5739.02) and AEP Ohio's competitive power rates have made Licking County a global hyperscale destination.",
       "effective_date": "2015-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Ohio Development \u2014 Data Center Incentives",
+          "label": "Ohio Development — Data Center Incentives",
           "url": "https://development.ohio.gov/"
         },
         {
-          "label": "Amazon Web Services \u2014 Ohio data center region",
+          "label": "Amazon Web Services — Ohio data center region",
           "url": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/"
         },
-        "New Albany Data Center district \u2014 Licking County development"
+        "New Albany Data Center district — Licking County development"
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
@@ -1535,7 +1535,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "Hood River County \u2014 Commercial Solar & Data Center Development Ordinance",
+          "label": "Hood River County — Commercial Solar & Data Center Development Ordinance",
           "url": "https://www.hoodrivercounty.gov/departments/county_counsel/land_use_ordinances.php"
         },
         {
@@ -1556,14 +1556,14 @@
       "types": [
         "data_center"
       ],
-      "title": "Oregon Enterprise Zone \u2014 Amazon/Meta Boardman Campus",
+      "title": "Oregon Enterprise Zone — Amazon/Meta Boardman Campus",
       "description": "Morrow County (Boardman) hosts major data center campuses from Amazon Web Services (since 2011), Meta/Facebook, and Google. Oregon's enterprise zone exemptions and Columbia River hydropower make Boardman one of the Pacific Northwest's most significant data center clusters.",
       "effective_date": "2011-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Business Oregon \u2014 Data Center Tax Exemptions",
+          "label": "Business Oregon — Data Center Tax Exemptions",
           "url": "https://www.oregon4biz.com/"
         },
         "Amazon AWS Boardman, OR data center; Meta Boardman data center campus"
@@ -1580,7 +1580,7 @@
       "types": [
         "data_center"
       ],
-      "title": "Oregon Enterprise Zone \u2014 Google Mega-Campus Hub",
+      "title": "Oregon Enterprise Zone — Google Mega-Campus Hub",
       "description": "Home to one of Google's largest data center campuses. Oregon's enterprise zone property tax exemptions, zero sales tax, and cheap Columbia River hydropower make Umatilla County one of the most data center-friendly jurisdictions in the U.S.",
       "effective_date": "2006-01-01",
       "status": "active",
@@ -1600,14 +1600,14 @@
       "types": [
         "data_center"
       ],
-      "title": "Oregon Enterprise Zone \u2014 Google The Dalles Campus",
+      "title": "Oregon Enterprise Zone — Google The Dalles Campus",
       "description": "Wasco County (The Dalles) hosts Google's first major owned data center, opened in 2006 and continuously expanded since. Oregon's enterprise zone property tax exemptions, zero sales tax, and cheap Columbia River hydropower make Wasco County one of the nation's most data center-friendly jurisdictions. Google's campus now spans hundreds of acres.",
       "effective_date": "2006-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Business Oregon \u2014 Data Center Tax Exemptions",
+          "label": "Business Oregon — Data Center Tax Exemptions",
           "url": "https://www.oregon4biz.com/"
         },
         {
@@ -1660,7 +1660,7 @@
       "sources": [
         "Smithfield, RI Town Council data center zoning prohibition (2023)",
         {
-          "label": "Data Center Bans tracker \u2014 datacenterbans.com",
+          "label": "Data Center Bans tracker — datacenterbans.com",
           "url": "https://datacenterbans.com/"
         }
       ],
@@ -1676,14 +1676,14 @@
       "types": [
         "data_center"
       ],
-      "title": "SC Data Center Incentives \u2014 Meta Aiken Campus",
+      "title": "SC Data Center Incentives — Meta Aiken Campus",
       "description": "Aiken County is the site of Meta's announced large-scale data center campus, leveraging South Carolina's industry-leading 20-year sales tax exemptions on equipment and 20-year property tax abatements for qualifying data center investments. Meta's investment follows Amazon AWS's presence in neighboring Berkeley County.",
       "effective_date": "2023-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "South Carolina DOR \u2014 Data Center Tax Incentives",
+          "label": "South Carolina DOR — Data Center Tax Incentives",
           "url": "https://dor.sc.gov/business/corporate-incentives/data-center-incentives"
         },
         "Meta Aiken County, SC data center campus announcement"
@@ -1700,13 +1700,13 @@
       "types": [
         "data_center"
       ],
-      "title": "South Carolina Data Center Incentive Zone \u2014 Amazon/AWS Hub",
+      "title": "South Carolina Data Center Incentive Zone — Amazon/AWS Hub",
       "description": "South Carolina offers some of the strongest data center incentives in the nation: 20-year sales tax exemptions on equipment and 20-year property tax abatements. Berkeley County hosts major Amazon/AWS facilities and has become one of the East Coast's fastest-growing data center markets.",
       "effective_date": "2012-01-01",
       "status": "active",
       "notes": "",
       "sources": [
-        "SC Code \u00a712-6-3360 data center incentives; Amazon/AWS data centers, Berkeley County"
+        "SC Code §12-6-3360 data center incentives; Amazon/AWS data centers, Berkeley County"
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
@@ -1721,14 +1721,14 @@
         "data_center",
         "energy"
       ],
-      "title": "Active Moratorium \u2014 High-Intensity Computing Restrictions",
+      "title": "Active Moratorium — High-Intensity Computing Restrictions",
       "description": "Anderson County (near Oak Ridge / Knoxville) enacted restrictions on new large-scale data centers and high-intensity computing following the xAI Colossus controversy and statewide concerns about TVA grid capacity. The county moratorium reflects concerns about power demand on the TVA transmission system serving eastern Tennessee.",
       "effective_date": "2024-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Anderson County TN Commission \u2014 Data Center Moratorium Resolution (2024)",
+          "label": "Anderson County TN Commission — Data Center Moratorium Resolution (2024)",
           "url": "https://www.andersoncountytn.gov/"
         },
         {
@@ -1757,7 +1757,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "Davidson County (Nashville) Metro Council \u2014 AI Data Center Policy Discussion",
+          "label": "Davidson County (Nashville) Metro Council — AI Data Center Policy Discussion",
           "url": "https://council.nashville.gov/"
         },
         {
@@ -1780,14 +1780,14 @@
         "crypto",
         "energy"
       ],
-      "title": "Active Moratorium \u2014 Data Center and Crypto Mining Restrictions",
+      "title": "Active Moratorium — Data Center and Crypto Mining Restrictions",
       "description": "Hamilton County (Chattanooga) has enacted a moratorium on new large-scale data centers and cryptocurrency mining operations citing TVA grid capacity concerns and community opposition. Chattanooga's EPB fiber network had previously attracted significant data center interest.",
       "effective_date": "2024-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Hamilton County TN Commission \u2014 Data Center Moratorium (2024)",
+          "label": "Hamilton County TN Commission — Data Center Moratorium (2024)",
           "url": "https://www.hamiltontn.gov/CommissionDistricts/"
         },
         {
@@ -1809,7 +1809,7 @@
         "crypto",
         "energy"
       ],
-      "title": "Proposed Moratorium \u2014 High-Intensity Computing Restrictions",
+      "title": "Proposed Moratorium — High-Intensity Computing Restrictions",
       "description": "Coffee County (Manchester) is among the Tennessee counties considering moratoriums on large data centers and cryptocurrency mining following the xAI Colossus controversy and statewide TVA capacity concerns in 2024.",
       "effective_date": "2024-01-01",
       "status": "proposed",
@@ -1831,18 +1831,18 @@
         "data_center",
         "energy"
       ],
-      "title": "TVA Power Demand Scrutiny \u2014 xAI Colossus Supercomputer Hub",
-      "description": "Shelby County (Memphis) is home to xAI's Colossus supercomputer facility \u2014 the world's largest known GPU cluster as of 2024, drawing approximately 150 MW. The Tennessee Valley Authority (TVA) has implemented stricter scrutiny of large power loads in the Memphis area amid rapid demand growth, requiring enhanced interconnection review for new high-density computing facilities.",
+      "title": "TVA Power Demand Scrutiny — xAI Colossus Supercomputer Hub",
+      "description": "Shelby County (Memphis) is home to xAI's Colossus supercomputer facility — the world's largest known GPU cluster as of 2024, drawing approximately 150 MW. The Tennessee Valley Authority (TVA) has implemented stricter scrutiny of large power loads in the Memphis area amid rapid demand growth, requiring enhanced interconnection review for new high-density computing facilities.",
       "effective_date": "2022-01-01",
       "status": "active",
       "notes": "xAI Colossus Phase 1 launched Sep 2024 with 100,000 H100 GPUs; Phase 2 expansion ongoing.",
       "sources": [
         {
-          "label": "xAI Colossus announcement \u2014 Elon Musk / xAI, Sep 2024",
+          "label": "xAI Colossus announcement — Elon Musk / xAI, Sep 2024",
           "url": "https://x.ai/blog/colossus"
         },
         "TVA Large Power Customer interconnection requirements",
-        "Tennessee Code Ann. \u00a7 67-6-206 data center sales tax exemption"
+        "Tennessee Code Ann. § 67-6-206 data center sales tax exemption"
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
@@ -1857,14 +1857,14 @@
         "data_center",
         "energy"
       ],
-      "title": "Active Moratorium \u2014 Data Center Development Restrictions",
+      "title": "Active Moratorium — Data Center Development Restrictions",
       "description": "Washington County (Johnson City) enacted restrictions on new data center developments in 2024 amid the statewide wave of county-level data center moratoriums. Concerns center on TVA grid capacity, water use, and land use incompatibility with agricultural heritage.",
       "effective_date": "2024-01-01",
       "status": "active",
       "notes": "",
       "sources": [
         {
-          "label": "Washington County TN Commission \u2014 Data Center Moratorium (2024)",
+          "label": "Washington County TN Commission — Data Center Moratorium (2024)",
           "url": "https://www.washingtoncountytn.org/commission/"
         },
         {
@@ -1926,14 +1926,14 @@
       "types": [
         "data_center"
       ],
-      "title": "Texas Chapter 312/313 Abatements \u2014 Google Midlothian Campus",
+      "title": "Texas Chapter 312/313 Abatements — Google Midlothian Campus",
       "description": "Ellis County (Midlothian) hosts a major Google data center campus serving the Dallas-Fort Worth metro area. Texas's historically generous Chapter 312/313 property tax abatements for large capital investments, combined with no state income tax and ERCOT grid access, have made Ellis County a significant data center hub.",
       "effective_date": "2012-01-01",
       "status": "active",
       "notes": "Texas Chapter 313 (the school property tax abatement program) expired Dec 2022 but Chapter 312 abatements remain available through counties.",
       "sources": [
         {
-          "label": "Texas Economic Development \u2014 Data Center Incentives",
+          "label": "Texas Economic Development — Data Center Incentives",
           "url": "https://gov.texas.gov/business/page/incentives"
         },
         "Google Midlothian, TX data center campus; Ellis County Chapter 312 abatements"
@@ -1993,7 +1993,7 @@
       "types": [
         "data_center"
       ],
-      "title": "Texas Incentives \u2014 Samsung Taylor Fab + Tech Investment Hub",
+      "title": "Texas Incentives — Samsung Taylor Fab + Tech Investment Hub",
       "description": "Williamson County (Taylor, Round Rock, Georgetown) is a fast-growing tech hub anchored by Samsung's $17B+ advanced semiconductor fab in Taylor (announced 2021) and major data center investment. Dell Technologies is headquartered in Round Rock. Texas's no-income-tax environment and historically generous Chapter 312 abatements make Williamson County a significant data infrastructure destination.",
       "effective_date": "2021-01-01",
       "status": "active",
@@ -2004,7 +2004,7 @@
           "url": "https://news.samsung.com/us/samsung-electronics-announces-new-us-semiconductor-manufacturing-facility-in-texas/"
         },
         {
-          "label": "Texas Economic Development \u2014 Incentives",
+          "label": "Texas Economic Development — Incentives",
           "url": "https://gov.texas.gov/business/page/incentives"
         }
       ],
@@ -2022,7 +2022,7 @@
         "water",
         "energy"
       ],
-      "title": "Data Center Moratorium \u2014 Water and Energy Constraints",
+      "title": "Data Center Moratorium — Water and Energy Constraints",
       "description": "Iron County (Cedar City) has enacted restrictions and moratoriums on new large-scale data centers and cryptocurrency mining operations, citing acute water scarcity in Utah's arid southwest and grid capacity limitations on Rocky Mountain Power's network.",
       "effective_date": "2023-01-01",
       "status": "active",
@@ -2046,18 +2046,18 @@
       "types": [
         "data_center"
       ],
-      "title": "Comprehensive Plan Restrictions \u2014 Data Center Growth Controls",
+      "title": "Comprehensive Plan Restrictions — Data Center Growth Controls",
       "description": "Fairfax County's 2022 Comprehensive Plan amendments impose significant data center restrictions: mandatory utility infrastructure capacity demonstrations, community impact mitigation plans, and firm limits on data center development in residential transition areas. A 2023 county board vote imposed further density caps amid community pressure over visual blight, noise, and grid strain.",
       "effective_date": "2022-06-01",
       "status": "active",
       "notes": "County supervisors voted in 2023 to restrict new data center approvals in certain western Fairfax districts.",
       "sources": [
         {
-          "label": "Fairfax County Comprehensive Plan \u2014 Data Center Density Policies",
+          "label": "Fairfax County Comprehensive Plan — Data Center Density Policies",
           "url": "https://www.fairfaxcounty.gov/planning-development/comprehensive-plan"
         },
         {
-          "label": "Fairfax County Board of Supervisors \u2014 Zoning Amendments 2023",
+          "label": "Fairfax County Board of Supervisors — Zoning Amendments 2023",
           "url": "https://www.fairfaxcounty.gov/boardofsupervisors/"
         },
         {
@@ -2088,7 +2088,7 @@
           "url": "https://www.loudoun.gov/5008/Data-Center-Policy"
         },
         {
-          "label": "Loudoun County Data Center Policy \u2014 Official Page",
+          "label": "Loudoun County Data Center Policy — Official Page",
           "url": "https://www.loudoun.gov/5008/Data-Center-Policy"
         }
       ],
@@ -2111,7 +2111,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "Prince William County \u2014 Digital Gateway & Data Center Zoning Policy",
+          "label": "Prince William County — Digital Gateway & Data Center Zoning Policy",
           "url": "https://www.pwcva.gov/department/planning-office/digital-gateway"
         },
         {
@@ -2140,11 +2140,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "Chelan County PUD \u2014 Rate Structure for Large Electric Loads",
+          "label": "Chelan County PUD — Rate Structure for Large Electric Loads",
           "url": "https://www.chelanpud.org/"
         },
         {
-          "label": "WA UTC Order 01 ELEC 3274-T \u2014 PUD Cryptocurrency Load Management",
+          "label": "WA UTC Order 01 ELEC 3274-T — PUD Cryptocurrency Load Management",
           "url": "https://www.utc.wa.gov/"
         },
         "Chelan County PUD Board resolution, 2019"
@@ -2170,11 +2170,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "Douglas County PUD \u2014 Large Load Service Policy",
+          "label": "Douglas County PUD — Large Load Service Policy",
           "url": "https://www.douglas.pud.org/"
         },
         {
-          "label": "WA Utilities and Transportation Commission \u2014 Large Load Policies",
+          "label": "WA Utilities and Transportation Commission — Large Load Policies",
           "url": "https://www.utc.wa.gov/"
         },
         "Douglas County PUD Board resolution, 2019"
@@ -2200,11 +2200,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "Grant County PUD \u2014 Electric Service Policy for Cryptocurrency Mining",
+          "label": "Grant County PUD — Electric Service Policy for Cryptocurrency Mining",
           "url": "https://www.gcpud.org/"
         },
         {
-          "label": "WA UTC \u2014 Utility Rate Cases for Digital Currency Mining",
+          "label": "WA UTC — Utility Rate Cases for Digital Currency Mining",
           "url": "https://www.utc.wa.gov/"
         },
         "Grant County PUD policy, 2018"
@@ -2251,11 +2251,11 @@
       "notes": "",
       "sources": [
         {
-          "label": "Okanogan County \u2014 PUD Rate Study for High-Load Customers",
+          "label": "Okanogan County — PUD Rate Study for High-Load Customers",
           "url": "https://www.okanoganpud.org/"
         },
         {
-          "label": "Okanogan County Commissioner Meetings \u2014 Data Center Ordinance",
+          "label": "Okanogan County Commissioner Meetings — Data Center Ordinance",
           "url": "https://www.okanogancounty.org/commissioners/"
         },
         "Okanogan County PUD policy"
@@ -2280,7 +2280,7 @@
       "notes": "City of Madison moratorium applies to facilities >10,000 sq ft. Dane County environmental review requirements also apply county-wide.",
       "sources": [
         {
-          "label": "City of Madison \u2014 Temporary Data Center Moratorium (official page)",
+          "label": "City of Madison — Temporary Data Center Moratorium (official page)",
           "url": "https://www.cityofmadison.com/dpced/about/temporary-data-center-moratorium"
         },
         {
@@ -2307,7 +2307,7 @@
       "notes": "",
       "sources": [
         {
-          "label": "Manitowoc County WI Board of Supervisors \u2014 Data Center Proposal Review",
+          "label": "Manitowoc County WI Board of Supervisors — Data Center Proposal Review",
           "url": "https://www.co.manitowoc.wi.us/departments/county_board/"
         },
         {
@@ -2328,7 +2328,7 @@
       "types": [
         "data_center"
       ],
-      "title": "Wisconsin Incentives \u2014 Microsoft $3.3B AI Campus (Mount Pleasant)",
+      "title": "Wisconsin Incentives — Microsoft $3.3B AI Campus (Mount Pleasant)",
       "description": "Racine County (Mount Pleasant) is the site of Microsoft's announced $3.3 billion AI data center campus, one of the largest tech infrastructure investments in Wisconsin's history. Microsoft announced the project in May 2024. Wisconsin's data center property tax exemption and Racine County economic development incentives apply.",
       "effective_date": "2024-05-01",
       "status": "active",
@@ -2378,13 +2378,13 @@
         "energy"
       ],
       "title": "Marshall County Permanent Data Center Ban (April 2026)",
-      "description": "Marshall County Commissioners enacted a permanent ban on new data centers in April 2026, after a one-year moratorium (February 2025 \u2013 February 2026) expired. County leaders reported this may be the first permanent data center ban in Indiana. The ban was accompanied by strict limits on Battery Energy Storage Systems (BESS), requiring a 1,320-foot setback from adjoining property lines, and first-reading restrictions on large-scale solar farms. Community opposition focused on water availability, noise, limited local employment, and conflicts with the county's rural agricultural character.",
+      "description": "Marshall County Commissioners enacted a permanent ban on new data centers in April 2026, after a one-year moratorium (February 2025 – February 2026) expired. County leaders reported this may be the first permanent data center ban in Indiana. The ban was accompanied by strict limits on Battery Energy Storage Systems (BESS), requiring a 1,320-foot setback from adjoining property lines, and first-reading restrictions on large-scale solar farms. Community opposition focused on water availability, noise, limited local employment, and conflicts with the county's rural agricultural character.",
       "effective_date": "2026-04-20",
       "status": "active",
       "notes": "Originally a 1-year moratorium (Feb 2025) that was converted to a permanent ban in April 2026. First Indiana county to enact a permanent ban.",
       "sources": [
         {
-          "label": "Marshall County, IN \u2014 Official government website",
+          "label": "Marshall County, IN — Official government website",
           "url": "https://www.marshallcountyindiana.gov/"
         },
         {
@@ -2415,7 +2415,7 @@
       "notes": "One of two Indiana counties with permanent ban (alongside Marshall County). Exact ordinance number not confirmed from official source; verify at casscounty.in.gov.",
       "sources": [
         {
-          "label": "Cass County, IN \u2014 Official government website",
+          "label": "Cass County, IN — Official government website",
           "url": "https://www.casscounty.in.gov/"
         },
         {
@@ -2443,10 +2443,10 @@
       "description": "Boone County Commissioners voted unanimously on June 15, 2026 to impose a one-year moratorium on new data center development in unincorporated Boone County, effective June 16, 2026. The moratorium pauses filing, processing, and acceptance of applications for new data center facilities while the county updates its Comprehensive Plan and reviews zoning regulations. Boone County's Area Plan Commission unanimously recommended the moratorium following discussions about data center impacts on land use, infrastructure, utilities, agriculture, and the county's rural character. Boone County is part of the Indianapolis metropolitan area and had attracted significant data center interest.",
       "effective_date": "2026-06-16",
       "status": "active",
-      "notes": "Moratorium runs June 16, 2026 \u2013 June 16, 2027. Applies to unincorporated Boone County. 12th Indiana county to implement a moratorium.",
+      "notes": "Moratorium runs June 16, 2026 – June 16, 2027. Applies to unincorporated Boone County. 12th Indiana county to implement a moratorium.",
       "sources": [
         {
-          "label": "Boone County, IN \u2014 Official moratorium announcement (boonecounty.in.gov)",
+          "label": "Boone County, IN — Official moratorium announcement (boonecounty.in.gov)",
           "url": "https://boonecounty.in.gov/2026/06/15/19190/"
         },
         {
@@ -2472,13 +2472,13 @@
         "water"
       ],
       "title": "White County Data Center Moratorium (October 2025)",
-      "description": "White County Board of Commissioners passed a moratorium on data center development on October 20, 2025, with Commissioner Mike Smolek the lone dissenting vote. The moratorium followed packed public meetings where residents expressed opposition based on concerns about water availability \u2014 Monticello-area aquifers were identified as a key constraint \u2014 and lack of transparency in the development review process. White County was one of the earliest Indiana counties to act after Marshall County, and the IBJ identified it among the first three to impose a moratorium specifically targeting data centers.",
+      "description": "White County Board of Commissioners passed a moratorium on data center development on October 20, 2025, with Commissioner Mike Smolek the lone dissenting vote. The moratorium followed packed public meetings where residents expressed opposition based on concerns about water availability — Monticello-area aquifers were identified as a key constraint — and lack of transparency in the development review process. White County was one of the earliest Indiana counties to act after Marshall County, and the IBJ identified it among the first three to impose a moratorium specifically targeting data centers.",
       "effective_date": "2025-10-20",
       "status": "active",
       "notes": "One of first three Indiana counties to impose a data center-specific moratorium (alongside Marshall and Putnam). Water availability in Monticello area was a primary concern.",
       "sources": [
         {
-          "label": "White County, IN \u2014 Official government website",
+          "label": "White County, IN — Official government website",
           "url": "https://www.whitecounty.in.gov/"
         },
         {
@@ -2510,7 +2510,7 @@
       "notes": "1-year moratorium covers data centers, wind, solar, and SMRs. Effective November 2025. One of first three Indiana counties to act.",
       "sources": [
         {
-          "label": "Putnam County, IN \u2014 Official government website",
+          "label": "Putnam County, IN — Official government website",
           "url": "https://www.putnamcounty.in.gov/"
         },
         {
@@ -2536,7 +2536,7 @@
         "water"
       ],
       "title": "San Marcos Data Center Ban + Hays County Development Pause (2026)",
-      "description": "San Marcos City Council voted 4-3 on June 16, 2026 to ban data centers from all zoning categories within city limits, becoming the first Texas city to implement such a ban. The city cited water and energy resource conflicts with local community needs. At the county level, the Hays County Commission adopted a non-binding resolution to pause data center development in unincorporated areas due to water shortages \u2014 at least two large data center projects (including the 1.2 GW CloudBurst San Marcos GigaCenter spanning Hays and Guadalupe counties) had been proposed in the unincorporated county surrounding San Marcos. The San Marcos ban faces potential legal challenges under Texas' 2023 Death Star preemption law and 2025 HB 2559, which restricts indefinite municipal moratoriums.",
+      "description": "San Marcos City Council voted 4-3 on June 16, 2026 to ban data centers from all zoning categories within city limits, becoming the first Texas city to implement such a ban. The city cited water and energy resource conflicts with local community needs. At the county level, the Hays County Commission adopted a non-binding resolution to pause data center development in unincorporated areas due to water shortages — at least two large data center projects (including the 1.2 GW CloudBurst San Marcos GigaCenter spanning Hays and Guadalupe counties) had been proposed in the unincorporated county surrounding San Marcos. The San Marcos ban faces potential legal challenges under Texas' 2023 Death Star preemption law and 2025 HB 2559, which restricts indefinite municipal moratoriums.",
       "effective_date": "2026-06-16",
       "status": "proposed",
       "notes": "City of San Marcos enacted an outright ban (Tier 4 at city level). Hays County Commission resolution is non-binding. Both face potential preemption challenges under Texas law.",
@@ -2546,17 +2546,703 @@
           "url": "https://www.texastribune.org/2026/06/30/texas-san-marcos-data-center-ban-zoning-laws/"
         },
         {
-          "label": "The Real Deal Texas: San Marcos data center ban \u2014 legal challenges",
+          "label": "The Real Deal Texas: San Marcos data center ban — legal challenges",
           "url": "https://therealdeal.com/texas/2026/06/30/can-san-marcos-data-center-ban-survive-legal-challenges/"
         },
         {
-          "label": "Yahoo News: Zoning authority \u2014 San Marcos first Texas city to ban data centers",
+          "label": "Yahoo News: Zoning authority — San Marcos first Texas city to ban data centers",
           "url": "https://www.yahoo.com/news/politics/articles/zoning-authority-could-answer-data-210500398.html"
         }
       ],
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-12"
+    },
+    {
+      "fips": "51061",
+      "name": "Fauquier County",
+      "state": "Virginia",
+      "level": 3,
+      "types": [
+        "data_center"
+      ],
+      "title": "Temporary Moratorium on Data Center Rezoning Applications",
+      "description": "In September 2023 the Fauquier County Board of Supervisors enacted a temporary moratorium on accepting data center rezoning applications while the county updated its Comprehensive Plan to address land-use, visual, noise, and grid-impact concerns. The moratorium applied to the agricultural and rural buffer districts that make up most of the county. A revised data-center-specific zoning chapter was required before new applications would be accepted.",
+      "effective_date": "2023-09-01",
+      "status": "active",
+      "notes": "Moratorium enacted amid strong community opposition to proposed rural campuses near historic areas.",
+      "sources": [
+        {
+          "label": "Fauquier County Board of Supervisors — Official Meeting Agendas & Minutes",
+          "url": "https://www.fauquiercounty.gov/government/departments-g-z/planning/board-of-supervisors-meetings"
+        },
+        {
+          "label": "Fauquier County Planning Department — Comprehensive Plan Updates",
+          "url": "https://www.fauquiercounty.gov/government/departments-g-z/planning/comprehensive-plan"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "51047",
+      "name": "Culpeper County",
+      "state": "Virginia",
+      "level": 1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Data Center Siting Review Requirements",
+      "description": "Culpeper County has emerged as a secondary data center market in the Virginia corridor as land costs and grid constraints push development west from Loudoun. The county requires environmental review and community input for new data center rezonings, particularly near the Rapidan River watershed and in agricultural areas. Light regulations currently; county is actively evaluating policy updates.",
+      "effective_date": "2023-01-01",
+      "status": "active",
+      "notes": "Several hundred acres of data center campus proposals under review as of 2024.",
+      "sources": [
+        {
+          "label": "Culpeper County Planning & Zoning Department",
+          "url": "https://www.culpepercountyva.gov/189/Planning-Zoning"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "51177",
+      "name": "Spotsylvania County",
+      "state": "Virginia",
+      "level": 2,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Data Center Overlay District — Density and Energy Caps",
+      "description": "Spotsylvania County adopted a Data Center Overlay District following rapid growth along the Interstate 95 corridor. The overlay imposes density caps, mandatory 100% renewable power demonstration, noise ordinances, and setback requirements from residential areas. The Spotsylvania Solar Farm controversy highlighted grid capacity concerns, prompting additional power-use review for large data centers.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Board of Supervisors tightened restrictions in 2023 after residents raised concerns about grid load.",
+      "sources": [
+        {
+          "label": "Spotsylvania County Planning — Zoning Ordinance",
+          "url": "https://www.spotsylvania.va.us/1065/Planning-Zoning"
+        },
+        {
+          "label": "Spotsylvania County Board of Supervisors",
+          "url": "https://www.spotsylvania.va.us/190/Board-of-Supervisors"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "41067",
+      "name": "Washington County",
+      "state": "Oregon",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Major Semiconductor & Cloud Infrastructure Hub",
+      "description": "Washington County (Hillsboro) is Oregon's largest data center market and home to Intel's primary US manufacturing campus, Amazon Web Services, Google, Meta, and numerous colocation facilities. The county actively courts technology investment through Oregon's property tax Enterprise Zones, which exempt qualifying data centers from property taxes for up to 15 years. No restrictions on data center development; expedited permitting for qualifying facilities.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Oregon Enterprise Zone and Strategic Investment Program provide strong incentives.",
+      "sources": [
+        {
+          "label": "Washington County — Business & Economic Development",
+          "url": "https://www.washingtoncountyor.gov/cao/economic-development"
+        },
+        {
+          "label": "Oregon Enterprise Zone Program — Oregon Dept. of Revenue",
+          "url": "https://www.oregon.gov/dor/programs/businesses/Pages/enterprise-zone.aspx"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "41051",
+      "name": "Multnomah County",
+      "state": "Oregon",
+      "level": 1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Environmental Review Requirements for Large Data Centers",
+      "description": "Multnomah County (Portland) applies standard Type III land-use review for large data centers over 100,000 sq ft in mixed/industrial zones, requiring public notice and environmental review. Portland's climate emergency declaration and 2050 carbon-neutral goals add scrutiny to grid-intensive facilities. Several colocation operators maintain facilities here (Internap/Flexential, Zayo) but new large campuses typically locate in Washington County or further east.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "Portland Bureau of Development Services applies standard environmental review; no outright ban.",
+      "sources": [
+        {
+          "label": "Portland Bureau of Development Services — Land Use Review",
+          "url": "https://www.portland.gov/bds/land-use"
+        },
+        {
+          "label": "Portland Climate Emergency Declaration (2020)",
+          "url": "https://www.portland.gov/council/documents/resolution/adopted/37612"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "32019",
+      "name": "Lyon County",
+      "state": "Nevada",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Tahoe-Reno Industrial Center (TRIC) Hub",
+      "description": "Lyon County is home to the Tahoe-Reno Industrial Center (TRIC), one of the world's largest industrial parks, hosting hyperscale data centers for Apple, Google, and Switch, as well as the Tesla Gigafactory. The county offers substantial tax incentives including sales and use tax abatements under Nevada Revised Statutes Chapter 360. Low energy costs, a dry climate ideal for air cooling, and minimal regulatory burden make Lyon County a top-tier data center destination.",
+      "effective_date": "2000-01-01",
+      "status": "active",
+      "notes": "Nevada's Chapter 360 incentive program offers sales tax abatement for qualifying capital investments.",
+      "sources": [
+        {
+          "label": "Tahoe Reno Industrial Center — Official Site",
+          "url": "https://www.tric.com"
+        },
+        {
+          "label": "Nevada Governor's Office of Economic Development — Data Centers",
+          "url": "https://www.diversifynevada.com/industries/data-centers/"
+        },
+        {
+          "label": "Nevada Revised Statutes Chapter 360 — Tax Abatement for Data Centers",
+          "url": "https://www.leg.state.nv.us/NRS/NRS-360.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "16001",
+      "name": "Ada County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Boise-Area Technology Hub",
+      "description": "Ada County (Boise) is Idaho's primary technology hub and hosts significant data center infrastructure including Meta's 1.9-million sq ft Eagle data center campus, Micron Technology's HPC/AI computing infrastructure, and numerous regional operators. Idaho Power provides low-cost hydroelectric power, and the state offers sales tax exemptions for data center equipment under Idaho Code §63-3622O. The Treasure Valley region is one of the fastest-growing data center markets in the Mountain West.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Idaho Code §63-3622O exempts data center equipment and power from sales tax.",
+      "sources": [
+        {
+          "label": "Idaho State Tax Commission — Data Center Exemption (IC §63-3622O)",
+          "url": "https://tax.idaho.gov/taxes/sales-use/exemptions/business/data-centers/"
+        },
+        {
+          "label": "Idaho Power — Economic Development",
+          "url": "https://www.idahopower.com/energy-environment/producing-power/economic-development/"
+        },
+        {
+          "label": "Meta Eagle Data Center — Meta Infrastructure",
+          "url": "https://sustainability.fb.com/data-centers/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "21111",
+      "name": "Jefferson County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Louisville Technology Hub",
+      "description": "Jefferson County (Louisville) is Kentucky's primary data center market, home to Amazon Web Services, Expedient, CyrusOne, and numerous enterprise facilities. Louisville Electric (LG&E) provides competitive power rates, and Kentucky offers a data center incentive program under KRS 139.517 exempting qualifying equipment and electricity from sales and use tax. Louisville's central US location, fiber infrastructure, and business-friendly environment continue to attract new investment.",
+      "effective_date": "2014-01-01",
+      "status": "active",
+      "notes": "KRS 139.517 provides sales tax exemption for qualifying data center investments over $100M.",
+      "sources": [
+        {
+          "label": "Kentucky Cabinet for Economic Development — Data Centers",
+          "url": "https://ced.ky.gov/Incentives/Data-Centers"
+        },
+        {
+          "label": "Kentucky Revised Statutes 139.517 — Data Center Tax Exemption",
+          "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53453"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "29095",
+      "name": "Jackson County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Kansas City Technology Corridor",
+      "description": "Jackson County (Kansas City) anchors Missouri's largest data center market. QTS Data Centers, Evergy's cloud-anchored facilities, and major enterprise operators maintain significant infrastructure here. Missouri's Chapter 353 and Enhanced Enterprise Zone programs provide property tax abatements. Kansas City's central US geography, diverse fiber routes, and 100Gbps peering at Kansas City Internet Exchange (KCIX) make it a strategic hub.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Missouri Chapters 353 and 100 tax abatement programs available for qualifying data centers.",
+      "sources": [
+        {
+          "label": "Missouri Department of Economic Development — Incentives",
+          "url": "https://ded.mo.gov/content/business-tax-incentives"
+        },
+        {
+          "label": "Kansas City Internet Exchange (KCIX)",
+          "url": "https://kcix.net"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "29189",
+      "name": "St. Louis County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — St. Louis Metro Technology Hub",
+      "description": "St. Louis County is Missouri's secondary data center market, home to Lumen Technologies (formerly CenturyLink) network operations, Windstream, Cologix, and enterprise facilities serving the regional financial sector. The county benefits from Missouri's Chapter 353 Urban Redevelopment program and Brownfields incentives for qualifying technology developments.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "St. Louis County Economic Council",
+          "url": "https://www.stlec.com"
+        },
+        {
+          "label": "Missouri Department of Economic Development — Incentives",
+          "url": "https://ded.mo.gov/content/business-tax-incentives"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "40109",
+      "name": "Oklahoma County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Oklahoma City Growing Hub",
+      "description": "Oklahoma County (Oklahoma City) is a rapidly growing data center market driven by low power costs (OG&E and OEC Fiber), land availability, and Oklahoma's data center incentive under 68 O.S. §1359.2, which provides a full sales tax exemption on data center equipment and power for facilities meeting a capital investment threshold. Microsoft has announced multi-billion dollar data center investments in Oklahoma, with facilities in the OKC metro.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "68 O.S. §1359.2 provides full sales and use tax exemption for qualifying data centers.",
+      "sources": [
+        {
+          "label": "Oklahoma Tax Commission — Data Center Exemption (68 O.S. §1359.2)",
+          "url": "https://oklahoma.gov/tax/business/industries/data-centers.html"
+        },
+        {
+          "label": "Oklahoma Department of Commerce — Data Centers",
+          "url": "https://www.okcommerce.gov/industries/data-centers/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "35001",
+      "name": "Bernalillo County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Albuquerque Technology Hub",
+      "description": "Bernalillo County (Albuquerque) is New Mexico's largest data center market. Meta operates a large data center campus in the county, and Microsoft has announced data center investments in the Albuquerque metro. New Mexico offers gross receipts tax deductions for data center equipment under NMSA §7-9-57, plus property tax abatements through the county. The state's renewable energy resources (wind and solar) and moderate climate attract sustainability-focused operators.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "NMSA §7-9-57 provides gross receipts tax deduction for qualified data center equipment.",
+      "sources": [
+        {
+          "label": "New Mexico Taxation and Revenue Department — Data Center GRT Deduction",
+          "url": "https://www.tax.newmexico.gov/businesses/industries/data-centers/"
+        },
+        {
+          "label": "New Mexico Economic Development — Tech Industries",
+          "url": "https://gonm.biz/site-selectors/key-industries/data-centers/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "12057",
+      "name": "Hillsborough County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Tampa Bay Technology Hub",
+      "description": "Hillsborough County (Tampa) hosts a growing data center cluster including DataSite (QTS), Evoque, Cologix, and enterprise colocation operators. Florida's 2023 HB 7063 expanded sales tax exemptions for data centers meeting a $150M capital investment threshold, providing 20-year exemptions on equipment and electricity. The Tampa metro's hurricane-resilient construction standards, diverse fiber routes, and proximity to LatAm traffic make it a strategic East Coast / Caribbean hub.",
+      "effective_date": "2023-07-01",
+      "status": "active",
+      "notes": "Florida HB 7063 (2023) provides significant sales tax exemptions for qualifying data centers.",
+      "sources": [
+        {
+          "label": "Florida Department of Revenue — Data Center Exemptions (HB 7063)",
+          "url": "https://floridarevenue.com/taxes/taxesfees/Pages/data_centers.aspx"
+        },
+        {
+          "label": "Hillsborough County Economic Development",
+          "url": "https://www.hillsboroughcounty.org/en/businesses/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "12086",
+      "name": "Miami-Dade County",
+      "state": "Florida",
+      "level": 1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Environmental Resilience Review — Coastal Climate Regulations",
+      "description": "Miami-Dade County applies coastal resilience and sea-level rise review to large developments including data centers in flood-prone zones. The county's 2021 Sea Level Rise Strategy requires climate vulnerability assessments for major infrastructure. Several colocation operators (Equinix, Verizon NAP of the Americas, DataSite) maintain facilities here. The county is pro-business but the added environmental review layer classifies it as Level 1.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "NAP of the Americas (Verizon/Terremark) is a major LatAm internet hub in downtown Miami.",
+      "sources": [
+        {
+          "label": "Miami-Dade County Sea Level Rise Strategy (2021)",
+          "url": "https://www.miamidade.gov/environment/climate-change.asp"
+        },
+        {
+          "label": "Miami-Dade Department of Regulatory and Economic Resources",
+          "url": "https://www.miamidade.gov/permits/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "48121",
+      "name": "Denton County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — DFW North Corridor Hub",
+      "description": "Denton County is part of the rapidly expanding Dallas-Fort Worth data center corridor, particularly along Interstate 35 and the US-380 tech corridor. Flexential, Stream Data Centers, and various enterprise operators have facilities here. Texas provides data centers with a sales and use tax exemption under Texas Tax Code §151.359 for qualifying facilities. Abundant land, low commercial power rates (ERCOT), and proximity to DFW airport make this a high-growth submarket.",
+      "effective_date": "2013-01-01",
+      "status": "active",
+      "notes": "Texas Tax Code §151.359 exempts data center equipment from sales tax for qualifying operators.",
+      "sources": [
+        {
+          "label": "Texas Comptroller — Data Center Exemption (§151.359)",
+          "url": "https://comptroller.texas.gov/taxes/sales/exemptions/data-center.php"
+        },
+        {
+          "label": "Denton County Economic Development",
+          "url": "https://www.dentoncounty.gov/323/Economic-Development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "48441",
+      "name": "Taylor County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Stargate / OpenAI AI Campus Hub (Abilene)",
+      "description": "Taylor County (Abilene) was selected in 2025 as the initial site for the Stargate AI infrastructure project, a joint venture of OpenAI, SoftBank, Oracle, and MGX targeting $500 billion in US AI infrastructure investment. The Abilene campus is the first ground-up Stargate data center, occupying hundreds of acres adjacent to ERCOT transmission infrastructure. AEP Texas provides power. The county and City of Abilene offered significant tax and land-use incentives to secure the project.",
+      "effective_date": "2025-01-01",
+      "status": "active",
+      "notes": "Stargate joint venture announced January 2025; Abilene selected as first campus site.",
+      "sources": [
+        {
+          "label": "OpenAI — Stargate Project Announcement",
+          "url": "https://openai.com/index/announcing-the-stargate-project/"
+        },
+        {
+          "label": "SoftBank Stargate Press Release (Jan 2025)",
+          "url": "https://group.softbank/en/news/press/20250121_02"
+        },
+        {
+          "label": "City of Abilene Economic Development Corporation",
+          "url": "https://www.abileneedc.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "31109",
+      "name": "Lancaster County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Lincoln Technology Campus Hub",
+      "description": "Lancaster County (Lincoln) is Nebraska's secondary data center market after Omaha (Douglas County). Lincoln Electric System (LES) provides some of the lowest commercial power rates in the Midwest. Nebraska offers a personal property tax exemption for data center equipment under LB 1031. Ameritas Life Partners and various regional operators maintain data centers in the Lincoln area.",
+      "effective_date": "2014-01-01",
+      "status": "active",
+      "notes": "Nebraska LB 1031 exempts qualifying data center equipment from personal property tax.",
+      "sources": [
+        {
+          "label": "Nebraska Department of Revenue — Data Center Exemptions",
+          "url": "https://revenue.nebraska.gov/businesses/data-center-tax-exemptions"
+        },
+        {
+          "label": "Lincoln Electric System — Economic Development",
+          "url": "https://www.les.com/power-your-business/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "53005",
+      "name": "Benton County",
+      "state": "Washington",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Columbia Basin Cheap Power Hub (Kennewick)",
+      "description": "Benton County (Kennewick) is part of Washington's Columbia Basin data center cluster, benefiting from hydroelectric power from Bonneville Power Administration at among the lowest industrial rates in North America (~2-3 cents/kWh). The Tri-Cities area (Kennewick, Pasco, Richland) hosts several hyperscale facilities and the Pacific Northwest National Laboratory (PNNL) computing infrastructure. The county has no restrictions on data center development.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "BPA hydroelectric power provides some of the lowest industrial electricity rates in the US.",
+      "sources": [
+        {
+          "label": "Bonneville Power Administration — Power Rates",
+          "url": "https://www.bpa.gov/energy-and-services/rates"
+        },
+        {
+          "label": "Benton County — Economic Development",
+          "url": "https://www.co.benton.wa.us/departments/economic_development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "53021",
+      "name": "Franklin County",
+      "state": "Washington",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Pasco / Tri-Cities Hydropower Hub",
+      "description": "Franklin County (Pasco) shares the Columbia Basin hydroelectric power advantage with adjacent Benton and Grant counties. The Port of Pasco's industrial land and BPA power access have attracted data center operators seeking renewable, low-cost electricity. Apple operates a significant data center campus in the Tri-Cities area. The county offers no restrictions on data center development.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Apple has operated a large data center in the Tri-Cities area since approximately 2012.",
+      "sources": [
+        {
+          "label": "Port of Pasco — Economic Development",
+          "url": "https://portofpasco.com/economic-development/"
+        },
+        {
+          "label": "Bonneville Power Administration — Power Rates",
+          "url": "https://www.bpa.gov/energy-and-services/rates"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "13151",
+      "name": "Henry County",
+      "state": "Georgia",
+      "level": 2,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Rapid Data Center Growth — Infrastructure Strain Review",
+      "description": "Henry County, south of Atlanta, has experienced rapid data center expansion along the I-75 corridor. The county has imposed mandatory grid-impact assessments and stormwater management requirements following complaints about infrastructure stress from large-scale development. Georgia Power's load growth attributed to data centers in Henry County has prompted review of new substation interconnection timelines. Several rezoning applications face extended review periods as a result.",
+      "effective_date": "2023-06-01",
+      "status": "active",
+      "notes": "Georgia Power load studies required for data centers >10MW load in Henry County.",
+      "sources": [
+        {
+          "label": "Henry County Development Authority",
+          "url": "https://www.henrycountyda.com"
+        },
+        {
+          "label": "Henry County Planning & Zoning",
+          "url": "https://www.henrycountyga.gov/departments/planning-zoning"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "37109",
+      "name": "Lincoln County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Duke Energy Catawba River Corridor",
+      "description": "Lincoln County (Lincolnton) is part of North Carolina's emerging western Piedmont data center corridor, benefiting from Duke Energy's robust transmission infrastructure along the Catawba River. The county's industrial land availability, NC's Article 3F investment tax credit, and competitive power rates have attracted several data center proposals. The county is actively promoting the area through economic development incentives.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "NC Article 3F provides income tax credit for qualifying data center investments over $75M.",
+      "sources": [
+        {
+          "label": "NC Department of Commerce — Article 3F Data Center Incentive",
+          "url": "https://www.nccommerce.com/business-services/incentive-programs/article-3f-data-center-incentive"
+        },
+        {
+          "label": "Lincoln County Economic Development",
+          "url": "https://lincolncountync.com/economic-development/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "42095",
+      "name": "Northampton County",
+      "state": "Pennsylvania",
+      "level": 1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lehigh Valley Data Center Growth — Standard Environmental Review",
+      "description": "Northampton County (Bethlehem) is part of Pennsylvania's Lehigh Valley data center corridor alongside Lehigh County. The region has attracted QTS, Iron Mountain, and regional colocation operators. Pennsylvania applies standard Act 537 sewage facility planning and stormwater management review for large developments. No specific data center restrictions; the review requirements are the same as for other large industrial developments.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "Lehigh Valley Economic Development Corporation actively markets the corridor to data center operators.",
+      "sources": [
+        {
+          "label": "Lehigh Valley Economic Development Corporation",
+          "url": "https://www.lehighvalley.org/invest/key-sectors/data-centers/"
+        },
+        {
+          "label": "PA Dept. of Environmental Protection — Act 537 Planning",
+          "url": "https://www.dep.pa.gov/Business/Water/CleanWater/WasteWater/Pages/Act-537-Planning.aspx"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "42011",
+      "name": "Berks County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Reading / Berks County Digital Corridor",
+      "description": "Berks County (Reading) has emerged as a cost-competitive alternative to the Northern Virginia and NJ/NY data center markets. Iron Mountain, NorthStar, and regional operators have facilities here. PPL Electric's transmission infrastructure, available land, and Pennsylvania's Keystone Opportunity Zones provide competitive economics. The county actively recruits data center investment.",
+      "effective_date": "2018-01-01",
+      "status": "active",
+      "notes": "Pennsylvania Keystone Opportunity Zones can provide significant tax relief for qualifying facilities.",
+      "sources": [
+        {
+          "label": "Greater Reading Economic Partnership",
+          "url": "https://www.greaterreading.org"
+        },
+        {
+          "label": "Pennsylvania Department of Community & Economic Development — KOZ Program",
+          "url": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "45063",
+      "name": "Lexington County",
+      "state": "South Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Columbia Metro Hub",
+      "description": "Lexington County (Cayce/West Columbia) is part of South Carolina's Columbia metro data center market. SC's Chapter 4A (§12-6-3375 through §12-6-3380) provides income tax credits and special source revenue credits for qualifying data centers investing over $50M. SCE&G (Dominion Energy SC) power, available industrial land, and the state's competitive incentive environment have attracted several operators to the region.",
+      "effective_date": "2016-01-01",
+      "status": "active",
+      "notes": "SC §12-6-3375 provides income tax credits for qualifying data centers.",
+      "sources": [
+        {
+          "label": "SC Department of Commerce — Data Center Incentives",
+          "url": "https://www.sccommerce.com/incentives/data-center-incentives"
+        },
+        {
+          "label": "Lexington County Economic Development",
+          "url": "https://www.lexingtoncountysc.gov/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
+    },
+    {
+      "fips": "26125",
+      "name": "Oakland County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pro Data Center — Detroit Metro Hub",
+      "description": "Oakland County (Pontiac, Troy) is Michigan's primary data center market, hosting Switch's SUPERNAP Michigan facility and numerous enterprise operators serving the Detroit metro's automotive and financial sector. Michigan's PA 328 (2014) provides sales and use tax exemptions for data center equipment investments over $25M. The county actively recruits technology investment through Oakland County's One Stop Shop permitting program.",
+      "effective_date": "2014-01-01",
+      "status": "active",
+      "notes": "Michigan PA 328 (2014) provides sales and use tax exemptions for qualifying data center investments.",
+      "sources": [
+        {
+          "label": "Michigan Economic Development Corporation — Data Center Incentives",
+          "url": "https://www.michiganbusiness.org/industries/data-centers/"
+        },
+        {
+          "label": "Michigan PA 328 (2014) — Data Center Tax Exemption",
+          "url": "https://www.legislature.mi.gov/documents/2013-2014/publicact/htm/2014-PA-0328.htm"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-14"
     }
   ]
 }
