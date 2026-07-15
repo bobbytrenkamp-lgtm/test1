@@ -747,6 +747,36 @@
         "23005",
         "23011"
       ]
+    },
+    {
+      "state": "NJ",
+      "program_name": "New Jersey Data Center Sales Tax Exemption",
+      "incentive_type": "Sales tax exemption",
+      "min_investment_m": 25.0,
+      "notes": "New Jersey provides a sales and use tax exemption on computer equipment and software purchased for use in a data center with a minimum investment of $25M (N.J.S.A. 54:32B-8.57). The New Jersey Economic Development Authority (NJEDA) administers additional discretionary incentives for large-scale data center projects.",
+      "fips_list": [
+        "34013",
+        "34039",
+        "34023"
+      ]
+    },
+    {
+      "state": "TN",
+      "program_name": "Tennessee Data Center Sales Tax Exemption",
+      "incentive_type": "Sales tax exemption",
+      "min_investment_m": 100.0,
+      "notes": "Tennessee Code Annotated \u00a767-6-346 exempts computer equipment, software, and energy used by qualifying data centers from sales and use tax. Minimum investment of $100M for full exemption; Tennessee has no state income tax, further reducing total cost of operations.",
+      "fips_list": [
+        "47001",
+        "47037",
+        "47065",
+        "47031",
+        "47157",
+        "47125",
+        "47165",
+        "47093",
+        "47149"
+      ]
     }
   ]
 }

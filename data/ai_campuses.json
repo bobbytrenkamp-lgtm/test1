@@ -867,6 +867,56 @@
       "notes": "Regional colocation data center serving Charleston's growing financial technology, healthcare, and logistics IT sectors.",
       "lon": -79.9311,
       "lat": 32.7765
+    },
+    {
+      "id": "ai-ca-005",
+      "name": "Qualcomm Data Center \u2014 San Diego",
+      "operator": "Qualcomm Technologies Inc.",
+      "status": "operational",
+      "county_fips": "06073",
+      "notes": "On-premises data center supporting Qualcomm's semiconductor R&D, 5G/AI chip testing, and enterprise compute operations.",
+      "lon": -117.1611,
+      "lat": 32.7157
+    },
+    {
+      "id": "ai-tn-006",
+      "name": "Nissan North America IT Operations Center",
+      "operator": "Nissan North America",
+      "status": "operational",
+      "county_fips": "47149",
+      "notes": "Nissan's North American IT hub in Smyrna/Rutherford County supporting manufacturing systems, supply chain AI, and connected vehicle data.",
+      "lon": -86.5186,
+      "lat": 35.9828
+    },
+    {
+      "id": "ai-ut-003",
+      "name": "Adobe Systems Utah Data Center \u2014 Silicon Slopes",
+      "operator": "Adobe Systems",
+      "status": "operational",
+      "county_fips": "49049",
+      "notes": "Adobe's Utah data center supporting Creative Cloud, Document Cloud, and Experience Cloud AI/ML workloads in the Silicon Slopes corridor.",
+      "lon": -111.6585,
+      "lat": 40.2338
+    },
+    {
+      "id": "ai-nd-003",
+      "name": "NDSU High Performance Computing Center",
+      "operator": "North Dakota State University",
+      "status": "operational",
+      "county_fips": "38017",
+      "notes": "NDSU's HPC facility supporting agricultural data analytics, materials science research, and Great Plains climate modeling.",
+      "lon": -96.7898,
+      "lat": 46.8772
+    },
+    {
+      "id": "ai-ny-001",
+      "name": "M&T Bank Technology Operations Center",
+      "operator": "M&T Bank Corporation",
+      "status": "operational",
+      "county_fips": "36029",
+      "notes": "M&T Bank's primary technology operations hub supporting regional banking IT, data analytics, and financial services processing for the Buffalo-Niagara region.",
+      "lon": -78.8784,
+      "lat": 42.8864
     }
   ]
 }

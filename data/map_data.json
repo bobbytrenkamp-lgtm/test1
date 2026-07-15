@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-15T03:51:37.916921+00:00",
+  "generated_at": "2026-07-15T03:54:42.855943+00:00",
   "source_last_updated": "2026-07-14",
   "stats": {
-    "total_counties_tracked": 245,
+    "total_counties_tracked": 257,
     "by_level": {
-      "-1": 152,
+      "-1": 164,
       "0": 0,
       "1": 32,
       "2": 34,
@@ -12,9 +12,9 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 242,
+      "data_center": 254,
       "water": 12,
-      "ai": 54,
+      "ai": 63,
       "energy": 61,
       "crypto": 14
     },
@@ -7009,6 +7009,315 @@
       "confidence": "low",
       "confidence_score": 33,
       "source_tier": 3
+    },
+    "06073": {
+      "name": "San Diego County",
+      "state": "California",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "San Diego County Defense Tech and Semiconductor Hub",
+      "description": "San Diego County hosts Qualcomm HQ, NAVWAR (Naval Information Warfare Systems Command), General Atomics, and a major defense/biotech IT cluster. Multiple AWS, Google, and colocation facilities serve the region. No local DC zoning restrictions; California Competes tax credit available for qualifying investments.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "NAVWAR \u2014 San Diego Defense Tech",
+          "url": "https://www.navwar.navy.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "13067": {
+      "name": "Cobb County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Cobb County Atlanta Metro Defense and Healthcare IT Hub",
+      "description": "Cobb County (Marietta) hosts Lockheed Martin Aeronautics' southeast IT operations, WellStar Health System's data infrastructure, and Kennesaw State University research computing. Part of metro Atlanta's data center corridor; no local DC restrictions. Georgia's Job Tax Credit and data center sales tax exemption apply.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Cobb County Economic Development",
+          "url": "https://www.cobbcounty.org/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "25009": {
+      "name": "Essex County",
+      "state": "Massachusetts",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Essex County North Shore Defense and Technology Hub",
+      "description": "Essex County hosts Raytheon/RTX technology operations in Andover, legacy EMC/Dell research facilities in Andover/Chelmsford border area, and MIT Lincoln Laboratory connectivity. No local DC restrictions; Massachusetts data center equipment exemption (Ch.64H \u00a76(r)) applies. Significant defense-sector and enterprise IT infrastructure.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Raytheon Technologies \u2014 Andover MA",
+          "url": "https://www.rtx.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "34023": {
+      "name": "Middlesex County",
+      "state": "New Jersey",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Middlesex County NJ Pharmaceutical IT and University Research Hub",
+      "description": "Middlesex County hosts Johnson & Johnson's global IT operations, Rutgers University research computing, and major pharmaceutical/biotech data infrastructure. New Brunswick/Piscataway corridor is a key component of the NJ technology belt. No local DC restrictions; NJ Economic Development Authority incentives available.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Choose NJ \u2014 Technology Sector",
+          "url": "https://www.choosenj.com/industries/technology/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "47149": {
+      "name": "Rutherford County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Rutherford County Middle Tennessee Technology and Logistics Hub",
+      "description": "Rutherford County (Murfreesboro) is one of Tennessee's fastest-growing counties, hosting Amazon fulfillment technology operations, Nissan North America IT center, and Middle Tennessee State University's data systems. No local DC restrictions; Tennessee's no income tax and data center equipment exemption (TCA \u00a767-6-346) apply.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "TN ECD \u2014 Rutherford County",
+          "url": "https://www.tn.gov/ecd/regions/middle-tennessee.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "55087": {
+      "name": "Outagamie County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Outagamie County Fox Cities Financial Technology Hub",
+      "description": "Outagamie County (Appleton) is the center of Wisconsin's Fox Cities region, hosting CUNA Mutual Group's data operations, ThedaCare health system IT, and the Fox Valley Technical College cyber/IT programs. No local DC restrictions; Wisconsin's data center sales tax exemption (s.77.54(57)) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Outagamie County Economic Development",
+          "url": "https://www.outagamie.org/government/departments-f-o/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "38017": {
+      "name": "Cass County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Cass County Fargo Technology and University Computing Hub",
+      "description": "Cass County (Fargo) is North Dakota's largest metro and hosts NDSU research computing, Sanford Health IT operations, Microsoft Azure edge infrastructure, and major agricultural data analytics operations. No local DC restrictions; ND's New/Expanding Business Income Tax Exemption (N.D.C.C. \u00a757-38.5) applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Greater Fargo Moorhead EDC \u2014 Technology",
+          "url": "https://www.gfmedc.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "49049": {
+      "name": "Utah County",
+      "state": "Utah",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Utah County Silicon Slopes Technology Hub",
+      "description": "Utah County (Provo/Orem) is the heart of Utah's 'Silicon Slopes,' hosting Adobe Systems, Qualtrics (SAP), Ancestry.com data operations, Vivint Smart Home, and Brigham Young University research computing. One of the fastest-growing tech corridors in the US. No local DC restrictions; Utah's EDTIF data center incentive applies.",
+      "effective_date": "2018-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Silicon Slopes \u2014 Utah Tech Industry",
+          "url": "https://siliconslopes.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "36029": {
+      "name": "Erie County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Erie County Buffalo Emerging Technology Hub",
+      "description": "Erie County (Buffalo) hosts M&T Bank's financial technology operations, KeyBank's regional data infrastructure, University at Buffalo research computing, and a growing tech ecosystem anchored by the Buffalo-Niagara Medical Campus. No local DC restrictions; NYS Empire State Development REAP and data center incentives apply.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Buffalo Niagara Partnership \u2014 Technology",
+          "url": "https://www.buffaloniagara.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "26065": {
+      "name": "Ingham County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ingham County Michigan State Capital and University IT Hub",
+      "description": "Ingham County (Lansing/East Lansing) hosts Michigan's Department of Technology, Management and Budget (DTMB) state data center and Michigan State University's High Performance Computing Center (HPCC). No local DC restrictions; Michigan's MEGA and other MEDC incentives available for qualifying investments.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Michigan DTMB \u2014 State Data Center",
+          "url": "https://www.michigan.gov/dtmb"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "16055": {
+      "name": "Kootenai County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kootenai County North Idaho Technology Hub",
+      "description": "Kootenai County (Coeur d'Alene) is northern Idaho's primary tech hub, hosting Coeur d'Alene Press, Hagadone Hospitality technology operations, and growing remote-work-driven tech migration. Low land costs, Idaho Power's low electricity rates, and no local DC restrictions support data center development.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Kootenai County \u2014 Business Development",
+          "url": "https://www.kcgov.us/economy"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "44005": {
+      "name": "Newport County",
+      "state": "Rhode Island",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Newport County Naval Undersea Warfare Center IT Hub",
+      "description": "Newport County hosts the Naval Undersea Warfare Center (NUWC) Division Newport, the US Navy's corporate laboratory for undersea warfare, and Naval Station Newport. Significant defense-sector data and simulation infrastructure. No local DC restrictions; Rhode Island's Rebuild RI Tax Credit (\u00a744-48.3) applies to qualifying investments.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "NUWC Division Newport",
+          "url": "https://www.navsea.navy.mil/Home/Warfare-Centers/NUWC-Newport/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -7485,7 +7794,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-15T03:51:38.026805+00:00",
+    "last_computed": "2026-07-15T03:54:42.953635+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",
