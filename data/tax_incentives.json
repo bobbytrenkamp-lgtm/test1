@@ -674,6 +674,35 @@
         "38015",
         "38035"
       ]
+    },
+    {
+      "state": "CA",
+      "program_name": "California Competes Tax Credit (CalCompetes)",
+      "incentive_type": "Income Tax Credit (Negotiated)",
+      "min_investment_m": 1,
+      "notes": "GO-Biz (Governor's Office of Business and Economic Development) \u2014 CalCompetes: A negotiated income tax credit for businesses that want to come to California or stay and grow in California. Awards are based on number of jobs, wages, investment amount, economic impact, and strategic importance to the state. Data center operators qualifying as technology infrastructure companies have received CalCompetes awards for qualifying capital investment and job creation. Separate from the statewide sales tax exemption for manufacturing and R&D equipment (Ca. Rev. and Tax Code \u00a76377.1) which may also apply to data center server and power equipment in qualifying R&D contexts.",
+      "fips_list": [
+        "06085",
+        "06081",
+        "06075",
+        "06001",
+        "06037",
+        "06065",
+        "06071",
+        "06019",
+        "06059",
+        "06013"
+      ]
+    },
+    {
+      "state": "RI",
+      "program_name": "Rhode Island Rebuild RI Tax Credit",
+      "incentive_type": "Tax Credit (up to 20-30% of qualified costs)",
+      "min_investment_m": 5,
+      "notes": "R.I. Gen. Laws \u00a744-48.3 (Rebuild Rhode Island Tax Credit): Provides a tax credit of up to 20% (or 30% for distressed areas) of qualified project costs for commercial and industrial development, including data center construction and renovation. Qualifying projects must create a minimum of 25 new full-time jobs or invest at least $5 million in a qualified area. Credits are allocated by the Rhode Island Commerce Corporation on a competitive basis. The program has been used for technology infrastructure investments in Providence County.",
+      "fips_list": [
+        "44007"
+      ]
     }
   ]
 }
