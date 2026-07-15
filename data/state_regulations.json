@@ -853,6 +853,47 @@
           "url": "https://www.mississippipower.com/"
         }
       ]
+    },
+    "02": {
+      "name": "Alaska",
+      "abbr": "AK",
+      "level": -1,
+      "status": "active",
+      "summary": "Alaska has no statewide AI-specific regulation or dedicated data center legislation as of 2026. The state's remote geography and high utility costs (diesel power in many areas) limit commercial data center development. GCI (General Communication Inc.) and Alaska Communications maintain telecom infrastructure and small data center assets in Anchorage and Fairbanks. The Trans-Alaska Pipeline System (TAPS) and North Slope oil operations generate industrial IT and edge computing demand. Alaska has no personal income tax and no state sales tax, making equipment acquisition favorable for the limited commercial data center market. The Federal government (DoD, Coast Guard, NOAA) is the primary driver of data center investment in the state.",
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Alaska Dept. of Commerce \u2014 Business Programs",
+          "url": "https://www.commerce.alaska.gov/"
+        },
+        {
+          "label": "GCI \u2014 Alaska Network Infrastructure",
+          "url": "https://www.gci.com/"
+        }
+      ]
+    },
+    "15": {
+      "name": "Hawaii",
+      "abbr": "HI",
+      "level": -1,
+      "status": "active",
+      "summary": "Hawaii has no statewide AI-specific regulation or dedicated data center legislation as of 2026. The state's high electricity costs (among the highest in the US due to oil-fired generation, though rapidly transitioning to renewables) make conventional data center operations expensive. Hawaiian Telcom (Consolidated Communications) and Lumen/CenturyLink maintain carrier-grade network data center infrastructure. Pacific subsea cable landing sites in Oahu (including the SEA-US and TGN-IA cables) create strategic interconnection value for trans-Pacific workloads. Hawaii's 100% renewable portfolio standard by 2045 (HRS \u00a7269-92) is reshaping the power cost structure for large loads. No AI governance bill has been enacted as of 2025.",
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "sources": [
+        {
+          "label": "Hawaii PUC \u2014 Energy Regulation",
+          "url": "https://puc.hawaii.gov/"
+        },
+        {
+          "label": "Hawaiian Telcom \u2014 Data Center Services",
+          "url": "https://hawaiiantel.com/"
+        }
+      ]
     }
   }
 }

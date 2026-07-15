@@ -717,6 +717,56 @@
       "notes": "Consolidated state agency IT infrastructure hub under Florida's \u00a7282.201 mandate.",
       "lon": -84.2807,
       "lat": 30.4383
+    },
+    {
+      "id": "ai-ar-001",
+      "name": "Windstream / Kinetic Business Network Data Center \u2014 Little Rock",
+      "operator": "Windstream / Kinetic",
+      "status": "operational",
+      "county_fips": "05119",
+      "notes": "Windstream HQ campus; major mid-South fiber/telecom network data center.",
+      "lon": -92.2896,
+      "lat": 34.7465
+    },
+    {
+      "id": "ai-la-001",
+      "name": "Cologix New Orleans Data Center",
+      "operator": "Cologix",
+      "status": "operational",
+      "county_fips": "22071",
+      "notes": "Primary carrier-neutral internet exchange and Gulf energy sector colocation hub.",
+      "lon": -90.0715,
+      "lat": 29.9511
+    },
+    {
+      "id": "ai-mo-001",
+      "name": "Equinix STL1 St. Louis Data Center",
+      "operator": "Equinix",
+      "status": "operational",
+      "county_fips": "29510",
+      "notes": "Primary Midwest internet exchange west of Chicago; Mastercard and Centene enterprise hub.",
+      "lon": -90.1994,
+      "lat": 38.627
+    },
+    {
+      "id": "ai-nc-002",
+      "name": "Tier1 Cloud Greensboro Data Center",
+      "operator": "Tier1 Cloud",
+      "status": "operational",
+      "county_fips": "37081",
+      "notes": "Enterprise colocation serving VF Corp, HanesBrands and Piedmont NC corridor.",
+      "lon": -79.791,
+      "lat": 36.0726
+    },
+    {
+      "id": "ai-ok-003",
+      "name": "Williams Companies Tulsa Operations Data Center",
+      "operator": "Williams Companies",
+      "status": "operational",
+      "county_fips": "40143",
+      "notes": "Critical pipeline SCADA and midstream operations IT infrastructure in Tulsa.",
+      "lon": -95.9928,
+      "lat": 36.154
     }
   ]
 }
