@@ -767,6 +767,56 @@
       "notes": "Critical pipeline SCADA and midstream operations IT infrastructure in Tulsa.",
       "lon": -95.9928,
       "lat": 36.154
+    },
+    {
+      "id": "ai-ak-001",
+      "name": "GCI Data Center \u2014 Anchorage",
+      "operator": "GCI (General Communication LLC)",
+      "status": "operational",
+      "county_fips": "02020",
+      "notes": "Primary commercial data center in Alaska; serves enterprise and government clients across the state.",
+      "lon": -149.8635,
+      "lat": 61.2181
+    },
+    {
+      "id": "ai-hi-001",
+      "name": "DRFortress Honolulu Data Center",
+      "operator": "DRFortress",
+      "status": "operational",
+      "county_fips": "15003",
+      "notes": "Hawaii's largest commercial data center; carrier-neutral, Pacific subsea cable interconnection hub.",
+      "lon": -157.8583,
+      "lat": 21.3069
+    },
+    {
+      "id": "ai-ms-002",
+      "name": "Lumen Technologies Jackson Data Center",
+      "operator": "Lumen Technologies",
+      "status": "operational",
+      "county_fips": "28049",
+      "notes": "Colocation and network hub serving Mississippi state government and enterprise clients.",
+      "lon": -90.1848,
+      "lat": 32.2988
+    },
+    {
+      "id": "ai-ar-002",
+      "name": "Walmart Global Technology Data Center \u2014 Bentonville",
+      "operator": "Walmart Inc.",
+      "status": "operational",
+      "county_fips": "05007",
+      "notes": "On-premises enterprise data center supporting Walmart's global retail technology and supply-chain AI operations.",
+      "lon": -94.2088,
+      "lat": 36.3729
+    },
+    {
+      "id": "ai-wv-001",
+      "name": "DataBank Eastern Panhandle Data Center",
+      "operator": "DataBank",
+      "status": "operational",
+      "county_fips": "54003",
+      "notes": "Edge data center serving DC-metro overspill demand in Martinsburg WV; benefits from WV EDGE Act incentives.",
+      "lon": -77.9639,
+      "lat": 39.4565
     }
   ]
 }

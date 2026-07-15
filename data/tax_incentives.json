@@ -703,6 +703,28 @@
       "fips_list": [
         "44007"
       ]
+    },
+    {
+      "state": "MS",
+      "program_name": "Mississippi Data Center Sales Tax Exemption",
+      "incentive_type": "Sales tax exemption",
+      "min_investment_m": 50.0,
+      "notes": "Miss. Code Ann. \u00a727-65-101 exempts data center equipment and construction materials from state sales tax for qualifying facilities with \u2265$50M investment and \u226520 full-time jobs. Expanded by HB 1709 (2019).",
+      "fips_list": [
+        "28049",
+        "28033"
+      ]
+    },
+    {
+      "state": "SD",
+      "program_name": "South Dakota No-Income-Tax Business Environment",
+      "incentive_type": "Tax structure",
+      "min_investment_m": null,
+      "notes": "South Dakota levies no corporate income tax and no personal income tax, making it one of the lowest-tax states for data center operations. GOED administers discretionary economic development grants for large capital investments.",
+      "fips_list": [
+        "46099",
+        "46103"
+      ]
     }
   ]
 }

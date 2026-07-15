@@ -5937,6 +5937,287 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null
+    },
+    {
+      "fips": "02020",
+      "name": "Anchorage Municipality",
+      "state": "Alaska",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Anchorage Permissive Data Center Environment",
+      "description": "Anchorage hosts GCI and Lumen data centers serving state government IT and federal agencies. No local DC permitting restrictions; Alaska's lack of state income and sales taxes reduces operating costs. Cold climate provides natural free-cooling advantage.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "GCI Data Center Anchorage",
+          "url": "https://www.gci.com/business/network/data-center"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "15003",
+      "name": "Honolulu County",
+      "state": "Hawaii",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Honolulu Pacific Data Hub \u2014 Permissive Environment",
+      "description": "Honolulu is the western terminus of multiple Pacific subsea cable systems and hosts DRFortress, the state's primary commercial data center. The Hawaii Strategic Development Corporation supports digital infrastructure. No local DC zoning restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "DRFortress Honolulu Data Center",
+          "url": "https://www.drfortress.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "28049",
+      "name": "Hinds County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hinds County Data Center Incentive Environment",
+      "description": "Jackson metro (Hinds County) hosts state government IT infrastructure and Entergy Mississippi's operations data systems. Mississippi's Data Center Sales Tax Exemption (Miss. Code Ann. \u00a727-65-101) supports investment. No local DC restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "MS Data Center Incentive \u2014 MDA",
+          "url": "https://www.mississippi.org/incentives/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "28033",
+      "name": "DeSoto County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "DeSoto County Memphis Metro Data Corridor",
+      "description": "DeSoto County's location in the Memphis metro area, combined with lower land costs and Mississippi's tax incentive programs, makes it attractive for data center and logistics operations. State sales tax exemptions on data center equipment (Miss. Code \u00a727-65-101) apply county-wide.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "MS Development Authority Incentives",
+          "url": "https://www.mississippi.org/incentives/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "05007",
+      "name": "Benton County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Benton County Technology Corridor \u2014 Walmart/NWA Hub",
+      "description": "Benton County anchors the Northwest Arkansas technology corridor, home to Walmart Global Technology and a growing tech ecosystem. No local DC restrictions; AEDC-supported incentives and low land costs drive investment. Walmart IT campus includes significant on-premise compute.",
+      "effective_date": "2018-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "AEDC Arkansas Technology Sector",
+          "url": "https://www.arkansasedc.com/industries/technology"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "50023",
+      "name": "Washington County",
+      "state": "Vermont",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Washington County State Capital IT Infrastructure",
+      "description": "Montpelier (Washington County) hosts Vermont's state government data infrastructure including DII (Department of Information and Innovation) operations. No local DC zoning restrictions; Vermont's modest electricity rates and cool climate support small-scale data operations.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "VT Dept. of Information and Innovation",
+          "url": "https://dii.vermont.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "23011",
+      "name": "Kennebec County",
+      "state": "Maine",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kennebec County State Government Data Infrastructure",
+      "description": "Augusta (Kennebec County) hosts Maine's Office of Information Technology state data center operations. No local DC zoning restrictions. Maine's cool climate, hydroelectric-heavy grid, and competitive land costs support data center economics.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Maine OIT State Technology Office",
+          "url": "https://www.maine.gov/oit/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "33015",
+      "name": "Rockingham County",
+      "state": "New Hampshire",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Rockingham County Southern NH Technology Corridor",
+      "description": "Rockingham County (Portsmouth/Salem/Exeter area) is part of the southern New Hampshire tech corridor serving Boston metro overspill. No state income or sales tax and no local DC restrictions make it attractive. Multiple colocation and edge compute facilities operate in the Salem/Nashua border zone.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "NH Division of Economic Development",
+          "url": "https://www.nheconomy.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "54003",
+      "name": "Berkeley County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Berkeley County Eastern Panhandle Data Center Hub",
+      "description": "Berkeley County (Martinsburg) in WV's Eastern Panhandle sits within 70 miles of Washington DC and has attracted data centers drawn by lower land/power costs vs. Northern Virginia. WV's EDGE Act (HB 2002, 2023) provides 25% ITC for qualified data centers. No local DC restrictions.",
+      "effective_date": "2023-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "WV EDGE Act HB 2002 (2023)",
+          "url": "https://www.wvlegislature.gov/Bill_Status/bills_history.cfm?input=2002&year=2023&sessiontype=RS&btype=bill"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "16027",
+      "name": "Canyon County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Canyon County Boise Metro Expansion Corridor",
+      "description": "Canyon County (Nampa/Caldwell) is experiencing rapid population and industrial growth as part of the Greater Boise metro. Affordable land, low electricity rates from Idaho Power, and no local DC restrictions support data center development. Complements Ada County's existing data center ecosystem.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Idaho Commerce \u2014 Technology Sector",
+          "url": "https://commerce.idaho.gov/industries/technology/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "46103",
+      "name": "Pennington County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pennington County Rapid City Data Center Environment",
+      "description": "Rapid City (Pennington County) benefits from South Dakota's zero corporate income tax and no personal income tax, along with competitive electricity rates from Black Hills Energy. Home to Dakota State University's cybersecurity/IT programs and regional healthcare IT operators. No local DC restrictions.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "SD GOED Technology Incentives",
+          "url": "https://sdgoed.com/why-sd/incentives/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "44003",
+      "name": "Kent County",
+      "state": "Rhode Island",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kent County RI Technology Corridor",
+      "description": "Kent County (Warwick/Coventry) hosts data infrastructure supporting Rhode Island's healthcare and financial services sectors. The Rebuild RI Tax Credit program (\u00a744-48.3) supports qualified capital investment. No local DC zoning restrictions; T.F. Green Airport proximity supports connectivity.",
+      "effective_date": "2016-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "RI Commerce \u2014 Rebuild RI Tax Credit",
+          "url": "https://commerceri.com/incentives/rebuild-ri-tax-credit/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
     }
   ]
 }
