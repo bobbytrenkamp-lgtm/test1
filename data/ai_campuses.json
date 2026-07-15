@@ -1017,6 +1017,56 @@
       "notes": "L3Harris global HQ supports defense electronics, satellite communications, and intelligence systems compute at the Melbourne, FL campus \u2014 among the largest defense-tech data footprints in Florida.",
       "lon": -80.6081,
       "lat": 28.0836
+    },
+    {
+      "id": "ai-az-001",
+      "name": "US Army NETCOM Data Center \u2014 Fort Huachuca",
+      "operator": "US Army Network Enterprise Technology Command (NETCOM)",
+      "status": "operational",
+      "county_fips": "04003",
+      "notes": "Primary Army network management and enterprise IT data center; supports Army-wide network operations, defensive cyber, and Army Cyber Command missions.",
+      "lon": -110.3445,
+      "lat": 31.5437
+    },
+    {
+      "id": "ai-in-003",
+      "name": "Purdue University RCAC Computing Cluster \u2014 West Lafayette",
+      "operator": "Purdue University Research Computing (RCAC)",
+      "status": "operational",
+      "county_fips": "18157",
+      "notes": "One of the largest university HPC environments in the US, hosting Anvil, Bell, and Gilbreth clusters; NSF ACCESS allocation site supporting national research.",
+      "lon": -86.9081,
+      "lat": 40.4237
+    },
+    {
+      "id": "ai-in-004",
+      "name": "Indiana University UITS Data Center (BigRed) \u2014 Bloomington",
+      "operator": "Indiana University UITS",
+      "status": "operational",
+      "county_fips": "18105",
+      "notes": "IU operates BigRed200 (Cray Shasta supercomputer) and Carbonate HPC clusters; one of the most advanced university research networks globally, supporting genomics, HPC, and AI workloads.",
+      "lon": -86.5264,
+      "lat": 39.1653
+    },
+    {
+      "id": "ai-fl-005",
+      "name": "CyrusOne Boca Raton Data Center",
+      "operator": "CyrusOne",
+      "status": "operational",
+      "county_fips": "12099",
+      "notes": "CyrusOne carrier-neutral colocation facility serving South Florida enterprise and financial services clients; part of the Boca Raton corporate technology cluster.",
+      "lon": -80.1275,
+      "lat": 26.3683
+    },
+    {
+      "id": "ai-oh-005",
+      "name": "Amazon AWS Central Ohio Data Center \u2014 Delaware County",
+      "operator": "Amazon Web Services",
+      "status": "operational",
+      "county_fips": "39041",
+      "notes": "AWS hyperscale data center campus in Delaware County, part of the broader AWS us-east-2 (Ohio) region footprint expanding beyond Franklin County into the lower-cost Delaware County corridor.",
+      "lon": -83.0677,
+      "lat": 40.2981
     }
   ]
 }

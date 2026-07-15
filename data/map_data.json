@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-15T04:01:51.476633+00:00",
+  "generated_at": "2026-07-15T04:05:31.871783+00:00",
   "source_last_updated": "2026-07-14",
   "stats": {
-    "total_counties_tracked": 281,
+    "total_counties_tracked": 293,
     "by_level": {
-      "-1": 188,
+      "-1": 200,
       "0": 0,
       "1": 32,
       "2": 34,
@@ -12,10 +12,10 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 278,
+      "data_center": 290,
       "water": 12,
-      "ai": 78,
-      "energy": 62,
+      "ai": 86,
+      "energy": 65,
       "crypto": 14
     },
     "level_labels": {
@@ -7934,6 +7934,317 @@
       "confidence": "medium",
       "confidence_score": 59,
       "source_tier": 1
+    },
+    "04003": {
+      "name": "Cochise County",
+      "state": "Arizona",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Cochise County Fort Huachuca Army Network Technology Hub",
+      "description": "Cochise County hosts Fort Huachuca, home of the US Army Network Enterprise Technology Command (NETCOM) and Army Cyber Command elements. Fort Huachuca is the Army's primary network management and IT hub, housing one of the most significant DoD data infrastructure concentrations in the western US. No local DC restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "US Army NETCOM \u2014 Fort Huachuca",
+          "url": "https://www.netcom.army.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "12099": {
+      "name": "Palm Beach County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Palm Beach County Boca Raton Corporate Technology Hub",
+      "description": "Palm Beach County (Boca Raton) hosts ADT's global headquarters, G4S Secure Solutions, Office Depot's technology operations, and a dense concentration of financial services and insurance IT infrastructure. No local DC restrictions; Florida's data center equipment exemption (\u00a7212.08) applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Business Development Board of Palm Beach County",
+          "url": "https://www.bdb.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "12105": {
+      "name": "Polk County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Polk County Lakeland Logistics and Retail Technology Hub",
+      "description": "Polk County (Lakeland) hosts Publix Super Markets' global technology and IT headquarters, Amazon fulfillment technology operations, and Saddle Creek Logistics's systems. As one of Florida's fastest-growing logistics corridors, Polk County supports substantial supply-chain data infrastructure. No local DC restrictions.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Polk County Economic Development",
+          "url": "https://www.polkfl.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "18157": {
+      "name": "Tippecanoe County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Tippecanoe County Purdue University Research Computing Hub",
+      "description": "Tippecanoe County (West Lafayette) hosts Purdue University's Rosen Center for Advanced Computing (RCAC), one of the largest university HPC clusters in the US, and Caterpillar's digital operations center. Purdue's Brown Family Technology Center anchors a growing tech campus. No local DC restrictions; Indiana's EDGE tax credit applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Purdue RCAC Research Computing",
+          "url": "https://www.rcac.purdue.edu"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "18105": {
+      "name": "Monroe County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Monroe County Indiana University Research Computing Hub",
+      "description": "Monroe County (Bloomington) hosts Indiana University's globally recognized research data center and UITS (University IT Services), which operates among the most advanced university networking and HPC environments in the world (including BigRed200 Cray supercomputer). IU anchors a significant research data infrastructure. No local DC restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "IU Research Technologies \u2014 Supercomputing",
+          "url": "https://research.iu.edu/facilities/supercomputing.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "30013": {
+      "name": "Cascade County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Cascade County Malmstrom AFB Air Force Global Strike Command Hub",
+      "description": "Cascade County hosts Malmstrom Air Force Base, headquarters for the 341st Missile Wing and one of three Air Force Global Strike Command (AFGSC) ICBM bases. The base concentrates critical military command-and-control data infrastructure. No local DC restrictions; Montana's no-sales-tax environment and property tax abatement (MCA \u00a715-24-1402) support complementary commercial investment.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Malmstrom AFB \u2014 341st Missile Wing",
+          "url": "https://www.malmstrom.af.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "22109": {
+      "name": "Terrebonne Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Terrebonne Parish Houma Offshore Energy Data Operations Hub",
+      "description": "Terrebonne Parish (Houma) is the service hub for Gulf of Mexico offshore oil and gas operations, hosting seismic data processing, SCADA pipeline systems, and operations centers for Halliburton, Wood Group, and major offshore operators. The energy sector drives substantial edge compute and data infrastructure. No local DC restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Terrebonne Economic Development Authority",
+          "url": "https://www.terrebonne.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "39041": {
+      "name": "Delaware County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Delaware County Columbus Metro Data Center Expansion Corridor",
+      "description": "Delaware County is one of the fastest-growing counties in Ohio and has emerged as a primary data center expansion zone for the Columbus metro area, offering lower land costs and competitive electricity rates while maintaining proximity to Columbus fiber infrastructure. Hyperscale cloud providers have targeted the county. No local DC restrictions; Ohio's data center sales tax exemption (ORC \u00a75739.02(B)(42a)) applies.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Delaware County Regional Planning",
+          "url": "https://www.co.delaware.oh.us/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "36067": {
+      "name": "Onondaga County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Onondaga County Syracuse Defense Technology and University Hub",
+      "description": "Onondaga County (Syracuse) hosts Lockheed Martin's Systems Integration \u2014 Owego facility proximity, Syracuse University research computing, and CXtec's network infrastructure. No local DC restrictions; the NYS Empire State Digital program and Upstate Revitalization Initiative support technology investment in Central New York.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "CenterState CEO \u2014 Central NY Technology",
+          "url": "https://www.centerstateceo.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "37129": {
+      "name": "New Hanover County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "New Hanover County Wilmington Energy and Port Technology Hub",
+      "description": "New Hanover County (Wilmington) hosts GE Hitachi Nuclear Energy's global headquarters, the Port of Wilmington's logistics IT infrastructure, and PPD (now Thermo Fisher Scientific) clinical research computing. No local DC restrictions; NC's data center tax incentive (G.S. 105-164.13E) applies to qualifying investments.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Wilmington Business Development",
+          "url": "https://www.wilmingtonnc.gov/departments/development-services/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "56005": {
+      "name": "Campbell County",
+      "state": "Wyoming",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Campbell County Wyoming Energy Operations Data Hub",
+      "description": "Campbell County (Gillette) is the center of Wyoming's Powder River Basin coal and energy operations, hosting SCADA, environmental monitoring, and mining operations data infrastructure for Arch Resources, Peabody Energy, and Basin Electric Power Cooperative. No state corporate income tax and no local DC restrictions.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Campbell County Economic Development",
+          "url": "https://www.ccgov.net/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "33017": {
+      "name": "Strafford County",
+      "state": "New Hampshire",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Strafford County University of New Hampshire Technology Hub",
+      "description": "Strafford County (Dover/Durham) hosts the University of New Hampshire's research computing and the Interoperability Lab (UNH-IOL), a premier networking test and certification facility that supports major technology vendors. Wentworth-Douglass Hospital IT and growing Seacoast tech overspill round out the market. No local DC restrictions.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "UNH Interoperability Laboratory",
+          "url": "https://www.iol.unh.edu"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
     }
   },
   "validation_report": {
@@ -8410,7 +8721,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-15T04:01:51.572524+00:00",
+    "last_computed": "2026-07-15T04:05:31.973067+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",
