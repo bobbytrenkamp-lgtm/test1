@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-15T03:54:42.855943+00:00",
+  "generated_at": "2026-07-15T03:58:17.583800+00:00",
   "source_last_updated": "2026-07-14",
   "stats": {
-    "total_counties_tracked": 257,
+    "total_counties_tracked": 269,
     "by_level": {
-      "-1": 164,
+      "-1": 176,
       "0": 0,
       "1": 32,
       "2": 34,
@@ -12,9 +12,9 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 254,
+      "data_center": 266,
       "water": 12,
-      "ai": 63,
+      "ai": 69,
       "energy": 61,
       "crypto": 14
     },
@@ -7318,6 +7318,312 @@
       "confidence": "medium",
       "confidence_score": 59,
       "source_tier": 1
+    },
+    "08005": {
+      "name": "Arapahoe County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Arapahoe County Aurora Data Center and Defense IT Hub",
+      "description": "Arapahoe County (Aurora) hosts Buckley Space Force Base technology operations, Lumen/CenturyLink legacy data centers, and Comcast's regional infrastructure. Adjacent to Denver, Aurora offers lower land costs and competitive power rates. No local DC restrictions; Colorado EIAF incentives apply.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Aurora Economic Development",
+          "url": "https://www.auroraeconomicdevelopment.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "42101": {
+      "name": "Philadelphia County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Philadelphia County Major Data Center and Financial Technology Hub",
+      "description": "Philadelphia hosts Comcast/NBCUniversal technology campus, Penn Medicine and Jefferson Health system IT, Independence Blue Cross data operations, and multiple colocation facilities. No local DC zoning restrictions; PIDC (Philadelphia Industrial Development Corporation) and PA DCED incentives available.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "PIDC \u2014 Philadelphia Technology",
+          "url": "https://www.pidc-pa.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "17089": {
+      "name": "Kane County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kane County West Chicago Suburban Technology Corridor",
+      "description": "Kane County (Aurora/Elgin) is part of the west Chicago suburban technology corridor, adjacent to the DeKalb data center cluster. No local DC zoning restrictions; Illinois Enterprise Zones offer property tax abatement and state sales tax exemption for qualifying data center equipment per 35 ILCS 105/3-5(17).",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "IL DCEO \u2014 Data Center Investment",
+          "url": "https://www.illinois.gov/sites/dceo/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "13059": {
+      "name": "Clarke County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Clarke County Athens University Research and Healthcare IT Hub",
+      "description": "Clarke County (Athens) hosts the University of Georgia's research computing cluster and Piedmont Athens Regional Medical Center data infrastructure. No local DC restrictions; Georgia's data center sales tax exemption (O.C.G.A. \u00a748-8-3.2) and Job Tax Credit apply.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "UGA Research Computing",
+          "url": "https://research.uga.edu/research-computing/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "34021": {
+      "name": "Mercer County",
+      "state": "New Jersey",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Mercer County Princeton Research and Government IT Hub",
+      "description": "Mercer County hosts Princeton University's research computing infrastructure, NJ state government IT operations in Trenton, and Siemens Corporation's US headquarters computing. No local DC restrictions; NJ NJEDA incentives and data center sales tax exemption (N.J.S.A. 54:32B-8.57) apply.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Princeton Research Computing",
+          "url": "https://researchcomputing.princeton.edu"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "23019": {
+      "name": "Penobscot County",
+      "state": "Maine",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Penobscot County Bangor Healthcare and University IT Hub",
+      "description": "Penobscot County (Bangor) hosts Eastern Maine Medical Center's health IT operations, University of Maine's high-performance computing center, and Cianbro Corporation technology operations. No local DC restrictions; Maine's BETE (Business Equipment Tax Exemption, 36 MRSA \u00a7694) exempts qualifying data center equipment from property tax.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "University of Maine Research Computing",
+          "url": "https://umaine.edu/it/research-computing/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "28121": {
+      "name": "Rankin County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Rankin County Jackson Metro East Technology Corridor",
+      "description": "Rankin County (Brandon/Flowood) is the fastest-growing suburban county in the Jackson metro area, hosting Entergy Mississippi operations technology and state government IT overspill. MS Data Center Sales Tax Exemption (\u00a727-65-101) and no local DC restrictions support investment.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Rankin County Economic Development",
+          "url": "https://www.rankincounty.org/government/department-directory/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "46083": {
+      "name": "Lincoln County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lincoln County Sioux Falls Suburban Growth and Healthcare IT",
+      "description": "Lincoln County is the fastest-growing county in South Dakota, located in the Sioux Falls metro. Hosts growing Sanford Health and Avera Health technology infrastructure expansion. SD's zero corporate income tax and no personal income tax environment apply; no local DC restrictions.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Sioux Falls Development Foundation",
+          "url": "https://www.siouxfalls.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "05131": {
+      "name": "Sebastian County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Sebastian County Fort Smith Logistics Technology Hub",
+      "description": "Sebastian County (Fort Smith) hosts ArcBest Corporation (ABF Freight) logistics technology operations and the University of Arkansas \u2013 Fort Smith (UAFS) computing programs. No local DC restrictions; AEDC incentives and Arkansas' competitive land/power costs support investment in the Arkansas River Valley corridor.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "AEDC \u2014 Fort Smith/Sebastian County",
+          "url": "https://www.arkansasedc.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "41003": {
+      "name": "Benton County",
+      "state": "Oregon",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Benton County Corvallis University and Technology Research Hub",
+      "description": "Benton County (Corvallis) hosts Oregon State University's high-performance computing cluster, legacy Hewlett-Packard/HP Inc. research facilities, and Samaritan Health Services IT. No local DC restrictions; Oregon's Enterprise Zone property tax exemption and low electricity rates (Pacific Power/PGE) support data center economics.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "OSU Research Computing",
+          "url": "https://research.oregonstate.edu/research-computing"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "55131": {
+      "name": "Washington County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Washington County Milwaukee Suburb Manufacturing Technology Hub",
+      "description": "Washington County (West Bend/Menomonee Falls area) hosts manufacturing technology operations for Harley-Davidson and Generac Holdings. No local DC restrictions; Wisconsin's data center sales tax exemption (s.77.54(57)) and competitive electricity rates from We Energies support investment.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Washington County Economic Development",
+          "url": "https://www.co.washington.wi.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "18141": {
+      "name": "St. Joseph County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "St. Joseph County South Bend University and Healthcare IT Hub",
+      "description": "St. Joseph County (South Bend) hosts the University of Notre Dame's Center for Research Computing (CRC), Beacon Health System data operations, and a growing tech ecosystem anchored by innovation district investments. No local DC restrictions; Indiana's data center equipment use tax exemption (IC \u00a76-2.5-5-57) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Notre Dame Center for Research Computing",
+          "url": "https://crc.nd.edu"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
     }
   },
   "validation_report": {
@@ -7794,7 +8100,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-15T03:54:42.953635+00:00",
+    "last_computed": "2026-07-15T03:58:17.697841+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",
