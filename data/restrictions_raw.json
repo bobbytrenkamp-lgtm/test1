@@ -7072,6 +7072,292 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null
+    },
+    {
+      "fips": "36001",
+      "name": "Albany County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Albany County New York State Government and IBM Technology Hub",
+      "description": "Albany County hosts New York State's Office of Information Technology Services (ITS) enterprise data center, IBM's longstanding technology operations, and SUNY Albany research computing. NY state government IT represents one of the largest public-sector data center footprints in the US. No local DC restrictions; NYS Empire State Development incentives apply.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "NYS Office of Information Technology Services",
+          "url": "https://its.ny.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "36091",
+      "name": "Saratoga County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Saratoga County GlobalFoundries Semiconductor and Technology Hub",
+      "description": "Saratoga County hosts GlobalFoundries Fab 8 in Malta \u2014 one of the largest and most advanced semiconductor manufacturing facilities in North America. On-premises compute infrastructure for chip design, EDA simulation, and manufacturing AI is substantial. SUNY Polytechnic Institute (Albany Nano) proximity anchors the semiconductor tech corridor. No local DC restrictions.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "GlobalFoundries Fab 8 \u2014 Malta NY",
+          "url": "https://gf.com/manufacturing/fab-8/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "39113",
+      "name": "Montgomery County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Montgomery County Dayton Defense Technology and Cyber Hub",
+      "description": "Montgomery County (Dayton) hosts Wright-Patterson Air Force Base and the Air Force Research Laboratory (AFRL), the Air Force's primary science and technology organization. The AFRL Information Directorate drives major computing investments. No local DC restrictions; Ohio's data center sales tax exemption (ORC \u00a75739.02(B)(42a)) applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "AFRL \u2014 Wright-Patterson AFB",
+          "url": "https://www.afrl.af.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "22015",
+      "name": "Bossier Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Bossier Parish Cyber Innovation Center and Barksdale AFB Technology Hub",
+      "description": "Bossier Parish hosts the Louisiana Cyber Innovation Center (LCIC), a premier cybersecurity research and development hub co-located near Barksdale Air Force Base. The Air Force's Global Strike Command concentrates significant military cyber and data operations here. No local DC restrictions; Louisiana's data center incentives (R.S. 47:6039) apply.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Louisiana Cyber Innovation Center",
+          "url": "https://www.lcic.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "55133",
+      "name": "Waukesha County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Waukesha County GE Healthcare and Corporate IT Hub",
+      "description": "Waukesha County hosts GE HealthCare's global headquarters and R&D operations, Kohl's Corporation IT center, and Generac Power Systems technology operations. No local DC restrictions; Wisconsin's data center sales tax exemption (s.77.54(57)) and competitive We Energies power rates support investment.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "GE HealthCare \u2014 Waukesha WI",
+          "url": "https://www.gehealthcare.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "53011",
+      "name": "Clark County",
+      "state": "Washington",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Clark County Vancouver Silicon Forest South Technology Hub",
+      "description": "Clark County (Vancouver WA) is the southern anchor of the Portland-Vancouver Silicon Forest, attracting tech companies seeking Oregon-free corporate income tax while maintaining Pacific Northwest connectivity. Amazon, Daimler Trucks North America, and multiple tech firms operate data infrastructure here. No local DC restrictions; WA's data center sales tax exemption applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Greater Vancouver WA Economic Development",
+          "url": "https://www.columbiabusinesscenter.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "12009",
+      "name": "Brevard County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Brevard County Space Coast Defense and Aerospace Technology Hub",
+      "description": "Brevard County (Space Coast) hosts NASA Kennedy Space Center, SpaceX launch operations, L3Harris Technologies (global HQ in Melbourne), and Northrop Grumman. The concentration of aerospace/defense IT is among the highest per-capita in the US. No local DC restrictions; Florida's data center equipment exemption (\u00a7212.08) applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Space Florida \u2014 Technology Hub",
+          "url": "https://www.spaceflorida.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "53053",
+      "name": "Pierce County",
+      "state": "Washington",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Pierce County Tacoma Defense IT and Regional Technology Hub",
+      "description": "Pierce County hosts Joint Base Lewis-McChord (JBLM), one of the largest Army installations in the US, with significant military data and communications infrastructure. MultiCare Health System, the Port of Tacoma logistics IT, and Amazon distribution tech also operate in the county. No local DC restrictions.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Pierce County EDC \u2014 Technology",
+          "url": "https://www.piercecountyed.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "08123",
+      "name": "Weld County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Weld County Colorado Energy and Agricultural Technology Data Hub",
+      "description": "Weld County hosts significant oil and gas operations data infrastructure (Chevron, Civitas Resources), JBS USA food technology, and agricultural analytics operations. The county's energy sector drives one of the largest industrial IoT/SCADA data footprints in Colorado. No local DC restrictions; Colorado EIAF incentives available.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Upstate Colorado Economic Development",
+          "url": "https://www.upstatecolorado.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "29165",
+      "name": "Platte County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Platte County Kansas City Airport Technology and Logistics Hub",
+      "description": "Platte County (Riverside/Parkville) hosts technology operations near Kansas City International Airport (MCI), benefiting from major airline and logistics IT infrastructure. World Wide Technology (WWT) and H&R Block IT operations extend into this corridor. No local DC restrictions; Missouri's quality jobs incentive and Chapter 100 bonds support qualifying investments.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Platte County Economic Development",
+          "url": "https://www.plattecountyed.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "25023",
+      "name": "Plymouth County",
+      "state": "Massachusetts",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Plymouth County South Shore Healthcare and Regional Technology Hub",
+      "description": "Plymouth County hosts South Shore Hospital, Beth Israel Lahey Health South Shore, and Raytheon Intelligence & Space proximity operations. Growing data infrastructure supports the healthcare IT corridor between Boston and Cape Cod. No local DC restrictions; Massachusetts data center equipment exemption (Ch.64H \u00a76(r)) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "South Shore Chamber of Commerce Technology",
+          "url": "https://www.southshorechamber.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "12117",
+      "name": "Seminole County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Seminole County Lake Mary Corporate Technology Hub",
+      "description": "Seminole County (Lake Mary/Sanford) hosts AAA's US headquarters, Mitsubishi Power Americas, Convergys (now Concentrix), and multiple financial services technology operations. Lake Mary is one of Florida's most significant corporate technology centers outside Miami and Tampa. No local DC restrictions; FL data center equipment exemption (\u00a7212.08) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Seminole County Economic Development",
+          "url": "https://www.seminolecountyfl.gov/offices/economic-development/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
     }
   ]
 }

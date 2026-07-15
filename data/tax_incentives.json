@@ -799,6 +799,28 @@
         "30031",
         "30111"
       ]
+    },
+    {
+      "state": "HI",
+      "program_name": "Hawaii High Technology Investment Tax Credit",
+      "incentive_type": "Income tax credit",
+      "min_investment_m": null,
+      "notes": "HRS \u00a7235-110.91 provides a 100% refundable income tax credit (up to $2.5M per investment) for qualified investment in high-technology businesses operating in Hawaii. Data centers supporting qualifying R&D, software development, or AI workloads for eligible businesses may benefit. The Hawaii Technology Development Corporation (HTDC) also provides facility grants and technical assistance.",
+      "fips_list": [
+        "15003",
+        "15009"
+      ]
+    },
+    {
+      "state": "VT",
+      "program_name": "Vermont Employment Growth Incentive (VEGI)",
+      "incentive_type": "Performance-based incentive",
+      "min_investment_m": null,
+      "notes": "32 V.S.A. \u00a73325 establishes the VEGI program, administered by the Vermont Economic Progress Council (VEPC). Cash incentive payments are awarded based on net new qualifying payroll, qualifying capital investments, and overall economic benefit to Vermont. Large data center projects creating well-paid technical jobs may qualify for significant VEGI awards.",
+      "fips_list": [
+        "50007",
+        "50023"
+      ]
     }
   ]
 }
