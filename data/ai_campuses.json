@@ -667,6 +667,56 @@
       "notes": "Charlotte metro overflow enterprise colocation in Fort Mill, York County SC.",
       "lon": -80.9432,
       "lat": 35.0073
+    },
+    {
+      "id": "ai-nd-002",
+      "name": "Microsoft Grand Forks Hyperscale Data Center",
+      "operator": "Microsoft",
+      "status": "under_construction",
+      "county_fips": "38035",
+      "notes": "Multi-billion-dollar hyperscale campus; one of the largest private investments in North Dakota.",
+      "lon": -97.0329,
+      "lat": 47.9253
+    },
+    {
+      "id": "ai-va-005",
+      "name": "Amazon HQ2 National Landing \u2014 AWS Infrastructure Hub",
+      "operator": "Amazon",
+      "status": "operational",
+      "county_fips": "51013",
+      "notes": "Amazon HQ2 in Crystal City/National Landing Arlington VA with adjacent AWS operations.",
+      "lon": -77.0516,
+      "lat": 38.8607
+    },
+    {
+      "id": "ai-wa-003",
+      "name": "QTS Spokane Data Center",
+      "operator": "QTS (Digital Realty)",
+      "status": "operational",
+      "county_fips": "53063",
+      "notes": "Eastern Washington data center leveraging Avista hydroelectric power.",
+      "lon": -117.426,
+      "lat": 47.6588
+    },
+    {
+      "id": "ai-mn-002",
+      "name": "Mayo Clinic AI and Clinical Informatics Platform",
+      "operator": "Mayo Clinic",
+      "status": "operational",
+      "county_fips": "27109",
+      "notes": "One of the largest healthcare AI workloads in the US; partnered with Google Cloud and AWS.",
+      "lon": -92.4668,
+      "lat": 44.0225
+    },
+    {
+      "id": "ai-fl-003",
+      "name": "Florida State Data Center \u2014 Tallahassee",
+      "operator": "Florida Department of Management Services",
+      "status": "operational",
+      "county_fips": "12073",
+      "notes": "Consolidated state agency IT infrastructure hub under Florida's \u00a7282.201 mandate.",
+      "lon": -84.2807,
+      "lat": 30.4383
     }
   ]
 }
