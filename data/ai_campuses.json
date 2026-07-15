@@ -617,6 +617,56 @@
       "notes": "Houston-area overflow data center campus in Fort Bend County serving energy sector clients.",
       "lon": -95.6352,
       "lat": 29.6197
+    },
+    {
+      "id": "ai-ga-003",
+      "name": "Meta Newnan Data Center Campus",
+      "operator": "Meta",
+      "status": "operational",
+      "county_fips": "13077",
+      "notes": "Meta hyperscale data center in Coweta County GA, I-85 southwest Atlanta corridor.",
+      "lon": -84.7999,
+      "lat": 33.3807
+    },
+    {
+      "id": "ai-nj-002",
+      "name": "Equinix NY7 Newark Data Center",
+      "operator": "Equinix",
+      "status": "operational",
+      "county_fips": "34013",
+      "notes": "Major internet exchange and colocation facility; among top 5 IX points in North America.",
+      "lon": -74.1724,
+      "lat": 40.7357
+    },
+    {
+      "id": "ai-ma-001",
+      "name": "Equinix BO1 Boston Data Center",
+      "operator": "Equinix",
+      "status": "operational",
+      "county_fips": "25025",
+      "notes": "Flagship New England data center; financial services and biotech AI workloads.",
+      "lon": -71.0589,
+      "lat": 42.3601
+    },
+    {
+      "id": "ai-pa-001",
+      "name": "Expedient Pittsburgh Data Center \u2014 Strip District",
+      "operator": "Expedient Data Centers",
+      "status": "operational",
+      "county_fips": "42003",
+      "notes": "Pittsburgh flagship campus; CMU AI research proximity drives HPC demand.",
+      "lon": -79.9959,
+      "lat": 40.4406
+    },
+    {
+      "id": "ai-sc-002",
+      "name": "TierPoint Fort Mill Data Center",
+      "operator": "TierPoint",
+      "status": "operational",
+      "county_fips": "45091",
+      "notes": "Charlotte metro overflow enterprise colocation in Fort Mill, York County SC.",
+      "lon": -80.9432,
+      "lat": 35.0073
     }
   ]
 }

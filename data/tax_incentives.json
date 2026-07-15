@@ -641,6 +641,28 @@
       "fips_list": [
         "54039"
       ]
+    },
+    {
+      "state": "KS",
+      "program_name": "Kansas High Performance Incentive Program (HPIP)",
+      "incentive_type": "Investment Tax Credit + Sales Tax Refund",
+      "min_investment_m": 1,
+      "notes": "K.S.A. 74-5065: Provides a 10% investment tax credit on qualified capital expenditures (including data center equipment and construction) for companies creating minimum-wage jobs at or above 150% of the county median wage. Companies qualifying for HPIP are also eligible for sales tax refunds on eligible equipment and machinery purchases. The program has no maximum cap but requires pre-application approval. Qualifying data center operators in Johnson and Sedgwick counties have used HPIP for capital equipment credits.",
+      "fips_list": [
+        "20091",
+        "20173"
+      ]
+    },
+    {
+      "state": "MA",
+      "program_name": "Massachusetts Data Processing Equipment Sales Tax Exemption",
+      "incentive_type": "Sales Tax Exemption",
+      "min_investment_m": null,
+      "notes": "M.G.L. ch. 64H \u00a76(r) and (s): Exempts computer equipment and related software used exclusively in data processing from Massachusetts sales and use tax. The exemption applies to servers, storage systems, networking equipment, and cooling systems used in qualifying data center operations. Massachusetts also offers the Economic Development Incentive Program (EDIP) providing investment tax credits and TIF (Tax Increment Financing) for larger qualifying projects. Data center operators in Suffolk, Middlesex, and Norfolk counties regularly apply for EDIP benefits.",
+      "fips_list": [
+        "25025",
+        "25017"
+      ]
     }
   ]
 }

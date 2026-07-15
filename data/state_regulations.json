@@ -832,6 +832,27 @@
           "url": "https://westvirginia.gov/business/"
         }
       ]
+    },
+    "28": {
+      "name": "Mississippi",
+      "abbr": "MS",
+      "level": -1,
+      "status": "active",
+      "summary": "Mississippi has no statewide AI-specific regulation or dedicated data center legislation as of 2026. The Mississippi Development Authority (MDA) promotes data center investment under the state's general economic development programs, including the Advantage Jobs Rebate (which can apply to technology companies) and sales tax exemptions for manufacturing equipment that may extend to qualifying data center machinery. Mississippi Power (Southern Company) and Entergy Mississippi provide baseload power at competitive industrial rates. The state's low cost of living, available land, and natural gas generation resources attract energy-intensive workloads. No AI governance bill has been introduced in the Mississippi Legislature as of 2025.",
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "sources": [
+        {
+          "label": "Mississippi Development Authority",
+          "url": "https://www.mississippi.org/"
+        },
+        {
+          "label": "Mississippi Power \u2014 Industrial Rates",
+          "url": "https://www.mississippipower.com/"
+        }
+      ]
     }
   }
 }
