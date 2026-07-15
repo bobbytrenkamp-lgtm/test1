@@ -1,12 +1,28 @@
 {
   "existing_data_centers": {
-    "last_synced": "2026-07-14T05:29:10.427214+00:00"
+    "last_synced": "2026-07-15T05:40:56.882799+00:00"
   },
   "osm": {
     "last_error": "406 Client Error: Not Acceptable for url: https://overpass-api.de/api/interpreter",
-    "last_error_at": "2026-07-14T05:36:01.888884+00:00"
+    "last_error_at": "2026-07-15T05:40:57.453660+00:00"
   },
   "datacentermap": {
-    "last_synced": "2026-07-14T05:37:45.626589+00:00"
+    "last_synced": "2026-07-15T05:42:40.513029+00:00"
+  },
+  "equinix": {
+    "last_synced": "2026-07-15T05:44:32.859182+00:00"
+  },
+  "digital_realty": {
+    "last_synced": "2026-07-15T05:46:04.961673+00:00"
+  },
+  "ferc_queue": {
+    "last_error": "openpyxl required: pip install openpyxl",
+    "last_error_at": "2026-07-15T05:46:04.962613+00:00"
+  },
+  "sec_edgar": {
+    "last_synced": "2026-07-15T05:46:07.606158+00:00"
+  },
+  "hyperscale_press": {
+    "last_synced": "2026-07-15T05:46:28.555938+00:00"
   }
 }

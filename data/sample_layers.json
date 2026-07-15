@@ -31337,6 +31337,66 @@
       "notes": "DuPage County; NVIDIA AI cluster; cloud AI infrastructure.; legacy_id:ai-il-001",
       "lat": 41.85,
       "lon": -88.12
+    },
+    {
+      "id": "fc-72a599c464",
+      "name": "Switch SUPERNAP — Las Vegas AI Cluster",
+      "operator": "Switch (DigitalBridge)",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "Switch SUPERNAP 7-10 campus; dedicated GPU cluster for AI/ML workloads. 100MW+ capacity. NVIDIA DGX-A100/H100 pods. Tier IV design.; legacy_id:ai-nv-001",
+      "lat": 36.0875,
+      "lon": -115.1535
+    },
+    {
+      "id": "fc-e076324447",
+      "name": "Annapolis Junction Defense IT Campus",
+      "operator": "Multiple Government Contractors",
+      "status": "existing",
+      "county_fips": "24003",
+      "notes": "Unclassified contractor data center cluster adjacent to NSA/Fort Meade in Annapolis Junction MD.; legacy_id:ai-md-001",
+      "lat": 39.1177,
+      "lon": -76.8077
+    },
+    {
+      "id": "fc-8e04571768",
+      "name": "Maui High Performance Computing Center (MHPCC)",
+      "operator": "Amentum Services (for AFRL)",
+      "status": "existing",
+      "county_fips": "15009",
+      "notes": "DoD-funded HPC center operated for the Air Force Research Laboratory; supports Pacific theater defense simulation and AI workloads.; legacy_id:ai-hi-002",
+      "lat": 20.8783,
+      "lon": -156.6825
+    },
+    {
+      "id": "fc-90901307a4",
+      "name": "Immedion Charleston Data Center",
+      "operator": "Immedion",
+      "status": "existing",
+      "county_fips": "45019",
+      "notes": "Regional colocation data center serving Charleston's growing financial technology, healthcare, and logistics IT sectors.; legacy_id:ai-sc-003",
+      "lat": 32.7765,
+      "lon": -79.9311
+    },
+    {
+      "id": "fc-dfd7592dc0",
+      "name": "GlobalFoundries Fab 8 Computing Infrastructure — Malta",
+      "operator": "GlobalFoundries",
+      "status": "existing",
+      "county_fips": "36091",
+      "notes": "On-premises HPC and EDA compute supporting chip design simulation, manufacturing AI, and yield analytics for one of North America's largest semiconductor fabs.; legacy_id:ai-ny-003",
+      "lat": 43.01,
+      "lon": -73.8199
+    },
+    {
+      "id": "fc-3bd2179f18",
+      "name": "US Army NETCOM Data Center — Fort Huachuca",
+      "operator": "US Army Network Enterprise Technology Command (NETCOM)",
+      "status": "existing",
+      "county_fips": "04003",
+      "notes": "Primary Army network management and enterprise IT data center; supports Army-wide network operations, defensive cyber, and Army Cyber Command missions.; legacy_id:ai-az-001",
+      "lat": 31.5437,
+      "lon": -110.3445
     }
   ],
   "power_infrastructure": [
@@ -31729,5 +31789,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-14T05:29:21Z"
+  "_facilities_exported_at": "2026-07-15T05:46:29Z"
 }
