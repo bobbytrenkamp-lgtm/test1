@@ -33,7 +33,7 @@
       "name": "Microsoft AI - Hendricks County AI Campus",
       "operator": "Microsoft",
       "status": "planned",
-      "county_fips": "18059",
+      "county_fips": "18063",
       "notes": "Part of Indiana AI infrastructure push; dedicated training.",
       "lon": -86.4,
       "lat": 39.77
@@ -417,6 +417,76 @@
       "notes": "Amazon Web Services data center campus in Clarksville, Montgomery County TN. Part of AWS's expanding southeastern US region.",
       "lat": 36.53,
       "lon": -87.36
+    },
+    {
+      "id": "ai-ga-002",
+      "name": "Meta Stanton Springs Data Center Campus",
+      "operator": "Meta Platforms",
+      "status": "operational",
+      "county_fips": "13157",
+      "notes": "Meta data center in Stanton Springs Technology Park, Jackson County GA. Part of the four-county Stanton Springs industrial park initiative.",
+      "lat": 33.64,
+      "lon": -83.79
+    },
+    {
+      "id": "ai-va-003",
+      "name": "Iron Mountain / QTS Richmond Data Center Campus",
+      "operator": "Iron Mountain Data Centers (QTS)",
+      "status": "operational",
+      "county_fips": "51087",
+      "notes": "Hyperscale campus in Henrico County, VA. One of QTS's flagship properties, acquired by Blackstone/Iron Mountain in 2021. Multiple hyperscale buildings.",
+      "lat": 37.54,
+      "lon": -77.45
+    },
+    {
+      "id": "ai-mn-001",
+      "name": "CyrusOne Minneapolis-St. Paul Metro Campus",
+      "operator": "CyrusOne (KKR / GIP)",
+      "status": "operational",
+      "county_fips": "27037",
+      "notes": "CyrusOne data center campus in Eagan, Dakota County, MN. Core of the Twin Cities enterprise data center market.",
+      "lat": 44.82,
+      "lon": -93.17
+    },
+    {
+      "id": "ai-ut-001",
+      "name": "Google Utah Data Center Campus",
+      "operator": "Google",
+      "status": "under_construction",
+      "county_fips": "49035",
+      "notes": "Google announced a $1B+ data center campus in the Salt Lake City metro area in 2024. Part of Google's continued US hyperscale expansion.",
+      "lat": 40.76,
+      "lon": -111.89
+    },
+    {
+      "id": "ai-de-001",
+      "name": "Iron Mountain Wilmington Data Center",
+      "operator": "Iron Mountain Data Centers",
+      "status": "operational",
+      "county_fips": "10003",
+      "notes": "Iron Mountain (formerly IO Data Centers) colocation facility in New Castle County, Delaware. Serves the Mid-Atlantic enterprise market.",
+      "lat": 39.74,
+      "lon": -75.54
+    },
+    {
+      "id": "ai-sd-001",
+      "name": "T-Mobile Sioux Falls Network Data Center",
+      "operator": "T-Mobile",
+      "status": "operational",
+      "county_fips": "46099",
+      "notes": "T-Mobile major network operations data center in Sioux Falls, Minnehaha County SD. Anchors the Sioux Falls technology/data center ecosystem.",
+      "lat": 43.54,
+      "lon": -96.73
+    },
+    {
+      "id": "ai-nc-001",
+      "name": "Windstream / Lumos Winston-Salem Data Center",
+      "operator": "Windstream / Lumos Networks",
+      "status": "operational",
+      "county_fips": "37067",
+      "notes": "Windstream and Lumos Networks carrier-grade colocation facilities in Winston-Salem, Forsyth County NC. Anchor of the Winston-Salem data center corridor.",
+      "lat": 36.1,
+      "lon": -80.24
     }
   ]
 }

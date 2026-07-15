@@ -649,6 +649,86 @@
           "url": "https://www.revenue.pa.gov/"
         }
       ]
+    },
+    "05": {
+      "name": "Arkansas",
+      "abbr": "AR",
+      "level": -1,
+      "status": "active",
+      "summary": "Arkansas is a favorable data center investment destination with a sales and use tax exemption for qualifying data center equipment (\u00a726-52-465) and the ADVANTAGE Arkansas income tax incentive program. Little Rock and Northwest Arkansas have attracted data center investment. Competitive power rates from Entergy Arkansas and a low-regulation environment make the state attractive for edge and enterprise facilities.",
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Arkansas DFA \u2014 Data Center Tax Exemption",
+          "url": "https://www.dfa.arkansas.gov/"
+        }
+      ]
+    },
+    "10": {
+      "name": "Delaware",
+      "abbr": "DE",
+      "level": 0,
+      "status": "active",
+      "summary": "Delaware hosts a moderate data center cluster in New Castle County (Wilmington area), benefiting from proximity to the Philadelphia\u2013Baltimore\u2013Washington corridor. No Delaware-specific data center tax incentive exists, but the state's favorable corporate tax structure and existing financial services data center ecosystem support the market. No statewide data center restrictions are enacted.",
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Delaware Division of Corporations",
+          "url": "https://corp.delaware.gov/"
+        }
+      ]
+    },
+    "20": {
+      "name": "Kansas",
+      "abbr": "KS",
+      "level": 0,
+      "status": "active",
+      "summary": "Kansas has a moderate data center presence primarily in the Kansas City metro (Johnson County) and Wichita areas. The state's IMPACT program provides payroll withholding tax rebates for qualifying capital projects. No Kansas-specific data center sales tax exemption exists, though the state's low cost of living and power rates attract smaller-scale facilities. No statewide data center restrictions are enacted.",
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Kansas Commerce \u2014 IMPACT Program",
+          "url": "https://www.kansascommerce.gov/"
+        }
+      ]
+    },
+    "46": {
+      "name": "South Dakota",
+      "abbr": "SD",
+      "level": -1,
+      "status": "active",
+      "summary": "South Dakota is a favorable data center investment destination with zero corporate income tax, competitive electrical rates, and a business-friendly regulatory environment. Sioux Falls (Minnehaha County) is the primary data center market. T-Mobile and regional carriers operate significant facilities. No statewide data center restrictions or specific tax incentive programs exist \u2014 the competitive advantage is the absence of corporate taxation.",
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "South Dakota GOED \u2014 Business Climate",
+          "url": "https://sdreadytowork.com/why-sd/business-climate/"
+        }
+      ]
+    },
+    "49": {
+      "name": "Utah",
+      "abbr": "UT",
+      "level": -1,
+      "status": "active",
+      "summary": "Utah is a fast-growing data center market anchored in Salt Lake County. The state's data center sales tax exemption (Utah Code Ann. \u00a759-12-104(77)) and EDTIF incentive program support hyperscale investment. Google, C7 Data Centers, Novva, and regional colocation operators have significant facilities. Rocky Mountain Power provides reliable power; fiber infrastructure via the I-15 corridor is well-developed.",
+      "types": [
+        "data_center"
+      ],
+      "sources": [
+        {
+          "label": "Utah Code Ann. \u00a759-12-104(77) \u2014 Data Center Exemption",
+          "url": "https://le.utah.gov/xcode/Title59/Chapter12/C59-12-P1_1800010118000101.pdf"
+        }
+      ]
     }
   }
 }
