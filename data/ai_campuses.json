@@ -1,5 +1,5 @@
 {
-  "_disclaimer": "APPROXIMATE DATA — AI campus locations and details are public estimates from press releases, news, and company announcements. Not audited or officially verified. Replace with official public datasets before policy use.",
+  "_disclaimer": "APPROXIMATE DATA \u2014 AI campus locations and details are public estimates from press releases, news, and company announcements. Not audited or officially verified. Replace with official public datasets before policy use.",
   "_sources": [
     "Company press releases and investor relations (public)",
     "DOE national laboratory announcements (public)",
@@ -230,7 +230,7 @@
     },
     {
       "id": "ai-tx-004",
-      "name": "Stargate AI Campus — Abilene (Phase 1)",
+      "name": "Stargate AI Campus \u2014 Abilene (Phase 1)",
       "operator": "OpenAI / SoftBank / Oracle / MGX",
       "status": "under_construction",
       "county_fips": "48441",
@@ -240,7 +240,7 @@
     },
     {
       "id": "ai-wa-001",
-      "name": "Microsoft AI — Quincy Data Center Expansion",
+      "name": "Microsoft AI \u2014 Quincy Data Center Expansion",
       "operator": "Microsoft",
       "status": "operational",
       "county_fips": "53025",
@@ -250,7 +250,7 @@
     },
     {
       "id": "ai-nv-001",
-      "name": "Switch SUPERNAP — Las Vegas AI Cluster",
+      "name": "Switch SUPERNAP \u2014 Las Vegas AI Cluster",
       "operator": "Switch (DigitalBridge)",
       "status": "operational",
       "county_fips": "32003",
@@ -260,7 +260,7 @@
     },
     {
       "id": "ai-id-001",
-      "name": "Meta AI — Eagle Data Center Campus",
+      "name": "Meta AI \u2014 Eagle Data Center Campus",
       "operator": "Meta Platforms",
       "status": "operational",
       "county_fips": "16001",
@@ -270,7 +270,7 @@
     },
     {
       "id": "ai-ok-001",
-      "name": "Microsoft AI — Oklahoma City Campus",
+      "name": "Microsoft AI \u2014 Oklahoma City Campus",
       "operator": "Microsoft",
       "status": "under_construction",
       "county_fips": "40109",
@@ -280,7 +280,7 @@
     },
     {
       "id": "ai-ga-001",
-      "name": "Google AI — Douglas County Data Center",
+      "name": "Google AI \u2014 Douglas County Data Center",
       "operator": "Google",
       "status": "operational",
       "county_fips": "13097",
@@ -290,7 +290,7 @@
     },
     {
       "id": "ai-ms-001",
-      "name": "Google DeepMind / Google AI — Council Bluffs Expansion",
+      "name": "Google DeepMind / Google AI \u2014 Council Bluffs Expansion",
       "operator": "Google",
       "status": "operational",
       "county_fips": "19155",
@@ -300,7 +300,7 @@
     },
     {
       "id": "ai-nd-001",
-      "name": "Microsoft AI — North Dakota Hyperscale Campus",
+      "name": "Microsoft AI \u2014 North Dakota Hyperscale Campus",
       "operator": "Microsoft",
       "status": "planned",
       "county_fips": "38015",
@@ -310,7 +310,7 @@
     },
     {
       "id": "ai-mi-001",
-      "name": "Switch SUPERNAP Michigan — Grand Rapids AI Campus",
+      "name": "Switch SUPERNAP Michigan \u2014 Grand Rapids AI Campus",
       "operator": "Switch (DigitalBridge)",
       "status": "operational",
       "county_fips": "26081",
@@ -320,13 +320,103 @@
     },
     {
       "id": "ai-co-001",
-      "name": "Crusoe Energy AI Cloud — Denver Metro Campus",
+      "name": "Crusoe Energy AI Cloud \u2014 Denver Metro Campus",
       "operator": "Crusoe Energy Systems",
       "status": "operational",
       "county_fips": "08001",
       "lat": 39.7817,
       "lon": -104.8772,
       "notes": "Crusoe's primary Front Range AI cloud campus. NVIDIA DGX SuperPOD clusters. Serves AI startups and frontier model training. Xcel Energy power."
+    },
+    {
+      "id": "ai-ok-002",
+      "name": "Google Pryor Creek Data Center Campus",
+      "operator": "Google",
+      "status": "operational",
+      "county_fips": "40097",
+      "notes": "One of Google's largest campuses globally; MidAmerica Industrial Park, Pryor OK. Multi-billion-dollar investment.",
+      "lat": 36.31,
+      "lon": -95.32
+    },
+    {
+      "id": "ai-tn-004",
+      "name": "Meta Gallatin Data Center Campus",
+      "operator": "Meta Platforms",
+      "status": "operational",
+      "county_fips": "47165",
+      "notes": "Meta data center campus in Gallatin, Sumner County TN. ~$800M investment. Renewable energy powered.",
+      "lat": 36.39,
+      "lon": -86.87
+    },
+    {
+      "id": "ai-il-003",
+      "name": "Meta DeKalb Data Center Campus",
+      "operator": "Meta Platforms",
+      "status": "operational",
+      "county_fips": "17037",
+      "notes": "Meta data center in DeKalb, IL. ~$800M investment. Largest employer in DeKalb County.",
+      "lat": 41.93,
+      "lon": -88.75
+    },
+    {
+      "id": "ai-nm-001",
+      "name": "Meta Los Lunas Data Center Campus",
+      "operator": "Meta Platforms",
+      "status": "operational",
+      "county_fips": "35061",
+      "notes": "Meta data center campus in Los Lunas, Valencia County NM. $1B+ investment; major western US facility.",
+      "lat": 34.81,
+      "lon": -106.73
+    },
+    {
+      "id": "ai-al-001",
+      "name": "Meta Huntsville Data Center Campus",
+      "operator": "Meta Platforms",
+      "status": "operational",
+      "county_fips": "01089",
+      "notes": "Meta data center campus near Huntsville, Madison County AL. One of Meta's largest southeastern US facilities.",
+      "lat": 34.73,
+      "lon": -86.59
+    },
+    {
+      "id": "ai-or-003",
+      "name": "Apple Prineville Data Center Campus",
+      "operator": "Apple",
+      "status": "operational",
+      "county_fips": "41013",
+      "notes": "Apple's first and flagship owned data center. Prineville, Crook County OR. ~$1B investment. 100% renewable energy.",
+      "lat": 44.3,
+      "lon": -120.84
+    },
+    {
+      "id": "ai-ia-003",
+      "name": "Apple Waukee Data Center Campus",
+      "operator": "Apple",
+      "status": "operational",
+      "county_fips": "19049",
+      "notes": "Apple data center in Waukee, Dallas County IA. $1.3B+ campus; Apple's second Iowa facility.",
+      "lat": 41.61,
+      "lon": -93.89
+    },
+    {
+      "id": "ai-tx-005",
+      "name": "Microsoft San Antonio Lone Star Campus",
+      "operator": "Microsoft",
+      "status": "operational",
+      "county_fips": "48029",
+      "notes": "Microsoft's Lone Star Campus in San Antonio, Bexar County TX. One of Microsoft's largest global campuses. Ongoing multi-billion-dollar expansion.",
+      "lat": 29.45,
+      "lon": -98.5
+    },
+    {
+      "id": "ai-tn-005",
+      "name": "Amazon AWS Clarksville Data Center",
+      "operator": "Amazon Web Services",
+      "status": "operational",
+      "county_fips": "47125",
+      "notes": "Amazon Web Services data center campus in Clarksville, Montgomery County TN. Part of AWS's expanding southeastern US region.",
+      "lat": 36.53,
+      "lon": -87.36
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "_disclaimer": "APPROXIMATE DATA — Tax incentive programs change frequently. Data is from public state legislation and economic development websites. Verify with state officials before making investment decisions.",
+  "_disclaimer": "APPROXIMATE DATA \u2014 Tax incentive programs change frequently. Data is from public state legislation and economic development websites. Verify with state officials before making investment decisions.",
   "_sources": [
     "National Conference of State Legislatures (ncsl.org) - public",
     "State economic development agency websites - public",
@@ -324,7 +324,7 @@
       "state_name": "Florida",
       "program_name": "Data Center Equipment and Electricity Sales Tax Exemption (HB 7063)",
       "type": "sales_tax_exemption",
-      "authority": "Florida Statutes §212.08(5)(q)",
+      "authority": "Florida Statutes \u00a7212.08(5)(q)",
       "investment_threshold_usd": 150000000,
       "jobs_requirement": 25,
       "exemption_years": 20,
@@ -333,15 +333,15 @@
       "status": "active",
       "notes": "HB 7063 signed into law July 2023. 20-year exemption for facilities meeting $150M capital investment threshold.",
       "source_url": "https://floridarevenue.com/taxes/taxesfees/Pages/data_centers.aspx",
-      "source_label": "Florida Department of Revenue — Data Center Exemptions",
+      "source_label": "Florida Department of Revenue \u2014 Data Center Exemptions",
       "last_verified": "2026-07-14"
     },
     {
       "state": "OK",
       "state_name": "Oklahoma",
-      "program_name": "Oklahoma Data Center Sales and Use Tax Exemption (68 O.S. §1359.2)",
+      "program_name": "Oklahoma Data Center Sales and Use Tax Exemption (68 O.S. \u00a71359.2)",
       "type": "sales_tax_exemption",
-      "authority": "68 O.S. §1359.2",
+      "authority": "68 O.S. \u00a71359.2",
       "investment_threshold_usd": 100000000,
       "jobs_requirement": 0,
       "exemption_years": 10,
@@ -350,7 +350,7 @@
       "status": "active",
       "notes": "Oklahoma's data center exemption has driven significant Microsoft and other hyperscale investment in OKC metro.",
       "source_url": "https://oklahoma.gov/tax/business/industries/data-centers.html",
-      "source_label": "Oklahoma Tax Commission — Data Center Exemption",
+      "source_label": "Oklahoma Tax Commission \u2014 Data Center Exemption",
       "last_verified": "2026-07-14"
     },
     {
@@ -358,7 +358,7 @@
       "state_name": "Kentucky",
       "program_name": "Kentucky Data Center Sales and Use Tax Exemption (KRS 139.517)",
       "type": "sales_tax_exemption",
-      "authority": "Kentucky Revised Statutes §139.517",
+      "authority": "Kentucky Revised Statutes \u00a7139.517",
       "investment_threshold_usd": 100000000,
       "jobs_requirement": 10,
       "exemption_years": 15,
@@ -367,15 +367,15 @@
       "status": "active",
       "notes": "Kentucky expanded the program in 2020 to include all electrical costs, not just equipment.",
       "source_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53453",
-      "source_label": "KRS 139.517 — Data Center Tax Exemption",
+      "source_label": "KRS 139.517 \u2014 Data Center Tax Exemption",
       "last_verified": "2026-07-14"
     },
     {
       "state": "NM",
       "state_name": "New Mexico",
-      "program_name": "New Mexico Data Center Gross Receipts Tax Deduction (NMSA §7-9-57)",
+      "program_name": "New Mexico Data Center Gross Receipts Tax Deduction (NMSA \u00a77-9-57)",
       "type": "gross_receipts_tax_deduction",
-      "authority": "NMSA 1978 §7-9-57",
+      "authority": "NMSA 1978 \u00a77-9-57",
       "investment_threshold_usd": 50000000,
       "jobs_requirement": 0,
       "exemption_years": 25,
@@ -384,15 +384,15 @@
       "status": "active",
       "notes": "New Mexico's GRT deduction applies to equipment, electricity, and cooling systems for qualifying data centers.",
       "source_url": "https://www.tax.newmexico.gov/businesses/industries/data-centers/",
-      "source_label": "NM Taxation and Revenue — Data Center GRT Deduction",
+      "source_label": "NM Taxation and Revenue \u2014 Data Center GRT Deduction",
       "last_verified": "2026-07-14"
     },
     {
       "state": "ID",
       "state_name": "Idaho",
-      "program_name": "Idaho Data Center Equipment and Power Sales Tax Exemption (IC §63-3622O)",
+      "program_name": "Idaho Data Center Equipment and Power Sales Tax Exemption (IC \u00a763-3622O)",
       "type": "sales_tax_exemption",
-      "authority": "Idaho Code §63-3622O",
+      "authority": "Idaho Code \u00a763-3622O",
       "investment_threshold_usd": 250000000,
       "jobs_requirement": 30,
       "exemption_years": 0,
@@ -401,7 +401,7 @@
       "status": "active",
       "notes": "Idaho exemption has no sunset clause; Meta Eagle data center campus qualifies.",
       "source_url": "https://tax.idaho.gov/taxes/sales-use/exemptions/business/data-centers/",
-      "source_label": "Idaho State Tax Commission — Data Center Exemption",
+      "source_label": "Idaho State Tax Commission \u2014 Data Center Exemption",
       "last_verified": "2026-07-14"
     },
     {
@@ -418,7 +418,7 @@
       "status": "active",
       "notes": "Michigan's exemption has one of the lowest investment thresholds nationally at $25M.",
       "source_url": "https://www.michiganbusiness.org/industries/data-centers/",
-      "source_label": "Michigan Economic Development Corporation — Data Center Incentives",
+      "source_label": "Michigan Economic Development Corporation \u2014 Data Center Incentives",
       "last_verified": "2026-07-14"
     },
     {
@@ -426,7 +426,7 @@
       "state_name": "Nebraska",
       "program_name": "Nebraska Data Center Personal Property Tax Exemption (LB 1031)",
       "type": "property_tax_exemption",
-      "authority": "Nebraska Revised Statutes §77-4208 (LB 1031, 2014)",
+      "authority": "Nebraska Revised Statutes \u00a777-4208 (LB 1031, 2014)",
       "investment_threshold_usd": 0,
       "jobs_requirement": 0,
       "exemption_years": 0,
@@ -435,15 +435,15 @@
       "status": "active",
       "notes": "Nebraska LB 1031 provides blanket personal property tax exemption for data center equipment.",
       "source_url": "https://revenue.nebraska.gov/businesses/data-center-tax-exemptions",
-      "source_label": "Nebraska Department of Revenue — Data Center Tax Exemptions",
+      "source_label": "Nebraska Department of Revenue \u2014 Data Center Tax Exemptions",
       "last_verified": "2026-07-14"
     },
     {
       "state": "SC",
       "state_name": "South Carolina",
-      "program_name": "South Carolina Data Center Income Tax Credit (§12-6-3375)",
+      "program_name": "South Carolina Data Center Income Tax Credit (\u00a712-6-3375)",
       "type": "income_tax_credit",
-      "authority": "SC Code §12-6-3375 through §12-6-3380",
+      "authority": "SC Code \u00a712-6-3375 through \u00a712-6-3380",
       "investment_threshold_usd": 50000000,
       "jobs_requirement": 10,
       "exemption_years": 10,
@@ -452,8 +452,83 @@
       "status": "active",
       "notes": "SC also offers property tax abatement through Special Source Revenue Credits for qualifying facilities.",
       "source_url": "https://www.sccommerce.com/incentives/data-center-incentives",
-      "source_label": "SC Department of Commerce — Data Center Incentives",
+      "source_label": "SC Department of Commerce \u2014 Data Center Incentives",
       "last_verified": "2026-07-14"
+    },
+    {
+      "state": "AL",
+      "program_name": "Alabama Jobs Act Data Center Investment Incentive",
+      "authority": "Alabama Department of Commerce / Alabama Jobs Act (Ala. Code \u00a740-18-376)",
+      "description": "The Alabama Jobs Act provides income tax credits and sales tax abatements for qualifying capital investments in Alabama, including large data centers. Projects investing $2M+ in a 12-month period in qualifying property and creating qualifying jobs may receive up to a 3% income tax credit on qualifying investment and an 80% abatement of non-educational sales tax on qualifying equipment for up to 20 years.",
+      "benefit_type": "tax_credit_and_abatement",
+      "enacted_year": 2015,
+      "expiration_year": null,
+      "sources": [
+        {
+          "label": "Alabama Jobs Act \u2014 Code of Alabama \u00a740-18-376",
+          "url": "https://www.madeinalabama.com/2015/11/alabama-jobs-act/"
+        }
+      ]
+    },
+    {
+      "state": "MD",
+      "program_name": "Maryland Data Center Business Property Tax Credit",
+      "authority": "Maryland Department of Assessments and Taxation (Md. Code Ann., Tax-Prop. \u00a79-103)",
+      "description": "Maryland provides a state data center equipment property tax exemption and a local personal property tax credit for qualifying data center businesses. Qualifying facilities (50,000+ sq ft, $2M+ investment) may receive exemptions on data center equipment under Md. Code Ann., Tax-Prop. \u00a79-103 and under county-level economic development agreements.",
+      "benefit_type": "property_tax_exemption",
+      "enacted_year": 2010,
+      "expiration_year": null,
+      "sources": [
+        {
+          "label": "Maryland Data Center Business Property Tax Exemption",
+          "url": "https://dat.maryland.gov/businesses/Pages/data-center-credit.aspx"
+        }
+      ]
+    },
+    {
+      "state": "ND",
+      "program_name": "North Dakota Data Center Property Tax Exemption",
+      "authority": "North Dakota Century Code \u00a757-02-08.31",
+      "description": "North Dakota exempts qualifying data center equipment from state and local property taxes for up to five years. Qualifying facilities must be 25,000 sq ft or larger and represent a capital investment of at least $10 million. The exemption applies to servers, networking equipment, cooling infrastructure, and other data center equipment. Renewable energy use may extend benefits.",
+      "benefit_type": "property_tax_exemption",
+      "enacted_year": 2013,
+      "expiration_year": null,
+      "sources": [
+        {
+          "label": "ND Century Code \u00a757-02-08.31 \u2014 Data Center Exemption",
+          "url": "https://www.legis.nd.gov/cencode/t57c02.html"
+        }
+      ]
+    },
+    {
+      "state": "PA",
+      "program_name": "Pennsylvania Data Center Equipment Sales Tax Exemption",
+      "authority": "Pennsylvania Revenue Code, Act 84 of 2016 (72 P.S. \u00a77204(79))",
+      "description": "Pennsylvania's Act 84 of 2016 created a sales and use tax exemption for qualifying data center equipment, including servers, networking equipment, and related infrastructure purchased for use in a qualified data center. Qualifying facilities must have at least 100,000 sq ft of computer floor space and represent at least $25 million in capital investment. The exemption is capped at $5 million per year per facility.",
+      "benefit_type": "sales_tax_exemption",
+      "enacted_year": 2016,
+      "expiration_year": null,
+      "sources": [
+        {
+          "label": "Pennsylvania Act 84 of 2016 \u2014 Data Center Exemption",
+          "url": "https://www.revenue.pa.gov/FormsandPublications/FormsforBusinesses/Pages/Sales-Use-Tax-Bulletins.aspx"
+        }
+      ]
+    },
+    {
+      "state": "NJ",
+      "program_name": "New Jersey Data Center Sales Tax Exemption (UEZ Program)",
+      "authority": "New Jersey Urban Enterprise Zone Act / N.J.S.A. 52:27H-60 et seq.",
+      "description": "New Jersey's Urban Enterprise Zone program provides a 50% reduction in sales tax on qualifying purchases by businesses in designated UEZ areas, including major data center corridors in Essex, Hudson, and Middlesex counties. Additionally, New Jersey provides corporation business tax credits for capital investment in qualified technology businesses under the Technology Business Tax Certificate Transfer Program.",
+      "benefit_type": "sales_tax_reduction_and_credit",
+      "enacted_year": 1983,
+      "expiration_year": null,
+      "sources": [
+        {
+          "label": "New Jersey UEZ Program \u2014 N.J.S.A. 52:27H-60",
+          "url": "https://www.nj.gov/njbusiness/financing/tax-credits/"
+        }
+      ]
     }
   ]
 }
