@@ -725,6 +725,28 @@
         "46099",
         "46103"
       ]
+    },
+    {
+      "state": "AK",
+      "program_name": "Alaska No-Income/No-State-Sales-Tax Environment",
+      "incentive_type": "Tax structure",
+      "min_investment_m": null,
+      "notes": "Alaska levies no state income tax and no state sales tax (funded by Permanent Fund oil revenues). Data centers benefit from structurally lower operating costs. Federal/DoD data center projects also receive favorable treatment. Individual municipalities may levy local sales taxes.",
+      "fips_list": [
+        "02020",
+        "02090"
+      ]
+    },
+    {
+      "state": "ME",
+      "program_name": "Maine Business Equipment Tax Exemption (BETE)",
+      "incentive_type": "Property tax exemption",
+      "min_investment_m": null,
+      "notes": "36 MRSA \u00a7694 exempts qualified business equipment \u2014 including data center servers, storage, and networking hardware \u2014 from local property taxation. First-time business property in Maine qualifies; reduces one of the largest recurring cost drivers for data centers.",
+      "fips_list": [
+        "23005",
+        "23011"
+      ]
     }
   ]
 }

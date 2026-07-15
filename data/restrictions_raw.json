@@ -6218,6 +6218,293 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null
+    },
+    {
+      "fips": "02090",
+      "name": "Fairbanks North Star Borough",
+      "state": "Alaska",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Fairbanks North Star Borough \u2014 UAF Research Computing Hub",
+      "description": "Fairbanks hosts the University of Alaska Fairbanks (UAF) Arctic Region Supercomputing Center and NOAA/NWS Alaska operations. Cold climate enables year-round free cooling. No local DC zoning restrictions; Alaska's no-income/no-state-sales-tax environment supports operational economics.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "UAF Research Computing",
+          "url": "https://www.uaf.edu/rcs/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "10001",
+      "name": "Kent County",
+      "state": "Delaware",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kent County Delaware State Capital IT Infrastructure",
+      "description": "Dover (Kent County) hosts Delaware's Department of Technology and Information (DTI) state data center. Delaware has no state sales tax, reducing equipment acquisition costs. No local DC restrictions; the DTI facility serves as the state's primary government IT operations hub.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Delaware DTI \u2014 State Technology",
+          "url": "https://dti.delaware.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "15009",
+      "name": "Maui County",
+      "state": "Hawaii",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Maui County \u2014 MHPCC and Air Force Supercomputing Hub",
+      "description": "Maui hosts the Maui High Performance Computing Center (MHPCC), operated for the Air Force Research Laboratory, and the Air Force Maui Optical and Supercomputing (AMOS) facility. No local DC zoning restrictions; Hawaii's strategic Pacific location and renewable energy transition support long-term operations.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "MHPCC \u2014 Maui HPC Center",
+          "url": "https://www.mhpcc.edu"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "56025",
+      "name": "Natrona County",
+      "state": "Wyoming",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Natrona County Wyoming Energy Sector Data Hub",
+      "description": "Casper (Natrona County) is Wyoming's second-largest city and the hub of the state's oil, gas, and wind energy data operations. No state corporate income tax or personal income tax. No local DC restrictions. Wyoming's abundant wind power provides low-carbon electricity options for data centers.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Wyoming LEADS \u2014 Data Center Incentives",
+          "url": "https://www.wyomingleads.com/why-wyoming/incentives/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "05143",
+      "name": "Washington County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Washington County Northwest Arkansas University Tech Corridor",
+      "description": "Washington County (Fayetteville/Springdale) anchors the University of Arkansas research computing ecosystem and hosts J.B. Hunt Transport technology operations. Part of the broader Northwest Arkansas tech corridor. No local DC restrictions; AEDC incentives and competitive land/power costs drive investment.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "AEDC \u2014 Arkansas Technology",
+          "url": "https://www.arkansasedc.com/industries/technology"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "28047",
+      "name": "Harrison County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Harrison County Gulf Coast Energy and Hospitality IT Hub",
+      "description": "Harrison County (Gulfport/Biloxi) hosts Gulf energy operations data and the IT infrastructure supporting Mississippi's coastal gaming/hospitality industry. Mississippi's Data Center Sales Tax Exemption (\u00a727-65-101) applies. No local DC zoning restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "MS Development Authority Incentives",
+          "url": "https://www.mississippi.org/incentives/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "35049",
+      "name": "Santa Fe County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Santa Fe County State Capital and DOE Edge Compute Hub",
+      "description": "Santa Fe (Santa Fe County) hosts New Mexico's state government IT infrastructure and serves as a connectivity hub for Los Alamos National Laboratory operations. The state's Technology Jobs Tax Credit and no local DC restrictions support the growing DOE/defense technology corridor.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "NM EMNRD \u2014 Technology Incentives",
+          "url": "https://www.nmedd.com/incentives.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "01101",
+      "name": "Montgomery County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Montgomery County Alabama State Capital IT and Supercomputing Hub",
+      "description": "Montgomery (Montgomery County) hosts the Alabama Supercomputer Authority (ASA) and Alabama state government IT operations. The ASA operates high-performance computing resources for state agencies and universities. No local DC restrictions; Alabama's Growing Alabama Credit (\u00a740-18-376.1) supports qualifying investments.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Alabama Supercomputer Authority",
+          "url": "https://www.asc.edu"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "09011",
+      "name": "New London County",
+      "state": "Connecticut",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "New London County Defense Technology and Navy IT Hub",
+      "description": "New London County hosts the US Navy Submarine Base (Groton), Electric Boat / General Dynamics submarine manufacturing IT, and US Coast Guard Academy computing. Significant defense-sector data infrastructure with no local DC zoning restrictions. Connecticut's Data Center Equipment Tax Exemption (CGS \u00a712-412(112)) applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "CT OPM \u2014 Economic Development",
+          "url": "https://portal.ct.gov/OPM"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "45019",
+      "name": "Charleston County",
+      "state": "South Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Charleston County Port Logistics and Technology Hub",
+      "description": "Charleston County hosts the Port of Charleston IT infrastructure, Volvo Cars North America operations data, and a growing fintech/medical tech sector. No local DC restrictions; SC's sales tax exemption for data center equipment (SC Code \u00a712-36-2120(67)) and Locate SC incentives support investment.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Locate SC \u2014 Data Center Incentives",
+          "url": "https://locatesc.com/incentives/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "45045",
+      "name": "Greenville County",
+      "state": "South Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Greenville County Upstate SC Advanced Manufacturing Technology Hub",
+      "description": "Greenville County hosts BMW Manufacturing's North American IT hub, Michelin's digital operations, and a growing concentration of advanced manufacturing data infrastructure. No local DC restrictions; SC's data center equipment exemptions and Greenville's Upstate SC Alliance incentives support investment.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Upstate SC Alliance \u2014 Technology",
+          "url": "https://upstatescalliance.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "25021",
+      "name": "Norfolk County",
+      "state": "Massachusetts",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Norfolk County Greater Boston South Shore Technology Hub",
+      "description": "Norfolk County (Dedham/Quincy/Braintree) hosts State Street Corporation's technology operations, Blue Cross Blue Shield MA, and significant healthcare/financial IT infrastructure. No local DC restrictions; MassIT-supported broadband and Massachusetts' data center equipment exemption (Ch.64H \u00a76(r)) apply.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "MassTech Collaborative",
+          "url": "https://masstech.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
     }
   ]
 }
