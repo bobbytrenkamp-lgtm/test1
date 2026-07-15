@@ -917,6 +917,56 @@
       "notes": "M&T Bank's primary technology operations hub supporting regional banking IT, data analytics, and financial services processing for the Buffalo-Niagara region.",
       "lon": -78.8784,
       "lat": 42.8864
+    },
+    {
+      "id": "ai-co-003",
+      "name": "Lumen Technologies Aurora Data Center",
+      "operator": "Lumen Technologies",
+      "status": "operational",
+      "county_fips": "08005",
+      "notes": "Legacy CenturyLink/Lumen colocation and network hub serving the Denver metro; one of the largest carrier-neutral facilities in Arapahoe County.",
+      "lon": -104.8319,
+      "lat": 39.7294
+    },
+    {
+      "id": "ai-pa-002",
+      "name": "Comcast Technology Center \u2014 Philadelphia",
+      "operator": "Comcast Corporation",
+      "status": "operational",
+      "county_fips": "42101",
+      "notes": "Comcast's global technology headquarters in Center City Philadelphia; houses major data infrastructure for NBCUniversal, Xfinity, and enterprise services.",
+      "lon": -75.1652,
+      "lat": 39.9526
+    },
+    {
+      "id": "ai-il-005",
+      "name": "Iron Mountain Data Center \u2014 Chicago West (Aurora)",
+      "operator": "Iron Mountain",
+      "status": "operational",
+      "county_fips": "17089",
+      "notes": "Iron Mountain colocation facility in Aurora (Kane County) serving Chicago metro enterprise clients; part of the west suburban Chicago data center corridor.",
+      "lon": -88.3201,
+      "lat": 41.7606
+    },
+    {
+      "id": "ai-ga-004",
+      "name": "UGA Georgia Advanced Research Computing Center",
+      "operator": "University of Georgia",
+      "status": "operational",
+      "county_fips": "13059",
+      "notes": "UGA's GACRC provides HPC resources for genomics, climate research, and computational biology; houses Georgia Advanced Research Computing infrastructure.",
+      "lon": -83.3777,
+      "lat": 33.9519
+    },
+    {
+      "id": "ai-in-002",
+      "name": "University of Notre Dame Center for Research Computing",
+      "operator": "University of Notre Dame",
+      "status": "operational",
+      "county_fips": "18141",
+      "notes": "Notre Dame CRC operates the Duda supercomputing cluster and AI/ML platforms supporting computational science, engineering, and social science research.",
+      "lon": -86.252,
+      "lat": 41.7002
     }
   ]
 }

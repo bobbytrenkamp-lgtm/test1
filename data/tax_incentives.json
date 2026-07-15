@@ -777,6 +777,28 @@
         "47093",
         "47149"
       ]
+    },
+    {
+      "state": "DE",
+      "program_name": "Delaware No-Sales-Tax Environment and Strategic Fund",
+      "incentive_type": "Tax structure / discretionary grant",
+      "min_investment_m": null,
+      "notes": "Delaware has levied no general state sales tax since 1972, eliminating sales tax on data center equipment purchases. The Delaware Strategic Fund (29 Del.C. \u00a75005B) provides discretionary grants and loans for qualifying capital investment projects. Combined with Delaware's favorable corporate law and low corporate income tax rate.",
+      "fips_list": [
+        "10003",
+        "10001"
+      ]
+    },
+    {
+      "state": "MT",
+      "program_name": "Montana No-Sales-Tax and New Industry Property Tax Abatement",
+      "incentive_type": "Tax structure / property tax abatement",
+      "min_investment_m": null,
+      "notes": "Montana levies no general sales or use tax, removing a significant upfront cost for data center equipment. The New or Expanding Business Property Tax Abatement (MCA \u00a715-24-1402) reduces property taxes by 50% for the first 5 years for qualifying new or expanding industry. Combined, these make Montana one of the most structurally favorable states for data center investment.",
+      "fips_list": [
+        "30031",
+        "30111"
+      ]
     }
   ]
 }
