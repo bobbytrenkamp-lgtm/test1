@@ -6,6 +6,29 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 13)
+- `data/map_data.json` (Round 13)
+- `docs/data-sweeps/2026-07-massive-sweep-round-13.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 13**: Illinois military/industrial (Macon/Decatur/ADM HQ, Madison/Alton-Granite City/St. Louis East, St. Clair/Belleville/Scott AFB-TRANSCOM), Nebraska beef/rail depth (Dawson/Lexington/JBS, Adams/Hastings, York/I-80, Scotts Bluff/Western NE), Kansas beef belt (Finney/Garden City/Tyson, Geary/Junction City/Fort Riley, Harvey/Newton), Oklahoma energy HQs (Washington/Bartlesville/Phillips 66 HQ, Kay/Ponca City/Phillips 66 refinery), Iowa Mississippi corridor (Muscatine/HNI Corp, Clinton/DuPont-Chemours), South Dakota military/hydro (Meade/Ellsworth AFB, Yankton/Gavins Point Dam), Arkansas secondary (Miller/Texarkana, White/Searcy/Harding), Mississippi (Warren/Vicksburg/ERDC), Montana (Ravalli/Hamilton/Bitterroot). 20 net new records (763 total).
+- **No FIPS errors** — fourth consecutive clean validation run.
+
+Reasoning:
+- St. Clair County IL (Scott AFB/TRANSCOM): US Transportation Command — the DOD's global logistics nerve center — is one of the most significant federal IT concentrations in the Midwest. A significant omission now corrected.
+- Macon County IL (ADM Decatur): ADM's Decatur campus is among the most industrially electrically intensive complexes in Illinois. Exceptional Ameren substation density.
+- Dawson County NE (JBS Lexington): One of the world's largest beef processing facilities. Industrial electrical load from JBS creates high-capacity NPPD infrastructure rarely found in rural Nebraska counties.
+- Finney County KS (Tyson Garden City): Tyson's ~5,500 head/day plant drives Evergy industrial infrastructure in a Kansas wind belt county — a distinctive combination of power load and renewable access.
+
+Problems Found:
+- 0 FIPS errors.
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 12)
 - `data/map_data.json` (Round 12)
 - `docs/data-sweeps/2026-07-massive-sweep-round-12.md` (new)

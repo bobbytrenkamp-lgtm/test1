@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-16T20:46:47.705121+00:00",
+  "generated_at": "2026-07-16T20:50:59.748842+00:00",
   "source_last_updated": "2026-07-16",
   "stats": {
-    "total_counties_tracked": 743,
+    "total_counties_tracked": 763,
     "by_level": {
-      "-1": 631,
+      "-1": 651,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,7 +12,7 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 734,
+      "data_center": 754,
       "water": 14,
       "ai": 182,
       "energy": 160,
@@ -20734,6 +20734,546 @@
       "confidence": "high",
       "confidence_score": 78,
       "source_tier": 1
+    },
+    "17115": {
+      "name": "Macon County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Macon County IL \u2014 Decatur/ADM (Archer Daniels Midland) HQ/agricultural processing power",
+      "description": "Macon County (Decatur) is home to Archer Daniels Midland (ADM) \u2014 one of the world's largest agricultural commodity processors, with its headquarters and largest grain processing campus in Decatur. ADM's ethanol, soybean crushing, and corn wet milling operations are among the most electrically intensive industrial processes in the US, driving massive substation buildout through Ameren Illinois. Millikin University and the county's role as central Illinois's primary agricultural processing hub contribute to significant institutional IT and industrial electrical infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "ADM (Archer Daniels Midland) \u2014 Decatur IL",
+          "url": "https://www.adm.com/"
+        },
+        {
+          "label": "Ameren Illinois \u2014 Macon County",
+          "url": "https://www.ameren.com/illinois"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "17163": {
+      "name": "St. Clair County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "St. Clair County IL \u2014 Belleville/Scott AFB/US Transportation Command (TRANSCOM)",
+      "description": "St. Clair County (Belleville, O'Fallon) hosts Scott Air Force Base \u2014 headquarters of US Transportation Command (TRANSCOM), the DOD's global logistics command coordinating all military transport and supply chain operations worldwide. TRANSCOM's computing and communications infrastructure for coordinating global military logistics is among the most extensive federal IT footprints in the Midwest. Ameren Illinois serves the county, part of the St. Louis Metro East. Scott AFB also hosts the Air Mobility Command (AMC) and is one of the largest DoD logistics computing sites in the US.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Scott Air Force Base \u2014 US Transportation Command",
+          "url": "https://www.transcom.mil/"
+        },
+        {
+          "label": "Ameren Illinois \u2014 St. Clair County",
+          "url": "https://www.ameren.com/illinois"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "17119": {
+      "name": "Madison County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Madison County IL \u2014 Alton/Granite City/St. Louis Metro East industrial",
+      "description": "Madison County (Alton, Granite City, Edwardsville) is the largest county in Illinois's St. Louis Metro East, home to US Steel's Granite City Works (a major integrated steel mill), Shell Roxana Refinery, and significant chemical manufacturing on the Mississippi River corridor. Ameren Illinois serves the county. Southern Illinois University-Edwardsville (SIUE) provides academic computing, while the industrial corridor's heavy electrical load infrastructure supports large-scale power users. The county's Mississippi River position gives it connectivity to the broader St. Louis fiber market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Madison County IL \u2014 Metro East",
+          "url": "https://co.madison.il.us/"
+        },
+        {
+          "label": "Ameren Illinois \u2014 Madison County",
+          "url": "https://www.ameren.com/illinois"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "31047": {
+      "name": "Dawson County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dawson County NE \u2014 Lexington/JBS beef processing/massive NPPD industrial load",
+      "description": "Dawson County (Lexington) hosts JBS USA's Lexington Nebraska beef processing plant \u2014 one of the largest beef processing facilities in the world, employing over 5,000 workers and processing thousands of cattle daily. The industrial electrical load from this and adjacent processing operations is among the highest per-capita of any Nebraska county, creating large-capacity substation infrastructure through Nebraska Public Power District (NPPD). The plant's digital transformation (automated carcass sorting, animal tracing, IoT monitoring) and NPPD's low-cost power make Dawson County a real secondary data center site.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "JBS USA \u2014 Lexington Nebraska",
+          "url": "https://jbsfoodsgroup.com/"
+        },
+        {
+          "label": "Nebraska Public Power District (NPPD)",
+          "url": "https://www.nppd.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "31001": {
+      "name": "Adams County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Adams County NE \u2014 Hastings/mid-Nebraska hub/Hastings College",
+      "description": "Adams County (Hastings) is the commercial hub of south-central Nebraska, home to Hastings College and positioned on US-6 and US-281 between Lincoln (100 miles east) and Kearney (50 miles west). Nebraska Public Power District's low-cost hydro and nuclear power serves the county. Hastings' agricultural service economy, regional healthcare hub (Mary Lanning Healthcare), and Hastings College computing programs drive modest but steady institutional IT demand across a wide south-central Nebraska catchment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Adams County NE \u2014 City of Hastings",
+          "url": "https://www.hastingsne.gov/"
+        },
+        {
+          "label": "Nebraska Public Power District (NPPD)",
+          "url": "https://www.nppd.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "31185": {
+      "name": "York County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "York County NE \u2014 York/I-80 hub between Lincoln and Grand Island",
+      "description": "York County (York) sits on I-80 roughly midway between Lincoln and Grand Island \u2014 a position that makes it a natural fiber route waypoint on the US east-west backbone. Nebraska Public Power District serves the county. York College, a small liberal arts institution, and the county's agricultural service role anchor modest IT demand. The county's I-80 positioning, flat topography, and NPPD's consistently low commercial rates give it secondary data center potential as a route-diversity site between Omaha and the central Nebraska market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "York County NE \u2014 City of York",
+          "url": "https://www.yorkcity.org/"
+        },
+        {
+          "label": "Nebraska Public Power District (NPPD)",
+          "url": "https://www.nppd.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "31157": {
+      "name": "Scotts Bluff County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Scotts Bluff County NE \u2014 Scottsbluff-Gering/Western NE panhandle hub/North Platte River",
+      "description": "Scotts Bluff County (Scottsbluff, Gering) is the commercial center of the Nebraska Panhandle and the western Wyoming-Nebraska border region. Western Nebraska Community College serves the area. Nebraska Public Power District provides low-cost power. The county's North Platte River irrigated agriculture drives significant water management IT, and its position on US-26 and US-71 makes it a rural hub serving a large geographic catchment. The county's NPPD power access and low land costs represent standard secondary Nebraska data center fundamentals.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Scotts Bluff County NE \u2014 City of Scottsbluff",
+          "url": "https://www.cityofscottsbluff.com/"
+        },
+        {
+          "label": "Nebraska Public Power District (NPPD)",
+          "url": "https://www.nppd.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "20055": {
+      "name": "Finney County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Finney County KS \u2014 Garden City/Tyson Fresh Meats/massive beef processing power",
+      "description": "Finney County (Garden City) hosts Tyson Fresh Meats' massive Garden City beef processing plant \u2014 one of the largest in the world, employing over 5,000 workers. The industrial electrical load from this facility through Evergy is among the highest per-county in western Kansas. Garden City's position in the Arkansas River Valley with access to Ogallala Aquifer irrigation also drives significant agricultural processing IT. The county's industrial power infrastructure and Evergy's Kansas wind energy integration give it structural data center power advantages.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Tyson Fresh Meats \u2014 Garden City KS",
+          "url": "https://www.tysonfoods.com/"
+        },
+        {
+          "label": "Evergy \u2014 Southwest Kansas",
+          "url": "https://www.evergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "20061": {
+      "name": "Geary County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Geary County KS \u2014 Junction City/Fort Riley/1st Infantry Division",
+      "description": "Geary County (Junction City) adjoins Fort Riley \u2014 home of the US Army's 1st Infantry Division (Big Red One), one of the most storied Army combat divisions. Fort Riley straddles the Riley-Geary county line but Junction City is the principal off-post community. The base's computing, communications, and intelligence infrastructure drives significant IT demand. Evergy serves the county. Junction City's position at the I-70/US-40 junction midway across Kansas gives it connectivity importance on the east-west fiber corridor.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Fort Riley \u2014 1st Infantry Division",
+          "url": "https://home.army.mil/riley/"
+        },
+        {
+          "label": "Geary County KS \u2014 City of Junction City",
+          "url": "https://www.junctioncity.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "20079": {
+      "name": "Harvey County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Harvey County KS \u2014 Newton/Wichita north suburb/BNSF railway hub",
+      "description": "Harvey County (Newton) is the northern Wichita suburb and home to one of the most significant BNSF Railway classification yards in Kansas, serving as a key junction for the transcontinental railroad network. Bethel College (one of the country's oldest Mennonite colleges) provides an academic computing presence. Evergy serves the county as part of the greater Wichita grid. Newton's BNSF yard drives telecommunications and digital operations infrastructure, and the county's proximity to Wichita's fiber network extends metro connectivity northward.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Harvey County KS \u2014 City of Newton",
+          "url": "https://www.newtonkansas.com/"
+        },
+        {
+          "label": "Evergy \u2014 Harvey County KS",
+          "url": "https://www.evergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "40147": {
+      "name": "Washington County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Washington County OK \u2014 Bartlesville/Phillips 66 global headquarters/Philbrook",
+      "description": "Washington County (Bartlesville) is home to Phillips 66's global headquarters \u2014 one of the largest oil refining and midstream companies in the US. A major energy corporation's global HQ drives substantial enterprise IT infrastructure, including data centers, cybersecurity operations, and energy management systems. Oklahoma Gas and Electric (OG&E) serves the county. Bartlesville's position on US-75 north of Tulsa gives it connectivity to the Tulsa metro fiber network, while the county's significant corporate IT footprint from Phillips 66 makes it a secondary Oklahoma data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Phillips 66 \u2014 Bartlesville OK headquarters",
+          "url": "https://www.phillips66.com/"
+        },
+        {
+          "label": "Washington County OK \u2014 City of Bartlesville",
+          "url": "https://www.cityofbartlesville.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "40071": {
+      "name": "Kay County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kay County OK \u2014 Ponca City/Phillips 66 refinery/Continental Carbon",
+      "description": "Kay County (Ponca City) hosts the Phillips 66 Ponca City Refinery \u2014 one of the company's major inland refineries \u2014 along with Continental Carbon (carbon black manufacturing) and other petrochemical operations. Oklahoma Gas and Electric and Western Farmers Electric serve the county with Oklahoma's competitive rates. Ponca City's industrial base and position on US-60 and US-77 give it connectivity to the Oklahoma City and Tulsa networks. The refinery complex's significant industrial electrical load and IT infrastructure represent a meaningful data center context.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Phillips 66 \u2014 Ponca City Refinery",
+          "url": "https://www.phillips66.com/"
+        },
+        {
+          "label": "Kay County OK \u2014 City of Ponca City",
+          "url": "https://www.poncacityok.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "19139": {
+      "name": "Muscatine County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Muscatine County IA \u2014 Muscatine/HNI Corporation/Mississippi River industrial",
+      "description": "Muscatine County (Muscatine) anchors SE Iowa's Mississippi River industrial corridor. HNI Corporation (formerly HON Industries), a major office furniture manufacturer, is headquartered in Muscatine. Grain Processing Corporation and Monsanto (now Bayer) operations drive substantial industrial electrical load through MidAmerican Energy. Muscatine Power and Water provides municipal power service in the city itself. The county's position on US-61 and the Mississippi River, combined with its dense manufacturing base and Muscatine Community College, create solid secondary data center fundamentals.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "HNI Corporation \u2014 Muscatine IA",
+          "url": "https://www.hnicorp.com/"
+        },
+        {
+          "label": "Muscatine Power and Water \u2014 Muscatine IA",
+          "url": "https://www.mpw.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "19045": {
+      "name": "Clinton County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clinton County IA \u2014 Clinton/DuPont-Chemours Lycra/Mississippi River industrial",
+      "description": "Clinton County (Clinton) anchors NE Iowa's Mississippi River industrial corridor. The former DuPont (now Chemours/Koch) Lycra/spandex manufacturing operations historically made Clinton County one of the most electrically intensive industrial counties in Iowa. MidAmerican Energy serves the county. Clinton's position on the Mississippi River at the Iowa-Illinois border, with I-80 proximity (20 miles south), gives it connectivity to the Quad Cities\\/Davenport fiber network. Eagle Point Park and the county's riverfront location add manufacturing and logistics operational context.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Clinton County IA \u2014 City of Clinton",
+          "url": "https://clintoniowa.us/"
+        },
+        {
+          "label": "MidAmerican Energy \u2014 Clinton County IA",
+          "url": "https://www.midamericanenergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "46093": {
+      "name": "Meade County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Meade County SD \u2014 Sturgis/Ellsworth Air Force Base/B-1B Lancer wing",
+      "description": "Meade County (Sturgis) hosts Ellsworth Air Force Base \u2014 home of the 28th Bomb Wing operating B-1B Lancer strategic bombers, one of two B-1B bases in the US. Ellsworth's aviation fuel, communications, and IT infrastructure for a strategic bomber wing represent significant federal computing presence. The county's position west of Rapid City and the Black Hills, served by Black Hills Energy and NorthWestern Energy, adds the data center-friendly cold climate and South Dakota's favorable tax environment. The annual Sturgis Motorcycle Rally drives temporary connectivity demand as well.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Ellsworth AFB \u2014 28th Bomb Wing (B-1B)",
+          "url": "https://www.ellsworth.af.mil/"
+        },
+        {
+          "label": "Black Hills Energy \u2014 Meade County SD",
+          "url": "https://www.blackhillsenergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "46135": {
+      "name": "Yankton County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Yankton County SD \u2014 Yankton/Gavins Point Dam/Missouri River/Mount Marty University",
+      "description": "Yankton County (Yankton) anchors SE South Dakota on the Missouri River, adjacent to the Nebraska border. Gavins Point Dam (operated by the US Army Corps of Engineers) is the smallest of the six Missouri River mainstem dams, providing hydroelectric generation through Western Area Power Administration (WAPA). Mount Marty University and Yankton College give the county a private higher education presence. The county's position at the I-81/US-81 junction connecting Sioux Falls to Omaha and its Missouri River hydropower access give it secondary data center relevance.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Gavins Point Dam \u2014 US Army Corps of Engineers",
+          "url": "https://www.nwo.usace.army.mil/Missions/Dam-and-Lake-Projects/Missouri-River-Dams/Gavins-Point/"
+        },
+        {
+          "label": "Mount Marty University \u2014 Yankton SD",
+          "url": "https://www.mtmc.edu/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "05091": {
+      "name": "Miller County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Miller County AR \u2014 Texarkana AR/ArkLaTex bi-state hub/I-30 & I-49",
+      "description": "Miller County (Texarkana, AR) forms the Arkansas half of the Texarkana metro, a significant bi-state market straddling the AR-TX border. Texarkana is the commercial hub of the ArkLaTex region, with I-30 (connecting Dallas to Little Rock) and US-59 (connecting the Gulf Coast to the Midwest) intersecting in the metro area. Entergy Arkansas serves the county. The county's unique dual-state position creates interesting connectivity and jurisdiction dynamics, and the Texarkana metro's role as a regional logistics and distribution hub drives enterprise IT demand.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Miller County AR \u2014 City of Texarkana AR",
+          "url": "https://www.texarkanapd.com/"
+        },
+        {
+          "label": "Entergy Arkansas \u2014 Miller County",
+          "url": "https://www.entergy-arkansas.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "05145": {
+      "name": "White County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "White County AR \u2014 Searcy/Harding University/Little Rock north corridor",
+      "description": "White County (Searcy) is home to Harding University \u2014 a major private liberal arts university (STEM programs, business, law) with over 5,000 students. Located 50 miles north of Little Rock on US-67/US-167, Searcy's position on the LR north corridor and the Arkansas River Valley fiber spine gives it connectivity to Little Rock's metro network. Entergy Arkansas serves the county. Harding's computing infrastructure and the county's growing distribution and healthcare economy drive steady IT demand along the I-67/US-167 growth axis.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Harding University \u2014 Searcy AR",
+          "url": "https://www.harding.edu/"
+        },
+        {
+          "label": "White County AR \u2014 City of Searcy",
+          "url": "https://www.cityofsearcy.net/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "28149": {
+      "name": "Warren County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Warren County MS \u2014 Vicksburg/US Army Corps of Engineers Waterways Experiment Station",
+      "description": "Warren County (Vicksburg) is home to the US Army Engineer Research and Development Center (ERDC) \u2014 the Army Corps of Engineers' primary research facility, including the Waterways Experiment Station and the Engineer Research Center. ERDC conducts major research in geotechnical engineering, hydraulics, and environmental science, requiring significant high-performance computing infrastructure. Mississippi River levee management and flood control computing also flows through Vicksburg. Entergy Mississippi serves the county with competitive rates.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "US Army Engineer R&D Center (ERDC) \u2014 Vicksburg MS",
+          "url": "https://www.erdc.usace.army.mil/"
+        },
+        {
+          "label": "Warren County MS \u2014 City of Vicksburg",
+          "url": "https://www.vicksburg.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "30081": {
+      "name": "Ravalli County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ravalli County MT \u2014 Hamilton/Bitterroot Valley/Rocky Mountain Research Station",
+      "description": "Ravalli County (Hamilton) is the Bitterroot Valley south of Missoula \u2014 one of the fastest-growing rural areas in Montana due to migration from California, Washington, and Idaho. The USDA Forest Service Rocky Mountain Research Station in Hamilton provides federal research computing presence. NorthWestern Energy serves the county with Montana's hydropower-backed competitive rates. The Bitterroot Valley's cold climate is excellent for free-air cooling, and the county's growing tech-sector professional population creates emerging enterprise IT demand against a backdrop of very low land costs.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Rocky Mountain Research Station \u2014 Hamilton MT",
+          "url": "https://www.fs.usda.gov/rmrs/"
+        },
+        {
+          "label": "Ravalli County MT \u2014 City of Hamilton",
+          "url": "https://www.ravallicounty.mt.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -21210,7 +21750,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-16T20:46:47.825412+00:00",
+    "last_computed": "2026-07-16T20:50:59.864182+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",
