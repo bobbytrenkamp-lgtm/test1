@@ -19500,6 +19500,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "19127",
+      "name": "Marshall County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Marshall County \u2014 Marshalltown/JBS Turkey/major meatpacking hub",
+      "description": "Marshalltown hosts JBS Turkey's large processing plant and a major Swift/JBS beef facility \u2014 among the largest employers in central Iowa. The industrial electrical infrastructure supporting high-throughput food processing gives MidAmerican Energy significant substation capacity in Marshall County. Marshalltown also has an Emerson Electric division and Fisher Controls (Emerson Automation Solutions) operations with embedded process control and industrial IT.",
+      "sources": [
+        {
+          "label": "Marshall County Iowa",
+          "url": "https://www.marshallcountyiowa.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "19111",
+      "name": "Lee County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lee County \u2014 Keokuk/Fort Madison/Iowa Army Ammunition Plant",
+      "description": "Lee County contains the Iowa Army Ammunition Plant at Middletown \u2014 a major Defense Logistics Agency ammunition manufacturing and storage installation with embedded federal IT infrastructure. Fort Madison and Keokuk are the county's urban centers. The Mississippi River corridor provides both fiber infrastructure and cooling water access for potential data center development in southeast Iowa's industrial zone.",
+      "sources": [
+        {
+          "label": "Lee County Iowa",
+          "url": "https://www.leecountyiowa.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "19125",
+      "name": "Marion County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Marion County \u2014 Knoxville/Pella Corp manufacturing hub",
+      "description": "Pella Corporation \u2014 the major window and door manufacturer \u2014 is headquartered in Pella in Marion County. Pella Corp's manufacturing operations and global supply chain management systems represent a significant industrial IT presence in rural Iowa. The county is also home to Knoxville, which hosts the Iowa Speedway and a regional hospital hub. MidAmerican Energy serves the area with competitive industrial rates.",
+      "sources": [
+        {
+          "label": "Marion County Iowa",
+          "url": "https://www.co.marion.ia.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "19181",
+      "name": "Warren County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Warren County \u2014 Indianola/Des Moines south suburb growth corridor",
+      "description": "Warren County is one of the fastest-growing counties in Iowa, driven by Des Moines southward suburban expansion. Indianola hosts Simpson College and is the county seat. The I-35 corridor through Warren County is a key fiber route connecting Des Moines to Kansas City. As Des Moines has become a major Midwest data center hub, Warren County's suburban growth and MidAmerican Energy infrastructure make it a natural extension zone.",
+      "sources": [
+        {
+          "label": "Warren County Iowa",
+          "url": "https://www.co.warren.ia.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "20037",
+      "name": "Crawford County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Crawford County \u2014 Pittsburg/Pittsburg State University/SE Kansas",
+      "description": "Pittsburg State University in Crawford County runs one of the largest technology programs in southeast Kansas, including the Kansas Technology Center. PSU's Gorilla Geothermal Energy Project and engineering programs drive campus IT infrastructure. Crawford County is also a regional hub for southeast Kansas commerce, with Evergy providing electrical service. The area's proximity to the Joplin, Missouri metro extends the tech ecosystem.",
+      "sources": [
+        {
+          "label": "Crawford County Kansas",
+          "url": "https://www.crawfordcountykansas.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "20057",
+      "name": "Ford County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ford County \u2014 Dodge City/Tyson/Cargill beef processing/cattle country",
+      "description": "Dodge City in Ford County hosts both Tyson Fresh Meats and Cargill Meat Solutions beef processing plants \u2014 together processing thousands of cattle daily, making Ford County one of the largest beef processing concentrations in the world. The combined industrial electrical load drives extraordinary Evergy substation capacity in this southwest Kansas city. Kansas wind energy from surrounding counties adds renewable power access. A genuinely high-load industrial county often overlooked for data center potential.",
+      "sources": [
+        {
+          "label": "Ford County Kansas",
+          "url": "https://www.fordcounty.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "20113",
+      "name": "McPherson County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McPherson County \u2014 McPherson/oil refining hub/HollyFrontier",
+      "description": "McPherson hosts HollyFrontier's (now HF Sinclair) crude oil refinery, one of the largest in Kansas. Oil refining is among the most electrically intensive industrial processes, creating high-capacity Evergy substation infrastructure in McPherson County. The county sits at the intersection of major natural gas pipelines and has historically attracted industrial operations requiring both power and feedstock access. McPherson College adds an education IT presence.",
+      "sources": [
+        {
+          "label": "McPherson County Kansas",
+          "url": "https://www.mcphersoncountyks.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "38053",
+      "name": "McKenzie County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McKenzie County \u2014 Watford City/Bakken core SCADA/oil field digitalization",
+      "description": "McKenzie County is at the geographic center of the Williston Basin Bakken oil play. Watford City has transformed from a small agricultural town into a major oil field services hub. The SCADA systems, real-time production monitoring, and data analytics infrastructure serving Bakken operators represents a concentrated and growing digital footprint. Basin Electric and MDU serve the county with industrial power. McKenzie County's oil production digitalization is among the most data-intensive in the Great Plains.",
+      "sources": [
+        {
+          "label": "McKenzie County North Dakota",
+          "url": "https://www.co.mckenzie.nd.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "38093",
+      "name": "Stutsman County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Stutsman County \u2014 Jamestown/University of Jamestown/ND central hub",
+      "description": "Jamestown is the largest city in central North Dakota and a regional hub between Fargo and Bismarck on the I-94 corridor. The University of Jamestown anchors academic computing in the county. Jamestown hosts the North Dakota State Hospital and multiple state government facilities, creating a concentration of public-sector IT. Basin Electric's transmission infrastructure and North Dakota's favorable regulatory environment for data centers make Stutsman County an underappreciated secondary market.",
+      "sources": [
+        {
+          "label": "Stutsman County North Dakota",
+          "url": "https://www.stutsmancounty.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "16057",
+      "name": "Latah County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Latah County \u2014 Moscow/University of Idaho/WSU cross-border academic hub",
+      "description": "Moscow, Idaho hosts the University of Idaho, the state's flagship research university and land-grant institution. Just across the Washington state line is Washington State University in Pullman \u2014 making the Moscow-Pullman region one of the most concentrated academic computing corridors in the Pacific Northwest relative to population. Idaho Power's hydropower-backed rates are among the lowest in the US, and the bi-state university corridor provides fiber infrastructure and technical workforce unusual for a rural community.",
+      "sources": [
+        {
+          "label": "Latah County Idaho",
+          "url": "https://www.latah.id.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "16039",
+      "name": "Elmore County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Elmore County \u2014 Mountain Home AFB/F-15E Strike Eagle/Idaho military IT",
+      "description": "Mountain Home Air Force Base in Elmore County is the home of the 366th Fighter Wing and F-15E Strike Eagle operations. Mountain Home AFB hosts the Air Force's premier composite wing, with integrated command, control, and intelligence systems requiring significant federal IT infrastructure. The base is one of Idaho's largest employers. Idaho Power provides the area with hydropower-backed electricity at competitive rates, and the high desert location provides natural cooling advantages for data center operations.",
+      "sources": [
+        {
+          "label": "Elmore County Idaho",
+          "url": "https://www.elmorecounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "31067",
+      "name": "Gage County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Gage County \u2014 Beatrice/SE Nebraska agricultural hub/NPPD",
+      "description": "Beatrice is the largest city in southeast Nebraska and a regional commercial hub. Gage County's agricultural processing sector \u2014 including grain elevators and ethanol facilities \u2014 drives NPPD electrical infrastructure in the area. Nebraska Public Power District's low rates and cooperative structure make Gage County attractive for large-load users. The county is connected to Lincoln via US-77, providing fiber corridor access to Nebraska's primary data center market.",
+      "sources": [
+        {
+          "label": "Gage County Nebraska",
+          "url": "https://gagecounty.nebraska.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "31131",
+      "name": "Otoe County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Otoe County \u2014 Nebraska City/Arbor Day Farm/I-29 Missouri River corridor",
+      "description": "Nebraska City sits on the Missouri River in Otoe County, a key position on the I-29 north-south fiber corridor connecting Omaha to Kansas City. The Arbor Day Foundation headquarters and Arbor Day Farm are here. Nebraska City has historically been a fruit and agricultural processing hub. NPPD and Omaha Public Power District's competitive rates serve the county. The Missouri River position gives Otoe County infrastructure advantages similar to other river-corridor data center markets.",
+      "sources": [
+        {
+          "label": "Otoe County Nebraska",
+          "url": "https://www.otoecounty.nebraska.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "05069",
+      "name": "Jefferson County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jefferson County \u2014 Pine Bluff/UAPB/Dillard's HQ/AR southeast hub",
+      "description": "Pine Bluff is the largest city in southeast Arkansas and home to the University of Arkansas at Pine Bluff (UAPB), one of the state's historically Black universities with STEM programs. The Pine Bluff Arsenal \u2014 an Army chemical weapons demilitarization facility \u2014 represents federal IT infrastructure in the county. Jefferson County's position on the Arkansas River and rail network has historically supported industrial operations. Entergy Arkansas provides competitive rates in the region.",
+      "sources": [
+        {
+          "label": "Jefferson County Arkansas",
+          "url": "https://www.jeffersoncountyar.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "05085",
+      "name": "Lonoke County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lonoke County \u2014 Cabot/Little Rock NE fastest-growing AR suburb",
+      "description": "Lonoke County is the fastest-growing county in Arkansas, driven by Little Rock's northeastern suburban expansion. Cabot is the county's largest city and one of Arkansas's fastest-growing communities. The I-40 and US-67/167 corridor through Lonoke County carries major fiber routes between Little Rock and Memphis. Entergy Arkansas serves the area. As the Little Rock metro expands, Lonoke County's suburban data center and technology infrastructure is growing to serve the region's residential and commercial base.",
+      "sources": [
+        {
+          "label": "Lonoke County Arkansas",
+          "url": "https://www.lonokecounty.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "30083",
+      "name": "Richland County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Richland County \u2014 Sidney/Montana Bakken oil/eastern MT hub",
+      "description": "Sidney in Richland County sits in the heart of Montana's portion of the Williston Basin. The Montana Bakken oil play drives SCADA and production data infrastructure through MonDak (Montana-North Dakota) basin operators. Sidney is the commercial hub for eastern Montana's agricultural and energy economy. NorthWestern Energy and Basin Electric serve the area. Richland County's combination of energy industry data needs and Montana's low regulatory burden makes it a logical market for oil-field adjacent computing infrastructure.",
+      "sources": [
+        {
+          "label": "Richland County Montana",
+          "url": "https://www.richlandcountymt.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "30041",
+      "name": "Hill County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hill County \u2014 Havre/MSU Northern/northern hi-line rail corridor",
+      "description": "Havre sits on the Hi-Line \u2014 the Burlington Northern Santa Fe main line across northern Montana \u2014 and is home to Montana State University-Northern, with programs in diesel technology, aviation, and engineering. The BNSF rail corridor through Hill County provides fiber infrastructure along one of the most important freight rail routes in North America. MSU Northern's technical programs provide workforce for industrial IT. Hill County's position as the largest city between Great Falls and the North Dakota border makes it a natural regional hub.",
+      "sources": [
+        {
+          "label": "Hill County Montana",
+          "url": "https://www.hillcountymt.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "28067",
+      "name": "Jones County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jones County \u2014 Laurel/Sanderson Farms/south-central MS poultry hub",
+      "description": "Laurel in Jones County is a regional hub for south-central Mississippi. Sanderson Farms (now Wayne-Sanderson) operates major poultry processing in the area, with industrial electrical loads driving Entergy Mississippi substation infrastructure. The University of Southern Mississippi's Hattiesburg campus is nearby. Jones County's position on US-59 and the Mississippi Power service territory provides connectivity to the Gulf Coast corridor. The county has seen television production interest due to the HGTV show 'Home Town,' bringing broader economic attention.",
+      "sources": [
+        {
+          "label": "Jones County Mississippi",
+          "url": "https://www.co.jones.ms.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "29097",
+      "name": "Jasper County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jasper County \u2014 Joplin/4th largest MO city/tri-state hub",
+      "description": "Joplin is Missouri's fourth-largest city and the commercial hub of the Missouri-Kansas-Oklahoma tri-state area. Jasper County's central position in the Joplin metro makes it a regional center for healthcare (Mercy Hospital Joplin, Freeman Health System), education (Missouri Southern State University), and commerce. Empire District Electric (now Liberty Utilities/Algonquin) provides the area. The I-44/US-71 corridor through Joplin carries major fiber routes, and the tri-state market serves a regional population well beyond Jasper County itself.",
+      "sources": [
+        {
+          "label": "Jasper County Missouri",
+          "url": "https://www.jaspercounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "28151",
+      "name": "Washington County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Washington County \u2014 Greenville/Mississippi Delta hub/port",
+      "description": "Greenville is the largest city in the Mississippi Delta and the commercial hub of Washington County. The Port of Greenville on the Mississippi River handles agricultural and industrial cargo, with logistics IT requirements. Mississippi Delta Community College serves the area. Entergy Mississippi provides electrical service. While the Delta faces economic challenges, Greenville's role as the region's primary city gives it concentrations of healthcare, government, and financial IT infrastructure absent from smaller Delta counties.",
+      "sources": [
+        {
+          "label": "Washington County Mississippi",
+          "url": "https://www.co.washington.ms.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
     }
   ]
 }

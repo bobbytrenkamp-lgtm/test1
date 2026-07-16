@@ -6,6 +6,29 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 14)
+- `data/map_data.json` (Round 14)
+- `docs/data-sweeps/2026-07-massive-sweep-round-14.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 14**: Iowa (Marshall/Marshalltown/JBS Turkey, Lee/Iowa Army Ammo Plant, Marion/Pella Corp, Warren/Des Moines south suburb), Kansas (Crawford/Pittsburg State, Ford/Dodge City dual Tyson+Cargill beef, McPherson/HF Sinclair refinery), North Dakota (McKenzie/Watford City/Bakken core, Stutsman/Jamestown), Idaho (Latah/Moscow/U of Idaho/WSU cross-border, Elmore/Mountain Home AFB), Nebraska (Gage/Beatrice, Otoe/Nebraska City/I-29), Arkansas (Jefferson/Pine Bluff/UAPB, Lonoke/Cabot/LR NE suburb), Montana (Richland/Sidney/Montana Bakken, Hill/Havre/MSU Northern/BNSF hi-line), Mississippi (Jones/Laurel/Sanderson Farms, Washington/Greenville/Delta hub), Missouri (Jasper/Joplin/4th largest MO city). 20 net new records (783 total).
+- **1 FIPS error caught and fixed**: 05081 (Little River County AR, not Lonoke County) → corrected to 05085 (Lonoke County AR).
+
+Reasoning:
+- Ford County KS (Dodge City dual beef): Tyson + Cargill together make Dodge City one of the highest-load industrial electrical markets in Kansas. Evergy's substation infrastructure here rivals urban industrial counties. A classic overlooked high-load market.
+- McKenzie County ND (Bakken core): The geographic heart of the Williston Basin. Pure oil-field digital infrastructure market — SCADA, production analytics, field services IT — at density far exceeding what the population suggests.
+- Latah County ID (Moscow/WSU): Two land-grant universities 8 miles apart across state lines. Idaho Power hydro rates are among the lowest available to academic users in the US. An unusually concentrated academic computing corridor in a rural setting.
+- Jasper County MO (Joplin tri-state): Missouri's 4th-largest city and the tri-state commercial hub. Healthcare IT (Mercy + Freeman), MSSU, and I-44/US-71 fiber make Joplin a genuine regional nexus often missed by databases focused on major metros.
+
+Problems Found:
+- 1 FIPS error: 05081 claimed as Lonoke County AR — actually Little River County AR. Correct FIPS 05085 verified not in DB; fixed in-place.
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 13)
 - `data/map_data.json` (Round 13)
 - `docs/data-sweeps/2026-07-massive-sweep-round-13.md` (new)
