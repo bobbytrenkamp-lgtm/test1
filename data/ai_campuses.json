@@ -1217,6 +1217,56 @@
       "notes": "GlobalWafers' Albany OR facility manufactures semiconductor-grade silicon wafers for the global chip supply chain; operations include extensive process automation, quality data systems, and manufacturing AI supporting the Willamette Valley semiconductor ecosystem.",
       "lon": -123.1059,
       "lat": 44.6365
+    },
+    {
+      "id": "ai-fl-006",
+      "name": "Eglin AFB Air Force Research Laboratory Munitions and Cyber Operations Center",
+      "operator": "US Air Force / AFRL / 96th Test Wing",
+      "status": "operational",
+      "county_fips": "12091",
+      "notes": "Eglin AFB's AFRL Munitions Directorate and 96th TW operate extensive weapons test and evaluation data systems; supports the Air Force's developmental and operational test missions across the Gulf Test Range.",
+      "lon": -86.5253,
+      "lat": 30.4833
+    },
+    {
+      "id": "ai-la-003",
+      "name": "Lake Charles LNG and Petrochemical Industrial Operations Data Hub",
+      "operator": "Calcasieu Pass LNG / Energy Transfer (Lake Charles LNG)",
+      "status": "operational",
+      "county_fips": "22019",
+      "notes": "Calcasieu Parish hosts co-located LNG liquefaction control systems, refinery process automation, and environmental SCADA for one of the largest petrochemical industrial complexes in North America; handles real-time operations data for multiple major LNG terminals and chemical plants.",
+      "lon": -93.2174,
+      "lat": 30.2266
+    },
+    {
+      "id": "ai-tx-007",
+      "name": "Fort Cavazos III Corps Mission Command and Network Operations Center",
+      "operator": "US Army III Corps / 1st Cavalry Division",
+      "status": "operational",
+      "county_fips": "48027",
+      "notes": "Fort Cavazos (formerly Fort Hood) III Corps mission command infrastructure supports combined-arms operations, joint all-domain command and control (JADC2) exercises, and Army-wide network operations training for the 1st Cavalry Division and III Corps subordinate units.",
+      "lon": -97.7831,
+      "lat": 31.1344
+    },
+    {
+      "id": "ai-ms-003",
+      "name": "Huntington Ingalls Ingalls Shipbuilding Digital Shipyard Operations",
+      "operator": "Huntington Ingalls Industries (HII) \u2014 Ingalls Shipbuilding",
+      "status": "operational",
+      "county_fips": "28059",
+      "notes": "Ingalls Shipbuilding's Pascagoula facility operates digital shipbuilding systems including 3D design (Aveva AVEVA Marine), ship data management, and production control systems; builds US Navy destroyers, amphibious ships, and Coast Guard vessels.",
+      "lon": -88.5561,
+      "lat": 30.3585
+    },
+    {
+      "id": "ai-sc-004",
+      "name": "University of South Carolina Research Computing and SC State Data Center \u2014 Columbia",
+      "operator": "University of South Carolina / SC Division of Technology Operations",
+      "status": "operational",
+      "county_fips": "45079",
+      "notes": "UofSC operates research HPC supporting clinical genomics, public health, and social sciences; co-located data services with SC's state government DTO data center supporting digital government operations.",
+      "lon": -81.0348,
+      "lat": 33.9969
     }
   ]
 }
