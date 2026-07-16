@@ -1417,6 +1417,56 @@
       "notes": "Kohler's Sheboygan County campus houses the company's manufacturing AI, IoT sensor integration, and enterprise data systems for global operations; Kohler's residential and hospitality technology platforms process data from millions of connected fixtures worldwide.",
       "lon": -87.7845,
       "lat": 43.7369
+    },
+    {
+      "id": "ai-ca-009",
+      "name": "Hewlett Packard Enterprise (HPE) Roseville Manufacturing and R&D Campus",
+      "operator": "Hewlett Packard Enterprise",
+      "status": "operational",
+      "county_fips": "06061",
+      "notes": "HPE's Roseville campus is one of the company's largest US manufacturing facilities, producing server hardware, storage systems, and networking equipment; houses R&D for HPE's Supercomputing and Mission Critical Systems division.",
+      "lon": -121.2638,
+      "lat": 38.7521
+    },
+    {
+      "id": "ai-or-005",
+      "name": "University of Oregon Research Computing and Talapus HPC \u2014 Eugene",
+      "operator": "University of Oregon Research Computing",
+      "status": "operational",
+      "county_fips": "41039",
+      "notes": "UO operates Talapus HPC and research computing supporting genomics, neuroscience, earth sciences, and humanities digital research; connected to Pacific Research Platform (PRP) and Internet2 networks.",
+      "lon": -123.0789,
+      "lat": 44.046
+    },
+    {
+      "id": "ai-ia-004",
+      "name": "Iowa State University CyEnce Research Computing and ISU Research Park \u2014 Ames",
+      "operator": "Iowa State University / ISU Research Park",
+      "status": "operational",
+      "county_fips": "19169",
+      "notes": "ISU operates CyEnce and Nova HPC clusters supporting agricultural genomics, computational fluid dynamics, and materials science; ISU Research Park co-locates Corteva Agriscience and USDA NADC computational biology with university resources.",
+      "lon": -93.6502,
+      "lat": 42.0308
+    },
+    {
+      "id": "ai-md-003",
+      "name": "NAS Patuxent River Naval Air Warfare Center Aircraft Division (NAWCAD)",
+      "operator": "US Navy / Naval Air Systems Command (NAVAIR)",
+      "status": "operational",
+      "county_fips": "24037",
+      "notes": "NAWCAD operates flight test data acquisition systems, aircraft simulation labs, and avionics test data infrastructure for all Navy and Marine Corps aircraft programs; Test Pilot School telemetry and SH-60, F/A-18, and F-35C test data systems co-located.",
+      "lon": -76.419,
+      "lat": 38.2854
+    },
+    {
+      "id": "ai-nh-001",
+      "name": "New Hampshire Bureau of Information Technology Management (BITM) \u2014 Concord",
+      "operator": "New Hampshire Department of Information Technology",
+      "status": "operational",
+      "county_fips": "33013",
+      "notes": "NH BITM manages the state government data center in Concord providing shared IT services for state agencies, including 911 communications, DMV, and health and human services data systems for New Hampshire's no-income-tax state economy.",
+      "lon": -71.5376,
+      "lat": 43.2081
     }
   ]
 }
