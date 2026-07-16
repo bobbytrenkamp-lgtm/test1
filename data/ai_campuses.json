@@ -1167,6 +1167,56 @@
       "notes": "OSCER operates Schooner (Dell HPC cluster) and supports OU meteorology, geosciences, and engineering research; co-located in Norman with NOAA Storm Prediction Center for weather modeling collaboration.",
       "lon": -97.4395,
       "lat": 35.2226
+    },
+    {
+      "id": "ai-tn-007",
+      "name": "Eastman Chemical Company Technology and Innovation Center \u2014 Kingsport",
+      "operator": "Eastman Chemical Company",
+      "status": "operational",
+      "county_fips": "47163",
+      "notes": "Eastman's Kingsport campus operates one of the most extensive industrial AI and process data systems in the US specialty chemicals sector; supports manufacturing optimization, IoT sensor networks, and enterprise ERP across global operations.",
+      "lon": -82.5618,
+      "lat": 36.5484
+    },
+    {
+      "id": "ai-md-002",
+      "name": "Leidos Global Headquarters and Technology Campus \u2014 Columbia",
+      "operator": "Leidos Holdings",
+      "status": "operational",
+      "county_fips": "24027",
+      "notes": "Leidos' Columbia MD headquarters anchors a major defense IT and AI campus; Leidos is among the largest DoD cybersecurity, intelligence, and health IT contractors, operating classified data systems supporting NSA, DHS, and DoD agencies.",
+      "lon": -76.861,
+      "lat": 39.2037
+    },
+    {
+      "id": "ai-ga-005",
+      "name": "Global Payments (TSYS) Payment Technology Data Center \u2014 Columbus",
+      "operator": "Global Payments Inc. (TSYS)",
+      "status": "operational",
+      "county_fips": "13215",
+      "notes": "TSYS (Total System Services, now Global Payments) operates its primary payment processing data center in Columbus GA; processes billions of card transactions annually for financial institutions globally.",
+      "lon": -84.9877,
+      "lat": 32.461
+    },
+    {
+      "id": "ai-mt-001",
+      "name": "University of Montana Research Computing \u2014 Missoula",
+      "operator": "University of Montana",
+      "status": "operational",
+      "county_fips": "30063",
+      "notes": "UM operates statewide research computing and the Montana Cyberinfrastructure Network (MontanaCAN) supporting genomics, environmental science, and forestry research; part of the Internet2 research network.",
+      "lon": -113.9923,
+      "lat": 46.8625
+    },
+    {
+      "id": "ai-or-004",
+      "name": "GlobalWafers Semiconductor Silicon Wafer Facility \u2014 Albany",
+      "operator": "GlobalWafers (formerly SunEdison Semiconductor / MEMC)",
+      "status": "operational",
+      "county_fips": "41043",
+      "notes": "GlobalWafers' Albany OR facility manufactures semiconductor-grade silicon wafers for the global chip supply chain; operations include extensive process automation, quality data systems, and manufacturing AI supporting the Willamette Valley semiconductor ecosystem.",
+      "lon": -123.1059,
+      "lat": 44.6365
     }
   ]
 }

@@ -8210,6 +8210,289 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null
+    },
+    {
+      "fips": "55059",
+      "name": "Kenosha County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kenosha County Uline and Manufacturing Technology Logistics Hub",
+      "description": "Kenosha County hosts Uline's global shipping and distribution headquarters (one of the largest privately-held companies in the US), Snap-on Tools' technology operations, and major Amazon logistics infrastructure along the I-94 Chicago-Milwaukee corridor. No local DC restrictions; Wisconsin's data center sales tax exemption (Wis. Stat. \u00a777.54(57)) applies.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Kenosha Area Business Alliance",
+          "url": "https://www.kaba.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "41043",
+      "name": "Linn County",
+      "state": "Oregon",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Linn County Albany Silicon Manufacturing and Advanced Materials Technology Hub",
+      "description": "Linn County (Albany) is Oregon's hub for rare metals and silicon wafer manufacturing, hosting GlobalWafers' Memc semiconductor-grade silicon wafer production and ATI's specialty metals (titanium, zirconium) operations. Albany's manufacturing technology and process data infrastructure supports the broader Willamette Valley semiconductor supply chain. No local DC restrictions; Oregon data center property tax exemption (ORS \u00a7307.175) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Linn County Economic Development \u2014 Albany",
+          "url": "https://www.linnbiz.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "47163",
+      "name": "Sullivan County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Sullivan County Kingsport Eastman Chemical Global Technology Hub",
+      "description": "Sullivan County (Kingsport) hosts Eastman Chemical Company's global headquarters \u2014 one of the largest specialty chemical companies in the world \u2014 which operates an extensive process automation, IoT, and enterprise data infrastructure. The Tennessee Valley Authority (TVA) provides low-cost power to the region. No local DC restrictions; Tennessee data center tax exemption (T.C.A. \u00a767-6-346) applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Eastman Chemical Company \u2014 Kingsport Tennessee",
+          "url": "https://www.eastman.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "16083",
+      "name": "Twin Falls County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Twin Falls County Magic Valley Agricultural Technology and Data Center Hub",
+      "description": "Twin Falls County (Twin Falls) anchors Idaho's Magic Valley region, home to College of Southern Idaho (CSI) and a growing data center market driven by low-cost Idaho Power hydro electricity, available land, and a favorable tax climate. Chobani's yogurt manufacturing operations and dairy/ag tech data infrastructure serve the agricultural heartland. No local DC restrictions; Idaho's data center sales tax exemption (Idaho Code \u00a763-3622KK) applies.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Twin Falls Area Chamber of Commerce",
+          "url": "https://www.twinfallschamber.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "38059",
+      "name": "Morton County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Morton County Mandan Energy Operations and State Capital Adjacency Hub",
+      "description": "Morton County (Mandan) sits across the Missouri River from Bismarck and hosts the Tesoro/HollyFrontier (now HF Sinclair) Mandan oil refinery and Basin Electric Power Cooperative's energy operations data infrastructure. The Mandan, Hidatsa, and Arikara Nation's energy development adds further data infrastructure. No local DC restrictions; North Dakota's no-sales-tax-on-data-center-equipment environment applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Morton County Commission \u2014 Mandan ND",
+          "url": "https://www.co.morton.nd.us"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "30063",
+      "name": "Missoula County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Missoula County University of Montana Research Computing and Regional Technology Hub",
+      "description": "Missoula County hosts the University of Montana (UM) with its research computing infrastructure and the Montana Cyberinfrastructure Network (MontanaCAN). Providence St. Patrick Hospital and Community Medical Center anchor regional health IT. Missoula is Montana's second-largest city with a growing technology sector. No local DC restrictions; Montana's no-sales-tax environment and property tax abatement (MCA \u00a715-24-1402) apply.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "University of Montana \u2014 Research Computing",
+          "url": "https://www.umt.edu/it/research-computing/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "21117",
+      "name": "Kenton County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Kenton County Northern Kentucky Cincinnati Metro Technology Corridor",
+      "description": "Kenton County (Covington/Florence) forms the core of Northern Kentucky's technology corridor adjacent to Cincinnati, hosting Cincinnati/Northern Kentucky International Airport (CVG) logistics technology, Amazon Air Hub, and a dense concentration of financial services and enterprise IT operations. Duke Energy Kentucky's competitive power rates support data center investment. No local DC restrictions; Kentucky's data center personal property tax exemption (KRS 132.200) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Northern Kentucky Area Development District",
+          "url": "https://www.nkadd.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "54107",
+      "name": "Wood County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Wood County Parkersburg Regional Healthcare and Energy Technology Hub",
+      "description": "Wood County (Parkersburg) is the commercial center of the Mid-Ohio Valley, hosting WVU Medicine Camden Clark Medical Center's health IT operations, Lubrizol specialty chemicals (Berkshire Hathaway), and energy sector data infrastructure along the Ohio River petrochemical corridor. No local DC restrictions; WV EDGE Act (HB 2002) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Greater Parkersburg CVB \u2014 Wood County",
+          "url": "https://www.greaterparkersburg.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "24027",
+      "name": "Howard County",
+      "state": "Maryland",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Howard County Columbia Maryland Defense Technology and Cybersecurity Hub",
+      "description": "Howard County (Columbia) hosts Leidos' global headquarters \u2014 one of the largest defense IT and cybersecurity firms in the US \u2014 along with CACI International, Tenable Networks, and dozens of defense technology contractors in the I-95/Route 29 corridor. Proximity to NSA Fort Meade (Anne Arundel County) makes Howard County a critical node in the National Capital Region defense IT ecosystem. No local DC restrictions; Maryland's enterprise zone and cybersecurity tax credits apply.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Howard County Economic Development Authority",
+          "url": "https://www.hceda.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "13215",
+      "name": "Muscogee County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Muscogee County Columbus TSYS Global Payments and Fort Moore Technology Hub",
+      "description": "Muscogee County (Columbus) hosts Global Payments (TSYS) \u2014 one of the world's largest payment technology companies \u2014 with its primary data operations and technology campus. Fort Moore (formerly Fort Benning), home of the US Army Infantry and Armor schools and the Maneuver Center of Excellence, adds significant military C4ISR and training simulation data infrastructure. No local DC restrictions; Georgia's data center sales tax exemption (O.C.G.A. \u00a748-8-3.2) applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Global Payments (TSYS) \u2014 Columbus Georgia HQ",
+          "url": "https://www.tsys.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "26073",
+      "name": "Isabella County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Isabella County Central Michigan University Research and Regional Technology Hub",
+      "description": "Isabella County (Mount Pleasant) hosts Central Michigan University (CMU) and its research computing infrastructure, along with the Saginaw Chippewa Indian Tribe's Soaring Eagle Casino and Resort enterprise IT operations. CMU's online and hybrid programs drive significant data processing infrastructure. No local DC restrictions; Michigan's data center sales and use tax exemption (PA 328) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Central Michigan University \u2014 Research Computing",
+          "url": "https://www.cmich.edu/offices-departments/it"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "29031",
+      "name": "Cape Girardeau County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cape Girardeau County Southeast Missouri Regional Technology Hub",
+      "description": "Cape Girardeau County hosts Southeast Missouri State University (SEMO) with regional research computing, SoutheastHEALTH hospital system's health IT operations, and Cape Girardeau's position as the commercial center of the Missouri Bootheel-SEMO region. No local DC restrictions; Missouri's data center tax exemption (RSMo \u00a7144.810) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Cape Girardeau Area Chamber of Commerce",
+          "url": "https://www.capechamber.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
     }
   ]
 }
