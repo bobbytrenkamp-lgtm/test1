@@ -1767,6 +1767,56 @@
       "notes": "TD SYNNEX (formerly Tech Data) major operations campus in Clearwater, Pinellas County FL. AI-driven distribution logistics, IT product configuration, and cloud services integration. One of the largest IT distributor operations centers in North America, serving resellers and enterprise customers.",
       "lon": -82.7987,
       "lat": 27.9659
+    },
+    {
+      "id": "ai-tx-009",
+      "name": "Texas A&M FASTER Supercomputing and AI Research Cluster",
+      "operator": "Texas A&M University HPRC",
+      "status": "operational",
+      "county_fips": "48041",
+      "notes": "Texas A&M High Performance Research Computing FASTER system (Dell EMC, AMD EPYC, 2.5 PFLOPs peak) in College Station, Brazos County. Hosts AI/ML workloads for agriculture, energy, materials science, and biomedical research. Part of the NSF ACCESS (formerly XSEDE) national research computing network.",
+      "lon": -96.3344,
+      "lat": 30.6187
+    },
+    {
+      "id": "ai-or-007",
+      "name": "Rogue Valley AI Data Analytics and Research Center",
+      "operator": "Southern Oregon University / Rogue Community College",
+      "status": "operational",
+      "county_fips": "41029",
+      "notes": "Regional higher education AI and data analytics research center serving the Rogue Valley (Medford/Ashland/Grants Pass corridor). Jointly operated through Southern Oregon University and Rogue Community College workforce development programs. Supports agricultural AI, forestry monitoring, and Klamath River restoration science computing needs.",
+      "lon": -122.8756,
+      "lat": 42.3265
+    },
+    {
+      "id": "ai-ca-011",
+      "name": "Cal Poly San Luis Obispo Center for Computing and AI Research",
+      "operator": "California Polytechnic State University",
+      "status": "operational",
+      "county_fips": "06079",
+      "notes": "Cal Poly SLO's computing and AI research infrastructure supporting the university's Learn by Doing engineering programs. Houses HPC clusters for environmental science, agricultural tech, and structural engineering AI. Operates in proximity to Diablo Canyon nuclear plant's reliable baseload grid zone.",
+      "lon": -120.6596,
+      "lat": 35.305
+    },
+    {
+      "id": "ai-mo-002",
+      "name": "Missouri Western State University AI and Data Science Center",
+      "operator": "Missouri Western State University",
+      "status": "operational",
+      "county_fips": "29021",
+      "notes": "Missouri Western State University AI and Data Science program hub in St. Joseph (Buchanan County). Partners with regional agriculture, logistics, and healthcare employers on applied AI research. Supported by Missouri's STEM Initiative and Evergy's education partnership programs for grid optimization research.",
+      "lon": -94.8467,
+      "lat": 39.7675
+    },
+    {
+      "id": "ai-il-007",
+      "name": "Rockford University and NIU AI Regional Innovation Hub",
+      "operator": "Rockford University / Northern Illinois University",
+      "status": "planned",
+      "county_fips": "17201",
+      "notes": "Planned regional AI innovation hub for Winnebago County, a collaboration between Rockford University and Northern Illinois University's Rockford academic programs. Intended to anchor Rockford's I-90 technology corridor with AI-enabled manufacturing analytics for the region's aerospace and automotive supply chain industry.",
+      "lon": -89.094,
+      "lat": 42.2711
     }
   ]
 }
