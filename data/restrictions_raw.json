@@ -18060,6 +18060,486 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "16065",
+      "name": "Madison County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Madison County ID \u2014 Rexburg/BYU-Idaho/upper Snake River Plain",
+      "description": "Madison County (Rexburg) is home to BYU-Idaho (Brigham Young University\u2013Idaho), one of the largest private universities in the Pacific Northwest by enrollment. The university's significant IT and data infrastructure, combined with Rexburg's position on the upper Snake River Plain east of Idaho Falls and Rocky Mountain Power's competitive rates, gives the county secondary data center relevance. The region's cold climate enables substantial free-air cooling hours, and the county's proximity to Idaho National Laboratory creates a research-adjacent computing environment.",
+      "sources": [
+        {
+          "label": "BYU-Idaho \u2014 Madison County ID",
+          "url": "https://www.byui.edu/"
+        },
+        {
+          "label": "Madison County ID",
+          "url": "https://www.madisoncountyid.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "40119",
+      "name": "Payne County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Payne County OK \u2014 Stillwater/Oklahoma State University",
+      "description": "Payne County (Stillwater) hosts Oklahoma State University \u2014 one of Oklahoma's two flagship research universities and a significant research computing site. OSU's computing and engineering programs drive institutional IT demand, while the county's position on US-412 and proximity to the Oklahoma City metro (80 miles) provides I-35 fiber access. Oklahoma Gas and Electric (OG&E) serves the county with Oklahoma's competitive commercial electricity rates. The combination of university research and moderate cost of living makes Payne County a secondary Oklahoma data center consideration.",
+      "sources": [
+        {
+          "label": "Oklahoma State University \u2014 Stillwater OK",
+          "url": "https://go.okstate.edu/"
+        },
+        {
+          "label": "Oklahoma Gas and Electric (OG&E)",
+          "url": "https://www.oge.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "40017",
+      "name": "Canadian County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Canadian County OK \u2014 Yukon/Mustang/Oklahoma City west metro growth",
+      "description": "Canadian County (Yukon, Mustang, El Reno) is the rapidly expanding western suburb of Oklahoma City, one of the fastest-growing OKC Metro counties. The county's position on I-40 west of OKC, served by Oklahoma Gas and Electric and the OKC metropolitan fiber network, makes it an edge data center candidate for OKC latency-sensitive workloads. Yukon's lower commercial real estate costs relative to OKC proper, combined with proximity to the Will Rogers World Airport logistics cluster, attract distribution and logistics operators driving secondary data infrastructure.",
+      "sources": [
+        {
+          "label": "Canadian County OK",
+          "url": "https://www.canadiancountyok.gov/"
+        },
+        {
+          "label": "Oklahoma Gas and Electric (OG&E) \u2014 OKC Metro",
+          "url": "https://www.oge.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "05045",
+      "name": "Faulkner County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Faulkner County AR \u2014 Conway/University of Central Arkansas/Hendrix College",
+      "description": "Faulkner County (Conway) hosts two four-year universities \u2014 the University of Central Arkansas (UCA) and Hendrix College \u2014 and is part of the Arkansas River Valley's growing tech and logistics corridor 30 miles north of Little Rock on I-40. Entergy Arkansas serves the county. Conway's rapid growth as a Little Rock bedroom community and its concentration of higher education institutions drive IT and connectivity demand. The county's 'City of Colleges' reputation and I-40/I-440 access give it connectivity relevance in the Arkansas data center landscape.",
+      "sources": [
+        {
+          "label": "University of Central Arkansas \u2014 Conway AR",
+          "url": "https://www.uca.edu/"
+        },
+        {
+          "label": "Faulkner County AR \u2014 City of Conway",
+          "url": "https://www.cityofconway.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "28087",
+      "name": "Lowndes County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lowndes County MS \u2014 Columbus/USAF Columbus AFB/Golden Triangle industrial",
+      "description": "Lowndes County (Columbus) hosts Columbus Air Force Base \u2014 one of the US Air Force's primary undergraduate pilot training bases, flying T-38 Talons. The Golden Triangle region (Columbus, Starkville, West Point) is northeast Mississippi's primary industrial corridor. Mississippi Power (Southern Company) serves the county with Mississippi's competitive industrial rates. The region's PACCAR manufacturing plant, steel mill, and aerospace training drive industrial electrical infrastructure. Columbus AFB's aviation fuel and communications systems represent substantial federal IT and power load.",
+      "sources": [
+        {
+          "label": "Columbus Air Force Base \u2014 Lowndes County MS",
+          "url": "https://www.14ft.af.mil/"
+        },
+        {
+          "label": "Mississippi Power (Southern Company) \u2014 NE Mississippi",
+          "url": "https://www.mississippipower.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "31019",
+      "name": "Buffalo County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Buffalo County NE \u2014 Kearney/I-80 midpoint/University of Nebraska-Kearney",
+      "description": "Buffalo County (Kearney) sits at the geographic midpoint of I-80 between Omaha and Denver \u2014 a strategic position on the US east-west fiber backbone. University of Nebraska-Kearney provides academic computing and IT demand, while the county's agricultural processing and distribution economy (driven by Nebraska Public Power District's low-cost hydroelectric and nuclear power) supports industrial-grade electricity access. Kearney's I-80 position and NPPD pricing make it a legitimate consideration for I-80 corridor data center infrastructure.",
+      "sources": [
+        {
+          "label": "Buffalo County NE \u2014 City of Kearney",
+          "url": "https://www.kearney.gov/"
+        },
+        {
+          "label": "Nebraska Public Power District (NPPD)",
+          "url": "https://www.nppd.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "38089",
+      "name": "Stark County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Stark County ND \u2014 Dickinson/Bakken oil services/Basin Electric",
+      "description": "Stark County (Dickinson) is the commercial center of the Western Slope and the principal service hub for the Bakken oil patch. Dickinson State University and the county's position on I-94 between Bismarck and Montana make it a regional hub with growing connectivity. Basin Electric Power Cooperative serves the county. The Bakken oil economy's digital transformation (IoT, SCADA, field data systems) drives IT infrastructure demand from energy companies maintaining operations centers in Dickinson.",
+      "sources": [
+        {
+          "label": "Stark County ND \u2014 City of Dickinson",
+          "url": "https://www.dickinsonnd.com/"
+        },
+        {
+          "label": "Basin Electric Power Cooperative",
+          "url": "https://www.basinelectric.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "20015",
+      "name": "Butler County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Butler County KS \u2014 El Dorado/Wichita east exurb/Koch Industries adjacent",
+      "description": "Butler County (El Dorado) is the eastern Wichita suburb and home to El Dorado Refinery (HollyFrontier/HF Sinclair), one of Kansas's largest oil refineries. Koch Industries' Wichita headquarters complex (in neighboring Sedgwick County) extends its supply chain and industrial services into Butler County. Evergy (formerly Westar Energy) serves the county. The county's refinery-driven industrial electrical infrastructure and proximity to Wichita's aviation and advanced manufacturing cluster give it real data center adjacent fundamentals.",
+      "sources": [
+        {
+          "label": "Butler County KS \u2014 El Dorado",
+          "url": "https://www.bucoks.com/"
+        },
+        {
+          "label": "Evergy (formerly Westar Energy) \u2014 Kansas",
+          "url": "https://www.evergy.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "20103",
+      "name": "Leavenworth County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Leavenworth County KS \u2014 Fort Leavenworth/Army Combined Arms Center/federal IT",
+      "description": "Leavenworth County hosts Fort Leavenworth \u2014 the Army's intellectual center, home to the Command and General Staff College (CGSC) and the Combined Arms Center. Fort Leavenworth is a major Army education and training installation with significant IT, communications, and intelligence infrastructure. The adjacent city of Leavenworth provides federal civilian employment and services. Evergy serves the county, with Kansas City Metro's fiber network providing robust connectivity adjacent to Fort Leavenworth.",
+      "sources": [
+        {
+          "label": "Fort Leavenworth \u2014 Combined Arms Center",
+          "url": "https://www.army.mil/fortleavenworth/"
+        },
+        {
+          "label": "Leavenworth County KS",
+          "url": "https://www.leavenworthcounty.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "40101",
+      "name": "Muskogee County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Muskogee County OK \u2014 Muskogee/Oklahoma's fourth-largest city/Port of Muskogee",
+      "description": "Muskogee County (Muskogee) is Oklahoma's fourth-largest city and home to the McClellan-Kerr Arkansas River Navigation System's Port of Muskogee \u2014 Oklahoma's only navigable port. The county's industrial heritage (steel, glass, and chemical manufacturing) has driven substantial electrical infrastructure through Public Service Oklahoma (AEP). Northeastern State University (in nearby Tahlequah, Cherokke County) serves the broader region. Muskogee's industrial grid capacity, US-69/US-64 connectivity, and AEP's industrial rate structure give it genuine secondary data center potential in eastern Oklahoma.",
+      "sources": [
+        {
+          "label": "Muskogee County OK \u2014 City of Muskogee",
+          "url": "https://www.muskogeecity.org/"
+        },
+        {
+          "label": "Public Service Oklahoma (AEP)",
+          "url": "https://www.psoklahoma.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "31111",
+      "name": "Lincoln County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lincoln County NE \u2014 North Platte/Union Pacific Bailey Yard/world's largest rail classification yard",
+      "description": "Lincoln County (North Platte) is home to Union Pacific Railroad's Bailey Yard \u2014 the world's largest railroad classification yard, handling over 10,000 cars daily. The enormous logistics and communications infrastructure at Bailey Yard, combined with Nebraska Public Power District's low-cost electricity and North Platte's I-80/US-83 position, creates an unusual IT infrastructure base in a mid-sized Nebraska city. The rail yard's digital transformation (remote sensing, AI-enabled scheduling, fiber connectivity for locomotive management) makes Lincoln County a distinctive secondary data center market.",
+      "sources": [
+        {
+          "label": "Union Pacific Bailey Yard \u2014 North Platte NE",
+          "url": "https://www.up.com/aboutup/community/inside_track/bailey_yard/index.htm"
+        },
+        {
+          "label": "Nebraska Public Power District (NPPD)",
+          "url": "https://www.nppd.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "38105",
+      "name": "Williams County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Williams County ND \u2014 Williston/Bakken oil play/SCADA and field digitalization",
+      "description": "Williams County (Williston) is the epicenter of the Williston Basin/Bakken oil play, one of the most significant oil production zones in the US. The digitalization of Bakken oil field operations \u2014 IoT sensors, SCADA systems, AI-driven production optimization, remote monitoring \u2014 drives significant real-time data and computing demand. Basin Electric Power Cooperative and Montana-Dakota Utilities serve the county. Williston's boom-bust economy has left substantial industrial power infrastructure and emerging fiber connectivity that supports regional data center operations.",
+      "sources": [
+        {
+          "label": "Williams County ND \u2014 City of Williston",
+          "url": "https://www.williamsnd.com/"
+        },
+        {
+          "label": "Basin Electric Power Cooperative \u2014 Western ND",
+          "url": "https://www.basinelectric.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "30093",
+      "name": "Silver Bow County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Silver Bow County MT \u2014 Butte/Anaconda copper mining power infrastructure",
+      "description": "Silver Bow County (Butte) hosts one of the most distinctive legacy industrial power infrastructures in the West. The Anaconda copper mining era left behind massive high-voltage electrical transmission infrastructure originally designed to power copper smelters and mines. NorthWestern Energy now serves the county with hydropower-backed low-cost electricity. Butte's mountain valley location, cold climate (exceptional free-air cooling), and the historical substation network create unusual power delivery capacity for a small market. Montana Tech (University of Montana-Butte) provides academic computing presence.",
+      "sources": [
+        {
+          "label": "Silver Bow County MT \u2014 City of Butte",
+          "url": "https://www.bsb.mt.gov/"
+        },
+        {
+          "label": "NorthWestern Energy \u2014 Silver Bow County MT",
+          "url": "https://www.northwesternenergy.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "16005",
+      "name": "Bannock County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bannock County ID \u2014 Pocatello/Idaho State University/I-15 gateway",
+      "description": "Bannock County (Pocatello) is Idaho's second-largest city and home to Idaho State University (ISU), a research university with significant pharmacy, health sciences, and engineering programs. Rocky Mountain Power (PacifiCorp) serves the county with Idaho's competitive rates. Pocatello's position at the I-15/I-86 junction \u2014 the principal north-south and east-west corridor in southeastern Idaho \u2014 gives it strategic connectivity to Salt Lake City (175 miles) and Boise (230 miles). The county's proximity to Idaho National Laboratory (Bonneville County) adds federal research-adjacent computing context.",
+      "sources": [
+        {
+          "label": "Idaho State University \u2014 Pocatello ID",
+          "url": "https://www.isu.edu/"
+        },
+        {
+          "label": "Rocky Mountain Power (PacifiCorp) \u2014 Southeast Idaho",
+          "url": "https://www.rockymountainpower.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "46011",
+      "name": "Brookings County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Brookings County SD \u2014 Brookings/South Dakota State University/ag tech research",
+      "description": "Brookings County (Brookings) is home to South Dakota State University (SDSU) \u2014 the state's land-grant university and the largest university in South Dakota, with nationally ranked agricultural, engineering, and technology programs. SDSU's Center for Scalable Computing and USDA research programs drive significant academic and government computing infrastructure. Otter Tail Power and NorthWestern Energy serve the area. South Dakota's zero state corporate income tax and Brookings' I-29 corridor access to the Minneapolis-Sioux Falls fiber backbone add data center appeal.",
+      "sources": [
+        {
+          "label": "South Dakota State University \u2014 Brookings SD",
+          "url": "https://www.sdstate.edu/"
+        },
+        {
+          "label": "Brookings County SD",
+          "url": "https://www.brookingscountysd.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "05051",
+      "name": "Garland County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Garland County AR \u2014 Hot Springs/Oaklawn/south-central Arkansas regional hub",
+      "description": "Garland County (Hot Springs) is Arkansas's tourist and hospitality capital, home to Oaklawn Racing Casino Resort and Hot Springs National Park. The county's service economy drives significant IT infrastructure through Entergy Arkansas. Hot Springs' position on US-70 between Little Rock (55 miles) and the Ouachita Mountains, combined with the county's long history as a regional healthcare and financial services hub, creates enterprise IT demand. The county's moderate climate, proximity to Little Rock fiber networks, and growing retirement/remote-worker population add secondary data center relevance.",
+      "sources": [
+        {
+          "label": "Garland County AR \u2014 City of Hot Springs",
+          "url": "https://www.cityhs.net/"
+        },
+        {
+          "label": "Entergy Arkansas \u2014 Garland County",
+          "url": "https://www.entergy-arkansas.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "05125",
+      "name": "Saline County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Saline County AR \u2014 Benton/Little Rock SW exurb/fastest-growing AR county",
+      "description": "Saline County (Benton, Bryant) is one of the fastest-growing counties in Arkansas, a southwestern suburb of Little Rock directly accessed by I-30. The county's rapid residential and commercial growth on Little Rock's southern edge, combined with Entergy Arkansas service and LR Metro fiber extension, makes it a natural edge data center market for the Little Rock metro. Saline County's lower land costs relative to Pulaski County (Little Rock proper) and its I-30/US-67 positioning attract logistics and distribution operations that generate secondary IT demand.",
+      "sources": [
+        {
+          "label": "Saline County AR \u2014 City of Benton",
+          "url": "https://www.bentoncity.org/"
+        },
+        {
+          "label": "Entergy Arkansas \u2014 Saline County",
+          "url": "https://www.entergy-arkansas.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "19163",
+      "name": "Scott County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Scott County IA \u2014 Davenport/Quad Cities/Rock Island Arsenal",
+      "description": "Scott County (Davenport) anchors the Iowa side of the Quad Cities metro, the nation's fourth-largest bi-state metro area spanning Iowa and Illinois along the Mississippi River. Rock Island Arsenal (on Arsenal Island in the Mississippi River, adjacent to Scott County) is the Army's largest government-owned weapons manufacturing arsenal. MidAmerican Energy serves the county with Iowa's competitive rates. The Quad Cities' position at the I-80/I-74/US-61 junction gives Scott County strong fiber access, and the bi-state industrial economy drives significant enterprise IT demand.",
+      "sources": [
+        {
+          "label": "Rock Island Arsenal \u2014 Quad Cities",
+          "url": "https://www.arsenal.army.mil/"
+        },
+        {
+          "label": "Scott County IA \u2014 City of Davenport",
+          "url": "https://www.davenportiowa.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "31053",
+      "name": "Dodge County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dodge County NE \u2014 Fremont/Omaha northwest exurb/Costco chicken campus",
+      "description": "Dodge County (Fremont) is a growing Omaha western suburb on US-30 and US-77, served by OPPD (Omaha Public Power District) and Nebraska Public Power District. Fremont hosts Costco's large poultry processing campus, representing significant industrial electrical load on the Omaha metro grid. Midland University adds an academic presence. Dodge County's proximity to Omaha's data center corridor (Sarpy/Douglas counties), combined with OPPD's competitive commercial rates and Fremont's industrial zoning, makes it a legitimate edge consideration for Omaha metro overflow data center capacity.",
+      "sources": [
+        {
+          "label": "Dodge County NE \u2014 City of Fremont",
+          "url": "https://www.fremontne.gov/"
+        },
+        {
+          "label": "OPPD (Omaha Public Power District)",
+          "url": "https://www.oppd.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "31119",
+      "name": "Madison County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Madison County NE \u2014 Norfolk/NE northeast hub/Northeast Nebraska Medical Center",
+      "description": "Madison County (Norfolk) is the commercial and healthcare hub of northeast Nebraska, home to Northeast Nebraska Medical Center and Norfolk Catholic High School. Nebraska Public Power District (NPPD) serves the county with Nebraska's low-cost power mix. Norfolk's position on US-81 (the principal north-south corridor through eastern Nebraska) and US-275 gives it regional connectivity to the Sioux City and Omaha fiber networks. The county's role as a regional agricultural, healthcare, and distribution center for a large rural catchment drives modest but steady enterprise IT demand.",
+      "sources": [
+        {
+          "label": "Madison County NE \u2014 City of Norfolk",
+          "url": "https://www.norfolkne.gov/"
+        },
+        {
+          "label": "Nebraska Public Power District (NPPD)",
+          "url": "https://www.nppd.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
     }
   ]
 }

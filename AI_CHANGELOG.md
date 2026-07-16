@@ -6,6 +6,28 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 11)
+- `data/map_data.json` (Round 11)
+- `docs/data-sweeps/2026-07-massive-sweep-round-11.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 11**: Thin-state coverage expansion — Iowa (Scott/Davenport/Quad Cities), Idaho (Bannock/Pocatello/ISU, Madison/Rexburg/BYU-Idaho), Montana (Silver Bow/Butte/copper power infrastructure), North Dakota (Williams/Williston/Bakken oil SCADA), Nebraska (Lincoln/North Platte/UP Bailey Yard, Dodge/Fremont, Madison/Norfolk), South Dakota (Brookings/SDSU), Arkansas (Garland/Hot Springs, Saline/Benton), Oklahoma (Canadian/Yukon/OKC west, Payne/Stillwater/OSU, Muskogee), Kansas (Butler/El Dorado, Leavenworth/Fort Leavenworth), Kentucky (Christian/Fort Campbell, Madison/Richmond), South Carolina (Dorchester/Summerville). 20 net new records (723 total).
+- **2 FIPS errors fixed**: 16053→16065 (Madison County ID, Rexburg/BYU-Idaho), 05047→05051 (Garland County AR, Hot Springs).
+
+Reasoning:
+- Lincoln County NE (North Platte/UP Bailey Yard): Union Pacific's Bailey Yard is the world's largest railroad classification yard. Rail digitalization (locomotive telemetry, car tracking, AI scheduling) drives concentrated IT demand in an otherwise rural county — a meaningful but underappreciated secondary data center market.
+- Williams County ND (Williston/Bakken): The Bakken oil field's digital transformation (real-time monitoring, SCADA, AI reservoir management) makes Williston's computing demand more significant than its rural character suggests.
+- Silver Bow County MT (Butte): Legacy Anaconda copper smelter infrastructure left behind high-voltage electrical capacity sized for heavy industrial loads — exceptional data center power fundamentals in a cold-climate mountain location.
+
+Problems Found:
+- 2 FIPS errors (16053/Jerome County mislabeled as Madison County ID → 16065; 05047/Franklin County mislabeled as Garland County AR → 05051); fixed in-place.
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 10)
 - `data/map_data.json` (Round 10)
 - `docs/data-sweeps/2026-07-massive-sweep-round-10.md` (new)
