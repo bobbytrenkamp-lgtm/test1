@@ -31174,7 +31174,13 @@
       "county_fips": "47157",
       "notes": "100,000+ H100 GPUs; largest AI training cluster publicly announced as of 2024; Shelby County Memphis.; legacy_id:ai-tn-001",
       "lat": 35.15,
-      "lon": -90.05
+      "lon": -90.05,
+      "sources": [
+        {
+          "label": "xAI — Colossus Supercomputer Announcement",
+          "url": "https://x.ai/"
+        }
+      ]
     },
     {
       "id": "fc-3d3289777f",
@@ -31184,7 +31190,13 @@
       "county_fips": "48453",
       "notes": "AI research and development; GPU architecture lab.; legacy_id:ai-tx-002",
       "lat": 30.39,
-      "lon": -97.74
+      "lon": -97.74,
+      "sources": [
+        {
+          "label": "NVIDIA AI Research — Austin",
+          "url": "https://www.nvidia.com/"
+        }
+      ]
     },
     {
       "id": "fc-d15c9b68c0",
@@ -31195,7 +31207,13 @@
       "notes": "AI safety research; training conducted via cloud partnerships.; legacy_id:ai-ca-001",
       "lat": 37.77,
       "lon": -122.41,
-      "capacity_mw": 5.0
+      "capacity_mw": 5.0,
+      "sources": [
+        {
+          "label": "Anthropic — AI Safety Company",
+          "url": "https://www.anthropic.com/"
+        }
+      ]
     },
     {
       "id": "fc-1187465b4d",
@@ -31205,7 +31223,13 @@
       "county_fips": "48453",
       "notes": "Oracle AI cloud infrastructure; $1B+ investment in Texas.; legacy_id:ai-tx-003",
       "lat": 30.4,
-      "lon": -97.73
+      "lon": -97.73,
+      "sources": [
+        {
+          "label": "Oracle Cloud Infrastructure — Austin",
+          "url": "https://www.oracle.com/cloud/"
+        }
+      ]
     },
     {
       "id": "fc-5a754d62b8",
@@ -31215,7 +31239,13 @@
       "county_fips": "47037",
       "notes": "Oracle Cloud Infrastructure Nashville; AI/ML workloads.; legacy_id:ai-tn-002",
       "lat": 36.16,
-      "lon": -86.78
+      "lon": -86.78,
+      "sources": [
+        {
+          "label": "Oracle Cloud Infrastructure — Nashville",
+          "url": "https://www.oracle.com/cloud/"
+        }
+      ]
     },
     {
       "id": "fc-7376e2b4c8",
@@ -31225,7 +31255,13 @@
       "county_fips": "06085",
       "notes": "Wafer-scale engine AI training; custom CS-3 chips.; legacy_id:ai-ca-002",
       "lat": 37.36,
-      "lon": -121.98
+      "lon": -121.98,
+      "sources": [
+        {
+          "label": "Cerebras Systems — Santa Clara HQ",
+          "url": "https://www.cerebras.net/"
+        }
+      ]
     },
     {
       "id": "fc-ab6a37b665",
@@ -31236,7 +31272,13 @@
       "notes": "Aurora exascale supercomputer (AI workloads); 2 exaflops.; legacy_id:ai-il-002",
       "lat": 41.71,
       "lon": -87.98,
-      "capacity_mw": 20.0
+      "capacity_mw": 20.0,
+      "sources": [
+        {
+          "label": "Argonne National Laboratory",
+          "url": "https://www.anl.gov/"
+        }
+      ]
     },
     {
       "id": "fc-bcf2da73d6",
@@ -31246,7 +31288,13 @@
       "county_fips": "47093",
       "notes": "Frontier exascale supercomputer; #1 Top500 2022-2023.; legacy_id:ai-tn-003",
       "lat": 36.01,
-      "lon": -84.24
+      "lon": -84.24,
+      "sources": [
+        {
+          "label": "Oak Ridge National Laboratory",
+          "url": "https://www.ornl.gov/"
+        }
+      ]
     },
     {
       "id": "fc-1cfcfef36a",
@@ -31256,7 +31304,13 @@
       "county_fips": "06001",
       "notes": "Perlmutter AI-optimized supercomputer; NVIDIA A100 GPUs.; legacy_id:ai-ca-003",
       "lat": 37.88,
-      "lon": -122.25
+      "lon": -122.25,
+      "sources": [
+        {
+          "label": "NERSC — National Energy Research Scientific Computing Center",
+          "url": "https://www.nersc.gov/"
+        }
+      ]
     },
     {
       "id": "fc-0cfbbf4e00",
@@ -31266,7 +31320,13 @@
       "county_fips": "51107",
       "notes": "Dedicated AI training cluster adjacent to existing cloud campus.; legacy_id:ai-va-001",
       "lat": 39.05,
-      "lon": -77.44
+      "lon": -77.44,
+      "sources": [
+        {
+          "label": "Microsoft Azure — Loudoun County VA",
+          "url": "https://azure.microsoft.com/"
+        }
+      ]
     },
     {
       "id": "fc-d4085dae7d",
@@ -31276,7 +31336,13 @@
       "county_fips": "18059",
       "notes": "Part of Indiana AI infrastructure push; dedicated training.; legacy_id:ai-in-001",
       "lat": 39.77,
-      "lon": -86.4
+      "lon": -86.4,
+      "sources": [
+        {
+          "label": "Microsoft Azure — Hendricks County IN",
+          "url": "https://azure.microsoft.com/"
+        }
+      ]
     },
     {
       "id": "fc-9d94f96a4b",
@@ -31286,7 +31352,13 @@
       "county_fips": "34027",
       "notes": "GPU-as-a-service; massive NVIDIA H100 cluster for AI startups.; legacy_id:ai-nj-001",
       "lat": 40.87,
-      "lon": -74.42
+      "lon": -74.42,
+      "sources": [
+        {
+          "label": "CoreWeave — Parsippany NJ Campus",
+          "url": "https://www.coreweave.com/"
+        }
+      ]
     },
     {
       "id": "fc-b9fb66a08e",
@@ -31296,7 +31368,13 @@
       "county_fips": "17043",
       "notes": "DuPage County; NVIDIA AI cluster; cloud AI infrastructure.; legacy_id:ai-il-001",
       "lat": 41.85,
-      "lon": -88.12
+      "lon": -88.12,
+      "sources": [
+        {
+          "label": "CoreWeave — Chicago IL Campus",
+          "url": "https://www.coreweave.com/"
+        }
+      ]
     },
     {
       "id": "fc-9de23caa4f",
@@ -31306,7 +31384,13 @@
       "county_fips": "51107",
       "notes": "Dedicated AI training cluster adjacent to existing cloud campus.; legacy_id:ai-va-001",
       "lat": 39.05,
-      "lon": -77.44
+      "lon": -77.44,
+      "sources": [
+        {
+          "label": "Microsoft Azure — Loudoun County VA",
+          "url": "https://azure.microsoft.com/"
+        }
+      ]
     },
     {
       "id": "fc-cc16a07fe7",
@@ -31316,7 +31400,13 @@
       "county_fips": "18059",
       "notes": "Part of Indiana AI infrastructure push; dedicated training.; legacy_id:ai-in-001",
       "lat": 39.77,
-      "lon": -86.4
+      "lon": -86.4,
+      "sources": [
+        {
+          "label": "Microsoft Azure — Hendricks County IN",
+          "url": "https://azure.microsoft.com/"
+        }
+      ]
     },
     {
       "id": "fc-fbf9edf7a2",
@@ -31326,7 +31416,13 @@
       "county_fips": "34027",
       "notes": "GPU-as-a-service; massive NVIDIA H100 cluster for AI startups.; legacy_id:ai-nj-001",
       "lat": 40.87,
-      "lon": -74.42
+      "lon": -74.42,
+      "sources": [
+        {
+          "label": "CoreWeave — Parsippany NJ Campus",
+          "url": "https://www.coreweave.com/"
+        }
+      ]
     },
     {
       "id": "fc-d093fd6415",
@@ -31336,7 +31432,13 @@
       "county_fips": "17043",
       "notes": "DuPage County; NVIDIA AI cluster; cloud AI infrastructure.; legacy_id:ai-il-001",
       "lat": 41.85,
-      "lon": -88.12
+      "lon": -88.12,
+      "sources": [
+        {
+          "label": "CoreWeave — Chicago IL Campus",
+          "url": "https://www.coreweave.com/"
+        }
+      ]
     },
     {
       "id": "fc-72a599c464",
@@ -31346,7 +31448,13 @@
       "county_fips": "32003",
       "notes": "Switch SUPERNAP 7-10 campus; dedicated GPU cluster for AI/ML workloads. 100MW+ capacity. NVIDIA DGX-A100/H100 pods. Tier IV design.; legacy_id:ai-nv-001",
       "lat": 36.0875,
-      "lon": -115.1535
+      "lon": -115.1535,
+      "sources": [
+        {
+          "label": "Switch Data Centers — Las Vegas",
+          "url": "https://www.switch.com/"
+        }
+      ]
     },
     {
       "id": "fc-e076324447",
@@ -31356,7 +31464,13 @@
       "county_fips": "24003",
       "notes": "Unclassified contractor data center cluster adjacent to NSA/Fort Meade in Annapolis Junction MD.; legacy_id:ai-md-001",
       "lat": 39.1177,
-      "lon": -76.8077
+      "lon": -76.8077,
+      "sources": [
+        {
+          "label": "Defense Information Systems Agency (DISA)",
+          "url": "https://www.disa.mil/"
+        }
+      ]
     },
     {
       "id": "fc-8e04571768",
@@ -31366,7 +31480,13 @@
       "county_fips": "15009",
       "notes": "DoD-funded HPC center operated for the Air Force Research Laboratory; supports Pacific theater defense simulation and AI workloads.; legacy_id:ai-hi-002",
       "lat": 20.8783,
-      "lon": -156.6825
+      "lon": -156.6825,
+      "sources": [
+        {
+          "label": "Maui High Performance Computing Center (MHPCC)",
+          "url": "https://www.mhpcc.hpc.mil/"
+        }
+      ]
     },
     {
       "id": "fc-90901307a4",
@@ -31376,7 +31496,13 @@
       "county_fips": "45019",
       "notes": "Regional colocation data center serving Charleston's growing financial technology, healthcare, and logistics IT sectors.; legacy_id:ai-sc-003",
       "lat": 32.7765,
-      "lon": -79.9311
+      "lon": -79.9311,
+      "sources": [
+        {
+          "label": "Immedion Data Centers — Charleston SC",
+          "url": "https://www.immedion.com/"
+        }
+      ]
     },
     {
       "id": "fc-dfd7592dc0",
@@ -31386,7 +31512,13 @@
       "county_fips": "36091",
       "notes": "On-premises HPC and EDA compute supporting chip design simulation, manufacturing AI, and yield analytics for one of North America's largest semiconductor fabs.; legacy_id:ai-ny-003",
       "lat": 43.01,
-      "lon": -73.8199
+      "lon": -73.8199,
+      "sources": [
+        {
+          "label": "GlobalFoundries Fab 8 — Malta NY",
+          "url": "https://gf.com/"
+        }
+      ]
     },
     {
       "id": "fc-3bd2179f18",
@@ -31396,7 +31528,13 @@
       "county_fips": "04003",
       "notes": "Primary Army network management and enterprise IT data center; supports Army-wide network operations, defensive cyber, and Army Cyber Command missions.; legacy_id:ai-az-001",
       "lat": 31.5437,
-      "lon": -110.3445
+      "lon": -110.3445,
+      "sources": [
+        {
+          "label": "U.S. Army Network Enterprise Technology Command (NETCOM)",
+          "url": "https://www.netcom.army.mil/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [

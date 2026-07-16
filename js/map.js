@@ -2401,7 +2401,15 @@ function setDetailFacility(facility, kind) {
     ${facility.year_planned ? `<div class="detail-section"><div class="detail-label">Target Year</div><div class="detail-value">${facility.year_planned}</div></div>` : ""}
     ${facility.type      ? `<div class="detail-section"><div class="detail-label">Type</div><div class="detail-value" style="text-transform:capitalize;">${facility.type}</div></div>` : ""}
     ${facility.notes     ? `<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(facility.notes)}</div></div>` : ""}
-    ${county ? `<div class="detail-section"><div class="detail-label">County</div><div class="detail-value">${escHtml(county.name)}, ${escHtml(county.state)}</div></div>` : ""}`;
+    ${county ? `<div class="detail-section"><div class="detail-label">County</div><div class="detail-value">${escHtml(county.name)}, ${escHtml(county.state)}</div></div>` : ""}
+    ${facility.sources && facility.sources.length ? `<div class="detail-section"><div class="detail-label">Sources</div><ul class="sources-list">${facility.sources.map(s => {
+      if (s && typeof s === "object" && s.url) {
+        const isGov = GOV_URL_RE.test(s.url);
+        const govBadge = isGov ? `<span class="source-gov-badge">Gov</span>` : "";
+        return `<li>${govBadge}<a href="${escHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escHtml(s.label)}</a></li>`;
+      }
+      return `<li>${escHtml(typeof s === "string" ? s : s.label || "")}</li>`;
+    }).join("")}</ul></div>` : ""}`;
   openMobileSheet();
 }
 

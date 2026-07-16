@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-07-16T14:01:52.765153+00:00",
+  "generated_at": "2026-07-16T14:15:32.659879+00:00",
   "source_last_updated": "2026-07-14",
   "stats": {
-    "total_counties_tracked": 389,
+    "total_counties_tracked": 401,
     "by_level": {
-      "-1": 296,
+      "-1": 307,
       "0": 0,
-      "1": 32,
+      "1": 33,
       "2": 34,
       "3": 22,
       "4": 5
     },
     "by_type": {
-      "data_center": 386,
+      "data_center": 398,
       "water": 12,
-      "ai": 132,
-      "energy": 78,
+      "ai": 136,
+      "energy": 80,
       "crypto": 14
     },
     "level_labels": {
@@ -10704,6 +10704,360 @@
       "confidence": "low",
       "confidence_score": 33,
       "source_tier": 3
+    },
+    "08013": {
+      "name": "Boulder County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Boulder County Data Center and Research Computing Incentive Zone",
+      "description": "Boulder County hosts NOAA Earth System Research Laboratories, NCAR/UCAR Mesa Laboratory, and a dense cluster of federal and university research computing facilities. Colorado's EITC data center sales-tax exemption and renewable-energy incentives apply county-wide. Boulder County land-use regulations require new data centers above 50,000 sq ft to offset 100 % of electrical consumption with renewable sources.",
+      "effective_date": "2021-07-01",
+      "status": "active",
+      "notes": "Colorado H.B. 19-1166 renewable-energy requirement applies.",
+      "sources": [
+        {
+          "label": "Colorado EITC Data Center Tax Exemption",
+          "url": "https://leg.colorado.gov/bills/hb19-1166"
+        },
+        {
+          "label": "Boulder County Community Development",
+          "url": "https://www.bouldercounty.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "48303": {
+      "name": "Lubbock County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Lubbock County Data Center Development and Wind-Energy Incentive",
+      "description": "Lubbock County anchors the South Plains wind-energy corridor and is home to Texas Tech University's High Performance Computing Center (HPCC) and the National Wind Institute research cluster. Chapter 312/313 tax abatements are available for qualifying data centers. Lubbock Power & Light offers discounted industrial rates for high-load computing facilities connected to the ERCOT grid through the city's municipally owned utility.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "ERCOT grid; municipally owned LP&L utility.",
+      "sources": [
+        {
+          "label": "Texas Tech HPCC",
+          "url": "https://www.depts.ttu.edu/hpcc/"
+        },
+        {
+          "label": "Lubbock Power & Light Rate Schedule",
+          "url": "https://www.lpandl.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
+    },
+    "48423": {
+      "name": "Smith County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Smith County (Tyler) Data Center Corridor Incentive",
+      "description": "Smith County (Tyler, TX) has emerged as an East Texas data center corridor benefiting from Chapter 312 property-tax abatements and access to low-cost SWEPCO power. The Tyler Economic Development Council actively recruits hyperscale and colocation facilities, and the county provides streamlined permitting for large-footprint industrial buildings repurposed as data centers.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "Chapter 312 tax abatement eligible; SWEPCO utility territory.",
+      "sources": [
+        {
+          "label": "Tyler Economic Development Council",
+          "url": "https://www.tylertexas.com/"
+        },
+        {
+          "label": "Texas Chapter 312 Abatement Program",
+          "url": "https://comptroller.texas.gov/taxes/property-tax/chapter312/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "37025": {
+      "name": "Cabarrus County",
+      "state": "North Carolina",
+      "level": 1,
+      "types": [
+        "energy",
+        "data_center"
+      ],
+      "title": "Cabarrus County Data Center Energy-Use Review Requirement",
+      "description": "Cabarrus County (Concord, NC) sits within the Charlotte metro energy market served by Duke Energy Carolinas. The county requires conditional use permits for data centers exceeding 10 MW demand, with mandatory energy impact assessments to ensure grid stability in the western Charlotte load zone. North Carolina G.S. 105-164.13 data center sales-tax exemption partially offsets compliance costs for qualifying facilities.",
+      "effective_date": "2022-06-01",
+      "status": "active",
+      "notes": "Duke Energy Carolinas territory; NC data center tax exemption applies.",
+      "sources": [
+        {
+          "label": "Cabarrus County Zoning Ordinance",
+          "url": "https://www.cabarruscounty.us/"
+        },
+        {
+          "label": "NC G.S. 105-164.13 Data Center Exemption",
+          "url": "https://www.ncleg.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "42049": {
+      "name": "Erie County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Erie County Pennsylvania Data Center Reinvestment Initiative",
+      "description": "Erie County participates in Pennsylvania's data center incentive framework (SB 1138) offering sales-tax exemptions on computer equipment and electricity for qualifying facilities investing over $25 million. The Erie County Redevelopment Authority targets former industrial brownfield sites for data center conversion projects, leveraging Keystone Opportunity Zones for additional tax relief.",
+      "effective_date": "2020-07-01",
+      "status": "active",
+      "notes": "PA Keystone Opportunity Zone and SB 1138 incentives available.",
+      "sources": [
+        {
+          "label": "Pennsylvania Data Center Incentive Program",
+          "url": "https://dced.pa.gov/"
+        },
+        {
+          "label": "Erie County Redevelopment Authority",
+          "url": "https://www.eriecountypa.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "42133": {
+      "name": "York County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "York County Pennsylvania Data Center Tax Incentive Zone",
+      "description": "York County is positioned along the I-83 technology and logistics corridor between Baltimore and Harrisburg. Pennsylvania's data center sales-tax exemption on servers, networking equipment, and electricity applies to qualifying facilities. The York County Economic Alliance actively promotes data center investment, supported by PPL Electric's industrial-rate programs and proximity to fiber backbone networks.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "PPL Electric utility territory; I-83 fiber corridor access.",
+      "sources": [
+        {
+          "label": "York County Economic Alliance",
+          "url": "https://ycea-pa.org/"
+        },
+        {
+          "label": "DCED Pennsylvania Data Center Incentives",
+          "url": "https://dced.pa.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "51810": {
+      "name": "Virginia Beach city",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Virginia Beach Data Center and Cyber Operations Incentive Zone",
+      "description": "Virginia Beach hosts a major concentration of Department of Defense cyber and intelligence infrastructure, including Naval Air Station Oceana and the headquarters of Commander Navy Region Mid-Atlantic. The city participates in Virginia's data center sales-tax exemption (Va. Code \u00a7 58.1-609.3) and offers enterprise-zone incentives for qualifying computing facilities. Submarine fiber cables landing at Virginia Beach provide unique connectivity for global data center operators.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "Transatlantic fiber cable landing point; Va. Code \u00a758.1-609.3 exemption applies.",
+      "sources": [
+        {
+          "label": "Virginia Beach Economic Development",
+          "url": "https://www.vbgov.com/"
+        },
+        {
+          "label": "Virginia Data Center Sales Tax Exemption",
+          "url": "https://law.lis.virginia.gov/vacode/58.1-609.3/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "51550": {
+      "name": "Chesapeake city",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Chesapeake Virginia Data Center Enterprise Zone",
+      "description": "Chesapeake city is part of the Hampton Roads data center cluster benefiting from Virginia's data center sales-tax exemption and Dominion Energy's competitive industrial rates. The city's enterprise zone offers additional incentives including reduced business license taxes and infrastructure grants for large-footprint data center projects. Chesapeake's proximity to major military installations drives demand for secure, mission-critical computing facilities.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "Dominion Energy territory; Hampton Roads data center cluster.",
+      "sources": [
+        {
+          "label": "Chesapeake Economic Development",
+          "url": "https://www.cityofchesapeake.net/"
+        },
+        {
+          "label": "Virginia Enterprise Zone Program",
+          "url": "https://www.dhcd.virginia.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "29077": {
+      "name": "Greene County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Greene County Missouri Data Center Tax Incentive Program",
+      "description": "Greene County (Springfield, MO) is Missouri's third-largest metro and a regional hub for state and healthcare IT infrastructure. Missouri's Chapter 100 bonds and the Missouri Works data center incentive program provide property-tax abatement and jobs tax credits for qualifying facilities. CoxHealth, Mercy Health, and Missouri State University anchor regional data center demand, while City Utilities of Springfield offers competitive power rates for large industrial customers.",
+      "effective_date": "2019-07-01",
+      "status": "active",
+      "notes": "City Utilities of Springfield power; Missouri Chapter 100 bonds available.",
+      "sources": [
+        {
+          "label": "Springfield Business Development Corp",
+          "url": "https://springfieldmo.gov/"
+        },
+        {
+          "label": "Missouri Works Incentive Program",
+          "url": "https://ded.mo.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "13057": {
+      "name": "Cherokee County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Cherokee County Georgia Data Center Investment Incentive",
+      "description": "Cherokee County (Canton, GA) is one of the fastest-growing counties in metro Atlanta's northern arc. The county targets data center development through Georgia's data center tax exemption (O.C.G.A. \u00a748-8-3.2) covering sales tax on equipment and energy. Expanding fiber infrastructure along the GA-5/I-575 corridor and competitive land costs relative to Fulton and Gwinnett counties attract hyperscale and colocation operators seeking Atlanta-adjacent locations with more favorable cost structures.",
+      "effective_date": "2018-01-01",
+      "status": "active",
+      "notes": "Georgia O.C.G.A. \u00a748-8-3.2 data center exemption; Atlanta-metro fiber corridor.",
+      "sources": [
+        {
+          "label": "Cherokee Office of Economic Development",
+          "url": "https://www.cherokeega.com/"
+        },
+        {
+          "label": "Georgia Data Center Tax Exemption",
+          "url": "https://dor.georgia.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "13117": {
+      "name": "Forsyth County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Forsyth County Georgia Data Center Expansion Zone",
+      "description": "Forsyth County (Cumming, GA) is Georgia's fastest-growing county and an emerging data center market north of Atlanta. Georgia's data center tax exemption (O.C.G.A. \u00a748-8-3.2) eliminates sales tax on servers and power for qualifying facilities investing over $15 million. The county's location along US-19 and SR-400 provides access to Atlanta's fiber backbone, while Georgia Power's industrial-development rates support large computing loads. Several hyperscale and colocation campuses have entered pre-development in 2024\u20132025.",
+      "effective_date": "2023-01-01",
+      "status": "active",
+      "notes": "Georgia Power territory; SR-400 fiber corridor; O.C.G.A. \u00a748-8-3.2 applies.",
+      "sources": [
+        {
+          "label": "Forsyth County Economic Development",
+          "url": "https://www.forsythco.com/"
+        },
+        {
+          "label": "Georgia Data Center Tax Exemption (OCGA \u00a748-8-3.2)",
+          "url": "https://dor.georgia.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
+    },
+    "17167": {
+      "name": "Sangamon County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Sangamon County Illinois State Capital Data Center Incentive Zone",
+      "description": "Sangamon County (Springfield, IL) hosts the Illinois state government's primary data center infrastructure, including facilities for the Illinois Department of Innovation and Technology (DoIT). Illinois' data center tax incentive (35 ILCS 120/2-5(7)) provides a sales-tax exemption on computer equipment and electricity for qualifying facilities investing over $250 million over 60 months. Ameren Illinois offers competitive rates for large industrial customers in the county.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "Illinois DoIT primary data infrastructure; 35 ILCS 120/2-5(7) exemption.",
+      "sources": [
+        {
+          "label": "Illinois DoIT Data Center Program",
+          "url": "https://doit.illinois.gov/"
+        },
+        {
+          "label": "Illinois Data Center Tax Exemption (35 ILCS 120/2-5)",
+          "url": "https://www.ilga.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "high",
+      "confidence_score": 75,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -11180,7 +11534,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-16T14:01:52.878632+00:00",
+    "last_computed": "2026-07-16T14:15:32.775980+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",
