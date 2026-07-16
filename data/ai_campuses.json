@@ -1317,6 +1317,56 @@
       "notes": "TVA's Paducah area grid operations manage power distribution for western Kentucky and surrounding states; the DOE Paducah Site's ongoing deactivation and remediation program operates extensive environmental monitoring and process data systems.",
       "lon": -88.6001,
       "lat": 37.0834
+    },
+    {
+      "id": "ai-ms-004",
+      "name": "NASA Stennis Space Center \u2014 Propulsion Test and Data Operations",
+      "operator": "NASA / National Data Buoy Center (NOAA)",
+      "status": "operational",
+      "county_fips": "28045",
+      "notes": "Stennis hosts RS-25 SLS engine test stands, National Data Buoy Center oceanographic data operations, and multiple tenant agency computing (NGA, Navy, EPA); largest NASA field installation in the Southeast by land area.",
+      "lon": -89.5994,
+      "lat": 30.3636
+    },
+    {
+      "id": "ai-va-008",
+      "name": "Amazon Web Services West Creek Data Center Campus \u2014 Goochland",
+      "operator": "Amazon Web Services",
+      "status": "operational",
+      "county_fips": "51075",
+      "notes": "AWS's West Creek corridor in Goochland County represents one of the largest hyperscale data center investments in the Richmond metro area; supports us-east-1 region capacity expansion beyond Northern Virginia's constrained market.",
+      "lon": -77.7012,
+      "lat": 37.6918
+    },
+    {
+      "id": "ai-hi-004",
+      "name": "Pacific Missile Range Facility (PMRF) \u2014 Barking Sands",
+      "operator": "US Navy / Commander, Pacific Fleet",
+      "status": "operational",
+      "county_fips": "15007",
+      "notes": "PMRF operates the world's largest instrumented, multi-environment missile test range with radar, tracking, and telemetry systems for missile defense, anti-submarine warfare, and undersea warfare testing in the Pacific; hosts MDA and MDA Aegis BMD test data systems.",
+      "lon": -159.7649,
+      "lat": 22.0221
+    },
+    {
+      "id": "ai-ok-005",
+      "name": "Fort Sill Army Fires Center of Excellence and JADOC \u2014 Lawton",
+      "operator": "US Army Fires Center of Excellence",
+      "status": "operational",
+      "county_fips": "40031",
+      "notes": "Fort Sill's Fires Center of Excellence manages joint air defense and field artillery mission command systems, Patriot battery C2, and the Joint Air Defense Operations Center (JADOC) data infrastructure supporting Army IAMD operations.",
+      "lon": -98.4045,
+      "lat": 34.6427
+    },
+    {
+      "id": "ai-ca-008",
+      "name": "Vandenberg Space Force Base \u2014 Space Launch Delta 30 Mission Control",
+      "operator": "US Space Force / Space Launch Delta 30",
+      "status": "operational",
+      "county_fips": "06083",
+      "notes": "Vandenberg SFB's SLD-30 provides launch telemetry, satellite tracking (FPS-16 radar, telemetry stations), and mission control data for DoD, NASA, and commercial polar-orbit launches; SpaceX Falcon 9 and Falcon Heavy operations co-located.",
+      "lon": -120.5665,
+      "lat": 34.742
     }
   ]
 }

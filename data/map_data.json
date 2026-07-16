@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-16T13:53:17.725731+00:00",
+  "generated_at": "2026-07-16T13:56:17.103767+00:00",
   "source_last_updated": "2026-07-14",
   "stats": {
-    "total_counties_tracked": 353,
+    "total_counties_tracked": 365,
     "by_level": {
-      "-1": 260,
+      "-1": 272,
       "0": 0,
       "1": 32,
       "2": 34,
@@ -12,10 +12,10 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 350,
+      "data_center": 362,
       "water": 12,
-      "ai": 113,
-      "energy": 75,
+      "ai": 121,
+      "energy": 77,
       "crypto": 14
     },
     "level_labels": {
@@ -9782,6 +9782,316 @@
       "confidence": "low",
       "confidence_score": 33,
       "source_tier": 3
+    },
+    "28045": {
+      "name": "Hancock County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Hancock County NASA Stennis Space Center and Rocket Propulsion Technology Hub",
+      "description": "Hancock County (Bay St. Louis) hosts NASA Stennis Space Center \u2014 NASA's primary rocket propulsion test facility and the largest NASA field installation in the Southeast \u2014 where RS-25 Space Launch System engines are tested. Stennis also houses the National Data Buoy Center (NDBC) and multiple tenant agencies including NOAA, the Navy, and NGA. No local DC restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "NASA Stennis Space Center",
+          "url": "https://www.nasa.gov/centers/stennis/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "51075": {
+      "name": "Goochland County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Goochland County West Creek Amazon AWS Data Center Campus",
+      "description": "Goochland County's West Creek Business Park has become one of the most significant Amazon Web Services data center expansion corridors in the eastern US, with AWS investing billions in hyperscale data centers along the West Creek Parkway. The Virginia data center sales tax exemption (\u00a758.1-609.3) and competitive Dominion Energy rates make Goochland County a prime alternative to the saturated Northern Virginia market. No local DC restrictions.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Goochland County Economic Development",
+          "url": "https://www.goochlandva.us/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "45083": {
+      "name": "Spartanburg County",
+      "state": "South Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Spartanburg County BMW Manufacturing and Advanced Manufacturing Technology Hub",
+      "description": "Spartanburg County hosts BMW Manufacturing's only US assembly plant \u2014 BMW's largest plant globally \u2014 alongside SYNNEX (Concentrix) IT services headquarters, Michelin North America HQ, and Milliken & Company's advanced materials R&D. The concentration of advanced manufacturing AI, supply chain data systems, and enterprise IT makes Spartanburg a top-tier South Carolina technology hub. No local DC restrictions; SC data center property tax abatement applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "BMW Manufacturing \u2014 Spartanburg South Carolina",
+          "url": "https://www.bmwusfactory.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "29037": {
+      "name": "Cass County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Cass County Lee's Summit Oracle Health Cerner Global Headquarters",
+      "description": "Cass County (Lee's Summit) hosts Oracle Health's (formerly Cerner) sprawling global headquarters campus \u2014 one of the world's largest health IT companies, processing clinical data for hundreds of hospitals worldwide. Oracle Health's Innovations Campus drives significant data center and AI investment in the Kansas City metro. No local DC restrictions; Missouri's data center tax exemption (RSMo \u00a7144.810) applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Oracle Health (Cerner) \u2014 Lee's Summit Missouri",
+          "url": "https://www.oracle.com/health/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "06029": {
+      "name": "Kern County",
+      "state": "California",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Kern County Bakersfield Oil, Gas, and Renewable Energy Technology Hub",
+      "description": "Kern County (Bakersfield) produces more oil and gas than any other California county and hosts the Tehachapi Wind Resource Area \u2014 one of the earliest and largest wind energy concentrations in the US. Chevron's San Joaquin Valley Operations and California Resources Corporation (CRC) drive extensive energy data and SCADA infrastructure. California Aqueduct operational data and CDFA agricultural monitoring add to the county's data footprint. No local DC restrictions.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Kern County Economic Development Corporation",
+          "url": "https://www.kernedc.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "06083": {
+      "name": "Santa Barbara County",
+      "state": "California",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Santa Barbara County Vandenberg Space Force Base and UCSB Technology Hub",
+      "description": "Santa Barbara County hosts Vandenberg Space Force Base \u2014 the primary US launch site for polar-orbit satellites \u2014 operated by Space Launch Delta 30 with extensive launch data telemetry, satellite tracking, and mission control infrastructure. UC Santa Barbara (UCSB) contributes world-class research computing in physics, materials science, and marine science. SpaceX regularly launches Falcon 9 and Starship missions from Vandenberg. No local DC restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Vandenberg Space Force Base \u2014 Space Launch Delta 30",
+          "url": "https://www.vandenberg.spaceforce.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "06111": {
+      "name": "Ventura County",
+      "state": "California",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Ventura County Point Mugu Naval Air Warfare Center and Amgen Technology Hub",
+      "description": "Ventura County (Oxnard/Thousand Oaks) hosts Naval Base Ventura County with the Naval Air Warfare Center Weapons Division at Point Mugu \u2014 the Navy's primary air and missile weapons test range \u2014 and Amgen's global headquarters in Thousand Oaks, one of the world's largest biotechnology companies with substantial drug discovery AI and genomics computing. No local DC restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Amgen Global Headquarters \u2014 Thousand Oaks",
+          "url": "https://www.amgen.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "15007": {
+      "name": "Kauai County",
+      "state": "Hawaii",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Kauai County Pacific Missile Range Facility and Space Defense Technology Hub",
+      "description": "Kauai County hosts the Pacific Missile Range Facility (PMRF) at Barking Sands \u2014 the world's largest instrumented, multi-dimensional testing and training missile range \u2014 operated by the Navy with extensive radar, telemetry, and tracking data infrastructure. The Kokee Research Station and Space Surveillance Telescope (SST) add space domain awareness data capabilities. No local DC restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Pacific Missile Range Facility (PMRF) \u2014 US Navy",
+          "url": "https://www.pmrf.navy.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "40031": {
+      "name": "Comanche County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Comanche County Fort Sill Army Fires Center of Excellence Technology Hub",
+      "description": "Comanche County (Lawton) hosts Fort Sill, home of the US Army Fires Center of Excellence \u2014 responsible for field artillery and air defense doctrine, training, and mission command data systems. Fort Sill's Patriot missile battery training and Joint Air Defense Operations Center (JADOC) generate significant military data infrastructure. No local DC restrictions; Oklahoma's data center sales tax exemption (68 O.S. \u00a71354) applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Fort Sill \u2014 Army Fires Center of Excellence",
+          "url": "https://sill.army.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "41047": {
+      "name": "Marion County",
+      "state": "Oregon",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Marion County Salem Oregon State Government Technology Hub",
+      "description": "Marion County (Salem) is Oregon's state capital, hosting the Oregon Department of Administrative Services (DAS) Enterprise Technology Services data center operations, Salem Health (hospital system) IT, and Chemeketa Community College technology programs. Oregon's no-sales-tax environment and data center property tax exemption (ORS \u00a7307.175) support state and commercial data infrastructure investment. No local DC restrictions.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Oregon DAS Enterprise Technology Services",
+          "url": "https://www.oregon.gov/das/ets/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "53073": {
+      "name": "Whatcom County",
+      "state": "Washington",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Whatcom County Bellingham Refinery Technology and Cross-Border Corridor Hub",
+      "description": "Whatcom County (Bellingham) hosts BP Cherry Point and Shell Puget Sound refineries \u2014 two of the largest oil refineries in the Pacific Northwest \u2014 driving substantial SCADA and process data infrastructure along the I-5 Canadian border corridor. Western Washington University and the growing Bellingham technology sector contribute to the regional tech ecosystem. No local DC restrictions; Washington's no-income-tax environment applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Whatcom County Economic Development",
+          "url": "https://www.whatcomcounty.us/1280/Economic-Development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "54011": {
+      "name": "Cabell County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cabell County Huntington Marshall University and Appalachian Regional Technology Hub",
+      "description": "Cabell County (Huntington) hosts Marshall University with its research computing and health IT programs, Cabell Huntington Hospital's clinical data infrastructure (part of Mountain Health Network), and is a major commercial center for the Tri-State area (WV/KY/OH). Marshall's new Robert C. Byrd Institute for Advanced Flexible Manufacturing supports technology talent development. No local DC restrictions; WV EDGE Act applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Marshall University \u2014 Research IT",
+          "url": "https://www.marshall.edu/it/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
     }
   },
   "validation_report": {
@@ -10258,7 +10568,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-16T13:53:17.826929+00:00",
+    "last_computed": "2026-07-16T13:56:17.219121+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",
