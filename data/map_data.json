@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-16T20:09:43.888822+00:00",
+  "generated_at": "2026-07-16T20:15:15.296940+00:00",
   "source_last_updated": "2026-07-16",
   "stats": {
-    "total_counties_tracked": 604,
+    "total_counties_tracked": 624,
     "by_level": {
-      "-1": 492,
+      "-1": 512,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,10 +12,10 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 595,
+      "data_center": 615,
       "water": 14,
-      "ai": 166,
-      "energy": 146,
+      "ai": 167,
+      "energy": 149,
       "crypto": 18
     },
     "level_labels": {
@@ -16903,6 +16903,558 @@
       "confidence": "medium",
       "confidence_score": 52,
       "source_tier": 3
+    },
+    "39095": {
+      "name": "Lucas County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Toledo \u2014 4th-Largest Ohio City and AEP/Toledo Edison Service",
+      "description": "Lucas County (Toledo) is Ohio's fourth-largest urban center and a significant industrial base on Lake Erie. Toledo Edison (FirstEnergy) service with Ohio's data center sales tax exemption (R.C. \u00a7 5739.02(B)), I-75/I-80/I-90 corridor fiber access, and the county's industrial land availability at lower costs than Columbus or Cleveland make it a secondary data center market for northern Ohio.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Toledo-Lucas County Port Authority",
+          "url": "https://www.toledoportauthority.org"
+        },
+        {
+          "label": "Ohio Development Services Agency",
+          "url": "https://development.ohio.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "39017": {
+      "name": "Butler County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hamilton \u2014 Cincinnati Northern Suburb and Duke Energy Ohio Territory",
+      "description": "Butler County (Hamilton, Middletown, Oxford) anchors the Cincinnati northern suburb corridor. Duke Energy Ohio and Cincinnati Bell service, Ohio's data center equipment sales tax exemption, I-75 connectivity, and Miami University in Oxford create a growing data center and enterprise IT presence in the northern Cincinnati MSA.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Butler County Economic Development",
+          "url": "https://www.butlercountyohio.org/economic"
+        },
+        {
+          "label": "Ohio Development Services Agency",
+          "url": "https://development.ohio.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "39151": {
+      "name": "Stark County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Canton-Massillon \u2014 Akron-Canton Industrial Corridor and AEP Territory",
+      "description": "Stark County (Canton, Massillon, Alliance) anchors the Akron-Canton industrial corridor between Cleveland and Columbus. AEP Ohio service territory with competitive industrial rates, Ohio's data center sales tax exemption, available industrial land from manufacturing transitions, and the county's central Ohio position on the I-77 corridor make it a viable secondary data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Stark Economic Development Board",
+          "url": "https://www.starkedb.com"
+        },
+        {
+          "label": "Ohio Development Services Agency",
+          "url": "https://development.ohio.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "42043": {
+      "name": "Dauphin County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Harrisburg \u2014 Pennsylvania State Capital IT Hub and PPL Territory",
+      "description": "Dauphin County (Harrisburg) is Pennsylvania's state capital and a significant government IT center. PPL Electric Utilities service, concentration of state government and federal agency data infrastructure, I-78/I-81/I-83 interchange connectivity, and Pennsylvania's keystone opportunity zone program make it a natural data center location for government cloud and enterprise deployments.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Harrisburg Regional Chamber and CREDC",
+          "url": "https://www.hbgrc.org"
+        },
+        {
+          "label": "Pennsylvania Department of Community and Economic Development",
+          "url": "https://dced.pa.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "42041": {
+      "name": "Cumberland County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Camp Hill-Carlisle \u2014 Harrisburg West Suburb and Lower-Cost PA Hub",
+      "description": "Cumberland County (Camp Hill, Carlisle, Mechanicsburg) anchors the western Harrisburg metro and hosts one of Pennsylvania's most active industrial park corridors along I-81. PPL Electric Utilities service, lower land costs than Dauphin County while sharing the same metro fiber and workforce, and the PA Turnpike I-76 interchange at Carlisle make it a preferred data center location for Harrisburg-area deployments.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Cumberland Area Economic Development Corporation",
+          "url": "https://www.caedc.org"
+        },
+        {
+          "label": "Pennsylvania Department of Community and Economic Development",
+          "url": "https://dced.pa.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "12071": {
+      "name": "Lee County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Fort Myers-Cape Coral \u2014 SW Florida's Fastest-Growing Metro",
+      "description": "Lee County (Fort Myers, Cape Coral) is one of the fastest-growing metros in the United States, anchored by healthcare (Lee Health), retirement and financial services, and rapidly expanding tech-adjacent industries. Florida Power & Light service, Florida's no-corporate-income-tax advantage for data center equipment, and the county's exploding commercial real estate supply make it an emerging data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Lee County Economic Development Office",
+          "url": "https://www.leecountyed.com"
+        },
+        {
+          "label": "Florida Power and Light \u2014 Business",
+          "url": "https://www.fpl.com/business"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "12097": {
+      "name": "Osceola County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kissimmee-St. Cloud \u2014 Orlando South Corridor and Theme Park Tech",
+      "description": "Osceola County (Kissimmee, St. Cloud, Celebration) anchors the southern Orlando MSA and hosts a massive hospitality and theme park industry infrastructure. Duke Energy Florida and FPL service across the county, the US 192 and Florida Turnpike data center corridor, and Florida's data center equipment exemption from sales tax (F.S. \u00a7 212.08(5)(f)) make it a relevant market for hospitality-sector IT and edge computing.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Kissimmee-Osceola County Chamber of Commerce",
+          "url": "https://www.kissimmeechamber.com"
+        },
+        {
+          "label": "Florida Department of Economic Opportunity",
+          "url": "https://floridajobs.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "12111": {
+      "name": "St. Lucie County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Port St. Lucie \u2014 Treasure Coast Growth Market and FPL Territory",
+      "description": "St. Lucie County (Port St. Lucie, Fort Pierce) is one of Florida's fastest-growing counties along the Treasure Coast between West Palm Beach and Melbourne. Florida Power & Light service with high reliability, Florida's data center equipment sales tax exemption, I-95 and US 1 fiber routes, and lower commercial land costs than the Palm Beach County market make it an emerging consideration for edge and secondary data center deployment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "St. Lucie County Economic Development",
+          "url": "https://www.stlucieedc.com"
+        },
+        {
+          "label": "Florida Power and Light \u2014 Business",
+          "url": "https://www.fpl.com/business"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "12115": {
+      "name": "Sarasota County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Sarasota \u2014 Gulf Coast Financial Services and FPL Service Territory",
+      "description": "Sarasota County (Sarasota, Venice, North Port) hosts a substantial financial services, healthcare, and professional services sector drawing significant enterprise IT demand. Florida Power & Light service, Florida's data center sales tax exemption, the US 41 corridor industrial sites, and the county's high-income workforce demographic supporting enterprise tech make it a secondary data center market on Florida's Gulf Coast.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Economic Development Corporation of Sarasota County",
+          "url": "https://www.edcsarasotacounty.com"
+        },
+        {
+          "label": "Florida Department of Economic Opportunity",
+          "url": "https://floridajobs.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "12127": {
+      "name": "Volusia County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Daytona Beach-Deltona \u2014 Central Florida Spine and Duke Energy Service",
+      "description": "Volusia County (Daytona Beach, Deltona, Deland) anchors the northeastern Orlando-Daytona corridor along I-4. Duke Energy Florida service, Embry-Riddle Aeronautical University's growing simulation and aerospace IT demand, Florida's data center equipment sales tax exemption, and the county's industrial park availability along I-95 and I-4 make it relevant for Central Florida data center expansion.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Team Volusia Economic Development Corporation",
+          "url": "https://www.teamvolusia.com"
+        },
+        {
+          "label": "Duke Energy Florida \u2014 Economic Development",
+          "url": "https://www.duke-energy.com/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "55009": {
+      "name": "Brown County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Green Bay \u2014 Northeast Wisconsin Hub and WPS/Integrys Service",
+      "description": "Brown County (Green Bay) is Wisconsin's third-largest city and the regional center for northeast Wisconsin. Wisconsin Public Service (WPS/Integrys) competitive industrial rates, growing healthcare IT (Bellin and HSHS systems), the Green Bay Titletown Tech corridor, and Wisconsin's no-data-center-specific-restriction environment make it a regional data center market for northeast Wisconsin enterprise deployments.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Green Bay Area Chamber of Commerce \u2014 EDC",
+          "url": "https://www.titletown.com/edc"
+        },
+        {
+          "label": "Wisconsin Economic Development Corporation",
+          "url": "https://wedc.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "55063": {
+      "name": "La Crosse County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "La Crosse \u2014 Upper Mississippi Hub and Dairyland Power Cooperative",
+      "description": "La Crosse County anchors the Upper Mississippi River corridor between Minneapolis and Madison. Dairyland Power Cooperative service with competitive wholesale rates and growing renewable mix, University of Wisconsin-La Crosse creating a research computing base, and the county's strategic position at the junction of I-90 and US 53 with Mississippi River fiber crossings make it a secondary Wisconsin data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "La Crosse Area Development Corporation",
+          "url": "https://www.lacrosseareadc.com"
+        },
+        {
+          "label": "Dairyland Power Cooperative",
+          "url": "https://www.dairylandpower.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "27145": {
+      "name": "Stearns County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "St. Cloud \u2014 Microsoft Data Center Hub and Xcel Energy Renewable",
+      "description": "Stearns County (St. Cloud) is home to one of Microsoft's major Azure data center campuses, choosing the area for its Xcel Energy access, cold-climate cooling advantages, fiber connectivity, and competitive power rates. Xcel Energy's heavy wind and nuclear portfolio in the region, Minnesota's Enterprise Zone program, and the county's established data center workforce make it one of the most significant data center markets in the Upper Midwest.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Greater St. Cloud Development Corporation",
+          "url": "https://www.greaterstcloud.com"
+        },
+        {
+          "label": "Xcel Energy \u2014 Economic Development",
+          "url": "https://www.xcelenergy.com/staticfiles/xe/Corporate/Corporate%20PDFs/eco-dev-MN.pdf"
+        },
+        {
+          "label": "Minnesota Department of Employment and Economic Development",
+          "url": "https://mn.gov/deed"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "verified",
+      "confidence_score": 85,
+      "source_tier": 1
+    },
+    "27137": {
+      "name": "St. Louis County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Duluth \u2014 Minnesota Power Low-Cost Hydro and Iron Range Digital",
+      "description": "St. Louis County (Duluth, Hibbing, Virginia MN) is Minnesota's largest county by area and hosts significant low-cost hydro and renewable electricity via Minnesota Power (ALLETE). The Iron Range's industrial power infrastructure, Great Lakes fiber access at the Duluth harbor, University of Minnesota Duluth computing programs, and some of the lowest electricity rates in the state make it a niche data center market for power-intensive workloads.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Minnesota Power (ALLETE) \u2014 Economic Development",
+          "url": "https://www.mnpower.com/CustomerService/EconomicDevelopment"
+        },
+        {
+          "label": "Greater Duluth Regional Chamber",
+          "url": "https://www.duluthchamber.com"
+        },
+        {
+          "label": "Iron Range Resources",
+          "url": "https://www.irrb.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 3
+    },
+    "27013": {
+      "name": "Blue Earth County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Mankato \u2014 Southern Minnesota Education and Industrial Hub",
+      "description": "Blue Earth County (Mankato, North Mankato) anchors southern Minnesota between the Twin Cities and Sioux Falls. Minnesota State University-Mankato's IT and computer science programs, Southern Minnesota Energy Cooperative service, I-90/US 169 connectivity, and the county's growing medical device and manufacturing sector create enterprise IT and edge computing demand.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Greater Mankato Growth",
+          "url": "https://www.greatermankato.com"
+        },
+        {
+          "label": "Minnesota Department of Employment and Economic Development",
+          "url": "https://mn.gov/deed"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "01003": {
+      "name": "Baldwin County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Daphne-Fairhope \u2014 Gulf Coast Growth and PowerSouth Territory",
+      "description": "Baldwin County (Daphne, Fairhope, Foley, Orange Beach) is Alabama's fastest-growing county along the Gulf Coast. PowerSouth Energy Cooperative service, Alabama's data center incentives under the Alabama Jobs Act, I-10 corridor connectivity linking Mobile to Pensacola, and the county's rapid residential and commercial growth driving enterprise IT demand make it an emerging secondary data center consideration in the Gulf Coast market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Baldwin County Economic Development Alliance",
+          "url": "https://www.baldwincountyed.com"
+        },
+        {
+          "label": "Alabama Department of Commerce",
+          "url": "https://www.madeinalabama.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "26115": {
+      "name": "Monroe County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Monroe \u2014 SE Michigan Industrial and DTE Energy Territory",
+      "description": "Monroe County (Monroe, Bedford) sits at the southeastern tip of Michigan between Detroit and Toledo on Lake Erie. DTE Energy service with large-scale industrial power capacity from legacy Monroe Power Plant infrastructure transitioning to renewables, I-75 corridor connectivity, and lower industrial land costs than Wayne County make it a candidate for large-scale data center deployments in the Detroit exurb.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Monroe County Business Development",
+          "url": "https://www.co.monroe.mi.us/brd"
+        },
+        {
+          "label": "DTE Energy \u2014 Economic Development",
+          "url": "https://www.dteenergy.com/business/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "26121": {
+      "name": "Muskegon County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Muskegon \u2014 Lake Michigan Port and Consumers Energy Offshore Wind Hub",
+      "description": "Muskegon County (Muskegon, Muskegon Heights) sits on Lake Michigan's east shore and is positioned as a key hub for Consumers Energy's Lake Michigan offshore wind development. The county's industrial brownfield sites from paper and manufacturing transitions, Consumers Energy service with growing renewable capacity, deepwater Lake Michigan access for cooling, and Michigan's data center infrastructure program make it a niche but growing data center consideration.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Muskegon Area First \u2014 Economic Development",
+          "url": "https://www.muskegonareafirst.org"
+        },
+        {
+          "label": "Consumers Energy \u2014 Economic Development",
+          "url": "https://www.consumersenergy.com/company/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "47113": {
+      "name": "Madison County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jackson \u2014 Western Tennessee Regional Hub and TVA Industrial Power",
+      "description": "Madison County (Jackson) is the primary commercial and healthcare hub for western Tennessee between Memphis and Nashville. TVA industrial power service through Jackson Energy Authority (JEA), Tennessee's no-income-tax advantage, US 45 and I-40 connectivity, and the county's regional hospital systems and university campus driving enterprise IT demand make it a data center consideration for western Tennessee deployments.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Jackson-Madison County Economic Development Group",
+          "url": "https://www.growjacksontn.com"
+        },
+        {
+          "label": "Tennessee Valley Authority \u2014 Economic Development",
+          "url": "https://www.tva.com/energy/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "21185": {
+      "name": "Oldham County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "La Grange \u2014 Louisville NE Suburb and LG&E Service Territory",
+      "description": "Oldham County (La Grange, Crestwood) is Louisville's fastest-growing northeastern suburb. Louisville Gas & Electric (LG&E/PPL) service, Kentucky's data center equipment sales tax exemption (KRS 139.497), I-71 corridor connectivity, and the county's lower industrial land costs compared to Jefferson County (Louisville) make it an attractive location for data center operators seeking Louisville market access at lower cost.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Oldham County Economic Development",
+          "url": "https://www.oldhamky.com/economic-development"
+        },
+        {
+          "label": "Kentucky Cabinet for Economic Development",
+          "url": "https://ced.ky.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -17379,7 +17931,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-16T20:09:46.253787+00:00",
+    "last_computed": "2026-07-16T20:15:15.401316+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

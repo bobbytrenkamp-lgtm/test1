@@ -6,6 +6,28 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 6)
+- `data/map_data.json` (Round 6)
+- `docs/data-sweeps/2026-07-massive-sweep-round-6.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 6**: Ohio industrial gaps (Lucas/Toledo, Butler/Cincinnati north, Stark/Canton), Pennsylvania Harrisburg metro (Dauphin, Cumberland), Florida secondary markets (Lee/Fort Myers, Osceola/Kissimmee, St. Lucie, Sarasota, Volusia/Daytona), Wisconsin (Brown/Green Bay, La Crosse), Minnesota (Stearns/St. Cloud — Microsoft Azure campus, St. Louis/Duluth — Minnesota Power hydro, Blue Earth/Mankato), Alabama Baldwin County (Gulf Coast growth), Michigan (Monroe/SE Michigan DTE, Muskegon/Lake Michigan wind), Tennessee Madison County (Jackson/TVA), Kentucky Oldham County (Louisville NE). 20 net new records. County total: 604 → 624.
+- **No FIPS errors**: All 20 FIPS codes validated clean on first run.
+
+Reasoning:
+- Harrisburg PA was a major gap — state capital government IT hub not previously documented. Stearns County MN (St. Cloud) is particularly significant as an actual Microsoft Azure data center site — a major real-world data center cluster not yet in the database.
+- Florida secondary markets (Lee, Sarasota, Volusia, St. Lucie, Osceola) fill out coverage for fast-growing FL metros not yet documented.
+- Michigan Monroe and Muskegon are Detroit exurb and Lake Michigan renewable energy plays.
+
+Problems Found:
+- None. All FIPS validated correctly on first run.
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 5)
 - `data/map_data.json` (Round 5)
 - `docs/data-sweeps/2026-07-massive-sweep-round-5.md` (new)
