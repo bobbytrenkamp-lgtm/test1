@@ -12534,6 +12534,227 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": true,
       "last_reviewed": "2026-07-16"
+    },
+    {
+      "fips": "21093",
+      "name": "Hardin County",
+      "state": "KY",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Fort Knox Military AI and Kentucky Data Center Incentives \u2014 Hardin County",
+      "description": "Hardin County (Elizabethtown) hosts Fort Knox U.S. Army Armor Center and is a growing technology hub benefiting from Kentucky's KEDFA incentive programs. Louisville Gas & Electric (LG&E, a PPL subsidiary) provides competitive power rates; the county's proximity to Louisville and I-65 fiber corridor supports data center development. Fort Knox's military AI and autonomous systems research programs create demand for secure edge computing facilities.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Kentucky KEDFA incentives include corporate income tax credits and workforce assessment fee exemptions for qualifying technology employers. Fort Knox hosts the U.S. Army Cyber Institute training and the Army's Network Enterprise Technology Command (NETCOM) regional operations. LG&E rates are highly competitive within the PJM grid footprint.",
+      "sources": [
+        {
+          "label": "Kentucky Cabinet for Economic Development KEDFA Programs",
+          "url": "https://ced.ky.gov/Business/StartGrowBusiness/Pages/Incentives.aspx"
+        },
+        {
+          "label": "Fort Knox Army Installation Technology Programs",
+          "url": "https://home.army.mil/knox/index.php/about/directorate-of-plans-training-mobilization-security/cyber"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": true,
+      "last_reviewed": "2026-07-16"
+    },
+    {
+      "fips": "21101",
+      "name": "Henderson County",
+      "state": "KY",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Kentucky Data Center Incentives \u2014 Henderson County Industrial Power Access",
+      "description": "Henderson County (Henderson KY) on the Ohio River has a legacy of power-intensive industrial operations (aluminum smelting, manufacturing) that built high-capacity electrical infrastructure. Big Rivers Electric Corporation provides competitive industrial power rates. Kentucky KEDFA incentives apply to data center investment; the county's I-69/US-41 position provides fiber connectivity north to Indianapolis and south to Nashville. Lower land costs and available industrial-zoned sites support data center development.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Big Rivers Electric's Henderson facilities benefit from coal generation at reasonable rates during the energy transition. Henderson County's industrial heritage (former Alcan/Century Aluminum smelter) created high-capacity transformer infrastructure that can be repurposed for data center power delivery. KEDFA incentives stack with local property tax concessions.",
+      "sources": [
+        {
+          "label": "Kentucky Cabinet for Economic Development KEDFA Programs",
+          "url": "https://ced.ky.gov/Business/StartGrowBusiness/Pages/Incentives.aspx"
+        },
+        {
+          "label": "Henderson County Economic Development",
+          "url": "https://www.hendersonkyeda.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": true,
+      "last_reviewed": "2026-07-16"
+    },
+    {
+      "fips": "01117",
+      "name": "Shelby County",
+      "state": "AL",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Alabama Jobs Act Incentives \u2014 Shelby County Birmingham Suburb",
+      "description": "Shelby County (Pelham/Hoover/Alabaster) is Alabama's fastest-growing county and an emerging technology hub. Alabama Power serves the county with competitive rates; the county's position as a Birmingham suburb provides access to metropolitan fiber infrastructure and workforce. Alabama's Jobs Act (Ala. Code \u00a740-18-376 et seq.) provides payroll-based income tax credits for qualifying data center employers. The county's high-income demographics and rapid commercial growth drive enterprise data demand.",
+      "effective_date": "2015-06-04",
+      "status": "active",
+      "notes": "Alabama's Jobs Act provides 3% payroll credit for up to 10 years. Shelby County's I-65 and US-280 corridors provide fiber diversity. Alabama Power's industrial rates are competitive in the southeastern US; the county benefits from Alabama's warm business climate (no inventory tax, no state income tax on dividends).",
+      "sources": [
+        {
+          "label": "Alabama Jobs Act Ala. Code \u00a740-18-376",
+          "url": "https://law.justia.com/codes/alabama/section-40-18-376/"
+        },
+        {
+          "label": "Shelby County Economic Development Authority",
+          "url": "https://www.shelbycountyal.com/economic-development/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": true,
+      "last_reviewed": "2026-07-16"
+    },
+    {
+      "fips": "01043",
+      "name": "Cullman County",
+      "state": "AL",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Alabama Jobs Act \u2014 Cullman County North Alabama Technology Corridor",
+      "description": "Cullman County (Cullman) in North Alabama's industrial corridor benefits from Alabama Power's TVA-competitive rates and the Alabama Jobs Act incentive program. The county's I-65 position midway between Birmingham and Huntsville provides fiber access; Marshall Space Flight Center (Madison County, 40 miles north) creates regional demand for aerospace and defense computing. Cullman Regional Airport provides logistics access for hardware deployments.",
+      "effective_date": "2015-06-04",
+      "status": "active",
+      "notes": "North Alabama's technology corridor is anchored by Huntsville-Madison (Redstone Arsenal, NASA, defense contractors) with Cullman positioned as a lower-cost satellite market. Alabama Power's North Alabama rates are among the lowest in the state due to proximity to TVA transmission. Local incentives include property tax abatement through the Cullman County IDB.",
+      "sources": [
+        {
+          "label": "Alabama Jobs Act Ala. Code \u00a740-18-376",
+          "url": "https://law.justia.com/codes/alabama/section-40-18-376/"
+        },
+        {
+          "label": "Cullman Economic Development Agency",
+          "url": "https://www.cullmanchamber.org/economic-development/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": true,
+      "last_reviewed": "2026-07-16"
+    },
+    {
+      "fips": "28105",
+      "name": "Oktibbeha County",
+      "state": "MS",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Mississippi State University Research Computing \u2014 Oktibbeha County",
+      "description": "Oktibbeha County (Starkville) hosts Mississippi State University's High Performance Computing Collaboratory (HPCC), one of the southeastern US's major academic supercomputing centers. MSU's AI and machine learning research programs drive demand for computing infrastructure. Entergy Mississippi serves the county; Mississippi's MEGA incentive program applies to qualifying data center investments. The Mississippi e-Center provides technology incubator services for AI startups.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "MSU HPCC operates the SuperMike cluster and multiple specialized GPU clusters for engineering and agricultural AI research. Mississippi's MEGA incentive can provide negotiated tax packages for large capital investments adjacent to university research facilities. Entergy Mississippi rates are competitive in the MISO South grid footprint.",
+      "sources": [
+        {
+          "label": "Mississippi State University High Performance Computing Collaboratory",
+          "url": "https://www.hpc.msstate.edu/"
+        },
+        {
+          "label": "Mississippi MEGA Incentive Program",
+          "url": "https://www.mississippi.org/wp-content/uploads/2021/06/IncentivesGuide.pdf"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": true,
+      "last_reviewed": "2026-07-16"
+    },
+    {
+      "fips": "47185",
+      "name": "White County",
+      "state": "TN",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Tennessee Valley Authority Power \u2014 White County Upper Cumberland",
+      "description": "White County (Sparta) in the Upper Cumberland region benefits from Tennessee Valley Authority (TVA) power delivered through the Upper Cumberland Electric Membership Corporation. Tennessee's T.C.A. \u00a767-6-206 data center equipment exemption applies; the county's rural location and TVA rates (among the lowest in the eastern US) make it attractive for energy-intensive computing. The Tennessee Department of Economic and Community Development's Upper Cumberland regional office actively recruits data center investment.",
+      "effective_date": "2016-01-01",
+      "status": "active",
+      "notes": "TVA's wholesale rates average 5.5-6.5 cents/kWh for industrial customers; retail rates through Upper Cumberland EMC are highly competitive. White County's scenic rural setting reduces visual impact permitting challenges. Tennessee has no state income tax on wages, reducing operational cost for data center operators.",
+      "sources": [
+        {
+          "label": "Tennessee T.C.A. \u00a767-6-206 Computer Equipment Sales Tax Exemption",
+          "url": "https://www.tn.gov/revenue/taxes/sales-and-use-tax/exemptions.html"
+        },
+        {
+          "label": "Tennessee Valley Authority Industrial Power Rates",
+          "url": "https://www.tva.com/energy/economics-of-power/power-rates"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": true,
+      "last_reviewed": "2026-07-16"
+    },
+    {
+      "fips": "37179",
+      "name": "Union County",
+      "state": "NC",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "North Carolina Data Center Incentives \u2014 Union County Charlotte Exurb",
+      "description": "Union County (Monroe NC) as a high-growth Charlotte exurb benefits from North Carolina's Article 3F data center tax incentives (G.S. \u00a7105-129.95) and Duke Energy Carolinas grid access. The county's Tier 1 economic status means lower investment thresholds for data center incentive qualification. The I-485 beltway connection to Charlotte's fiber network and the planned US-74 expansion improve logistics access for hardware deployments.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Union County's population has more than doubled since 2000; enterprise computing demand is growing rapidly. NC Article 3F exemptions in Union County (Tier 1) require $75M investment and 5 jobs. Duke Energy Carolinas transmission capacity serving the Charlotte-area load growth passes through the county.",
+      "sources": [
+        {
+          "label": "North Carolina G.S. \u00a7105-129.95 Data Center Tax Incentive",
+          "url": "https://www.ncleg.net/enactedlegislation/statutes/html/bysection/chapter_105/gs_105-129.95.html"
+        },
+        {
+          "label": "Union County Economic Development",
+          "url": "https://www.unioncountync.gov/departments/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": true,
+      "last_reviewed": "2026-07-16"
+    },
+    {
+      "fips": "51109",
+      "name": "Louisa County",
+      "state": "VA",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Virginia Data Center Exemption \u2014 Louisa County North Anna Nuclear Zone",
+      "description": "Louisa County hosts North Anna Nuclear Power Station (Dominion Energy, 1,892 MW from two units), providing highly reliable baseload power that supports data center 99.999% uptime requirements. Virginia's \u00a758.1-609.3(19) data center sales tax exemption applies; the county's position on the Route 33/I-64 corridor provides fiber access from the DC-Richmond data center spine. Land costs are significantly lower than Loudoun or Prince William counties for comparable power access.",
+      "effective_date": "2011-07-01",
+      "status": "active",
+      "notes": "North Anna Units 1 and 2 have operated since the 1970s; Dominion Energy is studying Units 3 and 4 SMR (small modular reactor) deployment. The county's position 40 miles northwest of Richmond provides network access while maintaining rural land costs. VA \u00a758.1-609.3(19) requires $150M qualified investment over 5 years.",
+      "sources": [
+        {
+          "label": "Virginia Code \u00a758.1-609.3(19) Data Center Exemption",
+          "url": "https://law.lis.virginia.gov/vacode/58.1-609.3/"
+        },
+        {
+          "label": "Dominion Energy North Anna Power Station",
+          "url": "https://www.dominionenergy.com/company/making-energy/nuclear-generation/north-anna-power-station"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": true,
+      "last_reviewed": "2026-07-16"
     }
   ]
 }
