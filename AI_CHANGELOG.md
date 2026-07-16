@@ -6,6 +6,28 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 5)
+- `data/map_data.json` (Round 5)
+- `docs/data-sweeps/2026-07-massive-sweep-round-5.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 5**: Defense/cyber hub (Richmond County GA — Fort Eisenhower/ARCYBER), Savannah GA port logistics, Alabama (Tuscaloosa/UA/Mercedes), Arkansas (Crittenden/West Memphis), three Kentucky counties (Scott/Georgetown/Toyota, Jessamine/Nicholasville, Warren/Bowling Green GM EV), Mississippi (Lamar/Hattiesburg), Nebraska (Washington/Blair/NPPD), Kansas (Pottawatomie/Manhattan/KSU), Oklahoma (Rogers/Claremore/Tulsa east), Ohio (Portage/Kent State), Tennessee (Blount/Alcoa/TVA), Illinois (Champaign/UIUC/NCSA), Indiana (Allen/Fort Wayne), NJ expansion (Burlington, Ocean), New York (Broome/Binghamton/IBM, Niagara/hydropower), Massachusetts (Bristol/New Bedford), Wisconsin (Winnebago/Oshkosh/Fox Valley). 21 net new records. County total: 583 → 604.
+- **FIPS errors corrected**: 28075 fixed to 28073 (Lamar County MS; 28075 = Lauderdale County), 20151 fixed to 20149 (Pottawatomie County KS; 20151 = Pratt County).
+
+Reasoning:
+- Priority on defense/cyber infrastructure (Augusta GA — one of the most significant US data center locations not yet documented), university tech hubs (UIUC/NCSA, KSU, Binghamton/IBM legacy), industrial power transition (Niagara Falls hydro, Alcoa/TVA, Fox Valley paper mills), and automotive EV manufacturing tech demand (Bowling Green GM, Georgetown Toyota, Fort Wayne I&M).
+- NJ/NY expansion fills continued gaps in the dense northeastern corridor.
+- FIPS validation pipeline caught both errors on first run before commit.
+
+Problems Found:
+- 2 FIPS errors (28075/Lamar MS → correct is 28073; 20151/Pottawatomie KS → correct is 20149); both fixed in place before commit.
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 4)
 - `data/map_data.json` (Round 4)
 - `docs/data-sweeps/2026-07-massive-sweep-round-4.md` (new)

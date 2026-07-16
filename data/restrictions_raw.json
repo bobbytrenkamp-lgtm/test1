@@ -15082,6 +15082,530 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "13245",
+      "name": "Richmond County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Augusta \u2014 US Army Cyber Command and ARCYBER Hub",
+      "description": "Richmond County (Augusta) hosts Fort Eisenhower (formerly Fort Gordon), home to US Army Cyber Command (ARCYBER), the National Security Agency's Georgia node, and the Cyber Center of Excellence. The county is one of the most significant US cyber and defense data infrastructure locations in the Southeast. Augusta University supports a growing cyber and AI research ecosystem. Georgia's O.C.G.A. \u00a7 48-8-3.2 data center equipment sales tax exemption applies. No local restrictions.",
+      "sources": [
+        {
+          "label": "US Army Cyber Command \u2014 Fort Eisenhower",
+          "url": "https://www.arcyber.army.mil"
+        },
+        {
+          "label": "Augusta Economic Development Authority",
+          "url": "https://www.augustaeda.org"
+        },
+        {
+          "label": "Georgia Department of Economic Development",
+          "url": "https://www.georgia.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "13051",
+      "name": "Chatham County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Savannah \u2014 Port Authority and Regional Logistics Data Hub",
+      "description": "Chatham County (Savannah) anchors Georgia's largest port complex. The Port of Savannah's massive Amazon and logistics footprint drives demand for edge and regional data center infrastructure. Georgia Power service territory, the state's data center tax exemption, and a growing tech workforce in the Historic Savannah/Pooler corridor position the county as an emerging secondary market.",
+      "sources": [
+        {
+          "label": "Savannah Economic Development Authority",
+          "url": "https://www.seda.org"
+        },
+        {
+          "label": "Georgia Ports Authority",
+          "url": "https://www.gaports.com"
+        },
+        {
+          "label": "Georgia Department of Economic Development",
+          "url": "https://www.georgia.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "01125",
+      "name": "Tuscaloosa County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Tuscaloosa \u2014 University of Alabama and Mercedes-Benz Tech Corridor",
+      "description": "Tuscaloosa County hosts the University of Alabama and the Mercedes-Benz US manufacturing complex, driving significant enterprise IT and edge data center demand. Alabama Power competitive industrial rates, Alabama's data center incentives under the Alabama Jobs Act, and the county's I-20/59 corridor connectivity make it a growing secondary market.",
+      "sources": [
+        {
+          "label": "Tuscaloosa County Industrial Development Authority",
+          "url": "https://www.tcida.com"
+        },
+        {
+          "label": "Alabama Department of Commerce",
+          "url": "https://www.madeinalabama.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "05035",
+      "name": "Crittenden County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "West Memphis \u2014 Memphis Metro River Crossing Data Corridor",
+      "description": "Crittenden County (West Memphis) sits at the Arkansas end of the Memphis, TN MSA across the Mississippi River. Lower industrial land costs than Shelby County TN, Arkansas's favorable tax environment (no inventory tax, data center sales tax exemption Act 182 of 2019), and critical fiber crossings at the I-40 and I-55 bridges make it an established data center alternative to the more expensive Tennessee side.",
+      "sources": [
+        {
+          "label": "West Memphis/Crittenden County Chamber",
+          "url": "https://www.wmchamber.com"
+        },
+        {
+          "label": "Arkansas Economic Development Commission \u2014 Data Centers",
+          "url": "https://www.arkansasedc.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "21209",
+      "name": "Scott County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Georgetown \u2014 Toyota and Amazon Logistics Infrastructure Hub",
+      "description": "Scott County (Georgetown) hosts Toyota Motor Manufacturing Kentucky, the largest Toyota plant in North America, and has attracted substantial Amazon logistics and delivery infrastructure. Kentucky Utilities service, Kentucky's data center incentives under KRS 139.497 (sales tax exemption on equipment and power), and the I-75 corridor make it a growing data center market as automotive tech drives IT demand.",
+      "sources": [
+        {
+          "label": "Georgetown-Scott County Chamber",
+          "url": "https://www.georgetownky.com/chamber"
+        },
+        {
+          "label": "Kentucky Cabinet for Economic Development",
+          "url": "https://ced.ky.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "21113",
+      "name": "Jessamine County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Nicholasville \u2014 Lexington Southern Suburb and KU/Data Growth",
+      "description": "Jessamine County (Nicholasville) anchors the southern Lexington MSA along US 27 and the KY 9 Mountain Parkway corridor. Kentucky Utilities service, Kentucky's data center tax incentive program, and the county's position in the Lexington labor and fiber market at lower industrial land costs make it an emerging consideration for enterprise and edge data center deployments.",
+      "sources": [
+        {
+          "label": "Jessamine County Economic Development",
+          "url": "https://www.jessaminecounty.com"
+        },
+        {
+          "label": "Lexington Area Commerce and Industry",
+          "url": "https://www.lexingtonky.gov/economic-development"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "21227",
+      "name": "Warren County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Bowling Green \u2014 EV Manufacturing, Amazon, and Transpark Growth",
+      "description": "Warren County (Bowling Green) is one of the fastest-growing counties in Kentucky, anchored by the GM EV manufacturing plant (Ultium Cells), Corvette assembly, and a major Amazon fulfillment complex. Kentucky Utilities service, Kentucky's data center equipment and power sales tax exemption, and the Bowling Green-Warren County Transpark industrial zone make it a priority target for edge data center development serving advanced manufacturing IT demand.",
+      "sources": [
+        {
+          "label": "Bowling Green Area Chamber of Commerce",
+          "url": "https://www.bgchamber.com"
+        },
+        {
+          "label": "Kentucky Cabinet for Economic Development",
+          "url": "https://ced.ky.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "28073",
+      "name": "Lamar County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hattiesburg Metro \u2014 Pine Belt Regional Hub",
+      "description": "Lamar County (Purvis, Lumberton) anchors the western Hattiesburg MSA and is one of Mississippi's fastest-growing counties. Entergy Mississippi service with competitive industrial rates, Mississippi's data center sales tax exemption (Miss. Code \u00a7 27-65-101), and the county's proximity to I-59 and the University of Southern Mississippi create some data center relevance for the Pine Belt region.",
+      "sources": [
+        {
+          "label": "Lamar County Economic Development",
+          "url": "https://www.lamarcountyms.com"
+        },
+        {
+          "label": "Mississippi Development Authority \u2014 Data Centers",
+          "url": "https://www.mississippi.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "31177",
+      "name": "Washington County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Blair \u2014 Omaha North Suburb and NPPD Territory",
+      "description": "Washington County (Blair, Fort Calhoun) lies north of Douglas County (Omaha) in the Nebraska Public Power District service territory. The county's proximity to the Omaha metro data center cluster, NPPD competitive industrial rates with significant nuclear generation (Cooper Nuclear Station), and Nebraska's data center sales tax exemption (Neb. Rev. Stat. \u00a7 77-2704.65) make it an extension of the Omaha market.",
+      "sources": [
+        {
+          "label": "Nebraska Public Power District",
+          "url": "https://www.nppd.com"
+        },
+        {
+          "label": "Nebraska Department of Economic Development \u2014 Data Centers",
+          "url": "https://opportunity.nebraska.gov/programs/data-center"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "20149",
+      "name": "Pottawatomie County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Manhattan Area \u2014 Kansas State University Research Computing",
+      "description": "Pottawatomie County anchors the western side of the Manhattan MSA (Riley County is the core). Kansas State University's AI and research computing expansion, Westar/Evergy service with competitive wind-heavy renewable rates, and the Manhattan area's growing data science and agricultural AI sector create data center relevance in this university corridor.",
+      "sources": [
+        {
+          "label": "Manhattan Area Chamber of Commerce",
+          "url": "https://www.manhattan-ks.org"
+        },
+        {
+          "label": "Kansas Department of Commerce \u2014 Data Centers",
+          "url": "https://www.kansascommerce.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "40131",
+      "name": "Rogers County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Claremore \u2014 Tulsa Eastern Suburb and PSO Service Territory",
+      "description": "Rogers County (Claremore) anchors the eastern Tulsa MSA along I-44. Public Service Company of Oklahoma (PSO/AEP) service with competitive Oklahoma industrial rates, Oklahoma's data center sales tax exemption (68 O.S. \u00a7 1355.4), and lower industrial land costs than Tulsa County make it a consideration for data center operators expanding in the Tulsa market.",
+      "sources": [
+        {
+          "label": "Claremore Area Chamber",
+          "url": "https://www.claremorechamber.com"
+        },
+        {
+          "label": "Oklahoma Department of Commerce",
+          "url": "https://www.okcommerce.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "39133",
+      "name": "Portage County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kent-Ravenna \u2014 Kent State and Northeast Ohio Industrial",
+      "description": "Portage County (Kent, Ravenna) hosts Kent State University and anchors a northeast Ohio industrial corridor between Cleveland and Akron. FirstEnergy/Ohio Edison service territory, Ohio's data center equipment exemption from sales tax (R.C. \u00a7 5739.02(B)), and the county's industrial heritage with competitive power access make it relevant for edge and research computing deployments.",
+      "sources": [
+        {
+          "label": "Portage County Economic Development",
+          "url": "https://www.portagecounty-oh.gov/economic-development"
+        },
+        {
+          "label": "Ohio Development Services Agency",
+          "url": "https://development.ohio.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "47009",
+      "name": "Blount County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Alcoa and Maryville \u2014 TVA Industrial Power and ORNL Adjacency",
+      "description": "Blount County (Maryville, Alcoa) anchors the southern Knoxville MSA and hosts a major Alcoa smelter, providing proof of large-scale industrial power access. TVA service through Knoxville Utilities Board, proximity to Oak Ridge National Laboratory's computational resources, Tennessee's no-income-tax advantage, and a growing technology corridor along US 129 make it a data center candidate.",
+      "sources": [
+        {
+          "label": "Blount Partnership \u2014 Economic Development",
+          "url": "https://www.blountpartnership.com"
+        },
+        {
+          "label": "Tennessee Valley Authority \u2014 Economic Development",
+          "url": "https://www.tva.com/energy/economic-development"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "17019",
+      "name": "Champaign County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Champaign-Urbana \u2014 UIUC National Center for Supercomputing",
+      "description": "Champaign County hosts the University of Illinois Urbana-Champaign, home to the National Center for Supercomputing Applications (NCSA) and one of the most significant research computing concentrations in the US. Ameren Illinois service, Illinois' High Impact Business data center program, and the county's concentration of AI/ML startups and corporate R&D operations create substantial data center demand.",
+      "sources": [
+        {
+          "label": "National Center for Supercomputing Applications \u2014 UIUC",
+          "url": "https://www.ncsa.illinois.edu"
+        },
+        {
+          "label": "Illinois Department of Commerce \u2014 High Impact Business",
+          "url": "https://dceo.illinois.gov/whyillinois/incentives/highimpactbusiness"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "18003",
+      "name": "Allen County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Fort Wayne \u2014 Northeast Indiana Regional Hub and I&M Service",
+      "description": "Allen County (Fort Wayne) is the second-largest city in Indiana and the regional hub for northeast Indiana. Indiana & Michigan Power (AEP) service with competitive industrial rates, Indiana's data center tax incentive program (IC 6-1.1-10-44), I-69 and I-469 connectivity, and the city's growing diversified industrial base position it as a data center destination for northern Indiana deployments.",
+      "sources": [
+        {
+          "label": "Greater Fort Wayne Chamber of Commerce",
+          "url": "https://www.greater-fwchamber.com"
+        },
+        {
+          "label": "Indiana Economic Development Corporation",
+          "url": "https://iedc.in.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "34005",
+      "name": "Burlington County",
+      "state": "New Jersey",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Burlington \u2014 Major NJ Suburb and PSE&G Corporate Corridor",
+      "description": "Burlington County (Mount Holly, Moorestown, Evesham) is one of the largest and most industrially active counties in New Jersey along I-295. PSE&G service territory with high reliability, proximity to Philadelphia metro fiber rings, New Jersey's Economic Redevelopment and Growth (ERG) Grant Program, and lower land costs than Camden or Middlesex counties make it a growing data center location.",
+      "sources": [
+        {
+          "label": "Burlington County Economic Development",
+          "url": "https://www.burlingtoncountynj.gov/economic"
+        },
+        {
+          "label": "New Jersey Economic Development Authority",
+          "url": "https://www.njeda.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "34029",
+      "name": "Ocean County",
+      "state": "New Jersey",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Toms River \u2014 NJ Shore Corridor and JCP&L Service Territory",
+      "description": "Ocean County (Toms River, Lakewood) anchors the northern New Jersey Shore corridor south of Monmouth County. JCP&L (FirstEnergy) service, access to I-195/Garden State Parkway fiber routes, and the county's growing tech-adjacent residential base drive enterprise data center demand. Industrial zoning in the Route 9 corridor provides site availability for medium-scale deployments.",
+      "sources": [
+        {
+          "label": "Ocean County Department of Planning",
+          "url": "https://www.planning.co.ocean.nj.us"
+        },
+        {
+          "label": "New Jersey Economic Development Authority",
+          "url": "https://www.njeda.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "36007",
+      "name": "Broome County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Binghamton \u2014 IBM Legacy and Binghamton University AI Research",
+      "description": "Broome County (Binghamton) has deep roots in computing through IBM's founding era and today hosts Binghamton University, a SUNY campus with growing AI and smart energy research programs. NYSEG (Avangrid) service, New York's Excelsior Jobs Program data center credits, and the county's legacy technology infrastructure position it as a data center candidate for distributed compute and research workloads.",
+      "sources": [
+        {
+          "label": "Broome County Industrial Development Agency",
+          "url": "https://www.bida.org"
+        },
+        {
+          "label": "New York State Excelsior Jobs Program",
+          "url": "https://esd.ny.gov/excelsior-jobs-program"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "36063",
+      "name": "Niagara County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Niagara Falls \u2014 Cheap Hydroelectric Power and Industrial Transition",
+      "description": "Niagara County (Niagara Falls, Lockport) hosts the Niagara Power Project, generating approximately 2,700 MW from the Niagara River. The Power Authority of New York (NYPA) has targeted this low-cost, renewable power specifically for data center attraction, offering Power Allocation to Businesses (PACKAGED POWER) and Economic Development Power programs. Former aluminum smelter sites provide high-power industrial infrastructure for conversion.",
+      "sources": [
+        {
+          "label": "New York Power Authority \u2014 Niagara Power Project",
+          "url": "https://www.nypa.gov/power/generation/niagara-power-project"
+        },
+        {
+          "label": "Niagara County Center for Economic Development",
+          "url": "https://www.nced.info"
+        },
+        {
+          "label": "NYPA \u2014 Economic Development Power",
+          "url": "https://www.nypa.gov/economic-development"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "25005",
+      "name": "Bristol County",
+      "state": "Massachusetts",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "New Bedford-Taunton \u2014 Southeastern MA and Eversource Service",
+      "description": "Bristol County (New Bedford, Taunton, Fall River, Attleboro) anchors southeastern Massachusetts between Boston and Providence. Eversource Energy service with New England grid reliability, the Route 44 and I-495 tech corridor, and the county's industrial heritage transitioning to tech-adjacent uses create data center consideration. Massachusetts Clean Energy Center programs support data center renewable commitments.",
+      "sources": [
+        {
+          "label": "Bristol County Economic Development",
+          "url": "https://www.southcoastsolutions.com"
+        },
+        {
+          "label": "Massachusetts Clean Energy Center",
+          "url": "https://www.masscec.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "55139",
+      "name": "Winnebago County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Oshkosh \u2014 Fox Valley Paper Industry Transition and WPS Service",
+      "description": "Winnebago County (Oshkosh, Neenah, Menasha) anchors the Fox Valley and was historically a paper and manufacturing center. Wisconsin Public Service (WPS) competitive industrial rates, the county's industrial power infrastructure from its paper mill era, and growing tech diversification following UW-Oshkosh's manufacturing engineering programs make it relevant for edge and industrial data center deployments.",
+      "sources": [
+        {
+          "label": "Oshkosh Chamber of Commerce and Economic Development",
+          "url": "https://www.oshkoshchamber.com"
+        },
+        {
+          "label": "Wisconsin Economic Development Corporation",
+          "url": "https://wedc.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
     }
   ]
 }
