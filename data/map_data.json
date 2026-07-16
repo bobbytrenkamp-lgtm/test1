@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-16T13:49:34.808833+00:00",
+  "generated_at": "2026-07-16T13:53:17.725731+00:00",
   "source_last_updated": "2026-07-14",
   "stats": {
-    "total_counties_tracked": 341,
+    "total_counties_tracked": 353,
     "by_level": {
-      "-1": 248,
+      "-1": 260,
       "0": 0,
       "1": 32,
       "2": 34,
@@ -12,10 +12,10 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 338,
+      "data_center": 350,
       "water": 12,
-      "ai": 107,
-      "energy": 73,
+      "ai": 113,
+      "energy": 75,
       "crypto": 14
     },
     "level_labels": {
@@ -9474,6 +9474,314 @@
       "confidence": "medium",
       "confidence_score": 59,
       "source_tier": 1
+    },
+    "49057": {
+      "name": "Weber County",
+      "state": "Utah",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Weber County Ogden Hill AFB Air Force Logistics and Technology Hub",
+      "description": "Weber County (Ogden) hosts Hill Air Force Base, home of Ogden Air Logistics Complex (OO-ALC) \u2014 one of three Air Force Air Logistics Centers responsible for maintaining and overhauling aircraft, missiles, and software systems. Hill AFB's Software Engineering directorate and the 388th/419th Fighter Wings' F-35 maintenance operations represent a major Air Force data and AI investment. No local DC restrictions; Utah's data center tax incentive (UCA \u00a759-12-104(96)) applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Hill Air Force Base \u2014 Ogden Air Logistics Complex",
+          "url": "https://www.hill.af.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "48039": {
+      "name": "Brazoria County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Brazoria County Freeport Dow Chemical and Petrochemical Technology Hub",
+      "description": "Brazoria County (Freeport/Lake Jackson) hosts Dow Chemical's Texas Operations \u2014 the largest integrated chemical complex in the western hemisphere \u2014 along with BASF, Olin, and OxyChem facilities. Process automation, SCADA, and environmental compliance data infrastructure serves one of the densest petrochemical industrial concentrations in North America. No local DC restrictions; Texas no-corporate-income-tax environment applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Dow Chemical Texas Operations \u2014 Freeport",
+          "url": "https://www.dow.com/en-us/site/texas-operations.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "48167": {
+      "name": "Galveston County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Galveston County NASA Johnson Space Center Area and UTMB Technology Hub",
+      "description": "Galveston County (Webster/Clear Lake/Galveston) sits adjacent to NASA Johnson Space Center (Harris County boundary), supporting the aerospace technology ecosystem with UTMB Galveston's biomedical research computing and Port of Galveston logistics IT. The Clear Lake aerospace cluster between NASA JSC and Galveston Bay drives significant engineering data and simulation infrastructure. No local DC restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "University of Texas Medical Branch (UTMB) \u2014 Galveston",
+          "url": "https://www.utmb.edu"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "37101": {
+      "name": "Johnston County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Johnston County Research Triangle Metro South Data Center Expansion",
+      "description": "Johnston County (Smithfield/Clayton) has emerged as a data center expansion corridor for the Research Triangle metro, offering lower land costs and competitive Duke Energy Progress electricity rates compared to Wake County while maintaining RTP fiber connectivity. The Johnston County I-40 and US-70 corridor supports warehouse and logistics technology alongside data infrastructure. No local DC restrictions; NC data center tax incentive (G.S. 105-164.13E) applies.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Johnston County Economic Development",
+          "url": "https://www.johnstoncountync.org/economic-development/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "04005": {
+      "name": "Coconino County",
+      "state": "Arizona",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Coconino County Flagstaff Northern Arizona University and Scientific Computing Hub",
+      "description": "Coconino County (Flagstaff) hosts Northern Arizona University (NAU) research computing, Lowell Observatory (pioneered SDSS/survey astronomy data), and the USGS Astrogeology Science Center \u2014 the primary hub for NASA planetary mapping data. NAU's high-altitude location and cooler climate support research data operations. No local DC restrictions; Arizona data center sales tax incentive applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "NAU Research Computing \u2014 Northern Arizona University",
+          "url": "https://nau.edu/research/research-computing/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "20161": {
+      "name": "Riley County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Riley County Fort Riley and Kansas State University Technology Hub",
+      "description": "Riley County (Manhattan) hosts Fort Riley, home of the 1st Infantry Division (Big Red One) with significant Army mission command and training data infrastructure, and Kansas State University (K-State) \u2014 a top-10 public research university in cybersecurity and agricultural engineering computing. K-State's National Agricultural Biosecurity Center drives specialized data operations. No local DC restrictions.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Fort Riley \u2014 1st Infantry Division",
+          "url": "https://www.riley.army.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "13153": {
+      "name": "Houston County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Houston County Warner Robins Robins AFB Air Force Logistics Technology Hub",
+      "description": "Houston County (Warner Robins) hosts Robins Air Force Base, home of the Warner Robins Air Logistics Complex (WR-ALC) \u2014 responsible for maintaining the C-17, C-5, F-15, and U-2 fleets \u2014 and the Air Force Life Cycle Management Center. The concentration of Air Force IT, software sustainment, and intelligence systems makes Warner Robins one of the most significant Air Force data hubs in the Southeast. No local DC restrictions; Georgia's data center sales tax exemption (O.C.G.A. \u00a748-8-3.2) applies.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Robins Air Force Base \u2014 Warner Robins Air Logistics Complex",
+          "url": "https://www.robins.af.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "51003": {
+      "name": "Albemarle County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Albemarle County Charlottesville University of Virginia Research Technology Hub",
+      "description": "Albemarle County (Charlottesville) hosts the University of Virginia (UVA) and its Rivanna Research computing cluster, UVA Health's clinical data infrastructure, and the National Radio Astronomy Observatory (NRAO) headquarters. UVA's data science, bioinformatics, and AI research programs drive significant research computing demand. No local DC restrictions; Virginia's data center sales tax exemption (\u00a758.1-609.3) and enterprise zone incentives apply.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "UVA Research Computing \u2014 University of Virginia",
+          "url": "https://www.rc.virginia.edu"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "21145": {
+      "name": "McCracken County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "McCracken County Paducah Nuclear Energy and Ohio River Technology Hub",
+      "description": "McCracken County (Paducah) hosts the legacy Paducah Gaseous Diffusion Plant \u2014 a former uranium enrichment facility now undergoing DOE decontamination \u2014 and TVA's grid operations for the region. Paducah's Ohio River location and TVA power make it an emerging data center candidate. No local DC restrictions; Kentucky's data center personal property tax exemption (KRS 132.200) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Paducah Area Chamber of Commerce",
+          "url": "https://www.paducahchamber.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "10005": {
+      "name": "Sussex County",
+      "state": "Delaware",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Sussex County Delaware Coastal and Agricultural Technology Hub",
+      "description": "Sussex County is Delaware's southernmost county, encompassing the Lewes technology sector (Blink Health, data startups), Perdue Farms' significant agricultural technology and supply chain data operations, and the Delmarva Peninsula's broadband connectivity anchor. Delaware's no-sales-tax environment and the Coastal Zone Act infrastructure support technology investment. No local DC restrictions; Delaware's data center tax incentive (\u00a71924A) applies.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Sussex County Economic Development",
+          "url": "https://www.sussexcountyde.gov/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 1
+    },
+    "01103": {
+      "name": "Morgan County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Morgan County Decatur Huntsville Metro West Manufacturing Technology Hub",
+      "description": "Morgan County (Decatur) hosts Nucor Corporation's steel mini-mill with advanced manufacturing data systems, 3M's specialty materials operations, and is part of the broader Huntsville metro manufacturing technology corridor along the Tennessee River. General Electric Nuclear Energy's nearby Decatur operations add energy sector data infrastructure. No local DC restrictions; Alabama's data center tax exemption and Growing Alabama credit apply.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Decatur-Morgan County Economic Development",
+          "url": "https://www.decaturedge.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
+    },
+    "04015": {
+      "name": "Mohave County",
+      "state": "Arizona",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Mohave County Kingman Arizona Data Center and Energy Technology Hub",
+      "description": "Mohave County (Kingman/Bullhead City/Lake Havasu) offers a low-cost alternative to the Phoenix metro data center market, with competitive APS/UniSource electricity rates, cooler high-desert temperatures than the Valley of the Sun, and I-40 corridor connectivity. The county's industrial land availability and Arizona's data center sales tax incentive have attracted interest from logistics and colocation operators. No local DC restrictions.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Mohave County Economic Development",
+          "url": "https://www.mohavecounty.us/ContentPage.aspx?id=173&cid=93"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null,
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
     }
   },
   "validation_report": {
@@ -9950,7 +10258,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-16T13:49:34.914846+00:00",
+    "last_computed": "2026-07-16T13:53:17.826929+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

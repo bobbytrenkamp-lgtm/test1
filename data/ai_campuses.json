@@ -1267,6 +1267,56 @@
       "notes": "UofSC operates research HPC supporting clinical genomics, public health, and social sciences; co-located data services with SC's state government DTO data center supporting digital government operations.",
       "lon": -81.0348,
       "lat": 33.9969
+    },
+    {
+      "id": "ai-ut-004",
+      "name": "Hill AFB Ogden Air Logistics Complex (OO-ALC) \u2014 Software Engineering",
+      "operator": "US Air Force / Ogden Air Logistics Complex",
+      "status": "operational",
+      "county_fips": "49057",
+      "notes": "OO-ALC's Software Engineering Group maintains and modernizes flight control, avionics, and maintenance software for USAF aircraft; F-35 sustainment software ops co-located; one of Air Force's primary sustainment data centers.",
+      "lon": -111.9738,
+      "lat": 41.124
+    },
+    {
+      "id": "ai-ga-006",
+      "name": "Robins AFB Warner Robins Air Logistics Complex (WR-ALC)",
+      "operator": "US Air Force / Warner Robins Air Logistics Complex",
+      "status": "operational",
+      "county_fips": "13153",
+      "notes": "WR-ALC maintains C-17, C-5, F-15, and U-2 aircraft and associated avionics, software, and intelligence systems; Air Force Life Cycle Management Center (AFLCMC) manages major acquisition programs from Robins; among largest employers in Georgia.",
+      "lon": -83.5919,
+      "lat": 32.6401
+    },
+    {
+      "id": "ai-va-007",
+      "name": "UVA Rivanna Research Computing and NRAO Headquarters \u2014 Charlottesville",
+      "operator": "University of Virginia / National Radio Astronomy Observatory",
+      "status": "operational",
+      "county_fips": "51003",
+      "notes": "UVA's Rivanna HPC cluster supports bioinformatics, data science, and clinical AI research at UVA Health; NRAO headquarters coordinates global radio telescope network data including the Very Large Array (VLA) and ALMA data archives.",
+      "lon": -78.4767,
+      "lat": 38.0293
+    },
+    {
+      "id": "ai-ks-002",
+      "name": "Fort Riley Mission Command and K-State Biosecurity Research Institute \u2014 Manhattan",
+      "operator": "US Army 1st Infantry Division / Kansas State University",
+      "status": "operational",
+      "county_fips": "20161",
+      "notes": "Fort Riley hosts 1st Infantry Division mission command and training data systems; K-State's Biosecurity Research Institute (BRI) operates BSL-3 research computing and NBAF (National Bio and Agro-defense Facility) data systems adjacent to campus.",
+      "lon": -96.5847,
+      "lat": 39.1836
+    },
+    {
+      "id": "ai-ky-001",
+      "name": "Paducah Area TVA Power Operations and DOE Technology Center",
+      "operator": "Tennessee Valley Authority / US DOE Paducah Site",
+      "status": "operational",
+      "county_fips": "21145",
+      "notes": "TVA's Paducah area grid operations manage power distribution for western Kentucky and surrounding states; the DOE Paducah Site's ongoing deactivation and remediation program operates extensive environmental monitoring and process data systems.",
+      "lon": -88.6001,
+      "lat": 37.0834
     }
   ]
 }
