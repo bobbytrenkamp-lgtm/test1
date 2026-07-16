@@ -1067,6 +1067,56 @@
       "notes": "AWS hyperscale data center campus in Delaware County, part of the broader AWS us-east-2 (Ohio) region footprint expanding beyond Franklin County into the lower-cost Delaware County corridor.",
       "lon": -83.0677,
       "lat": 40.2981
+    },
+    {
+      "id": "ai-wv-002",
+      "name": "WVU High Performance Computing and Research Center (HPCRC)",
+      "operator": "West Virginia University Research Corporation",
+      "status": "operational",
+      "county_fips": "54061",
+      "notes": "WVU HPCRC provides HPC resources for materials science, drug discovery, and energy research; also supports NASA IV&V software verification workflows co-located in Morgantown.",
+      "lon": -79.9559,
+      "lat": 39.6295
+    },
+    {
+      "id": "ai-nc-003",
+      "name": "Fort Liberty Army Computing and Mission Command Center",
+      "operator": "US Army XVIII Airborne Corps / USASOC",
+      "status": "operational",
+      "county_fips": "37051",
+      "notes": "Primary Army data and mission-command computing hub for the XVIII Airborne Corps and US Army Special Operations Command; supports joint all-domain command and control (JADC2) infrastructure.",
+      "lon": -79.0014,
+      "lat": 35.139
+    },
+    {
+      "id": "ai-hi-003",
+      "name": "W.M. Keck Observatory Data Processing Center",
+      "operator": "W.M. Keck Observatory / Caltech / UC",
+      "status": "operational",
+      "county_fips": "15001",
+      "notes": "Keck Observatory processes petabytes of astronomical imaging and spectroscopy data; connected to Caltech and UC system HPC networks for reduction, AI classification, and archival storage.",
+      "lon": -155.4681,
+      "lat": 19.8208
+    },
+    {
+      "id": "ai-ak-003",
+      "name": "Mat-Su Borough Digital Infrastructure Hub",
+      "operator": "Matanuska Telephone Association (MTA)",
+      "status": "operational",
+      "county_fips": "02170",
+      "notes": "MTA operates fiber network infrastructure and edge computing services for the Mat-Su Valley; supports state broadband connectivity and regional enterprise IT.",
+      "lon": -149.1183,
+      "lat": 61.5996
+    },
+    {
+      "id": "ai-ca-006",
+      "name": "UC Davis Farm Computing and Research Data Center",
+      "operator": "UC Davis Research IT / CAES",
+      "status": "operational",
+      "county_fips": "06113",
+      "notes": "UC Davis operates research computing supporting the College of Agricultural and Environmental Sciences, genomics research, and UC Davis Health clinical data; part of the UC-wide research computing network.",
+      "lon": -121.7405,
+      "lat": 38.5382
     }
   ]
 }
