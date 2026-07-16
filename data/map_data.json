@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-16T20:31:14.832371+00:00",
+  "generated_at": "2026-07-16T20:36:17.923300+00:00",
   "source_last_updated": "2026-07-16",
   "stats": {
-    "total_counties_tracked": 683,
+    "total_counties_tracked": 703,
     "by_level": {
-      "-1": 571,
+      "-1": 591,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,7 +12,7 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 674,
+      "data_center": 694,
       "water": 14,
       "ai": 182,
       "energy": 160,
@@ -19114,6 +19114,546 @@
       "confidence": "medium",
       "confidence_score": 52,
       "source_tier": 3
+    },
+    "48061": {
+      "name": "Cameron County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cameron County TX \u2014 Brownsville/SpaceX Starbase Boca Chica",
+      "description": "Cameron County anchors the Rio Grande Valley's southernmost tip, home to SpaceX's Starbase launch facility (formerly Boca Chica), Brownsville/South Padre Island International Airport, and AEP Texas's Lower Rio Grande Valley transmission system. The county hosts one of the highest-profile aerospace and advanced manufacturing investments in the US, driving demand for industrial power and high-connectivity infrastructure on the Texas-Mexico border.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "SpaceX Starbase \u2014 Cameron County TX",
+          "url": "https://www.cameroncounty.us/"
+        },
+        {
+          "label": "AEP Texas \u2014 Lower Rio Grande Valley",
+          "url": "https://www.aeptexas.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "48309": {
+      "name": "McLennan County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McLennan County TX \u2014 Waco/Baylor University/I-35 corridor",
+      "description": "McLennan County anchors central Texas along the I-35 corridor between Dallas-Fort Worth and Austin, served by Oncor Electric Delivery. Waco hosts Baylor University (one of Texas's largest private universities) and is a growing logistics and distribution hub. The midpoint position on the I-35 digital spine makes McLennan County relevant for connectivity and fiber route infrastructure serving both major Texas metros.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "McLennan County \u2014 City of Waco",
+          "url": "https://www.wacotx.gov/"
+        },
+        {
+          "label": "Oncor Electric \u2014 Central Texas",
+          "url": "https://www.oncor.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "48183": {
+      "name": "Gregg County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Gregg County TX \u2014 Longview/East Texas oil & gas energy hub",
+      "description": "Gregg County (Longview) is the commercial center of East Texas, heavily served by ArkLaTex natural gas and oil infrastructure. Longview's position at the junction of US-80 and US-259, combined with SWEPCO/AEP's industrial electrical capacity serving the Sabine River industrial corridor, creates competitive industrial energy pricing. LeTourneau University and the county's long industrial history make it a secondary East Texas data center consideration.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Gregg County \u2014 City of Longview TX",
+          "url": "https://www.longviewtexas.gov/"
+        },
+        {
+          "label": "Southwestern Electric Power Company (SWEPCO/AEP)",
+          "url": "https://www.swepco.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "18005": {
+      "name": "Bartholomew County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bartholomew County IN \u2014 Columbus/Cummins HQ/Toyota Manufacturing",
+      "description": "Bartholomew County (Columbus) is home to Cummins Inc.'s global headquarters, a Toyota Motor Manufacturing plant, and a nationally recognized design and architecture heritage. Columbus's industrial base drives significant electrical infrastructure through Duke Energy Indiana, while the county's advanced manufacturing concentration supports strong fiber connectivity and industrial power delivery. The Cummins campus's own IT and power systems represent a high-quality industrial data infrastructure baseline.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Bartholomew County \u2014 City of Columbus IN",
+          "url": "https://www.columbus.in.gov/"
+        },
+        {
+          "label": "Duke Energy Indiana \u2014 Columbus area",
+          "url": "https://www.duke-energy.com/home/products/energy-efficiency/indiana"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "18067": {
+      "name": "Howard County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Howard County IN \u2014 Kokomo/Stellantis/auto manufacturing",
+      "description": "Howard County (Kokomo) is one of the most automotive-intensive counties in the US, home to Stellantis (formerly Chrysler/Fiat Chrysler) manufacturing plants that produce transmission components and Jeep models. The industrial power infrastructure serving major auto plants through Duke Energy Indiana provides high-capacity electrical access at competitive industrial rates. Indiana Nextgen Networks and high-density auto supplier connectivity serve the county's manufacturing base.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Howard County \u2014 City of Kokomo IN",
+          "url": "https://www.cityofkokomo.org/"
+        },
+        {
+          "label": "Duke Energy Indiana \u2014 Kokomo",
+          "url": "https://www.duke-energy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "18035": {
+      "name": "Delaware County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Delaware County IN \u2014 Muncie/Ball State University",
+      "description": "Delaware County (Muncie) is home to Ball State University, one of Indiana's major public universities with significant research computing programs. The county's position on AEP Indiana's grid and proximity to the Indianapolis digital corridor makes it a secondary Indiana data center consideration. Ball State's own high-performance computing infrastructure and the county's cost-competitive industrial electricity represent real data center fundamentals for university-adjacent deployments.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Delaware County \u2014 City of Muncie IN",
+          "url": "https://www.cityofmuncie.com/"
+        },
+        {
+          "label": "Ball State University \u2014 Muncie IN",
+          "url": "https://www.bsu.edu/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "21047": {
+      "name": "Christian County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Christian County KY \u2014 Hopkinsville/Fort Campbell/101st Airborne",
+      "description": "Christian County (Hopkinsville) hosts Fort Campbell, the home of the Army's 101st Airborne Division (Air Assault) \u2014 one of the largest military installations in the US by population. Fort Campbell straddles the Kentucky-Tennessee border and drives significant federal IT, communications, and logistics infrastructure demand. Kenergy Corporation serves the area with industrial-grade power from the TVA system, providing competitive energy pricing for the significant government computing workloads in the county.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Fort Campbell \u2014 101st Airborne Division",
+          "url": "https://home.army.mil/campbell/"
+        },
+        {
+          "label": "Kenergy Corp (TVA member cooperative) \u2014 Christian County",
+          "url": "https://www.kenergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "21151": {
+      "name": "Madison County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Madison County KY \u2014 Richmond/Eastern Kentucky University",
+      "description": "Madison County (Richmond) anchors the Bluegrass region's eastern edge, home to Eastern Kentucky University and positioned between Lexington and the Appalachian transition zone on I-75. EKU's computing programs and the county's access to Kentucky Utilities (LG&E and KU Energy) provide solid infrastructure fundamentals. Richmond's growing logistics and industrial base along I-75 between Lexington and Knoxville positions it as a secondary data center consideration in the Bluegrass corridor.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Madison County \u2014 City of Richmond KY",
+          "url": "https://www.richmond.ky.us/"
+        },
+        {
+          "label": "Kentucky Utilities (LG&E and KU Energy)",
+          "url": "https://lge-ku.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "45007": {
+      "name": "Anderson County",
+      "state": "South Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Anderson County SC \u2014 Upstate SC tech cluster/Clemson University adjacent",
+      "description": "Anderson County is part of Upstate South Carolina's burgeoning advanced manufacturing and technology cluster, adjacent to Clemson University and benefiting from the BMW manufacturing corridor running from Greenville through Spartanburg. Duke Energy Carolinas serves the county with industrial rates competitive within the Southeast, while Clemson's research computing programs and the county's proximity to I-85 create fiber access. The Upstate SC region has attracted significant manufacturing and logistics investment that supports data center co-location.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Anderson County SC Economic Development",
+          "url": "https://www.andersoncountysc.org/"
+        },
+        {
+          "label": "Duke Energy Carolinas \u2014 Upstate SC",
+          "url": "https://www.duke-energy.com/home/products/south-carolina"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "45035": {
+      "name": "Dorchester County",
+      "state": "South Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dorchester County SC \u2014 Summerville/Boeing Charleston suburb",
+      "description": "Dorchester County (Summerville) is one of the fastest-growing counties in South Carolina, a northern suburb of Charleston directly adjacent to Boeing's commercial aircraft manufacturing operations at Charleston International Airport. Dominion Energy South Carolina serves the county, and the Charleston metro's robust fiber infrastructure extends into Dorchester. The county's I-26 and US-17A positioning combined with significant aviation and aerospace employment drive enterprise IT and connectivity demand.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Dorchester County SC",
+          "url": "https://www.dorchestercounty.net/"
+        },
+        {
+          "label": "Dominion Energy South Carolina",
+          "url": "https://www.dominionenergy.com/south-carolina"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "45013": {
+      "name": "Beaufort County",
+      "state": "South Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Beaufort County SC \u2014 Parris Island MCRD/MCAS Beaufort/Hilton Head",
+      "description": "Beaufort County combines significant military presence with one of the Southeast's premier resort economies. Marine Corps Recruit Depot Parris Island (one of two USMC recruit training bases in the US) and Marine Corps Air Station Beaufort (F-35 training) drive substantial federal IT and communications infrastructure. Dominion Energy South Carolina serves the county. The Hilton Head side brings significant corporate and hospitality IT infrastructure to a coastal county with growing broadband backbone connectivity.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "MCRD Parris Island \u2014 Beaufort County SC",
+          "url": "https://www.mcrdpi.marines.mil/"
+        },
+        {
+          "label": "MCAS Beaufort \u2014 Marine Corps Air Station",
+          "url": "https://www.beaufort.marines.mil/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "08014": {
+      "name": "Broomfield County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Broomfield County CO \u2014 Denver-Boulder tech corridor/Lumen Technologies HQ",
+      "description": "Broomfield County \u2014 Colorado's smallest county by area, created in 2001 as a standalone city-county \u2014 sits at the geographic midpoint of the Denver-Boulder technology corridor on US-36. Lumen Technologies (formerly CenturyLink) maintains its corporate headquarters in Broomfield, making it a literal internet infrastructure hub. Ball Aerospace, Oracle, and numerous telecom and cloud companies operate facilities here. Xcel Energy serves the corridor with highly competitive commercial rates backed by wind-heavy generation.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Broomfield County \u2014 City and County of Broomfield CO",
+          "url": "https://www.broomfield.org/"
+        },
+        {
+          "label": "Lumen Technologies HQ \u2014 Broomfield CO",
+          "url": "https://www.lumen.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "08101": {
+      "name": "Pueblo County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pueblo County CO \u2014 Pueblo/steel industry/Rocky Mountain internet exchange",
+      "description": "Pueblo County anchors southern Colorado with a legacy in steel manufacturing (EVRAZ Rocky Mountain Steel) and substantial industrial power infrastructure. Black Hills Energy and Xcel Energy both serve the county, with competitive industrial rates supported by the Arkansas River Basin's hydropower resources. Pueblo's position on I-25 and its fiber connectivity as a Southern Colorado internet hub (connecting Denver to New Mexico) gives it backbone relevance. Colorado State University-Pueblo and the county's cost-competitive land add secondary data center appeal.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Pueblo County CO",
+          "url": "https://www.pueblocounty.us/"
+        },
+        {
+          "label": "Black Hills Energy \u2014 Pueblo Colorado",
+          "url": "https://www.blackhillsenergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "22005": {
+      "name": "Ascension Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ascension Parish LA \u2014 Gonzales/Industrial Chemical Corridor/Entergy",
+      "description": "Ascension Parish (Gonzales) sits in the heart of Louisiana's Industrial Chemical Corridor between Baton Rouge and New Orleans, home to Dow Chemical, Shell Chemical, and BASF petrochemical plants. The industrial electrical infrastructure serving these massive chemical complexes through Entergy Louisiana provides exceptional high-load power delivery capacity. The parish's Baton Rouge Metro adjacency and I-10 positioning give fiber and connectivity access, while the industrial substation density creates unusually strong power infrastructure for large-load data center users.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Ascension Parish \u2014 Gonzales LA",
+          "url": "https://www.ascensionparish.net/"
+        },
+        {
+          "label": "Entergy Louisiana \u2014 Ascension Parish industrial",
+          "url": "https://www.entergy-louisiana.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "22063": {
+      "name": "Livingston Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Livingston Parish LA \u2014 Denham Springs/LIGO Observatory/Baton Rouge east",
+      "description": "Livingston Parish (Denham Springs) is the eastern Baton Rouge suburb and home to the LIGO Livingston Observatory \u2014 one of two sites of the Laser Interferometer Gravitational-Wave Observatory, which detected gravitational waves for the first time. LIGO Livingston's high-performance computing requirements have driven advanced fiber connectivity to the site. The parish's rapid residential and commercial growth east of Baton Rouge along I-12, served by Entergy Louisiana and Louisiana Electric Cooperative members, provides a growing data infrastructure base.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "LIGO Livingston Observatory \u2014 Livingston Parish LA",
+          "url": "https://www.ligo.caltech.edu/LA"
+        },
+        {
+          "label": "Livingston Parish LA",
+          "url": "https://www.livingstonparishla.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "22061": {
+      "name": "Lincoln Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lincoln Parish LA \u2014 Ruston/Louisiana Tech University/I-20",
+      "description": "Lincoln Parish (Ruston) anchors north-central Louisiana as the home of Louisiana Tech University, one of Louisiana's flagship research universities with nationally recognized programs in engineering and computer science. The university's computing infrastructure and I-20 corridor positioning between Shreveport and Monroe give Lincoln Parish connectivity and academic computing significance. Entergy Louisiana and the North Louisiana Electric Cooperative serve the parish with industrial rates competitive in the Deep South.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Louisiana Tech University \u2014 Ruston LA",
+          "url": "https://www.latech.edu/"
+        },
+        {
+          "label": "Lincoln Parish LA",
+          "url": "https://www.lincolnparish.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "49045": {
+      "name": "Tooele County",
+      "state": "Utah",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Tooele County UT \u2014 Tooele Army Depot/Salt Lake exurb/data center campus",
+      "description": "Tooele County sits directly west of Salt Lake County, served by Rocky Mountain Power (PacifiCorp) with some of the lowest utility rates in Utah. The county hosts the Tooele Army Depot (chemical weapons demilitarization and Army logistics) and has attracted data center development taking advantage of low land costs, cold desert climate for free-air cooling, competitive power rates, and Salt Lake City's fiber networks extending westward. The Tooele Valley's flat terrain and I-80 corridor access make it an active secondary data center zone.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Tooele County UT",
+          "url": "https://www.tooeleco.org/"
+        },
+        {
+          "label": "Rocky Mountain Power (PacifiCorp) \u2014 Utah",
+          "url": "https://www.rockymountainpower.net/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "49053": {
+      "name": "Washington County",
+      "state": "Utah",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Washington County UT \u2014 St. George/Dixie State/fastest-growing Utah city",
+      "description": "Washington County (St. George) has been the fastest-growing metropolitan area in the US by percentage multiple years running, driven by migration from California and Nevada. Dixie State University (now Utah Tech University) provides regional higher education computing needs. Rocky Mountain Power serves the county with competitive rates, while Utah's favorable tax environment and St. George's proximity to Las Vegas (130 miles) and the I-15 fiber corridor create secondary data center potential. The mild southern Utah climate and rapidly growing enterprise market make Washington County an emerging consideration.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Washington County UT \u2014 St. George",
+          "url": "https://www.washco.utah.gov/"
+        },
+        {
+          "label": "Rocky Mountain Power \u2014 Washington County UT",
+          "url": "https://www.rockymountainpower.net/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "32005": {
+      "name": "Douglas County",
+      "state": "Nevada",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Douglas County NV \u2014 Carson Valley/Reno-Carson data corridor",
+      "description": "Douglas County sits at the southern end of the Reno-Tahoe data center corridor in Carson Valley, between Reno (Washoe County) and Carson City. NV Energy serves the county with Nevada's competitive commercial electricity rates, and the valley's position on US-395 and SR-88 fiber routes gives it connectivity to both the Reno and Sacramento metro areas. The county's low land costs, rural character, and absence of state income tax add to Nevada's well-known data center appeal. Several industrial and logistics operations in Gardnerville and Minden demonstrate the county's suitability for large footprint users.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Douglas County NV",
+          "url": "https://www.douglas.nv.us/"
+        },
+        {
+          "label": "NV Energy \u2014 Douglas County Nevada",
+          "url": "https://www.nvenergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "24015": {
+      "name": "Cecil County",
+      "state": "Maryland",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cecil County MD \u2014 Elkton/I-95 DE border/Northeast corridor fiber",
+      "description": "Cecil County (Elkton) sits at the Maryland-Delaware border astride I-95 \u2014 the most heavily-fiber-cabled interstate corridor in the Northeast US. The county's position at the I-95/US-40 junction between Baltimore and Wilmington DE puts it directly on the Northeast fiber spine. Delmarva Power (an Exelon/Constellation company) serves the county, with grid access to PJM's highly liquid wholesale electricity market. The county's low land costs relative to neighboring Delaware and northern Maryland, combined with I-95 fiber diversity for data routing, create solid secondary data center fundamentals.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Cecil County MD",
+          "url": "https://www.ccgov.org/"
+        },
+        {
+          "label": "Delmarva Power (Exelon/Constellation) \u2014 Cecil County MD",
+          "url": "https://www.delmarva.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
     }
   },
   "validation_report": {
@@ -19590,7 +20130,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-16T20:31:14.944913+00:00",
+    "last_computed": "2026-07-16T20:36:18.030829+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

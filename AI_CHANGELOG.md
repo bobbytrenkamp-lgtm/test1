@@ -6,6 +6,29 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 10)
+- `data/map_data.json` (Round 10)
+- `docs/data-sweeps/2026-07-massive-sweep-round-10.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 10**: Texas SpaceX/East Texas (Cameron/Brownsville/SpaceX Starbase Boca Chica, McLennan/Waco/Baylor, Gregg/Longview/East Texas oil & gas), Indiana auto/university (Bartholomew/Columbus/Cummins HQ, Howard/Kokomo/Stellantis, Delaware/Muncie/Ball State), Kentucky military (Christian/Hopkinsville/Fort Campbell/101st Airborne, Madison/Richmond/Eastern Kentucky University), South Carolina secondary (Anderson/Upstate SC/Clemson, Dorchester/Summerville/Boeing Charleston, Beaufort/Parris Island/MCAS), Colorado (Broomfield/Denver-Boulder tech corridor/Lumen HQ, Pueblo/southern CO steel & internet), Louisiana (Ascension/Gonzales/petrochem Industrial Corridor, Livingston/LIGO Observatory, Lincoln/Ruston/Louisiana Tech), Utah (Tooele/Army Depot/SLC exurb data center zone, Washington County/St. George/Utah Tech), Nevada (Douglas/Carson Valley/Reno-Carson corridor), Maryland (Cecil/Elkton/I-95 NE fiber spine). 20 net new records (703 total).
+- **No FIPS errors**: All 20 FIPS codes validated clean on first run.
+
+Reasoning:
+- Cameron County TX (Brownsville/SpaceX): SpaceX Starbase Boca Chica is one of the highest-profile advanced manufacturing investments in the US and was a significant omission. AEP Texas power infrastructure serving SpaceX drives real industrial load capacity in the RGV.
+- Broomfield County CO: Literally hosts Lumen Technologies (formerly CenturyLink) HQ — a major US internet backbone provider. An unusual case where county identity is partly defined by internet infrastructure.
+- Ascension Parish LA: The Industrial Chemical Corridor's substation density (Dow/Shell/BASF) represents some of the highest industrial power load concentration in the US. Large-load data center fundamentals are exceptional here.
+- Tooele County UT: Active data center zone west of Salt Lake City — not aspirational, operational. Cold desert climate, PacifiCorp competitive rates, flat terrain, proximity to SLC fiber.
+
+Problems Found:
+- 0 FIPS errors (second clean round overall; first was Round 6).
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 9)
 - `data/map_data.json` (Round 9)
 - `docs/data-sweeps/2026-07-massive-sweep-round-9.md` (new)
