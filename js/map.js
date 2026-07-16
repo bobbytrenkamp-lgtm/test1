@@ -371,6 +371,7 @@ async function initMapFromGeo() {
     renderLegend();
     renderStats();
     initFilterPanelControls();
+    initDetailSheetSwipe();
     initTopToggle();
     initLegendControls();
     setDetailEmpty();
@@ -1768,6 +1769,91 @@ function closeFilterPanel() {
   document.getElementById("filter-toggle").setAttribute("aria-expanded", "false");
 }
 
+/* ── Detail sheet swipe-to-dismiss ── */
+function initDetailSheetSwipe() {
+  const panel  = document.getElementById("detail-panel");
+  const handle = document.getElementById("detail-panel-handle");
+  const header = document.getElementById("detail-header");
+  if (!panel || !handle || !header) return;
+
+  // Selector for elements that should handle their own taps (not start a drag).
+  const INTERACTIVE = "a, button, input, select, textarea, [role='button'], [role='link'], .source-gov-badge";
+
+  let dragging = false, startY = 0, startTime = 0, curDY = 0;
+
+  function tryStart(y, target) {
+    // Only start from handle/header and only when the sheet is actually open.
+    if (!panel.classList.contains("sheet-open")) return;
+    if (_sheetClosing) return;
+    // Do not begin drag when the user is tapping an interactive child
+    // inside the header (links, the × button, source citations, etc.).
+    if (target !== handle && target.closest(INTERACTIVE)) return;
+    dragging   = true;
+    startY     = y;
+    startTime  = Date.now();
+    curDY      = 0;
+    panel.classList.add("is-dragging");
+    panel.style.willChange = "transform";
+  }
+
+  function onMove(y) {
+    if (!dragging) return;
+    // Only allow downward movement (no scrolling the sheet upward via drag).
+    curDY = Math.max(0, y - startY);
+    panel.style.transform = `translateY(${curDY}px)`;
+  }
+
+  function onEnd(y) {
+    if (!dragging) return;
+    dragging = false;
+    const dy       = Math.max(0, y - startY);
+    const elapsed  = Math.max(1, Date.now() - startTime);
+    const velocity = dy / elapsed; // px / ms
+
+    panel.classList.remove("is-dragging");
+    panel.style.willChange = "";
+
+    const shouldDismiss = dy > 80 || velocity > 0.35;
+
+    if (shouldDismiss) {
+      // Animate the panel downward, then run the full close logic.
+      _sheetClosing = true;
+      const panelH  = panel.getBoundingClientRect().height || window.innerHeight;
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const duration = prefersReduced ? 10 : 260;
+      panel.style.transition = `transform ${duration}ms ease-out`;
+      panel.style.transform  = `translateY(${panelH + 20}px)`;
+      setTimeout(() => {
+        // Suppress the CSS transition that closeMobileSheet would normally trigger.
+        panel.style.transition = "none";
+        panel.style.transform  = "";
+        _sheetClosing = false;
+        requestCloseDetailSheet();
+      }, duration);
+    } else {
+      // Snap back to open position.
+      panel.style.transition = "transform 0.24s ease-out";
+      panel.style.transform  = "translateY(0)";
+      setTimeout(() => {
+        panel.style.transition = "";
+        panel.style.transform  = "";
+      }, 240);
+    }
+  }
+
+  function onCancel(y) { onEnd(y ?? startY + curDY); }
+
+  // Attach to both handle and header so the user can drag from either.
+  handle.addEventListener("touchstart", e => tryStart(e.touches[0].clientY, e.target), { passive: true });
+  header.addEventListener("touchstart", e => tryStart(e.touches[0].clientY, e.target), { passive: true });
+
+  // Move and end are on the panel so the gesture tracks even if the finger
+  // moves outside the handle/header during a fast drag.
+  panel.addEventListener("touchmove",   e => { if (dragging) onMove(e.touches[0].clientY); },   { passive: true });
+  panel.addEventListener("touchend",    e => onEnd(e.changedTouches[0].clientY),                { passive: true });
+  panel.addEventListener("touchcancel", e => onCancel(e.changedTouches[0]?.clientY),            { passive: true });
+}
+
 function initFilterPanelControls() {
   const toggleBtn   = document.getElementById("filter-toggle");
   const closeBtn    = document.getElementById("filter-panel-close");
@@ -1811,25 +1897,15 @@ function initFilterPanelControls() {
     }
   }
 
-  if (detailClose) detailClose.addEventListener("click", closeMobileSheet);
-
-  // Swipe-down on the drag handle to close the bottom sheet
-  const _handle = document.getElementById("detail-panel-handle");
-  if (_handle) {
-    let _swipeStartY = 0;
-    _handle.addEventListener("touchstart", e => {
-      _swipeStartY = e.touches[0].clientY;
-      e.stopPropagation();
-    }, { passive: true });
-    _handle.addEventListener("touchmove", e => {
-      e.stopPropagation();
-    }, { passive: true });
-    _handle.addEventListener("touchend", e => {
-      const dy = e.changedTouches[0].clientY - _swipeStartY;
-      if (dy > 60) closeMobileSheet();
-      e.stopPropagation();
-    }, { passive: true });
+  // X button: single reliable close path that also clears county/facility selection.
+  if (detailClose) {
+    detailClose.addEventListener("click", requestCloseDetailSheet);
+    // iOS Safari needs explicit touchstart+touchend to beat Leaflet's map gesture capture.
+    detailClose.addEventListener("touchstart", e => { e.stopPropagation(); }, { passive: false });
+    detailClose.addEventListener("touchend",   e => { e.preventDefault(); e.stopPropagation(); requestCloseDetailSheet(); }, { passive: false });
   }
+
+  // Swipe-to-dismiss is initialised separately via initDetailSheetSwipe() (called from init).
 
   // ── Map Layers panel drag (desktop only) ──
   let fpDragging = false, fpDragStartX, fpDragStartY, fpDragStartLeft, fpDragStartTop;
@@ -2100,8 +2176,57 @@ function renderDashboard(data) {
 }
 
 /* ── Mobile sheet ── */
-function openMobileSheet()  { document.getElementById("detail-panel").classList.add("sheet-open"); }
-function closeMobileSheet() { document.getElementById("detail-panel").classList.remove("sheet-open"); }
+
+// True when the layout is in mobile bottom-sheet mode.
+function isMobileSheet() { return window.innerWidth <= 700; }
+
+// Keeps closeMobileSheet from double-firing during an animated swipe dismissal.
+let _sheetClosing = false;
+
+function openMobileSheet() {
+  const p = document.getElementById("detail-panel");
+  if (!p) return;
+  _sheetClosing = false;
+  // Clear any inline styles left from a swipe gesture so the CSS transition takes over.
+  p.style.transform  = "";
+  p.style.transition = "";
+  p.style.willChange = "";
+  p.classList.remove("is-dragging", "is-closing");
+  p.classList.add("sheet-open");
+  document.body.classList.add("detail-sheet-open");
+  // Set --sheet-top after the CSS transition settles so the toolbar clip is accurate.
+  if (isMobileSheet()) {
+    const vh = window.innerHeight;
+    // Estimate immediately for a quick first clip, then refine after transition.
+    document.documentElement.style.setProperty("--sheet-top", Math.round(vh * 0.28) + "px");
+    setTimeout(() => {
+      const r = document.getElementById("detail-panel")?.getBoundingClientRect();
+      if (r && r.top > 0) document.documentElement.style.setProperty("--sheet-top", Math.round(r.top) + "px");
+    }, 300);
+  }
+}
+
+function closeMobileSheet() {
+  if (_sheetClosing) return;
+  const p = document.getElementById("detail-panel");
+  if (!p) return;
+  p.classList.remove("sheet-open", "is-dragging", "is-closing");
+  p.style.transform  = "";
+  p.style.transition = "";
+  p.style.willChange = "";
+  document.body.classList.remove("detail-sheet-open");
+  document.documentElement.style.removeProperty("--sheet-top");
+}
+
+// Single reliable close path for the X button and swipe gesture.
+// Clears county/facility selection state in addition to hiding the sheet.
+function requestCloseDetailSheet() {
+  if (selectedFips && countyLayerByFips[selectedFips]) {
+    countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
+  }
+  selectedFips = null;
+  setDetailEmpty(); // resets panel content and calls closeMobileSheet()
+}
 
 /* ── Detail panel ── */
 const WATER_STRESS_LABELS = { 0: "Low stress", 1: "Moderate stress", 2: "Elevated stress", 3: "High stress" };
@@ -2492,15 +2617,8 @@ function initKeyboardShortcuts() {
     const sheetOpen  = document.getElementById("detail-panel").classList.contains("sheet-open");
     if (filterOpen) {
       closeFilterPanel();
-    } else if (sheetOpen) {
-      closeMobileSheet();
-      if (selectedFips && countyLayerByFips[selectedFips]) countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
-      selectedFips = null;
-      setDetailEmpty();
-    } else if (selectedFips) {
-      if (countyLayerByFips[selectedFips]) countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
-      selectedFips = null;
-      setDetailEmpty();
+    } else if (sheetOpen || selectedFips) {
+      requestCloseDetailSheet();
     }
   });
 }

@@ -2,6 +2,44 @@
 
 ---
 
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
+- `js/map.js`
+- `css/style.css`
+- `BUG_TRACKER.md`
+
+Changes Made:
+- **`pointer-events` / `visibility` guard on closed sheet**: Added `pointer-events: none; visibility: hidden` to `#detail-panel` in the `@media (max-width: 700px)` closed state, with a `visibility` transition delay (`0s linear 0.28s`) so the element hides only after the slide-down animation completes. `.sheet-open` restores both with no delay so the panel is immediately interactive when opening.
+- **`requestCloseDetailSheet()` — single reliable close path**: New JS function that clears `selectedFips`, resets the county Leaflet style, calls `setDetailEmpty()`, then calls `closeMobileSheet()`. Previously the X button only called `closeMobileSheet()` (class removal) without clearing county selection state.
+- **X button iOS fix**: Replaced the `click`-only listener on `#detail-panel-close` with click + `touchstart` (stopPropagation) + `touchend` (preventDefault + stopPropagation + action), blocking Leaflet's gesture recognizer from consuming the tap before it reaches the button.
+- **`openMobileSheet()` / `closeMobileSheet()` rewrite**: Both functions now manage `body.detail-sheet-open`, inline `style.transform/transition/willChange` cleanup, `is-dragging` / `is-closing` class removal, and the `--sheet-top` CSS custom property (set immediately as `vh * 0.28`, then refined after the 300 ms transition via `setTimeout`). A `_sheetClosing` guard prevents re-entrant close calls during the swipe animation.
+- **`initDetailSheetSwipe()` — real-time swipe tracking**: New 78-line function registered in `init()`. Gesture begins from `#detail-panel-handle` or `#detail-header` (excluding interactive children). `is-dragging` class removes CSS transitions so the panel follows the finger live. On release: if `dy > 80 px` OR velocity `> 0.35 px/ms`, a 260 ms `ease-out` JS animation slides the panel fully off-screen before `requestCloseDetailSheet()` fires. Otherwise the panel snaps back to `translateY(0)` in 240 ms. Old 60 px threshold-only swipe handler removed.
+- **GIS toolbar clipping when sheet is open**: `body.detail-sheet-open #map-gis-bar { max-height: calc(var(--sheet-top, 30dvh) - 28px); overflow: hidden; }` clips toolbar buttons that would overlap the visible sheet header. `--sheet-top` is set in JS from the panel's real `getBoundingClientRect().top`.
+- **`#detail-panel.is-dragging`**: `transition: none !important` so in-flight CSS transitions don't fight the live JS `translateY` during drag.
+- **`#detail-panel-close` stacking fix**: Added `pointer-events: auto; position: relative; z-index: 1` so no sibling pseudo-elements can shadow the close button.
+- **`#detail-body` safe-area padding**: `padding-bottom: calc(32px + env(safe-area-inset-bottom))` prevents content from hiding behind the iOS home indicator.
+- **`@media (prefers-reduced-motion: reduce)` block**: Shortens all `#detail-panel` transitions to `0.01s` so users with motion sensitivity are unaffected.
+- **ESC handler simplified**: Now calls `requestCloseDetailSheet()` for both the mobile-sheet-open and desktop-selected-county cases, eliminating the duplicated style-reset logic.
+
+Reasoning:
+- The X button failure was a two-part problem: (1) the off-screen panel had no `pointer-events: none`, so Leaflet's touch recognizer could intercept taps near the bottom of the map area; (2) the `closeMobileSheet()` called from `click` only removed the CSS class without clearing `selectedFips`, leaving the county highlight active and the next map tap confusing.
+- iOS Safari sometimes swallows `click` events on elements inside a Leaflet map context. Adding `touchstart` (stopPropagation) + `touchend` (preventDefault + stopPropagation) ensures the button always receives the interaction before Leaflet does.
+- The swipe handler needed real-time visual tracking (`translateY` on `touchmove`) to feel native. The old 60 px threshold check with no visual feedback was unresponsive.
+- `_sheetClosing` prevents the 260 ms JS-animated swipe dismiss from being interrupted by a simultaneous `closeMobileSheet()` call (e.g., from ESC key or outside tap during the animation).
+- GIS bar clipping (`max-height: calc(--sheet-top - 28px)`) is scoped to `body.detail-sheet-open` so it has zero effect when the sheet is closed.
+
+Problems Found:
+- No browser runtime available in this container for live testing (Playwright chromium not launchable at `/opt/pw-browsers`). All verification is by code inspection and node syntax check.
+
+Next Recommended Actions:
+- Test on a physical iOS device: open a county, swipe down on the handle, verify real-time tracking and snap-back. Open a county, tap ×, verify sheet closes and county highlight clears.
+- Test with Reduce Motion enabled in iOS accessibility settings — sheet transitions should be nearly instant.
+- Test GIS toolbar clip: open a county on mobile, verify toolbar buttons above the sheet edge remain visible and buttons that would overlap are hidden.
+
+---
+
 Date: 2026-07-11
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
