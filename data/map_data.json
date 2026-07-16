@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-16T19:54:37.974119+00:00",
+  "generated_at": "2026-07-16T20:02:11.634551+00:00",
   "source_last_updated": "2026-07-16",
   "stats": {
-    "total_counties_tracked": 562,
+    "total_counties_tracked": 583,
     "by_level": {
-      "-1": 450,
+      "-1": 471,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,10 +12,10 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 553,
+      "data_center": 574,
       "water": 14,
-      "ai": 160,
-      "energy": 133,
+      "ai": 161,
+      "energy": 143,
       "crypto": 18
     },
     "level_labels": {
@@ -15738,6 +15738,584 @@
       "confidence": "high",
       "confidence_score": 78,
       "source_tier": 1
+    },
+    "48251": {
+      "name": "Johnson County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Southwest DFW \u2014 Cleburne Industrial Corridor",
+      "description": "Johnson County (Cleburne) anchors the southwestern DFW exurban corridor along US 67. Lower industrial land costs relative to Tarrant County, Oncor Energy service with competitive commercial rates, and the broader Texas economic climate with no corporate income tax make Johnson County an emerging data center consideration as the DFW market continues to expand outward.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Cleburne Economic Development Corporation",
+          "url": "https://www.cleburnedc.com"
+        },
+        {
+          "label": "Texas Economic Development",
+          "url": "https://gov.texas.gov/business"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "48397": {
+      "name": "Rockwall County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "East Dallas Suburb \u2014 Growing Industrial and Tech Zone",
+      "description": "Rockwall County (Rockwall) is one of the fastest-growing counties in the Dallas-Fort Worth MSA, situated on the eastern shore of Lake Ray Hubbard along I-30. Oncor service territory, lower commercial land costs than Dallas County, and the county's tech-friendly economic development environment make it attractive for edge data center and enterprise deployments.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Rockwall Economic Development Corporation",
+          "url": "https://www.rockwalledc.com"
+        },
+        {
+          "label": "DFW Regional Data Center Study",
+          "url": "https://www.dfwregionaldata.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "48091": {
+      "name": "Comal County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "San Antonio North Corridor \u2014 New Braunfels Industrial Growth",
+      "description": "Comal County (New Braunfels, San Marcos area) anchors the northern San Antonio expansion corridor along I-35. One of the fastest-growing counties in Texas, benefiting from GVTC Communications fiber, Guadalupe Valley Electric service, Texas no-income-tax advantage, and spillover from both Austin and San Antonio metro industrial demand. No county-level data center restrictions.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "New Braunfels Economic Development Corporation",
+          "url": "https://www.nbedc.com"
+        },
+        {
+          "label": "GVTC Communications \u2014 Business",
+          "url": "https://www.gvtc.com/business"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "36083": {
+      "name": "Rensselaer County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Troy and Tech Valley \u2014 RPI and Capital Region Innovation Hub",
+      "description": "Rensselaer County (Troy) is home to Rensselaer Polytechnic Institute and anchors the eastern Capital Region's tech valley initiative. National Grid service territory, New York's Excelsior Jobs Program incentives, and proximity to the Capital Region fiber ring position it as a secondary data center market. SUNY Poly and Albany NanoTech complex drive demand for research compute infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Capital Region Chamber \u2014 Economic Development",
+          "url": "https://www.capitalregionchamber.com"
+        },
+        {
+          "label": "New York State Excelsior Jobs Program",
+          "url": "https://esd.ny.gov/excelsior-jobs-program"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "34019": {
+      "name": "Hunterdon County",
+      "state": "New Jersey",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Central NJ Exurb \u2014 Data Center Candidate on Route 78 Corridor",
+      "description": "Hunterdon County (Flemington, Clinton) sits along the I-78 corridor in central New Jersey. JCP&L/FirstEnergy service territory, proximity to the Somerset County data center cluster, and lower industrial land costs than Union or Somerset counties make select Hunterdon locations candidates for large-footprint data center campuses. No county-level data center ordinances.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Hunterdon County Economic Development",
+          "url": "https://www.co.hunterdon.nj.us/planning/economic-development"
+        },
+        {
+          "label": "New Jersey Economic Development Authority",
+          "url": "https://www.njeda.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "42073": {
+      "name": "Lawrence County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "New Castle \u2014 Ohio River Industrial Legacy Power Infrastructure",
+      "description": "Lawrence County (New Castle) sits northwest of Pittsburgh on the Ohio River corridor and retains substantial industrial-grade power infrastructure from its steel legacy. FirstEnergy/Illuminating Company service, PIDA grant eligibility, and Pennsylvania's absence of a specific data center tax program make it suitable for power-intensive deployments benefiting from legacy infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Lawrence County Economic Development Corporation",
+          "url": "https://www.lcedc.com"
+        },
+        {
+          "label": "Pennsylvania Department of Community and Economic Development",
+          "url": "https://dced.pa.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "42019": {
+      "name": "Butler County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pittsburgh North Suburb \u2014 Growing Industrial and Tech Zone",
+      "description": "Butler County (Butler, Cranberry Township) is the fastest-growing county in western Pennsylvania and anchors Pittsburgh's northern tech and industrial corridor. West Penn Power/FirstEnergy service, the county's attractiveness for corporate relocations along PA 228 and I-79, and proximity to Pittsburgh International Airport's fiber infrastructure make it a data center consideration.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Butler County Economic Development",
+          "url": "https://www.butlercountyeda.org"
+        },
+        {
+          "label": "Allegheny Conference on Community Development",
+          "url": "https://www.alleghenyconference.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "42125": {
+      "name": "Washington County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Pittsburgh South \u2014 Marcellus Shale and Industrial Power Access",
+      "description": "Washington County (Washington, Canonsburg) lies south of Pittsburgh and has benefited from Marcellus Shale natural gas development, providing competitive industrial power. FirstEnergy/West Penn Power service, I-79 and I-70 corridor logistics, and the county's tradition of heavy industry make it a candidate for power-intensive data center deployments.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Washington County Chamber of Commerce",
+          "url": "https://www.washcochamber.com"
+        },
+        {
+          "label": "Southwest Pennsylvania Commission",
+          "url": "https://www.spcregion.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "42063": {
+      "name": "Indiana County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Indiana \u2014 IUP and Rural Appalachian Fiber Corridor",
+      "description": "Indiana County (Indiana) hosts Indiana University of Pennsylvania and sits on a key fiber route across the Laurel Highlands. Penelec/FirstEnergy service and the county's position along US 422 connecting Pittsburgh and Philadelphia provide some data center relevance, primarily for educational computing and distributed infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Indiana County Department of Planning and Development",
+          "url": "https://www.indianacountypa.gov"
+        },
+        {
+          "label": "Keystone Development Partnership",
+          "url": "https://keystonedp.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "24009": {
+      "name": "Calvert County",
+      "state": "Maryland",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Southern Maryland \u2014 DC-Adjacent Emerging Market",
+      "description": "Calvert County (Prince Frederick) sits along the western shore of the Chesapeake Bay south of Prince George's County. Growing as a DC-adjacent residential and light-industrial area, it benefits from Pepco/Exelon service reliability and proximity to the National Capital Region fiber ring. The county's Southern Maryland Technology Corridor initiative supports tech investment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Calvert County Department of Economic Development",
+          "url": "https://www.calvertcountymd.gov/economic-development"
+        },
+        {
+          "label": "Southern Maryland Blue Crab",
+          "url": "https://www.somdnews.com/business"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "37057": {
+      "name": "Davidson County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "NC Triad \u2014 Lexington Industrial Hub and Duke Energy Access",
+      "description": "Davidson County (Lexington, Thomasville) occupies the center of the North Carolina Triad region between Greensboro and Winston-Salem. Duke Energy Carolinas service with competitive industrial rates, the county's industrial heritage (furniture manufacturing), Tier 2 county status for NC economic development incentives, and I-85 corridor access make it attractive for data center investment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Davidson County Economic Development Commission",
+          "url": "https://www.davidsonco.com/economic-development"
+        },
+        {
+          "label": "Duke Energy \u2014 Data Center Solutions NC",
+          "url": "https://www.duke-energy.com/business"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "37077": {
+      "name": "Granville County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Raleigh North \u2014 Research Triangle Overflow and Duke Energy",
+      "description": "Granville County (Oxford) lies north of Wake County and directly captures Research Triangle overflow demand as land and power costs in the Triangle core have escalated. Duke Energy Progress service, Tier 2 NC county incentives, and the US 158/I-85 corridor give it strong site-selection characteristics for data center campuses seeking rural land at lower cost.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Granville County Economic Development Commission",
+          "url": "https://www.granvilleedc.com"
+        },
+        {
+          "label": "NC Department of Commerce \u2014 Site Selection",
+          "url": "https://www.nccommerce.com/business/site-selection"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "37157": {
+      "name": "Rockingham County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "NC Triad North \u2014 Eden Industrial Corridor and Duke Energy",
+      "description": "Rockingham County (Reidsville, Eden) anchors the northern Triad region and is a Tier 1 distressed county in NC's economic development program, qualifying for maximum state incentive levels. Duke Energy Carolinas service, large tracts of former industrial land (textiles), and US 220/US 29 corridor access make it a candidate for large-footprint data center campuses where incentives can be maximized.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Rockingham County EDC",
+          "url": "https://www.rockinghamcountyedcnc.com"
+        },
+        {
+          "label": "NC Tier 1 Designation",
+          "url": "https://www.nccommerce.com/grants-incentives/county-tiers"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "45057": {
+      "name": "Lancaster County",
+      "state": "South Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Charlotte Metro South \u2014 Duke Energy and SC Incentives",
+      "description": "Lancaster County (Lancaster) anchors the southern Charlotte metro in South Carolina and benefits from a powerful combination of incentives: SC's no inventory tax, Fee in Lieu of Taxes (FILOT) agreements allowing 6% assessment ratio instead of 10.5%, Duke Energy Carolinas service, and a Tier IV (highest) SC Coordinating Council designation qualifying for maximum state incentives.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Lancaster County Economic Development",
+          "url": "https://www.lancasteredc.com"
+        },
+        {
+          "label": "SC Department of Commerce \u2014 Incentives",
+          "url": "https://sccommerce.com/business-services/incentives"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "12109": {
+      "name": "St. Johns County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jacksonville South Suburb \u2014 Ponte Vedra and St. Augustine Growth",
+      "description": "St. Johns County (St. Augustine, Ponte Vedra Beach) is the fastest-growing county in Florida by percentage and the wealthiest in the Northeast Florida region. Florida Power & Light service, rapidly expanding fiber infrastructure along I-95, and the county's strong economic development posture make it an emerging candidate for edge and enterprise data center deployments serving the Jacksonville MSA.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "St. Johns County Economic Development",
+          "url": "https://www.sjcedc.com"
+        },
+        {
+          "label": "Northeast Florida Regional Council",
+          "url": "https://www.nefrpc.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "47155": {
+      "name": "Sevier County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Smokies Corridor \u2014 TVA Power and Oak Ridge Tech Adjacency",
+      "description": "Sevier County (Sevierville, Gatlinburg, Pigeon Forge) sits adjacent to Anderson County's Oak Ridge National Laboratory complex in the TVA service territory. TVA's competitive industrial power rates, the county's growing commercial base, and proximity to ORNL's leadership computing facilities create some data center interest. Tennessee's no-income-tax advantage and state incentive programs apply.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Sevier County Economic Development",
+          "url": "https://www.seviervilletn.org"
+        },
+        {
+          "label": "Tennessee Valley Authority \u2014 Economic Development",
+          "url": "https://www.tva.com/energy/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "29099": {
+      "name": "Jefferson County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "St. Louis South \u2014 I-55 Corridor Growth",
+      "description": "Jefferson County (Festus, Arnold) anchors the southern St. Louis MSA along I-55. Ameren Missouri service, lower industrial land costs relative to St. Louis County, and a growing tech industrial base driven by the broader metro's data center expansion make it a candidate for colocation and edge deployments. The county's Meramec River corridor provides additional site diversity.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Jefferson County Economic Development Corporation",
+          "url": "https://www.jecdc.org"
+        },
+        {
+          "label": "Ameren Missouri \u2014 Economic Development",
+          "url": "https://www.ameren.com/missouri/business/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "29027": {
+      "name": "Callaway County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Columbia MO Area \u2014 University Research Infrastructure",
+      "description": "Callaway County (Fulton) lies east of Columbia in the Union Electric/Ameren Missouri service area and adjacent to Callaway Nuclear Plant \u2014 one of Missouri's primary power generation assets. The county's proximity to University of Missouri and related research computing infrastructure, combined with competitive power access, creates data center relevance.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Callaway County Economic Development Corporation",
+          "url": "https://www.callawaycountyedc.org"
+        },
+        {
+          "label": "Missouri Rural Electric Cooperative",
+          "url": "https://www.callawayelectric.coop"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "18127": {
+      "name": "Porter County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Chicago Metro East \u2014 I-90 Corridor and NIPSCO Service",
+      "description": "Porter County (Valparaiso, Portage) anchors Indiana's northwestern corner along the I-90/I-80 Chicago-Detroit corridor. Northern Indiana Public Service Company (NIPSCO) provides competitive industrial rates with significant renewable transition underway. The county's proximity to Chicago metro fiber routes, lower Indiana industrial property tax rates, and I-94 access make it relevant for data center site selection as an alternative to more expensive Cook County IL sites.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Porter County Economic Development",
+          "url": "https://www.porterco.org/economic-development"
+        },
+        {
+          "label": "NIPSCO \u2014 Business Solutions",
+          "url": "https://www.nipsco.com/my-business"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "22047": {
+      "name": "Iberville Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Plaquemine \u2014 Petrochemical Power Infrastructure and ITEP",
+      "description": "Iberville Parish (Plaquemine) hosts a dense petrochemical industrial complex along the Mississippi River with abundant industrial-grade power infrastructure. Louisiana's Industrial Tax Exemption Program (ITEP) offers 100% property tax abatement for qualifying manufacturing facilities including data centers. Entergy Louisiana service with interruptible industrial rates and fiber along the River Road corridor.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Iberville Economic Development District",
+          "url": "https://www.iberville.org"
+        },
+        {
+          "label": "Louisiana Economic Development \u2014 ITEP",
+          "url": "https://www.opportunitylouisiana.gov/business-incentives/itep"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "22121": {
+      "name": "West Baton Rouge Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Port Allen \u2014 I-10 Corridor and Mississippi River Power Hub",
+      "description": "West Baton Rouge Parish (Port Allen) sits directly across the Mississippi River from Baton Rouge, offering access to the full Baton Rouge MSA infrastructure at lower land costs. Entergy Louisiana service, Louisiana ITEP 100% property tax abatement, I-10 fiber corridor, and cross-river bridge access to Baton Rouge's tech and university economy make it a data center candidate.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "West Baton Rouge Parish \u2014 Business Development",
+          "url": "https://www.westbatonrouge.net"
+        },
+        {
+          "label": "Louisiana Economic Development",
+          "url": "https://www.opportunitylouisiana.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -16214,7 +16792,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-16T19:54:38.082287+00:00",
+    "last_computed": "2026-07-16T20:02:11.741055+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

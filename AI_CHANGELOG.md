@@ -6,6 +6,27 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 4)
+- `data/map_data.json` (Round 4)
+- `docs/data-sweeps/2026-07-massive-sweep-round-4.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 4**: DFW exurb expansion (Johnson TX, Rockwall TX, Comal TX), Mid-Atlantic gap fill (Hunterdon NJ, Rensselaer NY, Calvert MD), Carolinas corridor (Davidson NC, Granville NC, Rockingham NC, Lancaster SC), Pittsburgh region (Butler PA, Lawrence PA, Washington PA, Indiana PA), Florida (St. Johns), Tennessee (Sevier), Missouri (Jefferson, Callaway), Indiana (Porter), Louisiana (Iberville, West Baton Rouge). 21 net new records (22 attempted; 1 FIPS error fixed — 29213 Taney County was mislabeled as St. Charles; St. Charles is already at 29183). County total: 562 → 583.
+- **FIPS error corrected**: 29213 removed (Taney County MO, not St. Charles). St. Charles County MO correctly exists at 29183.
+
+Reasoning:
+- Prioritized secondary markets adjacent to already-documented primaries (DFW exurbs, Pittsburgh region, Charlotte/Raleigh overflow counties, Baton Rouge industrial corridor).
+- FIPS validation pipeline caught the Taney/St. Charles error on first run.
+
+Problems Found:
+- 1 FIPS error (29213/Taney labeled as St. Charles); corrected before commit.
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 3)
 - `data/map_data.json` (Round 3)
 - `docs/data-sweeps/2026-07-massive-sweep-round-3.md` (new)
