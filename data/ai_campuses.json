@@ -1617,6 +1617,56 @@
       "notes": "Arkansas State University operates a regional HPC cluster and data analytics center in Jonesboro, supporting research in agricultural AI, bioinformatics, and supply-chain optimization for the Arkansas Delta region. The facility is part of the Arkansas High Performance Computing Center (AHPCC) statewide network.",
       "lon": -90.7043,
       "lat": 35.8423
+    },
+    {
+      "id": "ai-ma-003",
+      "name": "UMass Medical School / WPI Advanced Research Computing Hub — Worcester MA",
+      "operator": "University of Massachusetts Medical School / Worcester Polytechnic Institute",
+      "status": "operational",
+      "county_fips": "25027",
+      "notes": "UMass Medical and WPI jointly anchor central Massachusetts's life-sciences computing cluster. Research computing at UMass Medical supports genomics, clinical AI, and NIH-funded biomedical informatics. WPI's Data Science program operates HPC resources shared with regional biotech partners.",
+      "lon": -71.8023,
+      "lat": 42.2626
+    },
+    {
+      "id": "ai-ct-001",
+      "name": "Synchrony Financial Data Operations Center — Stamford CT",
+      "operator": "Synchrony Financial",
+      "status": "operational",
+      "county_fips": "09001",
+      "notes": "Synchrony Financial, one of the nation's largest consumer financial services companies, operates its headquarters and primary data operations center in Stamford. The facility processes credit and financing AI/ML models serving 70M+ active accounts and 450,000+ merchant partners, anchoring Fairfield County's fintech computing cluster.",
+      "lon": -73.5387,
+      "lat": 41.0534
+    },
+    {
+      "id": "ai-mn-004",
+      "name": "Amazon Shakopee Fulfillment AI Operations Center",
+      "operator": "Amazon",
+      "status": "operational",
+      "county_fips": "27139",
+      "notes": "Amazon operates multiple fulfillment and delivery station facilities in Shakopee (Scott County), among the largest employment sites in the Twin Cities metro. These facilities deploy AI-driven robotics, inventory prediction, and last-mile routing optimization, making them significant edge AI operations nodes.",
+      "lon": -93.5196,
+      "lat": 44.7974
+    },
+    {
+      "id": "ai-ca-010",
+      "name": "UC Merced Cyberinfrastructure and HPC Initiative",
+      "operator": "University of California, Merced",
+      "status": "operational",
+      "county_fips": "06047",
+      "notes": "UC Merced's Cyberinfrastructure Initiative provides HPC and cloud resources to researchers across UC campuses. Research areas include Central Valley climate modeling, agricultural AI, wildfire prediction, and renewable energy grid optimization. The campus is allocated compute on NSF ACCESS and XSEDE successor systems.",
+      "lon": -120.4233,
+      "lat": 37.3656
+    },
+    {
+      "id": "ai-ok-006",
+      "name": "Muscogee (Creek) Nation Tribal Digital Operations Center — Okmulgee OK",
+      "operator": "Muscogee (Creek) Nation",
+      "status": "operational",
+      "county_fips": "40111",
+      "notes": "The Muscogee (Creek) Nation operates a centralized tribal government data center in Okmulgee supporting health records (Indian Health Service integration), gaming analytics, citizen services, and the Nation's e-commerce and retail technology platforms for tribal enterprises.",
+      "lon": -95.967,
+      "lat": 35.6239
     }
   ]
 }
