@@ -1567,6 +1567,56 @@
       "notes": "Western Michigan University operates high-performance computing infrastructure supporting pharmaceutical AI research in partnership with the Kalamazoo life-sciences cluster (Pfizer, Stryker, Zoetis). Research areas include protein folding, clinical trial data analytics, and orthopedic implant design AI.",
       "lon": -85.5864,
       "lat": 42.2842
+    },
+    {
+      "id": "ai-id-002",
+      "name": "Idaho National Laboratory (INL) Cybercore Integration Center",
+      "operator": "U.S. Department of Energy / Battelle Energy Alliance",
+      "status": "operational",
+      "county_fips": "16019",
+      "notes": "INL's Cybercore Integration Center in Idaho Falls is DOE's premier facility for industrial control system cybersecurity research and AI-driven threat detection. The facility also hosts the Mission Support Center HPC cluster supporting nuclear energy modeling, materials science AI, and critical infrastructure protection.",
+      "lon": -112.0391,
+      "lat": 43.516
+    },
+    {
+      "id": "ai-la-004",
+      "name": "St. Tammany Corporation Innovation Center — Covington LA",
+      "operator": "St. Tammany Corporation / Northshore Tech Hub",
+      "status": "operational",
+      "county_fips": "22103",
+      "notes": "The St. Tammany Corporation operates the Northshore technology innovation hub in Covington, supporting data analytics, cybersecurity, and AI/ML startups serving the Gulf Coast energy and logistics sectors. The facility anchors Northshore Tech, a regional tech cluster attracting remote tech workers from the New Orleans metro.",
+      "lon": -90.0989,
+      "lat": 30.4752
+    },
+    {
+      "id": "ai-nc-005",
+      "name": "Fort Liberty (Fort Bragg) USSOCOM Cyber and AI Operations",
+      "operator": "U.S. Army / USSOCOM",
+      "status": "operational",
+      "county_fips": "37085",
+      "notes": "Fort Liberty hosts U.S. Army Special Operations Command (USSOCOM) cyber and intelligence computing infrastructure, including classified AI/ML platforms for mission planning, threat analysis, and tactical autonomous systems research. Fort Liberty is one of the largest military installations in the world by population.",
+      "lon": -79.0064,
+      "lat": 35.139
+    },
+    {
+      "id": "ai-wa-006",
+      "name": "Cowlitz County PUD Industrial Computing — Longview WA",
+      "operator": "Cowlitz County PUD / Lower Columbia Economic Development Council",
+      "status": "planned",
+      "county_fips": "53015",
+      "notes": "Cowlitz County PUD has partnered with the Lower Columbia EDC to develop an industrial data center park leveraging the PUD's ultra-low hydroelectric rates (<2 cents/kWh). Several hyperscale operators have engaged in site selection processes for the Longview industrial port area, making this a planned major computing campus in the Pacific Northwest.",
+      "lon": -122.9384,
+      "lat": 46.1382
+    },
+    {
+      "id": "ai-ar-003",
+      "name": "Arkansas State University High Performance Computing Center — Jonesboro",
+      "operator": "Arkansas State University (ASU)",
+      "status": "operational",
+      "county_fips": "05031",
+      "notes": "Arkansas State University operates a regional HPC cluster and data analytics center in Jonesboro, supporting research in agricultural AI, bioinformatics, and supply-chain optimization for the Arkansas Delta region. The facility is part of the Arkansas High Performance Computing Center (AHPCC) statewide network.",
+      "lon": -90.7043,
+      "lat": 35.8423
     }
   ]
 }
