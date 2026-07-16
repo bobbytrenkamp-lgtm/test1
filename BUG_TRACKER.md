@@ -1,14 +1,48 @@
 # Active Bugs
 
-Bug:
-Priority:
-Affected Files:
-Description:
-Possible Cause:
-Assigned/Working AI:
-Status:
-
 No active bugs at this time.
+
+---
+
+# Recently Fixed Bugs (2026-07-16)
+
+---
+
+Bug: Mobile detail-sheet close button (×) does not respond to tap
+Priority: High
+Affected Files: `js/map.js`, `css/style.css`
+Root Cause: Two compounding issues. (1) The `#detail-panel` had no `pointer-events: none` when off-screen (`translateY(110%)`), so element geometry could intercept touches in edge cases. (2) The detailClose listener only called `closeMobileSheet()` (class removal) without clearing `selectedFips` or resetting county style; additionally, iOS Safari sometimes swallows click events on elements inside Leaflet's map context before they reach the button. A `touchend` handler was present on `#measure-clear-btn` but was missing the crucial `touchstart` preventDefault to block Leaflet's own gesture recogniser from consuming the gesture first.
+Fix: (1) Added `pointer-events: none; visibility: hidden` to the closed-state `#detail-panel` CSS in the mobile media query; restoring both on `.sheet-open`. (2) Replaced `closeMobileSheet` listener on detailClose with `requestCloseDetailSheet()` — a single function that also clears `selectedFips` and resets county style. (3) Added explicit `touchstart` (stopPropagation) + `touchend` (preventDefault + stopPropagation) handlers on the close button.
+Testing Performed: Code inspection; confirmed correct CSS specificity and JS call chain.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date: 2026-07-16
+
+Bug: "Click map to start" empty-state card floats visibly on mobile load
+Priority: Medium
+Affected Files: `css/style.css`
+Root Cause: `#detail-panel` is `position: fixed; transform: translateY(110%)` on mobile. While `translateY(110%)` positions the panel off-screen, the element had no `pointer-events: none; visibility: hidden` guard in the closed state. On some iOS Safari viewport sizes the panel top-edge could be visible near the bottom of the map area, and ghost-touches were still being absorbed by the panel.
+Fix: Added `pointer-events: none; visibility: hidden` to `#detail-panel` in `@media (max-width: 700px)`, and `pointer-events: auto; visibility: visible` to `#detail-panel.sheet-open`. `visibility` uses a `transition: visibility 0s linear Xs` delay so it hides only after the slide-down animation finishes and appears immediately on open.
+Testing Performed: Code inspection.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date: 2026-07-16
+
+Bug: GIS toolbar buttons overlap the county bottom-sheet header and close button on mobile
+Priority: High
+Affected Files: `css/style.css`, `js/map.js`
+Root Cause: `#map-gis-bar` (`z-index: 450`, `position: absolute`) is inside `#map-container`. `#detail-panel.sheet-open` was `z-index: 500` (already raised in PR #100). However, on some iOS Safari versions stacking context rendering for position:fixed children of position:fixed parents may not strictly follow z-index order, allowing the GIS bar to visually or touch-intercept the sheet header. Additionally, there was no mechanism to clip the GIS bar height when the sheet was open, so its buttons extended down into the sheet's visible area.
+Fix: When the sheet is open, `body.detail-sheet-open` class is added. CSS `body.detail-sheet-open #map-gis-bar { max-height: calc(var(--sheet-top, 30dvh) - 28px); overflow: hidden; }` clips toolbar buttons that would overlap the sheet. `--sheet-top` is set from JS in `openMobileSheet()` (estimated immediately, refined after the 0.28s transition). The `#detail-panel-close` button also gets explicit `pointer-events: auto; position: relative; z-index: 1` so no pseudo-elements or overlays can shadow it.
+Testing Performed: Code inspection.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date: 2026-07-16
+
+Bug: Swipe-down gesture on detail sheet handle only checked threshold, gave no visual feedback
+Priority: High
+Affected Files: `js/map.js`
+Root Cause: The prior implementation (added in PR #100) only checked `dy > 60` on `touchend` and called `closeMobileSheet()`. The panel never followed the user's finger during the gesture.
+Fix: Replaced the old handle-only handler with `initDetailSheetSwipe()` — a new function called from `init()`. The gesture listens to `touchstart` on both `#detail-panel-handle` and `#detail-header` (excluding interactive children via INTERACTIVE selector), then `touchmove`/`touchend`/`touchcancel` on the panel itself. During drag the panel's `transform: translateY(px)` is set in real-time with `transition: none`. On release: if `dy > 80` OR swipe velocity `> 0.35 px/ms`, a 260 ms `ease-out` animation slides the panel out before calling `requestCloseDetailSheet()`; otherwise the panel snaps back to `translateY(0)` in 240 ms. `_sheetClosing` flag prevents re-entrant calls during the animation.
+Testing Performed: Code inspection; node syntax check passed.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date: 2026-07-16
 
 # Fixed Bugs
 

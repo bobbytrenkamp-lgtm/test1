@@ -1757,18 +1757,55 @@ body.is-resizing-floating-panel * {
     border-top: 1px solid var(--border);
     border-radius: 14px 14px 0 0;
     transform: translateY(110%);
-    transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+    /* visibility delays: hidden at end of close, visible at start of open */
+    transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1),
+                visibility 0s linear 0.28s;
     z-index: 40;
     box-shadow: 0 -8px 32px rgba(0,0,0,0.6);
+    /* Hidden: block ghost-touches from the off-screen panel */
+    pointer-events: none;
+    visibility: hidden;
   }
-  #detail-panel.sheet-open { transform: translateY(0); z-index: 500; }
+  #detail-panel.sheet-open {
+    transform: translateY(0);
+    z-index: 500;
+    pointer-events: auto;
+    visibility: visible;
+    /* visibility appears immediately on open, no delay */
+    transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1),
+                visibility 0s linear 0s;
+  }
+  /* No CSS transition while finger is dragging the sheet */
+  #detail-panel.is-dragging {
+    transition: none !important;
+  }
   #detail-panel-handle { display: block; }
   #detail-header { padding-right: 44px; }
-  #detail-panel-close { display: flex; }
+  #detail-panel-close {
+    display: flex;
+    pointer-events: auto; /* explicit — never inherit none from panel */
+    position: relative;
+    z-index: 1;           /* above any pseudo-elements in the header */
+  }
+
+  /* GIS toolbar: clip to visible area above open sheet */
+  body.detail-sheet-open #map-gis-bar {
+    max-height: calc(var(--sheet-top, 30dvh) - 28px);
+    overflow: hidden;
+  }
 
   /* Detail body: momentum scroll + safe-area clearance */
   #detail-body {
     padding-bottom: calc(32px + env(safe-area-inset-bottom));
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Honour reduced-motion: snap the sheet instantly */
+@media (prefers-reduced-motion: reduce) {
+  #detail-panel,
+  #detail-panel.sheet-open {
+    transition-duration: 0.01s !important;
   }
 }
 
