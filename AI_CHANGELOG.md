@@ -6,6 +6,39 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json`
+- `data/state_regulations.json`
+- `data/map_data.json`
+- `docs/data-sweeps/2026-07-massive-sweep-round-2.md` (new)
+
+Changes Made:
+- **Massive Nationwide Data Sweep — Round 2**: Comprehensive second-round sweep of all 50 states, DC, county and local policy, AI policy, grid/utility infrastructure, and political momentum. All phases executed: repository audit → state sweep → local sweep → facility sweep → political momentum → infrastructure → AI policy → verification → data integration → documentation.
+- **25 new county records added to `restrictions_raw.json`**: Bartow County GA (13015, L1), Carroll County GA (13045, L2), Fayette County GA (13113, L1), Paulding County GA (13223, L2), Spalding County GA (13255, L-1), Morehouse Parish LA (22067, L-1), Rapides Parish LA (22079, L-1), St. John the Baptist Parish LA (22095, L-1), Baltimore County MD (24005, L-1), Baltimore city MD (24510, L-1), Wayne County MI (26163, L1), Platte County NE (31141, L-1), Burke County NC (37023, L1), Caldwell County NC (37027, L-1), Gilliam County OR (41021, L-1), Sherman County OR (41055, L-1), Horry County SC (45051, L-1), Fentress County TN (47049, L1), Rhea County TN (47143, L1), Roane County TN (47145, L-1), Kenai Peninsula Borough AK (02122, L-1), Clarke County VA (51043, L2), Frederick County VA (51069, L1), Orange County VA (51137, L1), Warren County VA (51187, L2). Total: 504 → 529 county records.
+- **DC added to `state_regulations.json`**: District of Columbia (FIPS "11") was missing from state-level entries. Added with level=1 (light/proposed restrictions), type=[ai, data_center, energy], referencing DC AI Accountability Act (B25-0644, 2024) and PEPCO grid constraints.
+- **`map_data.json` regenerated**: 529 counties now reflected in the map data layer. Level distribution: L-1=417, L1=45, L2=40, L3=22, L4=5.
+- **Sweep tracking document created**: `docs/data-sweeps/2026-07-massive-sweep-round-2.md` — full 10-phase sweep report with baseline metrics, state-by-state checklist, records-added table, lead queue for unverified items, and unresolved gaps section.
+
+Reasoning:
+- Georgia metro Atlanta corridor: 5 new suburban counties (Carroll, Paulding, Fayette, Bartow, Spalding) document the pattern of special-use permit requirements spreading outward from the core Atlanta market as operators seek lower-restriction environments.
+- Virginia expansion corridor: 4 new counties (Warren, Clarke, Orange, Frederick) in the western Piedmont and Shenandoah Valley document spillover from Northern Virginia's congested Loudoun/Prince William/Fauquier triangle.
+- Tennessee TVA territory: 3 new counties (Fentress, Rhea, Roane) document energy-intensive computing discussions near TVA nuclear and hydroelectric assets.
+- Louisiana ITEP corridor: 3 new parishes document the ITEP 100% property tax exemption regime attracting data center investment beyond the known Richland Parish Meta site.
+- Oregon Columbia River corridor: 2 new counties (Gilliam, Sherman) extend coverage of the wind/hydro energy corridor from The Dalles through the Columbia Gorge.
+- All new entries: FIPS codes verified, lifecycle_stage consistent with status, no duplicate FIPS introduced, conservative level-setting where exact ordinance status is uncertain.
+
+Problems Found:
+- None. All 529 records pass schema validation. 0 critical, 0 errors, 393 warnings (393 vs 388 baseline — expected increase from new level=-1 entries that lack incentive keyword in description, a pre-existing cosmetic warning pattern).
+
+Next Recommended Actions:
+- Follow up on Lead Queue items: pull Carroll/Paulding county code databases for exact ordinance text, review Clarke and Warren County VA official minutes, check Gwinnett BOC agendas for 2025 moratorium extension.
+- Consider adding political momentum scores (1–55 scale) to new entries as ordinances advance.
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `js/map.js`
 - `css/style.css`
 - `BUG_TRACKER.md`
