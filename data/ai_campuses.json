@@ -1817,6 +1817,56 @@
       "notes": "Planned regional AI innovation hub for Winnebago County, a collaboration between Rockford University and Northern Illinois University's Rockford academic programs. Intended to anchor Rockford's I-90 technology corridor with AI-enabled manufacturing analytics for the region's aerospace and automotive supply chain industry.",
       "lon": -89.094,
       "lat": 42.2711
+    },
+    {
+      "id": "ai-wi-003",
+      "name": "Chippewa Falls Technology Park \u2014 HPE Cray Heritage Computing Site",
+      "operator": "Chippewa Falls Technology Park / HPE Cray Alumni Network",
+      "status": "operational",
+      "county_fips": "55017",
+      "notes": "Multi-tenant technology campus occupying the historic Cray Research supercomputer design and manufacturing site in Chippewa Falls. The campus maintains computing heritage and hosts AI, embedded systems, and engineering tenants leveraging the original Cray Research infrastructure legacy. Xcel Energy NSP provides power via legacy high-reliability feeds designed for supercomputer loads.",
+      "lon": -91.3929,
+      "lat": 44.9369
+    },
+    {
+      "id": "ai-ky-002",
+      "name": "Northern Kentucky University AI and Data Science Research Center",
+      "operator": "Northern Kentucky University",
+      "status": "operational",
+      "county_fips": "21037",
+      "notes": "NKU's College of Informatics AI and Data Science research center in Highland Heights, Campbell County. Hosts applied AI research for Cincinnati-region healthcare, logistics, and financial services sectors. Partners with Duke Energy Ohio on smart grid AI projects and Greater Cincinnati tech ecosystem programs.",
+      "lon": -84.4552,
+      "lat": 38.9453
+    },
+    {
+      "id": "ai-al-003",
+      "name": "Jacksonville State University Center for Applied AI",
+      "operator": "Jacksonville State University",
+      "status": "operational",
+      "county_fips": "01015",
+      "notes": "JSU Center for Applied AI in Jacksonville, Calhoun County AL. Focuses on AI applications for defense manufacturing analytics (Fort McClellan area), materials science, and rural healthcare informatics. Partners with Gadsden State Community College and Alabama Power on workforce development programs for technology industry.",
+      "lon": -85.7622,
+      "lat": 33.8143
+    },
+    {
+      "id": "ai-wy-001",
+      "name": "University of Wyoming School of Energy Resources AI Research Center",
+      "operator": "University of Wyoming",
+      "status": "operational",
+      "county_fips": "56001",
+      "notes": "University of Wyoming's AI research infrastructure supporting the School of Energy Resources wind energy optimization, carbon capture, and clean energy transition research programs. Located in Laramie (Albany County), with HPC systems supporting NCAR/NOAA weather modeling for Wyoming Wind Corridor forecasting and grid integration research.",
+      "lon": -105.5668,
+      "lat": 41.3143
+    },
+    {
+      "id": "ai-nd-005",
+      "name": "Basin Electric Power Cooperative AI Energy Management Center",
+      "operator": "Basin Electric Power Cooperative",
+      "status": "operational",
+      "county_fips": "38057",
+      "notes": "Basin Electric Power Cooperative grid management and AI energy dispatch center in Beulah, Mercer County ND. Coordinates real-time generation dispatch for Basin Electric's 2.9 GW coal and 1+ GW wind generation portfolio serving 2.9 million people across nine states. AI-driven load forecasting supports coal-to-renewable transition planning.",
+      "lon": -101.7796,
+      "lat": 47.2629
     }
   ]
 }
