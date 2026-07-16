@@ -1667,6 +1667,56 @@
       "notes": "The Muscogee (Creek) Nation operates a centralized tribal government data center in Okmulgee supporting health records (Indian Health Service integration), gaming analytics, citizen services, and the Nation's e-commerce and retail technology platforms for tribal enterprises.",
       "lon": -95.967,
       "lat": 35.6239
+    },
+    {
+      "id": "ai-co-005",
+      "name": "Colorado State University HPC / NCAR Wyoming Supercomputing Liaison — Fort Collins CO",
+      "operator": "Colorado State University / NCAR",
+      "status": "operational",
+      "county_fips": "08069",
+      "notes": "CSU's high-performance computing cluster in Fort Collins supports atmospheric science, climate modeling, wildfire AI, and agricultural research in partnership with NCAR's Mesa Lab (Boulder) and the NCAR-Wyoming Supercomputing Center (Cheyenne). CSU's data science and AI programs anchor Larimer County's research computing demand.",
+      "lon": -105.0844,
+      "lat": 40.5734
+    },
+    {
+      "id": "ai-dc-001",
+      "name": "Library of Congress National Digital Preservation Infrastructure",
+      "operator": "Library of Congress / U.S. Congress",
+      "status": "operational",
+      "county_fips": "11001",
+      "notes": "The Library of Congress operates one of the largest digital preservation and AI-assisted cataloging infrastructures in the world, with primary systems on Capitol Hill. The LC's National Digital Information Infrastructure and Preservation Program (NDIIPP) and AI Labs for metadata enrichment serve the national digital collections.",
+      "lon": -77.0047,
+      "lat": 38.8892
+    },
+    {
+      "id": "ai-va-010",
+      "name": "Micron Technology Manassas Semiconductor Fab — AI Process Control",
+      "operator": "Micron Technology",
+      "status": "operational",
+      "county_fips": "51683",
+      "notes": "Micron's Manassas fabrication plant (formerly 'IM Flash') is one of the oldest DRAM memory chip fabs in the U.S., now producing LPDDR5 and 3D NAND memory. The facility operates AI-driven process control and defect detection systems, making it one of the most significant semiconductor AI deployments on the East Coast.",
+      "lon": -77.5185,
+      "lat": 38.7601
+    },
+    {
+      "id": "ai-mi-003",
+      "name": "Stellantis Brighton Assembly and AI Engineering Center — Livingston County MI",
+      "operator": "Stellantis (FCA / Chrysler)",
+      "status": "operational",
+      "county_fips": "26093",
+      "notes": "Stellantis operates engineering and prototype vehicle testing facilities in Livingston County, MI, including AI-driven autonomous vehicle simulation, electrification software testing, and connected-car data processing. The Brighton/Howell area hosts several Tier-1 supplier operations and Stellantis powertrain engineering centers.",
+      "lon": -83.7799,
+      "lat": 42.5334
+    },
+    {
+      "id": "ai-nd-004",
+      "name": "Minot Air Force Base — 91st Missile Wing Command and Control",
+      "operator": "U.S. Air Force / Air Force Global Strike Command",
+      "status": "operational",
+      "county_fips": "38101",
+      "notes": "Minot AFB hosts the 91st Missile Wing, responsible for Minuteman III ICBMs across 150 launch facilities in ND, and the 5th Bomb Wing (B-52H). The base operates classified nuclear command-and-control computing infrastructure and Air Force Global Strike Command C4ISR systems. Emerging AI/ML applications support targeting analytics and base cybersecurity.",
+      "lon": -101.3579,
+      "lat": 48.4154
     }
   ]
 }
