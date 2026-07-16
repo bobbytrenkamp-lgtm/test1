@@ -6,6 +6,28 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 8)
+- `data/map_data.json` (Round 8)
+- `docs/data-sweeps/2026-07-massive-sweep-round-8.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 8**: Texas Gulf/West (Nueces/Corpus Christi, Hidalgo/McAllen, Potter/Amarillo/Xcel wind, Jefferson/Beaumont/petrochem, Wichita/Wichita Falls/Sheppard AFB), Florida (Citrus/Crystal River nuclear infrastructure, Flagler/Palm Coast, Clay/Orange Park), Georgia (Whitfield/Dalton/carpet industry power, Lowndes/Valdosta, Walton/Atlanta east exurb), Connecticut (Litchfield — completing CT's 8 counties), New Hampshire (Grafton/Dartmouth), Maine (Androscoggin/Lewiston-Auburn, York/southern ME Boston spillover), Ohio (Medina, Wood/Bowling Green-Perrysburg, Trumbull/Warren), Missouri (Cole/Jefferson City state capital, Phelps/Rolla/Missouri S&T). 20 net new records (663 total).
+- **FIPS error corrected**: 13301 (Warren County GA) mislabeled as Whitfield → corrected to 13313 (Whitfield County GA).
+
+Reasoning:
+- Potter County TX (Amarillo): Xcel Energy's Southwestern Public Service territory with the lowest commercial electricity rates in Texas due to massive wind generation — a highly significant data center power play.
+- Citrus County FL: Crystal River Nuclear Plant decommission left exceptional high-power transmission infrastructure available for new large-load users — distinctive data center opportunity not previously documented.
+- Cole County MO (Jefferson City): State capital government IT hub — important for government cloud/compliance market context.
+
+Problems Found:
+- 1 FIPS error (13301/Warren County GA mislabeled as Whitfield; Whitfield = 13313); fixed in-place before commit.
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 7)
 - `data/map_data.json` (Round 7)
 - `docs/data-sweeps/2026-07-massive-sweep-round-7.md` (new)

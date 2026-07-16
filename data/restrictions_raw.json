@@ -16574,6 +16574,507 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "48355",
+      "name": "Nueces County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Corpus Christi \u2014 Port Industrial Hub and AEP Texas Territory",
+      "description": "Nueces County (Corpus Christi) anchors the Texas Coastal Bend with the Port of Corpus Christi, a major LNG and petrochemical export hub. AEP Texas (West) service territory with large industrial transmission infrastructure, significant data center demand from oil/gas analytics and refinery automation, Texas Enterprise Zone Program, no-income-tax advantage, and the county's growing LNG tech corridor create a secondary Texas data center market.",
+      "sources": [
+        {
+          "label": "Corpus Christi Regional Economic Development Corporation",
+          "url": "https://www.coruscorpuschristi.com"
+        },
+        {
+          "label": "Texas Comptroller \u2014 Data Centers",
+          "url": "https://comptroller.texas.gov/taxes/data-center"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "48215",
+      "name": "Hidalgo County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McAllen-Edinburg \u2014 Rio Grande Valley's Fastest-Growing Metro",
+      "description": "Hidalgo County (McAllen, Edinburg, Pharr) is the largest county in the Rio Grande Valley and one of the fastest-growing metros in the United States. AEP Texas (Central) service, Texas' no-income-tax and data center equipment tax exemption, University of Texas Rio Grande Valley creating a tech workforce, and the county's cross-border trade infrastructure with Mexico driving enterprise IT demand make it an emerging Texas data center market.",
+      "sources": [
+        {
+          "label": "McAllen Economic Development Corporation",
+          "url": "https://www.mcallenedc.org"
+        },
+        {
+          "label": "Texas Comptroller \u2014 Data Centers",
+          "url": "https://comptroller.texas.gov/taxes/data-center"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "48375",
+      "name": "Potter County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Amarillo \u2014 Xcel Energy Wind Hub and Texas Panhandle Industrial",
+      "description": "Potter County (Amarillo) anchors the Texas Panhandle and sits in one of the richest wind energy corridors in the US. Southwestern Public Service (Xcel Energy) service with among the lowest commercial electricity rates in Texas driven by massive wind generation, I-40 connectivity, the Pantex nuclear weapons plant proximity creating defense data infrastructure demand, and Texas' data center tax exemption make Amarillo a compelling data center destination for power-intensive workloads.",
+      "sources": [
+        {
+          "label": "Amarillo Economic Development Corporation",
+          "url": "https://www.amarilloedc.com"
+        },
+        {
+          "label": "Xcel Energy \u2014 Southwestern Public Service",
+          "url": "https://www.xcelenergy.com/staticfiles/xe/Corporate/Corporate%20PDFs/eco-dev-TX.pdf"
+        },
+        {
+          "label": "Texas Comptroller \u2014 Data Centers",
+          "url": "https://comptroller.texas.gov/taxes/data-center"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "48245",
+      "name": "Jefferson County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Beaumont-Port Arthur \u2014 Southeast Texas Petrochemical Hub and Entergy Texas",
+      "description": "Jefferson County (Beaumont, Port Arthur, Nederland) anchors the Southeast Texas petrochemical corridor with the largest refinery concentration in the US east of Houston. Entergy Texas service with competitive industrial rates and large-load history, Texas' data center tax exemption, I-10 connectivity to Houston, and the county's established industrial power infrastructure supporting refinery automation and AI analytics create a niche but significant data center market.",
+      "sources": [
+        {
+          "label": "Greater Beaumont Chamber of Commerce",
+          "url": "https://www.bmtcoc.org"
+        },
+        {
+          "label": "Entergy Texas \u2014 Economic Development",
+          "url": "https://www.entergy-texas.com/business/economic_development"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "48485",
+      "name": "Wichita County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Wichita Falls \u2014 North Texas Hub, Sheppard AFB, and Oncor Territory",
+      "description": "Wichita County (Wichita Falls) is the primary commercial center for North Texas near the Oklahoma border. Oncor Electric Delivery service, Sheppard Air Force Base (USAF pilot training center) driving military data infrastructure demand, Midwestern State University, Texas' data center tax exemption, and the county's role as a regional healthcare IT hub for North Texas make it a secondary data center market.",
+      "sources": [
+        {
+          "label": "Wichita Falls Development Alliance",
+          "url": "https://www.wfda.org"
+        },
+        {
+          "label": "Texas Comptroller \u2014 Data Centers",
+          "url": "https://comptroller.texas.gov/taxes/data-center"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "12017",
+      "name": "Citrus County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Crystal River \u2014 Duke Energy Florida Nuclear Site and High-Power Infrastructure",
+      "description": "Citrus County (Crystal River, Homosassa) hosts the Crystal River Nuclear Plant (recently decommissioned Duke Energy Florida facility) and the Crystal River Energy Complex (coal to gas conversion), establishing a county with exceptional industrial power transmission infrastructure. Duke Energy Florida service, Florida's data center equipment sales tax exemption (F.S. \u00a7 212.08(5)(f)), and available industrial sites near large-capacity transmission substations make it a distinctive large-load data center candidate.",
+      "sources": [
+        {
+          "label": "Citrus County EDC",
+          "url": "https://www.citruscountychamber.com/economic-development"
+        },
+        {
+          "label": "Duke Energy Florida \u2014 Economic Development",
+          "url": "https://www.duke-energy.com/economic-development"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "12035",
+      "name": "Flagler County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Palm Coast \u2014 Northeast Florida Growth Corridor and FPL/Duke Service",
+      "description": "Flagler County (Palm Coast, Bunnell) is one of Florida's fastest-growing counties between St. Johns and Volusia. Florida Power & Light and Duke Energy Florida service, Florida's data center equipment sales tax exemption, I-95 fiber connectivity, and rapidly expanding commercial and industrial development at Palm Coast make it an emerging secondary data center market as the Northeast Florida/Jacksonville corridor continues to grow.",
+      "sources": [
+        {
+          "label": "Flagler County Economic Opportunity (FloridaJobsGrowth)",
+          "url": "https://www.flaglercounty.gov/government/boards-commissions/economic-opportunity"
+        },
+        {
+          "label": "Florida Department of Economic Opportunity",
+          "url": "https://floridajobs.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "12019",
+      "name": "Clay County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Orange Park \u2014 Jacksonville SW Suburb and JEA/Duke Energy Territory",
+      "description": "Clay County (Orange Park, Fleming Island, Middleburg) anchors the southwestern Jacksonville metro and is one of Florida's fastest-growing suburban counties. JEA (Jacksonville Electric Authority) and Duke Energy Florida service, Florida's data center equipment sales tax exemption, I-295 and US 17 corridor connectivity to Jacksonville's downtown fiber hub, and the county's rapidly expanding commercial real estate market make it a growing data center location.",
+      "sources": [
+        {
+          "label": "Clay County Economic Development",
+          "url": "https://www.claycountygov.com/community/economic-development"
+        },
+        {
+          "label": "JEA \u2014 Economic Development",
+          "url": "https://www.jea.com/business/economic-development"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "13313",
+      "name": "Whitfield County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Dalton \u2014 Carpet Capital of the World and TVA/MEAG Power Hub",
+      "description": "Whitfield County (Dalton) is the global center of carpet and flooring manufacturing, hosting Shaw Industries, Mohawk Industries, and many major manufacturing facilities with exceptionally large power loads. TVA power (via Municipal Electric Authority of Georgia), some of the lowest industrial electricity rates in Georgia, I-75 corridor fiber connectivity, and Georgia's data center equipment sales tax exemption (O.C.G.A. \u00a7 48-8-3.2) make it a distinctive market for manufacturing-adjacent data center deployment.",
+      "sources": [
+        {
+          "label": "Dalton-Whitfield Joint Development Authority",
+          "url": "https://www.whitfieldcountyga.gov"
+        },
+        {
+          "label": "Georgia Department of Economic Development",
+          "url": "https://www.georgia.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "13185",
+      "name": "Lowndes County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Valdosta \u2014 South Georgia Regional Hub and Georgia Power Service",
+      "description": "Lowndes County (Valdosta) is the commercial and medical hub for South Georgia and anchors a region stretching from the Florida border to Albany. Georgia Power service, Moody Air Force Base driving military IT demand, Valdosta State University, Georgia's data center sales tax exemption, I-75 corridor connectivity, and the county's position as a regional healthcare and logistics hub create data center demand.",
+      "sources": [
+        {
+          "label": "Valdosta-Lowndes Development Authority",
+          "url": "https://www.developvaldosta.com"
+        },
+        {
+          "label": "Georgia Department of Economic Development",
+          "url": "https://www.georgia.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "13297",
+      "name": "Walton County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Monroe \u2014 Atlanta Eastern Exurb and Walton EMC Territory",
+      "description": "Walton County (Monroe) sits on Atlanta's rapidly expanding eastern exurban frontier along US 78, adjacent to Newton County (Covington). Walton EMC (electric membership cooperative) service, lower industrial land costs than the closer-in Atlanta suburban counties, Georgia's data center equipment sales tax exemption, and the county's explosive residential and commercial growth driven by Atlanta metro expansion make it a data center development candidate.",
+      "sources": [
+        {
+          "label": "Walton County Development Authority",
+          "url": "https://www.waltoncountyga.gov/economic-development"
+        },
+        {
+          "label": "Georgia Department of Economic Development",
+          "url": "https://www.georgia.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "09005",
+      "name": "Litchfield County",
+      "state": "Connecticut",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Torrington \u2014 NW Connecticut Rural Broadband and Eversource Territory",
+      "description": "Litchfield County (Torrington, Winsted, Litchfield) completes Connecticut's 8-county coverage as the state's northwestern rural county. Eversource Energy service, Connecticut's data center tax exemption (CGS \u00a7 12-412(99)), Route 8 industrial corridor, and the county's role as a destination for Hartford and NYC metro residents creating residential tech demand contribute to limited but present data center consideration in this primarily rural CT market.",
+      "sources": [
+        {
+          "label": "Northwest CT Chamber of Commerce",
+          "url": "https://www.nwctchamberofcommerce.org"
+        },
+        {
+          "label": "Connecticut Department of Economic and Community Development",
+          "url": "https://portal.ct.gov/DECD"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "33009",
+      "name": "Grafton County",
+      "state": "New Hampshire",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Hanover-Lebanon \u2014 Dartmouth College and Upper Valley Tech Hub",
+      "description": "Grafton County (Hanover, Lebanon, Plymouth) hosts Dartmouth College, one of the leading AI and computing research institutions in New England. Eversource Energy service, New Hampshire's no-sales-tax and no-income-tax advantage, the Upper Valley biotech and tech cluster along I-89/I-91, and Dartmouth's expanding AI and machine learning research programs (Dartmouth AI) create data center and research computing demand in the Upper Connecticut River Valley.",
+      "sources": [
+        {
+          "label": "Dartmouth College \u2014 Department of Computer Science",
+          "url": "https://web.cs.dartmouth.edu"
+        },
+        {
+          "label": "Upper Valley Business Alliance",
+          "url": "https://www.uvba.org"
+        },
+        {
+          "label": "New Hampshire Division of Economic Development",
+          "url": "https://www.nheconomy.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "23001",
+      "name": "Androscoggin County",
+      "state": "Maine",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lewiston-Auburn \u2014 Maine's Second Metro and Central Maine Power Service",
+      "description": "Androscoggin County (Lewiston, Auburn) is Maine's second-largest metropolitan area and a historic textile and manufacturing center undergoing economic revitalization. Central Maine Power (Avangrid) service, Maine's data center property tax exemption, the Lewiston-Auburn metro's improving fiber connectivity, and the county's available industrial mill buildings being repurposed for technology uses create a data center opportunity in Maine's secondary market.",
+      "sources": [
+        {
+          "label": "Androscoggin County Chamber of Commerce",
+          "url": "https://www.androscoggincounty.com"
+        },
+        {
+          "label": "Maine Department of Economic and Community Development",
+          "url": "https://www.maine.gov/decd"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "23031",
+      "name": "York County",
+      "state": "Maine",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Biddeford-Saco-Kittery \u2014 Southern Maine and Boston Metro Spillover",
+      "description": "York County (Biddeford, Saco, Sanford, Kittery, York) anchors Southern Maine and is the state's fastest-growing county, driven by Boston metro spillover across the Piscataqua River. Eversource Energy service, Maine's data center property tax incentive, the US 1/I-95 corridor connecting Portland to Boston, University of New England's healthcare tech programs, and rapidly rising commercial development in the Biddeford-Saco corridor create growing data center demand.",
+      "sources": [
+        {
+          "label": "York County Economic Development",
+          "url": "https://www.yorkcounty.org"
+        },
+        {
+          "label": "Maine Department of Economic and Community Development",
+          "url": "https://www.maine.gov/decd"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "39103",
+      "name": "Medina County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Medina \u2014 Rapidly Growing Cleveland-Akron Exurb and FirstEnergy Territory",
+      "description": "Medina County (Medina, Brunswick) is one of Ohio's fastest-growing suburban counties, positioned between Cleveland and Akron on I-71. FirstEnergy (Ohio Edison) service, Ohio's data center sales tax exemption (R.C. \u00a7 5739.02(B)), lower industrial land costs than Summit or Cuyahoga, and strong I-71 and US 42 fiber corridor access make it an emerging data center market for the Cleveland-Akron metro.",
+      "sources": [
+        {
+          "label": "Medina County Economic Development Corporation",
+          "url": "https://www.medina-county.com/economic"
+        },
+        {
+          "label": "Ohio Development Services Agency",
+          "url": "https://development.ohio.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "39173",
+      "name": "Wood County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Bowling Green-Perrysburg \u2014 Toledo South Suburb and AEP Ohio Territory",
+      "description": "Wood County (Bowling Green, Perrysburg, Rossford) anchors the southwestern Toledo MSA and hosts Bowling Green State University. AEP Ohio service with competitive industrial rates, Ohio's data center equipment sales tax exemption, I-75 corridor connectivity between Toledo and Columbus, and the Davis-Besse Nuclear Power Station in neighboring Ottawa County providing large-scale power infrastructure proof make it a viable secondary data center market.",
+      "sources": [
+        {
+          "label": "Wood County Economic Development Commission",
+          "url": "https://www.woodcountyohio.gov/economic"
+        },
+        {
+          "label": "Ohio Development Services Agency",
+          "url": "https://development.ohio.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "39155",
+      "name": "Trumbull County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Warren \u2014 Northeast Ohio Industrial and FirstEnergy/AEP Territory",
+      "description": "Trumbull County (Warren, Niles, Cortland) anchors the northeastern Ohio industrial corridor north of Mahoning County (Youngstown). FirstEnergy (Ohio Edison) and AEP Ohio service with large industrial transmission infrastructure, Ohio's data center equipment sales tax exemption, I-80/I-11 connectivity, and the county's legacy steel manufacturing sites providing available large-footprint industrial land make it a secondary data center option for the Youngstown-Warren market.",
+      "sources": [
+        {
+          "label": "Trumbull County Planning Commission",
+          "url": "https://www.co.trumbull.oh.us/planning"
+        },
+        {
+          "label": "Ohio Development Services Agency",
+          "url": "https://development.ohio.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "29051",
+      "name": "Cole County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Jefferson City \u2014 Missouri State Capital Government IT Hub",
+      "description": "Cole County (Jefferson City) is the seat of Missouri state government and hosts significant state government IT infrastructure including the Missouri Office of Administration's Division of Information Technology. AmerenUE service, Missouri's data center sales tax exemption, I-70/US 54 connectivity, and the concentration of state agencies and regulatory bodies driving enterprise IT demand make it a secondary Missouri data center market for government cloud and compliance workloads.",
+      "sources": [
+        {
+          "label": "Jefferson City Area Chamber of Commerce",
+          "url": "https://www.jcmos.com"
+        },
+        {
+          "label": "Missouri Department of Economic Development \u2014 Data Centers",
+          "url": "https://ded.mo.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "29161",
+      "name": "Phelps County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Rolla \u2014 Missouri S&T University and Defense Research Computing",
+      "description": "Phelps County (Rolla) hosts Missouri University of Science and Technology (Missouri S&T), one of the leading STEM universities in the Midwest with significant cybersecurity, AI, and geospatial computing programs. Empire District Electric (Liberty Utilities) service, US 63/I-44 corridor connectivity, proximity to Fort Leonard Wood, and Missouri's data center incentive program create research computing and defense-adjacent IT demand.",
+      "sources": [
+        {
+          "label": "Missouri University of Science and Technology",
+          "url": "https://www.mst.edu"
+        },
+        {
+          "label": "Rolla Regional Economic Commission",
+          "url": "https://www.rollamo.com"
+        },
+        {
+          "label": "Missouri Department of Economic Development",
+          "url": "https://ded.mo.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
     }
   ]
 }
