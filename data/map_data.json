@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-16T20:15:15.296940+00:00",
+  "generated_at": "2026-07-16T20:19:44.828020+00:00",
   "source_last_updated": "2026-07-16",
   "stats": {
-    "total_counties_tracked": 624,
+    "total_counties_tracked": 643,
     "by_level": {
-      "-1": 512,
+      "-1": 531,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,10 +12,10 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 615,
+      "data_center": 634,
       "water": 14,
-      "ai": 167,
-      "energy": 149,
+      "ai": 172,
+      "energy": 152,
       "crypto": 18
     },
     "level_labels": {
@@ -17455,6 +17455,539 @@
       "confidence": "high",
       "confidence_score": 78,
       "source_tier": 1
+    },
+    "17143": {
+      "name": "Peoria County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Peoria \u2014 Caterpillar HQ, OSF Healthcare, and Ameren Illinois Service",
+      "description": "Peoria County is Illinois' third-largest metro and home to Caterpillar's global headquarters, OSF HealthCare, and Methodist Health System, all driving major enterprise IT demand. Ameren Illinois service with the Illinois High Impact Business data center incentive, I-74/I-474 corridor connectivity, and the county's industrial heritage with available large-site land make it a secondary data center market for central Illinois.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Tri-County Regional Planning Commission Economic Development",
+          "url": "https://www.trcrpc.org"
+        },
+        {
+          "label": "Illinois Department of Commerce \u2014 High Impact Business",
+          "url": "https://dceo.illinois.gov/whyillinois/incentives/highimpactbusiness"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "17161": {
+      "name": "Rock Island County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Quad Cities (IL Side) \u2014 John Deere HQ and MidAmerican Energy Territory",
+      "description": "Rock Island County (Rock Island, Moline) anchors the Illinois side of the Quad Cities metro, home to John Deere's world headquarters and a significant manufacturing and ag-tech corridor. MidAmerican Energy (Berkshire Hathaway) service with a heavy wind renewable portfolio and competitive industrial rates, Illinois' High Impact Business program, and I-74/I-80 fiber accessibility make the Quad Cities a growing data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Bi-State Regional Commission \u2014 Economic Development",
+          "url": "https://www.bistateonline.org"
+        },
+        {
+          "label": "Quad Cities Chamber",
+          "url": "https://www.quadcitieschamber.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "17111": {
+      "name": "McHenry County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Crystal Lake \u2014 Chicago NW Exurb and ComEd Territory",
+      "description": "McHenry County (Crystal Lake, Woodstock) is Chicago's northwestern exurban frontier where ComEd's transmission grid has supported large-load industrial users. Lower industrial land costs than DuPage or Lake counties, I-90 corridor connectivity, Wisconsin border proximity, and Illinois' data center incentive program make it an emerging location for hyperscale-adjacent data center development.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "McHenry County Economic Development Corporation",
+          "url": "https://www.mcedc.com"
+        },
+        {
+          "label": "ComEd \u2014 Economic Development",
+          "url": "https://www.comed.com/business/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "17091": {
+      "name": "Kankakee County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kankakee \u2014 Chicago Southern Exurb and ComEd/Ameren Boundary",
+      "description": "Kankakee County sits at the southern edge of the Chicago metro along I-57. ComEd service (overlapping with Ameren boundary), lower industrial land costs than Will or Grundy County while retaining metro Chicago fiber access, I-57 corridor connectivity, and available industrial land along the Kankakee River industrial corridor make it a potential data center site for Chicago-market operators seeking lower-cost options.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Kankakee County Development Department",
+          "url": "https://kankakeecountyil.gov/economic-development"
+        },
+        {
+          "label": "Illinois Department of Commerce \u2014 High Impact Business",
+          "url": "https://dceo.illinois.gov/whyillinois/incentives/highimpactbusiness"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "17099": {
+      "name": "LaSalle County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Ottawa-Peru \u2014 I-80 Backbone and Illinois Valley Nuclear Generation",
+      "description": "LaSalle County (Ottawa, Peru, Streator) anchors the Illinois Valley corridor along I-80 between Chicago and the Quad Cities. The county hosts the LaSalle County Generating Station (two Exelon nuclear units), providing proof of large-scale power infrastructure. ComEd service, Illinois' High Impact Business data center incentive, I-80/I-39 interchange, and Exelon's nuclear-rich grid make it a candidate for power-intensive data center deployments.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Illinois Valley Economic Development Corporation",
+          "url": "https://www.ivedc.com"
+        },
+        {
+          "label": "Exelon \u2014 LaSalle County Generating Station",
+          "url": "https://www.exeloncorp.com/locations/lasalle"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "36109": {
+      "name": "Tompkins County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Ithaca \u2014 Cornell University AI Research and NYSEG Service",
+      "description": "Tompkins County (Ithaca) hosts Cornell University, one of the leading AI and computing research universities globally, including the Cornell Ann S. Bowers College of Computing and Information Science and the Cornell AI for Science initiative. NYSEG (Avangrid) service with access to New York's Excelsior Jobs Program, Cornell's growing data center infrastructure, and the county's concentration of spin-out AI companies make it a significant research computing market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Cornell University Computing and Information Science",
+          "url": "https://www.cs.cornell.edu"
+        },
+        {
+          "label": "Tompkins County Area Development",
+          "url": "https://www.tcad.com"
+        },
+        {
+          "label": "New York State Excelsior Jobs Program",
+          "url": "https://esd.ny.gov/excelsior-jobs-program"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "verified",
+      "confidence_score": 85,
+      "source_tier": 1
+    },
+    "36027": {
+      "name": "Dutchess County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Poughkeepsie \u2014 IBM Global Headquarters and Hudson Valley Tech Corridor",
+      "description": "Dutchess County (Poughkeepsie, Fishkill) hosts IBM's world headquarters and the IBM Research facility at Yorktown Heights (Westchester/Dutchess border). IBM's semiconductor fabrication in East Fishkill and its extensive data center infrastructure along the Route 9/Taconic corridor have established Dutchess County as one of the most significant enterprise computing locations in the US. Central Hudson Gas & Electric service and NY's Excelsior program support the county.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "IBM \u2014 Poughkeepsie Campus",
+          "url": "https://www.ibm.com/about/us/en/poughkeepsie"
+        },
+        {
+          "label": "Dutchess County Economic Development Corporation",
+          "url": "https://www.dutchesscountyny.gov/economic-development"
+        },
+        {
+          "label": "New York State Excelsior Jobs Program",
+          "url": "https://esd.ny.gov/excelsior-jobs-program"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "verified",
+      "confidence_score": 85,
+      "source_tier": 1
+    },
+    "36087": {
+      "name": "Rockland County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Rockland County \u2014 NYC Northern Near Suburb and Orange & Rockland Service",
+      "description": "Rockland County (New City, Nanuet, Orangeburg) sits on the west bank of the Hudson River just north of the Tappan Zee Bridge, giving it direct NYC metro access with more industrial land availability. Orange & Rockland Utilities (Con Edison subsidiary) service, growing technology employer base moving from Manhattan, Route 287 connectivity, and New York's data center tax incentive program make it an established secondary market in the NYC metro.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Rockland County Economic Development",
+          "url": "https://rocklandgov.com/departments/planning/economic-development"
+        },
+        {
+          "label": "New York State Excelsior Jobs Program",
+          "url": "https://esd.ny.gov/excelsior-jobs-program"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "36013": {
+      "name": "Chautauqua County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Dunkirk-Jamestown \u2014 Lake Erie Industrial and NYPA Niagara Proximity",
+      "description": "Chautauqua County (Jamestown, Dunkirk, Fredonia) anchors southwestern New York on Lake Erie. National Grid service with access to NYPA's economic development power programs drawing on cheap Niagara Falls hydroelectric generation, former NRG Dunkirk power plant site industrial infrastructure, and the county's lower-cost industrial real estate compared to Erie County make it a niche but viable market for power-intensive data center workloads.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Chautauqua County Economic Development Center",
+          "url": "https://www.chautauquaedc.com"
+        },
+        {
+          "label": "NYPA \u2014 Economic Development Power",
+          "url": "https://www.nypa.gov/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "34031": {
+      "name": "Passaic County",
+      "state": "New Jersey",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Paterson-Wayne \u2014 NJ Industrial Corridor and PSEG Service",
+      "description": "Passaic County (Paterson, Wayne, Clifton, Passaic) is one of New Jersey's most densely populated and industrially active counties along the I-80 corridor. PSEG New Jersey service with the state's high-reliability transmission infrastructure, Route 46 and I-80 fiber crossings, growing tech employer base in Wayne Township, and New Jersey's ERG grant program make it an active secondary data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Passaic County Department of Planning and Economic Development",
+          "url": "https://www.passaiccountynj.gov/government/departments/planning"
+        },
+        {
+          "label": "New Jersey Economic Development Authority",
+          "url": "https://www.njeda.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "34015": {
+      "name": "Gloucester County",
+      "state": "New Jersey",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Woodbury-Washington Township \u2014 Philadelphia South NJ and PSEG Service",
+      "description": "Gloucester County (Woodbury, Washington Township, Deptford) anchors the southern New Jersey corridor between Camden and Salem along I-295. PSEG New Jersey service with high reliability, growing pharmaceutical and healthcare IT demand, Route 55 industrial corridor, lower land costs than Camden County, and New Jersey's data center incentive programs make it a growing location for Philadelphia-metro data center deployment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Gloucester County Economic Development",
+          "url": "https://www.gloucestercountynj.gov/departments/economic_development"
+        },
+        {
+          "label": "New Jersey Economic Development Authority",
+          "url": "https://www.njeda.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "06095": {
+      "name": "Solano County",
+      "state": "California",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Fairfield-Vacaville \u2014 I-80 Corridor and Travis AFB Digital Infrastructure",
+      "description": "Solano County (Fairfield, Vacaville, Vallejo, Benicia) straddles the I-80 Bay Area to Sacramento corridor and hosts Travis Air Force Base. PG&E service, industrial sites along I-80 with direct Bay Area and Sacramento fiber rings, California's data center sales tax exemption (Rev. & Tax. Code \u00a7 6377.1), and the county's strategic military and logistics infrastructure make it an established secondary Bay Area data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Solano Economic Development Corporation",
+          "url": "https://www.solanoedc.com"
+        },
+        {
+          "label": "California Governor's Office of Business and Economic Development \u2014 Data Centers",
+          "url": "https://business.ca.gov/industries/science-technology/data-centers"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "06097": {
+      "name": "Sonoma County",
+      "state": "California",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Santa Rosa \u2014 North Bay Tech and PG&E Service Territory",
+      "description": "Sonoma County (Santa Rosa, Petaluma, Rohnert Park) hosts a growing tech and biotech corridor in the North Bay, anchored by Keysight Technologies and Agilent legacy employers. PG&E service with California's data center sales tax incentive, Route 101 fiber connectivity north of Marin, and a professional workforce drawing from Bay Area spillover make it a secondary Northern California data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Sonoma County Economic Development Board",
+          "url": "https://sonomaedb.org"
+        },
+        {
+          "label": "California Governor's Office of Business and Economic Development",
+          "url": "https://business.ca.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "06007": {
+      "name": "Butte County",
+      "state": "California",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Chico \u2014 CSU Chico Research Computing and PG&E North Valley Grid",
+      "description": "Butte County (Chico, Oroville) hosts California State University, Chico, with growing research computing and data science programs. PG&E service, available industrial land at substantially lower costs than Bay Area or Sacramento markets, California Highway 99 connectivity, and the county's rebuilding economy following the 2018 Camp Fire create data center development opportunities in the Northern Sacramento Valley.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Butte County Economic Development",
+          "url": "https://www.buttecounty.net/countyexecutiveoffice/economic-development"
+        },
+        {
+          "label": "California Governor's Office of Business and Economic Development",
+          "url": "https://business.ca.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "26111": {
+      "name": "Midland County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Midland \u2014 Dow Chemical Global HQ and Consumers Energy Midland Nuclear Site",
+      "description": "Midland County hosts Dow Chemical's global headquarters and was home to the Midland Nuclear Power Plant site (now Midland Cogeneration Venture, one of the largest natural gas cogeneration facilities in the US). Consumers Energy service with large industrial power history, Dow's massive enterprise IT infrastructure, and Michigan's data center incentive program (MCL \u00a7 207.803) make Midland a niche but significant data center market for chemical and industrial AI workloads.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Dow Chemical Company \u2014 Midland Operations",
+          "url": "https://www.dow.com/en-us/about-dow/facilities/north-america/midland.html"
+        },
+        {
+          "label": "Midland Business Alliance",
+          "url": "https://www.midlandbiz.org"
+        },
+        {
+          "label": "Consumers Energy \u2014 Economic Development",
+          "url": "https://www.consumersenergy.com/company/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 59,
+      "source_tier": 3
+    },
+    "26025": {
+      "name": "Calhoun County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Battle Creek \u2014 Kellogg's, Post Foods, and Consumers Energy Service",
+      "description": "Calhoun County (Battle Creek, Albion, Marshall) hosts Kellogg's and Post Consumer Brands' production facilities, a significant US Army Garrison at Fort Custer, and the Battle Creek Executive Airport. Consumers Energy service with competitive industrial rates, I-94 corridor connectivity between Detroit and Chicago, Michigan's data center incentive program, and available industrial land at low cost make it a regional enterprise data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Battle Creek Unlimited Economic Development",
+          "url": "https://www.bcunlimited.org"
+        },
+        {
+          "label": "Michigan Economic Development Corporation",
+          "url": "https://www.michiganbusiness.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "26045": {
+      "name": "Eaton County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Charlotte-Lansing Suburb \u2014 Michigan State Capital Western Ring and Consumers Energy",
+      "description": "Eaton County (Charlotte, Delta Township, Grand Ledge) forms the western suburban ring of the Lansing MSA. Consumers Energy service, proximity to Michigan state government IT infrastructure in adjacent Ingham County, I-96 connectivity to Grand Rapids and Detroit, and lower industrial land costs than Ingham County make it a secondary market for Lansing-area data center deployment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Eaton County Economic Development",
+          "url": "https://www.eatoncounty.org"
+        },
+        {
+          "label": "Michigan Economic Development Corporation",
+          "url": "https://www.michiganbusiness.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "48181": {
+      "name": "Grayson County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Sherman-Denison \u2014 Texas Semiconductor Hub and ONCOR/TDU Territory",
+      "description": "Grayson County (Sherman, Denison) emerged as one of the most significant US semiconductor and advanced manufacturing destinations following announcements from Texas Instruments (300mm fab) and GlobalFoundries expansion. High-power industrial infrastructure, Oncor Electric Delivery competitive rates, US 75 and US 82 connectivity to Dallas metro 60 miles south, Texas Enterprise Zone Program, and no-income-tax advantage position Grayson County as a rapidly growing data center and chip manufacturing-adjacent market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Sherman Economic Development Corporation",
+          "url": "https://www.corporatesherman.com"
+        },
+        {
+          "label": "Texas Comptroller \u2014 Data Centers",
+          "url": "https://comptroller.texas.gov/taxes/data-center"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "37049": {
+      "name": "Craven County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "New Bern-Cherry Point \u2014 MCAS Cherry Point and Eastern NC Industrial",
+      "description": "Craven County (New Bern, Havelock) hosts Marine Corps Air Station Cherry Point, a major USMC aviation and Fleet Readiness Center, and the UNC Health Vidant facility serving Eastern NC. Duke Energy Progress service with reliable coastal grid connectivity, North Carolina's Data Center Act (NCGS \u00a7 105-164.13(55)) sales tax exemption on equipment, and the county's industrial base supporting military and healthcare IT make it a secondary Eastern NC data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Craven County Economic Development Commission",
+          "url": "https://www.cravenedc.org"
+        },
+        {
+          "label": "North Carolina Department of Commerce \u2014 Data Centers",
+          "url": "https://www.nccommerce.com/business/tax-incentives"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
     }
   },
   "validation_report": {
@@ -17931,7 +18464,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-16T20:15:15.401316+00:00",
+    "last_computed": "2026-07-16T20:19:44.934414+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

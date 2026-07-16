@@ -6,6 +6,29 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 7)
+- `data/map_data.json` (Round 7)
+- `docs/data-sweeps/2026-07-massive-sweep-round-7.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 7**: Illinois expansion (Peoria/Caterpillar, Rock Island/Quad Cities/John Deere, McHenry/Chicago NW exurb, Kankakee/Chicago south exurb, LaSalle/I-80 nuclear corridor), New York (Tompkins/Ithaca/Cornell AI, Dutchess/Poughkeepsie/IBM HQ, Rockland/NYC near suburb, Chautauqua/Lake Erie/NYPA), New Jersey (Passaic/Paterson, Gloucester/Philadelphia south NJ), California (Solano/I-80/Travis AFB, Sonoma/North Bay tech, Butte/Chico/CSU), Michigan (Midland/Dow Chemical/Consumers Energy nuclear, Calhoun/Battle Creek, Eaton/Lansing suburb), Texas (Grayson/Sherman-Denison/TI-GlobalFoundries semiconductor), North Carolina (Craven/New Bern/MCAS Cherry Point). 19 net new records (643 total).
+- **FIPS error corrected**: 26023 (Branch County MI) → 26025 (Calhoun County MI); corrected in-place before commit.
+
+Reasoning:
+- Grayson County TX (Sherman-Denison) is particularly significant: Texas Instruments and GlobalFoundries semiconductor fabs are driving massive power infrastructure build in a county previously not documented. A semiconductor hub creates strong data center adjacency demand.
+- Dutchess County NY (IBM Poughkeepsie) is the global headquarters of IBM — a major omission now corrected.
+- Tompkins County NY (Cornell) is one of the top AI research universities in the US, not previously documented.
+- Illinois expansion fills the Quad Cities, Peoria, and I-80 nuclear corridor gaps that represent real industrial markets.
+
+Problems Found:
+- 1 FIPS error (26023/Branch County MI mislabeled as Calhoun; Calhoun = 26025); fixed in-place before commit.
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 6)
 - `data/map_data.json` (Round 6)
 - `docs/data-sweeps/2026-07-massive-sweep-round-6.md` (new)
