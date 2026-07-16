@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-16T20:24:32.184627+00:00",
+  "generated_at": "2026-07-16T20:31:14.832371+00:00",
   "source_last_updated": "2026-07-16",
   "stats": {
-    "total_counties_tracked": 663,
+    "total_counties_tracked": 683,
     "by_level": {
-      "-1": 551,
+      "-1": 571,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,10 +12,10 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 654,
+      "data_center": 674,
       "water": 14,
-      "ai": 175,
-      "energy": 158,
+      "ai": 182,
+      "energy": 160,
       "crypto": 18
     },
     "level_labels": {
@@ -18549,6 +18549,571 @@
       "confidence": "verified",
       "confidence_score": 85,
       "source_tier": 1
+    },
+    "51121": {
+      "name": "Montgomery County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Blacksburg \u2014 Virginia Tech, ICTAS, and Appalachian Power Service",
+      "description": "Montgomery County (Blacksburg, Radford) hosts Virginia Tech, one of the nation's leading cybersecurity and engineering universities and home to the Virginia Tech Transportation Institute, the Hume Center for National Security and Technology, and the Institute for Critical Technology and Applied Science (ICTAS). Appalachian Power (AEP) service, Virginia's Data Center Investment Grant (DCIG) program, I-81 corridor connectivity, and Virginia Tech's growing AI and HPC research programs create significant data center and research computing demand.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Virginia Tech \u2014 College of Engineering",
+          "url": "https://eng.vt.edu"
+        },
+        {
+          "label": "Virginia Economic Development Partnership \u2014 Data Centers",
+          "url": "https://www.vedp.org/data-centers"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "51099": {
+      "name": "King George County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Dahlgren \u2014 Naval Surface Warfare Center and Dominion Transmission Corridor",
+      "description": "King George County (Dahlgren) hosts the Naval Surface Warfare Center Dahlgren Division (NSWCDD), the Navy's primary site for weapon systems engineering, combat systems development, and advanced cyber research. Dominion Energy Virginia service, the county's proximity to NOVA data center clusters just 60 miles away via US 301, Virginia's Data Center Investment Grant program, and NSWCDD's extensive classified computing infrastructure create significant federal data center demand.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Naval Surface Warfare Center Dahlgren Division",
+          "url": "https://www.navsea.navy.mil/Home/Warfare-Centers/NSWC-Dahlgren"
+        },
+        {
+          "label": "Virginia Economic Development Partnership \u2014 Data Centers",
+          "url": "https://www.vedp.org/data-centers"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "51161": {
+      "name": "Roanoke County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Roanoke County \u2014 Suburban Roanoke and Appalachian Power Service",
+      "description": "Roanoke County (Salem, Vinton, Cave Spring) surrounds Roanoke city and is distinct from it under Virginia's independent city structure. Appalachian Power (AEP) service, lower industrial land costs than the city, I-81 corridor connectivity, Carilion health system's regional IT demand, Virginia's Data Center Investment Grant program, and available industrial parks (Valley View, Explore Park) make it a secondary western Virginia data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Roanoke County Economic Development",
+          "url": "https://www.roanokecountyva.gov/economic-development"
+        },
+        {
+          "label": "Virginia Economic Development Partnership",
+          "url": "https://www.vedp.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "51149": {
+      "name": "Prince George County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hopewell-Prince George \u2014 Fort Gregg-Adams and Army Logistics",
+      "description": "Prince George County (Hopewell) hosts Fort Gregg-Adams, the Army's Quartermaster Center and School and a major Army logistics command. Dominion Energy Virginia service with a major Hopewell transmission hub, I-95 corridor connectivity 25 miles south of Richmond, Virginia's Data Center Investment Grant program, and the county's industrial base supporting military IT and logistics enterprise computing create data center demand in this Richmond-Petersburg corridor.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Prince George County Economic Development",
+          "url": "https://www.co.prince-george.va.us/economic-development"
+        },
+        {
+          "label": "Virginia Economic Development Partnership \u2014 Data Centers",
+          "url": "https://www.vedp.org/data-centers"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "24025": {
+      "name": "Harford County",
+      "state": "Maryland",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Aberdeen \u2014 Aberdeen Proving Ground and Army Research Laboratory",
+      "description": "Harford County (Bel Air, Aberdeen, Havre de Grace) hosts Aberdeen Proving Ground, one of the US Army's most significant testing and research installations and home to the Army Research Laboratory (ARL), the Army's largest corporate laboratory. BGE (Exelon) service, Maryland's data center sales tax exemption, I-95 corridor connectivity between Baltimore and Philadelphia, and ARL's massive AI and cybersecurity research programs create substantial classified and enterprise data center demand.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "US Army Research Laboratory \u2014 Aberdeen Proving Ground",
+          "url": "https://www.arl.army.mil"
+        },
+        {
+          "label": "Harford County Economic Development",
+          "url": "https://www.harfordcountymd.gov/business/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "24021": {
+      "name": "Frederick County",
+      "state": "Maryland",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Frederick \u2014 Fort Detrick, NIST, and I-270 Technology Corridor",
+      "description": "Frederick County (Frederick) hosts Fort Detrick (US Army Medical Research), the National Institute of Standards and Technology (NIST) Gaithersburg campus (just south in Montgomery), and anchors the I-270 Technology Corridor between DC and Hagerstown. Potomac Edison (FirstEnergy)/BGE service, Maryland's data center sales tax exemption, growing commercial development north of Montgomery County, and the county's concentration of federal bio/tech agencies create significant enterprise and classified data center demand.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Frederick County Office of Economic Development",
+          "url": "https://developingfrederick.com"
+        },
+        {
+          "label": "Maryland Department of Commerce \u2014 Data Centers",
+          "url": "https://commerce.maryland.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "24043": {
+      "name": "Washington County",
+      "state": "Maryland",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hagerstown \u2014 I-70/I-81 Junction and Dominion/Potomac Edison Service",
+      "description": "Washington County (Hagerstown) sits at the critical I-70/I-81 junction, one of the most strategically positioned logistics crossroads in the eastern US. Potomac Edison (FirstEnergy) service, Maryland's data center sales tax exemption, lower industrial land costs than the Montgomery-Frederick corridor, and the county's growing distribution and e-commerce facility investment driven by its crossroads location make it an emerging secondary Maryland data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Hagerstown-Washington County Economic Development Commission",
+          "url": "https://www.hagerstownmd.org/economic-development"
+        },
+        {
+          "label": "Maryland Department of Commerce",
+          "url": "https://commerce.maryland.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "13021": {
+      "name": "Bibb County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Macon \u2014 Middle Georgia Hub and MEAG/Georgia Power Service",
+      "description": "Bibb County (Macon) is the commercial, medical, and cultural center for Middle Georgia. Georgia Power/MEAG service, Mercer University and Middle Georgia State University creating tech workforce, I-75/I-16 interchange at the geographic center of Georgia, Georgia's data center equipment sales tax exemption (O.C.G.A. \u00a7 48-8-3.2), and the county's position as a regional logistics and healthcare IT hub make it a secondary data center market for central Georgia.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Middle Georgia Regional Commission \u2014 Economic Development",
+          "url": "https://www.middlegeorgiarc.org"
+        },
+        {
+          "label": "Georgia Department of Economic Development",
+          "url": "https://www.georgia.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "13139": {
+      "name": "Hall County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Gainesville \u2014 NE Georgia Hub, Poultry Tech, and Hall EMC Service",
+      "description": "Hall County (Gainesville) is the commercial center for Northeast Georgia and the global center of poultry processing, hosting Pilgrim's Pride and Wayne Farms. Hall EMC and Georgia Power service, Georgia's data center sales tax exemption, US 129 and SR 53 corridor connectivity, the growing tech-adjacent industries around Lake Lanier, and the University of North Georgia creating a regional STEM workforce make it an emerging Northeast Georgia data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Greater Hall Chamber of Commerce",
+          "url": "https://www.ghcc.com"
+        },
+        {
+          "label": "Georgia Department of Economic Development",
+          "url": "https://www.georgia.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "13095": {
+      "name": "Dougherty County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Albany \u2014 Marine Corps Logistics Base and SW Georgia Industrial Hub",
+      "description": "Dougherty County (Albany) hosts Marine Corps Logistics Base Albany (MCLB Albany), the Marine Corps' largest logistics installation responsible for worldwide equipment maintenance and supply. Georgia Power service, Georgia's data center sales tax exemption, the Flint River Industrial Complex, and MCLB Albany's significant IT and supply chain data infrastructure create defense and enterprise data center demand in southwest Georgia.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Albany-Dougherty Economic Development Commission",
+          "url": "https://www.albany.ga.us/economic-development"
+        },
+        {
+          "label": "Marine Corps Logistics Base Albany",
+          "url": "https://www.mclbalbany.marines.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "06053": {
+      "name": "Monterey County",
+      "state": "California",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Salinas-Monterey \u2014 Ag-Tech AI Hub and MBARI Ocean Data Computing",
+      "description": "Monterey County (Salinas, Monterey, Seaside) is the center of California's Central Coast agriculture and hosts the Monterey Bay Aquarium Research Institute (MBARI), a leading ocean data and AI research center. PG&E service, California's data center sales tax incentive (Rev. & Tax. Code \u00a7 6377.1), the presidio area's defense data infrastructure (Defense Language Institute, Naval Postgraduate School), and the growing Salinas Valley ag-tech AI sector create data center demand in this dual defense/research market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Monterey Bay Aquarium Research Institute",
+          "url": "https://www.mbari.org"
+        },
+        {
+          "label": "Monterey County Economic Development",
+          "url": "https://www.co.monterey.ca.us/government/departments-a-h/economic-development"
+        },
+        {
+          "label": "California Governor's Office of Business and Economic Development",
+          "url": "https://business.ca.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "verified",
+      "confidence_score": 85,
+      "source_tier": 1
+    },
+    "06087": {
+      "name": "Santa Cruz County",
+      "state": "California",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Santa Cruz \u2014 UC Santa Cruz and Bay Area Southern Overflow",
+      "description": "Santa Cruz County hosts University of California Santa Cruz, home to the Jack Baskin School of Engineering with growing AI and data science programs. PG&E service, California's data center sales tax incentive, SR 17 fiber connectivity to San Jose/Silicon Valley, and the county's growing tech employer base drawing from Santa Clara County spillover create data center and research computing demand in this Bay Area adjacent market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "UC Santa Cruz Baskin School of Engineering",
+          "url": "https://engineering.ucsc.edu"
+        },
+        {
+          "label": "Economic Development Department of Santa Cruz County",
+          "url": "https://sccoplanning.com/PlanningHome/Sustainability-EconomicDevelopment.aspx"
+        },
+        {
+          "label": "California Governor's Office of Business and Economic Development",
+          "url": "https://business.ca.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "verified",
+      "confidence_score": 85,
+      "source_tier": 1
+    },
+    "27141": {
+      "name": "Sherburne County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Monticello \u2014 Xcel Energy Monticello Nuclear Plant and Twin Cities NW Exurb",
+      "description": "Sherburne County (Monticello, Elk River, Big Lake) hosts the Monticello Nuclear Generating Plant, operated by Xcel Energy, providing large-scale carbon-free baseload power in the Twin Cities exurb. Xcel Energy service with nuclear and growing wind generation, Minnesota's Enterprise Zone data center program, I-94 corridor connectivity 35 miles northwest of Minneapolis, and the county's rapid residential and commercial growth make it a compelling large-load data center location with proven nuclear power infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Xcel Energy \u2014 Monticello Nuclear Plant",
+          "url": "https://www.xcelenergy.com/staticfiles/xe/Corporate/Corporate%20PDFs/Monticello-FactSheet.pdf"
+        },
+        {
+          "label": "Sherburne County Economic Development",
+          "url": "https://www.co.sherburne.mn.us/economic-development"
+        },
+        {
+          "label": "Minnesota Department of Employment and Economic Development",
+          "url": "https://mn.gov/deed"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "verified",
+      "confidence_score": 85,
+      "source_tier": 1
+    },
+    "27171": {
+      "name": "Wright County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Buffalo-Monticello Area \u2014 Twin Cities NW Exurb and Xcel Energy Service",
+      "description": "Wright County (Buffalo, Monticello, St. Michael) anchors one of the fastest-growing counties in Minnesota as Twin Cities metro expansion moves northwest along I-94 and US 12. Xcel Energy service with nuclear baseload and renewable portfolio, lower industrial land costs than Hennepin or Anoka counties, and Minnesota's Enterprise Zone data center incentive program create a growing data center market adjacent to the Sherburne County nuclear corridor.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Wright County Economic Development Partnership",
+          "url": "https://www.co.wright.mn.us/203/Economic-Development"
+        },
+        {
+          "label": "Minnesota Department of Employment and Economic Development",
+          "url": "https://mn.gov/deed"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "27083": {
+      "name": "Lyon County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Marshall \u2014 Southwest MN Wind Energy Hub and Southwest Power Pool",
+      "description": "Lyon County (Marshall) anchors southwestern Minnesota's wind energy corridor and hosts Southwest Minnesota State University. The Southwest Minnesota Power Cooperative (SMMPA) territory with exceptional wind resources and some of the lowest power rates in Minnesota, the county's position in the Southwest Power Pool (SPP) with renewable energy certificate access, and Minnesota's Enterprise Zone data center incentive program make it a niche market for renewable energy-driven data center development.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Lyon County Economic Development",
+          "url": "https://www.lyoncountymneda.com"
+        },
+        {
+          "label": "Southwest Minnesota State University",
+          "url": "https://www.smsu.edu"
+        },
+        {
+          "label": "Minnesota Department of Employment and Economic Development",
+          "url": "https://mn.gov/deed"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "verified",
+      "confidence_score": 85,
+      "source_tier": 1
+    },
+    "12061": {
+      "name": "Indian River County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Vero Beach \u2014 Treasure Coast Growth and FPL/Indian River County Utilities",
+      "description": "Indian River County (Vero Beach, Sebastian) anchors the northern Treasure Coast between Palm Beach and Brevard and is one of Florida's fastest-growing counties. Florida Power & Light service, Florida's data center equipment sales tax exemption (F.S. \u00a7 212.08(5)(f)), US 1 and I-95 corridor connectivity, and growing affluent demographic driving financial services IT demand make it an emerging secondary data center market on Florida's Atlantic Coast.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Indian River County Economic Development Office",
+          "url": "https://www.ircgov.com/economic"
+        },
+        {
+          "label": "Florida Power and Light \u2014 Business",
+          "url": "https://www.fpl.com/business"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "12015": {
+      "name": "Charlotte County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Port Charlotte-Punta Gorda \u2014 SW Florida Growth and FPL Service",
+      "description": "Charlotte County (Port Charlotte, Punta Gorda, Englewood) is one of Florida's fastest-growing counties along the Gulf Coast, squeezed between fast-growing Lee County (Fort Myers) and Sarasota County. Florida Power & Light service, Florida's data center equipment sales tax exemption, US 41 and I-75 corridor connectivity, and the county's surging residential and commercial development driving enterprise IT demand create a growing secondary Southwest Florida data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Charlotte County Economic Development Office",
+          "url": "https://www.charlottecountyfl.gov/government/departments/economic-development"
+        },
+        {
+          "label": "Florida Power and Light \u2014 Business",
+          "url": "https://www.fpl.com/business"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "37125": {
+      "name": "Moore County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Pinehurst-Southern Pines \u2014 SAS Institute Proximity and Duke Energy Progress",
+      "description": "Moore County (Pinehurst, Southern Pines, Aberdeen) sits in the North Carolina Sandhills, 60 miles southwest of Research Triangle Park and proximate to SAS Institute's campus in Cary. Duke Energy Progress service with North Carolina's Data Center Act (NCGS \u00a7 105-164.13(55)) sales tax exemption on equipment, Fort Liberty (formerly Fort Bragg) proximity driving military IT demand spillover, and the county's growing commercial corridor along US 15-501 create data center relevance.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Moore County Economic Development",
+          "url": "https://www.moorecountync.gov/economic-development"
+        },
+        {
+          "label": "North Carolina Department of Commerce \u2014 Data Centers",
+          "url": "https://www.nccommerce.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "37151": {
+      "name": "Randolph County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Asheboro \u2014 NC Triad Manufacturing Hub and Duke Energy Progress Territory",
+      "description": "Randolph County (Asheboro) is a significant manufacturing county in the central North Carolina Piedmont between Greensboro and Charlotte. Duke Energy Progress service, North Carolina's data center equipment sales tax exemption, available industrial land at competitive rates, the NC Zoo driving tourism IT demand, and Randolph Community College's workforce programs make it a secondary data center consideration in the Triad manufacturing corridor.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Randolph County Economic Development Corporation",
+          "url": "https://www.randolphcountync.gov/economic-development"
+        },
+        {
+          "label": "North Carolina Department of Commerce \u2014 Data Centers",
+          "url": "https://www.nccommerce.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "37181": {
+      "name": "Vance County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Henderson \u2014 I-85 Corridor Hub Between Raleigh and Richmond",
+      "description": "Vance County (Henderson) sits on I-85 exactly between the Research Triangle Park metro (50 miles south) and Richmond, Virginia (60 miles north). Duke Energy Progress service, North Carolina's data center equipment sales tax exemption, US 1 fiber route connectivity, Kerr Lake industrial development, and the county's position as a logistics gateway on the Southeast corridor make it an emerging secondary market for data center operators seeking lower costs proximate to the RTP and Richmond markets.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Vance County Economic Development Commission",
+          "url": "https://www.vancecounty.org"
+        },
+        {
+          "label": "North Carolina Department of Commerce \u2014 Data Centers",
+          "url": "https://www.nccommerce.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
     }
   },
   "validation_report": {
@@ -19025,7 +19590,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-16T20:24:32.290717+00:00",
+    "last_computed": "2026-07-16T20:31:14.944913+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

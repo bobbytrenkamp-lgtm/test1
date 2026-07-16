@@ -6,6 +6,29 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 9)
+- `data/map_data.json` (Round 9)
+- `docs/data-sweeps/2026-07-massive-sweep-round-9.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 9**: Virginia defense/tech (Montgomery/Virginia Tech & ICTAS, King George/Dahlgren Naval Surface Warfare Center, Roanoke County/AEP, Prince George/Fort Gregg-Adams), Maryland military R&D (Harford/Aberdeen Proving Ground, Frederick/Fort Detrick & NIST & I-270 tech corridor, Washington County/Hagerstown I-70/I-81), Georgia secondary hubs (Bibb/Macon, Hall/Gainesville NE GA, Dougherty/Albany & Marine Corps Logistics Base), California coastal universities (Monterey/Salinas & MBARI & Naval Postgraduate, Santa Cruz/UCSC), Minnesota nuclear/renewable (Sherburne/Monticello nuclear plant & Xcel Energy, Wright County/Twin Cities NW exurb, Lyon/Marshall & Southwest MN wind), Florida coastal growth (Indian River/Vero Beach, Charlotte/Port Charlotte), North Carolina remaining (Moore/Pinehurst & SAS proximity, Randolph/Asheboro manufacturing, Vance/Henderson & I-85 corridor). 20 net new records (683 total).
+- **6 FIPS errors corrected**: 51163→51161 (Roanoke County VA), 24023→24025 (Harford County MD), 24019→24021 (Frederick County MD), 13083→13095 (Dougherty County GA), 27169→27171 (Wright County MN), 37155→37151 (Randolph County NC); all corrected in-place before commit.
+
+Reasoning:
+- Harford County MD (Aberdeen Proving Ground): Army Research Laboratory is one of the US Army's principal research sites and a significant federal technology and computing demand driver. First-time documentation.
+- Frederick County MD (Fort Detrick + NIST): Combines federal biodefense research, NIST campus, and dense I-270 tech corridor adjacent to DC — a compound federal technology hub previously absent.
+- Montgomery County VA (Virginia Tech): ICTAS (Institute for Critical Technology and Applied Science) research cluster represents one of the most significant university-adjacent data infrastructure opportunities in the Mid-Atlantic region.
+- Sherburne County MN (Monticello nuclear plant): Xcel Energy's Monticello Nuclear Generating Plant provides exceptional baseload power in a low-cost rural county — strong data center fundamentals.
+
+Problems Found:
+- 6 FIPS errors caught and fixed in-place before commit (all six had off-by-one or non-sequential FIPS numbering errors).
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 8)
 - `data/map_data.json` (Round 8)
 - `docs/data-sweeps/2026-07-massive-sweep-round-8.md` (new)
