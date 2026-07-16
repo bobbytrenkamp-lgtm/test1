@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-16T20:42:29.064397+00:00",
+  "generated_at": "2026-07-16T20:46:47.705121+00:00",
   "source_last_updated": "2026-07-16",
   "stats": {
-    "total_counties_tracked": 723,
+    "total_counties_tracked": 743,
     "by_level": {
-      "-1": 611,
+      "-1": 631,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,7 +12,7 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 714,
+      "data_center": 734,
       "water": 14,
       "ai": 182,
       "energy": 160,
@@ -20194,6 +20194,546 @@
       "confidence": "high",
       "confidence_score": 78,
       "source_tier": 1
+    },
+    "19193": {
+      "name": "Woodbury County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Woodbury County IA \u2014 Sioux City/MidAmerican Energy/Tri-State livestock hub",
+      "description": "Woodbury County (Sioux City) is Iowa's third-largest city and the commercial hub of Siouxland \u2014 the tri-state Iowa-Nebraska-South Dakota market. MidAmerican Energy's low commercial rates and Sioux City's position on I-29 (the principal north-south corridor in western Iowa) give the county solid data center fundamentals. The county's agricultural processing economy (Tyson, Hy-Vee distribution) drives substantial industrial electrical load. Morningside University and Sioux City's role as a regional financial and healthcare center create enterprise IT demand.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Woodbury County IA \u2014 City of Sioux City",
+          "url": "https://www.sioux-city.org/"
+        },
+        {
+          "label": "MidAmerican Energy \u2014 Sioux City",
+          "url": "https://www.midamericanenergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "19033": {
+      "name": "Cerro Gordo County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cerro Gordo County IA \u2014 Mason City/US-18 & US-65 junction/North Iowa hub",
+      "description": "Cerro Gordo County (Mason City) is the commercial center of north-central Iowa, situated at the US-18 and US-65 junction. North Iowa Area Community College and Mason City's role as a regional healthcare, agricultural, and manufacturing hub drive institutional IT demand. Alliant Energy (Interstate Power and Light) serves the county. The county's Lime Creek and Shell Rock River corridor industrial heritage, combined with its fiber connections on the Iowa Communications Network's north trunk, gives it solid secondary data infrastructure context.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Cerro Gordo County IA \u2014 City of Mason City",
+          "url": "https://www.masoncity.net/"
+        },
+        {
+          "label": "Alliant Energy (IPL) \u2014 North Iowa",
+          "url": "https://www.alliantenergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "19187": {
+      "name": "Webster County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Webster County IA \u2014 Fort Dodge/Gypsum Belt/Iowa Central Community College",
+      "description": "Webster County (Fort Dodge) is north-central Iowa's commercial hub, historically defined by gypsum mining and manufacturing (USG Corporation, National Gypsum). Iowa Central Community College provides regional education computing. MidAmerican Energy serves the county. Fort Dodge's position on US-169 and US-20 gives it connectivity to both Des Moines (90 miles south) and Mason City, while the county's heavy manufacturing history has driven industrial-grade electrical infrastructure from MidAmerican's service territory.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Webster County IA \u2014 City of Fort Dodge",
+          "url": "https://www.dodgeiowa.com/"
+        },
+        {
+          "label": "MidAmerican Energy \u2014 Fort Dodge IA",
+          "url": "https://www.midamericanenergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "46027": {
+      "name": "Clay County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clay County SD \u2014 Vermillion/University of South Dakota/I-29 corridor",
+      "description": "Clay County (Vermillion) is the home of the University of South Dakota (USD) \u2014 the state's flagship liberal arts and professional university, hosting the only law school in South Dakota. USD's computing infrastructure, combined with Vermillion's position on I-29 (30 miles north of Sioux City) and Otter Tail Power's competitive rates, give the county secondary data center relevance. South Dakota's zero state income tax and USD's growing research programs add to the county's data infrastructure appeal.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "University of South Dakota \u2014 Vermillion SD",
+          "url": "https://www.usd.edu/"
+        },
+        {
+          "label": "Clay County SD",
+          "url": "https://www.claycountysd.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "46035": {
+      "name": "Davison County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Davison County SD \u2014 Mitchell/I-90 crossroads/South Dakota School of Mines adjacent",
+      "description": "Davison County (Mitchell) sits at the I-90 corridor midpoint in south-central South Dakota, a key junction for east-west interstate traffic. Mitchell's role as the commercial hub of the region, combined with NorthWestern Energy's competitive rates and South Dakota's zero corporate income tax, creates solid secondary data center fundamentals. The county's agricultural service economy and I-90 fiber corridor positioning give it connectivity access to both Sioux Falls (70 miles east) and Rapid City (250 miles west).",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Davison County SD \u2014 City of Mitchell",
+          "url": "https://www.cityofmitchell.org/"
+        },
+        {
+          "label": "NorthWestern Energy \u2014 South Dakota",
+          "url": "https://www.northwesternenergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "46081": {
+      "name": "Lawrence County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lawrence County SD \u2014 Lead/Deadwood/Sanford Underground Research Facility (SURF)",
+      "description": "Lawrence County (Lead, Deadwood) is home to the Sanford Underground Research Facility (SURF) \u2014 the deepest underground laboratory in the United States, located in the former Homestake Gold Mine. SURF hosts major physics experiments including the LUX-ZEPLIN dark matter detector and the DUNE/LBNF neutrino program. The research computing requirements of SURF and its DOE connections drive significant scientific computing infrastructure to the Black Hills. Black Hills Energy serves the county with South Dakota's favorable commercial rates.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Sanford Underground Research Facility (SURF) \u2014 Lead SD",
+          "url": "https://sanfordlab.org/"
+        },
+        {
+          "label": "Black Hills Energy \u2014 Lawrence County SD",
+          "url": "https://www.blackhillsenergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "20169": {
+      "name": "Saline County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Saline County KS \u2014 Salina/I-70 & I-135 junction/Kansas geographic center hub",
+      "description": "Saline County (Salina) occupies the precise geographic crossroads of Kansas, where I-70 (east-west) and I-135 (north-south, connecting Wichita to I-70) intersect. This junction makes Salina a critical fiber route diversification point for network infrastructure crossing Kansas. Evergy and Salina's municipal utilities provide competitive commercial rates. Salina's aviation industry (Smoky Hill Air National Guard, Great Plains Aviation) and agricultural processing economy (Cargill, Westar Grain) drive industrial-grade electrical demand. Kansas Wesleyan University provides a modest academic computing presence.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Saline County KS \u2014 City of Salina",
+          "url": "https://www.salina-ks.gov/"
+        },
+        {
+          "label": "Evergy \u2014 Central Kansas",
+          "url": "https://www.evergy.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "20051": {
+      "name": "Ellis County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ellis County KS \u2014 Hays/Fort Hays State University/I-70 western Kansas hub",
+      "description": "Ellis County (Hays) is the commercial center of western Kansas, home to Fort Hays State University \u2014 the fastest-growing university in Kansas and a nationally recognized online education provider. FHSU's online programs drive significant computing infrastructure at scale, and the university's data center operations are among the largest in western Kansas. Evergy serves the county. Hays' I-70 position gives it fiber corridor access, and the county's wind energy surroundings (Kansas wind belt) provide future renewable power context for data operations.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Fort Hays State University \u2014 Hays KS",
+          "url": "https://www.fhsu.edu/"
+        },
+        {
+          "label": "Ellis County KS \u2014 City of Hays",
+          "url": "https://www.haysusa.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "28035": {
+      "name": "Forrest County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Forrest County MS \u2014 Hattiesburg/University of Southern Mississippi",
+      "description": "Forrest County (Hattiesburg) is home to the University of Southern Mississippi (USM) \u2014 one of Mississippi's two Carnegie R2 research universities \u2014 and William Carey University. USM's research computing programs, combined with Hattiesburg's position at the I-59/US-98 junction (connecting the Gulf Coast to Metro Jackson), give the county solid secondary data center fundamentals. Mississippi Power (Southern Company) serves the county with Mississippi's competitive industrial rates. The Hattiesburg metro's healthcare and education economy drives steady enterprise IT demand.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "University of Southern Mississippi \u2014 Hattiesburg MS",
+          "url": "https://www.usm.edu/"
+        },
+        {
+          "label": "Mississippi Power (Southern Company) \u2014 Forrest County",
+          "url": "https://www.mississippipower.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "28081": {
+      "name": "Lee County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lee County MS \u2014 Tupelo/Toyota Motor Manufacturing/NE Mississippi hub",
+      "description": "Lee County (Tupelo) is the commercial center of northeast Mississippi and home to Toyota Motor Manufacturing Mississippi \u2014 one of the largest Toyota plants in North America, producing Corolla and Highlander models. The Toyota plant's industrial electrical infrastructure through Tennessee Valley Authority (TVA) power, combined with Tupelo's role as a regional financial and healthcare hub, creates solid industrial-grade power delivery in a mid-sized Mississippi city. North Mississippi Medical Center (the largest rural hospital in the US by volume) drives substantial healthcare IT demand.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Toyota Motor Manufacturing Mississippi \u2014 Lee County",
+          "url": "https://www.toyota.com/configurator/api/lexicon/models"
+        },
+        {
+          "label": "Tennessee Valley Authority (TVA) \u2014 NE Mississippi",
+          "url": "https://www.tva.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "28075": {
+      "name": "Lauderdale County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lauderdale County MS \u2014 Meridian/Naval Air Station Meridian/Key Field",
+      "description": "Lauderdale County (Meridian) hosts Naval Air Station Meridian \u2014 the Navy's primary jet pilot training base, operating T-45 Goshawks. Meridian's position at the I-20/US-45 junction makes it the most significant I-20 hub in Mississippi outside Jackson. Mississippi Power (Southern Company) and TVA serve the county. The NAS Meridian's aviation fuel, communications, and IT infrastructure, combined with East Mississippi Community College and Meridian Community College, drive institutional computing demand in a county larger than several northeastern US states.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Naval Air Station Meridian \u2014 Lauderdale County MS",
+          "url": "https://www.cnasc.navy.mil/"
+        },
+        {
+          "label": "Mississippi Power \u2014 Meridian area",
+          "url": "https://www.mississippipower.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "54049": {
+      "name": "Marion County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Marion County WV \u2014 Fairmont/WVU adjacent/National Energy Technology Lab (NETL)",
+      "description": "Marion County (Fairmont) sits immediately south of Monongalia County (Morgantown/WVU) and is effectively part of the WVU research corridor. NETL's Morgantown campus (which has a Marion County-adjacent presence) is the Department of Energy's leading research lab for fossil fuel and energy transition technology \u2014 a major federal computing customer. Fairmont State University provides local academic computing. FirstEnergy (Mon Power) serves the county. Marion County's I-79 connectivity and proximity to WVU's tech transfer ecosystem give it secondary data center relevance.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "National Energy Technology Laboratory (NETL) \u2014 WV",
+          "url": "https://www.netl.doe.gov/"
+        },
+        {
+          "label": "Marion County WV \u2014 City of Fairmont",
+          "url": "https://www.fairmontwv.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "54079": {
+      "name": "Putnam County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Putnam County WV \u2014 Teays Valley/Hurricane/Charleston west suburb",
+      "description": "Putnam County (Hurricane, Teays Valley, Winfield) is consistently the fastest-growing county in West Virginia, a Charleston western suburb accessible via I-64 and WV-34. The county's residential and commercial growth west of Charleston has attracted regional distribution and logistics operations. Appalachian Power (AEP) serves the county with West Virginia's competitive rates. Putnam County's position on I-64 between Charleston and Huntington \u2014 two of WV's largest cities \u2014 gives it linear corridor connectivity for fiber routing and edge data center deployment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Putnam County WV",
+          "url": "https://www.putnamcountywv.org/"
+        },
+        {
+          "label": "Appalachian Power (AEP) \u2014 Putnam County WV",
+          "url": "https://www.appalachianpower.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "21073": {
+      "name": "Franklin County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Franklin County KY \u2014 Frankfort/Kentucky state capital/state government IT",
+      "description": "Franklin County (Frankfort) is the Kentucky state capital and home to the Commonwealth Office of Technology \u2014 the state's central IT and cybersecurity agency. State government computing infrastructure, data centers, and telecommunications systems are concentrated in Frankfort. Kentucky Utilities (LG&E and KU Energy) serves the county. Kentucky State University provides a Historically Black University computing presence. The capital's government IT infrastructure, bourbon distilling operations (Buffalo Trace), and proximity to the Lexington fiber hub (25 miles) give Franklin County data center context unique to state capital markets.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Kentucky Commonwealth Office of Technology \u2014 Frankfort",
+          "url": "https://technology.ky.gov/"
+        },
+        {
+          "label": "Franklin County KY \u2014 City of Frankfort",
+          "url": "https://www.frankfort.ky.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "21029": {
+      "name": "Bullitt County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bullitt County KY \u2014 Shepherdsville/Louisville south/Amazon fulfillment/I-65",
+      "description": "Bullitt County (Shepherdsville, Mount Washington) is the rapidly growing southern suburb of Louisville, accessed directly by I-65 and I-265 (the Gene Snyder Freeway). Amazon's Kentucky Fulfillment Center and multiple Louisville Metro logistics campuses have expanded into Bullitt County, driving significant electrical demand through Louisville Gas and Electric. The county's lower commercial real estate cost relative to Jefferson County, combined with LG&E's competitive rates and Louisville's robust fiber network extending southward, make it a natural edge data center zone for the Louisville market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Bullitt County KY \u2014 City of Shepherdsville",
+          "url": "https://www.shepherdsvilleky.us/"
+        },
+        {
+          "label": "Louisville Gas and Electric (LG&E) \u2014 Bullitt County",
+          "url": "https://lge-ku.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "21199": {
+      "name": "Pulaski County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pulaski County KY \u2014 Somerset/Lake Cumberland/south-central KY hub",
+      "description": "Pulaski County (Somerset) is the commercial hub of south-central Kentucky and the Lake Cumberland region \u2014 one of the largest man-made lakes east of the Mississippi River. The county's role as a regional healthcare, retail, and logistics center drives institutional IT demand. Kentucky Utilities (LG&E and KU Energy) serves the county with competitive rates backed by Kentucky's diversified generation mix. Somerset Community College and the county's manufacturing base (auto parts, plastics) support enterprise IT demand in a region often overlooked in data center geography.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Pulaski County KY \u2014 City of Somerset",
+          "url": "https://www.somersetky.gov/"
+        },
+        {
+          "label": "Kentucky Utilities (LG&E and KU Energy)",
+          "url": "https://lge-ku.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "48479": {
+      "name": "Webb County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Webb County TX \u2014 Laredo/international border trade/AEP Texas",
+      "description": "Webb County (Laredo) is home to the busiest land port of entry in the Western Hemisphere \u2014 Laredo handles more international trade than any other US land crossing. The volume of logistics, customs, supply chain management, and financial transaction processing through Laredo drives significant enterprise IT demand. AEP Texas serves the county. As NEARSHORING accelerates manufacturing relocation from Asia to Mexico, Webb County's position as the principal gateway for US-Mexico cross-border trade makes it an increasingly important secondary data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Webb County TX \u2014 City of Laredo",
+          "url": "https://www.cityoflaredo.com/"
+        },
+        {
+          "label": "AEP Texas \u2014 Laredo",
+          "url": "https://www.aeptexas.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "48451": {
+      "name": "Tom Green County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Tom Green County TX \u2014 San Angelo/wind energy hub/Concho Valley",
+      "description": "Tom Green County (San Angelo) anchors the Concho Valley region of West Texas and sits in the heart of one of the highest wind energy generation zones in the US. Oncor Electric Delivery serves the county, with massive wind generation from surrounding counties flowing through Tom Green's transmission infrastructure. Angelo State University provides academic computing. San Angelo's military connection (Goodfellow AFB \u2014 Air Force intelligence training) drives federal IT demand. The county's combination of renewable energy access, low land costs, and mild Concho Valley climate creates real data center potential.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Tom Green County TX \u2014 City of San Angelo",
+          "url": "https://www.sanangelotexas.us/"
+        },
+        {
+          "label": "Goodfellow AFB \u2014 Tom Green County TX",
+          "url": "https://www.goodfellow.af.mil/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "48347": {
+      "name": "Nacogdoches County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Nacogdoches County TX \u2014 Nacogdoches/SFA University/East Texas timber & energy",
+      "description": "Nacogdoches County (Nacogdoches) is home to Stephen F. Austin State University (SFA) and is the commercial hub of deep East Texas timber country. SWEPCO (AEP) serves the county. The county's proximity to the Sabine River energy corridor, combined with SFA's research computing programs and Nacogdoches' natural gas gathering infrastructure, creates a secondary East Texas data center context. The county's fiber connectivity via US-59 (the East Texas energy corridor) and relatively low cost of land and electricity add incremental data center appeal.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Stephen F. Austin State University \u2014 Nacogdoches TX",
+          "url": "https://www.sfasu.edu/"
+        },
+        {
+          "label": "Nacogdoches County TX",
+          "url": "https://www.co.nacogdoches.tx.us/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "48469": {
+      "name": "Victoria County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Victoria County TX \u2014 Victoria/Formosa Plastics/petrochemical coastal hub",
+      "description": "Victoria County (Victoria) is a Gulf Coast petrochemical hub 30 miles inland from the shipping channels, home to Formosa Plastics' Point Comfort Plant \u2014 one of the largest petrochemical complexes in North America. AEP Texas serves the county with the industrial-grade electrical infrastructure required by major plastics and chemical manufacturing operations. Victoria College and the University of Houston-Victoria provide local academic computing. The county's proximity to Corpus Christi (80 miles south) and Houston (130 miles east) via US-77 and US-59 gives it connectivity to two major Texas fiber markets.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Victoria County TX \u2014 City of Victoria",
+          "url": "https://www.victoriatx.gov/"
+        },
+        {
+          "label": "AEP Texas \u2014 Victoria County",
+          "url": "https://www.aeptexas.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -20670,7 +21210,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-16T20:42:29.193326+00:00",
+    "last_computed": "2026-07-16T20:46:47.825412+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

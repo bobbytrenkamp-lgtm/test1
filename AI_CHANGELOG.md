@@ -6,6 +6,29 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 12)
+- `data/map_data.json` (Round 12)
+- `docs/data-sweeps/2026-07-massive-sweep-round-12.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 12**: Iowa (Woodbury/Sioux City, Cerro Gordo/Mason City, Webster/Fort Dodge), South Dakota (Clay/Vermillion/USD, Davison/Mitchell, Lawrence/Lead/SURF underground lab), Kansas (Saline/Salina/I-70⟨I-135, Ellis/Hays/FHSU), Mississippi (Forrest/Hattiesburg/USM, Lee/Tupelo/Toyota, Lauderdale/Meridian/NAS), West Virginia (Marion/Fairmont/NETL-adjacent, Putnam/Teays Valley), Kentucky (Franklin/Frankfort/state capital IT, Bullitt/Shepherdsville/Amazon, Pulaski/Somerset), Texas (Webb/Laredo/busiest land port, Tom Green/San Angelo/wind/Goodfellow AFB, Nacogdoches/SFA, Victoria/Formosa Plastics). 20 net new records (743 total).
+- **No FIPS errors** — third clean validation round overall.
+
+Reasoning:
+- Webb County TX (Laredo): The busiest land port of entry in the Western Hemisphere by cargo. Supply chain IT, customs processing, trade finance, and logistics management at Laredo's scale create genuine data center demand that accelerates with nearshoring from Asia.
+- Lawrence County SD (Lead/SURF): Sanford Underground Research Facility is the deepest underground science lab in the US — DOE-funded with high-performance computing requirements for dark matter (LUX-ZEPLIN) and neutrino (DUNE/LBNF) experiments. A distinctive high-value scientific computing site in a rural county.
+- Franklin County KY (Frankfort): The Kentucky Commonwealth Office of Technology consolidates state government data center infrastructure in the capital. State capital counties are systematically underdocumented in commercial-focused databases.
+- Ellis County KS (Hays/FHSU): Fort Hays State's 14,000+ online students represent a genuine large-scale online education platform with real computing infrastructure requirements — underappreciated data center demand in western Kansas.
+
+Problems Found:
+- 0 FIPS errors (third clean round).
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 11)
 - `data/map_data.json` (Round 11)
 - `docs/data-sweeps/2026-07-massive-sweep-round-11.md` (new)
