@@ -9348,6 +9348,289 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null
+    },
+    {
+      "fips": "36045",
+      "name": "Jefferson County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Jefferson County Fort Drum 10th Mountain Division Technology Hub",
+      "description": "Jefferson County (Watertown) hosts Fort Drum, home of the 10th Mountain Division \u2014 the most-deployed division in the US Army since 9/11 \u2014 with significant mission command, logistics AI, and network operations data infrastructure. Fort Drum's Joint Multinational Readiness Center training exercises and sustainment data systems anchor the county's technology profile. No local DC restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Fort Drum \u2014 10th Mountain Division",
+          "url": "https://www.drum.army.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "36071",
+      "name": "Orange County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Orange County Stewart ANG Base and Hudson Valley Technology Hub",
+      "description": "Orange County (Newburgh/Middletown) hosts Stewart Air National Guard Base \u2014 a key Air Mobility Command tanker base and Army Reserve aviation hub \u2014 and lies adjacent to West Point's military academy technology infrastructure. The Hudson Valley Technology Hub and I-84 corridor support growing data center interest from New York City metro operators seeking lower costs. No local DC restrictions; NYS Empire State Digital incentive program applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Orange County Partnership \u2014 Economic Development",
+          "url": "https://www.ocpartnership.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "25015",
+      "name": "Hampshire County",
+      "state": "Massachusetts",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Hampshire County Amherst UMass and Massachusetts Green High Performance Computing",
+      "description": "Hampshire County (Amherst/Northampton) hosts the University of Massachusetts Amherst and the Massachusetts Green High Performance Computing Center (MGHPCC) \u2014 a consortium facility serving UMass, Harvard, MIT, BU, and Northeastern. The MGHPCC is one of the most energy-efficient research data centers in the US and anchors a growing Pioneer Valley technology ecosystem. No local DC restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Massachusetts Green HPC Center (MGHPCC)",
+          "url": "https://www.mghpcc.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "25001",
+      "name": "Barnstable County",
+      "state": "Massachusetts",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Barnstable County Cape Cod PAVE PAWS Radar and Otis ANG Technology Hub",
+      "description": "Barnstable County (Hyannis/Barnstable) hosts the PAVE PAWS phased-array warning radar system at Cape Cod Air Force Station \u2014 a critical ballistic missile early warning radar for the Eastern Seaboard \u2014 and Otis Air National Guard Base with its 102nd Intelligence Wing. The concentration of radar, signals intelligence, and early warning data infrastructure is militarily significant. No local DC restrictions.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Cape Cod Air Force Station \u2014 PAVE PAWS",
+          "url": "https://www.afspacecom.af.mil"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "39085",
+      "name": "Lake County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lake County Mentor Northeast Ohio Manufacturing and Technology Hub",
+      "description": "Lake County (Mentor/Painesville) hosts Sherwin-Williams' coatings R&D operations and Lubrizol's (Berkshire Hathaway) specialty chemical technology headquarters, driving significant industrial AI and manufacturing data infrastructure in the Cleveland metro eastern corridor. NOPEC's cooperative utility rates support enterprise technology investment. No local DC restrictions; Ohio's data center sales tax exemption (ORC \u00a75739.02(B)(42a)) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Lubrizol Corporation \u2014 Wickliffe Ohio (Lake County)",
+          "url": "https://www.lubrizol.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "39093",
+      "name": "Lorain County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Lorain County Elyria US Steel and Advanced Manufacturing Technology Hub",
+      "description": "Lorain County (Elyria/Lorain) hosts US Steel's Great Lakes Works and Ford Motor's Lorain stamping operations, driving industrial IoT, process control, and supply chain data infrastructure in the Lake Erie manufacturing corridor. Lorain County Community College's technology programs support a growing technology workforce pipeline. No local DC restrictions; Ohio's data center sales tax exemption (ORC \u00a75739.02(B)(42a)) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Lorain County Economic Development",
+          "url": "https://www.loraincounty.us/departments/economic-development/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "55117",
+      "name": "Sheboygan County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Sheboygan County Kohler Company and Manufacturing Technology Hub",
+      "description": "Sheboygan County hosts Kohler Company's global headquarters and innovation campus \u2014 a major bathroom/kitchen fixture and power systems manufacturer with extensive industrial IoT and manufacturing AI \u2014 alongside Sargento Foods' cheese production technology operations. Kohler's hospitality and commercial real estate portfolio drives enterprise data infrastructure. No local DC restrictions; Wisconsin's data center sales tax exemption (Wis. Stat. \u00a777.54(57)) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Kohler Company Global Headquarters \u2014 Sheboygan County",
+          "url": "https://www.kohler.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "27123",
+      "name": "Ramsey County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Ramsey County St. Paul Minnesota State Government and Health Technology Hub",
+      "description": "Ramsey County (St. Paul) is Minnesota's state capital, housing the Minnesota IT Services (MNIT) enterprise data center operations for state government, Regions Hospital's health IT, and 3M's specialty materials innovation center on the East Side. Ecolab's water technology and food safety data operations anchor the corporate technology presence. No local DC restrictions; Minnesota's Angel Tax Credit and targeted tax increment financing support technology investment.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Minnesota IT Services (MNIT) \u2014 State Data Center",
+          "url": "https://mn.gov/mnit/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "27003",
+      "name": "Anoka County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Anoka County Minneapolis North Metro Logistics and Technology Hub",
+      "description": "Anoka County (Coon Rapids/Blaine) is the fastest-growing county in the Minneapolis metro area, hosting Amazon's large fulfillment and logistics technology operations, Medtronic device manufacturing, and a growing I-35W corridor technology cluster. Xcel Energy's transmission infrastructure and the northern metro fiber network support data center development. No local DC restrictions; Minnesota's Sales Tax Exemption for Data Centers (Minn. Stat. \u00a7297A.68) applies.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Anoka County Economic Development",
+          "url": "https://www.anokacounty.us/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "20177",
+      "name": "Shawnee County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Shawnee County Topeka Kansas State Government and Transportation Technology Hub",
+      "description": "Shawnee County (Topeka) is Kansas's state capital, hosting the Kansas Office of Information Technology Services (OITS) state data center and the Hill's Pet Nutrition (Colgate-Palmolive) research computing operations. BNSF Railway's significant Topeka operations drive logistics data infrastructure in the central freight corridor. No local DC restrictions; Kansas data center equipment sales tax exemption applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Kansas Office of Information Technology Services (OITS)",
+          "url": "https://ebit.ks.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "20045",
+      "name": "Douglas County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Douglas County Lawrence University of Kansas Research Computing Hub",
+      "description": "Douglas County (Lawrence) hosts the University of Kansas (KU) and its Center for Research Computing (CRC) \u2014 providing HPC resources for genomics, biomedical engineering, and humanities data \u2014 as well as KU Medical Center's clinical data infrastructure. Lawrence's position between Topeka and Kansas City metro supports a growing technology talent corridor. No local DC restrictions.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "KU Center for Research Computing",
+          "url": "https://crc.ku.edu"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "27019",
+      "name": "Carver County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Carver County Chaska Western Twin Cities Manufacturing and Technology Hub",
+      "description": "Carver County (Chaska/Chanhassen) hosts Cargill's global headquarters (one of the largest privately-held companies in the US) with substantial agricultural technology and supply chain data operations, and a growing western Twin Cities technology corridor with Pentair's water treatment technology operations. No local DC restrictions; Minnesota's data center sales tax exemption (Minn. Stat. \u00a7297A.68) applies.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Cargill Global Headquarters \u2014 Wayzata/Hopkins MN",
+          "url": "https://www.cargill.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
     }
   ]
 }

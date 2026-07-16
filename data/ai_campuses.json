@@ -1367,6 +1367,56 @@
       "notes": "Vandenberg SFB's SLD-30 provides launch telemetry, satellite tracking (FPS-16 radar, telemetry stations), and mission control data for DoD, NASA, and commercial polar-orbit launches; SpaceX Falcon 9 and Falcon Heavy operations co-located.",
       "lon": -120.5665,
       "lat": 34.742
+    },
+    {
+      "id": "ai-ny-004",
+      "name": "Fort Drum 10th Mountain Division Mission Command Center",
+      "operator": "US Army 10th Mountain Division",
+      "status": "operational",
+      "county_fips": "36045",
+      "notes": "Fort Drum's 10th Mountain Division operates mission command and logistics data systems supporting the most-deployed US Army division; includes joint exercise data infrastructure and theater sustainment computing.",
+      "lon": -75.7607,
+      "lat": 44.0527
+    },
+    {
+      "id": "ai-ma-002",
+      "name": "Massachusetts Green High Performance Computing Center (MGHPCC) \u2014 Holyoke",
+      "operator": "UMass / Harvard / MIT / BU / Northeastern (consortium)",
+      "status": "operational",
+      "county_fips": "25015",
+      "notes": "MGHPCC is one of the most energy-efficient research data centers in the US, serving research computing for 5 major New England universities; powered by hydroelectric power from the Connecticut River; exemplar of academic research data center design.",
+      "lon": -72.6162,
+      "lat": 42.2036
+    },
+    {
+      "id": "ai-mn-003",
+      "name": "Minnesota IT Services (MNIT) Enterprise Data Center \u2014 St. Paul",
+      "operator": "Minnesota IT Services (MNIT)",
+      "status": "operational",
+      "county_fips": "27123",
+      "notes": "MNIT's state data center provides enterprise IT infrastructure for all Minnesota state agencies, including cybersecurity operations, cloud services brokerage, and the state's 911 emergency communications system backbone.",
+      "lon": -93.0898,
+      "lat": 44.9537
+    },
+    {
+      "id": "ai-ks-003",
+      "name": "Kansas Office of Information Technology Services (OITS) State Data Center \u2014 Topeka",
+      "operator": "Kansas Office of Information Technology Services",
+      "status": "operational",
+      "county_fips": "20177",
+      "notes": "Kansas OITS operates the state government primary data center supporting agency IT consolidation and shared services; manages the KanAccess broadband mapping and rural connectivity data programs.",
+      "lon": -95.689,
+      "lat": 39.0558
+    },
+    {
+      "id": "ai-wi-002",
+      "name": "Kohler Company Innovation Center and Manufacturing Technology Campus",
+      "operator": "Kohler Co.",
+      "status": "operational",
+      "county_fips": "55117",
+      "notes": "Kohler's Sheboygan County campus houses the company's manufacturing AI, IoT sensor integration, and enterprise data systems for global operations; Kohler's residential and hospitality technology platforms process data from millions of connected fixtures worldwide.",
+      "lon": -87.7845,
+      "lat": 43.7369
     }
   ]
 }
