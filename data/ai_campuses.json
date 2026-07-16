@@ -1867,6 +1867,56 @@
       "notes": "Basin Electric Power Cooperative grid management and AI energy dispatch center in Beulah, Mercer County ND. Coordinates real-time generation dispatch for Basin Electric's 2.9 GW coal and 1+ GW wind generation portfolio serving 2.9 million people across nine states. AI-driven load forecasting supports coal-to-renewable transition planning.",
       "lon": -101.7796,
       "lat": 47.2629
+    },
+    {
+      "id": "ai-ky-003",
+      "name": "Fort Knox U.S. Army Cyber and AI Operations Center",
+      "operator": "U.S. Army Network Enterprise Technology Command",
+      "status": "operational",
+      "county_fips": "21093",
+      "notes": "Fort Knox (Hardin County KY) hosts U.S. Army NETCOM regional operations and Cyber Institute training facilities. AI-enabled threat detection, network monitoring, and autonomous systems testing programs. Supports the Army's Project Convergence AI integration initiative for combined arms operations.",
+      "lon": -85.9643,
+      "lat": 37.8891
+    },
+    {
+      "id": "ai-ms-005",
+      "name": "Mississippi State University High Performance Computing Collaboratory",
+      "operator": "Mississippi State University HPCC",
+      "status": "operational",
+      "county_fips": "28105",
+      "notes": "MSU's High Performance Computing Collaboratory (HPCC) in Starkville, Oktibbeha County MS. Operates SuperMike-II and specialized GPU clusters for AI/ML research in agriculture, materials science, and biomedical engineering. Hosts the NSF-funded Center for Air Sea Technology and agricultural AI programs for the Mississippi Delta.",
+      "lon": -88.7882,
+      "lat": 33.4562
+    },
+    {
+      "id": "ai-sc-005",
+      "name": "Savannah River National Laboratory AI-Enabled Nuclear Science Center",
+      "operator": "Savannah River National Laboratory / DOE NNSA",
+      "status": "operational",
+      "county_fips": "45003",
+      "notes": "SRNL AI research center in Aiken County SC, operating under DOE's Office of Environmental Management. Applies AI and machine learning to nuclear materials monitoring, environmental remediation prediction, and radioactive waste characterization at the Savannah River Site. Part of DOE's National Laboratory AI Initiative.",
+      "lon": -81.7176,
+      "lat": 33.5568
+    },
+    {
+      "id": "ai-nc-006",
+      "name": "Rowan-Cabarrus Community College Advanced Technology and AI Center",
+      "operator": "Rowan-Cabarrus Community College",
+      "status": "operational",
+      "county_fips": "37159",
+      "notes": "Rowan-Cabarrus Community College AI and advanced manufacturing technology center in Salisbury, Rowan County NC. Trains data center operations technicians, network engineers, and AI-assisted manufacturing workers for the Charlotte-Greensboro industrial corridor. Partners with Duke Energy Carolinas and Fibrant municipal broadband for hands-on grid and network training.",
+      "lon": -80.4775,
+      "lat": 35.671
+    },
+    {
+      "id": "ai-va-012",
+      "name": "Dominion Energy North Anna Nuclear AI Power Management System",
+      "operator": "Dominion Energy Virginia",
+      "status": "operational",
+      "county_fips": "51109",
+      "notes": "Dominion Energy's AI-enabled grid management and nuclear plant operations support system at North Anna Power Station, Louisa County VA. Integrates predictive maintenance AI for nuclear components, real-time grid dispatch optimization, and load forecasting for the PJM Virginia zone. Part of Dominion's broader grid modernization under Virginia's Clean Economy Act.",
+      "lon": -77.7852,
+      "lat": 38.0619
     }
   ]
 }
