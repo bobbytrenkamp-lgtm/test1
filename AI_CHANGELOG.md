@@ -6,6 +6,29 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 15)
+- `data/map_data.json` (Round 15)
+- `docs/data-sweeps/2026-07-massive-sweep-round-15.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 15**: West Virginia (Harrison/Clarksburg/FBI CJIS, Hancock/Weirton/steel, Greenbrier/Cold War bunker DC, Logan/coal belt), Missouri (Butler/Poplar Bluff/SE hub, New Madrid/Mississippi River), Kentucky (Calloway/Murray State, Muhlenberg/Paradise TVA legacy, Rowan/Morehead State, Barren/Glasgow, Grant/Williamstown/Cincinnati exurb), South Dakota (Hughes/Pierre/state capital, Beadle/Huron/state fair), North Dakota (Ramsey/Devils Lake/USACE, Barnes/Valley City/VCSU), Texas (Angelina/Lufkin/East TX, Brown/Brownwood, Rusk/Henderson/East TX Oil Field, Wilson/Floresville/SA suburb, Wood/Mineola/fiber corridor). 20 net new records (803 total).
+- **1 FIPS error caught and fixed**: 21075 (Fulton County KY, not Grant County) → corrected to 21081 (Grant County KY).
+
+Reasoning:
+- Harrison County WV (FBI CJIS Clarksburg): The FBI's largest division — NCIC, fingerprint databases, national background checks — is headquartered in Clarksburg. One of the most significant federal IT concentrations in the eastern US and a major DB omission now corrected.
+- Greenbrier County WV (Cold War bunker DC): The Greenbrier's classified congressional bunker (1958-1992) has been repurposed as a commercial data center. Among the most historically distinctive DC locations in the US.
+- Muhlenberg County KY (TVA Paradise legacy): TVA's Paradise Fossil Plant was the US's largest coal plant. Retired plant leaves extraordinary grid capacity available at TVA rates — the archetype of coal-country legacy power infrastructure available for reuse.
+- Hughes County SD (Pierre state capital): Smallest state capital in the continental US still has outsized government IT from BIA, state consolidation, and federal agencies serving the Dakotas.
+
+Problems Found:
+- 1 FIPS error: 21075 claimed as Grant County KY — actually Fulton County KY. Correct FIPS 21081 verified not in DB; fixed in-place.
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 14)
 - `data/map_data.json` (Round 14)
 - `docs/data-sweeps/2026-07-massive-sweep-round-14.md` (new)

@@ -19900,6 +19900,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "54033",
+      "name": "Harrison County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Harrison County \u2014 Clarksburg/FBI CJIS Division/federal IT hub",
+      "description": "Clarksburg in Harrison County is home to the FBI's Criminal Justice Information Services Division \u2014 the FBI's largest division and one of the most significant federal IT installations in the eastern United States outside Northern Virginia. CJIS manages the National Crime Information Center, fingerprint databases, and background check systems for law enforcement nationwide. The CJIS facility's data and computing infrastructure requirements are substantial, making Harrison County a genuinely high-value federal technology county in a state often underrepresented in data center analyses.",
+      "sources": [
+        {
+          "label": "Harrison County West Virginia",
+          "url": "https://www.harrisoncountywv.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "54029",
+      "name": "Hancock County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hancock County \u2014 Weirton/Chester/northern WV panhandle steel heritage",
+      "description": "Weirton in Hancock County sits at the northernmost tip of West Virginia's panhandle, surrounded by Pennsylvania and Ohio. Weirton Steel \u2014 once one of the largest steel producers in the US \u2014 left behind extraordinary high-voltage electrical infrastructure sized for industrial smelting. Appalachian Power's transmission capacity in the panhandle is substantial. The Ohio River corridor through Hancock County provides cooling water access and fiber routes connecting to Pittsburgh's technology market just 40 miles north.",
+      "sources": [
+        {
+          "label": "Hancock County West Virginia",
+          "url": "https://www.hancockcountywv.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "54025",
+      "name": "Greenbrier County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Greenbrier County \u2014 Lewisburg/The Greenbrier Cold War bunker/Appalachian hub",
+      "description": "The Greenbrier Resort in White Sulphur Springs was built atop a classified Cold War congressional bunker \u2014 a 112,000-square-foot underground facility maintained as a continuity-of-government site for Congress until decommissioned in 1995. The facility's extraordinary security and utility infrastructure has since been repurposed as a data center, making Greenbrier County one of the most distinctive data center locations in the US. Lewisburg is also a regional hub for southern West Virginia's tourism and healthcare economy.",
+      "sources": [
+        {
+          "label": "Greenbrier County West Virginia",
+          "url": "https://www.greenbrierco.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "54045",
+      "name": "Logan County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Logan County \u2014 Logan/southern WV coal/Appalachian Power legacy load",
+      "description": "Logan County is at the heart of southern West Virginia's coal mining economy. The legacy coal mining and processing operations in the Guyandotte and Man Creek watersheds created Appalachian Power's most intensive load zones in rural WV. As coal employment has declined, Logan County's fiber and power infrastructure \u2014 substantially overbuilt for mining-era demand \u2014 creates latent capacity at favorable economics. Logan Regional Medical Center is the county's largest employer and IT anchor today.",
+      "sources": [
+        {
+          "label": "Logan County West Virginia",
+          "url": "https://www.logancountywv.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "29023",
+      "name": "Butler County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Butler County \u2014 Poplar Bluff/SE Missouri regional hub/3 Rivers College",
+      "description": "Poplar Bluff is the largest city in southeast Missouri and the commercial and medical hub of the Missouri Bootheel region. Poplar Bluff Regional Medical Center and the VA Medical Center are major employers. 3 Rivers College provides a technology pipeline. US-60 and US-67 make Poplar Bluff the crossroads of a large rural region. Empire Electric (now Liberty Utilities) and Missouri's competitive rural electric cooperative rates serve the county. The city's role as a regional healthcare and retail destination creates concentrated IT demand for a sub-50,000 population center.",
+      "sources": [
+        {
+          "label": "Butler County Missouri",
+          "url": "https://www.butlercountymo.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "29143",
+      "name": "New Madrid County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "New Madrid County \u2014 New Madrid/Mississippi River/Ameren nuclear plant",
+      "description": "New Madrid County sits on the Mississippi River in Missouri's Bootheel, adjacent to the New Madrid Seismic Zone \u2014 the most significant earthquake risk area in the central US. Ameren Missouri's New Madrid Power Plant (coal, now transitioning) and the area's river port infrastructure created a substantial Ameren transmission footprint in rural Missouri. The county's position at the confluence of major barge routes means fiber runs along the river corridor. New Madrid's agricultural processing and river port activity drive commercial IT needs beyond what its population suggests.",
+      "sources": [
+        {
+          "label": "New Madrid County Missouri",
+          "url": "https://www.newmadridcounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "21035",
+      "name": "Calloway County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Calloway County \u2014 Murray/Murray State University/western KY university hub",
+      "description": "Murray State University in Calloway County is one of Kentucky's regional comprehensive universities, with approximately 10,000 students and a notable telecommunications and computer science program. Murray is the largest city in western Kentucky between Paducah and Tennessee. The county's rural fiber infrastructure has been enhanced by TVA's Kentucky Lake corridor and West Kentucky Rural Electric Cooperative. Murray State's STEM programs and the Kentucky Innovation Network presence provide a technical workforce pipeline for western Kentucky's growing technology economy.",
+      "sources": [
+        {
+          "label": "Calloway County Kentucky",
+          "url": "https://www.callowaycounty.ky.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "21177",
+      "name": "Muhlenberg County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Muhlenberg County \u2014 Greenville/Western KY coal belt/Green River power legacy",
+      "description": "Muhlenberg County is in the heart of western Kentucky's coal country \u2014 a region made famous by John Prine's 'Paradise' and by one of the most intensive coal mining and power generation landscapes in America. The Paradise Fossil Plant (TVA) on the Green River was the largest coal power plant in the US for decades. Legacy transmission infrastructure from mining and power generation eras creates substantial electrical grid capacity in Muhlenberg County at favorable TVA power cost rates. Reduced mining activity has left excess capacity potentially available for industrial computing uses.",
+      "sources": [
+        {
+          "label": "Muhlenberg County Kentucky",
+          "url": "https://www.muhlenbergcounty.ky.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "21205",
+      "name": "Rowan County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Rowan County \u2014 Morehead/Morehead State University/eastern KY university",
+      "description": "Morehead State University in Rowan County serves as the primary economic anchor for northeastern Kentucky. MSU's telecommunications and computer science programs have been enhanced by the Kentucky Appalachian Technology Center. Morehead's position on US-60 and I-64 provides connectivity between Lexington and Huntington, WV. East Kentucky Power Cooperative serves the area with rates competitive for eastern Kentucky. As coal-dependent counties seek economic diversification, Morehead State's tech programs make Rowan County one of the better-positioned counties in the Appalachian transition.",
+      "sources": [
+        {
+          "label": "Rowan County Kentucky",
+          "url": "https://www.rowancountykentucky.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "21009",
+      "name": "Barren County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Barren County \u2014 Glasgow/Mammoth Cave region/south-central KY hub",
+      "description": "Glasgow in Barren County is the commercial hub of south-central Kentucky, near Mammoth Cave National Park. The county has historically attracted manufacturing \u2014 Fruit of the Loom, L&N Federal Credit Union, and medical device companies. South Central Kentucky Community and Technical College serves the area. Glasgow's position on the US-31E/US-68 corridor gives it regional centrality in a part of Kentucky otherwise lacking urban anchors. Kentucky Utilities provides competitive power rates. The Mammoth Cave-area tourism economy adds hospitality IT demand beyond the county's manufacturing base.",
+      "sources": [
+        {
+          "label": "Barren County Kentucky",
+          "url": "https://www.barrencountyky.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "21081",
+      "name": "Grant County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Grant County \u2014 Williamstown/Answers in Genesis/Cincinnati exurb growth",
+      "description": "Grant County in northern Kentucky is notable for hosting the Ark Encounter theme park and the nearby Creation Museum \u2014 Answers in Genesis attractions that collectively draw hundreds of thousands of visitors annually and require substantial IT infrastructure for ticketing, media, and visitor management. The county's position on I-75 between Cincinnati and Lexington makes it one of the faster-growing northern Kentucky exurban counties. Duke Energy Kentucky serves the area with transmission access from the Cincinnati metro's grid.",
+      "sources": [
+        {
+          "label": "Grant County Kentucky",
+          "url": "https://www.grantcounty.ky.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "46065",
+      "name": "Hughes County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hughes County \u2014 Pierre/South Dakota state capital/Bureau of Indian Affairs",
+      "description": "Pierre is South Dakota's state capital and Hughes County's major city. State government IT consolidation concentrates data centers, disaster recovery systems, and agency IT in Pierre. The Bureau of Indian Affairs and other federal agencies serving the large Native American population in the Dakotas maintain significant operations in Pierre. East River Electric and Northwestern Energy serve the area. As the smallest state capital by population in the continental US, Pierre has an outsized government IT footprint relative to its size.",
+      "sources": [
+        {
+          "label": "Hughes County South Dakota",
+          "url": "https://www.co.hughes.sd.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "46005",
+      "name": "Beadle County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Beadle County \u2014 Huron/South Dakota State Fair/turkey processing",
+      "description": "Huron is the host city of the South Dakota State Fair and one of the state's largest turkey processing centers. Dakota Provisions turkey processing plant is a major electrical load in Beadle County. East River Electric Cooperative serves the area with Missouri River hydropower access through Basin Electric. Huron's position as the geographic center of South Dakota gives it logistical centrality for a state with dispersed population. Huron University provides a technology and business education presence.",
+      "sources": [
+        {
+          "label": "Beadle County South Dakota",
+          "url": "https://www.beadlecountysd.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "38071",
+      "name": "Ramsey County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ramsey County \u2014 Devils Lake/flooding management/USACE hydrological IT",
+      "description": "Devils Lake in Ramsey County sits at the edge of the Devils Lake Basin \u2014 one of the most actively managed hydrological systems in the US. The lake has risen dramatically since the 1990s, requiring ongoing Army Corps of Engineers management, flood monitoring, and outlet control operations. The USACE's hydrological data infrastructure, gauging networks, and real-time flood management systems represent a unique federal computing footprint in a rural North Dakota county. Lake Region State College provides a workforce education presence in the county.",
+      "sources": [
+        {
+          "label": "Ramsey County North Dakota",
+          "url": "https://www.ramseycountynd.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "38003",
+      "name": "Barnes County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Barnes County \u2014 Valley City/Valley City State University/BNSF mainline",
+      "description": "Valley City is home to Valley City State University and sits on the BNSF main line across North Dakota. VCSU has developed a notable technology education program. The Interstate 94 corridor through Barnes County carries major fiber routes connecting Fargo to Bismarck. Basin Electric and Otter Tail Power serve the area. Valley City's position between Fargo and Jamestown on ND's primary east-west corridor gives it infrastructure access unusual for a county of its size. VCSU's technology and teacher education programs represent intellectual infrastructure beyond what the rural setting suggests.",
+      "sources": [
+        {
+          "label": "Barnes County North Dakota",
+          "url": "https://www.barnescountynd.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "48005",
+      "name": "Angelina County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Angelina County \u2014 Lufkin/Angelina College/deep East Texas timber/Stephen F Austin",
+      "description": "Lufkin in Angelina County is the commercial hub of deep East Texas, serving a large rural region in the Piney Woods. Angelina College and the Stephen F. Austin State University campus extension serve the area. Lufkin Industries (now NOV) was historically a major manufacturer of oilfield pumping units and power transmission products \u2014 creating an industrial IT base in the county. Entergy Texas provides service to the area. Lufkin's position on US-59 and SH-69 makes it the retail and healthcare center for a multi-county rural region, generating concentrated IT demand.",
+      "sources": [
+        {
+          "label": "Angelina County Texas",
+          "url": "https://www.angelinacounty.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "48049",
+      "name": "Brown County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Brown County \u2014 Brownwood/Howard Payne University/central Texas crossroads",
+      "description": "Brownwood in Brown County is a regional hub in the Texas Hill Country/Cross Timbers transition zone. Howard Payne University anchors the county's education sector. Brownwood has historically served as the commercial and medical center for a large rural region of west-central Texas. The Brownwood Medical Center and multiple state facilities create a public-sector IT concentration. AEP West Texas provides electrical service. US-377 and US-183 corridors make Brownwood a waypoint for regional fiber routing through central Texas.",
+      "sources": [
+        {
+          "label": "Brown County Texas",
+          "url": "https://www.browncountytx.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "48401",
+      "name": "Rusk County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Rusk County \u2014 Henderson/East Texas oil heritage/SWB legacy infrastructure",
+      "description": "Rusk County is the birthplace of the East Texas Oil Field \u2014 the largest oil reservoir ever discovered in the lower 48 states at the time of its 1930 discovery. The oil field's legacy of pipeline infrastructure, gathering systems, and production data management created early industrial IT infrastructure in Henderson and Kilgore. SWB (now AT&T) historically ran major telecommunications trunk routes through East Texas. Entergy Texas serves the area. While the supergiant field's production has declined, the pipeline and industrial infrastructure legacy gives Rusk County energy-sector data roots older than most Texas tech markets.",
+      "sources": [
+        {
+          "label": "Rusk County Texas",
+          "url": "https://www.ruskcounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "48493",
+      "name": "Wilson County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Wilson County \u2014 Floresville/San Antonio SE suburb/fastest-growing SA exurb",
+      "description": "Wilson County is one of the fastest-growing counties in Texas, driven by San Antonio's southeastern suburban expansion. Floresville, the county seat, is increasingly connected to the San Antonio metro via US-181 and SH-97. As San Antonio has grown into a major military and healthcare data center market (Joint Base San Antonio, South Texas Medical Center), Wilson County's suburban position on the edge of that metro makes it an emerging edge-data-center market. CPS Energy's service territory extends into the county, providing San Antonio's competitive electricity pricing.",
+      "sources": [
+        {
+          "label": "Wilson County Texas",
+          "url": "https://www.wilsoncounty.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "48499",
+      "name": "Wood County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Wood County \u2014 Quitman/Mineola/East Texas piney woods/SWB fiber corridor",
+      "description": "Wood County in East Texas includes Mineola \u2014 a historic Texas railroad junction town at the intersection of major BNSF lines and, critically, historic AT&T/SWB fiber trunk routes through East Texas. Mineola's railroad heritage means it sits on east-west and north-south infrastructure corridors. Oncor serves the county with transmission access from the ERCOT grid. The Sabine River Authority and Lake Fork Reservoir represent water resources that could support data center cooling. Wood County's rural character with legacy fiber infrastructure is a combination that has attracted technology investment in similar East Texas counties.",
+      "sources": [
+        {
+          "label": "Wood County Texas",
+          "url": "https://www.mywoodcounty.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
     }
   ]
 }
