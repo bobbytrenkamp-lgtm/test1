@@ -1917,6 +1917,56 @@
       "notes": "Dominion Energy's AI-enabled grid management and nuclear plant operations support system at North Anna Power Station, Louisa County VA. Integrates predictive maintenance AI for nuclear components, real-time grid dispatch optimization, and load forecasting for the PJM Virginia zone. Part of Dominion's broader grid modernization under Virginia's Clean Economy Act.",
       "lon": -77.7852,
       "lat": 38.0619
+    },
+    {
+      "id": "ai-pa-003",
+      "name": "Penn State Institute for Computational and Data Sciences \u2014 Roar HPC",
+      "operator": "Pennsylvania State University ICDS",
+      "status": "operational",
+      "county_fips": "42027",
+      "notes": "Penn State ICDS Roar and Roar Collab high-performance computing systems in State College, Centre County PA. 28,000+ CPU cores, 100+ GPU nodes including NVIDIA A100s for AI/ML research. Supports Penn State faculty across 24 colleges in areas including materials science, drug discovery, astrophysics, and agricultural AI. Part of NSF ACCESS allocation network.",
+      "lon": -77.86,
+      "lat": 40.7934
+    },
+    {
+      "id": "ai-pa-004",
+      "name": "Wilkes University AI and Engineering Research Center",
+      "operator": "Wilkes University",
+      "status": "operational",
+      "county_fips": "42079",
+      "notes": "Wilkes University engineering and computing research center in Wilkes-Barre, Luzerne County PA. AI research focuses on smart grid optimization for the northeastern Pennsylvania grid, predictive manufacturing for the regional industrial sector, and healthcare informatics for Geisinger Health System partnerships. Leverages PPL Electric Utilities grid data partnerships.",
+      "lon": -75.8813,
+      "lat": 41.2459
+    },
+    {
+      "id": "ai-oh-006",
+      "name": "Youngstown State University Advanced Manufacturing AI Research Center",
+      "operator": "Youngstown State University",
+      "status": "operational",
+      "county_fips": "39099",
+      "notes": "YSU's Williamson College of Business Administration and STEM College joint AI research center in Youngstown, Mahoning County OH. Focuses on AI applications for steel and metals manufacturing automation, additive manufacturing process optimization, and regional economic transformation analytics. Partners with Youngstown's Additive Manufacturing incubator cluster.",
+      "lon": -80.6495,
+      "lat": 41.0998
+    },
+    {
+      "id": "ai-in-006",
+      "name": "Franklin College Center for Data Analytics and AI",
+      "operator": "Franklin College",
+      "status": "operational",
+      "county_fips": "18081",
+      "notes": "Franklin College AI and data analytics research center in Franklin, Johnson County IN. Focuses on applied AI for healthcare informatics (Johnson Memorial Health partnership), agricultural technology for southern Indiana farming operations, and supply chain optimization for Indianapolis-area logistics industry. Supported by Lilly Endowment higher education grants.",
+      "lon": -86.055,
+      "lat": 39.4806
+    },
+    {
+      "id": "ai-in-007",
+      "name": "Hancock Regional Hospital AI Clinical Decision Support System",
+      "operator": "Hancock Health System",
+      "status": "operational",
+      "county_fips": "18059",
+      "notes": "Hancock Regional Hospital's AI-powered clinical decision support and healthcare analytics platform in Greenfield, Hancock County IN. AI systems support emergency department triage prioritization, sepsis prediction, readmission risk scoring, and operational scheduling optimization. Part of the Indiana Regional Medical Center AI Health Initiative network.",
+      "lon": -85.7683,
+      "lat": 39.7875
     }
   ]
 }
