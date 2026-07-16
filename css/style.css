@@ -1761,7 +1761,7 @@ body.is-resizing-floating-panel * {
     z-index: 40;
     box-shadow: 0 -8px 32px rgba(0,0,0,0.6);
   }
-  #detail-panel.sheet-open { transform: translateY(0); }
+  #detail-panel.sheet-open { transform: translateY(0); z-index: 500; }
   #detail-panel-handle { display: block; }
   #detail-header { padding-right: 44px; }
   #detail-panel-close { display: flex; }

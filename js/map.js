@@ -1285,10 +1285,10 @@ function initLeafletMap() {
   if (_clearBtn) {
     const _doClear = () => { clearMeasure(); if (measureMode) toggleMeasure(); };
     _clearBtn.addEventListener("click", _doClear);
-    // iOS Safari: Leaflet swallows touch events on the map container — touchend
-    // fires before the synthetic click, so we handle it directly and preventDefault
-    // to stop the redundant click from also firing.
-    _clearBtn.addEventListener("touchend", e => { e.preventDefault(); _doClear(); }, { passive: false });
+    // iOS Safari: grab touchstart first so Leaflet's map-container listener never
+    // sees the gesture; then confirm the action on touchend.
+    _clearBtn.addEventListener("touchstart", e => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+    _clearBtn.addEventListener("touchend",   e => { e.preventDefault(); e.stopPropagation(); _doClear(); }, { passive: false });
   }
   // Prevent Leaflet from intercepting pointer/touch events on the measure readout
   const _readoutEl = document.getElementById("measure-readout");
@@ -1812,6 +1812,24 @@ function initFilterPanelControls() {
   }
 
   if (detailClose) detailClose.addEventListener("click", closeMobileSheet);
+
+  // Swipe-down on the drag handle to close the bottom sheet
+  const _handle = document.getElementById("detail-panel-handle");
+  if (_handle) {
+    let _swipeStartY = 0;
+    _handle.addEventListener("touchstart", e => {
+      _swipeStartY = e.touches[0].clientY;
+      e.stopPropagation();
+    }, { passive: true });
+    _handle.addEventListener("touchmove", e => {
+      e.stopPropagation();
+    }, { passive: true });
+    _handle.addEventListener("touchend", e => {
+      const dy = e.changedTouches[0].clientY - _swipeStartY;
+      if (dy > 60) closeMobileSheet();
+      e.stopPropagation();
+    }, { passive: true });
+  }
 
   // ── Map Layers panel drag (desktop only) ──
   let fpDragging = false, fpDragStartX, fpDragStartY, fpDragStartLeft, fpDragStartTop;
