@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-16T19:30:58.898632+00:00",
+  "generated_at": "2026-07-16T19:54:37.974119+00:00",
   "source_last_updated": "2026-07-16",
   "stats": {
-    "total_counties_tracked": 529,
+    "total_counties_tracked": 562,
     "by_level": {
-      "-1": 417,
+      "-1": 450,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,10 +12,10 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 520,
+      "data_center": 553,
       "water": 14,
-      "ai": 158,
-      "energy": 120,
+      "ai": 160,
+      "energy": 133,
       "crypto": 18
     },
     "level_labels": {
@@ -14832,6 +14832,912 @@
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
+    },
+    "51085": {
+      "name": "Hanover County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Richmond Northern Suburb \u2014 Growing Data Center Market",
+      "description": "Hanover County occupies the northern suburban ring of the Richmond MSA. Proximity to I-95 and Lower Westham fiber nodes, combined with Virginia Economic Development Partnership incentives, has attracted colocation and edge-compute investment as land and power costs in Northern Virginia have escalated.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Virginia Economic Development Partnership",
+          "url": "https://www.vedp.org/location/hanover-county"
+        },
+        {
+          "label": "Hanover County Economic Development",
+          "url": "https://www.hanovercounty.gov/economy"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "12089": {
+      "name": "Nassau County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jacksonville Northern Suburb \u2014 Industrial Corridor",
+      "description": "Nassau County anchors the northern Jacksonville industrial corridor. The county's proximity to I-95 and Jacksonville's major fiber exchange, combined with Florida's absence of personal income tax and county-level industrial incentives, makes it an emerging location for edge data centers and disaster-recovery sites.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Nassau County Economic Development Board",
+          "url": "https://www.nassaucountyflorida.com/economic-development"
+        },
+        {
+          "label": "JaxUSA Partnership \u2014 Regional Site Selection",
+          "url": "https://www.jaxusa.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "12081": {
+      "name": "Manatee County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Tampa Bay South \u2014 County EDC Tech Recruitment",
+      "description": "Manatee County (Bradenton) anchors the southern Tampa Bay metro and has actively recruited technology infrastructure through the Manatee County Economic Development Council's incentive programs. The county benefits from lower industrial land costs versus Hillsborough, Florida's tax environment, and diverse power infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Manatee County Economic Development Council",
+          "url": "https://www.manateeedc.com"
+        },
+        {
+          "label": "Tampa Bay Partnership",
+          "url": "https://www.tampabaypartnership.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "12053": {
+      "name": "Hernando County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Tampa Metro North \u2014 Emerging Tech Industrial Zone",
+      "description": "Hernando County (Brooksville) sits on the northern fringe of the Tampa metro and is emerging as a tech-industrial zone following extension of Duke Energy Florida grid infrastructure. County Enterprise Zone designations and lower land costs position it as a candidate for remote-site data centers.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Hernando County Economic Development",
+          "url": "https://www.hernandoedc.com"
+        },
+        {
+          "label": "Florida Department of Economic Opportunity",
+          "url": "https://floridajobs.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "12001": {
+      "name": "Alachua County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Gainesville \u2014 University of Florida AI and Cloud Research Hub",
+      "description": "Alachua County (Gainesville) hosts the University of Florida, which has built one of the fastest AI supercomputers in higher education (HiPerGator). The county benefits from this research infrastructure, fiber redundancy, and Florida's favorable business climate. UF's partnerships with NVIDIA and commercial cloud operators drive demand for ancillary compute infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "UF Research Computing \u2014 HiPerGator",
+          "url": "https://www.rc.ufl.edu/services/hipergator"
+        },
+        {
+          "label": "Gainesville Area Chamber of Commerce",
+          "url": "https://www.gainesvillechamber.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "48187": {
+      "name": "Guadalupe County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "San Antonio Northeast Corridor \u2014 Seguin Industrial Growth",
+      "description": "Guadalupe County (Seguin) lies northeast of Bexar County and represents the primary expansion corridor for San Antonio's growing technology infrastructure market. Lower land and power costs versus Bexar, TX DOT connectivity along US 90 and I-10, and Guadalupe Valley Electric Cooperative service areas make this a target for data center site selection.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Guadalupe Valley Electric Cooperative",
+          "url": "https://www.gvec.org"
+        },
+        {
+          "label": "Seguin-Guadalupe County Economic Development Corporation",
+          "url": "https://www.seguintexas.gov/edc"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "48021": {
+      "name": "Bastrop County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Austin Eastern Corridor \u2014 SpaceX-Driven Infrastructure Investment",
+      "description": "Bastrop County anchors the eastern Austin metro and has experienced rapid infrastructure investment driven by SpaceX's Starbase-adjacent Texas operations, Tesla's Giga Texas footprint in adjacent Travis County, and overflow from the Austin tech market. LCRA power access, fiber along SH 71, and low industrial land costs attract data center and edge-compute operators.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Bastrop County Economic Development Commission",
+          "url": "https://www.bastropcounty.org/edc"
+        },
+        {
+          "label": "Lower Colorado River Authority \u2014 Economic Development",
+          "url": "https://www.lcra.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "17097": {
+      "name": "Lake County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Chicago North Suburb \u2014 Major Fiber and Data Center Cluster",
+      "description": "Lake County is home to Waukegan and Gurnee, anchoring Chicago's northern data center corridor. ComEd Tier A reliability, proximity to the Chicago metro fiber ring, and county Enterprise Zone programs have attracted major colocation operators. The county's industrial base provides existing heavy-power infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Lake County Partners \u2014 Economic Development",
+          "url": "https://www.lakecountypartners.com"
+        },
+        {
+          "label": "Illinois Department of Commerce \u2014 Enterprise Zones",
+          "url": "https://www.commerce.illinois.gov/business/enterprise-zone-program"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "17093": {
+      "name": "Kendall County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Chicago Exurb \u2014 I-80 Corridor Industrial Growth",
+      "description": "Kendall County (Yorkville) sits at the southwestern edge of the Chicago MSA along the I-80 corridor and is experiencing rapid industrial growth. Lower land costs versus DuPage and Cook counties, ComEd power access, and proximity to Chicago fiber exchange routes make it a candidate for large-footprint data center campuses.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Kendall County Economic Development",
+          "url": "https://www.kendallcountyil.gov/departments/development"
+        },
+        {
+          "label": "Yorkville Economic Development",
+          "url": "https://www.yorkville.il.us"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "37069": {
+      "name": "Franklin County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Raleigh Northeast \u2014 Research Triangle Overflow Market",
+      "description": "Franklin County (Louisburg) lies northeast of Wake County and serves as a Research Triangle overflow market as land and power costs in the triangle core have escalated. Duke Energy Progress service territory, county incentive programs under the NC Economic Development Tier 2 designation, and I-540 corridor extension are driving site-selection interest.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Franklin County Economic Development Commission",
+          "url": "https://www.franklincountync.us/economic-development"
+        },
+        {
+          "label": "NC Department of Commerce \u2014 Tier Designations",
+          "url": "https://www.nccommerce.com/grants-incentives/county-tiers"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "37071": {
+      "name": "Gaston County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Charlotte West \u2014 Duke Energy Incentives and Industrial Land",
+      "description": "Gaston County (Gastonia) is the primary western expansion corridor for the Charlotte data center market. Duke Energy Carolinas service territory with competitive industrial power rates, substantial Tier 2 county incentives under NC economic development programs, and the County's industrial heritage (textile/manufacturing) providing heavy-power infrastructure make it attractive for large-scale data center investment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Gaston County Economic Development Commission",
+          "url": "https://www.gastonedc.com"
+        },
+        {
+          "label": "Duke Energy \u2014 Data Center Site Selection",
+          "url": "https://www.duke-energy.com/business/products/powering-data-centers"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "27163": {
+      "name": "Washington County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Minneapolis Eastern Suburb \u2014 Woodbury and Cottage Grove Data Centers",
+      "description": "Washington County (Woodbury, Cottage Grove, Stillwater) anchors the eastern Minneapolis metro and hosts several colocation and enterprise data center facilities. Xcel Energy service with competitive commercial rates, proximity to Twin Cities metro fiber rings, and county economic development programs make this a stable data center environment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Washington County Community Development",
+          "url": "https://www.washingtoncounty.us/2059/Community-Development"
+        },
+        {
+          "label": "Xcel Energy \u2014 Data Center Programs",
+          "url": "https://www.xcelenergy.com/business/products_and_services/high_density_computing"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "29047": {
+      "name": "Clay County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kansas City North Suburb \u2014 Liberty and North KC Data Center Corridor",
+      "description": "Clay County (Liberty, North Kansas City) lies north of Kansas City proper and hosts a growing data center corridor along I-35 and MO-291. KCP&L/Evergy service territory, industrial land availability at lower costs than Johnson County KS, and Missouri Chapter 100 industrial development bond incentives make it a target for data center and hyperscale investment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Clay County Economic Development Council",
+          "url": "https://www.clayedc.com"
+        },
+        {
+          "label": "KC SmartPort \u2014 Infrastructure",
+          "url": "https://www.kcsmartport.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "39127": {
+      "name": "Perry County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Columbus Southeast \u2014 AEP Ohio Low-Rate Power Territory",
+      "description": "Perry County lies in the American Electric Power Ohio service territory southeast of Columbus. AEP Ohio's industrial power rates have historically been among the lowest in the state. The county's rural character, available land, and the broader Ohio data center expansion driven by Intel and hyperscale investment in adjacent counties make it a candidate for remote-site compute deployments.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Ohio Development Services Agency \u2014 Site Selection",
+          "url": "https://development.ohio.gov/business/site-selection"
+        },
+        {
+          "label": "AEP Ohio \u2014 Economic Development",
+          "url": "https://www.aepohio.com/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "39073": {
+      "name": "Hocking County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Rural Ohio \u2014 AEP Territory Low-Cost Industrial Power",
+      "description": "Hocking County sits south of Columbus in AEP Ohio territory. Historically low industrial power rates, rural land availability, and adjacency to the Columbus data center market's overflow demand are the primary data center considerations. The county has no specific data center regulations.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "AEP Ohio \u2014 Economic Development",
+          "url": "https://www.aepohio.com/economic-development"
+        },
+        {
+          "label": "Hocking County Economic Development",
+          "url": "https://www.hockingcounty.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "08039": {
+      "name": "Elbert County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Denver Southeastern Exurb \u2014 IREA Territory Industrial Growth",
+      "description": "Elbert County (Elizabeth) sits at the southeastern edge of the Denver MSA in the Intermountain Rural Electric Association service territory. IREA offers some of the most competitive rural power rates in Colorado. The county's rural character, low land costs, and adjacency to the growing Denver-Castle Rock-Parker tech corridor position it for data center consideration.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Intermountain Rural Electric Association",
+          "url": "https://www.irea.coop"
+        },
+        {
+          "label": "Elbert County Economic Development",
+          "url": "https://www.elbertcounty-co.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "04025": {
+      "name": "Yavapai County",
+      "state": "Arizona",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Prescott \u2014 Cooler Climate and State Enterprise Zone Designation",
+      "description": "Yavapai County (Prescott, Prescott Valley) offers a meaningful temperature advantage over Phoenix \u2014 10\u00b0\u201315\u00b0F cooler \u2014 reducing cooling costs for data center operations. The county benefits from Arizona's state-level data center property and transaction privilege tax exemption (ARS Title 42), Arizona Public Service power, and Enterprise Zone incentives for tech and industrial investment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Arizona Commerce Authority \u2014 Data Centers",
+          "url": "https://www.azcommerce.com/incentives/data-centers"
+        },
+        {
+          "label": "Yavapai County Economic Development",
+          "url": "https://www.yavapai.us/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "47021": {
+      "name": "Cheatham County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Nashville Western Corridor \u2014 TVA Territory Industrial Land",
+      "description": "Cheatham County (Ashland City) lies west of Nashville in TVA service territory. Tennessee Valley Authority power rates have historically been competitive for industrial users. The county's rural-industrial character provides large parcel availability adjacent to the Nashville metro data center market, with I-40 and US 70 connectivity.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Tennessee Valley Authority \u2014 Economic Development",
+          "url": "https://www.tva.com/energy/economic-development"
+        },
+        {
+          "label": "Tennessee Department of Economic and Community Development",
+          "url": "https://www.tnecd.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "49043": {
+      "name": "Summit County",
+      "state": "Utah",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Park City \u2014 Rocky Mountain Power and Growing Tech Presence",
+      "description": "Summit County (Park City, Coalville) has seen growing tech infrastructure interest as part of Utah's broader tech sector expansion. Rocky Mountain Power (PacifiCorp) service with competitive renewable energy options, Utah's favorable data center sales tax exemption on equipment and power, and proximity to Salt Lake City make the county relevant for edge and regional deployments.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Utah Governor's Office of Economic Opportunity \u2014 Data Centers",
+          "url": "https://business.utah.gov/tax/data-centers"
+        },
+        {
+          "label": "Rocky Mountain Power \u2014 Business",
+          "url": "https://www.rockymountainpower.net/business"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "46029": {
+      "name": "Codington County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Watertown \u2014 East-West Fiber Corridor Hub",
+      "description": "Codington County (Watertown) sits at a key fiber corridor intersection in eastern South Dakota. South Dakota's no-corporate-income-tax and no-personal-income-tax environment, combined with low industrial power rates from NorthWestern Energy and Codington-Clark Electric Cooperative, make it attractive for data center developers seeking rural build-to-suit sites.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "South Dakota Governor's Office of Economic Development",
+          "url": "https://sdready.org"
+        },
+        {
+          "label": "Development Corporation of Watertown",
+          "url": "https://www.watytownsd.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "46013": {
+      "name": "Brown County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Aberdeen \u2014 State Tax Advantage and Fiber Access",
+      "description": "Brown County (Aberdeen) benefits from South Dakota's zero-income-tax regime and is served by Northwestern Energy with competitive commercial rates. Aberdeen's position as a regional hub in northeastern South Dakota with fiber access to Minneapolis and Sioux Falls makes it a candidate for distributed data center deployments.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Aberdeen Development Corporation",
+          "url": "https://www.aberdeensd.com"
+        },
+        {
+          "label": "South Dakota Governor's Office of Economic Development",
+          "url": "https://sdready.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "35057": {
+      "name": "Torrance County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Estancia Valley \u2014 State Incentive Zones East of Albuquerque",
+      "description": "Torrance County (Estancia, Moriarty) lies east of Bernalillo County along I-40 and benefits from New Mexico's data center tax incentive program (50% deduction on gross receipts for qualified facilities). The Estancia Valley offers low-cost land and proximity to Albuquerque fiber while avoiding the metro's increasing data center competition.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "New Mexico Economic Development Department \u2014 Data Centers",
+          "url": "https://edd.nm.gov/tax-incentives/data-centers"
+        },
+        {
+          "label": "Torrance County Economic Development",
+          "url": "https://www.torrancecountynm.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "35035": {
+      "name": "Otero County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Alamogordo \u2014 Defense Data Center Interest and Solar Energy",
+      "description": "Otero County (Alamogordo) hosts Holloman Air Force Base and has seen defense-adjacent data center interest. The county benefits from New Mexico's data center gross receipts deduction program, growing solar power generation, and low land costs. White Sands Missile Range adjacency creates both opportunities and security-zone constraints for some site typologies.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "New Mexico Economic Development Department \u2014 Data Centers",
+          "url": "https://edd.nm.gov/tax-incentives/data-centers"
+        },
+        {
+          "label": "Alamogordo-Otero County Chamber of Commerce",
+          "url": "https://www.alamogordo.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "32023": {
+      "name": "Nye County",
+      "state": "Nevada",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Pahrump \u2014 Land Availability and Nevada Tax Advantages",
+      "description": "Nye County (Pahrump) sits 60 miles west of Las Vegas in Nevada's most expansive county. Nevada's absence of corporate income tax and personal income tax, combined with NV Energy and Wells Rural Electric Company competitive rates and abundant low-cost desert land, make Pahrump an emerging data center consideration for operators priced out of Clark County. Some crypto mining activity already established.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Nevada Governor's Office of Economic Development \u2014 Data Centers",
+          "url": "https://www.diversifynevada.com/industries/data-centers"
+        },
+        {
+          "label": "Nye County Economic Development",
+          "url": "https://www.nyecounty.net"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "13295": {
+      "name": "Walker County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Chattanooga Metro Spillover \u2014 TVA Industrial Territory",
+      "description": "Walker County (Rock Spring, LaFayette) is part of the Chattanooga, TN\u2013GA MSA and served by TVA power through Catoosa Electric Membership Corporation. TVA's competitive industrial rates have historically driven data center consideration in this region. No county-level data center restrictions. State of Georgia data center tax exemption (O.C.G.A. \u00a7 48-8-3.2) applies.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Georgia Department of Economic Development \u2014 Data Centers",
+          "url": "https://www.georgia.org/competitive-advantages/tax-exemptions-incentives"
+        },
+        {
+          "label": "Tennessee Valley Authority \u2014 Industrial Sites",
+          "url": "https://www.tva.com/energy/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "13213": {
+      "name": "Murray County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Northwest Georgia \u2014 TVA Industrial Corridor",
+      "description": "Murray County (Chatsworth) sits in the northwestern Georgia industrial corridor served by TVA power through Cobb Electric Membership Corporation. The county's position along US 76 and proximity to I-75 provides logistics access. Georgia's O.C.G.A. \u00a7 48-8-3.2 data center equipment sales tax exemption applies statewide.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Georgia Department of Economic Development",
+          "url": "https://www.georgia.org"
+        },
+        {
+          "label": "Murray County Chamber of Commerce",
+          "url": "https://www.murraycountychamber.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "13047": {
+      "name": "Catoosa County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Chattanooga Georgia Suburb \u2014 I-75 Industrial Hub",
+      "description": "Catoosa County (Ringgold, Fort Oglethorpe) is the Georgia suburban anchor of the Chattanooga MSA, straddling I-75. TVA power access, the Georgia data center equipment sales tax exemption, and low industrial land costs relative to Tennessee-side Hamilton County make it a growing candidate for edge and colocation data center development.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Catoosa County Economic Development Authority",
+          "url": "https://www.catoosacounty.org"
+        },
+        {
+          "label": "Georgia Department of Economic Development",
+          "url": "https://www.georgia.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "01081": {
+      "name": "Lee County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center",
+        "ai"
+      ],
+      "title": "Auburn \u2014 Auburn University Tech and AI Research Corridor",
+      "description": "Lee County (Auburn, Opelika) benefits from Auburn University's engineering and AI research programs, Alabama Power industrial rates competitive within the Southeast, and state-level incentives under Alabama's Growing Alabama Credit program. The county's I-85 corridor and proximity to Atlanta and Columbus GA position it as a secondary data center market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Auburn-Opelika Economic Development",
+          "url": "https://www.aoedc.com"
+        },
+        {
+          "label": "Alabama Department of Commerce",
+          "url": "https://www.madeinalabama.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "42029": {
+      "name": "Chester County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Philadelphia Western Suburb \u2014 Pharma and Data Center Corridor",
+      "description": "Chester County (West Chester, Exton, Malvern) is the wealthiest county in Pennsylvania and hosts a dense corporate campus corridor along US 30 and PA 202. Major pharmaceutical, financial services, and healthcare IT operations in the county create substantial enterprise data center demand. PECO Energy service territory with high reliability.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Chester County Economic Development Council",
+          "url": "https://www.cceconomicdevelopment.com"
+        },
+        {
+          "label": "PECO \u2014 Business",
+          "url": "https://www.peco.com/business"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "medium",
+      "confidence_score": 52,
+      "source_tier": 3
+    },
+    "21019": {
+      "name": "Boyd County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Ashland \u2014 Industrial Power Infrastructure on Ohio River",
+      "description": "Boyd County (Ashland) sits on the Ohio River tri-state corner of KY\u2013WV\u2013OH and benefits from Kentucky's legacy industrial power infrastructure. AEP Kentucky (Kentucky Power) industrial rates and state data center incentives under Kentucky's KY LLET and Sales Tax exemption make it competitive. The county's industrial heritage provides existing high-voltage infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Ashland Alliance \u2014 Economic Development",
+          "url": "https://www.ashlandalliance.com"
+        },
+        {
+          "label": "Kentucky Cabinet for Economic Development \u2014 Data Centers",
+          "url": "https://ced.ky.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "50011": {
+      "name": "Franklin County",
+      "state": "Vermont",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "St. Albans \u2014 Cross-Border Data Corridor and Green Power",
+      "description": "Franklin County (St. Albans) sits on the Vermont\u2013Quebec border and benefits from Vermont's very high percentage of renewable power (primarily Hydro-Qu\u00e9bec imports and in-state hydro). The county's position along the Burlington metro's northern expansion zone and Vermont's no-sales-tax environment for certain data equipment provide modest attractors.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Franklin County Industrial Development Corporation",
+          "url": "https://www.fcidc.com"
+        },
+        {
+          "label": "Vermont Department of Economic Development",
+          "url": "https://accd.vermont.gov/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "02110": {
+      "name": "Juneau City and Borough",
+      "state": "Alaska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Juneau \u2014 State Capital Government Data Infrastructure",
+      "description": "Juneau (Alaska's capital) hosts state government data infrastructure and benefits from Alaska Power & Telephone service plus hydro-dominated power generation from the Snettisham system. Government IT demands and the state's absence of corporate income tax or sales tax are relevant factors. Physical isolation (no road to Juneau) limits large commercial builds but supports government/enterprise deployments.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Alaska Department of Commerce \u2014 Business",
+          "url": "https://www.commerce.alaska.gov"
+        },
+        {
+          "label": "City and Borough of Juneau \u2014 Economic Development",
+          "url": "https://juneau.org/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
+    },
+    "54037": {
+      "name": "Jefferson County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Eastern Panhandle \u2014 Northern Virginia Data Center Spillover",
+      "description": "Jefferson County (Charles Town, Shepherdstown, Harpers Ferry) anchors West Virginia's Eastern Panhandle, a commuter zone for the Washington DC metro. As Northern Virginia Loudoun County data center costs have escalated, operators have explored Jefferson County as a cost-effective alternative \u2014 lower land costs, Appalachian Power (AEP) service, and proximity to I-81 fiber corridors. West Virginia exempts data center equipment from sales tax (WV Code \u00a7 11-15B-14).",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Jefferson County Economic Development Authority",
+          "url": "https://www.jeffersonedc.com"
+        },
+        {
+          "label": "West Virginia Development Office \u2014 Business Incentives",
+          "url": "https://business.wv.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 78,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -15308,7 +16214,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-16T19:31:06.369083+00:00",
+    "last_computed": "2026-07-16T19:54:38.082287+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

@@ -6,6 +6,33 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 3)
+- `data/map_data.json` (Round 3)
+- `docs/data-sweeps/2026-07-massive-sweep-round-3.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 3**: Market gap-fill and thin-state expansion targeting key metro corridors and underrepresented states. 33 net new county records added (36 attempted; 4 FIPS errors caught by validate_all.py and corrected — 3 entries removed as duplicates of already-existing records with correct FIPS, 1 FIPS fixed in place). County total: 529 → 562.
+- **Key additions**: Hanover County VA (Richmond north suburb); Nassau FL (Jacksonville), Manatee FL, Hernando FL, Alachua FL (UF HiPerGator); Guadalupe TX (San Antonio NE); Bastrop TX (Austin east/SpaceX); Lake IL and Kendall IL (Chicago north/exurb); Franklin NC (Raleigh NE), Gaston NC (Charlotte west, Duke Energy); Washington MN (Minneapolis east); Clay MO (KC north); Perry OH + Hocking OH (AEP territory); Elbert CO (IREA territory); Yavapai AZ (Prescott cooler-climate); Cheatham TN (Nashville/TVA); Summit UT (Park City); Codington SD + Brown SD (thin state expansion); Torrance NM + Otero NM (New Mexico expansion); Nye NV (Pahrump); Walker GA + Murray GA + Catoosa GA (Chattanooga/TVA corridor); Lee AL (Auburn/AU); Chester PA (Philadelphia west); Boyd KY (Ashland/Ohio River); Franklin VT (St. Albans/cross-border); Juneau AK (state capital); Jefferson WV (Eastern Panhandle/DC spillover).
+- **FIPS errors corrected**: 48046→removed (Brazoria TX = 48039 was already in DB), 48163→48187 (Guadalupe County TX), 22087→removed (St. Tammany LA = 22103 was already in DB), 54103→removed (Wood County WV = 54107 was already in DB).
+- **Coverage improvement**: All states with fewer than 5 records addressed — DC (1, by definition), Delaware (3, fully covered with only 3 counties in the state), Hawaii (4, fully covered with only 4 main counties). All other states now have 5+ records.
+
+Reasoning:
+- Market gap analysis against 25 key US data center metro markets identified holes in Richmond VA, Jacksonville FL, Tampa Bay, Gainesville FL, Chicago north, Charlotte west, Raleigh NE, Minneapolis east, Kansas City north, Columbus OH exurb, Denver exurb, Phoenix cooler-climate, Nashville west, Park City UT, Chattanooga GA, and Eastern West Virginia.
+- Thin-state expansion (South Dakota, New Mexico, Vermont, Alaska) fills geographic map coverage without introducing records for markets with no data center activity.
+- Validation pipeline (validate_all.py, Layer 2+3 FIPS check) caught all 4 FIPS errors on first run after addition — critical errors flagged, corrected before commit.
+
+Problems Found:
+- 4 FIPS code errors in planned additions; corrected before commit. Validation pipeline successfully identified all 4.
+
+Next Recommended Actions:
+- Round 4 should focus on: (1) adding level 1–2 restriction entries where 2025 AI/data center legislation has been enacted or is pending in states currently showing only level=-1; (2) Southern California county expansion (LA, OC, Riverside, San Bernardino); (3) Comal County TX (San Antonio) and St. Johns County FL (Jacksonville).
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json`
 - `data/state_regulations.json`
 - `data/map_data.json`
