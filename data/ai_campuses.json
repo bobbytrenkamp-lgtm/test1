@@ -1117,6 +1117,56 @@
       "notes": "UC Davis operates research computing supporting the College of Agricultural and Environmental Sciences, genomics research, and UC Davis Health clinical data; part of the UC-wide research computing network.",
       "lon": -121.7405,
       "lat": 38.5382
+    },
+    {
+      "id": "ai-ca-007",
+      "name": "California Department of Technology (CDT) State Data Center",
+      "operator": "California Department of Technology",
+      "status": "operational",
+      "county_fips": "06067",
+      "notes": "CDT operates the primary state government data center in Sacramento supporting California's enterprise IT consolidation initiative (CGEN); hosts applications for dozens of state agencies and provides cloud-on-ramp services.",
+      "lon": -121.4944,
+      "lat": 38.5816
+    },
+    {
+      "id": "ai-va-006",
+      "name": "Virginia Information Technologies Agency (VITA) Enterprise Data Center",
+      "operator": "Virginia Information Technologies Agency (VITA)",
+      "status": "operational",
+      "county_fips": "51760",
+      "notes": "VITA's enterprise data center provides shared IT infrastructure and managed services to Virginia state agencies; supports the Commonwealth's digital government transformation and cybersecurity operations.",
+      "lon": -77.436,
+      "lat": 37.5407
+    },
+    {
+      "id": "ai-nc-004",
+      "name": "NOAA National Centers for Environmental Information (NCEI) \u2014 Asheville",
+      "operator": "NOAA / National Centers for Environmental Information",
+      "status": "operational",
+      "county_fips": "37021",
+      "notes": "NOAA NCEI Asheville is the world's largest archive of atmospheric, coastal, geophysical, and oceanic data; processes and distributes petabytes of climate and weather data annually to researchers, governments, and private sector.",
+      "lon": -82.5515,
+      "lat": 35.5951
+    },
+    {
+      "id": "ai-wa-004",
+      "name": "Naval Base Kitsap Cyber and Network Operations Center",
+      "operator": "US Navy / CNIC Northwest",
+      "status": "operational",
+      "county_fips": "53035",
+      "notes": "Naval Base Kitsap operates Navy cybersecurity and network operations supporting submarine forces, surface forces, and Puget Sound Naval Shipyard IT; includes NUWC Keyport's undersea warfare data systems.",
+      "lon": -122.6326,
+      "lat": 47.5676
+    },
+    {
+      "id": "ai-ok-004",
+      "name": "OU Supercomputing Center for Education and Research (OSCER)",
+      "operator": "University of Oklahoma",
+      "status": "operational",
+      "county_fips": "40027",
+      "notes": "OSCER operates Schooner (Dell HPC cluster) and supports OU meteorology, geosciences, and engineering research; co-located in Norman with NOAA Storm Prediction Center for weather modeling collaboration.",
+      "lon": -97.4395,
+      "lat": 35.2226
     }
   ]
 }
