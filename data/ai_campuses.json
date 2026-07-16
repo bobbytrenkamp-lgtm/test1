@@ -1517,6 +1517,56 @@
       "notes": "The Illinois DoIT State Data Center in Springfield hosts enterprise IT and AI infrastructure for state government agencies, including the Illinois Integrated Eligibility System and statewide cybersecurity operations.",
       "lon": -89.6501,
       "lat": 39.7984
+    },
+    {
+      "id": "ai-fl-007",
+      "name": "Fidelity National Information Services (FIS) — Jacksonville Global HQ",
+      "operator": "Fidelity National Information Services (FIS)",
+      "status": "operational",
+      "county_fips": "12031",
+      "notes": "FIS, one of the world's largest fintech companies, operates its global headquarters and primary data processing centers in Duval County. The facility handles financial transaction processing, real-time payments, and AI-driven fraud detection at scale, anchoring Jacksonville's position as a fintech data center market.",
+      "lon": -81.6557,
+      "lat": 30.3322
+    },
+    {
+      "id": "ai-in-005",
+      "name": "Hammond Indiana University (HIU) / Calumet Research Computing Center",
+      "operator": "Purdue University Northwest / Region IV ESC",
+      "status": "operational",
+      "county_fips": "18089",
+      "notes": "Purdue University Northwest (formerly Calumet) hosts regional research computing and data analytics infrastructure serving the Northwest Indiana Calumet Region. The facility supports AI research in manufacturing optimization, steel industry process control, and Great Lakes environmental modeling.",
+      "lon": -87.5,
+      "lat": 41.5834
+    },
+    {
+      "id": "ai-ny-005",
+      "name": "Wolfspeed Marcy Nanotechnology Center — Utica NY",
+      "operator": "Wolfspeed / SUNY Polytechnic Institute",
+      "status": "operational",
+      "county_fips": "36065",
+      "notes": "Wolfspeed's Marcy Nanotechnology Center in Oneida County is the world's largest silicon carbide (SiC) semiconductor wafer fabrication facility. Co-located with SUNY Poly's campus, it drives substantial HPC and AI workloads for process simulation, materials science research, and semiconductor design automation.",
+      "lon": -75.3779,
+      "lat": 43.1637
+    },
+    {
+      "id": "ai-wa-005",
+      "name": "Washington State Consolidated Technology Services (CTS) — Olympia",
+      "operator": "Washington State Office of the Chief Information Officer (OCIO)",
+      "status": "operational",
+      "county_fips": "53067",
+      "notes": "WA CTS operates the state's primary data center and shared IT infrastructure from Olympia, serving all Washington state agencies. The facility hosts enterprise AI and analytics platforms including the WA Cares Fund system, DCYF case management AI, and statewide cybersecurity operations (WA-SOC).",
+      "lon": -122.9007,
+      "lat": 47.0379
+    },
+    {
+      "id": "ai-mi-002",
+      "name": "Western Michigan University HPC / Kalamazoo Life Sciences Computing",
+      "operator": "Western Michigan University",
+      "status": "operational",
+      "county_fips": "26077",
+      "notes": "Western Michigan University operates high-performance computing infrastructure supporting pharmaceutical AI research in partnership with the Kalamazoo life-sciences cluster (Pfizer, Stryker, Zoetis). Research areas include protein folding, clinical trial data analytics, and orthopedic implant design AI.",
+      "lon": -85.5864,
+      "lat": 42.2842
     }
   ]
 }
