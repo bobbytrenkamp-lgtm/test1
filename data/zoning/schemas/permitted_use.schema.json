@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "zoning/permitted_use",
+  "title": "Zoning Permitted Use",
+  "description": "A use classification entry for a zoning district.",
+  "type": "object",
+  "required": ["jurisdiction_id", "district_code", "standardized_use_id", "official_use_name", "permission_status"],
+  "properties": {
+    "jurisdiction_id":       { "type": "string" },
+    "district_code":         { "type": "string" },
+    "standardized_use_id":   {
+      "type": "string",
+      "enum": [
+        "single_family_residential", "two_family_residential", "townhouse", "multifamily", "mixed_use_residential",
+        "hotel_motel", "office", "medical_office", "hospital", "retail", "restaurant", "grocery",
+        "warehouse", "distribution_center", "manufacturing_light", "manufacturing_heavy",
+        "data_center", "telecommunications_facility", "utility_major", "utility_minor",
+        "school_k12", "university", "daycare", "religious_institution", "government_civic",
+        "recreation_indoor", "recreation_outdoor", "agriculture_general", "agriculture_intensive",
+        "parking_commercial", "renewable_energy", "battery_storage", "gas_station",
+        "auto_service", "drive_through", "self_storage", "funeral_home", "other"
+      ]
+    },
+    "official_use_name":     { "type": "string", "description": "Name exactly as it appears in the ordinance" },
+    "permission_status":     {
+      "type": "string",
+      "enum": [
+        "permitted_by_right",
+        "permitted_with_limitations",
+        "accessory",
+        "conditional",
+        "special_exception",
+        "special_use_permit",
+        "administrative_approval",
+        "site_plan_approval",
+        "prohibited",
+        "not_listed",
+        "unclear",
+        "manual_review_required"
+      ]
+    },
+    "approval_type":         { "type": ["string", "null"] },
+    "conditions":            { "type": "array", "items": { "type": "string" } },
+    "supplemental_regulations": { "type": ["string", "null"] },
+    "ordinance_section":     { "type": ["string", "null"] },
+    "source_url":            { "type": ["string", "null"] },
+    "source_page":           { "type": ["string", "null"] },
+    "effective_date":        { "type": ["string", "null"] },
+    "confidence_level":      { "type": "string", "enum": ["verified", "high", "moderate", "low", "unverified", "unavailable"] },
+    "manual_review_required":{ "type": "boolean" },
+    "notes":                 { "type": ["string", "null"] }
+  }
+}

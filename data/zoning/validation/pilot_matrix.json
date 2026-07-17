@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "description": "Pilot jurisdiction scoring matrix. Each candidate jurisdiction is scored on criteria relevant to data center zoning intelligence. Scores are 0 (unavailable) to 3 (excellent).",
+    "criteria": {
+      "zoning_geometry_available": "Official zoning polygon GIS data is publicly available (0=no, 1=PDF map only, 2=MapServer, 3=FeatureServer/download)",
+      "parcel_data_available": "Official parcel GIS data is publicly available (0=no, 1=limited, 2=MapServer, 3=FeatureServer/download)",
+      "ordinance_available": "Zoning ordinance is publicly accessible online (0=no, 1=PDF only old, 2=PDF current, 3=searchable online)",
+      "dimensional_table_available": "Dimensional standards are in a structured table (0=no, 1=buried in text, 2=PDF table, 3=clear online table)",
+      "use_table_available": "Permitted use table is available (0=no, 1=scattered in text, 2=PDF table, 3=clear online table)",
+      "data_center_relevance": "Relevance to data center policy and planning (0=none, 1=low, 2=medium, 3=critical)",
+      "update_feasibility": "How easy it is to automatically check for updates (0=none, 1=hard, 2=some automation, 3=full automation via ArcGIS)",
+      "licensing_clarity": "How clear the data use terms are (0=unknown, 1=unclear, 2=public but unclear terms, 3=explicit open license)"
+    },
+    "last_updated": "2026-07-17"
+  },
+  "jurisdictions": [
+    {
+      "jurisdiction_id": "va-loudoun-county",
+      "jurisdiction_name": "Loudoun County, VA",
+      "state": "VA",
+      "county_fips": "51107",
+      "status": "pilot_complete",
+      "pilot_phase": 1,
+      "scores": {
+        "zoning_geometry_available": 3,
+        "parcel_data_available": 3,
+        "ordinance_available": 3,
+        "dimensional_table_available": 2,
+        "use_table_available": 2,
+        "data_center_relevance": 3,
+        "update_feasibility": 3,
+        "licensing_clarity": 2
+      },
+      "total_score": 21,
+      "notes": "World's largest data center market. Exceptional GIS infrastructure. Municode ordinance. Data Center Overlay District exists. PD-IP zone is the gold standard for data center zoning. SELECTED AS PILOT 1.",
+      "official_gis_url": "https://data-loudoungis.opendata.arcgis.com/",
+      "official_ordinance_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances"
+    },
+    {
+      "jurisdiction_id": "va-fairfax-county",
+      "jurisdiction_name": "Fairfax County, VA",
+      "state": "VA",
+      "county_fips": "51059",
+      "status": "recommended_next",
+      "pilot_phase": 2,
+      "scores": {
+        "zoning_geometry_available": 3,
+        "parcel_data_available": 3,
+        "ordinance_available": 3,
+        "dimensional_table_available": 2,
+        "use_table_available": 2,
+        "data_center_relevance": 3,
+        "update_feasibility": 3,
+        "licensing_clarity": 2
+      },
+      "total_score": 21,
+      "notes": "Adjacent to Loudoun. Major data center market. Excellent GIS (ArcGIS). Active zoning enforcement on data centers. Has I-5 and I-6 industrial districts where data centers operate.",
+      "official_gis_url": "https://www.fairfaxcounty.gov/gis",
+      "official_ordinance_url": "https://library.municode.com/va/fairfax_county/codes/zoning_ordinance"
+    },
+    {
+      "jurisdiction_id": "va-prince-william-county",
+      "jurisdiction_name": "Prince William County, VA",
+      "state": "VA",
+      "county_fips": "51153",
+      "status": "recommended_next",
+      "pilot_phase": 2,
+      "scores": {
+        "zoning_geometry_available": 3,
+        "parcel_data_available": 3,
+        "ordinance_available": 3,
+        "dimensional_table_available": 2,
+        "use_table_available": 2,
+        "data_center_relevance": 3,
+        "update_feasibility": 3,
+        "licensing_clarity": 2
+      },
+      "total_score": 21,
+      "notes": "Rapidly growing data center market extending from Loudoun. County had significant data center moratorium debate in 2023-2024. Good ArcGIS infrastructure.",
+      "official_gis_url": "https://www.pwcva.gov/gis",
+      "official_ordinance_url": null
+    },
+    {
+      "jurisdiction_id": "md-montgomery-county",
+      "jurisdiction_name": "Montgomery County, MD",
+      "state": "MD",
+      "county_fips": "24031",
+      "status": "recommended_next",
+      "pilot_phase": 2,
+      "scores": {
+        "zoning_geometry_available": 3,
+        "parcel_data_available": 3,
+        "ordinance_available": 3,
+        "dimensional_table_available": 2,
+        "use_table_available": 2,
+        "data_center_relevance": 2,
+        "update_feasibility": 3,
+        "licensing_clarity": 3
+      },
+      "total_score": 21,
+      "notes": "Excellent open data. Growing data center market. Maryland's most advanced county GIS program. Clear licensing via Montgomery County open data portal.",
+      "official_gis_url": "https://data.montgomerycountymd.gov/",
+      "official_ordinance_url": "https://codelibrary.amlegal.com/codes/montgomerycounty/latest/montgomeryco_md/0-0-0-1"
+    },
+    {
+      "jurisdiction_id": "dc-district-of-columbia",
+      "jurisdiction_name": "District of Columbia",
+      "state": "DC",
+      "county_fips": "11001",
+      "status": "recommended_phase3",
+      "pilot_phase": 3,
+      "scores": {
+        "zoning_geometry_available": 3,
+        "parcel_data_available": 3,
+        "ordinance_available": 3,
+        "dimensional_table_available": 3,
+        "use_table_available": 3,
+        "data_center_relevance": 2,
+        "update_feasibility": 3,
+        "licensing_clarity": 3
+      },
+      "total_score": 23,
+      "notes": "Excellent open data (open.dc.gov). DC Zoning Handbook is highly structured. DC ZR16 has clear use categories. However, DC data center presence is primarily carrier hotels in downtown. Phase 3 given regulatory complexity of DC government.",
+      "official_gis_url": "https://opendata.dc.gov/",
+      "official_ordinance_url": "https://dcoz.dc.gov/zoning-regulations/titles"
+    },
+    {
+      "jurisdiction_id": "nc-wake-county",
+      "jurisdiction_name": "Wake County, NC",
+      "state": "NC",
+      "county_fips": "37183",
+      "status": "recommended_phase3",
+      "pilot_phase": 3,
+      "scores": {
+        "zoning_geometry_available": 3,
+        "parcel_data_available": 3,
+        "ordinance_available": 2,
+        "dimensional_table_available": 2,
+        "use_table_available": 2,
+        "data_center_relevance": 3,
+        "update_feasibility": 2,
+        "licensing_clarity": 2
+      },
+      "total_score": 19,
+      "notes": "Research Triangle data center hub (Raleigh/Apex/Morrisville). Apple, Google, Meta all have facilities nearby. Wake County has good GIS but ordinance navigation is more complex.",
+      "official_gis_url": "https://maps.wakegov.com/",
+      "official_ordinance_url": "https://www.wakegov.com/departments-government/planning-development-inspections/unified-development-ordinance"
+    },
+    {
+      "jurisdiction_id": "nc-chatham-county",
+      "jurisdiction_name": "Chatham County, NC",
+      "state": "NC",
+      "county_fips": "37037",
+      "status": "recommended_phase3",
+      "pilot_phase": 3,
+      "scores": {
+        "zoning_geometry_available": 2,
+        "parcel_data_available": 2,
+        "ordinance_available": 2,
+        "dimensional_table_available": 1,
+        "use_table_available": 1,
+        "data_center_relevance": 3,
+        "update_feasibility": 2,
+        "licensing_clarity": 1
+      },
+      "total_score": 14,
+      "notes": "Chatham County has experienced significant controversy over data center development including the Apple campus. More limited GIS resources than Wake. Include for policy context rather than GIS completeness.",
+      "official_gis_url": "https://www.chathamnc.org/government/departments-a-f/gis",
+      "official_ordinance_url": "https://www.chathamnc.org/government/departments-l-z/planning/unified-development-ordinance"
+    }
+  ]
+}

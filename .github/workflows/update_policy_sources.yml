@@ -76,7 +76,7 @@ jobs:
             data/policy_change_log.json \
             data/policy_review_queue.json \
             data/restrictions_raw.json
-          git commit -m "chore: update policy pipeline data $(date -u +%Y-%m-%d)"
+          git commit -m "chore: update policy pipeline data $(date -u +%Y-%m-%d) [skip ci]"
           git push origin main
 
       - name: Report source health

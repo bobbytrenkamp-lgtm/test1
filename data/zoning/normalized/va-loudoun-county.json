@@ -1,0 +1,1439 @@
+{
+  "jurisdiction_id": "va-loudoun-county",
+  "exported_at": "2026-07-17T21:55:36.497738Z",
+  "disclaimer": "Zoning information is provided for preliminary research only. District boundaries, overlays, parcel conditions, interpretations, variances, and recent amendments may affect a property. Confirm all requirements with the controlling jurisdiction before relying on this information.",
+  "jurisdiction": {
+    "jurisdiction_id": "va-loudoun-county",
+    "jurisdiction_name": "Loudoun County, Virginia",
+    "jurisdiction_type": "county",
+    "state": "VA",
+    "state_fips": "51",
+    "county": "Loudoun County",
+    "county_fips": "51107",
+    "municipality": null,
+    "controlling_authority": "Loudoun County Board of Supervisors",
+    "official_planning_department_name": "Department of Planning and Zoning",
+    "official_zoning_page_url": "https://www.loudoun.gov/zoning",
+    "official_zoning_map_url": "https://www.loudoun.gov/gis",
+    "official_ordinance_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+    "official_code_provider": "Municode",
+    "gis_service_url": "https://logis.loudoun.gov/arcgis/rest/services/",
+    "open_data_portal_url": "https://data-loudoungis.opendata.arcgis.com/",
+    "source_license": "Public \u2014 official government data. Verify terms of use with Loudoun County before commercial redistribution.",
+    "retrieval_method": "arcgis_featureserver",
+    "source_last_updated": null,
+    "source_last_checked": "2026-07-17",
+    "ordinance_effective_date": null,
+    "ordinance_version": "See Municode for current version \u2014 a comprehensive zoning ordinance rewrite has been underway",
+    "data_coverage_status": "partial",
+    "geometry_coverage_status": "demo_only",
+    "dimensional_standard_coverage": "partial",
+    "permitted_use_coverage": "partial",
+    "overlay_coverage": "partial",
+    "verification_status": "low_confidence",
+    "data_center_relevance": "critical",
+    "pilot_notes": "Loudoun County is the most important pilot jurisdiction. The Ashburn/Sterling area (Data Center Alley) is the largest data center market in the world by capacity. The county has a defined 'Data Center Facility' use and a Data Center Overlay District (DCOD). Dimensional standards and use classifications in this file are drawn from general public knowledge about Loudoun County zoning and require official verification against the current ordinance.",
+    "known_limitations": [
+      "Zoning polygon geometry is demo only \u2014 run data/zoning/scripts/run_zoning_pipeline.py to download real geometry from Loudoun County ArcGIS.",
+      "Dimensional standards are approximate and require official verification against the current Loudoun County Zoning Ordinance.",
+      "Loudoun County has been revising its Zoning Ordinance \u2014 confirm which version is currently effective at https://www.loudoun.gov/zoning before relying on specific section numbers.",
+      "PD-IP (Planned Development - Industrial Park) development standards are largely governed by approved development plans and proffered conditions, which vary by parcel. Base ordinance standards are minimums only.",
+      "The Data Center Overlay District (DCOD) boundary requires official verification \u2014 contact the Loudoun County Department of Planning and Zoning.",
+      "Parcel-level data not yet integrated \u2014 precise district identification for a specific address requires parcel geometry.",
+      "Use table completeness is partial \u2014 only the most data-center-relevant districts are included in this pilot."
+    ],
+    "notes": "Pilot jurisdiction \u2014 Phase 1 of zoning intelligence system. Demonstrates complete architecture: jurisdiction config, district records, dimensional standards, use classifications, overlay data, source tracking, and confidence levels."
+  },
+  "districts": {
+    "PD-IP": {
+      "jurisdiction_id": "va-loudoun-county",
+      "district_code": "PD-IP",
+      "original_district_code": "PD-IP",
+      "district_name": "Planned Development - Industrial Park",
+      "district_category": "planned_development",
+      "district_description": "Planned development district for high-quality industrial, office, technology, and compatible uses developed under an approved development plan. This is the primary zoning district for data center development in the Ashburn and Sterling portions of Loudoun County. Development standards are governed by both the base ordinance and approved proffer conditions specific to each development plan.",
+      "base_or_overlay": "base",
+      "ordinance_chapter": "See current Loudoun County Zoning Ordinance",
+      "ordinance_section": "PD-IP district regulations \u2014 verify current section with https://library.municode.com/va/loudoun_county",
+      "official_source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "verification_method": "general_public_knowledge",
+      "confidence_level": "low",
+      "dc_eligibility_summary": "Data Center Facility use authorized in PD-IP with an approved development plan. Most data centers in Loudoun operate in PD-IP under specific proffered conditions. DCOD overlay may apply.",
+      "reviewer_notes": "Loudoun County's PD-IP zoning is the foundation of Data Center Alley. Every major colocation and hyperscale campus in the Ashburn/Sterling area is built on PD-IP-zoned land. Development plans and proffers are the primary regulatory instruments \u2014 they often include site-specific setbacks, noise limits, design standards, and phasing requirements that supersede base ordinance minimums.",
+      "standards": {
+        "minimum_front_setback": {
+          "value": 40,
+          "unit": "feet",
+          "original_text": "Minimum setback from right-of-way: approximately 40 feet",
+          "conditions": [
+            "From public right-of-way",
+            "May be increased by specific development plan"
+          ],
+          "exceptions": [
+            "May vary by road classification"
+          ],
+          "source_section": "PD-IP setback requirements",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": "This is an approximate value. Actual PD-IP front setbacks are frequently governed by approved development plans rather than base ordinance."
+        },
+        "minimum_side_setback": {
+          "value": 20,
+          "unit": "feet",
+          "original_text": "Minimum side yard setback: approximately 20 feet; 50 feet when abutting residential",
+          "conditions": [],
+          "exceptions": [],
+          "source_section": "PD-IP setback requirements",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_rear_setback": {
+          "value": 20,
+          "unit": "feet",
+          "original_text": "Minimum rear yard setback: approximately 20 feet; 50 feet when abutting residential",
+          "conditions": [],
+          "exceptions": [],
+          "source_section": "PD-IP setback requirements",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "residential_buffer_setback": {
+          "value": 50,
+          "unit": "feet",
+          "original_text": "When abutting residential use or zoning: approximately 50-foot buffer",
+          "conditions": [
+            "When abutting residentially zoned property or residential use"
+          ],
+          "exceptions": [],
+          "source_section": "Buffer requirements",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": "Enhanced buffer requirements may apply in Data Center Overlay District (DCOD) areas."
+        },
+        "maximum_building_height": {
+          "value": 60,
+          "unit": "feet",
+          "original_text": "Maximum building height: approximately 60 feet base; may be modified by approved development plan",
+          "conditions": [
+            "Base ordinance maximum"
+          ],
+          "exceptions": [
+            "Approved development plan may permit increased height subject to additional review"
+          ],
+          "source_section": "PD-IP height standards",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": "Many data centers in the Ashburn area are 2-4 stories (approximately 30-55 feet). Some have obtained approvals for taller structures."
+        },
+        "maximum_lot_coverage": {
+          "value": 70,
+          "unit": "percent",
+          "original_text": "Maximum lot coverage: approximately 70%",
+          "conditions": [],
+          "exceptions": [],
+          "source_section": "PD-IP development standards",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_open_space": {
+          "value": 25,
+          "unit": "percent",
+          "original_text": "Minimum open space: approximately 25%",
+          "conditions": [],
+          "exceptions": [],
+          "source_section": "PD-IP development standards",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_lot_area": {
+          "value": null,
+          "unit": null,
+          "original_text": "No minimum lot area specified in base PD-IP district \u2014 governed by development plan",
+          "conditions": [],
+          "exceptions": [],
+          "source_section": "PD-IP standards",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": "PD districts typically do not have a single minimum lot area \u2014 the development plan establishes lot configuration."
+        }
+      },
+      "conditional_rules": [
+        {
+          "standard": "minimum_side_setback",
+          "rule_type": "adjacent_use",
+          "base_value": 20,
+          "alternate_value": 50,
+          "condition_field": "adjacent_zoning",
+          "condition_operator": "is_residential",
+          "condition_value": null,
+          "formula": null,
+          "unit": "feet",
+          "original_text": "Side setback increases to approximately 50 feet when the property abuts a residential district or use",
+          "manual_review_required": true
+        },
+        {
+          "standard": "minimum_rear_setback",
+          "rule_type": "adjacent_use",
+          "base_value": 20,
+          "alternate_value": 50,
+          "condition_field": "adjacent_zoning",
+          "condition_operator": "is_residential",
+          "condition_value": null,
+          "formula": null,
+          "unit": "feet",
+          "original_text": "Rear setback increases to approximately 50 feet when the property abuts a residential district or use",
+          "manual_review_required": true
+        }
+      ],
+      "standards_confidence": "low",
+      "standards_source": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "standards_source_section": "PD-IP district regulations \u2014 verify current section number",
+      "uses": [
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "PD-IP",
+          "standardized_use_id": "data_center",
+          "official_use_name": "Data Center Facility",
+          "permission_status": "permitted_by_right",
+          "approval_type": "Approved development plan with proffered conditions required",
+          "conditions": [
+            "An approved development plan (rezoning with proffers) must be in place for the parcel",
+            "Proffered conditions in the development plan may establish site-specific standards including setbacks, noise limits, screening, emergency generator limits, and design requirements",
+            "Data Center Overlay District (DCOD) requirements may apply to parcels within the DCOD boundary"
+          ],
+          "supplemental_regulations": "Data Center Overlay District (DCOD) requirements apply in designated DCOD areas. See overlays.json for DCOD details.",
+          "ordinance_section": "Data Center Facility use \u2014 verify current section with https://library.municode.com/va/loudoun_county",
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "moderate",
+          "manual_review_required": true,
+          "notes": "The PD-IP district with approved data center development plans is the foundation of Loudoun County's data center market. The county's Economic Development office refers to eastern Loudoun as 'Data Center Alley'. Classification as 'moderate' confidence (higher than other standards) because the presence of data centers in PD-IP is a well-documented public fact."
+        },
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "PD-IP",
+          "standardized_use_id": "office",
+          "official_use_name": "Office",
+          "permission_status": "permitted_by_right",
+          "approval_type": "Per approved development plan",
+          "conditions": [
+            "Per approved development plan"
+          ],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": null
+        },
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "PD-IP",
+          "standardized_use_id": "warehouse",
+          "official_use_name": "Warehouse",
+          "permission_status": "permitted_by_right",
+          "approval_type": "Per approved development plan",
+          "conditions": [
+            "Per approved development plan"
+          ],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": null
+        },
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "PD-IP",
+          "standardized_use_id": "single_family_residential",
+          "official_use_name": "Dwelling, Single-Family Detached",
+          "permission_status": "prohibited",
+          "approval_type": null,
+          "conditions": [],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": "Residential uses are generally not permitted in PD-IP, though some proffers have included residential components in mixed-use developments."
+        },
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "PD-IP",
+          "standardized_use_id": "telecommunications_facility",
+          "official_use_name": "Telecommunications Facility",
+          "permission_status": "conditional",
+          "approval_type": "Special Use Permit or development plan amendment",
+          "conditions": [
+            "May require special use permit depending on the type of facility"
+          ],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": null
+        }
+      ],
+      "dc_analysis": {
+        "base_zoning_status": "permitted_by_right",
+        "official_use_name": "Data Center Facility",
+        "approval_type": "Approved development plan with proffered conditions required",
+        "conditions": [
+          "An approved development plan (rezoning with proffers) must be in place for the parcel",
+          "Proffered conditions in the development plan may establish site-specific standards including setbacks, noise limits, screening, emergency generator limits, and design requirements",
+          "Data Center Overlay District (DCOD) requirements may apply to parcels within the DCOD boundary"
+        ],
+        "confidence_level": "moderate",
+        "manual_review_required": true,
+        "notes": "The PD-IP district with approved data center development plans is the foundation of Loudoun County's data center market. The county's Economic Development office refers to eastern Loudoun as 'Data Center Alley'. Classification as 'moderate' confidence (higher than other standards) because the presence of data centers in PD-IP is a well-documented public fact.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOD",
+            "overlay_name": "Data Center Overlay District",
+            "what_it_affects": [
+              "Sound attenuation standards for mechanical equipment",
+              "Generator and fuel storage requirements",
+              "Setbacks from residential uses",
+              "Building screening and design standards",
+              "Cooling system requirements",
+              "Equipment yard standards",
+              "Environmental review thresholds"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "AIRPORT",
+            "overlay_name": "Airport Impact Overlay District",
+            "what_it_affects": [
+              "Building height restrictions",
+              "Use restrictions for noise-sensitive uses",
+              "FAA obstruction clearance requirements"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "FLOODPLAIN",
+            "overlay_name": "Floodplain Overlay District",
+            "what_it_affects": [
+              "Building elevation requirements",
+              "Flood damage protection standards",
+              "Restrictions on below-grade storage of critical equipment",
+              "Environmental permits"
+            ],
+            "confidence_level": "moderate",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
+      }
+    },
+    "I1": {
+      "jurisdiction_id": "va-loudoun-county",
+      "district_code": "I1",
+      "original_district_code": "I1",
+      "district_name": "Light Industrial",
+      "district_category": "light_industrial",
+      "district_description": "Light industrial district for warehouse, light manufacturing, office, research and development, and compatible uses with minimal external effects. May permit data center use with special approval.",
+      "base_or_overlay": "base",
+      "ordinance_section": "I1 district regulations \u2014 verify with https://library.municode.com/va/loudoun_county",
+      "official_source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "verification_method": "general_public_knowledge",
+      "confidence_level": "low",
+      "dc_eligibility_summary": "Data Center Facility may require a Special Use Permit (SUP) or equivalent approval in I1. Verify with Loudoun County Planning.",
+      "reviewer_notes": null,
+      "standards": {
+        "minimum_lot_area": {
+          "value": 20000,
+          "unit": "square_feet",
+          "original_text": "Minimum lot area: approximately 20,000 square feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_lot_width": {
+          "value": 100,
+          "unit": "feet",
+          "original_text": "Minimum lot width: approximately 100 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_front_setback": {
+          "value": 40,
+          "unit": "feet",
+          "original_text": "Minimum front setback: approximately 40 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_side_setback": {
+          "value": 10,
+          "unit": "feet",
+          "original_text": "Minimum side setback: approximately 10 feet; 25 feet from residential",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_rear_setback": {
+          "value": 20,
+          "unit": "feet",
+          "original_text": "Minimum rear setback: approximately 20 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "maximum_building_height": {
+          "value": 45,
+          "unit": "feet",
+          "original_text": "Maximum building height: approximately 45 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "maximum_lot_coverage": {
+          "value": 60,
+          "unit": "percent",
+          "original_text": "Maximum lot coverage: approximately 60%",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        }
+      },
+      "conditional_rules": [
+        {
+          "standard": "minimum_side_setback",
+          "rule_type": "adjacent_use",
+          "base_value": 10,
+          "alternate_value": 25,
+          "condition_field": "adjacent_zoning",
+          "condition_operator": "is_residential",
+          "condition_value": null,
+          "formula": null,
+          "unit": "feet",
+          "original_text": "Side setback increases to approximately 25 feet when abutting a residential district",
+          "manual_review_required": true
+        }
+      ],
+      "standards_confidence": "low",
+      "standards_source": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "standards_source_section": null,
+      "uses": [
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "I1",
+          "standardized_use_id": "data_center",
+          "official_use_name": "Data Center Facility",
+          "permission_status": "special_use_permit",
+          "approval_type": "Special Use Permit (SUP) required",
+          "conditions": [
+            "Special Use Permit must be approved by the Board of Supervisors",
+            "Site-specific conditions will be applied through the SUP process",
+            "DCOD requirements may apply"
+          ],
+          "supplemental_regulations": "Data Center Overlay District (DCOD) requirements may apply if within DCOD boundary.",
+          "ordinance_section": "I1 use regulations \u2014 verify current section",
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": "Classification as requiring an SUP in I1 is based on general knowledge of Loudoun County practice. Verify with the county \u2014 the specific classification may differ in the current ordinance."
+        },
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "I1",
+          "standardized_use_id": "warehouse",
+          "official_use_name": "Warehouse",
+          "permission_status": "permitted_by_right",
+          "approval_type": null,
+          "conditions": [],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": null
+        },
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "I1",
+          "standardized_use_id": "manufacturing_light",
+          "official_use_name": "Light Manufacturing",
+          "permission_status": "permitted_by_right",
+          "approval_type": null,
+          "conditions": [],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": null
+        },
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "I1",
+          "standardized_use_id": "single_family_residential",
+          "official_use_name": "Dwelling, Residential",
+          "permission_status": "prohibited",
+          "approval_type": null,
+          "conditions": [],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": null
+        }
+      ],
+      "dc_analysis": {
+        "base_zoning_status": "special_use_permit",
+        "official_use_name": "Data Center Facility",
+        "approval_type": "Special Use Permit (SUP) required",
+        "conditions": [
+          "Special Use Permit must be approved by the Board of Supervisors",
+          "Site-specific conditions will be applied through the SUP process",
+          "DCOD requirements may apply"
+        ],
+        "confidence_level": "low",
+        "manual_review_required": true,
+        "notes": "Classification as requiring an SUP in I1 is based on general knowledge of Loudoun County practice. Verify with the county \u2014 the specific classification may differ in the current ordinance.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOD",
+            "overlay_name": "Data Center Overlay District",
+            "what_it_affects": [
+              "Sound attenuation standards for mechanical equipment",
+              "Generator and fuel storage requirements",
+              "Setbacks from residential uses",
+              "Building screening and design standards",
+              "Cooling system requirements",
+              "Equipment yard standards",
+              "Environmental review thresholds"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "AIRPORT",
+            "overlay_name": "Airport Impact Overlay District",
+            "what_it_affects": [
+              "Building height restrictions",
+              "Use restrictions for noise-sensitive uses",
+              "FAA obstruction clearance requirements"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "FLOODPLAIN",
+            "overlay_name": "Floodplain Overlay District",
+            "what_it_affects": [
+              "Building elevation requirements",
+              "Flood damage protection standards",
+              "Restrictions on below-grade storage of critical equipment",
+              "Environmental permits"
+            ],
+            "confidence_level": "moderate",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
+      }
+    },
+    "I2": {
+      "jurisdiction_id": "va-loudoun-county",
+      "district_code": "I2",
+      "original_district_code": "I2",
+      "district_name": "Heavy Industrial",
+      "district_category": "heavy_industrial",
+      "district_description": "Heavy industrial district for uses with more significant operational characteristics including noise, traffic, and site coverage. More permissive than I1 for by-right uses.",
+      "base_or_overlay": "base",
+      "ordinance_section": "I2 district regulations \u2014 verify with https://library.municode.com/va/loudoun_county",
+      "official_source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "verification_method": "general_public_knowledge",
+      "confidence_level": "low",
+      "dc_eligibility_summary": "Data Center Facility generally permitted by right in I2. Verify with Loudoun County Planning.",
+      "reviewer_notes": null,
+      "standards": {
+        "minimum_lot_area": {
+          "value": 40000,
+          "unit": "square_feet",
+          "original_text": "Minimum lot area: approximately 40,000 square feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_lot_width": {
+          "value": 150,
+          "unit": "feet",
+          "original_text": "Minimum lot width: approximately 150 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_front_setback": {
+          "value": 50,
+          "unit": "feet",
+          "original_text": "Minimum front setback: approximately 50 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_side_setback": {
+          "value": 15,
+          "unit": "feet",
+          "original_text": "Minimum side setback: approximately 15 feet; 25 feet from residential",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_rear_setback": {
+          "value": 25,
+          "unit": "feet",
+          "original_text": "Minimum rear setback: approximately 25 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "maximum_building_height": {
+          "value": 60,
+          "unit": "feet",
+          "original_text": "Maximum building height: approximately 60 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "maximum_lot_coverage": {
+          "value": 60,
+          "unit": "percent",
+          "original_text": "Maximum lot coverage: approximately 60%",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        }
+      },
+      "conditional_rules": [],
+      "standards_confidence": "low",
+      "standards_source": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "standards_source_section": null,
+      "uses": [
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "I2",
+          "standardized_use_id": "data_center",
+          "official_use_name": "Data Center Facility",
+          "permission_status": "permitted_by_right",
+          "approval_type": null,
+          "conditions": [
+            "Standard site plan approval required",
+            "DCOD requirements may apply if within overlay boundary"
+          ],
+          "supplemental_regulations": "Data Center Overlay District (DCOD) requirements may apply.",
+          "ordinance_section": "I2 use regulations \u2014 verify current section",
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": "Verify with Loudoun County Planning whether data center is by right or requires special approval in I2."
+        },
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "I2",
+          "standardized_use_id": "manufacturing_heavy",
+          "official_use_name": "Heavy Manufacturing",
+          "permission_status": "permitted_by_right",
+          "approval_type": null,
+          "conditions": [],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": null
+        }
+      ],
+      "dc_analysis": {
+        "base_zoning_status": "permitted_by_right",
+        "official_use_name": "Data Center Facility",
+        "approval_type": null,
+        "conditions": [
+          "Standard site plan approval required",
+          "DCOD requirements may apply if within overlay boundary"
+        ],
+        "confidence_level": "low",
+        "manual_review_required": true,
+        "notes": "Verify with Loudoun County Planning whether data center is by right or requires special approval in I2.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOD",
+            "overlay_name": "Data Center Overlay District",
+            "what_it_affects": [
+              "Sound attenuation standards for mechanical equipment",
+              "Generator and fuel storage requirements",
+              "Setbacks from residential uses",
+              "Building screening and design standards",
+              "Cooling system requirements",
+              "Equipment yard standards",
+              "Environmental review thresholds"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "AIRPORT",
+            "overlay_name": "Airport Impact Overlay District",
+            "what_it_affects": [
+              "Building height restrictions",
+              "Use restrictions for noise-sensitive uses",
+              "FAA obstruction clearance requirements"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "FLOODPLAIN",
+            "overlay_name": "Floodplain Overlay District",
+            "what_it_affects": [
+              "Building elevation requirements",
+              "Flood damage protection standards",
+              "Restrictions on below-grade storage of critical equipment",
+              "Environmental permits"
+            ],
+            "confidence_level": "moderate",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
+      }
+    },
+    "AR1": {
+      "jurisdiction_id": "va-loudoun-county",
+      "district_code": "AR1",
+      "original_district_code": "AR1",
+      "district_name": "Agricultural Rural \u2014 1 dwelling unit per 30 acres",
+      "district_category": "agricultural",
+      "district_description": "Rural agricultural district covering most of western Loudoun County. Very low density residential use permitted. Designed to protect farmland, rural character, open space, and natural resources. Data center and industrial uses are not permitted uses in this district.",
+      "base_or_overlay": "base",
+      "ordinance_section": "AR1 district regulations \u2014 verify with https://library.municode.com/va/loudoun_county",
+      "official_source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "verification_method": "general_public_knowledge",
+      "confidence_level": "low",
+      "dc_eligibility_summary": "Data Center Facility is not a permitted or similar use in AR1. Rezoning would be required.",
+      "reviewer_notes": "AR1 covers the majority of western Loudoun County. The Loudoun County Comprehensive Plan generally directs development to the eastern portion of the county (the Revised Urban Policy Area and the Transition Policy Area), away from AR1-zoned rural areas.",
+      "standards": {
+        "minimum_lot_area_residential": {
+          "value": 3,
+          "unit": "acres",
+          "original_text": "Minimum lot area for residential use: approximately 3 acres",
+          "conditions": [
+            "For residential use"
+          ],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_lot_area_agricultural": {
+          "value": 30,
+          "unit": "acres",
+          "original_text": "Agricultural use density: 1 dwelling unit per 30 acres",
+          "conditions": [
+            "For agricultural parcels with residential use"
+          ],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": "The 'density' in AR1 means one dwelling unit may be created per 30 acres. This does not mean a 30-acre parcel is required."
+        },
+        "minimum_front_setback": {
+          "value": 75,
+          "unit": "feet",
+          "original_text": "Minimum front setback: approximately 75 feet from road centerline, or 30 feet from right-of-way, whichever is greater",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_side_setback": {
+          "value": 15,
+          "unit": "feet",
+          "original_text": "Minimum side setback: approximately 15 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_rear_setback": {
+          "value": 25,
+          "unit": "feet",
+          "original_text": "Minimum rear setback: approximately 25 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "maximum_building_height": {
+          "value": 35,
+          "unit": "feet",
+          "original_text": "Maximum building height: approximately 35 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        }
+      },
+      "conditional_rules": [],
+      "standards_confidence": "low",
+      "standards_source": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "standards_source_section": null,
+      "uses": [
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "AR1",
+          "standardized_use_id": "data_center",
+          "official_use_name": "Data Center Facility",
+          "permission_status": "prohibited",
+          "approval_type": null,
+          "conditions": [],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "moderate",
+          "manual_review_required": false,
+          "notes": "Data center is not a permitted or similar use in AR1 (Agricultural Rural). Rezoning to an appropriate district would be required. Marked moderate confidence because the agricultural nature of AR1 makes data center exclusion clear."
+        },
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "AR1",
+          "standardized_use_id": "single_family_residential",
+          "official_use_name": "Dwelling, Single-Family Detached",
+          "permission_status": "permitted_by_right",
+          "approval_type": null,
+          "conditions": [
+            "At a density of one dwelling unit per 30 acres"
+          ],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": null
+        },
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "AR1",
+          "standardized_use_id": "agriculture_general",
+          "official_use_name": "Agricultural Use",
+          "permission_status": "permitted_by_right",
+          "approval_type": null,
+          "conditions": [],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": null
+        },
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "AR1",
+          "standardized_use_id": "telecommunications_facility",
+          "official_use_name": "Wireless Telecommunications Facility",
+          "permission_status": "special_use_permit",
+          "approval_type": "Special Use Permit",
+          "conditions": [
+            "SUP required with specific tower and equipment standards"
+          ],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": null
+        }
+      ],
+      "dc_analysis": {
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center Facility",
+        "approval_type": null,
+        "conditions": [],
+        "confidence_level": "moderate",
+        "manual_review_required": false,
+        "notes": "Data center is not a permitted or similar use in AR1 (Agricultural Rural). Rezoning to an appropriate district would be required. Marked moderate confidence because the agricultural nature of AR1 makes data center exclusion clear.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOD",
+            "overlay_name": "Data Center Overlay District",
+            "what_it_affects": [
+              "Sound attenuation standards for mechanical equipment",
+              "Generator and fuel storage requirements",
+              "Setbacks from residential uses",
+              "Building screening and design standards",
+              "Cooling system requirements",
+              "Equipment yard standards",
+              "Environmental review thresholds"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "AIRPORT",
+            "overlay_name": "Airport Impact Overlay District",
+            "what_it_affects": [
+              "Building height restrictions",
+              "Use restrictions for noise-sensitive uses",
+              "FAA obstruction clearance requirements"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "FLOODPLAIN",
+            "overlay_name": "Floodplain Overlay District",
+            "what_it_affects": [
+              "Building elevation requirements",
+              "Flood damage protection standards",
+              "Restrictions on below-grade storage of critical equipment",
+              "Environmental permits"
+            ],
+            "confidence_level": "moderate",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
+      }
+    },
+    "JLMA-3": {
+      "jurisdiction_id": "va-loudoun-county",
+      "district_code": "JLMA-3",
+      "original_district_code": "JLMA-3",
+      "district_name": "Joint Land Management Area \u2014 3 dwelling units per acre",
+      "district_category": "residential",
+      "district_description": "Residential transition zone in the Joint Land Management Area, shared between Loudoun County and adjacent municipalities. Permits residential development at up to 3 dwelling units per acre. Commercial and industrial uses are not permitted.",
+      "base_or_overlay": "base",
+      "ordinance_section": "JLMA district regulations \u2014 verify with https://library.municode.com/va/loudoun_county",
+      "official_source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "verification_method": "general_public_knowledge",
+      "confidence_level": "low",
+      "dc_eligibility_summary": "Data Center Facility is not permitted in JLMA-3. This is a residential district.",
+      "reviewer_notes": null,
+      "standards": {
+        "maximum_density": {
+          "value": 3,
+          "unit": "dwelling_units_per_acre",
+          "original_text": "Maximum density: 3 dwelling units per acre",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_lot_area": {
+          "value": 10000,
+          "unit": "square_feet",
+          "original_text": "Minimum lot area: approximately 10,000 square feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_lot_width": {
+          "value": 75,
+          "unit": "feet",
+          "original_text": "Minimum lot width: approximately 75 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_front_setback": {
+          "value": 25,
+          "unit": "feet",
+          "original_text": "Minimum front setback: approximately 25 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_side_setback": {
+          "value": 8,
+          "unit": "feet",
+          "original_text": "Minimum side setback: approximately 8 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_rear_setback": {
+          "value": 25,
+          "unit": "feet",
+          "original_text": "Minimum rear setback: approximately 25 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "maximum_building_height": {
+          "value": 40,
+          "unit": "feet",
+          "original_text": "Maximum building height: approximately 40 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        }
+      },
+      "conditional_rules": [],
+      "standards_confidence": "low",
+      "standards_source": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "standards_source_section": null,
+      "uses": [
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "JLMA-3",
+          "standardized_use_id": "data_center",
+          "official_use_name": "Data Center Facility",
+          "permission_status": "prohibited",
+          "approval_type": null,
+          "conditions": [],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "moderate",
+          "manual_review_required": false,
+          "notes": "JLMA-3 is a residential district. Data center is not a permitted or conditional use. Rezoning required."
+        },
+        {
+          "jurisdiction_id": "va-loudoun-county",
+          "district_code": "JLMA-3",
+          "standardized_use_id": "single_family_residential",
+          "official_use_name": "Dwelling, Single-Family Detached",
+          "permission_status": "permitted_by_right",
+          "approval_type": null,
+          "conditions": [],
+          "supplemental_regulations": null,
+          "ordinance_section": null,
+          "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "effective_date": null,
+          "confidence_level": "low",
+          "manual_review_required": true,
+          "notes": null
+        }
+      ],
+      "dc_analysis": {
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center Facility",
+        "approval_type": null,
+        "conditions": [],
+        "confidence_level": "moderate",
+        "manual_review_required": false,
+        "notes": "JLMA-3 is a residential district. Data center is not a permitted or conditional use. Rezoning required.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOD",
+            "overlay_name": "Data Center Overlay District",
+            "what_it_affects": [
+              "Sound attenuation standards for mechanical equipment",
+              "Generator and fuel storage requirements",
+              "Setbacks from residential uses",
+              "Building screening and design standards",
+              "Cooling system requirements",
+              "Equipment yard standards",
+              "Environmental review thresholds"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "AIRPORT",
+            "overlay_name": "Airport Impact Overlay District",
+            "what_it_affects": [
+              "Building height restrictions",
+              "Use restrictions for noise-sensitive uses",
+              "FAA obstruction clearance requirements"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "FLOODPLAIN",
+            "overlay_name": "Floodplain Overlay District",
+            "what_it_affects": [
+              "Building elevation requirements",
+              "Flood damage protection standards",
+              "Restrictions on below-grade storage of critical equipment",
+              "Environmental permits"
+            ],
+            "confidence_level": "moderate",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
+      }
+    },
+    "B2": {
+      "jurisdiction_id": "va-loudoun-county",
+      "district_code": "B2",
+      "original_district_code": "B2",
+      "district_name": "Community Business",
+      "district_category": "commercial",
+      "district_description": "General commercial district for retail, office, service, and community-serving uses. Not intended for industrial or data center uses.",
+      "base_or_overlay": "base",
+      "ordinance_section": "B2 district regulations \u2014 verify with https://library.municode.com/va/loudoun_county",
+      "official_source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "verification_method": "general_public_knowledge",
+      "confidence_level": "low",
+      "dc_eligibility_summary": "Data Center Facility is not a standard permitted or conditional use in B2. Would require rezoning to an appropriate industrial or planned development district.",
+      "reviewer_notes": null,
+      "standards": {},
+      "conditional_rules": [],
+      "standards_confidence": "unavailable",
+      "standards_source": null,
+      "standards_source_section": null,
+      "uses": [],
+      "dc_analysis": {
+        "base_zoning_status": "not_listed",
+        "official_use_name": "",
+        "approval_type": null,
+        "conditions": [],
+        "confidence_level": "unavailable",
+        "manual_review_required": true,
+        "notes": null,
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOD",
+            "overlay_name": "Data Center Overlay District",
+            "what_it_affects": [
+              "Sound attenuation standards for mechanical equipment",
+              "Generator and fuel storage requirements",
+              "Setbacks from residential uses",
+              "Building screening and design standards",
+              "Cooling system requirements",
+              "Equipment yard standards",
+              "Environmental review thresholds"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "AIRPORT",
+            "overlay_name": "Airport Impact Overlay District",
+            "what_it_affects": [
+              "Building height restrictions",
+              "Use restrictions for noise-sensitive uses",
+              "FAA obstruction clearance requirements"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "FLOODPLAIN",
+            "overlay_name": "Floodplain Overlay District",
+            "what_it_affects": [
+              "Building elevation requirements",
+              "Flood damage protection standards",
+              "Restrictions on below-grade storage of critical equipment",
+              "Environmental permits"
+            ],
+            "confidence_level": "moderate",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "unclear"
+      }
+    },
+    "PD-OP": {
+      "jurisdiction_id": "va-loudoun-county",
+      "district_code": "PD-OP",
+      "original_district_code": "PD-OP",
+      "district_name": "Planned Development - Office Park",
+      "district_category": "office",
+      "district_description": "Planned development office park district. Primarily office and professional service uses. Technology-oriented development may be permitted with an approved development plan.",
+      "base_or_overlay": "base",
+      "ordinance_section": "PD-OP district regulations \u2014 verify with https://library.municode.com/va/loudoun_county",
+      "official_source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "verification_method": "general_public_knowledge",
+      "confidence_level": "low",
+      "dc_eligibility_summary": "Data Center Facility eligibility in PD-OP depends on the specific approved development plan and whether it includes data center as a permitted use. Verify with Loudoun County Planning.",
+      "reviewer_notes": null,
+      "standards": {},
+      "conditional_rules": [],
+      "standards_confidence": "unavailable",
+      "standards_source": null,
+      "standards_source_section": null,
+      "uses": [],
+      "dc_analysis": {
+        "base_zoning_status": "not_listed",
+        "official_use_name": "",
+        "approval_type": null,
+        "conditions": [],
+        "confidence_level": "unavailable",
+        "manual_review_required": true,
+        "notes": null,
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOD",
+            "overlay_name": "Data Center Overlay District",
+            "what_it_affects": [
+              "Sound attenuation standards for mechanical equipment",
+              "Generator and fuel storage requirements",
+              "Setbacks from residential uses",
+              "Building screening and design standards",
+              "Cooling system requirements",
+              "Equipment yard standards",
+              "Environmental review thresholds"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "AIRPORT",
+            "overlay_name": "Airport Impact Overlay District",
+            "what_it_affects": [
+              "Building height restrictions",
+              "Use restrictions for noise-sensitive uses",
+              "FAA obstruction clearance requirements"
+            ],
+            "confidence_level": "low",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          },
+          {
+            "overlay_code": "FLOODPLAIN",
+            "overlay_name": "Floodplain Overlay District",
+            "what_it_affects": [
+              "Building elevation requirements",
+              "Flood damage protection standards",
+              "Restrictions on below-grade storage of critical equipment",
+              "Environmental permits"
+            ],
+            "confidence_level": "moderate",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "unclear"
+      }
+    }
+  },
+  "overlays": {
+    "DCOD": {
+      "overlay_code": "DCOD",
+      "overlay_name": "Data Center Overlay District",
+      "overlay_category": "special_purpose",
+      "base_or_overlay": "overlay",
+      "description": "The Data Center Overlay District (DCOD) was adopted by Loudoun County to manage the impacts of data center development in the areas of the county most affected by rapid data center growth, particularly in eastern Loudoun (Ashburn/Sterling area). The DCOD applies additional development standards to Data Center Facilities located within its boundaries, supplementing the base zoning district requirements.",
+      "geographic_coverage": "Portions of eastern Loudoun County, primarily in the Route 28 Technology Corridor and Ashburn area. Exact boundary requires official GIS data from https://www.loudoun.gov/gis",
+      "what_it_affects": [
+        "Sound attenuation standards for mechanical equipment",
+        "Generator and fuel storage requirements",
+        "Setbacks from residential uses",
+        "Building screening and design standards",
+        "Cooling system requirements",
+        "Equipment yard standards",
+        "Environmental review thresholds"
+      ],
+      "key_requirements": {
+        "noise_limit": {
+          "description": "Maximum noise levels at the property boundary (or residential boundary) for mechanical equipment and emergency generators",
+          "original_text": "Noise standards apply \u2014 verify specific decibel limits with the current DCOD ordinance",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true
+        },
+        "generator_standards": {
+          "description": "Requirements for emergency generators including fuel storage limits, enclosure, exhaust direction, and testing hour restrictions",
+          "original_text": "Generator requirements under DCOD \u2014 verify with current ordinance",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true
+        },
+        "screening_and_design": {
+          "description": "Building and equipment screening requirements to reduce visual impact on surrounding properties",
+          "original_text": "Screening and design standards under DCOD \u2014 verify with current ordinance",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true
+        },
+        "residential_separation": {
+          "description": "Enhanced setbacks or buffers when a data center is located near residential zoning or uses",
+          "original_text": "Residential separation requirements under DCOD \u2014 verify with current ordinance",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true
+        }
+      },
+      "interaction_with_base_zoning": "DCOD requirements apply IN ADDITION TO the base district requirements (e.g., PD-IP, I1, I2). When there is a conflict, the more restrictive requirement applies, unless the ordinance specifies otherwise.",
+      "ordinance_section": "Data Center Overlay District regulations \u2014 verify current section with https://library.municode.com/va/loudoun_county",
+      "official_source_url": "https://www.loudoun.gov/zoning",
+      "gis_layer_url": "https://www.loudoun.gov/gis \u2014 search for DCOD or Data Center Overlay",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "confidence_level": "low",
+      "reviewer_notes": "The existence of the DCOD in Loudoun County is a well-documented public fact. The county established it in response to significant data center growth, particularly regarding noise and generator impacts on residential neighbors. However, the specific current requirements, exact boundary, and effective ordinance section require official verification."
+    },
+    "AIRPORT": {
+      "overlay_code": "AIRPORT",
+      "overlay_name": "Airport Impact Overlay District",
+      "overlay_category": "special_purpose",
+      "base_or_overlay": "overlay",
+      "description": "Loudoun County has airport impact overlay districts related to Dulles International Airport (IAD) and potentially other aviation facilities. These overlays restrict building heights and may affect certain uses in areas within flight paths or noise contours.",
+      "what_it_affects": [
+        "Building height restrictions",
+        "Use restrictions for noise-sensitive uses",
+        "FAA obstruction clearance requirements"
+      ],
+      "geographic_coverage": "Primarily affects eastern Loudoun County near Washington Dulles International Airport. Exact boundaries require official GIS data.",
+      "ordinance_section": "Airport overlay regulations \u2014 verify with current ordinance",
+      "official_source_url": "https://www.loudoun.gov/zoning",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "confidence_level": "low",
+      "reviewer_notes": "Airport overlays near Dulles may impose height restrictions that affect data center tower heights in some eastern Loudoun locations. Verify for any specific site near the airport."
+    },
+    "FLOODPLAIN": {
+      "overlay_code": "FLOODPLAIN",
+      "overlay_name": "Floodplain Overlay District",
+      "overlay_category": "environmental",
+      "base_or_overlay": "overlay",
+      "description": "FEMA-regulated floodplain areas where development is restricted or subject to additional requirements. Data centers typically should not be sited in floodplains due to critical infrastructure concerns.",
+      "what_it_affects": [
+        "Building elevation requirements",
+        "Flood damage protection standards",
+        "Restrictions on below-grade storage of critical equipment",
+        "Environmental permits"
+      ],
+      "geographic_coverage": "Along stream corridors throughout the county. Exact boundaries from FEMA Flood Insurance Rate Maps (FIRMs).",
+      "ordinance_section": "Floodplain overlay regulations \u2014 verify with current ordinance",
+      "official_source_url": "https://www.loudoun.gov/zoning",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "confidence_level": "moderate",
+      "reviewer_notes": "Floodplain constraints are universal across Virginia jurisdictions. Data centers should not be sited in floodplains regardless of zoning. Confidence is moderate because FEMA floodplain regulations are federally mandated."
+    }
+  },
+  "geometry_available": false,
+  "validation_summary": {
+    "status": "pilot_complete_low_confidence",
+    "warnings": [
+      "Zoning polygon geometry not yet downloaded \u2014 zoning map layer will show no district polygons until pipeline runs.",
+      "All dimensional standards are approximate \u2014 do not cite specific numbers without official ordinance verification.",
+      "PD-IP development standards are additionally governed by individual proffer conditions, which are parcel-specific and not captured in this dataset.",
+      "Loudoun County has been revising its Zoning Ordinance \u2014 the active ordinance version should be confirmed before citing specific section numbers.",
+      "DCOD boundary is not yet captured in this dataset \u2014 data center eligibility for specific parcels within the DCOD zone may differ from the general district classification."
+    ],
+    "required_actions": [
+      "Run data/zoning/scripts/run_zoning_pipeline.py to download real zoning geometry",
+      "Verify all dimensional standards against the current Loudoun County Zoning Ordinance at https://library.municode.com/va/loudoun_county",
+      "Confirm the DCOD overlay boundary with Loudoun County GIS",
+      "Expand district coverage to include remaining Loudoun County zoning districts",
+      "Add parcel-level data integration",
+      "Review and update confidence levels after official verification"
+    ]
+  }
+}

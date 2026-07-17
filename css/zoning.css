@@ -1,0 +1,600 @@
+/* ─────────────────────────────────────────────────────────────────────────── *
+ * Zoning Intelligence — styles                                                *
+ * Relies on the same CSS variables as style.css.                              *
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Zoning panel (flex child alongside #detail-panel on desktop) ── */
+#zoning-panel {
+  width: 0;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: width 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 13px;
+  /* min-width prevents children from reflowing during transition */
+  min-width: 0;
+}
+
+#zoning-panel.open {
+  width: 360px;
+}
+
+/* Inner content is always sized at full panel width */
+#zoning-panel > * {
+  min-width: 360px;
+}
+
+/* ── Zoning panel header ── */
+.z-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  flex-shrink: 0;
+}
+
+.z-header-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.z-header-close:hover { background: var(--border); color: var(--text); }
+
+.z-header-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.z-jurisdiction {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.z-district-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.z-district-code {
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(88, 141, 239, 0.12);
+  border-radius: 4px;
+  padding: 2px 6px;
+  flex-shrink: 0;
+}
+
+/* ── Disclaimer banner ── */
+.z-disclaimer {
+  padding: 8px 14px;
+  background: rgba(234, 179, 8, 0.08);
+  border-bottom: 1px solid rgba(234, 179, 8, 0.2);
+  font-size: 11px;
+  color: #a89020;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.is-light-theme .z-disclaimer { color: #7a6a00; }
+
+/* ── Confidence badge ── */
+.z-confidence {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  border-radius: 10px;
+  padding: 2px 8px;
+  flex-shrink: 0;
+}
+
+.z-confidence-verified   { background: rgba(74, 222, 128, 0.15); color: #22c55e; }
+.z-confidence-high       { background: rgba(96, 165, 250, 0.15); color: #60a5fa; }
+.z-confidence-moderate   { background: rgba(251, 191, 36, 0.15); color: #f59e0b; }
+.z-confidence-low        { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+.z-confidence-unverified { background: rgba(139, 143, 168, 0.15); color: var(--text-muted); }
+.z-confidence-unavailable{ background: rgba(139, 143, 168, 0.1);  color: var(--text-muted); }
+
+/* ── Tabs ── */
+.z-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.z-tabs::-webkit-scrollbar { display: none; }
+
+.z-tab {
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  border: none;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color .15s, border-color .15s;
+}
+
+.z-tab:hover { color: var(--text); }
+.z-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ── Panel body ── */
+.z-body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.z-tab-content { display: none; padding: 14px; }
+.z-tab-content.active { display: block; }
+
+/* ── Section headings ── */
+.z-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+}
+
+.z-section { margin-bottom: 20px; }
+
+/* ── DC eligibility banner ── */
+.z-dc-banner {
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.z-dc-banner-icon {
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.z-dc-banner-content {
+  min-width: 0;
+}
+
+.z-dc-banner-status {
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.z-dc-banner-detail {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.z-dc-eligible   { background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.25); }
+.z-dc-conditional{ background: rgba(251, 191, 36, 0.1);  border: 1px solid rgba(251, 191, 36, 0.25); }
+.z-dc-unclear    { background: rgba(139, 143, 168, 0.1); border: 1px solid var(--border); }
+.z-dc-ineligible { background: rgba(220, 38, 38, 0.08);  border: 1px solid rgba(220, 38, 38, 0.2); }
+
+.z-dc-eligible    .z-dc-banner-status { color: #22c55e; }
+.z-dc-conditional .z-dc-banner-status { color: #f59e0b; }
+.z-dc-unclear     .z-dc-banner-status { color: var(--text-muted); }
+.z-dc-ineligible  .z-dc-banner-status { color: #dc2626; }
+
+/* ── Dimensional standards table ── */
+.z-standards-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.z-standards-table th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 4px 8px 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.z-standards-table td {
+  padding: 7px 8px 7px 0;
+  border-bottom: 1px solid rgba(46, 51, 82, 0.5);
+  vertical-align: top;
+}
+
+.z-standards-table tr:last-child td { border-bottom: none; }
+
+.z-std-name {
+  color: var(--text-muted);
+  font-size: 11px;
+  width: 50%;
+}
+
+.z-std-value {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.z-std-unit {
+  color: var(--text-muted);
+  font-size: 10px;
+  margin-left: 3px;
+}
+
+.z-std-unverified {
+  font-size: 10px;
+  color: #f97316;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.z-std-na {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 11px;
+}
+
+.z-std-conditions {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+/* ── Use pills ── */
+.z-use-list { list-style: none; padding: 0; margin: 0; }
+
+.z-use-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(46, 51, 82, 0.5);
+  font-size: 12px;
+}
+.z-use-item:last-child { border-bottom: none; }
+
+.z-use-status-pill {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.z-use-permitted   { background: rgba(74, 222, 128, 0.15); color: #22c55e; }
+.z-use-conditional { background: rgba(251, 191, 36, 0.15); color: #f59e0b; }
+.z-use-special     { background: rgba(96, 165, 250, 0.15); color: #60a5fa; }
+.z-use-prohibited  { background: rgba(220, 38, 38, 0.12);  color: #dc2626; }
+.z-use-unclear     { background: rgba(139, 143, 168, 0.12); color: var(--text-muted); }
+
+.z-use-name { font-weight: 500; color: var(--text); flex: 1; }
+.z-use-official { color: var(--text-muted); font-size: 10px; }
+
+/* ── Use search ── */
+.z-use-search-wrap {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.z-use-search {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 12px;
+  padding: 7px 10px 7px 30px;
+  outline: none;
+  font-family: inherit;
+}
+.z-use-search::placeholder { color: var(--text-muted); }
+.z-use-search:focus { border-color: var(--accent); }
+
+.z-use-search-icon {
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* ── District browser (shown when no specific district selected) ── */
+.z-district-list { list-style: none; padding: 0; margin: 0; }
+
+.z-district-item {
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  transition: background .12s;
+}
+.z-district-item:hover { background: var(--surface-2); }
+
+.z-district-item-code {
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  min-width: 56px;
+}
+
+.z-district-item-info { flex: 1; min-width: 0; }
+
+.z-district-item-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.z-district-item-category {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: capitalize;
+}
+
+/* ── Overlay list ── */
+.z-overlay-item {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.z-overlay-name {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.z-overlay-affects {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.z-overlay-affects li { margin-bottom: 2px; }
+
+.z-overlay-verify {
+  margin-top: 6px;
+  font-size: 10px;
+  color: #f97316;
+}
+
+/* ── Source metadata ── */
+.z-source-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(46, 51, 82, 0.5);
+  font-size: 11px;
+}
+.z-source-row:last-child { border-bottom: none; }
+
+.z-source-label { color: var(--text-muted); min-width: 110px; flex-shrink: 0; }
+.z-source-value { color: var(--text); flex: 1; word-break: break-all; }
+
+.z-source-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+.z-source-link:hover { text-decoration: underline; }
+
+.z-source-note {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ── Leaflet tooltip for zoning districts ── */
+.z-map-tooltip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 12px;
+  font-family: inherit;
+  padding: 6px 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+.z-map-tooltip::before { display: none; }
+
+/* ── Manual review notice ── */
+.z-manual-review-notice {
+  background: rgba(249, 115, 22, 0.08);
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 11px;
+  color: #f97316;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+/* ── "No geometry" notice ── */
+.z-no-geometry-notice {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+/* ── Jurisdiction header card ── */
+.z-jurisdiction-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 14px;
+}
+
+.z-jurisdiction-card-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.z-jurisdiction-card-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* ── Mobile: bottom sheet ── */
+@media (max-width: 700px) {
+  #zoning-panel {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100% !important;
+    height: 70dvh;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    border-radius: 14px 14px 0 0;
+    transform: translateY(110%);
+    transition: transform 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 600;
+    overflow: hidden;
+  }
+
+  #zoning-panel.open { transform: translateY(0); width: 100% !important; }
+
+  #zoning-panel > * { min-width: 0; }
+}
+
+/* ── Light-theme overrides ── */
+.is-light-theme .z-standards-table td { border-bottom-color: rgba(168, 178, 204, 0.5); }
+.is-light-theme .z-use-item           { border-bottom-color: rgba(168, 178, 204, 0.5); }
+.is-light-theme .z-source-row         { border-bottom-color: rgba(168, 178, 204, 0.5); }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  #zoning-panel, .z-tab { transition: none; }
+}
+
+/* ── Zoning map layer legend ── */
+.zoning-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  padding: 2px 0;
+}
+
+.zoning-legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  opacity: 0.75;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ── Category color swatches (for zoning district map coloring) ── */
+.z-cat-planned_development { color: #7c3aed; }
+.z-cat-industrial          { color: #b45309; }
+.z-cat-light_industrial    { color: #d97706; }
+.z-cat-heavy_industrial    { color: #92400e; }
+.z-cat-agricultural        { color: #15803d; }
+.z-cat-residential         { color: #1d4ed8; }
+.z-cat-multifamily_residential { color: #2563eb; }
+.z-cat-commercial          { color: #dc2626; }
+.z-cat-office              { color: #0891b2; }
+.z-cat-mixed_use           { color: #7c3aed; }
+.z-cat-overlay             { color: #db2777; }
+.z-cat-conservation        { color: #059669; }
+
+/* ── Loading state ── */
+.z-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  gap: 12px;
+}
+
+.z-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: z-spin .8s linear infinite;
+}
+
+@keyframes z-spin { to { transform: rotate(360deg); } }
+
+/* ── Empty / error state ── */
+.z-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.z-empty-icon { font-size: 32px; margin-bottom: 10px; }

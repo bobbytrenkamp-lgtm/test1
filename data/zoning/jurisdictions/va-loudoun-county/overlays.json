@@ -1,0 +1,101 @@
+{
+  "jurisdiction_id": "va-loudoun-county",
+  "last_updated": "2026-07-17",
+  "important_notice": "Overlay information is LOW CONFIDENCE and requires verification against the current Loudoun County Zoning Ordinance and GIS data. Contact the Department of Planning and Zoning at https://www.loudoun.gov/zoning for official overlay boundaries and requirements.",
+  "overlays": {
+    "DCOD": {
+      "overlay_code": "DCOD",
+      "overlay_name": "Data Center Overlay District",
+      "overlay_category": "special_purpose",
+      "base_or_overlay": "overlay",
+      "description": "The Data Center Overlay District (DCOD) was adopted by Loudoun County to manage the impacts of data center development in the areas of the county most affected by rapid data center growth, particularly in eastern Loudoun (Ashburn/Sterling area). The DCOD applies additional development standards to Data Center Facilities located within its boundaries, supplementing the base zoning district requirements.",
+      "geographic_coverage": "Portions of eastern Loudoun County, primarily in the Route 28 Technology Corridor and Ashburn area. Exact boundary requires official GIS data from https://www.loudoun.gov/gis",
+      "what_it_affects": [
+        "Sound attenuation standards for mechanical equipment",
+        "Generator and fuel storage requirements",
+        "Setbacks from residential uses",
+        "Building screening and design standards",
+        "Cooling system requirements",
+        "Equipment yard standards",
+        "Environmental review thresholds"
+      ],
+      "key_requirements": {
+        "noise_limit": {
+          "description": "Maximum noise levels at the property boundary (or residential boundary) for mechanical equipment and emergency generators",
+          "original_text": "Noise standards apply — verify specific decibel limits with the current DCOD ordinance",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true
+        },
+        "generator_standards": {
+          "description": "Requirements for emergency generators including fuel storage limits, enclosure, exhaust direction, and testing hour restrictions",
+          "original_text": "Generator requirements under DCOD — verify with current ordinance",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true
+        },
+        "screening_and_design": {
+          "description": "Building and equipment screening requirements to reduce visual impact on surrounding properties",
+          "original_text": "Screening and design standards under DCOD — verify with current ordinance",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true
+        },
+        "residential_separation": {
+          "description": "Enhanced setbacks or buffers when a data center is located near residential zoning or uses",
+          "original_text": "Residential separation requirements under DCOD — verify with current ordinance",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true
+        }
+      },
+      "interaction_with_base_zoning": "DCOD requirements apply IN ADDITION TO the base district requirements (e.g., PD-IP, I1, I2). When there is a conflict, the more restrictive requirement applies, unless the ordinance specifies otherwise.",
+      "ordinance_section": "Data Center Overlay District regulations — verify current section with https://library.municode.com/va/loudoun_county",
+      "official_source_url": "https://www.loudoun.gov/zoning",
+      "gis_layer_url": "https://www.loudoun.gov/gis — search for DCOD or Data Center Overlay",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "confidence_level": "low",
+      "reviewer_notes": "The existence of the DCOD in Loudoun County is a well-documented public fact. The county established it in response to significant data center growth, particularly regarding noise and generator impacts on residential neighbors. However, the specific current requirements, exact boundary, and effective ordinance section require official verification."
+    },
+    "AIRPORT": {
+      "overlay_code": "AIRPORT",
+      "overlay_name": "Airport Impact Overlay District",
+      "overlay_category": "special_purpose",
+      "base_or_overlay": "overlay",
+      "description": "Loudoun County has airport impact overlay districts related to Dulles International Airport (IAD) and potentially other aviation facilities. These overlays restrict building heights and may affect certain uses in areas within flight paths or noise contours.",
+      "what_it_affects": [
+        "Building height restrictions",
+        "Use restrictions for noise-sensitive uses",
+        "FAA obstruction clearance requirements"
+      ],
+      "geographic_coverage": "Primarily affects eastern Loudoun County near Washington Dulles International Airport. Exact boundaries require official GIS data.",
+      "ordinance_section": "Airport overlay regulations — verify with current ordinance",
+      "official_source_url": "https://www.loudoun.gov/zoning",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "confidence_level": "low",
+      "reviewer_notes": "Airport overlays near Dulles may impose height restrictions that affect data center tower heights in some eastern Loudoun locations. Verify for any specific site near the airport."
+    },
+    "FLOODPLAIN": {
+      "overlay_code": "FLOODPLAIN",
+      "overlay_name": "Floodplain Overlay District",
+      "overlay_category": "environmental",
+      "base_or_overlay": "overlay",
+      "description": "FEMA-regulated floodplain areas where development is restricted or subject to additional requirements. Data centers typically should not be sited in floodplains due to critical infrastructure concerns.",
+      "what_it_affects": [
+        "Building elevation requirements",
+        "Flood damage protection standards",
+        "Restrictions on below-grade storage of critical equipment",
+        "Environmental permits"
+      ],
+      "geographic_coverage": "Along stream corridors throughout the county. Exact boundaries from FEMA Flood Insurance Rate Maps (FIRMs).",
+      "ordinance_section": "Floodplain overlay regulations — verify with current ordinance",
+      "official_source_url": "https://www.loudoun.gov/zoning",
+      "effective_date": null,
+      "last_verified": "2026-07-17",
+      "confidence_level": "moderate",
+      "reviewer_notes": "Floodplain constraints are universal across Virginia jurisdictions. Data centers should not be sited in floodplains regardless of zoning. Confidence is moderate because FEMA floodplain regulations are federally mandated."
+    }
+  }
+}

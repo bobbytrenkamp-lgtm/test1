@@ -1781,7 +1781,15 @@ body.is-resizing-floating-panel * {
     visibility: visible;
     /* visibility appears immediately on open, no delay */
     transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1),
-                visibility 0s linear 0s;
+                visibility 0s linear 0s,
+                max-height 0.28s cubic-bezier(0.32, 0.72, 0, 1),
+                border-radius 0.24s ease;
+  }
+  /* Full-screen expanded state (swipe up) */
+  #detail-panel.sheet-expanded {
+    max-height: 100dvh;
+    height: 100dvh;
+    border-radius: 0;
   }
   /* No CSS transition while finger is dragging the sheet */
   #detail-panel.is-dragging {

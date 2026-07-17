@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "zoning/district",
+  "title": "Zoning District",
+  "description": "A single zoning district within a jurisdiction.",
+  "type": "object",
+  "required": ["jurisdiction_id", "district_code", "district_name", "district_category"],
+  "properties": {
+    "jurisdiction_id":       { "type": "string" },
+    "district_code":         { "type": "string", "description": "Normalized code used as a key, e.g. PD-IP" },
+    "district_name":         { "type": "string", "description": "Official district name from the ordinance" },
+    "district_category":     {
+      "type": "string",
+      "enum": ["residential", "multifamily_residential", "mixed_use", "commercial", "office", "industrial", "light_industrial", "heavy_industrial", "agricultural", "institutional", "planned_development", "form_based", "transit_oriented", "conservation", "special_purpose", "overlay", "unclassified"]
+    },
+    "district_description":  { "type": ["string", "null"] },
+    "original_district_code":{ "type": "string", "description": "Code exactly as it appears in the ordinance" },
+    "base_or_overlay":       { "type": "string", "enum": ["base", "overlay", "both"] },
+    "ordinance_chapter":     { "type": ["string", "null"] },
+    "ordinance_section":     { "type": ["string", "null"] },
+    "official_source_url":   { "type": ["string", "null"], "format": "uri" },
+    "effective_date":        { "type": ["string", "null"] },
+    "last_verified":         { "type": ["string", "null"] },
+    "verification_method":   { "type": ["string", "null"] },
+    "confidence_level":      { "type": "string", "enum": ["verified", "high", "moderate", "low", "unverified", "unavailable"] },
+    "reviewer_notes":        { "type": ["string", "null"] },
+    "dc_eligibility_summary":{ "type": ["string", "null"], "description": "One-line summary of data center eligibility" }
+  }
+}

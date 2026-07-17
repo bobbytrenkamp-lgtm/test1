@@ -1,0 +1,96 @@
+name: Update Zoning Data
+
+on:
+  schedule:
+    # Run weekly on Wednesday at 05:00 UTC — zoning ordinances change infrequently
+    - cron: "0 5 * * 3"
+  workflow_dispatch:
+    inputs:
+      jurisdiction:
+        description: "Jurisdiction ID (e.g. va-loudoun-county; leave blank for all)"
+        required: false
+        default: ""
+      skip_fetch:
+        description: "Skip geometry download (only re-export structured data)"
+        required: false
+        default: "false"
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  update-zoning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run zoning pipeline
+        working-directory: data/zoning/scripts
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.jurisdiction }}" ]; then
+            ARGS="$ARGS --jurisdiction ${{ github.event.inputs.jurisdiction }}"
+          fi
+          if [ "${{ github.event.inputs.skip_fetch }}" = "true" ]; then
+            ARGS="$ARGS --skip-fetch"
+          fi
+          python run_zoning_pipeline.py $ARGS
+        continue-on-error: true
+
+      - name: Validate output files
+        run: |
+          python - <<'EOF'
+          import json, sys, pathlib
+          normalized_dir = pathlib.Path("data/zoning/normalized")
+          files = list(normalized_dir.glob("*.json"))
+          if not files:
+            print("No normalized files to validate")
+            sys.exit(0)
+          errors = 0
+          for f in files:
+            data = json.loads(f.read_text())
+            if "districts" not in data:
+              print(f"ERROR: {f.name} missing 'districts'")
+              errors += 1
+            if "jurisdiction" not in data:
+              print(f"ERROR: {f.name} missing 'jurisdiction'")
+              errors += 1
+            if "disclaimer" not in data:
+              print(f"ERROR: {f.name} missing 'disclaimer'")
+              errors += 1
+            dc = sum(1 for d in data.get("districts",{}).values() if d.get("dc_analysis"))
+            print(f"OK: {f.name} — {len(data.get('districts',{}))} districts, {dc} with DC analysis")
+          if errors:
+            sys.exit(1)
+          EOF
+
+      - name: Commit updated zoning data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/zoning/normalized/ \
+            data/zoning/geometry/ \
+            data/zoning/jurisdictions/ \
+            data/zoning/validation/
+          if git diff --cached --quiet; then
+            echo "No zoning data changes to commit"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git commit -m "chore: update zoning data [${TIMESTAMP}] [skip ci]"
+            git push origin main
+          fi

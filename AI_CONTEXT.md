@@ -292,15 +292,131 @@ restrictive (red):   border/text #ef4444
 - Fixed z-index stacking: `isolation: isolate` on `#leaflet-map`
 - Verified: 3293 county paths, 6 annotations, 5 stat chips, all UI controls
 
+### Session 5 — Supabase Authentication System
+- New file: `js/supabase-config.js` — `window.APP_CONFIG` with placeholder URL + anon key; no secrets
+- New file: `js/auth.js` — `window.AUTH` singleton; handles `onAuthStateChange`, preference sync, graceful degradation
+- New file: `js/account.js` — auth modal (sign-in/sign-up/forgot-password) + account panel (Profile/Preferences/Saved/Security tabs)
+- New file: `css/account.css` — all auth/account styles; uses existing CSS variables
+- New file: `data/supabase_schema.sql` — `profiles`, `user_preferences`, `saved_items` tables with RLS
+- New file: `SUPABASE_SETUP.md` — step-by-step setup guide
+- Modified: `index.html` — auth button in header; modal + panel HTML at body level; `<script defer>` tags for Supabase CDN + new JS files
+- Modified: `js/map.js` — exposed `window._applyTheme = applyTheme` inside `initThemeToggle()` for cross-module theme sync
+- PREF_KEYS synced: `['theme', 'aiPolicyTracker.stockFavorites.v1', 'dc-map-bookmarks-v1']`
+- Auth state machine: `loading → signedOut | signedIn | resettingPassword`
+- Dispatches `auth:stateChange` and `auth:preferenceSync` CustomEvents on `document`
+- Graceful degradation: if `window.supabase` is undefined OR config has placeholder values, returns early with `setState('signedOut')` — auth button stays hidden, site fully functional
+- Security: only anon key in frontend; RLS enforced via `auth.uid()`; no `innerHTML` with user data; no service-role key anywhere in frontend
+
+### Session 6 — Stabilization Checkpoint (Pre-Zoning Phase)
+- Fixed `update_ai_news.yml`: added `[skip ci]` to commit message — was triggering ~24 unnecessary Pages deploys/day
+- Fixed `update_policy_sources.yml`: added `[skip ci]` to commit message — was triggering 1 extra Pages deploy/day
+- Fixed `update_facilities.yml`: changed cron from daily `"0 3 * * *"` to weekly Sunday `"0 3 * * 0"` — facility data changes slowly; saves 6 × 60-min runs/week
+- Updated `PROJECT_CONTEXT.md`: added 9 new Completed Features entries (AI Stocks, Analytics, Home/Command Center, Government pipeline, Legislative monitoring, Facility pipeline, Infrastructure layers, Political Risk, GIS Toolbar, Supabase Auth)
+- Dead code identified but NOT deleted (per stabilization rules): 32 one-time sweep scripts (`data/sweep_2026_07_*.py`) — data already committed through Round 40
+- No active bugs found; all 9 GitHub Actions workflows audited
+- Data pipeline confirmed correct: `restrictions_raw.json` (human-edited) → `process_data.py` → `map_data.json` → Pages deploy; policy pipeline NEVER writes to map data
+- Deploy chain verified: `update_data.yml` commits map_data.json WITHOUT `[skip ci]` → triggers `deploy_pages.yml` via push + workflow_run; hourly news commits now correctly tagged `[skip ci]`
+- Confirmed `cache: "no-store"` on `ai_news.json` fetch means Pages does not need to redeploy for articles to appear — `[skip ci]` on news commits is safe
+- See AI_CHANGELOG.md for full stabilization entry
+
+### Session 7 — Zoning Intelligence Phase (Pilot: Loudoun County, VA)
+- Built complete zoning data architecture: 4 JSON schemas, source registry, 5 pilot data files (jurisdiction/districts/standards/uses/overlays), validation report, pilot matrix for 7 jurisdictions
+- Built complete Python pipeline: `zoning_config.py`, `fetch_zoning.py`, `normalize_zoning.py`, `validate_zoning.py`, `export_zoning.py`, `run_zoning_pipeline.py`
+- Generated `data/zoning/normalized/va-loudoun-county.json` (7 districts, no geometry yet — geometry requires ArcGIS fetch run)
+- Added `update_zoning.yml` GitHub Actions workflow (weekly Wednesday 05:00 UTC, [skip ci] on commit)
+- Built `css/zoning.css` (413+ lines): panel is flex child of #main (width 0→360px), bottom-sheet on mobile; DC eligibility banner, confidence badges, standards table, use pills, district browser, overlay list, source metadata
+- Built `js/zoning.js` (window.ZONING): FIPS→jurisdiction mapping, lazy load + session cache, CustomEvent bus
+- Built `js/zoning-map.js` (window.ZONING_MAP): Leaflet zoning polygon layer, onLayerToggle() called by setLayerVisible() in map.js
+- Built `js/zoning-details.js`: 5-tab panel renderer (Overview, Standards, Uses, Overlays, Sources)
+- Modified `index.html`: added CSS link, #zoning-panel aside, 3 script tags
+- Modified `js/map.js`: added zoning_districts/zoning_overlays to LAYER_DEFS + layerState; ZONING_MAP hooks in setLayerVisible() and handleCountyClick()
+- Created 5 documentation files: ZONING_ARCHITECTURE.md, ZONING_SOURCE_GUIDE.md, ZONING_VERIFICATION.md, ZONING_PILOT_STATUS.md, ZONING_FIELD_DICTIONARY.md
+- Pilot jurisdiction Loudoun County: 7 districts, all DC-classified; PD-IP=eligible, AR1/JLMA-3=not eligible, others=unclear
+- Geometry not yet fetched — run `python data/zoning/scripts/fetch_zoning.py --jurisdiction va-loudoun-county` to get real district polygons
+
+## Globals Reference
+
+### window.ZONING (js/zoning.js)
+```javascript
+window.ZONING = {
+  FIPS_TO_JURISDICTION,        // { "51107": "va-loudoun-county", ... }
+  hasCoverage(fips),           // → boolean
+  load(jurisdictionId),        // → Promise<data>
+  loadByFips(fips),            // → Promise<data | null>
+  getCachedByFips(fips),       // → data | null (sync, from cache)
+  getActive(),                 // → { jurisdictionId, district, data }
+  handleCountySelect(fips),    // loads data, emits events
+  selectDistrict(code),        // emits zoning:district-selected
+  clearActive(),               // emits zoning:cleared
+  formatValue(zoningValue),    // → { text, unit, unverified }
+  permissionPill(status),      // → { cls, label }
+  assessmentStyle(overall),    // → { cls, icon, label }
+}
+// Events on document:
+// 'zoning:loading'             { fips }
+// 'zoning:jurisdiction-loaded' { fips, jurisdictionId, data }
+// 'zoning:district-selected'   { jurisdictionId, districtCode, district, data }
+// 'zoning:load-error'          { fips, error }
+// 'zoning:no-coverage'         { fips }
+// 'zoning:cleared'             {}
+```
+
+### window.ZONING_MAP (js/zoning-map.js)
+```javascript
+window.ZONING_MAP = {
+  onLayerToggle(layerId, enabled, fips),  // called by setLayerVisible() in map.js
+  onCountySelected(fips),                 // called by handleCountyClick() in map.js
+  closePanel(),                           // closes #zoning-panel
+}
+```
+
+### window.AUTH (js/auth.js)
+```javascript
+window.AUTH = {
+  getState(),      // → 'loading' | 'signedOut' | 'signedIn' | 'resettingPassword'
+  getUser(),       // → Supabase User object or null
+  signIn(email, password),
+  signUp(email, password),
+  signOut(),
+  sendPasswordReset(email),
+  updatePassword(newPassword),
+  updateProfile(fields),   // updates profiles table
+  getProfile(),            // → { display_name, avatar_url, ... } or null
+}
+// Events dispatched on document:
+// 'auth:stateChange'    → { detail: { state, user } }
+// 'auth:preferenceSync' → { detail: { prefs: Map<key,value> } }
+```
+
+### window.APP_CONFIG (js/supabase-config.js)
+```javascript
+window.APP_CONFIG = {
+  SUPABASE_URL: 'YOUR_SUPABASE_URL',     // replace with real project URL
+  SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY'  // replace with real anon key
+};
+```
+
+### window._applyTheme (js/map.js)
+```javascript
+window._applyTheme(theme);  // 'dark' | 'light' — triggers full Leaflet style refresh
+```
+
 ## AI Handoff Summary
 
-**Current state**: The map is a fully functional Leaflet GIS app. All dependencies are vendored. The app loads and renders correctly in both connected and restricted-network environments (county polygons render even without tile access).
+**Current state**: Fully functional Leaflet GIS app with authentication, AI News, AI Stocks, Analytics, Home/Command Center tabs, and Zoning Intelligence layer (Phase 1 pilot — Loudoun County, VA). All dependencies vendored. County data covers 1,303 records (Round 40). Authentication gracefully degrades when Supabase is not configured.
 
 **Branch**: `claude/us-datacenter-restrictions-map-skooi7` — merge to `main` to deploy to GitHub Pages.
 
-**Next steps (not yet requested)**:
-1. Connect real facility/infra data files (replace sample_layers.json)
-2. Add county name lookup for counties without restriction data
-3. Add state-level detail panel content (currently only county detail shows state policy)
-4. Performance: consider canvas rendering for lower-end mobile devices
-5. Add a "share link" feature (URL hash with selected county FIPS)
+**Zoning phase status**: Pilot complete. 7 districts in Loudoun County, VA. All structured data exported. Geometry not yet fetched (run fetch_zoning.py). Next jurisdiction: Fairfax County, VA or Montgomery County, MD.
+
+**Next zoning steps**:
+1. Run `python data/zoning/scripts/fetch_zoning.py --jurisdiction va-loudoun-county` to download real polygon geometry
+2. Add Fairfax County, VA (FIPS 51059) — see `docs/ZONING_SOURCE_GUIDE.md` for how to add a jurisdiction
+3. Verify Loudoun dimensional standards against official ordinance — see `docs/ZONING_VERIFICATION.md`
+4. Add FIPS 51059 to `FIPS_TO_JURISDICTION` in `js/zoning.js` once data is ready
+
+**Other deferred work**:
+1. Replace `data/sample_layers.json` facility data with verified sources
+2. Add county name lookup for counties without restriction data (county_names.json exists but not fully integrated)
+3. Delete or archive 32 dead one-time sweep scripts (`data/sweep_2026_07_*.py`) after confirming data integrity
+4. Add state-level detail panel content integrated into selected county view
