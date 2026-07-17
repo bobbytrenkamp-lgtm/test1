@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="vendor/leaflet.css" />
   <link rel="stylesheet" href="css/style.css?v=20260714f" />
   <link rel="stylesheet" href="css/stocks.css?v=20260712h" />
+  <link rel="stylesheet" href="css/account.css?v=20260717a" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -79,6 +80,7 @@
     </nav>
     <div id="header-right">
       <button id="kb-help-btn" aria-label="Keyboard shortcuts" title="Keyboard shortcuts (?)" class="header-icon-btn">?</button>
+      <button id="auth-btn" aria-label="Sign in" title="Sign in" class="header-icon-btn" hidden></button>
       <button id="theme-toggle" aria-label="Color theme: System" title="Appearance: System"></button>
       <div id="last-updated">Loading data…</div>
     </div>
@@ -408,6 +410,166 @@
   </div>
 </div>
 
+<!-- ── Auth modal — body-level so z-index is in root stacking context ── -->
+<div id="auth-modal-overlay">
+  <div id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+    <div class="auth-modal-head">
+      <h2 id="auth-modal-title">Sign In</h2>
+      <button id="auth-modal-close-btn" class="auth-modal-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="auth-modal-body">
+
+      <!-- Sign In -->
+      <form id="auth-page-signin" class="auth-page active" novalidate>
+        <div class="auth-error" role="alert" aria-live="polite"></div>
+        <div class="auth-field">
+          <label for="auth-signin-email">Email</label>
+          <input type="email" id="auth-signin-email" autocomplete="email" placeholder="you@example.com" />
+        </div>
+        <div class="auth-field">
+          <label for="auth-signin-password">Password</label>
+          <input type="password" id="auth-signin-password" autocomplete="current-password" placeholder="••••••••" />
+        </div>
+        <div class="auth-divider"><button type="button" id="auth-forgot-link" class="auth-link">Forgot password?</button></div>
+        <button type="submit" class="auth-submit">Sign In</button>
+        <div class="auth-footer">No account? <button type="button" id="auth-signup-link" class="auth-link">Create one</button></div>
+      </form>
+
+      <!-- Sign Up -->
+      <form id="auth-page-signup" class="auth-page" novalidate>
+        <div class="auth-error" role="alert" aria-live="polite"></div>
+        <div class="auth-success" role="status" aria-live="polite"></div>
+        <div class="auth-field">
+          <label for="auth-signup-name">Display Name</label>
+          <input type="text" id="auth-signup-name" autocomplete="name" placeholder="Your name" />
+        </div>
+        <div class="auth-field">
+          <label for="auth-signup-email">Email</label>
+          <input type="email" id="auth-signup-email" autocomplete="email" placeholder="you@example.com" />
+        </div>
+        <div class="auth-field">
+          <label for="auth-signup-password">Password</label>
+          <input type="password" id="auth-signup-password" autocomplete="new-password" placeholder="Min. 8 characters" />
+        </div>
+        <div class="auth-field">
+          <label for="auth-signup-password2">Confirm Password</label>
+          <input type="password" id="auth-signup-password2" autocomplete="new-password" placeholder="Repeat password" />
+        </div>
+        <button type="submit" class="auth-submit">Create Account</button>
+        <div class="auth-footer">Already have an account? <button type="button" id="auth-signin-link2" class="auth-link">Sign in</button></div>
+      </form>
+
+      <!-- Forgot Password -->
+      <form id="auth-page-forgot" class="auth-page" novalidate>
+        <div class="auth-error" role="alert" aria-live="polite"></div>
+        <div class="auth-success" role="status" aria-live="polite"></div>
+        <p class="auth-hint">Enter your email and we'll send a password-reset link.</p>
+        <div class="auth-field">
+          <label for="auth-forgot-email">Email</label>
+          <input type="email" id="auth-forgot-email" autocomplete="email" placeholder="you@example.com" />
+        </div>
+        <button type="submit" class="auth-submit">Send Reset Link</button>
+        <div class="auth-footer"><button type="button" id="auth-back-link" class="auth-link">Back to sign in</button></div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── Account panel — body-level slide-in ── -->
+<div id="account-panel-overlay"></div>
+<div id="account-panel" role="dialog" aria-modal="true" aria-label="My Account">
+
+  <div class="acct-head">
+    <div class="acct-avatar" aria-hidden="true">?</div>
+    <div class="acct-user-info">
+      <div class="acct-display-name">Account</div>
+      <div class="acct-email"></div>
+    </div>
+    <button class="acct-close" aria-label="Close account panel">&times;</button>
+  </div>
+
+  <div class="acct-tabs" role="tablist">
+    <button class="acct-tab active" data-tab="profile"      role="tab" aria-selected="true">Profile</button>
+    <button class="acct-tab"        data-tab="preferences"  role="tab" aria-selected="false">Prefs</button>
+    <button class="acct-tab"        data-tab="saved"        role="tab" aria-selected="false">Saved</button>
+    <button class="acct-tab"        data-tab="security"     role="tab" aria-selected="false">Security</button>
+  </div>
+
+  <div class="acct-body">
+
+    <!-- Profile -->
+    <div class="acct-panel-tab active" data-tab="profile">
+      <form id="acct-profile-form" novalidate>
+        <div class="acct-field">
+          <label for="acct-display-name-input">Display Name</label>
+          <input type="text" id="acct-display-name-input" autocomplete="name" />
+        </div>
+        <div class="acct-field">
+          <label for="acct-email-input">Email (read-only)</label>
+          <input type="email" id="acct-email-input" readonly />
+        </div>
+        <button type="submit" class="acct-save-btn">Save Changes</button>
+        <div id="acct-profile-feedback" class="acct-feedback" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <!-- Preferences -->
+    <div class="acct-panel-tab" data-tab="preferences">
+      <div class="acct-section">
+        <div class="acct-section-label">Appearance</div>
+        <div class="acct-pref-row">
+          <div>
+            <div class="acct-pref-label">Theme</div>
+            <div class="acct-pref-note">Synced to cloud</div>
+          </div>
+          <select id="acct-theme-select" class="acct-pref-select" aria-label="Color theme">
+            <option value="system">System</option>
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saved items -->
+    <div class="acct-panel-tab" data-tab="saved">
+      <div id="acct-saved-content">
+        <div class="acct-loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+
+    <!-- Security -->
+    <div class="acct-panel-tab" data-tab="security">
+      <div id="acct-reset-notice" hidden>Enter your new password below to complete the password reset.</div>
+      <div class="acct-section">
+        <div class="acct-section-label">Change Password</div>
+        <form id="acct-password-form" novalidate>
+          <div class="acct-field">
+            <label for="acct-new-password">New Password</label>
+            <input type="password" id="acct-new-password" autocomplete="new-password" placeholder="Min. 8 characters" />
+          </div>
+          <div class="acct-field">
+            <label for="acct-new-password2">Confirm New Password</label>
+            <input type="password" id="acct-new-password2" autocomplete="new-password" placeholder="Repeat password" />
+          </div>
+          <button type="submit" class="acct-save-btn">Update Password</button>
+          <div id="acct-password-feedback" class="acct-feedback" aria-live="polite"></div>
+        </form>
+      </div>
+      <div class="acct-section">
+        <div class="acct-section-label">Account Deletion</div>
+        <p class="acct-danger-note">To delete your account and all associated data, email us from your registered address. We'll remove the account within 30 days. (Client-side deletion cannot securely remove an authentication account.)</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="acct-foot">
+    <button id="acct-signout-btn" class="acct-signout-btn">Sign Out</button>
+  </div>
+</div>
+
 <script>
 // Track which scripts load/fail and any JS errors — helps diagnose mobile issues
 window._track = {ok:[], fail:[], err:[]};
@@ -422,6 +584,10 @@ window.addEventListener('error', function(e) {
 <script src="js/analytics.js?v=20260712k" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
 <script src="js/home.js?v=20260712m" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
 <script src="js/map.js?v=20260714f" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer onload="window._track.ok.push('supabase')" onerror="window._track.fail.push('supabase')"></script>
+<script src="js/supabase-config.js?v=20260717a" defer onload="window._track.ok.push('supabase-config')" onerror="window._track.fail.push('supabase-config')"></script>
+<script src="js/auth.js?v=20260717a" defer onload="window._track.ok.push('auth')" onerror="window._track.fail.push('auth')"></script>
+<script src="js/account.js?v=20260717a" defer onload="window._track.ok.push('account')" onerror="window._track.fail.push('account')"></script>
 <script>
 setTimeout(function() {
   if (!window._pageInitialized) {

@@ -3506,6 +3506,9 @@ function initThemeToggle() {
     if (stateGeoLayer) stateGeoLayer.setStyle(stateStyle);
   }
 
+  // Expose for cross-module use (account.js preferences tab)
+  window._applyTheme = applyTheme;
+
   btn.addEventListener('click', () => {
     const cur = localStorage.getItem('theme') || 'system';
     const next = THEMES[(THEMES.indexOf(cur) + 1) % THEMES.length];
