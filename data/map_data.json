@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-17T05:44:39.079925+00:00",
+  "generated_at": "2026-07-17T05:48:16.407492+00:00",
   "source_last_updated": "2026-07-17",
   "stats": {
-    "total_counties_tracked": 1263,
+    "total_counties_tracked": 1283,
     "by_level": {
-      "-1": 1151,
+      "-1": 1171,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,7 +12,7 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 1254,
+      "data_center": 1274,
       "water": 14,
       "ai": 182,
       "energy": 160,
@@ -32774,6 +32774,466 @@
       "confidence": "high",
       "confidence_score": 62,
       "source_tier": 1
+    },
+    "16049": {
+      "name": "Idaho County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Idaho County ID \u2014 Grangeville/Nez Perce NHP/Frank Church Wilderness/largest ID county",
+      "description": "Idaho County is the largest county in Idaho (8,485 square miles) and one of the largest counties in the lower 48 states. Grangeville is the county seat. The Frank Church-River of No Return Wilderness \u2014 the largest contiguous wilderness area in the contiguous United States (2.3 million acres) \u2014 covers the majority of Idaho County, along with adjacent counties. The Nez Perce National Historical Park preserves sites across the Nez Perce homeland, including the Whitebird Canyon Battlefield where the Nez Perce War began in 1877. The Salmon River (the River of No Return) flows through the wilderness. Idaho County's vast roadless territory and small population create one of the most extreme rural connectivity challenges in the US.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Idaho County Idaho",
+          "url": "https://www.idahocounty.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "16025": {
+      "name": "Camas County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Camas County ID \u2014 Fairfield/Camas Prairie/south-central Idaho/least populous ID county",
+      "description": "Camas County in south-central Idaho is the least populous county in Idaho \u2014 Fairfield is the county seat with a population under 500. The Camas Prairie (the Big Wood River Valley above Fairfield) is named for the camas plant, whose bulbs were a staple food of the Shoshone-Bannock and Nez Perce people. Camas County's economy centers on sheep ranching, cattle, and hay production on the high-altitude prairie. The Soldier Mountain Ski Area provides modest recreation. Camas County's extreme rural position and tiny population make it an ideal case study in rural broadband deployment economics \u2014 terrestrial infrastructure costs are extremely high relative to the potential subscriber base.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Camas County Idaho",
+          "url": "https://www.camascounty.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "16037": {
+      "name": "Custer County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Custer County ID \u2014 Challis/Salmon River/Frank Church Wilderness adj/Yankee Fork gold/central ID",
+      "description": "Custer County in central Idaho centers on Challis on the Salmon River \u2014 a small ranching and recreation town at the heart of the Idaho wilderness. The Lost River Range (Idaho's highest mountains, including Mount Borah at 12,662 feet \u2014 Idaho's highest point) is in Custer County. The Yankee Fork of the Salmon River has a distinctive gold dredging history \u2014 the Yankee Fork Gold Dredge (now a state historical site) operated from 1940 to 1952 and churned through massive gravel bars, leaving behind distinctive cobble mounds. The Frank Church-River of No Return Wilderness flanks the county. Custer County is one of the most sparsely populated counties in the lower 48.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Custer County Idaho",
+          "url": "https://www.custercountyid.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "16059": {
+      "name": "Lemhi County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lemhi County ID \u2014 Salmon/Sacajawea birthplace/Lemhi Pass/Continental Divide/central Idaho",
+      "description": "Lemhi County in east-central Idaho centers on Salmon \u2014 a small city on the Salmon River near the Montana border. Lemhi County is the birthplace of Sacajawea, the Shoshone woman who served as guide and interpreter for the Lewis and Clark Expedition. Lemhi Pass (on the Continental Divide near Salmon) is where Lewis and Clark crossed from the Missouri River watershed to the Columbia River watershed \u2014 the actual moment of reaching the Pacific drainage that they had sought for months. The Lemhi Shoshone Tribe (the Agaidika, or 'Salmon Eaters') are Sacajawea's people. The Salmon River's designation as a Wild and Scenic River protects one of the most exceptional whitewater rivers in North America. Cobalt mining and ranching define the county's economy.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Lemhi County Idaho",
+          "url": "https://www.lemhicountyidaho.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "13011": {
+      "name": "Banks County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Banks County GA \u2014 Homer/NE Georgia foothills/Broad River/Gainesville exurb/I-85 corridor",
+      "description": "Banks County in northeastern Georgia centers on Homer in the Georgia Piedmont foothills. The county is part of the growing exurban expansion from Gainesville and Atlanta \u2014 I-985 and the I-85 corridor have made Banks County increasingly accessible to the Atlanta metropolitan economy. The Broad River flows through the county, providing agricultural water and supporting the county's rural character. Banks County's development pressure \u2014 balancing agricultural preservation with suburban expansion \u2014 is typical of Georgia's northeast Piedmont counties within commuting range of Gainesville (Hall County's economic hub). The county's poultry processing industry is part of Georgia's leading role in US chicken production.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Banks County Georgia",
+          "url": "https://www.bankscountyga.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "13019": {
+      "name": "Berrien County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Berrien County GA \u2014 Nashville/south Georgia/Alapaha River/agricultural south GA plain",
+      "description": "Berrien County in south-central Georgia centers on Nashville \u2014 a small city in the coastal plain agricultural zone. The Alapaha River flows through the county, part of the Suwannee River system that drains south Georgia into the Gulf of Mexico. Berrien County's agricultural economy centers on peanuts, soybeans, tobacco, and timber \u2014 the classic South Georgia Coastal Plain farm belt. The county is part of the Valdosta trade area and the South Georgia agricultural supply chain that connects to major agribusiness processors. Georgia's agricultural extension IT (University of Georgia Cooperative Extension, USDA NRCS conservation programs) serves the county.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Berrien County Georgia",
+          "url": "https://www.berriencountyga.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "13287": {
+      "name": "Turner County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Turner County GA \u2014 Ashburn/south Georgia/I-75 corridor/pecans/Flint River watershed",
+      "description": "Turner County in south-central Georgia centers on Ashburn on I-75 \u2014 a major north-south corridor through Georgia. The county's agricultural economy is part of the Flint River watershed's farming region, with pecans, peanuts, and row crops. Turner County is in the territory of the Georgia South Pure Water project and the Withlacoochee-Little River Water Planning Council managing south Georgia water resources. The Georgia Peanut Commission and Georgia Pecan Commission both represent farming interests in the south Georgia agricultural zones that include Turner County. I-75 gives the county commercial truck corridor traffic IT and logistics activity.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Turner County Georgia",
+          "url": "https://www.turnercountyga.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "13181": {
+      "name": "Lincoln County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lincoln County GA \u2014 Lincolnton/Clarks Hill Lake/Savannah River/NE Georgia/Thurmond Lake",
+      "description": "Lincoln County in northeastern Georgia borders South Carolina on the Savannah River \u2014 formed by Clarks Hill Dam (also known as J. Strom Thurmond Lake), one of the largest lakes in the eastern US. The lake's 71,100-acre surface spans the Georgia-South Carolina border and provides drinking water, hydropower, flood control, and recreation. Lincoln County's Lincolnton is a small county seat in a region with significant retiree and recreational property development on the lake. The US Army Corps of Engineers management of Thurmond Lake creates institutional government IT. Lincoln County is part of the Augusta, GA-SC metro area's exurban zone.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Lincoln County Georgia",
+          "url": "https://www.lincolncountyga.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "31005": {
+      "name": "Arthur County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Arthur County NE \u2014 Arthur/Sandhills/least populous NE county/grass-fed beef/remote",
+      "description": "Arthur County in central Nebraska is one of the least populous counties in the United States \u2014 with a population under 500, Arthur is one of the smallest county seats in the country. The county sits in the Nebraska Sandhills \u2014 the largest stabilized sand dune formation in the Western Hemisphere (19,000 square miles). The Sandhills' shallow soils over the Ogallala Aquifer support one of the world's most productive grass-fed beef ranching regions, where cattle graze on native bluestem, switchgrass, and sand lovegrass. The region's isolation, sparse population, and Ogallala Aquifer recharge zone designation create both broadband access challenges and significant water management IT needs.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Arthur County Nebraska",
+          "url": "https://www.arthurcountyne.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "31117": {
+      "name": "McPherson County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McPherson County NE \u2014 Tryon/Sandhills/Nebraska least populous/ranching/Ogallala Aquifer",
+      "description": "McPherson County in the Nebraska Sandhills centers on Tryon \u2014 one of the smallest county seats in the US, with a population of approximately 100. McPherson County is among the least densely populated counties in the entire United States, with under 0.5 people per square mile across 855 square miles of Sandhills grassland. The county's grass-fed beef ranching economy is entirely dependent on the native Sandhills grasses sustained by the Ogallala Aquifer's shallow water table. Nebraska's rural broadband programs have specifically targeted McPherson County and the Sandhills region as extreme low-density deployment challenges. The Middle Loup River flows through the county.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "McPherson County Nebraska",
+          "url": "https://www.mcphersoncountyne.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "31007": {
+      "name": "Banner County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Banner County NE \u2014 Harrisburg/Panhandle/Nebraska Panhandle/High Plains/Wildcat Hills",
+      "description": "Banner County in the Nebraska Panhandle centers on Harrisburg \u2014 a tiny county seat in the high plains western Nebraska. The Wildcat Hills State Recreation Area (adjacent Scotts Bluff County) marks the transition from the flat High Plains to the Pine Ridge country. Banner County's dryland wheat and limited irrigated agriculture, along with cattle ranching, form its economic base. Western Nebraska's Panhandle counties, including Banner, were homesteaded in the late 19th century but many families departed in the Dust Bowl era \u2014 the region has never fully recovered its peak early-20th-century population. Nebraska's Panhandle broadband programs address connectivity challenges in counties like Banner that span vast distances with minimal population.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Banner County Nebraska",
+          "url": "https://www.bannercountyne.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "18113": {
+      "name": "Noble County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Noble County IN \u2014 Albion/Pokagon Band Potawatomi/Amish/northeast Indiana lake country",
+      "description": "Noble County in northeast Indiana centers on Albion in the glacial lake country of northeast Indiana. The Pokagon Band of Potawatomi Indians (state-recognized; recognized as a separate band from the federally-recognized Pokagon Band headquartered in Michigan) have traditional connections to northeast Indiana. Noble County is part of the northeast Indiana Amish community zone \u2014 adjacent LaGrange County has the second-largest Amish population in Indiana. The county's numerous glacial lakes (Sylvan Lake, Loon Lake, Silver Lake) create a summer recreation economy. Noble County's electronics and manufacturing economy connects to the Fort Wayne metro area to the south.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Noble County Indiana",
+          "url": "https://www.nobleco.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "18051": {
+      "name": "Gibson County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Gibson County IN \u2014 Princeton/SW Indiana/Toyota Indiana Plant/Wabash River/coal legacy",
+      "description": "Gibson County in southwestern Indiana centers on Princeton \u2014 home to the Toyota Indiana Manufacturing Plant, one of Toyota's most productive North American assembly facilities. The Toyota Princeton plant (opened 1996, expanded 2011) produces the Highlander and Sirius XM subscription vehicles, employing over 7,000 workers. Gibson County's manufacturing economy around Toyota creates significant supply chain IT, logistics coordination, and manufacturing systems integration. The county's coal mining legacy (Pike County coal adjacent) and Wabash River agricultural zone create additional infrastructure. Toyota Indiana's presence makes Gibson County economically distinct among southwest Indiana's coal-legacy counties.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Gibson County Indiana",
+          "url": "https://www.gibsoncounty.in.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "18123": {
+      "name": "Perry County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Perry County IN \u2014 Tell City/Cannelton/Ohio River/south Indiana/Troy/Lincoln Boyhood adj",
+      "description": "Perry County in southern Indiana fronts the Ohio River \u2014 Tell City and Cannelton are the principal communities, with Cannelton's historic cotton mill (an 1849 Gothic industrial building, now a National Historic Landmark) representing the early industrialization of southern Indiana. Tell City is named after the legendary Swiss hero William Tell, reflecting the Swiss German heritage of Perry County's settlers. The Lincoln Boyhood National Memorial in adjacent Spencer County (where Abraham Lincoln spent his formative Indiana years from 1816-1830) influences the regional heritage tourism economy. Perry County's Ohio River position creates barge and river logistics connectivity. The county borders Kentucky across the Ohio River.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Perry County Indiana",
+          "url": "https://www.perrycounty.in.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "37111": {
+      "name": "McDowell County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McDowell County NC \u2014 Marion/Lake James/Linville Gorge/western NC foothills/I-40",
+      "description": "McDowell County in the western North Carolina foothills centers on Marion on I-40 at the base of the Blue Ridge escarpment. Lake James, formed by the Catawba River dams, provides hydroelectric power and recreation. Linville Gorge Wilderness \u2014 the eastern US's deepest gorge \u2014 is in the McDowell-Burke County border area, with Linville Falls among the most photographed waterfalls in the Appalachians. The Table Rock geological formation rises dramatically above the Catawba Valley. McDowell County's manufacturing base has been challenged by textile and furniture industry contractions. The county's position at the I-40 Mountain Gateway to Asheville creates a commercial and logistics role.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "McDowell County North Carolina",
+          "url": "https://www.mcdowellgov.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "37011": {
+      "name": "Avery County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Avery County NC \u2014 Newland/Grandfather Mountain/Beech Mountain/NC High Country/ski",
+      "description": "Avery County in the North Carolina High Country is home to Grandfather Mountain \u2014 the highest peak in the Blue Ridge range (5,947 feet), known for its iconic Mile-High Swinging Bridge and exceptional biodiversity (Grandfather Mountain State Park preserves 11 distinct ecological communities). Beech Mountain (5,506 feet elevation) in Avery County is the highest incorporated town in the eastern US and hosts the Ski Beech resort. The county's elevation creates a Christmas tree growing industry (Fraser firs) that is economically significant. Avery County's tourism economy, high-altitude position, and dramatic terrain create distinctive infrastructure challenges. The Blue Ridge Parkway runs along the county's edge.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Avery County North Carolina",
+          "url": "https://www.averycountync.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "37043": {
+      "name": "Clay County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clay County NC \u2014 Hayesville/Nantahala NF/Chatuge Lake/western NC/GA border/trout streams",
+      "description": "Clay County in the extreme southwestern corner of North Carolina is one of the state's smallest and most rural counties \u2014 Hayesville is the county seat near Chatuge Lake (a TVA reservoir on the Hiwassee River). The Nantahala National Forest covers most of Clay County, with exceptional trout fishing, whitewater, and backcountry recreation. Clay County borders Georgia to the south and Tennessee to the west, creating a tri-state corner rural economy. The county's arts community (Hayesville has a notable small-town arts scene) and retirement migration from urban areas creates diverse connectivity needs. Clay County is among North Carolina's smallest counties and has persistent rural broadband and economic development challenges.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Clay County North Carolina",
+          "url": "https://www.claync.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "22003": {
+      "name": "Allen Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Allen Parish LA \u2014 Oberlin/Vernon adj/Kisatchie NF/SW Louisiana/timber/Coushatta Tribe",
+      "description": "Allen Parish in southwestern Louisiana centers on Oberlin in the longleaf pine flatwoods adjacent to the Kisatchie National Forest. The Coushatta Tribe of Louisiana (federally recognized) operates the Coushatta Casino Resort in adjacent Allen Parish territory \u2014 one of Louisiana's major tribal gaming operations, with significant IT infrastructure for hospitality and gaming management. Allen Parish's timber economy (Weyerhaeuser and other timber companies manage extensive longleaf pine regeneration) and proximity to Vernon Parish (Leesville/Fort Polk) create military-adjacent supply chain IT. The parish is part of Louisiana's southwest timber belt and participates in reforestation programs for native longleaf restoration.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Allen Parish Louisiana",
+          "url": "https://www.allenparishla.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "22101": {
+      "name": "St. Mary Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "St. Mary Parish LA \u2014 Morgan City/Atchafalaya Basin/offshore oil services/shrimp/Cajun culture",
+      "description": "St. Mary Parish in south-central Louisiana centers on Morgan City \u2014 a hub of the offshore oil and gas service industry on the Atchafalaya River and Intracoastal Waterway. Morgan City was the site of the first offshore oil well drilled from a mobile platform (1947), marking the beginning of the global offshore oil industry. The Atchafalaya Basin \u2014 the largest river swamp in North America \u2014 borders St. Mary Parish, with cypress-tupelo swamp, crawfish production, and sport fishing central to the Cajun cultural and economic identity. Morgan City's offshore oil service boats, helicopter services, and remote operations technology create significant industrial IT. The parish participates in the Gulf of Mexico energy infrastructure that serves deepwater drilling platforms.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "St. Mary Parish Louisiana",
+          "url": "https://www.stmaryparishla.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "22021": {
+      "name": "Caldwell Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Caldwell Parish LA \u2014 Columbia/north-central Louisiana/Ouachita River/small farming parishes",
+      "description": "Caldwell Parish in north-central Louisiana centers on Columbia on the Ouachita River \u2014 a classic small farming parish in Louisiana's upland interior. The Ouachita River connects Monroe (the major regional city to the north) through a series of small parishes including Caldwell. Caldwell Parish's agricultural economy includes soybeans, corn, cotton, and timber \u2014 typical of the mixed farming system of Louisiana's upland interior parishes. The parish participates in USDA commodity programs, Louisiana Cooperative Extension services, and rural electric cooperative infrastructure. Caldwell Parish is part of the Louisiana poverty belt \u2014 one of the US regions with persistently high rural poverty rates and associated broadband access gaps.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Caldwell Parish Louisiana",
+          "url": "https://www.caldwellparishla.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -33250,7 +33710,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-17T05:44:39.522229+00:00",
+    "last_computed": "2026-07-17T05:48:16.662444+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

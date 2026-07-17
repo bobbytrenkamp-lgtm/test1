@@ -6,6 +6,30 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 39)
+- `data/map_data.json` (Round 39)
+- `docs/data-sweeps/2026-07-massive-sweep-round-39.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 39**: Idaho (Idaho County/Grangeville Frank Church Wilderness 2.3M acres largest lower-48 Nez Perce NHP, Camas/Fairfield Camas Prairie least populous ID sheep ranching, Custer/Challis Salmon River Mount Borah highest ID Yankee Fork gold, Lemhi/Salmon Sacajawea birthplace Lemhi Pass Lewis & Clark Continental Divide), Georgia (Banks/Homer NE GA foothills Broad River Gainesville exurb, Berrien/Nashville south GA Alapaha River peanuts Suwannee, Turner/Ashburn I-75 pecans peanuts Flint watershed, Lincoln/Lincolnton Clarks Hill Lake Savannah River Thurmond Dam), Nebraska Sandhills (Arthur/Arthur least populous NE Sandhills grass-fed beef Ogallala recharge, McPherson/Tryon sub-0.5 density Middle Loup extreme rural, Banner/Harrisburg Panhandle High Plains Wildcat Hills), Indiana (Noble/Albion Pokagon Potawatomi NE lake country Amish adj, Gibson/Princeton Toyota Indiana Plant 7,000+ workers Wabash coal legacy, Perry/Tell City Cannelton cotton mill NHL Ohio River Swiss heritage), North Carolina (McDowell/Marion Lake James Linville Gorge Blue Ridge Gateway I-40, Avery/Newland Grandfather Mountain Beech Mountain highest eastern town ski, Clay/Hayesville Nantahala NF Chatuge Lake tri-state NC-GA-TN), Louisiana (Allen Parish/Oberlin Kisatchie NF Coushatta Tribe casino timber, St. Mary Parish/Morgan City first offshore oil well 1947 Atchafalaya Basin offshore services, Caldwell Parish/Columbia Ouachita River north-central LA rural). 20 net new records (1283 total).
+- **No FIPS errors** — twenty-eighth consecutive clean validation run.
+
+Reasoning:
+- Idaho County ID (Frank Church Wilderness): Largest county in Idaho (8,485 sq mi), containing the largest contiguous wilderness in the lower 48 (2.3M acres). Nez Perce NHP commemorates the War's start at Whitebird Canyon. One of the most extreme rural connectivity challenges in the US.
+- Lemhi County ID (Sacajawea/Lemhi Pass): Birthplace of Sacajawea, the Shoshone guide for Lewis and Clark. Lemhi Pass is the actual Continental Divide crossing where Lewis and Clark first reached Pacific drainage — an iconic moment in American exploration history.
+- Gibson County IN (Toyota Indiana): Toyota's Princeton plant with 7,000+ workers is one of the most significant Japanese transplant manufacturing facilities in rural America, transforming a coal-legacy county into an automotive manufacturing hub.
+- St. Mary Parish LA (First offshore oil well): Morgan City is where the global offshore oil industry was born in 1947. The Atchafalaya Basin (largest North American river swamp) creates an extraordinary ecological-industrial juxtaposition.
+- Avery County NC (Grandfather Mountain/Beech Mountain): Highest Blue Ridge peak, exceptional biodiversity, and the highest incorporated eastern US town. Fraser fir Christmas trees and premium ski terrain define the county's mountain economy.
+
+Problems Found:
+- 0 FIPS errors (twenty-eighth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 38)
 - `data/map_data.json` (Round 38)
 - `docs/data-sweeps/2026-07-massive-sweep-round-38.md` (new)
