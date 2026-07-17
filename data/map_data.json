@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-17T00:22:52.741922+00:00",
+  "generated_at": "2026-07-17T00:26:23.342503+00:00",
   "source_last_updated": "2026-07-17",
   "stats": {
-    "total_counties_tracked": 923,
+    "total_counties_tracked": 943,
     "by_level": {
-      "-1": 811,
+      "-1": 831,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,7 +12,7 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 914,
+      "data_center": 934,
       "water": 14,
       "ai": 182,
       "energy": 160,
@@ -24954,6 +24954,466 @@
       "confidence": "low",
       "confidence_score": 36,
       "source_tier": 3
+    },
+    "48477": {
+      "name": "Washington County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Washington County \u2014 Brenham/Blue Bell Creameries/Blinn College/Austin-Houston corridor",
+      "description": "Washington County and Brenham sit midway on US-290 between Austin and Houston \u2014 one of the most traveled routes in Texas. Brenham is the home of Blue Bell Creameries, one of the most beloved regional ice cream brands in the US, with a manufacturing facility that is the county's largest employer. Blinn College's Brenham campus provides technical education. Washington County was the birthplace of Texas \u2014 Washington-on-the-Brazos State Historic Site is where the Texas Declaration of Independence was signed in 1836. The county's US-290 corridor position attracts logistics and distribution operations serving both the Austin and Houston markets. Oncor and Bluebonnet Electric Cooperative serve the county.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Washington County Texas",
+          "url": "https://www.co.washington.tx.us/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "48133": {
+      "name": "Eastland County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Eastland County \u2014 Cisco/I-20 West Texas entry/Ranger oil heritage",
+      "description": "Eastland County sits on I-20 at the gateway between the Dallas-Fort Worth market and West Texas \u2014 the county marks the transition from the Cross Timbers to the western Texas plains. Cisco is the county seat area's main commercial city and was historically significant as a 1919 oil boom town (the Ranger-Eastland oil field transformed northwest Texas). The county's position on I-20 \u2014 the primary freight route between Dallas and Midland-Odessa \u2014 makes it a natural fiber corridor waypoint. Oncor and West Texas Utilities (AEP) both operate transmission infrastructure in the county. Eastland County's ranching economy and its I-20 position give it above-average infrastructure for its small population.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Eastland County Texas",
+          "url": "https://www.co.eastland.tx.us/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "48301": {
+      "name": "Loving County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Loving County \u2014 least populous US county/Permian Basin core/Pecos River",
+      "description": "Loving County is the least populous county in the United States \u2014 with typically fewer than 100 permanent residents \u2014 yet it sits in the heart of the Permian Basin, one of the most productive oil-producing regions in the world. The Delaware Basin sub-basin underlying Loving County has been among the most aggressively drilled zones of the shale revolution. Despite its tiny population, the county's oil and gas infrastructure includes pipelines, SCADA systems, production monitoring networks, and fracking operation management technology from major operators including Cimarex (now Coterra Energy). Loving County is a stark illustration of how industrial energy production creates technology infrastructure completely decoupled from population metrics. The county's electricity comes from ERCOT via West Texas Utilities.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Loving County Texas",
+          "url": "https://www.co.loving.tx.us/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "48405": {
+      "name": "San Augustine County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "San Augustine County \u2014 San Augustine/Deep East Texas/Angelina NF/Sam Rayburn Reservoir",
+      "description": "San Augustine County in deep East Texas contains part of the Sam Rayburn Reservoir \u2014 one of the largest lakes in Texas \u2014 created on the Angelina River. The Angelina National Forest covers much of the county, with the US Forest Service maintaining significant administrative and field IT systems. San Augustine is one of the oldest cities in Texas (settled 1716, predating US independence) and serves as the county seat of a historically timber-producing area. Entergy Texas serves the county. The Sam Rayburn/Toledo Bend reservoir complex on the Louisiana border creates a recreation and water management technology corridor through deep East Texas that is separate from the petrochemical and urban Texas markets.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "San Augustine County Texas",
+          "url": "https://www.co.san-augustine.tx.us/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "26109": {
+      "name": "Menominee County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Menominee County \u2014 Menominee/UP Michigan-Wisconsin border/Green Bay corridor",
+      "description": "Menominee County at the southern tip of Michigan's Upper Peninsula borders Marinette, Wisconsin across the Menominee River \u2014 together forming the Marinette-Menominee twin cities market. The county's manufacturing heritage includes paper mills that created substantial industrial electrical infrastructure through Upper Michigan Power (WEC Energy Group). Menominee's position at the UP/lower Michigan border on US-41, combined with its fiber connectivity to the Green Bay-Milwaukee market via Wisconsin, gives it unusual UP connectivity assets. The county's Lake Michigan shoreline, river-based hydroelectric history, and manufacturing legacy create a grid density that exceeds residential population metrics significantly.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Menominee County Michigan",
+          "url": "https://www.menomineecounty.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "26043": {
+      "name": "Dickinson County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dickinson County \u2014 Iron Mountain/UP mining heritage/Kingsford/Ford legacy",
+      "description": "Dickinson County in Michigan's Upper Peninsula contains Iron Mountain and Kingsford \u2014 Kingsford was literally created by Henry Ford, who established a Ford Motor Company wood-distillation plant here in the 1920s to produce charcoal from UP timber for his automobiles. (The charcoal briquette business Ford created eventually became Kingsford Charcoal Company.) The county's industrial heritage includes iron ore mines and Ford's operation, which created substantial electrical infrastructure. Upper Michigan Power (WEC Energy Group) serves the area. Iron Mountain is a regional UP hub with Bay de Noc Community College and a VA medical facility. Dickinson County's industrial past created grid capacity well above current residential load.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Dickinson County Michigan",
+          "url": "https://www.dickinsoncountymi.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "26005": {
+      "name": "Allegan County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Allegan County \u2014 Allegan/Holland adjacent/SW Michigan pharmaceutical/Perrigo",
+      "description": "Allegan County in southwestern Michigan sits adjacent to Ottawa County (Holland, already in DB) and participates directly in the Holland-Grand Rapids pharmaceutical and manufacturing corridor. Perrigo Company, one of the world's largest generic pharmaceutical manufacturers, has historically had major operations in the county. The pharmaceutical manufacturing IT stack \u2014 FDA-regulated clean room monitoring, batch record management, LIMS systems \u2014 creates sophisticated technology infrastructure in a largely rural SW Michigan context. Indiana Michigan Power (AEP) and Consumers Energy serve the area. The county's position between Grand Rapids and the Lake Michigan resort economy creates both industrial and tourism IT demand.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Allegan County Michigan",
+          "url": "https://www.allegancounty.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "13305": {
+      "name": "Wayne County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Wayne County \u2014 Jesup/SE Georgia hub/rail corridor/Altamaha River basin",
+      "description": "Wayne County in southeastern Georgia contains Jesup \u2014 the county seat and a regional hub for the coastal plain between Savannah and the Florida border. Jesup is positioned at the junction of US-84 (the primary east-west highway through south Georgia) and US-341, creating a significant freight waypoint. The county's position between the Port of Brunswick (Glynn County, now in DB) and the interior south Georgia market makes it a logistics corridor. Altamaha Electric Membership Corporation serves the county. The Altamaha River watershed's paper mill heritage (Rayonier has historical operations in the area) created substantial industrial electrical infrastructure in the south Georgia coastal plain. Wayne County's rail heritage (CSX and Norfolk Southern lines intersect near Jesup) supports freight IT.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Wayne County Georgia",
+          "url": "https://www.waynecountyga.us/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "13279": {
+      "name": "Toombs County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Toombs County \u2014 Vidalia/Vidalia sweet onion capital/SE Georgia agriculture",
+      "description": "Toombs County and Vidalia are the heart of the Vidalia sweet onion appellation \u2014 one of the few US agricultural products with a geographically protected designation, covering only counties in a specific southeast Georgia region. The Vidalia onion is Georgia's official state vegetable. The area's onion farming, packing, and cold storage operations create agricultural IT and food safety systems demand. Altamaha Electric Membership Corporation serves the county. Southeastern Technical College in Vidalia provides technical workforce development. Vidalia is also a regional commercial hub for Toombs and surrounding counties in southeast Georgia, with healthcare, retail, and services creating a concentration of IT infrastructure for a rural county.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Toombs County Georgia",
+          "url": "https://www.toombs.ga.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "51019": {
+      "name": "Bedford County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bedford County \u2014 Smith Mountain Lake/Blue Ridge gateway/D-Day Memorial",
+      "description": "Bedford County in central Virginia is home to Smith Mountain Lake \u2014 one of Virginia's largest lakes (20,000 acres), created by the Appalachian Power Company's Leesville Dam. The lake creates a significant second-home and resort economy, driving broadband demand well above permanent population. The National D-Day Memorial is in Bedford \u2014 the county suffered the highest per-capita losses of any US community on D-Day, June 6, 1944. Appalachian Power (AEP) serves the county and maintains the Smith Mountain Lake hydroelectric complex. The lake's recreation economy, combined with the county's position as a gateway to the Blue Ridge Parkway and Smith Mountain Wine Trail, creates tourism and hospitality IT well above rural Virginia norms.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Bedford County Virginia",
+          "url": "https://www.bedfordcountyva.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "40087": {
+      "name": "McClain County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McClain County \u2014 Purcell/OKC south bedroom/Garvin-McClain oil fields",
+      "description": "McClain County sits directly south of Oklahoma County (Oklahoma City, already in DB) on I-35 and is part of the rapidly growing Oklahoma City south metro. Purcell is the county seat. The county's oil production from the Garvin-McClain field creates SCADA and production monitoring IT. As OKC's southern suburbs expand \u2014 particularly Newcastle and the I-35 corridor \u2014 McClain County's residential and commercial IT demand grows in step. Oklahoma Gas & Electric (OGE) serves the county. The county's position as OKC's primary southern commuter county, combined with its oil production history and growing suburb character, mirrors the development pattern of other fast-growing metro-adjacent rural counties.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "McClain County Oklahoma",
+          "url": "https://www.mcclainco.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "40041": {
+      "name": "Delaware County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Delaware County \u2014 Jay/Grand Lake/Cherokee Nation/NE Oklahoma lake hub",
+      "description": "Delaware County in extreme northeastern Oklahoma borders Missouri and Arkansas and contains Grand Lake O' the Cherokees \u2014 one of Oklahoma's most popular lakes and a major resort economy. Jay is the county seat. The county is within the historic Cherokee Nation territory, and the Cherokee Nation tribal government and associated enterprises create significant tribal IT infrastructure in the area. Grand Lake's resort economy \u2014 second homes, marinas, fishing tournaments \u2014 drives broadband demand well above the permanent population. KAMO Power and Oklahoma Rural Electric Cooperative serve the area. The county's tri-state border position, Cherokee Nation presence, and Grand Lake recreation economy make it one of northeastern Oklahoma's more distinctive IT markets.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Delaware County Oklahoma",
+          "url": "https://www.delawarecountyok.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "31059": {
+      "name": "Fillmore County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Fillmore County \u2014 Geneva/SE Nebraska/Blue River/agriculture corridor",
+      "description": "Fillmore County in southeastern Nebraska is anchored by Geneva, the county seat, along the Blue River. The county sits between York (US-81 corridor) and the Lincoln market on US-6. Nebraska Public Power District serves the county. Fillmore County's agricultural economy \u2014 corn, soybeans, wheat \u2014 drives precision agriculture technology and center-pivot irrigation monitoring. The county's position within the Nebraska Sandhills groundwater recharge zone creates water management IT for protecting the Ogallala Aquifer. Fillmore County's location on the historic Lincoln Highway (US-6) and its proximity to the York-Hastings corridor of central Nebraska place it in a natural fiber infrastructure waypoint zone.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Fillmore County Nebraska",
+          "url": "https://www.fillmorecounty.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "31181": {
+      "name": "Webster County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Webster County \u2014 Red Cloud/Willa Cather country/Republican River Valley",
+      "description": "Webster County in south-central Nebraska is the birthplace of Willa Cather \u2014 whose novels of the Nebraska prairie are among the most important works of American literature. Red Cloud, the county seat, has preserved Cather's childhood home and numerous sites from her fiction. The Willa Cather Foundation manages significant historical and cultural IT for literary heritage tourism. The county sits on the Republican River, participating in the multi-state water compact management IT framework. Nebraska Public Power District serves the county. Red Cloud has been designated an arts community and receives cultural tourism from across the US and internationally. The county's rural Great Plains character belies its national literary significance.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Webster County Nebraska",
+          "url": "https://www.webstercounty.ne.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "16021": {
+      "name": "Boundary County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Boundary County \u2014 Bonners Ferry/NW Idaho/Canada border/Kootenai River",
+      "description": "Boundary County at Idaho's northernmost tip borders both Montana and Canada, with Bonners Ferry as the county seat on the Kootenai River. The county is a hub for international trade on US-2 connecting northern Idaho to the Pacific Northwest ports via the Canadian border crossing at Porthill. The Kootenai River has hydroelectric potential through Kootenai Electric Cooperative. Boundary County's logging and timber history created industrial electrical infrastructure in a remote mountain corridor. The county's proximity to the Canadian province of British Columbia gives it access to Canadian fiber networks through the Kootenai Valley. Idaho's remote north \u2014 the 'Idaho Panhandle' \u2014 is served by the same Pacific Northwest fiber infrastructure as Spokane, WA.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Boundary County Idaho",
+          "url": "https://boundarycountyid.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "16085": {
+      "name": "Valley County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Valley County \u2014 Cascade/McCall/Payette Lakes resort/tech executive retreat",
+      "description": "Valley County in central Idaho contains McCall \u2014 a mountain resort community on Payette Lake that has become one of Idaho's premier second-home and vacation destinations. The area has attracted permanent residents and second-home owners from Boise and beyond, including technology workers from the Treasure Valley. McCall's winter (Snowbird ski area) and summer (Lake Payette water sports) economies create year-round recreation IT demand. Idaho Power serves the county from hydroelectric resources. Valley County's scenic mountain character and Boise proximity (about 2 hours) make it part of the growing Idaho outdoor lifestyle economy that has attracted technology industry relocation to the state.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Valley County Idaho",
+          "url": "https://www.co.valley.id.us/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "16081": {
+      "name": "Teton County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Teton County \u2014 Driggs/Teton Valley/Grand Teton adjacent/tech executive community",
+      "description": "Teton County Idaho is the Teton Valley \u2014 the western flank of the Teton Range, just over the mountains from Jackson Hole (Teton County Wyoming). Driggs is the county seat. The valley has become a second-home and permanent residence destination for tech executives and remote workers who prefer Idaho's lower taxes and land costs versus Wyoming's Jackson Hole prices, while retaining access to Grand Teton National Park. Teton Valley's broadband infrastructure has been expanded through both federal rural broadband programs and tech industry demand. Idaho Power serves the county. The county's position on the Idaho-Wyoming border, adjacent to one of the most prestigious mountain resort markets in the US, drives IT investment far above what the permanent population of 12,000 suggests.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Teton County Idaho",
+          "url": "https://www.co.teton.id.us/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "18169": {
+      "name": "Wabash County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Wabash County \u2014 Wabash/first electrically lighted city/north-central Indiana",
+      "description": "Wabash city in Wabash County holds the distinction of being the first city in the world to be electrically lighted by a public system \u2014 on March 31, 1880, four brush arc lamps atop the courthouse dome illuminated the city. The county's manufacturing economy includes automotive components, pharmaceuticals (Indiana is a major pharma manufacturing state), and food processing. Indiana Michigan Power (AEP) and Duke Energy Indiana serve the county. Wabash County's US-24 corridor connecting Fort Wayne to the US-31 south Michigan market creates freight and fiber infrastructure. The county seat Wabash's historic electrical legacy is matched by its ongoing industrial IT needs.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Wabash County Indiana",
+          "url": "https://www.wabashcounty.in.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "18075": {
+      "name": "Jay County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jay County \u2014 Portland/east Indiana/Midwest Natural Gas System",
+      "description": "Jay County in east-central Indiana borders Ohio and is the home of Portland, the county seat. The county's industrial economy includes auto components manufacturing and plastics. Jay County is notable as a key node in Midwest natural gas transmission \u2014 the county sits on multiple natural gas pipeline corridors that have historically served Indiana's industrial base. Indiana Michigan Power and Duke Energy Indiana serve the area. Jay County's position on the Indiana-Ohio border along US-27 gives it highway corridor fiber access. Portland is a regional commercial hub serving east-central Indiana, with manufacturing employment well above rural Indiana averages.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Jay County Indiana",
+          "url": "https://www.co.jay.in.us/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "18073": {
+      "name": "Jasper County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jasper County \u2014 Rensselaer/NW Indiana/Kankakee River/NIPSCO service territory",
+      "description": "Jasper County in northwestern Indiana contains Rensselaer, the county seat and home of Saint Joseph's College (now closed, but with remaining campus infrastructure). The county sits in the Kankakee River floodplain, historically one of the most important wetland drainage areas in the Midwest. NIPSCO (Northern Indiana Public Service Company) serves Jasper County as part of its northwest Indiana service territory. The county's position on US-231 and I-65 \u2014 the primary north-south freight corridor through Indiana connecting Chicago to Louisville \u2014 creates logistics and distribution IT demand. NIPSCO's northwest Indiana grid, upgraded to accommodate the region's industrial base and the Chicago exurban growth corridor, creates power availability above typical rural Indiana levels.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Jasper County Indiana",
+          "url": "https://www.jaspercounty.in.gov/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -25430,7 +25890,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-17T00:22:52.930948+00:00",
+    "last_computed": "2026-07-17T00:26:23.560705+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

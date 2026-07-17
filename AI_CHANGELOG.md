@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 22)
+- `data/map_data.json` (Round 22)
+- `docs/data-sweeps/2026-07-massive-sweep-round-22.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 22**: Texas (Washington/Brenham Blue Bell birthplace of TX, Eastland/Cisco I-20 West TX gateway, Loving/least populous US county Permian Basin, San Augustine/deep East TX Angelina NF), Michigan (Menominee/UP Wisconsin border paper mill legacy, Dickinson/Iron Mountain Ford's Kingsford charcoal origin, Allegan/Perrigo pharma SW Michigan), Georgia (Wayne/Jesup SE GA rail hub, Toombs/Vidalia sweet onion capital), Virginia (Bedford/Smith Mountain Lake AEP hydro), Oklahoma (McClain/Purcell OKC south, Delaware/Jay Grand Lake Cherokee Nation), Nebraska (Fillmore/Geneva SE NE, Webster/Red Cloud Willa Cather country), Idaho (Boundary/Bonners Ferry NW ID Canada border, Valley/McCall mountain resort, Teton/Driggs tech executive community), Indiana (Wabash/first electrically lighted city in world, Jay/Portland east IN, Jasper/Rensselaer NIPSCO I-65). 20 net new records (943 total).
+- **No FIPS errors** — eleventh consecutive clean validation run.
+
+Reasoning:
+- Loving County TX (Permian Basin): Least populous US county (~64 residents) but one of the most intensively drilled Permian Basin counties. Cimarex/Coterra Energy SCADA and production monitoring creates substantial industrial IT completely decoupled from population metrics. 
+- Dickinson County MI (Iron Mountain/Kingsford): Henry Ford literally created the city of Kingsford to process UP timber into charcoal briquettes. Ford's industrial operation legacy persists in grid density far above current UP residential levels.
+- Wabash County IN: First city in the world electrically lighted by a public system (March 31, 1880). Industrial IT for auto components and pharma manufacturing continues this tradition.
+- Teton County ID (Driggs/Teton Valley): Idaho's answer to Jackson Hole — tech executives choosing Idaho's tax environment while maintaining Grand Teton National Park access. Drives broadband investment way above a 12K-population county norm.
+
+Problems Found:
+- 0 FIPS errors (eleventh consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 21)
 - `data/map_data.json` (Round 21)
 - `docs/data-sweeps/2026-07-massive-sweep-round-21.md` (new)
