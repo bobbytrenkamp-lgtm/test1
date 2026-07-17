@@ -24300,6 +24300,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21195",
+      "name": "Pike County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pike County KY \u2014 Pikeville/Big Sandy River/Appalachian coal capital",
+      "description": "Pike County is Kentucky's largest county by area and the center of its coal industry \u2014 Pikeville anchors the Big Sandy River valley, which generated more coal tonnage than almost any other Appalachian region. The University of Pikeville is a private liberal arts institution with medical and law schools, and Pikeville Medical Center is a regional trauma center for a multi-county Appalachian area. The Kenneth-Rayburn Memorial Bridge \u2014 one of the most distinctive mountain highway structures in Appalachia \u2014 enabled modern economic development in a city hemmed in by ridges. Pike County's energy production history and medical education infrastructure create demand for sophisticated data management in a region often overlooked in technology coverage.",
+      "sources": [
+        {
+          "label": "Pike County Economic Development",
+          "url": "https://www.pikecountyky.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21025",
+      "name": "Breathitt County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Breathitt County KY \u2014 Jackson/North Fork KY River/deep Appalachian heritage",
+      "description": "Breathitt County occupies the North Fork of the Kentucky River in the heart of the Central Appalachian coalfields. Jackson, the county seat, sits in a deep valley where ridgelines confined development. The county's Appalachian identity is pronounced \u2014 it was one of the early target communities for President Johnson's War on Poverty programs, and ARC (Appalachian Regional Commission) investments have funded broadband infrastructure upgrades across this historically underconnected corridor. Breathitt County's federal broadband designations and ARC connectivity grants have made it a recipient of substantial telecom infrastructure investment that exceeds what its small population would suggest.",
+      "sources": [
+        {
+          "label": "Appalachian Regional Commission \u2014 Kentucky",
+          "url": "https://www.arc.gov/state/kentucky"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21063",
+      "name": "Elliott County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Elliott County KY \u2014 Sandy Hook/remote Appalachian/federal infrastructure access",
+      "description": "Elliott County is among the smallest and most remote counties in Kentucky, situated in the Sandy Hook area of northeastern Appalachia. The county gained brief national attention in 2012 when it recorded its first-ever Republican presidential vote after voting Democratic continuously since its 1869 founding \u2014 a signal of deep demographic shifts in Appalachian Kentucky. Elliott County's participation in ARC broadband programs and federal rural utility service grants has brought fiber connectivity to communities that previously lacked reliable internet service. The county's remote character and federal infrastructure investment pattern make it representative of Appalachian broadband transition dynamics.",
+      "sources": [
+        {
+          "label": "Elliott County Judge-Executive",
+          "url": "https://www.elliottcountykentucky.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21189",
+      "name": "Owsley County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Owsley County KY \u2014 Booneville/historically low-income Appalachian/Red River gateway",
+      "description": "Owsley County has ranked as one of the lowest-income counties in the United States for multiple consecutive census periods \u2014 a distinction that has made it a focus of federal rural development programs, ARC investment, and state broadband equity initiatives. Booneville sits at the confluence of Appalachian ridgelines that historically isolated the county from economic development. Recent federal broadband equity access and deployment (BEAD) funding and e-Rate program investments have specifically targeted counties like Owsley where digital access gaps are most severe. The county's position in federal broadband equity reporting makes it institutionally significant for understanding rural Appalachian connectivity challenges.",
+      "sources": [
+        {
+          "label": "USDA Rural Development \u2014 Kentucky",
+          "url": "https://www.rd.usda.gov/ky"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19041",
+      "name": "Clay County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clay County IA \u2014 Spencer/Iowa Great Lakes gateway/Northwest Iowa hub",
+      "description": "Clay County's seat, Spencer, is the retail and commercial hub for northwest Iowa and serves as the gateway to the Iowa Great Lakes (Okoboji/Spirit Lake) resort region to the north. The Clay County Fair in Spencer is one of the largest county fairs in the world by attendance \u2014 drawing hundreds of thousands of visitors annually \u2014 generating significant event logistics, ticketing, and communications infrastructure. Spencer is a regional medical and commercial center for an agricultural area spanning multiple counties. MidAmerican Energy's wind generation infrastructure in northwest Iowa passes through Clay County's transmission corridors.",
+      "sources": [
+        {
+          "label": "Spencer Area Chamber of Commerce",
+          "url": "https://www.spenceriowachamber.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19011",
+      "name": "Benton County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Benton County IA \u2014 Vinton/east-central Iowa agricultural and institutional hub",
+      "description": "Benton County occupies east-central Iowa between Cedar Rapids and Iowa City \u2014 two of Iowa's major metro areas \u2014 giving it access to significant fiber backbone infrastructure. Vinton is home to the Iowa Braille and Sight Saving School, a state institution dating to 1852 that provides specialized accessibility technology and serves students across Iowa. The county's agricultural base includes row crop production and livestock operations with precision agriculture technology adoption. Benton County's location in the Iowa City-Cedar Rapids metro corridor positions it within one of the most connectivity-dense regions of rural Iowa.",
+      "sources": [
+        {
+          "label": "Benton County Iowa",
+          "url": "https://www.bentoncountyiowa.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19027",
+      "name": "Carroll County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Carroll County IA \u2014 Carroll/west-central Iowa manufacturing and agricultural corridor",
+      "description": "Carroll is a west-central Iowa regional center with a strong manufacturing and food processing base. Iowa Premium Beef's beef processing facility represents significant food supply chain IT infrastructure. The county's Catholic institutional heritage \u2014 established by German and Irish immigrant settlers \u2014 left a distinctive imprint of parochial schools and church organizations that create community IT infrastructure. Carroll's position on US-30 (the old Lincoln Highway) and proximity to I-80 gives it transportation corridor access. Western Iowa Power Cooperative's grid infrastructure serves the county's agricultural operations.",
+      "sources": [
+        {
+          "label": "Carroll Area Chamber of Commerce",
+          "url": "https://www.carrolliowa.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19123",
+      "name": "Mahaska County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Mahaska County IA \u2014 Oskaloosa/William Penn University/south-central Iowa",
+      "description": "Mahaska County's seat, Oskaloosa, is home to William Penn University \u2014 a Quaker-founded liberal arts institution that brings higher education infrastructure to south-central Iowa. The county has a noted entrepreneurial tradition \u2014 it produced a disproportionate share of Iowa business founders in the 19th and early 20th centuries, and some economic historians cite it as an example of Quaker entrepreneurial culture shaping regional development. Mahaska County's coal mining history (strip mining through the mid-20th century) created industrial infrastructure that has since transitioned to agricultural services. Alliant Energy's service territory includes Mahaska County within its Iowa distribution network.",
+      "sources": [
+        {
+          "label": "Mahaska County Economic Development",
+          "url": "https://mahaskacounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48089",
+      "name": "Colorado County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Colorado County TX \u2014 Columbus/oldest Anglo colony/Navidad River/Gulf Coast corridor",
+      "description": "Colorado County contains Columbus, one of the oldest Anglo-American settlements in Texas \u2014 part of Stephen F. Austin's original land grant colony established in the 1820s. The county courthouse in Columbus, built in 1891, is one of the most photographed courthouses in Texas. The Colorado River and Navidad River watersheds provide water resources for agricultural operations in this transitional zone between Houston's metro influence and the Gulf Coast rice and cattle belt. Colorado County's position on US-90 and I-10 (less than 90 miles from Houston) brings it within the Houston metro fiber backbone, making it one of the better-connected small counties in the Gulf Coastal Plain.",
+      "sources": [
+        {
+          "label": "Columbus Texas Chamber of Commerce",
+          "url": "https://www.columbustexa.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48277",
+      "name": "Lamar County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lamar County TX \u2014 Paris/NE Texas regional center/Robert's Rules of Order origin",
+      "description": "Paris, Texas is the seat of Lamar County and the largest city in northeast Texas \u2014 a regional commercial, medical, and educational hub for a multi-county area. Henry Martyn Robert, author of Robert's Rules of Order, served as a US Army engineer in Texas and is associated with the area. Paris Junior College is a community college serving northeast Texas. The county's position near the Texas-Oklahoma border on US-82 makes it a crossroads for east-west traffic across the Red River corridor. Paris's Eiffel Tower replica (with a cowboy hat) is a distinctive landmark. Lamar County's retail medical and higher education infrastructure creates IT demand that extends across a broad rural catchment.",
+      "sources": [
+        {
+          "label": "Paris Texas Economic Development Corporation",
+          "url": "https://paristexas.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "13061",
+      "name": "Clay County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clay County GA \u2014 Fort Gaines/Lake Walter F. George/smallest GA county pop.",
+      "description": "Clay County is one of Georgia's smallest counties by population, situated along the Chattahoochee River and Lake Walter F. George (Lake Eufaula) on the Georgia-Alabama border. Fort Gaines was an important Civil War fortification guarding the river crossing. The Walter F. George Lock and Dam is operated by the US Army Corps of Engineers, creating federal water management infrastructure and recreational lake facilities. Clay County's participation in Georgia's rural broadband mapping exercises and federal connectivity grants reflects its status as a priority area for digital equity investment in southwest Georgia.",
+      "sources": [
+        {
+          "label": "Clay County Georgia",
+          "url": "https://www.claycountygeorgia.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "13209",
+      "name": "Montgomery County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Montgomery County GA \u2014 Mount Vernon/Brewton-Parker College/Oconee River",
+      "description": "Montgomery County in southeast Georgia is home to Brewton-Parker College, a small Baptist liberal arts institution founded in 1904. Mount Vernon sits along the Oconee River in a region transitioning from traditional timber and tobacco farming to poultry production and agribusiness. The county is part of Georgia's rural broadband priority area designations under the Governor's Office of Planning and Budget connectivity initiatives. Brewton-Parker College's IT infrastructure \u2014 student systems, distance education, administrative networks \u2014 provides a technology anchor for a county that would otherwise have limited institutional IT presence.",
+      "sources": [
+        {
+          "label": "Brewton-Parker College",
+          "url": "https://www.bpc.edu"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "13271",
+      "name": "Telfair County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Telfair County GA \u2014 McRae-Helena/Little Ocmulgee/birthplace of two GA governors",
+      "description": "Telfair County in central Georgia has the distinction of being the birthplace of two Georgia governors \u2014 a historically notable political heritage for a small rural county. McRae-Helena (consolidated city) sits along the Little Ocmulgee River, with Little Ocmulgee State Park nearby providing recreational infrastructure. The county is part of the rural southeast Georgia corridor where Georgia Power and utility cooperatives have expanded broadband access in coordination with the state's rural development initiatives. Telfair County's agricultural base includes timber production and row crops, with food processing operations generating industrial IT requirements.",
+      "sources": [
+        {
+          "label": "Telfair County Chamber of Commerce",
+          "url": "https://www.telfaircounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "26053",
+      "name": "Gogebic County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Gogebic County MI \u2014 Ironwood/Porcupine Mountains/UP iron range legacy",
+      "description": "Gogebic County sits at the western tip of Michigan's Upper Peninsula, anchored by Ironwood \u2014 once a major iron ore shipping city at the end of the Gogebic Iron Range. Porcupine Mountains Wilderness State Park, one of the largest state parks in the eastern United States, occupies much of the county's northern shore along Lake Superior and generates significant park management IT and tourism infrastructure. The Gogebic Range produced over 300 million tons of iron ore from the 1880s through the 20th century, creating the electrical and industrial infrastructure typical of Great Lakes iron mining regions. Michigan Tech University's influence extends into Gogebic County through its UP research networks and extension programs.",
+      "sources": [
+        {
+          "label": "Gogebic County",
+          "url": "https://www.gogebiccounty.net"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "26071",
+      "name": "Iron County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Iron County MI \u2014 Crystal Falls/Ottawa National Forest/UP mining to recreation",
+      "description": "Iron County in Michigan's Upper Peninsula contains Crystal Falls, a small city with significant iron mining heritage. Ottawa National Forest covers much of the county, with the US Forest Service maintaining research and administrative infrastructure. Iron County's proximity to Wisconsin's Nicolet National Forest creates a cross-state forest management coordination zone. Like neighboring Gogebic County, Iron County underwent a mining-to-recreation economic transition with significant forestry and outdoor recreation tourism driving modern connectivity needs. CenturyLink (now Lumen) and UP fiber cooperative networks have prioritized Iron County's corridor as part of UP broadband expansion.",
+      "sources": [
+        {
+          "label": "Iron County Michigan",
+          "url": "https://www.ironcounty.net"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "45037",
+      "name": "Edgefield County",
+      "state": "South Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Edgefield County SC \u2014 Edgefield/Strom Thurmond birthplace/alkaline glaze pottery tradition",
+      "description": "Edgefield County, South Carolina has a remarkably dense political heritage \u2014 it is the birthplace of more governors and US senators than perhaps any other county of its size in American history, including Strom Thurmond and multiple antebellum governors. The county is also the origin of the Edgefield pottery tradition \u2014 alkaline-glazed stoneware produced by enslaved African-American craftsmen including Dave Drake (David Drake) in the early 19th century. Edgefield stoneware is now collected by major American folk art museums. The county's position in the I-20 corridor between Augusta, GA and Columbia, SC gives it access to the data center development activity spreading through the Augusta-Aiken area.",
+      "sources": [
+        {
+          "label": "Edgefield County South Carolina",
+          "url": "https://www.edgefieldcounty.sc.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "45043",
+      "name": "Georgetown County",
+      "state": "South Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Georgetown County SC \u2014 Georgetown/Waccamaw Neck/colonial rice plantation heritage",
+      "description": "Georgetown County, South Carolina was the largest rice-producing region in colonial North America \u2014 the rice plantations of the Waccamaw Neck and Pee Dee River basin made Georgetown one of the wealthiest places in the pre-Civil War South. Today, Georgetown's deepwater port handles steel imports for Nucor Steel's Georgetown facility \u2014 one of the oldest continuously operating mini-mill steel plants in the United States. Nucor Georgetown's electric arc furnace operations create industrial IT infrastructure for scrap processing, quality control, and logistics. The Waccamaw Neck (Garden City, Pawleys Island, Litchfield Beach) generates significant resort and second-home broadband demand south of Myrtle Beach.",
+      "sources": [
+        {
+          "label": "Georgetown County South Carolina",
+          "url": "https://www.georgetowncountysc.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "18135",
+      "name": "Randolph County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Randolph County IN \u2014 Winchester/Indiana-Ohio border/natural gas boom legacy",
+      "description": "Randolph County sits on Indiana's eastern border with Ohio, in the heart of the historic East Central Indiana natural gas field that fueled the Indiana Gas Boom of the 1880s-1890s. Winchester is the county seat. The gas boom attracted glass manufacturing and industrial operations that left behind electrical and industrial infrastructure. Indiana University East's service area extends into Randolph County, and the county's location on US-35 connects it to the Muncie-Richmond urban corridor. Randolph County's agricultural operations include both row crops and livestock, with precision agriculture technology adoption driven by Purdue Extension programming.",
+      "sources": [
+        {
+          "label": "Randolph County Indiana",
+          "url": "https://www.randolphcounty.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "18015",
+      "name": "Carroll County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Carroll County IN \u2014 Delphi/Wabash River/Potawatomi Trail of Death/Tippecanoe corridor",
+      "description": "Carroll County in north-central Indiana is home to Delphi, the county seat on the Wabash River. The county sits on the Potawatomi Trail of Death \u2014 the forced removal route of Potawatomi people from Twin Lakes (in adjacent Fulton County) to Kansas in 1838, an event that has shaped the county's heritage interpretation. The Wabash and Erie Canal ran through Carroll County, making it part of Indiana's 19th-century transportation infrastructure corridor. The county's agricultural base and proximity to Lafayette/Purdue (30 miles south) creates connectivity to Purdue's agricultural research extension. REMC (Rural Electric Member Corporation) cooperatives provide electrical infrastructure across Carroll County's agricultural landscape.",
+      "sources": [
+        {
+          "label": "Carroll County Indiana",
+          "url": "https://www.carrollcounty.in.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47029",
+      "name": "Cocke County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cocke County TN \u2014 Newport/Great Smoky Mountains gateway/Pigeon River",
+      "description": "Cocke County occupies the Pigeon River valley in East Tennessee, serving as one of the gateway corridors to Great Smoky Mountains National Park from the north. Newport sits at the confluence of the Pigeon and Nolichucky rivers. The county has a notably complex Appalachian heritage \u2014 it was a significant moonshine production area during Prohibition and beyond, and more recently has seen dramatic economic transition through tourism serving the national park corridor. TVA's Waterville Hydroelectric Plant on the Pigeon River provides power infrastructure, and the river's flow data management connects to TVA's basin-wide water management computing. Cocke County's tourism connectivity needs have driven broadband investment along the national park approach corridors.",
+      "sources": [
+        {
+          "label": "Newport/Cocke County Chamber of Commerce",
+          "url": "https://www.cockechamber.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }

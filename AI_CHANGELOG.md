@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 26)
+- `data/map_data.json` (Round 26)
+- `docs/data-sweeps/2026-07-massive-sweep-round-26.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 26**: Kentucky (Pike/Pikeville Big Sandy Appalachian coal capital, Breathitt/Jackson North Fork KY River ARC broadband, Elliott/Sandy Hook remote Appalachian, Owsley/Booneville historically lowest-income US county federal broadband equity priority), Iowa (Clay/Spencer Iowa Great Lakes gateway, Benton/Vinton Iowa Braille School east-central IA, Carroll/west-central IA Iowa Premium Beef, Mahaska/Oskaloosa William Penn University Quaker tradition), Texas (Colorado/Columbus oldest Anglo colony Austin land grant, Lamar/Paris NE Texas regional center Eiffel Tower), Georgia (Clay/Fort Gaines Lake Walter F. George Army Corps, Montgomery/Mount Vernon Brewton-Parker College, Telfair/McRae-Helena birthplace of two GA governors), Michigan (Gogebic/Ironwood Porcupine Mountains Lake Superior iron range, Iron/Crystal Falls Ottawa NF UP mining transition), South Carolina (Edgefield/Strom Thurmond alkaline pottery I-20 data center corridor, Georgetown/Nucor Steel Waccamaw Neck colonial rice), Indiana (Randolph/Winchester Indiana-Ohio border gas boom, Carroll/Delphi Wabash River Potawatomi corridor), Tennessee (Cocke/Newport Great Smoky Mountains gateway Pigeon River TVA). 20 net new records (1023 total).
+- **No FIPS errors** — fifteenth consecutive clean validation run.
+
+Reasoning:
+- Owsley County KY (Booneville): Consistently ranks among lowest-income US counties. BEAD program and ARC investment programs specifically prioritize Owsley for digital equity. Understanding connectivity gaps is as institutionally important as understanding where data centers exist.
+- Georgetown County SC (Georgetown): Nucor Steel's Georgetown facility (est. 1969) is one of the original US electric arc furnace mini-mills. EAF process control, scrap logistics, and quality management IT in a county also defined by colonial rice plantation heritage and Waccamaw Neck resort development. Unusual co-presence of industrial and resort technology demand.
+- Edgefield County SC: Political heritage (more SC governors than any other county) combined with Edgefield alkaline pottery tradition — enslaved artisan Dave Drake's signed stoneware jars are now in the Smithsonian. Near Augusta's growing data center corridor.
+- Gogebic County MI: Porcupine Mountains Wilderness State Park (one of the largest state parks east of the Mississippi) coexists with Ironwood's iron range legacy and Michigan Tech UP research networks — remote wilderness and institutional connectivity in the same county.
+
+Problems Found:
+- 0 FIPS errors (fifteenth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 25)
 - `data/map_data.json` (Round 25)
 - `docs/data-sweeps/2026-07-massive-sweep-round-25.md` (new)
