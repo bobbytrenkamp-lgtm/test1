@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 19)
+- `data/map_data.json` (Round 19)
+- `docs/data-sweeps/2026-07-massive-sweep-round-19.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 19**: Alaska (North Slope/Prudhoe Bay TAPS origin, Valdez-Cordova/TAPS terminus, Kodiak Island/USCG Air Station, Ketchikan Gateway/SE AK hub), South Dakota (Custer/Black Hills NF hub, Fall River/Hot Springs VA, Butte/Belle Fourche), Texas (Jasper/East TX timber, Gaines/Permian edge/wind, Deaf Smith/Hereford feedlot capital, Liberty/Houston NE petrochemical), Minnesota (Beltrami/Bemidji/north MN hub, Morrison/Camp Ripley/largest NG installation, Otter Tail/Fergus Falls/Otter Tail Power HQ), Mississippi (Alcorn/Corinth/TVA manufacturing, Lafayette/Oxford/Ole Miss, Pearl River/south MS corridor, Coahoma/Clarksdale/Delta blues hub), Alabama (Etowah/Gadsden/Coosa River industrial, Dale/Ozark/Fort Novosel adjacent). 20 net new records (883 total).
+- **No FIPS errors** — eighth consecutive clean validation run.
+
+Reasoning:
+- North Slope Borough AK (Prudhoe Bay/TAPS): Largest oil field ever discovered in North America. Alyeska SCADA/pipeline control systems originate here — one of the most extensive industrial monitoring networks in the US. BP/ConocoPhillips/ExxonMobil digital operations footprint.
+- Valdez-Cordova AK (TAPS terminus/Marine Terminal): One of the largest US crude export facilities. Tanker coordination and terminal metering IT creates concentrated industrial computing in remote Alaska.
+- Morrison County MN (Camp Ripley): Largest National Guard installation in the US — joint training mission for multiple state units creates digital training management requirements well above comparable facilities.
+- Lafayette County MS (Ole Miss/Oxford): University of Mississippi research programs including nation's largest university natural products research lab, plus Yokohama Tire manufacturing, drive IT demand in a growing SEC college town.
+
+Problems Found:
+- 0 FIPS errors (eighth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 18)
 - `data/map_data.json` (Round 18)
 - `docs/data-sweeps/2026-07-massive-sweep-round-18.md` (new)

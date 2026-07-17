@@ -21500,6 +21500,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "02185",
+      "name": "North Slope Borough",
+      "state": "Alaska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "North Slope Borough \u2014 Prudhoe Bay/Trans-Alaska Pipeline origin/oil field SCADA",
+      "description": "North Slope Borough is the northernmost county-equivalent in the United States and the home of Prudhoe Bay \u2014 the largest oil field ever discovered in North America. The oil field's production monitoring, SCADA systems, and pipeline control infrastructure represent one of the most extensive industrial digital monitoring networks in the US. Alyeska Pipeline Service Company's control systems for the 800-mile Trans-Alaska Pipeline originate at Prudhoe Bay pump stations. BP, ConocoPhillips, and ExxonMobil operate extensive digital operations centers in the borough. North Slope Electric Service provides power to the borough's scattered communities and oil field facilities.",
+      "sources": [
+        {
+          "label": "North Slope Borough Alaska",
+          "url": "https://www.north-slope.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "02261",
+      "name": "Valdez-Cordova Census Area",
+      "state": "Alaska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Valdez-Cordova \u2014 Trans-Alaska Pipeline terminus/Alyeska marine terminal",
+      "description": "Valdez is the southern terminus of the Trans-Alaska Pipeline System \u2014 where Alaska North Slope crude arrives after traveling 800 miles and is loaded onto tankers for West Coast and Asian markets. Alyeska Pipeline's Valdez Marine Terminal is one of the largest crude oil export facilities in the US. The control systems, metering infrastructure, and operational IT for managing the terminal and coordinating tanker operations represent a concentrated industrial computing environment. The Prince William Sound area also supports Coast Guard marine operations. Matanuska Electric Association and local generation serve the Valdez area.",
+      "sources": [
+        {
+          "label": "Valdez-Cordova Census Area Alaska",
+          "url": "https://www.ci.valdez.ak.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "02150",
+      "name": "Kodiak Island Borough",
+      "state": "Alaska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kodiak Island Borough \u2014 Coast Guard Air Station Kodiak/largest USCG air station",
+      "description": "Kodiak Island Borough hosts US Coast Guard Air Station Kodiak \u2014 the largest Coast Guard air station in the US and a primary hub for Alaskan rescue, fisheries law enforcement, and maritime domain awareness operations. The Coast Guard's C4ISR systems, aerial surveillance data processing, and rescue coordination IT represent a major federal computing presence in Kodiak. The city of Kodiak is also the hub of Alaska's commercial fishing industry \u2014 home to the largest fishing fleet on the US West Coast. Kodiak Electric Association provides power from hydro and wind sources.",
+      "sources": [
+        {
+          "label": "Kodiak Island Borough Alaska",
+          "url": "https://www.kodiakak.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "02130",
+      "name": "Ketchikan Gateway Borough",
+      "state": "Alaska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ketchikan Gateway Borough \u2014 SE Alaska hub/pulp mill legacy/gateway to Alaska",
+      "description": "Ketchikan is the first major Alaskan community encountered by ships traveling the Inside Passage \u2014 making it a significant Southeast Alaska hub for cruise tourism, commercial fishing, and regional government. The Ketchikan Pulp Mill (closed 1997) left behind substantial industrial electrical infrastructure on the Ketchikan Public Utilities system. University of Alaska Southeast's Ketchikan campus provides education infrastructure. Ketchikan's strategic position as a Southeast Alaska hub city for healthcare, government, and commerce creates IT concentration in a remote coastal environment served by fiber cables running through the Inside Passage corridor.",
+      "sources": [
+        {
+          "label": "Ketchikan Gateway Borough Alaska",
+          "url": "https://www.borough.ketchikan.ak.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "46033",
+      "name": "Custer County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Custer County \u2014 Custer/Crazy Horse Memorial/Black Hills National Forest hub",
+      "description": "Custer County in the Black Hills hosts both the Custer State Park \u2014 South Dakota's largest state park \u2014 and the ongoing Crazy Horse Memorial carving project, the world's largest mountain carving under construction. The Black Hills National Forest headquarters in Custer generates significant federal IT infrastructure. The county's position in the Black Hills provides connectivity to the Lawrence County (Lead/SURF, already in DB) data and computing infrastructure. The Tourism and recreation economy, plus Forest Service administration, drive broadband and IT investment in Custer County beyond what the permanent population alone requires.",
+      "sources": [
+        {
+          "label": "Custer County South Dakota",
+          "url": "https://www.custercountysd.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "46047",
+      "name": "Fall River County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Fall River County \u2014 Hot Springs/VA Black Hills Health Care/SW South Dakota hub",
+      "description": "Hot Springs in Fall River County is home to the VA Black Hills Health Care System \u2014 one of the VA's rural tertiary care centers serving veterans across a vast region of South Dakota, Wyoming, and Nebraska. The mammoth fossil discovery at Hot Springs (Mammoth Site) drives paleontological research computing. Fall River County Electric and Black Hills Electric Cooperative serve the area. Hot Springs' VA hospital creates federal IT concentration in a rural county, and the county's position on US-385 connecting to the Black Hills corridor gives it infrastructure connectivity to the Lawrence-Custer cluster.",
+      "sources": [
+        {
+          "label": "Fall River County South Dakota",
+          "url": "https://www.fallrivercountysd.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "46019",
+      "name": "Butte County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Butte County \u2014 Belle Fourche/geographic center of nation (with AK)/NW SD energy hub",
+      "description": "Belle Fourche in Butte County is the center of the US geographic center of the nation (when Alaska is included). The county sits at the northern edge of the Black Hills and connects the Hills to the Bakken oil region to the north. Belle Fourche is a historic cattle shipping hub and livestock marketing center. Montana-Dakota Utilities and Black Hills Electric serve the area. The county's position on US-212 and US-85 connecting the Black Hills to Wyoming gives it infrastructure corridor access. Belle Fourche's livestock auction and agricultural commodity infrastructure create above-average industrial IT for its size.",
+      "sources": [
+        {
+          "label": "Butte County South Dakota",
+          "url": "https://www.buttecountysd.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48241",
+      "name": "Jasper County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jasper County \u2014 Jasper/East Texas timber/Toledo Bend Reservoir recreation",
+      "description": "Jasper in Jasper County is a hub for the East Texas timber industry and the Toledo Bend Reservoir recreation economy \u2014 Toledo Bend is one of the largest lakes in Texas. Entergy Texas serves the county. Jasper County's timber operations (Champion Paper, various forestry companies) created industrial electrical infrastructure along the Neches and Angelina river corridors. The county's US-96 and US-190 corridors connect it to the Beaumont-Port Arthur petrochemical market to the south and Lufkin to the northwest. East Texas timber management and recreation economies drive IT demand for a rural county.",
+      "sources": [
+        {
+          "label": "Jasper County Texas",
+          "url": "https://www.co.jasper.tx.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48165",
+      "name": "Gaines County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Gaines County \u2014 Seminole/Permian Basin edge/cotton and oil/wind development",
+      "description": "Gaines County sits at the southwestern edge of the Texas Permian Basin in the Llano Estacado flatlands. Seminole is the county seat. The county has both significant oil production and major cotton farming operations, with the oil industry driving SCADA and production monitoring IT. Additionally, Gaines County has seen major wind energy development \u2014 multiple wind farms have been built in the county's flatlands, creating electrical grid infrastructure through Oncor and ERCOT. The combination of Permian oil, cotton agriculture, and wind energy makes Gaines County an unusually multi-sector industrial county for its size.",
+      "sources": [
+        {
+          "label": "Gaines County Texas",
+          "url": "https://www.gainescounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48117",
+      "name": "Deaf Smith County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Deaf Smith County \u2014 Hereford/feedlot capital/Texas Panhandle agriculture/nuclear waste",
+      "description": "Hereford in Deaf Smith County is the 'beef cattle capital of the world' \u2014 the county contains some of the largest cattle feedlot operations in Texas, with hundreds of thousands of cattle on feed at any given time. The industrial electrical load from feedlot operations, feed mills, and meat packing plants drives substantial Xcel Energy (Southwestern Public Service) infrastructure in the county. Deaf Smith County has also been proposed as a site for consolidated interim storage of nuclear waste, which if approved would bring additional federal infrastructure. The county's agricultural and energy potential is among the highest in the Texas Panhandle.",
+      "sources": [
+        {
+          "label": "Deaf Smith County Texas",
+          "url": "https://www.deafsmithcounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48291",
+      "name": "Liberty County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Liberty County \u2014 Liberty/Houston NE petrochemical corridor/I-10 fiber",
+      "description": "Liberty County sits northeast of Houston on the I-10 corridor, adjacent to the Houston Ship Channel's eastern petrochemical complex. Chevron Phillips Chemical, ExxonMobil, and other major petrochemical operators' facilities downstream of Liberty County create a dense industrial IT and process control environment in the Houston-Beaumont corridor. The county's position on I-10 \u2014 one of the highest-fiber-density interstate corridors in the US \u2014 provides outstanding connectivity. Entergy Texas and CenterPoint Energy serve the area. As Houston's industrial market expands northeast, Liberty County's industrial corridor position has gained importance.",
+      "sources": [
+        {
+          "label": "Liberty County Texas",
+          "url": "https://www.co.liberty.tx.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "27007",
+      "name": "Beltrami County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Beltrami County \u2014 Bemidji/BSU/source of Mississippi River/north MN hub",
+      "description": "Bemidji in Beltrami County is the largest city in northern Minnesota between the Twin Cities and Fargo, serving as the commercial hub for a vast forested region. Bemidji State University provides a technology and education foundation. The Mississippi River begins at Lake Itasca in nearby Clearwater County, making Bemidji the northernmost major city on the Mississippi watershed. GreatRiver Energy and Minnesota Power serve the county. The county's timber economy, Leech Lake Tribal Band gaming operations, and regional healthcare hub (Sanford Bemidji) create IT demand for a remote northwoods city.",
+      "sources": [
+        {
+          "label": "Beltrami County Minnesota",
+          "url": "https://www.co.beltrami.mn.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "27097",
+      "name": "Morrison County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Morrison County \u2014 Little Falls/Camp Ripley/MN National Guard's largest installation",
+      "description": "Camp Ripley in Morrison County is the largest National Guard installation in the United States and the primary training center for the Minnesota Army National Guard. The installation's training management systems, range monitoring, and command IT infrastructure represent a substantial federal computing footprint in central Minnesota. Charles A. Lindbergh State Park (birthplace of the aviator) is nearby. Stearns Electric Association serves the county. Camp Ripley's joint training mission \u2014 hosting multiple state Guard units and international partner training \u2014 creates digital training management requirements well above those of comparable facilities.",
+      "sources": [
+        {
+          "label": "Morrison County Minnesota",
+          "url": "https://www.co.morrison.mn.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "27111",
+      "name": "Otter Tail County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Otter Tail County \u2014 Fergus Falls/west-central MN hub/lakes tourism/Otter Tail Power",
+      "description": "Fergus Falls in Otter Tail County is the largest city in west-central Minnesota and home to Otter Tail Corporation \u2014 a diversified utilities company whose Otter Tail Power subsidiary serves a large rural service territory in Minnesota, North Dakota, and South Dakota. Otter Tail's utility headquarters in Fergus Falls gives the county above-average electrical grid management and IT infrastructure for its size. Lake Region Electric Cooperative and Otter Tail Power serve the county. The county's 1,000+ lakes drive a major tourism economy and make Otter Tail County the most populous rural county in west-central Minnesota.",
+      "sources": [
+        {
+          "label": "Otter Tail County Minnesota",
+          "url": "https://www.co.ottertail.mn.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28003",
+      "name": "Alcorn County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Alcorn County \u2014 Corinth/northeast MS hub/historic Civil War site/Tennessee Valley",
+      "description": "Corinth in Alcorn County is a historic northeast Mississippi city \u2014 site of the Civil War Battle of Corinth and a strategic railroad junction. Today Corinth is a regional manufacturing and distribution hub, with automotive and industrial suppliers attracted by TVA power and Mississippi's business environment. Alcorn County Electric Power Association provides service through TVA's grid. The US-45 corridor through Alcorn County connects Memphis to northeast Mississippi's manufacturing base. Corinth's position as a key TVA service county in Mississippi's 'golden crescent' manufacturing region gives it competitive industrial power rates and grid infrastructure.",
+      "sources": [
+        {
+          "label": "Alcorn County Mississippi",
+          "url": "https://www.alcorncounty.ms/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28071",
+      "name": "Lafayette County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lafayette County \u2014 Oxford/University of Mississippi/Ole Miss research hub",
+      "description": "Oxford in Lafayette County is home to the University of Mississippi \u2014 Ole Miss \u2014 one of the South's flagship public universities. Ole Miss's research programs, including the National Center for Natural Products Research (the nation's largest university laboratory for natural products research) and a growing computer science department, drive substantial research computing needs. Yokohama Tire's major North American manufacturing plant is in the county. Mississippi Power and Entergy Mississippi serve the area. Oxford's status as a SEC college town with growing research ambitions and manufacturing diversity makes Lafayette County one of Mississippi's more dynamic secondary counties.",
+      "sources": [
+        {
+          "label": "Lafayette County Mississippi",
+          "url": "https://www.co.lafayette.ms.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28109",
+      "name": "Pearl River County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pearl River County \u2014 Poplarville/south MS hub/Pearl River Valley corridor",
+      "description": "Pearl River County in south Mississippi connects the Hattiesburg market (Forrest County, already in DB) to the Gulf Coast market (Harrison County, already in DB) along the US-11/I-59 corridor. Poplarville is the county seat. Pearl River Community College serves as the county's education anchor. The Pearl River water authority and its reservoir system provide regional water management IT. Mississippi Power serves the county. Pearl River County's position between two already-documented markets on the primary north-south interstate corridor through south Mississippi makes it a fiber route waypoint county.",
+      "sources": [
+        {
+          "label": "Pearl River County Mississippi",
+          "url": "https://www.pearlrivercounty.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28027",
+      "name": "Coahoma County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Coahoma County \u2014 Clarksdale/Mississippi Delta blues capital/Coahoma Community College",
+      "description": "Clarksdale in Coahoma County is the birthplace of the Delta blues \u2014 Robert Johnson, Muddy Waters, Sam Cooke, and Ike Turner all have connections here. The Delta Blues Museum and the historic crossroads at Routes 61 and 49 make Clarksdale a significant cultural and tourism IT hub. Coahoma Community College serves the county's education needs. The county's position in the Mississippi Delta gives it access to Mississippi's agricultural processing and river transportation IT infrastructure. Entergy Mississippi serves the county. While primarily rural, Clarksdale's tourism IT, community college, and Delta-wide healthcare center operations create a notable technology footprint.",
+      "sources": [
+        {
+          "label": "Coahoma County Mississippi",
+          "url": "https://www.coahomacounty.ms.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "01055",
+      "name": "Etowah County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Etowah County \u2014 Gadsden/NE Alabama industrial hub/Goodyear/Coosa River",
+      "description": "Gadsden in Etowah County is northeast Alabama's largest city and a historic industrial hub on the Coosa River. Goodyear Tire & Rubber, International Paper, and automotive supplier operations have historically made Gadsden one of Alabama's most significant industrial cities outside Birmingham. Alabama Power's hydroelectric stations on the Coosa River provide competitive industrial rates. Gadsden State Community College provides a technical workforce pipeline. Gadsden is the commercial hub for northeast Alabama, serving as the major healthcare and retail center between Birmingham and Chattanooga. The city's manufacturing legacy created industrial electrical infrastructure still supporting significant load.",
+      "sources": [
+        {
+          "label": "Etowah County Alabama",
+          "url": "https://www.etowahcounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "01045",
+      "name": "Dale County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dale County \u2014 Ozark/Fort Novosel flight corridor/SE Alabama regional hub",
+      "description": "Dale County surrounds Coffee County's Fort Novosel (formerly Fort Rucker) aviation training area, with Ozark serving as the county seat and a primary civilian community for Army aviation families. The county's position adjacent to the Army Aviation Center creates a substantial military-adjacent civilian economy \u2014 aviation parts suppliers, simulation contractors, and defense services companies serve Fort Novosel from Ozark. Alabama Power and Southern Company serve the area. Dale County's proximity to the Fort Novosel federal IT ecosystem makes it a natural data center and technology services market for the aviation training cluster.",
+      "sources": [
+        {
+          "label": "Dale County Alabama",
+          "url": "https://www.dalecountyalabama.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }
