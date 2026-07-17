@@ -27500,6 +27500,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29053",
+      "name": "Cooper County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cooper County MO \u2014 Booneville/Missouri River/Katy Trail/antebellum heritage",
+      "description": "Cooper County in central Missouri sits on the Missouri River, home to Booneville \u2014 one of the oldest towns in Missouri (platted 1817), founded by Daniel Boone's sons and named for Daniel Boone. The Katy Trail State Park \u2014 built on the former Missouri-Kansas-Texas Railroad right-of-way along the Missouri River \u2014 passes through Cooper County as part of the longest rail-trail in the United States (240 miles). Cooper County's Missouri River bottomland agriculture and its position as a central MO county give it connectivity from the US-40/I-70 corridor. The county's antebellum plantation heritage and Civil War Civil War history (Booneville was the site of the first Union victory in Missouri) are documented in local historic preservation IT.",
+      "sources": [
+        {
+          "label": "Cooper County Missouri",
+          "url": "https://www.coopercountymo.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29049",
+      "name": "Clinton County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clinton County MO \u2014 Plattsburg/NW Missouri/Truman Lake watershed/agribusiness",
+      "description": "Clinton County in northwest Missouri sits between the Kansas City metropolitan area and the Truman Lake reservoir system on the Grand River. Plattsburg is the county seat. The county's position in the Grand River watershed \u2014 which feeds Truman Lake (Harry S. Truman Reservoir, the Army Corps of Engineers' largest surface area reservoir in Missouri) \u2014 creates water management IT for the region. Northwest Missouri's row crop and livestock agriculture creates agricultural supply chain IT. Clinton County's proximity to the Kansas City metro (45 miles southwest of Liberty) gives it suburban and exurban connectivity patterns for a largely rural county.",
+      "sources": [
+        {
+          "label": "Clinton County Missouri",
+          "url": "https://www.clintoncountymo.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29041",
+      "name": "Chariton County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Chariton County MO \u2014 Keytesville/Chariton River/Missouri River/General Sterling Price",
+      "description": "Chariton County in north-central Missouri sits at the confluence of the Chariton River and the Missouri River. Keytesville is the county seat and the birthplace of Sterling Price \u2014 the Confederate general who led the Army of Missouri in the most significant Confederate military campaign in Missouri history (Price's Raid, 1864). The county's agricultural economy features corn, soybeans, and cattle on the Missouri River bottomlands. Chariton County's rural position on the Little Dixie corridor (the Missouri River counties that had antebellum plantation agriculture and Southern cultural heritage) gives it a distinctive historical identity among Missouri's north-central counties. The Chariton River wildlife management areas support hunting and recreation IT.",
+      "sources": [
+        {
+          "label": "Chariton County Missouri",
+          "url": "https://www.charitoncountymo.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29015",
+      "name": "Benton County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Benton County MO \u2014 Warsaw/Harry S. Truman Lake/Osage River/south-central MO",
+      "description": "Benton County in south-central Missouri contains Warsaw \u2014 the county seat on Harry S. Truman Lake (officially Harry S. Truman Reservoir), the Army Corps of Engineers' largest surface area reservoir in Missouri at over 55,000 acres. The dam and reservoir project, completed in 1979, required the relocation of Warsaw and flooded the original town site. The Army Corps of Engineers' Truman Lake management IT \u2014 including dam safety monitoring, water quality measurement, and flood control operations \u2014 represents significant federal computing infrastructure in this rural county. The Osage River arm of the reservoir extends into adjacent Hickory and St. Clair Counties. Benton County's tourism and recreation economy around the lake creates hospitality IT.",
+      "sources": [
+        {
+          "label": "Benton County Missouri",
+          "url": "https://www.bentoncountymo.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "55007",
+      "name": "Bayfield County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bayfield County WI \u2014 Washburn/Apostle Islands NL/Lake Superior/Red Cliff Ojibwe",
+      "description": "Bayfield County in northern Wisconsin contains the Apostle Islands National Lakeshore \u2014 21 islands and 12 miles of mainland shoreline on Lake Superior, featuring sea caves, lighthouses (the highest concentration of lighthouses per square mile in the US), and old-growth forests. The NPS visitor management, lighthouse maintenance, and ice cave access IT (when Lake Superior freezes, the sea caves draw tens of thousands of winter visitors) create significant federal computing infrastructure. The Red Cliff Band of Lake Superior Chippewa's reservation is in Bayfield County \u2014 the tribe's operations include fishing rights IT (the Voigt Decision affirmed Great Lakes tribal treaty fishing rights), Red Cliff Casino, and tribal health services. Bayfield County is part of the Lake Superior shoreline broadband priority zone.",
+      "sources": [
+        {
+          "label": "Bayfield County Wisconsin",
+          "url": "https://www.bayfieldcounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "55029",
+      "name": "Door County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Door County WI \u2014 Sturgeon Bay/Door Peninsula/Lake Michigan/cherry orchards/resort",
+      "description": "Door County occupies the Door Peninsula \u2014 a narrow limestone ridge extending into Lake Michigan between Green Bay and the lake proper. Sturgeon Bay is the county seat. Door County is one of the Midwest's most popular resort destinations \u2014 its cherry orchards (producing a significant share of US tart cherry output), fish boils, lighthouses (more than any other US county), and Lake Michigan scenery attract over 2 million visitors annually to a county of 30,000 permanent residents. The county's tourism IT (hospitality management, cherry processing and shipping, ferry operations to Washington and Rock Islands) is substantial relative to its size. Door County's cellular and broadband connectivity challenges in northern portions are addressed by Wisconsin's rural broadband programs.",
+      "sources": [
+        {
+          "label": "Door County Wisconsin",
+          "url": "https://www.doorcounty.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "55037",
+      "name": "Florence County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Florence County WI \u2014 Florence/north Wisconsin/Iron Belt/Nicolet NF/Forest County adj",
+      "description": "Florence County in the far north of Wisconsin is one of the state's most remote and lightly populated counties \u2014 an iron and copper mining heritage county in the Wisconsin Iron Belt. Florence is the county seat on the Menominee River (which forms the Wisconsin-Michigan border). The Nicolet National Forest covers much of Florence County, with USFS management IT for timber, recreation, and wilderness. Florence County's mining heritage (iron ore from the Menominee Iron Range was significant in 19th-century iron production) has given way to recreation and forestry. The county's extreme northern position creates challenging broadband connectivity, addressed by Wisconsin's rural connectivity programs targeting the Iron and Forest county region.",
+      "sources": [
+        {
+          "label": "Florence County Wisconsin",
+          "url": "https://www.florencecounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "55023",
+      "name": "Crawford County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Crawford County WI \u2014 Prairie du Chien/Wisconsin-Mississippi confluence/Effigy Mounds/Driftless",
+      "description": "Crawford County in southwest Wisconsin sits at the confluence of the Wisconsin and Mississippi Rivers at Prairie du Chien \u2014 one of the oldest European settlements in the Upper Midwest, a French fur trade post established in the late 17th century. The county is in the Driftless Area \u2014 the region of southwestern Wisconsin (and adjacent Minnesota, Iowa, and Illinois) that was never glaciated and features rugged bluffs, spring-fed streams, and exceptional topographic variety. Effigy Mounds National Monument (across the Mississippi in adjacent Iowa) and the Wisconsin mound complexes reflect the Native American Woodland cultures that dominated this landscape. The Wisconsin River's confluence with the Mississippi creates USGS monitoring IT for two of the continent's most important river systems.",
+      "sources": [
+        {
+          "label": "Crawford County Wisconsin",
+          "url": "https://www.crawfordcountywi.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31013",
+      "name": "Box Butte County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Box Butte County NE \u2014 Alliance/Nebraska Panhandle/Carhenge/Sandhills-Panhandle transition",
+      "description": "Box Butte County in the Nebraska Panhandle centers on Alliance \u2014 the largest city in the Nebraska Panhandle and home to Carhenge, a full-scale replica of Stonehenge constructed from vintage American automobiles (created by Jim Reinders in 1987). The county's position at the transition between the Nebraska Sandhills (to the east) and the High Plains Panhandle gives it agricultural diversity: cattle ranching, dryland wheat, and irrigated crops. Alliance is the hub for the Panhandle's healthcare, commercial, and governmental services, serving multiple surrounding counties. BNSF Railway's main line passes through Alliance, creating railroad maintenance and logistics IT. The county's Ogallala Aquifer irrigation monitoring and dryland agriculture extension services connect to USDA programs for the High Plains water management challenge.",
+      "sources": [
+        {
+          "label": "Box Butte County Nebraska",
+          "url": "https://www.boxbuttecounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31027",
+      "name": "Cedar County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cedar County NE \u2014 Hartington/NE Nebraska/Missouri River adj/Czech heritage/Santee Sioux",
+      "description": "Cedar County in northeast Nebraska centers on Hartington, a small agricultural county seat in Nebraska's Czech heritage corridor \u2014 one of the most Czech-American regions in the United States, where towns like Crete, Wilber, and Clarkson celebrate Czech cultural traditions. The county borders South Dakota and sits adjacent to the Missouri River and the Niobrara River system. The Santee Sioux Tribe's reservation (in adjacent Knox County) extends cultural and tribal government IT into the region. Cedar County's row crop agriculture (corn, soybeans) and cattle feeding operations create agricultural supply chain IT. Nebraska's rural broadband deployment programs include Cedar County in the northeast Nebraska priority zone.",
+      "sources": [
+        {
+          "label": "Cedar County Nebraska",
+          "url": "https://www.cedarcountyne.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31003",
+      "name": "Antelope County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Antelope County NE \u2014 Neligh/Elkhorn River/north-central Nebraska/cattle and row crops",
+      "description": "Antelope County in north-central Nebraska centers on Neligh on the Elkhorn River \u2014 a principal tributary of the Platte River flowing through northeastern Nebraska's agricultural heartland. The county's cattle feeding, hog production, and row crop farming create agricultural processing and supply chain IT. Antelope County is part of the Northeast Nebraska Economic Development District's rural development programs. The Elkhorn River's watershed connects Antelope County to the broader Platte River system's agricultural water management network. Nebraska's rural broadband deployment through USDA ReConnect and state programs has included Antelope County in priority deployment zones for northeast Nebraska.",
+      "sources": [
+        {
+          "label": "Antelope County Nebraska",
+          "url": "https://www.antelopecounty.ne.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17001",
+      "name": "Adams County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Adams County IL \u2014 Quincy/Mississippi River/Nauvoo adjacent/Lincoln-Douglas debate/Civil War",
+      "description": "Adams County in western Illinois sits on the Mississippi River, with Quincy as the county seat \u2014 one of Illinois's most historically significant cities. The Lincoln-Douglas debate in Quincy (October 13, 1858) was the sixth of seven famous debates between Abraham Lincoln and Stephen Douglas over slavery and popular sovereignty. Nauvoo \u2014 the Mormon city established by Joseph Smith across the Illinois River in Hancock County \u2014 is adjacent, and its history is intertwined with Quincy's role as a haven for expelled Missouri Mormons in 1839. Quincy also had significant Underground Railroad activity during the antebellum era. The University of Illinois Quincy Medical District and Blessing Health System provide healthcare IT for western Illinois. Quincy's historic warehouse district and Mississippi River port create freight and logistics IT.",
+      "sources": [
+        {
+          "label": "Adams County Illinois",
+          "url": "https://www.co.adams.il.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17009",
+      "name": "Brown County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Brown County IL \u2014 Mount Sterling/Siloam Springs State Park/Illinois River watershed",
+      "description": "Brown County in western Illinois centers on Mount Sterling, a small agricultural county seat in a region of rolling hills and small farms at the edge of the Illinois River watershed. Siloam Springs State Park in the county provides outdoor recreation IT. Brown County's agricultural base includes hog production, cattle, and row crops \u2014 typical of the western Illinois farm landscape. The county's proximity to Quincy (Adams County) and Macomb (McDonough County) gives residents access to regional services without requiring county-level infrastructure comparable to more urban areas. Illinois's rural broadband programs have included western Illinois counties in deployment priorities.",
+      "sources": [
+        {
+          "label": "Brown County Illinois",
+          "url": "https://www.browncountyil.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17013",
+      "name": "Calhoun County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Calhoun County IL \u2014 Hardin/Illinois-Mississippi confluence/least accessible IL county/apple orchards",
+      "description": "Calhoun County is a finger of land at the confluence of the Illinois and Mississippi Rivers, accessible only by ferry or a bridge from Missouri \u2014 making it one of the most geographically isolated counties east of the Mississippi. Hardin is the county seat. The county's peninsula position between the two rivers historically limited development and continues to challenge broadband connectivity (Calhoun County is persistently among Illinois's least-connected counties). Apple orchards have been the county's agricultural signature \u2014 Calhoun County produces a significant share of Illinois's apple crop, with orchards marketing through fall agritourism. The Pere Marquette State Park in adjacent Jersey County (accessible through Calhoun) manages visitor IT for one of Illinois's most visited state parks.",
+      "sources": [
+        {
+          "label": "Calhoun County Illinois",
+          "url": "https://www.calhouncountyil.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47011",
+      "name": "Bradley County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bradley County TN \u2014 Cleveland/SE Tennessee/Ocoee River/Cherokee NF/I-75 industrial",
+      "description": "Bradley County in southeast Tennessee is home to Cleveland \u2014 a mid-sized industrial city on the I-75 corridor connecting Chattanooga (25 miles south) to Knoxville. The county's I-75 position has attracted manufacturing investment in chemicals (Cleveland is the headquarters of multiple chemical companies), automotive components, and distribution. Lee University and Cleveland State Community College provide higher education and workforce development. The Ocoee River \u2014 flowing through the Cherokee National Forest adjacent to Bradley County \u2014 was the site of the 1996 Summer Olympics whitewater canoe/kayak competition, one of the most unusual Olympic venues in US history. Bradley County's chemical manufacturing sector requires EPA environmental reporting and safety IT.",
+      "sources": [
+        {
+          "label": "Bradley County Tennessee",
+          "url": "https://www.bradleycountytn.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47025",
+      "name": "Claiborne County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Claiborne County TN \u2014 Tazewell/Cumberland Gap/VA-KY-TN junction/Wilderness Road",
+      "description": "Claiborne County in northeastern Tennessee contains Cumberland Gap \u2014 the natural mountain pass through the Cumberland Mountains that was the primary gateway to Kentucky and the trans-Appalachian West from 1775 until the railroads. Daniel Boone blazed the Wilderness Road through Cumberland Gap in 1775, and hundreds of thousands of settlers crossed through the gap in the following decades. Cumberland Gap National Historical Park spans the Virginia-Kentucky-Tennessee tri-state junction at the northern tip of Claiborne County. Tazewell is the county seat in the Powell Valley. The county's coal mining heritage (Virginia coalfields extend into northeast Tennessee) has transitioned as mines have closed, and ARC economic development programs address Claiborne County's persistent economic challenges.",
+      "sources": [
+        {
+          "label": "Claiborne County Tennessee",
+          "url": "https://www.claiborneCountytn.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47013",
+      "name": "Campbell County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Campbell County TN \u2014 Jacksboro/Norris Lake/Cumberland Mountain/coal mining heritage",
+      "description": "Campbell County in northeast Tennessee sits astride Cumberland Mountain \u2014 one of the most dramatic ridges in the Appalachians. Jacksboro is the county seat. Norris Lake (Norris Reservoir), created by the TVA's first dam (Norris Dam, completed 1936) \u2014 the first dam built by the TVA \u2014 provides flood control, power generation, and recreation. The New River Gorge of Tennessee (the New River flowing north through Campbell County) cuts through Cumberland Mountain in a rugged landscape that includes active and legacy coal mines. Campbell County's coal production created one of Tennessee's most characteristic Appalachian landscapes of company towns and mining communities that persist as the mines decline.",
+      "sources": [
+        {
+          "label": "Campbell County Tennessee",
+          "url": "https://www.campbellcountytn.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "18037",
+      "name": "Dubois County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dubois County IN \u2014 Jasper/wood furniture capital/German Catholic heritage/south-central IN",
+      "description": "Dubois County in south-central Indiana centers on Jasper \u2014 one of the most distinctive small industrial cities in Indiana. Jasper is the wood office furniture manufacturing capital of the United States \u2014 companies including MasterBrand Cabinets, Jasper Seating, and numerous wood products manufacturers have made Dubois County disproportionately important in American furniture and cabinet production relative to its population. The county's German Catholic heritage (settled by German immigrants in the 1840s-1860s) is visible in the architecture of Jasper's St. Joseph Catholic Church and the persistence of German festivals. Vincennes University's Jasper campus provides technical education for the county's manufacturing workforce. The Ohio River is 40 miles south, and Dubois County's furniture exports move through I-64.",
+      "sources": [
+        {
+          "label": "Dubois County Indiana",
+          "url": "https://www.duboiscounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "18025",
+      "name": "Crawford County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Crawford County IN \u2014 English/Harrison Crawford State Forest/cave country/Blue River",
+      "description": "Crawford County in south-central Indiana is one of Indiana's most rugged and least-developed counties \u2014 a hilly forested landscape of limestone cave systems, the Blue River, and Harrison-Crawford State Forest (Indiana's largest state forest). English is the county seat. Wyandotte Caves \u2014 one of the largest cave systems east of the Mississippi \u2014 are within Crawford County in the state forest. The Blue River (Indiana's only federally designated Wild and Scenic River segment) flows through the county in one of Indiana's most ecologically intact stream corridors. Crawford County's extreme topography (relative to the flat Indiana agricultural landscape) creates persistent broadband connectivity challenges, making it one of Indiana's highest-priority rural broadband deployment counties.",
+      "sources": [
+        {
+          "label": "Crawford County Indiana",
+          "url": "https://www.crawfordco.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "18027",
+      "name": "Daviess County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Daviess County IN \u2014 Washington/Amish community/NW Indiana coal/White River corridor",
+      "description": "Daviess County in southwest Indiana centers on Washington \u2014 a small county seat on the White River in Indiana's coal and agricultural transition zone. The county hosts one of Indiana's significant Amish communities \u2014 the Daviess County Amish settlement is among Indiana's larger Amish populations, with distinctive agricultural practices (horse farming, no grid electricity) that create an unusual economic geography. The White River corridor provides agricultural water management IT. The Western Indiana coalfield extends into Daviess County, with legacy surface mining reclamation programs requiring environmental monitoring IT. Vincennes University's influence reaches into the county from adjacent Knox County. Indiana's rural broadband programs prioritize the White River watershed communities.",
+      "sources": [
+        {
+          "label": "Daviess County Indiana",
+          "url": "https://www.daviessco.net"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }

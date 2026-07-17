@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 34)
+- `data/map_data.json` (Round 34)
+- `docs/data-sweeps/2026-07-massive-sweep-round-34.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 34**: Missouri (Cooper/Booneville Katy Trail Daniel Boone sons first Union MO Civil War victory, Clinton/Plattsburg NW MO Truman Lake watershed, Chariton/Keytesville Gen. Sterling Price birthplace Little Dixie, Benton/Warsaw Harry S. Truman Lake largest MO reservoir Army Corps), Wisconsin (Bayfield/Washburn Apostle Islands NL Lake Superior highest lighthouse density Red Cliff Ojibwe, Door/Sturgeon Bay Door Peninsula most US lighthouses cherry orchards, Florence/Iron Belt Nicolet NF remote north WI, Crawford/Prairie du Chien Wisconsin-Mississippi confluence Driftless oldest WI settlement), Nebraska (Box Butte/Alliance Panhandle Carhenge BNSF hub Ogallala irrigation, Cedar/Hartington NE Czech heritage Santee Sioux, Antelope/Neligh Elkhorn River north-central NE), Illinois (Adams/Quincy Mississippi River Lincoln-Douglas 1858 debate Underground Railroad, Brown/Mount Sterling Siloam Springs, Calhoun/Hardin Illinois-Mississippi confluence ferry-only access apple orchards), Tennessee (Bradley/Cleveland SE TN Ocoee River 1996 Olympics I-75 chemical mfg, Claiborne/Tazewell Cumberland Gap Wilderness Road VA-KY-TN junction, Campbell/Jacksboro Norris Lake TVA first dam Cumberland Mountain), Indiana (Dubois/Jasper wood furniture capital US German Catholic MasterBrand, Crawford/English Harrison Crawford SF Wyandotte Caves Blue River Wild & Scenic, Daviess/Washington Amish White River coal reclamation). 20 net new records (1183 total).
+- **No FIPS errors** — twenty-third consecutive clean validation run.
+
+Reasoning:
+- Bayfield County WI (Apostle Islands NL): Highest lighthouse concentration per square mile in the US. Red Cliff Band Ojibwe treaty fishing rights (Voigt Decision). Winter ice caves draw 50,000+ visitors in cold years.
+- Claiborne County TN (Cumberland Gap): Arguably the most consequential geographic passage in American continental expansion — 300,000 settlers crossed 1775-1810. NPS tri-state park at the VA-KY-TN junction. Contains Middlesboro meteor crater.
+- Dubois County IN (furniture capital): Jasper is one of America's most export-intensive small manufacturing cities, punching far above its weight in wood office furniture and cabinetry — a heritage of German Catholic craftsman settlers.
+- Calhoun County IL (geographic isolation): Ferry-only access from Illinois, bridge from Missouri — one of the most geographically isolated counties east of the Mississippi. Apple orchards and persistent broadband challenges on a peninsula.
+
+Problems Found:
+- 0 FIPS errors (twenty-third consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 33)
 - `data/map_data.json` (Round 33)
 - `docs/data-sweeps/2026-07-massive-sweep-round-33.md` (new)
