@@ -21100,6 +21100,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29069",
+      "name": "Dunklin County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dunklin County \u2014 Kennett/Missouri Bootheel poultry/cotton hub",
+      "description": "Kennett in Dunklin County is the commercial hub of the Missouri Bootheel's agricultural economy. Wayne Farms (poultry), cotton gin operations, and soybean processing create industrial electrical demand in this rural Missouri county. The Bootheel's flat delta geography and Delta blues cultural heritage tie it to the Mississippi Alluvial Plain's larger agricultural economy. Empire Electric (now Liberty Utilities) serves the county. Dunklin County's agricultural processing concentration gives it above-average industrial power infrastructure for a county of its population size.",
+      "sources": [
+        {
+          "label": "Dunklin County Missouri",
+          "url": "https://www.dunklincountymo.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29201",
+      "name": "Scott County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Scott County \u2014 Sikeston/Southeast Missouri hub/MO Bootheel commercial center",
+      "description": "Sikeston in Scott County is the commercial hub of southeast Missouri and the largest city in the Missouri Bootheel. Sikeston hosts a significant Lambert-St. Louis International Airport overflow cargo operation and a regional medical center. The Missouri Department of Transportation's district headquarters is here, as are agricultural commodity trading and processing operations. Ameren Missouri serves the county. Sikeston's position on I-55 and US-60/62 makes it the retail and commercial center for a large multi-county rural region with few alternatives.",
+      "sources": [
+        {
+          "label": "Scott County Missouri",
+          "url": "https://www.scottcountymo.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29169",
+      "name": "Pulaski County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pulaski County \u2014 Waynesville/Fort Leonard Wood/Army Engineer School",
+      "description": "Pulaski County is home to Fort Leonard Wood \u2014 the US Army's Maneuver Support Center of Excellence and the home of the Army Engineer School, Military Police School, and Chemical School. Fort Leonard Wood trains over 85,000 soldiers annually in engineering, MP, and CBRN disciplines, making it one of the Army's most active training installations. The base's extensive simulation, training management, and command IT systems represent a major federal computing concentration in the Missouri Ozarks. The county's training volume creates civilian tech workforce demand beyond what the rural setting suggests.",
+      "sources": [
+        {
+          "label": "Pulaski County Missouri",
+          "url": "https://www.pulaskicounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31159",
+      "name": "Seward County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Seward County \u2014 Seward/Concordia University/Lincoln NW exurb",
+      "description": "Seward in Seward County is located 30 miles west of Lincoln on I-80 \u2014 making it part of the functional Lincoln market for data center purposes. Concordia University Nebraska (Lutheran) provides an academic IT presence. Seward County's agricultural processing operations \u2014 particularly grain elevators and ethanol \u2014 drive NPPD substation capacity beyond residential demand. The I-80 fiber corridor running through Seward County connects Lincoln to Grand Island and beyond. Nebraska Public Power District's competitive rates make Seward County attractive for large load users priced out of the Lincoln metro.",
+      "sources": [
+        {
+          "label": "Seward County Nebraska",
+          "url": "https://www.sewardcounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31155",
+      "name": "Saunders County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Saunders County \u2014 Wahoo/Omaha NW exurban growth/Lincoln-Omaha corridor",
+      "description": "Saunders County sits between Omaha and Lincoln on US-77 \u2014 one of Nebraska's most significant fiber corridors connecting the two major markets. Wahoo is the county seat. As Omaha has grown into a significant Midwest data center market, Saunders County has become an increasingly attractive exurban location for facilities serving the Omaha metro at lower land costs. OPPD (Omaha Public Power District) extends service into portions of Saunders County. The agricultural county's position on the US-77 corridor makes it a natural intermediate point between Nebraska's two largest data center markets.",
+      "sources": [
+        {
+          "label": "Saunders County Nebraska",
+          "url": "https://www.saunderscounty.ne.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31025",
+      "name": "Cass County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cass County \u2014 Plattsmouth/Omaha south suburb/Missouri River corridor",
+      "description": "Cass County is immediately south of Omaha and Douglas County, containing Plattsmouth \u2014 a Missouri River city historically important as a railroad crossing point. Plattsmouth Bridge carries fiber routes across the Missouri River on US-34. OPPD extends service into portions of Cass County as Omaha's southern suburban development expands. The county's river position gives it water resource access and historical infrastructure investment from the Burlington Northern rail era. As Omaha's data center market expands southward from its Douglas County core, Cass County's suburban adjacency makes it part of the broader metro market.",
+      "sources": [
+        {
+          "label": "Cass County Nebraska",
+          "url": "https://www.cassne.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "16069",
+      "name": "Nez Perce County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Nez Perce County \u2014 Lewiston/Clarkston bi-state/port/inland river terminus",
+      "description": "Lewiston in Nez Perce County forms a bi-state metropolitan area with Clarkston, Washington. Lewiston is the terminus of the Snake River navigation system \u2014 the farthest inland port on the US West Coast, accessible to oceangoing barges via the Columbia-Snake River system. This port position created significant logistics and commodity-trading IT infrastructure in Lewiston. Lewis-Clark State College and St. Joseph Regional Medical Center anchor the local economy. Idaho Power's hydro-backed rates are among the lowest in the US. Lewiston's grain, pulp/paper, and manufacturing base created industrial electrical infrastructure serving a regional economy larger than the city's population suggests.",
+      "sources": [
+        {
+          "label": "Nez Perce County Idaho",
+          "url": "https://nezpercecounty.id.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "16013",
+      "name": "Blaine County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Blaine County \u2014 Sun Valley/Hailey/Wood River tech community/affluent remote hub",
+      "description": "Blaine County hosts Sun Valley \u2014 one of America's premier ski and summer resorts \u2014 and Hailey, the largest city in the Wood River Valley. The county has attracted an unusually high concentration of technology executives, venture capitalists, and entrepreneurs as permanent or part-time residents, creating a technically sophisticated community with exceptional broadband requirements. Sun Valley's annual economics conference (the Allen & Company Sun Valley Conference) brings major technology industry leaders annually. Idaho Power's hydropower-backed rates and the valley's growing fiber infrastructure serve a tech-wealthy residential base with above-average per-capita IT spend.",
+      "sources": [
+        {
+          "label": "Blaine County Idaho",
+          "url": "https://www.co.blaine.id.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "26055",
+      "name": "Grand Traverse County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Grand Traverse County \u2014 Traverse City/northern Michigan hub/cherry capital/tech economy",
+      "description": "Traverse City in Grand Traverse County is northern Michigan's largest city and the economic hub of the upper Lower Peninsula. The area has developed a significant technology economy \u2014 StartUp TC and 20Fathoms tech incubator \u2014 alongside its cherry agriculture and tourism base. Northwestern Michigan College provides a technology workforce pipeline. Cherryland Electric Cooperative and Consumers Energy serve the county. Traverse City's growing tech sector, healthcare hub (Munson Medical Center), and year-round economy make Grand Traverse County the most important secondary data center market in Michigan outside the metropolitan Detroit and Grand Rapids areas.",
+      "sources": [
+        {
+          "label": "Grand Traverse County Michigan",
+          "url": "https://www.traversecountymi.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "26075",
+      "name": "Jackson County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jackson County \u2014 Jackson/mid-Michigan automotive/Michigan prison complex",
+      "description": "Jackson in Jackson County is a mid-Michigan city with deep automotive supply chain roots \u2014 historically a center for auto parts, springs, and components manufacturing serving Detroit. The Michigan Department of Corrections' largest campus, including the former State Prison of Southern Michigan (once the world's largest walled prison), is in Jackson. The county sits on I-94 between Detroit and Chicago, a position on one of the highest-fiber-density corridors in the US. Consumers Energy serves the county from its headquarters in Jackson \u2014 making Jackson the home of Michigan's largest electric utility, with corresponding grid infrastructure.",
+      "sources": [
+        {
+          "label": "Jackson County Michigan",
+          "url": "https://www.co.jackson.mi.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47119",
+      "name": "Maury County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Maury County \u2014 Columbia/Spring Hill/GM Spring Hill Assembly/auto IT hub",
+      "description": "Maury County is home to the GM Spring Hill Assembly Plant \u2014 originally built as Saturn Corporation's dedicated facility and now one of GM's most advanced manufacturing complexes. The plant's Industry 4.0 digital manufacturing systems, supply chain management IT, and connected vehicle R&D infrastructure represent a major automotive technology concentration in central Tennessee. Columbia is the county seat and a fast-growing Nashville exurb. Maury County is among the fastest-growing counties in Tennessee, driven by both GM's expanding operations and Nashville's southward residential expansion. Tennessee Valley Authority serves the county with competitive industrial power rates.",
+      "sources": [
+        {
+          "label": "Maury County Tennessee",
+          "url": "https://www.maurycounty-tn.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47189",
+      "name": "Wilson County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Wilson County \u2014 Lebanon/Nashville NE fastest-growing suburb/Music Row overflow",
+      "description": "Wilson County is one of Tennessee's fastest-growing counties, driven by Nashville's northeastern suburban expansion along US-70N and the I-40 corridor. Lebanon is the county seat. The county's proximity to Nashville \u2014 home of a growing technology and entertainment industry \u2014 has attracted data center and technology campus development seeking Nashville connectivity at lower land costs. Tennessee Tech University is nearby in Cookeville. Nashville Electric Service's transmission infrastructure extends into Wilson County. The county's explosive population growth reflects Nashville's broader metro expansion making it one of the hottest real estate and business markets in the South.",
+      "sources": [
+        {
+          "label": "Wilson County Tennessee",
+          "url": "https://www.wilsoncountytn.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47141",
+      "name": "Putnam County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Putnam County \u2014 Cookeville/Tennessee Tech/Upper Cumberland regional hub",
+      "description": "Cookeville in Putnam County is home to Tennessee Technological University \u2014 a STEM-focused public university with strong engineering and computer science programs. TTU provides a technical workforce pipeline that has attracted technology and manufacturing operations to the Upper Cumberland region. Cookeville serves as the commercial hub for a 10-county Upper Cumberland region with no other major city. The I-40 corridor through Putnam County is a primary east-west fiber route between Nashville and Knoxville. Tennessee Valley Authority provides competitive industrial power rates. Putnam County's combination of TTU's STEM output and regional hub status makes it one of Middle Tennessee's more significant secondary markets.",
+      "sources": [
+        {
+          "label": "Putnam County Tennessee",
+          "url": "https://www.putnamcountytn.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "13073",
+      "name": "Columbia County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Columbia County \u2014 Evans/Augusta NW suburb/Cyber Center of Excellence adjacent",
+      "description": "Columbia County is the most affluent and fastest-growing suburb of Augusta, Georgia \u2014 and adjacent to Fort Eisenhower (formerly Fort Gordon), the US Army Cyber Center of Excellence and home of the Army Cyber Command. The Cyber Command's concentration of Army cybersecurity and signals intelligence operations drives extraordinary federal IT infrastructure adjacent to Columbia County. Augusta University Health System (Medical College of Georgia) extends its suburban footprint into Columbia County. Georgia Power's transmission infrastructure connects the county to the Augusta nuclear and coal power base. Columbia County's position in the Augusta metro's cyber cluster makes it one of Georgia's most significant federal-IT-adjacent markets.",
+      "sources": [
+        {
+          "label": "Columbia County Georgia",
+          "url": "https://www.columbiacountyga.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "13033",
+      "name": "Burke County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Burke County \u2014 Waynesboro/Vogtle Nuclear Plant/largest nuclear construction in US",
+      "description": "Burke County is home to Plant Vogtle \u2014 the first new nuclear reactor licensed and built in the United States in over three decades. Units 3 and 4 at Vogtle represent the most significant nuclear construction project in US history since the 1980s, with Georgia Power's $35+ billion investment creating extraordinary electrical generation and transmission infrastructure in rural Burke County. Vogtle's four operational reactors make the site one of the largest nuclear generating stations in the US. The electrical grid infrastructure built to carry Vogtle's output creates substantial Southern Company transmission capacity in a county otherwise characterized by agricultural and forestry land use.",
+      "sources": [
+        {
+          "label": "Burke County Georgia",
+          "url": "https://www.burkecountyga.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "13115",
+      "name": "Floyd County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Floyd County \u2014 Rome GA/Shorter University/Berry College/northwest GA hub",
+      "description": "Rome in Floyd County is northwest Georgia's largest city and the commercial hub for a multi-county region. The county hosts Shorter University, Berry College (one of the largest college campuses in the world by acreage), and Redmond Regional Medical Center. Rome's position at the junction of three rivers (Coosa, Etowah, Oostanaula) and US-27, US-411, and GA-20 makes it a regional fiber convergence point in the Appalachian foothills. Georgia Power serves the county. Floyd County's role as northwest Georgia's primary healthcare and retail market creates IT concentration beyond what the county's population alone would justify.",
+      "sources": [
+        {
+          "label": "Floyd County Georgia",
+          "url": "https://www.floydcountyga.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "13127",
+      "name": "Glynn County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Glynn County \u2014 Brunswick/Golden Isles/port/SE Georgia coastal hub",
+      "description": "Brunswick in Glynn County is southeast Georgia's major port city and the gateway to the Golden Isles (St. Simons Island, Sea Island, Jekyll Island). The Port of Brunswick is a major vehicle import terminal \u2014 one of the largest automobile-processing ports in North America \u2014 with logistics IT requirements for vehicle tracking, customs, and distribution. College of Coastal Georgia serves the county. Brunswick's port position on the Atlantic coast gives it fiber connectivity from submarine cable landing stations in the region. Georgia Power serves the county. Glynn County's port infrastructure and coastal tourism economy create a distinctive mix of logistics IT and hospitality IT concentration.",
+      "sources": [
+        {
+          "label": "Glynn County Georgia",
+          "url": "https://www.glynncounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "40123",
+      "name": "Pontotoc County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pontotoc County \u2014 Ada/East Central University/Chickasaw Nation hub/south-central OK",
+      "description": "Ada in Pontotoc County is the headquarters city of the Chickasaw Nation \u2014 the second-largest Indian nation in Oklahoma by tribal land area and a significant economic force in south-central Oklahoma. The Chickasaw Nation's tribal government operations, healthcare (Chickasaw Nation Medical Center), and gaming enterprise (multiple casinos in Ada) create concentrated IT demand. East Central University serves Ada's academic sector. Oklahoma Gas and Electric serves the county. Ada's unique role as both a Chickasaw Nation institutional center and a south-central Oklahoma regional hub gives Pontotoc County an IT profile significantly above its general population metrics.",
+      "sources": [
+        {
+          "label": "Pontotoc County Oklahoma",
+          "url": "https://www.pontotoccountyok.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "40115",
+      "name": "Ottawa County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ottawa County \u2014 Miami OK/Cherokee Nation/Quapaw Nation/Tar Creek legacy",
+      "description": "Ottawa County in northeast Oklahoma is a tribal territory hub \u2014 home to both Cherokee Nation operations and the Quapaw Nation tribal headquarters. Miami (pronounced My-AM-uh locally) is the county seat. Ottawa County is also the site of the Tar Creek Superfund Site \u2014 a massive lead and zinc mining pollution legacy that has driven significant EPA and Army Corps monitoring and remediation IT infrastructure in the county. Northeastern Oklahoma A&M College serves the academic sector. PSO serves the county. Ottawa County's combination of tribal IT infrastructure and federal environmental monitoring programs creates public-sector technology demand in a rural northeast Oklahoma county.",
+      "sources": [
+        {
+          "label": "Ottawa County Oklahoma",
+          "url": "https://www.ottawacountyok.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21049",
+      "name": "Clark County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clark County \u2014 Winchester/Kentucky horse country/Bluegrass east exurb",
+      "description": "Clark County sits in the heart of Kentucky's Bluegrass horse country, adjacent to Fayette County (Lexington, already in DB) to the west. Winchester is the county seat. The county's position on US-60 and the Mountain Parkway connecting Lexington to eastern Kentucky makes it a fiber corridor waypoint. Clark County's horse farm economy and proximity to Lexington have attracted manufacturing operations (American Standard, Sargent & Greenleaf). Kentucky Utilities provides service. As Lexington's tech and healthcare economy expands, Clark County has become a natural exurban extension of the Lexington market, particularly along the US-60 corridor toward Winchester.",
+      "sources": [
+        {
+          "label": "Clark County Kentucky",
+          "url": "https://www.clarkcounty.ky.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }

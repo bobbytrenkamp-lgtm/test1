@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 18)
+- `data/map_data.json` (Round 18)
+- `docs/data-sweeps/2026-07-massive-sweep-round-18.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 18**: Missouri (Dunklin/Kennett, Scott/Sikeston, Pulaski/Fort Leonard Wood), Nebraska (Seward/Concordia/Lincoln exurb, Saunders/Omaha-Lincoln corridor, Cass/Plattsmouth), Idaho (Nez Perce/Lewiston inland port, Blaine/Sun Valley tech community), Michigan (Grand Traverse/Traverse City, Jackson/Consumers Energy HQ), Tennessee (Maury/Spring Hill GM Assembly, Wilson/Nashville NE, Putnam/Cookeville/TTU), Georgia (Columbia/Cyber Center of Excellence, Burke/Vogtle Nuclear, Floyd/Rome GA, Glynn/Brunswick port), Oklahoma (Pontotoc/Ada/Chickasaw Nation, Ottawa/Miami/Cherokee Nation), Kentucky (Clark/Winchester). 20 net new records (863 total).
+- **No FIPS errors** — seventh consecutive clean validation run.
+
+Reasoning:
+- Burke County GA (Vogtle Nuclear): First new US nuclear construction in 30+ years. Georgia Power's $35B+ investment creates Southern Company's largest new transmission build in a generation. Extraordinary grid capacity in rural Burke County.
+- Pulaski County MO (Fort Leonard Wood): Army's highest-throughput training base — 85,000+ graduates/year. Engineer, MP, and CBRN schools create simulation and training IT concentration in the Ozarks.
+- Columbia County GA (Cyber Center of Excellence): The Army's cybersecurity training and Cyber Command are at Fort Eisenhower. Columbia County is the bedroom community for the largest government cybersecurity employer in the US.
+- Blaine County ID (Sun Valley tech community): Allen & Company conference + tech executive residential base drives high-bandwidth infrastructure investment far beyond local population metrics.
+
+Problems Found:
+- 0 FIPS errors (seventh consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 17)
 - `data/map_data.json` (Round 17)
 - `docs/data-sweeps/2026-07-massive-sweep-round-17.md` (new)
