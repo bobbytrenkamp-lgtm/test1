@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 21)
+- `data/map_data.json` (Round 21)
+- `docs/data-sweeps/2026-07-massive-sweep-round-21.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 21**: Texas (Polk/Livingston Lake Livingston, Anderson/Palestine East TX, Randall/Canyon/WT A&M adjacent to Amarillo), Illinois (Knox/Galesburg BNSF junction, Williamson/Marion SE IL I-57&I-24 hub, Jefferson/Mount Vernon I-57&I-64 crossroads), Nebraska (Saline/Wilber Czech capital, Thayer/Hebron Republican River), Iowa (Tama/Meskwaki Nation casino/tribal broadband, Jasper/Newton Iowa wind energy capital), Kentucky (Hopkins/Madisonville TVA western KY coal hub, Nelson/Bardstown Bourbon Capital of the World), Missouri (Taney/Branson 10M visitors/entertainment capital, Randolph/Moberly railroad hub), Kansas (Mitchell/Beloit Solomon River hub, Jackson/Holton Potawatomi Nation), Arkansas (Cleburne/Heber Springs Greers Ferry Lake, Conway/Morrilton I-40 corridor), South Dakota (Day/Webster NE SD border hub, Grant/Milbank quartzite capital). 20 net new records (923 total).
+- **No FIPS errors** — tenth consecutive clean validation run.
+
+Reasoning:
+- Taney County MO (Branson): 10+ million annual visitors — more than Disneyland. Hospitality IT density for a county of 120K permanent residents is extraordinary. Silver Dollar City, 50+ live music theaters, Table Rock Lake resort economy.
+- Jasper County IA (Newton Wind Energy Capital): Newton's pivot from Maytag/Whirlpool to wind energy component manufacturing is a national Rust Belt success story. TPI Composites and Trinity Structural Towers in the former Maytag complex create advanced manufacturing IT.
+- Nelson County KY (Bardstown/Bourbon Capital): More bourbon distillery capacity than any other US county. Heaven Hill + Barton 1792 + craft distilleries. Barrel tracking, temperature-controlled warehousing, and compliance IT per employee exceed most manufacturing sectors.
+- Hopkins County KY (Madisonville/TVA western KY): TVA western KY grid built for coal-heavy generation creates unusual grid density. WK&T Technology rural co-op serves the county. Data center opportunities from TVA power cost advantages in post-coal transition.
+
+Problems Found:
+- 0 FIPS errors (tenth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 20)
 - `data/map_data.json` (Round 20)
 - `docs/data-sweeps/2026-07-massive-sweep-round-20.md` (new)

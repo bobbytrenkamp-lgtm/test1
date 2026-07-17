@@ -22300,6 +22300,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48373",
+      "name": "Polk County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Polk County \u2014 Livingston/East Texas piney woods/Lake Livingston",
+      "description": "Polk County in the East Texas piney woods contains Lake Livingston \u2014 one of the largest lakes in Texas by area, built on the Trinity River and serving as the primary water supply for the Houston metropolitan area. The dam and water management infrastructure create significant operational IT and SCADA systems. Livingston, the county seat, is the commercial hub for a large rural East Texas region. Entergy Texas serves the county. Alabama-Coushatta Indian Reservation \u2014 one of the few federally recognized tribes in Texas \u2014 is in Polk County, creating tribal broadband and government IT demand. The county's timber and wood products industry creates industrial IT beyond what its population alone suggests.",
+      "sources": [
+        {
+          "label": "Polk County Texas",
+          "url": "https://www.co.polk.tx.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48001",
+      "name": "Anderson County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Anderson County \u2014 Palestine/East Texas/Dogwood Trail/TXU Energy legacy",
+      "description": "Palestine in Anderson County is the eastern Texas hub between the Tyler and Lufkin markets, known for the Dogwood Trails Festival and its historic downtown. The county sits on the US-79 and US-287 corridors connecting east Texas to the Dallas-Fort Worth market. Anderson County's oil and gas production history created industrial electrical infrastructure through TXU Energy (Luminant/Vistra). The Texas State Railroad \u2014 a heritage railroad connecting Palestine to Rusk \u2014 creates tourism IT. Palestine is the county seat for a significant East Texas agricultural and natural resource economy, with lumber, cattle, and oil all present in the county.",
+      "sources": [
+        {
+          "label": "Anderson County Texas",
+          "url": "https://www.co.anderson.tx.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48381",
+      "name": "Randall County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Randall County \u2014 Canyon/Amarillo adjacent/West Texas A&M/Palo Duro Canyon",
+      "description": "Randall County contains Canyon, TX \u2014 the home of West Texas A&M University and adjacent to the Amarillo metropolitan area (Potter County, already in DB). Palo Duro Canyon State Park \u2014 the 'Grand Canyon of Texas' \u2014 is in Randall County, creating a major tourism IT hub. West Texas A&M's engineering and technology programs serve the Panhandle's agricultural and energy sectors. Xcel Energy (Southwestern Public Service) serves the county. Randall County's position as the residential suburban counterpart to commercial/industrial Potter County (Amarillo) means it participates directly in the Amarillo metro's data center and tech infrastructure, including the expanding Texas Panhandle renewable energy market.",
+      "sources": [
+        {
+          "label": "Randall County Texas",
+          "url": "https://www.randallcounty.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17095",
+      "name": "Knox County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Knox County \u2014 Galesburg/BNSF Santa Fe line hub/Abraham Lincoln debate site",
+      "description": "Galesburg in Knox County is a historic Illinois railroad city \u2014 the intersection of BNSF's main line (former Santa Fe) and former Chicago, Burlington & Quincy routes creates one of the most significant rail junctions in central Illinois. The fifth Lincoln-Douglas debate was held in Galesburg (1858). Knox College, one of Illinois's oldest liberal arts colleges, provides education infrastructure. The county's position as a BNSF intermodal hub generates freight management and logistics IT. Ameren Illinois and local utilities serve the county. Galesburg's industrial heritage (Maytag/Whirlpool factory, now closed) left behind substantial commercial electrical infrastructure that supports modern business development.",
+      "sources": [
+        {
+          "label": "Knox County Illinois",
+          "url": "https://www.knoxcounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17199",
+      "name": "Williamson County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Williamson County \u2014 Marion/SE Illinois hub/I-57 corridor/Herrin",
+      "description": "Williamson County in southeastern Illinois contains Marion \u2014 one of the largest cities in Illinois south of Springfield \u2014 at the junction of I-57 and I-24, two of the most important transportation arteries in southern Illinois. The county is served by Ameren Illinois's southern transmission network. Marion's position at the I-57/I-24 junction, connecting Chicago to Memphis/Nashville and St. Louis to the south, makes it a natural distribution and logistics hub. Southern Illinois University Carbondale is adjacent in Jackson County. The county's coal heritage created industrial grid infrastructure, and the John A. Logan College provides workforce development. Marion has attracted national retailers, medical centers, and logistics operations as a regional hub.",
+      "sources": [
+        {
+          "label": "Williamson County Illinois",
+          "url": "https://www.williamsoncountyillinois.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17081",
+      "name": "Jefferson County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jefferson County \u2014 Mount Vernon/I-57 I-64 junction/SE Illinois crossroads",
+      "description": "Jefferson County and Mount Vernon sit at the precise junction of I-57 (Chicago-Memphis) and I-64 (St. Louis-Louisville), making it one of the most strategic highway crossroads in southern Illinois. Mount Vernon is the county seat and a regional hub for the Shawnee Hills region. The I-57/I-64 junction creates a natural fiber infrastructure waypoint and attracts distribution operations from both Chicago-facing and St. Louis-facing supply chains. Ameren Illinois serves the county. Mount Vernon's regional hospital and court infrastructure make it a government and healthcare center for a wide rural area. The county's position midway between St. Louis and Evansville/Nashville adds to its corridor significance.",
+      "sources": [
+        {
+          "label": "Jefferson County Illinois",
+          "url": "https://www.jeffcountyil.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31151",
+      "name": "Saline County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Saline County \u2014 Wilber/Czech capital of USA/SE Nebraska agriculture",
+      "description": "Saline County in southeastern Nebraska contains Wilber \u2014 the self-proclaimed Czech Capital of the USA, recognized by the US Congress. The county's Czech heritage tourism creates hospitality IT. Wilber is served by the Nebraska Public Power District. Saline County's agricultural economy \u2014 corn, soybeans, and wheat \u2014 drives precision agriculture and irrigation SCADA demand. The county sits on US-77 and US-6, giving it road corridor fiber access between Lincoln and Beatrice. Saline County's position in the Lincoln agricultural exurb zone has made it a recipient of Nebraska's rural broadband expansion. The county's food processing operations (Crete \u2014 the county's largest city \u2014 has industrial facilities) create industrial electrical demand.",
+      "sources": [
+        {
+          "label": "Saline County Nebraska",
+          "url": "https://www.salinecounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31169",
+      "name": "Thayer County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Thayer County \u2014 Hebron/south-central Nebraska/Republican River Valley",
+      "description": "Thayer County in south-central Nebraska along the Republican River is a high-plains agricultural county anchored by Hebron, the county seat. The county's position along US-81 \u2014 one of the primary north-south highways through the central Great Plains connecting Kansas to North Dakota \u2014 gives it corridor fiber access. Nebraska Public Power District serves the county. Thayer County's Republican River water rights are part of the multi-state Republican River Compact among Nebraska, Kansas, and Colorado, creating water management and monitoring IT requirements. The county's center-pivot irrigation systems create above-average SCADA and remote monitoring demand for precision agriculture.",
+      "sources": [
+        {
+          "label": "Thayer County Nebraska",
+          "url": "https://thayercounty.ne.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19171",
+      "name": "Tama County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Tama County \u2014 Toledo/Tama/Meskwaki Nation/Amana Colonies corridor",
+      "description": "Tama County in central Iowa is home to the Meskwaki Settlement \u2014 the largest Native American settlement in Iowa and one of the few where a tribe purchased its own land rather than receiving a reservation. The Meskwaki Nation's tribal government, casino operations (Meskwaki Bingo Casino Hotel), and tribal broadband programs create federal IT investment in the county. Tama County sits on US-30 \u2014 the former Lincoln Highway \u2014 connecting Ames to Cedar Rapids. MidAmerican Energy serves the county. The Meskwaki's sovereignty over their Settlement creates a unique data governance and digital equity framework that has attracted federal broadband and technology grants to Tama County.",
+      "sources": [
+        {
+          "label": "Tama County Iowa",
+          "url": "https://www.tamacounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19099",
+      "name": "Jasper County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jasper County \u2014 Newton/Iowa's wind energy capital/Maytag heritage",
+      "description": "Newton in Jasper County was the world headquarters of Maytag Corporation until its 2006 acquisition by Whirlpool \u2014 a loss that devastated the local economy but prompted a remarkable pivot. Newton is now considered 'Iowa's Wind Energy Capital' \u2014 TPI Composites, Trinity Structural Towers, and other wind energy component manufacturers established major production facilities in the former Maytag industrial complex. Iowa's wind energy supply chain concentrated in Newton/Jasper County creates advanced manufacturing IT and industrial electrical load. MidAmerican Energy serves the county and operates extensive wind generation in the region. Jasper County is a national model for Rust Belt community reinvention through renewable energy manufacturing.",
+      "sources": [
+        {
+          "label": "Jasper County Iowa",
+          "url": "https://jaspercountyiowa.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21107",
+      "name": "Hopkins County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hopkins County \u2014 Madisonville/western Kentucky coal hub/TVA grid intersection",
+      "description": "Hopkins County and Madisonville are at the heart of western Kentucky's coal country \u2014 historically one of the most productive coal-producing regions in the US. The TVA grid serves western Kentucky with transmission lines built to deliver coal-fired generation from the Paradise and other Kentucky plants. Madisonville is the commercial hub for the Pennyrile region of western Kentucky, with regional healthcare (Regional Medical Center of Hopkins County), government, and commerce serving a multi-county area. WK&T Technology \u2014 a rural telecommunications cooperative \u2014 serves the county. Hopkins County's industrial heritage created electrical infrastructure density unusual for its current population, and the region has become a target for data center development given TVA power costs.",
+      "sources": [
+        {
+          "label": "Hopkins County Kentucky",
+          "url": "https://www.hopkinscounty.ky.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21179",
+      "name": "Nelson County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Nelson County \u2014 Bardstown/Bourbon Capital of the World/Heaven Hill/Barton 1792",
+      "description": "Bardstown in Nelson County is officially designated the 'Bourbon Capital of the World' by the Kentucky General Assembly \u2014 the county contains more bourbon distillery capacity than any other in the state. Heaven Hill Distilleries, Barton 1792, and dozens of craft distilleries operate here. The Kentucky Bourbon Trail draws hundreds of thousands of visitors annually. Distillery operations \u2014 temperature-controlled warehousing, barrel tracking, bottling line automation, and compliance IT \u2014 create significant technology demand per employee relative to most manufacturing sectors. Kentucky Utilities (LG&E/KU Energy) serves the county. Nelson County's bourbon economy makes it one of the most technologically intensive rural counties in Kentucky.",
+      "sources": [
+        {
+          "label": "Nelson County Kentucky",
+          "url": "https://www.nelsoncountyky.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29213",
+      "name": "Taney County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Taney County \u2014 Branson/Table Rock Lake/Missouri's entertainment capital",
+      "description": "Taney County contains Branson \u2014 one of the most visited entertainment destinations in the US with over 10 million annual visitors, more than Disneyland. Branson's live music theaters, theme parks, and resort hotels create one of the highest concentrations of hospitality IT in the Midwest. Table Rock Lake, created by the Army Corps of Engineers, supports an enormous water recreation economy. Empire Electric Association and White River Valley Electric Cooperative serve the area. Branson's entertainment infrastructure \u2014 ticketing systems, hotel management, streaming/broadcast operations for its music shows, and the College of the Ozarks \u2014 creates technology demand far exceeding what the permanent population (120,000) suggests. The Silver Dollar City theme park alone has significant operational technology requirements.",
+      "sources": [
+        {
+          "label": "Taney County Missouri",
+          "url": "https://www.taneycounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29175",
+      "name": "Randolph County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Randolph County \u2014 Moberly/north-central Missouri hub/Rothwell Park",
+      "description": "Randolph County in north-central Missouri contains Moberly \u2014 the 'Magic City' of Missouri, known for its mid-19th century railroad boom growth. Moberly sits on US-24 and the former Wabash Railroad mainline connecting Kansas City to St. Louis. Moberly Area Community College provides technical education infrastructure for north-central Missouri. Ameren Missouri serves the county. The county's historic railroad infrastructure \u2014 Moberly was a major railroad crew change and maintenance point \u2014 created industrial electrical and telecommunications infrastructure in what is now a rural community. Randolph County's position between the Columbia market (already in DB) and the Kirksville market (Adair County, added in Round 20) makes it a fiber waypoint in north-central Missouri.",
+      "sources": [
+        {
+          "label": "Randolph County Missouri",
+          "url": "https://randolphcountymo.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20123",
+      "name": "Mitchell County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Mitchell County \u2014 Beloit/Solomon River Valley/north-central Kansas hub",
+      "description": "Beloit in Mitchell County is the commercial hub for north-central Kansas in the Solomon River watershed. The county sits on US-24, the primary east-west highway through north-central Kansas, and US-281 connecting Salina to Nebraska. North Central Electric Cooperative serves the county. Mitchell County's agricultural economy drives irrigation SCADA for center-pivot systems on the Solomon River Aquifer. The county's position at the junction of two significant US highways gives it natural fiber corridor access for the region. Beloit's regional hospital and K-12 education infrastructure serve a multi-county area, creating IT concentration proportionate to its hub role rather than its own population.",
+      "sources": [
+        {
+          "label": "Mitchell County Kansas",
+          "url": "https://www.mitchellcountyks.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20085",
+      "name": "Jackson County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jackson County \u2014 Holton/Potawatomi Nation/northeast Kansas tribal economy",
+      "description": "Jackson County in northeast Kansas is the home of the Prairie Band Potawatomi Nation \u2014 one of Kansas's largest federally recognized tribes. The Potawatomi Casino Hotel (Prairie Band Casino) and tribal government operations create significant IT infrastructure in a rural county. Holton is the county seat and a regional agricultural and service hub. Evergy (formerly Westar Energy) serves the county. The Prairie Band Potawatomi's tribal broadband initiative has been a beneficiary of FCC and USDA rural broadband programs, and their data sovereignty policies make the tribe an active participant in federal tribal technology discussions. The county's position on US-75 connecting Topeka to Sabetha/Nebraska gives it north-south corridor infrastructure.",
+      "sources": [
+        {
+          "label": "Jackson County Kansas",
+          "url": "https://www.jacksoncoks.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05023",
+      "name": "Cleburne County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cleburne County \u2014 Heber Springs/Greers Ferry Lake/Little Red River",
+      "description": "Cleburne County in north-central Arkansas contains Heber Springs and Greers Ferry Lake \u2014 a major Army Corps of Engineers reservoir on the Little Red River. Greers Ferry Lake is one of the cleanest lakes in Arkansas and a significant recreation and second-home economy driver. The Little Red River below Greers Ferry Dam is a world-class trout fishery, creating year-round recreation IT demand. Entergy Arkansas serves the county. Cleburne County's second-home and vacation economy drives broadband demand disproportionate to permanent population. The county's proximity to the Little Rock market (30 minutes from the Quitman area) makes it a natural exurban growth zone for Arkansas's capital.",
+      "sources": [
+        {
+          "label": "Cleburne County Arkansas",
+          "url": "https://www.cleburnecounty.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05029",
+      "name": "Conway County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Conway County \u2014 Morrilton/I-40 Arkansas River Valley/Acxiom heritage",
+      "description": "Conway County and Morrilton sit on I-40 in the Arkansas River Valley between Little Rock and Fort Smith, making the county a natural logistics and distribution waypoint. Morrilton is home to University of Arkansas Community College at Morrilton. The county's position on I-40 \u2014 carrying enormous east-west freight volume between the southeastern US and the Southwest \u2014 places it on the same fiber backbone as the major Arkansas commercial markets. Entergy Arkansas serves the county. The Arkansas River Valley's industrial base \u2014 including poultry processing and light manufacturing \u2014 creates supply chain IT demand. Conway County's river valley position with I-40 access represents a consistent industrial corridor asset.",
+      "sources": [
+        {
+          "label": "Conway County Arkansas",
+          "url": "https://www.conwaycountyar.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "46037",
+      "name": "Day County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Day County \u2014 Webster/NE South Dakota/Coteau des Prairies/Minnesota border",
+      "description": "Day County in northeastern South Dakota borders Minnesota and sits on the Coteau des Prairies \u2014 the highland plateau between the James River and Minnesota lake country. Webster is the county seat and the commercial hub for a large rural northeastern South Dakota area. The county has significant prairie pothole wetlands important for waterfowl production. Lake Region Electric Cooperative serves the area. Day County's position on US-12 \u2014 the primary east-west route through northern South Dakota and into Minnesota \u2014 provides fiber corridor access for the region. Agricultural IT for grain farming operations (wheat, corn, soybeans) and livestock is central to the county's technology footprint.",
+      "sources": [
+        {
+          "label": "Day County South Dakota",
+          "url": "https://www.daycountysd.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "46051",
+      "name": "Grant County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Grant County \u2014 Milbank/quartzite capital/NE South Dakota border hub",
+      "description": "Grant County in northeastern South Dakota is known as the 'Quartzite Capital of the World' \u2014 Milbank's Sioux quartzite deposits have been quarried for construction stone since the 19th century. Milbank is the county seat and a significant commercial hub for northeastern South Dakota, serving as the market town for the granite and quartzite mining operations. Big Stone Power Plant (a coal plant now being repurposed for renewable energy) sits nearby at Big Stone City, at the South Dakota/Minnesota border. Otter Tail Power and East River Electric Cooperative serve the area. Grant County's border position, energy history, and quarrying operations create industrial IT requirements for a sparsely populated Great Plains county.",
+      "sources": [
+        {
+          "label": "Grant County South Dakota",
+          "url": "https://www.grantcountysd.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }
