@@ -6,6 +6,42 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `js/supabase-config.js` (new)
+- `js/auth.js` (new)
+- `js/account.js` (new)
+- `css/account.css` (new)
+- `data/supabase_schema.sql` (new)
+- `SUPABASE_SETUP.md` (new)
+- `index.html` (modified)
+- `js/map.js` (modified)
+
+Changes Made:
+- **Supabase Authentication System**: Complete auth foundation — sign-in, sign-up, forgot-password, password-reset via email link, account profile panel, preference sync, and saved-items scaffolding.
+- **`js/supabase-config.js`**: Public config file with `window.APP_CONFIG` placeholder. Holds only the Supabase project URL and anon (public) key. No secrets.
+- **`js/auth.js`**: Auth manager singleton (`window.AUTH`). Initializes Supabase client only if URL and anon key are present and non-placeholder. Handles `onAuthStateChange` events including `PASSWORD_RECOVERY` and `USER_UPDATED`. Syncs `theme`, `aiPolicyTracker.stockFavorites.v1`, and `dc-map-bookmarks-v1` between localStorage and Supabase `user_preferences` on every sign-in (cloud authoritative). Dispatches `auth:stateChange` and `auth:preferenceSync` DOM events. Gracefully degrades to no-op when Supabase is not configured.
+- **`js/account.js`**: UI singleton. Renders the auth modal (3 pages: sign-in, sign-up, forgot-password) and the account slide-in panel (4 tabs: Profile, Preferences, Saved, Security). All user-provided text rendered via `textContent` — no `innerHTML` with user data. Focus trapping on Tab key inside both overlays. Escape key closes the frontmost layer. Preference tab controls theme and calls `window._applyTheme` for immediate Leaflet style refresh.
+- **`css/account.css`**: All styles for auth button (signed-in circle variant), auth modal overlay + spring-animated modal, account panel slide-in, tabs, forms, saved-items list, preferences rows, reset-mode notice. Uses existing CSS variables (`--surface`, `--border`, `--text`, `--text-muted`, `--accent`). Reduced-motion guard.
+- **`data/supabase_schema.sql`**: Three tables with RLS enabled: `profiles` (auto-created via `handle_new_user` trigger), `user_preferences` (key/JSONB per user), `saved_items` (county/article/stock per user). Policies: each user can only access their own rows via `auth.uid()`.
+- **`SUPABASE_SETUP.md`**: Step-by-step setup guide for enabling authentication.
+- **`index.html`**: Added `account.css` link; `#auth-btn` in `#header-right`; auth modal HTML + account panel HTML at body level (root stacking context); `<script defer>` tags for Supabase CDN, `supabase-config.js`, `auth.js`, `account.js`.
+- **`js/map.js`**: Exposed `window._applyTheme = applyTheme` inside `initThemeToggle()` so the preferences tab can trigger full theme refresh (including Leaflet vector styles) without duplicating logic.
+
+Security notes:
+- Only the anon key is in the frontend. Service-role key is never committed.
+- RLS enforced on all three tables — `user_id` is always `auth.uid()` server-side.
+- No `innerHTML` with user-supplied data in any auth/account code.
+- Graceful degradation: site works identically with no Supabase config (auth button stays hidden).
+- Account deletion not implemented in the frontend (requires service-role key); documented in SUPABASE_SETUP.md.
+
+Problems Found:
+- None.
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 40)
 - `data/map_data.json` (Round 40)
 - `docs/data-sweeps/2026-07-massive-sweep-round-40.md` (new)
