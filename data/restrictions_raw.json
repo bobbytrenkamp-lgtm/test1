@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "US county-level data center and AI restriction data. Manually curated and periodically updated.",
-    "last_manually_updated": "2026-07-16",
+    "last_manually_updated": "2026-07-17",
     "levels": {
       "-1": "Pro data center (active tax incentives, enterprise zones, major industry hubs)",
       "0": "No known specific restrictions",
@@ -20700,6 +20700,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "20125",
+      "name": "Montgomery County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Montgomery County \u2014 Independence/Coffeyville/SE Kansas refining corridor",
+      "description": "Montgomery County in southeast Kansas contains both Independence (county seat) and Coffeyville, where Coffeyville Resources operates a crude oil refinery \u2014 one of the larger independent refineries in the Mid-Continent region. Oil refining creates extraordinary Evergy electrical infrastructure requirements in rural Kansas. Coffeyville Community College provides a technical education pipeline. The county's position on US-160 and the Verdigris River valley connects it to Tulsa's oil and gas market to the south. The Coffeyville Resources refinery's electrical load gives Montgomery County industrial power infrastructure well beyond its population.",
+      "sources": [
+        {
+          "label": "Montgomery County Kansas",
+          "url": "https://www.montgomerycoks.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20035",
+      "name": "Cowley County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cowley County \u2014 Arkansas City/Winfield/south-central Kansas oil and education",
+      "description": "Cowley County contains Arkansas City (the county's largest city and a historic oil boom town near the Oklahoma border) and Winfield (county seat and home of Southwestern College). The area sits at the north end of the Osage oil fields that extend into Oklahoma. Winfield Correctional Facility and Winfield's historic Flint Hills area attract state agency IT. Evergy and the Arkansas City municipal utility serve the county. Cowley College in Arkansas City provides a technical education base for the south-central Kansas workforce.",
+      "sources": [
+        {
+          "label": "Cowley County Kansas",
+          "url": "https://www.cowleycounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20009",
+      "name": "Barton County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Barton County \u2014 Great Bend/Quivira/central Kansas oil production",
+      "description": "Great Bend in Barton County sits at the geographic center of Kansas and at the heart of the Central Kansas oil fields. Barton County Community College provides a petroleum technology and workforce education program serving the energy sector. The county's position on US-56 and the Arkansas River valley gives it infrastructure connectivity to Wichita. Evergy serves the county with access to Kansas wind energy from the surrounding Great Plains belt. Great Bend's role as a regional hub for central Kansas agriculture and energy industries creates concentrated IT demand for a city of its size.",
+      "sources": [
+        {
+          "label": "Barton County Kansas",
+          "url": "https://www.bartoncounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20059",
+      "name": "Franklin County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Franklin County \u2014 Ottawa/Ottawa University/I-35 KC metro south corridor",
+      "description": "Ottawa in Franklin County sits on I-35 between Kansas City and Wichita \u2014 a position on one of the country's major north-south fiber corridors. Ottawa University is a Baptist-affiliated liberal arts institution with a growing online education division. The county's proximity to the Kansas City metro (~60 miles south on I-35) makes it a potential exurban edge-data-center location within the KC market's reach. Evergy serves Franklin County with transmission access from the KC metro grid. I-35 fiber runs through the county connecting KCK to the Wichita market.",
+      "sources": [
+        {
+          "label": "Franklin County Kansas",
+          "url": "https://www.franklincoks.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17063",
+      "name": "Grundy County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Grundy County \u2014 Morris/Dresden Nuclear Station/I-80 corridor Illinois",
+      "description": "Morris in Grundy County is home to Exelon's Dresden Nuclear Generating Station \u2014 the first US nuclear plant built entirely with private funding and one of the oldest operating reactors in the US. Dresden's two boiling water reactors represent significant electrical generation infrastructure in Grundy County. The county also sits on I-80, Illinois's primary east-west freight corridor carrying major fiber routes. Commonwealth Edison (ComEd) transmission infrastructure in Grundy County is sized to transport nuclear generation, creating grid capacity substantially in excess of local demand.",
+      "sources": [
+        {
+          "label": "Grundy County Illinois",
+          "url": "https://www.grundyco.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17183",
+      "name": "Vermilion County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Vermilion County \u2014 Danville/east-central Illinois/Lakeview College of Nursing",
+      "description": "Danville in Vermilion County sits at the Illinois-Indiana border on the I-74 corridor connecting Indianapolis to Champaign-Urbana. The county is served by Ameren Illinois. Danville Area Community College and Lakeview College of Nursing anchor local educational IT. Danville's historic manufacturing base \u2014 Hyatt bearings, Quaker Oats, Fischer Carbon \u2014 created industrial electrical infrastructure that outlasts the original facilities. As an I-74 waypoint between two major university markets (Champaign-Urbana to the west, Indianapolis to the east), Vermilion County has fiber corridor access beyond what its standalone market would justify.",
+      "sources": [
+        {
+          "label": "Vermilion County Illinois",
+          "url": "https://www.vermilioncounty.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17179",
+      "name": "Tazewell County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Tazewell County \u2014 Pekin/Morton/Illinois River ag processing/Caterpillar south",
+      "description": "Tazewell County borders Peoria County (already in DB) to the north and contains Pekin (a major Illinois River port city) and Morton (the 'pumpkin capital of the world' and a significant agricultural processing center). Tazewell County's Illinois River position connects it to barge transport and the agricultural commodity infrastructure of the river corridor. Ameren Illinois serves the county. Morton Foods' pumpkin processing and other agricultural operations drive seasonal but substantial industrial electrical loads. The county's adjacency to Peoria's industrial base and Caterpillar's supply chain gives it stronger data infrastructure than its standalone size suggests.",
+      "sources": [
+        {
+          "label": "Tazewell County Illinois",
+          "url": "https://www.tazewell.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17177",
+      "name": "Stephenson County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Stephenson County \u2014 Freeport/northwest Illinois manufacturing/Lincoln-Douglas",
+      "description": "Freeport in Stephenson County is a northwest Illinois manufacturing hub with historic ties to the Honeywell/Burgess Battery industrial legacy and Newell Brands (formerly Newell Rubbermaid). The city hosted one of the Lincoln-Douglas debates. Highland Community College provides a technical education pipeline. Illinois Route 20 and US-20 run through Freeport connecting it to Rockford (Winnebago County, already in DB) to the east and Galena to the west. ComEd and MidAmerican Energy's northwest Illinois grid serves the county. Freeport's manufacturing history created industrial electrical infrastructure that supports modern industrial computing loads.",
+      "sources": [
+        {
+          "label": "Stephenson County Illinois",
+          "url": "https://www.co.stephenson.il.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05093",
+      "name": "Mississippi County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Mississippi County \u2014 Blytheville/Big River Steel/Osceola steel mills/AR northeast",
+      "description": "Mississippi County in northeast Arkansas hosts one of the most dramatic industrial transformations in the US South. Blytheville Air Force Base (closed 1991) was redeveloped into a major steel manufacturing cluster: Steel Technologies, Nucor Steel, and most significantly Big River Steel (now US Steel) \u2014 a 3.3-million-square-foot advanced electric arc furnace mill representing the most technologically advanced flat-rolled steel facility in North America at opening. The industrial electrical load from steel EAF operations is extraordinary, driving Entergy Arkansas transmission infrastructure in Mississippi County that rivals major metropolitan areas. A major industrial AI/IT market.",
+      "sources": [
+        {
+          "label": "Mississippi County Arkansas",
+          "url": "https://www.mississippicountyar.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "08077",
+      "name": "Mesa County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Mesa County \u2014 Grand Junction/western slope largest city/energy/federal lands",
+      "description": "Grand Junction is the largest city on Colorado's western slope and the commercial hub for a vast region covering western Colorado, eastern Utah, and northwest New Mexico. Mesa County's economy is driven by oil and gas extraction in the Piceance Basin, agriculture (Colorado's largest peach-producing county), and federal land management (BLM's Grand Junction field office is one of the largest in the US). Xcel Energy and Grand Junction municipal utility serve the area. The county's regional centrality \u2014 sitting at the junction of I-70 and US-50 \u2014 makes it the most significant secondary data center market between Denver and Salt Lake City.",
+      "sources": [
+        {
+          "label": "Mesa County Colorado",
+          "url": "https://www.mesacounty.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "08067",
+      "name": "La Plata County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "La Plata County \u2014 Durango/Fort Lewis College/Four Corners energy/Southwest CO",
+      "description": "Durango in La Plata County is the commercial and cultural hub of southwest Colorado's Four Corners region. Fort Lewis College provides a technology and engineering education base. La Plata County sits atop the San Juan Basin natural gas fields shared with New Mexico's San Juan County. The county's position on US-160 and US-550 (the 'Million Dollar Highway') gives it connectivity to the broader Four Corners energy market. La Plata Electric Association serves the county with access to the region's renewable energy resources. Durango's growing technology and remote-worker economy has expanded broadband infrastructure beyond what the traditional resort-and-energy base required.",
+      "sources": [
+        {
+          "label": "La Plata County Colorado",
+          "url": "https://www.co.laplata.co.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "08085",
+      "name": "Montrose County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Montrose County \u2014 Montrose/western slope service hub/Uncompahgre valley",
+      "description": "Montrose serves as the service hub for the western slope's Uncompahgre Plateau region. The county's agricultural operations \u2014 particularly fruit orchards in the Uncompahgre Valley \u2014 are significant economic drivers. Montrose Regional Airport provides connectivity. The Black Canyon of the Gunnison National Park nearby drives tourism IT. Uncompahgre Valley Water Users Association and Tri-State Generation's transmission infrastructure serve the county. As Grand Junction grows and western Colorado's remote-worker population increases, Montrose has become a secondary market for broadband and technology services in the region.",
+      "sources": [
+        {
+          "label": "Montrose County Colorado",
+          "url": "https://www.montrosecounty.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "08075",
+      "name": "Logan County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Logan County \u2014 Sterling/NE Colorado hub/I-76 fiber corridor/feedlots",
+      "description": "Sterling in Logan County is the largest city in northeast Colorado and the commercial hub of the 'Overland Trail' region along the South Platte River. Logan County's massive cattle feedlot operations \u2014 among the largest concentrations in Colorado \u2014 drive significant electrical infrastructure from Public Service Company of Colorado (Xcel). The I-76 corridor through Logan County carries fiber routes connecting Denver to the Nebraska panhandle. Colorado State University's extension presence and the agricultural commodity infrastructure of the South Platte corridor give Logan County more technical IT engagement than its remote rural character suggests.",
+      "sources": [
+        {
+          "label": "Logan County Colorado",
+          "url": "https://www.logancountyco.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48099",
+      "name": "Coryell County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Coryell County \u2014 Copperas Cove/Fort Cavazos (Hood)/Army's largest base",
+      "description": "Coryell County is home to Copperas Cove \u2014 the primary civilian community serving Fort Cavazos, formerly Fort Hood, the largest US Army installation in the world by area and one of the largest by active-duty population. Fort Cavazos is the home of III Corps, the 1st Cavalry Division, and major Army command and control infrastructure. The Army's computing, simulation, and C4ISR systems at Fort Cavazos represent an extraordinary federal IT concentration. Oncor and Copperas Cove municipal utility provide service. The civilian and military combined technology footprint of the Killeen-Fort Cavazos metro \u2014 including Bell County (already in DB) and Coryell County \u2014 is among the most significant in Texas outside major metros.",
+      "sources": [
+        {
+          "label": "Coryell County Texas",
+          "url": "https://www.coryellcounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48257",
+      "name": "Kaufman County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kaufman County \u2014 Terrell/DFW SE exurban growth corridor",
+      "description": "Kaufman County is one of the fastest-growing counties in Texas, driven by Dallas-Fort Worth's southeastern suburban expansion along the US-80 and I-20 corridors. Terrell is the county seat, and the county has attracted manufacturing and distribution operations from DFW's overflow growth. Oncor serves the county with transmission access from the DFW metro grid. As the Dallas data center market has become one of the largest in the world, Kaufman County's exurban position on the eastern edge of the DFW metro makes it a natural secondary data center and edge computing market for the region.",
+      "sources": [
+        {
+          "label": "Kaufman County Texas",
+          "url": "https://www.kaufmancounty.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48213",
+      "name": "Henderson County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Henderson County \u2014 Athens/East Texas lakes/regional healthcare hub",
+      "description": "Athens in Henderson County is a regional hub in East Texas's lake district, serving the communities around Cedar Creek Reservoir, Lake Palestine, and other impoundments. Henderson County's position on US-175 \u2014 connecting Dallas to deep East Texas \u2014 makes it a significant fiber corridor waypoint. East Texas Medical Center in Athens serves as a regional hospital drawing patients from multiple counties. Oncor's transmission infrastructure through Henderson County connects DFW to the East Texas market. The county's lake district economy drives telecommunications infrastructure for remote workers and resort communities.",
+      "sources": [
+        {
+          "label": "Henderson County Texas",
+          "url": "https://www.hendersoncountytx.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "30017",
+      "name": "Custer County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Custer County \u2014 Miles City/eastern Montana commercial hub/livestock auction",
+      "description": "Miles City in Custer County is the commercial hub of eastern Montana and home to one of the largest livestock auctions in the US. The Eastern Montana livestock economy drives IT infrastructure for auction management, USDA reporting, and market data systems. Montana's Department of Transportation regional headquarters in Miles City adds state government IT. NorthWestern Energy and Montana-Dakota Utilities serve the area. Miles City's position at the I-94/US-12 junction makes it the largest city in a 200-mile radius of eastern Montana, creating regional retail, healthcare, and government IT concentration.",
+      "sources": [
+        {
+          "label": "Custer County Montana",
+          "url": "https://www.co.custer.mt.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "30027",
+      "name": "Fergus County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Fergus County \u2014 Lewistown/geographic center of Montana/ag and ranching hub",
+      "description": "Lewistown in Fergus County is located at the exact geographic center of Montana, making it the ultimate 'middle of nowhere' hub county. Central Montana Electric Power Cooperative serves the area with access to NorthWestern Energy's hydropower-backed grid. Lewistown serves as the commercial and medical center for a vast region of central Montana with no other significant population center within 100 miles. While the county's population (~11K) is small, its geographic centrality means that agricultural and ranching operations across a massive area route their IT through Lewistown's infrastructure.",
+      "sources": [
+        {
+          "label": "Fergus County Montana",
+          "url": "https://www.co.fergus.mt.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28001",
+      "name": "Adams County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Adams County \u2014 Natchez/historic antebellum/Southwest MS regional hub",
+      "description": "Natchez in Adams County is one of the oldest cities in the US and the commercial hub of southwest Mississippi. The Natchez Trace Parkway headquarters and the region's antebellum tourism economy drive hospitality IT. Alcorn State University \u2014 Mississippi's first land-grant HBCU \u2014 is nearby. Adams County's position on the Mississippi River gives it barge terminal infrastructure and river-corridor fiber access. Entergy Mississippi serves the county. While Natchez's economy has diversified from its antebellum plantation origins, it remains southwest Mississippi's largest city and regional IT center.",
+      "sources": [
+        {
+          "label": "Adams County Mississippi",
+          "url": "https://www.adamscountyms.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28043",
+      "name": "Grenada County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Grenada County \u2014 Grenada/north MS regional hub/Grenada Lake/manufacturing",
+      "description": "Grenada in Grenada County is a north Mississippi regional hub at the I-55/US-51 junction. General Electric's appliance manufacturing plant was historically the county's largest employer. Grenada Lake provides water resources and hydroelectric coordination through the Army Corps. The I-55 corridor through Grenada County connects Memphis to Jackson, making it a significant fiber route waypoint in Mississippi. Entergy Mississippi and cooperative utilities serve the area. Grenada's position as the most significant city between Grenada and Batesville on I-55 makes it a fiber corridor anchor in north-central Mississippi.",
+      "sources": [
+        {
+          "label": "Grenada County Mississippi",
+          "url": "https://www.grenadacounty.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }

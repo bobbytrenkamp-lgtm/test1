@@ -2,6 +2,29 @@
 
 ---
 
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
+- `data/restrictions_raw.json` (Round 17)
+- `data/map_data.json` (Round 17)
+- `docs/data-sweeps/2026-07-massive-sweep-round-17.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 17**: Kansas (Montgomery/Coffeyville Resources refinery, Cowley/Arkansas City, Barton/Great Bend/central KS oil, Franklin/Ottawa/I-35), Illinois (Grundy/Morris/Dresden Nuclear, Vermilion/Danville/I-74, Tazewell/Pekin/Morton, Stephenson/Freeport/NW IL), Arkansas (Mississippi/Blytheville/Big River Steel EAF), Colorado (Mesa/Grand Junction/western slope hub, La Plata/Durango, Montrose, Logan/Sterling/I-76), Texas (Coryell/Copperas Cove/Fort Cavazos, Kaufman/Terrell/DFW SE, Henderson/Athens/East TX), Montana (Custer/Miles City, Fergus/Lewistown), Mississippi (Adams/Natchez, Grenada/I-55 corridor). 20 net new records (843 total).
+- **No FIPS errors** — sixth consecutive clean validation run.
+
+Reasoning:
+- Mississippi County AR (Big River Steel): EAF mini-mill converted from Blytheville AFB — one of the most technologically advanced flat-rolled steel facilities in North America, one of the highest industrial power loads in AR.
+- Grundy County IL (Dresden Nuclear): First privately funded US nuclear plant. ComEd transmission sized to carry nuclear output creates grid capacity well beyond local commercial demand.
+- Mesa County CO (Grand Junction): Largest city on the western slope — the most significant remaining Colorado gap. Energy sector SCADA, BLM federal land management IT, regional healthcare hub.
+- Coryell County TX (Fort Cavazos): Adjacent to Bell County (already in DB), Coryell contains Copperas Cove — the world's largest Army base's secondary civilian community. Extraordinary C4ISR and simulation IT.
+
+Problems Found:
+- 0 FIPS errors (sixth consecutive clean validation run).
+
+---
+
 Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
