@@ -292,15 +292,76 @@ restrictive (red):   border/text #ef4444
 - Fixed z-index stacking: `isolation: isolate` on `#leaflet-map`
 - Verified: 3293 county paths, 6 annotations, 5 stat chips, all UI controls
 
+### Session 5 — Supabase Authentication System
+- New file: `js/supabase-config.js` — `window.APP_CONFIG` with placeholder URL + anon key; no secrets
+- New file: `js/auth.js` — `window.AUTH` singleton; handles `onAuthStateChange`, preference sync, graceful degradation
+- New file: `js/account.js` — auth modal (sign-in/sign-up/forgot-password) + account panel (Profile/Preferences/Saved/Security tabs)
+- New file: `css/account.css` — all auth/account styles; uses existing CSS variables
+- New file: `data/supabase_schema.sql` — `profiles`, `user_preferences`, `saved_items` tables with RLS
+- New file: `SUPABASE_SETUP.md` — step-by-step setup guide
+- Modified: `index.html` — auth button in header; modal + panel HTML at body level; `<script defer>` tags for Supabase CDN + new JS files
+- Modified: `js/map.js` — exposed `window._applyTheme = applyTheme` inside `initThemeToggle()` for cross-module theme sync
+- PREF_KEYS synced: `['theme', 'aiPolicyTracker.stockFavorites.v1', 'dc-map-bookmarks-v1']`
+- Auth state machine: `loading → signedOut | signedIn | resettingPassword`
+- Dispatches `auth:stateChange` and `auth:preferenceSync` CustomEvents on `document`
+- Graceful degradation: if `window.supabase` is undefined OR config has placeholder values, returns early with `setState('signedOut')` — auth button stays hidden, site fully functional
+- Security: only anon key in frontend; RLS enforced via `auth.uid()`; no `innerHTML` with user data; no service-role key anywhere in frontend
+
+### Session 6 — Stabilization Checkpoint (Pre-Zoning Phase)
+- Fixed `update_ai_news.yml`: added `[skip ci]` to commit message — was triggering ~24 unnecessary Pages deploys/day
+- Fixed `update_policy_sources.yml`: added `[skip ci]` to commit message — was triggering 1 extra Pages deploy/day
+- Fixed `update_facilities.yml`: changed cron from daily `"0 3 * * *"` to weekly Sunday `"0 3 * * 0"` — facility data changes slowly; saves 6 × 60-min runs/week
+- Updated `PROJECT_CONTEXT.md`: added 9 new Completed Features entries (AI Stocks, Analytics, Home/Command Center, Government pipeline, Legislative monitoring, Facility pipeline, Infrastructure layers, Political Risk, GIS Toolbar, Supabase Auth)
+- Dead code identified but NOT deleted (per stabilization rules): 32 one-time sweep scripts (`data/sweep_2026_07_*.py`) — data already committed through Round 40
+- No active bugs found; all 9 GitHub Actions workflows audited
+- Data pipeline confirmed correct: `restrictions_raw.json` (human-edited) → `process_data.py` → `map_data.json` → Pages deploy; policy pipeline NEVER writes to map data
+- Deploy chain verified: `update_data.yml` commits map_data.json WITHOUT `[skip ci]` → triggers `deploy_pages.yml` via push + workflow_run; hourly news commits now correctly tagged `[skip ci]`
+- Confirmed `cache: "no-store"` on `ai_news.json` fetch means Pages does not need to redeploy for articles to appear — `[skip ci]` on news commits is safe
+- See AI_CHANGELOG.md for full stabilization entry
+
+## Globals Reference
+
+### window.AUTH (js/auth.js)
+```javascript
+window.AUTH = {
+  getState(),      // → 'loading' | 'signedOut' | 'signedIn' | 'resettingPassword'
+  getUser(),       // → Supabase User object or null
+  signIn(email, password),
+  signUp(email, password),
+  signOut(),
+  sendPasswordReset(email),
+  updatePassword(newPassword),
+  updateProfile(fields),   // updates profiles table
+  getProfile(),            // → { display_name, avatar_url, ... } or null
+}
+// Events dispatched on document:
+// 'auth:stateChange'    → { detail: { state, user } }
+// 'auth:preferenceSync' → { detail: { prefs: Map<key,value> } }
+```
+
+### window.APP_CONFIG (js/supabase-config.js)
+```javascript
+window.APP_CONFIG = {
+  SUPABASE_URL: 'YOUR_SUPABASE_URL',     // replace with real project URL
+  SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY'  // replace with real anon key
+};
+```
+
+### window._applyTheme (js/map.js)
+```javascript
+window._applyTheme(theme);  // 'dark' | 'light' — triggers full Leaflet style refresh
+```
+
 ## AI Handoff Summary
 
-**Current state**: The map is a fully functional Leaflet GIS app. All dependencies are vendored. The app loads and renders correctly in both connected and restricted-network environments (county polygons render even without tile access).
+**Current state**: Fully functional Leaflet GIS app with authentication, AI News, AI Stocks, Analytics, Home/Command Center tabs. All dependencies vendored. County data covers 1,303 records (Round 40). Authentication gracefully degrades when Supabase is not configured.
 
 **Branch**: `claude/us-datacenter-restrictions-map-skooi7` — merge to `main` to deploy to GitHub Pages.
 
-**Next steps (not yet requested)**:
-1. Connect real facility/infra data files (replace sample_layers.json)
-2. Add county name lookup for counties without restriction data
-3. Add state-level detail panel content (currently only county detail shows state policy)
-4. Performance: consider canvas rendering for lower-end mobile devices
-5. Add a "share link" feature (URL hash with selected county FIPS)
+**Next phase**: Zoning Data — city-level regulation layer and overlapping regulation display.
+
+**Before zoning, consider**:
+1. Replace `data/sample_layers.json` facility data with verified sources
+2. Add county name lookup for counties without restriction data (county_names.json exists but not fully integrated)
+3. Delete or archive 32 dead one-time sweep scripts (`data/sweep_2026_07_*.py`) after confirming data integrity
+4. Add state-level detail panel content integrated into selected county view

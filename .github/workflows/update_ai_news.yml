@@ -75,6 +75,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to ai_news.json — skipping commit."
           else
-            git commit -m "Automated AI news update"
+            git commit -m "Automated AI news update [skip ci]"
             git push origin main
           fi

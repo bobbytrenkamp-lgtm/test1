@@ -2,8 +2,8 @@ name: Update Facility Dataset
 
 on:
   schedule:
-    # Run daily at 03:00 UTC to pick up newly announced facilities
-    - cron: "0 3 * * *"
+    # Run weekly on Sunday at 03:00 UTC — facility data changes slowly
+    - cron: "0 3 * * 0"
   workflow_dispatch:
     inputs:
       source:

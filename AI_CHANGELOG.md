@@ -5,6 +5,47 @@
 Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Stabilization Checkpoint — Pre-Zoning Phase Audit
+Files Changed:
+- `.github/workflows/update_ai_news.yml` (modified)
+- `.github/workflows/update_policy_sources.yml` (modified)
+- `.github/workflows/update_facilities.yml` (modified)
+- `PROJECT_CONTEXT.md` (modified)
+- `AI_CONTEXT.md` (modified — Sessions 5 and 6 added)
+- `AI_CHANGELOG.md` (this entry)
+
+Changes Made:
+- **CI/CD: Stopped ~24 unnecessary Pages deploys/day** — `update_ai_news.yml` was committing `ai_news.json` hourly without `[skip ci]`, triggering `deploy_pages.yml` on each push. News articles are fetched by the frontend with `cache: "no-store"` so Pages redeploy is never needed for articles to appear. Added `[skip ci]` to the commit message.
+- **CI/CD: Stopped 1 unnecessary Pages deploy/day** — `update_policy_sources.yml` was committing backend-only pipeline files (`policy_candidates.json`, `source_health.json`, etc.) without `[skip ci]`. The frontend never reads these files. Added `[skip ci]` to the commit message.
+- **CI/CD: Reduced facility pipeline from daily to weekly** — `update_facilities.yml` was running every day with a 60-minute timeout. Facility data changes slowly (new announcements are infrequent). Changed cron from `"0 3 * * *"` to `"0 3 * * 0"` (Sundays at 03:00 UTC). Saves 6 × 60-min timeout runs/week.
+- **PROJECT_CONTEXT.md**: Updated Completed Features section — was missing ~10 major features added since initial documentation. Added: AI Stocks tab, Analytics tab, Home/Command Center tab, Government-source data pipeline, Legislative monitoring, Facility pipeline, Infrastructure layer fetching, Political Risk layer, GIS Toolbar, Supabase Authentication.
+- **AI_CONTEXT.md**: Added Session 5 (Supabase Auth) and Session 6 (this stabilization) entries; added Globals Reference section documenting `window.AUTH`, `window.APP_CONFIG`, `window._applyTheme`; updated AI Handoff Summary.
+
+Architecture Audit Findings:
+- All 9 GitHub Actions workflows reviewed. Deploy chain is correct: `update_data.yml` → Pages deploy via push + workflow_run; all data-only commits correctly use `[skip ci]` (after fixes above).
+- Data pipeline integrity confirmed: `restrictions_raw.json` (human-edited, 1,303 records) → `process_data.py` → `map_data.json`; policy pipeline NEVER writes to map data.
+- Dead code identified but NOT deleted per stabilization rules: 32 one-time sweep scripts (`data/sweep_2026_07_*.py`) — their job (Rounds 1–40) is complete; data is in `restrictions_raw.json`.
+- `js/auth.js`: minor code smell only — `var profile` declared twice in two branches of `onAuthStateChange` callback. Valid JS (function-scoped `var`) but would trigger ESLint `no-redeclare`. Low priority.
+- Large committed files: `data/facilities_master.json` (4.2 MB), `data/facilities_changelog.json` (2.6 MB) — in git history; not removed.
+
+Problems Found:
+- Missing `[skip ci]` in two workflow commit messages (fixed above).
+- `update_facilities.yml` running at unnecessary daily frequency (fixed above).
+- `PROJECT_CONTEXT.md` missing ~10 completed features (fixed above).
+- 32 dead one-time sweep scripts (documented; not deleted per stabilization rules).
+
+Instructions for Next AI:
+- Read PROJECT_CONTEXT.md, AI_CHANGELOG.md, BUG_TRACKER.md, AI_CONTEXT.md before coding.
+- The next planned phase is Zoning Data (city-level regulation layer). See PROJECT_CONTEXT.md Planned Features for scope.
+- Do NOT delete the 32 sweep scripts without confirming with the user first.
+- Do NOT auto-write to `restrictions_raw.json` or `map_data.json` from any pipeline.
+- Supabase auth gracefully degrades — do not assume it is configured when testing features.
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
 - `js/supabase-config.js` (new)
 - `js/auth.js` (new)
