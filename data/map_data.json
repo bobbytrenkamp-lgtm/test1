@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-17T01:21:03.066609+00:00",
+  "generated_at": "2026-07-17T01:24:55.176581+00:00",
   "source_last_updated": "2026-07-17",
   "stats": {
-    "total_counties_tracked": 1203,
+    "total_counties_tracked": 1223,
     "by_level": {
-      "-1": 1091,
+      "-1": 1111,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,7 +12,7 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 1194,
+      "data_center": 1214,
       "water": 14,
       "ai": 182,
       "energy": 160,
@@ -31394,6 +31394,466 @@
       "confidence": "low",
       "confidence_score": 36,
       "source_tier": 3
+    },
+    "01061": {
+      "name": "Geneva County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Geneva County AL \u2014 Geneva/Wiregrass region/Conecuh River/peanut farming/SE Alabama",
+      "description": "Geneva County in extreme southeastern Alabama sits in the Wiregrass region \u2014 named for the wiregrass plant that covered the native pine savanna before European settlement and agriculture. Geneva is the county seat on the Conecuh River. The Wiregrass region is Alabama's peanut belt, with Geneva County a significant peanut-producing county in one of the nation's top peanut-producing states. The county's position near the Florida Panhandle connects it to the northwest Florida economy and Destin-Fort Walton Beach metro area's workforce commuting zone. USDA's peanut programs, crop insurance IT, and agricultural extension services are significant institutional computing anchors for Geneva County's farming economy.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Geneva County Alabama",
+          "url": "https://www.genevacountyalabama.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "01035": {
+      "name": "Conecuh County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Conecuh County AL \u2014 Evergreen/Conecuh National Forest/longleaf pine restoration/SW Alabama",
+      "description": "Conecuh County in southwestern Alabama is home to Evergreen and the Conecuh National Forest \u2014 one of the most active longleaf pine restoration areas in the Southeast. The Conecuh NF's Red Hills salamander habitat (one of the rarest salamanders in the US, found only in a 6-county strip of southwest Alabama) creates USFWS monitoring IT for a critically endangered endemic species. The Conecuh River flows through the county toward the Florida state line. The county's history includes significant African American population heritage and civil rights context. Alabama's rural broadband deployment programs include Conecuh County in southwest Alabama's priority deployment zones.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Conecuh County Alabama",
+          "url": "https://www.conecuhcounty.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "01005": {
+      "name": "Barbour County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Barbour County AL \u2014 Eufaula/Lake Eufaula/Wallace birthplace/SE Alabama Black Belt",
+      "description": "Barbour County in southeastern Alabama is best known as the birthplace of George Wallace \u2014 four-term Alabama governor and 1968 presidential candidate who ran on a segregationist platform and later renounced his views. Eufaula is the county seat on the Chattahoochee River, which forms the Alabama-Georgia border; Lake Eufaula (Walter F. George Lake) is one of the most productive bass fishing lakes in the Southeast, driving a significant recreation and tournament fishing economy. Barbour County sits at the edge of the Black Belt (the dark prairie soil belt historically associated with cotton and African American population) and the Wiregrass region. The county's civil rights history, Wallace legacy, and Lake Eufaula tourism create a distinctive institutional IT profile.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Barbour County Alabama",
+          "url": "https://www.barbourcountyalabama.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "01013": {
+      "name": "Butler County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Butler County AL \u2014 Greenville/I-65 corridor/SW Alabama Black Belt/Camellia City",
+      "description": "Butler County in south-central Alabama centers on Greenville \u2014 located on I-65, the primary north-south corridor connecting Birmingham to Montgomery to Mobile. Greenville is known as the 'Camellia City' for its camellia gardens. The county's I-65 position creates freight logistics IT connecting the Alabama Black Belt to the Gulf Coast. Butler County's agricultural economy includes forestry, cattle, and row crops in the transition zone between the Black Belt prairie soils and the coastal plain pine forests. The county's proximity to Montgomery (40 miles north) gives it some metro influence without being a true suburb. Alabama Rural Electric Association serves the county's dispersed rural electricity customers.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Butler County Alabama",
+          "url": "https://www.butlercountyalabama.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "51077": {
+      "name": "Grayson County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Grayson County VA \u2014 Independence/Mount Rogers highest VA point/New River headwaters/Grayson Highlands",
+      "description": "Grayson County in far southwestern Virginia contains Mount Rogers \u2014 at 5,729 feet, the highest point in Virginia \u2014 and Grayson Highlands State Park, one of Virginia's most spectacular mountain parks with wild ponies grazing above timberline on bald summits. The New River (one of the world's oldest rivers) originates in Grayson County, flowing north through the county before entering North Carolina. The county's remote position in the Blue Ridge Mountains makes it one of Virginia's most geographically isolated counties, with ARC broadband and rural development programs targeting the connectivity gap. Jefferson National Forest covers extensive portions of the county. The Appalachian Trail passes through the Mount Rogers National Recreation Area in Grayson County.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Grayson County Virginia",
+          "url": "https://www.graysoncountyva.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "51051": {
+      "name": "Dickenson County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dickenson County VA \u2014 Clintwood/far SW Virginia/Breaks Interstate Park/Appalachian coal",
+      "description": "Dickenson County in the far southwestern corner of Virginia is one of the state's most remote and mountainous counties \u2014 a coal-producing Appalachian county adjacent to Buchanan County and the Kentucky border. Clintwood is the county seat. The county shares the Breaks Interstate Park with neighboring Kentucky \u2014 the 'Grand Canyon of the South' (the deepest canyon east of the Mississippi River). Dickenson County's coal production, once a major employer, has substantially declined. The county is one of Virginia's persistent ARC economic distress counties, with broadband connectivity challenges in the rugged mountain terrain. The Ralph Stanley Museum in Clintwood honors the legendary bluegrass musician who was born in the county \u2014 Stanley's roots in the musical heritage of the Virginia coalfields are celebrated at the museum.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Dickenson County Virginia",
+          "url": "https://www.dickensonva.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "51053": {
+      "name": "Dinwiddie County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dinwiddie County VA \u2014 Petersburg/Civil War Petersburg Siege/Fort Lee/I-85 corridor",
+      "description": "Dinwiddie County surrounds Petersburg, Virginia \u2014 site of the longest siege in American Civil War history (June 1864-April 1865), where Grant's army eventually broke Lee's defenses after a nine-month standoff that foreshadowed the trench warfare of World War I. The Petersburg National Battlefield spans portions of Dinwiddie County, with extensive NPS management IT. Fort Gregg-Adams (formerly Fort Lee) in Dinwiddie County is one of the US Army's major installations, home to Army logistics command and training. The county's I-85 corridor creates a logistics and distribution zone south of the Richmond-Petersburg metro. Dinwiddie County's position in the greater Richmond-Petersburg metro area gives it urban fringe growth dynamics.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Dinwiddie County Virginia",
+          "url": "https://www.dinwiddieva.us"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "51001": {
+      "name": "Accomack County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Accomack County VA \u2014 Accomac/Eastern Shore/Assateague Island/NASA Wallops Flight Facility",
+      "description": "Accomack County occupies the northern portion of Virginia's Eastern Shore \u2014 the peninsula between the Chesapeake Bay and the Atlantic Ocean, connected to mainland Virginia only by the 17-mile Chesapeake Bay Bridge-Tunnel. Accomac is the county seat. The county contains NASA's Wallops Flight Facility \u2014 one of the oldest launch sites in the world, providing rocket launch and research capabilities including orbital launches for small satellites, serving commercial, NASA, and Department of Defense customers. Assateague Island National Seashore's Virginia portion (Chincoteague National Wildlife Refuge) with its famous wild ponies is a major tourism destination. The Eastern Shore's agricultural economy (tomatoes, soybeans, potatoes) and aquaculture industry (oysters, clams) add agricultural and food processing IT.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Accomack County Virginia",
+          "url": "https://www.co.accomack.va.us"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "27029": {
+      "name": "Clearwater County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clearwater County MN \u2014 Bagley/Red Lake River/Red Lake Nation adjacent/north-central MN",
+      "description": "Clearwater County in north-central Minnesota centers on Bagley on the Red Lake River \u2014 a tributary of the Red River flowing toward Manitoba. The county borders the Red Lake Band of Chippewa's reservation (the largest continuous territory of an American Indian tribe in Minnesota), and tribal government, natural resource management, and sovereignty IT from the Red Lake Nation extends into the county's regional context. The county's position in the transition zone between Minnesota's agricultural south and the boreal forest north creates a mixed forest and agricultural landscape. Clearwater County's connectivity is served by TDS Telecom and rural electric cooperatives with state rural broadband programs targeting the county for expanded access.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Clearwater County Minnesota",
+          "url": "https://www.co.clearwater.mn.us"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "27031": {
+      "name": "Cook County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cook County MN \u2014 Grand Marais/Boundary Waters Canoe Area Wilderness/Lake Superior NE tip",
+      "description": "Cook County occupies the northeastern tip of Minnesota \u2014 the northernmost point of the state east of the Boundary Waters, bounded by Lake Superior to the south and east and the Canadian border to the north. Grand Marais is the county seat, a small tourist city on Lake Superior. The Boundary Waters Canoe Area Wilderness (BWCA) covers almost all of Cook County \u2014 1.1 million acres of lakes and forest constituting the most visited wilderness area in the United States, with 250,000 permitted visitors annually. Superior National Forest management IT and BWCA permit system IT (the federal permitting system for wilderness entry) represent significant federal computing for such a remote area. The county's copper-nickel mining proximity (the proposed Twin Metals mine near Ely) creates ongoing environmental monitoring IT.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Cook County Minnesota",
+          "url": "https://www.co.cook.mn.us"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "27041": {
+      "name": "Douglas County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Douglas County MN \u2014 Alexandria/west-central MN lake country/I-94/Kensington Runestone",
+      "description": "Douglas County in west-central Minnesota centers on Alexandria \u2014 a regional commercial hub for lake country tourism and agriculture. The county is part of Minnesota's lake country, with over 300 lakes driving a significant resort and recreation economy. The Kensington Runestone \u2014 discovered in 1898 and claimed to document a 14th-century Norse expedition into Minnesota \u2014 is on display in Alexandria and remains one of America's most controversial archaeological artifacts (most scholars consider it a hoax; defenders maintain it is genuine). Alexandria's regional hospital and commercial services anchor a multi-county trade area in west-central Minnesota. The I-94 corridor gives Douglas County strong freight connectivity between Minneapolis and Fargo.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Douglas County Minnesota",
+          "url": "https://www.co.douglas.mn.us"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "13029": {
+      "name": "Bryan County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bryan County GA \u2014 Pembroke/Savannah exurb/Fort Stewart adjacent/fastest-growing GA counties",
+      "description": "Bryan County in coastal Georgia has been one of Georgia's fastest-growing counties \u2014 its position between Savannah (30 miles north) and Fort Stewart (the largest Army installation east of the Mississippi River, in adjacent Liberty County) creates suburban growth pressure from both military families and Savannah commuters. Pembroke is the county seat. Ford Motor Company's BlueOval City announcement for a battery plant corridor extending into the Savannah region has accelerated Bryan County's economic development profile. The county's Savannah metro connection gives it access to one of the South's fastest-growing ports \u2014 the Port of Savannah is the busiest East Coast container port south of New York. Bryan County's agricultural to suburban transition creates rapidly evolving IT infrastructure demands.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Bryan County Georgia",
+          "url": "https://www.bryancountyga.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "13043": {
+      "name": "Candler County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Candler County GA \u2014 Metter/SE Georgia/Oconee adjacent/peanuts and pecans/agriculture",
+      "description": "Candler County in southeastern Georgia centers on Metter \u2014 a small agricultural market town in the Coastal Plain southeast Georgia farming region. The county's agricultural economy features peanuts, pecans, tobacco, and row crops typical of the SE Georgia Coastal Plain. Georgia's peanut industry (one of the largest in the US) is concentrated in counties like Candler, with USDA commodity programs, NRCS conservation IT, and agricultural extension services creating institutional computing presence. The county's position near I-16 (the Savannah-to-Macon corridor) gives it highway connectivity and some commercial influence from both directions. Candler County participates in Southeast Georgia economic development council programs for rural workforce development.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Candler County Georgia",
+          "url": "https://www.candlercountyga.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "13049": {
+      "name": "Charlton County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Charlton County GA \u2014 Folkston/Okefenokee NWR main entrance/SE Georgia/Trail Ridge",
+      "description": "Charlton County in extreme southeastern Georgia is the gateway to the Okefenokee National Wildlife Refuge \u2014 the largest blackwater swamp in North America, a 438,000-acre peat-filled wilderness of open prairies, cypress swamps, and pine islands. Folkston (county seat) is the primary entry point for Okefenokee NWR, with USFWS visitor management, wildlife monitoring (sandhill cranes, alligators, black bears), and ecological research IT. The Trail Ridge \u2014 a long linear sand ridge forming the eastern boundary of the Okefenokee \u2014 crosses Charlton County, and proposed mining on Trail Ridge has been the subject of environmental controversy. The county borders Florida and the Pinhook Swamp conservation corridor.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Charlton County Georgia",
+          "url": "https://www.charltoncountyga.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "19075": {
+      "name": "Grundy County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Grundy County IA \u2014 Grundy Center/NE Iowa agricultural/Black Hawk watershed/small town Iowa",
+      "description": "Grundy County in north-central Iowa centers on Grundy Center, a small agricultural market town in the Black Hawk watershed draining toward the Cedar River. The county's row crop agriculture (corn and soybeans) and hog production are typical of the north-central Iowa farm belt. Grundy County's participation in Iowa's rural broadband deployment programs reflects the state's emphasis on agricultural connectivity \u2014 precision agriculture, GPS guidance systems, and market data access are now standard requirements for competitive farming. Iowa State Extension's agricultural outreach extends into Grundy County with digital literacy and connectivity programs. The county's small towns maintain rural hospital access through the Iowa Area Development Group regional health programs.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Grundy County Iowa",
+          "url": "https://www.grundycounty.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "19141": {
+      "name": "O'Brien County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "O'Brien County IA \u2014 Primghar/NW Iowa corn belt/Little Sioux River/wind energy corridor",
+      "description": "O'Brien County in northwestern Iowa centers on Primghar \u2014 the county seat with one of Iowa's most unusual names (an acronym: O'Brien, Perry, Rand, Inman, Garfield, Hart, and Albright \u2014 the men who donated land for the county seat site). The county's northwest Iowa position puts it in the heart of the MISO wind energy zone \u2014 northwest Iowa has some of the nation's highest capacity factor wind resources, and O'Brien County hosts wind turbines connected to MidAmerican Energy's (Berkshire Hathaway) massive Iowa wind portfolio. The county's agricultural base (corn, soybeans, and hogs) and wind energy overlay create a dual economy. The Little Sioux River flows through the county toward the Missouri River watershed.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "O'Brien County Iowa",
+          "url": "https://www.obriencountyiowa.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "19043": {
+      "name": "Clayton County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clayton County IA \u2014 Elkader/NE Iowa/Turkey River/Effigy Mounds adj/Driftless landscape",
+      "description": "Clayton County in northeastern Iowa is part of the Driftless Area \u2014 the region never covered by glaciers, featuring rugged bluffs, spring-fed streams, trout streams, and exceptional biodiversity. Elkader is the county seat on the Turkey River, a nationally recognized trout stream with exceptional water quality maintained by the Driftless Area Restoration Effort (DARE) conservation programs. The county's proximity to Effigy Mounds National Monument (in adjacent Allamakee County on the Mississippi) gives it cultural heritage context. Clayton County's Driftless landscape is among Iowa's most scenic, with Echo Valley State Park and Pikes Peak State Park. The Turkey River watershed restoration IT and USDA NRCS conservation program computing represent significant federal investment in this ecologically rich northeast Iowa county.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Clayton County Iowa",
+          "url": "https://www.claytoncoia.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "46097": {
+      "name": "Miner County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Miner County SD \u2014 Howard/SE South Dakota lake district/James River watershed/glacial lakes",
+      "description": "Miner County in southeastern South Dakota sits in the glacial lake district east of the James River \u2014 a landscape of prairie lakes and potholes created by the last glaciation that are critical waterfowl breeding habitat. Howard is the county seat in a classic Great Plains agricultural county. The James River Valley corridor through Miner County represents one of South Dakota's most productive row crop zones. USDA's Prairie Pothole Joint Venture and waterfowl habitat conservation programs operate extensively in Miner County, with USFWS monitoring IT for duck, goose, and shorebird populations. The county's rural broadband programs through the USDA ReConnect program address connectivity gaps in this dispersed agricultural landscape.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Miner County South Dakota",
+          "url": "https://www.minercountysd.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "46053": {
+      "name": "Gregory County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Gregory County SD \u2014 Burke/Missouri River/Fort Randall Dam/Yankton Sioux/Lewis & Clark",
+      "description": "Gregory County in south-central South Dakota borders the Missouri River at Lake Francis Case (the reservoir behind Fort Randall Dam) \u2014 one of the four main-stem Missouri River dams built by the Army Corps of Engineers. Burke is the county seat. The Yankton Sioux Tribe's reservation lands extend into the county along the Missouri River, with tribal government IT from the Yankton Sioux. The Fort Randall Dam and Power Plant are Army Corps facilities with dam safety monitoring, power generation IT, and recreation management computing. Lewis and Clark passed through this stretch of the Missouri in 1804 and 1806. Gregory County's cattle ranching and row crop production on the Missouri River bottomlands create agricultural IT.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Gregory County South Dakota",
+          "url": "https://www.gregorycountysd.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "46059": {
+      "name": "Hand County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hand County SD \u2014 Miller/central South Dakota/James River valley/one of largest SD counties",
+      "description": "Hand County in central South Dakota is one of the state's largest counties by area \u2014 a vast, flat central South Dakota county in the James River Valley. Miller is the county seat. The James River flows through Hand County in one of its widest valley sections, providing water for the surrounding dryland and irrigated farming. The county's wheat, corn, and sunflower production is typical of central South Dakota's agricultural economy. South Dakota Telecommunications Association's rural cooperative broadband programs extend into Hand County as part of the state's rural connectivity initiative. Hand County's position between Pierre (the state capital, 70 miles west) and Huron (70 miles east) gives it limited regional service access from both directions.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Hand County South Dakota",
+          "url": "https://www.handcountysd.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -31870,7 +32330,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-17T01:21:03.282419+00:00",
+    "last_computed": "2026-07-17T01:24:55.397526+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

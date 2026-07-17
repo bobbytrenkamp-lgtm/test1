@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 36)
+- `data/map_data.json` (Round 36)
+- `docs/data-sweeps/2026-07-massive-sweep-round-36.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 36**: Alabama (Geneva/Wiregrass peanut farming Conecuh River, Conecuh/Evergreen Conecuh NF Red Hills salamander longleaf restoration, Barbour/Eufaula Lake Eufaula George Wallace birthplace Black Belt, Butler/Greenville I-65 Camellia City), Virginia (Grayson/Independence Mount Rogers highest VA New River wild ponies Grayson Highlands, Dickenson/Clintwood Ralph Stanley Museum Breaks Park SW VA coal, Dinwiddie/Petersburg Siege longest Civil War Fort Gregg-Adams, Accomack/Eastern Shore NASA Wallops Flight Facility Assateague Island), Minnesota (Clearwater/Bagley Red Lake River Red Lake Nation adjacent, Cook/Grand Marais Boundary Waters Canoe Area Wilderness 1.1M acres most visited wilderness, Douglas/Alexandria west-central MN lake country I-94 Kensington Runestone), Georgia (Bryan/Pembroke Savannah exurb Fort Stewart fastest-growing GA, Candler/Metter SE GA peanuts pecans I-16, Charlton/Folkston Okefenokee NWR main entrance largest blackwater swamp NA), Iowa (Grundy/Grundy Center NE Iowa Black Hawk watershed precision ag, O'Brien/Primghar acronym county seat NW Iowa MidAmerican Energy wind portfolio, Clayton/Elkader Driftless Turkey River trout Effigy Mounds adj), South Dakota (Miner/Howard SE SD glacial lake district Prairie Pothole JV, Gregory/Burke Fort Randall Dam Yankton Sioux Lewis & Clark, Hand/Miller central SD James River valley largest SD counties). 20 net new records (1223 total).
+- **No FIPS errors** — twenty-fifth consecutive clean validation run.
+
+Reasoning:
+- Accomack County VA (NASA Wallops): One of the oldest and only East Coast orbital launch sites. Commercial launches, ISS cargo missions, and government research make Wallops a unique technology anchor in one of Virginia's most geographically isolated counties (Eastern Shore, Bay Bridge-Tunnel access only).
+- Cook County MN (BWCA): Most visited US wilderness area (1.1M acres, 1,000+ lakes). The federal BWCA permit reservation system is one of the most sophisticated wilderness management IT systems. The county's opposition to nearby copper mining has been one of the most sustained environmental advocacy campaigns in upper Midwest history.
+- Charlton County GA (Okefenokee): Gateway to the largest blackwater swamp in North America. The Okefenokee's floating peat islands, alligator populations, and proposed Trail Ridge titanium mining controversy make it one of the Southeast's most ecologically significant and contested conservation landscapes.
+- Dickenson County VA (Ralph Stanley): The birthplace of one of America's most important roots music figures. Ralph Stanley's mountain music, rooted in the Virginia coalfields' Appalachian singing tradition, helped define American folk music — and the county's Breaks Interstate Park gorge is the deepest canyon east of the Mississippi River.
+
+Problems Found:
+- 0 FIPS errors (twenty-fifth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 35)
 - `data/map_data.json` (Round 35)
 - `docs/data-sweeps/2026-07-massive-sweep-round-35.md` (new)
