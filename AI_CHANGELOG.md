@@ -6,6 +6,29 @@ Date: 2026-07-16
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 16)
+- `data/map_data.json` (Round 16)
+- `docs/data-sweeps/2026-07-massive-sweep-round-16.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 16**: Alabama (Houston/Dothan/SE hub, Russell/Phenix City/Fort Moore, DeKalb/Fort Payne/sock capital, Coffee/Enterprise/Fort Novosel aviation), New Mexico (Sandoval/Rio Rancho/Intel fab, McKinley/Gallup/Navajo Nation, San Juan/Farmington/natural gas, Taos/arts colony/LANL), Oklahoma (Pittsburg/McAlester AAP, Bryan/Durant/Choctaw Nation HQ, Carter/Ardmore), Minnesota (Kandiyohi/Willmar/Jennie-O, Crow Wing/Brainerd/lakes, Chisago/TC NE exurb), Nebraska (Dakota/South Sioux City/Tyson, Colfax/Schuyler/Tyson pork), Iowa (Harrison/Missouri Valley/I-29, Floyd/Charles City, Bremer/Waverly/Wartburg), Missouri (Webster/Marshfield/I-44). 20 net new records (823 total).
+- **No FIPS errors** — fifth consecutive clean validation run.
+
+Reasoning:
+- Sandoval County NM (Rio Rancho/Intel): Intel's massive NM semiconductor fab campus is the most power-intensive industrial complex in NM outside LANL. PNM substation build-out to serve Intel is among the state's largest industrial electrical investments. A major database gap now corrected.
+- Coffee County AL (Fort Novosel aviation center): Army's most sophisticated flight simulation and training IT — every Army aviator trains here. Federal load substantially exceeds the rural civilian economy.
+- Pittsburg County OK (McAlester AAP): The Army's primary conventional bomb plant. Production management and inventory systems represent critical specialized federal IT in an isolated rural county.
+- Bryan County OK (Choctaw Nation/WinStar): Third-largest tribe's government IT + world's largest casino IT creates concentrated demand far beyond what county population metrics suggest. Tribal nations systematically underrepresented in data center analyses.
+
+Problems Found:
+- 0 FIPS errors (fifth consecutive clean validation run).
+
+---
+
+Date: 2026-07-16
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 15)
 - `data/map_data.json` (Round 15)
 - `docs/data-sweeps/2026-07-massive-sweep-round-15.md` (new)

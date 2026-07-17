@@ -20300,6 +20300,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "01069",
+      "name": "Houston County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Houston County \u2014 Dothan/Wiregrass hub/SE Alabama commerce and healthcare",
+      "description": "Dothan is the largest city in southeast Alabama and the undisputed commercial and healthcare hub of the Wiregrass region \u2014 a multi-state trade area spanning southeast Alabama, southwest Georgia, and northwest Florida. Southeast Health (formerly Southeast Alabama Medical Center) and other healthcare systems make Dothan a regional medical center. The National Peanut Festival, agricultural processing operations, and retail concentration drive IT demand. Alabama Power's substation infrastructure serves significant industrial and commercial load in Houston County.",
+      "sources": [
+        {
+          "label": "Houston County Alabama",
+          "url": "https://www.houstoncounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "01113",
+      "name": "Russell County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Russell County \u2014 Phenix City/Fort Benning metro/Columbus GA cross-border",
+      "description": "Russell County sits across the Chattahoochee River from Columbus, Georgia, forming a bi-state metro with Fort Benning (now Fort Moore) \u2014 home of the US Army Infantry School and one of the largest Army bases in the country. Phenix City is the Alabama side of this metro. The Columbus/Fort Moore military digital ecosystem \u2014 Army Cyber Center of Excellence, National Infantry Museum, massive simulation and training systems \u2014 creates substantial bi-state federal IT infrastructure in which Russell County participates. Alabama Power serves the area.",
+      "sources": [
+        {
+          "label": "Russell County Alabama",
+          "url": "https://www.russellcountyalabama.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "01049",
+      "name": "DeKalb County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "DeKalb County \u2014 Fort Payne/sock capital/NE Alabama textile manufacturing",
+      "description": "Fort Payne in DeKalb County is the hosiery and sock manufacturing capital of the world \u2014 with over 100 sock mills concentrated in the county. This highly specialized manufacturing sector created industrial electrical infrastructure sized for large-scale textile operations. DeKalb County's position on Lookout Mountain in northeast Alabama puts it on the I-59 corridor connecting Birmingham to Chattanooga. Northeast Alabama Electric Cooperative serves the area. The county's unique industrial concentration makes it an atypical but genuine industrial power market in a rural Alabama county.",
+      "sources": [
+        {
+          "label": "DeKalb County Alabama",
+          "url": "https://www.dekalbcountyal.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "01031",
+      "name": "Coffee County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Coffee County \u2014 Enterprise/Fort Rucker/US Army Aviation Center",
+      "description": "Coffee County hosts Fort Rucker (now Fort Novosel) \u2014 the US Army Aviation Center of Excellence and the home of Army helicopter training. Nearly every Army aviator learns to fly at Fort Rucker/Novosel, and the base's flight simulation, maintenance, and training IT systems represent a major federal computing concentration in rural Alabama. Enterprise State Community College complements the military workforce. Alabama Power and Central Alabama Electric Cooperative serve the county. The Army Aviation Center's digital infrastructure for flight training simulation is among the most sophisticated in the military education system.",
+      "sources": [
+        {
+          "label": "Coffee County Alabama",
+          "url": "https://www.coffeecounty-al.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "35043",
+      "name": "Sandoval County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Sandoval County \u2014 Rio Rancho/Intel fab/NM's 3rd largest city",
+      "description": "Rio Rancho in Sandoval County is New Mexico's third-largest city and home to Intel's massive semiconductor fabrication campus \u2014 one of the largest chip manufacturing facilities in the US outside Intel's Oregon and Arizona sites. Intel's Rio Rancho operations employ thousands and represent some of the most power-intensive industrial operations in the state, creating extraordinary PNM (Public Service New Mexico) substation capacity in Sandoval County. The adjacent Sandia National Laboratories and Kirtland AFB in Bernalillo County extend the high-tech ecosystem north into Rio Rancho. A major omission from the database now corrected.",
+      "sources": [
+        {
+          "label": "Sandoval County New Mexico",
+          "url": "https://www.sandovalcountynm.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "35031",
+      "name": "McKinley County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McKinley County \u2014 Gallup/Route 66/coal power legacy/Navajo Nation hub",
+      "description": "Gallup in McKinley County is the largest city on Route 66 in New Mexico and the commercial hub for the Navajo Nation and surrounding tribal lands. McKinley County has historically hosted major coal mining operations (Navajo Mine) and coal-fired power generation (Four Corners Power Plant and Navajo Generating Station nearby). Legacy transmission infrastructure from the coal power era created high-capacity Western Area Power Administration grid infrastructure in the region. The Navajo Nation's digital infrastructure needs \u2014 tribal government IT, healthcare, education \u2014 are centered in Gallup as the nearest large commercial city.",
+      "sources": [
+        {
+          "label": "McKinley County New Mexico",
+          "url": "https://www.mckinleycountynm.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "35045",
+      "name": "San Juan County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "San Juan County \u2014 Farmington/Four Corners energy/NM natural gas hub",
+      "description": "San Juan County in northwest New Mexico is the center of the San Juan Basin \u2014 one of the most productive natural gas fields in the US. Farmington serves as the oil and gas industry's regional hub, with pipeline gathering, compression, and processing operations requiring extensive SCADA and digital monitoring infrastructure. The area's energy sector has driven Farmington Municipal Utilities and New Mexico Gas Company infrastructure well beyond what the population requires. As coal (San Juan Generating Station) transitions and natural gas remains critical, Farmington's energy IT sector continues to be the most data-intensive in rural New Mexico.",
+      "sources": [
+        {
+          "label": "San Juan County New Mexico",
+          "url": "https://www.sjcounty.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "35055",
+      "name": "Taos County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Taos County \u2014 Taos/arts colony/Los Alamos National Lab spillover/NM northern hub",
+      "description": "Taos County sits in the northern New Mexico mountains and hosts one of the most concentrated artist and creative communities in the US \u2014 with attendant high-speed internet and technology infrastructure to support remote workers, galleries, and tourism. The proximity to Los Alamos National Laboratory (35028) \u2014 just 60 miles south \u2014 means that LANL employees, contractors, and researchers live in Taos, creating a technically sophisticated residential population. Kit Carson Electric Cooperative has invested significantly in fiber infrastructure for the county. Taos Pueblo is a UNESCO World Heritage Site with tribal government IT requirements.",
+      "sources": [
+        {
+          "label": "Taos County New Mexico",
+          "url": "https://www.taoscounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "40121",
+      "name": "Pittsburg County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pittsburg County \u2014 McAlester/Army Ammunition Plant/naval munitions",
+      "description": "McAlester Army Ammunition Plant (MCAAP) in Pittsburg County is the US Army's primary facility for manufacturing and storing conventional ammunition and bombs. MCAAP produces the majority of the bombs dropped by US forces globally, and its production, inventory, and quality control systems represent a critical and highly specialized federal IT infrastructure concentration. East Central University serves the county academically. PSO (Public Service Oklahoma) provides electrical service. Pittsburg County's status as the center of the US Army's conventional ordnance production chain makes it a genuinely unique federal computing county often overlooked in commercial analyses.",
+      "sources": [
+        {
+          "label": "Pittsburg County Oklahoma",
+          "url": "https://www.pittsburgcountyok.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "40013",
+      "name": "Bryan County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bryan County \u2014 Durant/Choctaw Nation HQ/Southeastern Oklahoma State",
+      "description": "Durant in Bryan County is the headquarters of the Choctaw Nation of Oklahoma \u2014 the third-largest federally recognized tribe in the US, with over 200,000 enrolled members. The Choctaw Nation's tribal government IT, healthcare (Choctaw Nation Health Services), and expanding gaming and hospitality enterprise (Durant's WinStar World Casino is the world's largest casino by gambling floor area) creates substantial data center demand. Southeastern Oklahoma State University adds an academic IT presence. AEP/PSO serves the county. The Choctaw Nation's IT infrastructure investment in Durant makes Bryan County an unusual and underappreciated computing market.",
+      "sources": [
+        {
+          "label": "Bryan County Oklahoma",
+          "url": "https://www.bryancountyok.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "40019",
+      "name": "Carter County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Carter County \u2014 Ardmore/southern Oklahoma oil and gas hub",
+      "description": "Ardmore in Carter County is southern Oklahoma's largest city and a regional hub for the oil and gas industry in the Ardmore Basin. The Greater Seminole Oil Field and Healdton Oil Field legacy in Carter County created significant refinery and pipeline infrastructure. Chickasaw Nation has a major economic presence in Ardmore, with tribal healthcare and enterprise operations. The US Army Ammunition Depot (Lone Star Army Ammunition Plant) is just across the Texas border in the neighboring market. AEP/PSO and Carter County rural co-ops provide electrical service at Oklahoma's competitive rates.",
+      "sources": [
+        {
+          "label": "Carter County Oklahoma",
+          "url": "https://www.cartercountyok.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "27067",
+      "name": "Kandiyohi County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kandiyohi County \u2014 Willmar/Jennie-O Turkey/CentraCare west MN hub",
+      "description": "Willmar in Kandiyohi County is the commercial and healthcare hub of west-central Minnesota. Jennie-O Turkey Store (Hormel subsidiary) operates one of its largest turkey processing facilities in Willmar, driving industrial electrical load for Xcel Energy. CentraCare's Rice Memorial Hospital serves as the regional medical center. Ridgewater College provides a technical education pipeline. Willmar's position on US-12 and US-71 makes it the largest city between Minneapolis and Sioux Falls in the cross-state corridor. Minnesota's favorable data center tax exemptions apply to the county.",
+      "sources": [
+        {
+          "label": "Kandiyohi County Minnesota",
+          "url": "https://www.kandiyohicounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "27035",
+      "name": "Crow Wing County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Crow Wing County \u2014 Brainerd/lakes region/tourism IT/Minnesota National Guard",
+      "description": "Brainerd in Crow Wing County is the gateway to Minnesota's lakes region \u2014 one of the most tourism-intensive areas in the Midwest, with hundreds of resorts, cabins, and lakes. The tourism economy drives significant hospitality IT, reservation systems, and broadband infrastructure. Camp Ripley (Morrison County adjacent) hosts Minnesota's largest National Guard base and joint training center, with embedded military IT infrastructure. Crow Wing County Electric Cooperative and Minnesota Power serve the area. Brainerd's position as the lakes region hub makes it a significant secondary data market for a state with strong data center tax incentives.",
+      "sources": [
+        {
+          "label": "Crow Wing County Minnesota",
+          "url": "https://www.crowwing.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "27025",
+      "name": "Chisago County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Chisago County \u2014 North Branch/Twin Cities NE exurban growth corridor",
+      "description": "Chisago County is one of Minnesota's fastest-growing counties, driven by the Twin Cities' northeastern suburban expansion along the I-35 corridor. North Branch and Chisago City are the major growth centers. The county's position northeast of the Twin Cities metro on US-8 and I-35 makes it a natural edge-data-center market as the metro expands. Xcel Energy extends transmission coverage from the metro. Minnesota's favorable data center exemption from sales tax on electricity and equipment makes the TC exurban ring \u2014 including Chisago County \u2014 a cost-competitive environment for secondary facilities serving the Minneapolis-St. Paul market.",
+      "sources": [
+        {
+          "label": "Chisago County Minnesota",
+          "url": "https://www.co.chisago.mn.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "31043",
+      "name": "Dakota County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dakota County \u2014 South Sioux City/Tyson beef/MidAmerican/Sioux City metro NE",
+      "description": "Dakota County is the Nebraska side of the Sioux City metro \u2014 the commercial hub of the Siouxland tri-state area (Iowa, Nebraska, South Dakota). South Sioux City hosts a major Tyson Fresh Meats beef processing facility and other food processing operations, creating substantial MidAmerican Energy substation capacity in the county. The Sioux City metro's bi-state fiber infrastructure runs through Dakota County. Nebraska's favorable tax and regulatory environment for data centers, combined with MidAmerican Energy's competitive industrial rates, makes Dakota County a natural industrial data center market in an already-documented metro.",
+      "sources": [
+        {
+          "label": "Dakota County Nebraska",
+          "url": "https://www.co.dakota.ne.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "31037",
+      "name": "Colfax County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Colfax County \u2014 Schuyler/Tyson pork processing/Columbus NE adjacent",
+      "description": "Schuyler in Colfax County hosts a major Tyson Fresh Meats pork processing facility \u2014 one of the largest pork plants in Nebraska, employing over 2,000 workers. The industrial electrical load from this facility drives NPPD substation infrastructure in Colfax County beyond what the rural population requires. Schuyler is adjacent to Columbus (Platte County, already in DB) and shares the Platte River corridor's infrastructure advantages. Nebraska Public Power District's competitive rates and Nebraska's favorable data center regulatory environment extend to Colfax County. The county's food processing industrial load creates a favorable co-location environment.",
+      "sources": [
+        {
+          "label": "Colfax County Nebraska",
+          "url": "https://www.colfaxcounty.ne.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "19085",
+      "name": "Harrison County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Harrison County \u2014 Missouri Valley/Loess Hills/I-29 corridor Iowa",
+      "description": "Harrison County contains Missouri Valley \u2014 a significant I-29 waypoint between Omaha and Sioux City on the Missouri River corridor. The I-29 corridor through western Iowa is a major fiber route connecting the Omaha and Kansas City metros. MidAmerican Energy's infrastructure in Harrison County benefits from the county's position between two of the Midwest's major data center markets. The Loess Hills terrain provides topographic diversity for infrastructure placement. Harrison County's position on the I-29 corridor makes it a natural intermediate point for the Omaha-to-Sioux City fiber route.",
+      "sources": [
+        {
+          "label": "Harrison County Iowa",
+          "url": "https://www.harrisoncountyia.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "19067",
+      "name": "Floyd County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Floyd County \u2014 Charles City/north-central Iowa agricultural processing",
+      "description": "Charles City in Floyd County is a north-central Iowa hub with Decker Truck Line headquarters and significant agricultural processing operations. The Floyd County area has industrial manufacturing history including Floyd River valley agriculture. MidAmerican Energy and Alliant Energy serve portions of the county. Floyd County's position on US-218 and Iowa 346 connects it to the Mason City (Cerro Gordo County, already in DB) market to the north. The county's agricultural processing base creates an industrial power profile suitable for data center co-location.",
+      "sources": [
+        {
+          "label": "Floyd County Iowa",
+          "url": "https://www.floydcountyiowa.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "19017",
+      "name": "Bremer County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bremer County \u2014 Waverly/Wartburg College/northeast Iowa hub",
+      "description": "Waverly in Bremer County hosts Wartburg College \u2014 a liberal arts institution with strong computer science and technology programs. The county sits on the Cedar River and connects to the Waterloo/Cedar Falls metro (Black Hawk County, already in DB) 20 miles to the south. Alliant Energy serves the county. Bremer County's position in the Cedar River agricultural corridor supports grain processing and turkey processing operations that drive regional industrial electrical infrastructure. Waverly's college presence and proximity to the Waterloo market make Bremer County a natural secondary data market for northeastern Iowa.",
+      "sources": [
+        {
+          "label": "Bremer County Iowa",
+          "url": "https://www.bremercountyia.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
+    },
+    {
+      "fips": "29225",
+      "name": "Webster County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Webster County \u2014 Marshfield/I-44 fiber corridor/Springfield east suburb",
+      "description": "Webster County sits on I-44 immediately east of Springfield (Greene County, already in DB) \u2014 Missouri's third-largest city. Marshfield is the county seat. The I-44 fiber corridor through Webster County carries major communications routes between Springfield and St. Louis. As Springfield's economy and population expand, Webster County has become an active exurban growth market. Empire Electric (now Liberty Utilities) provides service. Marshfield's proximity to Missouri State University and the Springfield healthcare cluster in adjacent Greene County makes Webster County part of the functional Springfield metro data market.",
+      "sources": [
+        {
+          "label": "Webster County Missouri",
+          "url": "https://www.webstercountymissouri.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-16"
     }
   ]
 }
