@@ -26300,6 +26300,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21045",
+      "name": "Casey County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Casey County KY \u2014 Liberty/south-central Kentucky/ARC Appalachian edge",
+      "description": "Casey County in south-central Kentucky sits at the edge of the Appalachian Regional Commission's service territory \u2014 one of the transition counties between the Bluegrass agricultural region and the Appalachian coal counties to the east. Liberty is the county seat. The county's agricultural base includes tobacco, cattle, and row crops. Casey County has been a recipient of ARC broadband and infrastructure investment targeting the Appalachian transition zone. The county's position on the Cumberland Parkway corridor gives it improved highway access that has spurred some commercial development. Kentucky's rural broadband deployment programs have prioritized Casey County under the state's Connecting Kentucky initiative.",
+      "sources": [
+        {
+          "label": "Casey County Kentucky",
+          "url": "https://www.caseycountyky.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21095",
+      "name": "Harlan County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Harlan County KY \u2014 Harlan/Cumberland/coal wars legacy/Black Mountain/appalachian coal",
+      "description": "Harlan County, Kentucky is one of America's most historically significant labor battlegrounds \u2014 the 'Bloody Harlan' coal wars of the 1930s, documented by Theodore Dreiser and later in Barbara Kopple's Oscar-winning documentary 'Harlan County USA' (1976), defined the American labor movement's Appalachian chapter. Black Mountain \u2014 the highest point in Kentucky at 4,145 feet \u2014 is in Harlan County. The county's coal production peaked in the mid-20th century and has substantially declined, but significant mine safety IT (continuous monitoring systems mandated by MSHA) remains operational at active mines. Harlan County's dramatic terrain, labor history, and active ARC broadband investments make it institutionally important in Appalachian Kentucky.",
+      "sources": [
+        {
+          "label": "Harlan County Kentucky",
+          "url": "https://www.harlancounty.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "27021",
+      "name": "Cass County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cass County MN \u2014 Walker/Leech Lake Band Ojibwe/largest MN county/Paul Bunyan country",
+      "description": "Cass County is Minnesota's largest county by area and one of the most lake-dense counties in the United States \u2014 containing Leech Lake (one of Minnesota's largest lakes) and hundreds of smaller lakes. Walker is the county seat on Leech Lake. The Leech Lake Band of Ojibwe has sovereignty over reservation territory within Cass County and operates sophisticated tribal governance, natural resource management, and gaming IT (Northern Lights Casino). Chippewa National Forest covers much of Cass County, with US Forest Service management computing including carbon sequestration monitoring (Chippewa has large old-growth forest tracts). The Paul Bunyan Trail and recreational economy create resort and tourism IT.",
+      "sources": [
+        {
+          "label": "Cass County Minnesota",
+          "url": "https://www.co.cass.mn.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "27077",
+      "name": "Lake of the Woods County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lake of the Woods County MN \u2014 Baudette/Northwest Angle/northernmost contiguous US point",
+      "description": "Lake of the Woods County contains the Northwest Angle \u2014 the northernmost point of the contiguous United States, accessible by land only through Canada. The anomaly resulted from a 1783 treaty boundary error. The county borders Ontario and Manitoba. Baudette is the county seat, on the Rainy River. Lake of the Woods itself (straddling the Minnesota-Ontario border) is one of the best walleye fishing lakes in the world, generating significant fishing tourism IT. The county's extreme remoteness and international border position require CBP processing systems for the border crossings from Canada, even for American citizens traveling to the Northwest Angle.",
+      "sources": [
+        {
+          "label": "Lake of the Woods County",
+          "url": "https://www.co.lake-of-the-woods.mn.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "27085",
+      "name": "McLeod County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McLeod County MN \u2014 Glencoe/Hutchinson/3M printing heritage/Minnesota River Valley",
+      "description": "McLeod County in south-central Minnesota is home to Hutchinson \u2014 a manufacturing and healthcare hub in the Minnesota River Valley. 3M's printing and imaging manufacturing legacy (including the former Hutchinson Technology hard disk drive operations) created a significant industrial IT heritage. Hutchinson Technology was for decades one of the world's leading manufacturers of suspension assemblies for hard disk drives \u2014 an export-oriented precision manufacturing industry in a small Minnesota city. The county's Minnesota River Valley agriculture and its manufacturing heritage create a distinctive combination of precision industrial and agricultural IT. Ridgewater College's Hutchinson campus provides technical education for the region.",
+      "sources": [
+        {
+          "label": "McLeod County Minnesota",
+          "url": "https://www.co.mcleod.mn.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48337",
+      "name": "Montague County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Montague County TX \u2014 Bowie/Red River/north Texas oil/Chisholm Trail heritage",
+      "description": "Montague County in north Texas borders the Red River and Oklahoma, in the heart of the North Texas oil producing region. Bowie is the county seat \u2014 named for James Bowie of the Alamo. The Chisholm Trail historically passed through this region, connecting south Texas cattle ranches to Kansas railheads. Montague County has oil and gas production connected to the Barnett Shale's northern extension. The Red River's meandering channel (historically disputed between Texas and Oklahoma in the Kiowa-Comanche Treaty land dispute) is monitored by USGS gauging stations. The county's position near Wichita Falls (30 miles south) gives it access to the mid-Texas telecom infrastructure.",
+      "sources": [
+        {
+          "label": "Montague County Texas",
+          "url": "https://www.montagueCounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48077",
+      "name": "Clay County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clay County TX \u2014 Henrietta/north Texas Red River/Lake Arrowhead/oil and gas",
+      "description": "Clay County in north Texas centers on Henrietta, a small county seat near Lake Arrowhead \u2014 a water supply reservoir for Wichita Falls that also provides recreation. The county has oil and gas production in the North Texas basin. Clay County's position between Wichita Falls (the metro anchor of north Texas) and the Oklahoma border creates a corridor for agricultural and energy sector IT. Lake Arrowhead is managed by the City of Wichita Falls water utility, with water management and treatment IT serving the larger metropolitan area. The county's ranching and wheat farming landscape is characteristic of the Rolling Plains of North Texas.",
+      "sources": [
+        {
+          "label": "Clay County Texas",
+          "url": "https://www.co.clay.tx.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31051",
+      "name": "Dixon County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dixon County NE \u2014 Ponca/NE Nebraska/Ponca State Park/Missouri River bluffs",
+      "description": "Dixon County in northeast Nebraska borders the Missouri River along one of its most scenic stretches \u2014 the river bluffs of the Ponca region that impressed Lewis and Clark on their 1804 passage. Ponca State Park on the Missouri River bluffs is a significant Nebraska state park. Dixon County sits in the heartland of the Iowa/Nebraska border agricultural corridor, where grain farming and hog production create agricultural supply chain IT. The Ponca Tribe of Nebraska's reservation and tribal government are centered near Niobrara (adjacent Knox County), and tribal programs extend into Dixon County's communities. NebraskaLand National Bank and FCS (Farm Credit Services) agricultural lending IT serves the county's farming operations.",
+      "sources": [
+        {
+          "label": "Dixon County Nebraska",
+          "url": "https://dixoncounty.ne.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31041",
+      "name": "Custer County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Custer County NE \u2014 Broken Bow/Nebraska Sandhills edge/Middle Loup River/largest NE county area",
+      "description": "Custer County is Nebraska's largest county by area \u2014 a vast central Nebraska county at the edge of the Nebraska Sandhills, where the transition from irrigated cropland to grass-covered dunes begins. Broken Bow is the county seat. The Middle Loup River (one of the Loup River system's main branches) originates in the Sandhills and flows through Custer County. The county's agricultural water management \u2014 particularly the Central Nebraska Public Power and Irrigation District's operations in the Loup River basin \u2014 requires sophisticated water management IT. Broken Bow's wind energy corridor position (Nebraska's central corridor has excellent wind resources) has attracted transmission infrastructure investment.",
+      "sources": [
+        {
+          "label": "Custer County Nebraska",
+          "url": "https://www.custercounty.ne.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19095",
+      "name": "Iowa County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Iowa County IA \u2014 Marengo/Iowa River/Amana Colonies/east-central Iowa",
+      "description": "Iowa County in east-central Iowa is home to the Amana Colonies \u2014 a National Historic Landmark district consisting of seven villages founded in 1855 by German pietist immigrants who established a communal religious society. The Colonies maintained communal ownership until 1932 (when they incorporated as a for-profit corporation) and remain one of the longest-lasting communal societies in American history. Amana Appliances (formerly Amana Refrigeration, founded by the Colonies) became a major appliance manufacturer \u2014 now owned by Whirlpool \u2014 that maintains its manufacturing connection to the region. The University of Iowa's influence extends into Iowa County (30 miles from Iowa City), creating connectivity expectations for a county that hosts significant heritage tourism.",
+      "sources": [
+        {
+          "label": "Iowa County Iowa",
+          "url": "https://www.iowacounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19107",
+      "name": "Keokuk County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Keokuk County IA \u2014 Sigourney/south-central Iowa/English River corridor",
+      "description": "Keokuk County in south-central Iowa centers on Sigourney, a small agricultural market town on the English River. The county's agriculture is typical of Iowa's transitional zone between the more productive northern Iowa row crop belt and the rougher south-central terrain. Iowa's rural broadband deployment programs, funded by USDA ReConnect and state digital equity programs, have prioritized south-central Iowa counties like Keokuk where connectivity gaps are most significant. The county's agricultural operations include cattle, hog, and row crop production with Alliant Energy's power distribution serving rural customers across the English River watershed.",
+      "sources": [
+        {
+          "label": "Keokuk County Iowa",
+          "url": "https://www.keokukcountyia.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19131",
+      "name": "Mitchell County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Mitchell County IA \u2014 Osage/Cedar River/north Iowa/Upper Iowa River adjacent",
+      "description": "Mitchell County in north Iowa centers on Osage \u2014 a small agricultural market town on the Cedar River headwaters. The county is adjacent to the Iowa-Minnesota border in a region where the Upper Iowa River system creates some of Iowa's most distinctive topography (the Driftless Area influences reach into this region). Mitchell County's agricultural base includes dairy, hog, and row crop operations. ITC Midwest's high-voltage transmission infrastructure crosses north Iowa counties including Mitchell as part of the wind energy build-out connecting northwest Iowa's wind farms to Midwestern load centers. North Iowa Area Community College's Osage learning center provides technical education locally.",
+      "sources": [
+        {
+          "label": "Mitchell County Iowa",
+          "url": "https://www.mitchellcountyia.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47067",
+      "name": "Hancock County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hancock County TN \u2014 Sneedville/Virginia border/Melungeon heritage/Powell River",
+      "description": "Hancock County in far northeast Tennessee is one of the most isolated counties in the state \u2014 a remote Powell Valley county on the Virginia border. Sneedville is the county seat. The county is historically associated with the Melungeon people \u2014 a tri-racial group of mixed European, African, and Native American ancestry whose documented history in the isolated Appalachian mountains of Hancock County dates to the early 19th century. Hancock County's extreme isolation has made it a persistent broadband challenge area in Tennessee's digital equity programs. The Powell River valley's agricultural and coal heritage creates an Appalachian identity that differs from Tennessee's more-connected central counties.",
+      "sources": [
+        {
+          "label": "Hancock County Tennessee",
+          "url": "https://www.hancockcountytn.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47133",
+      "name": "Overton County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Overton County TN \u2014 Livingston/upper Cumberland Plateau/Cordell Hull Lake",
+      "description": "Overton County in north-central Tennessee occupies part of the upper Cumberland Plateau \u2014 a region of caves, sinkholes, and dissected plateau terrain between the Nashville Basin and the Tennessee Valley. Livingston is the county seat. Cordell Hull Lake (impounded by the Army Corps of Engineers on the Cumberland River upstream from Cordell Hull Dam) provides flood control and recreation infrastructure. The lake is named for Cordell Hull \u2014 FDR's Secretary of State and the longest-serving Secretary of State in US history, born in Overton County in 1871. Tennessee Tech University is in adjacent Putnam County, and its influence extends into Overton County's workforce development programs.",
+      "sources": [
+        {
+          "label": "Overton County Tennessee",
+          "url": "https://www.overtoncountygov.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28131",
+      "name": "Stone County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Stone County MS \u2014 Wiggins/SE Mississippi/De Soto National Forest/pine belt",
+      "description": "Stone County in southeast Mississippi is a pine belt county adjacent to the De Soto National Forest \u2014 one of Mississippi's largest national forests. Wiggins is the county seat, in the center of Mississippi's longleaf pine timber region. The county's timber industry creates forestry management IT and wood product supply chain computing. The Mississippi Gulf Coast's northward economic influence (Gulfport is 40 miles south) creates broadband and logistics infrastructure investment. Stone County's position in Mississippi's rural broadband priority zones under the state's Connect Mississippi initiative reflects its persistent connectivity challenges despite its relatively close proximity to the Gulf Coast metro.",
+      "sources": [
+        {
+          "label": "Stone County Mississippi",
+          "url": "https://www.stonecountyms.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28037",
+      "name": "Franklin County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Franklin County MS \u2014 Meadville/Homochitto National Forest/SW Mississippi/oil legacy",
+      "description": "Franklin County in southwest Mississippi contains Meadville \u2014 a small county seat surrounded by the Homochitto National Forest. The Homochitto NF is one of Mississippi's largest national forests, managed by the US Forest Service with timber management, recreation, and ecological monitoring IT. Franklin County has oil and gas production in the Southwest Mississippi oil field complex that includes the Tinsley and Baxterville fields. The county's position in the Natchez Trace corridor (the Natchez Trace Parkway passes near the county) connects it to NPS management IT. Mississippi Delta Development Authority programs extend into southwest Mississippi counties including Franklin for rural development investment.",
+      "sources": [
+        {
+          "label": "Franklin County Mississippi",
+          "url": "https://www.franklincountyms.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "16035",
+      "name": "Clearwater County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clearwater County ID \u2014 Orofino/Nez Perce National Forest/Dworshak Dam/Lewis and Clark trail",
+      "description": "Clearwater County in north-central Idaho centers on Orofino on the Clearwater River \u2014 a major tributary of the Snake River that Lewis and Clark descended in 1805 after crossing the Bitterroot Mountains. Dworshak Dam at Orofino is one of the highest straight-axis gravity dams in the Western Hemisphere \u2014 and created the largest federal fish hatchery complex in the US to mitigate steelhead and chinook salmon impacts. The Army Corps of Engineers' Dworshak operations include dam safety monitoring, fish hatchery management IT, and reservoir management computing. Nez Perce National Forest provides USFS management IT across millions of acres. Clearwater County's timber industry (the Clearwater River watershed is major timber country) adds forest products IT.",
+      "sources": [
+        {
+          "label": "Clearwater County Idaho",
+          "url": "https://www.clearwatercounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "16009",
+      "name": "Benewah County",
+      "state": "Idaho",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Benewah County ID \u2014 St. Maries/Coeur d'Alene Lake South Fork/Coeur d'Alene Tribe",
+      "description": "Benewah County in northern Idaho's Panhandle sits south of Coeur d'Alene Lake on the St. Maries River. St. Maries is the county seat. The Coeur d'Alene Tribe's reservation territory includes Benewah County, and the tribe's Coeur d'Alene Casino Resort (in adjacent Kootenai County near Worley) generates significant gaming and tribal enterprise IT. The Coeur d'Alene Tribe is notable for its successful effort to have Lake Coeur d'Alene recognized as tribal trust land in a 2001 US Supreme Court decision. The St. Joe National Forest and the St. Joe River (one of the highest navigable rivers in the US) create USFS management and recreation IT in the county.",
+      "sources": [
+        {
+          "label": "Benewah County Idaho",
+          "url": "https://www.benewahcounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "39001",
+      "name": "Adams County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Adams County OH \u2014 West Union/Serpent Mound/Edge of Appalachia/southern Ohio",
+      "description": "Adams County in southern Ohio contains Great Serpent Mound \u2014 the world's largest surviving prehistoric effigy mound, built by the ancient Fort Ancient culture (or possibly the earlier Adena culture) in the shape of a serpent over 1,300 feet long. The mound is a National Historic Landmark and Ohio Historical Society site, with preservation and visitor management IT. Adams County is also home to Edge of Appalachia Preserve \u2014 a Nature Conservancy and Cincinnati Museum Center partnership preserving one of Ohio's most biodiverse landscapes, where the Appalachian plateau meets the Bluegrass Region. The county's remoteness (one of Ohio's least populous and least connected) makes it a persistent broadband priority for Ohio's connectivity programs.",
+      "sources": [
+        {
+          "label": "Adams County Ohio",
+          "url": "https://www.adamscountyoh.net"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "39157",
+      "name": "Tuscarawas County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Tuscarawas County OH \u2014 New Philadelphia/Zoar/Ohio & Erie Canal/largest Amish region proximity",
+      "description": "Tuscarawas County in east-central Ohio sits at the heart of the Ohio & Erie Canal corridor \u2014 the historic waterway that connected Cleveland to Portsmouth and catalyzed Ohio's industrial development in the 1820s-1840s. New Philadelphia is the county seat. Zoar Village, founded in 1817 by German separatist immigrants who maintained a communal economy until 1898, is a state historic site and one of Ohio's most significant communal heritage communities. The county borders Holmes County (world's largest Amish community) and contains a significant Amish presence of its own. Tuscarawas County's clay and pottery industry (Roseville Pottery heritage) and its Ohio & Erie Canal National Heritage Corridor status add to its institutional technology profile.",
+      "sources": [
+        {
+          "label": "Tuscarawas County Ohio",
+          "url": "https://www.co.tuscarawas.oh.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }

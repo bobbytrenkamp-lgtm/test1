@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 31)
+- `data/map_data.json` (Round 31)
+- `docs/data-sweeps/2026-07-massive-sweep-round-31.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 31**: Kentucky (Casey/Liberty ARC Appalachian transition zone Cumberland Parkway, Harlan/Cumberland coal wars legacy Black Mountain highest KY point MSHA mine safety IT), Minnesota (Cass/Walker Leech Lake Band Ojibwe Chippewa National Forest largest MN county, Lake of the Woods/Baudette Northwest Angle northernmost contiguous US CBP border crossings, McLeod/Glencoe Hutchinson Technology hard disk drive manufacturing Minnesota River Valley), Texas (Montague/Bowie Red River north Texas oil Chisholm Trail heritage, Clay/Henrietta Lake Arrowhead water supply Wichita Falls watershed), Nebraska (Dixon/Ponca Missouri River bluffs Lewis & Clark Ponca State Park, Custer/Broken Bow Nebraska Sandhills edge Middle Loup River wind corridor largest NE county), Iowa (Iowa/Marengo Amana Colonies National Historic Landmark German pietist communal society, Keokuk/Sigourney south-central Iowa English River rural broadband priority, Mitchell/Osage Cedar River north Iowa ITC Midwest wind transmission), Tennessee (Hancock/Sneedville Virginia border Melungeon heritage most isolated TN county, Overton/Livingston Cumberland Plateau Cordell Hull Lake FDR Secretary of State birthplace), Mississippi (Stone/Wiggins De Soto National Forest pine belt Gulf Coast proximity, Franklin/Meadville Homochitto National Forest SW Mississippi oil Natchez Trace), Idaho (Clearwater/Orofino Dworshak Dam Army Corps steelhead hatchery Nez Perce NF Lewis & Clark, Benewah/St. Maries Coeur d'Alene Tribe reservation St. Joe NF Supreme Court trust land), Ohio (Adams/West Union Serpent Mound world's largest prehistoric effigy mound Edge of Appalachia Preserve, Tuscarawas/New Philadelphia Ohio & Erie Canal Zoar Village communal heritage Holmes County Amish). 20 net new records (1123 total).
+- **No FIPS errors** — twentieth consecutive clean validation run.
+
+Reasoning:
+- Harlan County KY (Bloody Harlan/coal wars): One of the most historically significant labor battlegrounds in American history — Dreiser's reports, Kopple's Oscar-winning documentary, the 1930s union struggles. Black Mountain (highest point in Kentucky) is here. Active MSHA mine safety IT at remaining coal operations.
+- Lake of the Woods County MN (Northwest Angle): Contains the northernmost point of the contiguous US, accessible by land only through Canada — a 1783 treaty boundary anomaly. The only spot in the lower 48 where you must cross international borders to reach it by road. CBP computing in one of the most isolated US locations.
+- McLeod County MN (Hutchinson Technology): One of the world's leading hard disk drive suspension assembly manufacturers — a precision industrial technology operation in a small Minnesota county. Hutchinson Technology was at the heart of the global storage industry for decades, representing high-tech export manufacturing in rural Minnesota.
+- Adams County OH (Serpent Mound): The world's largest surviving prehistoric effigy mound — 1,300+ feet, shaped as a serpent, built by the Fort Ancient culture. National Historic Landmark. Edge of Appalachia Preserve is one of the most biodiverse sites in Ohio. One of the state's most isolated and connectivity-challenged counties.
+
+Problems Found:
+- 0 FIPS errors (twentieth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 30)
 - `data/map_data.json` (Round 30)
 - `docs/data-sweeps/2026-07-massive-sweep-round-30.md` (new)
