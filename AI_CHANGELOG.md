@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 27)
+- `data/map_data.json` (Round 27)
+- `docs/data-sweeps/2026-07-massive-sweep-round-27.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 27**: Oklahoma (Alfalfa/Cherokee Great Salt Plains selenite crystals, Coal/Coalgate Arbuckle Mountains Choctaw Nation, Garvin/Pauls Valley Washita River I-35 corridor, Greer/Mangum disputed Texas annexation Quartz Mountain arts), Utah (Duchesne/Roosevelt Uinta Basin oil Ute tribal lands, Millard/Delta Topaz WWII incarceration camp Sevier Desert, Piute/Junction Southern Paiute heritage smallest UT population), Minnesota (Benton/Foley St. Cloud metro adjacent, Lake/Two Harbors Boundary Waters ore docks North Shore, Cottonwood/Windom SW MN wind corridor Buffalo Ridge), Texas (Grimes/Navasota Brazos River Houston-Bryan corridor, Hill/Hillsboro I-35 DFW-Waco corridor ERCOT grid), Virginia (Scott/Gate City Daniel Boone Wilderness Trail SW VA coalfields, Smyth/Marion Holston River Mount Rogers I-81 TVA), Illinois (Hardin/Elizabethtown smallest IL county Shawnee NF, Alexander/Cairo Mississippi-Ohio confluence Civil War Army Corps), Missouri (Wayne/Greenville Current River Ozark National Scenic Riverways, Stone/Galena Table Rock Lake Branson tourism corridor), Nebraska (Phelps/Holdrege CNPPID Republican River irrigation SCADA, Richardson/Falls City NE-KS-MO tri-state corner). 20 net new records (1043 total).
+- **No FIPS errors** — sixteenth consecutive clean validation run.
+
+Reasoning:
+- Alexander County IL (Cairo): The confluence of the Mississippi and Ohio rivers — the most strategically significant geographic point in the American interior. Army Corps of Engineers Cairo District water management computing is significant relative to the county's tiny current population. Among the most historically distinctive counties in the US.
+- Millard County UT (Topaz): Topaz War Relocation Center held 11,000+ Japanese-Americans during WWII — one of ten major incarceration camps. Digital collections and oral history preservation IT at the Topaz Museum. Also Utah's largest county by area with US-6 fiber corridor.
+- Lake County MN (Two Harbors/BWCA): Iron ore shipping infrastructure at Two Harbors' ore docks + Boundary Waters Canoe Area Wilderness permit and management IT. Lake Superior shoreline fiber connectivity despite remote character.
+- Phelps County NE (CNPPID irrigation): SCADA water management for a major irrigation district serving hundreds of thousands of acres — one of the most complex agricultural water control systems in the Great Plains, centered in a county of 9,000 people. Paradigm case for non-obvious rural institutional IT.
+
+Problems Found:
+- 0 FIPS errors (sixteenth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 26)
 - `data/map_data.json` (Round 26)
 - `docs/data-sweeps/2026-07-massive-sweep-round-26.md` (new)

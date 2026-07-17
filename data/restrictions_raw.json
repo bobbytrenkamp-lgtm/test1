@@ -24700,6 +24700,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "40003",
+      "name": "Alfalfa County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Alfalfa County OK \u2014 Cherokee/Salt Plains/NW Oklahoma wheat belt",
+      "description": "Alfalfa County in northwest Oklahoma surrounds Cherokee, the county seat, and the Great Salt Plains State Park and reservoir \u2014 a unique geological feature where visitors can dig selenite crystals and where selenite hourglass inclusions are found exclusively in the world. The Great Salt Plains are managed by the US Army Corps of Engineers and generate federal water management IT. Alfalfa County's wheat production and salt mining heritage create agricultural and mineral extraction IT. The county's proximity to the Oklahoma Panhandle's wind corridor means Southwestern Public Service and OG&E transmission infrastructure crosses the county.",
+      "sources": [
+        {
+          "label": "Alfalfa County Oklahoma",
+          "url": "https://www.alfalfacounty.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "40029",
+      "name": "Coal County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Coal County OK \u2014 Coalgate/Arbuckle Mountains south/coal heritage SE Oklahoma",
+      "description": "Coal County in southeastern Oklahoma derives its name from the coal mining industry that defined the region in the late 19th and early 20th centuries. Coalgate is the county seat. The county lies at the southern edge of the Arbuckle Mountains \u2014 a geologically ancient mountain range with exposed Cambrian-Ordovician rock. Coal County sits in the Oklahoma Choctaw Nation territory, with tribal governance IT infrastructure overlapping county and municipal systems. The McAlester Army Ammunition Plant (in adjacent Pittsburg County) has security and logistics spillover into Coal County's transportation corridors.",
+      "sources": [
+        {
+          "label": "Coal County Oklahoma",
+          "url": "https://www.coalcountychamber.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "40049",
+      "name": "Garvin County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Garvin County OK \u2014 Pauls Valley/Washita River/I-35 mid-Oklahoma corridor",
+      "description": "Garvin County's county seat of Pauls Valley sits on the Washita River along I-35, the central Oklahoma north-south corridor connecting Oklahoma City to the Texas border. The county has oil and gas production history in the Ardmore Basin extension. Pauls Valley is noted for its toy museum and connections to the early-20th-century Chickasaw Nation territory. I-35 logistics infrastructure, freight management, and truck stop technology create a consistent technology demand in Garvin County that exceeds what its small population would suggest. OG&E (Oklahoma Gas and Electric) serves the county with transmission infrastructure from the Oklahoma City power market.",
+      "sources": [
+        {
+          "label": "Pauls Valley Chamber of Commerce",
+          "url": "https://www.paulvalleychamber.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "40055",
+      "name": "Greer County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Greer County OK \u2014 Mangum/SW Oklahoma/disputed Texas annexation history/Quartz Mountain",
+      "description": "Greer County has a remarkable legal history \u2014 it was claimed by Texas after the Civil War and remained in dispute until the US Supreme Court awarded it to Oklahoma Territory in 1896. Mangum is the county seat. Quartz Mountain State Park and Arts and Conference Center is one of Oklahoma's premier arts education facilities, hosting summer arts institutes. The county's remote location in the Wichita Mountains foothills area has made it a priority for rural broadband programs under USDA ReConnect and Oklahoma's rural utility service. Cotton, wheat, and cattle ranching drive agricultural IT, while wind energy from the Western Farmers Electric Cooperative's wind portfolio adds renewable energy grid management.",
+      "sources": [
+        {
+          "label": "Greer County Oklahoma",
+          "url": "https://www.greercountyok.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "49013",
+      "name": "Duchesne County",
+      "state": "Utah",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Duchesne County UT \u2014 Duchesne/Uinta Basin oil/Roosevelt/Ute tribal lands",
+      "description": "Duchesne County occupies the heart of the Uinta Basin \u2014 Utah's primary oil and natural gas producing region \u2014 and contains Roosevelt, the largest city in the basin. The Ute Indian Tribe of the Uintah and Ouray Reservation governs significant territory within and adjacent to Duchesne County, and tribal oil royalties have funded substantial Ute tribal IT and administrative infrastructure. The Uinta Basin's oil production generates industrial SCADA and process control IT, while natural gas processing plants require continuous monitoring systems. Rocky Mountain Power's transmission infrastructure connects the basin to the Wasatch Front grid through challenging mountain terrain.",
+      "sources": [
+        {
+          "label": "Duchesne County Utah",
+          "url": "https://www.duchesnecounty.net"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "49027",
+      "name": "Millard County",
+      "state": "Utah",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Millard County UT \u2014 Delta/Topaz WWII incarceration camp/Sevier Desert/US-6 corridor",
+      "description": "Millard County is Utah's largest county by area \u2014 a vast desert county dominated by the Sevier Desert and Great Basin landscape. Delta is the county seat, and Topaz Mountain (Topaz War Relocation Center) near Delta was one of the ten major WWII Japanese-American incarceration camps, holding over 11,000 people at peak. The Topaz Museum in Delta preserves this history. Millard County's extensive territory along US-6 (connecting Salt Lake City to Las Vegas) creates a significant corridor for fiber backbone infrastructure. Rocky Mountain Power's Central Utah Generating Project steam plant has historically been a major power producer in the county.",
+      "sources": [
+        {
+          "label": "Millard County Utah",
+          "url": "https://www.millardcounty.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "49031",
+      "name": "Piute County",
+      "state": "Utah",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Piute County UT \u2014 Junction/Paiute heritage/Sevier River/one of smallest US county populations",
+      "description": "Piute County is among the least populous counties in the United States \u2014 with fewer than 2,000 residents \u2014 and is named for the Southern Paiute people who have inhabited the Colorado Plateau for centuries. Junction, the county seat, sits in the Sevier River valley amid red rock canyon country. Despite its tiny population, Piute County appears in federal broadband gap analyses and tribal connectivity programs because of its intersection with Paiute Band territories and the federal government's trust responsibility. The county's remote desert landscape and participation in Utah's rural broadband mapping initiatives make it a meaningful data point for understanding Utah's connectivity frontier.",
+      "sources": [
+        {
+          "label": "Piute County Utah",
+          "url": "https://piutecounty.utah.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "27009",
+      "name": "Benton County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Benton County MN \u2014 Foley/St. Cloud metro corridor/St. Cloud State University adjacent",
+      "description": "Benton County sits immediately east of St. Cloud \u2014 Minnesota's largest city north of the Twin Cities metro \u2014 giving it access to the significant fiber and telecommunications infrastructure built around St. Cloud State University and the broader St. Cloud regional economy. Foley is the county seat, but the county's population centers on the St. Cloud fringe. St. Cloud has attracted data center interest given its cold climate, power infrastructure, and position between the Twin Cities and the Canadian border. Benton County's inclusion in the St. Cloud MSA means its broadband access substantially exceeds comparable rural Minnesota counties.",
+      "sources": [
+        {
+          "label": "Benton County Minnesota",
+          "url": "https://www.bentoncountymn.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "27075",
+      "name": "Lake County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lake County MN \u2014 Two Harbors/Lake Superior North Shore/Boundary Waters gateway",
+      "description": "Lake County stretches along Minnesota's Lake Superior North Shore from Two Harbors to the Canadian border, encompassing the eastern end of the Iron Range and the Superior National Forest's Boundary Waters Canoe Area Wilderness gateway. Two Harbors is one of the world's largest iron ore shipping ports \u2014 the DM&IR (Duluth, Missabe and Iron Range Railway) historically delivered taconite from the Mesabi Range to Two Harbors' ore docks. The Boundary Waters Canoe Area Wilderness is one of the most visited wilderness areas in the US, generating park management IT and outfitter logistics technology. Lake Superior's fiber backbone (Lake Superior undersea/shoreline cable systems) provides connectivity infrastructure for this remote but institutionally significant county.",
+      "sources": [
+        {
+          "label": "Lake County Minnesota",
+          "url": "https://www.co.lake.mn.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "27033",
+      "name": "Cottonwood County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cottonwood County MN \u2014 Windom/SW Minnesota wind corridor/Lake Shetek",
+      "description": "Cottonwood County in southwestern Minnesota sits in one of the most productive wind energy corridors in the United States \u2014 the Buffalo Ridge and its southward extension generates substantial wind farm capacity across Cottonwood and adjacent counties. Windom is the county seat. Lake Shetek State Park is southwestern Minnesota's largest lake and recreational area. GRE (Great River Energy) and Minnesota Power's wind transmission infrastructure crosses Cottonwood County, connecting wind generation to the MISO (Midcontinent Independent System Operator) grid. The county's agricultural economy and wind energy transition create a distinctive combination of precision agriculture IT and renewable energy grid management.",
+      "sources": [
+        {
+          "label": "Cottonwood County Minnesota",
+          "url": "https://www.co.cottonwood.mn.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48185",
+      "name": "Grimes County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Grimes County TX \u2014 Anderson/Navasota/east Texas Brazos River heritage/Sam Houston proximity",
+      "description": "Grimes County straddles the Brazos River between Houston and Bryan-College Station \u2014 two of Texas's largest metro areas \u2014 creating a county that sits within fiber backbone reach of both markets. Navasota is the commercial center, while Anderson is the county seat. The county has strong connections to Texas Republic-era history, and Sam Houston's Huntsville is in adjacent Walker County. Grimes County's position between Houston's petrochemical complex and Texas A&M University's agricultural research network creates demand for both industrial and academic technology services. Lick Creek Park and the Brazos River corridor also generate recreation and conservation management IT.",
+      "sources": [
+        {
+          "label": "Grimes County Texas",
+          "url": "https://www.grimescounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48217",
+      "name": "Hill County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hill County TX \u2014 Hillsboro/I-35 central Texas corridor/Corsicana adjacent",
+      "description": "Hill County sits directly on I-35 between Dallas-Fort Worth and Waco \u2014 one of the highest-traffic freight corridors in the United States. Hillsboro is the county seat, and the I-35/I-35E/I-35W split occurs just north of the county in the DFW metro. The county's position in the I-35 logistics corridor creates fleet management, freight logistics, and truck stop technology infrastructure. Hill County is part of the North Texas/Central Texas data center growth region, with Waco's expanding data center market (driven by cheap power and I-35 connectivity) beginning to influence Hill County's development prospects. Oncor Electric's transmission infrastructure crosses the county as part of the ERCOT grid.",
+      "sources": [
+        {
+          "label": "Hill County Texas",
+          "url": "https://www.co.hill.tx.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "51169",
+      "name": "Scott County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Scott County VA \u2014 Gate City/Daniel Boone Wilderness Trail/SW Virginia coalfields",
+      "description": "Scott County in far southwest Virginia sits along the Daniel Boone Wilderness Trail \u2014 the historic route through the Cumberland Gap that brought settlers into Kentucky and Tennessee. Gate City is the county seat. The county is one of Virginia's most remote \u2014 bordered by Tennessee and Kentucky, it is further from Richmond than most Virginia counties get. Scott County's coal mining heritage connects it to the broader Central Appalachian energy economy, and its participation in the Coalfields Expressway project (connecting SW Virginia to I-81) reflects the ongoing infrastructure investment in Virginia's most isolated region. ARC and federal Appalachian broadband programs have specifically targeted Scott County for connectivity expansion.",
+      "sources": [
+        {
+          "label": "Scott County Virginia",
+          "url": "https://www.scottcountyva.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "51173",
+      "name": "Smyth County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Smyth County VA \u2014 Marion/Holston River/Mount Rogers/SW Virginia Appalachian",
+      "description": "Smyth County in southwest Virginia is centered on Marion, a small city on the Holston River along I-81. Mount Rogers \u2014 Virginia's highest peak at 5,729 feet \u2014 rises in the adjacent Grayson County, but the Mount Rogers National Recreation Area's southern approaches extend into Smyth County. The Holston River here is managed by TVA, connecting Smyth County to the Tennessee Valley Authority's water and power management computing network. Smyth County's position on I-81 (one of Appalachia's primary transportation spines) and the region's emerging outdoor recreation economy have driven broadband investment in the New River Valley's westernmost counties.",
+      "sources": [
+        {
+          "label": "Smyth County Virginia",
+          "url": "https://www.smythcounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17069",
+      "name": "Hardin County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hardin County IL \u2014 Elizabethtown/smallest IL county/Ohio River/Shawnee National Forest",
+      "description": "Hardin County is Illinois's smallest county by population \u2014 a remote Ohio River county at the southern tip of the state, surrounded by the Shawnee National Forest on three sides and Kentucky across the river. Elizabethtown (not to be confused with Elizabethtown KY) is the county seat, reachable only by state highways through the Shawnee forest. The Garden of the Gods wilderness area in the Shawnee National Forest is within Hardin County. Cave-In-Rock State Park, where Ohio River pirates once operated a tavern, attracts heritage tourism. Hardin County's extreme remoteness makes it a meaningful case study for Illinois's last-mile broadband challenges \u2014 it appears regularly in state rural broadband gap analysis.",
+      "sources": [
+        {
+          "label": "Hardin County Illinois",
+          "url": "https://www.hardincountyil.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17003",
+      "name": "Alexander County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Alexander County IL \u2014 Cairo/confluence of Mississippi and Ohio/southernmost IL",
+      "description": "Alexander County contains Cairo (pronounced KAY-ro), Illinois \u2014 the southernmost city in Illinois and one of the most historically significant river cities in America. Cairo sits at the precise confluence of the Mississippi and Ohio rivers \u2014 the strategic location that made it a vital Union Army supply base during the Civil War and later one of the busiest river ports in the inland US. The county's dramatic population decline (from 21,000 in 1900 to under 7,000 today) reflects deindustrialization, but its geographic position at the confluence of the nation's two great rivers \u2014 and the US Army Corps of Engineers' extensive flood control infrastructure \u2014 creates federal administrative IT that remains significant relative to the county's small population.",
+      "sources": [
+        {
+          "label": "Alexander County Illinois",
+          "url": "https://www.alexandercountyillinois.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29223",
+      "name": "Wayne County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Wayne County MO \u2014 Greenville/Current River/SE Missouri Ozarks/Clearwater Lake",
+      "description": "Wayne County in southeast Missouri occupies the Current River's upper watershed in the Ozark Highlands \u2014 one of the most remote counties in Missouri. Greenville is the county seat. Clearwater Lake, impounded by a US Army Corps of Engineers dam, provides flood control and recreation infrastructure with federal water management IT. The Ozark National Scenic Riverways \u2014 America's first national scenic river, designated in 1964 \u2014 traverses Wayne County, with National Park Service IT infrastructure for river management and visitor services. Wayne County's extreme rural character and national park presence create a counterintuitive technology demand profile for a county of 13,000 people.",
+      "sources": [
+        {
+          "label": "Wayne County Missouri",
+          "url": "https://www.waynecountymo.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29209",
+      "name": "Stone County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Stone County MO \u2014 Galena/Table Rock Lake/Branson adjacent/Silver Dollar City corridor",
+      "description": "Stone County borders Taney County \u2014 home of Branson, Missouri's country music and family entertainment capital \u2014 and shares Table Rock Lake, one of the most popular recreation lakes in the Ozarks. Galena is the county seat. The Table Rock Lake area draws over 7 million visitors annually to both Stone and Taney counties combined, generating massive hospitality IT, resort management systems, and visitor logistics computing. Silver Dollar City (in adjacent Stone County territory near the Taney line) is a major Ozark theme park. Stone County's position in Missouri's fastest-growing tourism region and proximity to Branson's entertainment infrastructure creates strong connectivity demand.",
+      "sources": [
+        {
+          "label": "Stone County Missouri",
+          "url": "https://www.stonecountymissouri.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31137",
+      "name": "Phelps County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Phelps County NE \u2014 Holdrege/Republican River/Nebraska irrigation district hub",
+      "description": "Phelps County in south-central Nebraska centers on Holdrege \u2014 one of the primary hubs of Nebraska's Republican River irrigation district. The county is part of the Central Nebraska Public Power and Irrigation District (CNPPID) service area, where an extensive system of canals, reservoirs, and pumping stations manages water for hundreds of thousands of irrigated acres. CNPPID's SCADA and water management computing infrastructure is among the most complex agricultural water control systems in the Great Plains. Holdrege's position as a regional agricultural service center and the irrigation district's operational complexity create institutional IT infrastructure well above what a county of 9,000 people would typically support.",
+      "sources": [
+        {
+          "label": "Phelps County Nebraska",
+          "url": "https://www.phelpscountyne.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31147",
+      "name": "Richardson County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Richardson County NE \u2014 Falls City/Nebraska-Kansas-Missouri tri-state corner/Big Nemaha River",
+      "description": "Richardson County occupies Nebraska's southeastern corner, where Nebraska, Kansas, and Missouri converge along the Missouri River's tributary valleys. Falls City is the county seat, named for the falls of the Nemaha River. The county has an unusual geographic position \u2014 it borders both Kansas and Missouri within a few miles, creating a multi-state commerce and logistics zone. Richardson County's Big Nemaha Natural Resources District manages watershed IT for flood control and water quality monitoring. The county's agricultural economy (corn, soybeans, cattle) and proximity to the greater Kansas City market create a connectivity corridor through southeast Nebraska that includes fiber routes along major highways.",
+      "sources": [
+        {
+          "label": "Richardson County Nebraska",
+          "url": "https://www.co.richardson.ne.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }
