@@ -2602,17 +2602,83 @@ function restoreFromHash() {
   return false;
 }
 
+/* ── Keyboard shortcut overlay ── */
+function initKbOverlay() {
+  const overlay = document.createElement("div");
+  overlay.id = "kb-overlay";
+  overlay.className = "kb-overlay";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-label", "Keyboard shortcuts");
+  overlay.innerHTML = `<div class="kb-modal">
+    <div class="kb-modal-hdr">
+      <span class="kb-modal-title">Keyboard Shortcuts</span>
+      <button class="kb-close" id="kb-close-btn">Esc</button>
+    </div>
+    <div class="kb-section">Navigation</div>
+    <div class="kb-row"><span class="kb-desc">Focus search</span><span class="kb-keys"><kbd>/</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Home tab</span><span class="kb-keys"><kbd>1</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Map tab</span><span class="kb-keys"><kbd>2</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">AI News tab</span><span class="kb-keys"><kbd>3</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">AI Stocks tab</span><span class="kb-keys"><kbd>4</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Analytics tab</span><span class="kb-keys"><kbd>5</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">About tab</span><span class="kb-keys"><kbd>6</kbd></span></div>
+    <div class="kb-section">Map Tools</div>
+    <div class="kb-row"><span class="kb-desc">Toggle fullscreen</span><span class="kb-keys"><kbd>F</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Toggle measure mode</span><span class="kb-keys"><kbd>M</kbd></span></div>
+    <div class="kb-section">General</div>
+    <div class="kb-row"><span class="kb-desc">Show this help</span><span class="kb-keys"><kbd>?</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Close / dismiss</span><span class="kb-keys"><kbd>Esc</kbd></span></div>
+  </div>`;
+  document.body.appendChild(overlay);
+
+  const closeOverlay = () => overlay.classList.remove("open");
+  overlay.addEventListener("click", e => { if (e.target === overlay) closeOverlay(); });
+  document.getElementById("kb-close-btn").addEventListener("click", closeOverlay);
+  document.getElementById("kb-help-btn")?.addEventListener("click", () => overlay.classList.add("open"));
+
+  return {
+    open:  () => overlay.classList.add("open"),
+    close: closeOverlay,
+    isOpen: () => overlay.classList.contains("open"),
+  };
+}
+
 /* ── Keyboard shortcuts ── */
 function initKeyboardShortcuts() {
+  const kbOverlay = initKbOverlay();
+  const TAB_KEYS  = { "1": "home", "2": "map", "3": "news", "4": "stocks", "5": "analytics", "6": "about" };
+
   document.addEventListener("keydown", e => {
-    // `/` focuses search (unless already in a text field)
-    if (e.key === "/" && !e.target.matches("input, textarea, select, [contenteditable]")) {
+    const inField = e.target.matches("input, textarea, select, [contenteditable]");
+
+    // Close overlay first on Escape regardless of context
+    if (e.key === "Escape" && kbOverlay.isOpen()) { kbOverlay.close(); return; }
+
+    // `/` focuses search
+    if (e.key === "/" && !inField) {
       e.preventDefault();
       const searchInput = document.getElementById("search-input");
       if (searchInput) { searchInput.focus(); searchInput.select(); }
       return;
     }
+
+    // `?` opens shortcut overlay
+    if ((e.key === "?" || (e.key === "/" && e.shiftKey)) && !inField) {
+      e.preventDefault();
+      kbOverlay.open();
+      return;
+    }
+
+    // 1–6 switch tabs
+    if (TAB_KEYS[e.key] && !inField && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      e.preventDefault();
+      switchTab(TAB_KEYS[e.key]);
+      return;
+    }
+
     if (e.key !== "Escape") return;
+    // Escape: close panels / detail sheet
     const filterOpen = document.getElementById("filter-panel").classList.contains("open");
     const sheetOpen  = document.getElementById("detail-panel").classList.contains("sheet-open");
     if (filterOpen) {
@@ -2730,13 +2796,45 @@ function initSearch() {
     results.style.display = "block";
   }
 
+  let kbIdx = -1;
+  function highlightSearchItem(idx) {
+    const items = results.querySelectorAll(".search-result-item");
+    items.forEach((it, i) => it.classList.toggle("kb-active", i === idx));
+    if (items[idx]) items[idx].scrollIntoView({ block: "nearest" });
+    kbIdx = idx;
+  }
+
   input.addEventListener("input", () => {
+    kbIdx = -1;
     const q = input.value.trim().toLowerCase();
     if (!q) { results.style.display = "none"; return; }
     renderResults(index.filter(c => c.searchText.includes(q)).slice(0, 8));
   });
   input.addEventListener("focus", () => { if (input.value.trim()) input.dispatchEvent(new Event("input")); });
-  input.addEventListener("blur",  () => { setTimeout(() => { results.style.display = "none"; }, 100); });
+  input.addEventListener("blur",  () => { setTimeout(() => { results.style.display = "none"; kbIdx = -1; }, 100); });
+
+  input.addEventListener("keydown", e => {
+    const items = results.querySelectorAll(".search-result-item");
+    if (e.key === "Escape") {
+      input.value = "";
+      results.style.display = "none";
+      kbIdx = -1;
+      input.blur();
+      return;
+    }
+    if (!items.length) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      highlightSearchItem(Math.min(kbIdx + 1, items.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (kbIdx > 0) { highlightSearchItem(kbIdx - 1); }
+      else { highlightSearchItem(-1); items.forEach(it => it.classList.remove("kb-active")); }
+    } else if (e.key === "Enter" && kbIdx >= 0 && items[kbIdx]) {
+      e.preventDefault();
+      items[kbIdx].dispatchEvent(new PointerEvent("pointerdown", { bubbles: true, cancelable: true }));
+    }
+  });
 }
 
 /* ── Advanced Filters Panel ── */
@@ -2751,9 +2849,14 @@ function syncAdvancedFilterUI() {
   // Sync clear button visibility
   const clearBtn = document.getElementById("adv-filter-clear");
   if (clearBtn) clearBtn.hidden = !hasActiveMapFilters();
-  // Sync adv-filter-toggle button
+  // Sync adv-filter-toggle button + active count badge
   const advBtn = document.getElementById("adv-filter-toggle");
-  if (advBtn) advBtn.classList.toggle("active", hasActiveMapFilters());
+  if (advBtn) {
+    advBtn.classList.toggle("active", hasActiveMapFilters());
+    const filterCount = activeRestrictFilters.size + (activeStateFilter ? 1 : 0);
+    if (filterCount > 0) advBtn.setAttribute("data-count", filterCount);
+    else advBtn.removeAttribute("data-count");
+  }
   // Update Done button label with live match count
   const doneBtn = document.getElementById("adv-filter-done");
   if (doneBtn) {

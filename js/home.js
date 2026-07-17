@@ -167,7 +167,16 @@ function initHomeSearch() {
     input.value = "";
   }
 
+  let kbIdx = -1;
+  function highlightHomeItem(idx) {
+    const items = results.querySelectorAll(".home-sr-item");
+    items.forEach((it, i) => it.classList.toggle("kb-active", i === idx));
+    if (items[idx]) items[idx].scrollIntoView({ block: "nearest" });
+    kbIdx = idx;
+  }
+
   input.addEventListener("input", () => {
+    kbIdx = -1;
     const q = input.value.trim().toLowerCase();
     if (q.length < 2) { results.hidden = true; return; }
     const matches = allIndex.filter(c => c.searchText.includes(q)).slice(0, 20);
@@ -178,7 +187,29 @@ function initHomeSearch() {
     if (input.value.trim().length >= 2) input.dispatchEvent(new Event("input"));
   });
 
-  input.addEventListener("blur", () => setTimeout(() => { results.hidden = true; }, 120));
+  input.addEventListener("blur", () => setTimeout(() => { results.hidden = true; kbIdx = -1; }, 120));
+
+  input.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      closeHomeSearch();
+      kbIdx = -1;
+      input.blur();
+      return;
+    }
+    const items = results.querySelectorAll(".home-sr-item");
+    if (!items.length) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      highlightHomeItem(Math.min(kbIdx + 1, items.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (kbIdx > 0) { highlightHomeItem(kbIdx - 1); }
+      else { highlightHomeItem(-1); items.forEach(it => it.classList.remove("kb-active")); }
+    } else if (e.key === "Enter" && kbIdx >= 0 && items[kbIdx]) {
+      e.preventDefault();
+      items[kbIdx].dispatchEvent(new PointerEvent("pointerdown", { bubbles: true, cancelable: true }));
+    }
+  });
 
   document.getElementById("home-search-btn")?.addEventListener("click", () => {
     const q = input.value.trim().toLowerCase();
