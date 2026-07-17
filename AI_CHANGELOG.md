@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 24)
+- `data/map_data.json` (Round 24)
+- `docs/data-sweeps/2026-07-massive-sweep-round-24.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 24**: West Virginia (Braxton/Sutton Elk River, Brooke/Wellsburg northernmost WV, Boone/Madison coal heartland, Morgan/Berkeley Springs first US spa), Illinois (Coles/Charleston EIU Lincoln heritage, Clark/Marshall I-70 IL-IN border, Macoupin/Carlinville coal labor history), Texas (Val Verde/Del Rio Laughlin AFB Amistad Reservoir, Bandera/Cowboy Capital Hill Country), Georgia (Rabun/Clayton NE GA mountains Chattooga, Towns/Hiawassee Chatuge Lake, Lumpkin/Dahlonega first US gold rush), Tennessee (Hardeman/Bolivar west TN Hatchie NWR, Scott/Huntsville TN Cumberland Plateau), Arkansas (Fulton/Salem Spring River Ozarks, Lafayette/Lewisville tri-state border), Montana (Dawson/Glendive Makoshika dinosaur fossils, Carbon/Red Lodge Beartooth Pass), Mississippi (Pike/McComb I-55 south MS hub, Yazoo/Yazoo City Delta edge). 20 net new records (983 total).
+- **No FIPS errors** — thirteenth consecutive clean validation run.
+
+Reasoning:
+- Boone County WV (Madison/Big Coal River): Underground longwall coal mining's MSHA-mandated monitoring systems — continuous methane detection, communications, tracking — create industrial IT requirements unique to coal counties. Mine safety IT is among the most regulation-dense in any US industry.
+- Val Verde County TX (Del Rio/Laughlin AFB): Laughlin AFB produces more rated USAF pilots than any other base. Aviation training management, simulation IT, and cross-border Amistad International Water Project infrastructure create unusual federal IT concentration for a remote border county.
+- Lumpkin County GA (Dahlonega): America's first gold rush was in Georgia in 1829 — 20 years before California. The US Mint operated at Dahlonega. University of North Georgia is a senior military college. Wine country with 30+ wineries. Three genuinely distinct technology demand drivers.
+- Carbon County MT (Red Lodge/Beartooth): The Beartooth Highway is the highest paved US highway. Red Lodge's coal-to-recreation pivot mirrors Appalachian transitions but in a Montana context. Proximity to Billings creates fiber corridor access.
+
+Problems Found:
+- 0 FIPS errors (thirteenth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 23)
 - `data/map_data.json` (Round 23)
 - `docs/data-sweeps/2026-07-massive-sweep-round-23.md` (new)

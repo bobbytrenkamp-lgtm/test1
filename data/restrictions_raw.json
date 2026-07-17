@@ -23500,6 +23500,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "54007",
+      "name": "Braxton County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Braxton County \u2014 Sutton/Elk River/Burnsville Lake/central WV hub",
+      "description": "Braxton County in central West Virginia contains the Elk River valley and Burnsville Lake \u2014 an Army Corps of Engineers reservoir providing flood control and recreation. Sutton is the county seat, a commercial hub for central West Virginia between the Charleston and Elkins markets. Appalachian Power (AEP) serves the county. Central WV's natural gas production creates SCADA and pipeline IT. West Virginia American Water Company operates infrastructure in the county. Braxton County's position on US-19 \u2014 the primary north-south highway through central WV \u2014 gives it road corridor fiber access. The county's rural character and forest economy have made it a beneficiary of USDA rural broadband and timber management IT programs.",
+      "sources": [
+        {
+          "label": "Braxton County West Virginia",
+          "url": "https://www.braxtonwv.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "54009",
+      "name": "Brooke County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Brooke County \u2014 Wellsburg/northernmost WV/Ohio River/natural gas heritage",
+      "description": "Brooke County is the northernmost county in West Virginia, occupying a narrow strip along the Ohio River between Pennsylvania and Ohio. Wellsburg is the county seat. The county is adjacent to Ohio County (Wheeling, already in DB) and directly across the Ohio River from Pennsylvania. The county's industrial heritage includes glass manufacturing and natural gas production from Devonian and Marcellus formations \u2014 WV's northern Panhandle was one of the earliest natural gas producing regions in the US. Mountaineer Gas and Equitable Gas have operated in the area for over a century. The county's proximity to Wheeling's IT market and its natural gas infrastructure legacy make Brooke County a participant in northern WV's technology corridor.",
+      "sources": [
+        {
+          "label": "Brooke County West Virginia",
+          "url": "https://brookecountywv.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "54005",
+      "name": "Boone County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Boone County \u2014 Madison/WV coal heartland/Big Coal River/mining technology",
+      "description": "Boone County in south-central West Virginia is one of the state's most historically significant coal counties \u2014 the Big Coal River valley drove enormous coal production throughout the 20th century. Madison is the county seat. Boone County's mining heritage includes longwall mining operations that represent some of the most sophisticated industrial monitoring technology in the US. Mine safety systems (continuous monitoring, methane detection, MSHA-required communications systems) create industrial IT requirements unique to underground coal counties. Appalachian Power (AEP) serves the county. West Virginia's post-coal transition includes federal investment in broadband and technology retraining programs specifically targeting Boone County-type communities.",
+      "sources": [
+        {
+          "label": "Boone County West Virginia",
+          "url": "https://www.boonecountywv.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "54065",
+      "name": "Morgan County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Morgan County \u2014 Berkeley Springs/first American spa/DC market second homes",
+      "description": "Morgan County contains Berkeley Springs (officially Bath, WV) \u2014 the first American spa and the only town with springs in its official name. George Washington visited Berkeley Springs, and it became America's first and oldest continuously operating spa resort. The spa's location in eastern West Virginia \u2014 about 120 miles from Washington DC \u2014 has made Morgan County a popular second-home and weekend retreat market for the DC metro area. The county's proximity to the DC tech corridor (with spillover from the NSA complex at Fort Meade and Northern Virginia data centers) creates above-average broadband demand. Allegheny Power and Mountaineer Gas serve the area. Morgan County's scenic Eastern Panhandle character has attracted remote workers from the DC market.",
+      "sources": [
+        {
+          "label": "Morgan County West Virginia",
+          "url": "https://www.morgancountywv.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17029",
+      "name": "Coles County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Coles County \u2014 Charleston/Eastern Illinois University/Lincoln log cabin heritage",
+      "description": "Coles County in east-central Illinois is home to Eastern Illinois University in Charleston \u2014 a regional state university providing education infrastructure for a wide rural area. The county also contains Lincoln Log Cabin State Historic Site \u2014 where Abraham Lincoln's father and stepmother spent their later years \u2014 making it a significant heritage tourism destination. Ameren Illinois serves the county. Charleston's US-16 corridor position connects it to Mattoon (Coles County's larger twin city) and the I-57 corridor. The county's agricultural economy \u2014 corn and soybeans \u2014 drives standard Illinois precision agriculture IT. Eastern Illinois University's technology and STEM programs create research computing demand in an otherwise rural east-central Illinois setting.",
+      "sources": [
+        {
+          "label": "Coles County Illinois",
+          "url": "https://www.co.coles.il.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17023",
+      "name": "Clark County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clark County \u2014 Marshall/I-70 IL-IN border/Darwin Coal Oil Field heritage",
+      "description": "Clark County in southeastern Illinois sits on I-70 at the Illinois-Indiana border near Marshall. The county was home to the historic Darwin Oil Field \u2014 one of Illinois's earliest oil-producing areas, dating to the 19th century. I-70's east-west fiber infrastructure runs directly through Clark County, making it a natural waypoint between Indianapolis and St. Louis markets. Ameren Illinois serves the county. Clark County's Casey township contains the 'World's Largest Items' tourist attraction \u2014 a collection of oversized roadside sculptures that drive tourism IT. The county's I-70 corridor position, combined with its agriculture and remnant oil production, creates a diverse IT demand profile for a small rural Illinois county.",
+      "sources": [
+        {
+          "label": "Clark County Illinois",
+          "url": "https://www.clarkcountyillinois.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "17117",
+      "name": "Macoupin County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Macoupin County \u2014 Carlinville/Gillespie/central Illinois coal/Standard Oil history",
+      "description": "Macoupin County in central Illinois has a rich industrial and labor history \u2014 the county's coal mines were among the most organized in the US and helped shape the United Mine Workers of America. Carlinville is the county seat. Blackburn College in Carlinville provides higher education. The county's coal mining history created substantial electrical transmission infrastructure through Ameren Illinois. Gillespie, in the northern part of the county, is a former coal company town. Standard Oil of Ohio once had operations in the county. Macoupin County's position on Route 66 (now IL-4) and its coal heritage infrastructure create both historical depth and industrial grid capacity in a central Illinois agricultural county.",
+      "sources": [
+        {
+          "label": "Macoupin County Illinois",
+          "url": "https://www.macoupincountyil.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48465",
+      "name": "Val Verde County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Val Verde County \u2014 Del Rio/Laughlin AFB/Amistad Reservoir/US-Mexico border IT",
+      "description": "Val Verde County and Del Rio sit on the Rio Grande at the US-Mexico border, where Amistad Reservoir \u2014 a joint US-Mexico international water project \u2014 creates one of the most significant cross-border infrastructure management environments in the US. Laughlin Air Force Base in Del Rio is the premier pilot training base for the US Air Force, producing more rated pilots than any other USAF base. The base's training management systems, simulation infrastructure, and aviation IT create a major federal computing presence in this remote border county. Del Rio is also the commercial hub for a vast region of southwest Texas, and the US Border Patrol maintains significant surveillance technology infrastructure throughout the county.",
+      "sources": [
+        {
+          "label": "Val Verde County Texas",
+          "url": "https://www.valverdecounty.texas.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48019",
+      "name": "Bandera County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bandera County \u2014 Bandera/Cowboy Capital of the World/Hill Country/San Antonio exurb",
+      "description": "Bandera County in the Texas Hill Country holds the official designation as the 'Cowboy Capital of the World' \u2014 a working cowboy community and Western heritage center that has become one of Texas's most distinctive ranch and dude ranch tourism destinations. Bandera is the county seat. The county has attracted significant second-home and full-time migration from San Antonio (~50 miles south), particularly from technology and professional workers seeking the Hill Country lifestyle. Bandera Electric Cooperative and CPS Energy serve the area. The county's growth as part of San Antonio's expanding exurban market has driven broadband infrastructure investment well above what traditional Hill Country counties would attract.",
+      "sources": [
+        {
+          "label": "Bandera County Texas",
+          "url": "https://www.banderacounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "13241",
+      "name": "Rabun County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Rabun County \u2014 Clayton/NE Georgia mountains/Chattooga Wild River/lake resort community",
+      "description": "Rabun County in extreme northeastern Georgia is the most mountainous county in the state, containing the headwaters of the Chattooga Wild and Scenic River (where the film Deliverance was shot) and Lakes Burton, Rabun, and Seed. Clayton is the county seat and a growing arts and second-home community attracting migrants from Atlanta (~2 hours south). The county's position adjacent to the Great Smoky Mountains tourism corridor and its summer climate (significantly cooler than Atlanta) have driven aggressive second-home development. Georgia Power serves the county. Rabun County's lake resort and arts economy creates IT demand from an affluent, mobile population far exceeding what its 17,000 permanent residents would generate.",
+      "sources": [
+        {
+          "label": "Rabun County Georgia",
+          "url": "https://rabuncounty.ga.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "13281",
+      "name": "Towns County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Towns County \u2014 Hiawassee/Chatuge Lake/NE Georgia mountains/smallest county",
+      "description": "Towns County is one of the smallest counties in Georgia by area and population (~13,000), located in the extreme northeast Georgia mountains at the North Carolina border. Hiawassee is the county seat, situated on Lake Chatuge \u2014 a TVA reservoir at the headwaters of the Hiwassee River. The county's mountain scenery, lake, and cooler summer climate have made it a retirement and second-home destination attracting migrants from Atlanta. Georgia Mountain Fair is a major annual event. Georgia Power (Southern Company) serves the county. The TVA's Lake Chatuge creates federal water management IT, and the county's growing retirement population drives healthcare and broadband investment above what its size suggests.",
+      "sources": [
+        {
+          "label": "Towns County Georgia",
+          "url": "https://www.townscountyga.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "13187",
+      "name": "Lumpkin County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lumpkin County \u2014 Dahlonega/Georgia Gold Rush/North Georgia military college/wine country",
+      "description": "Lumpkin County and Dahlonega are where the first major US gold rush occurred in 1829 \u2014 twenty years before California's 1849 rush. The US Mint operated at Dahlonega from 1838 to 1861. The University of North Georgia (Dahlonega) is a senior military college and one of six military colleges in the US, training ROTC cadets and feeding the Army officer pipeline. The North Georgia wine country surrounding Dahlonega \u2014 with 30+ wineries \u2014 creates agritourism IT. Georgia Power and North Georgia Electric Membership Corporation serve the county. Lumpkin County's gold heritage, military college, and wine tourism create a distinctive multi-sector IT profile for a mountain Georgia county.",
+      "sources": [
+        {
+          "label": "Lumpkin County Georgia",
+          "url": "https://lumpkincounty.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47069",
+      "name": "Hardeman County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hardeman County \u2014 Bolivar/west Tennessee/Tennessee Psychiatric Center/Hatchie NWR",
+      "description": "Hardeman County in west Tennessee contains Bolivar \u2014 the county seat and a small historic city with antebellum architecture. The Tennessee Department of Mental Health's Western Mental Health Institute (formerly Bolivar State Hospital) has been a major state government employer in the county. The Hatchie National Wildlife Refuge protects bottomland hardwood forest along the Hatchie River \u2014 the last largely unchanneled river in the Lower Mississippi Valley \u2014 creating USFWS monitoring and data management systems. Hardeman County's position on US-64 between Memphis and Corinth MS gives it corridor connectivity. TVA and West Tennessee Electric Membership Corporation provide power. The county's state hospital history and refuge monitoring create public IT footprints in a largely agricultural county.",
+      "sources": [
+        {
+          "label": "Hardeman County Tennessee",
+          "url": "https://www.hardemancountytn.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47151",
+      "name": "Scott County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Scott County \u2014 Huntsville TN/northern Cumberland Plateau/Big South Fork",
+      "description": "Scott County in northeastern Tennessee occupies the Cumberland Plateau north of Knoxville, adjacent to the Big South Fork National River and Recreation Area (which straddles the TN-KY border). Huntsville (not Alabama's Huntsville) is the county seat and a regional hub for the Upper Cumberland Plateau. The county's position between the Knoxville and Crossville markets on the plateau gives it Highway 27 corridor access. TVA provides power through local distributors. Scott County's timber, coal heritage (now largely past), and recreation economy create an IT footprint anchored by federal Big South Fork park operations and rural tourism. Tennessee's rural broadband expansion has included Scott County in fiber build-out initiatives.",
+      "sources": [
+        {
+          "label": "Scott County Tennessee",
+          "url": "https://www.scottcountytn.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05049",
+      "name": "Fulton County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Fulton County \u2014 Salem/north-central Arkansas Ozarks/Spring River recreation",
+      "description": "Fulton County in north-central Arkansas borders Missouri and is anchored by Salem, the county seat. The Spring River \u2014 one of Arkansas's premier float fishing rivers \u2014 runs through the county, creating recreation and tourism IT. Fulton County's Ozarks position makes it part of the same rural broadband expansion targeting that has driven connectivity investment into the Buffalo National River and Arkansas Ozarks tourism corridor. North Arkansas Electric Cooperative serves the county. The county's position on US-62 connecting the NW Arkansas metro market to the Mountain Home/Norfolk Lake area gives it corridor fiber access through the Ozarks.",
+      "sources": [
+        {
+          "label": "Fulton County Arkansas",
+          "url": "https://www.fultoncountyar.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05073",
+      "name": "Lafayette County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lafayette County \u2014 Lewisville/southwest Arkansas/cotton and timber country",
+      "description": "Lafayette County in extreme southwest Arkansas borders both Texas and Louisiana, making it one of the more remote corners of the state. Lewisville is the county seat. The county's economy is anchored by timber (Weyerhaeuser and International Paper have operated in the region), cotton farming, and oil and gas production that extends from the adjacent East Texas field. Southwestern Electric Power Company (SWEPCO/AEP) serves the county. Lafayette County's tri-state border position gives it access to both the Shreveport/Bossier market in Louisiana and the Texarkana market. The county's timber and agricultural operations create commodity handling and field monitoring IT for a very rural southwest Arkansas setting.",
+      "sources": [
+        {
+          "label": "Lafayette County Arkansas",
+          "url": "https://www.lafayettecountyar.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "30021",
+      "name": "Dawson County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dawson County \u2014 Glendive/eastern Montana/Yellowstone River/Makoshika State Park",
+      "description": "Dawson County in eastern Montana contains Glendive \u2014 the largest city in eastern Montana between Miles City and the North Dakota border. The county sits in the Yellowstone River valley, and Makoshika State Park (the largest Montana state park) within the county contains some of the most significant dinosaur fossil beds in the US \u2014 Hell Creek Formation exposures that have produced T. rex and Triceratops specimens. The county's oil production from the Cedar Creek Anticline and other eastern Montana fields creates SCADA and pipeline IT. Dawson Community College and the county's regional healthcare function create IT above what its 9,000 population suggests. MDU Resources (Montana-Dakota Utilities) serves the county.",
+      "sources": [
+        {
+          "label": "Dawson County Montana",
+          "url": "https://www.dawsoncounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "30009",
+      "name": "Carbon County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Carbon County \u2014 Red Lodge/Beartooth Pass/Yellowstone gateway/coal heritage",
+      "description": "Carbon County in south-central Montana is home to Red Lodge \u2014 a former coal mining town that has reinvented itself as an outdoor recreation and arts community at the foot of the Beartooth Mountains. The Beartooth Highway (US-212) \u2014 the highest paved highway in the US \u2014 connects Red Lodge to Yellowstone's northeast entrance and is considered one of the most scenic drives in America. Carbon County's coal mining past (Red Lodge Coal Company operated here) created industrial electrical infrastructure. NorthWestern Energy serves the county. Red Lodge Mountain Resort creates winter recreation IT. Carbon County's Yellowstone gateway position drives tourism IT, and its proximity to Billings (Yellowstone County, already in DB) 65 miles north provides fiber corridor connectivity.",
+      "sources": [
+        {
+          "label": "Carbon County Montana",
+          "url": "https://www.carboncountymt.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28113",
+      "name": "Pike County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pike County \u2014 McComb/south Mississippi hub/I-55 corridor/civil rights heritage",
+      "description": "Pike County in south-central Mississippi contains McComb \u2014 the most significant commercial city in the south Mississippi corridor between Jackson and New Orleans. McComb sits on I-55 and the historic Illinois Central Railroad line (now CN), creating a critical freight corridor. The city has significant civil rights history \u2014 SNCC organized Freedom Schools in McComb in the early 1960s. Amtrak's City of New Orleans stops at McComb. Entergy Mississippi and Mississippi Power serve the area. McComb's position as the primary commercial hub between Jackson and the Louisiana border makes it the retail, healthcare, and distribution center for a multi-county region. Pike County Hospital serves a significant rural catchment area.",
+      "sources": [
+        {
+          "label": "Pike County Mississippi",
+          "url": "https://www.pikecountyms.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28163",
+      "name": "Yazoo County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Yazoo County \u2014 Yazoo City/central Mississippi Delta/cotton and gas heritage",
+      "description": "Yazoo County in central Mississippi sits at the edge of the Yazoo-Mississippi Delta, where the Delta meets the central Mississippi loess hills. Yazoo City is the county seat and a significant commercial hub for the central Mississippi Delta region. The county's natural gas production history \u2014 the Yazoo gas field was one of Mississippi's earliest producing formations \u2014 created industrial infrastructure. Entergy Mississippi and Mississippi Delta Electric Power Association serve the county. Yazoo City's position on US-49 connecting Jackson to Greenwood/Cleveland gives it highway corridor fiber access through the Delta. The county's historic cotton economy and its position as a Delta-edge city with Jackson proximity make it a transition zone between the agricultural Delta and the Jackson industrial economy.",
+      "sources": [
+        {
+          "label": "Yazoo County Mississippi",
+          "url": "https://www.yazooycounty.ms/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }
