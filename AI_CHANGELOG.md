@@ -6,6 +6,31 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 40)
+- `data/map_data.json` (Round 40)
+- `docs/data-sweeps/2026-07-massive-sweep-round-40.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 40**: Texas (Caldwell/Lockhart BBQ Capital of Texas post oak Czech-German heritage Austin exurb, Cherokee/Jacksonville Tomato Capital Deep East Texas Texas State Railroad, Fannin/Bonham Sam Rayburn Speaker 17 years James Bonham Red River, Jones/Anson Cowboys Christmas Ball 1885 Abilene exurb cotton oil, Sabine/Hemphill Toledo Bend largest TX lake Sabine NF Louisiana border), Virginia (Bath/Warm Springs Homestead Resort 1766 Allegheny Highlands least populous VA, Isle of Wight/Smithfield Foods protected Virginia ham Hampton Roads exurb, Mathews/Chesapeake Bay peninsula 200 mi shoreline watermen oysters, Middlesex/Saluda Rappahannock Oyster Company Chesapeake Bay), Iowa (Buena Vista/Storm Lake Tyson diverse immigrant workforce Pulitzer Prize 2017, Jackson/Maquoketa Driftless Area Maquoketa Caves SP Mississippi River, Montgomery/Red Oak 12 WWII Medal of Honor Loess Hills Nishnabotna), Ohio (Clinton/Wilmington DHL freight hub Quaker Underground Railroad, Harrison/Cadiz Clark Gable birthplace 14th Amendment author Bingham Utica Shale, Paulding/Black Swamp drainage Maumee River tile-drained ag Lake Erie), Mississippi (Claiborne/Port Gibson too beautiful to burn Grand Gulf Nuclear Vicksburg Campaign, Clarke/Quitman Chickasawhay River Dunn's Falls timber, Copiah/Hazlehurst Robert Johnson blues birthplace Natchez Trace I-55), West Virginia (Pendleton/Franklin Spruce Knob highest WV Seneca Rocks climbing Helvetia Swiss, Tucker/Parsons Blackwater Falls Dolly Sods Wilderness Canaan Valley ski). 20 net new records (1303 total).
+- **No FIPS errors** — twenty-ninth consecutive clean validation run.
+
+Reasoning:
+- Harrison County OH (Clark Gable + 14th Amendment): One county produced the author of the most consequential constitutional provision of the 19th century (14th Amendment's citizenship/equal protection clauses) AND Hollywood's biggest star of the golden age. An extraordinary pairing in a small eastern Ohio county.
+- Copiah County MS (Robert Johnson): Birthplace of the most influential figure in American popular music — Robert Johnson's Delta blues recordings shaped rock and roll through British revivalists who worshipped his work. The crossroads mythology is the most enduring narrative in American music.
+- Mathews County VA (Chesapeake watermen): Over 200 miles of tidal shoreline in 87 square miles — one of the most distinctive coastal geographies in the eastern US, preserving an intact Chesapeake Bay watermen culture.
+- Pendleton County WV (Spruce Knob/Helvetia): West Virginia's highest point with the most technically demanding rock climbing in the East, plus a 150-year-old Swiss cultural enclave maintaining authentic European traditions.
+- Tucker County WV (Dolly Sods): A boreal-feel wilderness in the mid-Atlantic, created by 19th-century logging and wildfires — one of the most ecologically unusual places east of the Mississippi River.
+- Storm Lake IA (Tyson diversity/Pulitzer): The most ethnically diverse rural Iowa community, and the small-town newspaper that won a Pulitzer Prize holding agricultural polluters accountable — a story about rural American journalism's resilience.
+
+Problems Found:
+- 0 FIPS errors (twenty-ninth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 39)
 - `data/map_data.json` (Round 39)
 - `docs/data-sweeps/2026-07-massive-sweep-round-39.md` (new)
