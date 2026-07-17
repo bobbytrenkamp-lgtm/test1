@@ -21900,6 +21900,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05009",
+      "name": "Boone County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Boone County \u2014 Harrison/NW Arkansas gateway/Ozarks hub",
+      "description": "Harrison in Boone County is the northern gateway to the Arkansas Ozarks and the commercial hub for northern Arkansas between the booming Bentonville/Fayetteville metro to the west and the Springfield MO market to the north. The Boone County area serves as a regional healthcare center (North Arkansas Regional Medical Center) and tourism hub for Buffalo National River \u2014 the first national river in the US. US-65 connects Harrison to Springfield MO, creating a corridor for freight and IT infrastructure. Boone County's proximity to the Walmart/JB Hunt/Tyson technology ecosystem in NW Arkansas creates spillover demand for rural broadband and tech services.",
+      "sources": [
+        {
+          "label": "Boone County Arkansas",
+          "url": "https://www.boonecountyar.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05015",
+      "name": "Carroll County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Carroll County \u2014 Eureka Springs/Berryville/NW Arkansas Ozarks",
+      "description": "Carroll County in northwestern Arkansas contains Eureka Springs \u2014 a historic Victorian resort town built around natural springs, now a major Ozarks tourism destination with hundreds of thousands of visitors annually. The county borders Missouri and is positioned at the convergence of the NW Arkansas metro's growth corridor with the White River resort lake economy (Table Rock, Beaver Lake, Bull Shoals). Berryville, the county seat, serves the agricultural and timber economy of the upper White River watershed. Eureka Springs' arts and tourism IT infrastructure, combined with the county's proximity to the Bentonville tech ecosystem, drives above-average rural broadband investment.",
+      "sources": [
+        {
+          "label": "Carroll County Arkansas",
+          "url": "https://www.carrollcountyar.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05033",
+      "name": "Crawford County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Crawford County \u2014 Van Buren/I-40 corridor/Fort Smith metro east",
+      "description": "Crawford County and its city Van Buren form the eastern anchor of the Fort Smith metro area (Sebastian County, already in DB). Van Buren sits directly on I-40 \u2014 one of the most important east-west freight corridors in the US \u2014 at the Arkansas River crossing. The county's position on the I-40 fiber backbone connecting Little Rock and Fort Smith to Oklahoma City makes it a natural fiber waypoint. Arkansas River Valley industries include poultry processing, manufacturing, and distribution. The historic Rudy area in Crawford County has been targeted for industrial development leveraging I-40 access and the Fort Smith metro's labor pool.",
+      "sources": [
+        {
+          "label": "Crawford County Arkansas",
+          "url": "https://www.crawfordcountyar.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21013",
+      "name": "Bell County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bell County \u2014 Middlesboro/Cumberland Gap/SE Kentucky hub",
+      "description": "Bell County in southeastern Kentucky contains Middlesboro \u2014 the only US city built inside a meteor impact crater \u2014 and the Cumberland Gap National Historical Park, where Virginia, Tennessee, and Kentucky meet. The Gap was the primary passage for westward migration through the Appalachians. Bell County is served by Kentucky Power (AEP) and sits in a region of deep coal heritage with the infrastructure legacy of mountain electricity generation. Middlesboro's TVA-adjacent grid access (through Tennessee connections) and its position as the commercial hub for a tri-state area create IT concentration beyond its permanent population metrics.",
+      "sources": [
+        {
+          "label": "Bell County Kentucky",
+          "url": "https://bellcounty.ky.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21017",
+      "name": "Bourbon County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bourbon County \u2014 Paris/Kentucky bourbon heartland/thoroughbred country",
+      "description": "Bourbon County is the original home of bourbon whiskey \u2014 the spirit takes its name from this county. Paris, the county seat, sits in the heart of the Kentucky Bluegrass region, surrounded by historic distilleries and thoroughbred horse farms. Buffalo Trace Distillery (the nation's oldest continuously operating distillery) and numerous craft distilleries in the region drive significant food and beverage IT, inventory management, and controlled process systems. The Kentucky bourbon boom has made the Bluegrass corridor one of the most active beverage-tech markets in the mid-South. Kentucky Power and Kentucky Utilities serve the county.",
+      "sources": [
+        {
+          "label": "Bourbon County Kentucky",
+          "url": "https://www.bourcounty.ky.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21021",
+      "name": "Boyle County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Boyle County \u2014 Danville/Centre College/Kentucky's technology corridor",
+      "description": "Boyle County and Danville, Kentucky are home to Centre College \u2014 one of the most selective small liberal arts colleges in the US, and a host site for the 2000 Vice Presidential debate. Danville has become one of Kentucky's more notable economic development successes in the interior \u2014 attracting Toyota (adjacent in Garrard County), Ephraim McDowell Health, and distribution operations. The county's position on US-150 connecting Lexington to the Appalachian coalfields gives it corridor fiber access. Danville's historic role as a legal and government hub (Kentucky's first court, first constitution, first college) continues as a regional administrative center. Kentucky Utilities (LG&E/KU Energy) serves the county.",
+      "sources": [
+        {
+          "label": "Boyle County Kentucky",
+          "url": "https://boylecounty.ky.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29029",
+      "name": "Camden County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Camden County \u2014 Lake of the Ozarks/Camdenton/Missouri's premier lake resort economy",
+      "description": "Camden County contains the primary developed shoreline of Lake of the Ozarks \u2014 one of the largest reservoirs in the US by shoreline length (~1,150 miles) and Missouri's premier resort destination. Camdenton is the county seat and lake services hub. The lake economy supports a year-round tourism and second-home technology demand far beyond what permanent population alone suggests. Ameren Missouri's Lake of the Ozarks facilities (Bagnell Dam created the lake in 1931) provide hydroelectric generation that shaped the entire central Missouri electricity market. The lake's communications infrastructure \u2014 to support marina operations, vacation rentals, and second-home connectivity \u2014 has driven above-average rural broadband investment in Camden County.",
+      "sources": [
+        {
+          "label": "Camden County Missouri",
+          "url": "https://www.camdencounty.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29001",
+      "name": "Adair County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Adair County \u2014 Kirksville/Truman State University/osteopathic medicine origin",
+      "description": "Kirksville in Adair County is home to Truman State University \u2014 Missouri's only highly selective public liberal arts university \u2014 and A.T. Still University, which founded the first school of osteopathic medicine in the world in 1892. Kirksville Regional Medical Center and ATSU's medical and health sciences programs create a significant research and healthcare IT footprint for a small northern Missouri city. Truman State's technology infrastructure, including a high-performance computing environment for its STEM programs, anchors IT in a rural context. Ameren Missouri and local electric cooperatives serve the county.",
+      "sources": [
+        {
+          "label": "Adair County Missouri",
+          "url": "https://www.adaircountymo.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29007",
+      "name": "Audrain County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Audrain County \u2014 Mexico MO/American Saddlebred horse capital/US-54 corridor",
+      "description": "Mexico in Audrain County is known as the 'Saddle Horse Capital of the World' \u2014 the American Saddlebred horse industry has deep roots here, with major breeding farms and the Missouri Fox Trotting Horse Breed Association driving agricultural technology demand. The county sits on US-54 \u2014 the primary highway connecting Kansas City to the I-70 corridor through central Missouri. Audrain County's position as a midpoint in the US-54 corridor makes it a natural waypoint for fiber infrastructure. Ameren Missouri's transmission lines through the county connect the Columbia (Boone County) market to the Mexico/Hannibal corridor. Aluminium rolling operations (Novelis, historically) contributed to Mexico's industrial electrical heritage.",
+      "sources": [
+        {
+          "label": "Audrain County Missouri",
+          "url": "https://www.audraincounty.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20027",
+      "name": "Clay County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clay County \u2014 Clay Center/north-central Kansas/Smoky Hill Trail corridor",
+      "description": "Clay Center in Clay County sits in the heart of north-central Kansas on the Republican River. The Smoky Hill Trail \u2014 used by settlers heading to Colorado gold fields \u2014 passed through the area. Clay County's agricultural economy centers on wheat, corn, and cattle, with major grain elevator infrastructure and SCADA monitoring for irrigation systems. Evergy (formerly Westar Energy/Great Plains Energy) serves the county. Clay County's position on US-24 and US-81 connecting Salina to Nebraska gives it highway infrastructure corridor fiber access. The county's Milford Lake reservoir (Kansas's largest) creates recreation and water management IT.",
+      "sources": [
+        {
+          "label": "Clay County Kansas",
+          "url": "https://www.claycountyks.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20021",
+      "name": "Cherokee County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cherokee County \u2014 Columbus KS/Tri-State Mining District/Historic Route 66",
+      "description": "Cherokee County in the extreme southeastern corner of Kansas was part of the historic Tri-State Mining District \u2014 one of the world's most prolific sources of lead and zinc in the early 20th century, shared with Jasper County MO and Ottawa County OK. Historic Route 66 runs through the county, and the area has become a heritage tourism destination. The region's industrial electrical grid, originally built to power mining operations, created infrastructure density unusual for its current population. The EPA Superfund cleanup operations in the tri-state mining area continue to require environmental monitoring and SCADA systems. SEK Electric Cooperative serves the county.",
+      "sources": [
+        {
+          "label": "Cherokee County Kansas",
+          "url": "https://www.cherokeecountyks.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20089",
+      "name": "Jewell County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jewell County \u2014 Mankato/north-central Kansas/geographic and agricultural corridor",
+      "description": "Jewell County in north-central Kansas borders Nebraska and sits along the Republican River valley. Mankato is the county seat. The county exemplifies the high-plains agricultural economy: wheat, milo, and cattle operations with substantial center-pivot irrigation requiring SCADA and remote monitoring systems. North Central Electric Cooperative serves the county. Jewell County sits on US-36 \u2014 the primary east-west highway through north-central Kansas that parallels the Nebraska border, providing fiber corridor access for rural agricultural technology. The county's wind energy potential has attracted development interest, adding electrical grid infrastructure to the county's renewable energy profile.",
+      "sources": [
+        {
+          "label": "Jewell County Kansas",
+          "url": "https://www.jewellcountyks.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19005",
+      "name": "Allamakee County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Allamakee County \u2014 Waukon/NE Iowa driftless bluffs/Mississippi River corner",
+      "description": "Allamakee County occupies the extreme northeastern corner of Iowa, where the Mississippi River forms the boundary with Wisconsin and Minnesota. Waukon is the county seat. The county is part of the Driftless Area \u2014 unglaciated terrain of dramatic bluffs and valleys that makes the area uniquely picturesque in the otherwise flat Midwest. The county's position on the Iowa-Wisconsin border, with the Mississippi River corridor's fiber infrastructure passing through, gives it connectivity assets beyond its size. Iowa's rural broadband expansion has prioritized driftless counties. Allamakee Electric Cooperative and Alliant Energy serve the area.",
+      "sources": [
+        {
+          "label": "Allamakee County Iowa",
+          "url": "https://allamakeecounty.iowa.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19007",
+      "name": "Appanoose County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Appanoose County \u2014 Centerville/SE Iowa coal heritage/Rathbun Lake energy hub",
+      "description": "Appanoose County in southeastern Iowa contains Rathbun Lake \u2014 one of Iowa's largest lakes, built by the Army Corps of Engineers and now managed by the Iowa DNR. Rathbun Electric Cooperative (serving a multi-county area from the Rathbun reservoir) operates one of Iowa's most innovative rural electric cooperatives. Centerville is the county seat and retains its historic character as a coal country hub \u2014 the county's deep coal history created a dense electrical grid infrastructure for the region. Iowa's rural renewable energy expansion has targeted the Appanoose area for wind and solar development, adding new grid investment. The county's data center-friendly power costs reflect the Rathbun Co-op's aggressive rural electrification model.",
+      "sources": [
+        {
+          "label": "Appanoose County Iowa",
+          "url": "https://appanoosecounty.iowa.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48097",
+      "name": "Cooke County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cooke County \u2014 Gainesville/North Texas Oklahoma border/I-35 corridor",
+      "description": "Cooke County and Gainesville sit at the I-35 corridor crossing point between Texas and Oklahoma \u2014 one of the highest-traffic north-south freight routes in the US. The county's position on the Red River border makes it a natural hub for cross-border commerce and logistics. Lake Texoma (the largest reservoir on the Texas-Oklahoma border) creates water management and recreation IT demand in the area. Gainesville is served by Oncor and CoSer (Cooke-Denton Electric Cooperative). North Texas's manufacturing base \u2014 including proximity to the Denton County tech corridor and Gainesville's own industrial park \u2014 creates supply chain IT demand. The I-35W NTTA toll infrastructure creates additional monitoring and data management requirements.",
+      "sources": [
+        {
+          "label": "Cooke County Texas",
+          "url": "https://www.co.cooke.tx.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48395",
+      "name": "Robertson County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Robertson County \u2014 Franklin/Brazos Valley/Bryan-College Station corridor",
+      "description": "Robertson County sits in the Brazos River valley between Waco and the Bryan-College Station market (Brazos County, home of Texas A&M, likely already in DB). Franklin, the county seat, is a market town serving the agricultural zone between these two major markets. The county's position on the US-79 corridor connecting Bryan-College Station to the DFW market gives it fiber corridor access. Luminant (Vistra Energy) has significant coal generation and natural gas assets in the Brazos Valley region. Robertson County's agricultural economy \u2014 cotton, cattle, sorghum \u2014 drives precision agriculture monitoring and irrigation SCADA demand. The proximity to Texas A&M's research and extension network creates agricultural IT spillover into Robertson County.",
+      "sources": [
+        {
+          "label": "Robertson County Texas",
+          "url": "https://www.co.robertson.tx.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "30035",
+      "name": "Glacier County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Glacier County \u2014 Cut Bank/Blackfeet Nation/Glacier National Park gateway",
+      "description": "Glacier County in northwestern Montana is the home of the Blackfeet Nation \u2014 one of Montana's largest Native American tribes \u2014 and sits on the eastern doorstep of Glacier National Park. Cut Bank is the county seat and a regional oil and natural gas hub for north-central Montana's Sweetgrass Arch petroleum geology. The county hosts the Glacier International Airport and is served by the Blackfeet telecommunications cooperative, which has been an innovator in tribal broadband development using federal universal service funding. The USDA's tribal broadband programs and FCC's E-Rate program have made Glacier County a beneficiary of significant connectivity investment. Montana-Dakota Utilities and local generation serve the area.",
+      "sources": [
+        {
+          "label": "Glacier County Montana",
+          "url": "https://www.glaciercountymt.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "30003",
+      "name": "Big Horn County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Big Horn County \u2014 Hardin/Little Bighorn Battlefield/Crow Nation energy hub",
+      "description": "Big Horn County is the homeland of the Crow Nation \u2014 one of Montana's largest tribes \u2014 and contains Little Bighorn Battlefield National Monument, site of the 1876 battle known as Custer's Last Stand. Hardin is the county seat. The county is a significant energy producer: the Crow Nation's coal reserves on the Crow Indian Reservation are among the largest single tribal coal holdings in the US. The Bighorn River creates agricultural and hydropower potential. Crow Tribal Utility Authority and Big Horn County Electric Cooperative serve the area. The Crow Nation's energy sovereignty initiatives \u2014 including wind and solar development on reservation lands \u2014 create new grid and IT infrastructure investment in Big Horn County beyond what legacy coal operations provided.",
+      "sources": [
+        {
+          "label": "Big Horn County Montana",
+          "url": "https://www.bighornmt.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "38079",
+      "name": "Rolette County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Rolette County \u2014 Rolla/Turtle Mountain Band of Chippewa/Canada border",
+      "description": "Rolette County in north-central North Dakota is the homeland of the Turtle Mountain Band of Chippewa \u2014 one of North Dakota's largest tribal communities centered in and around Belcourt. Rolla serves as the county seat and a regional commercial hub near the Canadian border. The Turtle Mountain Community College has been a participant in federal tribal broadband and digital equity initiatives. The county's position near the Bottineau/Rolla border crossing with Canada creates cross-border logistics IT. MDU Resources and North Central Electric Cooperative serve the area. Federal tribal technology programs have made Rolette County a focus of rural broadband investment disproportionate to its size.",
+      "sources": [
+        {
+          "label": "Rolette County North Dakota",
+          "url": "https://www.co.rolette.nd.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "54019",
+      "name": "Fayette County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Fayette County \u2014 Fayetteville/New River Gorge National Park/adventure tourism hub",
+      "description": "Fayette County is home to New River Gorge National Park \u2014 one of the newest national parks in the US (upgraded from national river status in 2020), containing the deepest and longest river gorge in the Appalachians. The New River Gorge Bridge was the world's longest steel span arch bridge at its completion and hosts Bridge Day, the largest single-day festival in West Virginia attracting 80,000+ visitors. The county's adventure tourism economy (whitewater rafting, rock climbing, mountain biking) drives significant hospitality and recreation IT. West Virginia's outdoor tourism growth has prioritized Fayette County for rural broadband. Appalachian Power (AEP) serves the county, with legacy coal mining infrastructure creating existing grid capacity in this deeply rural mountain environment.",
+      "sources": [
+        {
+          "label": "Fayette County West Virginia",
+          "url": "https://fayettecountywv.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }

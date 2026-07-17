@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 20)
+- `data/map_data.json` (Round 20)
+- `docs/data-sweeps/2026-07-massive-sweep-round-20.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 20**: Arkansas (Boone/Harrison NW AR gateway, Carroll/Eureka Springs, Crawford/Van Buren I-40 corridor), Kentucky (Bell/Middlesboro Cumberland Gap, Bourbon/Paris bourbon heartland, Boyle/Danville Centre College), Missouri (Camden/Lake of the Ozarks, Adair/Kirksville Truman State, Audrain/Mexico MO Saddlebred capital), Kansas (Clay/Clay Center north-central KS, Cherokee/Columbus Tri-State Mining, Jewell/Mankato wind corridor), Iowa (Allamakee/Waukon NE Iowa driftless, Appanoose/Centerville Rathbun Lake), Texas (Cooke/Gainesville I-35 border, Robertson/Franklin Brazos Valley), Montana (Glacier/Cut Bank Blackfeet Nation, Big Horn/Hardin Crow Nation energy), North Dakota (Rolette/Rolla Turtle Mountain Chippewa), West Virginia (Fayette/New River Gorge NP). 20 net new records (903 total).
+- **No FIPS errors** — ninth consecutive clean validation run.
+
+Reasoning:
+- Camden County MO (Lake of the Ozarks): ~1,150 miles of shoreline, one of the US's largest reservoirs. Ameren's Bagnell Dam hydroelectric legacy created a unique central Missouri grid environment. Second-home connectivity demand drives rural broadband far above population metrics.
+- Bell County KY (Middlesboro/Cumberland Gap): The only US city inside a meteor impact crater. Cumberland Gap National Historical Park at the tri-state corner of KY/VA/TN. Kentucky Power grid, historically coal-heavy, creates legacy infrastructure.
+- Glacier County MT (Blackfeet Nation/Glacier NP): Tribal broadband innovation through Blackfeet telecom cooperative with federal universal service funding. Oil and gas production in the Sweetgrass Arch. Eastern gateway to Glacier National Park.
+- Fayette County WV (New River Gorge): Newest national park in the US (2020). World-record steel arch bridge. Adventure tourism economy driving rural broadband investment in deep Appalachian terrain.
+
+Problems Found:
+- 0 FIPS errors (ninth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 19)
 - `data/map_data.json` (Round 19)
 - `docs/data-sweeps/2026-07-massive-sweep-round-19.md` (new)
