@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-17T00:55:42.485131+00:00",
+  "generated_at": "2026-07-17T00:59:39.403101+00:00",
   "source_last_updated": "2026-07-17",
   "stats": {
-    "total_counties_tracked": 1083,
+    "total_counties_tracked": 1103,
     "by_level": {
-      "-1": 971,
+      "-1": 991,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,7 +12,7 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 1074,
+      "data_center": 1094,
       "water": 14,
       "ai": 182,
       "energy": 160,
@@ -28634,6 +28634,466 @@
       "confidence": "high",
       "confidence_score": 62,
       "source_tier": 1
+    },
+    "46075": {
+      "name": "Jones County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jones County SD \u2014 Murdo/least populous SD county/I-90/Badlands adjacent",
+      "description": "Jones County is South Dakota's least populous county \u2014 with approximately 700 residents \u2014 and one of the most sparsely settled counties in the contiguous United States. Murdo, the county seat, sits on I-90 in the heart of the South Dakota plains, where the highway serves as the primary east-west logistics corridor across the state. The county is adjacent to Badlands National Park and the Buffalo Gap National Grassland. Jones County's extreme remoteness has made it a priority area for USDA ReConnect and FCC E-Rate rural broadband programs. Despite its tiny population, the county's I-90 position generates truck stop and logistics technology infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Jones County South Dakota",
+          "url": "https://www.jonescountysd.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "46079": {
+      "name": "Lake County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lake County SD \u2014 Madison/Dakota State University/Lake Madison/DSU cyber research",
+      "description": "Lake County in eastern South Dakota is home to Dakota State University in Madison \u2014 one of the most focused cybersecurity and technology universities in the Upper Midwest. DSU operates the Madison Cyber Labs (MCL), a state-of-the-art cybersecurity research facility, and has strong partnerships with the US Department of Defense's Cyber Command. DSU's technology focus makes Lake County an unusual case: a rural South Dakota county with a nationally recognized cybersecurity research program. The Dakota Cyber Summit, hosted at DSU, draws government, military, and industry cybersecurity professionals. Lake Madison and Lake Herman are recreational lakes attracting second-home development that drives local broadband investment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Dakota State University",
+          "url": "https://www.dsu.edu"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "46015": {
+      "name": "Brule County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Brule County SD \u2014 Chamberlain/Lake Francis Case/Missouri River/I-90 gateway",
+      "description": "Brule County sits where I-90 crosses the Missouri River at Chamberlain \u2014 one of South Dakota's most significant highway waypoints between the east and west halves of the state. Lake Francis Case, created by Fort Randall Dam (a US Army Corps of Engineers project on the Missouri River), provides water recreation and federal water management IT. Chamberlain is a traditional stopping point for travelers and serves the Crow Creek Sioux Reservation nearby. The Akta Lakota Museum at St. Joseph's Indian School in Chamberlain preserves Lakota heritage and generates educational IT. Missouri River hydroelectric management from the Pick-Sloan reservoirs creates significant USACE computing infrastructure at Chamberlain's dam-related facilities.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Chamberlain/Oacoma Chamber",
+          "url": "https://www.chamberlainsd.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "17011": {
+      "name": "Bureau County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bureau County IL \u2014 Princeton/Illinois and Michigan Canal/Heritage Corridor/I-80 rail hub",
+      "description": "Bureau County in north-central Illinois contains Princeton \u2014 a historic market town on the Illinois River. The Illinois and Michigan Canal, which connected Lake Michigan to the Illinois River and catalyzed Chicago's growth as a rail-canal hub, runs through Bureau County and is now a Heritage Corridor managed by the National Park Service. Bureau County is one of Illinois's more productive agricultural counties in the Illinois River valley. Spoon River (of Edgar Lee Masters' 'Spoon River Anthology' fame) flows through western Bureau County. The county's I-80 corridor position gives it access to major freight rail and highway infrastructure connecting Chicago to the West Coast.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Bureau County Illinois",
+          "url": "https://www.bureaucountyil.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "17033": {
+      "name": "Crawford County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Crawford County IL \u2014 Robinson/Lincoln Trail/Illinois oilfields/southeast Illinois",
+      "description": "Crawford County in southeast Illinois was the first commercial oil-producing county in Illinois \u2014 oil was discovered near Robinson in 1905, predating the more famous Illinois Basin discoveries. Robinson remains a petroleum service and refining center, with Marathon Oil's Robinson refinery being one of Illinois's primary petroleum refining facilities. The Lincoln Trail runs through Crawford County \u2014 connecting Vincennes, Indiana to Springfield, Lincoln's Prairie. The county's petroleum infrastructure (refinery IT, pipeline monitoring, terminal management) creates industrial computing in a rural county of 19,000 people. Olney (adjacent Richland County) adds to the southeast Illinois petroleum corridor.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Crawford County Illinois",
+          "url": "https://www.crawfordil.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "17039": {
+      "name": "De Witt County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "De Witt County IL \u2014 Clinton/Clinton Lake/Illinois Power nuclear/central Illinois",
+      "description": "De Witt County in central Illinois contains Clinton Lake \u2014 a 4,895-acre cooling reservoir built for the Clinton Power Station, a nuclear generating station operated by Exelon. Clinton Power Station is a single-unit nuclear facility that provides baseload power to Illinois's grid. Nuclear power plant operations create significant safety-critical IT: reactor monitoring systems, NRC regulatory compliance, security systems, and maintenance management computing. The Sangamon River drainage and central Illinois agricultural production contribute to the county's character. De Witt County's position in Illinois's energy generating infrastructure makes it institutionally significant relative to its population of 15,000.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "De Witt County Illinois",
+          "url": "https://www.dewittcountyil.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "56035": {
+      "name": "Sublette County",
+      "state": "Wyoming",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Sublette County WY \u2014 Pinedale/Jonah natural gas field/Wyoming Range/Green River Basin",
+      "description": "Sublette County in western Wyoming contains the Jonah Gas Field and Pinedale Anticline \u2014 one of the most productive natural gas fields in the Rocky Mountain region, producing at its peak billions of cubic feet of natural gas per day. Pinedale is the county seat, a small town that became a boomtown during the gas field development of the 2000s. The Green River Basin's natural gas infrastructure includes thousands of wells, gathering systems, and processing plants \u2014 all requiring sophisticated SCADA, well monitoring, and production data management. Sublette County's remote mountain terrain and extensive federal land management (BLM, Forest Service) creates additional government IT infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Sublette County Wyoming",
+          "url": "https://www.sublettecountywy.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "56017": {
+      "name": "Hot Springs County",
+      "state": "Wyoming",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hot Springs County WY \u2014 Thermopolis/world's largest mineral hot spring/Big Horn Basin",
+      "description": "Hot Springs County contains Thermopolis \u2014 home to Hot Springs State Park, which contains what is claimed to be the world's largest mineral hot spring. The Thermopolis hot springs flow at over 8 million gallons per day. Wyoming Dinosaur Center in Thermopolis is a world-class dinosaur museum with active excavation sites in the surrounding Bighorn Basin. Wind River Canyon \u2014 a dramatic gorge cut through the Owl Creek Mountains by the Wind River \u2014 provides a geological spectacle and National Scenic Byway in Hot Springs County. The county's tourism and geological research infrastructure create unusual digital needs for a county of fewer than 5,000 people.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Hot Springs County Wyoming",
+          "url": "https://www.hotspringscountywy.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "56039": {
+      "name": "Teton County",
+      "state": "Wyoming",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Teton County WY \u2014 Jackson Hole/Grand Teton NP/Jackson Hole Economic Summit/billionaire resort",
+      "description": "Teton County has the highest median household income of any county in the United States in most years \u2014 and by some measures the highest per-capita income of any county in America \u2014 driven by Jackson Hole's concentration of ultra-wealthy seasonal and permanent residents. The Jackson Hole Economic Policy Symposium, hosted by the Federal Reserve Bank of Kansas City, convenes global central bankers annually \u2014 an event that moves global financial markets and requires extraordinary security and communications IT. Grand Teton National Park generates significant National Park Service digital infrastructure. Teton County's ultra-high-bandwidth demands from globally connected residents, financial summits, and luxury resort operations create a connectivity investment profile that far exceeds the county's 23,000 permanent residents.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Teton County Wyoming",
+          "url": "https://www.tetoncountywy.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "18007": {
+      "name": "Benton County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Benton County IN \u2014 Fowler/northwest Indiana wind energy/Benton County Wind Farm",
+      "description": "Benton County in northwest Indiana is one of the most wind-energy-dense counties in Indiana \u2014 home to multiple wind farm projects that make it a leader in Indiana's renewable energy transition. The flat, open agricultural landscape of the Kankakee River drainage provides excellent wind resources. Fowler is the county seat of this primarily agricultural county. Indiana Michigan Power (American Electric Power) and Duke Energy's transmission infrastructure crosses Benton County as part of the MISO grid management for northwest Indiana. The county's wind energy development has brought turbine monitoring SCADA and renewable energy grid management IT to an otherwise traditional corn and soybean farming county.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Benton County Indiana",
+          "url": "https://www.bentoncounty.in.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "18041": {
+      "name": "Fayette County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Fayette County IN \u2014 Connersville/Whitewater River/Inland manufacturing heritage",
+      "description": "Fayette County in eastern Indiana centers on Connersville \u2014 once known as 'Little Detroit' for its concentration of early automotive parts manufacturers. Inland Steel, Connersville Blower, and dozens of automotive components factories operated here in the early and mid 20th century. The Whitewater River valley provided power for early mills. Fayette County's deindustrialization (similar to many eastern Indiana counties) has left it seeking new economic identity, with broadband and digital infrastructure investments prioritized by the county's economic development programs. The Whitewater Valley Excursion Railroad (a scenic railway using restored steam locomotives) adds heritage tourism IT to the county's profile.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Fayette County Indiana",
+          "url": "https://www.faycounty.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "18119": {
+      "name": "Owen County",
+      "state": "Indiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Owen County IN \u2014 Spencer/Cataract Falls/White River/south-central Indiana",
+      "description": "Owen County in south-central Indiana is home to Cataract Falls State Recreation Area \u2014 the largest-volume waterfall in Indiana, on the Eel River (a White River tributary). Spencer is the county seat. The county's proximity to Bloomington (home of Indiana University, 20 miles east) positions it within IU's research network influence and increasingly within the Bloomington tech community's exurban commuter zone. Owen County's hardwood timber industry and limestone quarrying heritage connect it to Indiana's stone industry corridor. Hoosier National Forest's western boundary is nearby, and USFS recreation management IT extends toward Owen County's boundaries.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Owen County Indiana",
+          "url": "https://www.owencounty.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "29035": {
+      "name": "Carter County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Carter County MO \u2014 Van Buren/Current River/Ozark National Scenic Riverways/Ozark highlands",
+      "description": "Carter County in the Missouri Ozarks anchors the Current River corridor \u2014 the spring-fed river system that makes up the heart of the Ozark National Scenic Riverways (America's first national scenic riverway, established 1964). Van Buren is the county seat, on the Current River in one of the most remote sections of the Missouri Ozarks. Greer Spring \u2014 the largest spring in Missouri \u2014 is in Carter County, discharging an average of 222 million gallons per day into the Eleven Point River. The National Park Service's Ozark National Scenic Riverways management IT (visitor data, hydrological monitoring, permit systems) operates from this remote country. Carter County is among Missouri's most isolated counties from broadband access.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Carter County Missouri",
+          "url": "https://www.cartercountymissouri.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "29073": {
+      "name": "Gasconade County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Gasconade County MO \u2014 Hermann/Missouri River/German wine country/Meramec River",
+      "description": "Gasconade County is the heart of Missouri's German immigrant wine region \u2014 Hermann was founded in 1836 by German immigrants who deliberately sought a landscape resembling the Rhine Valley. Stone Hill Winery in Hermann is one of the largest wineries in the US by volume. The county sits where the Gasconade River meets the Missouri River \u2014 historically a significant confluence for river traffic. The Missouri Pacific Railroad's historic route through the Gasconade River valley was the scene of the deadliest railroad accident in Missouri history (1855 Gasconade River bridge collapse). Gasconade County's tourism economy and wine industry create hospitality and agritourism IT infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Hermann Missouri Area Chamber",
+          "url": "https://www.hermannmo.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "29093": {
+      "name": "Iron County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Iron County MO \u2014 Ironton/Taum Sauk Mountain/highest MO point/lead mining/SE Missouri",
+      "description": "Iron County in the Missouri Iron Mountain region contains Taum Sauk Mountain \u2014 the highest point in Missouri at 1,772 feet. Ironton is the county seat. The Taum Sauk Pumped Storage Project \u2014 an Ameren Missouri hydroelectric facility \u2014 operates on Proffit Mountain using two reservoirs and a 2,400-foot powerhead to generate up to 440 megawatts. In 2005, the upper reservoir suffered a catastrophic breach, releasing 1.3 billion gallons of water in about 12 minutes \u2014 a failure that reshaped dam safety monitoring requirements. The rebuilt facility's dam safety monitoring IT represents state-of-the-art infrastructure control systems. Iron County's lead mining heritage (Old Lead Belt) and current mining activity add industrial IT to this Ozarks county.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Iron County Missouri",
+          "url": "https://www.ironcountymissouri.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "13007": {
+      "name": "Baker County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Baker County GA \u2014 Newton/SW Georgia/Flint River/smallest GA county population",
+      "description": "Baker County is Georgia's least populous county \u2014 with fewer than 3,500 residents. Newton is the county seat, on the Flint River in southwest Georgia's rich agricultural flatwoods. Baker County's peanut, cotton, and timber production participates in Georgia's agricultural digital infrastructure, including University of Georgia Cooperative Extension precision agriculture programs. The Flint River here is monitored by USGS gauging stations as part of the Apalachicola-Chattahoochee-Flint (ACF) Basin water dispute monitoring \u2014 a multi-decade interstate water conflict between Georgia, Alabama, and Florida that requires extensive hydrological IT. Baker County's participation in Georgia's rural broadband priority mapping programs reflects its position as a digital equity challenge.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Baker County Georgia",
+          "url": "https://www.bakercountyga.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "13065": {
+      "name": "Clinch County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clinch County GA \u2014 Homerville/Okefenokee Swamp gateway/SE Georgia timber",
+      "description": "Clinch County in southeast Georgia sits at the northern gateway to the Okefenokee Swamp National Wildlife Refuge \u2014 one of the largest blackwater swamp ecosystems in North America. Homerville is the county seat. The Okefenokee, managed by the US Fish and Wildlife Service, requires extensive ecological monitoring IT for water levels, wildlife tracking, fire management, and wilderness permit systems. Clinch County's timber industry (loblolly pine plantations) connects to the Georgia timber supply chain. The county's proximity to the I-75 corridor (a few miles east in Lowndes County) and the Jacksonville, FL metro's northern influence zone create commercial connectivity demand.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Clinch County Georgia",
+          "url": "https://www.clinchcountyga.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "13149": {
+      "name": "Heard County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Heard County GA \u2014 Franklin/Chattahoochee River/West Georgia/Troup County adjacent",
+      "description": "Heard County is a small, rural west Georgia county on the Chattahoochee River \u2014 bordering Alabama across the Chattahoochee. Franklin is the county seat. The county sits in the West Georgia development corridor where Troup County's Kia automotive plant (LaGrange) and the Columbus/Phenix City metro create economic spillover effects. Heard County's agricultural and timber base is complemented by its position in Georgia Power's renewable energy expansion territory. The Chattahoochee River here is part of the ACF Basin water management system, with USGS monitoring stations tracking flows relevant to the multi-state water compact. Georgia's rural broadband priority zone designations include Heard County.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Heard County Georgia",
+          "url": "https://www.heardcountyga.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "02070": {
+      "name": "Dillingham Census Area",
+      "state": "Alaska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dillingham Census Area AK \u2014 Dillingham/Bristol Bay/largest sockeye salmon run/Pebble Mine controversy",
+      "description": "The Dillingham Census Area encompasses the Bristol Bay region of southwest Alaska \u2014 site of the world's largest sockeye salmon run, which supports a billion-dollar commercial fishing industry. Dillingham is the hub city for this remote area. The proposed Pebble Mine \u2014 a massive copper and gold deposit near the headwaters of rivers feeding Bristol Bay \u2014 has been one of the most contentious mining proposals in US history, with EPA and Army Corps regulatory proceedings generating extensive environmental IT and monitoring infrastructure. Bristol Bay Native Corporation and regional tribal governments maintain sophisticated fisheries management and cultural heritage IT. Satellite-dependent broadband (SpaceX Starlink has significantly improved connectivity) serves this remote region.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Bristol Bay Native Corporation",
+          "url": "https://www.bbnc.net"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "02188": {
+      "name": "Northwest Arctic Borough",
+      "state": "Alaska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Northwest Arctic Borough AK \u2014 Kotzebue/Red Dog Mine/NANA Regional Corporation/Arctic telecommunications",
+      "description": "The Northwest Arctic Borough encompasses Kotzebue Sound and the Kobuk River drainage north of the Arctic Circle. Kotzebue is one of Alaska's largest hub communities above the Arctic Circle. The Red Dog Mine \u2014 operated by Teck Alaska under a partnership with NANA Regional Corporation \u2014 is one of the world's largest zinc mines and the economic engine of the region. Red Dog's mine operations require industrial SCADA, concentrate transport monitoring, and environmental compliance IT across one of the world's most remote mining operations. NANA Regional Corporation's network of 11 villages maintains sophisticated tribal administrative IT. GCI's Arctic fiber initiative and Starlink have brought improved connectivity to Kotzebue, making it a test case for Arctic broadband deployment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "NANA Regional Corporation",
+          "url": "https://www.nana.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
     }
   },
   "validation_report": {
@@ -29110,7 +29570,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-17T00:55:42.757752+00:00",
+    "last_computed": "2026-07-17T00:59:39.597998+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

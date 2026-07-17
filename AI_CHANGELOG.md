@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 30)
+- `data/map_data.json` (Round 30)
+- `docs/data-sweeps/2026-07-massive-sweep-round-30.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 30**: South Dakota (Jones/Murdo least populous SD county I-90 Badlands, Lake/Madison Dakota State University Madison Cyber Labs DoD cybersecurity, Brule/Chamberlain Lake Francis Case Missouri River I-90), Illinois (Bureau/Princeton Illinois & Michigan Canal Heritage Corridor Spoon River, Crawford/Robinson first IL oil discovery Marathon refinery Lincoln Trail, De Witt/Clinton nuclear power station Sangamon River), Wyoming (Sublette/Pinedale Jonah Gas Field Green River Basin natural gas, Hot Springs/Thermopolis world's largest hot spring Wyoming Dinosaur Center, Teton/Jackson Hole Grand Teton Federal Reserve Economic Symposium), Indiana (Benton/Fowler NW Indiana wind energy MISO grid, Fayette/Connersville Little Detroit automotive heritage deindustrialization, Owen/Spencer Cataract Falls Bloomington IU exurb), Missouri (Carter/Van Buren Current River Ozark National Scenic Riverways Greer Spring, Gasconade/Hermann German wine country Stone Hill Winery, Iron/Ironton Taum Sauk highest MO point pumped storage 2005 breach), Georgia (Baker/Newton least populous GA county Flint River ACF Basin monitoring, Clinch/Homerville Okefenokee gateway USFWS ecological monitoring, Heard/Franklin Chattahoochee River West Georgia Kia corridor), Alaska (Dillingham/Bristol Bay world's largest sockeye salmon run Pebble Mine EPA monitoring, Northwest Arctic/Kotzebue Red Dog Mine zinc NANA Regional Corporation Arctic broadband). 20 net new records (1103 total).
+- **No FIPS errors** — nineteenth consecutive clean validation run.
+
+Reasoning:
+- Lake County SD (Dakota State University/Madison Cyber Labs): DSU is one of the US's most specialized cybersecurity universities with direct DoD/NSA partnerships — outsized national security relevance from a tiny South Dakota institution. Rural cybersecurity research is exactly what this tracker should document.
+- Teton County WY (Jackson Hole/Federal Reserve): Jackson Hole Economic Policy Symposium moves global financial markets annually. Most consequential annual economic conference in the world, in a county of 23,000 people. Market-moving speeches, extensive security/broadcast IT requirements.
+- Iron County MO (Taum Sauk breach): 2005 dam breach released 1.3 billion gallons. Rebuilt facility became model for dam safety monitoring standards — continuous telemetry, redundant sensors, automatic shutdown. One of US's most important dam safety engineering case studies.
+- Northwest Arctic Borough AK (Red Dog Mine): One of world's largest zinc mines, producing ~10% global zinc output, in one of Earth's most remote industrial settings. NANA Regional Corporation's Inupiaq shareholder model is a landmark Alaska Native economic development case.
+
+Problems Found:
+- 0 FIPS errors (nineteenth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 29)
 - `data/map_data.json` (Round 29)
 - `docs/data-sweeps/2026-07-massive-sweep-round-29.md` (new)
