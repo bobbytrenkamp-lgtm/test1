@@ -690,4 +690,26 @@ function renderHomePage() {
 
   /* Init home search */
   initHomeSearch();
+
+  /* KPI count-up */
+  initKpiCountUp(view);
+}
+
+function initKpiCountUp(container) {
+  container.querySelectorAll(".home-kpi-num").forEach(el => {
+    if (el.querySelector(".home-skel")) return;
+    const raw = el.textContent.trim();
+    const num = parseInt(raw.replace(/[^0-9]/g, ""), 10);
+    if (isNaN(num) || num <= 1) return;
+    const dur = Math.min(900, 200 + Math.sqrt(num) * 20);
+    const t0  = performance.now();
+    const tick = now => {
+      const t = Math.min(1, (now - t0) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(num * eased).toLocaleString("en-US");
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = raw;
+    };
+    requestAnimationFrame(tick);
+  });
 }

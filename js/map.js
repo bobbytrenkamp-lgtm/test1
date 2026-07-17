@@ -2994,23 +2994,23 @@ function switchTab(tab) {
   if (aboutEl)     aboutEl.hidden     = true;
 
   if (tab === "home") {
-    if (homeEl) homeEl.hidden = false;
+    if (homeEl) { homeEl.hidden = false; triggerViewEnter(homeEl); }
     searchBar.classList.add("news-mode");
     if (typeof renderHomePage === "function") renderHomePage();
   } else if (tab === "news") {
-    newsEl.hidden = false;
+    newsEl.hidden = false; triggerViewEnter(newsEl);
     searchBar.classList.add("news-mode");
     renderNews();
   } else if (tab === "stocks") {
-    if (stocksEl) stocksEl.hidden = false;
+    if (stocksEl) { stocksEl.hidden = false; triggerViewEnter(stocksEl); }
     searchBar.classList.add("news-mode");
     if (typeof initStocksPage === "function") initStocksPage();
   } else if (tab === "analytics") {
-    if (analyticsEl) analyticsEl.hidden = false;
+    if (analyticsEl) { analyticsEl.hidden = false; triggerViewEnter(analyticsEl); }
     searchBar.classList.add("news-mode");
     if (typeof renderAnalyticsPage === "function") renderAnalyticsPage();
   } else if (tab === "about") {
-    if (aboutEl) aboutEl.hidden = false;
+    if (aboutEl) { aboutEl.hidden = false; triggerViewEnter(aboutEl); }
     searchBar.classList.add("news-mode");
     if (typeof renderAboutPage === "function") renderAboutPage();
   } else {
@@ -3022,6 +3022,13 @@ function switchTab(tab) {
       setTimeout(() => leafletMap && leafletMap.invalidateSize(), 200);
     }
   }
+}
+
+function triggerViewEnter(el) {
+  if (!el) return;
+  el.classList.remove("view-enter");
+  void el.offsetWidth;
+  el.classList.add("view-enter");
 }
 
 function initNavTabs() {
