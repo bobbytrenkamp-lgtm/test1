@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 35)
+- `data/map_data.json` (Round 35)
+- `docs/data-sweeps/2026-07-massive-sweep-round-35.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 35**: Texas (Oldham/Vega Alibates Flint Quarries NM only TX national monument 13,000yr, Scurry/Snyder Deep Rock oil SACROC CO2 EOR Permian Basin, McCulloch/Brady geographic center TX Heart of Texas, Terrell/Sanderson Trans-Pecos most remote TX county Border Patrol), Montana (Daniels/Scobey Hi-Line extreme NE MT Saskatchewan border, Musselshell/Roundup Bull Mountain coal Musselshell River, Blaine/Chinook Bear Paw Battlefield NM Chief Joseph surrender Fort Belknap Tribe, Carter/Ekalaka SE MT badlands least populous MT 0.4/sq mi), North Dakota (Hettinger/Mott SW ND Cannonball River Standing Rock adj, Bowman/SW corner ND tri-state Williston Basin oil, Billings/Medora Theodore Roosevelt NP North Unit Chateau de Morès least populous ND), North Carolina (Hertford/Winton NE NC Chowan River Roanoke-Chowan, Pender/Burgaw Cape Fear River Camp Lejeune adj WASP WWII, Ashe/Jefferson New River oldest US river High Country Christmas trees), Ohio (Athens/Ohio University oldest OH Hocking Hills Appalachian sustainable energy, Richland/Mansfield Ohio State Reformatory Shawshank Redemption filming I-71, Geauga/Chardon largest Ohio Amish oldest settlement maple syrup Cleveland exurb), Mississippi (Noxubee/Macon NE MS Black Belt Noxubee NWR Tombigbee, George/Lucedale fastest-growing MS I-59 Red Creek Wild & Scenic, Jefferson Davis/Prentiss SW-central MS longleaf heritage). 20 net new records (1203 total).
+- **No FIPS errors** — twenty-fourth consecutive clean validation run.
+
+Reasoning:
+- Blaine County MT (Bear Paw/Chief Joseph): One of the most historically significant battlefields in the American West — Chief Joseph's surrender 40 miles from Canadian asylum after 1,170 miles. "I will fight no more forever" is one of history's most quoted surrender speeches.
+- Billings County ND (Theodore Roosevelt NP): The least populated county in ND contains the landscape that shaped TR's conservation philosophy — he later created the national forest and park systems from these experiences. Medora's Chateau de Morès is one of the West's most eccentric heritage sites.
+- Oldham County TX (Alibates Flint Quarries): Only national monument in Texas. The quarries created a 13,000-year prehistoric trade network spanning the entire Great Plains — one of the most valuable toolmaking materials in North America.
+- Richland County OH (Shawshank): The Ohio State Reformatory consistently draws film pilgrims to Mansfield, Ohio — one of the most high-profile film tourism sites in the Midwest, for a 1994 film that has become one of the most beloved in cinema history.
+
+Problems Found:
+- 0 FIPS errors (twenty-fourth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 34)
 - `data/map_data.json` (Round 34)
 - `docs/data-sweeps/2026-07-massive-sweep-round-34.md` (new)

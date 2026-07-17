@@ -27900,6 +27900,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48359",
+      "name": "Oldham County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Oldham County TX \u2014 Vega/Texas Panhandle/Route 66/I-40/Alibates Flint Quarries",
+      "description": "Oldham County in the Texas Panhandle centers on Vega \u2014 a small town on I-40 (the Route 66 successor) at the heart of the Panhandle's High Plains. The county contains Alibates Flint Quarries National Monument \u2014 the only national monument in Texas, preserving quarries where Native Americans mined Alibates flint (a distinctive red, blue, and white agatized dolomite) for over 13,000 years. Flint from Alibates spread across the Great Plains trading networks and has been found at sites from Canada to Mexico. Oldham County's agricultural economy focuses on dryland and irrigated wheat, corn, and cattle. The I-40 corridor gives the county freight logistics connectivity to the Amarillo metro 40 miles east, with BNSF intermodal facilities serving the Panhandle economy.",
+      "sources": [
+        {
+          "label": "Oldham County Texas",
+          "url": "https://www.co.oldham.tx.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48415",
+      "name": "Scurry County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Scurry County TX \u2014 Snyder/west Texas oil/Colorado River/Deep Rock/Permian Basin edge",
+      "description": "Scurry County in west Texas is home to Snyder and the Deep Rock oil field \u2014 one of the most productive oil fields in west Texas history. The Scurry Area Canyon Reef Operators Committee (SACROC) unit in Scurry County is one of the earliest and most significant CO2 enhanced oil recovery projects in the US, having been under continuous oil production since the 1940s and CO2 injection since 1972. The Deep Rock discovery in 1948 created an oil boom that transformed Snyder. The Colorado River (Texas headwaters, not the western Colorado) flows through the county. Scurry County's Permian Basin edge position connects it to the vast West Texas energy infrastructure corridor.",
+      "sources": [
+        {
+          "label": "Scurry County Texas",
+          "url": "https://www.co.scurry.tx.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48307",
+      "name": "McCulloch County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McCulloch County TX \u2014 Brady/Heart of Texas/Brady Creek/geographic center TX",
+      "description": "McCulloch County in central Texas centers on Brady, which markets itself as the 'Heart of Texas' \u2014 Brady is the closest city to the geographic center of Texas. The county's position at the geographic heart of Texas gives it an agricultural and crossroads commercial role connecting the Hill Country (to the south), West Texas (to the west), and the Central Texas plains (to the north and east). Brady Creek flows through the county, providing water for the modest local agricultural economy (cattle, sheep, goats, pecans). McCulloch County's rural healthcare (Heart of Texas Memorial Hospital) and agricultural extension services anchor local institutional IT.",
+      "sources": [
+        {
+          "label": "McCulloch County Texas",
+          "url": "https://www.co.mcculloch.tx.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48443",
+      "name": "Terrell County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Terrell County TX \u2014 Sanderson/Trans-Pecos/most remote TX county/Amistad NRA adjacent",
+      "description": "Terrell County in the Trans-Pecos region of southwest Texas is one of the most remote and least populated counties in the United States, with fewer than 1,000 residents in a county larger than Rhode Island and Delaware combined. Sanderson is the county seat on the Southern Pacific mainline \u2014 a railroad water stop in the Chihuahuan Desert. The county borders Coahuila, Mexico, and its remote position creates significant Border Patrol operations with USBP IT infrastructure for surveillance and enforcement in one of the most difficult terrain environments on the US-Mexico border. Amistad National Recreation Area on the Rio Grande (adjacent to Val Verde County) extends its influence into the Terrell County region. The Pecos River enters the Rio Grande at the county's eastern edge.",
+      "sources": [
+        {
+          "label": "Terrell County Texas",
+          "url": "https://www.co.terrell.tx.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "30019",
+      "name": "Daniels County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Daniels County MT \u2014 Scobey/Hi-Line/extreme NE Montana/Saskatchewan border/dryland wheat",
+      "description": "Daniels County in extreme northeastern Montana sits on the Saskatchewan border \u2014 one of the most remote counties in the contiguous United States. Scobey is the county seat, a dryland wheat farming community on the Hi-Line (the railroad corridor following the 48th parallel). The county's Great Northern Railway heritage created a string of grain elevator towns that still define the Hi-Line's settlement pattern. Daniels County's dryland wheat production is entirely dependent on rain-fed agriculture with no irrigation, making it vulnerable to drought cycles. The county's proximity to the Canadian border creates CBP activity at the small border crossings. Montana's rural broadband programs target Hi-Line counties like Daniels as priority deployment areas for satellite and wireless connectivity.",
+      "sources": [
+        {
+          "label": "Daniels County Montana",
+          "url": "https://www.danielscountymt.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "30065",
+      "name": "Musselshell County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Musselshell County MT \u2014 Roundup/central Montana/coal mining/Musselshell River valley",
+      "description": "Musselshell County in central Montana centers on Roundup on the Musselshell River \u2014 a cattle and coal town that gave rise to the region's 'roundup' cattle gathering tradition (the county seat name reflects this heritage). The county had significant coal production from the Bull Mountain coalfield, which supplied fuel for Great Northern Railway locomotives. The Musselshell River flows eastward through the county in the Missouri River watershed, with the Musselshell River Arm of Fort Peck Reservoir creating water recreation IT. Montana's energy transition programs have targeted Musselshell County as coal mine reclamation work transitions the landscape. The county's cattle ranching heritage and agricultural water management create ongoing agricultural IT.",
+      "sources": [
+        {
+          "label": "Musselshell County Montana",
+          "url": "https://www.musselshellcountymt.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "30005",
+      "name": "Blaine County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Blaine County MT \u2014 Chinook/Fort Belknap/Bear Paw Mountains/Chief Joseph surrender",
+      "description": "Blaine County in north-central Montana contains the Bear Paw Battlefield National Monument \u2014 the site where Chief Joseph of the Nez Perce surrendered to Colonel Nelson Miles on October 5, 1877, ending the Nez Perce War and the 1,170-mile flight toward Canada. His surrender speech ('From where the sun now stands, I will fight no more forever') is one of the most quoted statements in American history. The Fort Belknap Indian Community \u2014 comprising the Gros Ventre (Aaniiih) and Nakoda (Assiniboine) peoples \u2014 occupies a reservation in Blaine County, with tribal government, healthcare, and gaming enterprise IT. Chinook is the county seat on the Milk River, in the dryland wheat farming Hi-Line corridor.",
+      "sources": [
+        {
+          "label": "Blaine County Montana",
+          "url": "https://www.blainecountymt.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "30011",
+      "name": "Carter County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Carter County MT \u2014 Ekalaka/SE Montana badlands/least populous MT county/Custer NF",
+      "description": "Carter County in the far southeastern corner of Montana is among the least populated counties in the United States \u2014 with fewer than 1,400 residents in a county of 3,340 square miles, it has a population density of about 0.4 people per square mile. Ekalaka is the county seat, accessible only by two-lane roads in a region of badlands, buttes, and cattle ranches. The Medicine Rocks State Park's unusual sandstone formations were described by Theodore Roosevelt during his ranching years in the Badlands. Carter County's remote position has made it a persistent broadband challenge area targeted by USDA ReConnect programs. The Custer National Forest patches within the county add USFS management IT in one of Montana's most isolated landscapes.",
+      "sources": [
+        {
+          "label": "Carter County Montana",
+          "url": "https://www.cartercountymt.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "38041",
+      "name": "Hettinger County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hettinger County ND \u2014 Mott/SW North Dakota/Cannonball River/Slope County adj",
+      "description": "Hettinger County in southwest North Dakota centers on Mott on the Cannonball River \u2014 a wheat and cattle county in the Missouri Plateau. The county's position in southwestern North Dakota gives it a rougher terrain than the flat Red River Valley to the east \u2014 badlands topography and buttes characterize the region. The Cannonball River flows eastward to the Missouri River, and the county sits near the Standing Rock Sioux Reservation (to the west in Sioux County) that gained national attention during the Dakota Access Pipeline controversy of 2016. Basin Electric Power Cooperative's rural electric infrastructure serves Hettinger County's dispersed farms and ranches.",
+      "sources": [
+        {
+          "label": "Hettinger County North Dakota",
+          "url": "https://www.hettingercountynd.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "38011",
+      "name": "Bowman County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bowman County ND \u2014 Bowman/SW corner ND/oil and gas/Badlands edge",
+      "description": "Bowman County occupies the extreme southwestern corner of North Dakota, bordering both South Dakota and Montana. Bowman is the county seat in a region where North Dakota's agricultural plains transition to the Badlands and the Black Hills uplift region. The county has oil and gas production from the Williston Basin, the same formation that drives North Dakota's petroleum economy further north and east in the Bakken shale. Bowman County's position at the tri-state corner creates a minor commercial crossroads for ranchers and travelers moving between the Dakotas and Montana. The county's isolation and small population (under 3,300) make it a priority in North Dakota's rural broadband connectivity efforts.",
+      "sources": [
+        {
+          "label": "Bowman County North Dakota",
+          "url": "https://www.bowmancountynd.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "38007",
+      "name": "Billings County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Billings County ND \u2014 Medora/Theodore Roosevelt NP/North Unit Badlands/least populous ND",
+      "description": "Billings County is North Dakota's least populous county \u2014 with fewer than 1,000 residents, it contains the North Unit of Theodore Roosevelt National Park and the historic town of Medora, founded by the French aristocrat Marquis de Mor\u00e8s in 1883. Theodore Roosevelt ranched in the badlands immediately adjacent to what is now Billings County in the 1880s, and his time in North Dakota profoundly influenced his conservation philosophy that would shape the national park and national forest systems he created as president. Medora's Chateau de Mor\u00e8s Historic Site, the Badlands landscape that Roosevelt described as 'romance and adventure,' and the Theodore Roosevelt NP's visitor management IT make Billings County a significant NPS and heritage tourism computing location.",
+      "sources": [
+        {
+          "label": "Billings County North Dakota",
+          "url": "https://www.billingscountynd.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "37091",
+      "name": "Hertford County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hertford County NC \u2014 Winton/NE North Carolina/Chowan River/Roanoke-Chowan region",
+      "description": "Hertford County in northeastern North Carolina sits on the Chowan River in the Roanoke-Chowan region \u2014 one of North Carolina's most historically African American rural counties. Winton is the county seat, near the confluence of the Chowan and Wiccacon Rivers. The county's agricultural economy (soybeans, corn, tobacco, hogs) reflects the Coastal Plain agricultural heritage. Hertford County is part of the Roanoke-Chowan Area, where USDA ReConnect and FCC broadband programs have targeted persistent digital equity gaps in rural northeastern North Carolina. The county's position near the Virginia border and the Albemarle Sound drainage connects it to the coastal plain water quality monitoring systems.",
+      "sources": [
+        {
+          "label": "Hertford County North Carolina",
+          "url": "https://www.hertfordcountync.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "37141",
+      "name": "Pender County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pender County NC \u2014 Burgaw/NE NC/Cape Fear River/Camp Lejeune adjacent/Holly Ridge",
+      "description": "Pender County in southeastern North Carolina borders Onslow County (Camp Lejeune) and New Hanover County (Wilmington), in a zone of military influence, coastal development, and longleaf pine flatwoods. Burgaw is the county seat. The county's Holly Ridge community was the site of Camp Davis \u2014 a World War II antiaircraft artillery training base where the Women Airforce Service Pilots (WASPs) trained for towed target missions, one of the most unusual WWII military operations. The Cape Fear River forms the county's western border. Pender County's coastal proximity to Wilmington's growing metro and Camp Lejeune's military influence zone create suburban and military-adjacent connectivity demands. The county's longleaf pine flatwoods are part of important longleaf ecosystem restoration projects.",
+      "sources": [
+        {
+          "label": "Pender County North Carolina",
+          "url": "https://www.pendercountync.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "37009",
+      "name": "Ashe County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ashe County NC \u2014 Jefferson/High Country NC/New River/oldest US river/Christmas trees",
+      "description": "Ashe County in the High Country of northwestern North Carolina is traversed by the New River \u2014 one of the oldest rivers in the world (among the few rivers that predate the Appalachian Mountains, flowing north). The New River is designated a National Scenic River through much of its Ashe County reach. Jefferson is the county seat. Ashe County is one of North Carolina's leading Christmas tree producers \u2014 the cool mountain climate and elevation (3,000-5,500 feet) is ideal for Fraser fir production, and the county's farms supply a significant share of the eastern US retail Christmas tree market. The county's High Country position (Blue Ridge Parkway nearby) and its tourism and agritourism economy create IT demand for a rural mountain county.",
+      "sources": [
+        {
+          "label": "Ashe County North Carolina",
+          "url": "https://www.ashecountync.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "39009",
+      "name": "Athens County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Athens County OH \u2014 Athens/Ohio University/Hocking River/Appalachian Ohio/sustainable energy",
+      "description": "Athens County in southeastern Ohio is home to Athens and Ohio University \u2014 one of Ohio's oldest universities (founded 1804), with over 20,000 students and a significant research computing presence. Athens is considered one of Ohio's most progressive cities, with an active sustainability movement and Ohio University's Voinovich School of Leadership and Public Affairs contributing energy policy and Appalachian development research. The Hocking Hills region adjacent to Athens County includes Hocking Hills State Park (one of Ohio's most visited state parks). The Appalachian Highlands region of southeastern Ohio has persistent broadband connectivity challenges that Ohio's ConnectOhio broadband deployment program prioritizes. Athens County's connection to Appalachian Ohio's coalfield legacy creates a distinctive mix of progressive university culture and deindustrialized coal heritage.",
+      "sources": [
+        {
+          "label": "Athens County Ohio",
+          "url": "https://www.athenscountyohio.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "39139",
+      "name": "Richland County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Richland County OH \u2014 Mansfield/Ohio State Reformatory/Shawshank/mid-Ohio industrial",
+      "description": "Richland County in north-central Ohio centers on Mansfield \u2014 a mid-sized industrial city historically important in steel, auto parts, and manufacturing. The Ohio State Reformatory in Mansfield was built in 1886 in Romanesque Revival style and achieved worldwide fame as the filming location for 'The Shawshank Redemption' (1994), drawing significant film tourism IT. The reformatory closed as a prison in 1990. Mansfield's manufacturing economy includes GM's Mansfield Metal Center and various auto parts suppliers. Richland County's position on the I-71 corridor between Columbus (75 miles south) and Cleveland (75 miles north) gives it strong freight and logistics connectivity. The Mid-Ohio Sports Car Course (racing venue) in adjacent Knox County extends IT demand into the region.",
+      "sources": [
+        {
+          "label": "Richland County Ohio",
+          "url": "https://www.richlandcountyoh.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "39055",
+      "name": "Geauga County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Geauga County OH \u2014 Chardon/Cleveland exurb/largest Ohio Amish population/maple syrup",
+      "description": "Geauga County in northeastern Ohio is home to the largest Amish population in Ohio (and one of the largest in the world) \u2014 the Geauga-Holmes Amish settlement is the oldest in Ohio (dating to 1886) and has grown to tens of thousands of Amish residents. Chardon is the county seat, a small upscale community in the Chagrin River watershed. Geauga County produces more maple syrup than any other Ohio county, with hundreds of maple syrup operations using traditional and modern tapping methods. The county's Cleveland exurban position (30 miles from downtown Cleveland) creates suburban residential IT demand while the Amish economy (no public utility electricity, horse-drawn transportation) creates a distinctive technological landscape contrast. Geauga County parks and the Headwaters Park system provide recreation IT.",
+      "sources": [
+        {
+          "label": "Geauga County Ohio",
+          "url": "https://www.geaugacounty.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28103",
+      "name": "Noxubee County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Noxubee County MS \u2014 Macon/NE Mississippi Black Belt/Noxubee NWR/Tombigbee watershed",
+      "description": "Noxubee County in northeastern Mississippi sits in the Black Belt \u2014 the dark, fertile prairie soil region that stretches from Alabama through Mississippi, historically one of the most cotton-productive and African American-majority landscapes in the US. Macon is the county seat. The Noxubee National Wildlife Refuge preserves one of the most significant bottomland hardwood wetland complexes in the Deep South, managed for wood duck, alligator, and bald eagle habitat with USFWS monitoring IT. The Tombigbee River watershed in Noxubee County connects to the Tennessee-Tombigbee Waterway system. The county's Black Belt agricultural heritage and its historic African American population majority make it part of the Deep South civil rights geography.",
+      "sources": [
+        {
+          "label": "Noxubee County Mississippi",
+          "url": "https://www.noxubeecountyms.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28039",
+      "name": "George County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "George County MS \u2014 Lucedale/SE Mississippi/Red Creek NWR/timber/fastest-growing MS county",
+      "description": "George County in southeastern Mississippi is one of the state's fastest-growing counties \u2014 its position between Hattiesburg (to the northwest) and Mobile (Alabama, to the east) on I-59 has attracted residential and commercial development from both metro areas. Lucedale is the county seat. The county's pine timber industry remains significant, with paper company and timber REIT land management across much of the county's area. Red Creek is a scenic tributary of the Pascagoula River system, designated a Wild and Scenic River in the Desoto National Forest. George County's growth reflects the suburbanization dynamics of the I-59 corridor connecting the Gulf Coast metro areas, creating connectivity demand exceeding what the county's historical rural character would suggest.",
+      "sources": [
+        {
+          "label": "George County Mississippi",
+          "url": "https://www.georgecountyms.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28065",
+      "name": "Jefferson Davis County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jefferson Davis County MS \u2014 Prentiss/SW-central Mississippi/longleaf pine/Bouie River",
+      "description": "Jefferson Davis County in south-central Mississippi centers on Prentiss, a small county seat in the transition zone between Mississippi's pine timber belt and the Delta. Named for the Confederate president who was born in adjacent Wilkinson County, Jefferson Davis County has an agricultural and timber economy. The Bouie River (a tributary of the Pearl River) provides water management context. The county's longleaf pine heritage \u2014 before 20th-century logging, the Piney Woods region including Jefferson Davis County was covered with longleaf pine savannas \u2014 connects to restoration programs addressing one of the most ecologically depleted forest types in the Southeast. Mississippi's rural broadband priority programs include Jefferson Davis County in south-central Mississippi deployment zones.",
+      "sources": [
+        {
+          "label": "Jefferson Davis County Mississippi",
+          "url": "https://www.jeffersondaviscountyms.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }
