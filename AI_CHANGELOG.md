@@ -5,6 +5,28 @@
 Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Mobile bug fixes — measure X button and detail sheet swipe-to-expand
+
+Files Modified:
+- `css/style.css` — added `.sheet-expanded` CSS rule (100dvh, no border-radius); added `max-height` and `border-radius` to `.sheet-open` transition so expand animates smoothly
+- `js/map.js` — 3 changes:
+  1. `_doClear` (measure X button): restructured to call `toggleMeasure()` first when mode is on, then force-hide readout as belt-and-suspenders; fixes readout bar staying visible on iOS after pressing X
+  2. `initDetailSheetSwipe()` — `tryStart`: added guard to restrict drag to handle-only when panel is expanded; `onMove`: allow upward movement with 0.3× resistance (was clamped to 0); `onEnd`: detect upward swipe (`raw < -80 || velocity < -0.35`) → add `.sheet-expanded` + update `--sheet-top` to 0
+  3. `openMobileSheet` / `closeMobileSheet`: both now remove `.sheet-expanded` so state resets on panel re-open and dismiss
+
+Bugs Fixed:
+- Measure readout bar remained visible after pressing the X button on iOS — the old `clearMeasure(); if (measureMode) toggleMeasure()` call order produced redundant state transitions; new order calls `toggleMeasure()` first (which calls `clearMeasure()` internally) then force-hides the readout
+- Mobile detail panel bottom sheet could not be expanded to full screen — swipe up now triggers full-screen expansion; swipe down from any state still dismisses
+
+Next session notes:
+- Both fixes are committed to `claude/us-datacenter-restrictions-map-skooi7`
+- Zoning Intelligence panel (FIPS 51107 / Loudoun County) is wired via `js/zoning.js`, `js/zoning-map.js`, `js/zoning-details.js`; geometry is unavailable (returns 404); when layer is toggled with Loudoun selected, panel opens in district-browser mode
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Zoning Intelligence Phase — Architecture, Data Pipeline, and Frontend Integration
 
 Files Created (new):

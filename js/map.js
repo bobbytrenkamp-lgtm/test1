@@ -1299,7 +1299,13 @@ function initLeafletMap() {
   document.getElementById("gis-political-risk")?.addEventListener("click", togglePoliticalRiskLayer);
   const _clearBtn = document.getElementById("measure-clear-btn");
   if (_clearBtn) {
-    const _doClear = () => { clearMeasure(); if (measureMode) toggleMeasure(); };
+    const _doClear = () => {
+      if (measureMode) toggleMeasure(); // turns off mode + calls clearMeasure internally
+      else clearMeasure();              // mode already off, just clear points
+      // Belt-and-suspenders: force-hide readout on iOS where hidden attr can lag
+      const readout = document.getElementById("measure-readout");
+      if (readout) readout.hidden = true;
+    };
     _clearBtn.addEventListener("click", _doClear);
     // iOS Safari: grab touchstart first so Leaflet's map-container listener never
     // sees the gesture; then confirm the action on touchend.
@@ -1797,12 +1803,11 @@ function initDetailSheetSwipe() {
   let dragging = false, startY = 0, startTime = 0, curDY = 0;
 
   function tryStart(y, target) {
-    // Only start from handle/header and only when the sheet is actually open.
     if (!panel.classList.contains("sheet-open")) return;
     if (_sheetClosing) return;
-    // Do not begin drag when the user is tapping an interactive child
-    // inside the header (links, the × button, source citations, etc.).
     if (target !== handle && target.closest(INTERACTIVE)) return;
+    // When expanded the content scrolls normally — restrict dismiss drag to the handle.
+    if (panel.classList.contains("sheet-expanded") && target !== handle) return;
     dragging   = true;
     startY     = y;
     startTime  = Date.now();
@@ -1813,22 +1818,28 @@ function initDetailSheetSwipe() {
 
   function onMove(y) {
     if (!dragging) return;
-    // Only allow downward movement (no scrolling the sheet upward via drag).
-    curDY = Math.max(0, y - startY);
+    const raw = y - startY;
+    if (raw < 0) {
+      // Upward: apply light resistance; no movement if already fully expanded.
+      curDY = panel.classList.contains("sheet-expanded") ? 0 : raw * 0.3;
+    } else {
+      curDY = raw;
+    }
     panel.style.transform = `translateY(${curDY}px)`;
   }
 
   function onEnd(y) {
     if (!dragging) return;
     dragging = false;
-    const dy       = Math.max(0, y - startY);
+    const raw      = y - startY;
     const elapsed  = Math.max(1, Date.now() - startTime);
-    const velocity = dy / elapsed; // px / ms
+    const velocity = raw / elapsed; // positive = down, negative = up
 
     panel.classList.remove("is-dragging");
     panel.style.willChange = "";
 
-    const shouldDismiss = dy > 80 || velocity > 0.35;
+    const shouldDismiss = raw > 80 || velocity > 0.35;
+    const shouldExpand  = !panel.classList.contains("sheet-expanded") && (raw < -80 || velocity < -0.35);
 
     if (shouldDismiss) {
       // Animate the panel downward, then run the full close logic.
@@ -1839,14 +1850,19 @@ function initDetailSheetSwipe() {
       panel.style.transition = `transform ${duration}ms ease-out`;
       panel.style.transform  = `translateY(${panelH + 20}px)`;
       setTimeout(() => {
-        // Suppress the CSS transition that closeMobileSheet would normally trigger.
         panel.style.transition = "none";
         panel.style.transform  = "";
         _sheetClosing = false;
         requestCloseDetailSheet();
       }, duration);
+    } else if (shouldExpand) {
+      // Snap to full-screen: clear inline styles so the CSS transition handles height.
+      panel.style.transition = "";
+      panel.style.transform  = "";
+      panel.classList.add("sheet-expanded");
+      document.documentElement.style.setProperty("--sheet-top", "0px");
     } else {
-      // Snap back to open position.
+      // Snap back to current state.
       panel.style.transition = "transform 0.24s ease-out";
       panel.style.transform  = "translateY(0)";
       setTimeout(() => {
@@ -2206,7 +2222,7 @@ function openMobileSheet() {
   p.style.transform  = "";
   p.style.transition = "";
   p.style.willChange = "";
-  p.classList.remove("is-dragging", "is-closing");
+  p.classList.remove("is-dragging", "is-closing", "sheet-expanded");
   p.classList.add("sheet-open");
   document.body.classList.add("detail-sheet-open");
   // Set --sheet-top after the CSS transition settles so the toolbar clip is accurate.
@@ -2225,7 +2241,7 @@ function closeMobileSheet() {
   if (_sheetClosing) return;
   const p = document.getElementById("detail-panel");
   if (!p) return;
-  p.classList.remove("sheet-open", "is-dragging", "is-closing");
+  p.classList.remove("sheet-open", "is-dragging", "is-closing", "sheet-expanded");
   p.style.transform  = "";
   p.style.transition = "";
   p.style.willChange = "";
