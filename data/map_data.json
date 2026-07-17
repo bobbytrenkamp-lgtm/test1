@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-17T00:51:34.452521+00:00",
+  "generated_at": "2026-07-17T00:55:42.485131+00:00",
   "source_last_updated": "2026-07-17",
   "stats": {
-    "total_counties_tracked": 1063,
+    "total_counties_tracked": 1083,
     "by_level": {
-      "-1": 951,
+      "-1": 971,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,7 +12,7 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 1054,
+      "data_center": 1074,
       "water": 14,
       "ai": 182,
       "energy": 160,
@@ -28159,8 +28159,8 @@
       "types": [
         "data_center"
       ],
-      "title": "East Feliciana Parish LA \u2014 Clinton/Florida Parishes/Central Louisiana psychiatric institute",
-      "description": "East Feliciana Parish is one of Louisiana's 'Florida Parishes' \u2014 the region that was part of Spanish West Florida until the West Florida Rebellion of 1810 created a short-lived republic before US annexation. Clinton is the parish seat. The Central Louisiana State Hospital in Pineville (in adjacent Rapides Parish) has connections to East Feliciana Parish's health administration history. The Louisiana Correctional Institute for Women is located in St. Gabriel (adjacent Iberville Parish), but East Feliciana Parish itself hosts the Louisiana State Penitentiary (Angola) \u2014 the largest maximum-security prison in the United States, with its own electrical system, agricultural operations, and institutional IT infrastructure. Angola's size and self-sufficiency create a prison IT footprint unique in the country.",
+      "title": "East Feliciana Parish LA \u2014 Clinton/Florida Parishes/Audubon Oakley Plantation/rural north Louisiana",
+      "description": "East Feliciana Parish is one of Louisiana's 'Florida Parishes' \u2014 the region that was part of Spanish West Florida until the West Florida Rebellion of 1810 created a short-lived republic before US annexation. Clinton is the parish seat, known for its antebellum Greek Revival architecture. The Audubon State Historic Site at Oakley Plantation in adjacent West Feliciana Parish draws visitors to the region where John James Audubon painted many of the birds in 'Birds of America' while working as a tutor in 1821. East Feliciana Parish's rural character and position in the Florida Parishes agricultural corridor has made it a focus of Louisiana's rural broadband expansion programs. The parish's historical legal and civic infrastructure \u2014 it has a notably intact 19th-century courthouse and town square \u2014 provides institutional continuity unusual for a parish of 20,000 people.",
       "effective_date": "",
       "status": "active",
       "notes": "",
@@ -28174,6 +28174,466 @@
       "confidence": "low",
       "confidence_score": 36,
       "source_tier": 3
+    },
+    "08103": {
+      "name": "Rio Blanco County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Rio Blanco County CO \u2014 Meeker/White River oil shale/Rangely oil field/Flat Tops wilderness",
+      "description": "Rio Blanco County in northwest Colorado contains two significant energy production zones: the Rangely Oil Field \u2014 one of the oldest and largest oil fields in Colorado \u2014 and the vast oil shale deposits of the Piceance Basin. Meeker is the county seat, sitting on the White River where the 1879 Meeker Massacre occurred. The Flat Tops Wilderness Area in the White River National Forest provides backcountry recreation infrastructure managed by the US Forest Service. Rangely's oil field IT \u2014 production monitoring, pipeline SCADA, water management \u2014 operates continuously across a remote high-desert landscape. Colorado Northwestern Community College in Rangely serves energy sector workforce training for the Piceance Basin.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Rio Blanco County Colorado",
+          "url": "https://www.co.rio-blanco.co.us"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "08011": {
+      "name": "Bent County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bent County CO \u2014 Las Animas/Bent's Fort/Arkansas River/Comanche National Grassland",
+      "description": "Bent County in southeastern Colorado is named for William Bent, whose Bent's Old Fort on the Arkansas River was the most important trading post on the Santa Fe Trail. The reconstructed Bent's Old Fort National Historic Site operates today as a National Park Service unit with federal administrative IT. Las Animas is the county seat, on the Arkansas River near the John Martin Reservoir \u2014 a large Army Corps of Engineers impoundment. The Comanche National Grassland to the south is one of the largest national grasslands in the US, with dinosaur trackways, canyon petroglyphs, and US Forest Service management IT. Bent County's position on US-50 (the old Santa Fe Trail route) connects it to Pueblo and beyond.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Bent County Colorado",
+          "url": "https://www.bentcounty.net"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "08023": {
+      "name": "Costilla County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Costilla County CO \u2014 San Luis/oldest Colorado town/San Luis Valley/Rio Grande/Sangre de Cristo",
+      "description": "Costilla County contains San Luis \u2014 the oldest continuously occupied town in Colorado, founded in 1851. The county sits at the southern end of the San Luis Valley, surrounded by the Sangre de Cristo Mountains to the east. La Sierra (the Commons) is a 77,500-acre community land grant \u2014 one of the few surviving Spanish land grants in the US where traditional grazing and gathering rights are legally protected. Great Sand Dunes National Park is in adjacent Alamosa County but its water management systems (the Baca National Wildlife Refuge) extend into Costilla County. The county's Hispanic agricultural heritage, federal land management IT, and rural connectivity challenges make it a significant case study for Colorado's rural broadband equity programs.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Costilla County Colorado",
+          "url": "https://www.costillacounty.net"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "08053": {
+      "name": "Hinsdale County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hinsdale County CO \u2014 Lake City/least populous Colorado county/San Juan Mountains/Alferd Packer",
+      "description": "Hinsdale County is Colorado's least populous county \u2014 with roughly 800 permanent residents \u2014 but it encompasses some of the most dramatic high-altitude terrain in the Rocky Mountains. Lake City, the county seat, sits at 8,671 feet elevation near Slumgullion Earthflow (one of the world's most active landslides). Alferd Packer's 1874 Colorado cannibalism case occurred in Hinsdale County, making it one of America's most notorious frontier crime locations. The San Juan Mountains here exceed 14,000 feet at multiple peaks. Despite its tiny population, Hinsdale County participates in Colorado's BEAD broadband allocations and serves as a gateway for Alpine Loop backcountry recreation, generating USFS management IT and emergency communications infrastructure.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Hinsdale County Colorado",
+          "url": "https://www.hinsdalecounty.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "01077": {
+      "name": "Lauderdale County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lauderdale County AL \u2014 Florence/Muscle Shoals adjacent/W.C. Handy birthplace/Wilson Dam TVA",
+      "description": "Lauderdale County contains Florence \u2014 the largest city in the Shoals metro area and a center of Alabama's remarkable music heritage. W.C. Handy, the 'Father of the Blues,' was born in Florence in 1873. Lauderdale County borders the Tennessee River at Wilson Dam \u2014 the first dam completed by the Tennessee Valley Authority in 1924. Wilson Dam and Wheeler Dam (in adjacent Lawrence County) form the heart of TVA's Tennessee River hydroelectric system, with dam operations IT and reservoir management computing that spans multiple counties. FAME Studios and Muscle Shoals Sound Studio (in adjacent Colbert County, but drawing from the Florence metro) created the 'Muscle Shoals Sound' that defined American soul and rock music from the 1960s through 1980s.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Florence/Lauderdale County Chamber",
+          "url": "https://www.flochamber.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "01009": {
+      "name": "Blount County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Blount County AL \u2014 Oneonta/Covered Bridge Capital of Alabama/south Appalachian foothills",
+      "description": "Blount County is known as the 'Covered Bridge Capital of Alabama' \u2014 it contains more historic covered bridges than any other county in the state, preserved in the foothills of the Appalachian Mountains. Oneonta is the county seat, located in the valley between the Appalachian Plateau and the Piedmont. Blount County has been one of Alabama's fastest-growing exurban counties \u2014 residents commute to Birmingham (30 miles south) while living in a rural Appalachian setting. This suburban-rural dynamic has driven significant broadband infrastructure investment, as the commuter population demands metro-level connectivity. Southern Natural Gas pipeline infrastructure crosses Blount County en route to Birmingham.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Blount County Alabama",
+          "url": "https://www.blountcounty.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "01033": {
+      "name": "Colbert County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Colbert County AL \u2014 Muscle Shoals/FAME Studios/Wilson Dam TVA/Cherokee/Sheffield",
+      "description": "Colbert County is the home of Muscle Shoals \u2014 one of the most storied recording locations in American music history. FAME Studios and Muscle Shoals Sound Studio recorded artists including Aretha Franklin, Otis Redding, Wilson Pickett, the Rolling Stones, and Paul Simon. The county seat is Tuscumbia \u2014 birthplace of Helen Keller, whose family home Ivy Green is a historic site and pilgrimage destination. Wilson Dam and Pickwick Lake's TVA infrastructure provide significant electrical generating capacity to the county. Colbert County's position in the Tennessee River Valley gives it access to TVA's grid and the industrial power resources that have attracted manufacturing to the Shoals region.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Colbert County Alabama",
+          "url": "https://www.colbertcounty.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "51049": {
+      "name": "Cumberland County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cumberland County VA \u2014 Cumberland Courthouse/Central Virginia/James River watershed",
+      "description": "Cumberland County is a small, rural county in central Virginia between Farmville and Richmond \u2014 one of Virginia's less-populous rural counties but situated in a region undergoing broadband expansion as Richmond's metro influence extends west. The James River and Appomattox River watersheds intersect in Cumberland County. The county's timber and agricultural economy is transitioning as central Virginia's data center corridor (anchored in Henrico and adjacent Chesterfield counties near Richmond) expands its geographic reach. Cumberland County's rural character and proximity to I-64 and US-60 give it a developing corridor position for future infrastructure investment.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Cumberland County Virginia",
+          "url": "https://www.cumberlandcounty.virginia.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "51143": {
+      "name": "Pittsylvania County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pittsylvania County VA \u2014 Chatham/Danville adjacent/southern VA tobacco/data center growth corridor",
+      "description": "Pittsylvania County is Virginia's largest county by area and surrounds Danville \u2014 a city that has transformed from a tobacco manufacturing center into a growing tech and advanced manufacturing hub. The Danville-Pittsylvania area has attracted Microsoft data center investment, and Amazon Web Services has expanded its footprint in the region. Pittsylvania County's vast territory, low land costs, available power infrastructure from Dominion Energy, and position near I-85 (connecting Charlotte to Richmond) create favorable data center conditions. The Southern Virginia Technology Park (in Danville) and the river industrial zones along the Roanoke (Staunton) River provide brownfield redevelopment opportunities for technology facilities.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Pittsylvania County Virginia",
+          "url": "https://www.pittsylvaniacountyva.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "51155": {
+      "name": "Pulaski County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pulaski County VA \u2014 Pulaski/New River Valley/Radford/Dublin/NRV industrial corridor",
+      "description": "Pulaski County sits in Virginia's New River Valley \u2014 one of Appalachia's most industrially active corridors. The county borders Radford (home of Radford University) and Floyd County to the south. The Volvo Trucks manufacturing plant in Dublin (Pulaski County) is one of the largest heavy truck assembly facilities in North America, employing thousands and generating sophisticated automotive manufacturing IT. Radford Army Ammunition Plant, operated by BAE Systems in adjacent Radford city, is one of the US Army's primary propellant production facilities \u2014 a significant defense industrial IT installation immediately adjacent to Pulaski County. The New River's unique north-flowing trajectory and its ancient geology make the NRV one of the most geologically distinct valleys in Appalachia.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Pulaski County Virginia",
+          "url": "https://www.pulaskicounty.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "26119": {
+      "name": "Montmorency County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Montmorency County MI \u2014 Atlanta MI/elk herd/AuSable River headwaters/northern LP",
+      "description": "Montmorency County in northern Michigan is home to one of the largest free-ranging elk herds east of the Mississippi \u2014 a herd that was reintroduced in the early 20th century and now numbers over 1,000 animals. Atlanta, Michigan (the county seat) is the self-proclaimed 'Elk Capital of Michigan.' The AuSable River, famous for its blue-ribbon fly fishing and the Au Sable River Canoe Marathon, originates in Montmorency County. The county's tourism economy (elk viewing, hunting, fishing, snowmobiling) creates hospitality and outdoor recreation IT. Michigan DNR wildlife management systems for the elk herd \u2014 including collar tracking, population monitoring, and hunting permit management \u2014 represent unusual wildlife IT for a Michigan county.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Montmorency County Michigan",
+          "url": "https://www.montmorencymi.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "26047": {
+      "name": "Emmet County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Emmet County MI \u2014 Petoskey/Harbor Springs/Little Traverse Bay/NW Michigan resort",
+      "description": "Emmet County anchors the Little Traverse Bay resort region \u2014 one of Michigan's premier vacation destinations. Petoskey is famous for Petoskey stones (fossilized coral) and its Victorian-era Gaslight District, while Harbor Springs has one of the highest per-capita household incomes in Michigan. The Bay Harbor development (former cement plant brownfield redevelopment into a luxury resort and residential community) brought significant hospitality IT to the county. Hemingway's 'Up in Michigan' stories were set in the Horton Bay/Charlevoix area adjacent to Emmet County, and the NW Michigan wine country (Leelanau and Traverse City area) draws visitors through the county. North Central Michigan College in Petoskey serves as a workforce education anchor.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Emmet County Michigan",
+          "url": "https://www.emmetcounty.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "38049": {
+      "name": "McHenry County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McHenry County ND \u2014 Towner/Souris River/north-central ND/International Peace Garden adjacent",
+      "description": "McHenry County in north-central North Dakota sits on the Souris (Mouse) River drainage system that flows from Saskatchewan into North Dakota before turning back north into Manitoba. Towner is the county seat. The county is adjacent to the International Peace Garden (in Bottineau County to the west) and shares the rolling glacial prairie landscape of the Missouri Coteau. McHenry County's wheat and sunflower farming creates agricultural cooperative IT infrastructure, and Basin Electric Power Cooperative's grid management coordinates power from lignite plants and wind farms across north-central North Dakota. Rural broadband priority areas include McHenry County under USDA ReConnect funding rounds.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "McHenry County North Dakota",
+          "url": "https://www.co.mchenry.nd.us"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "38067": {
+      "name": "Pembina County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pembina County ND \u2014 Cavalier/NE North Dakota/Canadian border/Pembina Trail history",
+      "description": "Pembina County in northeastern North Dakota was the site of the first permanent settlement in what is now North Dakota \u2014 the Pembina settlement dating to 1797, where fur traders established a Red River Valley post. The Pembina Trail was a major 19th-century trade route between Pembina and St. Paul, Minnesota. Cavalier is the county seat. The county borders Manitoba, Canada, and the Portal/Pembina border crossings are significant commercial truck crossings for US-Canada trade. CBP's commercial vehicle inspection systems and Canadian border IT infrastructure are significant federal computing investments in this remote agricultural county. Spring flooding on the Red River tributaries generates Army Corps water management IT.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Pembina County North Dakota",
+          "url": "https://www.pembinacounty.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "35047": {
+      "name": "San Miguel County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "San Miguel County NM \u2014 Las Vegas NM/New Mexico Highlands University/Santa Fe Trail",
+      "description": "San Miguel County's county seat of Las Vegas, New Mexico (not to be confused with Las Vegas, Nevada) was a significant stop on the Santa Fe Trail and one of the largest cities in the Southwest in the 1880s. New Mexico Highlands University is a Hispanic-serving institution with a long history in this culturally rich city. Las Vegas NM's Victorian architecture and bilingual Spanish-English heritage make it one of New Mexico's most distinctive cultural landscapes. The county has been used as a film and TV production location (many westerns), generating production IT infrastructure. Storrie Lake State Park and the Gallinas River corridor provide water management infrastructure, and NMHU's technology programs serve as a workforce pipeline for the state's growing tech sector.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "New Mexico Highlands University",
+          "url": "https://www.nmhu.edu"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "35023": {
+      "name": "Hidalgo County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hidalgo County NM \u2014 Lordsburg/extreme SW New Mexico/Arizona border/Chiricahua Apache history",
+      "description": "Hidalgo County occupies the extreme southwest corner of New Mexico \u2014 a remote, sparsely populated county bordering both Arizona and Mexico. Lordsburg is the county seat, on the Southern Pacific railroad line. The Peloncillo Mountains and Animas Valley here were the homeland of the Chiricahua Apache and the scene of Geronimo's final campaigns in the 1880s. Hidalgo County is one of the most remote counties in the contiguous United States for broadband access \u2014 it appears consistently in FCC coverage gap analyses as among the lowest-connected counties in New Mexico. The Whitewater Baldy fire (2012) and monitoring systems for the Gila National Forest contribute federal environmental IT to this 4,500-resident county.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Hidalgo County New Mexico",
+          "url": "https://www.hidalgo.nm.us"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "48161": {
+      "name": "Freestone County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Freestone County TX \u2014 Fairfield/Freestone County Power Project/lignite coal/east Texas",
+      "description": "Freestone County in east-central Texas contains the Big Brown Power Plant \u2014 once one of the largest lignite-fired power plants in the US, operated by Luminant (formerly TXU Energy). The plant closed in 2018, but its decades of operation created electrical transmission infrastructure scaled for a large generating facility. The decommissioning and brownfield redevelopment of the Big Brown site has attracted attention from developers interested in repurposing the existing grid connections. Fairfield is the county seat and a regional commercial center for a multi-county area. Freestone County's grid-scale transmission infrastructure and low land costs make it one of east Texas's more discussed potential data center development locations in ERCOT's deregulated power market.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Freestone County Texas",
+          "url": "https://www.freestonecounty.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "48285": {
+      "name": "Lavaca County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lavaca County TX \u2014 Hallettsville/Czech heritage/Gulf Coast Prairies/Formosa adjacent",
+      "description": "Lavaca County in coastal-plain Texas is the heart of Texas's Czech immigrant settlement belt \u2014 Hallettsville, Shiner (in adjacent Lavaca County portions), and the surrounding communities were settled by Czech and German immigrants in the late 19th century. Shiner Brewery (Spoetzl Brewery), home of Shiner Bock, is located in Shiner within Lavaca County \u2014 one of the most iconic independent breweries in Texas. The county's position in the Gulf Coastal Plain between the San Antonio and Houston metropolitan areas gives it access to both markets' fiber backbone. Lavaca County's agricultural base (cattle, cotton, sorghum) and its position in the Eagle Ford Shale periphery creates energy sector IT interest.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Hallettsville-Lavaca County",
+          "url": "https://www.lavacacounty.net"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "30079": {
+      "name": "Prairie County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Prairie County MT \u2014 Terry/Yellowstone River/badlands/eastern Montana oil/Fort Keogh adjacent",
+      "description": "Prairie County in eastern Montana centers on Terry \u2014 a small Yellowstone River town in Montana's oil-producing badlands. Fort Keogh (in adjacent Custer County at Miles City) was an important US Army post established after the Battle of Little Bighorn, and the Fort Keogh Livestock and Range Research Laboratory (USDA Agricultural Research Service) continues scientific work in the area. Prairie County's badlands terrain (similar to Theodore Roosevelt National Park in North Dakota) creates dramatic landscapes and occasional oil exploration. Eastern Montana's position in the USGS Northern Great Plains monitoring network contributes federal environmental IT. Montana-Dakota Utilities serves the county's electrical needs across Montana's isolated eastern plains.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Prairie County Montana",
+          "url": "https://www.co.prairie.mt.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "30101": {
+      "name": "Toole County",
+      "state": "Montana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Toole County MT \u2014 Shelby/Sweetgrass/Canadian border/Oilmont/Glacier County adjacent",
+      "description": "Toole County in north-central Montana borders Alberta, Canada at the Sweetgrass-Coutts border crossing \u2014 one of the busiest commercial truck crossings on the US-Canada border. Shelby is the county seat, famous for hosting the Dempsey-Gibbons heavyweight boxing championship fight in 1923. The county has oil and gas production in the Sweetgrass Hills area and sits at the northern edge of Montana's oil-producing Williston Basin extension. The Sweetgrass-Coutts border crossing generates CBP commercial vehicle inspection IT and US-Canada trade logistics computing. The region's proximity to the Blackfeet Nation (adjacent Glacier County) adds tribal governance IT to the area's institutional computing profile.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Toole County Montana",
+          "url": "https://www.toolecountymt.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -28650,7 +29110,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-17T00:51:34.638913+00:00",
+    "last_computed": "2026-07-17T00:55:42.757752+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

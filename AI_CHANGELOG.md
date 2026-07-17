@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 29)
+- `data/map_data.json` (Round 29)
+- `docs/data-sweeps/2026-07-massive-sweep-round-29.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 29**: Colorado (Rio Blanco/Meeker White River oil shale Rangely Flat Tops wilderness, Bent/Las Animas Bent's Fort NHS Santa Fe Trail Comanche Grassland, Costilla/San Luis oldest CO town Spanish land grant San Luis Valley, Hinsdale/Lake City least populous CO county San Juan Mountains Alferd Packer), Alabama (Lauderdale/Florence W.C. Handy Wilson Dam TVA, Blount/Oneonta Covered Bridge Capital Birmingham exurb, Colbert/Muscle Shoals FAME Studios Helen Keller birthplace Tuscumbia TVA), Virginia (Cumberland/central VA James River Richmond influence zone, Pittsylvania/Danville adjacent tobacco transition Microsoft data center I-85, Pulaski/Volvo Trucks Dublin Radford AAP New River Valley industrial), Michigan (Montmorency/Atlanta MI largest MI elk herd AuSable River headwaters, Emmet/Petoskey Little Traverse Bay resort Bay Harbor brownfield), North Dakota (McHenry/Towner Souris River north-central ND Basin Electric, Pembina/Cavalier oldest ND settlement Canadian border crossings CBP), New Mexico (San Miguel/Las Vegas NM Highlands University Santa Fe Trail, Hidalgo/Lordsburg extreme SW NM Chiricahua Apache FCC broadband gap priority), Texas (Freestone/Fairfield Big Brown Power Plant brownfield ERCOT grid legacy, Lavaca/Hallettsville Shiner Bock Czech heritage), Montana (Prairie/Terry Yellowstone River eastern MT badlands Fort Keogh, Toole/Shelby Sweetgrass-Coutts border crossing Dempsey-Gibbons 1923 fight). 20 net new records (1083 total).
+- **No FIPS errors** — eighteenth consecutive clean validation run.
+
+Reasoning:
+- Colbert County AL (Muscle Shoals): FAME Studios recorded Aretha Franklin, Rolling Stones, Wilson Pickett, Paul Simon. Helen Keller birthplace (Tuscumbia). TVA Wilson Dam industrial power legacy. Most music-historically significant county in Alabama.
+- Pittsylvania County VA: Virginia's largest county by area. Microsoft data center investment in Danville area. Southern Virginia Technology Park. Dominion Energy data center incentive program. Active data center development outside Northern Virginia.
+- Freestone County TX: Big Brown Power Plant (closed 2018) brownfield with existing ERCOT transmission infrastructure. In Texas's deregulated power market, legacy grid connections at brownfield sites are increasingly valuable for data center developers. Active site selection discussions.
+- Toole County MT: Sweetgrass-Coutts is one of the busiest commercial truck crossings on the US-Canada border. CBP commercial vehicle inspection, agricultural commodity tracking, and cross-border trade IT in a remote northern Montana county. Dempsey-Gibbons fight (1923) Montana sports history.
+
+Problems Found:
+- 0 FIPS errors (eighteenth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 28)
 - `data/map_data.json` (Round 28)
 - `docs/data-sweeps/2026-07-massive-sweep-round-28.md` (new)
