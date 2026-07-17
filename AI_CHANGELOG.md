@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 33)
+- `data/map_data.json` (Round 33)
+- `docs/data-sweeps/2026-07-massive-sweep-round-33.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 33**: Kentucky (Ballard/Wickliffe Mississippi-Ohio confluence Wickliffe Mounds Jackson Purchase, Breckinridge/Hardinsburg Ohio River Lincoln country Rough Creek State Resort, Caldwell/Princeton Western KY coal dark-fired tobacco Black Patch Tobacco Wars, Carter/Grayson Carter Caves Ashland metro adjacent), Michigan (Alger/Munising Pictured Rocks National Lakeshore Lake Superior first US national lakeshore, Alpena/Thunder Bay NMS cement capital 200 Great Lakes shipwrecks, Charlevoix/Beaver Island Lake Michigan King Strang Mormon schism 1850s), South Carolina (Cherokee/Gaffney Peachoid I-85 BMW corridor Limestone University, Clarendon/Manning Briggs v. Elliott Brown v. Board Santee NWR Lake Marion, Dillon/South of the Border I-95 corridor Pee Dee tobacco), Georgia (Bulloch/Statesboro Georgia Southern University SE GA agricultural hub, Baldwin/Milledgeville antebellum GA capital Georgia College Central State Hospital, Brantley/Nahunta Okefenokee adjacent SE GA timber blueberry), Louisiana (Cameron/Cameron Rita Laura LNG export terminal Sabine NWR Gulf coast hurricane devastation, Acadia/Crowley Rice Capital of America Cajun prairie Mermentau irrigation, Claiborne/Homer Haynesville Shale natural gas storage ArkLaTex), Pennsylvania (Cambria/Johnstown 1889 flood Bethlehem Steel I-99, Bedford/Lincoln Highway PA Turnpike Allegheny Front Bedford Springs, Armstrong/Kittanning Allegheny River Pittsburgh exurb conventional gas, Cameron/Emporium least populous PA county Elk State Forest free-roaming elk). 20 net new records (1163 total).
+- **No FIPS errors** — twenty-second consecutive clean validation run.
+
+Reasoning:
+- Clarendon County SC (Briggs v. Elliott): The first of the five school desegregation cases consolidated into Brown v. Board of Education — a sharecropper and 66 other Black parents challenging Clarendon County's grotesquely unequal schools. The case that launched the constitutional revolution in civil rights law came from one of South Carolina's most rural, most racially divided counties.
+- Alger County MI (Pictured Rocks): First designated national lakeshore in the US. Multicolored sandstone cliffs on Lake Superior with mineral seepage creating vivid geological displays. One of the Great Lakes' most distinctive protected areas.
+- Cameron Parish LA (LNG/hurricanes): Hit nearly directly by Hurricanes Audrey (1957), Rita (2005), and Laura (2020) in the same location — yet contains the Sabine Pass LNG export terminal (one of North America's largest), creating a compelling tension between extreme climate vulnerability and critical energy infrastructure.
+- Cambria County PA (Johnstown): The 1889 flood killed 2,209 — more Americans than any disaster until Katrina. The South Fork Fishing and Hunting Club's liability exemption contributed directly to modern tort law development. Bethlehem Steel's Johnstown Works closure left landmark brownfields.
+
+Problems Found:
+- 0 FIPS errors (twenty-second consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 32)
 - `data/map_data.json` (Round 32)
 - `docs/data-sweeps/2026-07-massive-sweep-round-32.md` (new)
