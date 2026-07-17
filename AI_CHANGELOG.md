@@ -6,6 +6,31 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 38)
+- `data/map_data.json` (Round 38)
+- `docs/data-sweeps/2026-07-massive-sweep-round-38.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 38**: Kentucky (Wayne/Monticello Lake Cumberland Cumberland River, Menifee/Frenchburg Red River Gorge adj Daniel Boone NF Cave Run Lake, McCreary/Whitley City Big South Fork NRA Tennessee border, Wolfe/Campton Red River Gorge Natural Bridge rock climbing), Michigan UP+LP (Luce/Newberry UP Tahquamenon Falls adj Seney NWR, Alcona/Harrisville Lake Huron Au Sable River canoe marathon lighthouses, Oscoda/Mio Kirtland's Warbler recovery jack pine Huron-Manistee NF, Baraga/L'Anse Keweenaw Bay Ojibwe Huron Mountains Lake Superior), Illinois southern (Pope/Golconda Shawnee NF Garden of the Gods Ohio River Trail of Tears least populous IL, Union/Jonesboro Lincoln-Douglas Debate Bald Knob Cross orchards, Massac/Metropolis Superman hometown Fort Massac Ohio River), Oklahoma (Roger Mills/Cheyenne Washita Battlefield NM Black Kettle NGA 1868, Pushmataha/Antlers Choctaw Nation Ouachita NF Chief Pushmataha, Kiowa/Hobart Wichita Mountains adj Quartz Mountain), Missouri Ozarks (Shannon/Eminence Current River Ozark NSR Big Spring float trips, Ozark/Gainesville Mark Twain NF Bryant Creek elk restoration, Reynolds/Centerville Taum Sauk Mountain highest MO Shut-Ins catastrophic breach 2005), Tennessee plateau (Pickett/Byrdstown Dale Hollow Lake world record smallmouth smallest TN, Morgan/Wartburg Frozen Head Barkley Marathons 15 finishers ever, Grundy/Altamont South Cumberland Savage Gulf). 20 net new records (1263 total).
+- **No FIPS errors** — twenty-seventh consecutive clean validation run.
+
+Reasoning:
+- Wolfe County KY (Red River Gorge/Natural Bridge): The Red River Gorge is the premier rock climbing destination in the eastern US, with Natural Bridge State Park's 65-foot arch drawing hundreds of thousands annually. One of the most distinctive outdoor recreation economies in Appalachian Kentucky.
+- Oscoda County MI (Kirtland's Warbler): One of America's most celebrated endangered species recoveries — from under 200 breeding pairs in the 1970s to several thousand, delisted in 2019. The USFS jack pine management program is a national model for active habitat management.
+- Pope County IL (Garden of the Gods/Illinois' least populous): Illinois's least populous county with the Shawnee NF's Garden of the Gods sandstone formations and the Ohio River Trail of Tears crossing point. Ecologically exceptional at the Ozark-Appalachian confluence.
+- Roger Mills County OK (Washita Battlefield): One of the Indian Wars' most controversial events — Custer's dawn attack on Chief Black Kettle's peace-seeking Cheyenne village. The debate over "battlefield" vs. "massacre" designation has lasted 150 years.
+- Reynolds County MO (Taum Sauk/Shut-Ins): Site of the 2005 Taum Sauk reservoir breach — 1.3 billion gallons draining in 25 minutes, destroying the Shut-Ins. Missouri's highest point and most dramatic geological park in the same county.
+- Morgan County TN (Barkley Marathons): Frozen Head State Park hosts the world's most notoriously difficult ultramarathon — 60 miles, 60,000 feet elevation change, 60-hour limit, only 15 finishers in the race's history since 1986.
+
+Problems Found:
+- 0 FIPS errors (twenty-seventh consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 37)
 - `data/map_data.json` (Round 37)
 - `docs/data-sweeps/2026-07-massive-sweep-round-37.md` (new)

@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-17T05:40:25.516988+00:00",
+  "generated_at": "2026-07-17T05:44:39.079925+00:00",
   "source_last_updated": "2026-07-17",
   "stats": {
-    "total_counties_tracked": 1243,
+    "total_counties_tracked": 1263,
     "by_level": {
-      "-1": 1131,
+      "-1": 1151,
       "0": 0,
       "1": 45,
       "2": 40,
@@ -12,7 +12,7 @@
       "4": 5
     },
     "by_type": {
-      "data_center": 1234,
+      "data_center": 1254,
       "water": 14,
       "ai": 182,
       "energy": 160,
@@ -32314,6 +32314,466 @@
       "confidence": "high",
       "confidence_score": 62,
       "source_tier": 1
+    },
+    "21231": {
+      "name": "Wayne County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Wayne County KY \u2014 Monticello/Lake Cumberland/south-central Kentucky/Cumberland River",
+      "description": "Wayne County in south-central Kentucky centers on Monticello, a small city on Lake Cumberland \u2014 one of the largest man-made lakes in the eastern US (65,530 acres). Lake Cumberland was created by Wolf Creek Dam (1952) on the Cumberland River and is one of Kentucky's premier recreational lakes. Wayne County borders Tennessee and sits in the Cumberland Plateau transition zone. The county's rural economy includes tobacco (declining), timber, and tourism on Lake Cumberland. Wayne County is part of the Cumberland Valley Regional Airport service area and the Appalachian Regional Commission's south-central Kentucky territory, with persistent broadband and economic development challenges.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Wayne County Kentucky",
+          "url": "https://www.waynecountykentucky.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "21165": {
+      "name": "Menifee County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Menifee County KY \u2014 Frenchburg/Daniel Boone NF/Red River Gorge adj/cave country",
+      "description": "Menifee County in east-central Kentucky is one of the state's smallest counties \u2014 Frenchburg is the county seat. The Daniel Boone National Forest's Red River Gorge Geological Area borders Menifee County, drawing tens of thousands of rock climbers, hikers, and photographers annually to the hemlock-draped sandstone arches and cliffs. Menifee County's Cave Run Lake (formed by Cave Run Dam on the Licking River) is a popular recreation destination. The county's Appalachian context includes ARC-funded broadband programs and persistent economic development challenges. Menifee County is one of the most rural and sparsely populated counties in central Kentucky.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Menifee County Kentucky",
+          "url": "https://www.menifeecounty.ky.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "21147": {
+      "name": "McCreary County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McCreary County KY \u2014 Whitley City/Big South Fork/Daniel Boone NF/Cumberland River/TN border",
+      "description": "McCreary County in south-central Kentucky on the Tennessee border is home to the Big South Fork National River and Recreation Area \u2014 a 125,000-acre NPS unit protecting the Big South Fork of the Cumberland River's gorge country, with exceptional sandstone arches, cliffs, and whitewater. Whitley City is the county seat. McCreary County has been consistently ranked among Kentucky's lowest-income counties, with persistent broadband, economic, and healthcare access challenges. The Daniel Boone National Forest surrounds the county. ARC programs, USDA ReConnect broadband grants, and rural electric cooperative infrastructure serve the dispersed population.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "McCreary County Kentucky",
+          "url": "https://www.mccrearycounty.ky.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "21237": {
+      "name": "Wolfe County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Wolfe County KY \u2014 Campton/Red River Gorge/Natural Bridge/Daniel Boone NF/rock climbing",
+      "description": "Wolfe County in east-central Kentucky is the home county for the Red River Gorge Geological Area \u2014 one of the most celebrated rock climbing and hiking destinations in the eastern US. Natural Bridge State Resort Park (with its 65-foot sandstone natural arch) is a Kentucky State Parks flagship destination in Wolfe County. Campton is the county seat. The Red River Gorge, carved through the Cumberland Plateau, features over 100 natural stone arches and some of the most challenging sport climbing routes in the East. Wolfe County is among Kentucky's least populated counties and has been part of ARC economic development and broadband investment programs targeting the eastern Kentucky Appalachian region.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Wolfe County Kentucky",
+          "url": "https://www.wolfecounty.ky.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "26095": {
+      "name": "Luce County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Luce County MI \u2014 Newberry/Upper Peninsula/Tahquamenon Falls adj/Seney NWR/remote UP",
+      "description": "Luce County in Michigan's Upper Peninsula centers on Newberry \u2014 one of the most remote county seats in the eastern US. The Tahquamenon Falls State Park (adjacent in Chippewa County) features Upper Tahquamenon Falls, the largest waterfall in Michigan and one of the largest east of the Mississippi River. The Seney National Wildlife Refuge (95,000 acres of wetlands and boreal forest) is in adjacent Schoolcraft County. Luce County's economy centers on timber, recreation, and the Newberry Regional Medical Center. Michigan's UP broadband programs include Luce County in priority rural access zones \u2014 the county's sparse population and vast forested area make terrestrial broadband deployment economically challenging.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Luce County Michigan",
+          "url": "https://www.lucecountymi.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "26001": {
+      "name": "Alcona County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Alcona County MI \u2014 Harrisville/northeast Lower Peninsula/Lake Huron/Au Sable River/lighthouses",
+      "description": "Alcona County in northeastern Michigan's Lower Peninsula fronts Lake Huron with a shoreline of limestone bluffs and sandy beaches. Harrisville is the county seat and hosts the Harrisville State Park lighthouse. The Au Sable River \u2014 one of Michigan's premier trout fishing rivers and the route of the famous Au Sable River Canoe Marathon (the longest non-stop canoe race in the US, 120 miles overnight) \u2014 flows through Alcona County. The Huron-Manistee National Forests cover much of the county. Alcona County's sparse population (under 11,000), dense forest cover, and Lake Huron position create a distinctive rural Michigan connectivity and broadband deployment challenge.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Alcona County Michigan",
+          "url": "https://www.alconacounty.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "26135": {
+      "name": "Oscoda County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Oscoda County MI \u2014 Mio/north-central Lower Peninsula/Mio Dam/Au Sable River/Kirtland warbler",
+      "description": "Oscoda County in north-central Michigan Lower Peninsula centers on Mio on the Au Sable River \u2014 the county is essentially entirely within the Huron-Manistee National Forests. Mio is known for the Mio Dam pond on the Au Sable and as a trout fishing center. Oscoda County is one of the critical habitats for the Kirtland's Warbler \u2014 an endangered songbird that nests exclusively in young jack pine forests. USFS management of jack pine habitat for the Kirtland's Warbler is one of Michigan's most celebrated endangered species recovery programs, as the population grew from under 200 breeding pairs to several thousand under intensive habitat management. The county is extremely rural with one of Michigan's lowest population densities.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Oscoda County Michigan",
+          "url": "https://www.oscodacountymi.com"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "26013": {
+      "name": "Baraga County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Baraga County MI \u2014 L'Anse/Upper Peninsula/Keweenaw Bay/Ojibwe/Huron Mountains/Lake Superior",
+      "description": "Baraga County in Michigan's Upper Peninsula sits at the southern end of Keweenaw Bay \u2014 the deepest bay on Lake Superior. L'Anse is the county seat, adjacent to the Keweenaw Bay Indian Community (Ojibwe), one of the more active tribal governments in the UP with tribal enterprise IT. The Huron Mountains \u2014 a remote range rising to over 1,900 feet \u2014 occupy much of the county's north and are preserved in private ownership through the Huron Mountain Club (one of the most exclusive private land trusts in the Midwest). Baraga County's forestry economy, tribal gaming (Ojibwe Casino), and deepwater Lake Superior position create infrastructure IT. The Ottawa National Forest covers portions of the county.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Baraga County Michigan",
+          "url": "https://www.baragacounty.org"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "low",
+      "confidence_score": 36,
+      "source_tier": 3
+    },
+    "17151": {
+      "name": "Pope County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pope County IL \u2014 Golconda/Shawnee NF/Illinois Ozarks/Ohio River/Garden of the Gods",
+      "description": "Pope County in extreme southern Illinois is the least populous county in Illinois \u2014 Golconda is the county seat on the Ohio River. The Shawnee National Forest's Garden of the Gods Recreation Area in Pope County features dramatic sandstone formations \u2014 ancient sea floor sediments uplifted and eroded into a spectacular rocky landscape. The Trail of Tears passed through Golconda when Cherokee people were forced westward in 1838-39. Pope County's position at the confluence of the Ohio River and the Illinois Ozarks makes it one of the state's most ecologically diverse but economically distressed counties. ARC programs cover the county's far-southern Illinois territory.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Pope County Illinois",
+          "url": "https://www.popecountyil.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "17181": {
+      "name": "Union County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Union County IL \u2014 Jonesboro/Shawnee NF/Trail of Tears/Bald Knob Cross/southern Illinois",
+      "description": "Union County in extreme southern Illinois centers on Jonesboro \u2014 one of three towns that hosted the Lincoln-Douglas Debates of 1858 (the Jonesboro Debate was the third debate). The Bald Knob Cross of Peace in Alto Pass stands 111 feet tall on a knob of the Shawnee Hills \u2014 one of the largest crosses in North America and a landmark of Southern Illinois. The Shawnee National Forest occupies much of Union County's western portion. Trail of Tears National Historic Trail passes through the county. Union County's fruit orchards (apple, peach) in the Shawnee Hills are distinctive in Illinois and support agritourism IT. The county's far-southern location creates connectivity challenges typical of the Illinois Ozarks.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Union County Illinois",
+          "url": "https://www.unioncountyil.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "17127": {
+      "name": "Massac County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Massac County IL \u2014 Metropolis/Superman hometown/Fort Massac/Ohio River/southern IL",
+      "description": "Massac County in extreme southern Illinois centers on Metropolis \u2014 officially designated by the state legislature as the hometown of Superman. The town's Superman Museum, 15-foot bronze Superman statue, and annual Superman Celebration draw comic book enthusiasts and tourists. Fort Massac State Park commemorates French and American fortifications on the Ohio River \u2014 Fort Massac (1757) was the oldest extant fort in Illinois and was visited by Lewis and Clark during their 1803 Ohio River descent. Metropolis's position on the Ohio River gives it Kentucky commerce ties (the Hamlin crossing). The county's Shawnee National Forest proximity, Ohio River commerce, and cultural tourism IT are its primary digital infrastructure drivers.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Massac County Illinois",
+          "url": "https://www.massaccountyil.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "40129": {
+      "name": "Roger Mills County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Roger Mills County OK \u2014 Cheyenne/western OK/Washita Battlefield NM/Custer/Black Kettle NGA",
+      "description": "Roger Mills County in western Oklahoma centers on Cheyenne \u2014 a small county seat in a landscape of red rock buttes, canyons, and grasslands. The Washita Battlefield National Historic Site near Cheyenne commemorates the Battle of Washita (November 27, 1868), when Lt. Colonel George Armstrong Custer attacked Chief Black Kettle's Cheyenne village in winter quarters, killing Black Kettle and dozens of warriors and civilians. The battle is one of the most controversial events of the Indian Wars \u2014 Black Kettle had been a peace leader who sought accommodation with the US government, and his village was attacked without warning at dawn. The Black Kettle National Grasslands cover the rolling western Oklahoma plains near Cheyenne. Roger Mills County's wind energy resources are significant.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Roger Mills County Oklahoma",
+          "url": "https://www.rogermillscounty.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "40127": {
+      "name": "Pushmataha County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pushmataha County OK \u2014 Antlers/SE Oklahoma/Ouachita NF/Choctaw Nation/timber/lakes",
+      "description": "Pushmataha County in southeastern Oklahoma is named for Pushmataha \u2014 one of the most celebrated Choctaw chiefs in American history, who led Choctaw warriors as US allies against the Creek Red Sticks in the Creek War (1813-14) and against the British in the Battle of New Orleans (1815). The Ouachita National Forest's Oklahoma section covers much of Pushmataha County. The Choctaw Nation of Oklahoma, with tribal headquarters in Durant (adjacent county), has significant governance and economic development IT serving the SE Oklahoma territory. Antlers is the county seat. Pushmataha County's timber, hunting, and lake recreation economy includes Sardis Lake and Lake Nanih Waiya reservoirs.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Pushmataha County Oklahoma",
+          "url": "https://www.pushmatahacounty.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "40075": {
+      "name": "Kiowa County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kiowa County OK \u2014 Hobart/Wichita Mountains adj/SW Oklahoma/Quartz Mountains/Jim Thorpe",
+      "description": "Kiowa County in southwestern Oklahoma centers on Hobart \u2014 near the Wichita Mountains Wildlife Refuge (adjacent Comanche County) and Quartz Mountain State Park. The county is named for the Kiowa Nation, whose traditional territory spanned western Oklahoma and the southern plains. Jim Thorpe \u2014 one of the greatest athletes in American history (Olympic gold medals in 1912 in decathlon and pentathlon, NFL pioneer, professional baseball player) \u2014 was born in Prague, Oklahoma (Lincoln County), but the Kiowa County area's tribal history reflects the Kiowa people's resistance to reservation confinement on the southern plains. Hobart's Kiowa County Electric Cooperative serves the rural agricultural territory with increasing broadband extension.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Kiowa County Oklahoma",
+          "url": "https://www.kiowacountyok.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "29203": {
+      "name": "Shannon County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Shannon County MO \u2014 Eminence/Current River/Ozark NSR/Missouri Ozarks/float trips",
+      "description": "Shannon County in the Missouri Ozarks centers on Eminence \u2014 a small town that is the hub of one of Missouri's premier float trip destinations. The Current River, flowing through Shannon County, is the centerpiece of the Ozark National Scenic Riverways \u2014 the first national park unit created to protect a river system (1964). The Current River's exceptional clarity and constant 57-degree spring water from massive Ozark springs (including Round Spring, Blue Spring, and Big Spring \u2014 one of the largest springs in the world) create year-round paddling conditions. Shannon County has been consistently among Missouri's lowest-income counties and most rural territories, with significant broadband access gaps addressed by FCC e-Rate and USDA ReConnect programs.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Shannon County Missouri",
+          "url": "https://www.shannoncountymo.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "29153": {
+      "name": "Ozark County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ozark County MO \u2014 Gainesville/Mark Twain NF/Bryant Creek/Missouri Ozarks plateau",
+      "description": "Ozark County in southern Missouri is one of the state's most rural and thinly settled counties \u2014 Gainesville is the county seat in a landscape of Ozark uplands, timbered hollows, and clear-flowing streams. The Mark Twain National Forest covers extensive portions of Ozark County. Bryant Creek flows through the county as one of the purest Ozark streams, part of the broader Spring River and White River headwaters system. Ozark County's elk herd \u2014 reintroduced by the Missouri Department of Conservation \u2014 is one of the state's landmark wildlife restoration projects, growing to a herd of over 200 animals in the Ozark uplands. The county's remote rural position creates persistent broadband and telehealth connectivity challenges.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Ozark County Missouri",
+          "url": "https://www.ozarkcountymo.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "29179": {
+      "name": "Reynolds County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Reynolds County MO \u2014 Centerville/Missouri Ozarks/Black River/Taum Sauk Mountain/Shut-Ins",
+      "description": "Reynolds County in the Missouri Ozarks is home to Taum Sauk Mountain \u2014 Missouri's highest point at 1,772 feet \u2014 and the Johnson's Shut-Ins State Park (one of Missouri's most distinctive geological formations, where the Black River squeezes through ancient rhyolite rock channels into a series of natural swimming holes). Centerville is the county seat. The Taum Sauk Pumped Storage Hydroelectric Plant (AmerenMissouri) was the largest pumped storage facility in the US until its catastrophic failure in December 2005, when the upper reservoir breached and drained, destroying Shut-Ins. The rebuilt facility and restored park re-opened in 2010. Reynolds County is among Missouri's most remote and sparsely populated counties.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Reynolds County Missouri",
+          "url": "https://www.reynoldscountymo.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "47137": {
+      "name": "Pickett County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pickett County TN \u2014 Byrdstown/Dale Hollow Lake/Obey River/smallest TN county/KY border",
+      "description": "Pickett County in north-central Tennessee is the smallest county in Tennessee by population and one of the most rural. Byrdstown is the county seat, adjacent to Dale Hollow Lake \u2014 a TVA impoundment on the Obey River that extends into adjacent Clay County and crosses into Kentucky. Dale Hollow Lake is renowned as one of the clearest lakes in the eastern US and is famous for holding the world record for smallmouth bass (11 lbs. 15 oz., caught 1955). Pickett State Park and Forest in Pickett County protects the Pickett State Natural Area, a portion of the Big South Fork NRRA, with exceptional sandstone arches and cliffs. The county's ARC-designated Appalachian territory creates persistent broadband and economic development challenges.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Pickett County Tennessee",
+          "url": "https://www.pickettcountytn.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "47129": {
+      "name": "Morgan County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Morgan County TN \u2014 Wartburg/Frozen Head/Barkley Marathon/Cumberland Plateau/coal heritage",
+      "description": "Morgan County in north-central Tennessee centers on Wartburg on the Cumberland Plateau. Frozen Head State Park in Morgan County hosts the Barkley Marathons \u2014 one of the most notoriously difficult ultramarathon races in the world (60 miles, 60,000 feet of elevation change through the Frozen Head wilderness, time limit 60 hours; only 15 runners have ever finished since the race began in 1986). Morgan County's coal mining heritage on the Cumberland Plateau created economic patterns typical of Tennessee's plateau counties. The Catoosa Wildlife Management Area is one of Tennessee's largest public hunting lands. The county's rural position, Plateau topography, and coal heritage create a distinctive Appalachian connectivity challenge.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Morgan County Tennessee",
+          "url": "https://www.morgancountytn.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
+    },
+    "47061": {
+      "name": "Grundy County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Grundy County TN \u2014 Altamont/South Cumberland/Savage Gulf/Sewanee adj/Tennessee Plateau",
+      "description": "Grundy County in south-central Tennessee sits at the southern end of the Cumberland Plateau adjacent to the University of the South (Sewanee) in Franklin County. The South Cumberland State Park in Grundy County encompasses Savage Gulf Natural Area \u2014 a spectacular gorge system with multiple waterfalls and old-growth forest in the rim country of the Cumberland Plateau. The Grundy Forest Natural Area preserves one of Tennessee's finest examples of old-growth plateau forest. Grundy County has been consistently among Tennessee's lowest-income counties and has been targeted by Appalachian Regional Commission broadband and economic development programs. The county's proximity to Sewanee creates a modest educational economy alongside the timber and agricultural base.",
+      "effective_date": "",
+      "status": "active",
+      "notes": "",
+      "sources": [
+        {
+          "label": "Grundy County Tennessee",
+          "url": "https://www.grundycountytn.gov"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "confidence": "high",
+      "confidence_score": 62,
+      "source_tier": 1
     }
   },
   "validation_report": {
@@ -32790,7 +33250,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-17T05:40:26.009032+00:00",
+    "last_computed": "2026-07-17T05:44:39.522229+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",
