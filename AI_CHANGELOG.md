@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 32)
+- `data/map_data.json` (Round 32)
+- `docs/data-sweeps/2026-07-massive-sweep-round-32.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 32**: Kansas (Dickinson/Abilene Eisenhower birthplace Chisholm Trail, Kearny/Lakin Arkansas River High Plains Ogallala irrigation Santa Fe Trail, Greenwood/Eureka Flint Hills tallgrass prairie largest remaining expanse, Bourbon/Fort Scott NHS Bleeding Kansas Battle of Mine Creek), Texas (Shackelford/Albany Old Jail Art Center Fort Griffin Clear Fork Brazos, Knox/Benjamin Wichita Falls adjacent Red River watershed, Haskell/Double Mountain Fork Brazos dryland farming, Kent/Jayton sparsest TX county highest BEAD priority), Arkansas (Baxter/Mountain Home Bull Shoals Lake Norfork Lake Ozark retirement hub, Logan/Paris Mt. Magazine highest AR point coal heritage, Ashley/Hamburg south AR timber Felsenthal NWR bottomland hardwoods), Virginia (Augusta/Staunton Woodrow Wilson birthplace Shenandoah Valley I-81, Botetourt/Fincastle Blue Ridge Roanoke metro Appalachian Trail, Buchanan/Grundy Breaks Interstate Park far SW VA Appalachian coal), Oklahoma (Cherokee/Tahlequah Cherokee Nation capital 400k citizens NSU Illinois River, Cimarron/Boise City Oklahoma Panhandle Dust Bowl epicenter Black Mesa highest OK, Creek/Sapulpa Tulsa metro Muscogee Creek Nation McGirt v Oklahoma 2020), West Virginia (McDowell/Welch coal collapse 100k to 19k population Hatfield-McCoy ARC priority, Mercer/Princeton southern WV I-77 corridor coalfields hub, Grant/Petersburg Seneca Rocks Spruce Knob highest WV Monongahela NF). 20 net new records (1143 total).
+- **No FIPS errors** — twenty-first consecutive clean validation run.
+
+Reasoning:
+- Cherokee County OK (Cherokee Nation/Tahlequah): Cherokee Nation is the largest federally recognized tribe in the US — 400,000+ citizens, $2B+ annual economy, complex tribal enterprise IT spanning gaming, healthcare, and citizenship management. McGirt decision (Creek County) reshaped criminal jurisdiction across 43% of Oklahoma.
+- Cimarron County OK (Dust Bowl epicenter): The Oklahoma Panhandle was ground zero for the Dust Bowl. Black Mesa is Oklahoma's highest point. Among the most remote and isolated US counties, with persistent connectivity gaps that USDA ReConnect and BEAD programs address.
+- McDowell County WV (coal collapse): One of America's most extreme deindustrialization stories — from 100,000 coal workers to under 19,000 residents. Among the highest ARC economic distress designations. Hatfield-McCoy feud territory.
+- Dickinson County KS (Eisenhower): Eisenhower's birthplace and presidential library in a county of 20,000. His farewell "Military-Industrial Complex" address is one of the most important technology policy statements from any US president — from a man who grew up in Abilene, Kansas.
+
+Problems Found:
+- 0 FIPS errors (twenty-first consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 31)
 - `data/map_data.json` (Round 31)
 - `docs/data-sweeps/2026-07-massive-sweep-round-31.md` (new)

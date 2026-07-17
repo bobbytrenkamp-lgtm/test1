@@ -26700,6 +26700,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20041",
+      "name": "Dickinson County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dickinson County KS \u2014 Abilene/Eisenhower birthplace/Chisholm Trail/I-70 corridor",
+      "description": "Dickinson County in central Kansas is home to Abilene \u2014 the birthplace and final resting place of Dwight D. Eisenhower, 34th President and Supreme Allied Commander in World War II. The Eisenhower Presidential Library, Museum, and Boyhood Home in Abilene is one of Kansas's most significant federal heritage institutions, with archival and visitor management IT. Abilene was the northern terminus of the Chisholm Trail \u2014 the 19th-century cattle drive route that brought Texas longhorns to Kansas railheads. The Smoky Hill River valley and I-70 corridor create a logistics and agricultural processing presence. Dickinson County's position as a heritage tourism destination and I-70 commercial hub gives it infrastructure above what its population would suggest.",
+      "sources": [
+        {
+          "label": "Dickinson County Kansas",
+          "url": "https://www.dickinsoncoks.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20093",
+      "name": "Kearny County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kearny County KS \u2014 Lakin/Arkansas River/High Plains irrigation/Santa Fe Trail",
+      "description": "Kearny County in far southwest Kansas occupies the Arkansas River valley \u2014 one of the most intensively irrigated agricultural regions in the United States. Lakin is the county seat. The county's High Plains Aquifer irrigation system (drawing from the Ogallala Aquifer) sustains corn, sorghum, and alfalfa production that feeds the feedlot industry of nearby Finney County (Garden City). USGS aquifer monitoring systems in southwest Kansas track the Ogallala's depletion \u2014 one of the most consequential water management crises in American agriculture. The Santa Fe Trail passed through Kearny County on its way to New Mexico, and the region's freight corridor role continues with US-50 commerce.",
+      "sources": [
+        {
+          "label": "Kearny County Kansas",
+          "url": "https://www.kearnycountyks.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20073",
+      "name": "Greenwood County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Greenwood County KS \u2014 Eureka/Flint Hills Tallgrass Prairie/eastern Kansas ranching",
+      "description": "Greenwood County in eastern Kansas sits at the heart of the Flint Hills \u2014 the largest remaining expanse of tallgrass prairie in North America, preserved by the flint-rich limestone bedrock that resisted plowing. Eureka is the county seat. The Flint Hills host the Flint Hills National Scenic Byway and the Tallgrass Prairie National Preserve (in adjacent Chase County). The region's cattle ranching economy and seasonal burning of prairie for pasture management create agricultural and environmental monitoring IT. Kansas's rural connectivity programs have prioritized Flint Hills counties for broadband investment under the state's broadband initiative. The Verdigris River headwaters in Greenwood County connect to the broader Kansas watershed system.",
+      "sources": [
+        {
+          "label": "Greenwood County Kansas",
+          "url": "https://www.greenwoodcounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20011",
+      "name": "Bourbon County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bourbon County KS \u2014 Fort Scott/Battle of Mine Creek/Missouri border/Osage Cession",
+      "description": "Bourbon County in southeast Kansas borders Missouri and contains Fort Scott National Historic Site \u2014 a pre-Civil War military fort that became the center of violent conflict between pro-slavery and anti-slavery forces (Bleeding Kansas) in the 1850s. The Battle of Mine Creek (1864) \u2014 fought in adjacent Linn County \u2014 was one of the largest cavalry battles of the Civil War and resulted in a Union victory that secured southeastern Kansas. Fort Scott is now a mid-sized county seat with healthcare anchored by Ascension Via Christi. Bourbon County's position on the Kansas-Missouri border with rail and highway connections makes it part of the Kansas City metropolitan trade corridor extending into rural southeast Kansas.",
+      "sources": [
+        {
+          "label": "Bourbon County Kansas",
+          "url": "https://www.bourboncountyks.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48417",
+      "name": "Shackelford County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Shackelford County TX \u2014 Albany/Clear Fork Brazos/Old Jail Art Center/west Texas oil",
+      "description": "Shackelford County in west Texas centers on Albany \u2014 a small oil town on the Clear Fork of the Brazos River that has developed an unlikely national reputation as an arts community. The Old Jail Art Center in Albany houses a significant collection of pre-Columbian, Asian, and European art collected by county ranchers \u2014 one of the most distinctive rural art museums in America. Fort Griffin State Historic Site preserves the ruins of an 1867 frontier fort that guarded the Butterfield Overland Mail route and later the Western Cattle Trail. Shackelford County has oil and gas production in the North Texas basin. The county's cattle ranching and oil heritage create a distinctive west Texas combination of legacy extractive industry and cultural capital.",
+      "sources": [
+        {
+          "label": "Shackelford County Texas",
+          "url": "https://www.co.shackelford.tx.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48275",
+      "name": "Knox County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Knox County TX \u2014 Benjamin/north Texas/Wichita Falls adjacent/Red River headwaters/ranching",
+      "description": "Knox County in north Texas is a sparsely populated agricultural county on the Brazos River headwaters \u2014 ranching and dryland farming country between Wichita Falls and Abilene. Benjamin is the county seat. The county's position in the Rolling Plains of North Texas gives it the characteristic landscape of mesquite grassland and red clay soils that define the southern Great Plains transition zone. Knox County benefits from the infrastructure of the Wichita Falls metro area (roughly 40 miles north) for connectivity and services, but remains in a rural broadband gap area prioritized by Texas BEAD deployment programs. The county's agricultural economy includes cattle ranching and wheat production.",
+      "sources": [
+        {
+          "label": "Knox County Texas",
+          "url": "https://www.co.knox.tx.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48207",
+      "name": "Haskell County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Haskell County TX \u2014 Haskell/west Texas/Double Mountain Fork Brazos/dryland farming",
+      "description": "Haskell County in west Texas centers on Haskell, a small county seat in the Double Mountain Fork of the Brazos River valley. The county's dryland farming (cotton, wheat, sorghum) and cattle ranching economy is characteristic of the Rolling Plains. Haskell County's agricultural operations rely on the Texas Department of Agriculture's Rural Economic Development infrastructure, and the county is within the USDA ReConnect priority zone for broadband expansion. The area's historical oil and gas production in the North Texas basin provides some energy sector IT. Haskell County sits between the Abilene and Wichita Falls metro areas, accessing regional services from both directions.",
+      "sources": [
+        {
+          "label": "Haskell County Texas",
+          "url": "https://www.co.haskell.tx.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48263",
+      "name": "Kent County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kent County TX \u2014 Jayton/Double Mountain Fork Brazos/sparsely populated west Texas",
+      "description": "Kent County is one of the most sparsely populated counties in Texas \u2014 Jayton (the county seat) has a population of under 500. The county's vast, treeless plains country on the Double Mountain Fork of the Brazos River supports cattle ranching and limited dryland farming. Kent County's extreme remoteness makes it one of the most challenging broadband connectivity cases in Texas \u2014 the county is among the highest-priority rural areas in the Texas BEAD broadband deployment plan. The Stonewall County State Park (adjacent) and the region's raw West Texas landscape contribute to limited recreational and agricultural IT. Kent County represents the kind of persistent connectivity gap that broadband policy addresses at the frontier of feasibility.",
+      "sources": [
+        {
+          "label": "Kent County Texas",
+          "url": "https://www.kentcountytx.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05005",
+      "name": "Baxter County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Baxter County AR \u2014 Mountain Home/Bull Shoals Lake/Norfork Lake/Ozark retirement",
+      "description": "Baxter County in north-central Arkansas centers on Mountain Home \u2014 one of the most popular retirement destinations in the Ozarks, anchored by the immense recreational lakes formed by two Army Corps of Engineers dams: Bull Shoals Lake (on the White River) and Norfork Lake (on the North Fork of the White River). The county's retiree demographic creates significant healthcare IT demand, anchored by Baxter Regional Medical Center. The White River trout fishery below Bull Shoals Dam is one of the most productive tailwater trout fisheries in the country, supporting a fly fishing tourism economy. Arkansas's rural broadband initiative has prioritized Mountain Home as a regional connectivity hub for the north-central Ozarks.",
+      "sources": [
+        {
+          "label": "Baxter County Arkansas",
+          "url": "https://www.baxtercounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05083",
+      "name": "Logan County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Logan County AR \u2014 Paris/Mt. Magazine highest AR point/coal mining heritage/Arkansas River Valley",
+      "description": "Logan County in west-central Arkansas sits in the Arkansas River Valley between the Ozark and Ouachita Mountains. Paris is the county seat. Mount Magazine \u2014 the highest point in Arkansas at 2,753 feet \u2014 is in Logan County, managed as Mount Magazine State Park with lodge and recreation IT. The county has a coal mining heritage from the Sebastian and Logan County coalfields that operated from the 1880s into the 20th century. The Arkansas River and its agricultural bottomlands support row crop farming, while the surrounding Boston Mountains terrain creates a landscape more typical of the Appalachian-like highlands than the flat Delta to the east. Logan County's rural broadband program participation reflects the challenges of serving mountain communities.",
+      "sources": [
+        {
+          "label": "Logan County Arkansas",
+          "url": "https://www.logancountyarkansas.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05003",
+      "name": "Ashley County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ashley County AR \u2014 Hamburg/south Arkansas timber/Felsenthal NWR/bayou country",
+      "description": "Ashley County in south Arkansas centers on Hamburg, a timber and agricultural county seat in the bayou country between the Saline and Ouachita Rivers. The county's pine timber industry (historically significant in south Arkansas) creates forestry management IT and wood products supply chain computing. Felsenthal National Wildlife Refuge \u2014 one of the largest bottomland hardwood wetland refuges in the US \u2014 borders the county on the Ouachita River, with USFWS management and wildlife monitoring IT. Ashley County's position in Arkansas's south timber belt gives it institutional connections to the forest products industry that define much of south Arkansas's economic identity. The county's agricultural production includes soybeans, cotton, and rice typical of the Gulf Coastal Plain transition.",
+      "sources": [
+        {
+          "label": "Ashley County Arkansas",
+          "url": "https://www.ashleycountyarkansas.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "51015",
+      "name": "Augusta County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Augusta County VA \u2014 Staunton/Shenandoah Valley/Woodrow Wilson birthplace/I-81 corridor",
+      "description": "Augusta County in the Shenandoah Valley surrounds Staunton \u2014 the birthplace of Woodrow Wilson (28th President) and home to the Woodrow Wilson Presidential Library. Staunton is also home to Mary Baldwin University (one of Virginia's oldest women's colleges, now co-educational) and the American Shakespeare Center's Blackfriars Playhouse \u2014 the world's only re-creation of Shakespeare's indoor theater. Augusta County's I-81 corridor position makes it part of Virginia's major freight and data infrastructure axis connecting Northern Virginia to the Tennessee border. The county's agricultural base in the Shenandoah Valley (poultry, beef, apple orchards) adds agricultural supply chain IT.",
+      "sources": [
+        {
+          "label": "Augusta County Virginia",
+          "url": "https://www.augustacountyva.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "51023",
+      "name": "Botetourt County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Botetourt County VA \u2014 Fincastle/Blue Ridge/I-81 Roanoke metro adjacent/Appalachian Trail",
+      "description": "Botetourt County in western Virginia borders the Roanoke metropolitan area and contains significant Blue Ridge Mountain terrain. Fincastle is the county seat \u2014 a small historic town in the Shenandoah Valley at the southern end. The Appalachian Trail crosses the Blue Ridge Mountains through Botetourt County, generating trail management and recreation IT. The James River \u2014 one of Virginia's most historically significant rivers \u2014 heads nearby. Botetourt County's position between the Roanoke metro and the rural Shenandoah Valley creates an exurban growth zone. Dominion Energy's western Virginia transmission infrastructure and the I-81/I-64 interchange area near Lexington create utility and freight corridor IT.",
+      "sources": [
+        {
+          "label": "Botetourt County Virginia",
+          "url": "https://www.botetourtva.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "51027",
+      "name": "Buchanan County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Buchanan County VA \u2014 Grundy/far SW Virginia/Breaks Interstate Park/Appalachian coal",
+      "description": "Buchanan County in far southwest Virginia is one of Virginia's most remote and mountainous counties \u2014 a coal-producing Appalachian county on the Kentucky border. Grundy is the county seat, on the Levisa Fork of the Big Sandy River. Breaks Interstate Park \u2014 straddling the Virginia-Kentucky border \u2014 contains the 'Grand Canyon of the South,' the deepest canyon east of the Mississippi. Buchanan County's coal production (Virginia coalfields extend through this region) has substantially declined, and the county faces significant economic transition challenges addressed by ARC and Virginia coalfield economic development programs. The county's extreme terrain and isolation create persistent broadband challenges addressed by Virginia's BEAD deployment.",
+      "sources": [
+        {
+          "label": "Buchanan County Virginia",
+          "url": "https://www.buchananva.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "40021",
+      "name": "Cherokee County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cherokee County OK \u2014 Tahlequah/Cherokee Nation capital/Northeastern State University/Illinois River",
+      "description": "Cherokee County in northeast Oklahoma is the governmental and cultural capital of the Cherokee Nation \u2014 the most populous federally recognized tribe in the United States. Tahlequah serves as the Cherokee Nation capital, with tribal government IT serving over 400,000 tribal citizens. The Cherokee Nation operates significant economic enterprises including Cherokee Nation Entertainment (casino and hospitality IT) and tribal health, education, and social services delivery systems. Northeastern State University in Tahlequah is a regional university with significant Cherokee Nation student enrollment and partnership programs. The Illinois River \u2014 one of Oklahoma's most popular float rivers \u2014 runs through the county, generating tourism and recreation IT.",
+      "sources": [
+        {
+          "label": "Cherokee County Oklahoma",
+          "url": "https://www.cherokeecountyok.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "40025",
+      "name": "Cimarron County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cimarron County OK \u2014 Boise City/Oklahoma Panhandle/Dust Bowl epicenter/Black Mesa highest OK",
+      "description": "Cimarron County occupies the western Oklahoma Panhandle \u2014 one of the most remote and isolated counties in the contiguous United States. Boise City is the county seat. Black Mesa \u2014 the highest point in Oklahoma at 4,974 feet \u2014 is in Cimarron County, atop the Raton Plateau at the corner where Oklahoma, New Mexico, and Colorado meet. Cimarron County was one of the Dust Bowl's hardest-hit areas \u2014 John Steinbeck's 'The Grapes of Wrath' documented the mass exodus of displaced Oklahomans from exactly this region. The county still has among the lowest population densities east of the Rockies. Natural gas production and cattle ranching continue, with USDA ReConnect broadband programs targeting the extreme rural connectivity gap.",
+      "sources": [
+        {
+          "label": "Cimarron County Oklahoma",
+          "url": "https://www.cimarroncountyok.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "40037",
+      "name": "Creek County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Creek County OK \u2014 Sapulpa/Tulsa metro west/Muscogee (Creek) Nation/petroleum heritage",
+      "description": "Creek County in northeast Oklahoma borders the Tulsa metropolitan area and is historically one of the most petroleum-rich counties in the nation \u2014 the Glenn Pool oil field discovery in 1905 (in adjacent Tulsa County but with Creek County production) launched Oklahoma's oil boom. Sapulpa is the county seat. Creek County sits within the Muscogee (Creek) Nation reservation territory affirmed in the 2020 US Supreme Court decision McGirt v. Oklahoma, which found that the Creek Nation's reservation was never disestablished \u2014 a landmark ruling affecting criminal jurisdiction over roughly half of Oklahoma's land area. The county's Tulsa metro adjacency creates suburban and exurban connectivity well above rural Oklahoma averages.",
+      "sources": [
+        {
+          "label": "Creek County Oklahoma",
+          "url": "https://www.creekcountyonline.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "54047",
+      "name": "McDowell County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "McDowell County WV \u2014 Welch/far SW WV/Hatfield-McCoy Trail/coal history/extreme depopulation",
+      "description": "McDowell County in the far southwestern corner of West Virginia is one of the most economically distressed counties in the United States \u2014 its population peaked at over 100,000 in 1950 at the height of coal production and has declined to under 19,000 today. Welch is the county seat. The Tug Fork of the Big Sandy River (the county's western border with Kentucky) was the center of the Hatfield-McCoy feud in the 1880s-1890s. McDowell County coal production fueled America's industrial expansion \u2014 and its collapse left behind one of the most extreme examples of economic transition in Appalachia. ARC, USDA, and federal broadband programs target McDowell County among the highest-priority economic development needs in the nation.",
+      "sources": [
+        {
+          "label": "McDowell County West Virginia",
+          "url": "https://www.mcdowellcountywv.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "54055",
+      "name": "Mercer County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Mercer County WV \u2014 Princeton/southern WV/US 460 Coalfields Expressway/Bluefield adjacent",
+      "description": "Mercer County in southern West Virginia is centered on Princeton \u2014 a commercial hub for the southern coalfields. The US Route 460 Coalfields Expressway corridor connects Mercer County to the Virginia border and to the Beckley metro. Mercer County's position astride I-77 (the West Virginia Turnpike/interstate connecting Charleston to the Virginia border) gives it highway connectivity superior to most of southern West Virginia. Bluefield, straddling the WV-VA border in adjacent Tazewell County VA, is the regional economic center for the broader area. Mercer County's healthcare (Princeton Community Hospital) and retail functions serve a multi-county region of southern West Virginia.",
+      "sources": [
+        {
+          "label": "Mercer County West Virginia",
+          "url": "https://www.mercercountywv.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "54023",
+      "name": "Grant County",
+      "state": "West Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Grant County WV \u2014 Petersburg/Seneca Rocks/Spruce Knob highest WV point/Monongahela NF",
+      "description": "Grant County in eastern West Virginia contains two of the state's most iconic natural landmarks: Seneca Rocks \u2014 a spectacular quartzite fin rising 900 feet above the North Fork of the South Branch of the Potomac River, one of the most technical climbing destinations in the eastern US \u2014 and Spruce Knob at 4,863 feet, the highest point in West Virginia. The Monongahela National Forest covers much of Grant County, with USFS management IT across wilderness and recreation areas. Petersburg is the county seat, on the South Branch of the Potomac River. Grant County's position in the headwaters of the Potomac watershed creates water resource management IT for one of the nation's most important rivers. The area's ski and outdoor recreation economy generates tourism IT.",
+      "sources": [
+        {
+          "label": "Grant County West Virginia",
+          "url": "https://www.grantcountywv.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }
