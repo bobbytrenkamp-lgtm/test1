@@ -6,6 +6,30 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 37)
+- `data/map_data.json` (Round 37)
+- `docs/data-sweeps/2026-07-massive-sweep-round-37.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 37**: Texas (Lee/Giddings Czech heritage Austin metro exurb oil, Atascosa/Jourdanton Eagle Ford Shale South Texas oil San Antonio exurb, Bee/Beeville Chase Field NAS legacy Coastal Bend, Goliad/Presidio La Bahia Goliad Massacre 1836 Texas Revolution), Kansas (Cheyenne/St. Francis NW Kansas Colorado border dryland wheat tri-state, Decatur/Oberlin Last Indian Raid Kansas 1878 Northern Cheyenne Republican River, Ellsworth/Chisholm Trail Wild West Smoky Hill River Fort Harker, Cloud/Concordia Republican River Cloud County College north-central KS), Colorado (Kit Carson/Burlington I-70 eastern CO Burlington Carousel NHL, Crowley/Ordway SE Colorado water rights collapse agricultural collapse 90% fallowed, Alamosa/San Luis Valley Great Sand Dunes NP adj Adams State University), Arkansas (Hot Spring/Malvern Brick Capital of the World Ouachita River, Arkansas County/Stuttgart Rice and Duck Capital White River NWR Post of Arkansas 1686, Calhoun/Hampton SW Arkansas Ouachita NF adj timber El Dorado exurb), Vermont (Bennington/Battle of Bennington 1777 Robert Frost grave Green Mountain ski, Orange/Chelsea east-central VT Connecticut River watershed dairy, Orleans/Newport Northeast Kingdom Lake Memphremagog Canada border Haskell Library), New Mexico (Cibola/Grants El Malpais NM uranium legacy Zuni Nation I-40, Chaves/Roswell 1947 UFO Pecos River Permian Basin oil, Eddy/Carlsbad Carlsbad Caverns NP WIPP nuclear waste Permian Basin). 20 net new records (1243 total).
+- **No FIPS errors** — twenty-sixth consecutive clean validation run.
+
+Reasoning:
+- Goliad County TX (Goliad Massacre): "Remember Goliad!" alongside "Remember the Alamo!" — 342 prisoners executed under Santa Anna's order, twice the Alamo deaths. Presidio La Bahia is the most completely restored Spanish colonial fortress in America. One of Texas's original 23 counties with exceptional historical computing profile.
+- Decatur County KS (Last Indian Raid): The Last Indian Raid in Kansas (1878) — Northern Cheyenne under Dull Knife fleeing the Indian Territory reservation in a desperate northward journey toward Montana. The Decatur County Museum's exhaustive documentation of each settler killed makes it one of the most complete frontier conflict records in American history.
+- Crowley County CO (Water Rights Collapse): The cautionary tale of western water policy — over 90% of agricultural land fallowed after irrigators sold water rights to Front Range cities. Population collapse and correctional facility as primary land use. Has shaped Colorado water law debates over buy-and-dry transactions for decades.
+- Orleans County VT (Northeast Kingdom/Haskell Library): Newport on Lake Memphremagog straddles the Canadian border's cross-border economy. The Haskell Free Library and Opera House at Derby Line has its reading room in Vermont and stage in Canada — one of the world's most unusual civic buildings. Northeast Kingdom's resistance to suburbanization is culturally and economically distinctive.
+- Eddy County NM (Carlsbad Caverns/WIPP): The WIPP facility is the world's first licensed geological repository for transuranic nuclear waste — requiring monitoring IT designed to function for 10,000 years. Carlsbad Caverns' Big Room is the largest cave chamber in North America and hosts over a million Mexican free-tailed bats nightly.
+
+Problems Found:
+- 0 FIPS errors (twenty-sixth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 36)
 - `data/map_data.json` (Round 36)
 - `docs/data-sweeps/2026-07-massive-sweep-round-36.md` (new)

@@ -28700,6 +28700,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48287",
+      "name": "Lee County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lee County TX \u2014 Giddings/Texas Czech heritage/Austin metro exurb/Fayette adj/oil",
+      "description": "Lee County in central Texas sits in one of the most Czech-American regions in the United States \u2014 the Texas Czech Heritage Cultural Center in La Grange (adjacent Fayette County) anchors a region where Czech settlers established farms and communities in the late 19th century that persist today with polka halls, kolache shops, and community events. Giddings is the county seat. Lee County sits within the Austin metro's expanding exurban reach \u2014 the Austin-Round Rock metro's growth has extended commute zones into surrounding counties including Lee. Lee County has oil and gas production in the eastern Texas oil trend. The county's agricultural base includes cattle and row crops.",
+      "sources": [
+        {
+          "label": "Lee County Texas",
+          "url": "https://www.leecountytx.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48013",
+      "name": "Atascosa County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Atascosa County TX \u2014 Jourdanton/South Texas oil/Eagle Ford Shale/San Antonio metro exurb",
+      "description": "Atascosa County in south Texas sits in the heart of the Eagle Ford Shale formation \u2014 one of the most productive unconventional oil plays in the United States. Jourdanton is the county seat. The Eagle Ford Shale, running from northeast Texas through Atascosa County and south Texas toward the Rio Grande, transformed south Texas oil production when hydraulic fracturing unlocked previously inaccessible tight oil. SCADA systems, pipeline monitoring, and well management IT from the Eagle Ford operators (ConocoPhillips, EOG Resources, Marathon) create significant digital infrastructure in a region that previously had minimal connectivity. Atascosa County's proximity to San Antonio (40 miles north) creates a suburban commuter population alongside the oil field workforce.",
+      "sources": [
+        {
+          "label": "Atascosa County Texas",
+          "url": "https://www.atascosacountytexas.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48025",
+      "name": "Bee County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bee County TX \u2014 Beeville/south Texas/Chase Field NAS legacy/Coastal Bend agriculture",
+      "description": "Bee County in south Texas centers on Beeville, a regional commercial hub in the South Texas Coastal Bend. Naval Air Station Chase Field in Beeville was a major Navy pilot training facility from 1943 to 1991, when it closed under BRAC. The former air station's infrastructure has been redeveloped as the South Texas Regional Airport and Corpus Christi Army Depot flight line activities. Beeville Community College (now Texas A&M-Beeville) provides higher education IT. Bee County's agricultural economy includes sorghum, cotton, and cattle \u2014 typical of the South Texas Brush Country agricultural zone. The county's position between Corpus Christi (50 miles southeast) and San Antonio (90 miles northwest) on US-59 creates a secondary highway corridor.",
+      "sources": [
+        {
+          "label": "Bee County Texas",
+          "url": "https://www.beecounty.net"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48175",
+      "name": "Goliad County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Goliad County TX \u2014 Goliad/Presidio La Bahia/Goliad Massacre 1836/Texas Revolution",
+      "description": "Goliad County in southeast Texas is home to one of the most significant events in Texas history: the Goliad Massacre of March 27, 1836, in which Mexican General Santa Anna ordered the execution of 342 Texas Revolution prisoners after the Battle of Coleto Creek \u2014 doubling the number of Texas losses at the Alamo and generating 'Remember Goliad!' as a battle cry alongside 'Remember the Alamo.' Presidio La Bahia is the most completely restored Spanish colonial fortress in America, a National Historic Landmark with exceptional preservation and interpretation IT. The San Antonio River runs through Goliad County on its way to the Gulf. The county's heritage tourism (Goliad State Park, Presidio La Bahia) and its history as one of Texas's original 23 counties create a distinctive institutional heritage computing profile.",
+      "sources": [
+        {
+          "label": "Goliad County Texas",
+          "url": "https://www.goliad.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20023",
+      "name": "Cheyenne County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cheyenne County KS \u2014 St. Francis/NW Kansas Panhandle corridor/dryland wheat/Colorado border",
+      "description": "Cheyenne County in the extreme northwest corner of Kansas borders Colorado on the west and Nebraska on the north. St. Francis is the county seat in a region of dryland wheat farming that extends across the tri-state corner of Kansas-Colorado-Nebraska. The county's agricultural economy is entirely dependent on rainfall, without the Ogallala Aquifer irrigation that characterizes the southern Kansas High Plains. The Sand Creek Massacre National Historic Site (in adjacent Kiowa County, Colorado) commemorates the 1864 massacre of Cheyenne and Arapaho people and is part of the regional Native American cultural geography. Cheyenne County's extreme northwest position makes it one of Kansas's most remote and connectivity-challenged counties, targeted by USDA ReConnect broadband programs.",
+      "sources": [
+        {
+          "label": "Cheyenne County Kansas",
+          "url": "https://www.cheyennecountyks.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20039",
+      "name": "Decatur County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Decatur County KS \u2014 Oberlin/Last Indian Raid in Kansas 1878/NW Kansas/Republican River",
+      "description": "Decatur County in northwest Kansas is home to Oberlin \u2014 site of the Last Indian Raid in Kansas (September 30, 1878), when a band of Northern Cheyenne under Dull Knife and Little Wolf fled the Indian Territory reservation and passed through northwest Kansas, killing settlers in a desperate journey toward their homeland in Montana. The incident is memorialized at the Decatur County Museum in Oberlin, one of the most historically documented episodes of the post-frontier era in Kansas. The Republican River flows through the county toward Nebraska. Decatur County's dryland wheat farming and cattle ranching economy is typical of northwest Kansas, with USDA commodity programs and rural electric cooperative infrastructure serving the dispersed population.",
+      "sources": [
+        {
+          "label": "Decatur County Kansas",
+          "url": "https://www.decaturcountyks.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20053",
+      "name": "Ellsworth County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ellsworth County KS \u2014 Ellsworth/Smoky Hill River/Chisholm Trail cattle era/Wild West",
+      "description": "Ellsworth County in central Kansas centers on Ellsworth \u2014 one of the original Wild West cattle towns on the Chisholm Trail, where Texas longhorn cattle were shipped east on the Kansas Pacific Railway in the 1870s. Ellsworth briefly supplanted Abilene as the major cattle shipping point on the Chisholm Trail, complete with legendary gamblers, gunfighters, and saloon culture documented in newspapers of the time. The Smoky Hill River flows through Ellsworth County, historically the route of the Smoky Hill Trail connecting Missouri to Denver. The county's Fort Harker sites (one of the key US Army posts guarding the westward trails) are preserved in Ellsworth. Today the county is a classic central Kansas agricultural county with wheat, corn, and cattle production.",
+      "sources": [
+        {
+          "label": "Ellsworth County Kansas",
+          "url": "https://www.ellsworthcountyks.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20029",
+      "name": "Cloud County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cloud County KS \u2014 Concordia/Republican River/north-central Kansas/Cloud County College",
+      "description": "Cloud County in north-central Kansas centers on Concordia on the Republican River \u2014 one of the major rivers flowing eastward across the central Great Plains. Cloud County College in Concordia is a community college serving north-central Kansas's rural communities. The Republican River's watershed management \u2014 shared with Nebraska and Colorado \u2014 is governed by the Republican River Compact, a multi-state water rights agreement that has been the subject of US Supreme Court litigation over allocation. Cloud County's wheat farming and cattle production create agricultural supply chain IT. The county's position at the intersection of I-70 and the north-south US-81 corridor gives it regional commercial connectivity.",
+      "sources": [
+        {
+          "label": "Cloud County Kansas",
+          "url": "https://www.cloudcountyks.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "08063",
+      "name": "Kit Carson County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kit Carson County CO \u2014 Burlington/eastern CO plains/Burlington Carousel/I-70 plains gateway",
+      "description": "Kit Carson County in eastern Colorado centers on Burlington \u2014 the first major Colorado city on I-70 coming from Kansas. Burlington's Kit Carson County Carousel (built in 1905) is a National Historic Landmark \u2014 one of the few surviving antique wooden carousels with hand-carved wooden animals and original Wurlitzer organ, listed as one of America's most significant antique amusement park artifacts. The county's plains agriculture (dryland wheat, corn, cattle) and I-70 position create a commercial gateway role for eastern Colorado. Colorado's rural broadband programs include Kit Carson County in the eastern plains priority deployment zone. Burlington's small hospital and commercial services anchor a multi-county trade area in the remote eastern Colorado plains.",
+      "sources": [
+        {
+          "label": "Kit Carson County Colorado",
+          "url": "https://www.kitcarsoncountyco.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "08025",
+      "name": "Crowley County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Crowley County CO \u2014 Ordway/SE Colorado/Arkansas River/Catlin Canal/dryland farming",
+      "description": "Crowley County in southeastern Colorado is one of the most economically distressed counties in the state \u2014 a cautionary tale of water rights sales and agricultural collapse. In the early 20th century, Crowley County's Arkansas River Valley irrigation produced abundant crops. But throughout the 20th century, Crowley County irrigators sold their water rights to upstream Front Range cities (particularly Pueblo and Colorado Springs), leaving farmland increasingly dry. By the early 21st century, over 90% of the county's agricultural land had been fallowed due to water loss. Crowley County State Wildlife Area and Crowley County Correctional Facility are now among the county's primary land uses. The county's extreme rural position and economic hardship create significant broadband connectivity needs.",
+      "sources": [
+        {
+          "label": "Crowley County Colorado",
+          "url": "https://www.crowleycountyco.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "08003",
+      "name": "Alamosa County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Alamosa County CO \u2014 Alamosa/San Luis Valley/Great Sand Dunes NP adj/Adams State University",
+      "description": "Alamosa County in south-central Colorado sits in the San Luis Valley \u2014 the world's largest alpine valley, surrounded by the Sangre de Cristo and San Juan Mountains at 7,500 feet elevation. Alamosa is the largest city in the San Luis Valley, home to Adams State University (a public liberal arts university serving the valley's diverse community) and the economic hub for a vast high-altitude agricultural region. The Great Sand Dunes National Park (in adjacent Saguache and Huerfano Counties) draws 500,000+ visitors annually. The San Luis Valley's agriculture (potatoes, barley, canola, and livestock) is entirely dependent on groundwater from the confined aquifer \u2014 a resource under increasing stress from climate and agricultural demand. The valley's renewable energy potential (solar and geothermal) is significant.",
+      "sources": [
+        {
+          "label": "Alamosa County Colorado",
+          "url": "https://www.alamosacounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05059",
+      "name": "Hot Spring County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hot Spring County AR \u2014 Malvern/Ouachita River/brick capital of the world/central Arkansas",
+      "description": "Hot Spring County in central Arkansas centers on Malvern \u2014 the self-proclaimed 'Brick Capital of the World,' owing to the massive brick manufacturing industry anchored by the county's abundant shale and clay deposits. The Acme Brick Company and other manufacturers in Malvern produce a significant share of the US brick supply, creating manufacturing IT for one of Arkansas's most distinctive industrial specializations. The Ouachita River flows through the county near Malvern. Hot Spring County's position between Little Rock (40 miles northeast) and Hot Springs (20 miles northwest) gives it access to both the state capital's economy and the tourism economy of the Ouachita spa city. Arkansas's I-30 corridor connects the county to regional markets.",
+      "sources": [
+        {
+          "label": "Hot Spring County Arkansas",
+          "url": "https://www.hotspringcountyarkansas.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05001",
+      "name": "Arkansas County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Arkansas County AR \u2014 Stuttgart/Rice and Duck Capital/White River NWR/Post of Arkansas 1686",
+      "description": "Arkansas County in east-central Arkansas is the historic heart of the state \u2014 Post of Arkansas, established by the French in 1686, was one of the earliest European settlements in the central Mississippi Valley. Stuttgart is the county seat and the 'Rice and Duck Capital of the World' \u2014 Arkansas is the largest rice-producing state in the US, and Arkansas County is Arkansas's top rice-producing county. The White River National Wildlife Refuge (one of the largest in the eastern US) provides critical wintering habitat for millions of mallard ducks and other waterfowl. Stuttgart's duck hunting economy draws tens of thousands of hunters annually. USDA's Arkansas Rice Belt programs, NRCS conservation IT, and the Port of Pine Bluff's inland waterway logistics extend into Arkansas County.",
+      "sources": [
+        {
+          "label": "Arkansas County Arkansas",
+          "url": "https://www.arkansascountyar.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05013",
+      "name": "Calhoun County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Calhoun County AR \u2014 Hampton/SW Arkansas/Ouachita NF adj/timber/El Dorado exurb",
+      "description": "Calhoun County in southern Arkansas centers on Hampton in the timber belt south of the Ouachita Mountains. The county's pine timber industry (weyerhaeuser, Potlatch, and other timber companies manage large landholdings in the region) creates forestry management IT and wood products supply chain computing. The Ouachita National Forest's southern boundary runs near the county, with USFS management IT for timber and recreation. Calhoun County is in the El Dorado trade area \u2014 the South Arkansas oil city 30 miles south \u2014 giving it some petroleum industry influence. The county's rural position and small population (under 5,000) make it a persistent broadband connectivity challenge area in Arkansas's rural broadband deployment programs.",
+      "sources": [
+        {
+          "label": "Calhoun County Arkansas",
+          "url": "https://www.calhouncountyarkansas.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "50003",
+      "name": "Bennington County",
+      "state": "Vermont",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bennington County VT \u2014 Bennington/Battle of Bennington 1777/Robert Frost/Green Mountains",
+      "description": "Bennington County in southwestern Vermont is home to Bennington \u2014 where the Battle of Bennington (August 16, 1777) was fought, one of the most important American victories of the Revolutionary War. Though the battle itself occurred in what is now New York State, it was fought for control of Bennington's supplies. The Bennington Battle Monument (306 feet tall, the tallest battle monument in the world) commemorates the victory. Robert Frost is buried in Bennington's Old First Church cemetery \u2014 the poet spent his last decades in Vermont and considered Bennington his home. Bennington College is a distinctive liberal arts institution. The county's Green Mountain ski economy (Mount Snow, Stratton, Bromley) creates resort IT.",
+      "sources": [
+        {
+          "label": "Bennington County Vermont",
+          "url": "https://www.benningtoncounty.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "50017",
+      "name": "Orange County",
+      "state": "Vermont",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Orange County VT \u2014 Chelsea/east-central Vermont/Connecticut River watershed/rural hill towns",
+      "description": "Orange County in east-central Vermont occupies the rolling hill country west of the Connecticut River. Chelsea is the county seat \u2014 a classic Vermont hill town with a traditional town green and agricultural landscape. Orange County is one of Vermont's most rural counties, with small dairy farms, maple sugarbush operations, and covered bridges defining the landscape. The county's farms participate in Vermont's Northeast Organic Farming Association (NOFA) certification programs and the Vermont Agency of Agriculture's marketing IT. Vermont Telephone Company and locally owned cooperatives provide broadband in the county as part of Vermont's aggressive rural connectivity strategy under the state's Broadband Action Plan. Chelsea and Randolph are the major service centers.",
+      "sources": [
+        {
+          "label": "Orange County Vermont",
+          "url": "https://www.orangecountyvt.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "50019",
+      "name": "Orleans County",
+      "state": "Vermont",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Orleans County VT \u2014 Newport/Northeast Kingdom/Lake Memphremagog/Canadian border",
+      "description": "Orleans County in Vermont's Northeast Kingdom borders Canada on Lake Memphremagog \u2014 a glacially carved lake straddling the Vermont-Quebec border, with Newport, Vermont at its southern end. The Northeast Kingdom (Orleans, Essex, and Caledonia Counties) is one of the most remote and rural regions in the eastern United States \u2014 a landscape of dairy farms, forests, and small towns that has resisted suburbanization and development. Newport's Lake Memphremagog position creates a border economy with Quebec tourism and commerce, with CBP processing IT at the Derby Line border crossing (where the Haskell Free Library straddles the international border). Orleans County's maple syrup production, dairy farming, and rural broadband challenges are signature regional characteristics.",
+      "sources": [
+        {
+          "label": "Orleans County Vermont",
+          "url": "https://www.orleanscountyvt.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "35006",
+      "name": "Cibola County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Cibola County NM \u2014 Grants/El Malpais NM/uranium mining legacy/Zuni Nation/I-40",
+      "description": "Cibola County in west-central New Mexico centers on Grants \u2014 historically the 'Uranium Capital of the World' during the Cold War uranium boom of the 1950s-1970s when Grants was the center of the largest uranium-producing region in the US. El Malpais National Monument preserves a dramatic landscape of lava flows, cinder cones, and sandstone bluffs along the I-40 corridor. The Zuni Nation's reservation is in Cibola County \u2014 the Zuni Pueblo is one of the largest Native American pueblos in the Southwest, with a sophisticated tribal government, Zuni Public School District, and Ashiwi Awan Museum and Heritage Center IT. The Acoma Pueblo (Sky City, one of the oldest continuously inhabited communities in North America) is in adjacent Valencia County. Cibola County's uranium tailings remediation creates ongoing EPA monitoring IT.",
+      "sources": [
+        {
+          "label": "Cibola County New Mexico",
+          "url": "https://www.cibola.nm.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "35005",
+      "name": "Chaves County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Chaves County NM \u2014 Roswell/Pecos River/1947 UFO incident/SE New Mexico oil",
+      "description": "Chaves County in southeastern New Mexico is home to Roswell \u2014 site of the 1947 Roswell Incident, when a mysterious object crashed on a ranch north of Roswell and was initially reported by the Army Air Force as a 'flying disc' before being reclassified as a weather balloon. The incident created the most enduring UFO mythology in American cultural history and generates millions of dollars in annual tourism for the UFO Museum and Research Center. The Pecos River flows through Chaves County, and the Bitter Lake National Wildlife Refuge near Roswell is a critical staging area for migrating sandhill cranes. Chaves County has significant oil and gas production in the Permian Basin's southeastern extensions. Walker Air Force Base (closed 1967) left significant economic infrastructure.",
+      "sources": [
+        {
+          "label": "Chaves County New Mexico",
+          "url": "https://www.chavescounty.net"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "35015",
+      "name": "Eddy County",
+      "state": "New Mexico",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Eddy County NM \u2014 Carlsbad/Carlsbad Caverns NP/Permian Basin oil/potash mining",
+      "description": "Eddy County in southeastern New Mexico contains Carlsbad Caverns National Park \u2014 one of the most spectacular cave systems in the Western Hemisphere, with the Big Room (the largest single cave chamber in North America) and the nightly bat flight of over a million Mexican free-tailed bats that is one of North America's most dramatic wildlife spectacles. Carlsbad is the county seat and a petroleum-producing city \u2014 Eddy County is in the Permian Basin's Delaware Basin sub-play, one of the most productive oil regions in the US. The Carlsbad Processing Center handles commercial storage of nuclear waste in the WIPP (Waste Isolation Pilot Plant) facility in the adjacent salt beds \u2014 one of the most significant nuclear waste disposal facilities in the world, requiring extensive safety monitoring IT.",
+      "sources": [
+        {
+          "label": "Eddy County New Mexico",
+          "url": "https://www.eddy.nm.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }
