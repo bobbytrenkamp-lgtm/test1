@@ -6,6 +6,30 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 28)
+- `data/map_data.json` (Round 28)
+- `docs/data-sweeps/2026-07-massive-sweep-round-28.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 28**: Texas (Armstrong/Claude Palo Duro Panhandle caprock CREZ wind, Duval/San Diego Eagle Ford George Parr machine, Starr/Rio Grande City Roma Historic Landmark IBWC border), Wisconsin (Adams/Friendship Wisconsin Dells adjacent frac sand mining, Ashland/Lake Superior Chequamegon Bay Bad River Band Northland College, Green/Monroe Swiss cheese New Glarus settlement), Mississippi (Kemper/De Kalb coal gasification failure Southern Company grid, Clay/West Point Golden Triangle manufacturing corridor), Arkansas (Hempstead/Hope Clinton birthplace NHS SW AR natural gas, Monroe/Brinkley White River NWR bottomland ivory-billed woodpecker delta rice), Tennessee (Hamblen/Morristown NE TN manufacturing Lincoln Electric Bridgestone TVA, Lincoln/Fayetteville south TN Huntsville AL commuter influence), Kansas (Rice/Lyons Quivira NWR Coronado history Mid-Continent oil, Chase/Cottonwood Falls Tallgrass Prairie National Preserve PrairyErth Flint Hills), Ohio (Crawford/Bucyrus Galion north-central OH auto supply chain, Defiance/Maumee River Battle of Fallen Timbers GM powertrain NW Ohio), Georgia (Appling/Baxley Plant Hatch nuclear Altamaha River, Long/Ludowici Fort Stewart adjacent military community), Louisiana (Concordia/Vidalia Natchez bridge Mississippi River Army Corps, East Feliciana/Clinton Florida Parishes Audubon Oakley Plantation). 20 net new records (1063 total).
+- **No FIPS errors** — seventeenth consecutive clean validation run.
+
+Reasoning:
+- Kemper County MS (Kemper IGCC): The $7.5B coal gasification plant failure left significant industrial IT infrastructure in a rural MS county of 10,000. DOE emissions monitoring, process control, and regulatory compliance systems created unusual technology density despite commercial failure.
+- Chase County KS (PrairyErth/Tallgrass Prairie): William Least Heat-Moon's "PrairyErth" made Chase County one of America's most literary-mapped rural counties. Konza Prairie Biological Station ecological monitoring and Tallgrass Prairie National Preserve NPS management IT in a county defined by its un-plowable geology.
+- Appling County GA (Plant Hatch nuclear): Safety-critical nuclear power IT — NRC compliance, radiation monitoring, redundant control systems — creates institutional technology density in a county of 18,000 people comparable to much larger metro areas.
+- Starr County TX (Roma Historic Landmark/IBWC): Roma TX is a National Historic Landmark. IBWC binational water management computing, CBP border IT, and historic preservation documentation in a border county with median income under $30,000.
+
+Problems Found:
+- East Feliciana Parish entry initially erroneously referenced Angola Prison (which is in West Feliciana Parish); corrected before commit to reference accurate history: Audubon Oakley Plantation and Florida Parishes heritage.
+- 0 FIPS errors (seventeenth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 27)
 - `data/map_data.json` (Round 27)
 - `docs/data-sweeps/2026-07-massive-sweep-round-27.md` (new)

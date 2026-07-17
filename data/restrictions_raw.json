@@ -25100,6 +25100,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48011",
+      "name": "Armstrong County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Armstrong County TX \u2014 Claude/Palo Duro Canyon adjacent/Texas Panhandle caprock",
+      "description": "Armstrong County in the Texas Panhandle borders Palo Duro Canyon State Park \u2014 the 'Grand Canyon of Texas' \u2014 and its county seat is the small town of Claude. The county sits on the Llano Estacado (Staked Plains) caprock escarpment, where the high plains drop dramatically into the Red River drainage system. Armstrong County is extremely rural \u2014 one of the least populated counties in Texas \u2014 but its position near Amarillo (30 miles north) places it within reach of the Amarillo metro's fiber infrastructure. The Panhandle's wind energy development includes transmission lines crossing Armstrong County as part of the CREZ (Competitive Renewable Energy Zone) build-out connecting Panhandle wind to Texas population centers.",
+      "sources": [
+        {
+          "label": "Armstrong County Texas",
+          "url": "https://www.co.armstrong.tx.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48131",
+      "name": "Duval County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Duval County TX \u2014 San Diego/south Texas brush country/Eagle Ford shale/George Parr machine",
+      "description": "Duval County in south Texas is best known historically as the domain of George Parr \u2014 the 'Duke of Duval' \u2014 whose political machine delivered votes in the contested 1948 US Senate race that launched Lyndon Johnson's national career. San Diego (Texas) is the county seat. Duval County sits in the Eagle Ford Shale play \u2014 south Texas's primary oil and natural gas production formation \u2014 with significant upstream oil field IT: well monitoring, production data systems, and pipeline SCADA infrastructure. The county's brush country terrain and proximity to the Laredo energy corridor create consistent demand for remote monitoring and energy production IT.",
+      "sources": [
+        {
+          "label": "Duval County Texas",
+          "url": "https://www.duvalcountytx.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48427",
+      "name": "Starr County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Starr County TX \u2014 Rio Grande City/US-Mexico border/Roma historic district/Border Patrol",
+      "description": "Starr County on the Rio Grande is one of Texas's poorest counties by income but one of the most significant for federal border operations. Rio Grande City is a crossing point for both commerce and immigration, with CBP (Customs and Border Protection) processing infrastructure and Border Patrol sector IT. Roma, a National Historic Landmark district in Starr County, preserves some of the best-surviving Rio Grande border town architecture in Texas. The Roma Lock Dam on the Rio Grande is an international water-sharing structure managed jointly with Mexico under the International Boundary and Water Commission (IBWC). Roma's historic designation and IBWC infrastructure create federal computing investment in a county better known for its challenging economic indicators.",
+      "sources": [
+        {
+          "label": "Starr County Texas",
+          "url": "https://www.starrcountytexas.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "55001",
+      "name": "Adams County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Adams County WI \u2014 Friendship/Wisconsin Dells adjacent/central Wisconsin sand country",
+      "description": "Adams County in central Wisconsin borders Juneau County (Wisconsin Dells) and sits in Wisconsin's central sand plains \u2014 a glacially-outwashed sandstone region that has become one of the world's leading sources of frac sand for the oil and gas industry. The frac sand mining boom brought industrial mining IT (conveyor automation, processing plant SCADA, logistics management) to a previously agricultural county. Adams County's position adjacent to Wisconsin Dells \u2014 Wisconsin's largest resort destination \u2014 also generates hospitality and tourism technology demand. Consolidated Communications (formerly TDS) has built fiber infrastructure in the Dells corridor that extends into Adams County.",
+      "sources": [
+        {
+          "label": "Adams County Wisconsin",
+          "url": "https://www.co.adams.wi.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "55003",
+      "name": "Ashland County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ashland County WI \u2014 Ashland/Lake Superior/Chequamegon Bay/Bad River Band",
+      "description": "Ashland County sits on the south shore of Lake Superior's Chequamegon Bay \u2014 one of the most protected deep-water harbors on the lake. Ashland was a significant Lake Superior iron ore and lumber shipping port in the late 19th and early 20th centuries. The Bad River Band of the Lake Superior Tribe of Chippewa Indians governs territory within Ashland County and has been central to the controversy over the proposed Back Forty iron ore mine in adjacent Menominee County. The Apostle Islands National Lakeshore headquarters is in Bayfield (adjacent Bayfield County), but Ashland serves as the regional commercial hub, with NPS administrative IT extending across the area. Northland College in Ashland provides small college technology infrastructure.",
+      "sources": [
+        {
+          "label": "Ashland County Wisconsin",
+          "url": "https://www.co.ashland.wi.us"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "55045",
+      "name": "Green County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Green County WI \u2014 Monroe/Swiss cheese heritage/New Glarus/Swiss settlement",
+      "description": "Green County in south-central Wisconsin is the Swiss cheese capital of America \u2014 Monroe is home to some of the largest Swiss and Limburger cheese producers in the United States. The town of New Glarus was settled in 1845 by Swiss immigrants and maintains an exceptionally well-preserved Swiss alpine heritage. Green County's dairy industry generates food processing IT \u2014 milk quality monitoring, cold chain management, and agricultural production tracking. New Glarus Brewing Company has become one of the most sought-after craft breweries in the Midwest (distribution limited to Wisconsin only). The county's proximity to Madison (30 miles north) places it within the University of Wisconsin research network's influence.",
+      "sources": [
+        {
+          "label": "Green County Wisconsin",
+          "url": "https://www.co.green.wi.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28069",
+      "name": "Kemper County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Kemper County MS \u2014 De Kalb/Kemper County Energy Facility/east Mississippi",
+      "description": "Kemper County became nationally prominent as the site of the Kemper County Energy Facility \u2014 Mississippi Power's attempt to build the first commercial-scale coal gasification power plant in the United States. The project, often called 'Mississippi's Billion Dollar Blunder,' ballooned from $2.9 billion to over $7.5 billion before being converted to natural gas in 2017. Despite the project's failure, the facility left behind substantial electrical and industrial IT infrastructure in a rural east Mississippi county. De Kalb is the county seat. Kemper County's position in the Alabama-Mississippi energy corridor and the CLECO/Southern Company transmission network gives it grid connections that exceed what a county of 10,000 people would otherwise have.",
+      "sources": [
+        {
+          "label": "Kemper County Mississippi",
+          "url": "https://www.kempercountyms.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "28025",
+      "name": "Clay County",
+      "state": "Mississippi",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Clay County MS \u2014 West Point/automotive manufacturing/Golden Triangle corridor",
+      "description": "Clay County anchors the west end of Mississippi's Golden Triangle manufacturing corridor \u2014 the Columbus-West Point-Starkville manufacturing and research region that has attracted significant industrial investment. West Point is home to automotive and manufacturing operations, and the county's position near the Toyota plant in Blue Springs (Union County) and the Mississippi State University-anchored Starkville technology corridor creates industrial supply chain IT and precision manufacturing computing. The Tennessee-Tombigbee Waterway runs through Clay County, providing barge access that has attracted industrial development. Columbus Air Force Base (in adjacent Lowndes County) contributes to the regional technology base.",
+      "sources": [
+        {
+          "label": "West Point-Clay County Chamber",
+          "url": "https://www.westpointms.org"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05057",
+      "name": "Hempstead County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hempstead County AR \u2014 Hope/Clinton birthplace/SW Arkansas natural gas/Millwood Lake",
+      "description": "Hempstead County is best known as the birthplace of Bill Clinton (in Hope) \u2014 a fact that generated enormous heritage tourism and associated IT development following Clinton's 1992 presidential victory. The Clinton Birthplace Home National Historic Site in Hope is a National Park Service unit with federal administrative IT. Hope is also a significant agricultural market center for southwest Arkansas's watermelon belt (Hope Watermelon Festival) and the adjacent natural gas production area. Millwood Lake, impounded by the US Army Corps of Engineers on the Little River, provides flood control and recreation infrastructure. Southwestern Electric Power Company (SWEPCO) serves the county's industrial and agricultural power needs.",
+      "sources": [
+        {
+          "label": "Hope-Hempstead County Chamber",
+          "url": "https://www.hopechamber.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "05095",
+      "name": "Monroe County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Brinkley/White River NWR/White River delta/Arkansas County adjacent",
+      "description": "Monroe County in the Arkansas Delta sits along the White River \u2014 one of the last large bottomland hardwood forest systems in the Mississippi Valley. Brinkley is the county seat and a significant agricultural service center. The White River National Wildlife Refuge (partly in Monroe County) is one of the largest bottomland hardwood refuges in the US, managed by the US Fish and Wildlife Service with federal ecological monitoring and hydrological tracking IT. Monroe County is notable for occasional reported sightings of the ivory-billed woodpecker \u2014 once considered extinct \u2014 in its vast bottomland forests, generating scientific interest and remote monitoring infrastructure. The county's extensive rice and soybean farming operations use precision agriculture technology across wide, flat delta fields.",
+      "sources": [
+        {
+          "label": "Monroe County Arkansas",
+          "url": "https://www.monroecountyar.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47063",
+      "name": "Hamblen County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hamblen County TN \u2014 Morristown/NE Tennessee manufacturing/Nolichucky River corridor",
+      "description": "Hamblen County is a manufacturing hub in northeast Tennessee \u2014 Morristown hosts a diverse industrial base including automotive parts suppliers, food processing, and precision manufacturing. Lincoln Electric, Bridgestone, and other major manufacturers have operations in Morristown, creating significant industrial IT. Walters State Community College in Morristown serves the technical workforce training pipeline for northeast Tennessee's manufacturing economy. The Nolichucky River's hydroelectric generation (operated by TVA) provides reliable industrial power. Hamblen County's manufacturing density \u2014 exceptional for a county of 64,000 people \u2014 reflects northeast Tennessee's position in the Appalachian auto parts supply chain serving plants in Kentucky, Ohio, and South Carolina.",
+      "sources": [
+        {
+          "label": "Morristown Area Chamber",
+          "url": "https://www.morristownchamber.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "47103",
+      "name": "Lincoln County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lincoln County TN \u2014 Fayetteville/south Tennessee/Elk River/Davy Crockett birthplace adjacent",
+      "description": "Lincoln County in south-central Tennessee centers on Fayetteville \u2014 a small city on the Elk River known for its antebellum courthouse square and regional agricultural market function. The county borders Alabama and is part of the Huntsville (AL) economic influence zone \u2014 increasingly, Lincoln County residents commute to Huntsville's aerospace and defense industries, bringing higher broadband expectations than comparable rural Tennessee counties. The Jack Daniel's distillery tourism corridor (in adjacent Moore County) draws visitors through Lincoln County on their way from Nashville and Chattanooga. Lincoln County's agricultural base includes cattle, corn, and hay, with University of Tennessee Extension precision agriculture programming.",
+      "sources": [
+        {
+          "label": "Lincoln County Tennessee",
+          "url": "https://www.lincolncountytn.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20159",
+      "name": "Rice County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Rice County KS \u2014 Lyons/central Kansas/Coronado history/Quivira NWR",
+      "description": "Rice County in central Kansas is notable for Quivira National Wildlife Refuge \u2014 one of the most important stopover points for shorebirds and waterfowl along the Central Flyway, where interior salt marshes attract hundreds of thousands of migrating birds. Lyons is the county seat and the location of Coronado Quivira Museum \u2014 celebrating Francisco V\u00e1squez de Coronado's 1541 expedition, which reached central Kansas in search of the legendary Seven Cities of Gold. Rice County has significant oil and gas production in the Mid-Continent oil field extension. The Quivira refuge's bird monitoring systems and US Fish and Wildlife Service management IT add federal computing presence to a county otherwise defined by agricultural and energy production.",
+      "sources": [
+        {
+          "label": "Lyons-Rice County Chamber",
+          "url": "https://www.lyonskschamber.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20017",
+      "name": "Chase County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Chase County KS \u2014 Cottonwood Falls/Tallgrass Prairie National Preserve/Flint Hills",
+      "description": "Chase County contains the Tallgrass Prairie National Preserve \u2014 one of the last large intact tallgrass prairie ecosystems in North America, managed jointly by the Nature Conservancy and National Park Service. Cottonwood Falls has what is often cited as the oldest operating courthouse in Kansas \u2014 an 1873 limestone Italianate building. William Least Heat-Moon's book 'PrairyErth' (1991) used Chase County as the subject for a deep map of a single American county, making it one of the most literarily examined rural counties in the US. The Flint Hills region's unique geology (too rocky to plow, preserving the original prairie) creates the conditions for both cattle ranching and significant ecological monitoring IT through the Konza Prairie Biological Station (in adjacent Riley County).",
+      "sources": [
+        {
+          "label": "Chase County Kansas",
+          "url": "https://www.chasecountykansas.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "39033",
+      "name": "Crawford County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Crawford County OH \u2014 Bucyrus/north-central Ohio/Galion manufacturing/Wyandot heritage",
+      "description": "Crawford County in north-central Ohio centers on Bucyrus \u2014 known historically as the 'Bratwurst Capital of America' for its German-American food manufacturing heritage. Galion, the second-largest city, has a history in industrial manufacturing (Galion Iron Works, Galion-Godwin Truck Body Company). Crawford County sits in Ohio's manufacturing heartland, with Tier 2 and Tier 3 auto parts suppliers connected to the GM and Ford assembly plants across northern Ohio. Ohio Central Railroad's heritage and the county's agricultural base (corn, soybeans, hogs) create an agricultural-industrial IT mix. North Central State College in Mansfield (adjacent Richland County) provides community college technical education reaching into Crawford County.",
+      "sources": [
+        {
+          "label": "Crawford County Ohio",
+          "url": "https://www.crawfordcountyohio.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "39039",
+      "name": "Defiance County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Defiance County OH \u2014 Defiance/Maumee River/Battle of Fallen Timbers/NW Ohio manufacturing",
+      "description": "Defiance County sits at the confluence of the Maumee and Auglaize rivers in northwest Ohio \u2014 near the site of the 1794 Battle of Fallen Timbers, where General Anthony Wayne's victory over a confederation of Native American tribes opened the Northwest Territory to American settlement. Defiance College is a United Church of Christ liberal arts institution founded in 1850. The county's position on the Maumee River corridor (which flows through Toledo to Lake Erie) connects it to northwest Ohio's manufacturing and agricultural processing economy. General Motors has operated a powertrain facility in Defiance \u2014 contributing significant automotive manufacturing IT to a county of 38,000 people.",
+      "sources": [
+        {
+          "label": "Defiance County Ohio",
+          "url": "https://www.defiance-county.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "13001",
+      "name": "Appling County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Appling County GA \u2014 Baxley/SE Georgia timber/Altamaha River/Vidalia onion adjacent",
+      "description": "Appling County in southeast Georgia is a timber and agricultural county centered on Baxley and the Altamaha River \u2014 one of Georgia's most significant river systems and the largest free-flowing river on the East Coast south of the St. Lawrence. The county sits at the edge of the Vidalia onion growing region (Toombs/Montgomery/Jeff Davis counties) and benefits from the agricultural marketing and logistics infrastructure of the world's most famous sweet onion. Georgia Power's Plant Hatch nuclear generating station (in adjacent Brantley/Appling counties) is one of the Southeast's primary nuclear power plants and a major employer in this area. Plant Hatch's operations generate sophisticated nuclear facility IT including safety systems, regulatory compliance, and process monitoring.",
+      "sources": [
+        {
+          "label": "Baxley-Appling County Chamber",
+          "url": "https://www.baxleychamber.com"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "13183",
+      "name": "Long County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Long County GA \u2014 Ludowici/Fort Stewart adjacent/SE Georgia military influence",
+      "description": "Long County in southeast Georgia is dominated by its proximity to Fort Stewart \u2014 the US Army's largest installation east of the Mississippi, home to the 3rd Infantry Division. Fort Stewart's base boundary is not in Long County but the county immediately borders it and hosts significant military housing, commercial support, and commuter infrastructure for Stewart's 20,000+ active duty soldiers. Ludowici is the county seat. The military's presence drives Long County's broadband and commercial connectivity investment well above what a county of 19,000 permanent residents would otherwise receive. The Georgia Army National Guard's installations in the region also contribute federal IT infrastructure.",
+      "sources": [
+        {
+          "label": "Long County Georgia",
+          "url": "https://www.longcountyga.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "22029",
+      "name": "Concordia Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Concordia Parish LA \u2014 Vidalia/Natchez-Vidalia bridge/Mississippi River/James Brown connection",
+      "description": "Concordia Parish sits directly across the Mississippi River from Natchez, Mississippi \u2014 connected by the Natchez-Vidalia Bridge. Vidalia is the parish seat. The parish has a remarkable cultural connection: it was the birthplace of soul music pioneer Little Richard (born in Macon GA, raised differently) \u2014 actually the namesake Vidalia onion was developed in nearby Georgia, but the bridge-city of Vidalia LA has its own history. The Mississippi River at this point is managed by the US Army Corps of Engineers' Vicksburg District, with river navigation IT and flood control infrastructure. Concordia Parish's energy sector includes natural gas production and the Brame Energy Center (a Louisiana generating station). The Natchez Trace Parkway's northern Louisiana approach passes through the region.",
+      "sources": [
+        {
+          "label": "Concordia Parish Louisiana",
+          "url": "https://www.concordiaparishla.gov"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "22037",
+      "name": "East Feliciana Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "East Feliciana Parish LA \u2014 Clinton/Florida Parishes/Audubon Oakley Plantation/rural north Louisiana",
+      "description": "East Feliciana Parish is one of Louisiana's 'Florida Parishes' \u2014 the region that was part of Spanish West Florida until the West Florida Rebellion of 1810 created a short-lived republic before US annexation. Clinton is the parish seat, known for its antebellum Greek Revival architecture. The Audubon State Historic Site at Oakley Plantation in adjacent West Feliciana Parish draws visitors to the region where John James Audubon painted many of the birds in 'Birds of America' while working as a tutor in 1821. East Feliciana Parish's rural character and position in the Florida Parishes agricultural corridor has made it a focus of Louisiana's rural broadband expansion programs. The parish's historical legal and civic infrastructure \u2014 it has a notably intact 19th-century courthouse and town square \u2014 provides institutional continuity unusual for a parish of 20,000 people.",
+      "sources": [
+        {
+          "label": "East Feliciana Parish Louisiana",
+          "url": "https://www.eastfelicianaparish.net"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }
