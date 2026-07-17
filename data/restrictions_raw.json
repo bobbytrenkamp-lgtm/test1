@@ -23900,6 +23900,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20001",
+      "name": "Allen County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Allen County \u2014 Iola/Mid-Continent gas field/cement industry/Allen CC",
+      "description": "Allen County in southeastern Kansas contains Iola \u2014 a historic gas boomtown where the Mid-Continent Natural Gas Field was discovered in the early 20th century, making it one of the first major US natural gas producing areas. Iola was also a center for Portland cement manufacturing, leveraging local limestone and natural gas. Allen County Community College serves the county and regional SE Kansas area. Evergy (formerly Westar) serves the county. The US-54 corridor through Iola connects the Wichita and Joplin markets. Allen County's gas heritage created industrial electrical infrastructure, and the county's cement history produced industrial loads that created grid capacity above what its 13,000 residents alone need.",
+      "sources": [
+        {
+          "label": "Allen County Kansas",
+          "url": "https://www.allencountyks.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20007",
+      "name": "Barber County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Barber County \u2014 Medicine Lodge/Carry Nation birthplace/Peace Treaties/Gyp Hills oil",
+      "description": "Barber County in south-central Kansas is the birthplace of Carry Nation \u2014 the Kansas temperance activist whose hatchet-wielding attacks on saloons became one of the most dramatic protest actions in US history. Medicine Lodge, the county seat, was also the site of the 1867 Medicine Lodge Treaties, where the US government negotiated peace with the southern Plains tribes. The Gyp Hills Scenic Byway in Barber County provides some of the most dramatic landscapes in Kansas. The county sits above the Hugoton Gas Field and has significant oil and gas production. Barber County Electric Cooperative and local utilities serve the area.",
+      "sources": [
+        {
+          "label": "Barber County Kansas",
+          "url": "https://www.barbercountyks.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20019",
+      "name": "Chautauqua County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Chautauqua County \u2014 Sedan/SE Kansas/Chautauqua Hills/elk herd heritage",
+      "description": "Chautauqua County in extreme southeastern Kansas is one of the most sparsely populated counties in the state, home to Sedan \u2014 a small historic city that hosted the famous Chautauqua circuit gatherings in the late 19th and early 20th centuries. The county's Chautauqua Hills \u2014 unique eroded sandstone formations unusual in Kansas \u2014 create distinctive terrain. The county is known for one of the largest free-ranging elk herds in the eastern US, which creates ecotourism IT and wildlife monitoring systems. SEK Electric and Independence Power & Light serve the area. Chautauqua County's oil and gas production from the Verdigris River Valley creates production monitoring IT.",
+      "sources": [
+        {
+          "label": "Chautauqua County Kansas",
+          "url": "https://www.chautauquacountyks.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "20049",
+      "name": "Elk County",
+      "state": "Kansas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Elk County \u2014 Howard/Longton/SE Kansas/Elk River Valley/oil and gas",
+      "description": "Elk County in southeastern Kansas contains Howard and Longton \u2014 small county seat communities in the Elk River valley. The county was heavily involved in early Kansas oil and gas production, with the Mid-Continent Field extending through the area. Elk City Lake provides water recreation and watershed management IT. Southeast Kansas Electric Cooperative serves the county. Elk County's position adjacent to Oklahoma's oil country creates pipeline and energy infrastructure corridors through the county. The county's cattle ranching economy drives agricultural management technology, and the remnant oil and gas infrastructure creates SCADA monitoring requirements for active production and pipeline operations.",
+      "sources": [
+        {
+          "label": "Elk County Kansas",
+          "url": "https://www.elkcountyks.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29009",
+      "name": "Barry County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Barry County \u2014 Cassville/SW Missouri Ozarks/Table Rock Lake adjacent/poultry hub",
+      "description": "Barry County in southwest Missouri borders Arkansas and sits at the edge of the Table Rock Lake recreation market (Taney County's Branson, already in DB). Cassville is the county seat. The county's poultry processing industry \u2014 with major Tyson Foods and other operations drawing from the Ozark broiler region \u2014 creates food safety IT, supply chain management, and cold chain monitoring demand in a rural southwest Missouri county. Poultry and egg production makes Barry County one of the most agriculturally intensive in southwest Missouri. Empire Electric Association serves the county. The county's position on US-60 between Springfield (Greene County, already in DB) and Joplin provides highway corridor fiber access.",
+      "sources": [
+        {
+          "label": "Barry County Missouri",
+          "url": "https://www.barrycountymissouri.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29013",
+      "name": "Bates County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bates County \u2014 Butler/west Missouri border/I-49 corridor/Marais des Cygnes",
+      "description": "Bates County in western Missouri borders Kansas and sits on US-71 (now I-49) \u2014 the principal north-south highway connecting Kansas City to Joplin and the Fort Smith AR market. Butler is the county seat. The county was the site of significant Civil War-era violence during the Missouri border wars with Kansas (the 'Bleeding Kansas' period). The Marais des Cygnes River watershed creates agricultural and water management IT. Evergy and Kansas City Power & Light serve the county. Bates County's I-49 corridor position \u2014 on the primary freight route between the KC metro and the south \u2014 makes it a natural fiber waypoint and logistics staging area between Missouri's two largest economic anchors.",
+      "sources": [
+        {
+          "label": "Bates County Missouri",
+          "url": "https://batescountymo.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29149",
+      "name": "Oregon County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Oregon County \u2014 Alton/remote SE Missouri Ozarks/Eleven Point National Scenic River",
+      "description": "Oregon County in extreme southeastern Missouri is one of the most remote and sparsely populated counties in the state \u2014 and one of the most economically challenged. Alton is the county seat. The Eleven Point River through Oregon County is one of Missouri's designated National Scenic Rivers and an outstanding float fishing stream. The county borders Arkansas and is served by some of the most rural electric cooperatives in Missouri (Missouri Rural Electric Cooperative). Oregon County is a primary target for the USDA's ReConnect rural broadband program due to extreme connectivity gaps. The county's timber economy and limited agricultural base create modest but consistent demand for basic broadband in a deeply rural Ozarks context.",
+      "sources": [
+        {
+          "label": "Oregon County Missouri",
+          "url": "https://www.oregoncountymo.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48057",
+      "name": "Calhoun County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Calhoun County \u2014 Port Lavaca/Formosa Plastics/Gulf Coast chemical cluster",
+      "description": "Calhoun County on the Texas Gulf Coast contains Port Lavaca and one of the most significant chemical manufacturing concentrations in the US at Point Comfort \u2014 Formosa Plastics' Texas Operations is among the largest PVC and olefins manufacturing sites in North America. The chemical manufacturing IT stack at Formosa's Point Comfort complex \u2014 process control, safety instrumented systems, regulatory monitoring for EPA Title V and TCEQ permits \u2014 represents extraordinary industrial IT density for a Gulf Coast county of 22,000 people. CPS Energy and Texas New Mexico Power serve the area. Matagorda Bay's aquaculture and commercial fishing create additional environmental monitoring IT. Calhoun County is a compact industrial port county with technology requirements shaped entirely by its chemical manufacturing identity.",
+      "sources": [
+        {
+          "label": "Calhoun County Texas",
+          "url": "https://www.calhouncotx.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48249",
+      "name": "Jim Wells County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jim Wells County \u2014 Alice/crossroads of South Texas/oil and gas hub",
+      "description": "Jim Wells County and Alice, Texas sit at the geographic center of South Texas \u2014 a crossroads city on US-281 and US-59 where oil field supply chains for the Eagle Ford Shale and Corpus Christi markets converge. Alice is known as the 'Hub of South Texas' and has historically been one of the most significant oil and gas supply chain cities in the US outside of the major metros. The county's oil and gas production and service industry create SCADA, production monitoring, and logistics IT. Alice Independent School District's technology deployment serves as a regional IT anchor. Corpus Christi's petrochemical market is 45 miles east. AEP Texas Central serves the county.",
+      "sources": [
+        {
+          "label": "Jim Wells County Texas",
+          "url": "https://www.co.jim-wells.tx.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48503",
+      "name": "Young County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Young County \u2014 Graham/north Texas/Possum Kingdom Lake/oil and gas",
+      "description": "Young County in north-central Texas contains Graham \u2014 a significant oil field supply chain city and county seat \u2014 and Possum Kingdom Lake, one of Texas's most scenic reservoirs on the Brazos River. The county's oil and gas history dates to the late 19th century, and Young County continues to produce from mature Permian Basin extension fields. Possum Kingdom Lake's recreation economy drives second-home broadband demand. Oncor and West Texas Utilities (AEP) serve the county. Graham's Graham National Bank, Young County Independent School District, and regional healthcare center make it the commercial hub for a multi-county area. The county's Brazos River position gives it hydroelectric and water management infrastructure.",
+      "sources": [
+        {
+          "label": "Young County Texas",
+          "url": "https://www.youngcounty.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "01039",
+      "name": "Covington County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Covington County \u2014 Andalusia/south Alabama commercial hub/timber/poultry",
+      "description": "Covington County in south Alabama contains Andalusia \u2014 the county seat and a regional commercial hub for the south Alabama timber, poultry, and agriculture economy. Andalusia is home to Lurleen B. Wallace Community College, providing technical workforce development for south Alabama. The county's timber economy \u2014 significant pine plantations serving the paper and building products markets \u2014 creates forestry management and supply chain IT. Alabama Power (Southern Company) serves the county. The US-29 and US-84 corridors through Andalusia connect south Alabama's timber-producing counties to the Port of Mobile market. Covington County's position as a hub for Alabama's rural south creates IT concentration proportionate to its commercial role.",
+      "sources": [
+        {
+          "label": "Covington County Alabama",
+          "url": "https://www.covcountyal.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "01099",
+      "name": "Monroe County",
+      "state": "Alabama",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Monroe County \u2014 Monroeville/Harper Lee hometown/To Kill a Mockingbird heritage",
+      "description": "Monroe County in south Alabama is the hometown of Harper Lee \u2014 author of To Kill a Mockingbird (1960), one of the most widely read American novels. Truman Capote also spent childhood summers in Monroeville, the county seat. The annual Mockingbird theatrical production draws thousands of visitors to the historic Monroe County Courthouse. Monroeville is also the county seat and commercial hub for a timber-producing south Alabama county, with Alabama Power serving the area. Coastal Alabama Community College's Monroe County campus provides technical education. Monroe County's literary heritage tourism creates hospitality IT, and its courthouse (used as a model for the novel's setting) has been a national historic landmark attracting digital archival and preservation IT.",
+      "sources": [
+        {
+          "label": "Monroe County Alabama",
+          "url": "https://www.monroecountyalabama.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "51005",
+      "name": "Alleghany County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Alleghany County \u2014 Covington/WestRock paper mill/I-64 I-81 mountain gap",
+      "description": "Alleghany County in western Virginia contains Covington \u2014 the county seat and home of the WestRock (formerly MeadWestvaco) paper and packaging mill, one of the largest industrial employers in the Alleghany Highlands. The paper mill's power consumption creates Appalachian Power (AEP) industrial rate infrastructure in this mountain county. The Jackson River \u2014 a world-class trout fishery \u2014 runs through the county. Covington sits where I-64 (crossing the Allegheny Mountains) and US-60 converge before splitting toward I-81 north and I-77 south \u2014 making it a mountain freight waypoint. The county's Bath County Pumped Storage Station (the world's largest at completion) in adjacent Bath County creates extraordinary transmission infrastructure that extends into Alleghany County.",
+      "sources": [
+        {
+          "label": "Alleghany County Virginia",
+          "url": "https://www.alleghanycounty.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "51197",
+      "name": "Wythe County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Wythe County \u2014 Wytheville/I-81 I-77 crossroads/lead mining heritage/Ivanhoe",
+      "description": "Wythe County contains Wytheville \u2014 the 'Crossroads of the Appalachians,' where I-81 (northeast-southwest through the Appalachian Valley) intersects I-77 (connecting Charlotte and the Carolinas to Ohio and the Midwest). This junction is one of the most significant highway intersections in the Appalachians \u2014 a major logistics and freight node with corresponding fiber infrastructure. Wytheville also sits on the Clinch Mountain/Blue Ridge divide and was historically significant as the main route through the Virginia mountains. New Peoples Bank and Wytheville Community College anchor the local economy. Lead and zinc were mined at Ivanhoe in the county, creating industrial heritage. Appalachian Power (AEP) serves the county.",
+      "sources": [
+        {
+          "label": "Wythe County Virginia",
+          "url": "https://www.wytheva.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31125",
+      "name": "Nance County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Nance County \u2014 Fullerton/Loup River Valley/central Nebraska agriculture",
+      "description": "Nance County in central Nebraska sits in the Loup River valley between the Platte River market (Platte County/Columbus, already in DB) and the Boone County market to the north. Fullerton is the county seat. Nebraska Public Power District serves the county. The Loup River Power Canal \u2014 a hydroelectric complex managed by Loup River Public Power District \u2014 passes through the region and provides renewable generation capacity in a plains context. Nance County's corn and soybean economy drives standard Nebraska precision agriculture IT. The county's position on US-30 (the Lincoln Highway) gives it east-west corridor access between Columbus and Grand Island markets.",
+      "sources": [
+        {
+          "label": "Nance County Nebraska",
+          "url": "https://nancecounty.ne.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "31061",
+      "name": "Franklin County",
+      "state": "Nebraska",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Franklin County \u2014 Franklin/south-central Nebraska/Republican River Valley",
+      "description": "Franklin County in south-central Nebraska borders Kansas and sits in the Republican River watershed. Franklin is the county seat. Nebraska Public Power District and Southern Nebraska Rural Electric Association serve the county. Franklin County's agricultural economy \u2014 wheat, corn, sorghum, and cattle \u2014 creates precision agriculture IT for a traditional Great Plains farming community. The county's Republican River water rights participate in the multi-state Republican River Compact, creating water management monitoring infrastructure for the region. Franklin sits on US-136, providing east-west corridor connectivity through south-central Nebraska. The county's wind energy potential has drawn development interest from the growing Nebraska wind market.",
+      "sources": [
+        {
+          "label": "Franklin County Nebraska",
+          "url": "https://www.franklincountyne.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "39075",
+      "name": "Holmes County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Holmes County \u2014 Millersburg/world's largest Amish community/furniture manufacturing",
+      "description": "Holmes County in east-central Ohio is home to the world's largest Amish community \u2014 with approximately 40,000 Amish residents, the county has more Amish than any other county on earth. The Amish furniture manufacturing industry, concentrated in and around Berlin and Millersburg, has made Holmes County a significant custom furniture export economy despite limited electricity use within Amish households themselves. The wholesale distribution infrastructure supporting Amish furniture manufacturing \u2014 warehousing, export logistics, e-commerce fulfillment through non-Amish partners \u2014 creates IT demand at the county's commercial margins. Buckeye Rural Electric Cooperative serves the non-Amish portions. Holmes County's tourism from nationwide visitors to the Amish community creates hospitality IT above rural Ohio norms.",
+      "sources": [
+        {
+          "label": "Holmes County Ohio",
+          "url": "https://www.holmescountyohio.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "39169",
+      "name": "Wayne County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Wayne County \u2014 Wooster/OARDC/College of Wooster/Rubbermaid Ohio State Research",
+      "description": "Wayne County in northeast Ohio contains Wooster \u2014 home of the Ohio Agricultural Research and Development Center (OARDC), the world's largest single-location agricultural research station. OARDC is Ohio State University's primary agricultural research facility, with labs, greenhouses, and field stations covering virtually every aspect of Ohio agriculture. The College of Wooster, one of the most respected small liberal arts colleges in the Midwest, adds a significant research computing anchor. Wayne County was historically home to Rubbermaid (now Newell Brands), which invented the plastic houseware industry. AEP Ohio and FirstEnergy serve the county. The combination of the world's largest ag research station and a selective liberal arts college creates research IT concentration in a mid-sized Ohio county.",
+      "sources": [
+        {
+          "label": "Wayne County Ohio",
+          "url": "https://www.waynecountyoh.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "46101",
+      "name": "Moody County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Moody County \u2014 Flandreau/Flandreau Santee Sioux Tribe/SE South Dakota",
+      "description": "Moody County in southeastern South Dakota is home to Flandreau \u2014 the county seat and the location of the Flandreau Santee Sioux Tribe, one of South Dakota's federally recognized tribes with a long history of tribal governance and education. The Royal River Casino (Flandreau Santee Sioux Tribe's gaming operation) creates tribal IT infrastructure. Flandreau Indian School \u2014 a federally funded Indian boarding school \u2014 has provided education for Native American students since 1892 and creates federal IT. East River Electric Cooperative serves the county. Moody County's position on I-29 and US-14 gives it highway corridor fiber access between Sioux Falls (Minnehaha County, already in DB) and the Minnesota border.",
+      "sources": [
+        {
+          "label": "Moody County South Dakota",
+          "url": "https://www.moodycountysd.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "46057",
+      "name": "Hamlin County",
+      "state": "South Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hamlin County \u2014 Hayti/northeast South Dakota/Coteau Lakes agricultural corridor",
+      "description": "Hamlin County in northeastern South Dakota contains Hayti, the county seat, situated in the Coteau des Prairies lake district \u2014 an area of thousands of prairie pothole lakes important for waterfowl production. The county was near the area where Laura Ingalls Wilder's family settled in the 1880s (De Smet in adjacent Kingsbury County). Lake Norden in Hamlin County provides recreation. East River Electric Cooperative serves the county. Hamlin County's grain farming economy \u2014 corn, wheat, soybeans \u2014 drives precision agriculture monitoring for a productive eastern SD agricultural county. The county's position on US-14 connecting the Twin Cities to the Black Hills gives it highway corridor fiber access across northern South Dakota.",
+      "sources": [
+        {
+          "label": "Hamlin County South Dakota",
+          "url": "https://hamlin.sdcounties.org/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }

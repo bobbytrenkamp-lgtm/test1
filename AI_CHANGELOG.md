@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 25)
+- `data/map_data.json` (Round 25)
+- `docs/data-sweeps/2026-07-massive-sweep-round-25.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 25**: Kansas (Allen/Iola Mid-Continent gas heritage, Barber/Medicine Lodge Carry Nation gypsum, Chautauqua/Sedan Flint Hills elk, Elk/Howard SE KS oil fields), Missouri (Barry/Cassville NW Ozarks poultry, Bates/Butler I-49 corridor, Oregon/Alton remote Ozarks Eleven Point River), Texas (Calhoun/Port Lavaca Formosa Plastics petrochemical, Jim Wells/Alice Hub of South Texas Eagle Ford, Young/Graham Possum Kingdom Lake), Alabama (Covington/Andalusia south AL timber Conecuh NF, Monroe/Monroeville Harper Lee Truman Capote literary heritage), Virginia (Alleghany/Covington WestRock paper mill highlands, Wythe/Wytheville I-81 I-77 crossroads Lead Mine), Nebraska (Nance/Fullerton Loup River, Franklin/Republican River south-central NE), Ohio (Holmes/Millersburg world's largest Amish community, Wayne/Wooster OARDC largest OH ag research station), South Dakota (Moody/Flandreau Santee Sioux Royal River Casino, Hamlin/Hayti NE SD Coteau lakes). 20 net new records (1003 total).
+- **No FIPS errors** — fourteenth consecutive clean validation run.
+
+Reasoning:
+- Holmes County OH (Millersburg/Amish Country): World's largest Amish community (~35,000) generates paradoxical IT infrastructure — the "English" supply chain connecting craft furniture, cheese, and quilt production to national e-commerce markets runs sophisticated logistics IT from a county that otherwise avoids personal technology. Unique intersection of artisanal production and modern supply chain computing.
+- Monroe County AL (Monroeville/Harper Lee): Birthplace of Harper Lee and childhood home of Truman Capote. The Monroe County Courthouse is a literary pilgrimage museum. Cultural tourism infrastructure and Alabama rural broadband initiatives targeting tourism-dependent counties create connectivity investment above what a rural Alabama county would otherwise receive.
+- Calhoun County TX (Port Lavaca/Formosa Plastics): One of the largest plastics manufacturing complexes in North America — PVC, polyethylene, propylene facilities. Extensive environmental compliance monitoring requirements (complex regulatory history) drive unusual investment in industrial process control and compliance IT for a coastal Texas county of 22,000 people.
+- Wythe County VA (Wytheville/I-81×I-77): Virginia's only interstate-interstate intersection — I-81 (Appalachian spine) meets I-77 (Charlotte-Cleveland). The crossroads creates intensive freight logistics, fleet management, and truck stop technology infrastructure. The historical Lead Mine complex (one of the Confederacy's primary lead sources) adds Civil War heritage to a county defined by its strategic transportation position.
+
+Problems Found:
+- 0 FIPS errors (fourteenth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 24)
 - `data/map_data.json` (Round 24)
 - `docs/data-sweeps/2026-07-massive-sweep-round-24.md` (new)
