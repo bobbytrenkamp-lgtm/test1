@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "description": "Registry of official zoning data sources for each piloted jurisdiction.",
+    "last_updated": "2026-07-17",
+    "note": "All sources must be official government or publicly authoritative. Commercial data and real-estate sites are not permitted here."
+  },
+  "jurisdictions": {
+    "va-loudoun-county": {
+      "jurisdiction_id": "va-loudoun-county",
+      "jurisdiction_name": "Loudoun County, Virginia",
+      "state": "VA",
+      "county_fips": "51107",
+      "sources": {
+        "ordinance": {
+          "title": "Loudoun County Codified Ordinances — Zoning Regulations",
+          "url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+          "provider": "Municode",
+          "type": "official_code_publisher",
+          "license": "Public — official code",
+          "download_available": false,
+          "api_available": false,
+          "notes": "Loudoun County's zoning regulations appear in Chapter 1-4. A comprehensive zoning ordinance rewrite has been underway; confirm which version is currently effective before citing specific section numbers.",
+          "last_checked": "2026-07-17",
+          "tier": 1
+        },
+        "zoning_page": {
+          "title": "Loudoun County Planning, Zoning and Development Division",
+          "url": "https://www.loudoun.gov/zoning",
+          "type": "official_planning_department",
+          "license": "Public",
+          "last_checked": "2026-07-17",
+          "tier": 1
+        },
+        "gis_portal": {
+          "title": "Loudoun County GIS",
+          "url": "https://www.loudoun.gov/gis",
+          "type": "official_gis_portal",
+          "license": "Public",
+          "last_checked": "2026-07-17",
+          "tier": 1
+        },
+        "gis_services": {
+          "title": "Loudoun County ArcGIS REST Services",
+          "url": "https://logis.loudoun.gov/arcgis/rest/services/",
+          "type": "arcgis_rest",
+          "license": "Public — no stated restrictions on non-commercial use",
+          "download_available": true,
+          "api_available": true,
+          "retrieval_method": "arcgis_featureserver",
+          "known_layers": {
+            "zoning": "Check https://logis.loudoun.gov/arcgis/rest/services/ for the current Zoning FeatureServer or MapServer endpoint. Layer names and IDs may change between ordinance updates."
+          },
+          "last_checked": "2026-07-17",
+          "tier": 1
+        },
+        "open_data_portal": {
+          "title": "Loudoun County Open Data (ArcGIS Hub)",
+          "url": "https://data-loudoungis.opendata.arcgis.com/",
+          "type": "open_data_portal",
+          "license": "Public",
+          "download_available": true,
+          "api_available": true,
+          "known_datasets": {
+            "current_zoning": "Search 'zoning' at the portal — look for 'Current Zoning' or 'Zoning Districts'. Download as GeoJSON or use the FeatureServer endpoint."
+          },
+          "last_checked": "2026-07-17",
+          "tier": 1
+        },
+        "parcel_data": {
+          "title": "Loudoun County Parcel Data",
+          "url": "https://data-loudoungis.opendata.arcgis.com/",
+          "type": "parcel_layer",
+          "license": "Public",
+          "notes": "Parcel data typically available via the Open Data portal. Search for 'parcels'.",
+          "last_checked": "2026-07-17",
+          "tier": 1
+        },
+        "dcod_overlay": {
+          "title": "Data Center Overlay District (DCOD) — Loudoun County",
+          "url": "https://www.loudoun.gov/zoning",
+          "type": "overlay_district_source",
+          "notes": "The DCOD was adopted to manage data center development in eastern Loudoun County. Contact the Planning Division for current DCOD boundary and requirements. The DCOD may be part of the main zoning GIS layer.",
+          "last_checked": "2026-07-17",
+          "tier": 1
+        }
+      }
+    }
+  }
+}

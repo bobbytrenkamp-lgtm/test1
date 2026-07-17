@@ -1,0 +1,73 @@
+{
+  "jurisdiction_id": "va-loudoun-county",
+  "report_generated": "2026-07-17",
+  "report_type": "pilot_validation",
+  "overall_status": "pilot_complete_low_confidence",
+  "summary": "Loudoun County pilot data is architecturally complete but all dimensional standards and most use classifications carry LOW confidence because they were compiled from general public knowledge without direct access to the current adopted ordinance. The pilot demonstrates the complete data model and frontend architecture. Before production use, all values must be verified against the current Loudoun County Zoning Ordinance.",
+  "coverage_matrix": {
+    "geometry": {
+      "status": "demo_only",
+      "detail": "No real zoning polygon geometry. Run data/zoning/scripts/run_zoning_pipeline.py to download from Loudoun County Open Data / ArcGIS service.",
+      "passed": false
+    },
+    "district_names": {
+      "status": "partial",
+      "detail": "6 of approximately 20+ Loudoun County zoning districts included. Key data center districts (PD-IP, I1, I2) are present. Remaining districts (B1, B3, B4, O1, OP, TR1-TR4, PDH, etc.) not yet included.",
+      "passed": true
+    },
+    "dimensional_standards": {
+      "status": "partial_low_confidence",
+      "detail": "Standards provided for 5 districts. All values are approximate and require official verification. PD-IP standards particularly depend on individual development plans (proffers) which are site-specific.",
+      "passed": false
+    },
+    "permitted_uses": {
+      "status": "partial_low_confidence",
+      "detail": "Use classifications provided for data center, residential, office, warehouse, and a few other uses across 5 districts. Full use table not yet compiled.",
+      "passed": false
+    },
+    "data_center_classification": {
+      "status": "partial_moderate_confidence",
+      "detail": "Data center use classified in all 5 included districts. PD-IP and AR1/JLMA-3 classifications have moderate confidence. I1 and I2 classifications are low confidence.",
+      "passed": true
+    },
+    "overlay_data": {
+      "status": "partial_low_confidence",
+      "detail": "DCOD, Airport, and Floodplain overlays documented. No GIS geometry for overlay boundaries. DCOD requirements are approximate.",
+      "passed": false
+    },
+    "official_ordinance_links": {
+      "status": "complete",
+      "detail": "Official Municode link and official planning department URL included for all data items.",
+      "passed": true
+    },
+    "source_metadata": {
+      "status": "complete",
+      "detail": "Source URLs, source registry, and verification status present on all records.",
+      "passed": true
+    },
+    "confidence_levels": {
+      "status": "complete",
+      "detail": "All records carry explicit confidence levels and verification_status fields.",
+      "passed": true
+    }
+  },
+  "conflicts_detected": [],
+  "warnings": [
+    "Zoning polygon geometry not yet downloaded — zoning map layer will show no district polygons until pipeline runs.",
+    "All dimensional standards are approximate — do not cite specific numbers without official ordinance verification.",
+    "PD-IP development standards are additionally governed by individual proffer conditions, which are parcel-specific and not captured in this dataset.",
+    "Loudoun County has been revising its Zoning Ordinance — the active ordinance version should be confirmed before citing specific section numbers.",
+    "DCOD boundary is not yet captured in this dataset — data center eligibility for specific parcels within the DCOD zone may differ from the general district classification."
+  ],
+  "required_actions": [
+    "Run data/zoning/scripts/run_zoning_pipeline.py to download real zoning geometry",
+    "Verify all dimensional standards against the current Loudoun County Zoning Ordinance at https://library.municode.com/va/loudoun_county",
+    "Confirm the DCOD overlay boundary with Loudoun County GIS",
+    "Expand district coverage to include remaining Loudoun County zoning districts",
+    "Add parcel-level data integration",
+    "Review and update confidence levels after official verification"
+  ],
+  "next_review_date": "2026-10-17",
+  "reviewer": "Initial pilot — automated compilation",
+  "notes": "This is the first pilot jurisdiction in the zoning intelligence system. It demonstrates the complete architecture and data model. Production-readiness requires official source verification for all dimensional standards and geometry download."
+}

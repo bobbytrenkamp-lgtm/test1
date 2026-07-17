@@ -129,7 +129,9 @@ const LAYER_DEFS = [
   { id: "water",         label: "Water Availability",         group: "Land & Policy",  color: "#1d4ed8", sample: false },
   { id: "utility",       label: "Utility Territories",        group: "Land & Policy",  color: "#f472b6", sample: false },
   { id: "tax",           label: "Tax Incentive Areas",        group: "Land & Policy",  color: "#fbbf24", sample: false },
-  { id: "annotations",  label: "Best & Worst Markets",       group: "Highlights",     color: "#e4e6f0", sample: false },
+  { id: "annotations",     label: "Best & Worst Markets",  group: "Highlights",     color: "#e4e6f0", sample: false },
+  { id: "zoning_districts", label: "Zoning Districts",      group: "Zoning",         color: "#7c3aed", sample: false },
+  { id: "zoning_overlays",  label: "Zoning Overlays",       group: "Zoning",         color: "#db2777", sample: false, noData: true },
 ];
 
 const SAMPLE_DISCLAIMER = "Approximate route — exact alignment unverified.";
@@ -172,7 +174,9 @@ const layerState = {
   water:        false,
   utility:      false,
   tax:          false,
-  annotations:  true,
+  annotations:     true,
+  zoning_districts: false,
+  zoning_overlays:  false,
 };
 
 let mapData         = {};
@@ -567,6 +571,11 @@ function handleCountyClick(e, fips) {
     const stAbbr = STATE_FIPS[fips.slice(0, 2)] || "";
     setDetailNoRestriction(null, stAbbr, fips);
   }
+
+  /* Notify zoning module if the zoning layer is active */
+  if (layerState.zoning_districts && window.ZONING_MAP) {
+    window.ZONING_MAP.onCountySelected(fips);
+  }
 }
 
 /* ── County layer init ── */
@@ -782,6 +791,12 @@ function setLayerVisible(id, visible, syncUI = false) {
         // outside 5–8 zoom range, syncAnnotationVisibility handles it on next zoomend
       }
     }
+  } else if (id === "zoning_districts" || id === "zoning_overlays") {
+    if (window.ZONING_MAP) {
+      window.ZONING_MAP.onLayerToggle(id, visible, selectedFips);
+    }
+    const panel = document.getElementById("zoning-panel");
+    if (panel) panel.setAttribute("aria-hidden", visible ? "false" : "true");
   } else {
     const group = leafletLayerGroups[id];
     if (group) {

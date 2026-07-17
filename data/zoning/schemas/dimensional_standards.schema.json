@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "zoning/dimensional_standards",
+  "title": "Zoning Dimensional Standards",
+  "description": "Dimensional development standards for a zoning district.",
+  "type": "object",
+  "required": ["jurisdiction_id", "district_code"],
+  "properties": {
+    "jurisdiction_id": { "type": "string" },
+    "district_code":   { "type": "string" },
+    "standards": {
+      "type": "object",
+      "description": "Keyed by standard name. Each value is a ZoningValue object.",
+      "additionalProperties": { "$ref": "#/definitions/ZoningValue" }
+    },
+    "conditional_rules": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ConditionalRule" }
+    },
+    "source_section":  { "type": ["string", "null"] },
+    "source_url":      { "type": ["string", "null"] },
+    "source_page":     { "type": ["string", "null"] },
+    "source_table":    { "type": ["string", "null"] },
+    "confidence_level":{ "type": "string", "enum": ["verified", "high", "moderate", "low", "unverified", "unavailable"] },
+    "last_verified":   { "type": ["string", "null"] },
+    "reviewer_notes":  { "type": ["string", "null"] }
+  },
+  "definitions": {
+    "ZoningValue": {
+      "type": "object",
+      "required": ["verification_status"],
+      "properties": {
+        "value":               { "type": ["number", "string", "null"] },
+        "unit":                { "type": ["string", "null"] },
+        "original_text":       { "type": ["string", "null"] },
+        "conditions":          { "type": "array", "items": { "type": "string" } },
+        "exceptions":          { "type": "array", "items": { "type": "string" } },
+        "source_section":      { "type": ["string", "null"] },
+        "source_url":          { "type": ["string", "null"] },
+        "confidence_level":    { "type": "string", "enum": ["verified", "high", "moderate", "low", "unverified", "unavailable"] },
+        "verification_status": { "type": "string", "enum": ["verified", "requires_official_verification", "conflicting_sources", "not_found", "not_applicable"] },
+        "manual_review_required": { "type": "boolean" },
+        "notes":               { "type": ["string", "null"] }
+      }
+    },
+    "ConditionalRule": {
+      "type": "object",
+      "properties": {
+        "standard":          { "type": "string" },
+        "rule_type":         { "type": "string", "enum": ["adjacent_use", "height_based", "road_type", "existing_condition", "overlay", "use_specific", "formula", "review_determination"] },
+        "base_value":        { "type": ["number", "string", "null"] },
+        "alternate_value":   { "type": ["number", "string", "null"] },
+        "condition_field":   { "type": ["string", "null"] },
+        "condition_operator":{ "type": ["string", "null"] },
+        "condition_value":   { "type": ["string", "null"] },
+        "formula":           { "type": ["string", "null"] },
+        "unit":              { "type": ["string", "null"] },
+        "original_text":     { "type": "string" },
+        "manual_review_required": { "type": "boolean" }
+      }
+    }
+  }
+}

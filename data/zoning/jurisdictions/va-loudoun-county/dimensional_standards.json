@@ -1,0 +1,497 @@
+{
+  "jurisdiction_id": "va-loudoun-county",
+  "last_updated": "2026-07-17",
+  "important_notice": "ALL dimensional standards in this file are LOW CONFIDENCE. They are derived from general public knowledge about Loudoun County zoning and have NOT been verified against the current adopted ordinance. Before relying on any value, confirm it with the official Loudoun County Zoning Ordinance at https://library.municode.com/va/loudoun_county/codes/codified_ordinances or by contacting the Department of Planning and Zoning at https://www.loudoun.gov/zoning.",
+  "standards_by_district": {
+    "PD-IP": {
+      "jurisdiction_id": "va-loudoun-county",
+      "district_code": "PD-IP",
+      "source_section": "PD-IP district regulations — verify current section number",
+      "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "confidence_level": "low",
+      "last_verified": "2026-07-17",
+      "reviewer_notes": "PD-IP standards are base ordinance minimums only. Approved development plans and proffered conditions frequently establish stricter or different standards for each specific site. Always review the recorded development plan and proffers for any specific PD-IP parcel.",
+      "standards": {
+        "minimum_front_setback": {
+          "value": 40,
+          "unit": "feet",
+          "original_text": "Minimum setback from right-of-way: approximately 40 feet",
+          "conditions": ["From public right-of-way", "May be increased by specific development plan"],
+          "exceptions": ["May vary by road classification"],
+          "source_section": "PD-IP setback requirements",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": "This is an approximate value. Actual PD-IP front setbacks are frequently governed by approved development plans rather than base ordinance."
+        },
+        "minimum_side_setback": {
+          "value": 20,
+          "unit": "feet",
+          "original_text": "Minimum side yard setback: approximately 20 feet; 50 feet when abutting residential",
+          "conditions": [],
+          "exceptions": [],
+          "source_section": "PD-IP setback requirements",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_rear_setback": {
+          "value": 20,
+          "unit": "feet",
+          "original_text": "Minimum rear yard setback: approximately 20 feet; 50 feet when abutting residential",
+          "conditions": [],
+          "exceptions": [],
+          "source_section": "PD-IP setback requirements",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "residential_buffer_setback": {
+          "value": 50,
+          "unit": "feet",
+          "original_text": "When abutting residential use or zoning: approximately 50-foot buffer",
+          "conditions": ["When abutting residentially zoned property or residential use"],
+          "exceptions": [],
+          "source_section": "Buffer requirements",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": "Enhanced buffer requirements may apply in Data Center Overlay District (DCOD) areas."
+        },
+        "maximum_building_height": {
+          "value": 60,
+          "unit": "feet",
+          "original_text": "Maximum building height: approximately 60 feet base; may be modified by approved development plan",
+          "conditions": ["Base ordinance maximum"],
+          "exceptions": ["Approved development plan may permit increased height subject to additional review"],
+          "source_section": "PD-IP height standards",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": "Many data centers in the Ashburn area are 2-4 stories (approximately 30-55 feet). Some have obtained approvals for taller structures."
+        },
+        "maximum_lot_coverage": {
+          "value": 70,
+          "unit": "percent",
+          "original_text": "Maximum lot coverage: approximately 70%",
+          "conditions": [],
+          "exceptions": [],
+          "source_section": "PD-IP development standards",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_open_space": {
+          "value": 25,
+          "unit": "percent",
+          "original_text": "Minimum open space: approximately 25%",
+          "conditions": [],
+          "exceptions": [],
+          "source_section": "PD-IP development standards",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_lot_area": {
+          "value": null,
+          "unit": null,
+          "original_text": "No minimum lot area specified in base PD-IP district — governed by development plan",
+          "conditions": [],
+          "exceptions": [],
+          "source_section": "PD-IP standards",
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": "PD districts typically do not have a single minimum lot area — the development plan establishes lot configuration."
+        }
+      },
+      "conditional_rules": [
+        {
+          "standard": "minimum_side_setback",
+          "rule_type": "adjacent_use",
+          "base_value": 20,
+          "alternate_value": 50,
+          "condition_field": "adjacent_zoning",
+          "condition_operator": "is_residential",
+          "condition_value": null,
+          "formula": null,
+          "unit": "feet",
+          "original_text": "Side setback increases to approximately 50 feet when the property abuts a residential district or use",
+          "manual_review_required": true
+        },
+        {
+          "standard": "minimum_rear_setback",
+          "rule_type": "adjacent_use",
+          "base_value": 20,
+          "alternate_value": 50,
+          "condition_field": "adjacent_zoning",
+          "condition_operator": "is_residential",
+          "condition_value": null,
+          "formula": null,
+          "unit": "feet",
+          "original_text": "Rear setback increases to approximately 50 feet when the property abuts a residential district or use",
+          "manual_review_required": true
+        }
+      ]
+    },
+    "I1": {
+      "jurisdiction_id": "va-loudoun-county",
+      "district_code": "I1",
+      "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "confidence_level": "low",
+      "last_verified": "2026-07-17",
+      "reviewer_notes": "All I1 standards are approximate and require official verification.",
+      "standards": {
+        "minimum_lot_area": {
+          "value": 20000,
+          "unit": "square_feet",
+          "original_text": "Minimum lot area: approximately 20,000 square feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_lot_width": {
+          "value": 100,
+          "unit": "feet",
+          "original_text": "Minimum lot width: approximately 100 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_front_setback": {
+          "value": 40,
+          "unit": "feet",
+          "original_text": "Minimum front setback: approximately 40 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_side_setback": {
+          "value": 10,
+          "unit": "feet",
+          "original_text": "Minimum side setback: approximately 10 feet; 25 feet from residential",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_rear_setback": {
+          "value": 20,
+          "unit": "feet",
+          "original_text": "Minimum rear setback: approximately 20 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "maximum_building_height": {
+          "value": 45,
+          "unit": "feet",
+          "original_text": "Maximum building height: approximately 45 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "maximum_lot_coverage": {
+          "value": 60,
+          "unit": "percent",
+          "original_text": "Maximum lot coverage: approximately 60%",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        }
+      },
+      "conditional_rules": [
+        {
+          "standard": "minimum_side_setback",
+          "rule_type": "adjacent_use",
+          "base_value": 10,
+          "alternate_value": 25,
+          "condition_field": "adjacent_zoning",
+          "condition_operator": "is_residential",
+          "condition_value": null,
+          "formula": null,
+          "unit": "feet",
+          "original_text": "Side setback increases to approximately 25 feet when abutting a residential district",
+          "manual_review_required": true
+        }
+      ]
+    },
+    "I2": {
+      "jurisdiction_id": "va-loudoun-county",
+      "district_code": "I2",
+      "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "confidence_level": "low",
+      "last_verified": "2026-07-17",
+      "reviewer_notes": "All I2 standards are approximate and require official verification.",
+      "standards": {
+        "minimum_lot_area": {
+          "value": 40000,
+          "unit": "square_feet",
+          "original_text": "Minimum lot area: approximately 40,000 square feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_lot_width": {
+          "value": 150,
+          "unit": "feet",
+          "original_text": "Minimum lot width: approximately 150 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_front_setback": {
+          "value": 50,
+          "unit": "feet",
+          "original_text": "Minimum front setback: approximately 50 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_side_setback": {
+          "value": 15,
+          "unit": "feet",
+          "original_text": "Minimum side setback: approximately 15 feet; 25 feet from residential",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_rear_setback": {
+          "value": 25,
+          "unit": "feet",
+          "original_text": "Minimum rear setback: approximately 25 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "maximum_building_height": {
+          "value": 60,
+          "unit": "feet",
+          "original_text": "Maximum building height: approximately 60 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "maximum_lot_coverage": {
+          "value": 60,
+          "unit": "percent",
+          "original_text": "Maximum lot coverage: approximately 60%",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        }
+      },
+      "conditional_rules": []
+    },
+    "AR1": {
+      "jurisdiction_id": "va-loudoun-county",
+      "district_code": "AR1",
+      "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "confidence_level": "low",
+      "last_verified": "2026-07-17",
+      "reviewer_notes": "AR1 primarily serves agricultural and very low density residential uses. Standards shown are approximate.",
+      "standards": {
+        "minimum_lot_area_residential": {
+          "value": 3,
+          "unit": "acres",
+          "original_text": "Minimum lot area for residential use: approximately 3 acres",
+          "conditions": ["For residential use"],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_lot_area_agricultural": {
+          "value": 30,
+          "unit": "acres",
+          "original_text": "Agricultural use density: 1 dwelling unit per 30 acres",
+          "conditions": ["For agricultural parcels with residential use"],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": "The 'density' in AR1 means one dwelling unit may be created per 30 acres. This does not mean a 30-acre parcel is required."
+        },
+        "minimum_front_setback": {
+          "value": 75,
+          "unit": "feet",
+          "original_text": "Minimum front setback: approximately 75 feet from road centerline, or 30 feet from right-of-way, whichever is greater",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_side_setback": {
+          "value": 15,
+          "unit": "feet",
+          "original_text": "Minimum side setback: approximately 15 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_rear_setback": {
+          "value": 25,
+          "unit": "feet",
+          "original_text": "Minimum rear setback: approximately 25 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "maximum_building_height": {
+          "value": 35,
+          "unit": "feet",
+          "original_text": "Maximum building height: approximately 35 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        }
+      },
+      "conditional_rules": []
+    },
+    "JLMA-3": {
+      "jurisdiction_id": "va-loudoun-county",
+      "district_code": "JLMA-3",
+      "source_url": "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
+      "confidence_level": "low",
+      "last_verified": "2026-07-17",
+      "reviewer_notes": "JLMA (Joint Land Management Area) districts exist in areas shared with adjacent municipalities. Standards require official verification.",
+      "standards": {
+        "maximum_density": {
+          "value": 3,
+          "unit": "dwelling_units_per_acre",
+          "original_text": "Maximum density: 3 dwelling units per acre",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_lot_area": {
+          "value": 10000,
+          "unit": "square_feet",
+          "original_text": "Minimum lot area: approximately 10,000 square feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_lot_width": {
+          "value": 75,
+          "unit": "feet",
+          "original_text": "Minimum lot width: approximately 75 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_front_setback": {
+          "value": 25,
+          "unit": "feet",
+          "original_text": "Minimum front setback: approximately 25 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_side_setback": {
+          "value": 8,
+          "unit": "feet",
+          "original_text": "Minimum side setback: approximately 8 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "minimum_rear_setback": {
+          "value": 25,
+          "unit": "feet",
+          "original_text": "Minimum rear setback: approximately 25 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        },
+        "maximum_building_height": {
+          "value": 40,
+          "unit": "feet",
+          "original_text": "Maximum building height: approximately 40 feet",
+          "conditions": [],
+          "exceptions": [],
+          "confidence_level": "low",
+          "verification_status": "requires_official_verification",
+          "manual_review_required": true,
+          "notes": null
+        }
+      },
+      "conditional_rules": []
+    }
+  }
+}
