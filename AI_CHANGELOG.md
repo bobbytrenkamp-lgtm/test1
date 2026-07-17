@@ -6,6 +6,29 @@ Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Files Changed:
+- `data/restrictions_raw.json` (Round 23)
+- `data/map_data.json` (Round 23)
+- `docs/data-sweeps/2026-07-massive-sweep-round-23.md` (new)
+
+Changes Made:
+- **Nationwide Data Sweep — Round 23**: North Dakota (Dunn/Killdeer Bakken western ND, Bottineau/International Peace Garden, Emmons/Linton south-central ND), Colorado (Summit/Breckenridge resort tech hub, Garfield/Glenwood Springs Piceance oil, Pitkin/Aspen global leadership enclave), Wisconsin (Barron/Rice Lake NW WI hub, Iron/Hurley Gogebic Range mining legacy, Jackson/Black River Falls Ho-Chunk Nation), Kentucky (Letcher/Whitesburg Appalshop eastern KY, Ohio/Hartford western KY coal belt, Hancock/Hawesville Century Aluminum smelter), Texas (Brewster/Alpine largest TX county Big Bend), Missouri (Moniteau/California MO US-50 corridor), Iowa (Audubon/west IA, Butler/Allison north-central IA), Minnesota (Becker/Detroit Lakes White Earth Nation, Faribault/Blue Earth Green Giant legacy), Virginia (Appomattox/Civil War surrender NHP, Mecklenburg/South Hill Kerr Reservoir). 20 net new records (963 total).
+- **No FIPS errors** — twelfth consecutive clean validation run.
+
+Reasoning:
+- Hancock County KY (Century Aluminum): Primary aluminum smelting is among the most power-intensive processes in industry — hundreds of megawatts continuous baseload. KU/LGE industrial contracts for Hawesville smelter create grid infrastructure in a 9,000-person county dwarfing any residential demand.
+- Pitkin County CO (Aspen): Among the highest-income counties in the US. Aspen Institute + Ideas Festival brings world's top tech/policy/finance leadership annually. Second-home broadband demand from globally connected residents drives connectivity investment far exceeding population justification.
+- Brewster County TX (Alpine/Big Bend): Largest Texas county — 6,193 sq miles, bigger than Connecticut+Rhode Island. Sul Ross State is the far Trans-Pecos education hub. Rio Grande Electric's vast service territory creates unique rural IT infrastructure challenges.
+- Faribault County MN (Blue Earth/Green Giant): The Jolly Green Giant is from Blue Earth. Green Giant sweet corn/pea processing legacy created food processing IT. Southern MN's most productive wind corridor overlays the county.
+
+Problems Found:
+- 0 FIPS errors (twelfth consecutive clean validation run).
+
+---
+
+Date: 2026-07-17
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Files Changed:
 - `data/restrictions_raw.json` (Round 22)
 - `data/map_data.json` (Round 22)
 - `docs/data-sweeps/2026-07-massive-sweep-round-22.md` (new)

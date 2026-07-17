@@ -23100,6 +23100,406 @@
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "38025",
+      "name": "Dunn County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Dunn County \u2014 Killdeer/western ND Bakken oil patch/Little Missouri Badlands",
+      "description": "Dunn County sits in western North Dakota at the edge of the Bakken formation and the Little Missouri River Badlands. Killdeer is the county seat. The county contains significant Bakken shale oil production, with SCADA monitoring, pipeline telemetry, and well automation creating industrial IT well above residential population. The Killdeer Mountains \u2014 glacially carved buttes in otherwise flat plains \u2014 are a distinctive geographic marker in the western ND badlands. MDU Resources (Montana-Dakota Utilities) serves the county. Dunn County's oil production connects to the extensive Bakken pipeline network that routes crude to Clearbrook and Guernsey export points.",
+      "sources": [
+        {
+          "label": "Dunn County North Dakota",
+          "url": "https://www.dunnco.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "38009",
+      "name": "Bottineau County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Bottineau County \u2014 Bottineau/International Peace Garden/Turtle Mountain adjacent",
+      "description": "Bottineau County in north-central North Dakota borders Canada and contains the United States portion of the International Peace Garden \u2014 a 2,300-acre garden straddling the US-Canada border, dedicated to peace between the two nations. Bottineau is the county seat and a regional hub for north-central North Dakota. The county sits adjacent to Rolette County (Turtle Mountain Band, added in Round 19) and participates in the same tribal economy and federal broadband infrastructure. North Central Electric Cooperative serves the county. Bottineau County's grain farming economy \u2014 wheat, barley, sunflowers \u2014 drives precision agriculture monitoring IT, and the Peace Garden creates international tourism IT for a very rural county.",
+      "sources": [
+        {
+          "label": "Bottineau County North Dakota",
+          "url": "https://www.bottineaucountynd.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "38029",
+      "name": "Emmons County",
+      "state": "North Dakota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Emmons County \u2014 Linton/south-central ND/Standing Rock adjacent/Missouri River",
+      "description": "Emmons County in south-central North Dakota borders South Dakota and sits adjacent to the Standing Rock Sioux Tribe's territory. Linton is the county seat. The county is part of the Missouri River valley agricultural zone, with wheat, corn, and cattle operations. Standing Rock Electric Cooperative serves the area, with connections to the rural electric grid serving the Standing Rock Reservation. Emmons County's position on US-83 \u2014 the primary north-south highway through the ND-SD border region \u2014 gives it highway corridor fiber access. The county's agricultural economy and proximity to the Standing Rock Tribal economy create modest but consistent IT demand in one of North Dakota's most rural counties.",
+      "sources": [
+        {
+          "label": "Emmons County North Dakota",
+          "url": "https://www.emmonscountynd.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "08117",
+      "name": "Summit County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Summit County \u2014 Breckenridge/Keystone/Frisco/I-70 mountain resort tech hub",
+      "description": "Summit County contains four major ski resorts \u2014 Breckenridge, Keystone, Copper Mountain, and Arapahoe Basin \u2014 making it one of the highest-density ski resort counties in the US. The county has become a significant permanent residence for technology workers and executives who work remotely from the Denver market or beyond, attracted by world-class skiing, mountain biking, and outdoor access. Xcel Energy serves the county. Summit County's I-70 corridor position gives it fiber infrastructure connectivity to Denver (75 miles). The county's affluent second-home population drives broadband investment far above what the permanent 32,000 residents would justify.",
+      "sources": [
+        {
+          "label": "Summit County Colorado",
+          "url": "https://www.summitcountyco.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "08045",
+      "name": "Garfield County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Garfield County \u2014 Glenwood Springs/Piceance Basin/I-70 mountain corridor",
+      "description": "Garfield County in western Colorado contains Glenwood Springs \u2014 a significant I-70 mountain resort and gateway city \u2014 and sits above the Piceance Basin, one of the largest natural gas producing areas in the Rocky Mountain region. The county's energy production (natural gas from the Williams Fork and Mesaverde formations) creates SCADA and production monitoring IT for a major energy-producing county. Glenwood Springs is served by Holy Cross Energy (a rural electric cooperative). The I-70 corridor through the Glenwood Canyon (one of the most dramatic highway corridors in the US) provides fiber infrastructure connecting Denver and the Front Range to the Utah/Nevada markets. Garfield County is a major contributor to Colorado's natural gas production.",
+      "sources": [
+        {
+          "label": "Garfield County Colorado",
+          "url": "https://www.garfield-county.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "08097",
+      "name": "Pitkin County",
+      "state": "Colorado",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Pitkin County \u2014 Aspen/tech executive enclave/Aspen Institute/global ideas hub",
+      "description": "Pitkin County contains Aspen \u2014 one of the most iconic mountain luxury destinations in the world and a global gathering point for business, technology, and policy leaders. The Aspen Institute, Aspen Ideas Festival, and Aspen Security Forum annually bring the top tier of US and global leadership to Aspen. Pitkin County has the highest median home price of any county in the US in most years. Tech executives and investors maintain second (and first) homes here. Holy Cross Energy and Aspen Electric serve the area. The county's ultra-high-bandwidth connectivity demands from its affluent, globally connected resident and visitor base drive fiber infrastructure investment that far exceeds what either population or geography would suggest.",
+      "sources": [
+        {
+          "label": "Pitkin County Colorado",
+          "url": "https://www.pitkincounty.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "55005",
+      "name": "Barron County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Barron County \u2014 Rice Lake/NW Wisconsin hub/dairy and cranberry corridor",
+      "description": "Barron County in northwestern Wisconsin contains Rice Lake \u2014 the county seat and largest city, a regional commercial hub for a wide NW Wisconsin area. The county's dairy farming economy is complemented by a significant cranberry production sector \u2014 Wisconsin is the world's leading cranberry producer and Barron County participates in the industry. Xcel Energy and Barron Electric Cooperative serve the area. Rice Lake's regional hospital, retail, and service economy makes it one of the more significant secondary markets in NW Wisconsin. The county's US-8 and US-53 corridors connect it to the Twin Cities and Eau Claire markets, giving it highway fiber infrastructure.",
+      "sources": [
+        {
+          "label": "Barron County Wisconsin",
+          "url": "https://www.co.barron.wi.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "55051",
+      "name": "Iron County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Iron County \u2014 Hurley/Gogebic Iron Range/UP border/historic mining legacy",
+      "description": "Iron County in northern Wisconsin borders the UP of Michigan and was the Wisconsin portion of the Gogebic Iron Range \u2014 one of the great iron ore regions of the US, producing ore from the 1880s through the 20th century. Hurley is the county seat and historically a companion city to Ironwood, Michigan. The county's mining infrastructure \u2014 including electrical transmission lines built to power ore processing \u2014 created grid capacity far exceeding current residential demand. Northern Wisconsin Electric Cooperative serves the area. Iron County's position adjacent to the UP Michigan copper/iron district gives it industrial heritage and grid infrastructure associated with heavy mining that persists long after the mines closed.",
+      "sources": [
+        {
+          "label": "Iron County Wisconsin",
+          "url": "https://www.ironcountywi.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "55053",
+      "name": "Jackson County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Jackson County \u2014 Black River Falls/Ho-Chunk Nation/west-central Wisconsin",
+      "description": "Jackson County in west-central Wisconsin is home to the Ho-Chunk Nation \u2014 the primary Indigenous nation of central Wisconsin, with a reservation and tribal government centered in Black River Falls. The Ho-Chunk Nation's casino operations (Ho-Chunk Casino Black River Falls), tribal government, and federal broadband programs create IT infrastructure in an otherwise rural forested county. Black River Falls is the county seat. Dairyland Power Cooperative and Jackson Electric Cooperative serve the area. The Black River \u2014 one of Wisconsin's best trout fishing rivers \u2014 creates recreation IT. The Ho-Chunk Nation's digital sovereignty initiatives have made Jackson County a beneficiary of federal tribal broadband and digital equity programs.",
+      "sources": [
+        {
+          "label": "Jackson County Wisconsin",
+          "url": "https://www.co.jackson.wi.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21133",
+      "name": "Letcher County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Letcher County \u2014 Whitesburg/eastern Kentucky coal/Appalshop/ARC programs",
+      "description": "Letcher County in southeastern Kentucky is the home of Appalshop \u2014 a nationally recognized arts and media organization that has documented Appalachian culture through film, theater, and radio since 1969, and is a key institution in eastern Kentucky's creative economy. Whitesburg is the county seat. The county's deep coal mining history created substantial electrical infrastructure in the mountains, and the TVA grid serves the area through Kentucky Power (AEP). The Appalachian Regional Commission has targeted Letcher County for economic development programs. The proposed Letcher County federal prison (controversial but a focus of federal investment discussions) and broadband expansion initiatives have made the county a focus of significant federal technology infrastructure attention.",
+      "sources": [
+        {
+          "label": "Letcher County Kentucky",
+          "url": "https://letchercounty.ky.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21183",
+      "name": "Ohio County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Ohio County \u2014 Hartford/western Kentucky coal belt/Green River corridor",
+      "description": "Ohio County in western Kentucky is a traditional coal-producing county in the Western Kentucky Coal Field, served by Kentucky Utilities (LG&E/KU Energy). Hartford is the county seat. The county's coal mining history created substantial transmission infrastructure in the Green River valley. The Green River \u2014 Kentucky's second-longest river \u2014 runs through Ohio County, with historical boat traffic having created early industrial infrastructure in the area. Ohio County sits between the Owensboro (Daviess County) and Bowling Green markets on US-62, giving it a regional corridor position. The coal belt transition economy has brought federal broadband and workforce development investment to Ohio County.",
+      "sources": [
+        {
+          "label": "Ohio County Kentucky",
+          "url": "https://ohiocountyky.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "21091",
+      "name": "Hancock County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Hancock County \u2014 Hawesville/Century Aluminum smelter/Ohio River industrial",
+      "description": "Hancock County in northwestern Kentucky is home to the Century Aluminum smelter in Hawesville \u2014 one of the largest aluminum smelters in the United States. Primary aluminum smelting is among the most electricity-intensive industrial processes on earth, consuming hundreds of megawatts continuously. Kentucky Utilities provides power for the smelter under long-term industrial rate contracts that reflect the county's extraordinary baseload power consumption. The Ohio River provides cooling water and barge access. Hancock County's power infrastructure \u2014 scaled to serve a smelter's demand \u2014 creates electrical grid capacity in this rural Ohio River county far exceeding residential needs. The smelter's SCADA and process control systems represent substantial industrial IT.",
+      "sources": [
+        {
+          "label": "Hancock County Kentucky",
+          "url": "https://hancockky.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "48043",
+      "name": "Brewster County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Brewster County \u2014 Alpine/Big Bend NP/largest Texas county/Trans-Pecos hub",
+      "description": "Brewster County is the largest county in Texas and one of the largest counties in the US by area \u2014 at 6,193 square miles, it is larger than Connecticut and Rhode Island combined. Alpine, the county seat, contains Sul Ross State University, the primary higher education institution for the vast Trans-Pecos region of west Texas. Big Bend National Park covers the southern portion of the county and creates significant federal IT infrastructure (park management, border patrol operations). Rio Grande Electric Cooperative serves this enormous, remote territory. The county's remoteness and size make its broadband challenges unique \u2014 fiber buildout to Alpine is far more technically complex than any comparable East Texas county. The county's astronomy economy (McDonald Observatory is in adjacent Jeff Davis County) drives dark-sky research IT.",
+      "sources": [
+        {
+          "label": "Brewster County Texas",
+          "url": "https://www.co.brewster.tx.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "29135",
+      "name": "Moniteau County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Moniteau County \u2014 California MO/mid-Missouri agriculture hub/US-50 corridor",
+      "description": "Moniteau County in central Missouri contains California \u2014 the county seat, not to be confused with the state \u2014 a mid-Missouri agricultural service town. The county sits on US-50, which is the primary east-west highway through central Missouri connecting Jefferson City (Cole County, already in DB) to Kansas City. Ameren Missouri serves the county. Moniteau County's position in the rich central Missouri agricultural zone \u2014 corn, soybeans, and cattle \u2014 creates precision agriculture and commodity handling IT demand. California MO's position as a regional service center for the surrounding counties, combined with its US-50 corridor access to Jefferson City and the state government computing cluster, makes it a fiber waypoint in mid-Missouri.",
+      "sources": [
+        {
+          "label": "Moniteau County Missouri",
+          "url": "https://moniteau.net/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19009",
+      "name": "Audubon County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Audubon County \u2014 Audubon/west Iowa/agricultural corridor",
+      "description": "Audubon County in western Iowa is named for the naturalist John James Audubon and sits in the heart of Iowa's western agricultural zone. Audubon, the county seat, is known for the enormous Albert the Bull statue \u2014 one of the world's largest bull statues, a testament to the county's cattle heritage. Iowa Lakes Electric Cooperative and Alliant Energy serve the county. Audubon County's corn and soybean farming economy drives precision agriculture and commodity IT demand. The county's position on US-71 connecting I-80 to I-90 in South Dakota gives it north-south corridor fiber access. Iowa's aggressive rural broadband build-out has included Audubon County in its fiber expansion initiatives.",
+      "sources": [
+        {
+          "label": "Audubon County Iowa",
+          "url": "https://www.auduboncountyiowa.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "19023",
+      "name": "Butler County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Butler County \u2014 Allison/north-central Iowa/Shell Rock River/agricultural hub",
+      "description": "Butler County in north-central Iowa contains Allison, the county seat, on the Shell Rock River. The county sits in the agricultural heartland between Waterloo (Black Hawk County, already in DB) and Mason City (Cerro Gordo County, likely already in DB). Iowa Lakes Electric Cooperative and Alliant Energy serve the county. Butler County's grain farming \u2014 corn and soybeans \u2014 drives standard Iowa agricultural IT: commodity handling monitoring, center-pivot irrigation SCADA, and precision agriculture technology. The county's position between two major Iowa markets on US-218 (the Avenue of the Saints corridor) gives it highway fiber infrastructure. Butler County's dairy processing and hog operations add food processing IT to the county's technology footprint.",
+      "sources": [
+        {
+          "label": "Butler County Iowa",
+          "url": "https://www.butlercountyiowa.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "27005",
+      "name": "Becker County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Becker County \u2014 Detroit Lakes/NW Minnesota resort lakes/White Earth Nation",
+      "description": "Becker County in northwestern Minnesota contains Detroit Lakes \u2014 one of Minnesota's premier lake resort communities, with hundreds of lakes attracting Twin Cities vacationers. The county is also home to part of the White Earth Nation \u2014 one of Minnesota's largest Ojibwe tribal communities \u2014 with tribal government, White Earth Tribal and Community College, and federal broadband programs creating IT infrastructure. Otter Tail Power and Minnesota Power serve the county. Detroit Lakes' tourism economy creates significant hospitality and vacation rental IT. The county's position on US-10 and US-59 connecting Fargo-Moorhead to the Twin Cities gives it corridor fiber access.",
+      "sources": [
+        {
+          "label": "Becker County Minnesota",
+          "url": "https://www.co.becker.mn.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "27043",
+      "name": "Faribault County",
+      "state": "Minnesota",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Faribault County \u2014 Blue Earth/Green Giant heritage/south Minnesota wind corridor",
+      "description": "Faribault County in south-central Minnesota is the home of Blue Earth \u2014 the city from which the Green Giant brand takes its vegetable imagery (the Jolly Green Giant statue in Blue Earth is a Route 66-era landmark). The county's sweet corn and pea processing heritage made Blue Earth a significant food processing IT hub for the Minnesota River Valley agricultural market. Faribault County sits in southern Minnesota's most productive wind energy corridor \u2014 multiple wind farms in and adjacent to the county create renewable energy IT and grid management complexity. Alliant Energy serves the county. Blue Earth's historic food processing legacy and the county's wind energy build-out represent two distinct technology demand drivers.",
+      "sources": [
+        {
+          "label": "Faribault County Minnesota",
+          "url": "https://www.co.faribault.mn.us/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "51011",
+      "name": "Appomattox County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Appomattox County \u2014 Appomattox Court House/Civil War surrender site/central Virginia",
+      "description": "Appomattox County is where the Civil War effectively ended \u2014 Appomattox Court House National Historical Park preserves the site where General Robert E. Lee surrendered to General Ulysses S. Grant on April 9, 1865. The National Park Service's digital preservation, visitor management, and historical record management systems at this nationally significant site create federal IT infrastructure in a very rural county. Appomattox is the county seat, served by Appalachian Power (AEP) and local utilities. The county's position midway between Lynchburg and Farmville on US-460 gives it highway corridor fiber access. Appomattox County's heritage tourism \u2014 drawing thousands of Civil War enthusiasts annually \u2014 creates hospitality IT above rural Virginia norms.",
+      "sources": [
+        {
+          "label": "Appomattox County Virginia",
+          "url": "https://www.appomattoxcountyva.gov/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
+    },
+    {
+      "fips": "51117",
+      "name": "Mecklenburg County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center"
+      ],
+      "title": "Mecklenburg County \u2014 South Hill/Kerr Reservoir/south Virginia-North Carolina border",
+      "description": "Mecklenburg County in southside Virginia borders North Carolina and contains John H. Kerr Reservoir (also known as Buggs Island Lake) \u2014 one of the largest lakes in the mid-Atlantic region, created by the Army Corps of Engineers and generating hydroelectric power. South Hill is the county seat and a commercial hub for southside Virginia's tobacco-heritage agricultural economy. The reservoir's water management and hydroelectric operations create federal IT. Mecklenburg Electric Cooperative and Dominion Energy serve the county. The Virginia-North Carolina border corridor has attracted data center development interest from companies seeking Dominion Energy's data center incentive program rates. Mecklenburg County's low land costs, rail access (NS mainline), and power grid make it an active data center consideration area in southside Virginia.",
+      "sources": [
+        {
+          "label": "Mecklenburg County Virginia",
+          "url": "https://www.mecklenburgva.com/"
+        }
+      ],
+      "status": "active",
+      "lifecycle_stage": "effective",
+      "last_updated": "2026-07-17"
     }
   ]
 }
