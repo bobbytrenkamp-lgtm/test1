@@ -370,6 +370,8 @@ window.ZONING_MAP = {
 }
 ```
 
+## Globals Reference
+
 ### window.AUTH (js/auth.js)
 ```javascript
 window.AUTH = {
@@ -416,6 +418,13 @@ window._applyTheme(theme);  // 'dark' | 'light' — triggers full Leaflet style 
 4. Add FIPS 51059 to `FIPS_TO_JURISDICTION` in `js/zoning.js` once data is ready
 
 **Other deferred work**:
+**Current state**: Fully functional Leaflet GIS app with authentication, AI News, AI Stocks, Analytics, Home/Command Center tabs. All dependencies vendored. County data covers 1,303 records (Round 40). Authentication gracefully degrades when Supabase is not configured.
+
+**Branch**: `claude/us-datacenter-restrictions-map-skooi7` — merge to `main` to deploy to GitHub Pages.
+
+**Next phase**: Zoning Data — city-level regulation layer and overlapping regulation display.
+
+**Before zoning, consider**:
 1. Replace `data/sample_layers.json` facility data with verified sources
 2. Add county name lookup for counties without restriction data (county_names.json exists but not fully integrated)
 3. Delete or archive 32 dead one-time sweep scripts (`data/sweep_2026_07_*.py`) after confirming data integrity
