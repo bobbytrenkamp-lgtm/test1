@@ -5,6 +5,32 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 17 — Export and reporting
+
+Files Modified:
+- `index.html`:
+  - Expanded `#gis-export` toolbar button to an `aria-haspopup` trigger with `aria-expanded`
+  - Added `#export-menu` dropdown (fixed-position, role="menu") with three `<button class="exp-item">` items: CSV, GeoJSON, Data Report
+  - Added `#workspace-io` div inside `#workspace-footer` with Export JSON / Import JSON buttons and hidden `<input type="file" accept=".json" id="workspace-import-file">`
+  - Bumped style.css to `?v=20260718o`, map.js to `?v=20260718q`
+- `css/style.css`:
+  - `#export-menu`, `.exp-item` — fixed-position dropdown menu for export options
+  - `#workspace-io`, `#workspace-export-btn`, `#workspace-import-btn` — footer row for workspace file I/O
+  - Workspace footer set to `flex-wrap: wrap` so the I/O row wraps below the save row
+- `js/map.js`:
+  - `exportCountiesGeoJSON()` — iterates `countyGeoLayer.getLayers()`, filters to counties with restriction data matching current filters, builds a GeoJSON FeatureCollection with polygon geometry + restriction properties + suitability score, downloads as `.geojson`
+  - `_toggleExportMenu()` — toggles `#export-menu` visibility; positions menu via `getBoundingClientRect()` + `position:fixed` to avoid any clipping from parent overflow
+  - `openPrintReport()` — builds a complete standalone HTML page (print-friendly CSS, data table: FIPS/County/State/Severity/Status/Types/Enacted/Suitability Score) and opens it in a new window, then calls `window.print()` after 600 ms. Pop-up blocked case toasts the user. Includes filter summary, county count, and disclaimer footer.
+  - `exportWorkspacesJSON()` — downloads `_loadWsList()` as a pretty-printed JSON file
+  - `importWorkspacesJSON(file)` — reads file via `FileReader`, validates array, merges by ID (skips duplicates), re-saves and re-renders workspace list
+  - `initLeafletMap()` wiring: `#gis-export` → `_toggleExportMenu`; `#exp-csv` → CSV; `#exp-geojson` → GeoJSON; `#exp-report` → report; `#workspace-export-btn` / `#workspace-import-btn` / `#workspace-import-file` wired; close-on-outside-click listener for `#export-menu`
+  - `#export-menu` added to `disableClickPropagation` list
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 16 — Explainable suitability scoring
 
 Files Modified:

@@ -1157,6 +1157,175 @@ function exportCountiesCSV() {
   showMapToast(`Exported ${rows.length - 1} ${active ? "filtered " : ""}counties`);
 }
 
+/* ── GeoJSON Export ── */
+function exportCountiesGeoJSON() {
+  if (!countyGeoLayer) { showMapToast("Map data not loaded yet"); return; }
+  const active   = hasActiveMapFilters();
+  const features = [];
+  countyGeoLayer.getLayers().forEach(layer => {
+    const fips = fipsKey(layer.feature.id);
+    const c    = mapData[fips];
+    if (!c) return;
+    if (active && !countyMatchesFilters(fips)) return;
+    const suit = computeSuitabilityScore(fips, c);
+    features.push({
+      type: "Feature",
+      id:   fips,
+      geometry:   layer.feature.geometry,
+      properties: {
+        fips, name: c.name, state: c.state,
+        level:    c.level,
+        severity: SEVERITY[getSeverityKey(c)].label,
+        status:   c.status || "active",
+        types:    (c.types || []).join(", "),
+        title:    c.title || "",
+        effective_date: c.effective_date || "",
+        notes:    c.notes || "",
+        suitability_score: suit.score,
+        suitability_grade: suit.grade,
+        suitability_label: suit.label,
+      },
+    });
+  });
+  if (!features.length) { showMapToast("No counties with restriction data match current filters"); return; }
+  const geojson = JSON.stringify({ type: "FeatureCollection", features }, null, 2);
+  const blob = new Blob([geojson], { type: "application/geo+json" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), {
+    href: url, download: `dc-restrictions-${new Date().toISOString().slice(0, 10)}.geojson`,
+  });
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+  showMapToast(`Exported ${features.length} ${active ? "filtered " : ""}counties as GeoJSON`);
+}
+
+/* ── Export dropdown toggle ── */
+function _toggleExportMenu() {
+  const menu = document.getElementById("export-menu");
+  const btn  = document.getElementById("gis-export");
+  if (!menu || !btn) return;
+  const opening = menu.hidden;
+  menu.hidden = !opening;
+  btn.setAttribute("aria-expanded", String(opening));
+  if (!opening) return;
+  const rect = btn.getBoundingClientRect();
+  menu.style.top  = (rect.bottom + 4) + "px";
+  menu.style.left = rect.left + "px";
+}
+
+/* ── Print report ── */
+function openPrintReport() {
+  if (!mapData || Object.keys(mapData).length === 0) { showMapToast("No data loaded yet"); return; }
+  const active   = hasActiveMapFilters();
+  const counties = Object.entries(mapData)
+    .filter(([fips]) => !active || countyMatchesFilters(fips))
+    .sort(([, a], [, b]) => a.state.localeCompare(b.state) || a.name.localeCompare(b.name));
+
+  const filterSummary = (() => {
+    const parts = [];
+    if (activeStateFilter) parts.push(`State: ${activeStateFilter}`);
+    if (activeRestrictFilters.size) parts.push(`Severity: ${[...activeRestrictFilters].join(", ")}`);
+    if (activeTypeFilters.size)    parts.push(`Type: ${[...activeTypeFilters].map(t => TYPE_LABELS[t]||t).join(", ")}`);
+    if (activeStatusFilters.size)  parts.push(`Status: ${[...activeStatusFilters].join(", ")}`);
+    if (activeDateFilter)          parts.push(`Enacted by: ${activeDateFilter}`);
+    return parts.length ? parts.join(" · ") : "All counties with restrictions";
+  })();
+
+  const rows = counties.map(([fips, c]) => {
+    const sevKey = getSeverityKey(c);
+    const suit   = computeSuitabilityScore(fips, c);
+    const esc    = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+    const types  = (c.types||[]).map(t => TYPE_LABELS[t]||t).join(", ")||"—";
+    const SWATCH = { pro:"#16a34a", none:"#16a34a", proposed:"#b45309", moderate:"#c2410c", high:"#b91c1c", ban:"#7f1d1d" };
+    const GRADE_COLOR = { A:"#16a34a", B:"#0891b2", C:"#b45309", D:"#c2410c", F:"#b91c1c" };
+    return `<tr>
+      <td><code>${esc(fips)}</code></td>
+      <td>${esc(c.name)}</td>
+      <td>${esc(c.state)}</td>
+      <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${SWATCH[sevKey]||"#999"};margin-right:4px;vertical-align:middle"></span>${esc(SEVERITY[sevKey]?.label||"")}</td>
+      <td style="text-transform:capitalize">${esc(c.status||"active")}</td>
+      <td>${esc(types)}</td>
+      <td>${esc(c.effective_date||"—")}</td>
+      <td><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:5px;background:${GRADE_COLOR[suit.grade]};color:#fff;font-weight:800;font-size:11px;margin-right:4px">${suit.grade}</span>${suit.score}/100</td>
+    </tr>`;
+  }).join("");
+
+  const html = `<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<title>DC &amp; AI Policy Report — ${new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"})}</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:12px;color:#111;padding:24px 32px;line-height:1.5}
+  h1{font-size:18px;font-weight:700;margin-bottom:4px}
+  .meta{font-size:11px;color:#666;margin-bottom:16px}
+  .filter-bar{background:#f4f4f5;border:1px solid #e4e4e7;border-radius:6px;padding:8px 12px;margin-bottom:16px;font-size:11px;color:#444}
+  table{width:100%;border-collapse:collapse;font-size:11px}
+  th{text-align:left;font-size:10px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#666;border-bottom:2px solid #ddd;padding:6px 8px;white-space:nowrap}
+  td{padding:5px 8px;border-bottom:1px solid #eee;vertical-align:top}
+  tr:nth-child(even) td{background:#fafafa}
+  code{font-size:10px;background:#f0f0f0;padding:1px 4px;border-radius:3px;font-family:monospace}
+  .footer{margin-top:20px;font-size:10px;color:#999;border-top:1px solid #eee;padding-top:10px}
+  @media print{body{padding:12px 16px}@page{margin:1.5cm}}
+</style>
+</head><body>
+<h1>US Data Center &amp; AI Policy Tracker — Restriction Report</h1>
+<div class="meta">Generated ${new Date().toLocaleString("en-US")} · ${counties.length} ${active?"filtered ":""}counties</div>
+<div class="filter-bar"><strong>Filters:</strong> ${filterSummary}</div>
+<table>
+  <thead><tr>
+    <th>FIPS</th><th>County</th><th>State</th><th>Severity</th>
+    <th>Status</th><th>Types</th><th>Enacted</th><th>Suitability</th>
+  </tr></thead>
+  <tbody>${rows}</tbody>
+</table>
+<div class="footer">US DC &amp; AI Policy Tracker · Data is algorithmically compiled and may be incomplete. Verify with official sources before making site selection decisions.</div>
+</body></html>`;
+
+  const win = window.open("", "_blank", "width=900,height=700");
+  if (!win) { showMapToast("Pop-up blocked — allow pop-ups and try again"); return; }
+  win.document.write(html);
+  win.document.close();
+  win.focus();
+  setTimeout(() => win.print(), 600);
+  showMapToast(`Report opened: ${counties.length} counties`);
+}
+
+/* ── Workspace JSON export / import ── */
+function exportWorkspacesJSON() {
+  const list = _loadWsList();
+  if (!list.length) { showMapToast("No workspaces to export"); return; }
+  const blob = new Blob([JSON.stringify(list, null, 2)], { type: "application/json" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), {
+    href: url, download: `dc-workspaces-${new Date().toISOString().slice(0,10)}.json`,
+  });
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+  showMapToast(`Exported ${list.length} workspace${list.length !== 1 ? "s" : ""}`);
+}
+
+function importWorkspacesJSON(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    let imported;
+    try { imported = JSON.parse(e.target.result); } catch (_) { showMapToast("Invalid JSON file"); return; }
+    if (!Array.isArray(imported)) { showMapToast("JSON must be an array of workspaces"); return; }
+    const valid = imported.filter(w => w && typeof w === "object" && w.id && w.name);
+    if (!valid.length) { showMapToast("No valid workspaces found in file"); return; }
+    const existing = _loadWsList();
+    const existingIds = new Set(existing.map(w => w.id));
+    const toAdd = valid.filter(w => !existingIds.has(w.id));
+    const merged = [...existing, ...toAdd].slice(0, WS_MAX_LOCAL);
+    _saveWsList(merged);
+    renderWorkspaceList();
+    showMapToast(`Imported ${toAdd.length} workspace${toAdd.length !== 1 ? "s" : ""}${toAdd.length < valid.length ? ` (${valid.length - toAdd.length} duplicate${valid.length - toAdd.length !== 1 ? "s" : ""} skipped)` : ""}`);
+  };
+  reader.readAsText(file);
+}
+
 /* ── Share URL (full GIS state) ── */
 const _SHARE_LAYER_KEYS = [
   "restrictions", "state_policy", "city_policy", "dc_existing", "dc_planned",
@@ -1917,7 +2086,10 @@ function initLeafletMap() {
   document.getElementById("gis-measure")       ?.addEventListener("click", toggleMeasure);
   document.getElementById("gis-draw")          ?.addEventListener("click", toggleDraw);
   document.getElementById("gis-pin")           ?.addEventListener("click", toggleCandidatePin);
-  document.getElementById("gis-export")        ?.addEventListener("click", exportCountiesCSV);
+  document.getElementById("gis-export")        ?.addEventListener("click", _toggleExportMenu);
+  document.getElementById("exp-csv")           ?.addEventListener("click", () => { document.getElementById("export-menu").hidden = true; exportCountiesCSV(); });
+  document.getElementById("exp-geojson")       ?.addEventListener("click", () => { document.getElementById("export-menu").hidden = true; exportCountiesGeoJSON(); });
+  document.getElementById("exp-report")        ?.addEventListener("click", () => { document.getElementById("export-menu").hidden = true; openPrintReport(); });
   document.getElementById("gis-share")         ?.addEventListener("click", shareCurrentView);
   document.getElementById("gis-print")         ?.addEventListener("click", printMap);
   document.getElementById("gis-minimap")       ?.addEventListener("click", toggleMinimap);
@@ -2044,12 +2216,30 @@ function initLeafletMap() {
   document.getElementById("workspace-name-input")?.addEventListener("keydown", e => {
     if (e.key === "Enter") { e.preventDefault(); saveCurrentWorkspace(); }
   });
+  document.getElementById("workspace-export-btn")?.addEventListener("click", exportWorkspacesJSON);
+  document.getElementById("workspace-import-btn")?.addEventListener("click", () => {
+    document.getElementById("workspace-import-file")?.click();
+  });
+  document.getElementById("workspace-import-file")?.addEventListener("change", e => {
+    importWorkspacesJSON(e.target.files?.[0]);
+    e.target.value = "";
+  });
+
+  // Close export menu when clicking outside it
+  document.addEventListener("click", e => {
+    const menu = document.getElementById("export-menu");
+    const btn  = document.getElementById("gis-export");
+    if (menu && !menu.hidden && !menu.contains(e.target) && e.target !== btn) {
+      menu.hidden = true;
+      btn?.setAttribute("aria-expanded", "false");
+    }
+  });
 
   // Prevent Leaflet from intercepting touch/click events on all map overlay elements.
   // Without this, Leaflet's touchstart handler on the map can swallow taps on
   // absolutely-positioned controls on iOS Safari.
   [
-    "map-gis-bar", "measure-readout", "draw-readout", "bookmarks-panel", "workspace-panel", "compare-panel", "map-ctx-menu",
+    "map-gis-bar", "measure-readout", "draw-readout", "bookmarks-panel", "workspace-panel", "compare-panel", "export-menu", "map-ctx-menu",
     "minimap-wrap", "legend", "legend-restore", "stats-bar", "filter-status",
   ].forEach(id => {
     const el = document.getElementById(id);

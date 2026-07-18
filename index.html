@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260718n" />
+  <link rel="stylesheet" href="css/style.css?v=20260718o" />
   <link rel="stylesheet" href="css/stocks.css?v=20260712h" />
   <link rel="stylesheet" href="css/account.css?v=20260717a" />
   <link rel="stylesheet" href="css/zoning.css?v=20260717b" />
@@ -212,9 +212,23 @@
         <button class="gis-btn" id="gis-pin" title="Drop candidate site pin (P)" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </button>
-        <button class="gis-btn" id="gis-export" title="Export visible counties to CSV">
+        <button class="gis-btn" id="gis-export" title="Export data (CSV / GeoJSON / Report)" aria-haspopup="true" aria-expanded="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </button>
+        <div id="export-menu" hidden role="menu" aria-label="Export options">
+          <button class="exp-item" id="exp-csv" role="menuitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            CSV — County Data
+          </button>
+          <button class="exp-item" id="exp-geojson" role="menuitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+            GeoJSON — with Geometry
+          </button>
+          <button class="exp-item" id="exp-report" role="menuitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Data Report (Print / PDF)
+          </button>
+        </div>
         <button class="gis-btn" id="gis-share" title="Copy share link for current view">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
         </button>
@@ -263,6 +277,11 @@
         <div id="workspace-footer">
           <input id="workspace-name-input" type="text" maxlength="60" placeholder="Workspace name…" autocomplete="off" />
           <button id="workspace-save-btn">Save state</button>
+          <div id="workspace-io">
+            <button id="workspace-export-btn" title="Export all workspaces as JSON file">Export JSON</button>
+            <button id="workspace-import-btn" title="Import workspaces from JSON file">Import JSON</button>
+            <input id="workspace-import-file" type="file" accept=".json" hidden />
+          </div>
         </div>
       </div>
 
@@ -716,7 +735,7 @@ window.addEventListener('error', function(e) {
 <script src="js/analytics.js?v=20260712k" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
 <script src="js/home.js?v=20260712m" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
 <script src="js/layer-registry.js?v=20260718c" defer onload="window._track.ok.push('layer-registry')" onerror="window._track.fail.push('layer-registry')"></script>
-<script src="js/map.js?v=20260718p" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script src="js/map.js?v=20260718q" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer onload="window._track.ok.push('supabase')" onerror="window._track.fail.push('supabase')"></script>
 <script src="js/supabase-config.js?v=20260717a" defer onload="window._track.ok.push('supabase-config')" onerror="window._track.fail.push('supabase-config')"></script>
 <script src="js/auth.js?v=20260717a" defer onload="window._track.ok.push('auth')" onerror="window._track.fail.push('auth')"></script>

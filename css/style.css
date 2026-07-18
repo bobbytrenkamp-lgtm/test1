@@ -5192,6 +5192,67 @@ html[data-theme="light"] {
 }
 #workspace-save-btn:hover { opacity: 0.85; }
 #workspace-save-btn:disabled { opacity: 0.5; cursor: default; }
+#workspace-footer {
+  flex-wrap: wrap;
+}
+#workspace-io {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  padding-top: 5px;
+  border-top: 1px solid var(--border);
+  margin-top: 2px;
+}
+#workspace-export-btn,
+#workspace-import-btn {
+  flex: 1;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 6px;
+  font-family: inherit;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+#workspace-export-btn:hover,
+#workspace-import-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+/* ── Export dropdown menu ── */
+#export-menu {
+  position: fixed;
+  z-index: 500;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.45);
+  padding: 4px;
+  min-width: 192px;
+}
+.exp-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 7px 8px;
+  border-radius: 5px;
+  text-align: left;
+  transition: background 0.1s;
+}
+.exp-item:hover { background: var(--surface-2); }
+.exp-item svg { flex-shrink: 0; color: var(--text-muted); }
 
 /* ── Right-click context menu ── */
 #map-ctx-menu {
