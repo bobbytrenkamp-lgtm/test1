@@ -1602,9 +1602,15 @@ function renderLegend() {
     legendBody.appendChild(h);
     for (const key of activeOverlays) {
       const entry = SAMPLE_LEGEND_ENTRIES[key];
+      const reg   = (window.LAYER_REGISTRY || []).find(r => r.id === key);
+      const statusCfg = reg ? _dataStatusConfig(reg.data_status) : null;
+      const statusBadge = statusCfg
+        ? `<span class="ds-badge ds-${reg.data_status}" title="${escHtml(statusCfg.title)}" style="margin-left:auto;">${statusCfg.label}</span>`
+        : "";
       const el    = document.createElement("div");
       el.className = "legend-item";
-      el.innerHTML = `${legendSwatchHtml(entry)}<div class="legend-label-main">${entry.label}</div>`;
+      el.style.cssText = "display:flex;align-items:center;gap:6px;";
+      el.innerHTML = `${legendSwatchHtml(entry)}<div class="legend-label-main" style="flex:1;">${entry.label}</div>${statusBadge}`;
       legendBody.appendChild(el);
     }
   }
@@ -2377,7 +2383,7 @@ function renderDashboard(data) {
     const el  = document.createElement("div");
     el.className = "stat-card";
     if (card.metric) el.dataset.metric = card.metric;
-    const tag  = card.sample ? `<span class="sample-tag" style="margin-left:6px;">Sample</span>` : "";
+    const tag  = card.sample ? `<span class="ds-badge ds-partial" style="margin-left:6px;" title="Partially verified — pipeline-populated, capacity figures are estimates">Partial</span>` : "";
     const icon = card.icon   ? `<div class="stat-card-icon" aria-hidden="true">${card.icon}</div>` : "";
     if (card.text) {
       el.innerHTML = `${icon}<div class="stat-card-label">${card.label}${tag}</div><div class="stat-card-value stat-card-text">${card.text}</div>`;
@@ -2457,13 +2463,25 @@ function buildSampleInfraHtml(fips) {
 
   if (!facilities.length && !campuses.length && wLevel === undefined && !hasTax && !utility) return "";
 
+  const regFor = (id) => (window.LAYER_REGISTRY || []).find(r => r.id === id) || {};
+
+  const _badge = (id) => {
+    const r = regFor(id);
+    const cfg = _dataStatusConfig(r.data_status);
+    return `<span class="ds-badge ds-${r.data_status || "unavailable"}" title="${escHtml(cfg.title)}">${cfg.label}</span>`;
+  };
+
   let html = `<div class="divider"></div>`;
 
-  if (facilities.length) html += `
+  if (facilities.length) {
+    const dcReg = regFor("dc_existing");
+    html += `
     <div class="detail-section">
-      <div class="detail-label">Infrastructure</div>
+      <div class="detail-label">Infrastructure ${_badge("dc_existing")}</div>
       <div class="detail-value">${facilities.map(f => `${escHtml(f.name)} — ${f.capacity_mw} MW (${f.status})`).join("<br>")}</div>
+      ${dcReg.disclaimer ? `<div class="layer-data-disclaimer">${escHtml(dcReg.disclaimer)}</div>` : ""}
     </div>`;
+  }
 
   const operators = [...new Set([...facilities, ...campuses].map(f => f.operator))];
   if (operators.length) html += `
@@ -2472,21 +2490,28 @@ function buildSampleInfraHtml(fips) {
       <div class="type-chips">${operators.map(o => `<span class="type-chip">${escHtml(o)}</span>`).join("")}</div>
     </div>`;
 
-  if (campuses.length) html += `
+  if (campuses.length) {
+    const acReg = regFor("ai_campus");
+    html += `
     <div class="detail-section">
-      <div class="detail-label">AI Campuses</div>
+      <div class="detail-label">AI Campuses ${_badge("ai_campus")}</div>
       <div class="detail-value">${campuses.map(c => escHtml(c.name)).join("<br>")}</div>
+      ${acReg.disclaimer ? `<div class="layer-data-disclaimer">${escHtml(acReg.disclaimer)}</div>` : ""}
     </div>`;
+  }
 
-  if (wLevel !== undefined || hasTax || utility) html += `
+  if (wLevel !== undefined || hasTax || utility) {
+    html += `
     <div class="detail-section">
-      <div class="detail-label">Site Factors</div>
+      <div class="detail-label">Site Factors <span class="ds-badge ds-estimated" title="Algorithmically estimated — not officially verified">Estimated</span></div>
       <div class="detail-value">
         ${wLevel !== undefined ? `Water availability: ${WATER_STRESS_LABELS[wLevel]}<br>` : ""}
         ${utility ? `Utility territory: ${escHtml(utility.name)}<br>` : ""}
         ${hasTax ? "Tax incentive area: Yes" : ""}
       </div>
+      <div class="layer-data-disclaimer">Site factor data is algorithmically estimated and has not been independently verified.</div>
     </div>`;
+  }
 
   return html;
 }
@@ -2674,6 +2699,7 @@ function buildPoliticalRiskSectionHtml(fips) {
   return `<div class="risk-section">
     <div class="risk-section-header">
       <span class="risk-section-title">Political Risk</span>
+      <span class="ds-badge ds-estimated" title="Algorithmically estimated from documented political signals" style="margin-left:4px;">Estimated</span>
       ${confTag}
     </div>
     ${badge}
@@ -2752,6 +2778,18 @@ function setDetailFacility(facility, kind) {
   document.getElementById("detail-state").textContent = FACILITY_KIND_LABELS[kind] || "";
   const county = mapData[facility.county_fips];
 
+  const reg = (window.LAYER_REGISTRY || []).find(r => r.id === kind) || {};
+  const statusCfg = _dataStatusConfig(reg.data_status);
+  const dataQualityHtml = reg.data_status ? `
+    <div class="detail-section data-quality-notice">
+      <div class="detail-label">Data Quality</div>
+      <div class="detail-value">
+        <span class="ds-badge ds-${reg.data_status}" title="${escHtml(statusCfg.title)}">${statusCfg.label}</span>
+        ${reg.source_name ? `<span class="dq-source">${escHtml(reg.source_name)}</span>` : ""}
+        ${reg.disclaimer  ? `<div class="layer-data-disclaimer">${escHtml(reg.disclaimer)}</div>` : ""}
+      </div>
+    </div>` : "";
+
   document.getElementById("detail-body").innerHTML = `
     ${facility.operator  ? `<div class="detail-section"><div class="detail-label">Operator</div><div class="detail-value">${escHtml(facility.operator)}</div></div>` : ""}
     ${facility.capacity_mw ? `<div class="detail-section"><div class="detail-label">Capacity</div><div class="detail-value">${facility.capacity_mw.toLocaleString("en-US")} MW</div></div>` : ""}
@@ -2768,7 +2806,8 @@ function setDetailFacility(facility, kind) {
         return `<li>${govBadge}<a href="${escHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escHtml(s.label)}</a></li>`;
       }
       return `<li>${escHtml(typeof s === "string" ? s : s.label || "")}</li>`;
-    }).join("")}</ul></div>` : ""}`;
+    }).join("")}</ul></div>` : ""}
+    ${dataQualityHtml}`;
   openMobileSheet();
 }
 

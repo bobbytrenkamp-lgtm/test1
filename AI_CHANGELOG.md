@@ -5,6 +5,32 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 3 — Data Transparency in Detail Panels
+
+Files Modified:
+- `js/map.js` — 5 targeted changes:
+  1. `buildSampleInfraHtml()` — each sub-section now shows a `.ds-badge` from LAYER_REGISTRY plus the layer's `disclaimer` text. Infrastructure rows show "Partial" badge + "City-level accuracy" disclaimer. AI Campuses same. Site Factors (water/utility/tax) show "Estimated" badge + note that data is algorithmically estimated.
+  2. `setDetailFacility()` — added data quality block at the bottom of the facility detail panel: ds-badge for data_status, source_name, and disclaimer, all sourced from LAYER_REGISTRY via `kind` (dc_existing, dc_planned, ai_campus, power).
+  3. `buildPoliticalRiskSectionHtml()` — added `<span class="ds-badge ds-estimated">Estimated</span>` badge in the risk section header, adjacent to the section title.
+  4. `renderDashboard()` — replaced `card.sample ? sample-tag : ""` with `ds-badge ds-partial` badge ("Partial") with tooltip explaining pipeline-populated nature. Maintains same visual position.
+  5. `renderLegend()` Active Layers section — each legend entry now shows a data-status badge (right-aligned) pulled from LAYER_REGISTRY; legend-item gets `display:flex` and label gets `flex:1` so the badge floats to the right.
+- `css/style.css` — added 3 new utility classes before the ds-badge block: `.layer-data-disclaimer` (10.5px italic muted), `.data-quality-notice` (top border separator for the DQ block in facility panel), `.dq-source` (10.5px muted source attribution inline).
+- `index.html` — bumped cache-busting version strings to `?v=20260718c`.
+
+Features Implemented:
+- Data transparency in county detail panel: infrastructure and site factor sections now show data quality badges and disclaimers in context, not just in the layer panel
+- Data transparency in facility detail panel: new "Data Quality" section showing status badge, data source, and disclaimer
+- Data transparency in political risk section: "Estimated" badge on all risk scores
+- Dashboard cards: "Partial" replaces generic "Sample" tag, with tooltip explaining the limitation
+- Legend: active overlay layers show their data-status badge (Partial/Estimated/Sample etc.) right-aligned next to the layer name
+
+---
+
+Date: 2026-07-18
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 2 — Layer Metadata Registry + Layer Panel Improvements
 
 Files Created:
