@@ -31,6 +31,69 @@ GEOMETRY_RECORD_WARN_THRESHOLD = 5000
 ARCGIS_PAGE_SIZE = 1000
 
 JURISDICTION_CONFIGS = {
+    "va-fairfax-county": {
+        "display_name":   "Fairfax County, VA",
+        "state":          "VA",
+        "county_fips":    "51059",
+        "data_center_relevance": "high",
+        "sources": {
+            "zoning_geometry": {
+                "type":   "arcgis_open_data",
+                "portal": "https://data.fairfaxcounty.gov/",
+                "search_terms": ["zoning districts", "current zoning"],
+                "export_format": "geojson",
+                "expected_min_features": 100,
+            },
+            "ordinance": {
+                "type": "url",
+                "url":  "https://library.municode.com/va/fairfax_county/codes/zoning_ordinance",
+            },
+        },
+        "district_code_field": "ZONINGCODE",
+        "district_name_field": "ZONINGDESC",
+    },
+    "va-prince-william-county": {
+        "display_name":   "Prince William County, VA",
+        "state":          "VA",
+        "county_fips":    "51153",
+        "data_center_relevance": "high",
+        "sources": {
+            "zoning_geometry": {
+                "type":   "arcgis_open_data",
+                "portal": "https://pwcgis.maps.arcgis.com/",
+                "search_terms": ["zoning districts", "zoning"],
+                "export_format": "geojson",
+                "expected_min_features": 100,
+            },
+            "ordinance": {
+                "type": "url",
+                "url":  "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+            },
+        },
+        "district_code_field": "ZONING",
+        "district_name_field": "ZONING_DESCRIPTION",
+    },
+    "md-montgomery-county": {
+        "display_name":   "Montgomery County, MD",
+        "state":          "MD",
+        "county_fips":    "24031",
+        "data_center_relevance": "medium",
+        "sources": {
+            "zoning_geometry": {
+                "type":   "arcgis_open_data",
+                "portal": "https://data.montgomerycountymd.gov/",
+                "search_terms": ["zoning districts", "zoning"],
+                "export_format": "geojson",
+                "expected_min_features": 100,
+            },
+            "ordinance": {
+                "type": "url",
+                "url":  "https://codelibrary.amlegal.com/codes/montgomeryco/latest/montgomeryco_md/0-0-0-1",
+            },
+        },
+        "district_code_field": "ZONING",
+        "district_name_field": "DESCRIPTION",
+    },
     "va-loudoun-county": {
         "display_name":   "Loudoun County, VA",
         "state":          "VA",

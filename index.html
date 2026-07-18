@@ -20,11 +20,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260714f" />
+  <link rel="stylesheet" href="css/style.css?v=20260718o" />
   <link rel="stylesheet" href="css/stocks.css?v=20260712h" />
   <link rel="stylesheet" href="css/account.css?v=20260717a" />
   <link rel="stylesheet" href="css/zoning.css?v=20260717b" />
   <link rel="stylesheet" href="css/workspace.css?v=20260718a" />
+  <link rel="stylesheet" href="css/results-panel.css?v=20260718a" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -87,6 +88,9 @@
       <div id="last-updated">Loading data…</div>
     </div>
   </header>
+
+  <!-- Dashboard scope selector -->
+  <div id="dashboard-scope-bar" hidden></div>
 
   <!-- Dashboard -->
   <section id="dashboard"></section>
@@ -156,6 +160,9 @@
   <!-- Main — hidden by default; shown when user navigates to Map tab -->
   <div id="main" hidden>
 
+  <!-- Map area row: map + detail panel + zoning panel -->
+  <div id="map-area">
+
     <!-- Map Container -->
     <div id="map-container">
       <div id="leaflet-map"></div>
@@ -199,9 +206,29 @@
         <button class="gis-btn" id="gis-measure" title="Measure distance (M)" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="2"/><line x1="6" y1="8" x2="6" y2="11"/><line x1="10" y1="8" x2="10" y2="10"/><line x1="14" y1="8" x2="14" y2="10"/><line x1="18" y1="8" x2="18" y2="11"/></svg>
         </button>
-        <button class="gis-btn" id="gis-export" title="Export visible counties to CSV">
+        <button class="gis-btn" id="gis-draw" title="Draw polygon / measure area (D)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </button>
+        <button class="gis-btn" id="gis-pin" title="Drop candidate site pin (P)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </button>
+        <button class="gis-btn" id="gis-export" title="Export data (CSV / GeoJSON / Report)" aria-haspopup="true" aria-expanded="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </button>
+        <div id="export-menu" hidden role="menu" aria-label="Export options">
+          <button class="exp-item" id="exp-csv" role="menuitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            CSV — County Data
+          </button>
+          <button class="exp-item" id="exp-geojson" role="menuitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+            GeoJSON — with Geometry
+          </button>
+          <button class="exp-item" id="exp-report" role="menuitem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Data Report (Print / PDF)
+          </button>
+        </div>
         <button class="gis-btn" id="gis-share" title="Copy share link for current view">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
         </button>
@@ -211,11 +238,20 @@
         <button class="gis-btn" id="gis-bookmarks" title="Saved views" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
         </button>
+        <button class="gis-btn" id="gis-compare" title="Compare counties side-by-side (C)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="18" rx="1"/><rect x="13" y="3" width="8" height="18" rx="1"/></svg>
+        </button>
+        <button class="gis-btn" id="gis-workspace" title="Workspaces — save &amp; restore map state (W)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        </button>
         <button class="gis-btn" id="gis-minimap" title="Toggle overview map" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><rect x="6" y="8" width="8" height="8" rx="1"/></svg>
         </button>
         <button class="gis-btn" id="gis-political-risk" title="Toggle Political Risk layer" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </button>
+        <button class="gis-btn" id="gis-results" title="Toggle results panel (L)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
         </button>
       </div>
 
@@ -229,6 +265,37 @@
         <div id="bookmarks-footer">
           <button id="bookmark-save-btn">Save current view</button>
         </div>
+      </div>
+
+      <!-- Workspace panel -->
+      <div id="workspace-panel" hidden>
+        <div id="workspace-header">
+          <span>Workspaces</span>
+          <button id="workspace-close" aria-label="Close workspaces">&times;</button>
+        </div>
+        <div id="workspace-list"></div>
+        <div id="workspace-footer">
+          <input id="workspace-name-input" type="text" maxlength="60" placeholder="Workspace name…" autocomplete="off" />
+          <button id="workspace-save-btn">Save state</button>
+          <div id="workspace-io">
+            <button id="workspace-export-btn" title="Export all workspaces as JSON file">Export JSON</button>
+            <button id="workspace-import-btn" title="Import workspaces from JSON file">Import JSON</button>
+            <input id="workspace-import-file" type="file" accept=".json" hidden />
+          </div>
+        </div>
+      </div>
+
+      <!-- Compare panel -->
+      <div id="compare-panel" hidden>
+        <div id="compare-header">
+          <span id="compare-title">Compare Counties</span>
+          <span id="compare-hint">Click counties on the map to add</span>
+          <div id="compare-header-actions">
+            <button id="compare-clear-btn" type="button">Clear all</button>
+            <button id="compare-close-btn" aria-label="Close compare panel">&times;</button>
+          </div>
+        </div>
+        <div id="compare-body"></div>
       </div>
 
       <!-- Right-click context menu -->
@@ -247,6 +314,17 @@
         <span id="measure-dist-val"></span>
         <span id="measure-pts-val"></span>
         <button id="measure-clear-btn" aria-label="Clear measurement">✕</button>
+      </div>
+
+      <!-- Draw / Pin readout -->
+      <div id="draw-readout" hidden aria-live="polite">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <span id="draw-area-val"></span>
+        <span id="draw-pts-val"></span>
+        <span class="draw-unit-toggle" aria-label="Area unit">
+          <button class="draw-unit-opt" data-unit="mi2">mi²</button><button class="draw-unit-opt" data-unit="km2">km²</button><button class="draw-unit-opt" data-unit="acres">ac</button>
+        </span>
+        <button id="draw-clear-btn" aria-label="Clear drawing and pin">✕</button>
       </div>
 
       <!-- Coordinate display -->
@@ -268,6 +346,9 @@
         <button id="detail-panel-close" aria-label="Close panel">&times;</button>
         <h2>County Details</h2>
         <div id="detail-state"></div>
+        <button id="detail-save-btn" class="detail-save-btn" aria-label="Save" hidden>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        </button>
       </div>
       <div id="detail-body">
         <div id="detail-empty">
@@ -289,6 +370,26 @@
         </div>
       </div>
     </aside>
+
+  </div><!-- /map-area -->
+
+  <!-- Results Panel — dockable bottom list (desktop only) -->
+  <div id="results-panel" hidden aria-label="Filtered county results">
+    <div id="results-panel-resize" title="Drag to resize" aria-hidden="true"></div>
+    <div id="results-panel-header">
+      <span id="results-panel-title">0 counties</span>
+      <span class="rp-sort-label">Sort:</span>
+      <select id="results-sort-select" aria-label="Sort results by">
+        <option value="severity-desc">Severity (High → Low)</option>
+        <option value="severity-asc">Severity (Low → High)</option>
+        <option value="name-asc">Name (A → Z)</option>
+        <option value="name-desc">Name (Z → A)</option>
+        <option value="state-asc">State (A → Z)</option>
+      </select>
+      <button id="results-panel-close" aria-label="Close results panel">✕</button>
+    </div>
+    <div id="results-panel-body" role="list" aria-label="County results"></div>
+  </div>
 
   </div><!-- /main -->
 
@@ -370,6 +471,44 @@
     <div class="adv-section">
       <div class="adv-section-label">Policy Scope</div>
       <div id="adv-scope-toggles" class="adv-chip-row"></div>
+    </div>
+    <!-- Policy Type section -->
+    <div class="adv-section">
+      <div class="adv-section-label adv-section-label-row">
+        <span>Policy Type</span>
+        <span id="adv-type-mode-toggle" class="adv-mode-toggle" title="Match ANY selected type (OR) or ALL selected types (AND)">
+          <span class="adv-mode-opt active" data-val="any">ANY</span><span class="adv-mode-opt" data-val="all">ALL</span>
+        </span>
+      </div>
+      <div id="adv-type-chips" class="adv-chip-row"></div>
+    </div>
+    <!-- Lifecycle Status section -->
+    <div class="adv-section">
+      <div class="adv-section-label">Lifecycle Status</div>
+      <div id="adv-status-chips" class="adv-chip-row"></div>
+    </div>
+    <!-- Enacted By Year section -->
+    <div class="adv-section" id="adv-date-section">
+      <div class="adv-section-label adv-section-label-row">
+        <label class="adv-date-toggle-label">
+          <input type="checkbox" id="adv-date-enabled" />
+          Enacted By Year
+        </label>
+        <span id="adv-date-display" hidden></span>
+      </div>
+      <div id="adv-date-slider-wrap" hidden>
+        <div id="adv-date-track">
+          <input type="range" id="adv-date-slider" min="2000" max="2026" step="1" value="2026" />
+        </div>
+        <div id="adv-date-range-labels">
+          <span>2000</span><span>2010</span><span>2020</span><span>2026</span>
+        </div>
+      </div>
+    </div>
+    <!-- Quick Presets section -->
+    <div class="adv-section">
+      <div class="adv-section-label">Quick Presets</div>
+      <div id="adv-presets" class="adv-chip-row"></div>
     </div>
   </div>
   <div id="adv-filter-footer">
@@ -595,7 +734,8 @@ window.addEventListener('error', function(e) {
 <script src="js/stocks.js?v=20260712k" defer onload="window._track.ok.push('stocks')" onerror="window._track.fail.push('stocks')"></script>
 <script src="js/analytics.js?v=20260712k" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
 <script src="js/home.js?v=20260712m" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
-<script src="js/map.js?v=20260714f" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script src="js/layer-registry.js?v=20260718c" defer onload="window._track.ok.push('layer-registry')" onerror="window._track.fail.push('layer-registry')"></script>
+<script src="js/map.js?v=20260718q" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer onload="window._track.ok.push('supabase')" onerror="window._track.fail.push('supabase')"></script>
 <script src="js/supabase-config.js?v=20260717a" defer onload="window._track.ok.push('supabase-config')" onerror="window._track.fail.push('supabase-config')"></script>
 <script src="js/auth.js?v=20260717a" defer onload="window._track.ok.push('auth')" onerror="window._track.fail.push('auth')"></script>
@@ -604,6 +744,7 @@ window.addEventListener('error', function(e) {
 <script src="js/zoning-map.js?v=20260717b" defer onload="window._track.ok.push('zoning-map')" onerror="window._track.fail.push('zoning-map')"></script>
 <script src="js/zoning-details.js?v=20260717b" defer onload="window._track.ok.push('zoning-details')" onerror="window._track.fail.push('zoning-details')"></script>
 <script src="js/workspace.js?v=20260718a" defer onload="window._track.ok.push('workspace')" onerror="window._track.fail.push('workspace')"></script>
+<script src="js/results-panel.js?v=20260718a" defer onload="window._track.ok.push('results-panel')" onerror="window._track.fail.push('results-panel')"></script>
 <script>
 setTimeout(function() {
   if (!window._pageInitialized) {

@@ -1,0 +1,183 @@
+/* ── Results Panel ── */
+#map-area {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Main layout is now flex-column; map-area fills available height */
+#main { flex-direction: column; }
+
+#results-panel {
+  flex-shrink: 0;
+  height: 220px;
+  min-height: 80px;
+  background: var(--surface);
+  border-top: 2px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10;
+}
+#results-panel[hidden] { display: none; }
+
+/* Resize handle — drag up to expand, drag down to collapse */
+#results-panel-resize {
+  flex-shrink: 0;
+  height: 10px;
+  background: transparent;
+  cursor: ns-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#results-panel-resize::after {
+  content: '';
+  width: 36px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  transition: background 0.15s;
+}
+#results-panel-resize:hover::after { background: var(--text-muted); }
+
+/* Header */
+#results-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 12px 6px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+#results-panel-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  min-width: 80px;
+}
+
+.rp-sort-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+#results-sort-select {
+  font-size: 11px;
+  font-family: inherit;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  padding: 2px 6px;
+  cursor: pointer;
+  height: 26px;
+}
+#results-sort-select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+#results-panel-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 18px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+#results-panel-close:hover { color: var(--text); background: var(--surface-2); }
+
+/* Body — virtual scroll viewport */
+#results-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── Row ── */
+.rp-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+  box-sizing: border-box;
+}
+.rp-row:hover { background: var(--surface-2); }
+.rp-row-selected { background: rgba(72, 116, 232, 0.12); }
+.rp-row-selected:hover { background: rgba(72, 116, 232, 0.18); }
+.rp-row:focus { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.rp-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.rp-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+.rp-state {
+  font-size: 11px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+
+.rp-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  letter-spacing: 0.01em;
+}
+.rp-badge-ban      { background: rgba(127,29,29,0.25);  color: #f87171; }
+.rp-badge-high     { background: rgba(220,38,38,0.2);   color: #f87171; }
+.rp-badge-moderate { background: rgba(249,115,22,0.2);  color: #fb923c; }
+.rp-badge-proposed { background: rgba(234,179,8,0.18);  color: #fbbf24; }
+.rp-badge-none     { background: rgba(22,163,74,0.15);  color: #4ade80; }
+.rp-badge-pro      { background: rgba(74,222,128,0.15); color: #4ade80; }
+
+/* Light-theme badge overrides */
+.is-light-theme .rp-badge-ban      { background: rgba(127,29,29,0.12);  color: #991b1b; }
+.is-light-theme .rp-badge-high     { background: rgba(220,38,38,0.1);   color: #b91c1c; }
+.is-light-theme .rp-badge-moderate { background: rgba(249,115,22,0.12); color: #c2410c; }
+.is-light-theme .rp-badge-proposed { background: rgba(234,179,8,0.12);  color: #92400e; }
+.is-light-theme .rp-badge-none     { background: rgba(22,163,74,0.1);   color: #166534; }
+.is-light-theme .rp-badge-pro      { background: rgba(74,222,128,0.1);  color: #15803d; }
+
+/* ── Mobile: hide results panel (not enough vertical space) ── */
+@media (max-width: 700px) {
+  #results-panel { display: none !important; }
+  #gis-results   { display: none !important; }
+}
+
+/* ── Print: hide results panel ── */
+@media print {
+  #results-panel { display: none !important; }
+  #map-area { flex: 1 !important; }
+}

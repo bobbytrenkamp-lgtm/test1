@@ -1,6 +1,28 @@
 # Active Bugs
 
-No active bugs at this time.
+---
+
+Bug: togglePoliticalRiskLayer() references undefined variable `countyLayer`
+Priority: Medium
+Affected Files: `js/map.js` (line ~991)
+Root Cause: `togglePoliticalRiskLayer()` was calling `countyLayer.setStyle(...)`, but `countyLayer` is never defined. The correct variable is `countyGeoLayer`.
+Fix: Replaced `countyLayer` with `countyGeoLayer`; also added re-apply of `selectedCountyStyle()` to preserve selected county outline after restyle.
+Discovered By: Claude Code (claude-sonnet-4-6) during ARCGIS_FEATURE_GAP_AUDIT pass
+Date Discovered: 2026-07-18
+Fixed By: Claude Code (claude-sonnet-4-6) — Phase 2 session
+Date Fixed: 2026-07-18
+Status: Fixed
+
+---
+
+Bug: Filter panel and legend panel positions not persisted to localStorage across sessions
+Priority: Low
+Affected Files: `js/map.js` (initFilterPanelControls, initLeafletMap)
+Root Cause: `fpSavedPos` and `lgSavedPos` are computed during drag and stored in module-level variables, but they are never written to localStorage and are never read back on init. The panel always opens at its CSS default position on page load.
+Fix Needed: On dragend, serialize `fpSavedPos` / `lgSavedPos` to a localStorage key (e.g. `dc-panel-positions-v1`). On init, read that key and apply the saved positions if they exist and are within the viewport.
+Discovered By: Claude Code (claude-sonnet-4-6) during ARCGIS_FEATURE_GAP_AUDIT pass
+Date Discovered: 2026-07-18
+Status: Active — not yet fixed
 
 ---
 

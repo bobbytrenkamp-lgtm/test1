@@ -115,24 +115,8 @@ const ANNOTATIONS = [
   { fips: "19113", label: "Linn Co., IA",      sub: "18-month moratorium (Jul 2026)", type: "restrictive" },
 ];
 
-/* ── Layer definitions ── */
-const LAYER_DEFS = [
-  { id: "restrictions",  label: "County Policy",              group: "Policy Scope",   color: "#dc2626", sample: false },
-  { id: "state_policy",  label: "State Policy",               group: "Policy Scope",   color: "#8b5cf6", sample: false },
-  { id: "city_policy",   label: "City Policy",                group: "Policy Scope",   color: "#3b82f6", sample: false, noData: true },
-  { id: "dc_existing",   label: "Existing Data Centers",      group: "Facilities",     color: "#5b8def", sample: false },
-  { id: "dc_planned",    label: "Planned Data Centers",       group: "Facilities",     color: "#f59e0b", sample: false },
-  { id: "ai_campus",     label: "AI Campuses",                group: "Facilities",     color: "#a78bfa", sample: false },
-  { id: "power",         label: "Power Infrastructure",       group: "Infrastructure", color: "#34d399", sample: false },
-  { id: "transmission",  label: "Transmission Lines",         group: "Infrastructure", color: "#fbbf24", sample: true  },
-  { id: "fiber",         label: "Fiber Network",              group: "Infrastructure", color: "#60a5fa", sample: true  },
-  { id: "water",         label: "Water Availability",         group: "Land & Policy",  color: "#1d4ed8", sample: false },
-  { id: "utility",       label: "Utility Territories",        group: "Land & Policy",  color: "#f472b6", sample: false },
-  { id: "tax",           label: "Tax Incentive Areas",        group: "Land & Policy",  color: "#fbbf24", sample: false },
-  { id: "annotations",     label: "Best & Worst Markets",  group: "Highlights",     color: "#e4e6f0", sample: false },
-  { id: "zoning_districts", label: "Zoning Districts",      group: "Zoning",         color: "#7c3aed", sample: false },
-  { id: "zoning_overlays",  label: "Zoning Overlays",       group: "Zoning",         color: "#db2777", sample: false, noData: true },
-];
+/* ── Layer definitions — sourced from window.LAYER_REGISTRY (js/layer-registry.js) ── */
+const LAYER_DEFS = window.LAYER_REGISTRY;
 
 const SAMPLE_DISCLAIMER = "Approximate route — exact alignment unverified.";
 
@@ -154,12 +138,35 @@ let measurePoints    = [];
 let measureLayers    = [];
 let minimapInstance  = null;
 let minimapRect      = null;
+let _proximityCircle = null;   // L.circle drawn for spatial proximity view
+let _proximityRadius = 0;      // active radius in miles (0 = off)
 let minimapVisible   = false;
 let _toastTimer      = null;
 let locMarker        = null;
 let _ctxLatLng       = null;
-let bookmarksVisible = false;
+let bookmarksVisible  = false;
+let _wsVisible        = false;
+const WS_LOCAL_KEY    = "dc-workspaces-local-v1";
+const WS_MAX_LOCAL    = 10;
+let compareMode       = false;
+const compareCounties = []; // array of fips strings, max 5
+const CMP_MAX         = 5;
 let countyFillOpacity = 1.0;
+
+/* ── Draw / Pin tool state ── */
+let drawMode         = false;
+let drawPoints       = [];
+let drawLayers       = [];
+let drawAreaUnit     = (function(){ try { return localStorage.getItem('draw-area-unit') || 'mi2'; } catch(_){ return 'mi2'; } })();
+let candidatePinMode = false;
+let _candidatePin    = null;
+
+/* ── Save button state ── */
+let _savedCountySet   = new Set();
+let _savedFacilitySet = new Set();
+let _saveCurrentType  = null;
+let _saveCurrentId    = null;
+let _saveCurrentData  = null;
 
 const layerState = {
   restrictions: true,
@@ -195,6 +202,10 @@ let fpSavedSize = null;  // {width, maxHeight} for Map Layers panel
 let lgSavedPos  = null;  // {left, top} for Legend
 let lgSavedSize = null;  // {width, height} for Legend
 
+/* ── Layer panel state ── */
+let _layerGroupState = {};  // groupName → true (expanded) / false (collapsed)
+let _layerSearch     = "";  // current search query in the layer panel
+
 /* ── Drag-guard state ──
    Prevents county hover/selection from firing while the user pans the map.
    hoveredCountyLayer tracks the single layer with transient hover styling so
@@ -208,6 +219,10 @@ let hoveredCountyLayer = null;
 const activeRestrictFilters = new Set();  // severity keys e.g. "high", "ban"
 let   activeStateFilter     = "";          // 2-letter state abbr or ""
 const activeScopeFilters    = new Set();   // "restrictions", "state_policy", "city_policy"
+const activeTypeFilters     = new Set();  // policy type keys e.g. "data_center", "ai"
+let   typeFilterMode        = "any";       // "any" (OR) | "all" (AND) for activeTypeFilters
+const activeStatusFilters   = new Set();  // "active" | "proposed" | "pending"
+let   activeDateFilter      = null;        // null = off, 4-digit year string e.g. "2020"
 
 /* ── Tab / news state ── */
 let activeTab      = "map";
@@ -226,11 +241,33 @@ function countyMatchesFilters(fips) {
     const stAbbr = STATE_FIPS[fips.slice(0, 2)] || "";
     if (stAbbr !== activeStateFilter) return false;
   }
+  if (activeTypeFilters.size > 0) {
+    const countyTypes = county?.types || [];
+    if (typeFilterMode === "all") {
+      for (const t of activeTypeFilters) { if (!countyTypes.includes(t)) return false; }
+    } else {
+      let hasAny = false;
+      for (const t of activeTypeFilters) { if (countyTypes.includes(t)) { hasAny = true; break; } }
+      if (!hasAny) return false;
+    }
+  }
+  if (activeStatusFilters.size > 0) {
+    const status = county?.status || "active";
+    if (!activeStatusFilters.has(status)) return false;
+  }
+  if (activeDateFilter) {
+    const effDate = county?.effective_date || county?.date;
+    // Counties with a date that exceeds the filter year are excluded.
+    // Counties without a date are kept (we don't know their enactment date).
+    if (effDate && effDate.slice(0, 4) > activeDateFilter) return false;
+  }
   return true;
 }
 
 function hasActiveMapFilters() {
-  return activeRestrictFilters.size > 0 || activeStateFilter !== "";
+  return activeRestrictFilters.size > 0 || activeStateFilter !== "" ||
+         activeTypeFilters.size > 0 || activeStatusFilters.size > 0 ||
+         activeDateFilter !== null;
 }
 
 /* ── Helpers ── */
@@ -379,6 +416,11 @@ async function initMapFromGeo() {
     initTopToggle();
     initLegendControls();
     setDetailEmpty();
+    // Wire results panel row click → selectCounty, and do initial data load
+    window.RESULTS_PANEL?.onRowClick(selectCounty);
+    window.RESULTS_PANEL?.update(mapData, () => true);
+    // Pre-populate save cache if user is already signed in at load time
+    _refreshSavedCache();
     if (loadEl) loadEl.style.display = "none";
     // Staggered invalidateSize calls catch iOS Safari layout finalization at
     // different stages: after layers paint, after first user interaction window,
@@ -555,6 +597,7 @@ function handleCountyClick(e, fips) {
   if (isDraggingMap || Date.now() < suppressClickUntil) return;
   if (hasActiveMapFilters() && !countyMatchesFilters(fips)) return;
   L.DomEvent.stopPropagation(e);
+  if (compareMode) { addToCompare(fips); return; }
   if (selectedFips && countyLayerByFips[selectedFips]) {
     countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
   }
@@ -895,6 +938,193 @@ function toggleMeasure() {
   }
 }
 
+/* ── Polygon draw tool ── */
+function _polygonAreaSqM(latlngs) {
+  if (latlngs.length < 3) return 0;
+  const R = 6371000;
+  const toRad = d => d * Math.PI / 180;
+  let area = 0;
+  const n = latlngs.length;
+  for (let i = 0; i < n; i++) {
+    const j = (i + 1) % n;
+    area += (toRad(latlngs[j].lng) - toRad(latlngs[i].lng)) *
+            (Math.sin(toRad(latlngs[i].lat)) + Math.sin(toRad(latlngs[j].lat)));
+  }
+  return Math.abs(area) * R * R / 2;
+}
+
+function _formatArea(sqM) {
+  if (drawAreaUnit === 'km2')   return `${(sqM / 1_000_000).toFixed(2)} km²`;
+  if (drawAreaUnit === 'acres') return `${(sqM / 4046.856).toFixed(1)} ac`;
+  return `${(sqM / 2_589_988).toFixed(2)} mi²`;
+}
+
+function _updateDrawReadout() {
+  const distVal = document.getElementById('draw-area-val');
+  const ptsVal  = document.getElementById('draw-pts-val');
+  if (!distVal) return;
+  if (drawPoints.length === 0) {
+    distVal.textContent = 'Click map to start polygon';
+    if (ptsVal) ptsVal.textContent = '';
+  } else if (drawPoints.length < 3) {
+    distVal.textContent = `${drawPoints.length} point${drawPoints.length > 1 ? 's' : ''}`;
+    if (ptsVal) ptsVal.textContent = 'Need 3+ to close';
+  } else {
+    distVal.textContent = _formatArea(_polygonAreaSqM(drawPoints));
+    if (ptsVal) ptsVal.textContent = `${drawPoints.length} pts · dbl-click to close`;
+  }
+}
+
+function _redrawPolygonPreview() {
+  drawLayers.forEach(l => leafletMap && leafletMap.removeLayer(l));
+  drawLayers = [];
+  if (!drawPoints.length) return;
+  drawPoints.forEach(pt => {
+    const dot = L.circleMarker(pt, {
+      radius: 5, fillColor: '#a855f7', color: '#fff',
+      weight: 1.5, fillOpacity: 1, interactive: false,
+    }).addTo(leafletMap);
+    drawLayers.push(dot);
+  });
+  if (drawPoints.length >= 3) {
+    const poly = L.polygon(drawPoints, {
+      color: '#a855f7', weight: 2, opacity: 0.9,
+      fillColor: '#a855f7', fillOpacity: 0.1, interactive: false,
+    }).addTo(leafletMap);
+    drawLayers.push(poly);
+  } else if (drawPoints.length === 2) {
+    const line = L.polyline(drawPoints, {
+      color: '#a855f7', weight: 2, dashArray: '6,4', opacity: 0.85, interactive: false,
+    }).addTo(leafletMap);
+    drawLayers.push(line);
+  }
+  _updateDrawReadout();
+}
+
+function _closeDrawPolygon() {
+  drawMode = false;
+  if (leafletMap && leafletMap.doubleClickZoom) leafletMap.doubleClickZoom.enable();
+  const btn   = document.getElementById('gis-draw');
+  const mapEl = document.getElementById('leaflet-map');
+  if (btn)   { btn.classList.remove('active'); btn.setAttribute('aria-pressed', 'false'); }
+  if (mapEl) mapEl.classList.remove('draw-active');
+  _redrawPolygonPreview();
+  if (drawPoints.length >= 3) {
+    const ptsVal = document.getElementById('draw-pts-val');
+    if (ptsVal) ptsVal.textContent = `${drawPoints.length} pts`;
+  } else {
+    clearDraw();
+  }
+}
+
+function clearDraw() {
+  drawLayers.forEach(l => leafletMap && leafletMap.removeLayer(l));
+  drawLayers = [];
+  drawPoints = [];
+  const el = document.getElementById('draw-readout');
+  if (el && !candidatePinMode) el.hidden = true;
+}
+
+function toggleDraw() {
+  if (measureMode) toggleMeasure();
+  if (candidatePinMode) { _exitCandidatePinMode(); }
+  drawMode = !drawMode;
+  const btn   = document.getElementById('gis-draw');
+  const mapEl = document.getElementById('leaflet-map');
+  if (btn)   { btn.classList.toggle('active', drawMode); btn.setAttribute('aria-pressed', String(drawMode)); }
+  if (mapEl) mapEl.classList.toggle('draw-active', drawMode);
+  if (drawMode) {
+    if (leafletMap && leafletMap.doubleClickZoom) leafletMap.doubleClickZoom.disable();
+    clearDraw();
+    const el = document.getElementById('draw-readout');
+    if (el) { el.hidden = false; _updateDrawReadout(); }
+  } else {
+    if (leafletMap && leafletMap.doubleClickZoom) leafletMap.doubleClickZoom.enable();
+    clearDraw();
+  }
+}
+
+/* ── Candidate pin tool ── */
+function _nearestCountyForLatLng(latlng) {
+  let best = null, bestDist = Infinity;
+  for (const fips of Object.keys(countyLayerByFips)) {
+    const layer = countyLayerByFips[fips];
+    if (!layer) continue;
+    const c = layer.getBounds().getCenter();
+    const d = latlng.distanceTo(c);
+    if (d < bestDist) { bestDist = d; best = fips; }
+  }
+  return best;
+}
+
+function _placeCandidatePin(latlng) {
+  if (_candidatePin && leafletMap) { leafletMap.removeLayer(_candidatePin); _candidatePin = null; }
+  const icon = L.divIcon({
+    className: 'candidate-pin-icon',
+    html: '<svg width="22" height="28" viewBox="0 0 22 28" xmlns="http://www.w3.org/2000/svg"><path d="M11 0C5.48 0 1 4.48 1 10c0 7.25 10 18 10 18S21 17.25 21 10c0-5.52-4.48-10-10-10z" fill="#a855f7"/><circle cx="11" cy="10" r="4" fill="#fff" opacity="0.9"/></svg>',
+    iconSize: [22, 28], iconAnchor: [11, 28],
+  });
+  _candidatePin = L.marker(latlng, { icon, interactive: false }).addTo(leafletMap);
+
+  const el      = document.getElementById('draw-readout');
+  const distVal = document.getElementById('draw-area-val');
+  const ptsVal  = document.getElementById('draw-pts-val');
+  if (el) el.hidden = false;
+  if (distVal) {
+    const lat = latlng.lat.toFixed(5);
+    const lon = Math.abs(latlng.lng).toFixed(5);
+    const dir = latlng.lng >= 0 ? 'E' : 'W';
+    distVal.textContent = `${lat}°N, ${lon}°${dir}`;
+  }
+  if (ptsVal) {
+    const nearFips   = _nearestCountyForLatLng(latlng);
+    const nearCounty = nearFips ? mapData[nearFips] : null;
+    ptsVal.textContent = nearCounty
+      ? `Candidate site — ${nearCounty.name}, ${nearCounty.state}`
+      : 'Candidate site';
+  }
+  _exitCandidatePinMode();
+}
+
+function _exitCandidatePinMode() {
+  candidatePinMode = false;
+  const btn   = document.getElementById('gis-pin');
+  const mapEl = document.getElementById('leaflet-map');
+  if (btn)   { btn.classList.remove('active'); btn.setAttribute('aria-pressed', 'false'); }
+  if (mapEl) mapEl.classList.remove('pin-active');
+}
+
+function _clearCandidatePin() {
+  if (_candidatePin && leafletMap) { leafletMap.removeLayer(_candidatePin); _candidatePin = null; }
+  if (!drawMode) {
+    const el = document.getElementById('draw-readout');
+    if (el) el.hidden = true;
+  }
+}
+
+function toggleCandidatePin() {
+  if (measureMode) toggleMeasure();
+  if (drawMode) toggleDraw();
+  if (_candidatePin) _clearCandidatePin();
+  candidatePinMode = !candidatePinMode;
+  const btn   = document.getElementById('gis-pin');
+  const mapEl = document.getElementById('leaflet-map');
+  if (btn)   { btn.classList.toggle('active', candidatePinMode); btn.setAttribute('aria-pressed', String(candidatePinMode)); }
+  if (mapEl) mapEl.classList.toggle('pin-active', candidatePinMode);
+  const el = document.getElementById('draw-readout');
+  if (candidatePinMode) {
+    if (el) {
+      el.hidden = false;
+      const distVal = document.getElementById('draw-area-val');
+      const ptsVal  = document.getElementById('draw-pts-val');
+      if (distVal) distVal.textContent = 'Click map to place site pin';
+      if (ptsVal)  ptsVal.textContent  = '';
+    }
+  } else {
+    if (el) el.hidden = true;
+  }
+}
+
 /* ── CSV Export ── */
 function exportCountiesCSV() {
   if (!mapData || Object.keys(mapData).length === 0) { showMapToast("No data loaded yet"); return; }
@@ -927,10 +1157,239 @@ function exportCountiesCSV() {
   showMapToast(`Exported ${rows.length - 1} ${active ? "filtered " : ""}counties`);
 }
 
-/* ── Share URL ── */
+/* ── GeoJSON Export ── */
+function exportCountiesGeoJSON() {
+  if (!countyGeoLayer) { showMapToast("Map data not loaded yet"); return; }
+  const active   = hasActiveMapFilters();
+  const features = [];
+  countyGeoLayer.getLayers().forEach(layer => {
+    const fips = fipsKey(layer.feature.id);
+    const c    = mapData[fips];
+    if (!c) return;
+    if (active && !countyMatchesFilters(fips)) return;
+    const suit = computeSuitabilityScore(fips, c);
+    features.push({
+      type: "Feature",
+      id:   fips,
+      geometry:   layer.feature.geometry,
+      properties: {
+        fips, name: c.name, state: c.state,
+        level:    c.level,
+        severity: SEVERITY[getSeverityKey(c)].label,
+        status:   c.status || "active",
+        types:    (c.types || []).join(", "),
+        title:    c.title || "",
+        effective_date: c.effective_date || "",
+        notes:    c.notes || "",
+        suitability_score: suit.score,
+        suitability_grade: suit.grade,
+        suitability_label: suit.label,
+      },
+    });
+  });
+  if (!features.length) { showMapToast("No counties with restriction data match current filters"); return; }
+  const geojson = JSON.stringify({ type: "FeatureCollection", features }, null, 2);
+  const blob = new Blob([geojson], { type: "application/geo+json" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), {
+    href: url, download: `dc-restrictions-${new Date().toISOString().slice(0, 10)}.geojson`,
+  });
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+  showMapToast(`Exported ${features.length} ${active ? "filtered " : ""}counties as GeoJSON`);
+}
+
+/* ── Export dropdown toggle ── */
+function _toggleExportMenu() {
+  const menu = document.getElementById("export-menu");
+  const btn  = document.getElementById("gis-export");
+  if (!menu || !btn) return;
+  const opening = menu.hidden;
+  menu.hidden = !opening;
+  btn.setAttribute("aria-expanded", String(opening));
+  if (!opening) return;
+  const rect = btn.getBoundingClientRect();
+  menu.style.top  = (rect.bottom + 4) + "px";
+  menu.style.left = rect.left + "px";
+}
+
+/* ── Print report ── */
+function openPrintReport() {
+  if (!mapData || Object.keys(mapData).length === 0) { showMapToast("No data loaded yet"); return; }
+  const active   = hasActiveMapFilters();
+  const counties = Object.entries(mapData)
+    .filter(([fips]) => !active || countyMatchesFilters(fips))
+    .sort(([, a], [, b]) => a.state.localeCompare(b.state) || a.name.localeCompare(b.name));
+
+  const filterSummary = (() => {
+    const parts = [];
+    if (activeStateFilter) parts.push(`State: ${activeStateFilter}`);
+    if (activeRestrictFilters.size) parts.push(`Severity: ${[...activeRestrictFilters].join(", ")}`);
+    if (activeTypeFilters.size)    parts.push(`Type: ${[...activeTypeFilters].map(t => TYPE_LABELS[t]||t).join(", ")}`);
+    if (activeStatusFilters.size)  parts.push(`Status: ${[...activeStatusFilters].join(", ")}`);
+    if (activeDateFilter)          parts.push(`Enacted by: ${activeDateFilter}`);
+    return parts.length ? parts.join(" · ") : "All counties with restrictions";
+  })();
+
+  const rows = counties.map(([fips, c]) => {
+    const sevKey = getSeverityKey(c);
+    const suit   = computeSuitabilityScore(fips, c);
+    const esc    = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+    const types  = (c.types||[]).map(t => TYPE_LABELS[t]||t).join(", ")||"—";
+    const SWATCH = { pro:"#16a34a", none:"#16a34a", proposed:"#b45309", moderate:"#c2410c", high:"#b91c1c", ban:"#7f1d1d" };
+    const GRADE_COLOR = { A:"#16a34a", B:"#0891b2", C:"#b45309", D:"#c2410c", F:"#b91c1c" };
+    return `<tr>
+      <td><code>${esc(fips)}</code></td>
+      <td>${esc(c.name)}</td>
+      <td>${esc(c.state)}</td>
+      <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${SWATCH[sevKey]||"#999"};margin-right:4px;vertical-align:middle"></span>${esc(SEVERITY[sevKey]?.label||"")}</td>
+      <td style="text-transform:capitalize">${esc(c.status||"active")}</td>
+      <td>${esc(types)}</td>
+      <td>${esc(c.effective_date||"—")}</td>
+      <td><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:5px;background:${GRADE_COLOR[suit.grade]};color:#fff;font-weight:800;font-size:11px;margin-right:4px">${suit.grade}</span>${suit.score}/100</td>
+    </tr>`;
+  }).join("");
+
+  const html = `<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<title>DC &amp; AI Policy Report — ${new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"})}</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:12px;color:#111;padding:24px 32px;line-height:1.5}
+  h1{font-size:18px;font-weight:700;margin-bottom:4px}
+  .meta{font-size:11px;color:#666;margin-bottom:16px}
+  .filter-bar{background:#f4f4f5;border:1px solid #e4e4e7;border-radius:6px;padding:8px 12px;margin-bottom:16px;font-size:11px;color:#444}
+  table{width:100%;border-collapse:collapse;font-size:11px}
+  th{text-align:left;font-size:10px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#666;border-bottom:2px solid #ddd;padding:6px 8px;white-space:nowrap}
+  td{padding:5px 8px;border-bottom:1px solid #eee;vertical-align:top}
+  tr:nth-child(even) td{background:#fafafa}
+  code{font-size:10px;background:#f0f0f0;padding:1px 4px;border-radius:3px;font-family:monospace}
+  .footer{margin-top:20px;font-size:10px;color:#999;border-top:1px solid #eee;padding-top:10px}
+  @media print{body{padding:12px 16px}@page{margin:1.5cm}}
+</style>
+</head><body>
+<h1>US Data Center &amp; AI Policy Tracker — Restriction Report</h1>
+<div class="meta">Generated ${new Date().toLocaleString("en-US")} · ${counties.length} ${active?"filtered ":""}counties</div>
+<div class="filter-bar"><strong>Filters:</strong> ${filterSummary}</div>
+<table>
+  <thead><tr>
+    <th>FIPS</th><th>County</th><th>State</th><th>Severity</th>
+    <th>Status</th><th>Types</th><th>Enacted</th><th>Suitability</th>
+  </tr></thead>
+  <tbody>${rows}</tbody>
+</table>
+<div class="footer">US DC &amp; AI Policy Tracker · Data is algorithmically compiled and may be incomplete. Verify with official sources before making site selection decisions.</div>
+</body></html>`;
+
+  const win = window.open("", "_blank", "width=900,height=700");
+  if (!win) { showMapToast("Pop-up blocked — allow pop-ups and try again"); return; }
+  win.document.write(html);
+  win.document.close();
+  win.focus();
+  setTimeout(() => win.print(), 600);
+  showMapToast(`Report opened: ${counties.length} counties`);
+}
+
+/* ── Workspace JSON export / import ── */
+function exportWorkspacesJSON() {
+  const list = _loadWsList();
+  if (!list.length) { showMapToast("No workspaces to export"); return; }
+  const blob = new Blob([JSON.stringify(list, null, 2)], { type: "application/json" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), {
+    href: url, download: `dc-workspaces-${new Date().toISOString().slice(0,10)}.json`,
+  });
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+  showMapToast(`Exported ${list.length} workspace${list.length !== 1 ? "s" : ""}`);
+}
+
+function importWorkspacesJSON(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    let imported;
+    try { imported = JSON.parse(e.target.result); } catch (_) { showMapToast("Invalid JSON file"); return; }
+    if (!Array.isArray(imported)) { showMapToast("JSON must be an array of workspaces"); return; }
+    const valid = imported.filter(w => w && typeof w === "object" && w.id && w.name);
+    if (!valid.length) { showMapToast("No valid workspaces found in file"); return; }
+    const existing = _loadWsList();
+    const existingIds = new Set(existing.map(w => w.id));
+    const toAdd = valid.filter(w => !existingIds.has(w.id));
+    const merged = [...existing, ...toAdd].slice(0, WS_MAX_LOCAL);
+    _saveWsList(merged);
+    renderWorkspaceList();
+    showMapToast(`Imported ${toAdd.length} workspace${toAdd.length !== 1 ? "s" : ""}${toAdd.length < valid.length ? ` (${valid.length - toAdd.length} duplicate${valid.length - toAdd.length !== 1 ? "s" : ""} skipped)` : ""}`);
+  };
+  reader.readAsText(file);
+}
+
+/* ── Share URL (full GIS state) ── */
+const _SHARE_LAYER_KEYS = [
+  "restrictions", "state_policy", "city_policy", "dc_existing", "dc_planned",
+  "ai_campus", "power", "transmission", "fiber", "water",
+  "utility", "tax", "annotations", "zoning_districts", "zoning_overlays",
+];
+
+function _encodeShareState() {
+  const c = leafletMap.getCenter();
+  // Pack layer visibility into an integer bitmask
+  let lm = 0;
+  _SHARE_LAYER_KEYS.forEach((k, i) => { if (layerState[k]) lm |= (1 << i); });
+  const obj = {
+    b:  activeTile !== "satellite" ? activeTile : undefined,
+    l:  lm,
+    v:  `${c.lat.toFixed(4)},${c.lng.toFixed(4)},${leafletMap.getZoom()}`,
+  };
+  if (activeRestrictFilters.size) obj.rf  = [...activeRestrictFilters].join(",");
+  if (activeStateFilter)           obj.sf  = activeStateFilter;
+  if (activeTypeFilters.size)      obj.tf  = [...activeTypeFilters].join(",");
+  if (typeFilterMode !== "any")    obj.tm  = typeFilterMode;
+  if (activeStatusFilters.size)    obj.stf = [...activeStatusFilters].join(",");
+  if (activeDateFilter)            obj.df  = activeDateFilter;
+  if (selectedFips)                obj.f   = selectedFips;
+  // Remove undefined keys
+  Object.keys(obj).forEach(k => { if (obj[k] === undefined) delete obj[k]; });
+  // Base64url-encode (no padding)
+  return btoa(JSON.stringify(obj)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function _decodeShareState(encoded) {
+  try {
+    const b64 = encoded.replace(/-/g, "+").replace(/_/g, "/");
+    return JSON.parse(atob(b64 + "=".repeat((4 - b64.length % 4) % 4)));
+  } catch (_) { return null; }
+}
+
+function _applyShareState(obj) {
+  if (!obj) return;
+  if (obj.b) switchBasemap(obj.b);
+  if (obj.l !== undefined) {
+    _SHARE_LAYER_KEYS.forEach((k, i) => setLayerVisible(k, !!(obj.l & (1 << i)), true));
+  }
+  activeRestrictFilters.clear();
+  if (obj.rf)  obj.rf.split(",").filter(Boolean).forEach(k => activeRestrictFilters.add(k));
+  activeStateFilter = obj.sf || "";
+  activeTypeFilters.clear();
+  if (obj.tf)  obj.tf.split(",").filter(Boolean).forEach(k => activeTypeFilters.add(k));
+  typeFilterMode = obj.tm || "any";
+  activeStatusFilters.clear();
+  if (obj.stf) obj.stf.split(",").filter(Boolean).forEach(k => activeStatusFilters.add(k));
+  activeDateFilter = (typeof obj.df === "string" && /^\d{4}$/.test(obj.df)) ? obj.df : null;
+  applyFilters();
+  if (obj.v) {
+    const parts = obj.v.split(",");
+    const lat = parseFloat(parts[0]), lng = parseFloat(parts[1]), zoom = parseInt(parts[2], 10);
+    if (!isNaN(lat) && !isNaN(lng) && !isNaN(zoom)) leafletMap.setView([lat, lng], zoom, { animate: false });
+  }
+  if (obj.f) selectCounty(obj.f);
+}
+
 function shareCurrentView() {
-  const c   = leafletMap.getCenter();
-  const url = `${location.origin}${location.pathname}#@${c.lat.toFixed(4)},${c.lng.toFixed(4)},${leafletMap.getZoom()}`;
+  const encoded = _encodeShareState();
+  const url  = `${location.origin}${location.pathname}#s=${encoded}`;
   const done = () => showMapToast("Share link copied!");
   const fail = () => {
     const ta = Object.assign(document.createElement("textarea"), { value: url, style: "position:fixed;opacity:0" });
@@ -1000,7 +1459,12 @@ function togglePoliticalRiskLayer() {
     btn.classList.toggle("active", showPoliticalRisk);
     btn.setAttribute("aria-pressed", String(showPoliticalRisk));
   }
-  if (countyLayer) countyLayer.setStyle(countyStyle);
+  if (countyGeoLayer) {
+    countyGeoLayer.setStyle(countyStyle);
+    if (selectedFips && countyLayerByFips[selectedFips]) {
+      countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
+    }
+  }
   renderLegend();
 }
 
@@ -1173,10 +1637,324 @@ function toggleBookmarks() {
   if (bookmarksVisible) renderBookmarksList();
 }
 
+/* ── Compare panel ── */
+function renderComparePanel() {
+  const body = document.getElementById("compare-body");
+  if (!body) return;
+  body.innerHTML = "";
+
+  if (!compareCounties.length) {
+    const em = document.createElement("div");
+    em.className = "cmp-add-prompt";
+    em.style.width = "100%";
+    em.textContent = "Click counties on the map to compare up to 5 side-by-side.";
+    body.appendChild(em);
+    return;
+  }
+
+  compareCounties.forEach(fips => {
+    const county = mapData[fips];
+    if (!county) return;
+    const sevKey   = getSeverityKey(county);
+    const sevColor = SEVERITY[sevKey].color;
+    const sevLabel = SEVERITY[sevKey].label;
+    const types    = (county.types || []).map(t => TYPE_LABELS[t] || t).join(", ") || "—";
+    const date     = county.effective_date || county.date || "—";
+
+    const col = document.createElement("div");
+    col.className = "cmp-col";
+    col.style.setProperty("--cmp-sev-color", sevColor);
+
+    // Header
+    const hdr = document.createElement("div");
+    hdr.className = "cmp-col-header";
+    hdr.style.borderTopColor = sevColor;
+    const nameWrap = document.createElement("div");
+    const nameEl   = document.createElement("div");
+    nameEl.className = "cmp-col-name";
+    nameEl.textContent = county.name;
+    const stateEl  = document.createElement("div");
+    stateEl.className = "cmp-col-state";
+    stateEl.textContent = county.state;
+    nameWrap.appendChild(nameEl);
+    nameWrap.appendChild(stateEl);
+    const removeBtn = document.createElement("button");
+    removeBtn.className  = "cmp-col-remove";
+    removeBtn.type       = "button";
+    removeBtn.textContent = "×";
+    removeBtn.setAttribute("aria-label", `Remove ${county.name}`);
+    removeBtn.addEventListener("click", () => removeFromCompare(fips));
+    hdr.appendChild(nameWrap);
+    hdr.appendChild(removeBtn);
+
+    // Body rows
+    const colBody = document.createElement("div");
+    colBody.className = "cmp-col-body";
+
+    function addField(label, valueHtml) {
+      const f = document.createElement("div");
+      f.className = "cmp-field";
+      const lEl = document.createElement("div");
+      lEl.className = "cmp-field-label";
+      lEl.textContent = label;
+      const vEl = document.createElement("div");
+      vEl.className = "cmp-field-value";
+      vEl.innerHTML = valueHtml; // safe: only static strings + escHtml()
+      f.appendChild(lEl);
+      f.appendChild(vEl);
+      colBody.appendChild(f);
+    }
+
+    const suit = computeSuitabilityScore(fips, county);
+    addField("Suitability",
+      `<span class="cmp-suit-grade cmp-suit-${suit.grade}">${suit.grade}</span>${escHtml(suit.score + " / 100")} <span style="color:var(--text-muted);font-size:10px;">— ${escHtml(suit.label)}</span>`
+    );
+    addField("Severity",
+      `<span class="cmp-field-value cmp-sev-badge"><span class="cmp-sev-dot" style="background:${sevColor}"></span>${escHtml(sevLabel)}</span>`
+    );
+    addField("Status", escHtml((county.status || "active").charAt(0).toUpperCase() + (county.status || "active").slice(1)));
+    addField("Policy Types", escHtml(types));
+    addField("Enacted", escHtml(date));
+    if (county.title) {
+      addField("Title", escHtml(county.title));
+    }
+    if (county.description) {
+      const descF = document.createElement("div");
+      descF.className = "cmp-field";
+      const lEl = document.createElement("div");
+      lEl.className = "cmp-field-label";
+      lEl.textContent = "Description";
+      const vEl = document.createElement("div");
+      vEl.className = "cmp-desc";
+      vEl.textContent = county.description;
+      descF.appendChild(lEl);
+      descF.appendChild(vEl);
+      colBody.appendChild(descF);
+    }
+
+    col.appendChild(hdr);
+    col.appendChild(colBody);
+    body.appendChild(col);
+  });
+
+  // Add-more prompt if under max
+  if (compareCounties.length < CMP_MAX) {
+    const addCol = document.createElement("div");
+    addCol.className = "cmp-add-col";
+    const prompt = document.createElement("div");
+    prompt.className = "cmp-add-prompt";
+    prompt.textContent = `Click map to add (${compareCounties.length}/${CMP_MAX})`;
+    addCol.appendChild(prompt);
+    body.appendChild(addCol);
+  }
+}
+
+function addToCompare(fips) {
+  if (!fips || compareCounties.includes(fips)) return;
+  if (compareCounties.length >= CMP_MAX) {
+    showMapToast(`Max ${CMP_MAX} counties in compare view`);
+    return;
+  }
+  compareCounties.push(fips);
+  renderComparePanel();
+  const county = mapData[fips];
+  if (county) showMapToast(`Added: ${county.name}`);
+}
+
+function removeFromCompare(fips) {
+  const idx = compareCounties.indexOf(fips);
+  if (idx >= 0) compareCounties.splice(idx, 1);
+  renderComparePanel();
+}
+
+function clearCompare() {
+  compareCounties.length = 0;
+  renderComparePanel();
+}
+
+function toggleComparePanel() {
+  compareMode = !compareMode;
+  const panel = document.getElementById("compare-panel");
+  const btn   = document.getElementById("gis-compare");
+  const main  = document.getElementById("main");
+  if (panel) panel.hidden = !compareMode;
+  if (btn)   { btn.classList.toggle("active", compareMode); btn.setAttribute("aria-pressed", String(compareMode)); }
+  if (main)  main.classList.toggle("compare-active", compareMode);
+  if (compareMode) renderComparePanel();
+}
+
 function initBookmarks() {
   document.getElementById("gis-bookmarks")    ?.addEventListener("click", toggleBookmarks);
   document.getElementById("bookmarks-close")  ?.addEventListener("click", toggleBookmarks);
   document.getElementById("bookmark-save-btn")?.addEventListener("click", saveCurrentViewAsBookmark);
+}
+
+/* ── Workspace panel ── */
+function _generateWsId() {
+  return "ws-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+}
+
+function _loadWsList() {
+  try { return JSON.parse(localStorage.getItem(WS_LOCAL_KEY) || "[]"); }
+  catch (_) { return []; }
+}
+
+function _saveWsList(arr) {
+  try { localStorage.setItem(WS_LOCAL_KEY, JSON.stringify(arr)); } catch (_) {}
+}
+
+function _captureWorkspaceState(name) {
+  const c = leafletMap.getCenter();
+  return {
+    id:          _generateWsId(),
+    name:        name,
+    created:     Date.now(),
+    basemap:     activeTile,
+    layers:      Object.assign({}, layerState),
+    filters: {
+      restrictFilters: [...activeRestrictFilters],
+      stateFilter:     activeStateFilter,
+      typeFilters:     [...activeTypeFilters],
+      typeFilterMode:  typeFilterMode,
+      statusFilters:   [...activeStatusFilters],
+      dateFilter:      activeDateFilter,
+    },
+    mapView: { lat: +c.lat.toFixed(5), lng: +c.lng.toFixed(5), zoom: leafletMap.getZoom() },
+    selectedFips: selectedFips || null,
+    drawPoints:   drawPoints.map(p => [+p.lat.toFixed(6), +p.lng.toFixed(6)]),
+    drawAreaUnit: drawAreaUnit,
+  };
+}
+
+function _applyWorkspace(ws) {
+  if (!ws) return;
+  if (ws.basemap) switchBasemap(ws.basemap);
+  if (ws.layers) {
+    Object.keys(layerState).forEach(id => {
+      const visible = ws.layers[id] !== undefined ? ws.layers[id] : layerState[id];
+      setLayerVisible(id, visible, true);
+    });
+  }
+  if (ws.filters) {
+    activeRestrictFilters.clear();
+    (ws.filters.restrictFilters || []).forEach(k => activeRestrictFilters.add(k));
+    activeStateFilter = ws.filters.stateFilter || "";
+    activeTypeFilters.clear();
+    (ws.filters.typeFilters || []).forEach(k => activeTypeFilters.add(k));
+    typeFilterMode = ws.filters.typeFilterMode || "any";
+    activeStatusFilters.clear();
+    (ws.filters.statusFilters || []).forEach(k => activeStatusFilters.add(k));
+    activeDateFilter = (typeof ws.filters.dateFilter === "string" && /^\d{4}$/.test(ws.filters.dateFilter))
+      ? ws.filters.dateFilter : null;
+    applyFilters();
+  }
+  if (ws.mapView) {
+    leafletMap.setView([ws.mapView.lat, ws.mapView.lng], ws.mapView.zoom, { animate: false });
+  }
+  if (ws.drawPoints && ws.drawPoints.length > 0) {
+    clearDraw();
+    drawPoints.push(...ws.drawPoints.map(([lat, lng]) => L.latLng(lat, lng)));
+    drawAreaUnit = ws.drawAreaUnit || drawAreaUnit;
+    _redrawPolygonPreview();
+    _updateDrawReadout();
+  } else {
+    clearDraw();
+  }
+  if (ws.selectedFips && mapData[ws.selectedFips]) {
+    selectCounty(ws.selectedFips);
+  }
+}
+
+async function renderWorkspaceList() {
+  const listEl = document.getElementById("workspace-list");
+  if (!listEl) return;
+  listEl.innerHTML = "";
+
+  let items = [];
+  const auth = window.AUTH;
+  if (auth && auth.state === "signedIn") {
+    const saved = await auth.getSavedItems("workspace");
+    items = (saved || [])
+      .map(r => ({ ...r.item_data, _supaId: r.item_id }))
+      .sort((a, b) => (b.created || 0) - (a.created || 0));
+  } else {
+    items = _loadWsList().sort((a, b) => (b.created || 0) - (a.created || 0));
+  }
+
+  if (!items.length) {
+    const em = document.createElement("div");
+    em.className = "wsp-empty";
+    em.textContent = "No saved workspaces yet.";
+    listEl.appendChild(em);
+    return;
+  }
+
+  items.forEach(ws => {
+    const row = document.createElement("div");
+    row.className = "wsp-row";
+
+    const loadBtn = document.createElement("button");
+    loadBtn.className = "wsp-load";
+    loadBtn.type = "button";
+    loadBtn.textContent = ws.name || "Unnamed";
+    loadBtn.title = ws.name || "Unnamed";
+    loadBtn.addEventListener("click", () => {
+      _applyWorkspace(ws);
+      toggleWorkspaces();
+      showMapToast("Workspace loaded");
+    });
+
+    const delBtn = document.createElement("button");
+    delBtn.className = "wsp-del";
+    delBtn.type = "button";
+    delBtn.setAttribute("aria-label", "Delete workspace");
+    delBtn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+    delBtn.addEventListener("click", async () => {
+      if (auth && auth.state === "signedIn") {
+        await auth.removeItem("workspace", ws._supaId || ws.id);
+      } else {
+        const list = _loadWsList().filter(w => w.id !== ws.id);
+        _saveWsList(list);
+      }
+      renderWorkspaceList();
+    });
+
+    row.appendChild(loadBtn);
+    row.appendChild(delBtn);
+    listEl.appendChild(row);
+  });
+}
+
+async function saveCurrentWorkspace() {
+  const input  = document.getElementById("workspace-name-input");
+  const saveBtn = document.getElementById("workspace-save-btn");
+  const rawName = input ? input.value.trim() : "";
+  const name    = rawName || new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+  const ws      = _captureWorkspaceState(name);
+  const auth    = window.AUTH;
+
+  if (saveBtn) saveBtn.disabled = true;
+  if (auth && auth.state === "signedIn") {
+    await auth.saveItem("workspace", ws.id, ws);
+  } else {
+    const list = _loadWsList();
+    list.unshift(ws);
+    if (list.length > WS_MAX_LOCAL) list.splice(WS_MAX_LOCAL);
+    _saveWsList(list);
+  }
+  if (input) input.value = "";
+  if (saveBtn) saveBtn.disabled = false;
+  renderWorkspaceList();
+  showMapToast(`Saved "${name}"`);
+}
+
+function toggleWorkspaces() {
+  _wsVisible = !_wsVisible;
+  const panel = document.getElementById("workspace-panel");
+  const btn   = document.getElementById("gis-workspace");
+  if (panel) panel.hidden = !_wsVisible;
+  if (btn)   { btn.classList.toggle("active", _wsVisible); btn.setAttribute("aria-pressed", String(_wsVisible)); }
+  if (_wsVisible) renderWorkspaceList();
 }
 
 /* ── Map init ── */
@@ -1235,12 +2013,26 @@ function initLeafletMap() {
 
   leafletMap.on("click", e => {
     if (isDraggingMap || Date.now() < suppressClickUntil) return;
-    if (measureMode) { addMeasurePoint(e.latlng); return; }
+    if (measureMode)      { addMeasurePoint(e.latlng); return; }
+    if (drawMode)         { drawPoints.push(e.latlng); _redrawPolygonPreview(); return; }
+    if (candidatePinMode) { _placeCandidatePin(e.latlng); return; }
     if (selectedFips && countyLayerByFips[selectedFips]) {
       countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
     }
     selectedFips = null;
     setDetailEmpty();
+  });
+
+  leafletMap.on("dblclick", e => {
+    if (!drawMode) return;
+    // The preceding single-click already pushed a point; remove it so dblclick closes cleanly
+    if (drawPoints.length > 0) drawPoints.pop();
+    _closeDrawPolygon();
+  });
+
+  // Update dashboard extent scope when the viewport changes
+  leafletMap.on("moveend", () => {
+    if (_dashScope === "extent") updateDashboardScopedCards();
   });
 
   // Re-apply county fill opacity when zoom changes (fades out at street level)
@@ -1292,11 +2084,49 @@ function initLeafletMap() {
   document.getElementById("gis-locate")        ?.addEventListener("click", locateMe);
   document.getElementById("gis-zoom-filtered") ?.addEventListener("click", zoomToFiltered);
   document.getElementById("gis-measure")       ?.addEventListener("click", toggleMeasure);
-  document.getElementById("gis-export")        ?.addEventListener("click", exportCountiesCSV);
+  document.getElementById("gis-draw")          ?.addEventListener("click", toggleDraw);
+  document.getElementById("gis-pin")           ?.addEventListener("click", toggleCandidatePin);
+  document.getElementById("gis-export")        ?.addEventListener("click", _toggleExportMenu);
+  document.getElementById("exp-csv")           ?.addEventListener("click", () => { document.getElementById("export-menu").hidden = true; exportCountiesCSV(); });
+  document.getElementById("exp-geojson")       ?.addEventListener("click", () => { document.getElementById("export-menu").hidden = true; exportCountiesGeoJSON(); });
+  document.getElementById("exp-report")        ?.addEventListener("click", () => { document.getElementById("export-menu").hidden = true; openPrintReport(); });
   document.getElementById("gis-share")         ?.addEventListener("click", shareCurrentView);
   document.getElementById("gis-print")         ?.addEventListener("click", printMap);
   document.getElementById("gis-minimap")       ?.addEventListener("click", toggleMinimap);
   document.getElementById("gis-political-risk")?.addEventListener("click", togglePoliticalRiskLayer);
+  document.getElementById("gis-results")        ?.addEventListener("click", () => window.RESULTS_PANEL?.toggle());
+
+  // Save button: toggle save/unsave for current county or facility
+  const _saveBtnEl = document.getElementById('detail-save-btn');
+  if (_saveBtnEl) {
+    _saveBtnEl.addEventListener('click', async () => {
+      const auth = window.AUTH;
+      if (!auth || auth.state !== 'signedIn') {
+        document.getElementById('auth-btn')?.click();
+        return;
+      }
+      if (!_saveCurrentType || !_saveCurrentId) return;
+      const savedSet = _saveCurrentType === 'county' ? _savedCountySet : _savedFacilitySet;
+      const isSaved  = savedSet.has(_saveCurrentId);
+      _saveBtnEl.disabled = true;
+      if (isSaved) {
+        await auth.removeItem(_saveCurrentType, _saveCurrentId);
+        savedSet.delete(_saveCurrentId);
+      } else {
+        await auth.saveItem(_saveCurrentType, _saveCurrentId, _saveCurrentData || {});
+        savedSet.add(_saveCurrentId);
+      }
+      _saveBtnEl.disabled = false;
+      _updateDetailSaveBtn();
+    });
+  }
+
+  // Refresh save cache when auth state changes
+  document.addEventListener('auth:stateChange', ({ detail }) => {
+    _refreshSavedCache().then(() => _updateDetailSaveBtn());
+    if (_wsVisible) renderWorkspaceList();
+  });
+
   const _clearBtn = document.getElementById("measure-clear-btn");
   if (_clearBtn) {
     const _doClear = () => {
@@ -1316,6 +2146,35 @@ function initLeafletMap() {
   const _readoutEl = document.getElementById("measure-readout");
   if (_readoutEl) L.DomEvent.disableClickPropagation(_readoutEl);
 
+  // Draw readout — unit toggle + clear button
+  const _drawReadoutEl = document.getElementById('draw-readout');
+  if (_drawReadoutEl) {
+    _drawReadoutEl.querySelectorAll('.draw-unit-opt').forEach(unitBtn => {
+      unitBtn.classList.toggle('active', unitBtn.dataset.unit === drawAreaUnit);
+      unitBtn.addEventListener('click', () => {
+        drawAreaUnit = unitBtn.dataset.unit;
+        try { localStorage.setItem('draw-area-unit', drawAreaUnit); } catch (_) {}
+        _drawReadoutEl.querySelectorAll('.draw-unit-opt').forEach(b => b.classList.toggle('active', b === unitBtn));
+        _updateDrawReadout();
+      });
+    });
+    L.DomEvent.disableClickPropagation(_drawReadoutEl);
+  }
+  const _drawClearBtn = document.getElementById('draw-clear-btn');
+  if (_drawClearBtn) {
+    const _doClearDraw = () => {
+      if (drawMode) toggleDraw();
+      clearDraw();
+      _clearCandidatePin();
+      _exitCandidatePinMode();
+      const el = document.getElementById('draw-readout');
+      if (el) el.hidden = true;
+    };
+    _drawClearBtn.addEventListener('click', _doClearDraw);
+    _drawClearBtn.addEventListener('touchstart', e => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+    _drawClearBtn.addEventListener('touchend',   e => { e.preventDefault(); e.stopPropagation(); _doClearDraw(); }, { passive: false });
+  }
+
   // Fullscreen state sync
   document.addEventListener("fullscreenchange", () => {
     const btn  = document.getElementById("gis-fullscreen");
@@ -1329,25 +2188,65 @@ function initLeafletMap() {
     if (!leafletMap) return;
     if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
     if ((e.key === "m" || e.key === "M") && !e.ctrlKey && !e.metaKey) toggleMeasure();
+    if ((e.key === "d" || e.key === "D") && !e.ctrlKey && !e.metaKey) toggleDraw();
+    if ((e.key === "p" || e.key === "P") && !e.ctrlKey && !e.metaKey) toggleCandidatePin();
+    if ((e.key === "l" || e.key === "L") && !e.ctrlKey && !e.metaKey) window.RESULTS_PANEL?.toggle();
     if ((e.key === "f" || e.key === "F") && !e.ctrlKey && !e.metaKey) toggleFullscreen();
-    if (e.key === "Escape" && measureMode) toggleMeasure();
+    if ((e.key === "w" || e.key === "W") && !e.ctrlKey && !e.metaKey) toggleWorkspaces();
+    if ((e.key === "c" || e.key === "C") && !e.ctrlKey && !e.metaKey) toggleComparePanel();
+    if (e.key === "Escape" && measureMode)      toggleMeasure();
+    if (e.key === "Escape" && drawMode)         toggleDraw();
+    if (e.key === "Escape" && candidatePinMode) toggleCandidatePin();
+    if (e.key === "Escape" && _wsVisible)       toggleWorkspaces();
+    if (e.key === "Escape" && compareMode)      toggleComparePanel();
   });
 
   initContextMenu();
   initBookmarks();
 
+  // Compare panel wiring
+  document.getElementById("gis-compare")      ?.addEventListener("click", toggleComparePanel);
+  document.getElementById("compare-close-btn")?.addEventListener("click", toggleComparePanel);
+  document.getElementById("compare-clear-btn")?.addEventListener("click", clearCompare);
+
+  // Workspace panel wiring
+  document.getElementById("gis-workspace")    ?.addEventListener("click", toggleWorkspaces);
+  document.getElementById("workspace-close")  ?.addEventListener("click", toggleWorkspaces);
+  document.getElementById("workspace-save-btn")?.addEventListener("click", saveCurrentWorkspace);
+  document.getElementById("workspace-name-input")?.addEventListener("keydown", e => {
+    if (e.key === "Enter") { e.preventDefault(); saveCurrentWorkspace(); }
+  });
+  document.getElementById("workspace-export-btn")?.addEventListener("click", exportWorkspacesJSON);
+  document.getElementById("workspace-import-btn")?.addEventListener("click", () => {
+    document.getElementById("workspace-import-file")?.click();
+  });
+  document.getElementById("workspace-import-file")?.addEventListener("change", e => {
+    importWorkspacesJSON(e.target.files?.[0]);
+    e.target.value = "";
+  });
+
+  // Close export menu when clicking outside it
+  document.addEventListener("click", e => {
+    const menu = document.getElementById("export-menu");
+    const btn  = document.getElementById("gis-export");
+    if (menu && !menu.hidden && !menu.contains(e.target) && e.target !== btn) {
+      menu.hidden = true;
+      btn?.setAttribute("aria-expanded", "false");
+    }
+  });
+
   // Prevent Leaflet from intercepting touch/click events on all map overlay elements.
   // Without this, Leaflet's touchstart handler on the map can swallow taps on
   // absolutely-positioned controls on iOS Safari.
   [
-    "map-gis-bar", "measure-readout", "bookmarks-panel", "map-ctx-menu",
+    "map-gis-bar", "measure-readout", "draw-readout", "bookmarks-panel", "workspace-panel", "compare-panel", "export-menu", "map-ctx-menu",
     "minimap-wrap", "legend", "legend-restore", "stats-bar", "filter-status",
   ].forEach(id => {
     const el = document.getElementById(id);
     if (el) L.DomEvent.disableClickPropagation(el);
   });
   // Prevent scroll-wheel/pinch inside overlay panels from zooming the map
-  ["bookmarks-list", "legend"].forEach(id => {
+  ["bookmarks-list", "workspace-list", "compare-body", "legend"].forEach(id => {
     const el = document.getElementById(id);
     if (el) L.DomEvent.disableScrollPropagation(el);
   });
@@ -1399,11 +2298,43 @@ function toggleRestrictFilter(key) {
 function clearAllFilters() {
   activeRestrictFilters.clear();
   activeStateFilter = "";
+  activeTypeFilters.clear();
+  activeStatusFilters.clear();
+  activeDateFilter  = null;
+  _saveFilterState();
   applyFilters();
   syncAdvancedFilterUI();
 }
 
+function _saveFilterState() {
+  try {
+    localStorage.setItem("dc-advanced-filters-v1", JSON.stringify({
+      restrict:   [...activeRestrictFilters],
+      state:      activeStateFilter,
+      types:      [...activeTypeFilters],
+      typeMode:   typeFilterMode,
+      status:     [...activeStatusFilters],
+      dateFilter: activeDateFilter,
+    }));
+  } catch (_) {}
+}
+
+function _loadFilterState() {
+  try {
+    const raw = localStorage.getItem("dc-advanced-filters-v1");
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    if (Array.isArray(s.restrict)) s.restrict.forEach(k => activeRestrictFilters.add(k));
+    if (typeof s.state === "string") activeStateFilter = s.state;
+    if (Array.isArray(s.types))   s.types.forEach(t => activeTypeFilters.add(t));
+    if (s.typeMode === "all" || s.typeMode === "any") typeFilterMode = s.typeMode;
+    if (Array.isArray(s.status))  s.status.forEach(t => activeStatusFilters.add(t));
+    if (typeof s.dateFilter === "string" && /^\d{4}$/.test(s.dateFilter)) activeDateFilter = s.dateFilter;
+  } catch (_) {}
+}
+
 function applyFilters() {
+  _saveFilterState();
   if (countyGeoLayer) {
     countyGeoLayer.setStyle(countyStyle);
     // Re-apply selected county highlight if still visible
@@ -1421,6 +2352,8 @@ function applyFilters() {
   renderStats();
   renderFilterStatus();
   syncAdvancedFilterUI();
+  window.RESULTS_PANEL?.update(mapData, fips => !hasActiveMapFilters() || countyMatchesFilters(fips));
+  if (_dashScope === "filtered") updateDashboardScopedCards();
 }
 
 function renderFilterStatus() {
@@ -1444,6 +2377,15 @@ function renderFilterStatus() {
     parts.push(labels);
   }
   if (activeStateFilter) parts.push(STATE_NAMES[activeStateFilter] || activeStateFilter);
+  if (activeTypeFilters.size > 0) {
+    const modeLabel = typeFilterMode === "all" ? "ALL of" : "";
+    const typeLabels = [...activeTypeFilters].map(t => TYPE_LABELS[t] || t).join(", ");
+    parts.push(modeLabel ? `${modeLabel}: ${typeLabels}` : typeLabels);
+  }
+  if (activeStatusFilters.size > 0) {
+    const stLabels = [...activeStatusFilters].map(s => STATUS_LABELS[s] || s).join(", ");
+    parts.push(stLabels);
+  }
 
   el.hidden = false;
   if (matchCount === 0) {
@@ -1609,9 +2551,15 @@ function renderLegend() {
     legendBody.appendChild(h);
     for (const key of activeOverlays) {
       const entry = SAMPLE_LEGEND_ENTRIES[key];
+      const reg   = (window.LAYER_REGISTRY || []).find(r => r.id === key);
+      const statusCfg = reg ? _dataStatusConfig(reg.data_status) : null;
+      const statusBadge = statusCfg
+        ? `<span class="ds-badge ds-${reg.data_status}" title="${escHtml(statusCfg.title)}" style="margin-left:auto;">${statusCfg.label}</span>`
+        : "";
       const el    = document.createElement("div");
       el.className = "legend-item";
-      el.innerHTML = `${legendSwatchHtml(entry)}<div class="legend-label-main">${entry.label}</div>`;
+      el.style.cssText = "display:flex;align-items:center;gap:6px;";
+      el.innerHTML = `${legendSwatchHtml(entry)}<div class="legend-label-main" style="flex:1;">${entry.label}</div>${statusBadge}`;
       legendBody.appendChild(el);
     }
   }
@@ -1632,11 +2580,99 @@ function renderLegend() {
   legend.appendChild(resizeHandle);
 }
 
+/* ── Filter Panel helpers ── */
+
+function _loadLayerGroupState() {
+  try {
+    const raw = localStorage.getItem("dc-layer-groups-v1");
+    if (raw) _layerGroupState = JSON.parse(raw);
+  } catch (_) {}
+}
+
+function _saveLayerGroupState() {
+  try {
+    localStorage.setItem("dc-layer-groups-v1", JSON.stringify(_layerGroupState));
+  } catch (_) {}
+}
+
+function _dataStatusConfig(status) {
+  const cfg = {
+    verified:    { label: "Verified",   title: "Verified from official or authoritative sources" },
+    partial:     { label: "Partial",    title: "Partially verified — city-level accuracy, some estimates" },
+    estimated:   { label: "Estimated",  title: "Algorithmically estimated — not officially verified" },
+    sample:      { label: "Sample",     title: "Sample / demonstration data — not for production use" },
+    unavailable: { label: "No Data",    title: "No data available for this layer yet" },
+    stale:       { label: "Stale",      title: "Data may be out of date" },
+  };
+  return cfg[status] || cfg.unavailable;
+}
+
+/* In-place show/hide of rows and groups based on _layerSearch.
+ * Called on every search-input keystroke — never re-renders the panel. */
+function _applyLayerSearch() {
+  const q = _layerSearch.toLowerCase();
+  const body = document.getElementById("filter-panel-body");
+  if (!body) return;
+  const searching = !!q;
+  let anyResultShown = false;
+
+  body.querySelectorAll(".filter-group-header").forEach(header => {
+    const groupBody = header.nextElementSibling;
+    if (!groupBody || !groupBody.classList.contains("filter-group-body")) return;
+
+    if (!searching) {
+      // Clear search overrides — CSS class (.collapsed or not) governs again
+      header.style.display = "";
+      groupBody.style.display = "";
+      groupBody.querySelectorAll(".filter-row").forEach(row => { row.style.display = ""; });
+      const totalRows = groupBody.querySelectorAll(".filter-row").length;
+      const countEl = header.querySelector(".filter-group-count");
+      if (countEl) countEl.textContent = totalRows;
+      return;
+    }
+
+    // Searching: show rows that match, hide the rest
+    let visibleInGroup = 0;
+    groupBody.querySelectorAll(".filter-row").forEach(row => {
+      const label = (row.dataset.layerLabel || "").toLowerCase();
+      const show = label.includes(q);
+      row.style.display = show ? "" : "none";
+      if (show) { visibleInGroup++; anyResultShown = true; }
+    });
+
+    if (visibleInGroup > 0) {
+      header.style.display = "";
+      // Force-show group body even if it is in collapsed state
+      groupBody.style.display = "block";
+      const countEl = header.querySelector(".filter-group-count");
+      if (countEl) countEl.textContent = visibleInGroup;
+    } else {
+      header.style.display = "none";
+      groupBody.style.display = "none";
+    }
+  });
+
+  // No-results message
+  let emptyEl = body.querySelector(".layer-search-empty");
+  if (searching && !anyResultShown) {
+    if (!emptyEl) {
+      emptyEl = document.createElement("div");
+      emptyEl.className = "layer-search-empty";
+      body.appendChild(emptyEl);
+    }
+    emptyEl.textContent = `No layers match "${q}"`;
+    emptyEl.style.display = "";
+  } else if (emptyEl) {
+    emptyEl.style.display = "none";
+  }
+}
+
 /* ── Filter Panel ── */
 function renderFilterPanel() {
   const body = document.getElementById("filter-panel-body");
   body.innerHTML = "";
 
+  // ── Basemap chips ──
   const bmLabel = document.createElement("div");
   bmLabel.className = "filter-group-label";
   bmLabel.textContent = "Basemap";
@@ -1654,7 +2690,7 @@ function renderFilterPanel() {
   });
   body.appendChild(bmRow);
 
-  // County fill opacity slider
+  // ── County fill opacity slider ──
   const opLabel = document.createElement("div");
   opLabel.className = "filter-group-label";
   opLabel.textContent = "County Fill Opacity";
@@ -1680,6 +2716,38 @@ function renderFilterPanel() {
     }
   });
 
+  // ── Layer search ──
+  const searchWrap = document.createElement("div");
+  searchWrap.className = "layer-search-wrap";
+
+  const searchIcon = document.createElement("span");
+  searchIcon.className = "layer-search-icon";
+  searchIcon.setAttribute("aria-hidden", "true");
+  searchIcon.innerHTML = `<svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/><line x1="9.5" y1="9.5" x2="13" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+
+  const searchInput = document.createElement("input");
+  searchInput.type = "search";
+  searchInput.className = "layer-search-input";
+  searchInput.id = "layer-search-input";
+  searchInput.placeholder = "Search layers…";
+  searchInput.value = _layerSearch;
+  searchInput.setAttribute("autocomplete", "off");
+  searchInput.setAttribute("spellcheck", "false");
+  searchInput.setAttribute("aria-label", "Search layers");
+
+  searchWrap.appendChild(searchIcon);
+  searchWrap.appendChild(searchInput);
+  body.appendChild(searchWrap);
+
+  const onSearchChange = () => {
+    _layerSearch = searchInput.value.trim();
+    _applyLayerSearch();
+  };
+  searchInput.addEventListener("input", onSearchChange);
+  // "search" event fires when the native × button clears the field
+  searchInput.addEventListener("search", onSearchChange);
+
+  // ── Layer groups ──
   const groups = [];
   for (const def of LAYER_DEFS) {
     let g = groups.find(x => x.name === def.group);
@@ -1687,43 +2755,114 @@ function renderFilterPanel() {
     g.items.push(def);
   }
 
-  let sampleBannerShown = false;
-
   for (const group of groups) {
-    const label = document.createElement("div");
-    label.className = "filter-group-label";
-    label.textContent = group.name;
-    body.appendChild(label);
+    const expanded = _layerGroupState[group.name] !== false; // default: expanded
 
+    // Group header (replaces plain .filter-group-label; now interactive)
+    const header = document.createElement("div");
+    header.className = "filter-group-header";
+    header.dataset.groupName = group.name;
+    header.setAttribute("role", "button");
+    header.setAttribute("tabindex", "0");
+    header.setAttribute("aria-expanded", String(expanded));
+    header.setAttribute("aria-label", `${group.name} layers`);
+
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "filter-group-name";
+    nameSpan.textContent = group.name;
+
+    const countSpan = document.createElement("span");
+    countSpan.className = "filter-group-count";
+    countSpan.textContent = group.items.length;
+
+    const caretSpan = document.createElement("span");
+    caretSpan.className = "filter-group-caret" + (expanded ? " expanded" : "");
+    caretSpan.setAttribute("aria-hidden", "true");
+    caretSpan.innerHTML = `<svg width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+    header.appendChild(nameSpan);
+    header.appendChild(countSpan);
+    header.appendChild(caretSpan);
+    body.appendChild(header);
+
+    // Group body — collapsible container
+    const groupBody = document.createElement("div");
+    groupBody.className = "filter-group-body" + (expanded ? "" : " collapsed");
+    body.appendChild(groupBody);
+
+    const toggleGroup = () => {
+      const nowExpanded = _layerGroupState[group.name] !== false;
+      _layerGroupState[group.name] = !nowExpanded;
+      _saveLayerGroupState();
+      header.setAttribute("aria-expanded", String(!nowExpanded));
+      caretSpan.classList.toggle("expanded", !nowExpanded);
+      groupBody.classList.toggle("collapsed", nowExpanded);
+    };
+    header.addEventListener("click", toggleGroup);
+    header.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleGroup(); }
+    });
+
+    // Layer rows
     for (const def of group.items) {
-      if (def.sample && !sampleBannerShown) {
-        const banner = document.createElement("div");
-        banner.className = "sample-banner";
-        banner.style.margin = "4px 8px 8px";
-        banner.innerHTML = `<span>⚠</span><span>${SAMPLE_DISCLAIMER}</span>`;
-        body.appendChild(banner);
-        sampleBannerShown = true;
-      }
+      const statusCfg = _dataStatusConfig(def.data_status);
 
       const row = document.createElement("label");
       row.className = "filter-row" + (def.noData ? " filter-row-disabled" : "");
-      row.innerHTML = `
-        <span class="filter-row-label">
-          <span class="filter-row-dot" style="background:${def.color}"></span>
-          <span class="name">${def.label}</span>
-          ${def.sample  ? '<span class="sample-tag">Sample</span>' : ""}
-          ${def.noData  ? '<span class="no-data-tag">No data</span>' : ""}
-        </span>
-        <span class="toggle-switch">
-          <input type="checkbox" data-layer="${def.id}" ${layerState[def.id] ? "checked" : ""} ${def.noData ? "disabled" : ""} />
-          <span class="toggle-slider"></span>
-        </span>`;
+      row.dataset.layerLabel = def.label; // used by _applyLayerSearch
+
+      // Left side: dot + text stack + status badge
+      const labelSpan = document.createElement("span");
+      labelSpan.className = "filter-row-label";
+
+      const dot = document.createElement("span");
+      dot.className = "filter-row-dot";
+      dot.style.background = def.color;
+
+      const textSpan = document.createElement("span");
+      textSpan.className = "filter-row-text";
+
+      const nameEl = document.createElement("span");
+      nameEl.className = "name";
+      nameEl.textContent = def.label;
+      textSpan.appendChild(nameEl);
+
+      if (def.source_name) {
+        const sourceEl = document.createElement("span");
+        sourceEl.className = "layer-source-line";
+        sourceEl.textContent = def.source_name;
+        textSpan.appendChild(sourceEl);
+      }
+
+      const badge = document.createElement("span");
+      badge.className = `ds-badge ds-${def.data_status || "unavailable"}`;
+      badge.textContent = statusCfg.label;
+      badge.title = statusCfg.title;
+
+      labelSpan.appendChild(dot);
+      labelSpan.appendChild(textSpan);
+      labelSpan.appendChild(badge);
+
+      // Right side: toggle switch
+      const toggleSwitch = document.createElement("span");
+      toggleSwitch.className = "toggle-switch";
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.dataset.layer = def.id;
+      if (layerState[def.id]) checkbox.checked = true;
+      if (def.noData) checkbox.disabled = true;
+      const slider = document.createElement("span");
+      slider.className = "toggle-slider";
+      toggleSwitch.appendChild(checkbox);
+      toggleSwitch.appendChild(slider);
+
+      row.appendChild(labelSpan);
+      row.appendChild(toggleSwitch);
 
       if (!def.noData) {
-        const input = row.querySelector("input[type='checkbox']");
         const handleToggle = () => {
-          const newState = !input.checked;
-          input.checked = newState;
+          const newState = !checkbox.checked;
+          checkbox.checked = newState;
           setLayerVisible(def.id, newState);
         };
         // iOS Safari doesn't forward label taps to wrapped inputs when
@@ -1732,11 +2871,8 @@ function renderFilterPanel() {
           handleToggle();
           e.preventDefault(); // suppress the synthetic click that would double-fire
         }, { passive: false });
-        // Desktop fallback: mouse click (not preceded by touch, so not prevented).
-        // e.preventDefault() stops the browser's native label→input click-forwarding,
-        // which would otherwise dispatch a second synthetic click on the wrapped
-        // <input>, flip input.checked back via pre-activation, then bubble to this
-        // handler again — causing handleToggle to fire twice and undo the first call.
+        // Desktop: e.preventDefault() stops the browser's native label→input
+        // click-forwarding, which would otherwise fire handleToggle twice.
         row.addEventListener("click", e => {
           if (e.defaultPrevented) return;
           e.preventDefault();
@@ -1744,9 +2880,12 @@ function renderFilterPanel() {
         });
       }
 
-      body.appendChild(row);
+      groupBody.appendChild(row);
     }
   }
+
+  // Apply any active search filter (in case the panel was re-rendered mid-search)
+  if (_layerSearch) _applyLayerSearch();
 }
 
 /* ── Panel open/close ── */
@@ -2135,6 +3274,113 @@ function initLegendControls() {
   legend.addEventListener("pointercancel", endLgResize);
 }
 
+/* ── Dashboard scope ── */
+let _dashScope      = "national"; // "national" | "filtered" | "state" | "extent"
+let _dashScopeState = "";
+
+function _computeScopeCounties() {
+  if (_dashScope === "national") return mapData;
+
+  if (_dashScope === "filtered") {
+    const out = {};
+    for (const fips in mapData) { if (countyMatchesFilters(fips)) out[fips] = mapData[fips]; }
+    return out;
+  }
+
+  if (_dashScope === "state" && _dashScopeState) {
+    const out = {};
+    for (const fips in mapData) { if (mapData[fips].state === _dashScopeState) out[fips] = mapData[fips]; }
+    return out;
+  }
+
+  if (_dashScope === "extent" && leafletMap) {
+    const bounds = leafletMap.getBounds();
+    const out = {};
+    for (const fips in mapData) {
+      const layer = countyLayerByFips[fips];
+      if (!layer) continue;
+      try {
+        const center = layer.getBounds().getCenter();
+        if (bounds.contains(center)) out[fips] = mapData[fips];
+      } catch (_) {}
+    }
+    return out;
+  }
+
+  return mapData;
+}
+
+function updateDashboardScopedCards() {
+  const scoped = _computeScopeCounties();
+  const counts = computeSeverityCounts(scoped);
+  const statesWithLeg = new Set();
+  for (const fips in scoped) { if (scoped[fips].level >= 1) statesWithLeg.add(scoped[fips].state); }
+
+  const db = document.getElementById("dashboard");
+  if (!db) return;
+  const targets = {
+    restrictions: counts.moderate + counts.high + counts.ban,
+    proposed:     counts.proposed,
+    legislation:  statesWithLeg.size,
+  };
+  for (const [metric, value] of Object.entries(targets)) {
+    const card = db.querySelector(`[data-metric="${metric}"]`);
+    if (card) {
+      const valEl = card.querySelector(".stat-card-value");
+      if (valEl) animateCounter(valEl, value, 450);
+    }
+  }
+}
+
+function initDashboardScopeBar() {
+  const bar = document.getElementById("dashboard-scope-bar");
+  if (!bar) return;
+
+  const stateSet = new Set();
+  for (const fips in mapData) { if (mapData[fips].state) stateSet.add(mapData[fips].state); }
+  const states = [...stateSet].sort();
+
+  const stateOptions = states.map(s => {
+    const el = document.createElement("option");
+    el.value = s; el.textContent = s;
+    return el.outerHTML;
+  }).join("");
+
+  bar.innerHTML = [
+    `<span class="dash-scope-label">Scope</span>`,
+    `<button class="dash-scope-chip active" data-scope="national" type="button">National</button>`,
+    `<button class="dash-scope-chip" data-scope="filtered" type="button">Filtered</button>`,
+    `<button class="dash-scope-chip" data-scope="state" type="button">State</button>`,
+    `<button class="dash-scope-chip" data-scope="extent" type="button">Extent</button>`,
+    `<select id="dash-scope-state-select" aria-label="Select state" hidden>`,
+    `<option value="">Select state…</option>`,
+    stateOptions,
+    `</select>`,
+  ].join("");
+
+  const chips       = bar.querySelectorAll(".dash-scope-chip");
+  const stateSelect = bar.querySelector("#dash-scope-state-select");
+
+  function activateScope(scope) {
+    _dashScope = scope;
+    chips.forEach(c => c.classList.toggle("active", c.dataset.scope === scope));
+    if (stateSelect) stateSelect.hidden = (scope !== "state");
+    if (scope === "state" && !_dashScopeState) return; // wait for state selection
+    updateDashboardScopedCards();
+  }
+
+  chips.forEach(chip => chip.addEventListener("click", () => activateScope(chip.dataset.scope)));
+
+  if (stateSelect) {
+    stateSelect.addEventListener("change", () => {
+      _dashScopeState = stateSelect.value;
+      if (_dashScopeState) updateDashboardScopedCards();
+    });
+  }
+
+  bar.hidden = false;
+}
+
 /* ── Dashboard ── */
 function animateCounter(el, target, duration = 900) {
   const t0 = performance.now();
@@ -2193,7 +3439,7 @@ function renderDashboard(data) {
     const el  = document.createElement("div");
     el.className = "stat-card";
     if (card.metric) el.dataset.metric = card.metric;
-    const tag  = card.sample ? `<span class="sample-tag" style="margin-left:6px;">Sample</span>` : "";
+    const tag  = card.sample ? `<span class="ds-badge ds-partial" style="margin-left:6px;" title="Partially verified — pipeline-populated, capacity figures are estimates">Partial</span>` : "";
     const icon = card.icon   ? `<div class="stat-card-icon" aria-hidden="true">${card.icon}</div>` : "";
     if (card.text) {
       el.innerHTML = `${icon}<div class="stat-card-label">${card.label}${tag}</div><div class="stat-card-value stat-card-text">${card.text}</div>`;
@@ -2260,6 +3506,68 @@ function requestCloseDetailSheet() {
   setDetailEmpty(); // resets panel content and calls closeMobileSheet()
 }
 
+/* ── Spatial analysis helpers ── */
+
+function _clearProximityCircle() {
+  if (_proximityCircle && leafletMap) {
+    leafletMap.removeLayer(_proximityCircle);
+    _proximityCircle = null;
+  }
+}
+
+function _setProximityCircle(center, radiusMiles) {
+  _clearProximityCircle();
+  if (!leafletMap || !radiusMiles) return;
+  _proximityCircle = L.circle(center, {
+    radius:      radiusMiles * 1609.34,
+    color:       "#5b8def",
+    weight:      1.5,
+    opacity:     0.8,
+    fillColor:   "#5b8def",
+    fillOpacity: 0.06,
+    dashArray:   "4,3",
+  }).addTo(leafletMap);
+}
+
+function _buildNearbyFacilitiesHtml(fips, radiusMiles) {
+  if (!sampleLayers) return "";
+  const layer = countyLayerByFips[fips];
+  if (!layer) return "";
+  const center = layer.getBounds().getCenter();
+  const maxDist = (radiusMiles || 100) * 1609.34;
+
+  const candidates = [
+    ...(sampleLayers.data_centers || [])
+        .filter(f => f.lat && f.lon)
+        .map(f => ({ name: f.name, lat: f.lat, lon: f.lon, kind: "dc", color: "#5b8def", cap: f.capacity_mw ? `${f.capacity_mw} MW` : "" })),
+    ...(sampleLayers.ai_campuses || [])
+        .filter(f => f.lat && f.lon)
+        .map(f => ({ name: f.name, lat: f.lat, lon: f.lon, kind: "ai", color: "#a78bfa", cap: "" })),
+  ];
+
+  const nearby = candidates
+    .map(f => ({ ...f, distM: L.latLng(f.lat, f.lon).distanceTo(center) }))
+    .filter(f => f.distM <= maxDist)
+    .sort((a, b) => a.distM - b.distM)
+    .slice(0, 6);
+
+  if (!nearby.length) {
+    return `<div class="nearby-empty">No facilities within ${radiusMiles || 100} miles.</div>`;
+  }
+
+  const rows = nearby.map(f => {
+    const miles = (f.distM / 1609.34).toFixed(0);
+    const sub   = [f.cap, `${miles} mi`].filter(Boolean).join(" · ");
+    return `<div class="nearby-row">
+      <span class="nearby-dot" style="background:${f.color}"></span>
+      <span class="nearby-name">${escHtml(f.name)}</span>
+      <span class="nearby-dist">${escHtml(sub)}</span>
+    </div>`;
+  }).join("");
+
+  return rows;
+}
+
 /* ── Detail panel ── */
 const WATER_STRESS_LABELS = { 0: "Low stress", 1: "Moderate stress", 2: "Elevated stress", 3: "High stress" };
 
@@ -2273,13 +3581,25 @@ function buildSampleInfraHtml(fips) {
 
   if (!facilities.length && !campuses.length && wLevel === undefined && !hasTax && !utility) return "";
 
+  const regFor = (id) => (window.LAYER_REGISTRY || []).find(r => r.id === id) || {};
+
+  const _badge = (id) => {
+    const r = regFor(id);
+    const cfg = _dataStatusConfig(r.data_status);
+    return `<span class="ds-badge ds-${r.data_status || "unavailable"}" title="${escHtml(cfg.title)}">${cfg.label}</span>`;
+  };
+
   let html = `<div class="divider"></div>`;
 
-  if (facilities.length) html += `
+  if (facilities.length) {
+    const dcReg = regFor("dc_existing");
+    html += `
     <div class="detail-section">
-      <div class="detail-label">Infrastructure</div>
+      <div class="detail-label">Infrastructure ${_badge("dc_existing")}</div>
       <div class="detail-value">${facilities.map(f => `${escHtml(f.name)} — ${f.capacity_mw} MW (${f.status})`).join("<br>")}</div>
+      ${dcReg.disclaimer ? `<div class="layer-data-disclaimer">${escHtml(dcReg.disclaimer)}</div>` : ""}
     </div>`;
+  }
 
   const operators = [...new Set([...facilities, ...campuses].map(f => f.operator))];
   if (operators.length) html += `
@@ -2288,21 +3608,28 @@ function buildSampleInfraHtml(fips) {
       <div class="type-chips">${operators.map(o => `<span class="type-chip">${escHtml(o)}</span>`).join("")}</div>
     </div>`;
 
-  if (campuses.length) html += `
+  if (campuses.length) {
+    const acReg = regFor("ai_campus");
+    html += `
     <div class="detail-section">
-      <div class="detail-label">AI Campuses</div>
+      <div class="detail-label">AI Campuses ${_badge("ai_campus")}</div>
       <div class="detail-value">${campuses.map(c => escHtml(c.name)).join("<br>")}</div>
+      ${acReg.disclaimer ? `<div class="layer-data-disclaimer">${escHtml(acReg.disclaimer)}</div>` : ""}
     </div>`;
+  }
 
-  if (wLevel !== undefined || hasTax || utility) html += `
+  if (wLevel !== undefined || hasTax || utility) {
+    html += `
     <div class="detail-section">
-      <div class="detail-label">Site Factors</div>
+      <div class="detail-label">Site Factors <span class="ds-badge ds-estimated" title="Algorithmically estimated — not officially verified">Estimated</span></div>
       <div class="detail-value">
         ${wLevel !== undefined ? `Water availability: ${WATER_STRESS_LABELS[wLevel]}<br>` : ""}
         ${utility ? `Utility territory: ${escHtml(utility.name)}<br>` : ""}
         ${hasTax ? "Tax incentive area: Yes" : ""}
       </div>
+      <div class="layer-data-disclaimer">Site factor data is algorithmically estimated and has not been independently verified.</div>
     </div>`;
+  }
 
   return html;
 }
@@ -2402,6 +3729,92 @@ function buildConfidenceBadgeHtml(county) {
   </div>`;
 }
 
+/* ── Suitability scoring ── */
+function computeSuitabilityScore(fips, county) {
+  // Factor 1: Regulatory Environment (max 50)
+  const sevKey = county ? getSeverityKey(county) : "none";
+  const regPts = { pro: 50, none: 45, proposed: 30, moderate: 18, high: 6, ban: 0 }[sevKey] ?? 45;
+  const regNote = {
+    pro:      "Pro Data Center designation — active incentives",
+    none:     "No active restrictions on record",
+    proposed: "Restriction(s) under consideration — not yet enacted",
+    moderate: "Moderate restrictions in effect",
+    high:     "Significant restrictions in effect",
+    ban:      "Moratorium or ban in effect",
+  }[sevKey] ?? "No active restrictions";
+
+  // Factor 2: Political Climate (max 30)
+  const riskRec = politicalRiskData[fips];
+  let polPts, polNote;
+  if (!riskRec) {
+    polPts  = 20;
+    polNote = "No documented political signals — neutral assumed";
+  } else {
+    polPts  = [0, 30, 24, 16, 8, 2][riskRec.risk_score] ?? 16;
+    polNote = riskRec.score_label || `Risk score ${riskRec.risk_score}/5`;
+  }
+
+  // Factor 3: Restriction Scope (max 20)
+  let scopePts  = 20;
+  let scopeNote = "No restrictions identified";
+  if (county && county.types && county.types.length > 0) {
+    const typeSet  = new Set(county.types);
+    const minArr   = [];
+    if (typeSet.has("data_center")) minArr.push(6);
+    if (typeSet.has("ai"))          minArr.push(8);
+    if (typeSet.has("water"))       minArr.push(14);
+    if (typeSet.has("energy"))      minArr.push(14);
+    if (typeSet.has("crypto"))      minArr.push(18);
+    if (minArr.length) {
+      scopePts = Math.min(...minArr);
+      if (county.types.length > 2) scopePts = Math.max(0, scopePts - 3);
+    }
+    scopeNote = county.types.map(t => TYPE_LABELS[t] || t).join(", ");
+  }
+
+  const score = regPts + polPts + scopePts;
+  const grade = score >= 80 ? "A" : score >= 65 ? "B" : score >= 45 ? "C" : score >= 25 ? "D" : "F";
+  const label = { A: "Highly Suitable", B: "Suitable", C: "Proceed with Caution", D: "High Risk", F: "Not Suitable" }[grade];
+  return {
+    score, grade, label,
+    factors: [
+      { name: "Regulatory Environment", pts: regPts,   max: 50, note: regNote  },
+      { name: "Political Climate",       pts: polPts,   max: 30, note: polNote  },
+      { name: "Restriction Scope",       pts: scopePts, max: 20, note: scopeNote },
+    ],
+  };
+}
+
+function buildSuitabilityHtml(fips, county) {
+  const s = computeSuitabilityScore(fips, county);
+  const barsHtml = s.factors.map(f => {
+    const pct = Math.round((f.pts / f.max) * 100);
+    return `<div class="suit-factor">
+      <div class="suit-factor-meta">
+        <span class="suit-factor-name">${escHtml(f.name)}</span>
+        <span class="suit-factor-pts">${f.pts}<span class="suit-factor-max"> / ${f.max}</span></span>
+      </div>
+      <div class="suit-bar-track"><div class="suit-bar-fill suit-bar-${s.grade}" style="width:${pct}%"></div></div>
+      <div class="suit-factor-note">${escHtml(f.note)}</div>
+    </div>`;
+  }).join("");
+  return `<div class="suit-section">
+    <div class="suit-section-header">
+      <span class="suit-section-title">Suitability Score</span>
+      <span class="ds-badge ds-estimated" title="Algorithmically estimated from regulatory and political signals. Not a professional site assessment.">Estimated</span>
+    </div>
+    <div class="suit-hero">
+      <span class="suit-grade suit-grade-${s.grade}">${s.grade}</span>
+      <div class="suit-hero-meta">
+        <span class="suit-score-label">${escHtml(s.label)}</span>
+        <span class="suit-score-num">${s.score}<span class="suit-score-denom"> / 100</span></span>
+      </div>
+    </div>
+    ${barsHtml}
+    <p class="suit-disclaimer">Estimated from restriction severity, political risk signals, and restriction scope. Not a professional site assessment.</p>
+  </div>`;
+}
+
 function buildCountyPolicySectionHtml(fips, county) {
   const sevKey = getSeverityKey(county);
   const level  = county.level;
@@ -2490,6 +3903,7 @@ function buildPoliticalRiskSectionHtml(fips) {
   return `<div class="risk-section">
     <div class="risk-section-header">
       <span class="risk-section-title">Political Risk</span>
+      <span class="ds-badge ds-estimated" title="Algorithmically estimated from documented political signals" style="margin-left:4px;">Estimated</span>
       ${confTag}
     </div>
     ${badge}
@@ -2507,8 +3921,13 @@ function setSevClass(key) {
 function setDetailEmpty() {
   setSevClass(null);
   setLocationHash(null);
+  _clearProximityCircle();
   document.getElementById("detail-header").querySelector("h2").textContent = "County Details";
   document.getElementById("detail-state").textContent = "";
+  _saveCurrentType = null;
+  _saveCurrentId   = null;
+  _saveCurrentData = null;
+  _updateDetailSaveBtn();
   document.getElementById("detail-body").innerHTML = `
     <div id="detail-empty">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -2517,16 +3936,140 @@ function setDetailEmpty() {
       <p>${window.matchMedia("(pointer: coarse)").matches ? "Tap" : "Click"} any county on the map to see statewide, county, and city regulations.</p>
     </div>`;
   closeMobileSheet();
+  window.RESULTS_PANEL?.highlightFips(null);
+}
+
+function _renderProximitySectionForCounty(fips) {
+  const placeholder = document.getElementById("detail-proximity-section");
+  if (!placeholder) return;
+
+  const layer = countyLayerByFips[fips];
+  const center = layer ? layer.getBounds().getCenter() : null;
+
+  function render(radius) {
+    _proximityRadius = radius;
+    if (center) _setProximityCircle(center, radius || 0);
+    const radiusOpts = [0, 25, 50, 100];
+    const chips = radiusOpts.map(r => {
+      const label = r === 0 ? "Off" : `${r} mi`;
+      return `<button class="spatial-radius-chip${r === radius ? " active" : ""}" data-radius="${r}">${label}</button>`;
+    }).join("");
+    const bodyHtml = radius > 0
+      ? `<div class="nearby-facilities-list">${_buildNearbyFacilitiesHtml(fips, radius)}</div>`
+      : "";
+    placeholder.innerHTML = `
+      <div class="divider"></div>
+      <div class="detail-section">
+        <div class="detail-label">Proximity Ring</div>
+        <div class="spatial-radius-row">${chips}</div>
+        ${bodyHtml}
+      </div>`;
+    placeholder.querySelectorAll(".spatial-radius-chip").forEach(btn => {
+      btn.addEventListener("click", () => render(Number(btn.dataset.radius)));
+    });
+  }
+
+  render(_proximityRadius);
+}
+
+async function _renderZoningSummaryForCounty(fips) {
+  if (!window.ZONING?.hasCoverage(fips)) return;
+  const placeholder = document.getElementById("detail-zoning-summary");
+  if (!placeholder) return;
+
+  placeholder.innerHTML = '<div class="zoning-summary-loading">Loading zoning data…</div>';
+
+  let data;
+  try {
+    data = await window.ZONING.loadByFips(fips);
+  } catch (_) {
+    placeholder.innerHTML = '<div class="zoning-summary-error">Zoning data unavailable.</div>';
+    return;
+  }
+  if (!data) { placeholder.innerHTML = ""; return; }
+
+  const districts = data.districts || {};
+  const rows = Object.values(districts).map(d => {
+    const assess = window.ZONING.assessmentStyle(d.dc_analysis?.overall_assessment);
+    const conf   = d.dc_analysis?.confidence_level || d.confidence_level || "low";
+    return `<div class="zoning-summary-row">
+      <code class="zoning-district-code">${escHtml(d.district_code)}</code>
+      <span class="${assess.cls} zoning-assess-chip">${escHtml(assess.icon)} ${escHtml(assess.label)}</span>
+      <span class="zoning-conf">${escHtml(conf)}</span>
+    </div>`;
+  }).join("");
+
+  const disclaimer = data.disclaimer ||
+    "Zoning information is provided for preliminary research only. Confirm all requirements with the controlling jurisdiction before relying on this information.";
+
+  placeholder.innerHTML = `
+    <div class="divider"></div>
+    <div class="detail-section">
+      <div class="detail-label">Zoning — DC Eligibility <span class="ds-badge ds-partial" title="Pilot coverage — partial district data">Partial</span></div>
+      <div class="detail-value zoning-summary-table">${rows}</div>
+      <div class="zoning-summary-disclaimer">${escHtml(disclaimer)}</div>
+      <button class="zoning-open-btn">View full zoning details →</button>
+    </div>`;
+
+  placeholder.querySelector(".zoning-open-btn")?.addEventListener("click", () => {
+    setLayerVisible("zoning_districts", true, true);
+  });
+}
+
+/* ── Save button helpers ── */
+async function _refreshSavedCache() {
+  if (!window.AUTH || window.AUTH.state !== 'signedIn') {
+    _savedCountySet   = new Set();
+    _savedFacilitySet = new Set();
+    return;
+  }
+  const [counties, facilities] = await Promise.all([
+    window.AUTH.getSavedItems('county'),
+    window.AUTH.getSavedItems('facility')
+  ]);
+  _savedCountySet   = new Set((counties   || []).map(i => i.item_id));
+  _savedFacilitySet = new Set((facilities || []).map(i => i.item_id));
+}
+
+function _updateDetailSaveBtn() {
+  const btn = document.getElementById('detail-save-btn');
+  if (!btn) return;
+  if (!_saveCurrentType || !_saveCurrentId) { btn.hidden = true; return; }
+  const auth     = window.AUTH;
+  const signedIn = auth && auth.state === 'signedIn';
+  const savedSet = _saveCurrentType === 'county' ? _savedCountySet : _savedFacilitySet;
+  const isSaved  = signedIn && savedSet.has(_saveCurrentId);
+  const svgEmpty = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>`;
+  const svgFill  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>`;
+  btn.hidden    = false;
+  btn.innerHTML = isSaved ? svgFill : svgEmpty;
+  btn.classList.toggle('detail-save-btn-saved', isSaved);
+  if (!signedIn) {
+    btn.setAttribute('title', 'Sign in to save');
+    btn.setAttribute('aria-label', 'Sign in to save');
+  } else if (isSaved) {
+    btn.setAttribute('title', 'Remove from saved');
+    btn.setAttribute('aria-label', 'Remove from saved');
+  } else {
+    btn.setAttribute('title', 'Save to account');
+    btn.setAttribute('aria-label', 'Save to account');
+  }
 }
 
 function setDetailCounty(fips, county) {
   setSevClass(getSeverityKey(county));
   document.getElementById("detail-header").querySelector("h2").textContent = county.name;
   document.getElementById("detail-state").textContent = county.state;
+  _saveCurrentType = 'county';
+  _saveCurrentId   = fips;
+  _saveCurrentData = { name: county.name, state: county.state, level: county.level };
+  _updateDetailSaveBtn();
 
   const stateFips2 = fips.slice(0, 2);
 
   document.getElementById("detail-body").innerHTML = `
+    ${buildSuitabilityHtml(fips, county)}
+    <div class="policy-divider"></div>
     ${buildStatePolicySectionHtml(stateFips2)}
     <div class="policy-divider"></div>
     ${buildCountyPolicySectionHtml(fips, county)}
@@ -2534,16 +4077,32 @@ function setDetailCounty(fips, county) {
     ${buildCityPolicySectionHtml()}
     <div class="policy-divider"></div>
     ${buildPoliticalRiskSectionHtml(fips)}
-    ${buildSampleInfraHtml(fips)}`;
+    ${buildSampleInfraHtml(fips)}
+    <div id="detail-proximity-section"></div>
+    <div id="detail-zoning-summary"></div>`;
   openMobileSheet();
+  _renderProximitySectionForCounty(fips);
+  _renderZoningSummaryForCounty(fips);
 }
 
 function setDetailNoRestriction(name, state, fips) {
   setSevClass("none");
   document.getElementById("detail-header").querySelector("h2").textContent = name || "County";
   document.getElementById("detail-state").textContent = state || "";
+  if (fips) {
+    _saveCurrentType = 'county';
+    _saveCurrentId   = fips;
+    _saveCurrentData = { name: name || '', state: state || '', level: 0 };
+  } else {
+    _saveCurrentType = null;
+    _saveCurrentId   = null;
+    _saveCurrentData = null;
+  }
+  _updateDetailSaveBtn();
   const stateFips2 = fips ? fips.slice(0, 2) : null;
   document.getElementById("detail-body").innerHTML = `
+    ${fips ? buildSuitabilityHtml(fips, null) : ""}
+    ${fips ? '<div class="policy-divider"></div>' : ""}
     ${stateFips2 ? buildStatePolicySectionHtml(stateFips2) : ""}
     ${stateFips2 ? '<div class="policy-divider"></div>' : ""}
     ${buildNoCountyPolicySectionHtml()}
@@ -2551,8 +4110,12 @@ function setDetailNoRestriction(name, state, fips) {
     ${buildCityPolicySectionHtml()}
     <div class="policy-divider"></div>
     ${fips ? buildPoliticalRiskSectionHtml(fips) : ""}
-    ${fips ? buildSampleInfraHtml(fips) : ""}`;
+    ${fips ? buildSampleInfraHtml(fips) : ""}
+    ${fips ? '<div id="detail-proximity-section"></div>' : ""}
+    ${fips ? '<div id="detail-zoning-summary"></div>' : ""}`;
   openMobileSheet();
+  if (fips) _renderProximitySectionForCounty(fips);
+  if (fips) _renderZoningSummaryForCounty(fips);
 }
 
 const FACILITY_KIND_LABELS = {
@@ -2563,10 +4126,55 @@ const FACILITY_KIND_LABELS = {
 };
 
 function setDetailFacility(facility, kind) {
+  /* ── Coordinate county outline selection ── */
+  if (selectedFips && countyLayerByFips[selectedFips]) {
+    countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
+  }
+  selectedFips = facility.county_fips || null;
+  if (selectedFips) {
+    setLocationHash(selectedFips);
+    if (countyLayerByFips[selectedFips]) {
+      countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
+      countyLayerByFips[selectedFips].bringToFront();
+    }
+  }
+
   setSevClass(null);
   document.getElementById("detail-header").querySelector("h2").textContent = facility.name;
   document.getElementById("detail-state").textContent = FACILITY_KIND_LABELS[kind] || "";
+  _saveCurrentType = 'facility';
+  _saveCurrentId   = facility.id || facility.name;
+  _saveCurrentData = { name: facility.name, kind: kind, county_fips: facility.county_fips || '' };
+  _updateDetailSaveBtn();
   const county = mapData[facility.county_fips];
+
+  const reg = (window.LAYER_REGISTRY || []).find(r => r.id === kind) || {};
+  const statusCfg = _dataStatusConfig(reg.data_status);
+  const dataQualityHtml = reg.data_status ? `
+    <div class="detail-section data-quality-notice">
+      <div class="detail-label">Data Quality</div>
+      <div class="detail-value">
+        <span class="ds-badge ds-${reg.data_status}" title="${escHtml(statusCfg.title)}">${statusCfg.label}</span>
+        ${reg.source_name ? `<span class="dq-source">${escHtml(reg.source_name)}</span>` : ""}
+        ${reg.disclaimer  ? `<div class="layer-data-disclaimer">${escHtml(reg.disclaimer)}</div>` : ""}
+      </div>
+    </div>` : "";
+
+  /* ── County context block ── */
+  const countyContextHtml = county ? (() => {
+    const sevKey   = getSeverityKey(county);
+    const sevLabel = SEVERITY[sevKey].label;
+    return `
+    <div class="divider"></div>
+    <div class="detail-section">
+      <div class="detail-label">County Regulatory Context</div>
+      <div class="detail-value" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <span class="restriction-badge badge-${sevKey}" style="font-size:10px;padding:2px 7px;margin:0;">${escHtml(sevLabel)}</span>
+        <span style="font-size:11px;color:var(--text-muted);">${escHtml(county.name)}, ${escHtml(county.state)}</span>
+      </div>
+      <button class="zoning-open-btn" data-action="view-county" data-fips="${escHtml(facility.county_fips)}" style="margin-top:6px;">View county details →</button>
+    </div>`;
+  })() : "";
 
   document.getElementById("detail-body").innerHTML = `
     ${facility.operator  ? `<div class="detail-section"><div class="detail-label">Operator</div><div class="detail-value">${escHtml(facility.operator)}</div></div>` : ""}
@@ -2576,7 +4184,6 @@ function setDetailFacility(facility, kind) {
     ${facility.year_planned ? `<div class="detail-section"><div class="detail-label">Target Year</div><div class="detail-value">${facility.year_planned}</div></div>` : ""}
     ${facility.type      ? `<div class="detail-section"><div class="detail-label">Type</div><div class="detail-value" style="text-transform:capitalize;">${facility.type}</div></div>` : ""}
     ${facility.notes     ? `<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(facility.notes)}</div></div>` : ""}
-    ${county ? `<div class="detail-section"><div class="detail-label">County</div><div class="detail-value">${escHtml(county.name)}, ${escHtml(county.state)}</div></div>` : ""}
     ${facility.sources && facility.sources.length ? `<div class="detail-section"><div class="detail-label">Sources</div><ul class="sources-list">${facility.sources.map(s => {
       if (s && typeof s === "object" && s.url) {
         const isGov = GOV_URL_RE.test(s.url);
@@ -2584,7 +4191,15 @@ function setDetailFacility(facility, kind) {
         return `<li>${govBadge}<a href="${escHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escHtml(s.label)}</a></li>`;
       }
       return `<li>${escHtml(typeof s === "string" ? s : s.label || "")}</li>`;
-    }).join("")}</ul></div>` : ""}`;
+    }).join("")}</ul></div>` : ""}
+    ${dataQualityHtml}
+    ${countyContextHtml}`;
+
+  document.getElementById("detail-body").querySelector("[data-action='view-county']")
+    ?.addEventListener("click", e => {
+      selectCounty(e.currentTarget.dataset.fips);
+    });
+
   openMobileSheet();
 }
 
@@ -2613,12 +4228,24 @@ function setLocationHash(fips) {
 function restoreFromHash() {
   const hash = window.location.hash.slice(1); // strip leading #
 
-  // Share-view format: #@lat,lng,zoom  (set by shareCurrentView())
+  // Full GIS state share link: #s=<base64url>
+  const sMatch = hash.match(/^s=(.+)$/);
+  if (sMatch && leafletMap) {
+    const obj = _decodeShareState(sMatch[1]);
+    if (obj) {
+      switchTab("map");
+      if (leafletMap) leafletMap.invalidateSize();
+      _applyShareState(obj);
+      return !!(obj.f);
+    }
+  }
+
+  // Legacy share-view format: #@lat,lng,zoom
   const viewMatch = hash.match(/^@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?),(\d+)$/);
   if (viewMatch && leafletMap) {
     switchTab("map");
     leafletMap.setView([parseFloat(viewMatch[1]), parseFloat(viewMatch[2])], parseInt(viewMatch[3]));
-    return false; // view restored but no county selected
+    return false;
   }
 
   // County FIPS permalink: #12345
@@ -2658,6 +4285,11 @@ function initKbOverlay() {
     <div class="kb-section">Map Tools</div>
     <div class="kb-row"><span class="kb-desc">Toggle fullscreen</span><span class="kb-keys"><kbd>F</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Toggle measure mode</span><span class="kb-keys"><kbd>M</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Toggle polygon draw</span><span class="kb-keys"><kbd>D</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Drop candidate site pin</span><span class="kb-keys"><kbd>P</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Toggle results panel</span><span class="kb-keys"><kbd>L</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Workspaces panel</span><span class="kb-keys"><kbd>W</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Compare counties</span><span class="kb-keys"><kbd>C</kbd></span></div>
     <div class="kb-section">General</div>
     <div class="kb-row"><span class="kb-desc">Show this help</span><span class="kb-keys"><kbd>?</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Close / dismiss</span><span class="kb-keys"><kbd>Esc</kbd></span></div>
@@ -2755,6 +4387,7 @@ function selectCounty(fips) {
     const stAbbr = STATE_FIPS[fips.slice(0, 2)] || "";
     setDetailNoRestriction(null, stAbbr, fips);
   }
+  window.RESULTS_PANEL?.highlightFips(fips);
 }
 
 /* ── Search ── */
@@ -2878,6 +4511,34 @@ function syncAdvancedFilterUI() {
   // Sync state select
   const stSel = document.getElementById("adv-state-select");
   if (stSel) stSel.value = activeStateFilter;
+  // Sync type chips
+  document.querySelectorAll("#adv-type-chips .adv-chip").forEach(chip => {
+    chip.classList.toggle("active", activeTypeFilters.has(chip.dataset.type));
+  });
+  // Sync type mode toggle
+  document.querySelectorAll(".adv-mode-opt").forEach(opt => {
+    opt.classList.toggle("active", opt.dataset.val === typeFilterMode);
+  });
+  // Sync status chips
+  document.querySelectorAll("#adv-status-chips .adv-chip").forEach(chip => {
+    chip.classList.toggle("active", activeStatusFilters.has(chip.dataset.status));
+  });
+  // Sync date filter
+  const _dcb = document.getElementById("adv-date-enabled");
+  const _dsl = document.getElementById("adv-date-slider");
+  const _dsw = document.getElementById("adv-date-slider-wrap");
+  const _ddp = document.getElementById("adv-date-display");
+  if (_dcb) {
+    const active = activeDateFilter !== null;
+    _dcb.checked = active;
+    if (_dsw) _dsw.hidden = !active;
+    if (active) {
+      if (_dsl) _dsl.value = activeDateFilter;
+      if (_ddp) { _ddp.textContent = `≤ ${activeDateFilter}`; _ddp.hidden = false; }
+    } else {
+      if (_ddp) _ddp.hidden = true;
+    }
+  }
   // Sync clear button visibility
   const clearBtn = document.getElementById("adv-filter-clear");
   if (clearBtn) clearBtn.hidden = !hasActiveMapFilters();
@@ -2885,7 +4546,8 @@ function syncAdvancedFilterUI() {
   const advBtn = document.getElementById("adv-filter-toggle");
   if (advBtn) {
     advBtn.classList.toggle("active", hasActiveMapFilters());
-    const filterCount = activeRestrictFilters.size + (activeStateFilter ? 1 : 0);
+    const filterCount = activeRestrictFilters.size + (activeStateFilter ? 1 : 0) +
+                        activeTypeFilters.size + activeStatusFilters.size;
     if (filterCount > 0) advBtn.setAttribute("data-count", filterCount);
     else advBtn.removeAttribute("data-count");
   }
@@ -2989,6 +4651,137 @@ function initAdvancedFiltersPanel() {
       btn.classList.toggle("active", layerState[def.id]);
     });
     scopeRow.appendChild(btn);
+  }
+
+  // Policy type chips + AND/OR mode toggle
+  const typeRow = document.getElementById("adv-type-chips");
+  if (typeRow) {
+    const typeDefs = [
+      { key: "data_center", color: "#5b8def" },
+      { key: "ai",          color: "#a78bfa" },
+      { key: "crypto",      color: "#fbbf24" },
+      { key: "energy",      color: "#34d399" },
+      { key: "water",       color: "#60a5fa" },
+    ];
+    for (const def of typeDefs) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "adv-chip" + (activeTypeFilters.has(def.key) ? " active" : "");
+      btn.dataset.type = def.key;
+      btn.innerHTML = `<span class="adv-chip-dot" style="background:${def.color}"></span>${TYPE_LABELS[def.key] || def.key}`;
+      btn.addEventListener("click", () => {
+        if (activeTypeFilters.has(def.key)) activeTypeFilters.delete(def.key);
+        else activeTypeFilters.add(def.key);
+        applyFilters();
+      });
+      typeRow.appendChild(btn);
+    }
+  }
+
+  // AND/OR mode toggle for type filter
+  const modeToggle = document.getElementById("adv-type-mode-toggle");
+  if (modeToggle) {
+    modeToggle.querySelectorAll(".adv-mode-opt").forEach(opt => {
+      opt.addEventListener("click", () => {
+        typeFilterMode = opt.dataset.val;
+        applyFilters();
+      });
+    });
+  }
+
+  // Lifecycle status chips
+  const statusRow = document.getElementById("adv-status-chips");
+  if (statusRow) {
+    const statusDefs = [
+      { key: "active",   color: "#4ade80" },
+      { key: "proposed", color: "#eab308" },
+      { key: "pending",  color: "#f97316" },
+    ];
+    for (const def of statusDefs) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "adv-chip" + (activeStatusFilters.has(def.key) ? " active" : "");
+      btn.dataset.status = def.key;
+      btn.innerHTML = `<span class="adv-chip-dot" style="background:${def.color}"></span>${STATUS_LABELS[def.key] || def.key}`;
+      btn.addEventListener("click", () => {
+        if (activeStatusFilters.has(def.key)) activeStatusFilters.delete(def.key);
+        else activeStatusFilters.add(def.key);
+        applyFilters();
+      });
+      statusRow.appendChild(btn);
+    }
+  }
+
+  // Quick presets
+  const presetsRow = document.getElementById("adv-presets");
+  if (presetsRow) {
+    const PRESETS = [
+      { label: "Active Bans",      restrict: ["ban"],                status: ["active"],   types: [],           typeMode: "any" },
+      { label: "High Risk Active", restrict: ["ban","high"],          status: ["active"],   types: [],           typeMode: "any" },
+      { label: "Proposed Only",    restrict: ["proposed"],            status: ["proposed"], types: [],           typeMode: "any" },
+      { label: "AI Rules",         restrict: [],                      status: [],           types: ["ai"],       typeMode: "any" },
+    ];
+    for (const preset of PRESETS) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "adv-chip adv-preset-chip";
+      btn.textContent = preset.label;
+      btn.title = "Apply filter preset: " + preset.label;
+      btn.addEventListener("click", () => {
+        activeRestrictFilters.clear();
+        preset.restrict.forEach(k => activeRestrictFilters.add(k));
+        activeStateFilter = "";
+        activeTypeFilters.clear();
+        preset.types.forEach(t => activeTypeFilters.add(t));
+        activeStatusFilters.clear();
+        preset.status.forEach(s => activeStatusFilters.add(s));
+        typeFilterMode = preset.typeMode;
+        applyFilters();
+      });
+      presetsRow.appendChild(btn);
+    }
+  }
+
+  // Date filter (Enacted By Year)
+  const dateCheckbox  = document.getElementById("adv-date-enabled");
+  const dateSliderWrap = document.getElementById("adv-date-slider-wrap");
+  const dateSlider    = document.getElementById("adv-date-slider");
+  const dateDisplay   = document.getElementById("adv-date-display");
+
+  function _syncDateSliderDisplay() {
+    if (!dateSlider || !dateDisplay) return;
+    const yr = dateSlider.value;
+    dateDisplay.textContent = `≤ ${yr}`;
+    dateDisplay.hidden = false;
+  }
+
+  function _applyDateFilter() {
+    if (!dateCheckbox || !dateSlider) return;
+    if (dateCheckbox.checked) {
+      activeDateFilter = dateSlider.value;
+      _syncDateSliderDisplay();
+    } else {
+      activeDateFilter = null;
+      if (dateDisplay) dateDisplay.hidden = true;
+    }
+    applyFilters();
+  }
+
+  if (dateCheckbox) {
+    // Restore state from activeDateFilter if already set (e.g. loaded from storage)
+    if (activeDateFilter) {
+      dateCheckbox.checked = true;
+      if (dateSlider) dateSlider.value = activeDateFilter;
+      _syncDateSliderDisplay();
+      if (dateSliderWrap) dateSliderWrap.hidden = false;
+    }
+    dateCheckbox.addEventListener("change", () => {
+      if (dateSliderWrap) dateSliderWrap.hidden = !dateCheckbox.checked;
+      _applyDateFilter();
+    });
+  }
+  if (dateSlider) {
+    dateSlider.addEventListener("input", _applyDateFilter);
   }
 
 }
@@ -3562,11 +5355,15 @@ function initThemeToggle() {
 
 /* ── Init ── */
 async function init() {
+  _loadLayerGroupState();
+  _loadFilterState();
   initThemeToggle();
   initNavTabs();
   initKeyboardShortcuts();
 
-  const hasHashFips = /^\d{5}$/.test(window.location.hash.replace("#", ""));
+  const _rawHash    = window.location.hash.slice(1);
+  const hasHashFips = /^\d{5}$/.test(_rawHash);
+  const hasHashShare = /^s=/.test(_rawHash);
 
   // Always show home immediately — skeleton renders while data loads.
   // This prevents the map loading spinner from blocking the UI even when
@@ -3595,6 +5392,7 @@ async function init() {
     renderNewsStatusBar(newsData);
     setLastUpdated(data);
     renderDashboard(data);
+    initDashboardScopeBar();
 
     // If URL had a FIPS hash, initialize the map silently while home stays
     // visible — #main is hidden so the loading spinner never shows.
@@ -3602,7 +5400,7 @@ async function init() {
     // so by the time loadCoreData() finished the geo file may be ready or close.
     // When initMapFromGeo() resolves, restoreFromHash() snaps to the map
     // and county instantly with no loading overlay.
-    if (hasHashFips) {
+    if (hasHashFips || hasHashShare) {
       await initMapFromGeo();
       restoreFromHash();
     }

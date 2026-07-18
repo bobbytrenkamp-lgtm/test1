@@ -5,6 +5,579 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 17 — Export and reporting
+
+Files Modified:
+- `index.html`:
+  - Expanded `#gis-export` toolbar button to an `aria-haspopup` trigger with `aria-expanded`
+  - Added `#export-menu` dropdown (fixed-position, role="menu") with three `<button class="exp-item">` items: CSV, GeoJSON, Data Report
+  - Added `#workspace-io` div inside `#workspace-footer` with Export JSON / Import JSON buttons and hidden `<input type="file" accept=".json" id="workspace-import-file">`
+  - Bumped style.css to `?v=20260718o`, map.js to `?v=20260718q`
+- `css/style.css`:
+  - `#export-menu`, `.exp-item` — fixed-position dropdown menu for export options
+  - `#workspace-io`, `#workspace-export-btn`, `#workspace-import-btn` — footer row for workspace file I/O
+  - Workspace footer set to `flex-wrap: wrap` so the I/O row wraps below the save row
+- `js/map.js`:
+  - `exportCountiesGeoJSON()` — iterates `countyGeoLayer.getLayers()`, filters to counties with restriction data matching current filters, builds a GeoJSON FeatureCollection with polygon geometry + restriction properties + suitability score, downloads as `.geojson`
+  - `_toggleExportMenu()` — toggles `#export-menu` visibility; positions menu via `getBoundingClientRect()` + `position:fixed` to avoid any clipping from parent overflow
+  - `openPrintReport()` — builds a complete standalone HTML page (print-friendly CSS, data table: FIPS/County/State/Severity/Status/Types/Enacted/Suitability Score) and opens it in a new window, then calls `window.print()` after 600 ms. Pop-up blocked case toasts the user. Includes filter summary, county count, and disclaimer footer.
+  - `exportWorkspacesJSON()` — downloads `_loadWsList()` as a pretty-printed JSON file
+  - `importWorkspacesJSON(file)` — reads file via `FileReader`, validates array, merges by ID (skips duplicates), re-saves and re-renders workspace list
+  - `initLeafletMap()` wiring: `#gis-export` → `_toggleExportMenu`; `#exp-csv` → CSV; `#exp-geojson` → GeoJSON; `#exp-report` → report; `#workspace-export-btn` / `#workspace-import-btn` / `#workspace-import-file` wired; close-on-outside-click listener for `#export-menu`
+  - `#export-menu` added to `disableClickPropagation` list
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 16 — Explainable suitability scoring
+
+Files Modified:
+- `index.html`:
+  - Bumped style.css to `?v=20260718n`, map.js to `?v=20260718p`
+- `css/style.css`:
+  - `.suit-section`, `.suit-section-header`, `.suit-section-title` — section wrapper and header
+  - `.suit-hero`, `.suit-grade`, `.suit-grade-A/B/C/D/F` — large grade badge (44×44 px, color-coded) + score meta row
+  - `.suit-hero-meta`, `.suit-score-label`, `.suit-score-num` — label ("Highly Suitable") and numeric score
+  - `.suit-factor`, `.suit-factor-meta`, `.suit-factor-name`, `.suit-factor-pts`, `.suit-factor-max` — per-factor row layout
+  - `.suit-bar-track`, `.suit-bar-fill`, `.suit-bar-A/B/C/D/F` — animated progress bars per factor
+  - `.suit-factor-note`, `.suit-disclaimer` — factor explanation text and disclaimer
+  - `.cmp-suit-grade`, `.cmp-suit-A/B/C/D/F` — small inline grade badge for compare panel columns
+- `js/map.js`:
+  - `computeSuitabilityScore(fips, county)` — 3-factor model:
+    1. Regulatory Environment (0–50 pts): based on `getSeverityKey()` → pro=50, none=45, proposed=30, moderate=18, high=6, ban=0
+    2. Political Climate (0–30 pts): based on `politicalRiskData[fips].risk_score` (1→30, 2→24, 3→16, 4→8, 5→2; no data→20 neutral)
+    3. Restriction Scope (0–20 pts): based on `county.types` set membership (data_center→6, ai→8, water/energy→14, crypto→18; no types→20; >2 types subtracts 3)
+    Grade: A≥80, B≥65, C≥45, D≥25, F<25. Returns `{score, grade, label, factors}`.
+  - `buildSuitabilityHtml(fips, county)` — renders the suitability card: grade badge, score/label hero row, one animated bar per factor with note, disclaimer. Uses `escHtml()` throughout. Safe to call with `county = null` for unrestricted counties.
+  - `setDetailCounty()` — prepends `buildSuitabilityHtml(fips, county)` at top of detail body
+  - `setDetailNoRestriction()` — prepends `buildSuitabilityHtml(fips, null)` when `fips` is present (county with no known restrictions scores A)
+  - `renderComparePanel()` — adds "Suitability" field as first row in each compare column (grade badge + score + label)
+
+Scoring rationale: Counties with no known restrictions and neutral political climate score 85/100 (A). A county with an active moratorium, high political risk, and data_center-type restrictions scores 0+2+6=8/100 (F). Score is labeled "Estimated" and disclaimed as non-professional.
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 15 — County comparison tool
+
+Files Modified:
+- `index.html`:
+  - Added `#gis-compare` toolbar button (two-columns SVG icon, before `#gis-workspace`)
+  - Added `#compare-panel` with header (title, hint, clear-all + close actions) and `#compare-body`
+  - Bumped style.css to `?v=20260718m`, map.js to `?v=20260718o`
+- `css/style.css`:
+  - `#compare-panel` — absolute positioned bottom-of-`#main`, slides up via `transform: translateY(100%)` → `translateY(0)` transition; hidden via `[hidden]` attribute
+  - `.cmp-col`, `.cmp-col-header`, `.cmp-col-fips`, `.cmp-col-type`, `.cmp-row`, `.cmp-label`, `.cmp-value`, `.cmp-remove` — column-based comparison card layout
+  - `#main.compare-active #map-container` — `cursor: crosshair` while compare mode is on
+  - Added `#compare-panel` to mobile overlay and touch-action disablement lists
+- `js/map.js`:
+  - `compareMode` — boolean, true when compare mode is active
+  - `compareCounties` — ordered array of FIPS strings (max 5)
+  - `CMP_MAX = 5` — maximum counties to compare simultaneously
+  - `renderComparePanel()` — builds side-by-side columns with severity, level, status, type, state, pop, restrictions, restrictions_detail; uses `escHtml()` throughout; safe DOM construction (no innerHTML with user data)
+  - `addToCompare(fips)` — adds county to array, toasts duplicate/full, re-renders; called by `handleCountyClick` when `compareMode` is true
+  - `removeFromCompare(fips)` — splices county out, re-renders (clears mode if array empties)
+  - `clearCompare()` — empties array, exits compare mode
+  - `toggleComparePanel()` — toggles `compareMode`, panel visibility, `#gis-compare` active state, and `#main.compare-active` class
+  - `handleCountyClick()` — compare-mode branch: calls `addToCompare(fips)` and returns early, skipping normal county selection
+  - `initLeafletMap()` keyboard handler — `C` key → `toggleComparePanel()`; Escape closes compare panel when open
+  - Event wiring: `#gis-compare` → `toggleComparePanel`, `#compare-close-btn` → `toggleComparePanel`, `#compare-clear-btn` → `clearCompare`
+  - `disableClickPropagation` — added `"compare-panel"` to list
+  - `disableScrollPropagation` — added `"compare-body"` to list
+  - Keyboard overlay — added `C` → "Compare counties" entry under Map Tools
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 14 — Time-based analysis (enacted-by-year slider)
+
+Files Modified:
+- `index.html`:
+  - Added "Enacted By Year" section to `#adv-filter-body` (before Quick Presets): checkbox toggle, range slider (2000–2026, step 1), year labels row, and `#adv-date-display` badge
+  - Bumped style.css to `?v=20260718l`, map.js to `?v=20260718n`
+- `css/style.css`:
+  - `.adv-date-toggle-label` — flex checkbox + uppercase label
+  - `#adv-date-display` — accent-colored year badge (e.g. "≤ 2020"), hidden when filter is off
+  - `#adv-date-slider-wrap` / `#adv-date-track` / `#adv-date-slider` — slider container and range input
+  - `#adv-date-range-labels` — evenly-spaced year tick labels below the slider
+- `js/map.js`:
+  - `activeDateFilter` — new filter state var: null (off) or 4-digit year string
+  - `countyMatchesFilters(fips)` — added date check: county excluded only if it has an `effective_date` or `date` field whose year exceeds `activeDateFilter`; counties without a date field always pass (unknown enactment date)
+  - `hasActiveMapFilters()` — includes `activeDateFilter !== null`
+  - `clearAllFilters()` — resets `activeDateFilter = null`
+  - `_saveFilterState()` / `_loadFilterState()` — persists `dateFilter` to `dc-advanced-filters-v1` localStorage key
+  - `_captureWorkspaceState()` — includes `dateFilter: activeDateFilter` in workspace filters snapshot
+  - `_applyWorkspace()` — restores `activeDateFilter` from workspace `filters.dateFilter`
+  - `_encodeShareState()` — includes `df` field in share URL when `activeDateFilter` is set
+  - `_applyShareState()` — restores `activeDateFilter` from `obj.df`
+  - `initAdvancedFiltersPanel()` — wires checkbox toggle (show/hide slider, set `activeDateFilter`), range `input` event (update `activeDateFilter`, call `applyFilters()`); restores state from `activeDateFilter` on open
+  - `syncAdvancedFilterUI()` — syncs checkbox checked state, slider value, and display badge from `activeDateFilter`
+
+Data coverage: 529 of 1303 counties have `effective_date` fields; range 1998–2026 (peak 2019–2022). Counties without dates always show regardless of slider position.
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 13 — Dashboard scope selector (national / filtered / state / extent)
+
+Files Modified:
+- `index.html`:
+  - Added `<div id="dashboard-scope-bar" hidden>` (populated by JS on data load)
+  - Bumped style.css to `?v=20260718k`, map.js to `?v=20260718m`
+- `css/style.css`:
+  - `#dashboard-scope-bar` — flex row (5px 14px padding) matching the dashboard's collapse/hide behavior: transitions with `max-height` when `.top-hidden`, `display: none !important` in fullpage-mode
+  - `.dash-scope-label` — "SCOPE" uppercase eyebrow label
+  - `.dash-scope-chip` — pill chips (National / Filtered / State / Extent); accent fill for `.active`, disabled opacity for unavailable
+  - `#dash-scope-state-select` — compact dropdown (max-width 130px), shown only when State chip is active
+- `js/map.js`:
+  - `_dashScope` / `_dashScopeState` — scope mode and selected state abbreviation
+  - `_computeScopeCounties()` — returns scoped subset of `mapData`: national=all, filtered=`countyMatchesFilters()`, state=matching `.state` field, extent=counties whose layer centroid is inside `leafletMap.getBounds()`
+  - `updateDashboardScopedCards()` — calls `computeSeverityCounts()` on scoped data, re-animates Active Restrictions / Proposed Restrictions / States w/ Legislation cards via `animateCounter(…, 450ms)`
+  - `initDashboardScopeBar()` — renders the 4 scope chips and state dropdown from `mapData` state set; wires chip clicks → `activateScope()` → `updateDashboardScopedCards()`; shows state dropdown only when State scope is active
+  - `applyFilters()` — calls `updateDashboardScopedCards()` when `_dashScope === "filtered"` so counts auto-update when filters change
+  - `initLeafletMap()` — registers `leafletMap.on("moveend")` handler that calls `updateDashboardScopedCards()` when `_dashScope === "extent"` so counts auto-update as the user pans/zooms
+  - `init()` — calls `initDashboardScopeBar()` after `renderDashboard(data)`
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 12 — Shareable map state (compact URL encoding)
+
+Files Modified:
+- `index.html`:
+  - Bumped map.js to `?v=20260718l`
+- `js/map.js`:
+  - `_SHARE_LAYER_KEYS` — ordered array of all 15 layerState keys, used for layer bitmask encoding
+  - `_encodeShareState()` — serializes full GIS state: basemap (omitted if default "satellite"), layer visibility bitmask (integer, 1 bit per layer), restrictFilters/stateFilter/typeFilters/typeFilterMode/statusFilters (comma-joined, omitted if empty/default), map viewport (lat,lng,zoom), selectedFips; JSON → base64url (no padding)
+  - `_decodeShareState(encoded)` — base64url → JSON, returns null on any parse error
+  - `_applyShareState(obj)` — restores full GIS state from decoded object: `switchBasemap`, `setLayerVisible` for each layer, rebuilds all filter Sets, `applyFilters()`, `leafletMap.setView`, `selectCounty`
+  - `shareCurrentView()` — updated to produce `#s=<base64url>` URL (replaces old `#@lat,lng,zoom` format); backward compat maintained in `restoreFromHash()`
+  - `restoreFromHash()` — added `#s=...` branch as first check; legacy `#@lat,lng,zoom` kept as second; FIPS `#12345` kept as third
+  - `init()` — added `hasHashShare` check (`/^s=/.test(rawHash)`) so `#s=...` links pre-load the map on page load, same as FIPS links
+  - Keyboard shortcut overlay — added `W` / Workspaces panel row
+
+Encoding format:
+  - Hash: `#s=<base64url(JSON.stringify(compact))>`
+  - Compact object keys: `b` (basemap), `l` (layer bitmask), `v` (viewport), `rf` (restrictFilters), `sf` (stateFilter), `tf` (typeFilters), `tm` (typeFilterMode), `stf` (statusFilters), `f` (selectedFips)
+  - Omits keys with default/empty values to minimize URL length
+  - Forward-compatible: unknown keys in decoded object are silently ignored
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 11 — Workspaces (save/restore full GIS state)
+
+Files Modified:
+- `index.html`:
+  - Added `<button id="gis-workspace">` to GIS toolbar (after `#gis-bookmarks`)
+  - Added `#workspace-panel` HTML (after `#bookmarks-panel`): header, `#workspace-list`, footer with `#workspace-name-input` and `#workspace-save-btn`
+  - Bumped style.css to `?v=20260718j`, map.js to `?v=20260718k`
+- `css/style.css`:
+  - Added `#workspace-panel` — absolute-positioned panel (230px wide, top 14px, right 54px, z-index 450)
+  - Added `#workspace-header`, `#workspace-close`, `#workspace-list`, `.wsp-empty`, `.wsp-row`, `.wsp-load`, `.wsp-del` — panel body styles mirroring bookmarks pattern with `wsp-` class prefix
+  - Added `#workspace-footer` — flex row with name input + save button
+  - Added `#workspace-name-input` and `#workspace-save-btn` styles
+  - Added `#workspace-panel` to mobile overlay list and touch-action manipulation selectors
+- `js/map.js`:
+  - `_wsVisible`, `WS_LOCAL_KEY`, `WS_MAX_LOCAL` — workspace panel state
+  - `_generateWsId()` — unique timestamp+random ID for each workspace
+  - `_loadWsList()` / `_saveWsList(arr)` — read/write workspace array from `dc-workspaces-local-v1` localStorage
+  - `_captureWorkspaceState(name)` — snapshots basemap, all layerState keys, all filter sets/mode, map center+zoom, selectedFips, drawPoints array, drawAreaUnit
+  - `_applyWorkspace(ws)` — restores full GIS state: calls `switchBasemap()`, `setLayerVisible()` (with syncUI=true) for each layer, rebuilds filter Sets, calls `applyFilters()`, `leafletMap.setView()`, re-draws polygon, calls `selectCounty()` for stored fips
+  - `renderWorkspaceList()` — async; reads from Supabase (`AUTH.getSavedItems('workspace')`) if signed in, else localStorage; renders `wsp-row` divs with load/delete buttons using safe DOM construction (no innerHTML for user data)
+  - `saveCurrentWorkspace()` — reads name input (auto-generates name if blank), captures state, saves to Supabase or localStorage, re-renders list, shows toast
+  - `toggleWorkspaces()` — toggles `_wsVisible`, shows/hides panel, updates `#gis-workspace` aria-pressed, calls `renderWorkspaceList()` on open
+  - `initLeafletMap()` — wires `#gis-workspace`, `#workspace-close`, `#workspace-save-btn`, `#workspace-name-input` Enter key
+  - `initLeafletMap()` — added `"W"` keyboard shortcut for `toggleWorkspaces()`, `Escape` to close workspace panel
+  - `initLeafletMap()` — added `"workspace-panel"` to `disableClickPropagation` list, `"workspace-list"` to `disableScrollPropagation` list
+  - `auth:stateChange` listener — updated to also call `renderWorkspaceList()` when panel is open
+
+Security Notes:
+- Workspace names rendered with `textContent` (not innerHTML) — XSS-safe
+- `user_id` always read from Supabase server session via `AUTH.saveItem()` — never from DOM
+- Item type `"workspace"` stored in same `saved_items` table as counties/facilities, subject to same RLS
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 10 — Save Counties and Facilities
+
+Files Modified:
+- `index.html`:
+  - Added `<button id="detail-save-btn">` (bookmark icon) to `#detail-header`
+  - Bumped style.css to `?v=20260718i`, map.js to `?v=20260718j`
+- `css/style.css`:
+  - Changed `#detail-header` right padding from 20px to 48px to make room for the save button
+  - Added `.detail-save-btn` — absolute-positioned bookmark button (28×28px, top-right of detail header)
+  - Added `.detail-save-btn-saved` — filled bookmark icon in accent color when item is saved
+  - Added `.detail-save-btn:disabled` — 50% opacity while async save/remove is in progress
+- `js/map.js`:
+  - `_savedCountySet` / `_savedFacilitySet` — in-memory Sets of saved item IDs, refreshed on auth state change
+  - `_saveCurrentType` / `_saveCurrentId` / `_saveCurrentData` — track what the current panel is showing
+  - `_refreshSavedCache()` — async; fetches `AUTH.getSavedItems('county')` and `'facility'` in parallel; clears both Sets when signed out
+  - `_updateDetailSaveBtn()` — updates button icon, class, title, aria-label based on signed-in state and saved status; hides button when no item is loaded
+  - `setDetailCounty()` — sets `_saveCurrentType='county'`, `_saveCurrentId=fips`, `_saveCurrentData={name,state,level}`; calls `_updateDetailSaveBtn()`
+  - `setDetailNoRestriction()` — same as above when fips is provided; clears save state otherwise
+  - `setDetailFacility()` — sets `_saveCurrentType='facility'`, `_saveCurrentId=facility.id||facility.name`, `_saveCurrentData={name,kind,county_fips}`; calls `_updateDetailSaveBtn()`
+  - `setDetailEmpty()` — clears all `_saveCurrentX` vars; calls `_updateDetailSaveBtn()` to hide button
+  - `initLeafletMap()` — wires save button click: toggles `AUTH.saveItem()` / `AUTH.removeItem()`, updates Set, updates button; clicks `#auth-btn` when not signed in
+  - `initLeafletMap()` — listens to `auth:stateChange` to refresh save cache and update button
+  - `initMapFromGeo()` — calls `_refreshSavedCache()` after map init to pre-populate Sets if user is already signed in
+
+Features Implemented:
+- **Bookmark button in detail header**: visible whenever a county or facility is loaded; hidden on empty state
+- **Saved / unsaved state**: filled bookmark (accent color) = saved; hollow bookmark = unsaved
+- **Signed-out state**: button shown but clicking opens sign-in panel; tooltip says "Sign in to save"
+- **Graceful async UX**: button disabled during save/remove operation to prevent double-clicks
+- **Account panel integration**: saves made from the map appear in the account panel's Saved Counties / Watchlist sections when the saved tab is opened (existing `loadSavedItems()` picks them up)
+- **Security**: uses existing `window.AUTH.saveItem()` / `removeItem()` which enforce RLS via Supabase session; no sensitive data in localStorage; all user data rendered with textContent (no innerHTML injection)
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 9 — Map-linked Results Panel
+
+Files Modified/Created:
+- `js/results-panel.js` (new):
+  - IIFE singleton exposed as `window.RESULTS_PANEL`
+  - `update(mapData, filterFn)` — recomputes sorted list from filtered counties; updates title count; re-renders if panel is open
+  - `highlightFips(fips)` — marks row selected, auto-scrolls to center it in the viewport; clears previous selection
+  - `open()` / `close()` / `toggle()` — show/hide panel; `open()` fires `requestAnimationFrame` before first render so height is measured correctly
+  - `onRowClick(cb)` — sets callback called when a county row is clicked; map.js passes `selectCounty`
+  - Virtual scroll: 44px row height, ±6 row BUFFER; renders only visible rows + buffer as `position:absolute` elements inside a spacer-height container; re-renders on `scroll` event
+  - Sort: severity-desc (default), severity-asc, name-asc, name-desc, state-asc; sorted key persists to `results-sort` localStorage
+  - Resize handle: drag upward from top edge to expand panel; mousedown/touchstart + document mousemove/touchmove; height clamped to 80px–50vh; persisted to `results-panel-h` localStorage
+  - Row keyboard navigation: Enter/Space triggers row click
+- `css/results-panel.css` (new):
+  - `#map-area` — wraps `#map-container` + `#detail-panel` + `#zoning-panel` as a flex-row; `#main` is now `flex-direction: column`
+  - `#results-panel` — docked bottom panel, `flex-shrink: 0`, explicit height
+  - Resize handle with `ns-resize` cursor and a pill indicator
+  - Header row: title count, sort select, close button
+  - `.rp-row` — 44px virtual rows with dot/name/state/badge columns
+  - `.rp-badge-*` — severity-specific badge colors (dark + light theme variants)
+  - Mobile (≤700px): panel + `#gis-results` button both hidden
+  - Print: panel hidden
+- `index.html`:
+  - Wrapped `#map-container`, `#detail-panel`, `#zoning-panel` in `<div id="map-area">`
+  - Added `#results-panel` HTML (resize handle, header with sort select, body)
+  - Added `#gis-results` button (list icon, tooltip "Toggle results panel (L)")
+  - Added `<link>` for `css/results-panel.css?v=20260718a`
+  - Added `<script>` for `js/results-panel.js?v=20260718a`
+  - Bumped style.css to `?v=20260718h`, map.js to `?v=20260718i`
+- `js/map.js`:
+  - `applyFilters()` — calls `RESULTS_PANEL.update(mapData, filterFn)` at end
+  - `selectCounty(fips)` — calls `RESULTS_PANEL.highlightFips(fips)` at end
+  - `setDetailEmpty()` — calls `RESULTS_PANEL.highlightFips(null)` to clear highlight
+  - `initMapFromGeo()` — calls `RESULTS_PANEL.onRowClick(selectCounty)` + `RESULTS_PANEL.update(mapData, () => true)` after county layer is ready
+  - GIS toolbar: wired `#gis-results` → `RESULTS_PANEL.toggle()`
+  - Keyboard: `L` toggles results panel
+  - KB help panel: added L shortcut row
+
+Features Implemented:
+- **Dockable bottom results panel**: appears below the map on desktop; hidden on mobile
+- **Virtual scroll**: renders only visible rows (44px each), supports 3100+ counties smoothly
+- **Sort**: by severity (high-first default), name, or state; persisted to localStorage
+- **Row-map sync**: clicking a row selects the county on the map; selecting a county on the map scrolls the list to its row
+- **Drag resize**: drag handle at top edge; height min 80px, max 50vh; persisted
+- **Filter sync**: list updates whenever map filters change via `applyFilters()`
+- **Keyboard shortcut**: L to open/close
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 8 — Drawing and Measurement Tools
+
+Files Modified:
+- `js/map.js`:
+  1. New state vars: `drawMode`, `drawPoints`, `drawLayers`, `drawAreaUnit` (persisted to localStorage), `candidatePinMode`, `_candidatePin`
+  2. `_polygonAreaSqM(latlngs)` — spherical polygon area using the equal-area cylindrical formula (Shoelace on lat/sin-lat coordinates × R²), no external library
+  3. `_formatArea(sqM)` — formats area in the active unit (mi², km², or acres)
+  4. `_updateDrawReadout()` — updates the draw readout panel with vertex count or live area
+  5. `_redrawPolygonPreview()` — redraws vertex dots + L.polygon (or L.polyline for <3 pts) on every click
+  6. `_closeDrawPolygon()` — called on map dblclick; removes final duplicate point, exits draw mode, freezes polygon + area display
+  7. `clearDraw()` — removes all draw layers and hides readout
+  8. `toggleDraw()` — toggles polygon draw mode; disables Leaflet's doubleClickZoom while active; mutually exclusive with measure and pin modes
+  9. `_nearestCountyForLatLng(latlng)` — O(n) haversine scan to find nearest county centroid
+  10. `_placeCandidatePin(latlng)` — places L.marker with purple SVG DivIcon; updates readout with coordinates and nearest county name; exits pin mode after placement (one-shot)
+  11. `_exitCandidatePinMode()` — clears pin mode state + active styles
+  12. `_clearCandidatePin()` — removes pin from map + hides readout if draw is also off
+  13. `toggleCandidatePin()` — toggles candidate pin mode; one map click places pin; mutually exclusive with measure and draw
+  14. Map `click` handler — routes to `addMeasurePoint` / draw vertex push / `_placeCandidatePin` based on active mode
+  15. Map `dblclick` handler — pops last point (added by preceding single-click) then calls `_closeDrawPolygon()`
+  16. GIS toolbar wiring — added listeners for `#gis-draw` and `#gis-pin`
+  17. Draw readout wiring — unit toggle chips set `drawAreaUnit`, persist to localStorage, call `_updateDrawReadout()`
+  18. Draw clear button — with iOS touchstart/touchend guards, identical to measure-clear-btn pattern
+  19. Keyboard shortcuts — `D` toggles draw, `P` toggles pin, `Escape` exits either active mode
+  20. KB help panel — added D/P shortcut rows under Map Tools section
+  21. DomEvent.disableClickPropagation — added `draw-readout` to overlay list
+- `css/style.css`:
+  - Draw/pin cursor overrides: `.draw-active` and `.pin-active` → `cursor: crosshair`
+  - `#draw-readout` — positioned like `#measure-readout` (top-center, z-index 460)
+  - `#draw-area-val`, `#draw-pts-val` — label + muted hint typography
+  - `.draw-unit-toggle`, `.draw-unit-opt`, `.draw-unit-opt.active` — segmented unit selector
+  - `#draw-clear-btn` — matches measure-clear-btn style
+  - `.candidate-pin-icon` — DivIcon host: no background/border, drop-shadow filter
+- `index.html`:
+  - Added `#gis-draw` button (polygon layers SVG icon, tooltip "Draw polygon / measure area (D)")
+  - Added `#gis-pin` button (map pin SVG icon, tooltip "Drop candidate site pin (P)")
+  - Added `#draw-readout` element with area val, pts val, unit toggle, clear button
+  - Bumped style.css to `?v=20260718g`, map.js to `?v=20260718h`
+
+Features Implemented:
+- **Polygon draw**: click to add vertices, double-click to close; live area display updates with each vertex; supports polygons of any size
+- **Area measurement**: spherical area formula (no Turf.js); unit toggle persists across sessions
+- **Unit selector**: mi² / km² / acres toggle in draw readout; stored in localStorage key `draw-area-unit`
+- **Candidate pin**: one-shot mode — click places a purple pin, shows coordinates (5dp) and nearest county name; pin persists until cleared or new pin placed
+- **Mutual exclusion**: activating draw/pin/measure mode turns off whichever other mode was active
+- **Keyboard shortcuts**: D (draw), P (pin), Escape exits any active mode
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 7 — Spatial Analysis
+
+Files Modified:
+- `js/map.js`:
+  1. New state vars: `_proximityCircle` (L.circle | null), `_proximityRadius` (miles, 0=off)
+  2. `_clearProximityCircle()` — removes active proximity ring from map
+  3. `_setProximityCircle(center, radiusMiles)` — draws dashed blue `L.circle` at given center+radius
+  4. `_buildNearbyFacilitiesHtml(fips, radiusMiles)` — uses `L.latLng.distanceTo()` (Leaflet's haversine) to find data centers + AI campuses within the radius from the county polygon center; returns up to 6 closest as HTML rows with name, distance label, and color dot
+  5. `_renderProximitySectionForCounty(fips)` — injects a "Proximity Ring" section into `#detail-proximity-section`; shows Off/25mi/50mi/100mi radio-style chips; toggling a radius draws/removes the circle on the map and refreshes the nearby facilities list inline
+  6. `setDetailCounty()` + `setDetailNoRestriction()` — added `<div id="detail-proximity-section"></div>` placeholder; call `_renderProximitySectionForCounty(fips)` after `openMobileSheet()`
+  7. `setDetailEmpty()` — calls `_clearProximityCircle()` so the ring is removed when the detail panel is closed
+- `css/style.css` — added proximity section components:
+  - `.spatial-radius-row`, `.spatial-radius-chip`, `.spatial-radius-chip.active` — radius picker chips
+  - `.nearby-facilities-list`, `.nearby-row`, `.nearby-dot`, `.nearby-name`, `.nearby-dist` — facility list rows
+  - `.nearby-empty` — fallback message when no facilities within radius
+- `index.html` — bumped style.css to `?v=20260718f`, map.js to `?v=20260718g`
+
+Features Implemented:
+- Proximity Ring visualization: select Off/25/50/100 miles in county detail panel; a dashed circle is drawn on the map showing the chosen radius from the county center
+- Nearby Facilities list: within the selected radius, lists up to 6 nearest data centers and AI campuses by distance (using haversine via Leaflet's distanceTo); shows facility name, type color dot, capacity, and distance in miles
+- Proximity circle is cleared when detail panel is closed
+- Radius state persists while switching between counties in the same session
+
+Technical Notes:
+- Spatial analysis uses Leaflet's built-in `L.latLng.distanceTo()` (haversine formula) rather than an external Turf.js dependency; avoids ~400KB vendor bundle on a static GitHub Pages site while covering all required distance/buffer operations. Turf.js would be appropriate if polygon-level intersection (not just centroid-to-point distance) is needed in a future phase.
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 6 — Extended Filter System
+
+Files Modified:
+- `js/map.js` — multiple targeted changes:
+  1. New filter state: `activeTypeFilters` (Set), `typeFilterMode` ("any"/"all"), `activeStatusFilters` (Set)
+  2. `countyMatchesFilters()` — extended to check type filter (ANY/ALL mode applied to `county.types` array) and status filter (`county.status`)
+  3. `hasActiveMapFilters()` — updated to include type and status filters
+  4. `clearAllFilters()` — clears all new filter sets
+  5. `_saveFilterState()` — new function serializing all filter state to `dc-advanced-filters-v1` localStorage key
+  6. `_loadFilterState()` — new function restoring filter state on init; called at top of `init()`
+  7. `applyFilters()` — calls `_saveFilterState()` on every filter change so state persists across page loads
+  8. `renderFilterStatus()` — extended to include type labels (with ALL-mode prefix) and status labels in the filter summary text
+  9. `syncAdvancedFilterUI()` — extended to sync type chips, mode toggle opts, and status chips; filter badge count on the toolbar button now includes all filter dimensions
+  10. `initAdvancedFiltersPanel()` — extended with: policy type chip row (5 types with color dots), AND/OR mode toggle event wiring, lifecycle status chip row (3 statuses), quick presets row (4 named presets: Active Bans, High Risk Active, Proposed Only, AI Rules)
+- `index.html` — added 3 new sections to `#adv-filter-body`: Policy Type (with mode toggle), Lifecycle Status, Quick Presets; bumped style.css to `?v=20260718e`, map.js to `?v=20260718f`
+- `css/style.css` — added:
+  - `.adv-preset-chip` — slightly different radius for preset buttons
+  - `.adv-section-label-row` — flex row for label + mode toggle on same line
+  - `.adv-mode-toggle`, `.adv-mode-opt`, `.adv-mode-opt.active` — AND/OR pill toggle
+
+Features Implemented:
+- Policy type filter: 5 type chips (Data Center, AI Regulation, Crypto/HPC, Energy/Grid, Water Use); counties must have matching type(s) in their `types` array
+- AND/OR operator for type filter: ANY mode (OR — county has at least one selected type) or ALL mode (AND — county must have every selected type); toggle persisted in localStorage
+- Lifecycle status filter: 3 status chips (Active, Proposed, Pending); filters on `county.status`
+- Quick presets: 4 one-click preset configurations ("Active Bans", "High Risk Active", "Proposed Only", "AI Rules") — each applies a full filter state atomically
+- Full filter state persistence: all filter dimensions (severity, state, types, type-mode, status) saved to `dc-advanced-filters-v1` localStorage key on every change; restored on init
+- Filter count badge on the toolbar button now counts all active filter dimensions
+- Filter status bar text includes type and status filter descriptions
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 5 — Unified Identify / Selected-Place Coordination
+
+Files Modified:
+- `js/map.js` — `setDetailFacility()` enhanced:
+  1. On facility click: resets previous county outline, sets `selectedFips = facility.county_fips`, updates URL hash, applies `selectedCountyStyle()` to the facility's county polygon — the map now always shows which county the selected facility belongs to
+  2. Added "County Regulatory Context" block at the bottom of the facility detail panel: restriction severity badge + county name, plus "View county details →" button that calls `selectCounty(fips)` to show the full county restriction panel
+- `index.html` — bumped map.js cache-busting string to `?v=20260718e`
+
+Features Implemented:
+- Clicking any facility (data center, AI campus, power) now highlights the containing county on the map with the selection outline, giving spatial regulatory context
+- Facility detail panel shows the county's restriction severity badge and a link to the full county detail view
+- URL hash is updated to the county FIPS when a facility is selected, so sharing a facility-view URL preserves county context on reload
+- "View county details →" button in facility panel calls `selectCounty()` for a seamless transition back to county restriction view
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 4 — Zoning Integration in County Detail Panel
+
+Files Modified:
+- `js/map.js` — 3 targeted changes:
+  1. Added `async _renderZoningSummaryForCounty(fips)` — async function placed before `setDetailCounty()`; checks `window.ZONING.hasCoverage(fips)`, injects loading state into `#detail-zoning-summary` placeholder, fetches/caches data via `window.ZONING.loadByFips(fips)`, renders a compact per-district DC eligibility table (district code, assessment chip, confidence label), the full required disclaimer, and a "View full zoning details →" button that calls `setLayerVisible("zoning_districts", true, true)` to open the full zoning side panel. Never invents data — only shows what's in the normalized JSON.
+  2. `setDetailCounty()` — added `<div id="detail-zoning-summary"></div>` at end of innerHTML; calls `_renderZoningSummaryForCounty(fips)` after `openMobileSheet()`
+  3. `setDetailNoRestriction()` — same placeholder + async call pattern when `fips` is provided
+- `css/style.css` — added zoning summary component styles before the responsive section:
+  - `.zoning-summary-table`, `.zoning-summary-row` — flex column layout for per-district rows
+  - `.zoning-district-code` — monospace code chip (accent color, matches zoning.css style)
+  - `.zoning-assess-chip` — pill badge reusing zoning.css `.z-dc-*` color classes
+  - `.zoning-conf` — right-aligned confidence label (9px muted uppercase)
+  - `.zoning-summary-disclaimer` — amber-tinted disclaimer box (10px, matches legal copy requirement)
+  - `.zoning-open-btn` — ghost button with accent color; hover border + background
+  - `.zoning-summary-loading`, `.zoning-summary-error` — async state helpers
+- `data/zoning/scripts/zoning_config.py` — added 3 pipeline-ready jurisdiction stubs:
+  - `va-fairfax-county` (FIPS 51059, high relevance) — Fairfax County Open Data + Municode ordinance
+  - `va-prince-william-county` (FIPS 51153, high relevance) — PWCGIS ArcGIS portal
+  - `md-montgomery-county` (FIPS 24031, medium relevance) — Montgomery County Open Data
+  Note: Geometry fetch is blocked in this environment (proxy returns 403 for external ArcGIS URLs). Stubs are pipeline-ready for when fetching is available; no normalized JSON created yet.
+- `index.html` — bumped style.css and map.js cache-busting strings to `?v=20260718d`
+
+Features Implemented:
+- Zoning DC eligibility summary appears in the county detail panel for any county with zoning coverage (currently Loudoun County, VA — FIPS 51107)
+- Summary is shown regardless of whether the Zoning Districts layer toggle is active
+- Each zoning district row shows: code chip, assessment badge (Potentially Eligible / Not Eligible / Unclear / Requires Review), confidence level
+- Required legal disclaimer always displayed: "Zoning information is provided for preliminary research only…"
+- "View full zoning details →" button activates the full zoning side panel with all tabs (overview, standards, uses, overlays, sources)
+- Data loads asynchronously with loading/error state; cached for session lifetime
+- 3 new jurisdiction stubs added to pipeline config for Fairfax, Prince William, and Montgomery counties
+
+Limitations / Technical Notes:
+- Zoning geometry pipeline is blocked in this environment (proxy 403 for ArcGIS external URLs); geometry file for Loudoun cannot be fetched here
+- New jurisdiction stubs have no normalized JSON yet — zoning summary will silently skip those counties until pipeline runs with geometry access
+- `window.ZONING` must be loaded (zoning.js script tag in index.html); no defensive null check added because the script is always present
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 3 — Data Transparency in Detail Panels
+
+Files Modified:
+- `js/map.js` — 5 targeted changes:
+  1. `buildSampleInfraHtml()` — each sub-section now shows a `.ds-badge` from LAYER_REGISTRY plus the layer's `disclaimer` text. Infrastructure rows show "Partial" badge + "City-level accuracy" disclaimer. AI Campuses same. Site Factors (water/utility/tax) show "Estimated" badge + note that data is algorithmically estimated.
+  2. `setDetailFacility()` — added data quality block at the bottom of the facility detail panel: ds-badge for data_status, source_name, and disclaimer, all sourced from LAYER_REGISTRY via `kind` (dc_existing, dc_planned, ai_campus, power).
+  3. `buildPoliticalRiskSectionHtml()` — added `<span class="ds-badge ds-estimated">Estimated</span>` badge in the risk section header, adjacent to the section title.
+  4. `renderDashboard()` — replaced `card.sample ? sample-tag : ""` with `ds-badge ds-partial` badge ("Partial") with tooltip explaining pipeline-populated nature. Maintains same visual position.
+  5. `renderLegend()` Active Layers section — each legend entry now shows a data-status badge (right-aligned) pulled from LAYER_REGISTRY; legend-item gets `display:flex` and label gets `flex:1` so the badge floats to the right.
+- `css/style.css` — added 3 new utility classes before the ds-badge block: `.layer-data-disclaimer` (10.5px italic muted), `.data-quality-notice` (top border separator for the DQ block in facility panel), `.dq-source` (10.5px muted source attribution inline).
+- `index.html` — bumped cache-busting version strings to `?v=20260718c`.
+
+Features Implemented:
+- Data transparency in county detail panel: infrastructure and site factor sections now show data quality badges and disclaimers in context, not just in the layer panel
+- Data transparency in facility detail panel: new "Data Quality" section showing status badge, data source, and disclaimer
+- Data transparency in political risk section: "Estimated" badge on all risk scores
+- Dashboard cards: "Partial" replaces generic "Sample" tag, with tooltip explaining the limitation
+- Legend: active overlay layers show their data-status badge (Partial/Estimated/Sample etc.) right-aligned next to the layer name
+
+---
+
+Date: 2026-07-18
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 2 — Layer Metadata Registry + Layer Panel Improvements
+
+Files Created:
+- `js/layer-registry.js` (~160 lines) — `window.LAYER_REGISTRY` array: all 15 layers with full metadata fields (id, label, group, color, data_status, source_name, source_url, coverage, geometry_type, last_updated, refresh_freq, disclaimer, sample, noData). Single source of truth for all layer definitions; backward-compatible (sample and noData fields preserved for existing code paths).
+
+Files Modified:
+- `js/map.js` — 5 targeted changes:
+  1. `const LAYER_DEFS = [...]` (15 inline objects, lines 118-135) replaced with `const LAYER_DEFS = window.LAYER_REGISTRY;` — consumed from layer-registry.js
+  2. Added `_layerGroupState` and `_layerSearch` module-level state variables
+  3. Added helper functions: `_loadLayerGroupState()`, `_saveLayerGroupState()`, `_dataStatusConfig()`, `_applyLayerSearch()` — placed just before `renderFilterPanel()`
+  4. Replaced `renderFilterPanel()` body entirely — now builds: layer search box (in-place filter via `_applyLayerSearch`, no panel re-render), collapsible group headers (click toggles .collapsed class, caret rotates, state persisted in localStorage key `dc-layer-groups-v1`), per-row data-status badge (.ds-badge .ds-{status}), source credit line below layer name; all existing touchend/click toggle handlers preserved
+  5. Fixed `togglePoliticalRiskLayer()` bug: `countyLayer` (undefined) → `countyGeoLayer`; also added re-apply of `selectedCountyStyle()` after restyle so selected county outline is preserved when toggling political risk
+  6. Added `_loadLayerGroupState()` call at top of `init()`
+- `css/style.css` — added new CSS block before the responsive section:
+  - `.ds-badge` + 6 status variants (verified/partial/estimated/sample/unavailable/stale) with distinct color tokens
+  - `.layer-search-wrap`, `.layer-search-icon`, `.layer-search-input` styles
+  - `.layer-search-empty` no-results message
+  - `.filter-group-header`, `.filter-group-name`, `.filter-group-count`, `.filter-group-caret` — collapsible group headers
+  - `.filter-group-body`, `.filter-group-body.collapsed` — collapse/expand container
+  - `.filter-row-text`, `.layer-source-line` — name+source credit text stack
+  - Updated `.filter-row-label` to `align-items: flex-start; flex: 1` so dot aligns to name rather than centering between name and source line
+- `index.html` — added `<script src="js/layer-registry.js?v=20260718b" defer>` before map.js; bumped style.css and map.js cache-busting query strings to `?v=20260718b`
+
+Features Implemented:
+- Layer search: live search box at top of layers panel; matches by label substring; shows/hides rows in-place (no focus loss); auto-expands groups with matches; restores collapse state on clear
+- Collapsible groups: each group heading is clickable; caret rotates; state persisted in `dc-layer-groups-v1` localStorage key; all 5 groups default to expanded
+- Data-status badges: replaces old generic "Sample"/"No data" tags with 6 semantic status levels (Verified=green, Partial=blue, Estimated=amber, Sample=orange, No Data=gray, Stale=red); each badge has tooltip with full description
+- Source credit lines: each layer row shows source name as a small secondary line below the layer name (only for layers that have a source)
+
+Bugs Fixed:
+- `togglePoliticalRiskLayer()` undefined variable `countyLayer` — now correctly references `countyGeoLayer` and re-applies selected county style
+
+Preserved:
+- All 15 layer toggle behaviors (touchend/click handlers, iOS Safari fix, double-fire prevention)
+- SAMPLE_LEGEND_ENTRIES and legend rendering (separate from LAYER_DEFS)
+- `def.sample` and `def.noData` fields on registry entries (backward compatibility)
+- `filter-row-disabled` class for unavailable layers (city_policy, zoning_overlays)
+
+---
+
+Date: 2026-07-18
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 0 — ArcGIS Feature Gap Audit
+
+Files Created:
+- `docs/ARCGIS_FEATURE_GAP_AUDIT.md` — Comprehensive 66-row feature gap audit covering every major ArcGIS-equivalent capability with status, limitations, recommended actions, risk, and test requirements. Includes: Duplication Risk Register (10 items), Modularization Proposal for js/map.js (8 candidate modules with priority order and dependency graph), Centralized Layer Metadata Design (full JS schema with data_status spectrum), verified inventory of 60+ working capabilities, classification of incomplete/disconnected/sample-data/missing features.
+
+Files Modified:
+- `AI_CHANGELOG.md` — added this session entry
+- `BUG_TRACKER.md` — added 2 bugs discovered during audit
+
+Audit Summary:
+- Existing-working: 60+ capabilities confirmed in js/map.js audit
+- Existing-incomplete: 10 items (city layer, real facility data, state detail integration, dashboard scoping, share-link completeness, measure tool (lines only), search completeness, political risk accuracy, workspace GIS-state persistence, zoning geometry)
+- Existing-disconnected: 5 items (political risk toggle bug, workspace layer sync, bookmarks layer state, analytics-map link, zoning detail panel when geometry absent)
+- Existing-sample-data: 9 datasets (facilities, power, transmission, fiber, water, utilities, tax incentives, political risk scores, zoning districts)
+- Missing: 17 items (layer metadata registry, per-layer opacity, layer reordering, spatial analysis, area measure, draw/sketch tools, results list panel, time range filter, comparison tool, suitability scoring, full GIS-state workspace save, compact URL state, date range filter, lifecycle filter, GeoJSON export, printable report, Turf.js)
+
+Bugs Found:
+- `togglePoliticalRiskLayer()` at js/map.js:1003 references undefined `countyLayer` instead of `countyGeoLayer` (logged in BUG_TRACKER.md)
+- Panel positions (fpSavedPos, lgSavedPos) not persisted to localStorage across sessions (logged in BUG_TRACKER.md)
+
+Recommended Next Phase:
+- Phase 2 (Layer Metadata Registry + Layer Panel Improvements) before Phase 1 (modularization) — lower risk, delivers immediate user value without refactoring internals
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Map Workspace Customization System — Part 1 (CSS + JS + integration)
 
 Files Created:
