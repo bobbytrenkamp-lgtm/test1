@@ -702,6 +702,8 @@
       bd.id     = 'ws-settings-backdrop';
       bd.hidden = true;
       document.body.appendChild(bd);
+      // Register with Leaflet here — this element exists before initLeafletMap runs
+      if (window.L && L.DomEvent) L.DomEvent.disableClickPropagation(bd);
     }
 
     /* 7. Settings panel */
@@ -744,6 +746,8 @@
           '</div>' +
         '</div>';
       document.body.appendChild(sp);
+      // Register with Leaflet here — this element exists before initLeafletMap runs
+      if (window.L && L.DomEvent) L.DomEvent.disableClickPropagation(sp);
     }
 
     _buildToggles();
