@@ -244,6 +244,7 @@ body.ws-resizing-rail * {
   background: rgba(0,0,0,0.35);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
+  pointer-events: none; /* backdrop-filter causes iOS hit-testing to intercept all touches */
 }
 
 /* ── Settings panel (slide-in from right) ───────────────────────────────── */

@@ -702,8 +702,6 @@
       bd.id     = 'ws-settings-backdrop';
       bd.hidden = true;
       document.body.appendChild(bd);
-      // Register with Leaflet here — this element exists before initLeafletMap runs
-      if (window.L && L.DomEvent) L.DomEvent.disableClickPropagation(bd);
     }
 
     /* 7. Settings panel */
@@ -756,12 +754,22 @@
   /* ── Wire events ─────────────────────────────────────────────────────── */
   function wireEvents() {
     document.getElementById('ws-settings-btn')?.addEventListener('click', openSettings);
-    const _closeBtn    = document.getElementById('ws-settings-close');
-    const _settingsBdp = document.getElementById('ws-settings-backdrop');
+    const _closeBtn = document.getElementById('ws-settings-close');
     _closeBtn?.addEventListener('click', closeSettings);
-    _settingsBdp?.addEventListener('click', closeSettings);
-    _closeBtn?.addEventListener('touchend', e => { e.preventDefault(); closeSettings(); });
-    _settingsBdp?.addEventListener('touchend', e => { e.preventDefault(); closeSettings(); });
+    // touchstart fires before iOS can cancel the tap; stopPropagation keeps it
+    // from bubbling to the panel's Leaflet listener; preventDefault blocks
+    // the duplicate click event.
+    _closeBtn?.addEventListener('touchstart', e => { e.stopPropagation(); e.preventDefault(); closeSettings(); });
+    // Close on tap outside the panel (backdrop is pointer-events:none to avoid
+    // the iOS backdrop-filter hit-testing bug that intercepts all touches).
+    document.addEventListener('click', e => {
+      const sp = document.getElementById('ws-settings-panel');
+      if (sp && !sp.hidden && !sp.contains(e.target)) closeSettings();
+    });
+    document.addEventListener('touchstart', e => {
+      const sp = document.getElementById('ws-settings-panel');
+      if (sp && !sp.hidden && !sp.contains(e.target)) closeSettings();
+    }, { passive: true });
 
     document.querySelectorAll('[data-preset]').forEach(btn => {
       btn.addEventListener('click', () => setPreset(btn.dataset.preset));
