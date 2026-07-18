@@ -752,8 +752,12 @@
   /* ── Wire events ─────────────────────────────────────────────────────── */
   function wireEvents() {
     document.getElementById('ws-settings-btn')?.addEventListener('click', openSettings);
-    document.getElementById('ws-settings-close')?.addEventListener('click', closeSettings);
-    document.getElementById('ws-settings-backdrop')?.addEventListener('click', closeSettings);
+    const _closeBtn    = document.getElementById('ws-settings-close');
+    const _settingsBdp = document.getElementById('ws-settings-backdrop');
+    _closeBtn?.addEventListener('click', closeSettings);
+    _settingsBdp?.addEventListener('click', closeSettings);
+    _closeBtn?.addEventListener('touchend', e => { e.preventDefault(); closeSettings(); });
+    _settingsBdp?.addEventListener('touchend', e => { e.preventDefault(); closeSettings(); });
 
     document.querySelectorAll('[data-preset]').forEach(btn => {
       btn.addEventListener('click', () => setPreset(btn.dataset.preset));
