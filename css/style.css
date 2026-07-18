@@ -4791,6 +4791,119 @@ html[data-theme="light"] {
 }
 #bookmark-save-btn:hover { opacity: 0.85; }
 
+/* ── Workspace panel ── */
+#workspace-panel {
+  position: absolute;
+  top: 14px;
+  right: 54px;
+  z-index: 450;
+  width: 230px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.45);
+  overflow: hidden;
+}
+#workspace-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+#workspace-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1;
+  padding: 0 2px;
+  transition: color 0.15s;
+}
+#workspace-close:hover { color: var(--text); }
+#workspace-list { max-height: 200px; overflow-y: auto; }
+.wsp-empty {
+  padding: 12px 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.wsp-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  transition: background 0.1s;
+}
+.wsp-row:hover { background: var(--surface-2); }
+.wsp-load {
+  flex: 1;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 5px 2px;
+  font-family: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wsp-del {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 3px 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s;
+}
+.wsp-del:hover { color: var(--text); background: var(--border); }
+#workspace-footer {
+  padding: 7px 8px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 6px;
+}
+#workspace-name-input {
+  flex: 1;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  font-size: 11px;
+  font-family: inherit;
+  padding: 4px 7px;
+  min-width: 0;
+  outline: none;
+  transition: border-color 0.15s;
+}
+#workspace-name-input:focus { border-color: var(--accent); }
+#workspace-save-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+#workspace-save-btn:hover { opacity: 0.85; }
+#workspace-save-btn:disabled { opacity: 0.5; cursor: default; }
+
 /* ── Right-click context menu ── */
 #map-ctx-menu {
   position: absolute;
@@ -4871,6 +4984,10 @@ html[data-theme="light"] {
 #bookmark-save-btn,
 .bookmark-go,
 .bookmark-del,
+#workspace-close,
+#workspace-save-btn,
+.wsp-load,
+.wsp-del,
 #map-ctx-menu button,
 #legend-restore,
 .legend-close-btn,
@@ -4903,7 +5020,7 @@ html[data-theme="light"] {
   #filter-panel, #adv-filter-panel,
   #filter-panel-backdrop, #adv-filter-backdrop,
   #map-gis-bar, #coord-display, #minimap-wrap,
-  #bookmarks-panel, #map-ctx-menu, #measure-readout,
+  #bookmarks-panel, #workspace-panel, #map-ctx-menu, #measure-readout,
   #map-toast, #stats-bar, #filter-status, #legend-restore,
   .leaflet-control-zoom, .map-home-btn, .leaflet-control-scale,
   #home-view, #news-view, #stocks-view, #analytics-view, #about-view {

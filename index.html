@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260718i" />
+  <link rel="stylesheet" href="css/style.css?v=20260718j" />
   <link rel="stylesheet" href="css/stocks.css?v=20260712h" />
   <link rel="stylesheet" href="css/account.css?v=20260717a" />
   <link rel="stylesheet" href="css/zoning.css?v=20260717b" />
@@ -221,6 +221,9 @@
         <button class="gis-btn" id="gis-bookmarks" title="Saved views" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
         </button>
+        <button class="gis-btn" id="gis-workspace" title="Workspaces — save &amp; restore map state (W)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        </button>
         <button class="gis-btn" id="gis-minimap" title="Toggle overview map" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><rect x="6" y="8" width="8" height="8" rx="1"/></svg>
         </button>
@@ -241,6 +244,19 @@
         <div id="bookmarks-list"></div>
         <div id="bookmarks-footer">
           <button id="bookmark-save-btn">Save current view</button>
+        </div>
+      </div>
+
+      <!-- Workspace panel -->
+      <div id="workspace-panel" hidden>
+        <div id="workspace-header">
+          <span>Workspaces</span>
+          <button id="workspace-close" aria-label="Close workspaces">&times;</button>
+        </div>
+        <div id="workspace-list"></div>
+        <div id="workspace-footer">
+          <input id="workspace-name-input" type="text" maxlength="60" placeholder="Workspace name…" autocomplete="off" />
+          <button id="workspace-save-btn">Save state</button>
         </div>
       </div>
 
@@ -663,7 +679,7 @@ window.addEventListener('error', function(e) {
 <script src="js/analytics.js?v=20260712k" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
 <script src="js/home.js?v=20260712m" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
 <script src="js/layer-registry.js?v=20260718c" defer onload="window._track.ok.push('layer-registry')" onerror="window._track.fail.push('layer-registry')"></script>
-<script src="js/map.js?v=20260718j" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script src="js/map.js?v=20260718k" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer onload="window._track.ok.push('supabase')" onerror="window._track.fail.push('supabase')"></script>
 <script src="js/supabase-config.js?v=20260717a" defer onload="window._track.ok.push('supabase-config')" onerror="window._track.fail.push('supabase-config')"></script>
 <script src="js/auth.js?v=20260717a" defer onload="window._track.ok.push('auth')" onerror="window._track.fail.push('auth')"></script>

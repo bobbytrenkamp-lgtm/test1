@@ -5,6 +5,43 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 11 — Workspaces (save/restore full GIS state)
+
+Files Modified:
+- `index.html`:
+  - Added `<button id="gis-workspace">` to GIS toolbar (after `#gis-bookmarks`)
+  - Added `#workspace-panel` HTML (after `#bookmarks-panel`): header, `#workspace-list`, footer with `#workspace-name-input` and `#workspace-save-btn`
+  - Bumped style.css to `?v=20260718j`, map.js to `?v=20260718k`
+- `css/style.css`:
+  - Added `#workspace-panel` — absolute-positioned panel (230px wide, top 14px, right 54px, z-index 450)
+  - Added `#workspace-header`, `#workspace-close`, `#workspace-list`, `.wsp-empty`, `.wsp-row`, `.wsp-load`, `.wsp-del` — panel body styles mirroring bookmarks pattern with `wsp-` class prefix
+  - Added `#workspace-footer` — flex row with name input + save button
+  - Added `#workspace-name-input` and `#workspace-save-btn` styles
+  - Added `#workspace-panel` to mobile overlay list and touch-action manipulation selectors
+- `js/map.js`:
+  - `_wsVisible`, `WS_LOCAL_KEY`, `WS_MAX_LOCAL` — workspace panel state
+  - `_generateWsId()` — unique timestamp+random ID for each workspace
+  - `_loadWsList()` / `_saveWsList(arr)` — read/write workspace array from `dc-workspaces-local-v1` localStorage
+  - `_captureWorkspaceState(name)` — snapshots basemap, all layerState keys, all filter sets/mode, map center+zoom, selectedFips, drawPoints array, drawAreaUnit
+  - `_applyWorkspace(ws)` — restores full GIS state: calls `switchBasemap()`, `setLayerVisible()` (with syncUI=true) for each layer, rebuilds filter Sets, calls `applyFilters()`, `leafletMap.setView()`, re-draws polygon, calls `selectCounty()` for stored fips
+  - `renderWorkspaceList()` — async; reads from Supabase (`AUTH.getSavedItems('workspace')`) if signed in, else localStorage; renders `wsp-row` divs with load/delete buttons using safe DOM construction (no innerHTML for user data)
+  - `saveCurrentWorkspace()` — reads name input (auto-generates name if blank), captures state, saves to Supabase or localStorage, re-renders list, shows toast
+  - `toggleWorkspaces()` — toggles `_wsVisible`, shows/hides panel, updates `#gis-workspace` aria-pressed, calls `renderWorkspaceList()` on open
+  - `initLeafletMap()` — wires `#gis-workspace`, `#workspace-close`, `#workspace-save-btn`, `#workspace-name-input` Enter key
+  - `initLeafletMap()` — added `"W"` keyboard shortcut for `toggleWorkspaces()`, `Escape` to close workspace panel
+  - `initLeafletMap()` — added `"workspace-panel"` to `disableClickPropagation` list, `"workspace-list"` to `disableScrollPropagation` list
+  - `auth:stateChange` listener — updated to also call `renderWorkspaceList()` when panel is open
+
+Security Notes:
+- Workspace names rendered with `textContent` (not innerHTML) — XSS-safe
+- `user_id` always read from Supabase server session via `AUTH.saveItem()` — never from DOM
+- Item type `"workspace"` stored in same `saved_items` table as counties/facilities, subject to same RLS
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 10 — Save Counties and Facilities
 
 Files Modified:

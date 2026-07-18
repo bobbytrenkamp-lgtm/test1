@@ -145,6 +145,9 @@ let _toastTimer      = null;
 let locMarker        = null;
 let _ctxLatLng       = null;
 let bookmarksVisible = false;
+let _wsVisible       = false;
+const WS_LOCAL_KEY   = "dc-workspaces-local-v1";
+const WS_MAX_LOCAL   = 10;
 let countyFillOpacity = 1.0;
 
 /* ── Draw / Pin tool state ── */
@@ -1399,6 +1402,171 @@ function initBookmarks() {
   document.getElementById("bookmark-save-btn")?.addEventListener("click", saveCurrentViewAsBookmark);
 }
 
+/* ── Workspace panel ── */
+function _generateWsId() {
+  return "ws-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+}
+
+function _loadWsList() {
+  try { return JSON.parse(localStorage.getItem(WS_LOCAL_KEY) || "[]"); }
+  catch (_) { return []; }
+}
+
+function _saveWsList(arr) {
+  try { localStorage.setItem(WS_LOCAL_KEY, JSON.stringify(arr)); } catch (_) {}
+}
+
+function _captureWorkspaceState(name) {
+  const c = leafletMap.getCenter();
+  return {
+    id:          _generateWsId(),
+    name:        name,
+    created:     Date.now(),
+    basemap:     activeTile,
+    layers:      Object.assign({}, layerState),
+    filters: {
+      restrictFilters: [...activeRestrictFilters],
+      stateFilter:     activeStateFilter,
+      typeFilters:     [...activeTypeFilters],
+      typeFilterMode:  typeFilterMode,
+      statusFilters:   [...activeStatusFilters],
+    },
+    mapView: { lat: +c.lat.toFixed(5), lng: +c.lng.toFixed(5), zoom: leafletMap.getZoom() },
+    selectedFips: selectedFips || null,
+    drawPoints:   drawPoints.map(p => [+p.lat.toFixed(6), +p.lng.toFixed(6)]),
+    drawAreaUnit: drawAreaUnit,
+  };
+}
+
+function _applyWorkspace(ws) {
+  if (!ws) return;
+  if (ws.basemap) switchBasemap(ws.basemap);
+  if (ws.layers) {
+    Object.keys(layerState).forEach(id => {
+      const visible = ws.layers[id] !== undefined ? ws.layers[id] : layerState[id];
+      setLayerVisible(id, visible, true);
+    });
+  }
+  if (ws.filters) {
+    activeRestrictFilters.clear();
+    (ws.filters.restrictFilters || []).forEach(k => activeRestrictFilters.add(k));
+    activeStateFilter = ws.filters.stateFilter || "";
+    activeTypeFilters.clear();
+    (ws.filters.typeFilters || []).forEach(k => activeTypeFilters.add(k));
+    typeFilterMode = ws.filters.typeFilterMode || "any";
+    activeStatusFilters.clear();
+    (ws.filters.statusFilters || []).forEach(k => activeStatusFilters.add(k));
+    applyFilters();
+  }
+  if (ws.mapView) {
+    leafletMap.setView([ws.mapView.lat, ws.mapView.lng], ws.mapView.zoom, { animate: false });
+  }
+  if (ws.drawPoints && ws.drawPoints.length > 0) {
+    clearDraw();
+    drawPoints.push(...ws.drawPoints.map(([lat, lng]) => L.latLng(lat, lng)));
+    drawAreaUnit = ws.drawAreaUnit || drawAreaUnit;
+    _redrawPolygonPreview();
+    _updateDrawReadout();
+  } else {
+    clearDraw();
+  }
+  if (ws.selectedFips && mapData[ws.selectedFips]) {
+    selectCounty(ws.selectedFips);
+  }
+}
+
+async function renderWorkspaceList() {
+  const listEl = document.getElementById("workspace-list");
+  if (!listEl) return;
+  listEl.innerHTML = "";
+
+  let items = [];
+  const auth = window.AUTH;
+  if (auth && auth.state === "signedIn") {
+    const saved = await auth.getSavedItems("workspace");
+    items = (saved || [])
+      .map(r => ({ ...r.item_data, _supaId: r.item_id }))
+      .sort((a, b) => (b.created || 0) - (a.created || 0));
+  } else {
+    items = _loadWsList().sort((a, b) => (b.created || 0) - (a.created || 0));
+  }
+
+  if (!items.length) {
+    const em = document.createElement("div");
+    em.className = "wsp-empty";
+    em.textContent = "No saved workspaces yet.";
+    listEl.appendChild(em);
+    return;
+  }
+
+  items.forEach(ws => {
+    const row = document.createElement("div");
+    row.className = "wsp-row";
+
+    const loadBtn = document.createElement("button");
+    loadBtn.className = "wsp-load";
+    loadBtn.type = "button";
+    loadBtn.textContent = ws.name || "Unnamed";
+    loadBtn.title = ws.name || "Unnamed";
+    loadBtn.addEventListener("click", () => {
+      _applyWorkspace(ws);
+      toggleWorkspaces();
+      showMapToast("Workspace loaded");
+    });
+
+    const delBtn = document.createElement("button");
+    delBtn.className = "wsp-del";
+    delBtn.type = "button";
+    delBtn.setAttribute("aria-label", "Delete workspace");
+    delBtn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+    delBtn.addEventListener("click", async () => {
+      if (auth && auth.state === "signedIn") {
+        await auth.removeItem("workspace", ws._supaId || ws.id);
+      } else {
+        const list = _loadWsList().filter(w => w.id !== ws.id);
+        _saveWsList(list);
+      }
+      renderWorkspaceList();
+    });
+
+    row.appendChild(loadBtn);
+    row.appendChild(delBtn);
+    listEl.appendChild(row);
+  });
+}
+
+async function saveCurrentWorkspace() {
+  const input  = document.getElementById("workspace-name-input");
+  const saveBtn = document.getElementById("workspace-save-btn");
+  const rawName = input ? input.value.trim() : "";
+  const name    = rawName || new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+  const ws      = _captureWorkspaceState(name);
+  const auth    = window.AUTH;
+
+  if (saveBtn) saveBtn.disabled = true;
+  if (auth && auth.state === "signedIn") {
+    await auth.saveItem("workspace", ws.id, ws);
+  } else {
+    const list = _loadWsList();
+    list.unshift(ws);
+    if (list.length > WS_MAX_LOCAL) list.splice(WS_MAX_LOCAL);
+    _saveWsList(list);
+  }
+  if (input) input.value = "";
+  if (saveBtn) saveBtn.disabled = false;
+  renderWorkspaceList();
+  showMapToast(`Saved "${name}"`);
+}
+
+function toggleWorkspaces() {
+  _wsVisible = !_wsVisible;
+  const panel = document.getElementById("workspace-panel");
+  const btn   = document.getElementById("gis-workspace");
+  if (panel) panel.hidden = !_wsVisible;
+  if (btn)   { btn.classList.toggle("active", _wsVisible); btn.setAttribute("aria-pressed", String(_wsVisible)); }
+  if (_wsVisible) renderWorkspaceList();
+}
+
 /* ── Map init ── */
 function initLeafletMap() {
   leafletMap = L.map("leaflet-map", {
@@ -1558,6 +1726,7 @@ function initLeafletMap() {
   // Refresh save cache when auth state changes
   document.addEventListener('auth:stateChange', ({ detail }) => {
     _refreshSavedCache().then(() => _updateDetailSaveBtn());
+    if (_wsVisible) renderWorkspaceList();
   });
 
   const _clearBtn = document.getElementById("measure-clear-btn");
@@ -1625,26 +1794,36 @@ function initLeafletMap() {
     if ((e.key === "p" || e.key === "P") && !e.ctrlKey && !e.metaKey) toggleCandidatePin();
     if ((e.key === "l" || e.key === "L") && !e.ctrlKey && !e.metaKey) window.RESULTS_PANEL?.toggle();
     if ((e.key === "f" || e.key === "F") && !e.ctrlKey && !e.metaKey) toggleFullscreen();
+    if ((e.key === "w" || e.key === "W") && !e.ctrlKey && !e.metaKey) toggleWorkspaces();
     if (e.key === "Escape" && measureMode)      toggleMeasure();
     if (e.key === "Escape" && drawMode)         toggleDraw();
     if (e.key === "Escape" && candidatePinMode) toggleCandidatePin();
+    if (e.key === "Escape" && _wsVisible)       toggleWorkspaces();
   });
 
   initContextMenu();
   initBookmarks();
 
+  // Workspace panel wiring
+  document.getElementById("gis-workspace")    ?.addEventListener("click", toggleWorkspaces);
+  document.getElementById("workspace-close")  ?.addEventListener("click", toggleWorkspaces);
+  document.getElementById("workspace-save-btn")?.addEventListener("click", saveCurrentWorkspace);
+  document.getElementById("workspace-name-input")?.addEventListener("keydown", e => {
+    if (e.key === "Enter") { e.preventDefault(); saveCurrentWorkspace(); }
+  });
+
   // Prevent Leaflet from intercepting touch/click events on all map overlay elements.
   // Without this, Leaflet's touchstart handler on the map can swallow taps on
   // absolutely-positioned controls on iOS Safari.
   [
-    "map-gis-bar", "measure-readout", "draw-readout", "bookmarks-panel", "map-ctx-menu",
+    "map-gis-bar", "measure-readout", "draw-readout", "bookmarks-panel", "workspace-panel", "map-ctx-menu",
     "minimap-wrap", "legend", "legend-restore", "stats-bar", "filter-status",
   ].forEach(id => {
     const el = document.getElementById(id);
     if (el) L.DomEvent.disableClickPropagation(el);
   });
   // Prevent scroll-wheel/pinch inside overlay panels from zooming the map
-  ["bookmarks-list", "legend"].forEach(id => {
+  ["bookmarks-list", "workspace-list", "legend"].forEach(id => {
     const el = document.getElementById(id);
     if (el) L.DomEvent.disableScrollPropagation(el);
   });
