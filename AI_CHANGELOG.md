@@ -5,6 +5,32 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 12 — Shareable map state (compact URL encoding)
+
+Files Modified:
+- `index.html`:
+  - Bumped map.js to `?v=20260718l`
+- `js/map.js`:
+  - `_SHARE_LAYER_KEYS` — ordered array of all 15 layerState keys, used for layer bitmask encoding
+  - `_encodeShareState()` — serializes full GIS state: basemap (omitted if default "satellite"), layer visibility bitmask (integer, 1 bit per layer), restrictFilters/stateFilter/typeFilters/typeFilterMode/statusFilters (comma-joined, omitted if empty/default), map viewport (lat,lng,zoom), selectedFips; JSON → base64url (no padding)
+  - `_decodeShareState(encoded)` — base64url → JSON, returns null on any parse error
+  - `_applyShareState(obj)` — restores full GIS state from decoded object: `switchBasemap`, `setLayerVisible` for each layer, rebuilds all filter Sets, `applyFilters()`, `leafletMap.setView`, `selectCounty`
+  - `shareCurrentView()` — updated to produce `#s=<base64url>` URL (replaces old `#@lat,lng,zoom` format); backward compat maintained in `restoreFromHash()`
+  - `restoreFromHash()` — added `#s=...` branch as first check; legacy `#@lat,lng,zoom` kept as second; FIPS `#12345` kept as third
+  - `init()` — added `hasHashShare` check (`/^s=/.test(rawHash)`) so `#s=...` links pre-load the map on page load, same as FIPS links
+  - Keyboard shortcut overlay — added `W` / Workspaces panel row
+
+Encoding format:
+  - Hash: `#s=<base64url(JSON.stringify(compact))>`
+  - Compact object keys: `b` (basemap), `l` (layer bitmask), `v` (viewport), `rf` (restrictFilters), `sf` (stateFilter), `tf` (typeFilters), `tm` (typeFilterMode), `stf` (statusFilters), `f` (selectedFips)
+  - Omits keys with default/empty values to minimize URL length
+  - Forward-compatible: unknown keys in decoded object are silently ignored
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 11 — Workspaces (save/restore full GIS state)
 
 Files Modified:

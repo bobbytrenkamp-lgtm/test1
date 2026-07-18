@@ -1145,10 +1145,68 @@ function exportCountiesCSV() {
   showMapToast(`Exported ${rows.length - 1} ${active ? "filtered " : ""}counties`);
 }
 
-/* ── Share URL ── */
+/* ── Share URL (full GIS state) ── */
+const _SHARE_LAYER_KEYS = [
+  "restrictions", "state_policy", "city_policy", "dc_existing", "dc_planned",
+  "ai_campus", "power", "transmission", "fiber", "water",
+  "utility", "tax", "annotations", "zoning_districts", "zoning_overlays",
+];
+
+function _encodeShareState() {
+  const c = leafletMap.getCenter();
+  // Pack layer visibility into an integer bitmask
+  let lm = 0;
+  _SHARE_LAYER_KEYS.forEach((k, i) => { if (layerState[k]) lm |= (1 << i); });
+  const obj = {
+    b:  activeTile !== "satellite" ? activeTile : undefined,
+    l:  lm,
+    v:  `${c.lat.toFixed(4)},${c.lng.toFixed(4)},${leafletMap.getZoom()}`,
+  };
+  if (activeRestrictFilters.size) obj.rf  = [...activeRestrictFilters].join(",");
+  if (activeStateFilter)           obj.sf  = activeStateFilter;
+  if (activeTypeFilters.size)      obj.tf  = [...activeTypeFilters].join(",");
+  if (typeFilterMode !== "any")    obj.tm  = typeFilterMode;
+  if (activeStatusFilters.size)    obj.stf = [...activeStatusFilters].join(",");
+  if (selectedFips)                obj.f   = selectedFips;
+  // Remove undefined keys
+  Object.keys(obj).forEach(k => { if (obj[k] === undefined) delete obj[k]; });
+  // Base64url-encode (no padding)
+  return btoa(JSON.stringify(obj)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function _decodeShareState(encoded) {
+  try {
+    const b64 = encoded.replace(/-/g, "+").replace(/_/g, "/");
+    return JSON.parse(atob(b64 + "=".repeat((4 - b64.length % 4) % 4)));
+  } catch (_) { return null; }
+}
+
+function _applyShareState(obj) {
+  if (!obj) return;
+  if (obj.b) switchBasemap(obj.b);
+  if (obj.l !== undefined) {
+    _SHARE_LAYER_KEYS.forEach((k, i) => setLayerVisible(k, !!(obj.l & (1 << i)), true));
+  }
+  activeRestrictFilters.clear();
+  if (obj.rf)  obj.rf.split(",").filter(Boolean).forEach(k => activeRestrictFilters.add(k));
+  activeStateFilter = obj.sf || "";
+  activeTypeFilters.clear();
+  if (obj.tf)  obj.tf.split(",").filter(Boolean).forEach(k => activeTypeFilters.add(k));
+  typeFilterMode = obj.tm || "any";
+  activeStatusFilters.clear();
+  if (obj.stf) obj.stf.split(",").filter(Boolean).forEach(k => activeStatusFilters.add(k));
+  applyFilters();
+  if (obj.v) {
+    const parts = obj.v.split(",");
+    const lat = parseFloat(parts[0]), lng = parseFloat(parts[1]), zoom = parseInt(parts[2], 10);
+    if (!isNaN(lat) && !isNaN(lng) && !isNaN(zoom)) leafletMap.setView([lat, lng], zoom, { animate: false });
+  }
+  if (obj.f) selectCounty(obj.f);
+}
+
 function shareCurrentView() {
-  const c   = leafletMap.getCenter();
-  const url = `${location.origin}${location.pathname}#@${c.lat.toFixed(4)},${c.lng.toFixed(4)},${leafletMap.getZoom()}`;
+  const encoded = _encodeShareState();
+  const url  = `${location.origin}${location.pathname}#s=${encoded}`;
   const done = () => showMapToast("Share link copied!");
   const fail = () => {
     const ta = Object.assign(document.createElement("textarea"), { value: url, style: "position:fixed;opacity:0" });
@@ -3604,12 +3662,24 @@ function setLocationHash(fips) {
 function restoreFromHash() {
   const hash = window.location.hash.slice(1); // strip leading #
 
-  // Share-view format: #@lat,lng,zoom  (set by shareCurrentView())
+  // Full GIS state share link: #s=<base64url>
+  const sMatch = hash.match(/^s=(.+)$/);
+  if (sMatch && leafletMap) {
+    const obj = _decodeShareState(sMatch[1]);
+    if (obj) {
+      switchTab("map");
+      if (leafletMap) leafletMap.invalidateSize();
+      _applyShareState(obj);
+      return !!(obj.f);
+    }
+  }
+
+  // Legacy share-view format: #@lat,lng,zoom
   const viewMatch = hash.match(/^@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?),(\d+)$/);
   if (viewMatch && leafletMap) {
     switchTab("map");
     leafletMap.setView([parseFloat(viewMatch[1]), parseFloat(viewMatch[2])], parseInt(viewMatch[3]));
-    return false; // view restored but no county selected
+    return false;
   }
 
   // County FIPS permalink: #12345
@@ -3652,6 +3722,7 @@ function initKbOverlay() {
     <div class="kb-row"><span class="kb-desc">Toggle polygon draw</span><span class="kb-keys"><kbd>D</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Drop candidate site pin</span><span class="kb-keys"><kbd>P</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Toggle results panel</span><span class="kb-keys"><kbd>L</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Workspaces panel</span><span class="kb-keys"><kbd>W</kbd></span></div>
     <div class="kb-section">General</div>
     <div class="kb-row"><span class="kb-desc">Show this help</span><span class="kb-keys"><kbd>?</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Close / dismiss</span><span class="kb-keys"><kbd>Esc</kbd></span></div>
@@ -4665,7 +4736,9 @@ async function init() {
   initNavTabs();
   initKeyboardShortcuts();
 
-  const hasHashFips = /^\d{5}$/.test(window.location.hash.replace("#", ""));
+  const _rawHash    = window.location.hash.slice(1);
+  const hasHashFips = /^\d{5}$/.test(_rawHash);
+  const hasHashShare = /^s=/.test(_rawHash);
 
   // Always show home immediately — skeleton renders while data loads.
   // This prevents the map loading spinner from blocking the UI even when
@@ -4701,7 +4774,7 @@ async function init() {
     // so by the time loadCoreData() finished the geo file may be ready or close.
     // When initMapFromGeo() resolves, restoreFromHash() snaps to the map
     // and county instantly with no loading overlay.
-    if (hasHashFips) {
+    if (hasHashFips || hasHashShare) {
       await initMapFromGeo();
       restoreFromHash();
     }
