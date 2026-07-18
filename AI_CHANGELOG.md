@@ -5,6 +5,39 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 15 — County comparison tool
+
+Files Modified:
+- `index.html`:
+  - Added `#gis-compare` toolbar button (two-columns SVG icon, before `#gis-workspace`)
+  - Added `#compare-panel` with header (title, hint, clear-all + close actions) and `#compare-body`
+  - Bumped style.css to `?v=20260718m`, map.js to `?v=20260718o`
+- `css/style.css`:
+  - `#compare-panel` — absolute positioned bottom-of-`#main`, slides up via `transform: translateY(100%)` → `translateY(0)` transition; hidden via `[hidden]` attribute
+  - `.cmp-col`, `.cmp-col-header`, `.cmp-col-fips`, `.cmp-col-type`, `.cmp-row`, `.cmp-label`, `.cmp-value`, `.cmp-remove` — column-based comparison card layout
+  - `#main.compare-active #map-container` — `cursor: crosshair` while compare mode is on
+  - Added `#compare-panel` to mobile overlay and touch-action disablement lists
+- `js/map.js`:
+  - `compareMode` — boolean, true when compare mode is active
+  - `compareCounties` — ordered array of FIPS strings (max 5)
+  - `CMP_MAX = 5` — maximum counties to compare simultaneously
+  - `renderComparePanel()` — builds side-by-side columns with severity, level, status, type, state, pop, restrictions, restrictions_detail; uses `escHtml()` throughout; safe DOM construction (no innerHTML with user data)
+  - `addToCompare(fips)` — adds county to array, toasts duplicate/full, re-renders; called by `handleCountyClick` when `compareMode` is true
+  - `removeFromCompare(fips)` — splices county out, re-renders (clears mode if array empties)
+  - `clearCompare()` — empties array, exits compare mode
+  - `toggleComparePanel()` — toggles `compareMode`, panel visibility, `#gis-compare` active state, and `#main.compare-active` class
+  - `handleCountyClick()` — compare-mode branch: calls `addToCompare(fips)` and returns early, skipping normal county selection
+  - `initLeafletMap()` keyboard handler — `C` key → `toggleComparePanel()`; Escape closes compare panel when open
+  - Event wiring: `#gis-compare` → `toggleComparePanel`, `#compare-close-btn` → `toggleComparePanel`, `#compare-clear-btn` → `clearCompare`
+  - `disableClickPropagation` — added `"compare-panel"` to list
+  - `disableScrollPropagation` — added `"compare-body"` to list
+  - Keyboard overlay — added `C` → "Compare counties" entry under Map Tools
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 14 — Time-based analysis (enacted-by-year slider)
 
 Files Modified:

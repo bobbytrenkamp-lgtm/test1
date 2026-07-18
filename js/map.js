@@ -144,10 +144,13 @@ let minimapVisible   = false;
 let _toastTimer      = null;
 let locMarker        = null;
 let _ctxLatLng       = null;
-let bookmarksVisible = false;
-let _wsVisible       = false;
-const WS_LOCAL_KEY   = "dc-workspaces-local-v1";
-const WS_MAX_LOCAL   = 10;
+let bookmarksVisible  = false;
+let _wsVisible        = false;
+const WS_LOCAL_KEY    = "dc-workspaces-local-v1";
+const WS_MAX_LOCAL    = 10;
+let compareMode       = false;
+const compareCounties = []; // array of fips strings, max 5
+const CMP_MAX         = 5;
 let countyFillOpacity = 1.0;
 
 /* ── Draw / Pin tool state ── */
@@ -594,6 +597,7 @@ function handleCountyClick(e, fips) {
   if (isDraggingMap || Date.now() < suppressClickUntil) return;
   if (hasActiveMapFilters() && !countyMatchesFilters(fips)) return;
   L.DomEvent.stopPropagation(e);
+  if (compareMode) { addToCompare(fips); return; }
   if (selectedFips && countyLayerByFips[selectedFips]) {
     countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
   }
@@ -1464,6 +1468,148 @@ function toggleBookmarks() {
   if (bookmarksVisible) renderBookmarksList();
 }
 
+/* ── Compare panel ── */
+function renderComparePanel() {
+  const body = document.getElementById("compare-body");
+  if (!body) return;
+  body.innerHTML = "";
+
+  if (!compareCounties.length) {
+    const em = document.createElement("div");
+    em.className = "cmp-add-prompt";
+    em.style.width = "100%";
+    em.textContent = "Click counties on the map to compare up to 5 side-by-side.";
+    body.appendChild(em);
+    return;
+  }
+
+  compareCounties.forEach(fips => {
+    const county = mapData[fips];
+    if (!county) return;
+    const sevKey   = getSeverityKey(county);
+    const sevColor = SEVERITY[sevKey].color;
+    const sevLabel = SEVERITY[sevKey].label;
+    const types    = (county.types || []).map(t => TYPE_LABELS[t] || t).join(", ") || "—";
+    const date     = county.effective_date || county.date || "—";
+
+    const col = document.createElement("div");
+    col.className = "cmp-col";
+    col.style.setProperty("--cmp-sev-color", sevColor);
+
+    // Header
+    const hdr = document.createElement("div");
+    hdr.className = "cmp-col-header";
+    hdr.style.borderTopColor = sevColor;
+    const nameWrap = document.createElement("div");
+    const nameEl   = document.createElement("div");
+    nameEl.className = "cmp-col-name";
+    nameEl.textContent = county.name;
+    const stateEl  = document.createElement("div");
+    stateEl.className = "cmp-col-state";
+    stateEl.textContent = county.state;
+    nameWrap.appendChild(nameEl);
+    nameWrap.appendChild(stateEl);
+    const removeBtn = document.createElement("button");
+    removeBtn.className  = "cmp-col-remove";
+    removeBtn.type       = "button";
+    removeBtn.textContent = "×";
+    removeBtn.setAttribute("aria-label", `Remove ${county.name}`);
+    removeBtn.addEventListener("click", () => removeFromCompare(fips));
+    hdr.appendChild(nameWrap);
+    hdr.appendChild(removeBtn);
+
+    // Body rows
+    const colBody = document.createElement("div");
+    colBody.className = "cmp-col-body";
+
+    function addField(label, valueHtml) {
+      const f = document.createElement("div");
+      f.className = "cmp-field";
+      const lEl = document.createElement("div");
+      lEl.className = "cmp-field-label";
+      lEl.textContent = label;
+      const vEl = document.createElement("div");
+      vEl.className = "cmp-field-value";
+      vEl.innerHTML = valueHtml; // safe: only static strings + escHtml()
+      f.appendChild(lEl);
+      f.appendChild(vEl);
+      colBody.appendChild(f);
+    }
+
+    addField("Severity",
+      `<span class="cmp-field-value cmp-sev-badge"><span class="cmp-sev-dot" style="background:${sevColor}"></span>${escHtml(sevLabel)}</span>`
+    );
+    addField("Status", escHtml((county.status || "active").charAt(0).toUpperCase() + (county.status || "active").slice(1)));
+    addField("Policy Types", escHtml(types));
+    addField("Enacted", escHtml(date));
+    if (county.title) {
+      addField("Title", escHtml(county.title));
+    }
+    if (county.description) {
+      const descF = document.createElement("div");
+      descF.className = "cmp-field";
+      const lEl = document.createElement("div");
+      lEl.className = "cmp-field-label";
+      lEl.textContent = "Description";
+      const vEl = document.createElement("div");
+      vEl.className = "cmp-desc";
+      vEl.textContent = county.description;
+      descF.appendChild(lEl);
+      descF.appendChild(vEl);
+      colBody.appendChild(descF);
+    }
+
+    col.appendChild(hdr);
+    col.appendChild(colBody);
+    body.appendChild(col);
+  });
+
+  // Add-more prompt if under max
+  if (compareCounties.length < CMP_MAX) {
+    const addCol = document.createElement("div");
+    addCol.className = "cmp-add-col";
+    const prompt = document.createElement("div");
+    prompt.className = "cmp-add-prompt";
+    prompt.textContent = `Click map to add (${compareCounties.length}/${CMP_MAX})`;
+    addCol.appendChild(prompt);
+    body.appendChild(addCol);
+  }
+}
+
+function addToCompare(fips) {
+  if (!fips || compareCounties.includes(fips)) return;
+  if (compareCounties.length >= CMP_MAX) {
+    showMapToast(`Max ${CMP_MAX} counties in compare view`);
+    return;
+  }
+  compareCounties.push(fips);
+  renderComparePanel();
+  const county = mapData[fips];
+  if (county) showMapToast(`Added: ${county.name}`);
+}
+
+function removeFromCompare(fips) {
+  const idx = compareCounties.indexOf(fips);
+  if (idx >= 0) compareCounties.splice(idx, 1);
+  renderComparePanel();
+}
+
+function clearCompare() {
+  compareCounties.length = 0;
+  renderComparePanel();
+}
+
+function toggleComparePanel() {
+  compareMode = !compareMode;
+  const panel = document.getElementById("compare-panel");
+  const btn   = document.getElementById("gis-compare");
+  const main  = document.getElementById("main");
+  if (panel) panel.hidden = !compareMode;
+  if (btn)   { btn.classList.toggle("active", compareMode); btn.setAttribute("aria-pressed", String(compareMode)); }
+  if (main)  main.classList.toggle("compare-active", compareMode);
+  if (compareMode) renderComparePanel();
+}
+
 function initBookmarks() {
   document.getElementById("gis-bookmarks")    ?.addEventListener("click", toggleBookmarks);
   document.getElementById("bookmarks-close")  ?.addEventListener("click", toggleBookmarks);
@@ -1871,14 +2017,21 @@ function initLeafletMap() {
     if ((e.key === "l" || e.key === "L") && !e.ctrlKey && !e.metaKey) window.RESULTS_PANEL?.toggle();
     if ((e.key === "f" || e.key === "F") && !e.ctrlKey && !e.metaKey) toggleFullscreen();
     if ((e.key === "w" || e.key === "W") && !e.ctrlKey && !e.metaKey) toggleWorkspaces();
+    if ((e.key === "c" || e.key === "C") && !e.ctrlKey && !e.metaKey) toggleComparePanel();
     if (e.key === "Escape" && measureMode)      toggleMeasure();
     if (e.key === "Escape" && drawMode)         toggleDraw();
     if (e.key === "Escape" && candidatePinMode) toggleCandidatePin();
     if (e.key === "Escape" && _wsVisible)       toggleWorkspaces();
+    if (e.key === "Escape" && compareMode)      toggleComparePanel();
   });
 
   initContextMenu();
   initBookmarks();
+
+  // Compare panel wiring
+  document.getElementById("gis-compare")      ?.addEventListener("click", toggleComparePanel);
+  document.getElementById("compare-close-btn")?.addEventListener("click", toggleComparePanel);
+  document.getElementById("compare-clear-btn")?.addEventListener("click", clearCompare);
 
   // Workspace panel wiring
   document.getElementById("gis-workspace")    ?.addEventListener("click", toggleWorkspaces);
@@ -1892,14 +2045,14 @@ function initLeafletMap() {
   // Without this, Leaflet's touchstart handler on the map can swallow taps on
   // absolutely-positioned controls on iOS Safari.
   [
-    "map-gis-bar", "measure-readout", "draw-readout", "bookmarks-panel", "workspace-panel", "map-ctx-menu",
+    "map-gis-bar", "measure-readout", "draw-readout", "bookmarks-panel", "workspace-panel", "compare-panel", "map-ctx-menu",
     "minimap-wrap", "legend", "legend-restore", "stats-bar", "filter-status",
   ].forEach(id => {
     const el = document.getElementById(id);
     if (el) L.DomEvent.disableClickPropagation(el);
   });
   // Prevent scroll-wheel/pinch inside overlay panels from zooming the map
-  ["bookmarks-list", "workspace-list", "legend"].forEach(id => {
+  ["bookmarks-list", "workspace-list", "compare-body", "legend"].forEach(id => {
     const el = document.getElementById(id);
     if (el) L.DomEvent.disableScrollPropagation(el);
   });
@@ -3852,6 +4005,7 @@ function initKbOverlay() {
     <div class="kb-row"><span class="kb-desc">Drop candidate site pin</span><span class="kb-keys"><kbd>P</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Toggle results panel</span><span class="kb-keys"><kbd>L</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Workspaces panel</span><span class="kb-keys"><kbd>W</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Compare counties</span><span class="kb-keys"><kbd>C</kbd></span></div>
     <div class="kb-section">General</div>
     <div class="kb-row"><span class="kb-desc">Show this help</span><span class="kb-keys"><kbd>?</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Close / dismiss</span><span class="kb-keys"><kbd>Esc</kbd></span></div>
