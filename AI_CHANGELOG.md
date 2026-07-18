@@ -5,6 +5,47 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 4 — Zoning Integration in County Detail Panel
+
+Files Modified:
+- `js/map.js` — 3 targeted changes:
+  1. Added `async _renderZoningSummaryForCounty(fips)` — async function placed before `setDetailCounty()`; checks `window.ZONING.hasCoverage(fips)`, injects loading state into `#detail-zoning-summary` placeholder, fetches/caches data via `window.ZONING.loadByFips(fips)`, renders a compact per-district DC eligibility table (district code, assessment chip, confidence label), the full required disclaimer, and a "View full zoning details →" button that calls `setLayerVisible("zoning_districts", true, true)` to open the full zoning side panel. Never invents data — only shows what's in the normalized JSON.
+  2. `setDetailCounty()` — added `<div id="detail-zoning-summary"></div>` at end of innerHTML; calls `_renderZoningSummaryForCounty(fips)` after `openMobileSheet()`
+  3. `setDetailNoRestriction()` — same placeholder + async call pattern when `fips` is provided
+- `css/style.css` — added zoning summary component styles before the responsive section:
+  - `.zoning-summary-table`, `.zoning-summary-row` — flex column layout for per-district rows
+  - `.zoning-district-code` — monospace code chip (accent color, matches zoning.css style)
+  - `.zoning-assess-chip` — pill badge reusing zoning.css `.z-dc-*` color classes
+  - `.zoning-conf` — right-aligned confidence label (9px muted uppercase)
+  - `.zoning-summary-disclaimer` — amber-tinted disclaimer box (10px, matches legal copy requirement)
+  - `.zoning-open-btn` — ghost button with accent color; hover border + background
+  - `.zoning-summary-loading`, `.zoning-summary-error` — async state helpers
+- `data/zoning/scripts/zoning_config.py` — added 3 pipeline-ready jurisdiction stubs:
+  - `va-fairfax-county` (FIPS 51059, high relevance) — Fairfax County Open Data + Municode ordinance
+  - `va-prince-william-county` (FIPS 51153, high relevance) — PWCGIS ArcGIS portal
+  - `md-montgomery-county` (FIPS 24031, medium relevance) — Montgomery County Open Data
+  Note: Geometry fetch is blocked in this environment (proxy returns 403 for external ArcGIS URLs). Stubs are pipeline-ready for when fetching is available; no normalized JSON created yet.
+- `index.html` — bumped style.css and map.js cache-busting strings to `?v=20260718d`
+
+Features Implemented:
+- Zoning DC eligibility summary appears in the county detail panel for any county with zoning coverage (currently Loudoun County, VA — FIPS 51107)
+- Summary is shown regardless of whether the Zoning Districts layer toggle is active
+- Each zoning district row shows: code chip, assessment badge (Potentially Eligible / Not Eligible / Unclear / Requires Review), confidence level
+- Required legal disclaimer always displayed: "Zoning information is provided for preliminary research only…"
+- "View full zoning details →" button activates the full zoning side panel with all tabs (overview, standards, uses, overlays, sources)
+- Data loads asynchronously with loading/error state; cached for session lifetime
+- 3 new jurisdiction stubs added to pipeline config for Fairfax, Prince William, and Montgomery counties
+
+Limitations / Technical Notes:
+- Zoning geometry pipeline is blocked in this environment (proxy 403 for ArcGIS external URLs); geometry file for Loudoun cannot be fetched here
+- New jurisdiction stubs have no normalized JSON yet — zoning summary will silently skip those counties until pipeline runs with geometry access
+- `window.ZONING` must be loaded (zoning.js script tag in index.html); no defensive null check added because the script is always present
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 3 — Data Transparency in Detail Panels
 
 Files Modified:

@@ -1798,6 +1798,88 @@ body.is-resizing-floating-panel * {
   white-space: nowrap;
 }
 
+/* ── Detail panel — Zoning eligibility summary ── */
+.zoning-summary-table {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 5px;
+}
+.zoning-summary-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+  min-height: 22px;
+}
+.zoning-district-code {
+  font-family: monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(88, 141, 239, 0.12);
+  border-radius: 3px;
+  padding: 1px 5px;
+  flex-shrink: 0;
+  min-width: 52px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+.zoning-assess-chip {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.zoning-conf {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.zoning-summary-disclaimer {
+  margin-top: 8px;
+  font-size: 10px;
+  padding: 7px 9px;
+  line-height: 1.4;
+  background: rgba(234, 179, 8, 0.06);
+  border: 1px solid rgba(234, 179, 8, 0.20);
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+.zoning-open-btn {
+  margin-top: 8px;
+  display: block;
+  width: 100%;
+  padding: 7px 12px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s, border-color 0.15s;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.zoning-open-btn:hover { background: rgba(88, 141, 239, 0.08); border-color: var(--accent); }
+.zoning-summary-loading {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 4px 0;
+  font-style: italic;
+}
+.zoning-summary-error {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 4px 0;
+}
+
 /* ── Responsive ── */
 @media (max-width: 700px) {
   #stats-bar { display: none; }

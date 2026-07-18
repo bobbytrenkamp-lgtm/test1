@@ -2729,6 +2729,50 @@ function setDetailEmpty() {
   closeMobileSheet();
 }
 
+async function _renderZoningSummaryForCounty(fips) {
+  if (!window.ZONING?.hasCoverage(fips)) return;
+  const placeholder = document.getElementById("detail-zoning-summary");
+  if (!placeholder) return;
+
+  placeholder.innerHTML = '<div class="zoning-summary-loading">Loading zoning data…</div>';
+
+  let data;
+  try {
+    data = await window.ZONING.loadByFips(fips);
+  } catch (_) {
+    placeholder.innerHTML = '<div class="zoning-summary-error">Zoning data unavailable.</div>';
+    return;
+  }
+  if (!data) { placeholder.innerHTML = ""; return; }
+
+  const districts = data.districts || {};
+  const rows = Object.values(districts).map(d => {
+    const assess = window.ZONING.assessmentStyle(d.dc_analysis?.overall_assessment);
+    const conf   = d.dc_analysis?.confidence_level || d.confidence_level || "low";
+    return `<div class="zoning-summary-row">
+      <code class="zoning-district-code">${escHtml(d.district_code)}</code>
+      <span class="${assess.cls} zoning-assess-chip">${escHtml(assess.icon)} ${escHtml(assess.label)}</span>
+      <span class="zoning-conf">${escHtml(conf)}</span>
+    </div>`;
+  }).join("");
+
+  const disclaimer = data.disclaimer ||
+    "Zoning information is provided for preliminary research only. Confirm all requirements with the controlling jurisdiction before relying on this information.";
+
+  placeholder.innerHTML = `
+    <div class="divider"></div>
+    <div class="detail-section">
+      <div class="detail-label">Zoning — DC Eligibility <span class="ds-badge ds-partial" title="Pilot coverage — partial district data">Partial</span></div>
+      <div class="detail-value zoning-summary-table">${rows}</div>
+      <div class="zoning-summary-disclaimer">${escHtml(disclaimer)}</div>
+      <button class="zoning-open-btn">View full zoning details →</button>
+    </div>`;
+
+  placeholder.querySelector(".zoning-open-btn")?.addEventListener("click", () => {
+    setLayerVisible("zoning_districts", true, true);
+  });
+}
+
 function setDetailCounty(fips, county) {
   setSevClass(getSeverityKey(county));
   document.getElementById("detail-header").querySelector("h2").textContent = county.name;
@@ -2744,8 +2788,10 @@ function setDetailCounty(fips, county) {
     ${buildCityPolicySectionHtml()}
     <div class="policy-divider"></div>
     ${buildPoliticalRiskSectionHtml(fips)}
-    ${buildSampleInfraHtml(fips)}`;
+    ${buildSampleInfraHtml(fips)}
+    <div id="detail-zoning-summary"></div>`;
   openMobileSheet();
+  _renderZoningSummaryForCounty(fips);
 }
 
 function setDetailNoRestriction(name, state, fips) {
@@ -2761,8 +2807,10 @@ function setDetailNoRestriction(name, state, fips) {
     ${buildCityPolicySectionHtml()}
     <div class="policy-divider"></div>
     ${fips ? buildPoliticalRiskSectionHtml(fips) : ""}
-    ${fips ? buildSampleInfraHtml(fips) : ""}`;
+    ${fips ? buildSampleInfraHtml(fips) : ""}
+    ${fips ? '<div id="detail-zoning-summary"></div>' : ""}`;
   openMobileSheet();
+  if (fips) _renderZoningSummaryForCounty(fips);
 }
 
 const FACILITY_KIND_LABELS = {
