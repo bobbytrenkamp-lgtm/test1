@@ -196,6 +196,9 @@ let hoveredCountyLayer = null;
 const activeRestrictFilters = new Set();  // severity keys e.g. "high", "ban"
 let   activeStateFilter     = "";          // 2-letter state abbr or ""
 const activeScopeFilters    = new Set();   // "restrictions", "state_policy", "city_policy"
+const activeTypeFilters     = new Set();  // policy type keys e.g. "data_center", "ai"
+let   typeFilterMode        = "any";       // "any" (OR) | "all" (AND) for activeTypeFilters
+const activeStatusFilters   = new Set();  // "active" | "proposed" | "pending"
 
 /* ── Tab / news state ── */
 let activeTab      = "map";
@@ -214,11 +217,26 @@ function countyMatchesFilters(fips) {
     const stAbbr = STATE_FIPS[fips.slice(0, 2)] || "";
     if (stAbbr !== activeStateFilter) return false;
   }
+  if (activeTypeFilters.size > 0) {
+    const countyTypes = county?.types || [];
+    if (typeFilterMode === "all") {
+      for (const t of activeTypeFilters) { if (!countyTypes.includes(t)) return false; }
+    } else {
+      let hasAny = false;
+      for (const t of activeTypeFilters) { if (countyTypes.includes(t)) { hasAny = true; break; } }
+      if (!hasAny) return false;
+    }
+  }
+  if (activeStatusFilters.size > 0) {
+    const status = county?.status || "active";
+    if (!activeStatusFilters.has(status)) return false;
+  }
   return true;
 }
 
 function hasActiveMapFilters() {
-  return activeRestrictFilters.size > 0 || activeStateFilter !== "";
+  return activeRestrictFilters.size > 0 || activeStateFilter !== "" ||
+         activeTypeFilters.size > 0 || activeStatusFilters.size > 0;
 }
 
 /* ── Helpers ── */
@@ -1392,11 +1410,40 @@ function toggleRestrictFilter(key) {
 function clearAllFilters() {
   activeRestrictFilters.clear();
   activeStateFilter = "";
+  activeTypeFilters.clear();
+  activeStatusFilters.clear();
+  _saveFilterState();
   applyFilters();
   syncAdvancedFilterUI();
 }
 
+function _saveFilterState() {
+  try {
+    localStorage.setItem("dc-advanced-filters-v1", JSON.stringify({
+      restrict: [...activeRestrictFilters],
+      state:    activeStateFilter,
+      types:    [...activeTypeFilters],
+      typeMode: typeFilterMode,
+      status:   [...activeStatusFilters],
+    }));
+  } catch (_) {}
+}
+
+function _loadFilterState() {
+  try {
+    const raw = localStorage.getItem("dc-advanced-filters-v1");
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    if (Array.isArray(s.restrict)) s.restrict.forEach(k => activeRestrictFilters.add(k));
+    if (typeof s.state === "string") activeStateFilter = s.state;
+    if (Array.isArray(s.types))   s.types.forEach(t => activeTypeFilters.add(t));
+    if (s.typeMode === "all" || s.typeMode === "any") typeFilterMode = s.typeMode;
+    if (Array.isArray(s.status))  s.status.forEach(t => activeStatusFilters.add(t));
+  } catch (_) {}
+}
+
 function applyFilters() {
+  _saveFilterState();
   if (countyGeoLayer) {
     countyGeoLayer.setStyle(countyStyle);
     // Re-apply selected county highlight if still visible
@@ -1437,6 +1484,15 @@ function renderFilterStatus() {
     parts.push(labels);
   }
   if (activeStateFilter) parts.push(STATE_NAMES[activeStateFilter] || activeStateFilter);
+  if (activeTypeFilters.size > 0) {
+    const modeLabel = typeFilterMode === "all" ? "ALL of" : "";
+    const typeLabels = [...activeTypeFilters].map(t => TYPE_LABELS[t] || t).join(", ");
+    parts.push(modeLabel ? `${modeLabel}: ${typeLabels}` : typeLabels);
+  }
+  if (activeStatusFilters.size > 0) {
+    const stLabels = [...activeStatusFilters].map(s => STATUS_LABELS[s] || s).join(", ");
+    parts.push(stLabels);
+  }
 
   el.hidden = false;
   if (matchCount === 0) {
@@ -3184,6 +3240,18 @@ function syncAdvancedFilterUI() {
   // Sync state select
   const stSel = document.getElementById("adv-state-select");
   if (stSel) stSel.value = activeStateFilter;
+  // Sync type chips
+  document.querySelectorAll("#adv-type-chips .adv-chip").forEach(chip => {
+    chip.classList.toggle("active", activeTypeFilters.has(chip.dataset.type));
+  });
+  // Sync type mode toggle
+  document.querySelectorAll(".adv-mode-opt").forEach(opt => {
+    opt.classList.toggle("active", opt.dataset.val === typeFilterMode);
+  });
+  // Sync status chips
+  document.querySelectorAll("#adv-status-chips .adv-chip").forEach(chip => {
+    chip.classList.toggle("active", activeStatusFilters.has(chip.dataset.status));
+  });
   // Sync clear button visibility
   const clearBtn = document.getElementById("adv-filter-clear");
   if (clearBtn) clearBtn.hidden = !hasActiveMapFilters();
@@ -3191,7 +3259,8 @@ function syncAdvancedFilterUI() {
   const advBtn = document.getElementById("adv-filter-toggle");
   if (advBtn) {
     advBtn.classList.toggle("active", hasActiveMapFilters());
-    const filterCount = activeRestrictFilters.size + (activeStateFilter ? 1 : 0);
+    const filterCount = activeRestrictFilters.size + (activeStateFilter ? 1 : 0) +
+                        activeTypeFilters.size + activeStatusFilters.size;
     if (filterCount > 0) advBtn.setAttribute("data-count", filterCount);
     else advBtn.removeAttribute("data-count");
   }
@@ -3295,6 +3364,95 @@ function initAdvancedFiltersPanel() {
       btn.classList.toggle("active", layerState[def.id]);
     });
     scopeRow.appendChild(btn);
+  }
+
+  // Policy type chips + AND/OR mode toggle
+  const typeRow = document.getElementById("adv-type-chips");
+  if (typeRow) {
+    const typeDefs = [
+      { key: "data_center", color: "#5b8def" },
+      { key: "ai",          color: "#a78bfa" },
+      { key: "crypto",      color: "#fbbf24" },
+      { key: "energy",      color: "#34d399" },
+      { key: "water",       color: "#60a5fa" },
+    ];
+    for (const def of typeDefs) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "adv-chip" + (activeTypeFilters.has(def.key) ? " active" : "");
+      btn.dataset.type = def.key;
+      btn.innerHTML = `<span class="adv-chip-dot" style="background:${def.color}"></span>${TYPE_LABELS[def.key] || def.key}`;
+      btn.addEventListener("click", () => {
+        if (activeTypeFilters.has(def.key)) activeTypeFilters.delete(def.key);
+        else activeTypeFilters.add(def.key);
+        applyFilters();
+      });
+      typeRow.appendChild(btn);
+    }
+  }
+
+  // AND/OR mode toggle for type filter
+  const modeToggle = document.getElementById("adv-type-mode-toggle");
+  if (modeToggle) {
+    modeToggle.querySelectorAll(".adv-mode-opt").forEach(opt => {
+      opt.addEventListener("click", () => {
+        typeFilterMode = opt.dataset.val;
+        applyFilters();
+      });
+    });
+  }
+
+  // Lifecycle status chips
+  const statusRow = document.getElementById("adv-status-chips");
+  if (statusRow) {
+    const statusDefs = [
+      { key: "active",   color: "#4ade80" },
+      { key: "proposed", color: "#eab308" },
+      { key: "pending",  color: "#f97316" },
+    ];
+    for (const def of statusDefs) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "adv-chip" + (activeStatusFilters.has(def.key) ? " active" : "");
+      btn.dataset.status = def.key;
+      btn.innerHTML = `<span class="adv-chip-dot" style="background:${def.color}"></span>${STATUS_LABELS[def.key] || def.key}`;
+      btn.addEventListener("click", () => {
+        if (activeStatusFilters.has(def.key)) activeStatusFilters.delete(def.key);
+        else activeStatusFilters.add(def.key);
+        applyFilters();
+      });
+      statusRow.appendChild(btn);
+    }
+  }
+
+  // Quick presets
+  const presetsRow = document.getElementById("adv-presets");
+  if (presetsRow) {
+    const PRESETS = [
+      { label: "Active Bans",      restrict: ["ban"],                status: ["active"],   types: [],           typeMode: "any" },
+      { label: "High Risk Active", restrict: ["ban","high"],          status: ["active"],   types: [],           typeMode: "any" },
+      { label: "Proposed Only",    restrict: ["proposed"],            status: ["proposed"], types: [],           typeMode: "any" },
+      { label: "AI Rules",         restrict: [],                      status: [],           types: ["ai"],       typeMode: "any" },
+    ];
+    for (const preset of PRESETS) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "adv-chip adv-preset-chip";
+      btn.textContent = preset.label;
+      btn.title = "Apply filter preset: " + preset.label;
+      btn.addEventListener("click", () => {
+        activeRestrictFilters.clear();
+        preset.restrict.forEach(k => activeRestrictFilters.add(k));
+        activeStateFilter = "";
+        activeTypeFilters.clear();
+        preset.types.forEach(t => activeTypeFilters.add(t));
+        activeStatusFilters.clear();
+        preset.status.forEach(s => activeStatusFilters.add(s));
+        typeFilterMode = preset.typeMode;
+        applyFilters();
+      });
+      presetsRow.appendChild(btn);
+    }
   }
 
 }
@@ -3869,6 +4027,7 @@ function initThemeToggle() {
 /* ── Init ── */
 async function init() {
   _loadLayerGroupState();
+  _loadFilterState();
   initThemeToggle();
   initNavTabs();
   initKeyboardShortcuts();

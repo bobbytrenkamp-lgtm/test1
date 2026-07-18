@@ -2230,6 +2230,37 @@ body.is-resizing-floating-panel * {
   border-radius: 50%;
   flex-shrink: 0;
 }
+.adv-preset-chip { border-radius: 5px; font-size: 10.5px; }
+
+/* AND/OR mode toggle for type filter */
+.adv-section-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.adv-mode-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.adv-mode-opt {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  cursor: pointer;
+  color: var(--text-muted);
+  background: none;
+  transition: background 0.1s, color 0.1s;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.adv-mode-opt.active {
+  background: var(--accent);
+  color: #fff;
+}
 
 .adv-select {
   width: 100%;

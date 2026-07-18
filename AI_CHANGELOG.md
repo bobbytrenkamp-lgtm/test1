@@ -5,6 +5,40 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 6 — Extended Filter System
+
+Files Modified:
+- `js/map.js` — multiple targeted changes:
+  1. New filter state: `activeTypeFilters` (Set), `typeFilterMode` ("any"/"all"), `activeStatusFilters` (Set)
+  2. `countyMatchesFilters()` — extended to check type filter (ANY/ALL mode applied to `county.types` array) and status filter (`county.status`)
+  3. `hasActiveMapFilters()` — updated to include type and status filters
+  4. `clearAllFilters()` — clears all new filter sets
+  5. `_saveFilterState()` — new function serializing all filter state to `dc-advanced-filters-v1` localStorage key
+  6. `_loadFilterState()` — new function restoring filter state on init; called at top of `init()`
+  7. `applyFilters()` — calls `_saveFilterState()` on every filter change so state persists across page loads
+  8. `renderFilterStatus()` — extended to include type labels (with ALL-mode prefix) and status labels in the filter summary text
+  9. `syncAdvancedFilterUI()` — extended to sync type chips, mode toggle opts, and status chips; filter badge count on the toolbar button now includes all filter dimensions
+  10. `initAdvancedFiltersPanel()` — extended with: policy type chip row (5 types with color dots), AND/OR mode toggle event wiring, lifecycle status chip row (3 statuses), quick presets row (4 named presets: Active Bans, High Risk Active, Proposed Only, AI Rules)
+- `index.html` — added 3 new sections to `#adv-filter-body`: Policy Type (with mode toggle), Lifecycle Status, Quick Presets; bumped style.css to `?v=20260718e`, map.js to `?v=20260718f`
+- `css/style.css` — added:
+  - `.adv-preset-chip` — slightly different radius for preset buttons
+  - `.adv-section-label-row` — flex row for label + mode toggle on same line
+  - `.adv-mode-toggle`, `.adv-mode-opt`, `.adv-mode-opt.active` — AND/OR pill toggle
+
+Features Implemented:
+- Policy type filter: 5 type chips (Data Center, AI Regulation, Crypto/HPC, Energy/Grid, Water Use); counties must have matching type(s) in their `types` array
+- AND/OR operator for type filter: ANY mode (OR — county has at least one selected type) or ALL mode (AND — county must have every selected type); toggle persisted in localStorage
+- Lifecycle status filter: 3 status chips (Active, Proposed, Pending); filters on `county.status`
+- Quick presets: 4 one-click preset configurations ("Active Bans", "High Risk Active", "Proposed Only", "AI Rules") — each applies a full filter state atomically
+- Full filter state persistence: all filter dimensions (severity, state, types, type-mode, status) saved to `dc-advanced-filters-v1` localStorage key on every change; restored on init
+- Filter count badge on the toolbar button now counts all active filter dimensions
+- Filter status bar text includes type and status filter descriptions
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 5 — Unified Identify / Selected-Place Coordination
 
 Files Modified:
