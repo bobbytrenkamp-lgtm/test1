@@ -264,13 +264,14 @@
     const panel  = document.getElementById('detail-panel');
     if (!handle || !panel) return;
 
-    let active = false, startX = 0, startW = 0;
+    let active = false, didMove = false, startX = 0, startW = 0;
 
     handle.addEventListener('pointerdown', e => {
       if (panel.classList.contains('ws-rail-floating') || panel.classList.contains('ws-rail-collapsed')) return;
       if (window.matchMedia('(max-width: 700px)').matches) return;
-      e.preventDefault();
+      e.preventDefault(); // prevents 300ms ghost-click on mobile
       active  = true;
+      didMove = false;
       startX  = e.clientX;
       startW  = panel.getBoundingClientRect().width;
       handle.setPointerCapture(e.pointerId);
@@ -279,19 +280,23 @@
 
     handle.addEventListener('pointermove', e => {
       if (!active) return;
-      const max     = Math.floor(window.innerWidth * MAX_RAIL_FRAC);
-      const newW    = Math.max(MIN_RAIL_W, Math.min(max, startW + (startX - e.clientX)));
+      didMove = true;
+      const max  = Math.floor(window.innerWidth * MAX_RAIL_FRAC);
+      const newW = Math.max(MIN_RAIL_W, Math.min(max, startW + (startX - e.clientX)));
       panel.style.width = newW + 'px';
       scheduleMapSizeUpdate();
     });
 
-    handle.addEventListener('pointerup', () => {
+    const _resizeEnd = e => {
       if (!active) return;
+      if (didMove) e.preventDefault(); // suppress post-drag synthesized click on desktop
       active = false;
       document.body.classList.remove('ws-resizing-rail');
       prefs.railWidth = Math.round(panel.getBoundingClientRect().width);
       savePrefs();
-    });
+    };
+    handle.addEventListener('pointerup', _resizeEnd);
+    handle.addEventListener('pointercancel', _resizeEnd); // pointer left window mid-drag
 
     handle.addEventListener('dblclick', () => {
       setRailWidth(DEFAULT_RAIL_W);
@@ -306,13 +311,15 @@
     const panel    = document.getElementById('detail-panel');
     if (!titlebar || !panel) return;
 
-    let dragging = false, startX = 0, startY = 0, origLeft = 0, origTop = 0;
+    let dragging = false, didMove = false, startX = 0, startY = 0, origLeft = 0, origTop = 0;
 
     titlebar.addEventListener('pointerdown', e => {
       if (!panel.classList.contains('ws-rail-floating')) return;
       if (e.target.closest('button')) return;
+      e.preventDefault(); // suppresses post-drag synthesized click
       const rect = panel.getBoundingClientRect();
       dragging = true;
+      didMove  = false;
       startX   = e.clientX;
       startY   = e.clientY;
       origLeft = rect.left;
@@ -324,18 +331,22 @@
 
     titlebar.addEventListener('pointermove', e => {
       if (!dragging) return;
+      didMove = true;
       panel.style.left = (origLeft + e.clientX - startX) + 'px';
       panel.style.top  = (origTop  + e.clientY - startY) + 'px';
     });
 
-    titlebar.addEventListener('pointerup', () => {
+    const _floatEnd = e => {
       if (!dragging) return;
+      if (didMove) e.preventDefault(); // suppress post-drag synthesized click
       dragging = false;
       const rect = panel.getBoundingClientRect();
       prefs.railFloatLeft = Math.round(rect.left);
       prefs.railFloatTop  = Math.round(rect.top);
       savePrefs();
-    });
+    };
+    titlebar.addEventListener('pointerup',     _floatEnd);
+    titlebar.addEventListener('pointercancel', _floatEnd);
   }
 
   /* ── Rail tab label sync ─────────────────────────────────────────────── */
@@ -507,11 +518,13 @@
 
   /* ── Generic drag helper ─────────────────────────────────────────────── */
   function _makeDraggable(handle, mover) {
-    let dragging = false, startX = 0, startY = 0, origLeft = 0, origTop = 0;
+    let dragging = false, didMove = false, startX = 0, startY = 0, origLeft = 0, origTop = 0;
     handle.addEventListener('pointerdown', e => {
       if (e.target.closest('button')) return;
+      e.preventDefault(); // suppresses post-drag synthesized click
       const rect = mover.getBoundingClientRect();
       dragging = true;
+      didMove  = false;
       startX   = e.clientX; startY = e.clientY;
       origLeft = rect.left;  origTop = rect.top;
       mover.style.right  = '';
@@ -520,10 +533,17 @@
     });
     handle.addEventListener('pointermove', e => {
       if (!dragging) return;
+      didMove = true;
       mover.style.left = (origLeft + e.clientX - startX) + 'px';
       mover.style.top  = (origTop  + e.clientY - startY) + 'px';
     });
-    handle.addEventListener('pointerup', () => { dragging = false; });
+    const _dragEnd = e => {
+      if (!dragging) return;
+      if (didMove) e.preventDefault(); // suppress post-drag synthesized click
+      dragging = false;
+    };
+    handle.addEventListener('pointerup',     _dragEnd);
+    handle.addEventListener('pointercancel', _dragEnd);
   }
 
   /* ── County change → close all floating cards ────────────────────────── */
