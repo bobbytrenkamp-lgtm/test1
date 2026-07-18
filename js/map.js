@@ -2240,6 +2240,7 @@ function initLeafletMap() {
   // absolutely-positioned controls on iOS Safari.
   [
     "map-gis-bar", "measure-readout", "draw-readout", "bookmarks-panel", "workspace-panel", "compare-panel", "export-menu", "map-ctx-menu",
+    "ws-settings-panel", "ws-settings-backdrop",
     "minimap-wrap", "legend", "legend-restore", "stats-bar", "filter-status",
   ].forEach(id => {
     const el = document.getElementById(id);
