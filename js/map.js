@@ -1536,6 +1536,10 @@ function renderComparePanel() {
       colBody.appendChild(f);
     }
 
+    const suit = computeSuitabilityScore(fips, county);
+    addField("Suitability",
+      `<span class="cmp-suit-grade cmp-suit-${suit.grade}">${suit.grade}</span>${escHtml(suit.score + " / 100")} <span style="color:var(--text-muted);font-size:10px;">— ${escHtml(suit.label)}</span>`
+    );
     addField("Severity",
       `<span class="cmp-field-value cmp-sev-badge"><span class="cmp-sev-dot" style="background:${sevColor}"></span>${escHtml(sevLabel)}</span>`
     );
@@ -3535,6 +3539,92 @@ function buildConfidenceBadgeHtml(county) {
   </div>`;
 }
 
+/* ── Suitability scoring ── */
+function computeSuitabilityScore(fips, county) {
+  // Factor 1: Regulatory Environment (max 50)
+  const sevKey = county ? getSeverityKey(county) : "none";
+  const regPts = { pro: 50, none: 45, proposed: 30, moderate: 18, high: 6, ban: 0 }[sevKey] ?? 45;
+  const regNote = {
+    pro:      "Pro Data Center designation — active incentives",
+    none:     "No active restrictions on record",
+    proposed: "Restriction(s) under consideration — not yet enacted",
+    moderate: "Moderate restrictions in effect",
+    high:     "Significant restrictions in effect",
+    ban:      "Moratorium or ban in effect",
+  }[sevKey] ?? "No active restrictions";
+
+  // Factor 2: Political Climate (max 30)
+  const riskRec = politicalRiskData[fips];
+  let polPts, polNote;
+  if (!riskRec) {
+    polPts  = 20;
+    polNote = "No documented political signals — neutral assumed";
+  } else {
+    polPts  = [0, 30, 24, 16, 8, 2][riskRec.risk_score] ?? 16;
+    polNote = riskRec.score_label || `Risk score ${riskRec.risk_score}/5`;
+  }
+
+  // Factor 3: Restriction Scope (max 20)
+  let scopePts  = 20;
+  let scopeNote = "No restrictions identified";
+  if (county && county.types && county.types.length > 0) {
+    const typeSet  = new Set(county.types);
+    const minArr   = [];
+    if (typeSet.has("data_center")) minArr.push(6);
+    if (typeSet.has("ai"))          minArr.push(8);
+    if (typeSet.has("water"))       minArr.push(14);
+    if (typeSet.has("energy"))      minArr.push(14);
+    if (typeSet.has("crypto"))      minArr.push(18);
+    if (minArr.length) {
+      scopePts = Math.min(...minArr);
+      if (county.types.length > 2) scopePts = Math.max(0, scopePts - 3);
+    }
+    scopeNote = county.types.map(t => TYPE_LABELS[t] || t).join(", ");
+  }
+
+  const score = regPts + polPts + scopePts;
+  const grade = score >= 80 ? "A" : score >= 65 ? "B" : score >= 45 ? "C" : score >= 25 ? "D" : "F";
+  const label = { A: "Highly Suitable", B: "Suitable", C: "Proceed with Caution", D: "High Risk", F: "Not Suitable" }[grade];
+  return {
+    score, grade, label,
+    factors: [
+      { name: "Regulatory Environment", pts: regPts,   max: 50, note: regNote  },
+      { name: "Political Climate",       pts: polPts,   max: 30, note: polNote  },
+      { name: "Restriction Scope",       pts: scopePts, max: 20, note: scopeNote },
+    ],
+  };
+}
+
+function buildSuitabilityHtml(fips, county) {
+  const s = computeSuitabilityScore(fips, county);
+  const barsHtml = s.factors.map(f => {
+    const pct = Math.round((f.pts / f.max) * 100);
+    return `<div class="suit-factor">
+      <div class="suit-factor-meta">
+        <span class="suit-factor-name">${escHtml(f.name)}</span>
+        <span class="suit-factor-pts">${f.pts}<span class="suit-factor-max"> / ${f.max}</span></span>
+      </div>
+      <div class="suit-bar-track"><div class="suit-bar-fill suit-bar-${s.grade}" style="width:${pct}%"></div></div>
+      <div class="suit-factor-note">${escHtml(f.note)}</div>
+    </div>`;
+  }).join("");
+  return `<div class="suit-section">
+    <div class="suit-section-header">
+      <span class="suit-section-title">Suitability Score</span>
+      <span class="ds-badge ds-estimated" title="Algorithmically estimated from regulatory and political signals. Not a professional site assessment.">Estimated</span>
+    </div>
+    <div class="suit-hero">
+      <span class="suit-grade suit-grade-${s.grade}">${s.grade}</span>
+      <div class="suit-hero-meta">
+        <span class="suit-score-label">${escHtml(s.label)}</span>
+        <span class="suit-score-num">${s.score}<span class="suit-score-denom"> / 100</span></span>
+      </div>
+    </div>
+    ${barsHtml}
+    <p class="suit-disclaimer">Estimated from restriction severity, political risk signals, and restriction scope. Not a professional site assessment.</p>
+  </div>`;
+}
+
 function buildCountyPolicySectionHtml(fips, county) {
   const sevKey = getSeverityKey(county);
   const level  = county.level;
@@ -3788,6 +3878,8 @@ function setDetailCounty(fips, county) {
   const stateFips2 = fips.slice(0, 2);
 
   document.getElementById("detail-body").innerHTML = `
+    ${buildSuitabilityHtml(fips, county)}
+    <div class="policy-divider"></div>
     ${buildStatePolicySectionHtml(stateFips2)}
     <div class="policy-divider"></div>
     ${buildCountyPolicySectionHtml(fips, county)}
@@ -3819,6 +3911,8 @@ function setDetailNoRestriction(name, state, fips) {
   _updateDetailSaveBtn();
   const stateFips2 = fips ? fips.slice(0, 2) : null;
   document.getElementById("detail-body").innerHTML = `
+    ${fips ? buildSuitabilityHtml(fips, null) : ""}
+    ${fips ? '<div class="policy-divider"></div>' : ""}
     ${stateFips2 ? buildStatePolicySectionHtml(stateFips2) : ""}
     ${stateFips2 ? '<div class="policy-divider"></div>' : ""}
     ${buildNoCountyPolicySectionHtml()}

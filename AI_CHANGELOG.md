@@ -5,6 +5,37 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 16 — Explainable suitability scoring
+
+Files Modified:
+- `index.html`:
+  - Bumped style.css to `?v=20260718n`, map.js to `?v=20260718p`
+- `css/style.css`:
+  - `.suit-section`, `.suit-section-header`, `.suit-section-title` — section wrapper and header
+  - `.suit-hero`, `.suit-grade`, `.suit-grade-A/B/C/D/F` — large grade badge (44×44 px, color-coded) + score meta row
+  - `.suit-hero-meta`, `.suit-score-label`, `.suit-score-num` — label ("Highly Suitable") and numeric score
+  - `.suit-factor`, `.suit-factor-meta`, `.suit-factor-name`, `.suit-factor-pts`, `.suit-factor-max` — per-factor row layout
+  - `.suit-bar-track`, `.suit-bar-fill`, `.suit-bar-A/B/C/D/F` — animated progress bars per factor
+  - `.suit-factor-note`, `.suit-disclaimer` — factor explanation text and disclaimer
+  - `.cmp-suit-grade`, `.cmp-suit-A/B/C/D/F` — small inline grade badge for compare panel columns
+- `js/map.js`:
+  - `computeSuitabilityScore(fips, county)` — 3-factor model:
+    1. Regulatory Environment (0–50 pts): based on `getSeverityKey()` → pro=50, none=45, proposed=30, moderate=18, high=6, ban=0
+    2. Political Climate (0–30 pts): based on `politicalRiskData[fips].risk_score` (1→30, 2→24, 3→16, 4→8, 5→2; no data→20 neutral)
+    3. Restriction Scope (0–20 pts): based on `county.types` set membership (data_center→6, ai→8, water/energy→14, crypto→18; no types→20; >2 types subtracts 3)
+    Grade: A≥80, B≥65, C≥45, D≥25, F<25. Returns `{score, grade, label, factors}`.
+  - `buildSuitabilityHtml(fips, county)` — renders the suitability card: grade badge, score/label hero row, one animated bar per factor with note, disclaimer. Uses `escHtml()` throughout. Safe to call with `county = null` for unrestricted counties.
+  - `setDetailCounty()` — prepends `buildSuitabilityHtml(fips, county)` at top of detail body
+  - `setDetailNoRestriction()` — prepends `buildSuitabilityHtml(fips, null)` when `fips` is present (county with no known restrictions scores A)
+  - `renderComparePanel()` — adds "Suitability" field as first row in each compare column (grade badge + score + label)
+
+Scoring rationale: Counties with no known restrictions and neutral political climate score 85/100 (A). A county with an active moratorium, high political risk, and data_center-type restrictions scores 0+2+6=8/100 (F). Score is labeled "Estimated" and disclaimed as non-professional.
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 15 — County comparison tool
 
 Files Modified:
