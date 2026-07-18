@@ -5,6 +5,43 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 10 — Save Counties and Facilities
+
+Files Modified:
+- `index.html`:
+  - Added `<button id="detail-save-btn">` (bookmark icon) to `#detail-header`
+  - Bumped style.css to `?v=20260718i`, map.js to `?v=20260718j`
+- `css/style.css`:
+  - Changed `#detail-header` right padding from 20px to 48px to make room for the save button
+  - Added `.detail-save-btn` — absolute-positioned bookmark button (28×28px, top-right of detail header)
+  - Added `.detail-save-btn-saved` — filled bookmark icon in accent color when item is saved
+  - Added `.detail-save-btn:disabled` — 50% opacity while async save/remove is in progress
+- `js/map.js`:
+  - `_savedCountySet` / `_savedFacilitySet` — in-memory Sets of saved item IDs, refreshed on auth state change
+  - `_saveCurrentType` / `_saveCurrentId` / `_saveCurrentData` — track what the current panel is showing
+  - `_refreshSavedCache()` — async; fetches `AUTH.getSavedItems('county')` and `'facility'` in parallel; clears both Sets when signed out
+  - `_updateDetailSaveBtn()` — updates button icon, class, title, aria-label based on signed-in state and saved status; hides button when no item is loaded
+  - `setDetailCounty()` — sets `_saveCurrentType='county'`, `_saveCurrentId=fips`, `_saveCurrentData={name,state,level}`; calls `_updateDetailSaveBtn()`
+  - `setDetailNoRestriction()` — same as above when fips is provided; clears save state otherwise
+  - `setDetailFacility()` — sets `_saveCurrentType='facility'`, `_saveCurrentId=facility.id||facility.name`, `_saveCurrentData={name,kind,county_fips}`; calls `_updateDetailSaveBtn()`
+  - `setDetailEmpty()` — clears all `_saveCurrentX` vars; calls `_updateDetailSaveBtn()` to hide button
+  - `initLeafletMap()` — wires save button click: toggles `AUTH.saveItem()` / `AUTH.removeItem()`, updates Set, updates button; clicks `#auth-btn` when not signed in
+  - `initLeafletMap()` — listens to `auth:stateChange` to refresh save cache and update button
+  - `initMapFromGeo()` — calls `_refreshSavedCache()` after map init to pre-populate Sets if user is already signed in
+
+Features Implemented:
+- **Bookmark button in detail header**: visible whenever a county or facility is loaded; hidden on empty state
+- **Saved / unsaved state**: filled bookmark (accent color) = saved; hollow bookmark = unsaved
+- **Signed-out state**: button shown but clicking opens sign-in panel; tooltip says "Sign in to save"
+- **Graceful async UX**: button disabled during save/remove operation to prevent double-clicks
+- **Account panel integration**: saves made from the map appear in the account panel's Saved Counties / Watchlist sections when the saved tab is opened (existing `loadSavedItems()` picks them up)
+- **Security**: uses existing `window.AUTH.saveItem()` / `removeItem()` which enforce RLS via Supabase session; no sensitive data in localStorage; all user data rendered with textContent (no innerHTML injection)
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 9 — Map-linked Results Panel
 
 Files Modified/Created:

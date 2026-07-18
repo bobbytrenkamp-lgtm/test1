@@ -155,6 +155,13 @@ let drawAreaUnit     = (function(){ try { return localStorage.getItem('draw-area
 let candidatePinMode = false;
 let _candidatePin    = null;
 
+/* ── Save button state ── */
+let _savedCountySet   = new Set();
+let _savedFacilitySet = new Set();
+let _saveCurrentType  = null;
+let _saveCurrentId    = null;
+let _saveCurrentData  = null;
+
 const layerState = {
   restrictions: true,
   state_policy: true,
@@ -398,6 +405,8 @@ async function initMapFromGeo() {
     // Wire results panel row click → selectCounty, and do initial data load
     window.RESULTS_PANEL?.onRowClick(selectCounty);
     window.RESULTS_PANEL?.update(mapData, () => true);
+    // Pre-populate save cache if user is already signed in at load time
+    _refreshSavedCache();
     if (loadEl) loadEl.style.display = "none";
     // Staggered invalidateSize calls catch iOS Safari layout finalization at
     // different stages: after layers paint, after first user interaction window,
@@ -1520,6 +1529,37 @@ function initLeafletMap() {
   document.getElementById("gis-minimap")       ?.addEventListener("click", toggleMinimap);
   document.getElementById("gis-political-risk")?.addEventListener("click", togglePoliticalRiskLayer);
   document.getElementById("gis-results")        ?.addEventListener("click", () => window.RESULTS_PANEL?.toggle());
+
+  // Save button: toggle save/unsave for current county or facility
+  const _saveBtnEl = document.getElementById('detail-save-btn');
+  if (_saveBtnEl) {
+    _saveBtnEl.addEventListener('click', async () => {
+      const auth = window.AUTH;
+      if (!auth || auth.state !== 'signedIn') {
+        document.getElementById('auth-btn')?.click();
+        return;
+      }
+      if (!_saveCurrentType || !_saveCurrentId) return;
+      const savedSet = _saveCurrentType === 'county' ? _savedCountySet : _savedFacilitySet;
+      const isSaved  = savedSet.has(_saveCurrentId);
+      _saveBtnEl.disabled = true;
+      if (isSaved) {
+        await auth.removeItem(_saveCurrentType, _saveCurrentId);
+        savedSet.delete(_saveCurrentId);
+      } else {
+        await auth.saveItem(_saveCurrentType, _saveCurrentId, _saveCurrentData || {});
+        savedSet.add(_saveCurrentId);
+      }
+      _saveBtnEl.disabled = false;
+      _updateDetailSaveBtn();
+    });
+  }
+
+  // Refresh save cache when auth state changes
+  document.addEventListener('auth:stateChange', ({ detail }) => {
+    _refreshSavedCache().then(() => _updateDetailSaveBtn());
+  });
+
   const _clearBtn = document.getElementById("measure-clear-btn");
   if (_clearBtn) {
     const _doClear = () => {
@@ -3085,6 +3125,10 @@ function setDetailEmpty() {
   _clearProximityCircle();
   document.getElementById("detail-header").querySelector("h2").textContent = "County Details";
   document.getElementById("detail-state").textContent = "";
+  _saveCurrentType = null;
+  _saveCurrentId   = null;
+  _saveCurrentData = null;
+  _updateDetailSaveBtn();
   document.getElementById("detail-body").innerHTML = `
     <div id="detail-empty">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -3173,10 +3217,54 @@ async function _renderZoningSummaryForCounty(fips) {
   });
 }
 
+/* ── Save button helpers ── */
+async function _refreshSavedCache() {
+  if (!window.AUTH || window.AUTH.state !== 'signedIn') {
+    _savedCountySet   = new Set();
+    _savedFacilitySet = new Set();
+    return;
+  }
+  const [counties, facilities] = await Promise.all([
+    window.AUTH.getSavedItems('county'),
+    window.AUTH.getSavedItems('facility')
+  ]);
+  _savedCountySet   = new Set((counties   || []).map(i => i.item_id));
+  _savedFacilitySet = new Set((facilities || []).map(i => i.item_id));
+}
+
+function _updateDetailSaveBtn() {
+  const btn = document.getElementById('detail-save-btn');
+  if (!btn) return;
+  if (!_saveCurrentType || !_saveCurrentId) { btn.hidden = true; return; }
+  const auth     = window.AUTH;
+  const signedIn = auth && auth.state === 'signedIn';
+  const savedSet = _saveCurrentType === 'county' ? _savedCountySet : _savedFacilitySet;
+  const isSaved  = signedIn && savedSet.has(_saveCurrentId);
+  const svgEmpty = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>`;
+  const svgFill  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>`;
+  btn.hidden    = false;
+  btn.innerHTML = isSaved ? svgFill : svgEmpty;
+  btn.classList.toggle('detail-save-btn-saved', isSaved);
+  if (!signedIn) {
+    btn.setAttribute('title', 'Sign in to save');
+    btn.setAttribute('aria-label', 'Sign in to save');
+  } else if (isSaved) {
+    btn.setAttribute('title', 'Remove from saved');
+    btn.setAttribute('aria-label', 'Remove from saved');
+  } else {
+    btn.setAttribute('title', 'Save to account');
+    btn.setAttribute('aria-label', 'Save to account');
+  }
+}
+
 function setDetailCounty(fips, county) {
   setSevClass(getSeverityKey(county));
   document.getElementById("detail-header").querySelector("h2").textContent = county.name;
   document.getElementById("detail-state").textContent = county.state;
+  _saveCurrentType = 'county';
+  _saveCurrentId   = fips;
+  _saveCurrentData = { name: county.name, state: county.state, level: county.level };
+  _updateDetailSaveBtn();
 
   const stateFips2 = fips.slice(0, 2);
 
@@ -3200,6 +3288,16 @@ function setDetailNoRestriction(name, state, fips) {
   setSevClass("none");
   document.getElementById("detail-header").querySelector("h2").textContent = name || "County";
   document.getElementById("detail-state").textContent = state || "";
+  if (fips) {
+    _saveCurrentType = 'county';
+    _saveCurrentId   = fips;
+    _saveCurrentData = { name: name || '', state: state || '', level: 0 };
+  } else {
+    _saveCurrentType = null;
+    _saveCurrentId   = null;
+    _saveCurrentData = null;
+  }
+  _updateDetailSaveBtn();
   const stateFips2 = fips ? fips.slice(0, 2) : null;
   document.getElementById("detail-body").innerHTML = `
     ${stateFips2 ? buildStatePolicySectionHtml(stateFips2) : ""}
@@ -3241,6 +3339,10 @@ function setDetailFacility(facility, kind) {
   setSevClass(null);
   document.getElementById("detail-header").querySelector("h2").textContent = facility.name;
   document.getElementById("detail-state").textContent = FACILITY_KIND_LABELS[kind] || "";
+  _saveCurrentType = 'facility';
+  _saveCurrentId   = facility.id || facility.name;
+  _saveCurrentData = { name: facility.name, kind: kind, county_fips: facility.county_fips || '' };
+  _updateDetailSaveBtn();
   const county = mapData[facility.county_fips];
 
   const reg = (window.LAYER_REGISTRY || []).find(r => r.id === kind) || {};
