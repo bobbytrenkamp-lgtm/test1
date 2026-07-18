@@ -2156,7 +2156,7 @@ body.is-resizing-floating-panel * {
     left: 0;
     right: 0;
     bottom: 0;
-    width: auto;
+    width: auto !important; /* workspace.js sets inline width for desktop rail; override on mobile */
     max-height: 72dvh;
     border-left: none;
     border-top: 1px solid var(--border);
