@@ -5,6 +5,51 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 2 — Layer Metadata Registry + Layer Panel Improvements
+
+Files Created:
+- `js/layer-registry.js` (~160 lines) — `window.LAYER_REGISTRY` array: all 15 layers with full metadata fields (id, label, group, color, data_status, source_name, source_url, coverage, geometry_type, last_updated, refresh_freq, disclaimer, sample, noData). Single source of truth for all layer definitions; backward-compatible (sample and noData fields preserved for existing code paths).
+
+Files Modified:
+- `js/map.js` — 5 targeted changes:
+  1. `const LAYER_DEFS = [...]` (15 inline objects, lines 118-135) replaced with `const LAYER_DEFS = window.LAYER_REGISTRY;` — consumed from layer-registry.js
+  2. Added `_layerGroupState` and `_layerSearch` module-level state variables
+  3. Added helper functions: `_loadLayerGroupState()`, `_saveLayerGroupState()`, `_dataStatusConfig()`, `_applyLayerSearch()` — placed just before `renderFilterPanel()`
+  4. Replaced `renderFilterPanel()` body entirely — now builds: layer search box (in-place filter via `_applyLayerSearch`, no panel re-render), collapsible group headers (click toggles .collapsed class, caret rotates, state persisted in localStorage key `dc-layer-groups-v1`), per-row data-status badge (.ds-badge .ds-{status}), source credit line below layer name; all existing touchend/click toggle handlers preserved
+  5. Fixed `togglePoliticalRiskLayer()` bug: `countyLayer` (undefined) → `countyGeoLayer`; also added re-apply of `selectedCountyStyle()` after restyle so selected county outline is preserved when toggling political risk
+  6. Added `_loadLayerGroupState()` call at top of `init()`
+- `css/style.css` — added new CSS block before the responsive section:
+  - `.ds-badge` + 6 status variants (verified/partial/estimated/sample/unavailable/stale) with distinct color tokens
+  - `.layer-search-wrap`, `.layer-search-icon`, `.layer-search-input` styles
+  - `.layer-search-empty` no-results message
+  - `.filter-group-header`, `.filter-group-name`, `.filter-group-count`, `.filter-group-caret` — collapsible group headers
+  - `.filter-group-body`, `.filter-group-body.collapsed` — collapse/expand container
+  - `.filter-row-text`, `.layer-source-line` — name+source credit text stack
+  - Updated `.filter-row-label` to `align-items: flex-start; flex: 1` so dot aligns to name rather than centering between name and source line
+- `index.html` — added `<script src="js/layer-registry.js?v=20260718b" defer>` before map.js; bumped style.css and map.js cache-busting query strings to `?v=20260718b`
+
+Features Implemented:
+- Layer search: live search box at top of layers panel; matches by label substring; shows/hides rows in-place (no focus loss); auto-expands groups with matches; restores collapse state on clear
+- Collapsible groups: each group heading is clickable; caret rotates; state persisted in `dc-layer-groups-v1` localStorage key; all 5 groups default to expanded
+- Data-status badges: replaces old generic "Sample"/"No data" tags with 6 semantic status levels (Verified=green, Partial=blue, Estimated=amber, Sample=orange, No Data=gray, Stale=red); each badge has tooltip with full description
+- Source credit lines: each layer row shows source name as a small secondary line below the layer name (only for layers that have a source)
+
+Bugs Fixed:
+- `togglePoliticalRiskLayer()` undefined variable `countyLayer` — now correctly references `countyGeoLayer` and re-applies selected county style
+
+Preserved:
+- All 15 layer toggle behaviors (touchend/click handlers, iOS Safari fix, double-fire prevention)
+- SAMPLE_LEGEND_ENTRIES and legend rendering (separate from LAYER_DEFS)
+- `def.sample` and `def.noData` fields on registry entries (backward compatibility)
+- `filter-row-disabled` class for unavailable layers (city_policy, zoning_overlays)
+
+---
+
+Date: 2026-07-18
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 0 — ArcGIS Feature Gap Audit
 
 Files Created:

@@ -4,12 +4,14 @@
 
 Bug: togglePoliticalRiskLayer() references undefined variable `countyLayer`
 Priority: Medium
-Affected Files: `js/map.js` (line ~1003)
-Root Cause: `togglePoliticalRiskLayer()` calls `countyLayer.setStyle(...)` and `countyLayer.eachLayer(...)`, but `countyLayer` is never defined in this scope. The correct variable is `countyGeoLayer` (the Leaflet GeoJSON layer for counties). This means the choropleth does not restyle when the political risk layer is toggled on or off.
-Fix Needed: Replace `countyLayer` with `countyGeoLayer` in `togglePoliticalRiskLayer()`. Also re-apply `selectedCountyStyle()` to `countyLayerByFips[selectedFips]` after the restyle call.
+Affected Files: `js/map.js` (line ~991)
+Root Cause: `togglePoliticalRiskLayer()` was calling `countyLayer.setStyle(...)`, but `countyLayer` is never defined. The correct variable is `countyGeoLayer`.
+Fix: Replaced `countyLayer` with `countyGeoLayer`; also added re-apply of `selectedCountyStyle()` to preserve selected county outline after restyle.
 Discovered By: Claude Code (claude-sonnet-4-6) during ARCGIS_FEATURE_GAP_AUDIT pass
 Date Discovered: 2026-07-18
-Status: Active — not yet fixed
+Fixed By: Claude Code (claude-sonnet-4-6) — Phase 2 session
+Date Fixed: 2026-07-18
+Status: Fixed
 
 ---
 

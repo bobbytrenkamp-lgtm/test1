@@ -115,24 +115,8 @@ const ANNOTATIONS = [
   { fips: "19113", label: "Linn Co., IA",      sub: "18-month moratorium (Jul 2026)", type: "restrictive" },
 ];
 
-/* ── Layer definitions ── */
-const LAYER_DEFS = [
-  { id: "restrictions",  label: "County Policy",              group: "Policy Scope",   color: "#dc2626", sample: false },
-  { id: "state_policy",  label: "State Policy",               group: "Policy Scope",   color: "#8b5cf6", sample: false },
-  { id: "city_policy",   label: "City Policy",                group: "Policy Scope",   color: "#3b82f6", sample: false, noData: true },
-  { id: "dc_existing",   label: "Existing Data Centers",      group: "Facilities",     color: "#5b8def", sample: false },
-  { id: "dc_planned",    label: "Planned Data Centers",       group: "Facilities",     color: "#f59e0b", sample: false },
-  { id: "ai_campus",     label: "AI Campuses",                group: "Facilities",     color: "#a78bfa", sample: false },
-  { id: "power",         label: "Power Infrastructure",       group: "Infrastructure", color: "#34d399", sample: false },
-  { id: "transmission",  label: "Transmission Lines",         group: "Infrastructure", color: "#fbbf24", sample: true  },
-  { id: "fiber",         label: "Fiber Network",              group: "Infrastructure", color: "#60a5fa", sample: true  },
-  { id: "water",         label: "Water Availability",         group: "Land & Policy",  color: "#1d4ed8", sample: false },
-  { id: "utility",       label: "Utility Territories",        group: "Land & Policy",  color: "#f472b6", sample: false },
-  { id: "tax",           label: "Tax Incentive Areas",        group: "Land & Policy",  color: "#fbbf24", sample: false },
-  { id: "annotations",     label: "Best & Worst Markets",  group: "Highlights",     color: "#e4e6f0", sample: false },
-  { id: "zoning_districts", label: "Zoning Districts",      group: "Zoning",         color: "#7c3aed", sample: false },
-  { id: "zoning_overlays",  label: "Zoning Overlays",       group: "Zoning",         color: "#db2777", sample: false, noData: true },
-];
+/* ── Layer definitions — sourced from window.LAYER_REGISTRY (js/layer-registry.js) ── */
+const LAYER_DEFS = window.LAYER_REGISTRY;
 
 const SAMPLE_DISCLAIMER = "Approximate route — exact alignment unverified.";
 
@@ -194,6 +178,10 @@ let fpSavedPos  = null;  // {left, top} for Map Layers panel
 let fpSavedSize = null;  // {width, maxHeight} for Map Layers panel
 let lgSavedPos  = null;  // {left, top} for Legend
 let lgSavedSize = null;  // {width, height} for Legend
+
+/* ── Layer panel state ── */
+let _layerGroupState = {};  // groupName → true (expanded) / false (collapsed)
+let _layerSearch     = "";  // current search query in the layer panel
 
 /* ── Drag-guard state ──
    Prevents county hover/selection from firing while the user pans the map.
@@ -1000,7 +988,12 @@ function togglePoliticalRiskLayer() {
     btn.classList.toggle("active", showPoliticalRisk);
     btn.setAttribute("aria-pressed", String(showPoliticalRisk));
   }
-  if (countyLayer) countyLayer.setStyle(countyStyle);
+  if (countyGeoLayer) {
+    countyGeoLayer.setStyle(countyStyle);
+    if (selectedFips && countyLayerByFips[selectedFips]) {
+      countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
+    }
+  }
   renderLegend();
 }
 
@@ -1632,11 +1625,99 @@ function renderLegend() {
   legend.appendChild(resizeHandle);
 }
 
+/* ── Filter Panel helpers ── */
+
+function _loadLayerGroupState() {
+  try {
+    const raw = localStorage.getItem("dc-layer-groups-v1");
+    if (raw) _layerGroupState = JSON.parse(raw);
+  } catch (_) {}
+}
+
+function _saveLayerGroupState() {
+  try {
+    localStorage.setItem("dc-layer-groups-v1", JSON.stringify(_layerGroupState));
+  } catch (_) {}
+}
+
+function _dataStatusConfig(status) {
+  const cfg = {
+    verified:    { label: "Verified",   title: "Verified from official or authoritative sources" },
+    partial:     { label: "Partial",    title: "Partially verified — city-level accuracy, some estimates" },
+    estimated:   { label: "Estimated",  title: "Algorithmically estimated — not officially verified" },
+    sample:      { label: "Sample",     title: "Sample / demonstration data — not for production use" },
+    unavailable: { label: "No Data",    title: "No data available for this layer yet" },
+    stale:       { label: "Stale",      title: "Data may be out of date" },
+  };
+  return cfg[status] || cfg.unavailable;
+}
+
+/* In-place show/hide of rows and groups based on _layerSearch.
+ * Called on every search-input keystroke — never re-renders the panel. */
+function _applyLayerSearch() {
+  const q = _layerSearch.toLowerCase();
+  const body = document.getElementById("filter-panel-body");
+  if (!body) return;
+  const searching = !!q;
+  let anyResultShown = false;
+
+  body.querySelectorAll(".filter-group-header").forEach(header => {
+    const groupBody = header.nextElementSibling;
+    if (!groupBody || !groupBody.classList.contains("filter-group-body")) return;
+
+    if (!searching) {
+      // Clear search overrides — CSS class (.collapsed or not) governs again
+      header.style.display = "";
+      groupBody.style.display = "";
+      groupBody.querySelectorAll(".filter-row").forEach(row => { row.style.display = ""; });
+      const totalRows = groupBody.querySelectorAll(".filter-row").length;
+      const countEl = header.querySelector(".filter-group-count");
+      if (countEl) countEl.textContent = totalRows;
+      return;
+    }
+
+    // Searching: show rows that match, hide the rest
+    let visibleInGroup = 0;
+    groupBody.querySelectorAll(".filter-row").forEach(row => {
+      const label = (row.dataset.layerLabel || "").toLowerCase();
+      const show = label.includes(q);
+      row.style.display = show ? "" : "none";
+      if (show) { visibleInGroup++; anyResultShown = true; }
+    });
+
+    if (visibleInGroup > 0) {
+      header.style.display = "";
+      // Force-show group body even if it is in collapsed state
+      groupBody.style.display = "block";
+      const countEl = header.querySelector(".filter-group-count");
+      if (countEl) countEl.textContent = visibleInGroup;
+    } else {
+      header.style.display = "none";
+      groupBody.style.display = "none";
+    }
+  });
+
+  // No-results message
+  let emptyEl = body.querySelector(".layer-search-empty");
+  if (searching && !anyResultShown) {
+    if (!emptyEl) {
+      emptyEl = document.createElement("div");
+      emptyEl.className = "layer-search-empty";
+      body.appendChild(emptyEl);
+    }
+    emptyEl.textContent = `No layers match "${q}"`;
+    emptyEl.style.display = "";
+  } else if (emptyEl) {
+    emptyEl.style.display = "none";
+  }
+}
+
 /* ── Filter Panel ── */
 function renderFilterPanel() {
   const body = document.getElementById("filter-panel-body");
   body.innerHTML = "";
 
+  // ── Basemap chips ──
   const bmLabel = document.createElement("div");
   bmLabel.className = "filter-group-label";
   bmLabel.textContent = "Basemap";
@@ -1654,7 +1735,7 @@ function renderFilterPanel() {
   });
   body.appendChild(bmRow);
 
-  // County fill opacity slider
+  // ── County fill opacity slider ──
   const opLabel = document.createElement("div");
   opLabel.className = "filter-group-label";
   opLabel.textContent = "County Fill Opacity";
@@ -1680,6 +1761,38 @@ function renderFilterPanel() {
     }
   });
 
+  // ── Layer search ──
+  const searchWrap = document.createElement("div");
+  searchWrap.className = "layer-search-wrap";
+
+  const searchIcon = document.createElement("span");
+  searchIcon.className = "layer-search-icon";
+  searchIcon.setAttribute("aria-hidden", "true");
+  searchIcon.innerHTML = `<svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/><line x1="9.5" y1="9.5" x2="13" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+
+  const searchInput = document.createElement("input");
+  searchInput.type = "search";
+  searchInput.className = "layer-search-input";
+  searchInput.id = "layer-search-input";
+  searchInput.placeholder = "Search layers…";
+  searchInput.value = _layerSearch;
+  searchInput.setAttribute("autocomplete", "off");
+  searchInput.setAttribute("spellcheck", "false");
+  searchInput.setAttribute("aria-label", "Search layers");
+
+  searchWrap.appendChild(searchIcon);
+  searchWrap.appendChild(searchInput);
+  body.appendChild(searchWrap);
+
+  const onSearchChange = () => {
+    _layerSearch = searchInput.value.trim();
+    _applyLayerSearch();
+  };
+  searchInput.addEventListener("input", onSearchChange);
+  // "search" event fires when the native × button clears the field
+  searchInput.addEventListener("search", onSearchChange);
+
+  // ── Layer groups ──
   const groups = [];
   for (const def of LAYER_DEFS) {
     let g = groups.find(x => x.name === def.group);
@@ -1687,43 +1800,114 @@ function renderFilterPanel() {
     g.items.push(def);
   }
 
-  let sampleBannerShown = false;
-
   for (const group of groups) {
-    const label = document.createElement("div");
-    label.className = "filter-group-label";
-    label.textContent = group.name;
-    body.appendChild(label);
+    const expanded = _layerGroupState[group.name] !== false; // default: expanded
 
+    // Group header (replaces plain .filter-group-label; now interactive)
+    const header = document.createElement("div");
+    header.className = "filter-group-header";
+    header.dataset.groupName = group.name;
+    header.setAttribute("role", "button");
+    header.setAttribute("tabindex", "0");
+    header.setAttribute("aria-expanded", String(expanded));
+    header.setAttribute("aria-label", `${group.name} layers`);
+
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "filter-group-name";
+    nameSpan.textContent = group.name;
+
+    const countSpan = document.createElement("span");
+    countSpan.className = "filter-group-count";
+    countSpan.textContent = group.items.length;
+
+    const caretSpan = document.createElement("span");
+    caretSpan.className = "filter-group-caret" + (expanded ? " expanded" : "");
+    caretSpan.setAttribute("aria-hidden", "true");
+    caretSpan.innerHTML = `<svg width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+    header.appendChild(nameSpan);
+    header.appendChild(countSpan);
+    header.appendChild(caretSpan);
+    body.appendChild(header);
+
+    // Group body — collapsible container
+    const groupBody = document.createElement("div");
+    groupBody.className = "filter-group-body" + (expanded ? "" : " collapsed");
+    body.appendChild(groupBody);
+
+    const toggleGroup = () => {
+      const nowExpanded = _layerGroupState[group.name] !== false;
+      _layerGroupState[group.name] = !nowExpanded;
+      _saveLayerGroupState();
+      header.setAttribute("aria-expanded", String(!nowExpanded));
+      caretSpan.classList.toggle("expanded", !nowExpanded);
+      groupBody.classList.toggle("collapsed", nowExpanded);
+    };
+    header.addEventListener("click", toggleGroup);
+    header.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleGroup(); }
+    });
+
+    // Layer rows
     for (const def of group.items) {
-      if (def.sample && !sampleBannerShown) {
-        const banner = document.createElement("div");
-        banner.className = "sample-banner";
-        banner.style.margin = "4px 8px 8px";
-        banner.innerHTML = `<span>⚠</span><span>${SAMPLE_DISCLAIMER}</span>`;
-        body.appendChild(banner);
-        sampleBannerShown = true;
-      }
+      const statusCfg = _dataStatusConfig(def.data_status);
 
       const row = document.createElement("label");
       row.className = "filter-row" + (def.noData ? " filter-row-disabled" : "");
-      row.innerHTML = `
-        <span class="filter-row-label">
-          <span class="filter-row-dot" style="background:${def.color}"></span>
-          <span class="name">${def.label}</span>
-          ${def.sample  ? '<span class="sample-tag">Sample</span>' : ""}
-          ${def.noData  ? '<span class="no-data-tag">No data</span>' : ""}
-        </span>
-        <span class="toggle-switch">
-          <input type="checkbox" data-layer="${def.id}" ${layerState[def.id] ? "checked" : ""} ${def.noData ? "disabled" : ""} />
-          <span class="toggle-slider"></span>
-        </span>`;
+      row.dataset.layerLabel = def.label; // used by _applyLayerSearch
+
+      // Left side: dot + text stack + status badge
+      const labelSpan = document.createElement("span");
+      labelSpan.className = "filter-row-label";
+
+      const dot = document.createElement("span");
+      dot.className = "filter-row-dot";
+      dot.style.background = def.color;
+
+      const textSpan = document.createElement("span");
+      textSpan.className = "filter-row-text";
+
+      const nameEl = document.createElement("span");
+      nameEl.className = "name";
+      nameEl.textContent = def.label;
+      textSpan.appendChild(nameEl);
+
+      if (def.source_name) {
+        const sourceEl = document.createElement("span");
+        sourceEl.className = "layer-source-line";
+        sourceEl.textContent = def.source_name;
+        textSpan.appendChild(sourceEl);
+      }
+
+      const badge = document.createElement("span");
+      badge.className = `ds-badge ds-${def.data_status || "unavailable"}`;
+      badge.textContent = statusCfg.label;
+      badge.title = statusCfg.title;
+
+      labelSpan.appendChild(dot);
+      labelSpan.appendChild(textSpan);
+      labelSpan.appendChild(badge);
+
+      // Right side: toggle switch
+      const toggleSwitch = document.createElement("span");
+      toggleSwitch.className = "toggle-switch";
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.dataset.layer = def.id;
+      if (layerState[def.id]) checkbox.checked = true;
+      if (def.noData) checkbox.disabled = true;
+      const slider = document.createElement("span");
+      slider.className = "toggle-slider";
+      toggleSwitch.appendChild(checkbox);
+      toggleSwitch.appendChild(slider);
+
+      row.appendChild(labelSpan);
+      row.appendChild(toggleSwitch);
 
       if (!def.noData) {
-        const input = row.querySelector("input[type='checkbox']");
         const handleToggle = () => {
-          const newState = !input.checked;
-          input.checked = newState;
+          const newState = !checkbox.checked;
+          checkbox.checked = newState;
           setLayerVisible(def.id, newState);
         };
         // iOS Safari doesn't forward label taps to wrapped inputs when
@@ -1732,11 +1916,8 @@ function renderFilterPanel() {
           handleToggle();
           e.preventDefault(); // suppress the synthetic click that would double-fire
         }, { passive: false });
-        // Desktop fallback: mouse click (not preceded by touch, so not prevented).
-        // e.preventDefault() stops the browser's native label→input click-forwarding,
-        // which would otherwise dispatch a second synthetic click on the wrapped
-        // <input>, flip input.checked back via pre-activation, then bubble to this
-        // handler again — causing handleToggle to fire twice and undo the first call.
+        // Desktop: e.preventDefault() stops the browser's native label→input
+        // click-forwarding, which would otherwise fire handleToggle twice.
         row.addEventListener("click", e => {
           if (e.defaultPrevented) return;
           e.preventDefault();
@@ -1744,9 +1925,12 @@ function renderFilterPanel() {
         });
       }
 
-      body.appendChild(row);
+      groupBody.appendChild(row);
     }
   }
+
+  // Apply any active search filter (in case the panel was re-rendered mid-search)
+  if (_layerSearch) _applyLayerSearch();
 }
 
 /* ── Panel open/close ── */
@@ -3562,6 +3746,7 @@ function initThemeToggle() {
 
 /* ── Init ── */
 async function init() {
+  _loadLayerGroupState();
   initThemeToggle();
   initNavTabs();
   initKeyboardShortcuts();
