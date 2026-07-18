@@ -5,6 +5,37 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 7 — Spatial Analysis
+
+Files Modified:
+- `js/map.js`:
+  1. New state vars: `_proximityCircle` (L.circle | null), `_proximityRadius` (miles, 0=off)
+  2. `_clearProximityCircle()` — removes active proximity ring from map
+  3. `_setProximityCircle(center, radiusMiles)` — draws dashed blue `L.circle` at given center+radius
+  4. `_buildNearbyFacilitiesHtml(fips, radiusMiles)` — uses `L.latLng.distanceTo()` (Leaflet's haversine) to find data centers + AI campuses within the radius from the county polygon center; returns up to 6 closest as HTML rows with name, distance label, and color dot
+  5. `_renderProximitySectionForCounty(fips)` — injects a "Proximity Ring" section into `#detail-proximity-section`; shows Off/25mi/50mi/100mi radio-style chips; toggling a radius draws/removes the circle on the map and refreshes the nearby facilities list inline
+  6. `setDetailCounty()` + `setDetailNoRestriction()` — added `<div id="detail-proximity-section"></div>` placeholder; call `_renderProximitySectionForCounty(fips)` after `openMobileSheet()`
+  7. `setDetailEmpty()` — calls `_clearProximityCircle()` so the ring is removed when the detail panel is closed
+- `css/style.css` — added proximity section components:
+  - `.spatial-radius-row`, `.spatial-radius-chip`, `.spatial-radius-chip.active` — radius picker chips
+  - `.nearby-facilities-list`, `.nearby-row`, `.nearby-dot`, `.nearby-name`, `.nearby-dist` — facility list rows
+  - `.nearby-empty` — fallback message when no facilities within radius
+- `index.html` — bumped style.css to `?v=20260718f`, map.js to `?v=20260718g`
+
+Features Implemented:
+- Proximity Ring visualization: select Off/25/50/100 miles in county detail panel; a dashed circle is drawn on the map showing the chosen radius from the county center
+- Nearby Facilities list: within the selected radius, lists up to 6 nearest data centers and AI campuses by distance (using haversine via Leaflet's distanceTo); shows facility name, type color dot, capacity, and distance in miles
+- Proximity circle is cleared when detail panel is closed
+- Radius state persists while switching between counties in the same session
+
+Technical Notes:
+- Spatial analysis uses Leaflet's built-in `L.latLng.distanceTo()` (haversine formula) rather than an external Turf.js dependency; avoids ~400KB vendor bundle on a static GitHub Pages site while covering all required distance/buffer operations. Turf.js would be appropriate if polygon-level intersection (not just centroid-to-point distance) is needed in a future phase.
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 6 — Extended Filter System
 
 Files Modified:

@@ -138,6 +138,8 @@ let measurePoints    = [];
 let measureLayers    = [];
 let minimapInstance  = null;
 let minimapRect      = null;
+let _proximityCircle = null;   // L.circle drawn for spatial proximity view
+let _proximityRadius = 0;      // active radius in miles (0 = off)
 let minimapVisible   = false;
 let _toastTimer      = null;
 let locMarker        = null;
@@ -2506,6 +2508,68 @@ function requestCloseDetailSheet() {
   setDetailEmpty(); // resets panel content and calls closeMobileSheet()
 }
 
+/* ── Spatial analysis helpers ── */
+
+function _clearProximityCircle() {
+  if (_proximityCircle && leafletMap) {
+    leafletMap.removeLayer(_proximityCircle);
+    _proximityCircle = null;
+  }
+}
+
+function _setProximityCircle(center, radiusMiles) {
+  _clearProximityCircle();
+  if (!leafletMap || !radiusMiles) return;
+  _proximityCircle = L.circle(center, {
+    radius:      radiusMiles * 1609.34,
+    color:       "#5b8def",
+    weight:      1.5,
+    opacity:     0.8,
+    fillColor:   "#5b8def",
+    fillOpacity: 0.06,
+    dashArray:   "4,3",
+  }).addTo(leafletMap);
+}
+
+function _buildNearbyFacilitiesHtml(fips, radiusMiles) {
+  if (!sampleLayers) return "";
+  const layer = countyLayerByFips[fips];
+  if (!layer) return "";
+  const center = layer.getBounds().getCenter();
+  const maxDist = (radiusMiles || 100) * 1609.34;
+
+  const candidates = [
+    ...(sampleLayers.data_centers || [])
+        .filter(f => f.lat && f.lon)
+        .map(f => ({ name: f.name, lat: f.lat, lon: f.lon, kind: "dc", color: "#5b8def", cap: f.capacity_mw ? `${f.capacity_mw} MW` : "" })),
+    ...(sampleLayers.ai_campuses || [])
+        .filter(f => f.lat && f.lon)
+        .map(f => ({ name: f.name, lat: f.lat, lon: f.lon, kind: "ai", color: "#a78bfa", cap: "" })),
+  ];
+
+  const nearby = candidates
+    .map(f => ({ ...f, distM: L.latLng(f.lat, f.lon).distanceTo(center) }))
+    .filter(f => f.distM <= maxDist)
+    .sort((a, b) => a.distM - b.distM)
+    .slice(0, 6);
+
+  if (!nearby.length) {
+    return `<div class="nearby-empty">No facilities within ${radiusMiles || 100} miles.</div>`;
+  }
+
+  const rows = nearby.map(f => {
+    const miles = (f.distM / 1609.34).toFixed(0);
+    const sub   = [f.cap, `${miles} mi`].filter(Boolean).join(" · ");
+    return `<div class="nearby-row">
+      <span class="nearby-dot" style="background:${f.color}"></span>
+      <span class="nearby-name">${escHtml(f.name)}</span>
+      <span class="nearby-dist">${escHtml(sub)}</span>
+    </div>`;
+  }).join("");
+
+  return rows;
+}
+
 /* ── Detail panel ── */
 const WATER_STRESS_LABELS = { 0: "Low stress", 1: "Moderate stress", 2: "Elevated stress", 3: "High stress" };
 
@@ -2773,6 +2837,7 @@ function setSevClass(key) {
 function setDetailEmpty() {
   setSevClass(null);
   setLocationHash(null);
+  _clearProximityCircle();
   document.getElementById("detail-header").querySelector("h2").textContent = "County Details";
   document.getElementById("detail-state").textContent = "";
   document.getElementById("detail-body").innerHTML = `
@@ -2783,6 +2848,39 @@ function setDetailEmpty() {
       <p>${window.matchMedia("(pointer: coarse)").matches ? "Tap" : "Click"} any county on the map to see statewide, county, and city regulations.</p>
     </div>`;
   closeMobileSheet();
+}
+
+function _renderProximitySectionForCounty(fips) {
+  const placeholder = document.getElementById("detail-proximity-section");
+  if (!placeholder) return;
+
+  const layer = countyLayerByFips[fips];
+  const center = layer ? layer.getBounds().getCenter() : null;
+
+  function render(radius) {
+    _proximityRadius = radius;
+    if (center) _setProximityCircle(center, radius || 0);
+    const radiusOpts = [0, 25, 50, 100];
+    const chips = radiusOpts.map(r => {
+      const label = r === 0 ? "Off" : `${r} mi`;
+      return `<button class="spatial-radius-chip${r === radius ? " active" : ""}" data-radius="${r}">${label}</button>`;
+    }).join("");
+    const bodyHtml = radius > 0
+      ? `<div class="nearby-facilities-list">${_buildNearbyFacilitiesHtml(fips, radius)}</div>`
+      : "";
+    placeholder.innerHTML = `
+      <div class="divider"></div>
+      <div class="detail-section">
+        <div class="detail-label">Proximity Ring</div>
+        <div class="spatial-radius-row">${chips}</div>
+        ${bodyHtml}
+      </div>`;
+    placeholder.querySelectorAll(".spatial-radius-chip").forEach(btn => {
+      btn.addEventListener("click", () => render(Number(btn.dataset.radius)));
+    });
+  }
+
+  render(_proximityRadius);
 }
 
 async function _renderZoningSummaryForCounty(fips) {
@@ -2845,8 +2943,10 @@ function setDetailCounty(fips, county) {
     <div class="policy-divider"></div>
     ${buildPoliticalRiskSectionHtml(fips)}
     ${buildSampleInfraHtml(fips)}
+    <div id="detail-proximity-section"></div>
     <div id="detail-zoning-summary"></div>`;
   openMobileSheet();
+  _renderProximitySectionForCounty(fips);
   _renderZoningSummaryForCounty(fips);
 }
 
@@ -2864,8 +2964,10 @@ function setDetailNoRestriction(name, state, fips) {
     <div class="policy-divider"></div>
     ${fips ? buildPoliticalRiskSectionHtml(fips) : ""}
     ${fips ? buildSampleInfraHtml(fips) : ""}
+    ${fips ? '<div id="detail-proximity-section"></div>' : ""}
     ${fips ? '<div id="detail-zoning-summary"></div>' : ""}`;
   openMobileSheet();
+  if (fips) _renderProximitySectionForCounty(fips);
   if (fips) _renderZoningSummaryForCounty(fips);
 }
 
