@@ -5,6 +5,25 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 5 — Unified Identify / Selected-Place Coordination
+
+Files Modified:
+- `js/map.js` — `setDetailFacility()` enhanced:
+  1. On facility click: resets previous county outline, sets `selectedFips = facility.county_fips`, updates URL hash, applies `selectedCountyStyle()` to the facility's county polygon — the map now always shows which county the selected facility belongs to
+  2. Added "County Regulatory Context" block at the bottom of the facility detail panel: restriction severity badge + county name, plus "View county details →" button that calls `selectCounty(fips)` to show the full county restriction panel
+- `index.html` — bumped map.js cache-busting string to `?v=20260718e`
+
+Features Implemented:
+- Clicking any facility (data center, AI campus, power) now highlights the containing county on the map with the selection outline, giving spatial regulatory context
+- Facility detail panel shows the county's restriction severity badge and a link to the full county detail view
+- URL hash is updated to the county FIPS when a facility is selected, so sharing a facility-view URL preserves county context on reload
+- "View county details →" button in facility panel calls `selectCounty()` for a seamless transition back to county restriction view
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 4 — Zoning Integration in County Detail Panel
 
 Files Modified:

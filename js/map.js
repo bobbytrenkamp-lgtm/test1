@@ -2821,6 +2821,19 @@ const FACILITY_KIND_LABELS = {
 };
 
 function setDetailFacility(facility, kind) {
+  /* ── Coordinate county outline selection ── */
+  if (selectedFips && countyLayerByFips[selectedFips]) {
+    countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
+  }
+  selectedFips = facility.county_fips || null;
+  if (selectedFips) {
+    setLocationHash(selectedFips);
+    if (countyLayerByFips[selectedFips]) {
+      countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
+      countyLayerByFips[selectedFips].bringToFront();
+    }
+  }
+
   setSevClass(null);
   document.getElementById("detail-header").querySelector("h2").textContent = facility.name;
   document.getElementById("detail-state").textContent = FACILITY_KIND_LABELS[kind] || "";
@@ -2838,6 +2851,22 @@ function setDetailFacility(facility, kind) {
       </div>
     </div>` : "";
 
+  /* ── County context block ── */
+  const countyContextHtml = county ? (() => {
+    const sevKey   = getSeverityKey(county);
+    const sevLabel = SEVERITY[sevKey].label;
+    return `
+    <div class="divider"></div>
+    <div class="detail-section">
+      <div class="detail-label">County Regulatory Context</div>
+      <div class="detail-value" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <span class="restriction-badge badge-${sevKey}" style="font-size:10px;padding:2px 7px;margin:0;">${escHtml(sevLabel)}</span>
+        <span style="font-size:11px;color:var(--text-muted);">${escHtml(county.name)}, ${escHtml(county.state)}</span>
+      </div>
+      <button class="zoning-open-btn" data-action="view-county" data-fips="${escHtml(facility.county_fips)}" style="margin-top:6px;">View county details →</button>
+    </div>`;
+  })() : "";
+
   document.getElementById("detail-body").innerHTML = `
     ${facility.operator  ? `<div class="detail-section"><div class="detail-label">Operator</div><div class="detail-value">${escHtml(facility.operator)}</div></div>` : ""}
     ${facility.capacity_mw ? `<div class="detail-section"><div class="detail-label">Capacity</div><div class="detail-value">${facility.capacity_mw.toLocaleString("en-US")} MW</div></div>` : ""}
@@ -2846,7 +2875,6 @@ function setDetailFacility(facility, kind) {
     ${facility.year_planned ? `<div class="detail-section"><div class="detail-label">Target Year</div><div class="detail-value">${facility.year_planned}</div></div>` : ""}
     ${facility.type      ? `<div class="detail-section"><div class="detail-label">Type</div><div class="detail-value" style="text-transform:capitalize;">${facility.type}</div></div>` : ""}
     ${facility.notes     ? `<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(facility.notes)}</div></div>` : ""}
-    ${county ? `<div class="detail-section"><div class="detail-label">County</div><div class="detail-value">${escHtml(county.name)}, ${escHtml(county.state)}</div></div>` : ""}
     ${facility.sources && facility.sources.length ? `<div class="detail-section"><div class="detail-label">Sources</div><ul class="sources-list">${facility.sources.map(s => {
       if (s && typeof s === "object" && s.url) {
         const isGov = GOV_URL_RE.test(s.url);
@@ -2855,7 +2883,14 @@ function setDetailFacility(facility, kind) {
       }
       return `<li>${escHtml(typeof s === "string" ? s : s.label || "")}</li>`;
     }).join("")}</ul></div>` : ""}
-    ${dataQualityHtml}`;
+    ${dataQualityHtml}
+    ${countyContextHtml}`;
+
+  document.getElementById("detail-body").querySelector("[data-action='view-county']")
+    ?.addEventListener("click", e => {
+      selectCounty(e.currentTarget.dataset.fips);
+    });
+
   openMobileSheet();
 }
 
