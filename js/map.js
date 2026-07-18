@@ -3164,6 +3164,16 @@ function initTopToggle() {
   });
 }
 
+function initDashboardToggle() {
+  const btn = document.getElementById("dashboard-toggle");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    const hidden = document.getElementById("app").classList.toggle("top-hidden");
+    btn.setAttribute("aria-label", hidden ? "Expand dashboard" : "Minimize dashboard");
+    btn.title = hidden ? "Expand dashboard" : "Minimize dashboard";
+  });
+}
+
 /* ── Legend controls (2-state open/close + drag + resize) ── */
 function initLegendControls() {
   const legend  = document.getElementById("legend");
@@ -5394,6 +5404,7 @@ async function init() {
     setLastUpdated(data);
     renderDashboard(data);
     initDashboardScopeBar();
+    initDashboardToggle();
 
     // If URL had a FIPS hash, initialize the map silently while home stays
     // visible — #main is hidden so the loading spinner never shows.
