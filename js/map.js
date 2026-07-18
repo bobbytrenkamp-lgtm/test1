@@ -395,6 +395,9 @@ async function initMapFromGeo() {
     initTopToggle();
     initLegendControls();
     setDetailEmpty();
+    // Wire results panel row click → selectCounty, and do initial data load
+    window.RESULTS_PANEL?.onRowClick(selectCounty);
+    window.RESULTS_PANEL?.update(mapData, () => true);
     if (loadEl) loadEl.style.display = "none";
     // Staggered invalidateSize calls catch iOS Safari layout finalization at
     // different stages: after layers paint, after first user interaction window,
@@ -1516,6 +1519,7 @@ function initLeafletMap() {
   document.getElementById("gis-print")         ?.addEventListener("click", printMap);
   document.getElementById("gis-minimap")       ?.addEventListener("click", toggleMinimap);
   document.getElementById("gis-political-risk")?.addEventListener("click", togglePoliticalRiskLayer);
+  document.getElementById("gis-results")        ?.addEventListener("click", () => window.RESULTS_PANEL?.toggle());
   const _clearBtn = document.getElementById("measure-clear-btn");
   if (_clearBtn) {
     const _doClear = () => {
@@ -1579,6 +1583,7 @@ function initLeafletMap() {
     if ((e.key === "m" || e.key === "M") && !e.ctrlKey && !e.metaKey) toggleMeasure();
     if ((e.key === "d" || e.key === "D") && !e.ctrlKey && !e.metaKey) toggleDraw();
     if ((e.key === "p" || e.key === "P") && !e.ctrlKey && !e.metaKey) toggleCandidatePin();
+    if ((e.key === "l" || e.key === "L") && !e.ctrlKey && !e.metaKey) window.RESULTS_PANEL?.toggle();
     if ((e.key === "f" || e.key === "F") && !e.ctrlKey && !e.metaKey) toggleFullscreen();
     if (e.key === "Escape" && measureMode)      toggleMeasure();
     if (e.key === "Escape" && drawMode)         toggleDraw();
@@ -1702,6 +1707,7 @@ function applyFilters() {
   renderStats();
   renderFilterStatus();
   syncAdvancedFilterUI();
+  window.RESULTS_PANEL?.update(mapData, fips => !hasActiveMapFilters() || countyMatchesFilters(fips));
 }
 
 function renderFilterStatus() {
@@ -3087,6 +3093,7 @@ function setDetailEmpty() {
       <p>${window.matchMedia("(pointer: coarse)").matches ? "Tap" : "Click"} any county on the map to see statewide, county, and city regulations.</p>
     </div>`;
   closeMobileSheet();
+  window.RESULTS_PANEL?.highlightFips(null);
 }
 
 function _renderProximitySectionForCounty(fips) {
@@ -3363,6 +3370,7 @@ function initKbOverlay() {
     <div class="kb-row"><span class="kb-desc">Toggle measure mode</span><span class="kb-keys"><kbd>M</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Toggle polygon draw</span><span class="kb-keys"><kbd>D</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Drop candidate site pin</span><span class="kb-keys"><kbd>P</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Toggle results panel</span><span class="kb-keys"><kbd>L</kbd></span></div>
     <div class="kb-section">General</div>
     <div class="kb-row"><span class="kb-desc">Show this help</span><span class="kb-keys"><kbd>?</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Close / dismiss</span><span class="kb-keys"><kbd>Esc</kbd></span></div>
@@ -3460,6 +3468,7 @@ function selectCounty(fips) {
     const stAbbr = STATE_FIPS[fips.slice(0, 2)] || "";
     setDetailNoRestriction(null, stAbbr, fips);
   }
+  window.RESULTS_PANEL?.highlightFips(fips);
 }
 
 /* ── Search ── */

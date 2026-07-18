@@ -5,6 +5,58 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 9 — Map-linked Results Panel
+
+Files Modified/Created:
+- `js/results-panel.js` (new):
+  - IIFE singleton exposed as `window.RESULTS_PANEL`
+  - `update(mapData, filterFn)` — recomputes sorted list from filtered counties; updates title count; re-renders if panel is open
+  - `highlightFips(fips)` — marks row selected, auto-scrolls to center it in the viewport; clears previous selection
+  - `open()` / `close()` / `toggle()` — show/hide panel; `open()` fires `requestAnimationFrame` before first render so height is measured correctly
+  - `onRowClick(cb)` — sets callback called when a county row is clicked; map.js passes `selectCounty`
+  - Virtual scroll: 44px row height, ±6 row BUFFER; renders only visible rows + buffer as `position:absolute` elements inside a spacer-height container; re-renders on `scroll` event
+  - Sort: severity-desc (default), severity-asc, name-asc, name-desc, state-asc; sorted key persists to `results-sort` localStorage
+  - Resize handle: drag upward from top edge to expand panel; mousedown/touchstart + document mousemove/touchmove; height clamped to 80px–50vh; persisted to `results-panel-h` localStorage
+  - Row keyboard navigation: Enter/Space triggers row click
+- `css/results-panel.css` (new):
+  - `#map-area` — wraps `#map-container` + `#detail-panel` + `#zoning-panel` as a flex-row; `#main` is now `flex-direction: column`
+  - `#results-panel` — docked bottom panel, `flex-shrink: 0`, explicit height
+  - Resize handle with `ns-resize` cursor and a pill indicator
+  - Header row: title count, sort select, close button
+  - `.rp-row` — 44px virtual rows with dot/name/state/badge columns
+  - `.rp-badge-*` — severity-specific badge colors (dark + light theme variants)
+  - Mobile (≤700px): panel + `#gis-results` button both hidden
+  - Print: panel hidden
+- `index.html`:
+  - Wrapped `#map-container`, `#detail-panel`, `#zoning-panel` in `<div id="map-area">`
+  - Added `#results-panel` HTML (resize handle, header with sort select, body)
+  - Added `#gis-results` button (list icon, tooltip "Toggle results panel (L)")
+  - Added `<link>` for `css/results-panel.css?v=20260718a`
+  - Added `<script>` for `js/results-panel.js?v=20260718a`
+  - Bumped style.css to `?v=20260718h`, map.js to `?v=20260718i`
+- `js/map.js`:
+  - `applyFilters()` — calls `RESULTS_PANEL.update(mapData, filterFn)` at end
+  - `selectCounty(fips)` — calls `RESULTS_PANEL.highlightFips(fips)` at end
+  - `setDetailEmpty()` — calls `RESULTS_PANEL.highlightFips(null)` to clear highlight
+  - `initMapFromGeo()` — calls `RESULTS_PANEL.onRowClick(selectCounty)` + `RESULTS_PANEL.update(mapData, () => true)` after county layer is ready
+  - GIS toolbar: wired `#gis-results` → `RESULTS_PANEL.toggle()`
+  - Keyboard: `L` toggles results panel
+  - KB help panel: added L shortcut row
+
+Features Implemented:
+- **Dockable bottom results panel**: appears below the map on desktop; hidden on mobile
+- **Virtual scroll**: renders only visible rows (44px each), supports 3100+ counties smoothly
+- **Sort**: by severity (high-first default), name, or state; persisted to localStorage
+- **Row-map sync**: clicking a row selects the county on the map; selecting a county on the map scrolls the list to its row
+- **Drag resize**: drag handle at top edge; height min 80px, max 50vh; persisted
+- **Filter sync**: list updates whenever map filters change via `applyFilters()`
+- **Keyboard shortcut**: L to open/close
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 8 — Drawing and Measurement Tools
 
 Files Modified:

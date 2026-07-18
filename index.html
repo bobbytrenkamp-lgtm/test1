@@ -20,11 +20,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260718g" />
+  <link rel="stylesheet" href="css/style.css?v=20260718h" />
   <link rel="stylesheet" href="css/stocks.css?v=20260712h" />
   <link rel="stylesheet" href="css/account.css?v=20260717a" />
   <link rel="stylesheet" href="css/zoning.css?v=20260717b" />
   <link rel="stylesheet" href="css/workspace.css?v=20260718a" />
+  <link rel="stylesheet" href="css/results-panel.css?v=20260718a" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -156,6 +157,9 @@
   <!-- Main — hidden by default; shown when user navigates to Map tab -->
   <div id="main" hidden>
 
+  <!-- Map area row: map + detail panel + zoning panel -->
+  <div id="map-area">
+
     <!-- Map Container -->
     <div id="map-container">
       <div id="leaflet-map"></div>
@@ -222,6 +226,9 @@
         </button>
         <button class="gis-btn" id="gis-political-risk" title="Toggle Political Risk layer" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </button>
+        <button class="gis-btn" id="gis-results" title="Toggle results panel (L)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
         </button>
       </div>
 
@@ -306,6 +313,26 @@
         </div>
       </div>
     </aside>
+
+  </div><!-- /map-area -->
+
+  <!-- Results Panel — dockable bottom list (desktop only) -->
+  <div id="results-panel" hidden aria-label="Filtered county results">
+    <div id="results-panel-resize" title="Drag to resize" aria-hidden="true"></div>
+    <div id="results-panel-header">
+      <span id="results-panel-title">0 counties</span>
+      <span class="rp-sort-label">Sort:</span>
+      <select id="results-sort-select" aria-label="Sort results by">
+        <option value="severity-desc">Severity (High → Low)</option>
+        <option value="severity-asc">Severity (Low → High)</option>
+        <option value="name-asc">Name (A → Z)</option>
+        <option value="name-desc">Name (Z → A)</option>
+        <option value="state-asc">State (A → Z)</option>
+      </select>
+      <button id="results-panel-close" aria-label="Close results panel">✕</button>
+    </div>
+    <div id="results-panel-body" role="list" aria-label="County results"></div>
+  </div>
 
   </div><!-- /main -->
 
@@ -633,7 +660,7 @@ window.addEventListener('error', function(e) {
 <script src="js/analytics.js?v=20260712k" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
 <script src="js/home.js?v=20260712m" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
 <script src="js/layer-registry.js?v=20260718c" defer onload="window._track.ok.push('layer-registry')" onerror="window._track.fail.push('layer-registry')"></script>
-<script src="js/map.js?v=20260718h" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script src="js/map.js?v=20260718i" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer onload="window._track.ok.push('supabase')" onerror="window._track.fail.push('supabase')"></script>
 <script src="js/supabase-config.js?v=20260717a" defer onload="window._track.ok.push('supabase-config')" onerror="window._track.fail.push('supabase-config')"></script>
 <script src="js/auth.js?v=20260717a" defer onload="window._track.ok.push('auth')" onerror="window._track.fail.push('auth')"></script>
@@ -642,6 +669,7 @@ window.addEventListener('error', function(e) {
 <script src="js/zoning-map.js?v=20260717b" defer onload="window._track.ok.push('zoning-map')" onerror="window._track.fail.push('zoning-map')"></script>
 <script src="js/zoning-details.js?v=20260717b" defer onload="window._track.ok.push('zoning-details')" onerror="window._track.fail.push('zoning-details')"></script>
 <script src="js/workspace.js?v=20260718a" defer onload="window._track.ok.push('workspace')" onerror="window._track.fail.push('workspace')"></script>
+<script src="js/results-panel.js?v=20260718a" defer onload="window._track.ok.push('results-panel')" onerror="window._track.fail.push('results-panel')"></script>
 <script>
 setTimeout(function() {
   if (!window._pageInitialized) {
