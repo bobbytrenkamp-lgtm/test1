@@ -237,6 +237,12 @@ body.ws-resizing-rail * {
 }
 
 /* ── Settings backdrop ──────────────────────────────────────────────────── */
+/* Ensure [hidden] wins on all iOS Safari versions regardless of CSS display specificity */
+#ws-settings-panel[hidden],
+#ws-settings-backdrop[hidden] {
+  display: none !important;
+}
+
 #ws-settings-backdrop {
   position: fixed;
   inset: 0;

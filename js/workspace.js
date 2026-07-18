@@ -376,7 +376,6 @@
     panel.hidden    = false;
     backdrop.hidden = false;
     document.getElementById('ws-settings-btn')?.classList.add('active');
-    document.getElementById('ws-settings-close')?.focus();
   }
 
   function closeSettings() {
@@ -386,7 +385,6 @@
     panel.hidden    = true;
     backdrop.hidden = true;
     document.getElementById('ws-settings-btn')?.classList.remove('active');
-    document.getElementById('ws-settings-btn')?.focus();
   }
 
   function updateSettingsUI() {
@@ -744,8 +742,6 @@
           '</div>' +
         '</div>';
       document.body.appendChild(sp);
-      // Register with Leaflet here — this element exists before initLeafletMap runs
-      if (window.L && L.DomEvent) L.DomEvent.disableClickPropagation(sp);
     }
 
     _buildToggles();
@@ -754,12 +750,24 @@
   /* ── Wire events ─────────────────────────────────────────────────────── */
   function wireEvents() {
     document.getElementById('ws-settings-btn')?.addEventListener('click', openSettings);
-    const _closeBtn = document.getElementById('ws-settings-close');
-    _closeBtn?.addEventListener('click', closeSettings);
-    // touchstart fires before iOS can cancel the tap; stopPropagation keeps it
-    // from bubbling to the panel's Leaflet listener; preventDefault blocks
-    // the duplicate click event.
-    _closeBtn?.addEventListener('touchstart', e => { e.stopPropagation(); e.preventDefault(); closeSettings(); });
+    // Delegate close-button handling to the panel element itself.
+    // Binding directly to #ws-settings-close is fragile on iOS because the button
+    // is created via innerHTML and the element reference can be stale. Delegation
+    // on the panel is reliable — other buttons inside it already work fine.
+    // Also removed disableClickPropagation from the panel: the panel lives in
+    // <body>, not inside the Leaflet map container, so Leaflet's map listeners
+    // can never reach it and the registration was unnecessary.
+    const _panel = document.getElementById('ws-settings-panel');
+    _panel?.addEventListener('click', e => {
+      if (e.target.closest && e.target.closest('#ws-settings-close')) closeSettings();
+    });
+    _panel?.addEventListener('touchstart', e => {
+      if (e.target.closest && e.target.closest('#ws-settings-close')) {
+        e.stopPropagation();
+        e.preventDefault();
+        closeSettings();
+      }
+    }, { passive: false });
     // Close on tap outside the panel (backdrop is pointer-events:none to avoid
     // the iOS backdrop-filter hit-testing bug that intercepts all touches).
     document.addEventListener('click', e => {
