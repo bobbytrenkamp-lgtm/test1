@@ -761,7 +761,7 @@ html, body {
   padding: 16px 48px 13px 20px;
   border-bottom: 1px solid var(--border);
   border-top: 3px solid transparent;
-  transition: border-top-color 0.2s;
+  transition: padding 0.3s ease, border-top-color 0.2s;
 }
 
 #detail-panel.sev-pro      #detail-header { border-top-color: #4ade80; }
@@ -816,6 +816,7 @@ html, body {
   color: var(--text);
   margin-bottom: 4px;
   letter-spacing: -0.02em;
+  transition: font-size 0.3s ease, margin-bottom 0.3s ease;
 }
 
 #detail-state {
@@ -824,6 +825,7 @@ html, body {
   color: var(--text-muted);
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  transition: opacity 0.22s ease, transform 0.28s ease;
 }
 
 #detail-body {
@@ -2199,6 +2201,20 @@ body.is-resizing-floating-panel * {
     pointer-events: auto; /* explicit — never inherit none from panel */
     position: relative;
     z-index: 1;           /* above any pseudo-elements in the header */
+  }
+
+  /* Compact header — applied after expand-to-fullscreen animation ends */
+  #detail-panel.sheet-compact #detail-header {
+    padding-top: 9px;
+    padding-bottom: 9px;
+  }
+  #detail-panel.sheet-compact #detail-header h2 {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+  #detail-panel.sheet-compact #detail-state {
+    opacity: 0;
+    transform: translateY(-4px);
   }
 
   /* GIS toolbar: clip to visible area above open sheet */
