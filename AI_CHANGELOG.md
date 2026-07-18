@@ -2,6 +2,43 @@
 
 ---
 
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Map Workspace Customization System — Part 1 (CSS + JS + integration)
+
+Files Created:
+- `css/workspace.css` (~730 lines) — all workspace styles: visibility classes, stat-pill hide helpers, resize handle, floating titlebar, rail controls, collapsed rail, restore tab, floating rail, settings backdrop/panel, preset chips, settings search, toggle switches, action buttons, card placeholders, floating card panels, card popout button, mobile overrides, reduced-motion overrides; desktop position:relative fix for detail-panel, padding-right fix for detail-header
+- `js/workspace.js` (~490 lines) — MapWorkspace singleton IIFE: component registry (15 components across 4 groups), preset visibility maps (guided/analyst/minimal/custom), localStorage prefs with forward-compatible defaults, per-component visibility toggle (statSev-based for pills, selector-based for others), preset auto-detection (compares to known maps → switches to custom on divergence), rail resize (pointerdown/pointermove/pointerup on resize handle, setPointerCapture, double-click resets to default), rail float/dock (position:fixed toggle, left/top saved to prefs), rail collapse/restore (ws-rail-collapsed class + fixed restore tab), floating titlebar drag (pointermove with capture), rail tab label sync (MutationObserver on h2), settings panel open/close, settings preset buttons, settings search filter, settings toggle groups with Show All / Reset per group, card popout (MutationObserver on #detail-body, inject button into .policy-scope-header, snapshot innerHTML to floating panel, return-to-rail, county-change closes all cards), generic drag helper, Escape key closes settings, action buttons (show-all/hide-optional/reset-positions/return-cards/clear-workspace), self-initializes on load (defer ordering ensures DOM is ready, guard prevents double-init)
+
+Files Modified:
+- `index.html` — added `<link>` for css/workspace.css?v=20260718a; added `<script>` for js/workspace.js?v=20260718a (deferred, after zoning-details.js)
+- `js/map.js` — two targeted changes:
+  1. `renderStats()` line ~1367: added `chip.dataset.statSev = key` so per-pill CSS hide selectors work
+  2. End of `async init()`: added `window.MapWorkspace?.init()` as belt-and-suspenders (workspace.js self-inits with defer, this is a no-op due to `_initialized` guard)
+
+Features Implemented:
+- Gear icon button in header-right opens workspace settings drawer
+- Settings drawer: 4 presets (Guided/Analyst/Minimal/Custom), search-to-filter toggles, 15 per-component visibility toggles across 4 groups, per-group Show All / Reset, global actions
+- Detail rail: drag resize handle (left edge, 5px wide, ew-resize cursor), double-click reset to 340px default, min 280px / max 50vw; persisted in localStorage
+- Rail collapse: collapse button → panel width:0 + restore tab appears at right edge; tab click restores; persisted
+- Rail popout: float button → position:fixed panel with draggable titlebar; dock button returns; position persisted; double-dock to collapse via float-close
+- Card popout: hover a policy scope section → popout icon appears; click → floating card with draggable titlebar, return-to-rail button, close button; placeholder shown in rail; all cards close on county change; "Return All Cards to Rail" action
+- All preferences persisted in `mapWorkspacePreferences:v1` localStorage
+- Stat-pill hiding via CSS class on #stats-bar (`.ws-hide-ban`, `.ws-hide-high`, etc.) — survives renderStats() rebuilds
+- Keyboard: Escape closes settings; focus returned to gear button on close; all buttons have aria-labels
+
+Bugs Fixed:
+- None (new feature)
+
+Known Limitations / Next Steps:
+- Facility markers, callout annotations, zoom controls hide-toggle: zoom controls selector `.leaflet-control-zoom` applies correctly but Leaflet may re-add controls on map init; further testing recommended
+- "Arrange Windows" automatic grid layout for floating cards: not implemented in this session (low priority)
+- Mobile settings panel: shows correctly as full-width overlay; floating panels and resize handle disabled via CSS on max-width:700px
+- docs/map-workspace-customization.md: not yet written
+
+---
+
 Date: 2026-07-17
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7

@@ -1364,7 +1364,8 @@ function renderStats() {
     if (!count) continue;
     const chip = document.createElement("button");
     chip.className = "stat-chip" + (activeRestrictFilters.has(key) ? " active" : "");
-    chip.dataset.key = key;
+    chip.dataset.key    = key;
+    chip.dataset.statSev = key;
     chip.setAttribute("type", "button");
     chip.setAttribute("title", `Filter map to ${SEVERITY[key].label}`);
     chip.innerHTML = `<div class="dot" style="background:${SEVERITY[key].color}"></div><strong>${count}</strong> ${SEVERITY[key].label}`;
@@ -3617,6 +3618,7 @@ async function init() {
       </div>`;
     }
   }
+  window.MapWorkspace?.init();
 }
 
 // Set the flag here (module level) so the retry-button detector in index.html
