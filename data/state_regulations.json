@@ -5,7 +5,7 @@
     "State legislature websites",
     "Data Center Knowledge industry reports"
   ],
-  "_last_updated": "2026-07-16",
+  "_last_updated": "2026-07-18",
   "states": {
     "04": {
       "name": "Arizona",
@@ -116,7 +116,7 @@
       "abbr": "IN",
       "level": -1,
       "status": "active",
-      "summary": "Data center tax exemptions on equipment and electricity for qualified facilities. Major hyperscale hub (Meta, Microsoft, Amazon).",
+      "summary": "Indiana continues to offer data center tax exemptions on equipment and electricity for qualified facilities, and remains a major hyperscale hub (Meta, Microsoft, Amazon). However, as of mid-2026, nearly a third of Indiana's 92 counties have enacted data center restrictions, representing one of the most extensive statewide county-level moratorium waves in the US. Indiana University's Environmental Resilience Institute identified at least 17 counties with temporary moratoriums and two — Marshall County and Cass County — that have enacted permanent bans. Additional counties with active moratoriums include Boone, White, Putnam, Starke (Dec 2025), Dearborn (Feb 2026), Fulton (Mar 2026), Madison (Jun 2026), and others. An Indianapolis City-County Council committee voted 10-3 on July 13, 2026 to recommend a moratorium through December 31, 2027, with a full council vote scheduled for August 10, 2026. County concerns center on water resources, energy grid capacity, agricultural land preservation, and rural community character.",
       "types": [
         "data_center"
       ],
@@ -124,6 +124,14 @@
         {
           "label": "Indiana Economic Development Corporation",
           "url": "https://iedc.in.gov/"
+        },
+        {
+          "label": "WFYI: Nearly a third of Indiana counties have moved to restrict data centers (July 2026)",
+          "url": "https://www.wfyi.org/statewide/2026-07-06/indiana-counties-data-center-moratoriums-bans-2026"
+        },
+        {
+          "label": "WFYI: Indianapolis data center moratorium committee vote (July 2026)",
+          "url": "https://www.wfyi.org/wfyi-news/2026-07-13/data-center-moratorium-advances-for-indianapolis"
         }
       ]
     },
@@ -194,13 +202,27 @@
     "36": {
       "name": "New York",
       "abbr": "NY",
-      "level": 1,
+      "level": 3,
       "status": "active",
-      "summary": "NYC Local Law 144 (2023): mandatory bias audits for automated employment decision tools. Additional state-level AI governance legislation proposed. SHIELD Act data privacy rules applicable to AI.",
+      "summary": "New York became the first US state to enact a statewide data center moratorium. Governor Kathy Hochul signed Executive Order No. 62 on July 14, 2026, pausing discretionary New York State Department of Environmental Conservation (DEC) permitting for new hyperscale data centers at 50 megawatts (MW) and above for up to one year. The order also requires a Generic Environmental Impact Statement (GEIS) assessing data center energy demand, water use, and air quality, and provides guidance for local entities to negotiate community benefits within 60 days. The NY State Legislature had separately passed the Responsible Data Center Development Act (S10642/A11560) on June 4, 2026 (20 MW threshold, additional mandates) which Hochul declined to sign, choosing to act via executive order instead. Local context: NYC Local Law 144 (2023) requires bias audits for automated employment tools; the Lysander Town Board (Onondaga County) also enacted a 6-month local moratorium on May 7, 2026.",
       "types": [
-        "ai"
+        "data_center",
+        "ai",
+        "energy"
       ],
       "sources": [
+        {
+          "label": "NY Governor Hochul — Executive Order No. 62 (official)",
+          "url": "https://www.governor.ny.gov/executive-order/no-62-establishing-temporary-moratorium-data-centers-new-york-while-state-develops"
+        },
+        {
+          "label": "NY Governor Hochul — First Statewide Moratorium on Hyperscale Data Centers (press release)",
+          "url": "https://www.governor.ny.gov/news/first-statewide-moratorium-new-hyperscale-data-centers-launched-governor-kathy-hochul"
+        },
+        {
+          "label": "NY Senate Bill S10642 — Responsible Data Center Development Act",
+          "url": "https://www.nysenate.gov/legislation/bills/2025/S10642"
+        },
         {
           "label": "NYC Local Law 144 — Automated Employment Decision Tools",
           "url": "https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page"
@@ -328,20 +350,29 @@
     "51": {
       "name": "Virginia",
       "abbr": "VA",
-      "level": -1,
+      "level": 1,
       "status": "active",
-      "summary": "Largest US data center market; Northern Virginia is the world's largest data center hub (70%+ of global internet traffic). Virginia Data Center Incentive Package includes sales tax exemptions on equipment and software. Note: individual counties (e.g. Loudoun) have significant local zoning restrictions — see county data.",
+      "summary": "Virginia remains the world's largest data center market (Northern Virginia handles 70%+ of global internet traffic) and the largest US state market. On June 30, 2026, Governor Abigail Spanberger signed the 2026 biennial budget (HB30) which includes a new Data Center Electricity Consumption Tax of $0.011 per kWh, effective July 1, 2026. The tax applies to both utility-supplied and self-generated electricity at facilities of 1 MW or more. Revenue is capped at $600 million per year, with refunds if collections exceed the cap. The tax expires June 30, 2028 absent legislative extension. The existing sales and use tax exemption for qualifying data center equipment was preserved. Individual counties have significant local restrictions — see county data for Loudoun, Fauquier, Page, and Rappahannock counties in particular.",
       "types": [
-        "data_center"
+        "data_center",
+        "energy"
       ],
       "sources": [
         {
-          "label": "Virginia DHCD — Data Center Incentive Package",
-          "url": "https://www.dhcd.virginia.gov/"
+          "label": "Virginia HB30 — Data Center Electricity Consumption Tax (budget amendment 3-5.24#1c)",
+          "url": "https://budget.lis.virginia.gov/amendment/2026/2/HB30/Introduced/CR/3-5.24/1c"
         },
         {
-          "label": "NVTC — Northern Virginia Tech Council Data Center Report",
-          "url": "https://www.nvtc.org/"
+          "label": "Williams Mullen: Virginia Budget Creates New Electricity Consumption Tax for Data Centers",
+          "url": "https://www.williamsmullen.com/insights/news/legal-news/virginia-budget-creates-new-electricity-consumption-tax-data-centers"
+        },
+        {
+          "label": "Data Center Knowledge: Virginia Approves First-Ever Data Center Power Tax",
+          "url": "https://www.datacenterknowledge.com/regulations/virginia-approves-first-ever-data-center-power-tax"
+        },
+        {
+          "label": "Virginia DHCD — Data Center Incentive Package",
+          "url": "https://www.dhcd.virginia.gov/"
         }
       ]
     },
@@ -424,7 +455,7 @@
       "abbr": "WI",
       "level": -1,
       "status": "active",
-      "summary": "Data center property tax exemption for qualifying facilities. Microsoft announced a $3.3B, 1GW+ AI data center campus in Mount Pleasant (Racine County) in May 2024 — one of the largest tech investments in Wisconsin history. Some counties (Dane, Manitowoc) have proposed local oversight requirements.",
+      "summary": "Wisconsin offers data center property tax exemptions for qualifying facilities. Microsoft announced a $3.3B, 1GW+ AI data center campus in Mount Pleasant (Racine County) in May 2024. However, multiple Wisconsin counties and municipalities have enacted data center moratoriums as of 2026. Dane County (Madison) enacted an 18-month moratorium on hyperscale data centers (≥5,000 servers, ≥10,000 sq ft) in unincorporated county areas, signed by County Executive Melissa Agard after a unanimous board vote on June 4-5, 2026. The City of Madison enacted a separate moratorium on January 13, 2026. Manitowoc County has proposed data center restrictions. Additional moratoriums have been enacted in the town of Cassville, Westport (Dane County), Baldwin (St. Croix County), and Door County. See county-level data for specific details.",
       "types": [
         "data_center"
       ],
@@ -436,6 +467,14 @@
         {
           "label": "Microsoft Mount Pleasant Wisconsin AI Campus",
           "url": "https://news.microsoft.com/2024/05/07/microsoft-expands-digital-infrastructure-in-wisconsin/"
+        },
+        {
+          "label": "Dane County — Board introduces moratorium on data centers (official press release)",
+          "url": "https://www.danecounty.gov/PressDetail/11883"
+        },
+        {
+          "label": "City of Madison — Temporary Data Center Moratorium",
+          "url": "https://www.cityofmadison.com/dpced/about/temporary-data-center-moratorium"
         }
       ]
     },
@@ -605,16 +644,25 @@
     "34": {
       "name": "New Jersey",
       "abbr": "NJ",
-      "level": 0,
+      "level": 2,
       "status": "active",
-      "summary": "New Jersey hosts a significant colocation data center cluster in the Parsippany / Piscataway / Secaucus corridor. The Urban Enterprise Zone program provides sales tax reductions. Somerset County has experienced data center development pressure. No statewide data center restrictions exist, though some municipalities have studied permit limits.",
+      "summary": "Governor Mikie Sherrill signed the Data Center Fair Share Act on July 7, 2026, making New Jersey the first state to create a separate ratepayer class for large data centers. The law requires facilities using 50 MW or more of power to commit to paying at least 85% of projected electricity costs for a decade. It creates a first-of-its-kind program incentivizing data centers to secure clean energy capacity by reducing demand elsewhere on the grid — data centers can pay for households to replace energy-inefficient appliances with heat pumps or install rooftop solar/batteries, receiving priority in the interconnection queue in return. When the grid is strained, data centers must curtail before residential ratepayers are impacted. Sponsored by Senator John Burzichelli. New Jersey hosts a significant colocation data center cluster in Parsippany, Piscataway, and Secaucus.",
       "types": [
-        "data_center"
+        "data_center",
+        "energy"
       ],
       "sources": [
         {
-          "label": "New Jersey Business Action Center — Technology Incentives",
-          "url": "https://www.nj.gov/njbusiness/financing/tax-credits/"
+          "label": "NJ Governor Sherrill — Signs legislation on energy including Data Center Fair Share Act (official)",
+          "url": "https://www.nj.gov/governor/news/2026/20260707a.shtml"
+        },
+        {
+          "label": "NJ Assembly Democrats — Data Center Fair Share Act signed into law",
+          "url": "https://www.assemblydems.com/m/newsflash/Home/Detail/13131"
+        },
+        {
+          "label": "NJ1015: New Jersey becomes first state to put AI data centers in their own ratepayer class",
+          "url": "https://nj1015.com/nj-data-center-fair-share-law/"
         }
       ]
     },

@@ -5,6 +5,99 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Nationwide Data Sweep — Phase 1 Expansion + Validation
+
+## Summary
+Performed a nationwide data sweep using WebSearch and WebFetch to find verified new county/state-level data center restrictions, moratoriums, and policy changes. Added 5 new county records, updated 5 existing county records, and updated 5 state regulation entries. All changes backed by verifiable public sources (government websites and established regional news outlets). No records were fabricated, estimated, or deleted.
+
+## Files Modified
+- `data/restrictions_raw.json` — 5 new county records added; 6 existing records updated; meta.last_manually_updated bumped to 2026-07-18
+- `data/state_regulations.json` — 5 state entries updated; _last_updated bumped to 2026-07-18
+- `data/map_data.json` — regenerated from restrictions_raw.json (1308 counties; stats: -1: 1187, 1: 46, 2: 42, 3: 28, 4: 5)
+
+## New County Records Added
+
+### Indiana (4 new moratoriums)
+- **18149 Starke County** — Level 3. 12-month hyperscale moratorium (>5,000 sq ft), enacted December 15, 2025 (unanimous). Ordinance 2025-37. Official source: starke.in.gov
+- **18049 Fulton County** — Level 3. 1-year moratorium, enacted March 2, 2026 (2-1 vote). Triggered by Decennial Group 500 MW / 300-acre campus proposal. Source: WNDU, InsideINdianaBusiness
+- **18095 Madison County** — Level 3. 6-month moratorium, enacted June 2026 (unanimous; 8-1 Planning Commission recommendation). 9th Indiana county to restrict. Source: Indiana Public Radio, Herald Bulletin
+- **18029 Dearborn County** — Level 3. 1-year moratorium on data centers and commercial solar/battery storage, February 25, 2026 (unanimous). Triggered by Linea Energy 1,200-acre solar proposal. Source: WVXU (Cincinnati NPR), WCPO
+
+### New Mexico (1 new moratorium)
+- **35053 Socorro County** — Level 3. 1-year moratorium on data centers, June 9, 2026 (unanimous). Triggered by Canadian developer Green Data's 10,000-acre solar/data center proposal. Source: ABQ Journal, KRQE, Source NM
+
+## Existing County Records Updated
+
+- **35049 Santa Fe County, NM** — Level -1 → 3. Unanimous 18-month moratorium enacted July 2, 2026. Threshold: 1 MW or more. Source: santafecountynm.gov (official government), KRQE, ABQ Journal
+- **35001 Bernalillo County, NM** — Level -1 → 1. Data Center Guardrails Resolution passed 4-1, February 11, 2026. Requires water offsets, renewable energy, labor standards for projects seeking county incentives. Source: bernco.gov (official government), ABQ Journal
+- **17097 Lake County, IL** — Level -1 → 2. June 9, 2026 County Board resolution pursues 8-month moratorium with immediate administrative deferral (120-day pause on applications) in unincorporated areas. Source: lakecountyil.gov (official government), Daily Herald
+- **13245 Richmond County, GA** — Level -1 → 2. 10-0 vote for 49-day pause on new data center applications, June 2026; Planning Commission recommending extension. Proposed ordinance to restrict data centers to heavy industrial zones. Source: WRDW, WJBF
+- **55025 Dane County, WI** — Updated notes/description only (level=3 already). Added Dane County Board's June 4-5, 2026 unanimous 18-month moratorium on hyperscale data centers (≥5,000 servers, ≥10,000 sq ft) in unincorporated county areas, signed by County Executive Melissa Agard. Source: danecounty.gov (official press release), WisBusiness
+- **13063 Clayton County, GA** — Added REVIEW NEEDED note: Resolution 2025-193 moratorium expired December 31, 2025; unclear if renewed. Added sources: claytoncountyga.gov (official), WSB Radio.
+
+## State Regulations Updated
+
+- **New York (36)** — Level 1 → 3. Gov. Hochul signed Executive Order No. 62 on July 14, 2026: nation's first statewide data center moratorium, pausing DEC permitting for 50 MW+ facilities up to 1 year. NY Legislature also passed S10642 (20 MW threshold) which Hochul declined to sign. Source: governor.ny.gov, nysenate.gov
+- **New Jersey (34)** — Level 0 → 2. Gov. Sherrill signed Data Center Fair Share Act on July 7, 2026: first state to create separate ratepayer class for data centers (50 MW+, must pay 85% projected power costs for 10 years). Source: nj.gov (official), NJ Assembly Dems
+- **Virginia (51)** — Level -1 → 1. Gov. Spanberger signed 2026 biennial budget (HB30) on June 30, 2026 containing new Data Center Electricity Consumption Tax: $0.011/kWh, effective July 1, 2026, on facilities ≥1 MW; capped at $600M/year; expires June 30, 2028. Sales tax exemption preserved. Source: budget.lis.virginia.gov, Williams Mullen, Data Center Knowledge
+- **Indiana (18)** — Summary updated to reflect statewide county moratorium wave: ~30+ counties with restrictions, Marshall and Cass counties with permanent bans, Indianapolis moratorium advancing through City-County Council. Source: WFYI
+- **Wisconsin (55)** — Summary updated to include Dane County 18-month hyperscale moratorium (June 2026) and list of other Wisconsin jurisdictions with moratoriums. Source: danecounty.gov
+
+## Validation Results (Phase 2)
+- No missing required fields (0 of 1308)
+- No duplicate FIPS codes
+- No critical or error-level validation failures
+- Warnings: 1494 (pre-existing consistency warnings, unchanged from prior state)
+- Data integrity status: DEPLOYABLE
+
+## Items Requiring Manual Review
+1. **Clayton County, GA (13063)**: Resolution 2025-193 moratorium expired December 31, 2025. Current status unknown — may have expired. Verify with claytoncountyga.gov before relying on level=3 designation.
+2. **Indiana Marion County (18097)**: Indianapolis City-County Council committee voted 10-3 on July 13 to recommend moratorium through Dec 31, 2027. Full council vote scheduled August 10, 2026. Record currently level=-1; update to level=2/proposed after Aug 10 vote if passes.
+3. **Indiana Pulaski County (18131)**: Mentioned as having a moratorium in WFYI statewide roundup but could not verify with a county-specific authoritative source. Skip adding until verified.
+4. **New Mexico statewide moratorium**: NM lawmakers announced a proposed statewide moratorium for the 2027 legislative session. Monitor for passage.
+5. **New York S10642**: Legislature-passed bill (20 MW threshold) still awaiting Hochul decision — she issued EO instead. If signed, would add stronger requirements than EO.
+
+## Sources Searched
+- datacenterbans.com (tracker, discovery only - Tier 3)
+- rockinst.org (Rockefeller Institute, Tier 3)
+- wfyi.org, indianapublicradio.org, lpm.org (Indiana NPR affiliates)
+- wndu.com, abc57.com, wsbt.com (Indiana TV news)
+- insideindianabusiness.com, heraldbulletin.com (Indiana business/local news)
+- wvxu.org, wcpo.com, eaglecountryonline.com (Dearborn County IN)
+- starke.in.gov (official Starke County government - Tier 1)
+- sourcenm.com, abqjournal.com, krqe.com (New Mexico)
+- santafecountynm.gov (official Santa Fe County government - Tier 1)
+- bernco.gov (official Bernalillo County government - Tier 1)
+- dchieftain.com (Socorro NM)
+- lakecountyil.gov (official Lake County IL government - Tier 1)
+- lakemchenryscanner.com, dailyherald.com (Lake County IL)
+- danecounty.gov (official Dane County WI government - Tier 1)
+- cityofmadison.com (official City of Madison - Tier 1)
+- wispolitics.com, wisbusiness.com, wkow.com (Wisconsin)
+- governor.ny.gov (official NY Governor - Tier 1)
+- nysenate.gov (official NY Senate - Tier 1)
+- nj.gov (official NJ Governor - Tier 1)
+- assemblydems.com (NJ Assembly Democrats - Tier 1/2)
+- budget.lis.virginia.gov (official VA budget - Tier 1)
+- datacenterknowledge.com (industry news, Tier 3)
+- williamsmullen.com, gtlaw.com (law firm analysis, Tier 3)
+- wrdw.com, wjbf.com (Augusta GA TV news)
+- claytoncountyga.gov (official Clayton County GA - Tier 1)
+- mirrorindy.org, wfyi.org (Indianapolis news)
+- wishtv.com, wrtv.com, fox59.com (Indiana TV)
+- axios.com, cnbc.com, nbcnews.com (national media)
+
+## No Fabrication Confirmation
+All facts sourced from verifiable public sources. No coordinates, dates, facility names, policy text, or vote counts were invented or estimated. Counties where only vague mentions were found were excluded.
+
+## No Paid/AI/Recurring Token Usage Added
+No new API keys, recurring data fetches, or LLM-based pipeline steps added. All pipeline workflows unchanged.
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 17 — Export and reporting
 
 Files Modified:
