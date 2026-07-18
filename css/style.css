@@ -4534,6 +4534,89 @@ html[data-theme="light"] {
 #leaflet-map.measure-active,
 #leaflet-map.measure-active .leaflet-grab { cursor: crosshair !important; }
 
+/* ── Draw / Pin cursors ── */
+#leaflet-map.draw-active,
+#leaflet-map.draw-active .leaflet-grab,
+#leaflet-map.pin-active,
+#leaflet-map.pin-active .leaflet-grab { cursor: crosshair !important; }
+
+/* ── Draw readout ── */
+#draw-readout {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  width: -webkit-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  z-index: 460;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  white-space: nowrap;
+  pointer-events: auto;
+}
+/* When both measure-readout and draw-readout are visible, offset draw-readout downward */
+#measure-readout:not([hidden]) ~ #draw-readout:not([hidden]) { top: 58px; }
+#draw-area-val { font-weight: 600; }
+#draw-pts-val {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.draw-unit-toggle {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.draw-unit-opt {
+  background: none;
+  border: none;
+  border-right: 1px solid var(--border);
+  padding: 2px 7px;
+  font-size: 11px;
+  font-family: inherit;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  line-height: 1.6;
+}
+.draw-unit-opt:last-child { border-right: none; }
+.draw-unit-opt:hover { color: var(--text); background: var(--surface-2); }
+.draw-unit-opt.active {
+  background: var(--accent);
+  color: #fff;
+}
+#draw-clear-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  line-height: 1;
+  transition: color 0.15s, background 0.15s;
+}
+#draw-clear-btn:hover { color: var(--text); background: var(--surface-2); }
+
+/* ── Candidate pin marker ── */
+.candidate-pin-icon {
+  background: none !important;
+  border: none !important;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));
+}
+
 /* ── Minimap ── */
 #minimap-wrap {
   position: absolute;

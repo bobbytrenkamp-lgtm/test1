@@ -5,6 +5,57 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 8 — Drawing and Measurement Tools
+
+Files Modified:
+- `js/map.js`:
+  1. New state vars: `drawMode`, `drawPoints`, `drawLayers`, `drawAreaUnit` (persisted to localStorage), `candidatePinMode`, `_candidatePin`
+  2. `_polygonAreaSqM(latlngs)` — spherical polygon area using the equal-area cylindrical formula (Shoelace on lat/sin-lat coordinates × R²), no external library
+  3. `_formatArea(sqM)` — formats area in the active unit (mi², km², or acres)
+  4. `_updateDrawReadout()` — updates the draw readout panel with vertex count or live area
+  5. `_redrawPolygonPreview()` — redraws vertex dots + L.polygon (or L.polyline for <3 pts) on every click
+  6. `_closeDrawPolygon()` — called on map dblclick; removes final duplicate point, exits draw mode, freezes polygon + area display
+  7. `clearDraw()` — removes all draw layers and hides readout
+  8. `toggleDraw()` — toggles polygon draw mode; disables Leaflet's doubleClickZoom while active; mutually exclusive with measure and pin modes
+  9. `_nearestCountyForLatLng(latlng)` — O(n) haversine scan to find nearest county centroid
+  10. `_placeCandidatePin(latlng)` — places L.marker with purple SVG DivIcon; updates readout with coordinates and nearest county name; exits pin mode after placement (one-shot)
+  11. `_exitCandidatePinMode()` — clears pin mode state + active styles
+  12. `_clearCandidatePin()` — removes pin from map + hides readout if draw is also off
+  13. `toggleCandidatePin()` — toggles candidate pin mode; one map click places pin; mutually exclusive with measure and draw
+  14. Map `click` handler — routes to `addMeasurePoint` / draw vertex push / `_placeCandidatePin` based on active mode
+  15. Map `dblclick` handler — pops last point (added by preceding single-click) then calls `_closeDrawPolygon()`
+  16. GIS toolbar wiring — added listeners for `#gis-draw` and `#gis-pin`
+  17. Draw readout wiring — unit toggle chips set `drawAreaUnit`, persist to localStorage, call `_updateDrawReadout()`
+  18. Draw clear button — with iOS touchstart/touchend guards, identical to measure-clear-btn pattern
+  19. Keyboard shortcuts — `D` toggles draw, `P` toggles pin, `Escape` exits either active mode
+  20. KB help panel — added D/P shortcut rows under Map Tools section
+  21. DomEvent.disableClickPropagation — added `draw-readout` to overlay list
+- `css/style.css`:
+  - Draw/pin cursor overrides: `.draw-active` and `.pin-active` → `cursor: crosshair`
+  - `#draw-readout` — positioned like `#measure-readout` (top-center, z-index 460)
+  - `#draw-area-val`, `#draw-pts-val` — label + muted hint typography
+  - `.draw-unit-toggle`, `.draw-unit-opt`, `.draw-unit-opt.active` — segmented unit selector
+  - `#draw-clear-btn` — matches measure-clear-btn style
+  - `.candidate-pin-icon` — DivIcon host: no background/border, drop-shadow filter
+- `index.html`:
+  - Added `#gis-draw` button (polygon layers SVG icon, tooltip "Draw polygon / measure area (D)")
+  - Added `#gis-pin` button (map pin SVG icon, tooltip "Drop candidate site pin (P)")
+  - Added `#draw-readout` element with area val, pts val, unit toggle, clear button
+  - Bumped style.css to `?v=20260718g`, map.js to `?v=20260718h`
+
+Features Implemented:
+- **Polygon draw**: click to add vertices, double-click to close; live area display updates with each vertex; supports polygons of any size
+- **Area measurement**: spherical area formula (no Turf.js); unit toggle persists across sessions
+- **Unit selector**: mi² / km² / acres toggle in draw readout; stored in localStorage key `draw-area-unit`
+- **Candidate pin**: one-shot mode — click places a purple pin, shows coordinates (5dp) and nearest county name; pin persists until cleared or new pin placed
+- **Mutual exclusion**: activating draw/pin/measure mode turns off whichever other mode was active
+- **Keyboard shortcuts**: D (draw), P (pin), Escape exits any active mode
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 7 — Spatial Analysis
 
 Files Modified:

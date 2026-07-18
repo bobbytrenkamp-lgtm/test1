@@ -147,6 +147,14 @@ let _ctxLatLng       = null;
 let bookmarksVisible = false;
 let countyFillOpacity = 1.0;
 
+/* ── Draw / Pin tool state ── */
+let drawMode         = false;
+let drawPoints       = [];
+let drawLayers       = [];
+let drawAreaUnit     = (function(){ try { return localStorage.getItem('draw-area-unit') || 'mi2'; } catch(_){ return 'mi2'; } })();
+let candidatePinMode = false;
+let _candidatePin    = null;
+
 const layerState = {
   restrictions: true,
   state_policy: true,
@@ -903,6 +911,193 @@ function toggleMeasure() {
   }
 }
 
+/* ── Polygon draw tool ── */
+function _polygonAreaSqM(latlngs) {
+  if (latlngs.length < 3) return 0;
+  const R = 6371000;
+  const toRad = d => d * Math.PI / 180;
+  let area = 0;
+  const n = latlngs.length;
+  for (let i = 0; i < n; i++) {
+    const j = (i + 1) % n;
+    area += (toRad(latlngs[j].lng) - toRad(latlngs[i].lng)) *
+            (Math.sin(toRad(latlngs[i].lat)) + Math.sin(toRad(latlngs[j].lat)));
+  }
+  return Math.abs(area) * R * R / 2;
+}
+
+function _formatArea(sqM) {
+  if (drawAreaUnit === 'km2')   return `${(sqM / 1_000_000).toFixed(2)} km²`;
+  if (drawAreaUnit === 'acres') return `${(sqM / 4046.856).toFixed(1)} ac`;
+  return `${(sqM / 2_589_988).toFixed(2)} mi²`;
+}
+
+function _updateDrawReadout() {
+  const distVal = document.getElementById('draw-area-val');
+  const ptsVal  = document.getElementById('draw-pts-val');
+  if (!distVal) return;
+  if (drawPoints.length === 0) {
+    distVal.textContent = 'Click map to start polygon';
+    if (ptsVal) ptsVal.textContent = '';
+  } else if (drawPoints.length < 3) {
+    distVal.textContent = `${drawPoints.length} point${drawPoints.length > 1 ? 's' : ''}`;
+    if (ptsVal) ptsVal.textContent = 'Need 3+ to close';
+  } else {
+    distVal.textContent = _formatArea(_polygonAreaSqM(drawPoints));
+    if (ptsVal) ptsVal.textContent = `${drawPoints.length} pts · dbl-click to close`;
+  }
+}
+
+function _redrawPolygonPreview() {
+  drawLayers.forEach(l => leafletMap && leafletMap.removeLayer(l));
+  drawLayers = [];
+  if (!drawPoints.length) return;
+  drawPoints.forEach(pt => {
+    const dot = L.circleMarker(pt, {
+      radius: 5, fillColor: '#a855f7', color: '#fff',
+      weight: 1.5, fillOpacity: 1, interactive: false,
+    }).addTo(leafletMap);
+    drawLayers.push(dot);
+  });
+  if (drawPoints.length >= 3) {
+    const poly = L.polygon(drawPoints, {
+      color: '#a855f7', weight: 2, opacity: 0.9,
+      fillColor: '#a855f7', fillOpacity: 0.1, interactive: false,
+    }).addTo(leafletMap);
+    drawLayers.push(poly);
+  } else if (drawPoints.length === 2) {
+    const line = L.polyline(drawPoints, {
+      color: '#a855f7', weight: 2, dashArray: '6,4', opacity: 0.85, interactive: false,
+    }).addTo(leafletMap);
+    drawLayers.push(line);
+  }
+  _updateDrawReadout();
+}
+
+function _closeDrawPolygon() {
+  drawMode = false;
+  if (leafletMap && leafletMap.doubleClickZoom) leafletMap.doubleClickZoom.enable();
+  const btn   = document.getElementById('gis-draw');
+  const mapEl = document.getElementById('leaflet-map');
+  if (btn)   { btn.classList.remove('active'); btn.setAttribute('aria-pressed', 'false'); }
+  if (mapEl) mapEl.classList.remove('draw-active');
+  _redrawPolygonPreview();
+  if (drawPoints.length >= 3) {
+    const ptsVal = document.getElementById('draw-pts-val');
+    if (ptsVal) ptsVal.textContent = `${drawPoints.length} pts`;
+  } else {
+    clearDraw();
+  }
+}
+
+function clearDraw() {
+  drawLayers.forEach(l => leafletMap && leafletMap.removeLayer(l));
+  drawLayers = [];
+  drawPoints = [];
+  const el = document.getElementById('draw-readout');
+  if (el && !candidatePinMode) el.hidden = true;
+}
+
+function toggleDraw() {
+  if (measureMode) toggleMeasure();
+  if (candidatePinMode) { _exitCandidatePinMode(); }
+  drawMode = !drawMode;
+  const btn   = document.getElementById('gis-draw');
+  const mapEl = document.getElementById('leaflet-map');
+  if (btn)   { btn.classList.toggle('active', drawMode); btn.setAttribute('aria-pressed', String(drawMode)); }
+  if (mapEl) mapEl.classList.toggle('draw-active', drawMode);
+  if (drawMode) {
+    if (leafletMap && leafletMap.doubleClickZoom) leafletMap.doubleClickZoom.disable();
+    clearDraw();
+    const el = document.getElementById('draw-readout');
+    if (el) { el.hidden = false; _updateDrawReadout(); }
+  } else {
+    if (leafletMap && leafletMap.doubleClickZoom) leafletMap.doubleClickZoom.enable();
+    clearDraw();
+  }
+}
+
+/* ── Candidate pin tool ── */
+function _nearestCountyForLatLng(latlng) {
+  let best = null, bestDist = Infinity;
+  for (const fips of Object.keys(countyLayerByFips)) {
+    const layer = countyLayerByFips[fips];
+    if (!layer) continue;
+    const c = layer.getBounds().getCenter();
+    const d = latlng.distanceTo(c);
+    if (d < bestDist) { bestDist = d; best = fips; }
+  }
+  return best;
+}
+
+function _placeCandidatePin(latlng) {
+  if (_candidatePin && leafletMap) { leafletMap.removeLayer(_candidatePin); _candidatePin = null; }
+  const icon = L.divIcon({
+    className: 'candidate-pin-icon',
+    html: '<svg width="22" height="28" viewBox="0 0 22 28" xmlns="http://www.w3.org/2000/svg"><path d="M11 0C5.48 0 1 4.48 1 10c0 7.25 10 18 10 18S21 17.25 21 10c0-5.52-4.48-10-10-10z" fill="#a855f7"/><circle cx="11" cy="10" r="4" fill="#fff" opacity="0.9"/></svg>',
+    iconSize: [22, 28], iconAnchor: [11, 28],
+  });
+  _candidatePin = L.marker(latlng, { icon, interactive: false }).addTo(leafletMap);
+
+  const el      = document.getElementById('draw-readout');
+  const distVal = document.getElementById('draw-area-val');
+  const ptsVal  = document.getElementById('draw-pts-val');
+  if (el) el.hidden = false;
+  if (distVal) {
+    const lat = latlng.lat.toFixed(5);
+    const lon = Math.abs(latlng.lng).toFixed(5);
+    const dir = latlng.lng >= 0 ? 'E' : 'W';
+    distVal.textContent = `${lat}°N, ${lon}°${dir}`;
+  }
+  if (ptsVal) {
+    const nearFips   = _nearestCountyForLatLng(latlng);
+    const nearCounty = nearFips ? mapData[nearFips] : null;
+    ptsVal.textContent = nearCounty
+      ? `Candidate site — ${nearCounty.name}, ${nearCounty.state}`
+      : 'Candidate site';
+  }
+  _exitCandidatePinMode();
+}
+
+function _exitCandidatePinMode() {
+  candidatePinMode = false;
+  const btn   = document.getElementById('gis-pin');
+  const mapEl = document.getElementById('leaflet-map');
+  if (btn)   { btn.classList.remove('active'); btn.setAttribute('aria-pressed', 'false'); }
+  if (mapEl) mapEl.classList.remove('pin-active');
+}
+
+function _clearCandidatePin() {
+  if (_candidatePin && leafletMap) { leafletMap.removeLayer(_candidatePin); _candidatePin = null; }
+  if (!drawMode) {
+    const el = document.getElementById('draw-readout');
+    if (el) el.hidden = true;
+  }
+}
+
+function toggleCandidatePin() {
+  if (measureMode) toggleMeasure();
+  if (drawMode) toggleDraw();
+  if (_candidatePin) _clearCandidatePin();
+  candidatePinMode = !candidatePinMode;
+  const btn   = document.getElementById('gis-pin');
+  const mapEl = document.getElementById('leaflet-map');
+  if (btn)   { btn.classList.toggle('active', candidatePinMode); btn.setAttribute('aria-pressed', String(candidatePinMode)); }
+  if (mapEl) mapEl.classList.toggle('pin-active', candidatePinMode);
+  const el = document.getElementById('draw-readout');
+  if (candidatePinMode) {
+    if (el) {
+      el.hidden = false;
+      const distVal = document.getElementById('draw-area-val');
+      const ptsVal  = document.getElementById('draw-pts-val');
+      if (distVal) distVal.textContent = 'Click map to place site pin';
+      if (ptsVal)  ptsVal.textContent  = '';
+    }
+  } else {
+    if (el) el.hidden = true;
+  }
+}
+
 /* ── CSV Export ── */
 function exportCountiesCSV() {
   if (!mapData || Object.keys(mapData).length === 0) { showMapToast("No data loaded yet"); return; }
@@ -1248,12 +1443,21 @@ function initLeafletMap() {
 
   leafletMap.on("click", e => {
     if (isDraggingMap || Date.now() < suppressClickUntil) return;
-    if (measureMode) { addMeasurePoint(e.latlng); return; }
+    if (measureMode)      { addMeasurePoint(e.latlng); return; }
+    if (drawMode)         { drawPoints.push(e.latlng); _redrawPolygonPreview(); return; }
+    if (candidatePinMode) { _placeCandidatePin(e.latlng); return; }
     if (selectedFips && countyLayerByFips[selectedFips]) {
       countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
     }
     selectedFips = null;
     setDetailEmpty();
+  });
+
+  leafletMap.on("dblclick", e => {
+    if (!drawMode) return;
+    // The preceding single-click already pushed a point; remove it so dblclick closes cleanly
+    if (drawPoints.length > 0) drawPoints.pop();
+    _closeDrawPolygon();
   });
 
   // Re-apply county fill opacity when zoom changes (fades out at street level)
@@ -1305,6 +1509,8 @@ function initLeafletMap() {
   document.getElementById("gis-locate")        ?.addEventListener("click", locateMe);
   document.getElementById("gis-zoom-filtered") ?.addEventListener("click", zoomToFiltered);
   document.getElementById("gis-measure")       ?.addEventListener("click", toggleMeasure);
+  document.getElementById("gis-draw")          ?.addEventListener("click", toggleDraw);
+  document.getElementById("gis-pin")           ?.addEventListener("click", toggleCandidatePin);
   document.getElementById("gis-export")        ?.addEventListener("click", exportCountiesCSV);
   document.getElementById("gis-share")         ?.addEventListener("click", shareCurrentView);
   document.getElementById("gis-print")         ?.addEventListener("click", printMap);
@@ -1329,6 +1535,35 @@ function initLeafletMap() {
   const _readoutEl = document.getElementById("measure-readout");
   if (_readoutEl) L.DomEvent.disableClickPropagation(_readoutEl);
 
+  // Draw readout — unit toggle + clear button
+  const _drawReadoutEl = document.getElementById('draw-readout');
+  if (_drawReadoutEl) {
+    _drawReadoutEl.querySelectorAll('.draw-unit-opt').forEach(unitBtn => {
+      unitBtn.classList.toggle('active', unitBtn.dataset.unit === drawAreaUnit);
+      unitBtn.addEventListener('click', () => {
+        drawAreaUnit = unitBtn.dataset.unit;
+        try { localStorage.setItem('draw-area-unit', drawAreaUnit); } catch (_) {}
+        _drawReadoutEl.querySelectorAll('.draw-unit-opt').forEach(b => b.classList.toggle('active', b === unitBtn));
+        _updateDrawReadout();
+      });
+    });
+    L.DomEvent.disableClickPropagation(_drawReadoutEl);
+  }
+  const _drawClearBtn = document.getElementById('draw-clear-btn');
+  if (_drawClearBtn) {
+    const _doClearDraw = () => {
+      if (drawMode) toggleDraw();
+      clearDraw();
+      _clearCandidatePin();
+      _exitCandidatePinMode();
+      const el = document.getElementById('draw-readout');
+      if (el) el.hidden = true;
+    };
+    _drawClearBtn.addEventListener('click', _doClearDraw);
+    _drawClearBtn.addEventListener('touchstart', e => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+    _drawClearBtn.addEventListener('touchend',   e => { e.preventDefault(); e.stopPropagation(); _doClearDraw(); }, { passive: false });
+  }
+
   // Fullscreen state sync
   document.addEventListener("fullscreenchange", () => {
     const btn  = document.getElementById("gis-fullscreen");
@@ -1342,8 +1577,12 @@ function initLeafletMap() {
     if (!leafletMap) return;
     if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
     if ((e.key === "m" || e.key === "M") && !e.ctrlKey && !e.metaKey) toggleMeasure();
+    if ((e.key === "d" || e.key === "D") && !e.ctrlKey && !e.metaKey) toggleDraw();
+    if ((e.key === "p" || e.key === "P") && !e.ctrlKey && !e.metaKey) toggleCandidatePin();
     if ((e.key === "f" || e.key === "F") && !e.ctrlKey && !e.metaKey) toggleFullscreen();
-    if (e.key === "Escape" && measureMode) toggleMeasure();
+    if (e.key === "Escape" && measureMode)      toggleMeasure();
+    if (e.key === "Escape" && drawMode)         toggleDraw();
+    if (e.key === "Escape" && candidatePinMode) toggleCandidatePin();
   });
 
   initContextMenu();
@@ -1353,7 +1592,7 @@ function initLeafletMap() {
   // Without this, Leaflet's touchstart handler on the map can swallow taps on
   // absolutely-positioned controls on iOS Safari.
   [
-    "map-gis-bar", "measure-readout", "bookmarks-panel", "map-ctx-menu",
+    "map-gis-bar", "measure-readout", "draw-readout", "bookmarks-panel", "map-ctx-menu",
     "minimap-wrap", "legend", "legend-restore", "stats-bar", "filter-status",
   ].forEach(id => {
     const el = document.getElementById(id);
@@ -3122,6 +3361,8 @@ function initKbOverlay() {
     <div class="kb-section">Map Tools</div>
     <div class="kb-row"><span class="kb-desc">Toggle fullscreen</span><span class="kb-keys"><kbd>F</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Toggle measure mode</span><span class="kb-keys"><kbd>M</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Toggle polygon draw</span><span class="kb-keys"><kbd>D</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Drop candidate site pin</span><span class="kb-keys"><kbd>P</kbd></span></div>
     <div class="kb-section">General</div>
     <div class="kb-row"><span class="kb-desc">Show this help</span><span class="kb-keys"><kbd>?</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Close / dismiss</span><span class="kb-keys"><kbd>Esc</kbd></span></div>
