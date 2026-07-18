@@ -749,7 +749,13 @@
 
   /* ── Wire events ─────────────────────────────────────────────────────── */
   function wireEvents() {
-    document.getElementById('ws-settings-btn')?.addEventListener('click', openSettings);
+    // stopPropagation prevents the click from bubbling to the document-level
+    // outside-tap handler, which would otherwise see the panel just became
+    // visible and immediately close it (gear button is not inside the panel).
+    document.getElementById('ws-settings-btn')?.addEventListener('click', e => {
+      e.stopPropagation();
+      openSettings();
+    });
     // Delegate close-button handling to the panel element itself.
     // Binding directly to #ws-settings-close is fragile on iOS because the button
     // is created via innerHTML and the element reference can be stale. Delegation
