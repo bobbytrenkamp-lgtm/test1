@@ -219,6 +219,7 @@ const activeScopeFilters    = new Set();   // "restrictions", "state_policy", "c
 const activeTypeFilters     = new Set();  // policy type keys e.g. "data_center", "ai"
 let   typeFilterMode        = "any";       // "any" (OR) | "all" (AND) for activeTypeFilters
 const activeStatusFilters   = new Set();  // "active" | "proposed" | "pending"
+let   activeDateFilter      = null;        // null = off, 4-digit year string e.g. "2020"
 
 /* ── Tab / news state ── */
 let activeTab      = "map";
@@ -251,12 +252,19 @@ function countyMatchesFilters(fips) {
     const status = county?.status || "active";
     if (!activeStatusFilters.has(status)) return false;
   }
+  if (activeDateFilter) {
+    const effDate = county?.effective_date || county?.date;
+    // Counties with a date that exceeds the filter year are excluded.
+    // Counties without a date are kept (we don't know their enactment date).
+    if (effDate && effDate.slice(0, 4) > activeDateFilter) return false;
+  }
   return true;
 }
 
 function hasActiveMapFilters() {
   return activeRestrictFilters.size > 0 || activeStateFilter !== "" ||
-         activeTypeFilters.size > 0 || activeStatusFilters.size > 0;
+         activeTypeFilters.size > 0 || activeStatusFilters.size > 0 ||
+         activeDateFilter !== null;
 }
 
 /* ── Helpers ── */
@@ -1167,6 +1175,7 @@ function _encodeShareState() {
   if (activeTypeFilters.size)      obj.tf  = [...activeTypeFilters].join(",");
   if (typeFilterMode !== "any")    obj.tm  = typeFilterMode;
   if (activeStatusFilters.size)    obj.stf = [...activeStatusFilters].join(",");
+  if (activeDateFilter)            obj.df  = activeDateFilter;
   if (selectedFips)                obj.f   = selectedFips;
   // Remove undefined keys
   Object.keys(obj).forEach(k => { if (obj[k] === undefined) delete obj[k]; });
@@ -1195,6 +1204,7 @@ function _applyShareState(obj) {
   typeFilterMode = obj.tm || "any";
   activeStatusFilters.clear();
   if (obj.stf) obj.stf.split(",").filter(Boolean).forEach(k => activeStatusFilters.add(k));
+  activeDateFilter = (typeof obj.df === "string" && /^\d{4}$/.test(obj.df)) ? obj.df : null;
   applyFilters();
   if (obj.v) {
     const parts = obj.v.split(",");
@@ -1488,6 +1498,7 @@ function _captureWorkspaceState(name) {
       typeFilters:     [...activeTypeFilters],
       typeFilterMode:  typeFilterMode,
       statusFilters:   [...activeStatusFilters],
+      dateFilter:      activeDateFilter,
     },
     mapView: { lat: +c.lat.toFixed(5), lng: +c.lng.toFixed(5), zoom: leafletMap.getZoom() },
     selectedFips: selectedFips || null,
@@ -1514,6 +1525,8 @@ function _applyWorkspace(ws) {
     typeFilterMode = ws.filters.typeFilterMode || "any";
     activeStatusFilters.clear();
     (ws.filters.statusFilters || []).forEach(k => activeStatusFilters.add(k));
+    activeDateFilter = (typeof ws.filters.dateFilter === "string" && /^\d{4}$/.test(ws.filters.dateFilter))
+      ? ws.filters.dateFilter : null;
     applyFilters();
   }
   if (ws.mapView) {
@@ -1940,6 +1953,7 @@ function clearAllFilters() {
   activeStateFilter = "";
   activeTypeFilters.clear();
   activeStatusFilters.clear();
+  activeDateFilter  = null;
   _saveFilterState();
   applyFilters();
   syncAdvancedFilterUI();
@@ -1948,11 +1962,12 @@ function clearAllFilters() {
 function _saveFilterState() {
   try {
     localStorage.setItem("dc-advanced-filters-v1", JSON.stringify({
-      restrict: [...activeRestrictFilters],
-      state:    activeStateFilter,
-      types:    [...activeTypeFilters],
-      typeMode: typeFilterMode,
-      status:   [...activeStatusFilters],
+      restrict:   [...activeRestrictFilters],
+      state:      activeStateFilter,
+      types:      [...activeTypeFilters],
+      typeMode:   typeFilterMode,
+      status:     [...activeStatusFilters],
+      dateFilter: activeDateFilter,
     }));
   } catch (_) {}
 }
@@ -1967,6 +1982,7 @@ function _loadFilterState() {
     if (Array.isArray(s.types))   s.types.forEach(t => activeTypeFilters.add(t));
     if (s.typeMode === "all" || s.typeMode === "any") typeFilterMode = s.typeMode;
     if (Array.isArray(s.status))  s.status.forEach(t => activeStatusFilters.add(t));
+    if (typeof s.dateFilter === "string" && /^\d{4}$/.test(s.dateFilter)) activeDateFilter = s.dateFilter;
   } catch (_) {}
 }
 
@@ -4069,6 +4085,22 @@ function syncAdvancedFilterUI() {
   document.querySelectorAll("#adv-status-chips .adv-chip").forEach(chip => {
     chip.classList.toggle("active", activeStatusFilters.has(chip.dataset.status));
   });
+  // Sync date filter
+  const _dcb = document.getElementById("adv-date-enabled");
+  const _dsl = document.getElementById("adv-date-slider");
+  const _dsw = document.getElementById("adv-date-slider-wrap");
+  const _ddp = document.getElementById("adv-date-display");
+  if (_dcb) {
+    const active = activeDateFilter !== null;
+    _dcb.checked = active;
+    if (_dsw) _dsw.hidden = !active;
+    if (active) {
+      if (_dsl) _dsl.value = activeDateFilter;
+      if (_ddp) { _ddp.textContent = `≤ ${activeDateFilter}`; _ddp.hidden = false; }
+    } else {
+      if (_ddp) _ddp.hidden = true;
+    }
+  }
   // Sync clear button visibility
   const clearBtn = document.getElementById("adv-filter-clear");
   if (clearBtn) clearBtn.hidden = !hasActiveMapFilters();
@@ -4270,6 +4302,48 @@ function initAdvancedFiltersPanel() {
       });
       presetsRow.appendChild(btn);
     }
+  }
+
+  // Date filter (Enacted By Year)
+  const dateCheckbox  = document.getElementById("adv-date-enabled");
+  const dateSliderWrap = document.getElementById("adv-date-slider-wrap");
+  const dateSlider    = document.getElementById("adv-date-slider");
+  const dateDisplay   = document.getElementById("adv-date-display");
+
+  function _syncDateSliderDisplay() {
+    if (!dateSlider || !dateDisplay) return;
+    const yr = dateSlider.value;
+    dateDisplay.textContent = `≤ ${yr}`;
+    dateDisplay.hidden = false;
+  }
+
+  function _applyDateFilter() {
+    if (!dateCheckbox || !dateSlider) return;
+    if (dateCheckbox.checked) {
+      activeDateFilter = dateSlider.value;
+      _syncDateSliderDisplay();
+    } else {
+      activeDateFilter = null;
+      if (dateDisplay) dateDisplay.hidden = true;
+    }
+    applyFilters();
+  }
+
+  if (dateCheckbox) {
+    // Restore state from activeDateFilter if already set (e.g. loaded from storage)
+    if (activeDateFilter) {
+      dateCheckbox.checked = true;
+      if (dateSlider) dateSlider.value = activeDateFilter;
+      _syncDateSliderDisplay();
+      if (dateSliderWrap) dateSliderWrap.hidden = false;
+    }
+    dateCheckbox.addEventListener("change", () => {
+      if (dateSliderWrap) dateSliderWrap.hidden = !dateCheckbox.checked;
+      _applyDateFilter();
+    });
+  }
+  if (dateSlider) {
+    dateSlider.addEventListener("input", _applyDateFilter);
   }
 
 }

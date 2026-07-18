@@ -5,6 +5,37 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 14 — Time-based analysis (enacted-by-year slider)
+
+Files Modified:
+- `index.html`:
+  - Added "Enacted By Year" section to `#adv-filter-body` (before Quick Presets): checkbox toggle, range slider (2000–2026, step 1), year labels row, and `#adv-date-display` badge
+  - Bumped style.css to `?v=20260718l`, map.js to `?v=20260718n`
+- `css/style.css`:
+  - `.adv-date-toggle-label` — flex checkbox + uppercase label
+  - `#adv-date-display` — accent-colored year badge (e.g. "≤ 2020"), hidden when filter is off
+  - `#adv-date-slider-wrap` / `#adv-date-track` / `#adv-date-slider` — slider container and range input
+  - `#adv-date-range-labels` — evenly-spaced year tick labels below the slider
+- `js/map.js`:
+  - `activeDateFilter` — new filter state var: null (off) or 4-digit year string
+  - `countyMatchesFilters(fips)` — added date check: county excluded only if it has an `effective_date` or `date` field whose year exceeds `activeDateFilter`; counties without a date field always pass (unknown enactment date)
+  - `hasActiveMapFilters()` — includes `activeDateFilter !== null`
+  - `clearAllFilters()` — resets `activeDateFilter = null`
+  - `_saveFilterState()` / `_loadFilterState()` — persists `dateFilter` to `dc-advanced-filters-v1` localStorage key
+  - `_captureWorkspaceState()` — includes `dateFilter: activeDateFilter` in workspace filters snapshot
+  - `_applyWorkspace()` — restores `activeDateFilter` from workspace `filters.dateFilter`
+  - `_encodeShareState()` — includes `df` field in share URL when `activeDateFilter` is set
+  - `_applyShareState()` — restores `activeDateFilter` from `obj.df`
+  - `initAdvancedFiltersPanel()` — wires checkbox toggle (show/hide slider, set `activeDateFilter`), range `input` event (update `activeDateFilter`, call `applyFilters()`); restores state from `activeDateFilter` on open
+  - `syncAdvancedFilterUI()` — syncs checkbox checked state, slider value, and display badge from `activeDateFilter`
+
+Data coverage: 529 of 1303 counties have `effective_date` fields; range 1998–2026 (peak 2019–2022). Counties without dates always show regardless of slider position.
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 13 — Dashboard scope selector (national / filtered / state / extent)
 
 Files Modified:
