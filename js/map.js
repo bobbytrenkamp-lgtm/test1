@@ -2997,19 +2997,53 @@ function initDetailSheetSwipe() {
         requestCloseDetailSheet();
       }, duration);
     } else if (shouldExpand) {
-      // Snap to full-screen: clear inline styles so the CSS transition handles height.
-      panel.style.transition = "";
+      // FLIP expand: apply expanded state immediately, invert with transform,
+      // then animate transform to 0 — keeps height change off the critical path
+      // so the whole motion is GPU-accelerated transform only.
+      const first = panel.getBoundingClientRect().top;
+      panel.style.transition = "none";
       panel.style.transform  = "";
       panel.classList.add("sheet-expanded");
+      void panel.getBoundingClientRect(); // force reflow
+      panel.style.transform  = `translateY(${first}px)`;
+
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const dur = prefersReduced ? 10 : 420;
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          panel.style.willChange = "transform";
+          panel.style.transition = prefersReduced
+            ? "transform 10ms, border-radius 10ms"
+            : `transform ${dur}ms cubic-bezier(0.22, 1, 0.36, 1), border-radius 0.3s ease`;
+          panel.style.transform  = "translateY(0)";
+        });
+      });
+
+      // After animation: clean up inline styles and compact the header
+      let _flipDone = false;
+      const _flipCleanup = () => {
+        if (_flipDone) return;
+        _flipDone = true;
+        panel.removeEventListener("transitionend", _onFlipEnd);
+        panel.style.transition = "";
+        panel.style.transform  = "";
+        panel.style.willChange = "";
+        panel.classList.add("sheet-compact");
+      };
+      const _onFlipEnd = e => { if (e.propertyName === "transform") _flipCleanup(); };
+      panel.addEventListener("transitionend", _onFlipEnd);
+      setTimeout(_flipCleanup, dur + 80); // fallback
+
       document.documentElement.style.setProperty("--sheet-top", "0px");
     } else {
       // Snap back to current state.
-      panel.style.transition = "transform 0.24s ease-out";
+      panel.style.transition = "transform 0.32s cubic-bezier(0.22, 1, 0.36, 1)";
       panel.style.transform  = "translateY(0)";
       setTimeout(() => {
         panel.style.transition = "";
         panel.style.transform  = "";
-      }, 240);
+      }, 340);
     }
   }
 
@@ -3480,7 +3514,7 @@ function openMobileSheet() {
   p.style.transform  = "";
   p.style.transition = "";
   p.style.willChange = "";
-  p.classList.remove("is-dragging", "is-closing", "sheet-expanded");
+  p.classList.remove("is-dragging", "is-closing", "sheet-expanded", "sheet-compact");
   p.classList.add("sheet-open");
   document.body.classList.add("detail-sheet-open");
   // Set --sheet-top after the CSS transition settles so the toolbar clip is accurate.
@@ -3499,7 +3533,7 @@ function closeMobileSheet() {
   if (_sheetClosing) return;
   const p = document.getElementById("detail-panel");
   if (!p) return;
-  p.classList.remove("sheet-open", "is-dragging", "is-closing", "sheet-expanded");
+  p.classList.remove("sheet-open", "is-dragging", "is-closing", "sheet-expanded", "sheet-compact");
   p.style.transform  = "";
   p.style.transition = "";
   p.style.willChange = "";
