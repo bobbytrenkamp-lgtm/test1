@@ -5,6 +5,31 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 13 — Dashboard scope selector (national / filtered / state / extent)
+
+Files Modified:
+- `index.html`:
+  - Added `<div id="dashboard-scope-bar" hidden>` (populated by JS on data load)
+  - Bumped style.css to `?v=20260718k`, map.js to `?v=20260718m`
+- `css/style.css`:
+  - `#dashboard-scope-bar` — flex row (5px 14px padding) matching the dashboard's collapse/hide behavior: transitions with `max-height` when `.top-hidden`, `display: none !important` in fullpage-mode
+  - `.dash-scope-label` — "SCOPE" uppercase eyebrow label
+  - `.dash-scope-chip` — pill chips (National / Filtered / State / Extent); accent fill for `.active`, disabled opacity for unavailable
+  - `#dash-scope-state-select` — compact dropdown (max-width 130px), shown only when State chip is active
+- `js/map.js`:
+  - `_dashScope` / `_dashScopeState` — scope mode and selected state abbreviation
+  - `_computeScopeCounties()` — returns scoped subset of `mapData`: national=all, filtered=`countyMatchesFilters()`, state=matching `.state` field, extent=counties whose layer centroid is inside `leafletMap.getBounds()`
+  - `updateDashboardScopedCards()` — calls `computeSeverityCounts()` on scoped data, re-animates Active Restrictions / Proposed Restrictions / States w/ Legislation cards via `animateCounter(…, 450ms)`
+  - `initDashboardScopeBar()` — renders the 4 scope chips and state dropdown from `mapData` state set; wires chip clicks → `activateScope()` → `updateDashboardScopedCards()`; shows state dropdown only when State scope is active
+  - `applyFilters()` — calls `updateDashboardScopedCards()` when `_dashScope === "filtered"` so counts auto-update when filters change
+  - `initLeafletMap()` — registers `leafletMap.on("moveend")` handler that calls `updateDashboardScopedCards()` when `_dashScope === "extent"` so counts auto-update as the user pans/zooms
+  - `init()` — calls `initDashboardScopeBar()` after `renderDashboard(data)`
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 12 — Shareable map state (compact URL encoding)
 
 Files Modified:

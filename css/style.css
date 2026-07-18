@@ -331,6 +331,63 @@ html, body {
 .stat-card[data-metric="planned"]      { border-top-color: #a78bfa; }
 .stat-card[data-metric="updated"]      { border-top-color: var(--border); }
 
+/* ── Dashboard scope bar ── */
+#dashboard-scope-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  transition: max-height 0.32s ease, opacity 0.22s ease;
+  max-height: 40px;
+  overflow: hidden;
+}
+#app.top-hidden #dashboard-scope-bar {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+#app.fullpage-mode #dashboard-scope-bar { display: none !important; }
+.dash-scope-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+.dash-scope-chip {
+  padding: 2px 10px;
+  border: 1px solid var(--border);
+  background: none;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.dash-scope-chip:hover { background: var(--surface-2); color: var(--text); }
+.dash-scope-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.dash-scope-chip:disabled { opacity: 0.4; cursor: default; }
+#dash-scope-state-select {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  font-size: 11px;
+  padding: 2px 5px;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  max-width: 130px;
+}
+#dash-scope-state-select:focus { border-color: var(--accent); }
+
 /* ── Top-section collapse toggle ── */
 #top-toggle {
   display: flex;

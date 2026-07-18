@@ -1698,6 +1698,11 @@ function initLeafletMap() {
     _closeDrawPolygon();
   });
 
+  // Update dashboard extent scope when the viewport changes
+  leafletMap.on("moveend", () => {
+    if (_dashScope === "extent") updateDashboardScopedCards();
+  });
+
   // Re-apply county fill opacity when zoom changes (fades out at street level)
   leafletMap.on("zoomend", () => {
     if (countyGeoLayer) {
@@ -1985,6 +1990,7 @@ function applyFilters() {
   renderFilterStatus();
   syncAdvancedFilterUI();
   window.RESULTS_PANEL?.update(mapData, fips => !hasActiveMapFilters() || countyMatchesFilters(fips));
+  if (_dashScope === "filtered") updateDashboardScopedCards();
 }
 
 function renderFilterStatus() {
@@ -2903,6 +2909,113 @@ function initLegendControls() {
   };
   legend.addEventListener("pointerup",     endLgResize);
   legend.addEventListener("pointercancel", endLgResize);
+}
+
+/* ── Dashboard scope ── */
+let _dashScope      = "national"; // "national" | "filtered" | "state" | "extent"
+let _dashScopeState = "";
+
+function _computeScopeCounties() {
+  if (_dashScope === "national") return mapData;
+
+  if (_dashScope === "filtered") {
+    const out = {};
+    for (const fips in mapData) { if (countyMatchesFilters(fips)) out[fips] = mapData[fips]; }
+    return out;
+  }
+
+  if (_dashScope === "state" && _dashScopeState) {
+    const out = {};
+    for (const fips in mapData) { if (mapData[fips].state === _dashScopeState) out[fips] = mapData[fips]; }
+    return out;
+  }
+
+  if (_dashScope === "extent" && leafletMap) {
+    const bounds = leafletMap.getBounds();
+    const out = {};
+    for (const fips in mapData) {
+      const layer = countyLayerByFips[fips];
+      if (!layer) continue;
+      try {
+        const center = layer.getBounds().getCenter();
+        if (bounds.contains(center)) out[fips] = mapData[fips];
+      } catch (_) {}
+    }
+    return out;
+  }
+
+  return mapData;
+}
+
+function updateDashboardScopedCards() {
+  const scoped = _computeScopeCounties();
+  const counts = computeSeverityCounts(scoped);
+  const statesWithLeg = new Set();
+  for (const fips in scoped) { if (scoped[fips].level >= 1) statesWithLeg.add(scoped[fips].state); }
+
+  const db = document.getElementById("dashboard");
+  if (!db) return;
+  const targets = {
+    restrictions: counts.moderate + counts.high + counts.ban,
+    proposed:     counts.proposed,
+    legislation:  statesWithLeg.size,
+  };
+  for (const [metric, value] of Object.entries(targets)) {
+    const card = db.querySelector(`[data-metric="${metric}"]`);
+    if (card) {
+      const valEl = card.querySelector(".stat-card-value");
+      if (valEl) animateCounter(valEl, value, 450);
+    }
+  }
+}
+
+function initDashboardScopeBar() {
+  const bar = document.getElementById("dashboard-scope-bar");
+  if (!bar) return;
+
+  const stateSet = new Set();
+  for (const fips in mapData) { if (mapData[fips].state) stateSet.add(mapData[fips].state); }
+  const states = [...stateSet].sort();
+
+  const stateOptions = states.map(s => {
+    const el = document.createElement("option");
+    el.value = s; el.textContent = s;
+    return el.outerHTML;
+  }).join("");
+
+  bar.innerHTML = [
+    `<span class="dash-scope-label">Scope</span>`,
+    `<button class="dash-scope-chip active" data-scope="national" type="button">National</button>`,
+    `<button class="dash-scope-chip" data-scope="filtered" type="button">Filtered</button>`,
+    `<button class="dash-scope-chip" data-scope="state" type="button">State</button>`,
+    `<button class="dash-scope-chip" data-scope="extent" type="button">Extent</button>`,
+    `<select id="dash-scope-state-select" aria-label="Select state" hidden>`,
+    `<option value="">Select state…</option>`,
+    stateOptions,
+    `</select>`,
+  ].join("");
+
+  const chips       = bar.querySelectorAll(".dash-scope-chip");
+  const stateSelect = bar.querySelector("#dash-scope-state-select");
+
+  function activateScope(scope) {
+    _dashScope = scope;
+    chips.forEach(c => c.classList.toggle("active", c.dataset.scope === scope));
+    if (stateSelect) stateSelect.hidden = (scope !== "state");
+    if (scope === "state" && !_dashScopeState) return; // wait for state selection
+    updateDashboardScopedCards();
+  }
+
+  chips.forEach(chip => chip.addEventListener("click", () => activateScope(chip.dataset.scope)));
+
+  if (stateSelect) {
+    stateSelect.addEventListener("change", () => {
+      _dashScopeState = stateSelect.value;
+      if (_dashScopeState) updateDashboardScopedCards();
+    });
+  }
+
+  bar.hidden = false;
 }
 
 /* ── Dashboard ── */
@@ -4767,6 +4880,7 @@ async function init() {
     renderNewsStatusBar(newsData);
     setLastUpdated(data);
     renderDashboard(data);
+    initDashboardScopeBar();
 
     // If URL had a FIPS hash, initialize the map silently while home stays
     // visible — #main is hidden so the loading spinner never shows.
