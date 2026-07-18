@@ -5,6 +5,34 @@
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 0 — ArcGIS Feature Gap Audit
+
+Files Created:
+- `docs/ARCGIS_FEATURE_GAP_AUDIT.md` — Comprehensive 66-row feature gap audit covering every major ArcGIS-equivalent capability with status, limitations, recommended actions, risk, and test requirements. Includes: Duplication Risk Register (10 items), Modularization Proposal for js/map.js (8 candidate modules with priority order and dependency graph), Centralized Layer Metadata Design (full JS schema with data_status spectrum), verified inventory of 60+ working capabilities, classification of incomplete/disconnected/sample-data/missing features.
+
+Files Modified:
+- `AI_CHANGELOG.md` — added this session entry
+- `BUG_TRACKER.md` — added 2 bugs discovered during audit
+
+Audit Summary:
+- Existing-working: 60+ capabilities confirmed in js/map.js audit
+- Existing-incomplete: 10 items (city layer, real facility data, state detail integration, dashboard scoping, share-link completeness, measure tool (lines only), search completeness, political risk accuracy, workspace GIS-state persistence, zoning geometry)
+- Existing-disconnected: 5 items (political risk toggle bug, workspace layer sync, bookmarks layer state, analytics-map link, zoning detail panel when geometry absent)
+- Existing-sample-data: 9 datasets (facilities, power, transmission, fiber, water, utilities, tax incentives, political risk scores, zoning districts)
+- Missing: 17 items (layer metadata registry, per-layer opacity, layer reordering, spatial analysis, area measure, draw/sketch tools, results list panel, time range filter, comparison tool, suitability scoring, full GIS-state workspace save, compact URL state, date range filter, lifecycle filter, GeoJSON export, printable report, Turf.js)
+
+Bugs Found:
+- `togglePoliticalRiskLayer()` at js/map.js:1003 references undefined `countyLayer` instead of `countyGeoLayer` (logged in BUG_TRACKER.md)
+- Panel positions (fpSavedPos, lgSavedPos) not persisted to localStorage across sessions (logged in BUG_TRACKER.md)
+
+Recommended Next Phase:
+- Phase 2 (Layer Metadata Registry + Layer Panel Improvements) before Phase 1 (modularization) — lower risk, delivers immediate user value without refactoring internals
+
+---
+
+Date: 2026-07-18
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Map Workspace Customization System — Part 1 (CSS + JS + integration)
 
 Files Created:
