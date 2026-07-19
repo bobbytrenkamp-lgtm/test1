@@ -149,8 +149,7 @@ let _wsVisible        = false;
 const WS_LOCAL_KEY    = "dc-workspaces-local-v1";
 const WS_MAX_LOCAL    = 10;
 let compareMode       = false;
-const compareCounties = []; // array of fips strings, max 5
-const CMP_MAX         = 5;
+const compareCounties = []; // array of fips strings, unlimited
 let countyFillOpacity = 1.0;
 
 /* ── Draw / Pin tool state ── */
@@ -1643,16 +1642,8 @@ function renderComparePanel() {
   body.innerHTML = "";
 
   if (!compareCounties.length) {
-    for (let i = 0; i < CMP_MAX; i++) {
-      const addCol = document.createElement("div");
-      addCol.className = "cmp-add-col";
-      addCol.title = "Click a county on the map to add it";
-      addCol.innerHTML =
-        `<div class="cmp-slot-card">` +
-          `<span class="cmp-slot-icon">+</span>` +
-          `<span class="cmp-slot-label">Add county</span>` +
-        `</div>`;
-      body.appendChild(addCol);
+    for (let i = 0; i < 2; i++) {
+      body.appendChild(_makeCmpAddSlot());
     }
     return;
   }
@@ -1742,27 +1733,24 @@ function renderComparePanel() {
     body.appendChild(col);
   });
 
-  // Empty slot "+" cards for each remaining spot
-  const remaining = CMP_MAX - compareCounties.length;
-  for (let i = 0; i < remaining; i++) {
-    const addCol = document.createElement("div");
-    addCol.className = "cmp-add-col";
-    addCol.title = "Click a county on the map to add it";
-    addCol.innerHTML =
-      `<div class="cmp-slot-card">` +
-        `<span class="cmp-slot-icon">+</span>` +
-        `<span class="cmp-slot-label">Add county</span>` +
-      `</div>`;
-    body.appendChild(addCol);
-  }
+  // Always show one "+" slot at the end to invite more additions
+  body.appendChild(_makeCmpAddSlot());
+}
+
+function _makeCmpAddSlot() {
+  const col = document.createElement("div");
+  col.className = "cmp-add-col";
+  col.title = "Click a county on the map to add it";
+  col.innerHTML =
+    `<div class="cmp-slot-card">` +
+      `<span class="cmp-slot-icon">+</span>` +
+      `<span class="cmp-slot-label">Add county</span>` +
+    `</div>`;
+  return col;
 }
 
 function addToCompare(fips) {
   if (!fips || compareCounties.includes(fips)) return;
-  if (compareCounties.length >= CMP_MAX) {
-    showMapToast(`Max ${CMP_MAX} counties in compare view`);
-    return;
-  }
   compareCounties.push(fips);
   renderComparePanel();
   const county = mapData[fips];
