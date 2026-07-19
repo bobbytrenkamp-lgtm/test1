@@ -32471,6 +32471,198 @@
           "url": "https://www.lightedge.com/colocation/data-centers/kansas-city-missouri/"
         }
       ]
+    },
+    {
+      "id": "fc-246c36ed47",
+      "name": "Evocative Data Center - Oakland CA",
+      "operator": "Evocative",
+      "status": "existing",
+      "county_fips": "06001",
+      "notes": "Evocative (formerly Agilitas) Oakland CA data center at 1 Kaiser Plaza, Oakland CA 94612. Alameda County. Carrier-neutral colocation in Bay Area.",
+      "lat": 37.8044,
+      "lon": -122.2712,
+      "sources": [
+        {
+          "label": "Evocative",
+          "url": "https://evocative.com/data-centers/oakland/"
+        }
+      ]
+    },
+    {
+      "id": "fc-69bc6cf152",
+      "name": "Evocative Data Center - Chicago IL",
+      "operator": "Evocative",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Evocative Chicago IL colocation data center. Cook County. Part of Evocative's national carrier-neutral network.",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "sources": [
+        {
+          "label": "Evocative",
+          "url": "https://evocative.com/data-centers/chicago/"
+        }
+      ]
+    },
+    {
+      "id": "fc-91f40200e3",
+      "name": "Evocative Data Center - Minneapolis MN",
+      "operator": "Evocative",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Evocative Minneapolis MN colocation data center. Hennepin County.",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "sources": [
+        {
+          "label": "Evocative",
+          "url": "https://evocative.com/data-centers/minneapolis/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9be665ace2",
+      "name": "Evocative Data Center - Dallas TX",
+      "operator": "Evocative",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Evocative Dallas TX colocation data center. Dallas County.",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "Evocative",
+          "url": "https://evocative.com/data-centers/dallas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-28e51e4252",
+      "name": "Opus Interactive Data Center - Portland OR",
+      "operator": "Opus Interactive",
+      "status": "existing",
+      "county_fips": "41051",
+      "notes": "Opus Interactive Portland OR downtown data center and cloud services. Multnomah County. Carrier-neutral with Pacific Northwest connectivity.",
+      "lat": 45.5231,
+      "lon": -122.6765,
+      "sources": [
+        {
+          "label": "Opus Interactive",
+          "url": "https://www.opusinteractive.com/colocation/portland-colocation/"
+        }
+      ]
+    },
+    {
+      "id": "fc-10cc0de52c",
+      "name": "US Signal Data Center - Troy MI",
+      "operator": "US Signal",
+      "status": "existing",
+      "county_fips": "26125",
+      "notes": "US Signal Troy MI data center (Metro Detroit area). Oakland County. Part of US Signal's Michigan colocation network.",
+      "lat": 42.6064,
+      "lon": -83.1498,
+      "sources": [
+        {
+          "label": "US Signal",
+          "url": "https://www.ussignal.com/data-centers/troy-michigan/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2cf5ba7aec",
+      "name": "US Signal Data Center - Kalamazoo MI",
+      "operator": "US Signal",
+      "status": "existing",
+      "county_fips": "26077",
+      "notes": "US Signal Kalamazoo MI colocation data center. Kalamazoo County. Carrier-neutral with regional network connectivity.",
+      "lat": 42.2917,
+      "lon": -85.5872,
+      "sources": [
+        {
+          "label": "US Signal",
+          "url": "https://www.ussignal.com/data-centers/kalamazoo-michigan/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d01c290f82",
+      "name": "LightEdge Data Center - Austin",
+      "operator": "LightEdge Solutions",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "LightEdge Solutions Austin TX data center. Travis County. SOC 2 Type II certified colocation and managed cloud services.",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "sources": [
+        {
+          "label": "LightEdge Solutions",
+          "url": "https://www.lightedge.com/colocation/data-centers/austin-texas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-bda5ee6c7c",
+      "name": "DC BLOX Data Center - Raleigh NC RDU-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "37183",
+      "notes": "DC BLOX RDU-1 Raleigh NC data center. Wake County. Part of DC BLOX's Southeast US colocation and cloud network.",
+      "lat": 35.7796,
+      "lon": -78.6382,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://dcblox.com/data-centers/raleigh/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6dc6bfe777",
+      "name": "Atlantic Metro - Hauppauge NY",
+      "operator": "Atlantic Metro Communications",
+      "status": "existing",
+      "county_fips": "36103",
+      "notes": "Atlantic Metro Communications Hauppauge NY data center on Long Island. Suffolk County. Carrier-neutral colocation serving Long Island market.",
+      "lat": 40.8226,
+      "lon": -73.2068,
+      "sources": [
+        {
+          "label": "Atlantic Metro Communications",
+          "url": "https://www.atlanticmetro.net/data-centers/hauppauge/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4ebb32cf16",
+      "name": "Atlantic Metro - Woburn MA",
+      "operator": "Atlantic Metro Communications",
+      "status": "existing",
+      "county_fips": "25017",
+      "notes": "Atlantic Metro Communications Woburn MA data center. Middlesex County. Carrier-neutral colocation serving Greater Boston.",
+      "lat": 42.4795,
+      "lon": -71.1523,
+      "sources": [
+        {
+          "label": "Atlantic Metro Communications",
+          "url": "https://www.atlanticmetro.net/data-centers/woburn/"
+        }
+      ]
+    },
+    {
+      "id": "fc-bb0b468ee4",
+      "name": "PhillyNAP Data Center - Philadelphia",
+      "operator": "PhillyNAP",
+      "status": "existing",
+      "county_fips": "42101",
+      "notes": "PhillyNAP carrier-neutral colocation data center in Philadelphia PA. Philadelphia County. Multiple fiber providers and internet exchange.",
+      "lat": 39.9526,
+      "lon": -75.1652,
+      "sources": [
+        {
+          "label": "PhillyNAP",
+          "url": "https://phillynap.com/colocation/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -33799,5 +33991,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T12:58:32Z"
+  "_facilities_exported_at": "2026-07-19T13:01:00Z"
 }
