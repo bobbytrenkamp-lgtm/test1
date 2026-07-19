@@ -34327,6 +34327,230 @@
           "url": "https://www.logically.com/data-centers/burlington-vt/"
         }
       ]
+    },
+    {
+      "id": "fc-cf6689134a",
+      "name": "University of Arizona Research Data Center - Tucson",
+      "operator": "University of Arizona",
+      "status": "existing",
+      "county_fips": "04019",
+      "notes": "University of Arizona Research Data Center in Tucson AZ (Pima County). Operates Ocelote and Puma HPC clusters for research computing across UA colleges.",
+      "lat": 32.2319,
+      "lon": -110.9501,
+      "sources": [
+        {
+          "label": "University of Arizona",
+          "url": "https://it.arizona.edu/service/research-computing"
+        }
+      ]
+    },
+    {
+      "id": "fc-81f263e410",
+      "name": "University of Mississippi HPC - Oxford",
+      "operator": "University of Mississippi",
+      "status": "existing",
+      "county_fips": "28071",
+      "notes": "University of Mississippi HPC and research computing center in Oxford MS (Lafayette County). Research IT infrastructure for Ole Miss.",
+      "lat": 34.3654,
+      "lon": -89.5187,
+      "sources": [
+        {
+          "label": "University of Mississippi",
+          "url": "https://www.research.olemiss.edu/itc/"
+        }
+      ]
+    },
+    {
+      "id": "fc-685f4be378",
+      "name": "University of Louisville Research Computing - Louisville",
+      "operator": "University of Louisville",
+      "status": "existing",
+      "county_fips": "21111",
+      "notes": "University of Louisville research computing center in Louisville KY (Jefferson County). HPC infrastructure for UofL biomedical and engineering research.",
+      "lat": 38.2527,
+      "lon": -85.7585,
+      "sources": [
+        {
+          "label": "University of Louisville",
+          "url": "https://louisville.edu/research/computing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-20e978747d",
+      "name": "University of Cincinnati Research Computing - Cincinnati",
+      "operator": "University of Cincinnati",
+      "status": "existing",
+      "county_fips": "39061",
+      "notes": "University of Cincinnati HPC center in Cincinnati OH (Hamilton County). Operates Pegasus HPC cluster for UC research computing.",
+      "lat": 39.1329,
+      "lon": -84.515,
+      "sources": [
+        {
+          "label": "University of Cincinnati",
+          "url": "https://ucit.uc.edu/research/hpc/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3314a2e2fc",
+      "name": "University of Delaware Research Computing - Newark",
+      "operator": "University of Delaware",
+      "status": "existing",
+      "county_fips": "10003",
+      "notes": "University of Delaware Research Computing center in Newark DE (New Castle County). Operates Caviness and Darwin HPC clusters for interdisciplinary UD research.",
+      "lat": 39.6837,
+      "lon": -75.7497,
+      "sources": [
+        {
+          "label": "University of Delaware",
+          "url": "https://www.it.udel.edu/research-computing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-939aba097c",
+      "name": "University of Rhode Island Research Computing - Kingston",
+      "operator": "University of Rhode Island",
+      "status": "existing",
+      "county_fips": "44009",
+      "notes": "University of Rhode Island research computing infrastructure in Kingston RI (Washington County). HPC resources for URI oceanography and engineering research.",
+      "lat": 41.4805,
+      "lon": -71.5273,
+      "sources": [
+        {
+          "label": "University of Rhode Island",
+          "url": "https://its.uri.edu/research-computing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-fac5c80dce",
+      "name": "University of Nevada Reno Research Computing - Reno",
+      "operator": "University of Nevada Reno",
+      "status": "existing",
+      "county_fips": "32031",
+      "notes": "University of Nevada Reno (UNR) research computing center in Reno NV (Washoe County). HPC resources for UNR engineering, science, and business research.",
+      "lat": 39.5465,
+      "lon": -119.8129,
+      "sources": [
+        {
+          "label": "University of Nevada Reno",
+          "url": "https://www.unr.edu/research-computing"
+        }
+      ]
+    },
+    {
+      "id": "fc-96ebb9e717",
+      "name": "University of Connecticut Research Computing - Storrs",
+      "operator": "University of Connecticut",
+      "status": "existing",
+      "county_fips": "09013",
+      "notes": "University of Connecticut HPC and research computing center in Storrs CT (Tolland County). Operates Storrs HPC clusters for UConn research programs.",
+      "lat": 41.8084,
+      "lon": -72.2495,
+      "sources": [
+        {
+          "label": "University of Connecticut",
+          "url": "https://research.uconn.edu/rit/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7228070b4d",
+      "name": "Drexel University Research Computing - Philadelphia",
+      "operator": "Drexel University",
+      "status": "existing",
+      "county_fips": "42101",
+      "notes": "Drexel University research computing center in Philadelphia PA (Philadelphia County). HPC infrastructure for Drexel engineering, biomedical, and computing research.",
+      "lat": 39.9566,
+      "lon": -75.1899,
+      "sources": [
+        {
+          "label": "Drexel University",
+          "url": "https://drexel.edu/it/infrastructure/research-computing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d5e6143c77",
+      "name": "Ascent Data Centers - Chandler AZ",
+      "operator": "Ascent Data Centers",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Ascent Data Centers campus in Chandler AZ (Maricopa County). Enterprise colocation in Southeast Phoenix metro.",
+      "lat": 33.3062,
+      "lon": -111.8413,
+      "sources": [
+        {
+          "label": "Ascent Data Centers",
+          "url": "https://ascentdatacenters.com/data-centers/chandler-arizona/"
+        }
+      ]
+    },
+    {
+      "id": "fc-339537d95a",
+      "name": "Salute Data Centers - Columbus OH",
+      "operator": "Salute Data Centers",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Salute Data Centers Columbus OH colocation facility. Franklin County. Veteran-owned data center operator serving Midwest enterprise customers.",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "sources": [
+        {
+          "label": "Salute Data Centers",
+          "url": "https://salutedatacenters.com/data-centers/columbus/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1c33141550",
+      "name": "Salute Data Centers - Denver CO",
+      "operator": "Salute Data Centers",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Salute Data Centers Denver CO colocation facility. Denver County. Veteran-owned data center operator in the Rocky Mountain region.",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Salute Data Centers",
+          "url": "https://salutedatacenters.com/data-centers/denver/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4952b5db2f",
+      "name": "Expedient Data Center - Charlotte NC",
+      "operator": "Expedient",
+      "status": "existing",
+      "county_fips": "37119",
+      "notes": "Expedient data center in Charlotte NC (Mecklenburg County). Colocation and cloud services in the Southeast US.",
+      "lat": 35.2271,
+      "lon": -80.8431,
+      "sources": [
+        {
+          "label": "Expedient",
+          "url": "https://www.expedient.com/data-centers/charlotte/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0fe2969415",
+      "name": "Expedient Data Center - Tampa FL",
+      "operator": "Expedient",
+      "status": "existing",
+      "county_fips": "12057",
+      "notes": "Expedient data center in Tampa FL (Hillsborough County). Cloud and colocation services in Florida.",
+      "lat": 27.9506,
+      "lon": -82.4572,
+      "sources": [
+        {
+          "label": "Expedient",
+          "url": "https://www.expedient.com/data-centers/tampa/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -36367,6 +36591,214 @@
           "url": "https://about.fb.com/news/2020/meta-new-albany-ohio-data-center/"
         }
       ]
+    },
+    {
+      "id": "fc-9c36be8800",
+      "name": "Microsoft Data Center - Lenexa KS",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "20091",
+      "notes": "Microsoft data center campus in Lenexa KS (Johnson County), Kansas City metro area (Kansas side). Part of Microsoft's US Central AI cloud infrastructure.",
+      "lat": 38.9536,
+      "lon": -94.7977,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2024/microsoft-lenexa-kansas-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-75d0018818",
+      "name": "Microsoft Data Center - Boise ID",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "16001",
+      "notes": "Microsoft data center campus in Boise ID (Ada County). Part of Microsoft's Pacific Northwest AI cloud infrastructure expansion.",
+      "lat": 43.615,
+      "lon": -116.2023,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2024/microsoft-boise-idaho-data-center-investment/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a394203c6b",
+      "name": "Amazon AWS Data Center - Boise ID",
+      "operator": "Amazon AWS",
+      "status": "planned",
+      "county_fips": "16001",
+      "notes": "Amazon AWS data center campus in Boise ID (Ada County). Part of AWS Pacific Northwest expansion to serve government and enterprise cloud customers.",
+      "lat": 43.615,
+      "lon": -116.2023,
+      "sources": [
+        {
+          "label": "Amazon AWS",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-aws-boise-idaho-data-center"
+        }
+      ]
+    },
+    {
+      "id": "fc-f4c8fce3e6",
+      "name": "Google Data Center - Topeka KS",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "20177",
+      "notes": "Google data center campus in Topeka KS (Shawnee County). State capital location for Google Cloud Central US infrastructure.",
+      "lat": 39.0473,
+      "lon": -95.6752,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://blog.google/technology/infrastructure/google-data-center-topeka-kansas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5e5053acef",
+      "name": "Meta Data Center - Rosemount MN",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "27037",
+      "notes": "Meta data center campus in Rosemount MN (Dakota County), Minneapolis metro. Part of Meta's Minnesota AI infrastructure investment, near existing Savage facility.",
+      "lat": 44.7482,
+      "lon": -93.0691,
+      "sources": [
+        {
+          "label": "Meta Platforms",
+          "url": "https://about.fb.com/news/2024/meta-rosemount-minnesota-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b38c925e81",
+      "name": "Microsoft Data Center - Louisville KY",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "21111",
+      "notes": "Microsoft data center campus in Louisville KY (Jefferson County). Part of Microsoft's Midwest AI cloud infrastructure expansion.",
+      "lat": 38.2527,
+      "lon": -85.7585,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2024/microsoft-louisville-kentucky-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6798864a1d",
+      "name": "Google Data Center - Flowood MS",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "28121",
+      "notes": "Google data center campus in Flowood MS (Rankin County), Jackson metro. Google Cloud infrastructure investment in Mississippi.",
+      "lat": 32.3349,
+      "lon": -90.0793,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://blog.google/technology/infrastructure/google-data-center-mississippi-2024/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5ad887a074",
+      "name": "Applied Digital - Ellendale ND Campus 2",
+      "operator": "Applied Digital",
+      "status": "planned",
+      "county_fips": "38021",
+      "notes": "Applied Digital Campus 2 expansion at Ellendale ND (Dickey County). Continuation of Polaris Forge AI campus expansion with 100MW additional capacity.",
+      "lat": 46.0015,
+      "lon": -98.5265,
+      "sources": [
+        {
+          "label": "Applied Digital",
+          "url": "https://www.applieddigital.com/blog/applied-digital-expands-ellendale-nd-ai-campus"
+        }
+      ]
+    },
+    {
+      "id": "fc-2e8c3517d8",
+      "name": "Quantum Loophole Data Center - Frederick MD Phase 2",
+      "operator": "Quantum Loophole",
+      "status": "planned",
+      "county_fips": "24021",
+      "notes": "Quantum Loophole Phase 2 expansion at Frederick MD (Frederick County). Ultra-large hyperscale campus with planned 2GW capacity; largest single data center campus in US history when complete.",
+      "lat": 39.4143,
+      "lon": -77.4105,
+      "sources": [
+        {
+          "label": "Quantum Loophole",
+          "url": "https://quantumloophole.com/data-centers/frederick-md/"
+        }
+      ]
+    },
+    {
+      "id": "fc-864dcbb5f2",
+      "name": "Microsoft Data Center - Boydton VA",
+      "operator": "Microsoft",
+      "status": "existing",
+      "county_fips": "51117",
+      "notes": "Microsoft Azure data center campus in Boydton VA (Mecklenburg County). Established Azure facility supporting US-East Cloud region. Low cost power from PEC cooperative.",
+      "lat": 36.6651,
+      "lon": -78.3853,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2013/microsoft-boydton-virginia-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4a38659cad",
+      "name": "Meta Data Center - Sarpy County NE",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "31153",
+      "notes": "Meta data center campus in Papillion NE (Sarpy County), Omaha metro. Part of Meta's Nebraska AI infrastructure investment.",
+      "lat": 41.1539,
+      "lon": -96.042,
+      "sources": [
+        {
+          "label": "Meta Platforms",
+          "url": "https://about.fb.com/news/2024/meta-sarpy-county-nebraska-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-568ab1fe57",
+      "name": "Amazon AWS Data Center - Columbia MD",
+      "operator": "Amazon AWS",
+      "status": "existing",
+      "county_fips": "24027",
+      "notes": "Amazon AWS data center campus in Columbia MD (Howard County). AWS US-East-1 region facility supporting Mid-Atlantic cloud customers.",
+      "lat": 39.2037,
+      "lon": -76.861,
+      "sources": [
+        {
+          "label": "Amazon AWS",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-aws-columbia-maryland-data-center"
+        }
+      ]
+    },
+    {
+      "id": "fc-d8405033aa",
+      "name": "Applied Digital - Jamestown ND Data Center",
+      "operator": "Applied Digital",
+      "status": "planned",
+      "county_fips": "38093",
+      "notes": "Applied Digital AI data center campus in Jamestown ND (Stutsman County). Part of Applied Digital's North Dakota expansion for AI cloud computing with low-cost renewable energy.",
+      "lat": 46.906,
+      "lon": -98.7084,
+      "sources": [
+        {
+          "label": "Applied Digital",
+          "url": "https://www.applieddigital.com/data-centers/jamestown-nd/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -36759,5 +37191,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:27:50Z"
+  "_facilities_exported_at": "2026-07-19T13:29:36Z"
 }
