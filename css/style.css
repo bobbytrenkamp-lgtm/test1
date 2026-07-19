@@ -5809,6 +5809,50 @@ kbd {
   line-height: 1; margin-left: 2px;
 }
 
+/* ── Page / app entrance (one-shot on page load) ── */
+@keyframes appEnter {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.app-enter {
+  animation: appEnter 280ms var(--ease-enter) both;
+}
+#dashboard.app-enter { animation-delay: 40ms; }
+
+/* ── Theme toggle spin ── */
+@keyframes themeToggleSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+#theme-toggle.spinning svg {
+  animation: themeToggleSpin var(--motion-standard) var(--ease-enter);
+  display: block; /* ensure SVG renders as block for transform */
+}
+
+/* ── Bookmark / save button pop ── */
+@keyframes savePop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+.detail-save-btn-saved svg {
+  animation: savePop 200ms var(--ease-spring) both;
+}
+
+/* ── Toast enter animation ── */
+@keyframes toastEnter {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+#map-toast:not([hidden]) {
+  animation: toastEnter var(--motion-fast) var(--ease-enter) both;
+}
+
+/* ── Detail empty state — fade in ── */
+#detail-empty {
+  animation: detail-fade-in 0.32s var(--ease-enter) both;
+}
+
 /* ── Tab view entrance (applied via JS on tab switch) ── */
 @keyframes view-enter {
   from { opacity: 0; transform: translateY(7px); }
@@ -5847,10 +5891,20 @@ kbd {
 /* ── Reduced-motion: disable all decorative animations ── */
 @media (prefers-reduced-motion: reduce) {
   .view-enter,
+  .app-enter,
   .home-wrap > *,
   .home-nav-card,
-  .home-search-results:not([hidden]) { animation: none !important; }
+  .home-search-results:not([hidden]),
+  #detail-empty,
+  #map-toast:not([hidden]),
+  .detail-save-btn-saved svg,
+  #theme-toggle.spinning svg { animation: none !important; }
   .header-tab::after { transition: opacity 0.15s !important; transform: none !important; }
   .home-search-box { transition: border-color 0.15s, box-shadow 0.15s !important; transform: none !important; }
   .home-search-box:focus-within { transform: none !important; }
+  .header-icon-btn:hover, #theme-toggle:hover,
+  .gis-btn:hover, #filter-toggle:active, #adv-filter-toggle:active,
+  .gis-btn:active, .header-icon-btn:active, #theme-toggle:active {
+    transform: none !important;
+  }
 }
