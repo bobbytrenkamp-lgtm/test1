@@ -33223,6 +33223,182 @@
           "url": "https://tierpoint.com/data-centers/denver/"
         }
       ]
+    },
+    {
+      "id": "fc-8011739d9f",
+      "name": "NTT Data Center - Elk Grove Village IL",
+      "operator": "NTT Ltd.",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "NTT Ltd. data center in Elk Grove Village IL (Cook County), Chicago market. CHI1 facility serving Midwest cloud and enterprise customers.",
+      "lat": 41.9994,
+      "lon": -87.9968,
+      "sources": [
+        {
+          "label": "NTT Ltd.",
+          "url": "https://www.nttdata.com/global/en/services/infrastructure/data-centers/north-america/chicago"
+        }
+      ]
+    },
+    {
+      "id": "fc-6a813ffe7c",
+      "name": "NTT Data Center - Bridgewater NJ",
+      "operator": "NTT Ltd.",
+      "status": "existing",
+      "county_fips": "34035",
+      "notes": "NTT Ltd. data center in Bridgewater NJ (Somerset County), New York metro. Part of NTT's US data center network.",
+      "lat": 40.5888,
+      "lon": -74.6047,
+      "sources": [
+        {
+          "label": "NTT Ltd.",
+          "url": "https://www.nttdata.com/global/en/services/infrastructure/data-centers/north-america/new-york"
+        }
+      ]
+    },
+    {
+      "id": "fc-2782e9f555",
+      "name": "NREL High Performance Computing Center - Golden CO",
+      "operator": "National Renewable Energy Lab",
+      "status": "existing",
+      "county_fips": "08059",
+      "notes": "National Renewable Energy Laboratory (NREL) High Performance Computing Center at NREL campus in Golden CO (Jefferson County). DOE facility with Eagle and Kestrel supercomputers for clean energy research.",
+      "lat": 39.7405,
+      "lon": -105.1696,
+      "sources": [
+        {
+          "label": "National Renewable Energy Lab",
+          "url": "https://www.nrel.gov/computational-science/hpc.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-d9a6177ab0",
+      "name": "Pacific Northwest National Laboratory - Richland WA",
+      "operator": "Pacific Northwest National Laboratory",
+      "status": "existing",
+      "county_fips": "53005",
+      "notes": "Pacific Northwest National Laboratory (PNNL) computing facilities in Richland WA (Benton County). DOE national lab with Deception Pass HPC system for energy, environment, and national security research.",
+      "lat": 46.344,
+      "lon": -119.2766,
+      "sources": [
+        {
+          "label": "Pacific Northwest National Laboratory",
+          "url": "https://www.pnnl.gov/computing"
+        }
+      ]
+    },
+    {
+      "id": "fc-866e299ce2",
+      "name": "Ames National Laboratory Computing - Ames IA",
+      "operator": "Ames National Laboratory",
+      "status": "existing",
+      "county_fips": "19169",
+      "notes": "Ames National Laboratory (Ames Lab) computing facilities at Iowa State University campus in Ames IA (Story County). DOE facility focused on materials science and chemical research computing.",
+      "lat": 42.0308,
+      "lon": -93.6319,
+      "sources": [
+        {
+          "label": "Ames National Laboratory",
+          "url": "https://www.ameslab.gov/research/computing-resources"
+        }
+      ]
+    },
+    {
+      "id": "fc-0909feb5f1",
+      "name": "Brookhaven National Laboratory SDCC - Upton NY",
+      "operator": "Brookhaven National Laboratory",
+      "status": "existing",
+      "county_fips": "36103",
+      "notes": "Brookhaven National Laboratory Scientific Data and Computing Center (SDCC) in Upton NY (Suffolk County). DOE Tier-1 particle physics computing center for RHIC and CMS/ATLAS LHC experiments.",
+      "lat": 40.8681,
+      "lon": -72.883,
+      "sources": [
+        {
+          "label": "Brookhaven National Laboratory",
+          "url": "https://www.sdcc.bnl.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2b0e851307",
+      "name": "Princeton Plasma Physics Laboratory - Princeton NJ",
+      "operator": "Princeton Plasma Physics Laboratory",
+      "status": "existing",
+      "county_fips": "34021",
+      "notes": "Princeton Plasma Physics Laboratory (PPPL) computing center in Princeton NJ (Mercer County). DOE fusion energy research computing facility.",
+      "lat": 40.3503,
+      "lon": -74.6028,
+      "sources": [
+        {
+          "label": "Princeton Plasma Physics Laboratory",
+          "url": "https://www.pppl.gov/research/computing"
+        }
+      ]
+    },
+    {
+      "id": "fc-82b413d680",
+      "name": "Centurion Data Center - Birmingham AL",
+      "operator": "Centurion Data Centers",
+      "status": "existing",
+      "county_fips": "01073",
+      "notes": "Centurion Data Centers Birmingham AL colocation facility. Jefferson County. Regional enterprise data center serving the Southeast.",
+      "lat": 33.5186,
+      "lon": -86.8104,
+      "sources": [
+        {
+          "label": "Centurion Data Centers",
+          "url": "https://centuriondatacenters.com/data-centers/birmingham/"
+        }
+      ]
+    },
+    {
+      "id": "fc-fbe6905079",
+      "name": "Latisys Data Center - Ashburn VA",
+      "operator": "Latisys (Flexential)",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Former Latisys Ashburn VA data center, now operated by Flexential (acquired 2016). Loudoun County. Legacy carrier-neutral colocation in Northern Virginia.",
+      "lat": 39.0438,
+      "lon": -77.4874,
+      "sources": [
+        {
+          "label": "Latisys (Flexential)",
+          "url": "https://www.flexential.com/data-centers/virginia/ashburn"
+        }
+      ]
+    },
+    {
+      "id": "fc-ea6d950e8f",
+      "name": "Lunavi Data Center - Helena MT",
+      "operator": "Lunavi",
+      "status": "existing",
+      "county_fips": "30049",
+      "notes": "Lunavi data center in Helena MT (Lewis and Clark County). State capital data center serving Montana government and enterprise clients. Formerly Aptus/Western Technology.",
+      "lat": 46.5958,
+      "lon": -112.027,
+      "sources": [
+        {
+          "label": "Lunavi",
+          "url": "https://lunavi.com/data-centers/helena-montana/"
+        }
+      ]
+    },
+    {
+      "id": "fc-173b1988a8",
+      "name": "Lunavi Data Center - Cheyenne WY",
+      "operator": "Lunavi",
+      "status": "existing",
+      "county_fips": "56021",
+      "notes": "Lunavi data center in Cheyenne WY (Laramie County). Wyoming state capital area colocation for regional government and enterprise.",
+      "lat": 41.14,
+      "lon": -104.8202,
+      "sources": [
+        {
+          "label": "Lunavi",
+          "url": "https://lunavi.com/data-centers/cheyenne-wyoming/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -34335,6 +34511,198 @@
           "url": "https://news.microsoft.com/2023/10/microsoft-lathrop-california-data-center/"
         }
       ]
+    },
+    {
+      "id": "fc-048f7c75e3",
+      "name": "Google Data Center - Clarksville TN",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "47125",
+      "notes": "Google data center campus in Clarksville TN (Montgomery County). Part of Google's infrastructure expansion in Tennessee. AI and cloud workloads.",
+      "lat": 36.5298,
+      "lon": -87.3595,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://blog.google/technology/infrastructure/google-data-center-clarksville-tennessee/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8839011cb8",
+      "name": "Meta Data Center - Gallatin TN Phase 2",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "47165",
+      "notes": "Meta data center campus expansion in Gallatin TN (Sumner County). Phase 2 expansion of existing Meta facility. 100MW+ additional capacity.",
+      "lat": 36.3887,
+      "lon": -86.4467,
+      "sources": [
+        {
+          "label": "Meta Platforms",
+          "url": "https://about.fb.com/news/2022/01/meta-expanding-data-center-gallatin-tennessee/"
+        }
+      ]
+    },
+    {
+      "id": "fc-060993da96",
+      "name": "Microsoft Data Center - Gainesville TX",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "48097",
+      "notes": "Microsoft data center campus in Gainesville TX (Cooke County). North Texas expansion for Azure cloud and AI services.",
+      "lat": 33.6262,
+      "lon": -97.1331,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2023/microsoft-gainesville-texas-data-center-campus/"
+        }
+      ]
+    },
+    {
+      "id": "fc-577688de45",
+      "name": "Switch Data Center - Atlanta GA",
+      "operator": "Switch",
+      "status": "planned",
+      "county_fips": "13121",
+      "notes": "Switch (DigitalBridge) data center campus in Atlanta GA (Fulton County). Southeast expansion of Switch's hyperscale colocation platform.",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Switch",
+          "url": "https://www.switch.com/atlanta/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9dbf1008a1",
+      "name": "Amazon AWS Data Center - Vance County NC",
+      "operator": "Amazon AWS",
+      "status": "planned",
+      "county_fips": "37181",
+      "notes": "Amazon AWS data center campus in Henderson NC (Vance County). Part of AWS North Carolina expansion for AI infrastructure.",
+      "lat": 36.3293,
+      "lon": -78.4091,
+      "sources": [
+        {
+          "label": "Amazon AWS",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-henderson-north-carolina"
+        }
+      ]
+    },
+    {
+      "id": "fc-4f1ae4e81b",
+      "name": "Google Data Center - Midlothian TX",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "48139",
+      "notes": "Google data center campus in Midlothian TX (Ellis County), Dallas-Fort Worth metro. Google Cloud AI infrastructure supporting US Central region.",
+      "lat": 32.4829,
+      "lon": -96.9942,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://blog.google/technology/infrastructure/google-data-center-midlothian-texas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4ac8ceffdc",
+      "name": "Meta Data Center - Eagle Mountain UT",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "49049",
+      "notes": "Meta data center campus in Eagle Mountain UT (Utah County). Large-scale AI training infrastructure in the Wasatch Front. Powered by renewable energy.",
+      "lat": 40.3141,
+      "lon": -112.0106,
+      "sources": [
+        {
+          "label": "Meta Platforms",
+          "url": "https://about.fb.com/news/2024/04/meta-eagle-mountain-utah-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-323b05d2f2",
+      "name": "Microsoft Data Center - New Albany OH",
+      "operator": "Microsoft",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Microsoft Azure data center campus in New Albany OH (Franklin County), Columbus metro. Operational Azure datacenter serving US East Central region.",
+      "lat": 40.0808,
+      "lon": -82.7924,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2022/microsoft-new-albany-ohio-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-bdea43326d",
+      "name": "Corscale Data Center - Prince William County VA",
+      "operator": "Corscale Data Centers",
+      "status": "planned",
+      "county_fips": "51153",
+      "notes": "Corscale Data Centers campus in Prince William County VA (Woodbridge/Gainesville area). Large-scale hyperscale colocation in Northern Virginia adjacent market.",
+      "lat": 38.6582,
+      "lon": -77.2494,
+      "sources": [
+        {
+          "label": "Corscale Data Centers",
+          "url": "https://www.corscale.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b18f961987",
+      "name": "Microsoft Data Center - Elk Ridge MD",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "24003",
+      "notes": "Microsoft data center campus in Anne Arundel County MD (Hanover/Elkridge area). Part of Microsoft's US East Coast AI infrastructure expansion.",
+      "lat": 39.1757,
+      "lon": -76.725,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2024/microsoft-maryland-data-center-investment/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9a3f020383",
+      "name": "Google Data Center - Kansas City MO",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "29095",
+      "notes": "Google data center campus in Kansas City MO (Jackson County). Part of Google Cloud's Midwest expansion for AI and cloud services.",
+      "lat": 39.0997,
+      "lon": -94.5786,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://blog.google/technology/infrastructure/google-data-center-kansas-city-missouri/"
+        }
+      ]
+    },
+    {
+      "id": "fc-434aa73a61",
+      "name": "Amazon AWS Data Center - Denton TX",
+      "operator": "Amazon AWS",
+      "status": "planned",
+      "county_fips": "48121",
+      "notes": "Amazon AWS data center campus in Denton TX (Denton County), North Texas. Part of AWS US-West-2 / GovCloud expansion.",
+      "lat": 33.2148,
+      "lon": -97.1331,
+      "sources": [
+        {
+          "label": "Amazon AWS",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-denton-texas"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -34727,5 +35095,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:18:35Z"
+  "_facilities_exported_at": "2026-07-19T13:20:34Z"
 }
