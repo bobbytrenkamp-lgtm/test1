@@ -39519,6 +39519,362 @@
           "url": "https://compassdatacenters.com/locations/"
         }
       ]
+    },
+    {
+      "id": "fc-25ff7282ee",
+      "name": "US Army - Fort Huachuca AZ Data Center (NETCOM)",
+      "operator": "US Army",
+      "status": "existing",
+      "county_fips": "04003",
+      "notes": "Fort Huachuca AZ; US Army NETCOM headquarters and Signal Center of Excellence data center",
+      "lat": 31.5539,
+      "lon": -110.3445,
+      "sources": [
+        {
+          "label": "US Army",
+          "url": "https://www.huachuca.army.mil/"
+        },
+        {
+          "label": "US Army",
+          "url": "https://www.netcom.army.mil/"
+        }
+      ]
+    },
+    {
+      "id": "fc-fab2307230",
+      "name": "US Army - Aberdeen Proving Ground MD Data Center",
+      "operator": "US Army",
+      "status": "existing",
+      "county_fips": "24025",
+      "notes": "Aberdeen Proving Ground MD; DoD enterprise data center",
+      "lat": 39.4768,
+      "lon": -76.1383,
+      "sources": [
+        {
+          "label": "US Army",
+          "url": "https://www.apg.army.mil/"
+        }
+      ]
+    },
+    {
+      "id": "fc-45ba8fa2d3",
+      "name": "US Navy - Keyport WA Data Center",
+      "operator": "US Navy",
+      "status": "existing",
+      "county_fips": "53035",
+      "notes": "Naval Undersea Warfare Center Division Keyport WA data center",
+      "lat": 47.6973,
+      "lon": -122.6295,
+      "sources": [
+        {
+          "label": "US Navy",
+          "url": "https://www.navsea.navy.mil/Home/WarfareCenters/NavalUnderwaterWarfareCenter/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c11b408e9c",
+      "name": "US Air Force - Peterson SFB CO Data Center",
+      "operator": "US Air Force",
+      "status": "existing",
+      "county_fips": "08041",
+      "notes": "Peterson Space Force Base Colorado Springs CO; US Space Command data center",
+      "lat": 38.8103,
+      "lon": -104.7006,
+      "sources": [
+        {
+          "label": "US Air Force",
+          "url": "https://www.peterson.spaceforce.mil/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3db0557612",
+      "name": "Defense Information Systems Agency - Scott AFB IL",
+      "operator": "Defense Information Systems Agency",
+      "status": "existing",
+      "county_fips": "17163",
+      "notes": "DISA Scott AFB IL; DoD IT infrastructure hub",
+      "lat": 38.5423,
+      "lon": -89.8494,
+      "sources": [
+        {
+          "label": "Defense Information Systems Agency",
+          "url": "https://www.disa.mil/about/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-815b7c0880",
+      "name": "IRS Data Center - Austin TX Campus",
+      "operator": "Internal Revenue Service",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "IRS Austin TX enterprise data center",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "sources": [
+        {
+          "label": "Internal Revenue Service",
+          "url": "https://www.irs.gov/about-irs/our-agency/our-facilities"
+        }
+      ]
+    },
+    {
+      "id": "fc-645198727f",
+      "name": "Social Security Administration - Baltimore MD Data Center",
+      "operator": "Social Security Administration",
+      "status": "existing",
+      "county_fips": "24005",
+      "notes": "Social Security Administration Woodlawn MD headquarters data center",
+      "lat": 39.376,
+      "lon": -76.7355,
+      "sources": [
+        {
+          "label": "Social Security Administration",
+          "url": "https://www.ssa.gov/agency/organization/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f379e35e02",
+      "name": "NOAA Data Center - Asheville NC",
+      "operator": "NOAA (National Oceanic and Atmospheric Administration)",
+      "status": "existing",
+      "county_fips": "37021",
+      "notes": "NOAA National Centers for Environmental Information (NCEI) Asheville NC; climate data",
+      "lat": 35.5951,
+      "lon": -82.5515,
+      "sources": [
+        {
+          "label": "NOAA (National Oceanic and Atmospheric Administration)",
+          "url": "https://www.ncdc.noaa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f2d6e1ccb3",
+      "name": "NASA Goddard Space Flight Center - Greenbelt MD",
+      "operator": "NASA",
+      "status": "existing",
+      "county_fips": "24033",
+      "notes": "NASA Goddard Space Flight Center Greenbelt MD; supercomputer and data center",
+      "lat": 38.9929,
+      "lon": -76.8404,
+      "sources": [
+        {
+          "label": "NASA",
+          "url": "https://www.nasa.gov/goddard/"
+        }
+      ]
+    },
+    {
+      "id": "fc-feb31bce05",
+      "name": "Humana Data Center - Louisville KY",
+      "operator": "Humana",
+      "status": "existing",
+      "county_fips": "21111",
+      "notes": "Humana headquarters Louisville KY enterprise data center",
+      "lat": 38.2527,
+      "lon": -85.7585,
+      "sources": [
+        {
+          "label": "Humana",
+          "url": "https://www.humana.com/about-humana"
+        }
+      ]
+    },
+    {
+      "id": "fc-8266aca989",
+      "name": "Anthem/Elevance Health Data Center - Indianapolis IN",
+      "operator": "Elevance Health",
+      "status": "existing",
+      "county_fips": "18097",
+      "notes": "Elevance Health (formerly Anthem) HQ Indianapolis IN data center",
+      "lat": 39.7684,
+      "lon": -86.1581,
+      "sources": [
+        {
+          "label": "Elevance Health",
+          "url": "https://www.elevancehealth.com/our-company"
+        }
+      ]
+    },
+    {
+      "id": "fc-cf790331b4",
+      "name": "UnitedHealth Group Data Center - Minnetonka MN",
+      "operator": "UnitedHealth Group",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "UnitedHealth Group HQ Minnetonka MN enterprise data center",
+      "lat": 44.9217,
+      "lon": -93.4689,
+      "sources": [
+        {
+          "label": "UnitedHealth Group",
+          "url": "https://www.unitedhealthgroup.com/about/company.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-22743dcc89",
+      "name": "HCA Healthcare Data Center - Nashville TN",
+      "operator": "HCA Healthcare",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "HCA Healthcare headquarters Nashville TN enterprise data center",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "sources": [
+        {
+          "label": "HCA Healthcare",
+          "url": "https://hcahealthcare.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5dc39c8189",
+      "name": "Bank of America Data Center - Phoenix AZ",
+      "operator": "Bank of America",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Bank of America Phoenix AZ enterprise data center",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Bank of America",
+          "url": "https://newsroom.bankofamerica.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c6ec00fe84",
+      "name": "Morgan Stanley Data Center - Alpharetta GA",
+      "operator": "Morgan Stanley",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Morgan Stanley Alpharetta GA operations data center",
+      "lat": 34.0754,
+      "lon": -84.2941,
+      "sources": [
+        {
+          "label": "Morgan Stanley",
+          "url": "https://www.morganstanley.com/about-us-governance/"
+        }
+      ]
+    },
+    {
+      "id": "fc-afbd8a8947",
+      "name": "PNC Financial Data Center - Pittsburgh PA",
+      "operator": "PNC Financial Services",
+      "status": "existing",
+      "county_fips": "42003",
+      "notes": "PNC Financial headquarters Pittsburgh PA data center",
+      "lat": 40.4406,
+      "lon": -79.9959,
+      "sources": [
+        {
+          "label": "PNC Financial Services",
+          "url": "https://www.pnc.com/en/about-pnc.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-13ddf4bf6f",
+      "name": "Target Corporation Data Center - Minneapolis MN",
+      "operator": "Target Corporation",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Target Corporation Minneapolis MN headquarters data center",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "sources": [
+        {
+          "label": "Target Corporation",
+          "url": "https://corporate.target.com/about/mission-values"
+        }
+      ]
+    },
+    {
+      "id": "fc-51d0a19aff",
+      "name": "Costco Wholesale Data Center - Issaquah WA",
+      "operator": "Costco Wholesale",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Costco Wholesale headquarters Issaquah WA data center",
+      "lat": 47.5301,
+      "lon": -122.0326,
+      "sources": [
+        {
+          "label": "Costco Wholesale",
+          "url": "https://www.costco.com/our-story.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-a06cb32148",
+      "name": "Lowe's Companies Data Center - Mooresville NC",
+      "operator": "Lowe's Companies",
+      "status": "existing",
+      "county_fips": "37097",
+      "notes": "Lowe's headquarters Mooresville NC enterprise data center",
+      "lat": 35.5846,
+      "lon": -80.8101,
+      "sources": [
+        {
+          "label": "Lowe's Companies",
+          "url": "https://corporate.lowes.com/our-company/about-lowes"
+        }
+      ]
+    },
+    {
+      "id": "fc-0694d81e17",
+      "name": "The Home Depot Data Center - Atlanta GA",
+      "operator": "The Home Depot",
+      "status": "existing",
+      "county_fips": "13067",
+      "notes": "The Home Depot headquarters Atlanta GA (Vinings) data center",
+      "lat": 33.8784,
+      "lon": -84.4769,
+      "sources": [
+        {
+          "label": "The Home Depot",
+          "url": "https://ir.homedepot.com/investors/about-us"
+        }
+      ]
+    },
+    {
+      "id": "fc-9725597b3d",
+      "name": "Skybox Datacenters - Fort Worth TX",
+      "operator": "Skybox Datacenters",
+      "status": "existing",
+      "county_fips": "48439",
+      "notes": "Skybox Datacenters Fort Worth TX colocation",
+      "lat": 32.7555,
+      "lon": -97.3308,
+      "sources": [
+        {
+          "label": "Skybox Datacenters",
+          "url": "https://skyboxdatacenters.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-633a8e8e2b",
+      "name": "Skybox Datacenters - Midland TX",
+      "operator": "Skybox Datacenters",
+      "status": "existing",
+      "county_fips": "48329",
+      "notes": "Skybox Datacenters Midland TX Permian Basin campus",
+      "lat": 31.9973,
+      "lon": -102.0779,
+      "sources": [
+        {
+          "label": "Skybox Datacenters",
+          "url": "https://skyboxdatacenters.com/locations/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -42755,5 +43111,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T18:04:41Z"
+  "_facilities_exported_at": "2026-07-19T18:06:06Z"
 }
