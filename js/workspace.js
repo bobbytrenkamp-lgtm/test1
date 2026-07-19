@@ -733,11 +733,11 @@
           '<div class="ws-settings-section">' +
             '<div class="ws-settings-section-title">Actions</div>' +
             '<div class="ws-settings-actions">' +
-              '<button class="ws-action-btn" type="button" data-ws-action="show-all">Show Everything</button>' +
-              '<button class="ws-action-btn" type="button" data-ws-action="hide-optional">Minimal Map</button>' +
-              '<button class="ws-action-btn" type="button" data-ws-action="reset-positions">Reset Window Positions</button>' +
-              '<button class="ws-action-btn" type="button" data-ws-action="return-cards">Return All Cards to Rail</button>' +
-              '<button class="ws-action-btn ws-danger-btn" type="button" data-ws-action="clear-workspace">Clear Saved Workspace</button>' +
+              '<button class="ws-action-btn" type="button" data-ws-action="show-all" title="Make all panels and overlays visible">Show Everything</button>' +
+              '<button class="ws-action-btn" type="button" data-ws-action="hide-optional" title="Hide non-essential panels to focus on the map">Minimal Map</button>' +
+              '<button class="ws-action-btn" type="button" data-ws-action="reset-positions" title="Snap all floating windows back to their default positions">Reset Window Positions</button>' +
+              '<button class="ws-action-btn" type="button" data-ws-action="return-cards" title="Collapse all floating windows back into the side rail">Return All Cards to Rail</button>' +
+              '<button class="ws-action-btn ws-danger-btn" type="button" data-ws-action="clear-workspace" title="Delete your saved layout — panels will revert to defaults on next load">Clear Saved Workspace</button>' +
             '</div>' +
           '</div>' +
         '</div>';

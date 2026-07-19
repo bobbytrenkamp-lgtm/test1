@@ -207,16 +207,50 @@ function stocksUpdateURL(symbol) {
 /* ─────────────────────────────────────────────────────────────── */
 
 function createTVWidget(container, widgetName, config) {
-  container.innerHTML = '';
+  container.innerHTML = '<div class="tv-loading"><div class="tv-loading-spinner"></div><span>Loading chart…</span></div>';
   const w = document.createElement('div');
   w.className = 'tradingview-widget-container__widget';
-  container.appendChild(w);
   const s = document.createElement('script');
   s.type = 'text/javascript';
   s.src = `https://s3.tradingview.com/external-embedding/embed-widget-${widgetName}.js`;
   s.async = true;
   s.textContent = JSON.stringify(config);
+  const TIMEOUT_MS = 12000;
+  let settled = false;
+  const timer = setTimeout(() => {
+    if (!settled) {
+      settled = true;
+      _tvShowError(container, widgetName, config);
+    }
+  }, TIMEOUT_MS);
+  s.onload = () => {
+    settled = true;
+    clearTimeout(timer);
+    const loading = container.querySelector('.tv-loading');
+    if (loading) loading.remove();
+  };
+  s.onerror = () => {
+    if (!settled) {
+      settled = true;
+      clearTimeout(timer);
+      _tvShowError(container, widgetName, config);
+    }
+  };
+  container.appendChild(w);
   container.appendChild(s);
+}
+
+function _tvShowError(container, widgetName, config) {
+  container.innerHTML =
+    '<div class="tv-error">' +
+    '<div class="tv-error-icon">📡</div>' +
+    '<div class="tv-error-msg">Chart unavailable</div>' +
+    '<div class="tv-error-sub">TradingView could not be reached. Check your connection and try again.</div>' +
+    '<button class="tv-retry-btn" type="button">Retry</button>' +
+    '</div>';
+  container.querySelector('.tv-retry-btn')?.addEventListener('click', () => {
+    createTVWidget(container, widgetName, config);
+  });
 }
 
 function tvTheme() {
@@ -301,7 +335,7 @@ function buildStocksUI() {
 
     <div class="stocks-section" id="stocks-heatmap-section">
       <div class="stocks-section-header"><h3>AI Market Heatmap</h3></div>
-      <div id="stocks-heatmap" class="tv-widget-wrap"></div>
+      <div id="stocks-heatmap" class="tv-widget-wrap tv-heatmap"></div>
     </div>
 
     <div class="stocks-section" id="stocks-movers-section">

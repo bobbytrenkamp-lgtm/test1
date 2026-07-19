@@ -432,6 +432,58 @@
 
 /* ── TradingView widget wrappers ── */
 .tv-widget-wrap { position: relative; overflow: hidden; }
+/* Heatmap needs vertical touch-scroll to pass through to TradingView iframe */
+.tv-widget-wrap.tv-heatmap { overflow: visible; touch-action: pan-x; }
+
+/* ── TV widget loading skeleton ── */
+.tv-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 24px;
+  min-height: 200px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.tv-loading-spinner {
+  width: 28px;
+  height: 28px;
+  border: 2.5px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: tv-spin 0.7s linear infinite;
+}
+@keyframes tv-spin {
+  to { transform: rotate(360deg); }
+}
+.tv-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 32px 24px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.tv-error-icon { font-size: 28px; }
+.tv-error-msg { color: var(--text); font-weight: 600; font-size: 14px; }
+.tv-error-sub { font-size: 12px; }
+.tv-retry-btn {
+  margin-top: 4px;
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: none;
+  color: var(--accent);
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s;
+}
+.tv-retry-btn:hover { background: var(--accent); color: #fff; }
 
 /* ── News tab content ── */
 .stocks-news-tv { overflow: hidden; }
