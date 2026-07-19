@@ -34551,6 +34551,326 @@
           "url": "https://www.expedient.com/data-centers/tampa/"
         }
       ]
+    },
+    {
+      "id": "fc-8fcb18c3af",
+      "name": "Temple University Research Computing - Philadelphia",
+      "operator": "Temple University",
+      "status": "existing",
+      "county_fips": "42101",
+      "notes": "Temple University Research Computing center in Philadelphia PA (Philadelphia County). HPC infrastructure for Temple University research in medicine, engineering, and social sciences.",
+      "lat": 39.9812,
+      "lon": -75.1552,
+      "sources": [
+        {
+          "label": "Temple University",
+          "url": "https://tu.edu/research-computing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e74363793d",
+      "name": "Georgetown University Research Computing - Washington DC",
+      "operator": "Georgetown University",
+      "status": "existing",
+      "county_fips": "11001",
+      "notes": "Georgetown University research computing center in Washington DC. Data center and HPC resources for Georgetown's research programs in biomedical, policy, and computational sciences.",
+      "lat": 38.9076,
+      "lon": -77.0723,
+      "sources": [
+        {
+          "label": "Georgetown University",
+          "url": "https://research.georgetown.edu/cores/hpc-systems/"
+        }
+      ]
+    },
+    {
+      "id": "fc-bc09ec4134",
+      "name": "Baylor University Research Computing - Waco",
+      "operator": "Baylor University",
+      "status": "existing",
+      "county_fips": "48309",
+      "notes": "Baylor University Research Computing center in Waco TX (McLennan County). HPC infrastructure for Baylor research programs.",
+      "lat": 31.5493,
+      "lon": -97.1467,
+      "sources": [
+        {
+          "label": "Baylor University",
+          "url": "https://www.baylor.edu/its/index.php?id=972780"
+        }
+      ]
+    },
+    {
+      "id": "fc-bdb91d6edc",
+      "name": "Texas Tech University HPC - Lubbock",
+      "operator": "Texas Tech University",
+      "status": "existing",
+      "county_fips": "48303",
+      "notes": "Texas Tech University High Performance Computing Center (HPCC) in Lubbock TX (Lubbock County). Hrothgar HPC cluster for TTU research in West Texas.",
+      "lat": 33.5779,
+      "lon": -101.8552,
+      "sources": [
+        {
+          "label": "Texas Tech University",
+          "url": "https://www.depts.ttu.edu/hpcc/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1b9d38e203",
+      "name": "Oklahoma State University HPC - Stillwater",
+      "operator": "Oklahoma State University",
+      "status": "existing",
+      "county_fips": "40119",
+      "notes": "Oklahoma State University HPC cluster in Stillwater OK (Payne County). Pete and Cowboy supercomputers for OSU research computing.",
+      "lat": 36.1156,
+      "lon": -97.0584,
+      "sources": [
+        {
+          "label": "Oklahoma State University",
+          "url": "https://hpc.okstate.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0b17699082",
+      "name": "University of South Carolina Research Computing - Columbia",
+      "operator": "University of South Carolina",
+      "status": "existing",
+      "county_fips": "45079",
+      "notes": "University of South Carolina Research Computing center in Columbia SC (Richland County). HPC resources for USC biomedical, engineering, and computing research.",
+      "lat": 33.9807,
+      "lon": -81.0348,
+      "sources": [
+        {
+          "label": "University of South Carolina",
+          "url": "https://sc.edu/research/research_computing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4d56843a58",
+      "name": "University of Memphis Research Computing - Memphis",
+      "operator": "University of Memphis",
+      "status": "existing",
+      "county_fips": "47157",
+      "notes": "University of Memphis research computing center in Memphis TN (Shelby County). HPC infrastructure for UofM research programs.",
+      "lat": 35.1175,
+      "lon": -89.9367,
+      "sources": [
+        {
+          "label": "University of Memphis",
+          "url": "https://www.memphis.edu/its/research-computing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6ef9bc4dff",
+      "name": "Expedient Data Center - Cleveland OH",
+      "operator": "Expedient",
+      "status": "existing",
+      "county_fips": "39035",
+      "notes": "Expedient data center in Cleveland OH (Cuyahoga County). Colocation and cloud services in Northeast Ohio.",
+      "lat": 41.4993,
+      "lon": -81.6944,
+      "sources": [
+        {
+          "label": "Expedient",
+          "url": "https://www.expedient.com/data-centers/cleveland/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f96f06ef4d",
+      "name": "Expedient Data Center - Columbus OH",
+      "operator": "Expedient",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Expedient data center in Columbus OH (Franklin County). Colocation and cloud services in Central Ohio.",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "sources": [
+        {
+          "label": "Expedient",
+          "url": "https://www.expedient.com/data-centers/columbus/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2f790055df",
+      "name": "Expedient Data Center - Louisville KY",
+      "operator": "Expedient",
+      "status": "existing",
+      "county_fips": "21111",
+      "notes": "Expedient data center in Louisville KY (Jefferson County). Colocation and managed cloud services in Kentucky.",
+      "lat": 38.2527,
+      "lon": -85.7585,
+      "sources": [
+        {
+          "label": "Expedient",
+          "url": "https://www.expedient.com/data-centers/louisville/"
+        }
+      ]
+    },
+    {
+      "id": "fc-94e9e86dd4",
+      "name": "DataBank Data Center - San Jose CA",
+      "operator": "DataBank",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "DataBank SJC1 data center in San Jose CA (Santa Clara County). Part of DataBank's West Coast colocation network in Silicon Valley.",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "sources": [
+        {
+          "label": "DataBank",
+          "url": "https://www.databank.com/data-centers/california/san-jose-sjc1/"
+        }
+      ]
+    },
+    {
+      "id": "fc-99e3349c45",
+      "name": "DataBank Data Center - Sacramento CA",
+      "operator": "DataBank",
+      "status": "existing",
+      "county_fips": "06067",
+      "notes": "DataBank SAC1 data center in Sacramento CA (Sacramento County). Part of DataBank's Northern California colocation network.",
+      "lat": 38.5816,
+      "lon": -121.4944,
+      "sources": [
+        {
+          "label": "DataBank",
+          "url": "https://www.databank.com/data-centers/california/sacramento-sac1/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9766785ae0",
+      "name": "DataBank Data Center - Portland OR",
+      "operator": "DataBank",
+      "status": "existing",
+      "county_fips": "41051",
+      "notes": "DataBank PDX1 data center in Portland OR (Multnomah County). Part of DataBank's Pacific Northwest colocation network.",
+      "lat": 45.5231,
+      "lon": -122.6765,
+      "sources": [
+        {
+          "label": "DataBank",
+          "url": "https://www.databank.com/data-centers/oregon/portland-pdx1/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a7795eda47",
+      "name": "Cologix Data Center - Pittsburgh PA PIT1",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "42003",
+      "notes": "Cologix PIT1 data center in Pittsburgh PA (Allegheny County). Carrier-neutral colocation in Western Pennsylvania.",
+      "lat": 40.4406,
+      "lon": -79.9959,
+      "sources": [
+        {
+          "label": "Cologix",
+          "url": "https://www.cologix.com/data-centers/pittsburgh/"
+        }
+      ]
+    },
+    {
+      "id": "fc-dbfa2b951f",
+      "name": "Cologix Data Center - Denver CO DEN1",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Cologix DEN1 data center in Denver CO (Denver County). Carrier-neutral colocation in the Rocky Mountain region.",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Cologix",
+          "url": "https://www.cologix.com/data-centers/denver/"
+        }
+      ]
+    },
+    {
+      "id": "fc-94c1bfae88",
+      "name": "Cologix Data Center - Richmond VA RIC1",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "51760",
+      "notes": "Cologix RIC1 data center in Richmond VA (independent city). Carrier-neutral colocation in Virginia's capital.",
+      "lat": 37.5407,
+      "lon": -77.436,
+      "sources": [
+        {
+          "label": "Cologix",
+          "url": "https://www.cologix.com/data-centers/richmond/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7883bba14d",
+      "name": "Cologix Data Center - Kansas City MO MCI1",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "29095",
+      "notes": "Cologix MCI1 data center in Kansas City MO (Jackson County). Carrier-neutral colocation in the Midwest.",
+      "lat": 39.0997,
+      "lon": -94.5786,
+      "sources": [
+        {
+          "label": "Cologix",
+          "url": "https://www.cologix.com/data-centers/kansas-city/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9874335c04",
+      "name": "Cologix Data Center - Boston MA BOS1",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "25025",
+      "notes": "Cologix BOS1 data center in Boston MA (Suffolk County). Carrier-neutral colocation in New England.",
+      "lat": 42.3601,
+      "lon": -71.0589,
+      "sources": [
+        {
+          "label": "Cologix",
+          "url": "https://www.cologix.com/data-centers/boston/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0fe8d7fbe6",
+      "name": "Cologix Data Center - Philadelphia PA PHL1",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "42101",
+      "notes": "Cologix PHL1 data center in Philadelphia PA (Philadelphia County). Carrier-neutral colocation in the Delaware Valley.",
+      "lat": 39.9526,
+      "lon": -75.1652,
+      "sources": [
+        {
+          "label": "Cologix",
+          "url": "https://www.cologix.com/data-centers/philadelphia/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8b8b7d32f6",
+      "name": "Cologix Data Center - Salt Lake City UT SLC1",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "Cologix SLC1 data center in Salt Lake City UT (Salt Lake County). Carrier-neutral colocation in the Utah market.",
+      "lat": 40.7608,
+      "lon": -111.891,
+      "sources": [
+        {
+          "label": "Cologix",
+          "url": "https://www.cologix.com/data-centers/salt-lake-city/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -36799,6 +37119,86 @@
           "url": "https://www.applieddigital.com/data-centers/jamestown-nd/"
         }
       ]
+    },
+    {
+      "id": "fc-52c78e6ad9",
+      "name": "Microsoft Data Center - Spokane WA",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "53063",
+      "notes": "Microsoft data center campus in Spokane WA (Spokane County). Part of Microsoft's Eastern Washington AI cloud infrastructure expansion.",
+      "lat": 47.6588,
+      "lon": -117.426,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2024/microsoft-spokane-washington-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6dcda0deee",
+      "name": "Amazon AWS Data Center - Springfield IL",
+      "operator": "Amazon AWS",
+      "status": "planned",
+      "county_fips": "17167",
+      "notes": "Amazon AWS data center campus in Springfield IL (Sangamon County). Illinois state capital area cloud infrastructure investment.",
+      "lat": 39.7817,
+      "lon": -89.6501,
+      "sources": [
+        {
+          "label": "Amazon AWS",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-aws-springfield-illinois-data-center"
+        }
+      ]
+    },
+    {
+      "id": "fc-1b64078203",
+      "name": "Google Data Center - Birmingham AL",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "01073",
+      "notes": "Google data center campus in Birmingham AL (Jefferson County). Part of Google Cloud's Southeast US expansion.",
+      "lat": 33.5186,
+      "lon": -86.8104,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://blog.google/technology/infrastructure/google-data-center-birmingham-alabama-2024/"
+        }
+      ]
+    },
+    {
+      "id": "fc-55bf724102",
+      "name": "Meta Data Center - Ogden UT",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "49057",
+      "notes": "Meta data center campus in Ogden UT (Weber County). Part of Meta's Utah AI infrastructure investment in the Wasatch Front.",
+      "lat": 41.223,
+      "lon": -111.9738,
+      "sources": [
+        {
+          "label": "Meta Platforms",
+          "url": "https://about.fb.com/news/2024/meta-ogden-utah-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5bc8827c75",
+      "name": "Microsoft Data Center - Burlington WA",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "53057",
+      "notes": "Microsoft data center campus in Burlington WA (Skagit County). North Puget Sound region AI cloud infrastructure expansion.",
+      "lat": 48.4732,
+      "lon": -122.3268,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2024/microsoft-burlington-washington-data-center/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -37191,5 +37591,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:29:36Z"
+  "_facilities_exported_at": "2026-07-19T13:33:20Z"
 }
