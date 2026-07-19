@@ -33847,6 +33847,182 @@
           "url": "https://www.centersquaredatacenters.com/data-centers/philadelphia/"
         }
       ]
+    },
+    {
+      "id": "fc-b468ea42e7",
+      "name": "Florida State University Research Computing - Tallahassee",
+      "operator": "Florida State University",
+      "status": "existing",
+      "county_fips": "12073",
+      "notes": "Florida State University Research Computing Center (RCC) in Tallahassee FL (Leon County). Operates HPC clusters for FSU research programs.",
+      "lat": 30.4383,
+      "lon": -84.2807,
+      "sources": [
+        {
+          "label": "Florida State University",
+          "url": "https://www.rcc.fsu.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3cd453dc90",
+      "name": "UCF Research Computing - Orlando",
+      "operator": "University of Central Florida",
+      "status": "existing",
+      "county_fips": "12095",
+      "notes": "University of Central Florida (UCF) Research Computing in Orlando FL (Orange County). Operates Newton HPC cluster and enterprise data center for UCF research.",
+      "lat": 28.6024,
+      "lon": -81.2001,
+      "sources": [
+        {
+          "label": "University of Central Florida",
+          "url": "https://www.ucf.edu/research/computing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-097abca0b0",
+      "name": "Iowa State University HPC - Ames",
+      "operator": "Iowa State University",
+      "status": "existing",
+      "county_fips": "19169",
+      "notes": "Iowa State University High Performance Computing at Ames IA (Story County). Operates Nova and Condo clusters. Different facility from neighboring Ames National Laboratory.",
+      "lat": 42.0307,
+      "lon": -93.6319,
+      "sources": [
+        {
+          "label": "Iowa State University",
+          "url": "https://www.hpc.iastate.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1efaa0dc3a",
+      "name": "University of Houston Research Computing - Houston",
+      "operator": "University of Houston",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "University of Houston Research Computing Data Center (RCDC) in Houston TX (Harris County). Operates Opuntia and Sabine HPC clusters for UH research.",
+      "lat": 29.7199,
+      "lon": -95.3422,
+      "sources": [
+        {
+          "label": "University of Houston",
+          "url": "https://uh.edu/rcdc/"
+        }
+      ]
+    },
+    {
+      "id": "fc-89847db935",
+      "name": "Kansas State University Beocat HPC - Manhattan",
+      "operator": "Kansas State University",
+      "status": "existing",
+      "county_fips": "20161",
+      "notes": "Kansas State University Beocat HPC cluster in Manhattan KS (Riley County). Central research computing for K-State faculty and students.",
+      "lat": 39.1836,
+      "lon": -96.5717,
+      "sources": [
+        {
+          "label": "Kansas State University",
+          "url": "https://www.k-state.edu/it/beocat/"
+        }
+      ]
+    },
+    {
+      "id": "fc-66b2d28bdb",
+      "name": "University of New Mexico Research Computing - Albuquerque",
+      "operator": "University of New Mexico",
+      "status": "existing",
+      "county_fips": "35001",
+      "notes": "University of New Mexico Center for Advanced Research Computing (CARC) in Albuquerque NM (Bernalillo County). Operates Wheeler and Taos HPC clusters for UNM research.",
+      "lat": 35.0844,
+      "lon": -106.6504,
+      "sources": [
+        {
+          "label": "University of New Mexico",
+          "url": "https://carc.unm.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-31149a2060",
+      "name": "Montana State University Research Computing - Bozeman",
+      "operator": "Montana State University",
+      "status": "existing",
+      "county_fips": "30031",
+      "notes": "Montana State University Research Cyberinfrastructure (RCI) at Bozeman MT (Gallatin County). HPC resources for MSU research programs including Tempest cluster.",
+      "lat": 45.6769,
+      "lon": -111.0429,
+      "sources": [
+        {
+          "label": "Montana State University",
+          "url": "https://www.montana.edu/uit/rci/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ff0d72638d",
+      "name": "University of Idaho Research Computing - Moscow",
+      "operator": "University of Idaho",
+      "status": "existing",
+      "county_fips": "16057",
+      "notes": "University of Idaho research computing and data center in Moscow ID (Latah County). HPC infrastructure for UI agricultural and engineering research.",
+      "lat": 46.7298,
+      "lon": -117.0002,
+      "sources": [
+        {
+          "label": "University of Idaho",
+          "url": "https://www.uidaho.edu/infrastructure/its/research-computing"
+        }
+      ]
+    },
+    {
+      "id": "fc-5f88b77f96",
+      "name": "Novva Data Centers - West Jordan UT",
+      "operator": "Novva Data Centers",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "Novva Data Centers campus in West Jordan UT (Salt Lake County). State-of-the-art colocation campus with 48MW capacity in the Wasatch Front.",
+      "lat": 40.6097,
+      "lon": -111.9391,
+      "sources": [
+        {
+          "label": "Novva Data Centers",
+          "url": "https://www.novva.com/data-centers/west-jordan-utah/"
+        }
+      ]
+    },
+    {
+      "id": "fc-dc839b3861",
+      "name": "Lumen Technologies - Chicago 350 Cermak",
+      "operator": "Lumen Technologies",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Lumen Technologies (CenturyLink) data center at 350 E. Cermak Road, Chicago IL (Cook County). Major carrier hotel and Internet exchange at One of the most connected buildings in the Midwest.",
+      "lat": 41.8535,
+      "lon": -87.6317,
+      "sources": [
+        {
+          "label": "Lumen Technologies",
+          "url": "https://www.lumen.com/en-us/solutions/colocation/data-centers/chicago.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-0b72a6b3cc",
+      "name": "Infomart Data Centers - Dallas TX",
+      "operator": "Infomart Data Centers",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Infomart Data Centers at 1950 Stemmons Freeway, Dallas TX (Dallas County). Major carrier-neutral data center and Internet Exchange (IX) hub in the Dallas market.",
+      "lat": 32.782,
+      "lon": -96.8026,
+      "sources": [
+        {
+          "label": "Infomart Data Centers",
+          "url": "https://www.infomartdc.com/data-centers/dallas/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -35471,6 +35647,262 @@
           "url": "https://www.stackinfra.com/data-centers/minneapolis/"
         }
       ]
+    },
+    {
+      "id": "fc-635045e410",
+      "name": "Amazon AWS Data Center - Columbia SC",
+      "operator": "Amazon AWS",
+      "status": "planned",
+      "county_fips": "45079",
+      "notes": "Amazon AWS data center campus in Columbia SC (Richland County). Part of AWS Southeast US infrastructure expansion for cloud services.",
+      "lat": 33.9807,
+      "lon": -81.0348,
+      "sources": [
+        {
+          "label": "Amazon AWS",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-aws-south-carolina-data-center"
+        }
+      ]
+    },
+    {
+      "id": "fc-be6c573322",
+      "name": "Google Data Center - Montgomery County MD",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "24031",
+      "notes": "Google data center campus in Montgomery County MD (Rockville area). Part of Google's mid-Atlantic cloud infrastructure expansion serving government and enterprise customers.",
+      "lat": 39.084,
+      "lon": -77.1528,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://blog.google/technology/infrastructure/google-data-center-maryland-2024/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d5e208bb15",
+      "name": "Meta Data Center - Avondale AZ",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "04013",
+      "notes": "Meta data center campus in Avondale AZ (Maricopa County), Phoenix metro area. Large AI training facility part of Meta's Southwest expansion.",
+      "lat": 33.4356,
+      "lon": -112.3496,
+      "sources": [
+        {
+          "label": "Meta Platforms",
+          "url": "https://about.fb.com/news/2023/meta-avondale-arizona-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7551225131",
+      "name": "Microsoft Data Center - Kansas City MO",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "29095",
+      "notes": "Microsoft data center campus in Kansas City MO (Jackson County). Part of Microsoft's Midwest AI cloud infrastructure expansion.",
+      "lat": 39.0997,
+      "lon": -94.5786,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2024/microsoft-kansas-city-missouri-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-59e5dd833c",
+      "name": "Amazon AWS Data Center - Jackson MS",
+      "operator": "Amazon AWS",
+      "status": "planned",
+      "county_fips": "28049",
+      "notes": "Amazon AWS data center campus near Jackson MS (Hinds County). AWS Mississippi investment for cloud infrastructure expansion.",
+      "lat": 32.2988,
+      "lon": -90.1848,
+      "sources": [
+        {
+          "label": "Amazon AWS",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-aws-mississippi-data-center-jackson"
+        }
+      ]
+    },
+    {
+      "id": "fc-74d2287ee1",
+      "name": "NTT/RagingWire Data Center - Sacramento CA SAC1",
+      "operator": "NTT Global Data Centers",
+      "status": "existing",
+      "county_fips": "06067",
+      "notes": "NTT/RagingWire SAC1 data center campus in Sacramento CA (Sacramento County). 100MW+ hyperscale campus, one of the largest data center campuses in Northern California.",
+      "lat": 38.5816,
+      "lon": -121.4944,
+      "sources": [
+        {
+          "label": "NTT Global Data Centers",
+          "url": "https://www.nttdata.com/global/en/services/infrastructure/data-centers/north-america/sacramento"
+        }
+      ]
+    },
+    {
+      "id": "fc-803d2c61e2",
+      "name": "NTT/RagingWire Data Center - Ashburn VA VA1",
+      "operator": "NTT Global Data Centers",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "NTT/RagingWire VA1 data center campus in Ashburn VA (Loudoun County). Northern Virginia hyperscale colocation campus serving major cloud providers.",
+      "lat": 39.0438,
+      "lon": -77.4874,
+      "sources": [
+        {
+          "label": "NTT Global Data Centers",
+          "url": "https://www.nttdata.com/global/en/services/infrastructure/data-centers/north-america/ashburn"
+        }
+      ]
+    },
+    {
+      "id": "fc-d6574d2798",
+      "name": "Vantage Data Centers - Atlanta GA ATL1",
+      "operator": "Vantage Data Centers",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Vantage Data Centers ATL1 campus in Atlanta GA (Fulton County). Hyperscale colocation in the Southeast US serving cloud and enterprise customers.",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Vantage Data Centers",
+          "url": "https://vantagedc.com/data-centers/atlanta/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2b22756aa7",
+      "name": "Vantage Data Centers - Phoenix AZ PHX1",
+      "operator": "Vantage Data Centers",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Vantage Data Centers PHX1 campus in Phoenix AZ (Maricopa County). Hyperscale colocation serving the Southwest US.",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Vantage Data Centers",
+          "url": "https://vantagedc.com/data-centers/phoenix/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7ce882c145",
+      "name": "Vantage Data Centers - Denver CO DEN1",
+      "operator": "Vantage Data Centers",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Vantage Data Centers DEN1 campus in Denver CO (Denver County). Hyperscale colocation in the Rocky Mountain region.",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Vantage Data Centers",
+          "url": "https://vantagedc.com/data-centers/denver/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e1328b67df",
+      "name": "CloudHQ Data Center - Ashburn VA",
+      "operator": "CloudHQ",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "CloudHQ wholesale data center campus in Ashburn VA (Loudoun County). Purpose-built hyperscale colocation in Northern Virginia corridor.",
+      "lat": 39.0438,
+      "lon": -77.4874,
+      "sources": [
+        {
+          "label": "CloudHQ",
+          "url": "https://cloudhq.com/data-centers/ashburn/"
+        }
+      ]
+    },
+    {
+      "id": "fc-28432d4992",
+      "name": "CloudHQ Data Center - Chicago IL",
+      "operator": "CloudHQ",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "CloudHQ wholesale data center campus in Chicago IL (Cook County). Hyperscale colocation in the Midwest's primary data center market.",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "sources": [
+        {
+          "label": "CloudHQ",
+          "url": "https://cloudhq.com/data-centers/chicago/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2931742237",
+      "name": "Aligned Data Center - Chicago IL ORD-01",
+      "operator": "Aligned Data Centers",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Aligned Data Centers ORD-01 campus in Chicago IL (Cook County). Delta3 cooling technology hyperscale colocation in the Midwest market.",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "sources": [
+        {
+          "label": "Aligned Data Centers",
+          "url": "https://www.aligned.com/data-centers/chicago/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1d45611e04",
+      "name": "Compass Datacenters - Atlanta GA",
+      "operator": "Compass Datacenters",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Compass Datacenters campus in Atlanta GA (Fulton County). Part of Compass's national hyperscale colocation network serving cloud and enterprise.",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Compass Datacenters",
+          "url": "https://compassdatacenters.com/locations/atlanta/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4ee381f6f1",
+      "name": "Compass Datacenters - San Antonio TX",
+      "operator": "Compass Datacenters",
+      "status": "existing",
+      "county_fips": "48029",
+      "notes": "Compass Datacenters campus in San Antonio TX (Bexar County). Hyperscale wholesale colocation in the South Texas market.",
+      "lat": 29.4241,
+      "lon": -98.4936,
+      "sources": [
+        {
+          "label": "Compass Datacenters",
+          "url": "https://compassdatacenters.com/locations/san-antonio/"
+        }
+      ]
+    },
+    {
+      "id": "fc-781af30bfa",
+      "name": "Compass Datacenters - Columbus OH",
+      "operator": "Compass Datacenters",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Compass Datacenters campus in Columbus OH (Franklin County). Hyperscale colocation in the emerging Columbus data center market.",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "sources": [
+        {
+          "label": "Compass Datacenters",
+          "url": "https://compassdatacenters.com/locations/columbus/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -35863,5 +36295,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:23:44Z"
+  "_facilities_exported_at": "2026-07-19T13:25:48Z"
 }
