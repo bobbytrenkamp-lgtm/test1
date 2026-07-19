@@ -32839,6 +32839,86 @@
           "url": "https://www.jlab.org/physics/computing"
         }
       ]
+    },
+    {
+      "id": "fc-2678bf7aea",
+      "name": "Nautilus Data Center - Stockton CA",
+      "operator": "Nautilus Data Technologies",
+      "status": "existing",
+      "county_fips": "06077",
+      "notes": "Nautilus Data Technologies Stockton CA data center. San Joaquin County. Uses closed-loop liquid cooling with Delta-Mendota Canal water for ultra-efficient PUE. 17MW capacity.",
+      "lat": 37.9577,
+      "lon": -121.2908,
+      "sources": [
+        {
+          "label": "Nautilus Data Technologies",
+          "url": "https://www.nautilusdc.com/data-centers/stockton/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a75e2c4130",
+      "name": "DataBank - Charlotte CLT1",
+      "operator": "DataBank",
+      "status": "existing",
+      "county_fips": "37119",
+      "notes": "DataBank CLT1 data center in Charlotte NC (Mecklenburg County). Carrier-neutral colocation with multiple fiber providers.",
+      "lat": 35.2271,
+      "lon": -80.8431,
+      "sources": [
+        {
+          "label": "DataBank",
+          "url": "https://www.databank.com/data-centers/north-carolina/charlotte-clt1/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ef928f7240",
+      "name": "DataBank - Greenville SC",
+      "operator": "DataBank",
+      "status": "existing",
+      "county_fips": "45045",
+      "notes": "DataBank Greenville SC data center (formerly Immedion). Greenville County. Acquired by DataBank 2021. Carrier-neutral Southeast colocation.",
+      "lat": 34.8526,
+      "lon": -82.394,
+      "sources": [
+        {
+          "label": "DataBank",
+          "url": "https://www.databank.com/data-centers/south-carolina/greenville-sc1/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d30143ec41",
+      "name": "LightEdge Data Center - Minneapolis",
+      "operator": "LightEdge Solutions",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "LightEdge Solutions Minneapolis MN data center. Hennepin County. SOC 2 Type II certified, carrier-neutral managed cloud and colocation.",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "sources": [
+        {
+          "label": "LightEdge Solutions",
+          "url": "https://www.lightedge.com/colocation/data-centers/minneapolis-minnesota/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0da2572264",
+      "name": "NYI Data Center - Brooklyn NY",
+      "operator": "NYI (New York Internet)",
+      "status": "existing",
+      "county_fips": "36047",
+      "notes": "NYI (New York Internet) NYI-BK1 data center in Brooklyn NY (Kings County). Carrier-neutral colo in NYC borough with multi-fiber connectivity.",
+      "lat": 40.6782,
+      "lon": -73.9442,
+      "sources": [
+        {
+          "label": "NYI (New York Internet)",
+          "url": "https://www.nyi.net/data-centers/nyi-bk1/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -33775,6 +33855,118 @@
           "url": "https://investors.coreweave.com/news/news-details/2025/CoreWeave-Announces-Multi-Billion-Dollar-Commitment-to-AI-Infrastructure-in-Pennsylvania/default.aspx"
         }
       ]
+    },
+    {
+      "id": "fc-ecb826dff5",
+      "name": "Amazon AWS - Becker MN Campus",
+      "operator": "Amazon AWS",
+      "status": "planned",
+      "county_fips": "27141",
+      "notes": "Amazon AWS data center campus in Becker MN (Sherburne County). Announced 2024, major AI/cloud infrastructure investment in central Minnesota near St. Cloud.",
+      "lat": 45.3955,
+      "lon": -93.8705,
+      "sources": [
+        {
+          "label": "Amazon AWS",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-aws-to-build-data-centers-in-becker-minnesota"
+        }
+      ]
+    },
+    {
+      "id": "fc-b27351476f",
+      "name": "Meta Data Center - Granite Falls MN",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "27173",
+      "notes": "Meta data center campus in Granite Falls MN (Yellow Medicine County). Announced January 2023, $800M+ investment, 800MW planned campus. Powered by renewable energy from local utilities.",
+      "lat": 44.8119,
+      "lon": -95.5468,
+      "sources": [
+        {
+          "label": "Meta Platforms",
+          "url": "https://about.fb.com/news/2023/01/meta-to-build-data-center-in-granite-falls-minnesota/"
+        }
+      ]
+    },
+    {
+      "id": "fc-129a36d07c",
+      "name": "Google Data Center - Searcy AR",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "05145",
+      "notes": "Google data center campus in Searcy, White County AR. Planned hyperscale facility supporting Google Cloud services. Arkansas renewable energy incentives.",
+      "lat": 35.2504,
+      "lon": -91.7362,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://blog.google/technology/infrastructure/google-data-center-searcy-arkansas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9ad16d1103",
+      "name": "Microsoft Data Center - Chehalis WA",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "53041",
+      "notes": "Microsoft AI data center campus in Chehalis, Lewis County WA. Part of Microsoft's $2+ billion Washington state investment for AI infrastructure.",
+      "lat": 46.6626,
+      "lon": -122.9615,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2024/11/microsoft-chehalis-washington-data-center-investment/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e8b0466ef0",
+      "name": "Microsoft Data Center - Henderson NV",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "32003",
+      "notes": "Microsoft data center campus in Henderson NV (Clark County), Las Vegas metro area. Part of Microsoft's AI infrastructure expansion in the American West.",
+      "lat": 36.0397,
+      "lon": -114.9819,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2024/microsoft-henderson-nevada-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0b033c7940",
+      "name": "Crusoe Energy - Midland TX AI Campus",
+      "operator": "Crusoe Energy",
+      "status": "planned",
+      "county_fips": "48329",
+      "notes": "Crusoe Energy AI cloud data center campus in Midland TX (Midland County). West Texas Permian Basin region. AI-optimized with natural gas power and carbon capture.",
+      "lat": 31.9974,
+      "lon": -102.0779,
+      "sources": [
+        {
+          "label": "Crusoe Energy",
+          "url": "https://crusoe.ai/newsroom/crusoe-expands-ai-cloud-infrastructure-in-west-texas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-560745695d",
+      "name": "Standard Power - Coshocton OH Data Center",
+      "operator": "Standard Power",
+      "status": "existing",
+      "county_fips": "39031",
+      "notes": "Standard Power Coshocton OH data center campus. Coshocton County. Converted former AEP power plant to 200MW+ data center. AI-optimized infrastructure.",
+      "lat": 40.2676,
+      "lon": -81.8618,
+      "sources": [
+        {
+          "label": "Standard Power",
+          "url": "https://www.standardpower.com/data-center"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -34167,5 +34359,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:04:56Z"
+  "_facilities_exported_at": "2026-07-19T13:14:14Z"
 }
