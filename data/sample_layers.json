@@ -33399,6 +33399,246 @@
           "url": "https://lunavi.com/data-centers/cheyenne-wyoming/"
         }
       ]
+    },
+    {
+      "id": "fc-3cf6f35488",
+      "name": "Minnesota Supercomputing Institute - Minneapolis",
+      "operator": "University of Minnesota",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Minnesota Supercomputing Institute (MSI) at University of Minnesota in Minneapolis (Hennepin County). Primary academic HPC facility for the Big Ten university. Agate supercomputer.",
+      "lat": 44.9747,
+      "lon": -93.2317,
+      "sources": [
+        {
+          "label": "University of Minnesota",
+          "url": "https://msi.umn.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-121523b399",
+      "name": "Georgia Tech PACE Computing - Atlanta",
+      "operator": "Georgia Institute of Technology",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Partnership for an Advanced Computing Environment (PACE) at Georgia Tech, Atlanta GA (Fulton County). 30,000+ core HPC cluster supporting research computing at Georgia Tech.",
+      "lat": 33.7756,
+      "lon": -84.3963,
+      "sources": [
+        {
+          "label": "Georgia Institute of Technology",
+          "url": "https://pace.gatech.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4822e4ec62",
+      "name": "Indiana University Research Data Center - Bloomington",
+      "operator": "Indiana University",
+      "status": "existing",
+      "county_fips": "18105",
+      "notes": "Indiana University Research Data Center (RDC) in Bloomington IN (Monroe County). Houses Big Red 200 supercomputer (7.3 petaflops) and other HPC resources for IU research.",
+      "lat": 39.1653,
+      "lon": -86.5264,
+      "sources": [
+        {
+          "label": "Indiana University",
+          "url": "https://kb.iu.edu/d/alde"
+        }
+      ]
+    },
+    {
+      "id": "fc-03544f6a30",
+      "name": "MSU Institute for Cyber-Enabled Research - East Lansing",
+      "operator": "Michigan State University",
+      "status": "existing",
+      "county_fips": "26065",
+      "notes": "Michigan State University Institute for Cyber-Enabled Research (ICER) in East Lansing MI (Ingham County). Operates HPCC high-performance computing cluster and central MSU research computing infrastructure.",
+      "lat": 42.7251,
+      "lon": -84.4791,
+      "sources": [
+        {
+          "label": "Michigan State University",
+          "url": "https://icer.msu.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-42893c3af2",
+      "name": "Vanderbilt University ACCRE - Nashville",
+      "operator": "Vanderbilt University",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "Vanderbilt University Advanced Computing Center for Research and Education (ACCRE) in Nashville TN (Davidson County). 25,000+ core HPC cluster for research computing.",
+      "lat": 36.1447,
+      "lon": -86.8027,
+      "sources": [
+        {
+          "label": "Vanderbilt University",
+          "url": "https://www.vanderbilt.edu/accre/"
+        }
+      ]
+    },
+    {
+      "id": "fc-cfe5ed7ea6",
+      "name": "NC State University HPC - Raleigh",
+      "operator": "North Carolina State University",
+      "status": "existing",
+      "county_fips": "37183",
+      "notes": "NC State University High Performance Computing (HPC) center in Raleigh NC (Wake County). Operates Hazel and Longleaf HPC clusters for research computing.",
+      "lat": 35.7847,
+      "lon": -78.682,
+      "sources": [
+        {
+          "label": "North Carolina State University",
+          "url": "https://hpc.ncsu.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8ec42ee902",
+      "name": "University of Pittsburgh Center for Research Computing",
+      "operator": "University of Pittsburgh",
+      "status": "existing",
+      "county_fips": "42003",
+      "notes": "University of Pittsburgh Center for Research Computing (CRC) in Pittsburgh PA (Allegheny County). Operates H2P HPC cluster and data storage for Pitt research computing.",
+      "lat": 40.4441,
+      "lon": -79.9609,
+      "sources": [
+        {
+          "label": "University of Pittsburgh",
+          "url": "https://crc.pitt.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7f59d0034b",
+      "name": "Rutgers University Office of Advanced Research Computing",
+      "operator": "Rutgers University",
+      "status": "existing",
+      "county_fips": "34023",
+      "notes": "Rutgers University Office of Advanced Research Computing (OARC) in Piscataway NJ (Middlesex County). Amarel HPC cluster and research data storage serving all Rutgers campuses.",
+      "lat": 40.5252,
+      "lon": -74.4605,
+      "sources": [
+        {
+          "label": "Rutgers University",
+          "url": "https://oarc.rutgers.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-090554563c",
+      "name": "University of Nebraska Holland Computing Center",
+      "operator": "University of Nebraska-Lincoln",
+      "status": "existing",
+      "county_fips": "31109",
+      "notes": "University of Nebraska Holland Computing Center (HCC) in Lincoln NE (Lancaster County). Campus HPC facility serving the University of Nebraska system. Part of Open Science Grid.",
+      "lat": 40.8202,
+      "lon": -96.7005,
+      "sources": [
+        {
+          "label": "University of Nebraska-Lincoln",
+          "url": "https://hcc.unl.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4ba3841492",
+      "name": "USC Center for Advanced Research Computing",
+      "operator": "University of Southern California",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "USC Center for Advanced Research Computing (CARC) at University of Southern California, Los Angeles CA. Discovery HPC cluster supporting interdisciplinary research.",
+      "lat": 34.0224,
+      "lon": -118.2851,
+      "sources": [
+        {
+          "label": "University of Southern California",
+          "url": "https://carc.usc.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d8220af51b",
+      "name": "OHSU Exacloud Research Computing - Portland",
+      "operator": "Oregon Health and Science University",
+      "status": "existing",
+      "county_fips": "41051",
+      "notes": "Oregon Health and Science University (OHSU) Exacloud high-performance computing cluster in Portland OR (Multnomah County). Biomedical research computing facility.",
+      "lat": 45.4976,
+      "lon": -122.6855,
+      "sources": [
+        {
+          "label": "Oregon Health and Science University",
+          "url": "https://www.ohsu.edu/sites/default/files/2020-04/Exacloud_FlyerV3.pdf"
+        }
+      ]
+    },
+    {
+      "id": "fc-a5d221b3fb",
+      "name": "Lunavi Data Center - Denver CO",
+      "operator": "Lunavi",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Lunavi data center in Denver CO (Denver County). Part of Lunavi's Rocky Mountain colocation and managed services network. Formerly Aptus Data Centers.",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Lunavi",
+          "url": "https://lunavi.com/data-centers/denver-colorado/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4b825fbc3c",
+      "name": "Lunavi Data Center - Casper WY",
+      "operator": "Lunavi",
+      "status": "existing",
+      "county_fips": "56025",
+      "notes": "Lunavi data center in Casper WY (Natrona County). Regional data center serving Wyoming oil and gas industry and state government.",
+      "lat": 42.8501,
+      "lon": -106.3252,
+      "sources": [
+        {
+          "label": "Lunavi",
+          "url": "https://lunavi.com/data-centers/casper-wyoming/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7adab5403f",
+      "name": "Naval Research Laboratory Computing - Washington DC",
+      "operator": "U.S. Navy",
+      "status": "existing",
+      "county_fips": "11001",
+      "notes": "U.S. Naval Research Laboratory (NRL) computing facilities in Washington DC (District of Columbia). DoD scientific research computing for Navy research programs.",
+      "lat": 38.8237,
+      "lon": -77.0157,
+      "sources": [
+        {
+          "label": "U.S. Navy",
+          "url": "https://www.nrl.navy.mil/research/"
+        }
+      ]
+    },
+    {
+      "id": "fc-21fa6cb24a",
+      "name": "Air Force Research Laboratory - Dayton OH",
+      "operator": "U.S. Air Force",
+      "status": "existing",
+      "county_fips": "39113",
+      "notes": "Air Force Research Laboratory (AFRL) supercomputing center at Wright-Patterson AFB, Dayton OH (Montgomery County). High-performance computing for DoD aerospace research.",
+      "lat": 39.7589,
+      "lon": -84.1916,
+      "sources": [
+        {
+          "label": "U.S. Air Force",
+          "url": "https://afresearchlab.com/technology/supercomputing/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -34703,6 +34943,166 @@
           "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-denton-texas"
         }
       ]
+    },
+    {
+      "id": "fc-9e5bc2ff43",
+      "name": "Amazon AWS Data Center - Dublin OH",
+      "operator": "Amazon AWS",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Amazon AWS data center campus in Dublin OH (Franklin County), Columbus metro. Part of AWS US-East-2 Ohio region serving cloud customers.",
+      "lat": 40.0992,
+      "lon": -83.1141,
+      "sources": [
+        {
+          "label": "Amazon AWS",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-web-services-ohio-data-centers"
+        }
+      ]
+    },
+    {
+      "id": "fc-4379a2f567",
+      "name": "Apple Data Center - Reno NV (Bison)",
+      "operator": "Apple",
+      "status": "existing",
+      "county_fips": "32031",
+      "notes": "Apple Bison data center campus in Reno NV (Washoe County). Large-scale facility supporting iCloud and Apple services. Powered 100% by renewable energy.",
+      "lat": 39.5501,
+      "lon": -119.8509,
+      "sources": [
+        {
+          "label": "Apple",
+          "url": "https://www.apple.com/environment/pdf/Apple_Environmental_Responsibility_Report_2023.pdf"
+        }
+      ]
+    },
+    {
+      "id": "fc-db52618cc3",
+      "name": "Google Data Center - Henderson NV",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "32003",
+      "notes": "Google data center campus in Henderson NV (Clark County), Las Vegas metro. Part of Google Cloud's Southwest US expansion.",
+      "lat": 36.0397,
+      "lon": -114.9819,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://blog.google/technology/infrastructure/google-data-center-henderson-nevada/"
+        }
+      ]
+    },
+    {
+      "id": "fc-504f5554e5",
+      "name": "Meta Data Center - Kearney NE",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "31019",
+      "notes": "Meta data center campus in Kearney NE (Buffalo County). Part of Meta's Midwest AI infrastructure investment. Powered by Nebraska renewable energy.",
+      "lat": 40.6994,
+      "lon": -99.082,
+      "sources": [
+        {
+          "label": "Meta Platforms",
+          "url": "https://about.fb.com/news/2024/05/meta-announces-kearney-nebraska-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-915bb4f6ea",
+      "name": "Microsoft Data Center - Atlanta GA",
+      "operator": "Microsoft",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Microsoft Azure data center campus in Atlanta GA (Fulton County). Supports Azure cloud services for the Southeast US region.",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2023/microsoft-georgia-data-center-investment/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c3980c8182",
+      "name": "Amazon AWS Data Center - Clarksville TN",
+      "operator": "Amazon AWS",
+      "status": "planned",
+      "county_fips": "47125",
+      "notes": "Amazon AWS data center campus in Clarksville TN (Montgomery County). Tennessee expansion for AWS cloud infrastructure.",
+      "lat": 36.5298,
+      "lon": -87.3595,
+      "sources": [
+        {
+          "label": "Amazon AWS",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-clarksville-tennessee"
+        }
+      ]
+    },
+    {
+      "id": "fc-50bf9dfbf2",
+      "name": "Aligned Data Center - Phoenix AZ PHX-01",
+      "operator": "Aligned Data Centers",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Aligned Data Centers PHX-01 in Phoenix AZ (Maricopa County). Delta3 cooling technology hyperscale campus serving the Southwest US market.",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Aligned Data Centers",
+          "url": "https://www.aligned.com/data-centers/phoenix/"
+        }
+      ]
+    },
+    {
+      "id": "fc-790e6c7efb",
+      "name": "Aligned Data Center - Ashburn VA IAD-01",
+      "operator": "Aligned Data Centers",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Aligned Data Centers IAD-01 in Ashburn VA (Loudoun County). Northern Virginia hyperscale campus with Delta3 cooling for high-density AI workloads.",
+      "lat": 39.0438,
+      "lon": -77.4874,
+      "sources": [
+        {
+          "label": "Aligned Data Centers",
+          "url": "https://www.aligned.com/data-centers/ashburn/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f2ab9aea1e",
+      "name": "Oracle Cloud Data Center - Nashville TN",
+      "operator": "Oracle Cloud",
+      "status": "planned",
+      "county_fips": "47037",
+      "notes": "Oracle Cloud Infrastructure (OCI) data center in Nashville TN (Davidson County). New Oracle Cloud region supporting Southeast US government and enterprise customers.",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "sources": [
+        {
+          "label": "Oracle Cloud",
+          "url": "https://www.oracle.com/news/announcement/oracle-to-invest-in-tennessee-cloud-region-2024/"
+        }
+      ]
+    },
+    {
+      "id": "fc-bb62b3830d",
+      "name": "Oracle Cloud Data Center - Fort Worth TX",
+      "operator": "Oracle Cloud",
+      "status": "planned",
+      "county_fips": "48439",
+      "notes": "Oracle Cloud Infrastructure (OCI) data center campus in Fort Worth TX (Tarrant County). Second Texas OCI cloud region for government and enterprise workloads.",
+      "lat": 32.7555,
+      "lon": -97.3308,
+      "sources": [
+        {
+          "label": "Oracle Cloud",
+          "url": "https://www.oracle.com/news/announcement/oracle-announces-second-texas-cloud-region-2024/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -35095,5 +35495,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:20:34Z"
+  "_facilities_exported_at": "2026-07-19T13:22:17Z"
 }
