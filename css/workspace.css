@@ -226,14 +226,24 @@ body.ws-resizing-rail * {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.25s ease;
 }
-#ws-settings-btn:hover svg,
+#ws-settings-btn:hover svg {
+  transform: rotate(30deg);
+}
 #ws-settings-btn.active svg {
-  transform: rotate(45deg);
+  transform: rotate(30deg);
 }
 #ws-settings-btn svg {
-  transition: transform 0.25s ease;
+  transition: transform 0.3s var(--ease-spring, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+/* ── Settings panel entrance animation ─────────────────────────────────── */
+@keyframes wsSettingsEnter {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+#ws-settings-panel:not([hidden]) {
+  animation: wsSettingsEnter var(--motion-standard, 240ms) var(--ease-enter, cubic-bezier(0, 0, 0.2, 1)) both;
 }
 
 /* ── Settings backdrop ──────────────────────────────────────────────────── */
@@ -737,5 +747,8 @@ body.ws-resizing-rail * {
   .ws-rail-btn,
   #ws-settings-btn svg {
     transition: none !important;
+  }
+  #ws-settings-panel:not([hidden]) {
+    animation: none !important;
   }
 }

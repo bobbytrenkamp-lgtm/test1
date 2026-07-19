@@ -4,6 +4,29 @@
   padding: 0;
 }
 
+/* ── Motion system ── */
+:root {
+  --motion-instant:  100ms;
+  --motion-fast:     160ms;
+  --motion-standard: 240ms;
+  --motion-slow:     360ms;
+  --ease-standard:   cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-enter:      cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit:       cubic-bezier(0.4, 0, 1, 1);
+  --ease-spring:     cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Reduced motion — override all decorative animation/transition durations ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 :root {
   /* Dark theme (default) */
   --bg: #07090f;
@@ -207,7 +230,12 @@ html, body {
   cursor: pointer;
   flex-shrink: 0;
   padding: 0;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    background var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
   font-size: 14px;
   font-weight: 700;
   font-family: inherit;
@@ -217,6 +245,13 @@ html, body {
   color: var(--accent);
   border-color: var(--accent);
   background: rgba(72,116,232,0.08);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(72,116,232,0.18);
+}
+.header-icon-btn:active,
+#theme-toggle:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: none;
 }
 
 /* ── Header nav tabs ── */
@@ -298,6 +333,12 @@ html, body {
   flex-direction: column;
   gap: 5px;
   border-top: 3px solid transparent;
+  transition:
+    background var(--motion-fast) var(--ease-standard),
+    border-top-color var(--motion-fast) var(--ease-standard);
+}
+.stat-card:hover {
+  background: var(--surface-2);
 }
 
 .stat-card-label {
@@ -377,14 +418,14 @@ html, body {
   color: var(--text-muted);
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  transition: color 0.15s, background 0.15s;
+  transition: color var(--motion-fast) var(--ease-standard), background var(--motion-fast) var(--ease-standard);
 }
 #dashboard-toggle:hover {
   color: var(--text);
   background: var(--surface-2);
 }
 #dashboard-toggle svg {
-  transition: transform 0.28s ease;
+  transition: transform var(--motion-standard) var(--ease-spring);
 }
 #app.top-hidden #dashboard-toggle svg {
   transform: rotate(180deg);
@@ -451,7 +492,7 @@ html, body {
 }
 
 #top-toggle svg {
-  transition: transform 0.28s ease;
+  transition: transform var(--motion-standard) var(--ease-spring);
 }
 
 #app.top-hidden #top-toggle svg {
@@ -504,7 +545,11 @@ html, body {
   color: var(--text-muted);
   cursor: pointer;
   flex-shrink: 0;
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  transition:
+    background var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard);
   -webkit-appearance: none;
   appearance: none;
   letter-spacing: 0.01em;
@@ -514,6 +559,7 @@ html, body {
   border-color: var(--accent);
   color: var(--text);
 }
+#filter-toggle:active { transform: scale(0.97); }
 
 #filter-toggle.active {
   border-color: var(--accent);
@@ -534,7 +580,11 @@ html, body {
   color: var(--text-muted);
   cursor: pointer;
   flex-shrink: 0;
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  transition:
+    background var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard);
   font-family: inherit;
   -webkit-appearance: none;
   appearance: none;
@@ -545,6 +595,7 @@ html, body {
   border-color: var(--accent);
   color: var(--text);
 }
+#adv-filter-toggle:active { transform: scale(0.97); }
 
 #adv-filter-toggle.active {
   border-color: var(--accent);
@@ -4636,10 +4687,21 @@ html[data-theme="light"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition:
+    background var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
   box-shadow: 0 1px 4px rgba(0,0,0,0.25);
 }
-.gis-btn:hover { background: var(--surface-2); color: var(--text); }
+.gis-btn:hover {
+  background: var(--surface-2);
+  color: var(--text);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+.gis-btn:active { transform: scale(0.97); box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
 .gis-btn.active {
   background: var(--accent);
   color: #fff;
@@ -5747,6 +5809,50 @@ kbd {
   line-height: 1; margin-left: 2px;
 }
 
+/* ── Page / app entrance (one-shot on page load) ── */
+@keyframes appEnter {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.app-enter {
+  animation: appEnter 280ms var(--ease-enter) both;
+}
+#dashboard.app-enter { animation-delay: 40ms; }
+
+/* ── Theme toggle spin ── */
+@keyframes themeToggleSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+#theme-toggle.spinning svg {
+  animation: themeToggleSpin var(--motion-standard) var(--ease-enter);
+  display: block; /* ensure SVG renders as block for transform */
+}
+
+/* ── Bookmark / save button pop ── */
+@keyframes savePop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+.detail-save-btn-saved svg {
+  animation: savePop 200ms var(--ease-spring) both;
+}
+
+/* ── Toast enter animation ── */
+@keyframes toastEnter {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+#map-toast:not([hidden]) {
+  animation: toastEnter var(--motion-fast) var(--ease-enter) both;
+}
+
+/* ── Detail empty state — fade in ── */
+#detail-empty {
+  animation: detail-fade-in 0.32s var(--ease-enter) both;
+}
+
 /* ── Tab view entrance (applied via JS on tab switch) ── */
 @keyframes view-enter {
   from { opacity: 0; transform: translateY(7px); }
@@ -5785,10 +5891,20 @@ kbd {
 /* ── Reduced-motion: disable all decorative animations ── */
 @media (prefers-reduced-motion: reduce) {
   .view-enter,
+  .app-enter,
   .home-wrap > *,
   .home-nav-card,
-  .home-search-results:not([hidden]) { animation: none !important; }
+  .home-search-results:not([hidden]),
+  #detail-empty,
+  #map-toast:not([hidden]),
+  .detail-save-btn-saved svg,
+  #theme-toggle.spinning svg { animation: none !important; }
   .header-tab::after { transition: opacity 0.15s !important; transform: none !important; }
   .home-search-box { transition: border-color 0.15s, box-shadow 0.15s !important; transform: none !important; }
   .home-search-box:focus-within { transform: none !important; }
+  .header-icon-btn:hover, #theme-toggle:hover,
+  .gis-btn:hover, #filter-toggle:active, #adv-filter-toggle:active,
+  .gis-btn:active, .header-icon-btn:active, #theme-toggle:active {
+    transform: none !important;
+  }
 }

@@ -5384,6 +5384,13 @@ function initThemeToggle() {
     const next = THEMES[(THEMES.indexOf(cur) + 1) % THEMES.length];
     localStorage.setItem('theme', next);
     applyTheme(next);
+    // Brief spin animation (skip if user prefers reduced motion)
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      btn.classList.remove('spinning');
+      void btn.offsetWidth; // force reflow to restart animation
+      btn.classList.add('spinning');
+      btn.addEventListener('animationend', () => btn.classList.remove('spinning'), { once: true });
+    }
   });
 
   // Respond to OS theme changes when in system mode
