@@ -37599,6 +37599,326 @@
           "url": "https://www.l3harris.com/company/about-us"
         }
       ]
+    },
+    {
+      "id": "fc-ebe1b3646e",
+      "name": "Netrality Data Center - Cincinnati OH (201 E 4th)",
+      "operator": "Netrality Properties",
+      "status": "existing",
+      "county_fips": "39061",
+      "notes": "Netrality 201 E Fourth St carrier hotel Cincinnati OH",
+      "lat": 39.1031,
+      "lon": -84.512,
+      "sources": [
+        {
+          "label": "Netrality Properties",
+          "url": "https://netrality.com/data-centers/cincinnati/"
+        }
+      ]
+    },
+    {
+      "id": "fc-97c2078761",
+      "name": "Netrality Data Center - Baltimore MD (111 Market Place)",
+      "operator": "Netrality Properties",
+      "status": "existing",
+      "county_fips": "24510",
+      "notes": "Netrality 111 Market Place carrier hotel Baltimore MD",
+      "lat": 39.2892,
+      "lon": -76.6145,
+      "sources": [
+        {
+          "label": "Netrality Properties",
+          "url": "https://netrality.com/data-centers/baltimore/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b0f95c76f3",
+      "name": "Netrality Data Center - Pittsburgh PA (429 Fourth Ave)",
+      "operator": "Netrality Properties",
+      "status": "existing",
+      "county_fips": "42003",
+      "notes": "Netrality 429 Fourth Ave carrier hotel Pittsburgh PA",
+      "lat": 40.4406,
+      "lon": -79.9959,
+      "sources": [
+        {
+          "label": "Netrality Properties",
+          "url": "https://netrality.com/data-centers/pittsburgh/"
+        }
+      ]
+    },
+    {
+      "id": "fc-51e6406bbf",
+      "name": "Netrality Data Center - Minneapolis MN (123 N 3rd St)",
+      "operator": "Netrality Properties",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Netrality 123 N 3rd St carrier hotel Minneapolis MN",
+      "lat": 44.9784,
+      "lon": -93.2735,
+      "sources": [
+        {
+          "label": "Netrality Properties",
+          "url": "https://netrality.com/data-centers/minneapolis/"
+        }
+      ]
+    },
+    {
+      "id": "fc-787a0e54c1",
+      "name": "Netrality Data Center - Detroit MI (One Detroit Center)",
+      "operator": "Netrality Properties",
+      "status": "existing",
+      "county_fips": "26163",
+      "notes": "Netrality One Detroit Center carrier hotel Detroit MI",
+      "lat": 42.3314,
+      "lon": -83.0458,
+      "sources": [
+        {
+          "label": "Netrality Properties",
+          "url": "https://netrality.com/data-centers/detroit/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0c7d485b02",
+      "name": "Netrality Data Center - Nashville TN",
+      "operator": "Netrality Properties",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "Netrality Nashville TN carrier hotel",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "sources": [
+        {
+          "label": "Netrality Properties",
+          "url": "https://netrality.com/data-centers/nashville/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7c49235ced",
+      "name": "QTS Data Center - Nashville TN",
+      "operator": "QTS Realty Trust",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "QTS Nashville TN data center campus",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "sources": [
+        {
+          "label": "QTS Realty Trust",
+          "url": "https://www.qtsdatacenters.com/data-centers/nashville"
+        }
+      ]
+    },
+    {
+      "id": "fc-da35d02e0b",
+      "name": "QTS Data Center - Columbus OH",
+      "operator": "QTS Realty Trust",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "QTS Columbus OH data center",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "sources": [
+        {
+          "label": "QTS Realty Trust",
+          "url": "https://www.qtsdatacenters.com/data-centers/columbus"
+        }
+      ]
+    },
+    {
+      "id": "fc-555ad38813",
+      "name": "Switch Atlanta - ATL1",
+      "operator": "Switch",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Switch Atlanta ATL1 data center Georgia",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Switch",
+          "url": "https://www.switch.com/atlanta/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b1d50defd7",
+      "name": "Digital Realty - IAH1 Houston TX",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "Digital Realty IAH1 Houston TX colocation data center",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "sources": [
+        {
+          "label": "Digital Realty",
+          "url": "https://www.digitalrealty.com/data-centers/americas/houston"
+        }
+      ]
+    },
+    {
+      "id": "fc-105b0db924",
+      "name": "Digital Realty - SD1 San Diego CA",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "06073",
+      "notes": "Digital Realty SD1 San Diego CA colocation",
+      "lat": 32.7157,
+      "lon": -117.1611,
+      "sources": [
+        {
+          "label": "Digital Realty",
+          "url": "https://www.digitalrealty.com/data-centers/americas/san-diego"
+        }
+      ]
+    },
+    {
+      "id": "fc-9580991ce4",
+      "name": "Digital Realty - BOS1 Boston MA",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "25025",
+      "notes": "Digital Realty BOS1 Boston MA colocation",
+      "lat": 42.3601,
+      "lon": -71.0589,
+      "sources": [
+        {
+          "label": "Digital Realty",
+          "url": "https://www.digitalrealty.com/data-centers/americas/boston"
+        }
+      ]
+    },
+    {
+      "id": "fc-0aba638da3",
+      "name": "Digital Realty - CLT1 Charlotte NC",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "37119",
+      "notes": "Digital Realty CLT1 Charlotte NC colocation",
+      "lat": 35.2271,
+      "lon": -80.8431,
+      "sources": [
+        {
+          "label": "Digital Realty",
+          "url": "https://www.digitalrealty.com/data-centers/americas/charlotte"
+        }
+      ]
+    },
+    {
+      "id": "fc-1272869919",
+      "name": "Digital Realty - MSP1 Minneapolis MN",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Digital Realty MSP1 Minneapolis MN colocation",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "sources": [
+        {
+          "label": "Digital Realty",
+          "url": "https://www.digitalrealty.com/data-centers/americas/minneapolis"
+        }
+      ]
+    },
+    {
+      "id": "fc-1ab36429ac",
+      "name": "Digital Realty - PHX1 Phoenix AZ",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Digital Realty PHX1 Phoenix AZ colocation",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Digital Realty",
+          "url": "https://www.digitalrealty.com/data-centers/americas/phoenix"
+        }
+      ]
+    },
+    {
+      "id": "fc-6808085b7d",
+      "name": "Digital Realty - DEN1 Denver CO",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Digital Realty DEN1 Denver CO colocation",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Digital Realty",
+          "url": "https://www.digitalrealty.com/data-centers/americas/denver"
+        }
+      ]
+    },
+    {
+      "id": "fc-332a8ad3bb",
+      "name": "Cologix COL1 - Columbus OH",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Cologix COL1 Columbus OH colocation",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "sources": [
+        {
+          "label": "Cologix",
+          "url": "https://www.cologix.com/data-centers/columbus/col1/"
+        }
+      ]
+    },
+    {
+      "id": "fc-36d7e865bb",
+      "name": "Cologix MTL1 - Montreal QC (US ops)",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Cologix MIN1 Minneapolis MN colocation",
+      "lat": 44.99,
+      "lon": -93.278,
+      "sources": [
+        {
+          "label": "Cologix",
+          "url": "https://www.cologix.com/data-centers/minneapolis/min1/"
+        }
+      ]
+    },
+    {
+      "id": "fc-616e1abe81",
+      "name": "STACK Infrastructure - Denver CO (DEN-1)",
+      "operator": "STACK Infrastructure",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "STACK Infrastructure DEN-1 Denver CO campus",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "STACK Infrastructure",
+          "url": "https://www.stackinfra.com/data-centers/denver/"
+        }
+      ]
+    },
+    {
+      "id": "fc-bcec5a54f5",
+      "name": "STACK Infrastructure - Minneapolis MN",
+      "operator": "STACK Infrastructure",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "STACK Infrastructure Minneapolis MN campus",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "sources": [
+        {
+          "label": "STACK Infrastructure",
+          "url": "https://www.stackinfra.com/data-centers/minneapolis/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -40207,6 +40527,178 @@
           "url": "https://www.yondrgroup.com/our-data-centers/"
         }
       ]
+    },
+    {
+      "id": "fc-cfc07abd99",
+      "name": "Oracle Cloud Infrastructure - Phoenix AZ (us-phoenix-1)",
+      "operator": "Oracle Corporation",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Oracle Cloud us-phoenix-1 commercial region Phoenix AZ; primary US West OCI region",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Oracle Corporation",
+          "url": "https://www.oracle.com/cloud/data-regions/"
+        },
+        {
+          "label": "Oracle Corporation",
+          "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm"
+        }
+      ]
+    },
+    {
+      "id": "fc-e528cfe70d",
+      "name": "Oracle Cloud Infrastructure - San Jose CA (us-sanjose-1)",
+      "operator": "Oracle Corporation",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Oracle Cloud us-sanjose-1 region San Jose CA",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "sources": [
+        {
+          "label": "Oracle Corporation",
+          "url": "https://www.oracle.com/cloud/data-regions/"
+        },
+        {
+          "label": "Oracle Corporation",
+          "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm"
+        }
+      ]
+    },
+    {
+      "id": "fc-b270929015",
+      "name": "Oracle Cloud Infrastructure - Chicago IL (us-chicago-1)",
+      "operator": "Oracle Corporation",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Oracle Cloud us-chicago-1 region Chicago IL",
+      "lat": 41.8827,
+      "lon": -87.6233,
+      "sources": [
+        {
+          "label": "Oracle Corporation",
+          "url": "https://www.oracle.com/cloud/data-regions/"
+        },
+        {
+          "label": "Oracle Corporation",
+          "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm"
+        }
+      ]
+    },
+    {
+      "id": "fc-9523fdf867",
+      "name": "Applied Digital Data Center - Corsicana TX",
+      "operator": "Applied Digital Corporation",
+      "status": "existing",
+      "county_fips": "48349",
+      "notes": "Applied Digital 200 MW HPC data center Corsicana TX; high-density GPU compute",
+      "lat": 32.0854,
+      "lon": -96.4689,
+      "sources": [
+        {
+          "label": "Applied Digital Corporation",
+          "url": "https://ir.applieddigital.com/news-releases/news-release-details/applied-digital-opens-new-200-megawatt-hpc-data-center-corsicana"
+        }
+      ]
+    },
+    {
+      "id": "fc-227a0e9580",
+      "name": "Applied Digital Data Center - Vermilion Parish LA",
+      "operator": "Applied Digital Corporation",
+      "status": "planned",
+      "county_fips": "22113",
+      "notes": "Applied Digital planned HPC campus Vermilion Parish LA",
+      "lat": 29.9746,
+      "lon": -92.1343,
+      "sources": [
+        {
+          "label": "Applied Digital Corporation",
+          "url": "https://ir.applieddigital.com/news-releases/news-release-details/applied-digital-announces-new-hpc-campus-louisiana"
+        }
+      ]
+    },
+    {
+      "id": "fc-99c921bb22",
+      "name": "Lambda Labs GPU Cloud - Manassas VA",
+      "operator": "Lambda Labs",
+      "status": "existing",
+      "county_fips": "51153",
+      "notes": "Lambda Labs GPU cloud cluster Manassas VA; H100/A100 GPU cluster",
+      "lat": 38.7509,
+      "lon": -77.4753,
+      "sources": [
+        {
+          "label": "Lambda Labs",
+          "url": "https://lambdalabs.com/service/gpu-cloud"
+        }
+      ]
+    },
+    {
+      "id": "fc-5221174c23",
+      "name": "Lambda Labs GPU Cloud - Reno NV",
+      "operator": "Lambda Labs",
+      "status": "existing",
+      "county_fips": "32031",
+      "notes": "Lambda Labs GPU cloud cluster Reno NV",
+      "lat": 39.5296,
+      "lon": -119.8138,
+      "sources": [
+        {
+          "label": "Lambda Labs",
+          "url": "https://lambdalabs.com/service/gpu-cloud"
+        }
+      ]
+    },
+    {
+      "id": "fc-a4dba732ec",
+      "name": "Switch Las Vegas - PYRAMID Campus",
+      "operator": "Switch",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "Switch PYRAMID data center campus Las Vegas NV; part of Switch Las Vegas campus",
+      "lat": 36.1716,
+      "lon": -115.1391,
+      "sources": [
+        {
+          "label": "Switch",
+          "url": "https://www.switch.com/las-vegas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ba9791be9e",
+      "name": "Switch Las Vegas - CITADEL Campus",
+      "operator": "Switch",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "Switch CITADEL data center campus Las Vegas NV; fortified Tier IV campus",
+      "lat": 36.172,
+      "lon": -115.1385,
+      "sources": [
+        {
+          "label": "Switch",
+          "url": "https://www.switch.com/las-vegas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-928f8fc0df",
+      "name": "Switch Grand Teton Technology Park - Elko NV",
+      "operator": "Switch",
+      "status": "planned",
+      "county_fips": "32007",
+      "notes": "Switch Grand Teton Technology Park planned campus Elko NV; renewable energy campus",
+      "lat": 40.8324,
+      "lon": -115.7631,
+      "sources": [
+        {
+          "label": "Switch",
+          "url": "https://www.switch.com/elko/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -40599,5 +41091,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T17:49:41Z"
+  "_facilities_exported_at": "2026-07-19T17:56:34Z"
 }
