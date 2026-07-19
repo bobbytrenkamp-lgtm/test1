@@ -40355,6 +40355,502 @@
           "url": "https://www.equinix.com/data-centers/americas-colocation/houston-data-centers/houston"
         }
       ]
+    },
+    {
+      "id": "fc-f03bcde563",
+      "name": "Alabama Office of Information Technology - Montgomery AL",
+      "operator": "Alabama Office of Information Technology",
+      "status": "existing",
+      "county_fips": "01101",
+      "notes": "Alabama OIT Montgomery state consolidated data center",
+      "lat": 32.3617,
+      "lon": -86.2792,
+      "sources": [
+        {
+          "label": "Alabama Office of Information Technology",
+          "url": "https://oit.alabama.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c3f4114b2c",
+      "name": "Alaska Department of Administration OIT - Juneau AK",
+      "operator": "Alaska Division of Enterprise Technology Services",
+      "status": "existing",
+      "county_fips": "02110",
+      "notes": "Alaska DETS Juneau state data center",
+      "lat": 58.3005,
+      "lon": -134.4197,
+      "sources": [
+        {
+          "label": "Alaska Division of Enterprise Technology Services",
+          "url": "https://aws.state.ak.us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6af8103399",
+      "name": "Arkansas Department of Information Systems - Little Rock AR",
+      "operator": "Arkansas Department of Information Systems",
+      "status": "existing",
+      "county_fips": "05119",
+      "notes": "Arkansas DIS Little Rock state data center",
+      "lat": 34.7465,
+      "lon": -92.2896,
+      "sources": [
+        {
+          "label": "Arkansas Department of Information Systems",
+          "url": "https://www.dis.arkansas.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ee2cb6a343",
+      "name": "Connecticut Department of Administrative Services - Hartford CT",
+      "operator": "Connecticut Department of Administrative Services",
+      "status": "existing",
+      "county_fips": "09003",
+      "notes": "Connecticut DAS Hartford IT infrastructure and data center",
+      "lat": 41.7658,
+      "lon": -72.6851,
+      "sources": [
+        {
+          "label": "Connecticut Department of Administrative Services",
+          "url": "https://portal.ct.gov/DAS/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9876ae9517",
+      "name": "Delaware Technology and Information - Dover DE",
+      "operator": "Delaware Department of Technology and Information",
+      "status": "existing",
+      "county_fips": "10001",
+      "notes": "Delaware DTI Dover state data center",
+      "lat": 39.1582,
+      "lon": -75.5244,
+      "sources": [
+        {
+          "label": "Delaware Department of Technology and Information",
+          "url": "https://dti.delaware.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6b20906103",
+      "name": "Hawaii Office of Information Management and Technology - Honolulu HI",
+      "operator": "Hawaii OIMT",
+      "status": "existing",
+      "county_fips": "15003",
+      "notes": "Hawaii OIMT Honolulu state data center",
+      "lat": 21.3069,
+      "lon": -157.8583,
+      "sources": [
+        {
+          "label": "Hawaii OIMT",
+          "url": "https://oimt.hawaii.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-626f9db14e",
+      "name": "Idaho Office of the Chief Information Officer - Boise ID",
+      "operator": "Idaho OCIO",
+      "status": "existing",
+      "county_fips": "16001",
+      "notes": "Idaho OCIO Boise state data center",
+      "lat": 43.615,
+      "lon": -116.2023,
+      "sources": [
+        {
+          "label": "Idaho OCIO",
+          "url": "https://ocio.idaho.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5fa091ab5e",
+      "name": "Iowa Department of Management Information Technology Enterprise - Des Moines IA",
+      "operator": "Iowa ITE",
+      "status": "existing",
+      "county_fips": "19153",
+      "notes": "Iowa ITE Des Moines state data center",
+      "lat": 41.5868,
+      "lon": -93.625,
+      "sources": [
+        {
+          "label": "Iowa ITE",
+          "url": "https://das.iowa.gov/information-technology-enterprise"
+        }
+      ]
+    },
+    {
+      "id": "fc-040af583fd",
+      "name": "Kansas Division of Information Systems and Communications - Topeka KS",
+      "operator": "Kansas DISC",
+      "status": "existing",
+      "county_fips": "20177",
+      "notes": "Kansas DISC Topeka state IT data center",
+      "lat": 39.0481,
+      "lon": -95.6781,
+      "sources": [
+        {
+          "label": "Kansas DISC",
+          "url": "https://admin.ks.gov/offices/information-technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-953d5ed7aa",
+      "name": "Kentucky Commonwealth Office of Technology - Frankfort KY",
+      "operator": "Kentucky COT",
+      "status": "existing",
+      "county_fips": "21073",
+      "notes": "Kentucky COT Frankfort state data center",
+      "lat": 38.2009,
+      "lon": -84.8733,
+      "sources": [
+        {
+          "label": "Kentucky COT",
+          "url": "https://technology.ky.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1c9050de3f",
+      "name": "Louisiana Office of Technology Services - Baton Rouge LA",
+      "operator": "Louisiana OTS",
+      "status": "existing",
+      "county_fips": "22033",
+      "notes": "Louisiana OTS Baton Rouge state data center",
+      "lat": 30.4515,
+      "lon": -91.1871,
+      "sources": [
+        {
+          "label": "Louisiana OTS",
+          "url": "https://www.doa.la.gov/Pages/ots/Index.aspx"
+        }
+      ]
+    },
+    {
+      "id": "fc-5a090b7110",
+      "name": "Maine Office of Information Technology - Augusta ME",
+      "operator": "Maine OIT",
+      "status": "existing",
+      "county_fips": "23011",
+      "notes": "Maine OIT Augusta state data center",
+      "lat": 44.3106,
+      "lon": -69.7795,
+      "sources": [
+        {
+          "label": "Maine OIT",
+          "url": "https://www.maine.gov/oit/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0f4e387ec1",
+      "name": "Massachusetts Executive Office of Technology Services - Quincy MA",
+      "operator": "Massachusetts EOTSS",
+      "status": "existing",
+      "county_fips": "25021",
+      "notes": "Massachusetts EOTSS Quincy MA state data center",
+      "lat": 42.2529,
+      "lon": -71.0023,
+      "sources": [
+        {
+          "label": "Massachusetts EOTSS",
+          "url": "https://www.mass.gov/orgs/executive-office-of-technology-services-and-security"
+        }
+      ]
+    },
+    {
+      "id": "fc-fe72349cbc",
+      "name": "Mississippi Department of Information Technology Services - Jackson MS",
+      "operator": "Mississippi ITS",
+      "status": "existing",
+      "county_fips": "28049",
+      "notes": "Mississippi ITS Jackson state data center",
+      "lat": 32.2988,
+      "lon": -90.1848,
+      "sources": [
+        {
+          "label": "Mississippi ITS",
+          "url": "https://www.its.ms.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-09671f419a",
+      "name": "Montana State Information Technology Services - Helena MT",
+      "operator": "Montana SITSD",
+      "status": "existing",
+      "county_fips": "30049",
+      "notes": "Montana SITSD Helena state data center",
+      "lat": 46.5958,
+      "lon": -112.027,
+      "sources": [
+        {
+          "label": "Montana SITSD",
+          "url": "https://sitsd.mt.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4b2d39120d",
+      "name": "Nebraska Office of the Chief Information Officer - Lincoln NE",
+      "operator": "Nebraska OCIO",
+      "status": "existing",
+      "county_fips": "31109",
+      "notes": "Nebraska OCIO/NITC Lincoln state data center",
+      "lat": 40.8136,
+      "lon": -96.7026,
+      "sources": [
+        {
+          "label": "Nebraska OCIO",
+          "url": "https://nitc.ne.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-866d2eadb5",
+      "name": "Nevada Enterprise Information Technology Services - Carson City NV",
+      "operator": "Nevada EITS",
+      "status": "existing",
+      "county_fips": "32510",
+      "notes": "Nevada EITS Carson City state data center",
+      "lat": 39.1638,
+      "lon": -119.7674,
+      "sources": [
+        {
+          "label": "Nevada EITS",
+          "url": "https://eits.nv.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b4d6e6f243",
+      "name": "New Hampshire Department of Information Technology - Concord NH",
+      "operator": "New Hampshire DoIT",
+      "status": "existing",
+      "county_fips": "33013",
+      "notes": "New Hampshire DoIT Concord state data center",
+      "lat": 43.2081,
+      "lon": -71.5376,
+      "sources": [
+        {
+          "label": "New Hampshire DoIT",
+          "url": "https://www.doit.nh.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-93557c4133",
+      "name": "New Jersey Office of Information Technology - Trenton NJ",
+      "operator": "New Jersey OIT",
+      "status": "existing",
+      "county_fips": "34021",
+      "notes": "New Jersey OIT Trenton state data center",
+      "lat": 40.2206,
+      "lon": -74.7597,
+      "sources": [
+        {
+          "label": "New Jersey OIT",
+          "url": "https://www.nj.gov/it/"
+        }
+      ]
+    },
+    {
+      "id": "fc-af59cbeedc",
+      "name": "New Mexico Department of Information Technology - Santa Fe NM",
+      "operator": "New Mexico DoIT",
+      "status": "existing",
+      "county_fips": "35049",
+      "notes": "New Mexico DoIT Santa Fe state data center",
+      "lat": 35.687,
+      "lon": -105.9378,
+      "sources": [
+        {
+          "label": "New Mexico DoIT",
+          "url": "https://www.doit.nm.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-744778cc60",
+      "name": "North Dakota Information Technology Department - Bismarck ND",
+      "operator": "North Dakota ITD",
+      "status": "existing",
+      "county_fips": "38015",
+      "notes": "North Dakota ITD Bismarck state data center",
+      "lat": 46.8083,
+      "lon": -100.7837,
+      "sources": [
+        {
+          "label": "North Dakota ITD",
+          "url": "https://www.nd.gov/itd/"
+        }
+      ]
+    },
+    {
+      "id": "fc-27a5e8ae38",
+      "name": "Oklahoma Office of Management and Enterprise Services ISD - Oklahoma City OK",
+      "operator": "Oklahoma OMES-ISD",
+      "status": "existing",
+      "county_fips": "40109",
+      "notes": "Oklahoma OMES ISD Oklahoma City state data center",
+      "lat": 35.4676,
+      "lon": -97.5164,
+      "sources": [
+        {
+          "label": "Oklahoma OMES-ISD",
+          "url": "https://omes.ok.gov/services/information-services-division"
+        }
+      ]
+    },
+    {
+      "id": "fc-99cef70e9c",
+      "name": "Oregon Statewide Information Management - Salem OR",
+      "operator": "Oregon Enterprise Information Services",
+      "status": "existing",
+      "county_fips": "41047",
+      "notes": "Oregon EIS Salem state data center",
+      "lat": 44.9429,
+      "lon": -123.0351,
+      "sources": [
+        {
+          "label": "Oregon Enterprise Information Services",
+          "url": "https://www.oregon.gov/das/ETS/Pages/index.aspx"
+        }
+      ]
+    },
+    {
+      "id": "fc-8b346bd29a",
+      "name": "Rhode Island Division of Information Technology - Providence RI",
+      "operator": "Rhode Island DoIT",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "Rhode Island DoIT Providence state data center",
+      "lat": 41.824,
+      "lon": -71.4128,
+      "sources": [
+        {
+          "label": "Rhode Island DoIT",
+          "url": "https://doit.ri.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f1eb0ce85b",
+      "name": "South Carolina Division of Technology Operations - Columbia SC",
+      "operator": "South Carolina DTO",
+      "status": "existing",
+      "county_fips": "45079",
+      "notes": "South Carolina DTO Columbia state data center",
+      "lat": 34.0007,
+      "lon": -81.0348,
+      "sources": [
+        {
+          "label": "South Carolina DTO",
+          "url": "https://www.budget.sc.gov/dto"
+        }
+      ]
+    },
+    {
+      "id": "fc-64de18b6a7",
+      "name": "South Dakota Bureau of Information and Telecommunications - Pierre SD",
+      "operator": "South Dakota BIT",
+      "status": "existing",
+      "county_fips": "46065",
+      "notes": "South Dakota BIT Pierre state data center",
+      "lat": 44.3683,
+      "lon": -100.351,
+      "sources": [
+        {
+          "label": "South Dakota BIT",
+          "url": "https://boa.sd.gov/bit/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0e13cc9460",
+      "name": "Utah Department of Technology Services - Salt Lake City UT",
+      "operator": "Utah DTS",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "Utah DTS Salt Lake City state data center",
+      "lat": 40.7608,
+      "lon": -111.891,
+      "sources": [
+        {
+          "label": "Utah DTS",
+          "url": "https://dts.utah.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a28f069444",
+      "name": "Vermont Agency of Digital Services - Montpelier VT",
+      "operator": "Vermont Agency of Digital Services",
+      "status": "existing",
+      "county_fips": "50023",
+      "notes": "Vermont ADS Montpelier state data center",
+      "lat": 44.2601,
+      "lon": -72.5754,
+      "sources": [
+        {
+          "label": "Vermont Agency of Digital Services",
+          "url": "https://digitalservices.vermont.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6c36928168",
+      "name": "West Virginia Office of Technology - Charleston WV",
+      "operator": "West Virginia Office of Technology",
+      "status": "existing",
+      "county_fips": "54039",
+      "notes": "West Virginia OT Charleston state data center",
+      "lat": 38.3498,
+      "lon": -81.6326,
+      "sources": [
+        {
+          "label": "West Virginia Office of Technology",
+          "url": "https://technology.wv.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-dd276306db",
+      "name": "Wisconsin Department of Administration Division of Enterprise Technology - Madison WI",
+      "operator": "Wisconsin DET",
+      "status": "existing",
+      "county_fips": "55025",
+      "notes": "Wisconsin DET Madison state data center",
+      "lat": 43.0731,
+      "lon": -89.4012,
+      "sources": [
+        {
+          "label": "Wisconsin DET",
+          "url": "https://doa.wi.gov/Pages/DoingBusiness/Technology.aspx"
+        }
+      ]
+    },
+    {
+      "id": "fc-47d50fd82f",
+      "name": "Wyoming Enterprise Technology Services - Cheyenne WY",
+      "operator": "Wyoming ETS",
+      "status": "existing",
+      "county_fips": "56021",
+      "notes": "Wyoming ETS Cheyenne state data center",
+      "lat": 41.14,
+      "lon": -104.8197,
+      "sources": [
+        {
+          "label": "Wyoming ETS",
+          "url": "https://ets.wyo.gov/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -43695,5 +44191,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T18:07:41Z"
+  "_facilities_exported_at": "2026-07-19T18:08:44Z"
 }
