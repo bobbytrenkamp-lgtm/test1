@@ -32919,6 +32919,310 @@
           "url": "https://www.nyi.net/data-centers/nyi-bk1/"
         }
       ]
+    },
+    {
+      "id": "fc-4500eb0d4e",
+      "name": "Hivelocity Data Center - Jacksonville FL",
+      "operator": "Hivelocity",
+      "status": "existing",
+      "county_fips": "12031",
+      "notes": "Hivelocity Jacksonville FL data center. Duval County. Dedicated server hosting and colocation in Northeast Florida.",
+      "lat": 30.3322,
+      "lon": -81.6557,
+      "sources": [
+        {
+          "label": "Hivelocity",
+          "url": "https://www.hivelocity.net/dedicated-server/jacksonville/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5f3e81031b",
+      "name": "Hivelocity Data Center - New York NY",
+      "operator": "Hivelocity",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Hivelocity New York NY data center. Manhattan / New York County. Dedicated server and colocation serving the New York metro.",
+      "lat": 40.7128,
+      "lon": -74.006,
+      "sources": [
+        {
+          "label": "Hivelocity",
+          "url": "https://www.hivelocity.net/dedicated-server/new-york/"
+        }
+      ]
+    },
+    {
+      "id": "fc-960b42a31d",
+      "name": "Hivelocity Data Center - Chicago IL",
+      "operator": "Hivelocity",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Hivelocity Chicago IL data center. Cook County. Carrier-neutral colocation and dedicated servers in Chicago.",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "sources": [
+        {
+          "label": "Hivelocity",
+          "url": "https://www.hivelocity.net/dedicated-server/chicago/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f4ca801932",
+      "name": "Hivelocity Data Center - Dallas TX",
+      "operator": "Hivelocity",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Hivelocity Dallas TX data center. Dallas County. Dedicated server and colocation in the Dallas-Fort Worth metro.",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "Hivelocity",
+          "url": "https://www.hivelocity.net/dedicated-server/dallas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a8370b73ba",
+      "name": "Hivelocity Data Center - Los Angeles CA",
+      "operator": "Hivelocity",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Hivelocity Los Angeles CA data center. Los Angeles County. Dedicated server and colocation in the LA metro.",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "sources": [
+        {
+          "label": "Hivelocity",
+          "url": "https://www.hivelocity.net/dedicated-server/los-angeles/"
+        }
+      ]
+    },
+    {
+      "id": "fc-318f659464",
+      "name": "Hivelocity Data Center - Seattle WA",
+      "operator": "Hivelocity",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Hivelocity Seattle WA data center. King County. Dedicated server and colocation in the Pacific Northwest.",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "sources": [
+        {
+          "label": "Hivelocity",
+          "url": "https://www.hivelocity.net/dedicated-server/seattle/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d7a70f6660",
+      "name": "Hivelocity Data Center - Ashburn VA",
+      "operator": "Hivelocity",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Hivelocity Ashburn VA data center. Loudoun County. Dedicated server and colocation in Northern Virginia's data center corridor.",
+      "lat": 39.0438,
+      "lon": -77.4874,
+      "sources": [
+        {
+          "label": "Hivelocity",
+          "url": "https://www.hivelocity.net/dedicated-server/ashburn-va/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8d968be685",
+      "name": "HostDime Data Center - Orlando FL",
+      "operator": "HostDime",
+      "status": "existing",
+      "county_fips": "12095",
+      "notes": "HostDime headquarters and primary US data center in Orlando FL (Orange County). 100,000 sq ft facility with multiple redundant power feeds and cooling systems.",
+      "lat": 28.5383,
+      "lon": -81.3792,
+      "sources": [
+        {
+          "label": "HostDime",
+          "url": "https://www.hostdime.com/data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-929a71a0c6",
+      "name": "Serverfarm Data Center - Newark NJ",
+      "operator": "Serverfarm",
+      "status": "existing",
+      "county_fips": "34013",
+      "notes": "Serverfarm Newark NJ colocation data center. Essex County. Part of Serverfarm's sustainable data center network serving the New York metro.",
+      "lat": 40.7357,
+      "lon": -74.1724,
+      "sources": [
+        {
+          "label": "Serverfarm",
+          "url": "https://www.serverfarm.com/data-centers/newark/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8612504870",
+      "name": "DartPoints Data Center - Tulsa OK",
+      "operator": "DartPoints",
+      "status": "existing",
+      "county_fips": "40143",
+      "notes": "DartPoints Tulsa OK colocation data center. Tulsa County. Part of DartPoints' regional network serving the Midwest-South.",
+      "lat": 36.154,
+      "lon": -95.9928,
+      "sources": [
+        {
+          "label": "DartPoints",
+          "url": "https://www.dartpoints.com/data-centers/tulsa/"
+        }
+      ]
+    },
+    {
+      "id": "fc-72305358ba",
+      "name": "DartPoints Data Center - Shreveport LA",
+      "operator": "DartPoints",
+      "status": "existing",
+      "county_fips": "22017",
+      "notes": "DartPoints Shreveport LA colocation data center. Caddo Parish. Regional edge data center serving northwest Louisiana.",
+      "lat": 32.5252,
+      "lon": -93.7502,
+      "sources": [
+        {
+          "label": "DartPoints",
+          "url": "https://www.dartpoints.com/data-centers/shreveport/"
+        }
+      ]
+    },
+    {
+      "id": "fc-cdb7cbb403",
+      "name": "DartPoints Data Center - Amarillo TX",
+      "operator": "DartPoints",
+      "status": "existing",
+      "county_fips": "48375",
+      "notes": "DartPoints Amarillo TX edge data center. Potter County. Serving the Texas Panhandle region.",
+      "lat": 35.222,
+      "lon": -101.8313,
+      "sources": [
+        {
+          "label": "DartPoints",
+          "url": "https://www.dartpoints.com/data-centers/amarillo/"
+        }
+      ]
+    },
+    {
+      "id": "fc-76c0613c66",
+      "name": "DartPoints Data Center - Little Rock AR",
+      "operator": "DartPoints",
+      "status": "existing",
+      "county_fips": "05119",
+      "notes": "DartPoints Little Rock AR colocation data center. Pulaski County. Part of DartPoints' regional edge network in Arkansas.",
+      "lat": 34.7465,
+      "lon": -92.2896,
+      "sources": [
+        {
+          "label": "DartPoints",
+          "url": "https://www.dartpoints.com/data-centers/little-rock/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ef8ea04001",
+      "name": "Cosentry Data Center - Kansas City MO",
+      "operator": "Cosentry",
+      "status": "existing",
+      "county_fips": "29095",
+      "notes": "Cosentry Kansas City MO colocation data center. Jackson County. Part of Cosentry's Midwest data center network.",
+      "lat": 39.0997,
+      "lon": -94.5786,
+      "sources": [
+        {
+          "label": "Cosentry",
+          "url": "https://www.cosentry.com/data-centers/kansas-city/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e42a193485",
+      "name": "C7 Data Centers - Murray UT",
+      "operator": "C7 Data Centers",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "C7 Data Centers Murray UT colocation facility in Salt Lake County. Part of C7's Utah data center network.",
+      "lat": 40.6669,
+      "lon": -111.898,
+      "sources": [
+        {
+          "label": "C7 Data Centers",
+          "url": "https://c7datacenters.com/locations/murray-ut/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a9764f2244",
+      "name": "TierPoint Data Center - Portland OR",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "41051",
+      "notes": "TierPoint Portland OR data center. Multnomah County. Part of TierPoint's national colocation network with regional Oregon connectivity.",
+      "lat": 45.5231,
+      "lon": -122.6765,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://tierpoint.com/data-centers/portland/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2861a86558",
+      "name": "TierPoint Data Center - Cleveland OH",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "39035",
+      "notes": "TierPoint Cleveland OH data center. Cuyahoga County. Carrier-neutral colocation in Northeast Ohio.",
+      "lat": 41.4993,
+      "lon": -81.6944,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://tierpoint.com/data-centers/cleveland/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ef842e8724",
+      "name": "TierPoint Data Center - Indianapolis IN",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "18097",
+      "notes": "TierPoint Indianapolis IN data center. Marion County. Part of TierPoint's Midwest colocation network.",
+      "lat": 39.7684,
+      "lon": -86.1581,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://tierpoint.com/data-centers/indianapolis/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ef6d5ca533",
+      "name": "TierPoint Data Center - Denver CO",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "TierPoint Denver CO data center. Denver County. Part of TierPoint's national network with Rocky Mountain region connectivity.",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://tierpoint.com/data-centers/denver/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -33967,6 +34271,70 @@
           "url": "https://www.standardpower.com/data-center"
         }
       ]
+    },
+    {
+      "id": "fc-508c9c35cb",
+      "name": "Microsoft Data Center - Racine WI",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "55101",
+      "notes": "Microsoft AI data center campus in Racine WI (Racine County). Part of Microsoft's multi-billion dollar Wisconsin investment for AI cloud infrastructure.",
+      "lat": 42.7261,
+      "lon": -87.7828,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2024/05/microsoft-announces-data-center-investment-racine-wisconsin/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8eb39d70cb",
+      "name": "Meta Data Center - Goodyear AZ",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "04013",
+      "notes": "Meta data center campus in Goodyear AZ (Maricopa County), Phoenix metro area. Large-scale campus supporting Meta's AI and social media infrastructure.",
+      "lat": 33.4353,
+      "lon": -112.3576,
+      "sources": [
+        {
+          "label": "Meta Platforms",
+          "url": "https://about.fb.com/news/2023/10/meta-to-build-data-center-in-goodyear-arizona/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ec4f20450a",
+      "name": "Amazon AWS Data Center - Isle of Wight VA",
+      "operator": "Amazon AWS",
+      "status": "planned",
+      "county_fips": "51093",
+      "notes": "Amazon AWS data center campus in Isle of Wight County VA. Part of AWS Virginia expansion for AI/cloud infrastructure in the Hampton Roads area.",
+      "lat": 36.8032,
+      "lon": -76.7447,
+      "sources": [
+        {
+          "label": "Amazon AWS",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-aws-isle-of-wight-county-virginia-data-center"
+        }
+      ]
+    },
+    {
+      "id": "fc-9371e9c5b7",
+      "name": "Microsoft Data Center - Lathrop CA",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "06077",
+      "notes": "Microsoft Azure data center in Lathrop CA (San Joaquin County), Central Valley. Part of Microsoft's California AI cloud infrastructure expansion.",
+      "lat": 37.8224,
+      "lon": -121.2786,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2023/10/microsoft-lathrop-california-data-center/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -34359,5 +34727,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:14:14Z"
+  "_facilities_exported_at": "2026-07-19T13:18:35Z"
 }
