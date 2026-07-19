@@ -413,7 +413,6 @@ async function initMapFromGeo() {
     renderStats();
     initFilterPanelControls();
     initDetailSheetSwipe();
-    initTopToggle();
     initLegendControls();
     setDetailEmpty();
     // Wire results panel row click → selectCounty, and do initial data load
@@ -3188,16 +3187,6 @@ function initFilterPanelControls() {
   panel.addEventListener("pointercancel", endFpResize);
 }
 
-function initTopToggle() {
-  const btn = document.getElementById("top-toggle");
-  if (!btn) return;
-  btn.addEventListener("click", () => {
-    const hidden = document.getElementById("app").classList.toggle("top-hidden");
-    btn.setAttribute("aria-label", hidden ? "Show header" : "Hide header");
-    btn.title = hidden ? "Show header" : "Hide header";
-  });
-}
-
 function initDashboardToggle() {
   const btn = document.getElementById("dashboard-toggle");
   if (!btn) return;
@@ -3401,6 +3390,13 @@ function initDashboardScopeBar() {
     `<option value="">Select state…</option>`,
     stateOptions,
     `</select>`,
+    `<button id="scope-info-btn" type="button" aria-label="What does Scope mean?" title="What does Scope mean?">ⓘ</button>`,
+    `<div id="scope-info-popover" hidden role="tooltip">`,
+    `<div class="scope-info-row"><span class="scope-info-key">National</span><span class="scope-info-val">All counties across the US</span></div>`,
+    `<div class="scope-info-row"><span class="scope-info-key">Filtered</span><span class="scope-info-val">Only counties matching active filters</span></div>`,
+    `<div class="scope-info-row"><span class="scope-info-key">State</span><span class="scope-info-val">Counties within the selected state</span></div>`,
+    `<div class="scope-info-row"><span class="scope-info-key">Extent</span><span class="scope-info-val">Counties visible in the current map view</span></div>`,
+    `</div>`,
   ].join("");
 
   const chips       = bar.querySelectorAll(".dash-scope-chip");
@@ -3421,6 +3417,16 @@ function initDashboardScopeBar() {
       _dashScopeState = stateSelect.value;
       if (_dashScopeState) updateDashboardScopedCards();
     });
+  }
+
+  const infoBtn = bar.querySelector("#scope-info-btn");
+  const infoPopover = bar.querySelector("#scope-info-popover");
+  if (infoBtn && infoPopover) {
+    infoBtn.addEventListener("click", e => {
+      e.stopPropagation();
+      infoPopover.hidden = !infoPopover.hidden;
+    });
+    document.addEventListener("click", () => { if (infoPopover) infoPopover.hidden = true; }, true);
   }
 
   bar.hidden = false;

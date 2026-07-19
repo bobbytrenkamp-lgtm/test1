@@ -473,35 +473,58 @@ html, body {
 }
 #dash-scope-state-select:focus { border-color: var(--accent); }
 
-/* ── Top-section collapse toggle ── */
-#top-toggle {
+/* ── Scope help icon + popover ── */
+#scope-info-btn {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 0;
-  cursor: pointer;
-  color: var(--text-muted);
   flex-shrink: 0;
   transition: color 0.15s, border-color 0.15s;
 }
+#scope-info-btn:hover { color: var(--accent); border-color: var(--accent); }
 
-#top-toggle:hover {
+#scope-info-popover {
+  position: absolute;
+  left: 8px;
+  top: calc(100% + 6px);
+  z-index: 600;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+  width: 240px;
+  font-size: 12px;
+  line-height: 1.5;
   color: var(--text);
-  border-color: var(--accent);
+  animation: fade-in var(--motion-fast) var(--ease-enter);
 }
+#scope-info-popover[hidden] { display: none !important; }
+#scope-info-popover strong { color: var(--accent); }
 
-#top-toggle svg {
-  transition: transform var(--motion-standard) var(--ease-spring);
+.scope-info-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
 }
-
-#app.top-hidden #top-toggle svg {
-  transform: rotate(180deg);
+.scope-info-row:last-child { margin-bottom: 0; }
+.scope-info-key {
+  font-weight: 600;
+  min-width: 54px;
+  flex-shrink: 0;
 }
+.scope-info-val { color: var(--text-muted); }
 
 /* ── Search ── */
 #search-bar {
@@ -2163,7 +2186,6 @@ body.is-resizing-floating-panel * {
   /* Thumb-friendly touch targets */
   #filter-toggle { min-height: 44px; padding: 0 10px; }
   #filter-toggle span { display: none; }
-  #top-toggle { min-width: 44px; min-height: 44px; }
   #filter-panel-close { min-width: 44px; min-height: 44px; font-size: 22px; }
   #detail-panel-close { min-width: 44px; min-height: 44px; font-size: 22px; }
 
@@ -3357,7 +3379,7 @@ html[data-theme="light"] {
 
 /* ── Fullpage mode (analytics / about) — hide map chrome ── */
 #app.fullpage-mode #dashboard { display: none !important; }
-#app.fullpage-mode #search-bar > :not(#top-toggle) { display: none !important; }
+#app.fullpage-mode #search-bar > * { display: none !important; }
 
 /* ── Page view base (analytics / about) ── */
 .page-view {
@@ -4712,6 +4734,20 @@ html[data-theme="light"] {
   border-color: var(--accent);
 }
 
+/* ── GIS toolbar mobile: scrollable column with fade ── */
+@media (max-width: 700px) {
+  #map-gis-bar {
+    max-height: calc(100dvh - 140px - env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* Fade bottom edge to hint at scroll */
+    -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 28px), transparent 100%);
+    mask-image: linear-gradient(to bottom, black calc(100% - 28px), transparent 100%);
+  }
+  #map-gis-bar::-webkit-scrollbar { display: none; }
+}
+
 /* ── Measure readout ── */
 #measure-readout {
   position: absolute;
@@ -5032,7 +5068,7 @@ html[data-theme="light"] {
   box-shadow: 0 -4px 20px rgba(0,0,0,0.35);
   display: flex;
   flex-direction: column;
-  max-height: 46vh;
+  max-height: 30vh;
   transform: translateY(100%);
   transition: transform 0.25s ease;
   pointer-events: none;
