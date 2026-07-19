@@ -35783,6 +35783,586 @@
           "url": "https://www.dealer.com/about/"
         }
       ]
+    },
+    {
+      "id": "fc-0d307754ce",
+      "name": "FIS Data Center - Milwaukee WI",
+      "operator": "FIS Global",
+      "status": "existing",
+      "county_fips": "55079",
+      "notes": "FIS Global (former Metavante) enterprise data center in Milwaukee WI, FIS acquired Metavante in 2009",
+      "lat": 43.0389,
+      "lon": -87.9065,
+      "sources": [
+        {
+          "label": "FIS Global",
+          "url": "https://www.fisglobal.com/"
+        },
+        {
+          "label": "FIS Global",
+          "url": "https://www.fisglobal.com/about-fis"
+        }
+      ]
+    },
+    {
+      "id": "fc-9e4a31ed61",
+      "name": "FIS Data Center - St. Petersburg FL",
+      "operator": "FIS Global",
+      "status": "existing",
+      "county_fips": "12103",
+      "notes": "FIS Global primary operations data center in St. Petersburg FL (Clearwater area)",
+      "lat": 27.7676,
+      "lon": -82.6403,
+      "sources": [
+        {
+          "label": "FIS Global",
+          "url": "https://www.fisglobal.com/"
+        },
+        {
+          "label": "FIS Global",
+          "url": "https://www.fisglobal.com/about-fis"
+        }
+      ]
+    },
+    {
+      "id": "fc-1fba674ac2",
+      "name": "Morgan Stanley Data Center - Dublin OH",
+      "operator": "Morgan Stanley",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Morgan Stanley enterprise data center operations in Dublin OH (Columbus metro), major tech hub",
+      "lat": 40.1006,
+      "lon": -83.114,
+      "sources": [
+        {
+          "label": "Morgan Stanley",
+          "url": "https://www.morganstanley.com/"
+        },
+        {
+          "label": "Morgan Stanley",
+          "url": "https://www.morganstanley.com/about-us/global-offices/"
+        }
+      ]
+    },
+    {
+      "id": "fc-80d0d1ddb3",
+      "name": "Morgan Stanley Data Center - Phoenix AZ",
+      "operator": "Morgan Stanley",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Morgan Stanley enterprise data center in Phoenix AZ metro",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Morgan Stanley",
+          "url": "https://www.morganstanley.com/"
+        },
+        {
+          "label": "Morgan Stanley",
+          "url": "https://www.morganstanley.com/about-us/global-offices/"
+        }
+      ]
+    },
+    {
+      "id": "fc-474644f369",
+      "name": "USAA Data Center - Colorado Springs CO",
+      "operator": "USAA",
+      "status": "existing",
+      "county_fips": "08041",
+      "notes": "USAA enterprise data center and operations facility in Colorado Springs CO",
+      "lat": 38.8339,
+      "lon": -104.8214,
+      "sources": [
+        {
+          "label": "USAA",
+          "url": "https://www.usaa.com/"
+        },
+        {
+          "label": "USAA",
+          "url": "https://www.usaa.com/inet/wc/about_usaa_main"
+        }
+      ]
+    },
+    {
+      "id": "fc-663cae8a44",
+      "name": "Charter Communications Data Center - Stamford CT",
+      "operator": "Charter Communications",
+      "status": "existing",
+      "county_fips": "09001",
+      "notes": "Charter Communications enterprise data center at corporate HQ in Stamford CT",
+      "lat": 41.0534,
+      "lon": -73.5387,
+      "sources": [
+        {
+          "label": "Charter Communications",
+          "url": "https://www.charter.com/"
+        },
+        {
+          "label": "Charter Communications",
+          "url": "https://corporate.charter.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6dd14dc0f2",
+      "name": "Charter Communications / Spectrum Data Center - Los Angeles CA",
+      "operator": "Charter Communications",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Charter/Spectrum enterprise data center in Los Angeles CA serving Southern California",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "sources": [
+        {
+          "label": "Charter Communications",
+          "url": "https://www.spectrum.com/"
+        },
+        {
+          "label": "Charter Communications",
+          "url": "https://corporate.charter.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d316d24b0b",
+      "name": "Charter Communications / Spectrum Data Center - Dallas TX",
+      "operator": "Charter Communications",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Charter/Spectrum enterprise data center in Dallas TX serving North Texas",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "Charter Communications",
+          "url": "https://www.spectrum.com/"
+        },
+        {
+          "label": "Charter Communications",
+          "url": "https://corporate.charter.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c75e55fd85",
+      "name": "PhoenixNAP Data Center - Atlanta GA",
+      "operator": "PhoenixNAP",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "PhoenixNAP carrier-neutral Tier III colocation data center in Atlanta GA",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "PhoenixNAP",
+          "url": "https://phoenixnap.com/data-center/atlanta-ga"
+        },
+        {
+          "label": "PhoenixNAP",
+          "url": "https://phoenixnap.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-049c9b813d",
+      "name": "PhoenixNAP Data Center - Dallas TX",
+      "operator": "PhoenixNAP",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "PhoenixNAP carrier-neutral Tier III colocation data center in Dallas TX",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "PhoenixNAP",
+          "url": "https://phoenixnap.com/data-center/dallas-tx"
+        },
+        {
+          "label": "PhoenixNAP",
+          "url": "https://phoenixnap.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-fc67cd5035",
+      "name": "PhoenixNAP Data Center - Chicago IL",
+      "operator": "PhoenixNAP",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "PhoenixNAP carrier-neutral Tier III colocation data center in Chicago IL",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "sources": [
+        {
+          "label": "PhoenixNAP",
+          "url": "https://phoenixnap.com/data-center/chicago-il"
+        },
+        {
+          "label": "PhoenixNAP",
+          "url": "https://phoenixnap.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5da2050cc0",
+      "name": "Atlantic.net Data Center - Charlotte NC",
+      "operator": "Atlantic.net",
+      "status": "existing",
+      "county_fips": "37119",
+      "notes": "Atlantic.net cloud and colocation data center in Charlotte NC",
+      "lat": 35.2271,
+      "lon": -80.8431,
+      "sources": [
+        {
+          "label": "Atlantic.net",
+          "url": "https://www.atlantic.net/data-center-locations/charlotte-data-center/"
+        },
+        {
+          "label": "Atlantic.net",
+          "url": "https://www.atlantic.net/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3aa1252a0e",
+      "name": "Atlantic.net Data Center - Dallas TX",
+      "operator": "Atlantic.net",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Atlantic.net cloud and colocation data center in Dallas TX",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "Atlantic.net",
+          "url": "https://www.atlantic.net/data-center-locations/dallas-data-center/"
+        },
+        {
+          "label": "Atlantic.net",
+          "url": "https://www.atlantic.net/"
+        }
+      ]
+    },
+    {
+      "id": "fc-89e0ba82a8",
+      "name": "Atlantic.net Data Center - Chicago IL",
+      "operator": "Atlantic.net",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Atlantic.net cloud and colocation data center in Chicago IL",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "sources": [
+        {
+          "label": "Atlantic.net",
+          "url": "https://www.atlantic.net/data-center-locations/chicago-data-center/"
+        },
+        {
+          "label": "Atlantic.net",
+          "url": "https://www.atlantic.net/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9e0e50c07c",
+      "name": "Ntirety Data Center - Dallas TX",
+      "operator": "Ntirety",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Ntirety (formerly Hostway) managed cloud and colocation services in Dallas TX",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "Ntirety",
+          "url": "https://ntirety.com/"
+        },
+        {
+          "label": "Ntirety",
+          "url": "https://ntirety.com/solutions/"
+        }
+      ]
+    },
+    {
+      "id": "fc-810e44f3f8",
+      "name": "Ntirety Data Center - Phoenix AZ",
+      "operator": "Ntirety",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Ntirety (formerly Hostway) managed cloud and colocation services in Phoenix AZ",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Ntirety",
+          "url": "https://ntirety.com/"
+        },
+        {
+          "label": "Ntirety",
+          "url": "https://ntirety.com/solutions/"
+        }
+      ]
+    },
+    {
+      "id": "fc-960712d7a4",
+      "name": "Ntirety Data Center - Atlanta GA",
+      "operator": "Ntirety",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Ntirety (formerly Hostway) managed cloud and colocation services in Atlanta GA",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Ntirety",
+          "url": "https://ntirety.com/"
+        },
+        {
+          "label": "Ntirety",
+          "url": "https://ntirety.com/solutions/"
+        }
+      ]
+    },
+    {
+      "id": "fc-98e45c6cf7",
+      "name": "Bank of Hawaii Data Center - Honolulu HI",
+      "operator": "Bank of Hawaii",
+      "status": "existing",
+      "county_fips": "15003",
+      "notes": "Bank of Hawaii enterprise data center at corporate HQ in Honolulu, Hawaii's largest bank",
+      "lat": 21.3069,
+      "lon": -157.8583,
+      "sources": [
+        {
+          "label": "Bank of Hawaii",
+          "url": "https://www.boh.com/"
+        },
+        {
+          "label": "Bank of Hawaii",
+          "url": "https://www.boh.com/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f1556c2a2a",
+      "name": "First Hawaiian Bank Data Center - Honolulu HI",
+      "operator": "First Hawaiian Bank",
+      "status": "existing",
+      "county_fips": "15003",
+      "notes": "First Hawaiian Bank enterprise data center in Honolulu HI, major Hawaiian bank",
+      "lat": 21.3069,
+      "lon": -157.8583,
+      "sources": [
+        {
+          "label": "First Hawaiian Bank",
+          "url": "https://www.fhb.com/"
+        },
+        {
+          "label": "First Hawaiian Bank",
+          "url": "https://www.fhb.com/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-67236fe83e",
+      "name": "Amica Mutual Insurance Data Center - Lincoln RI",
+      "operator": "Amica Mutual",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "Amica Mutual Insurance enterprise data center at corporate HQ in Lincoln RI",
+      "lat": 41.8954,
+      "lon": -71.437,
+      "sources": [
+        {
+          "label": "Amica Mutual",
+          "url": "https://www.amica.com/"
+        },
+        {
+          "label": "Amica Mutual",
+          "url": "https://www.amica.com/about-amica/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3d2116f812",
+      "name": "Hasbro Data Center - Pawtucket RI",
+      "operator": "Hasbro",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "Hasbro enterprise data center at corporate HQ in Pawtucket RI",
+      "lat": 41.8796,
+      "lon": -71.3893,
+      "sources": [
+        {
+          "label": "Hasbro",
+          "url": "https://www.hasbro.com/"
+        },
+        {
+          "label": "Hasbro",
+          "url": "https://investor.hasbro.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8dfbce0ae1",
+      "name": "National Life Group Data Center - Montpelier VT",
+      "operator": "National Life Group",
+      "status": "existing",
+      "county_fips": "50023",
+      "notes": "National Life Group (NLG) enterprise data center at corporate HQ in Montpelier VT",
+      "lat": 44.2601,
+      "lon": -72.5754,
+      "sources": [
+        {
+          "label": "National Life Group",
+          "url": "https://www.nationallife.com/"
+        },
+        {
+          "label": "National Life Group",
+          "url": "https://www.nationallife.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b635e6dd1b",
+      "name": "IDEXX Laboratories Data Center - Westbrook ME",
+      "operator": "IDEXX Laboratories",
+      "status": "existing",
+      "county_fips": "23005",
+      "notes": "IDEXX Laboratories enterprise data center at corporate HQ in Westbrook ME, global veterinary diagnostics leader",
+      "lat": 43.6778,
+      "lon": -70.3716,
+      "sources": [
+        {
+          "label": "IDEXX Laboratories",
+          "url": "https://www.idexx.com/"
+        },
+        {
+          "label": "IDEXX Laboratories",
+          "url": "https://www.idexx.com/en/about-idexx/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2632d63d7f",
+      "name": "Hannaford Brothers Data Center - Scarborough ME",
+      "operator": "Hannaford Bros.",
+      "status": "existing",
+      "county_fips": "23005",
+      "notes": "Hannaford Brothers supermarket chain enterprise data center at corporate HQ in Scarborough ME",
+      "lat": 43.5645,
+      "lon": -70.3228,
+      "sources": [
+        {
+          "label": "Hannaford Bros.",
+          "url": "https://www.hannaford.com/"
+        },
+        {
+          "label": "Hannaford Bros.",
+          "url": "https://www.hannaford.com/stores/about-us.jsp"
+        }
+      ]
+    },
+    {
+      "id": "fc-373ab03182",
+      "name": "Dartmouth-Hitchcock Medical Center Data Center - Lebanon NH",
+      "operator": "Dartmouth Health",
+      "status": "existing",
+      "county_fips": "33009",
+      "notes": "Dartmouth-Hitchcock (Dartmouth Health) medical center data center in Lebanon NH, NH's only academic medical center",
+      "lat": 43.6427,
+      "lon": -72.2831,
+      "sources": [
+        {
+          "label": "Dartmouth Health",
+          "url": "https://www.dartmouth-hitchcock.org/"
+        },
+        {
+          "label": "Dartmouth Health",
+          "url": "https://www.dartmouth-hitchcock.org/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2814000949",
+      "name": "Copper Valley Telephone Data Center - Glennallen AK",
+      "operator": "Copper Valley Telephone",
+      "status": "existing",
+      "county_fips": "02066",
+      "notes": "Copper Valley Telephone regional telecom data center and network hub in Glennallen AK",
+      "lat": 62.1067,
+      "lon": -145.5547,
+      "sources": [
+        {
+          "label": "Copper Valley Telephone",
+          "url": "https://www.cvtels.com/"
+        },
+        {
+          "label": "Copper Valley Telephone",
+          "url": "https://www.cvtels.com/services/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d8522d3920",
+      "name": "JPMorgan Chase Operations Center - Wilmington DE",
+      "operator": "JPMorgan Chase",
+      "status": "existing",
+      "county_fips": "10003",
+      "notes": "JPMorgan Chase consumer banking operations center and data center in Wilmington DE",
+      "lat": 39.7447,
+      "lon": -75.5484,
+      "sources": [
+        {
+          "label": "JPMorgan Chase",
+          "url": "https://www.jpmorganchase.com/"
+        },
+        {
+          "label": "JPMorgan Chase",
+          "url": "https://www.jpmorganchase.com/about/our-company"
+        }
+      ]
+    },
+    {
+      "id": "fc-e0693e17c5",
+      "name": "TD Bank Operations Center - Wilmington DE",
+      "operator": "TD Bank",
+      "status": "existing",
+      "county_fips": "10003",
+      "notes": "TD Bank enterprise data center at US operations hub in Wilmington DE",
+      "lat": 39.7447,
+      "lon": -75.5484,
+      "sources": [
+        {
+          "label": "TD Bank",
+          "url": "https://www.td.com/us/"
+        },
+        {
+          "label": "TD Bank",
+          "url": "https://www.td.com/us/en/about-td/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c5427a6d86",
+      "name": "Frontier Communications Data Center - Morgantown WV",
+      "operator": "Frontier Communications",
+      "status": "existing",
+      "county_fips": "54061",
+      "notes": "Frontier Communications network operations and data center in Morgantown WV",
+      "lat": 39.6296,
+      "lon": -79.9559,
+      "sources": [
+        {
+          "label": "Frontier Communications",
+          "url": "https://frontier.com/"
+        },
+        {
+          "label": "Frontier Communications",
+          "url": "https://frontier.com/local/west-virginia"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -38743,5 +39323,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:42:57Z"
+  "_facilities_exported_at": "2026-07-19T13:45:06Z"
 }
