@@ -31163,6 +31163,582 @@
       "lat": 32.954,
       "lon": -96.89,
       "capacity_mw": 10.0
+    },
+    {
+      "id": "fc-b13e0d8696",
+      "name": "Equinix - SV2 Sunnyvale",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Equinix SV2 IBX in Silicon Valley campus",
+      "lat": 37.38,
+      "lon": -122.01,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv2"
+        }
+      ]
+    },
+    {
+      "id": "fc-26f088e4d9",
+      "name": "Equinix - SV3 San Jose",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Equinix SV3 IBX in Silicon Valley campus",
+      "lat": 37.39,
+      "lon": -121.94,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv3"
+        }
+      ]
+    },
+    {
+      "id": "fc-e5ab4a5a8d",
+      "name": "Equinix - SV4 Santa Clara",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Equinix SV4 IBX in Silicon Valley campus",
+      "lat": 37.38,
+      "lon": -121.97,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv4"
+        }
+      ]
+    },
+    {
+      "id": "fc-1a60d7fdc0",
+      "name": "Equinix - SV8 San Jose",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Equinix SV8 IBX in Silicon Valley campus",
+      "lat": 37.38,
+      "lon": -121.95,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv8"
+        }
+      ]
+    },
+    {
+      "id": "fc-a428bd13de",
+      "name": "Equinix - SV13 San Jose",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Equinix SV13 IBX in Silicon Valley campus",
+      "lat": 37.37,
+      "lon": -121.9,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv13"
+        }
+      ]
+    },
+    {
+      "id": "fc-ea2ee3e736",
+      "name": "Equinix - SV14 Santa Clara",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Equinix SV14 IBX in Silicon Valley campus",
+      "lat": 37.38,
+      "lon": -121.97,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv14"
+        }
+      ]
+    },
+    {
+      "id": "fc-df993cbc0a",
+      "name": "Equinix - SV15 Santa Clara",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Equinix SV15 IBX in Silicon Valley campus",
+      "lat": 37.38,
+      "lon": -121.97,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv15"
+        }
+      ]
+    },
+    {
+      "id": "fc-3c047d47dd",
+      "name": "Equinix - SV16 Santa Clara",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Equinix SV16 IBX in Silicon Valley campus",
+      "lat": 37.37,
+      "lon": -121.96,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv16"
+        }
+      ]
+    },
+    {
+      "id": "fc-211484b616",
+      "name": "Equinix - SV17 Santa Clara",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Equinix SV17 IBX in Silicon Valley campus",
+      "lat": 37.37,
+      "lon": -121.96,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv17"
+        }
+      ]
+    },
+    {
+      "id": "fc-aeab77c221",
+      "name": "Equinix - AT2 Atlanta",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Equinix AT2 IBX in Atlanta metro, Perimeter Center area",
+      "lat": 33.94,
+      "lon": -84.36,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/atlanta-data-centers/at2"
+        }
+      ]
+    },
+    {
+      "id": "fc-8ddab5dba2",
+      "name": "Equinix - CU1 Culpeper",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51047",
+      "notes": "Equinix CU1 IBX in Culpeper Virginia campus",
+      "lat": 38.47,
+      "lon": -77.99,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/culpeper-data-centers/cu1"
+        }
+      ]
+    },
+    {
+      "id": "fc-81a40a4217",
+      "name": "Equinix - CU2 Culpeper",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51047",
+      "notes": "Equinix CU2 IBX in Culpeper Virginia campus",
+      "lat": 38.47,
+      "lon": -77.99,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/culpeper-data-centers/cu2"
+        }
+      ]
+    },
+    {
+      "id": "fc-5df0cebe26",
+      "name": "Equinix - CU3 Culpeper",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51047",
+      "notes": "Equinix CU3 IBX in Culpeper Virginia campus",
+      "lat": 38.47,
+      "lon": -77.99,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/culpeper-data-centers/cu3"
+        }
+      ]
+    },
+    {
+      "id": "fc-869dc3e8f4",
+      "name": "Equinix - CU4 Culpeper",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51047",
+      "notes": "Equinix CU4 IBX in Culpeper Virginia campus",
+      "lat": 38.47,
+      "lon": -77.99,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/culpeper-data-centers/cu4"
+        }
+      ]
+    },
+    {
+      "id": "fc-9db4b901bc",
+      "name": "Equinix - DA9 Dallas",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Equinix DA9 IBX in Dallas metro",
+      "lat": 32.79,
+      "lon": -96.79,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/dallas-data-centers/da9"
+        }
+      ]
+    },
+    {
+      "id": "fc-844043ac12",
+      "name": "Equinix - DA10 Dallas",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Equinix DA10 IBX in Dallas metro",
+      "lat": 32.79,
+      "lon": -96.79,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/dallas-data-centers/da10"
+        }
+      ]
+    },
+    {
+      "id": "fc-cab1abc2d1",
+      "name": "Equinix - DA11 Dallas",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Equinix DA11 IBX in Dallas metro",
+      "lat": 32.79,
+      "lon": -96.79,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/dallas-data-centers/da11"
+        }
+      ]
+    },
+    {
+      "id": "fc-56c8796070",
+      "name": "Equinix - DC3 Ashburn",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Equinix DC3 IBX in Ashburn VA campus",
+      "lat": 39.04,
+      "lon": -77.49,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc3"
+        }
+      ]
+    },
+    {
+      "id": "fc-0385f6a074",
+      "name": "Equinix - DC4 Ashburn",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Equinix DC4 IBX in Ashburn VA campus",
+      "lat": 39.04,
+      "lon": -77.49,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc4"
+        }
+      ]
+    },
+    {
+      "id": "fc-5df0ce0ab2",
+      "name": "Equinix - DC5 Ashburn",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Equinix DC5 IBX in Ashburn VA campus",
+      "lat": 39.04,
+      "lon": -77.49,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc5"
+        }
+      ]
+    },
+    {
+      "id": "fc-0bec911430",
+      "name": "Equinix - DC10 Ashburn",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Equinix DC10 IBX in Ashburn VA campus",
+      "lat": 39.04,
+      "lon": -77.49,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc10"
+        }
+      ]
+    },
+    {
+      "id": "fc-2635dcc78d",
+      "name": "Equinix - DC12 Ashburn",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Equinix DC12 IBX in Ashburn VA campus",
+      "lat": 39.04,
+      "lon": -77.49,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc12"
+        }
+      ]
+    },
+    {
+      "id": "fc-0e2e922e82",
+      "name": "Equinix - DC13 Ashburn",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Equinix DC13 IBX in Ashburn VA campus",
+      "lat": 39.04,
+      "lon": -77.49,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc13"
+        }
+      ]
+    },
+    {
+      "id": "fc-4a743194f8",
+      "name": "Equinix - DC21 Ashburn",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Equinix DC21 IBX in Ashburn VA campus",
+      "lat": 39.04,
+      "lon": -77.49,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc21"
+        }
+      ]
+    },
+    {
+      "id": "fc-0c971c906e",
+      "name": "Equinix - DC22 Ashburn",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Equinix DC22 IBX in Ashburn VA campus",
+      "lat": 39.04,
+      "lon": -77.49,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc22"
+        }
+      ]
+    },
+    {
+      "id": "fc-053aefb326",
+      "name": "Equinix - LA2 El Segundo",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Equinix LA2 IBX in El Segundo CA, LA metro",
+      "lat": 33.92,
+      "lon": -118.4,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/los-angeles-data-centers/la2"
+        }
+      ]
+    },
+    {
+      "id": "fc-218c4e731a",
+      "name": "Equinix - LA6 Los Angeles",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Equinix LA6 IBX in Los Angeles metro",
+      "lat": 34.01,
+      "lon": -118.44,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/los-angeles-data-centers/la6"
+        }
+      ]
+    },
+    {
+      "id": "fc-9254e5c63f",
+      "name": "Equinix - LA7 El Segundo",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Equinix LA7 IBX in El Segundo CA, LA metro",
+      "lat": 33.92,
+      "lon": -118.4,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/los-angeles-data-centers/la7"
+        }
+      ]
+    },
+    {
+      "id": "fc-c29f49197b",
+      "name": "Equinix - MI6 Miami",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "12086",
+      "notes": "Equinix MI6 IBX in Miami FL metro",
+      "lat": 25.78,
+      "lon": -80.22,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/miami-data-centers/mi6"
+        }
+      ]
+    },
+    {
+      "id": "fc-e48c05a6a5",
+      "name": "Equinix - NY3 Parsippany",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "34027",
+      "notes": "Equinix NY3 IBX in Parsippany NJ, New York metro",
+      "lat": 40.86,
+      "lon": -74.38,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny3"
+        }
+      ]
+    },
+    {
+      "id": "fc-46fa4f3a69",
+      "name": "Equinix - NY6 Secaucus",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "34017",
+      "notes": "Equinix NY6 IBX in Secaucus NJ, New York metro",
+      "lat": 40.79,
+      "lon": -74.06,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny6"
+        }
+      ]
+    },
+    {
+      "id": "fc-4dd34eebc0",
+      "name": "Equinix - NY10 Secaucus",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "34017",
+      "notes": "Equinix NY10 IBX in Secaucus NJ, New York metro",
+      "lat": 40.79,
+      "lon": -74.07,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny10"
+        }
+      ]
+    },
+    {
+      "id": "fc-5926e32137",
+      "name": "Equinix - NY13 Piscataway",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "34023",
+      "notes": "Equinix NY13 IBX in Piscataway NJ, New York metro",
+      "lat": 40.56,
+      "lon": -74.46,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny13"
+        }
+      ]
+    },
+    {
+      "id": "fc-7886081377",
+      "name": "Equinix - SE4 Seattle",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Equinix SE4 IBX in Seattle metro",
+      "lat": 47.61,
+      "lon": -122.33,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/seattle-data-centers/se4"
+        }
+      ]
+    },
+    {
+      "id": "fc-5a9bdc0c65",
+      "name": "Equinix - SL2 Salt Lake City",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "Equinix SL2 IBX in Salt Lake City UT",
+      "lat": 40.76,
+      "lon": -111.89,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/salt-lake-city-data-centers/sl2"
+        }
+      ]
+    },
+    {
+      "id": "fc-ed3e47ecd9",
+      "name": "Equinix - TR1 Tampa",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "12057",
+      "notes": "Equinix TR1 IBX in Tampa FL, first Tampa IBX",
+      "lat": 27.95,
+      "lon": -82.46,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/tampa-data-centers/tr1"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -31174,13 +31750,7 @@
       "county_fips": "47157",
       "notes": "100,000+ H100 GPUs; largest AI training cluster publicly announced as of 2024; Shelby County Memphis.; legacy_id:ai-tn-001",
       "lat": 35.15,
-      "lon": -90.05,
-      "sources": [
-        {
-          "label": "xAI — Colossus Supercomputer Announcement",
-          "url": "https://x.ai/"
-        }
-      ]
+      "lon": -90.05
     },
     {
       "id": "fc-3d3289777f",
@@ -31190,13 +31760,7 @@
       "county_fips": "48453",
       "notes": "AI research and development; GPU architecture lab.; legacy_id:ai-tx-002",
       "lat": 30.39,
-      "lon": -97.74,
-      "sources": [
-        {
-          "label": "NVIDIA AI Research — Austin",
-          "url": "https://www.nvidia.com/"
-        }
-      ]
+      "lon": -97.74
     },
     {
       "id": "fc-d15c9b68c0",
@@ -31207,13 +31771,7 @@
       "notes": "AI safety research; training conducted via cloud partnerships.; legacy_id:ai-ca-001",
       "lat": 37.77,
       "lon": -122.41,
-      "capacity_mw": 5.0,
-      "sources": [
-        {
-          "label": "Anthropic — AI Safety Company",
-          "url": "https://www.anthropic.com/"
-        }
-      ]
+      "capacity_mw": 5.0
     },
     {
       "id": "fc-1187465b4d",
@@ -31223,13 +31781,7 @@
       "county_fips": "48453",
       "notes": "Oracle AI cloud infrastructure; $1B+ investment in Texas.; legacy_id:ai-tx-003",
       "lat": 30.4,
-      "lon": -97.73,
-      "sources": [
-        {
-          "label": "Oracle Cloud Infrastructure — Austin",
-          "url": "https://www.oracle.com/cloud/"
-        }
-      ]
+      "lon": -97.73
     },
     {
       "id": "fc-5a754d62b8",
@@ -31239,13 +31791,7 @@
       "county_fips": "47037",
       "notes": "Oracle Cloud Infrastructure Nashville; AI/ML workloads.; legacy_id:ai-tn-002",
       "lat": 36.16,
-      "lon": -86.78,
-      "sources": [
-        {
-          "label": "Oracle Cloud Infrastructure — Nashville",
-          "url": "https://www.oracle.com/cloud/"
-        }
-      ]
+      "lon": -86.78
     },
     {
       "id": "fc-7376e2b4c8",
@@ -31255,13 +31801,7 @@
       "county_fips": "06085",
       "notes": "Wafer-scale engine AI training; custom CS-3 chips.; legacy_id:ai-ca-002",
       "lat": 37.36,
-      "lon": -121.98,
-      "sources": [
-        {
-          "label": "Cerebras Systems — Santa Clara HQ",
-          "url": "https://www.cerebras.net/"
-        }
-      ]
+      "lon": -121.98
     },
     {
       "id": "fc-ab6a37b665",
@@ -31272,13 +31812,7 @@
       "notes": "Aurora exascale supercomputer (AI workloads); 2 exaflops.; legacy_id:ai-il-002",
       "lat": 41.71,
       "lon": -87.98,
-      "capacity_mw": 20.0,
-      "sources": [
-        {
-          "label": "Argonne National Laboratory",
-          "url": "https://www.anl.gov/"
-        }
-      ]
+      "capacity_mw": 20.0
     },
     {
       "id": "fc-bcf2da73d6",
@@ -31288,13 +31822,7 @@
       "county_fips": "47093",
       "notes": "Frontier exascale supercomputer; #1 Top500 2022-2023.; legacy_id:ai-tn-003",
       "lat": 36.01,
-      "lon": -84.24,
-      "sources": [
-        {
-          "label": "Oak Ridge National Laboratory",
-          "url": "https://www.ornl.gov/"
-        }
-      ]
+      "lon": -84.24
     },
     {
       "id": "fc-1cfcfef36a",
@@ -31304,13 +31832,7 @@
       "county_fips": "06001",
       "notes": "Perlmutter AI-optimized supercomputer; NVIDIA A100 GPUs.; legacy_id:ai-ca-003",
       "lat": 37.88,
-      "lon": -122.25,
-      "sources": [
-        {
-          "label": "NERSC — National Energy Research Scientific Computing Center",
-          "url": "https://www.nersc.gov/"
-        }
-      ]
+      "lon": -122.25
     },
     {
       "id": "fc-0cfbbf4e00",
@@ -31320,13 +31842,7 @@
       "county_fips": "51107",
       "notes": "Dedicated AI training cluster adjacent to existing cloud campus.; legacy_id:ai-va-001",
       "lat": 39.05,
-      "lon": -77.44,
-      "sources": [
-        {
-          "label": "Microsoft Azure — Loudoun County VA",
-          "url": "https://azure.microsoft.com/"
-        }
-      ]
+      "lon": -77.44
     },
     {
       "id": "fc-d4085dae7d",
@@ -31336,13 +31852,7 @@
       "county_fips": "18059",
       "notes": "Part of Indiana AI infrastructure push; dedicated training.; legacy_id:ai-in-001",
       "lat": 39.77,
-      "lon": -86.4,
-      "sources": [
-        {
-          "label": "Microsoft Azure — Hendricks County IN",
-          "url": "https://azure.microsoft.com/"
-        }
-      ]
+      "lon": -86.4
     },
     {
       "id": "fc-9d94f96a4b",
@@ -31352,13 +31862,7 @@
       "county_fips": "34027",
       "notes": "GPU-as-a-service; massive NVIDIA H100 cluster for AI startups.; legacy_id:ai-nj-001",
       "lat": 40.87,
-      "lon": -74.42,
-      "sources": [
-        {
-          "label": "CoreWeave — Parsippany NJ Campus",
-          "url": "https://www.coreweave.com/"
-        }
-      ]
+      "lon": -74.42
     },
     {
       "id": "fc-b9fb66a08e",
@@ -31368,13 +31872,7 @@
       "county_fips": "17043",
       "notes": "DuPage County; NVIDIA AI cluster; cloud AI infrastructure.; legacy_id:ai-il-001",
       "lat": 41.85,
-      "lon": -88.12,
-      "sources": [
-        {
-          "label": "CoreWeave — Chicago IL Campus",
-          "url": "https://www.coreweave.com/"
-        }
-      ]
+      "lon": -88.12
     },
     {
       "id": "fc-9de23caa4f",
@@ -31384,13 +31882,7 @@
       "county_fips": "51107",
       "notes": "Dedicated AI training cluster adjacent to existing cloud campus.; legacy_id:ai-va-001",
       "lat": 39.05,
-      "lon": -77.44,
-      "sources": [
-        {
-          "label": "Microsoft Azure — Loudoun County VA",
-          "url": "https://azure.microsoft.com/"
-        }
-      ]
+      "lon": -77.44
     },
     {
       "id": "fc-cc16a07fe7",
@@ -31400,13 +31892,7 @@
       "county_fips": "18059",
       "notes": "Part of Indiana AI infrastructure push; dedicated training.; legacy_id:ai-in-001",
       "lat": 39.77,
-      "lon": -86.4,
-      "sources": [
-        {
-          "label": "Microsoft Azure — Hendricks County IN",
-          "url": "https://azure.microsoft.com/"
-        }
-      ]
+      "lon": -86.4
     },
     {
       "id": "fc-fbf9edf7a2",
@@ -31416,13 +31902,7 @@
       "county_fips": "34027",
       "notes": "GPU-as-a-service; massive NVIDIA H100 cluster for AI startups.; legacy_id:ai-nj-001",
       "lat": 40.87,
-      "lon": -74.42,
-      "sources": [
-        {
-          "label": "CoreWeave — Parsippany NJ Campus",
-          "url": "https://www.coreweave.com/"
-        }
-      ]
+      "lon": -74.42
     },
     {
       "id": "fc-d093fd6415",
@@ -31432,13 +31912,7 @@
       "county_fips": "17043",
       "notes": "DuPage County; NVIDIA AI cluster; cloud AI infrastructure.; legacy_id:ai-il-001",
       "lat": 41.85,
-      "lon": -88.12,
-      "sources": [
-        {
-          "label": "CoreWeave — Chicago IL Campus",
-          "url": "https://www.coreweave.com/"
-        }
-      ]
+      "lon": -88.12
     },
     {
       "id": "fc-72a599c464",
@@ -31448,13 +31922,7 @@
       "county_fips": "32003",
       "notes": "Switch SUPERNAP 7-10 campus; dedicated GPU cluster for AI/ML workloads. 100MW+ capacity. NVIDIA DGX-A100/H100 pods. Tier IV design.; legacy_id:ai-nv-001",
       "lat": 36.0875,
-      "lon": -115.1535,
-      "sources": [
-        {
-          "label": "Switch Data Centers — Las Vegas",
-          "url": "https://www.switch.com/"
-        }
-      ]
+      "lon": -115.1535
     },
     {
       "id": "fc-e076324447",
@@ -31464,13 +31932,7 @@
       "county_fips": "24003",
       "notes": "Unclassified contractor data center cluster adjacent to NSA/Fort Meade in Annapolis Junction MD.; legacy_id:ai-md-001",
       "lat": 39.1177,
-      "lon": -76.8077,
-      "sources": [
-        {
-          "label": "Defense Information Systems Agency (DISA)",
-          "url": "https://www.disa.mil/"
-        }
-      ]
+      "lon": -76.8077
     },
     {
       "id": "fc-8e04571768",
@@ -31480,13 +31942,7 @@
       "county_fips": "15009",
       "notes": "DoD-funded HPC center operated for the Air Force Research Laboratory; supports Pacific theater defense simulation and AI workloads.; legacy_id:ai-hi-002",
       "lat": 20.8783,
-      "lon": -156.6825,
-      "sources": [
-        {
-          "label": "Maui High Performance Computing Center (MHPCC)",
-          "url": "https://www.mhpcc.hpc.mil/"
-        }
-      ]
+      "lon": -156.6825
     },
     {
       "id": "fc-90901307a4",
@@ -31496,13 +31952,7 @@
       "county_fips": "45019",
       "notes": "Regional colocation data center serving Charleston's growing financial technology, healthcare, and logistics IT sectors.; legacy_id:ai-sc-003",
       "lat": 32.7765,
-      "lon": -79.9311,
-      "sources": [
-        {
-          "label": "Immedion Data Centers — Charleston SC",
-          "url": "https://www.immedion.com/"
-        }
-      ]
+      "lon": -79.9311
     },
     {
       "id": "fc-dfd7592dc0",
@@ -31512,13 +31962,7 @@
       "county_fips": "36091",
       "notes": "On-premises HPC and EDA compute supporting chip design simulation, manufacturing AI, and yield analytics for one of North America's largest semiconductor fabs.; legacy_id:ai-ny-003",
       "lat": 43.01,
-      "lon": -73.8199,
-      "sources": [
-        {
-          "label": "GlobalFoundries Fab 8 — Malta NY",
-          "url": "https://gf.com/"
-        }
-      ]
+      "lon": -73.8199
     },
     {
       "id": "fc-3bd2179f18",
@@ -31528,11 +31972,263 @@
       "county_fips": "04003",
       "notes": "Primary Army network management and enterprise IT data center; supports Army-wide network operations, defensive cyber, and Army Cyber Command missions.; legacy_id:ai-az-001",
       "lat": 31.5437,
-      "lon": -110.3445,
+      "lon": -110.3445
+    },
+    {
+      "id": "fc-d08f307677",
+      "name": "Amazon AWS - Richmond County NC Data Center",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "37153",
+      "notes": "AWS planned AI cloud infrastructure campus in Richmond County NC; announced 2024-2025",
+      "lat": 35.0,
+      "lon": -79.77,
       "sources": [
         {
-          "label": "U.S. Army Network Enterprise Technology Command (NETCOM)",
-          "url": "https://www.netcom.army.mil/"
+          "label": "Amazon Web Services",
+          "url": "https://www.aboutamazon.com/news/aws/aws-investment-north-carolina-ai-cloud-infrastructure"
+        }
+      ]
+    },
+    {
+      "id": "fc-02cf923538",
+      "name": "Amazon AWS - Warren County MS Data Center",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "28149",
+      "notes": "Amazon $3 billion data center investment in Warren County MS; announced 2024",
+      "lat": 32.35,
+      "lon": -90.9,
+      "sources": [
+        {
+          "label": "Amazon Web Services",
+          "url": "https://www.aboutamazon.com/news/company-news/amazon-3-billion-mississippi-data-center-investment"
+        }
+      ]
+    },
+    {
+      "id": "fc-7c57897e31",
+      "name": "Amazon AWS - Butts County GA Data Center",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "13045",
+      "notes": "AWS planned AI cloud infrastructure campus in Butts County GA",
+      "lat": 33.28,
+      "lon": -84.0,
+      "sources": [
+        {
+          "label": "Amazon Web Services",
+          "url": "https://www.aboutamazon.com/news/aws/aws-investment-georgia-ai-cloud-infrastructure"
+        }
+      ]
+    },
+    {
+      "id": "fc-1e1498b7eb",
+      "name": "Amazon AWS - Douglas County GA Data Center",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "13097",
+      "notes": "AWS planned AI cloud infrastructure campus in Douglas County GA",
+      "lat": 33.75,
+      "lon": -84.75,
+      "sources": [
+        {
+          "label": "Amazon Web Services",
+          "url": "https://www.aboutamazon.com/news/aws/aws-investment-georgia-ai-cloud-infrastructure"
+        }
+      ]
+    },
+    {
+      "id": "fc-96d29297c7",
+      "name": "Amazon AWS - Falls Township PA Data Center",
+      "operator": "Amazon Web Services",
+      "status": "planned",
+      "county_fips": "42017",
+      "notes": "AWS approved data center campus in Falls Township, Bucks County PA",
+      "lat": 40.19,
+      "lon": -74.79,
+      "sources": [
+        {
+          "label": "Amazon Web Services",
+          "url": "https://www.fallstwp.com/resources/news/article/?id=10070"
+        }
+      ]
+    },
+    {
+      "id": "fc-919c9f6fd0",
+      "name": "Microsoft AI Campus - Fulton County GA",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "13121",
+      "notes": "Microsoft next US datacenter region spanning Fulton and Douglas counties GA; announced 2024",
+      "lat": 33.59,
+      "lon": -84.54,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://azure.microsoft.com/en-us/blog/microsoft-will-establish-its-next-us-datacenter-region-in-georgia-s-fulton-and-douglas-counties/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6f881c077f",
+      "name": "Microsoft AI Campus - Medina County TX",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "48325",
+      "notes": "Microsoft filed for data center campus outside San Antonio in Castroville TX, Medina County",
+      "lat": 29.36,
+      "lon": -98.87,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://www.datacenterdynamics.com/en/news/microsoft-files-for-data-center-campus-outside-san-antonio/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b50f4cd960",
+      "name": "Google Data Center - Fort Wayne IN",
+      "operator": "Google",
+      "status": "existing",
+      "county_fips": "18003",
+      "notes": "Google $2B data center now operational in Fort Wayne Allen County IN; ~2024-2025",
+      "lat": 41.08,
+      "lon": -85.14,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://www.datacenterdynamics.com/en/news/googles-2bn-data-center-now-operational-in-fort-wayne-indiana/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f98598515a",
+      "name": "Google Data Center - Ridgeville SC",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "45035",
+      "notes": "Google planned data center in Ridgeville SC, Dorchester County; announced 2025",
+      "lat": 33.1,
+      "lon": -80.32,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://blog.google/company-news/inside-google/company-announcements/google-american-innovation-south-carolina/"
+        }
+      ]
+    },
+    {
+      "id": "fc-10e4798b86",
+      "name": "Google Data Center - St. George SC",
+      "operator": "Google",
+      "status": "planned",
+      "county_fips": "45035",
+      "notes": "Google planned data center in St. George SC, Dorchester County; announced 2025",
+      "lat": 33.18,
+      "lon": -80.58,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://blog.google/company-news/inside-google/company-announcements/google-american-innovation-south-carolina/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9d1eb6948e",
+      "name": "Meta Data Center - Richland Parish LA",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "22083",
+      "notes": "Meta data center under construction in Richland Parish LA; official page on Meta datacenters site",
+      "lat": 32.47,
+      "lon": -91.75,
+      "sources": [
+        {
+          "label": "Meta Platforms",
+          "url": "https://datacenters.atmeta.com/richland-parish-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d4f17da3d9",
+      "name": "Meta Data Center - Platte County MO",
+      "operator": "Meta Platforms",
+      "status": "existing",
+      "county_fips": "29165",
+      "notes": "Meta Kansas City data center in Platte County MO, announced operational 2025",
+      "lat": 39.39,
+      "lon": -94.77,
+      "sources": [
+        {
+          "label": "Meta Platforms",
+          "url": "https://about.fb.com/news/2025/08/metas-kansas-city-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9d1bcce0e6",
+      "name": "CoreWeave Data Center - Las Vegas NV",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "CoreWeave AI cloud data center in Las Vegas NV, specialized cloud capabilities for West Coast",
+      "lat": 36.17,
+      "lon": -115.14,
+      "sources": [
+        {
+          "label": "CoreWeave",
+          "url": "https://www.coreweave.com/blog/coreweave-opens-new-data-center-in-las-vegas-opening-specialized-cloud-capabilities-for-west-coast-firms"
+        }
+      ]
+    },
+    {
+      "id": "fc-774e5d9a89",
+      "name": "CoreWeave AI Data Center - Lancaster PA",
+      "operator": "CoreWeave",
+      "status": "planned",
+      "county_fips": "42071",
+      "notes": "CoreWeave multi-billion dollar AI data center commitment in Lancaster County PA, 2025",
+      "lat": 40.04,
+      "lon": -76.31,
+      "sources": [
+        {
+          "label": "CoreWeave",
+          "url": "https://investors.coreweave.com/news/news-details/2025/CoreWeave-Announces-Multi-Billion-Dollar-Commitment-to-AI-Infrastructure-in-Pennsylvania/default.aspx"
+        }
+      ]
+    },
+    {
+      "id": "fc-47cb08a7fd",
+      "name": "Applied Digital - Polaris Forge 2 Harwood ND",
+      "operator": "Applied Digital",
+      "status": "planned",
+      "county_fips": "38017",
+      "notes": "Applied Digital Polaris Forge 2 campus in Cass County ND; $3B, 1GW HPC campus; announced 2025",
+      "lat": 46.97,
+      "lon": -96.92,
+      "capacity_mw": 1000.0,
+      "sources": [
+        {
+          "label": "Applied Digital",
+          "url": "https://ir.applieddigital.com/news-events/press-releases/detail/127/applied-digital-to-break-ground-on-3-billion-polaris-forge"
+        }
+      ]
+    },
+    {
+      "id": "fc-6aa5fa0b2c",
+      "name": "Crusoe Energy - Abilene TX Campus 2",
+      "operator": "Crusoe Energy",
+      "status": "planned",
+      "county_fips": "48441",
+      "notes": "Crusoe 900 MW AI factory Campus 2 in Abilene TX to support Microsoft AI; announced 2025",
+      "lat": 32.45,
+      "lon": -99.73,
+      "capacity_mw": 900.0,
+      "sources": [
+        {
+          "label": "Crusoe Energy",
+          "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure"
         }
       ]
     }
@@ -31927,5 +32623,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-16T05:54:29Z"
+  "_facilities_exported_at": "2026-07-19T04:51:19Z"
 }
