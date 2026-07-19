@@ -41731,6 +41731,1478 @@
           "url": "https://www.cloudflare.com/network/"
         }
       ]
+    },
+    {
+      "id": "fc-099bb18f7d",
+      "name": "Hurricane Electric Data Center - Fremont CA",
+      "operator": "Hurricane Electric",
+      "status": "existing",
+      "county_fips": "06001",
+      "notes": "Hurricane Electric main data center Fremont CA; major internet exchange/transit hub",
+      "lat": 37.563,
+      "lon": -122.0593,
+      "sources": [
+        {
+          "label": "Hurricane Electric",
+          "url": "https://he.net/data-center.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-4d88014da1",
+      "name": "Hurricane Electric Data Center - Chicago IL",
+      "operator": "Hurricane Electric",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Hurricane Electric Chicago IL POP/data center",
+      "lat": 41.8827,
+      "lon": -87.6233,
+      "sources": [
+        {
+          "label": "Hurricane Electric",
+          "url": "https://he.net/data-center.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-6e09291264",
+      "name": "Hurricane Electric Data Center - Dallas TX",
+      "operator": "Hurricane Electric",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Hurricane Electric Dallas TX POP/data center",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "Hurricane Electric",
+          "url": "https://he.net/data-center.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-b728b7e590",
+      "name": "Hurricane Electric Data Center - New York NY",
+      "operator": "Hurricane Electric",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "Hurricane Electric New York NY POP/data center",
+      "lat": 40.7128,
+      "lon": -74.006,
+      "sources": [
+        {
+          "label": "Hurricane Electric",
+          "url": "https://he.net/data-center.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-21305c09a6",
+      "name": "Hurricane Electric Data Center - Los Angeles CA",
+      "operator": "Hurricane Electric",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Hurricane Electric Los Angeles CA; 1 Wilshire POP",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "sources": [
+        {
+          "label": "Hurricane Electric",
+          "url": "https://he.net/data-center.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-1212d4a3d1",
+      "name": "Hurricane Electric Data Center - Atlanta GA",
+      "operator": "Hurricane Electric",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Hurricane Electric Atlanta GA POP/data center",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Hurricane Electric",
+          "url": "https://he.net/data-center.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-f118586afc",
+      "name": "Hurricane Electric Data Center - Miami FL",
+      "operator": "Hurricane Electric",
+      "status": "existing",
+      "county_fips": "12086",
+      "notes": "Hurricane Electric Miami FL POP/data center",
+      "lat": 25.7617,
+      "lon": -80.1918,
+      "sources": [
+        {
+          "label": "Hurricane Electric",
+          "url": "https://he.net/data-center.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-913cf0dde4",
+      "name": "Hurricane Electric Data Center - Seattle WA",
+      "operator": "Hurricane Electric",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Hurricane Electric Seattle WA POP/data center",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "sources": [
+        {
+          "label": "Hurricane Electric",
+          "url": "https://he.net/data-center.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-7af562a759",
+      "name": "Hurricane Electric Data Center - Phoenix AZ",
+      "operator": "Hurricane Electric",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Hurricane Electric Phoenix AZ POP/data center",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Hurricane Electric",
+          "url": "https://he.net/data-center.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-7733724645",
+      "name": "Hurricane Electric Data Center - San Jose CA",
+      "operator": "Hurricane Electric",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Hurricane Electric San Jose CA POP/data center; 55 S Market",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "sources": [
+        {
+          "label": "Hurricane Electric",
+          "url": "https://he.net/data-center.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-c4df33618d",
+      "name": "Deloitte Data Center - Gilbert AZ",
+      "operator": "Deloitte",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Deloitte data center Gilbert AZ; major accounting/consulting firm enterprise DC",
+      "lat": 33.3528,
+      "lon": -111.789,
+      "sources": [
+        {
+          "label": "Deloitte",
+          "url": "https://www2.deloitte.com/us/en/pages/about-deloitte/articles/about-deloitte.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-5bf8280687",
+      "name": "Ernst & Young Data Center - Alpharetta GA",
+      "operator": "Ernst & Young",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "EY Alpharetta GA enterprise data center",
+      "lat": 34.0754,
+      "lon": -84.2941,
+      "sources": [
+        {
+          "label": "Ernst & Young",
+          "url": "https://www.ey.com/en_us/about-us"
+        }
+      ]
+    },
+    {
+      "id": "fc-95c2198bca",
+      "name": "PwC Data Center - Tampa FL",
+      "operator": "PricewaterhouseCoopers",
+      "status": "existing",
+      "county_fips": "12057",
+      "notes": "PwC PricewaterhouseCoopers Tampa FL data center",
+      "lat": 27.9506,
+      "lon": -82.4572,
+      "sources": [
+        {
+          "label": "PricewaterhouseCoopers",
+          "url": "https://www.pwc.com/us/en/about-us.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-f8f4c59b2f",
+      "name": "McDonald's Data Center - Chicago IL",
+      "operator": "McDonald's Corporation",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "McDonald's Corporation Chicago IL headquarters area data center",
+      "lat": 41.8827,
+      "lon": -87.6233,
+      "sources": [
+        {
+          "label": "McDonald's Corporation",
+          "url": "https://corporate.mcdonalds.com/corpmcd/en-us/our-company/"
+        }
+      ]
+    },
+    {
+      "id": "fc-fcea165fa4",
+      "name": "PepsiCo Data Center - Purchase NY",
+      "operator": "PepsiCo Inc",
+      "status": "existing",
+      "county_fips": "36119",
+      "notes": "PepsiCo Purchase NY headquarters data center",
+      "lat": 41.0534,
+      "lon": -73.7137,
+      "sources": [
+        {
+          "label": "PepsiCo Inc",
+          "url": "https://www.pepsico.com/our-company/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b20a3b1ccb",
+      "name": "Coca-Cola Data Center - Atlanta GA",
+      "operator": "The Coca-Cola Company",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "The Coca-Cola Company Atlanta GA headquarters data center",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "The Coca-Cola Company",
+          "url": "https://www.coca-colacompany.com/company/about-us"
+        }
+      ]
+    },
+    {
+      "id": "fc-7de4c8f79f",
+      "name": "CACI International Data Center - Arlington VA",
+      "operator": "CACI International",
+      "status": "existing",
+      "county_fips": "51013",
+      "notes": "CACI International Arlington VA headquarters data center",
+      "lat": 38.8816,
+      "lon": -77.091,
+      "sources": [
+        {
+          "label": "CACI International",
+          "url": "https://www.caci.com/company/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e62997614f",
+      "name": "Peraton Data Center - Herndon VA",
+      "operator": "Peraton",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "Peraton Herndon VA data center; intelligence community IT services",
+      "lat": 38.9695,
+      "lon": -77.3861,
+      "sources": [
+        {
+          "label": "Peraton",
+          "url": "https://www.peraton.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3a64fe8746",
+      "name": "T-Mobile US Data Center - Bellevue WA",
+      "operator": "T-Mobile US",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "T-Mobile US headquarters Bellevue WA data center",
+      "lat": 47.6101,
+      "lon": -122.2015,
+      "sources": [
+        {
+          "label": "T-Mobile US",
+          "url": "https://www.t-mobile.com/company/about-t-mobile"
+        }
+      ]
+    },
+    {
+      "id": "fc-e7a041c330",
+      "name": "T-Mobile US Data Center - Overland Park KS",
+      "operator": "T-Mobile US",
+      "status": "existing",
+      "county_fips": "20091",
+      "notes": "T-Mobile US Overland Park KS Sprint HQ legacy data center",
+      "lat": 38.9822,
+      "lon": -94.6708,
+      "sources": [
+        {
+          "label": "T-Mobile US",
+          "url": "https://www.t-mobile.com/company/about-t-mobile"
+        }
+      ]
+    },
+    {
+      "id": "fc-f49c1f67c3",
+      "name": "Charter Communications / Spectrum Data Center - Stamford CT",
+      "operator": "Charter Communications",
+      "status": "existing",
+      "county_fips": "09001",
+      "notes": "Charter Communications Stamford CT headquarters data center",
+      "lat": 41.0534,
+      "lon": -73.5387,
+      "sources": [
+        {
+          "label": "Charter Communications",
+          "url": "https://corporate.charter.com/about"
+        }
+      ]
+    },
+    {
+      "id": "fc-884b682f13",
+      "name": "CenterSquare Data Centers - Phoenix AZ",
+      "operator": "Centersquare",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "CenterSquare Data Centers Phoenix AZ",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Centersquare",
+          "url": "https://centersquaredatacenters.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-071c10d827",
+      "name": "CenterSquare Data Centers - Nashville TN",
+      "operator": "Centersquare",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "CenterSquare Data Centers Nashville TN",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "sources": [
+        {
+          "label": "Centersquare",
+          "url": "https://centersquaredatacenters.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d2cce9095d",
+      "name": "CenterSquare Data Centers - Chicago IL",
+      "operator": "Centersquare",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "CenterSquare Data Centers Chicago IL",
+      "lat": 41.8827,
+      "lon": -87.6233,
+      "sources": [
+        {
+          "label": "Centersquare",
+          "url": "https://centersquaredatacenters.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f20485fe00",
+      "name": "Medtronic Data Center - Fridley MN",
+      "operator": "Medtronic",
+      "status": "existing",
+      "county_fips": "27003",
+      "notes": "Medtronic corporate IT data center at Fridley MN world HQ campus",
+      "lat": 45.0858,
+      "lon": -93.2577,
+      "sources": [
+        {
+          "label": "Medtronic",
+          "url": "https://www.medtronic.com/us-en/about/locations.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-dbd354bd47",
+      "name": "Abbott Laboratories Data Center - Abbott Park IL",
+      "operator": "Abbott Laboratories",
+      "status": "existing",
+      "county_fips": "17097",
+      "notes": "Abbott IT data center at Abbott Park IL global headquarters campus",
+      "lat": 42.1567,
+      "lon": -87.9456,
+      "sources": [
+        {
+          "label": "Abbott Laboratories",
+          "url": "https://www.abbott.com/about-abbott/our-locations.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-e5c6927eb1",
+      "name": "Baxter International Data Center - Deerfield IL",
+      "operator": "Baxter International",
+      "status": "existing",
+      "county_fips": "17097",
+      "notes": "Baxter International IT data center at Deerfield IL global HQ",
+      "lat": 42.17,
+      "lon": -87.8445,
+      "sources": [
+        {
+          "label": "Baxter International",
+          "url": "https://www.baxter.com/baxter-newsroom/about-baxter"
+        }
+      ]
+    },
+    {
+      "id": "fc-2de609425a",
+      "name": "Becton Dickinson Data Center - Franklin Lakes NJ",
+      "operator": "Becton Dickinson",
+      "status": "existing",
+      "county_fips": "34003",
+      "notes": "BD (Becton, Dickinson) corporate IT data center at Franklin Lakes NJ HQ",
+      "lat": 41.1168,
+      "lon": -74.2052,
+      "sources": [
+        {
+          "label": "Becton Dickinson",
+          "url": "https://www.bd.com/en-us/about-bd/corporate-information/our-locations"
+        }
+      ]
+    },
+    {
+      "id": "fc-b926188424",
+      "name": "Johnson and Johnson Data Center - New Brunswick NJ",
+      "operator": "Johnson & Johnson",
+      "status": "existing",
+      "county_fips": "34023",
+      "notes": "J&J corporate IT data center at New Brunswick NJ world headquarters",
+      "lat": 40.4862,
+      "lon": -74.4518,
+      "sources": [
+        {
+          "label": "Johnson & Johnson",
+          "url": "https://www.jnj.com/about-jnj/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6c5430533a",
+      "name": "Bristol-Myers Squibb Data Center - Lawrenceville NJ",
+      "operator": "Bristol-Myers Squibb",
+      "status": "existing",
+      "county_fips": "34021",
+      "notes": "BMS corporate IT data center at Lawrenceville NJ campus",
+      "lat": 40.2926,
+      "lon": -74.7371,
+      "sources": [
+        {
+          "label": "Bristol-Myers Squibb",
+          "url": "https://www.bms.com/about-us/our-company/global-locations.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-d75df845b3",
+      "name": "Sentara Healthcare Data Center - Norfolk VA",
+      "operator": "Sentara Healthcare",
+      "status": "existing",
+      "county_fips": "51710",
+      "notes": "Sentara Healthcare IT data center Norfolk VA system headquarters",
+      "lat": 36.8508,
+      "lon": -76.2859,
+      "sources": [
+        {
+          "label": "Sentara Healthcare",
+          "url": "https://www.sentara.com/about"
+        }
+      ]
+    },
+    {
+      "id": "fc-2d1ed469c9",
+      "name": "Trinity Health Data Center - Livonia MI",
+      "operator": "Trinity Health",
+      "status": "existing",
+      "county_fips": "26163",
+      "notes": "Trinity Health system IT data center Livonia MI national headquarters",
+      "lat": 42.3681,
+      "lon": -83.3527,
+      "sources": [
+        {
+          "label": "Trinity Health",
+          "url": "https://www.trinity-health.org/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a8a8af5e41",
+      "name": "Atrium Health Data Center - Charlotte NC",
+      "operator": "Atrium Health",
+      "status": "existing",
+      "county_fips": "37119",
+      "notes": "Atrium Health IT data center Charlotte NC; major Southeastern health system",
+      "lat": 35.2271,
+      "lon": -80.8431,
+      "sources": [
+        {
+          "label": "Atrium Health",
+          "url": "https://atriumhealth.org/about-us/who-we-are"
+        }
+      ]
+    },
+    {
+      "id": "fc-4e1a661764",
+      "name": "WellSpan Health Data Center - York PA",
+      "operator": "WellSpan Health",
+      "status": "existing",
+      "county_fips": "42133",
+      "notes": "WellSpan Health IT data center York PA system headquarters",
+      "lat": 39.9626,
+      "lon": -76.7277,
+      "sources": [
+        {
+          "label": "WellSpan Health",
+          "url": "https://www.wellspan.org/about"
+        }
+      ]
+    },
+    {
+      "id": "fc-88206f9ee7",
+      "name": "Geisinger Health Data Center - Danville PA",
+      "operator": "Geisinger",
+      "status": "existing",
+      "county_fips": "42093",
+      "notes": "Geisinger Health System IT data center Danville PA system headquarters",
+      "lat": 40.9634,
+      "lon": -76.6058,
+      "sources": [
+        {
+          "label": "Geisinger",
+          "url": "https://www.geisinger.org/about-geisinger"
+        }
+      ]
+    },
+    {
+      "id": "fc-1bbf75a59d",
+      "name": "City of Denver Technology Services Data Center - Denver CO",
+      "operator": "City and County of Denver",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Denver Technology Services consolidated data center for city/county operations",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "City and County of Denver",
+          "url": "https://www.denvergov.org/Government/Departments/Technology-Services"
+        }
+      ]
+    },
+    {
+      "id": "fc-c857f23dff",
+      "name": "Tarrant County Information Technology Data Center - Fort Worth TX",
+      "operator": "Tarrant County",
+      "status": "existing",
+      "county_fips": "48439",
+      "notes": "Tarrant County IT data center Fort Worth TX",
+      "lat": 32.7555,
+      "lon": -97.3308,
+      "sources": [
+        {
+          "label": "Tarrant County",
+          "url": "https://www.tarrantcounty.com/en/information-technology.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-f2069a14c5",
+      "name": "Bexar County Information Technology Data Center - San Antonio TX",
+      "operator": "Bexar County",
+      "status": "existing",
+      "county_fips": "48029",
+      "notes": "Bexar County IT data center San Antonio TX",
+      "lat": 29.4241,
+      "lon": -98.4936,
+      "sources": [
+        {
+          "label": "Bexar County",
+          "url": "https://www.bexar.org/1783/Information-Technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-ed072b81a5",
+      "name": "Multnomah County Information Technology Data Center - Portland OR",
+      "operator": "Multnomah County",
+      "status": "existing",
+      "county_fips": "41051",
+      "notes": "Multnomah County IT data center Portland OR",
+      "lat": 45.5051,
+      "lon": -122.675,
+      "sources": [
+        {
+          "label": "Multnomah County",
+          "url": "https://multco.us/county-management/information-technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-cc0f8d25c6",
+      "name": "Travis County Information Technology Data Center - Austin TX",
+      "operator": "Travis County",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "Travis County IT data center Austin TX",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "sources": [
+        {
+          "label": "Travis County",
+          "url": "https://www.traviscountytx.gov/information-technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-c3050ae369",
+      "name": "Hennepin County Information Technology Data Center - Minneapolis MN",
+      "operator": "Hennepin County",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Hennepin County IT data center Minneapolis MN",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "sources": [
+        {
+          "label": "Hennepin County",
+          "url": "https://www.hennepin.us/business/work-with-hennepin-county/information-technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-d55d3b2892",
+      "name": "City of St. Louis Information Technology Services Data Center - St. Louis MO",
+      "operator": "City of St. Louis",
+      "status": "existing",
+      "county_fips": "29510",
+      "notes": "St. Louis city IT data center",
+      "lat": 38.627,
+      "lon": -90.1994,
+      "sources": [
+        {
+          "label": "City of St. Louis",
+          "url": "https://www.stlouis-mo.gov/government/departments/information-technology/"
+        }
+      ]
+    },
+    {
+      "id": "fc-64d931f661",
+      "name": "Snohomish County Information Technology Data Center - Everett WA",
+      "operator": "Snohomish County",
+      "status": "existing",
+      "county_fips": "53061",
+      "notes": "Snohomish County IT data center Everett WA",
+      "lat": 47.979,
+      "lon": -122.2021,
+      "sources": [
+        {
+          "label": "Snohomish County",
+          "url": "https://snohomishcountywa.gov/1596/Information-Technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-68a2874f58",
+      "name": "Yale Center for Research Computing - New Haven CT",
+      "operator": "Yale University",
+      "status": "existing",
+      "county_fips": "09009",
+      "notes": "Yale YCRC high-performance computing facility New Haven CT",
+      "lat": 41.3082,
+      "lon": -72.9282,
+      "sources": [
+        {
+          "label": "Yale University",
+          "url": "https://research.computing.yale.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-93ef5ede6b",
+      "name": "University of Florida Research Computing - Gainesville FL",
+      "operator": "University of Florida",
+      "status": "existing",
+      "county_fips": "12001",
+      "notes": "UF Research Computing - HiPerGator HPC cluster Gainesville FL",
+      "lat": 29.6516,
+      "lon": -82.3248,
+      "sources": [
+        {
+          "label": "University of Florida",
+          "url": "https://www.rc.ufl.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-14e75d937a",
+      "name": "University of Minnesota Supercomputing Institute - Minneapolis MN",
+      "operator": "University of Minnesota",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "UMN MSI - Minnesota Supercomputing Institute HPC facility Minneapolis",
+      "lat": 44.974,
+      "lon": -93.2277,
+      "sources": [
+        {
+          "label": "University of Minnesota",
+          "url": "https://www.msi.umn.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-654d7d9b31",
+      "name": "University of Maryland High Performance Computing - College Park MD",
+      "operator": "University of Maryland",
+      "status": "existing",
+      "county_fips": "24033",
+      "notes": "UMD HPCC high-performance computing center College Park MD",
+      "lat": 38.9807,
+      "lon": -76.9369,
+      "sources": [
+        {
+          "label": "University of Maryland",
+          "url": "https://hpcc.umd.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b38b395c9b",
+      "name": "Rutgers University Office of Advanced Research Computing - Piscataway NJ",
+      "operator": "Rutgers University",
+      "status": "existing",
+      "county_fips": "34023",
+      "notes": "Rutgers OARC HPC data center Piscataway NJ",
+      "lat": 40.499,
+      "lon": -74.3999,
+      "sources": [
+        {
+          "label": "Rutgers University",
+          "url": "https://oarc.rutgers.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-489d6bb7af",
+      "name": "University of Wisconsin Center for High Throughput Computing - Madison WI",
+      "operator": "University of Wisconsin-Madison",
+      "status": "existing",
+      "county_fips": "55025",
+      "notes": "UW-Madison CHTC high-throughput computing facility Madison WI",
+      "lat": 43.0763,
+      "lon": -89.4125,
+      "sources": [
+        {
+          "label": "University of Wisconsin-Madison",
+          "url": "https://chtc.cs.wisc.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-bb63c8eb95",
+      "name": "Hewlett Packard Enterprise Data Center - Spring TX",
+      "operator": "Hewlett Packard Enterprise",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "HPE corporate IT data center Spring TX (Houston area) headquarters",
+      "lat": 30.0799,
+      "lon": -95.4172,
+      "sources": [
+        {
+          "label": "Hewlett Packard Enterprise",
+          "url": "https://www.hpe.com/us/en/contact-hpe.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-68c6bc6940",
+      "name": "DXC Technology Data Center - Tysons VA",
+      "operator": "DXC Technology",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "DXC Technology IT services company data center Tysons VA HQ",
+      "lat": 38.92,
+      "lon": -77.23,
+      "sources": [
+        {
+          "label": "DXC Technology",
+          "url": "https://www.dxc.com/us/en/about-dxc"
+        }
+      ]
+    },
+    {
+      "id": "fc-12ecbefe23",
+      "name": "ManTech International Data Center - Fairfax VA",
+      "operator": "ManTech International",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "ManTech International defense IT contractor data center Fairfax VA",
+      "lat": 38.8462,
+      "lon": -77.3064,
+      "sources": [
+        {
+          "label": "ManTech International",
+          "url": "https://www.mantech.com/about"
+        }
+      ]
+    },
+    {
+      "id": "fc-0e22b54775",
+      "name": "Nissan North America Data Center - Franklin TN",
+      "operator": "Nissan North America",
+      "status": "existing",
+      "county_fips": "47187",
+      "notes": "Nissan North America IT data center Franklin TN corporate HQ",
+      "lat": 35.9251,
+      "lon": -86.8689,
+      "sources": [
+        {
+          "label": "Nissan North America",
+          "url": "https://www.nissanusa.com/about-us.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-4cbf278612",
+      "name": "Kia America Data Center - Irvine CA",
+      "operator": "Kia America",
+      "status": "existing",
+      "county_fips": "06059",
+      "notes": "Kia America IT data center Irvine CA US headquarters",
+      "lat": 33.6846,
+      "lon": -117.8265,
+      "sources": [
+        {
+          "label": "Kia America",
+          "url": "https://www.kia.com/us/en/about-kia"
+        }
+      ]
+    },
+    {
+      "id": "fc-6e330ddf80",
+      "name": "Deft Data Centers - Chicago IL",
+      "operator": "Deft",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Deft (formerly ServerCentral) colocation and managed hosting Chicago IL",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "sources": [
+        {
+          "label": "Deft",
+          "url": "https://deft.com/data-centers/chicago/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0966a10775",
+      "name": "Lifeline Data Centers - Plainfield IN",
+      "operator": "Lifeline Data Centers",
+      "status": "existing",
+      "county_fips": "18063",
+      "notes": "Lifeline Data Centers Plainfield IN carrier-neutral colocation",
+      "lat": 39.7042,
+      "lon": -86.3994,
+      "sources": [
+        {
+          "label": "Lifeline Data Centers",
+          "url": "https://lifelinedatacenters.com/data-centers/indiana/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d12a3f895e",
+      "name": "Procter and Gamble Data Center - Cincinnati OH",
+      "operator": "Procter & Gamble",
+      "status": "existing",
+      "county_fips": "39061",
+      "notes": "Procter & Gamble IT data center Cincinnati OH global HQ campus",
+      "lat": 39.1031,
+      "lon": -84.512,
+      "sources": [
+        {
+          "label": "Procter & Gamble",
+          "url": "https://www.pg.com/en_US/company/about_pg.shtml"
+        }
+      ]
+    },
+    {
+      "id": "fc-6cedad6e30",
+      "name": "Cuyahoga County Department of Information Technology - Cleveland OH",
+      "operator": "Cuyahoga County",
+      "status": "existing",
+      "county_fips": "39035",
+      "notes": "Cuyahoga County IT data center Cleveland OH",
+      "lat": 41.4993,
+      "lon": -81.6944,
+      "sources": [
+        {
+          "label": "Cuyahoga County",
+          "url": "https://www.cuyahogacounty.us/government/department/details/Department-of-Information-Technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-8090be9dce",
+      "name": "Wake County Technology Solutions Data Center - Raleigh NC",
+      "operator": "Wake County",
+      "status": "existing",
+      "county_fips": "37183",
+      "notes": "Wake County Technology Solutions data center Raleigh NC",
+      "lat": 35.7796,
+      "lon": -78.6382,
+      "sources": [
+        {
+          "label": "Wake County",
+          "url": "https://www.wakegov.com/departments-government/technology-solutions"
+        }
+      ]
+    },
+    {
+      "id": "fc-d066d17b33",
+      "name": "Gwinnett County Information Technology Services - Lawrenceville GA",
+      "operator": "Gwinnett County",
+      "status": "existing",
+      "county_fips": "13135",
+      "notes": "Gwinnett County IT data center Lawrenceville GA",
+      "lat": 33.9526,
+      "lon": -83.988,
+      "sources": [
+        {
+          "label": "Gwinnett County",
+          "url": "https://www.gwinnettcounty.com/portal/gwinnett/Departments/InformationTechnology"
+        }
+      ]
+    },
+    {
+      "id": "fc-de7ff87a62",
+      "name": "Hillsborough County Information Technology Data Center - Tampa FL",
+      "operator": "Hillsborough County",
+      "status": "existing",
+      "county_fips": "12057",
+      "notes": "Hillsborough County IT data center Tampa FL",
+      "lat": 27.9506,
+      "lon": -82.4572,
+      "sources": [
+        {
+          "label": "Hillsborough County",
+          "url": "https://www.hillsboroughcounty.org/en/government/departments/it"
+        }
+      ]
+    },
+    {
+      "id": "fc-38c39a987b",
+      "name": "Hamilton County Information Technology Data Center - Cincinnati OH",
+      "operator": "Hamilton County",
+      "status": "existing",
+      "county_fips": "39061",
+      "notes": "Hamilton County IT data center Cincinnati OH",
+      "lat": 39.1031,
+      "lon": -84.512,
+      "sources": [
+        {
+          "label": "Hamilton County",
+          "url": "https://www.hamilton-co.org/departments/information-technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-bbe22ef629",
+      "name": "City of Memphis Information Systems - Memphis TN",
+      "operator": "City of Memphis",
+      "status": "existing",
+      "county_fips": "47157",
+      "notes": "City of Memphis IT data center",
+      "lat": 35.1495,
+      "lon": -90.049,
+      "sources": [
+        {
+          "label": "City of Memphis",
+          "url": "https://www.memphistn.gov/government/information-systems/"
+        }
+      ]
+    },
+    {
+      "id": "fc-cd07cf110a",
+      "name": "Louisville Metro Government Technology - Louisville KY",
+      "operator": "Louisville Metro Government",
+      "status": "existing",
+      "county_fips": "21111",
+      "notes": "Louisville Metro IT data center",
+      "lat": 38.2527,
+      "lon": -85.7585,
+      "sources": [
+        {
+          "label": "Louisville Metro Government",
+          "url": "https://louisvilleky.gov/government/technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-6986b2cb76",
+      "name": "City of Columbus Department of Technology - Columbus OH",
+      "operator": "City of Columbus",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "City of Columbus Department of Technology data center",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "sources": [
+        {
+          "label": "City of Columbus",
+          "url": "https://www.columbus.gov/311-service-center/departments/technology/"
+        }
+      ]
+    },
+    {
+      "id": "fc-669df0e628",
+      "name": "City of Baltimore Bureau of Information Technology - Baltimore MD",
+      "operator": "City of Baltimore",
+      "status": "existing",
+      "county_fips": "24510",
+      "notes": "Baltimore city IT data center",
+      "lat": 39.2904,
+      "lon": -76.6122,
+      "sources": [
+        {
+          "label": "City of Baltimore",
+          "url": "https://www.baltimorecity.gov/bureaus-offices/information-technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-bf4a4eda7f",
+      "name": "City of Albuquerque Information Technology Department - Albuquerque NM",
+      "operator": "City of Albuquerque",
+      "status": "existing",
+      "county_fips": "35001",
+      "notes": "City of Albuquerque IT data center",
+      "lat": 35.0844,
+      "lon": -106.6504,
+      "sources": [
+        {
+          "label": "City of Albuquerque",
+          "url": "https://www.cabq.gov/it"
+        }
+      ]
+    },
+    {
+      "id": "fc-7167299fbc",
+      "name": "City of Indianapolis Information Services Agency - Indianapolis IN",
+      "operator": "City of Indianapolis",
+      "status": "existing",
+      "county_fips": "18097",
+      "notes": "Indianapolis Information Services Agency data center",
+      "lat": 39.7684,
+      "lon": -86.1581,
+      "sources": [
+        {
+          "label": "City of Indianapolis",
+          "url": "https://www.indy.gov/activity/information-services-agency"
+        }
+      ]
+    },
+    {
+      "id": "fc-ebe51ec3c3",
+      "name": "City of Detroit Information Technology Services - Detroit MI",
+      "operator": "City of Detroit",
+      "status": "existing",
+      "county_fips": "26163",
+      "notes": "Detroit IT data center",
+      "lat": 42.3314,
+      "lon": -83.0458,
+      "sources": [
+        {
+          "label": "City of Detroit",
+          "url": "https://detroitmi.gov/government/departments/information-technology-services-department"
+        }
+      ]
+    },
+    {
+      "id": "fc-4920282ca5",
+      "name": "City of Sacramento Information Technology Department - Sacramento CA",
+      "operator": "City of Sacramento",
+      "status": "existing",
+      "county_fips": "06067",
+      "notes": "City of Sacramento IT data center",
+      "lat": 38.5816,
+      "lon": -121.4944,
+      "sources": [
+        {
+          "label": "City of Sacramento",
+          "url": "https://www.cityofsacramento.org/information-technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-ebc8ebd362",
+      "name": "City of El Paso Information Technology Department - El Paso TX",
+      "operator": "City of El Paso",
+      "status": "existing",
+      "county_fips": "48141",
+      "notes": "City of El Paso IT data center",
+      "lat": 31.7619,
+      "lon": -106.485,
+      "sources": [
+        {
+          "label": "City of El Paso",
+          "url": "https://www.elpasotexas.gov/information-technology/"
+        }
+      ]
+    },
+    {
+      "id": "fc-320e9706a4",
+      "name": "City of Tucson Information Technology Department - Tucson AZ",
+      "operator": "City of Tucson",
+      "status": "existing",
+      "county_fips": "04019",
+      "notes": "City of Tucson IT data center",
+      "lat": 32.2226,
+      "lon": -110.9747,
+      "sources": [
+        {
+          "label": "City of Tucson",
+          "url": "https://www.tucsonaz.gov/it"
+        }
+      ]
+    },
+    {
+      "id": "fc-693d94c67a",
+      "name": "City of Colorado Springs Office of Innovation and Technology - Colorado Springs CO",
+      "operator": "City of Colorado Springs",
+      "status": "existing",
+      "county_fips": "08041",
+      "notes": "City of Colorado Springs IT data center",
+      "lat": 38.8339,
+      "lon": -104.8214,
+      "sources": [
+        {
+          "label": "City of Colorado Springs",
+          "url": "https://coloradosprings.gov/innovation-technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-2777fedc22",
+      "name": "City of Omaha Information Technology Department - Omaha NE",
+      "operator": "City of Omaha",
+      "status": "existing",
+      "county_fips": "31055",
+      "notes": "City of Omaha IT data center",
+      "lat": 41.2565,
+      "lon": -95.9345,
+      "sources": [
+        {
+          "label": "City of Omaha",
+          "url": "https://www.omaha.gov/information-technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-76a482dbe5",
+      "name": "City of Fresno Information Services Department - Fresno CA",
+      "operator": "City of Fresno",
+      "status": "existing",
+      "county_fips": "06019",
+      "notes": "City of Fresno IT data center",
+      "lat": 36.7378,
+      "lon": -119.7871,
+      "sources": [
+        {
+          "label": "City of Fresno",
+          "url": "https://www.fresno.gov/mayor/departments/information-technology/"
+        }
+      ]
+    },
+    {
+      "id": "fc-fda898c185",
+      "name": "University of Arizona Research Computing - Tucson AZ",
+      "operator": "University of Arizona",
+      "status": "existing",
+      "county_fips": "04019",
+      "notes": "UArizona Research Computing HPC facility Tucson AZ",
+      "lat": 32.2316,
+      "lon": -110.9506,
+      "sources": [
+        {
+          "label": "University of Arizona",
+          "url": "https://it.arizona.edu/research-computing"
+        }
+      ]
+    },
+    {
+      "id": "fc-c57e880fdb",
+      "name": "Colorado State University Research Computing Center - Fort Collins CO",
+      "operator": "Colorado State University",
+      "status": "existing",
+      "county_fips": "08069",
+      "notes": "CSU HPC research computing center Fort Collins CO",
+      "lat": 40.5734,
+      "lon": -105.0865,
+      "sources": [
+        {
+          "label": "Colorado State University",
+          "url": "https://www.research.colostate.edu/hpc/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6e5ecf658a",
+      "name": "West Virginia University Research Computing - Morgantown WV",
+      "operator": "West Virginia University",
+      "status": "existing",
+      "county_fips": "54061",
+      "notes": "WVU research computing and IT infrastructure Morgantown WV",
+      "lat": 39.6295,
+      "lon": -79.9559,
+      "sources": [
+        {
+          "label": "West Virginia University",
+          "url": "https://wvu.edu/about-wvu"
+        }
+      ]
+    },
+    {
+      "id": "fc-61091c0316",
+      "name": "University of New Mexico Center for Advanced Research Computing - Albuquerque NM",
+      "operator": "University of New Mexico",
+      "status": "existing",
+      "county_fips": "35001",
+      "notes": "UNM CARC high-performance computing center Albuquerque NM",
+      "lat": 35.0844,
+      "lon": -106.6255,
+      "sources": [
+        {
+          "label": "University of New Mexico",
+          "url": "https://carc.unm.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6f75973610",
+      "name": "Memorial Hermann Health System Data Center - Houston TX",
+      "operator": "Memorial Hermann Health System",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "Memorial Hermann Health System IT data center Houston TX",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "sources": [
+        {
+          "label": "Memorial Hermann Health System",
+          "url": "https://www.memorialhermann.org/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6dfd875166",
+      "name": "Christus Health Data Center - Irving TX",
+      "operator": "Christus Health",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Christus Health IT data center Irving TX headquarters",
+      "lat": 32.814,
+      "lon": -96.9489,
+      "sources": [
+        {
+          "label": "Christus Health",
+          "url": "https://www.christushealth.org/about-us"
+        }
+      ]
+    },
+    {
+      "id": "fc-eb5ea79d12",
+      "name": "SSM Health Data Center - St. Louis MO",
+      "operator": "SSM Health",
+      "status": "existing",
+      "county_fips": "29510",
+      "notes": "SSM Health IT data center St. Louis MO",
+      "lat": 38.627,
+      "lon": -90.1994,
+      "sources": [
+        {
+          "label": "SSM Health",
+          "url": "https://www.ssmhealth.com/about"
+        }
+      ]
+    },
+    {
+      "id": "fc-5d308c1fe2",
+      "name": "Essentia Health Data Center - Duluth MN",
+      "operator": "Essentia Health",
+      "status": "existing",
+      "county_fips": "27137",
+      "notes": "Essentia Health IT data center Duluth MN headquarters",
+      "lat": 46.7867,
+      "lon": -92.1005,
+      "sources": [
+        {
+          "label": "Essentia Health",
+          "url": "https://www.essentiahealth.org/about"
+        }
+      ]
+    },
+    {
+      "id": "fc-fb015d051a",
+      "name": "Bon Secours Mercy Health Data Center - Cincinnati OH",
+      "operator": "Bon Secours Mercy Health",
+      "status": "existing",
+      "county_fips": "39061",
+      "notes": "Bon Secours Mercy Health IT data center Cincinnati OH",
+      "lat": 39.1031,
+      "lon": -84.512,
+      "sources": [
+        {
+          "label": "Bon Secours Mercy Health",
+          "url": "https://bsmhealth.org/about-us"
+        }
+      ]
+    },
+    {
+      "id": "fc-e3107525d1",
+      "name": "Northwestern Medicine Data Center - Chicago IL",
+      "operator": "Northwestern Medicine",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Northwestern Medicine IT data center Chicago IL",
+      "lat": 41.8936,
+      "lon": -87.6252,
+      "sources": [
+        {
+          "label": "Northwestern Medicine",
+          "url": "https://www.nm.org/about-us"
+        }
+      ]
+    },
+    {
+      "id": "fc-f37f75fe2b",
+      "name": "Liberty Mutual Data Center - Boston MA",
+      "operator": "Liberty Mutual",
+      "status": "existing",
+      "county_fips": "25025",
+      "notes": "Liberty Mutual IT data center Boston MA headquarters",
+      "lat": 42.3601,
+      "lon": -71.0589,
+      "sources": [
+        {
+          "label": "Liberty Mutual",
+          "url": "https://www.libertymutual.com/about"
+        }
+      ]
+    },
+    {
+      "id": "fc-fae3e6f00a",
+      "name": "Erie Insurance Data Center - Erie PA",
+      "operator": "Erie Insurance",
+      "status": "existing",
+      "county_fips": "42049",
+      "notes": "Erie Insurance IT data center Erie PA headquarters",
+      "lat": 42.1292,
+      "lon": -80.0851,
+      "sources": [
+        {
+          "label": "Erie Insurance",
+          "url": "https://www.erieinsurance.com/about-erie/company-information"
+        }
+      ]
+    },
+    {
+      "id": "fc-f6596edcee",
+      "name": "Eaton Corporation Data Center - Beachwood OH",
+      "operator": "Eaton Corporation",
+      "status": "existing",
+      "county_fips": "39035",
+      "notes": "Eaton Corporation IT data center Beachwood OH headquarters",
+      "lat": 41.4781,
+      "lon": -81.5085,
+      "sources": [
+        {
+          "label": "Eaton Corporation",
+          "url": "https://www.eaton.com/us/en-us/company/locations.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-07db232a87",
+      "name": "Rockwell Automation Data Center - Milwaukee WI",
+      "operator": "Rockwell Automation",
+      "status": "existing",
+      "county_fips": "55079",
+      "notes": "Rockwell Automation IT data center Milwaukee WI headquarters",
+      "lat": 43.0389,
+      "lon": -87.9065,
+      "sources": [
+        {
+          "label": "Rockwell Automation",
+          "url": "https://www.rockwellautomation.com/en-us/company/about-us/locations.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-b41449669e",
+      "name": "Dominion Energy Data Center - Richmond VA",
+      "operator": "Dominion Energy",
+      "status": "existing",
+      "county_fips": "51760",
+      "notes": "Dominion Energy IT data center Richmond VA headquarters",
+      "lat": 37.5407,
+      "lon": -77.436,
+      "sources": [
+        {
+          "label": "Dominion Energy",
+          "url": "https://www.dominionenergy.com/company/about-us"
+        }
+      ]
+    },
+    {
+      "id": "fc-bcac10eef5",
+      "name": "Entergy Services Data Center - New Orleans LA",
+      "operator": "Entergy",
+      "status": "existing",
+      "county_fips": "22071",
+      "notes": "Entergy IT data center New Orleans LA headquarters",
+      "lat": 29.9511,
+      "lon": -90.0715,
+      "sources": [
+        {
+          "label": "Entergy",
+          "url": "https://www.entergy.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-47d989f2b6",
+      "name": "Exelon Corporation Data Center - Chicago IL",
+      "operator": "Exelon Corporation",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Exelon utility holding company IT data center Chicago IL",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "sources": [
+        {
+          "label": "Exelon Corporation",
+          "url": "https://www.exeloncorp.com/company"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -44919,6 +46391,134 @@
           "url": "https://kingsborodigital.com/"
         }
       ]
+    },
+    {
+      "id": "fc-90e0895a1b",
+      "name": "Applied Digital Data Center - North Dakota AI Campus",
+      "operator": "Applied Digital Corporation",
+      "status": "existing",
+      "county_fips": "38021",
+      "notes": "Applied Digital Ellendale ND 200 MW HPC campus; GPU compute",
+      "lat": 46.0057,
+      "lon": -98.5193,
+      "sources": [
+        {
+          "label": "Applied Digital Corporation",
+          "url": "https://ir.applieddigital.com/news-releases/news-release-details/applied-digital-announces-new-200-megawatt-hpc-data-center-north-dakota"
+        }
+      ]
+    },
+    {
+      "id": "fc-7417b697c8",
+      "name": "Malachite Technology Park - Corsicana TX",
+      "operator": "Energy Abundance Dev",
+      "status": "planned",
+      "county_fips": "48349",
+      "notes": "Malachite Technology Park Corsicana TX planned AI/GPU campus",
+      "lat": 32.0854,
+      "lon": -96.4689,
+      "sources": [
+        {
+          "label": "Energy Abundance Dev",
+          "url": "https://energyabundance.dev/"
+        }
+      ]
+    },
+    {
+      "id": "fc-32318aca5d",
+      "name": "JGT2 Redevelopment Campus - Marble Falls TX",
+      "operator": "JGT2 Redevelopment",
+      "status": "planned",
+      "county_fips": "48053",
+      "notes": "JGT2 data center campus Marble Falls TX planned",
+      "lat": 30.5782,
+      "lon": -98.2737,
+      "sources": [
+        {
+          "label": "JGT2 Redevelopment",
+          "url": "https://www.jgt2.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9d1ceb95c2",
+      "name": "Amazon AWS Data Center - Nashville TN BNA-1",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "Amazon AWS Nashville TN BNA-1 data center; regional AWS expansion",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "sources": [
+        {
+          "label": "Amazon Web Services",
+          "url": "https://aws.amazon.com/local/"
+        }
+      ]
+    },
+    {
+      "id": "fc-eb6a3ff49a",
+      "name": "Amazon AWS Data Center - Milwaukee WI MKE-1",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "55079",
+      "notes": "Amazon AWS Milwaukee WI MKE-1 data center",
+      "lat": 43.0389,
+      "lon": -87.9065,
+      "sources": [
+        {
+          "label": "Amazon Web Services",
+          "url": "https://aws.amazon.com/local/"
+        }
+      ]
+    },
+    {
+      "id": "fc-968fe704d2",
+      "name": "Amazon AWS Data Center - Kansas City MO MCI-1",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "29095",
+      "notes": "Amazon AWS Kansas City MO MCI-1 data center",
+      "lat": 39.0997,
+      "lon": -94.5786,
+      "sources": [
+        {
+          "label": "Amazon Web Services",
+          "url": "https://aws.amazon.com/local/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f15a8978d5",
+      "name": "Amazon AWS Data Center - Phoenix AZ PHX-1",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Amazon AWS Phoenix AZ PHX-1 data center",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Amazon Web Services",
+          "url": "https://aws.amazon.com/local/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a7811d848a",
+      "name": "Amazon AWS Data Center - Raleigh NC RDU-1",
+      "operator": "Amazon Web Services",
+      "status": "existing",
+      "county_fips": "37183",
+      "notes": "Amazon AWS Raleigh NC RDU-1 data center",
+      "lat": 35.7796,
+      "lon": -78.6382,
+      "sources": [
+        {
+          "label": "Amazon Web Services",
+          "url": "https://aws.amazon.com/local/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -45311,5 +46911,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T18:11:43Z"
+  "_facilities_exported_at": "2026-07-19T18:25:47Z"
 }
