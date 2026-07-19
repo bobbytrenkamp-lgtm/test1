@@ -32119,6 +32119,118 @@
           "url": "https://www.tierpoint.com/data-centers/texas/dallas-allen/"
         }
       ]
+    },
+    {
+      "id": "fc-5c271615c2",
+      "name": "Ark Data Centers - Canton Ohio",
+      "operator": "Ark Data Centers (Involta)",
+      "status": "existing",
+      "county_fips": "39151",
+      "notes": "Ark Data Centers (formerly Involta) Canton OH. 5,600 sqft, redundant 1.5MW generation. Stark County.",
+      "lat": 40.7989,
+      "lon": -81.3784,
+      "sources": [
+        {
+          "label": "Ark Data Centers (Involta)",
+          "url": "https://www.involta.com/data-centers/data-center-locations/ohio/canton"
+        }
+      ]
+    },
+    {
+      "id": "fc-b5fc40fc5d",
+      "name": "Ark Data Centers - Tucson Arizona",
+      "operator": "Ark Data Centers (Involta)",
+      "status": "existing",
+      "county_fips": "04019",
+      "notes": "Ark Data Centers (formerly Involta) Tucson AZ at 1215 E Pennsylvania St. 38,000+ sqft concurrently maintainable. Pima County.",
+      "lat": 32.2217,
+      "lon": -110.9265,
+      "sources": [
+        {
+          "label": "Ark Data Centers (Involta)",
+          "url": "https://www.involta.com/data-centers/data-center-locations/arizona/"
+        }
+      ]
+    },
+    {
+      "id": "fc-76c2dd0be8",
+      "name": "Ark Data Centers - Duluth Minnesota",
+      "operator": "Ark Data Centers (Involta)",
+      "status": "existing",
+      "county_fips": "27137",
+      "notes": "Ark Data Centers (formerly Involta) Duluth MN. 26,000+ sqft concurrently maintainable. St. Louis County.",
+      "lat": 46.7867,
+      "lon": -92.1005,
+      "sources": [
+        {
+          "label": "Ark Data Centers (Involta)",
+          "url": "https://www.involta.com/data-centers/data-center-locations/minnesota/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f34459c19f",
+      "name": "Ark Data Centers - Pittsburgh Pennsylvania",
+      "operator": "Ark Data Centers (Involta)",
+      "status": "existing",
+      "county_fips": "42003",
+      "notes": "Ark Data Centers (formerly Involta) Pittsburgh PA (Northpointe). 39,000+ sqft. Allegheny County.",
+      "lat": 40.4406,
+      "lon": -79.9959,
+      "sources": [
+        {
+          "label": "Ark Data Centers (Involta)",
+          "url": "https://www.involta.com/data-centers/data-center-locations/pennsylvania/"
+        }
+      ]
+    },
+    {
+      "id": "fc-42980d6f53",
+      "name": "Ark Data Centers - Boise Idaho",
+      "operator": "Ark Data Centers (Involta)",
+      "status": "existing",
+      "county_fips": "16001",
+      "notes": "Ark Data Centers (formerly Involta) Boise ID. Ada County.",
+      "lat": 43.615,
+      "lon": -116.2023,
+      "sources": [
+        {
+          "label": "Ark Data Centers (Involta)",
+          "url": "https://www.involta.com/data-centers/data-center-locations/idaho/"
+        }
+      ]
+    },
+    {
+      "id": "fc-69ce505d44",
+      "name": "Digital Realty BOS14 - Needham",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "25021",
+      "notes": "Digital Realty BOS14 at 128 First Avenue, Needham MA (Norfolk County). 314,000 sqft, near Routes 95/90.",
+      "lat": 42.2801,
+      "lon": -71.2273,
+      "sources": [
+        {
+          "label": "Digital Realty",
+          "url": "https://www.digitalrealty.com/data-centers/americas/boston/bos14"
+        }
+      ]
+    },
+    {
+      "id": "fc-87e77455ab",
+      "name": "Digital Realty PHX10 - Phoenix",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Digital Realty PHX10 at 120 East Van Buren Street, Phoenix AZ. 36+ carrier access on fiber crossroad. Maricopa County.",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Digital Realty",
+          "url": "https://www.digitalrealty.com/data-centers/americas/phoenix/phx10"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -32759,6 +32871,62 @@
           "url": "https://www.choosetacomapierce.org/news-events/voltage-park-selects-centeris-data-center/"
         }
       ]
+    },
+    {
+      "id": "fc-2f82357575",
+      "name": "Digital Realty PHX15 - Chandler",
+      "operator": "Digital Realty",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Digital Realty PHX15 at 2121 South Price Road, Chandler AZ. Largest Arizona data center, high-density AI/HPC capable. Maricopa County.",
+      "lat": 33.3062,
+      "lon": -111.8413,
+      "sources": [
+        {
+          "label": "Digital Realty",
+          "url": "https://www.digitalrealty.com/data-centers/americas/phoenix/phx15"
+        }
+      ]
+    },
+    {
+      "id": "fc-e6f3168fad",
+      "name": "Aligned DFW-04 - Plano",
+      "operator": "Aligned Data Centers",
+      "status": "planned",
+      "county_fips": "48085",
+      "notes": "Aligned DFW-04 at 401 N. Star Road, Plano TX. 425,000 sqft liquid-cooled, $700M, completion 2026. Lambda Cloud primary tenant. Collin County.",
+      "lat": 33.0198,
+      "lon": -96.6989,
+      "sources": [
+        {
+          "label": "Aligned Data Centers",
+          "url": "https://aligneddc.com/press-release/aligned-and-lambda-partner-to-power-next-generation-ai-infrastructure-6/"
+        },
+        {
+          "label": "Aligned Data Centers",
+          "url": "https://www.datacenterdynamics.com/en/news/lambda-cloud-to-take-capacity-at-aligneds-dfw-04-dallas-fort-worth-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-de491c1a37",
+      "name": "Lambda Labs AI Data Center - Plano TX (DFW-04)",
+      "operator": "Lambda Labs",
+      "status": "planned",
+      "county_fips": "48085",
+      "notes": "Lambda Labs occupying Aligned DFW-04 at 401 N. Star Road, Plano TX. Liquid-cooled, NVIDIA Blackwell/B200/GB300, $700M project. Microsoft partnership for GPU deployment. Collin County.",
+      "lat": 33.02,
+      "lon": -96.6991,
+      "sources": [
+        {
+          "label": "Lambda Labs",
+          "url": "https://aligneddc.com/press-release/aligned-and-lambda-partner-to-power-next-generation-ai-infrastructure-6/"
+        },
+        {
+          "label": "Lambda Labs",
+          "url": "https://www.datacenterdynamics.com/en/news/lambda-cloud-to-take-capacity-at-aligneds-dfw-04-dallas-fort-worth-data-center/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -33151,5 +33319,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T12:39:22Z"
+  "_facilities_exported_at": "2026-07-19T12:43:06Z"
 }
