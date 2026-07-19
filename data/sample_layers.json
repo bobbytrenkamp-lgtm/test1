@@ -37919,6 +37919,534 @@
           "url": "https://www.stackinfra.com/data-centers/minneapolis/"
         }
       ]
+    },
+    {
+      "id": "fc-0e87ef7dd4",
+      "name": "DC BLOX Data Center - Memphis TN MEM-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "47157",
+      "notes": "DC BLOX Memphis TN MEM-1 colocation",
+      "lat": 35.1495,
+      "lon": -90.049,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/data-centers/memphis/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d0dca7c5df",
+      "name": "DC BLOX Data Center - Knoxville TN KNX-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "47093",
+      "notes": "DC BLOX Knoxville TN KNX-1",
+      "lat": 35.9606,
+      "lon": -83.9207,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/data-centers/knoxville/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ee105cc926",
+      "name": "DC BLOX Data Center - Jackson MS JAN-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "28049",
+      "notes": "DC BLOX Jackson MS JAN-1",
+      "lat": 32.2988,
+      "lon": -90.1848,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/data-centers/jackson/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b99713924d",
+      "name": "DC BLOX Data Center - New Orleans LA MSY-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "22071",
+      "notes": "DC BLOX New Orleans LA MSY-1",
+      "lat": 29.9511,
+      "lon": -90.0715,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/data-centers/new-orleans/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e25efeb4b2",
+      "name": "DC BLOX Data Center - Tampa FL TPA-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "12057",
+      "notes": "DC BLOX Tampa FL TPA-1",
+      "lat": 27.9506,
+      "lon": -82.4572,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/data-centers/tampa/"
+        }
+      ]
+    },
+    {
+      "id": "fc-60f36447aa",
+      "name": "DC BLOX Data Center - Oklahoma City OK OKC-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "40109",
+      "notes": "DC BLOX Oklahoma City OK OKC-1",
+      "lat": 35.4676,
+      "lon": -97.5164,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/data-centers/oklahoma-city/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9be885f777",
+      "name": "DC BLOX Data Center - Montgomery AL MGM-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "01101",
+      "notes": "DC BLOX Montgomery AL MGM-1",
+      "lat": 32.3668,
+      "lon": -86.2999,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/data-centers/montgomery/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2216a62c9d",
+      "name": "DC BLOX Data Center - Charlotte NC CLT-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "37119",
+      "notes": "DC BLOX Charlotte NC CLT-1",
+      "lat": 35.2271,
+      "lon": -80.8431,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/data-centers/charlotte/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2a07bd5d50",
+      "name": "365 Data Centers - Indianapolis IN",
+      "operator": "365 Data Centers",
+      "status": "existing",
+      "county_fips": "18097",
+      "notes": "365 Data Centers Indianapolis IN",
+      "lat": 39.7684,
+      "lon": -86.1581,
+      "sources": [
+        {
+          "label": "365 Data Centers",
+          "url": "https://www.365datacenters.com/data-centers/indianapolis/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9b7ba9ae00",
+      "name": "365 Data Centers - Baltimore MD",
+      "operator": "365 Data Centers",
+      "status": "existing",
+      "county_fips": "24510",
+      "notes": "365 Data Centers Baltimore MD",
+      "lat": 39.2904,
+      "lon": -76.6122,
+      "sources": [
+        {
+          "label": "365 Data Centers",
+          "url": "https://www.365datacenters.com/data-centers/baltimore/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a53fc21447",
+      "name": "365 Data Centers - Nashville TN",
+      "operator": "365 Data Centers",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "365 Data Centers Nashville TN",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "sources": [
+        {
+          "label": "365 Data Centers",
+          "url": "https://www.365datacenters.com/data-centers/nashville/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4051c84e86",
+      "name": "365 Data Centers - Denver CO",
+      "operator": "365 Data Centers",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "365 Data Centers Denver CO",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "365 Data Centers",
+          "url": "https://www.365datacenters.com/data-centers/denver/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b08025559a",
+      "name": "365 Data Centers - Las Vegas NV",
+      "operator": "365 Data Centers",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "365 Data Centers Las Vegas NV",
+      "lat": 36.1699,
+      "lon": -115.1398,
+      "sources": [
+        {
+          "label": "365 Data Centers",
+          "url": "https://www.365datacenters.com/data-centers/las-vegas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-136dbbd1a2",
+      "name": "365 Data Centers - Richmond VA",
+      "operator": "365 Data Centers",
+      "status": "existing",
+      "county_fips": "51760",
+      "notes": "365 Data Centers Richmond VA",
+      "lat": 37.5407,
+      "lon": -77.436,
+      "sources": [
+        {
+          "label": "365 Data Centers",
+          "url": "https://www.365datacenters.com/data-centers/richmond/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3cdf2d240c",
+      "name": "PowerHouse Data Centers - Hillsboro OR",
+      "operator": "PowerHouse Data Centers",
+      "status": "existing",
+      "county_fips": "41067",
+      "notes": "PowerHouse Data Centers Hillsboro OR",
+      "lat": 45.5229,
+      "lon": -122.9898,
+      "sources": [
+        {
+          "label": "PowerHouse Data Centers",
+          "url": "https://www.powerhousedc.com/data-centers/hillsboro/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5c657f3683",
+      "name": "PowerHouse Data Centers - Phoenix AZ",
+      "operator": "PowerHouse Data Centers",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "PowerHouse Data Centers Phoenix AZ",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "PowerHouse Data Centers",
+          "url": "https://www.powerhousedc.com/data-centers/phoenix/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5f38740ab3",
+      "name": "PowerHouse Data Centers - Atlanta GA",
+      "operator": "PowerHouse Data Centers",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "PowerHouse Data Centers Atlanta GA",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "PowerHouse Data Centers",
+          "url": "https://www.powerhousedc.com/data-centers/atlanta/"
+        }
+      ]
+    },
+    {
+      "id": "fc-94d2e8c9e7",
+      "name": "PowerHouse Data Centers - Minneapolis MN",
+      "operator": "PowerHouse Data Centers",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "PowerHouse Data Centers Minneapolis MN",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "sources": [
+        {
+          "label": "PowerHouse Data Centers",
+          "url": "https://www.powerhousedc.com/data-centers/minneapolis/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8a3614c7b5",
+      "name": "PowerHouse Data Centers - Denver CO",
+      "operator": "PowerHouse Data Centers",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "PowerHouse Data Centers Denver CO",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "PowerHouse Data Centers",
+          "url": "https://www.powerhousedc.com/data-centers/denver/"
+        }
+      ]
+    },
+    {
+      "id": "fc-71b37cf284",
+      "name": "Aligned Data Center - Salt Lake City UT SLC-01",
+      "operator": "Aligned Data Centers",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "Aligned Data Centers Salt Lake City UT SLC-01",
+      "lat": 40.6097,
+      "lon": -111.9391,
+      "sources": [
+        {
+          "label": "Aligned Data Centers",
+          "url": "https://www.aligneddc.com/data-centers/salt-lake-city/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ed6f5943c3",
+      "name": "Aligned Data Center - Seattle WA SEA-01",
+      "operator": "Aligned Data Centers",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Aligned Data Centers Seattle WA SEA-01",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "sources": [
+        {
+          "label": "Aligned Data Centers",
+          "url": "https://www.aligneddc.com/data-centers/seattle/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b875e23936",
+      "name": "Aligned Data Center - Minneapolis MN MSP-01",
+      "operator": "Aligned Data Centers",
+      "status": "planned",
+      "county_fips": "27053",
+      "notes": "Aligned Data Centers Minneapolis MN MSP-01 planned campus",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "sources": [
+        {
+          "label": "Aligned Data Centers",
+          "url": "https://www.aligneddc.com/data-centers/minneapolis/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5f16be5425",
+      "name": "Aligned Data Center - Tampa FL TPA-01",
+      "operator": "Aligned Data Centers",
+      "status": "existing",
+      "county_fips": "12057",
+      "notes": "Aligned Data Centers Tampa FL TPA-01",
+      "lat": 27.9506,
+      "lon": -82.4572,
+      "sources": [
+        {
+          "label": "Aligned Data Centers",
+          "url": "https://www.aligneddc.com/data-centers/tampa/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2b9a5a901c",
+      "name": "Stream Data Centers - San Jose CA SJC-1",
+      "operator": "Stream Data Centers",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Stream Data Centers San Jose CA",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "sources": [
+        {
+          "label": "Stream Data Centers",
+          "url": "https://www.streamdatacenters.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ae081f4801",
+      "name": "Stream Data Centers - Seattle WA SEA-1",
+      "operator": "Stream Data Centers",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Stream Data Centers Seattle WA",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "sources": [
+        {
+          "label": "Stream Data Centers",
+          "url": "https://www.streamdatacenters.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3b0eb94f5d",
+      "name": "Evoque Data Center - Minneapolis MN",
+      "operator": "Evoque Data Center Solutions",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Evoque Data Center Solutions Minneapolis MN",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "sources": [
+        {
+          "label": "Evoque Data Center Solutions",
+          "url": "https://www.evoquedcs.com/locations/minneapolis/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f211318b85",
+      "name": "Evoque Data Center - Baltimore MD",
+      "operator": "Evoque Data Center Solutions",
+      "status": "existing",
+      "county_fips": "24510",
+      "notes": "Evoque Data Center Solutions Baltimore MD",
+      "lat": 39.2904,
+      "lon": -76.6122,
+      "sources": [
+        {
+          "label": "Evoque Data Center Solutions",
+          "url": "https://www.evoquedcs.com/locations/baltimore/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d642a06ca4",
+      "name": "Evoque Data Center - Tampa FL",
+      "operator": "Evoque Data Center Solutions",
+      "status": "existing",
+      "county_fips": "12057",
+      "notes": "Evoque Data Center Solutions Tampa FL",
+      "lat": 27.9506,
+      "lon": -82.4572,
+      "sources": [
+        {
+          "label": "Evoque Data Center Solutions",
+          "url": "https://www.evoquedcs.com/locations/tampa/"
+        }
+      ]
+    },
+    {
+      "id": "fc-067805a054",
+      "name": "Evoque Data Center - Las Vegas NV",
+      "operator": "Evoque Data Center Solutions",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "Evoque Data Center Solutions Las Vegas NV",
+      "lat": 36.1699,
+      "lon": -115.1398,
+      "sources": [
+        {
+          "label": "Evoque Data Center Solutions",
+          "url": "https://www.evoquedcs.com/locations/las-vegas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2140c61603",
+      "name": "Evoque Data Center - Orlando FL",
+      "operator": "Evoque Data Center Solutions",
+      "status": "existing",
+      "county_fips": "12095",
+      "notes": "Evoque Data Center Solutions Orlando FL",
+      "lat": 28.5383,
+      "lon": -81.3792,
+      "sources": [
+        {
+          "label": "Evoque Data Center Solutions",
+          "url": "https://www.evoquedcs.com/locations/orlando/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c14204e975",
+      "name": "Evoque Data Center - Austin TX",
+      "operator": "Evoque Data Center Solutions",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "Evoque Data Center Solutions Austin TX",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "sources": [
+        {
+          "label": "Evoque Data Center Solutions",
+          "url": "https://www.evoquedcs.com/locations/austin/"
+        }
+      ]
+    },
+    {
+      "id": "fc-239f65185d",
+      "name": "Evoque Data Center - Memphis TN",
+      "operator": "Evoque Data Center Solutions",
+      "status": "existing",
+      "county_fips": "47157",
+      "notes": "Evoque Data Center Solutions Memphis TN",
+      "lat": 35.1495,
+      "lon": -90.049,
+      "sources": [
+        {
+          "label": "Evoque Data Center Solutions",
+          "url": "https://www.evoquedcs.com/locations/memphis/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a2cd8e0078",
+      "name": "Evoque Data Center - Richmond VA",
+      "operator": "Evoque Data Center Solutions",
+      "status": "existing",
+      "county_fips": "51760",
+      "notes": "Evoque Data Center Solutions Richmond VA",
+      "lat": 37.5407,
+      "lon": -77.436,
+      "sources": [
+        {
+          "label": "Evoque Data Center Solutions",
+          "url": "https://www.evoquedcs.com/locations/richmond/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -41091,5 +41619,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T17:56:34Z"
+  "_facilities_exported_at": "2026-07-19T17:59:52Z"
 }
