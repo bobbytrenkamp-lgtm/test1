@@ -31739,6 +31739,230 @@
           "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/tampa-data-centers/tr1"
         }
       ]
+    },
+    {
+      "id": "fc-cf20be7d4c",
+      "name": "CyrusOne NYM1 - Somerset",
+      "operator": "CyrusOne",
+      "status": "existing",
+      "county_fips": "34035",
+      "notes": "CyrusOne NYM1 colocation facility in Somerset NJ, serving NYC metro.",
+      "lat": 40.5654,
+      "lon": -74.5719,
+      "sources": [
+        {
+          "label": "CyrusOne",
+          "url": "https://www.cyrusone.com/data-centers/north-america/somerset-nj"
+        }
+      ]
+    },
+    {
+      "id": "fc-7291733211",
+      "name": "CyrusOne NYM2 - Totowa",
+      "operator": "CyrusOne",
+      "status": "existing",
+      "county_fips": "34031",
+      "notes": "CyrusOne NYM2 colocation facility in Totowa NJ, serving NYC metro.",
+      "lat": 40.9023,
+      "lon": -74.2218,
+      "sources": [
+        {
+          "label": "CyrusOne",
+          "url": "https://www.cyrusone.com/data-centers/north-america/totowa-nj-nym2"
+        }
+      ]
+    },
+    {
+      "id": "fc-9f473f55af",
+      "name": "DataBank IAD5 - Culpeper",
+      "operator": "DataBank",
+      "status": "planned",
+      "county_fips": "51047",
+      "notes": "DataBank IAD5 campus in Culpeper VA, part of Northern Virginia expansion.",
+      "lat": 38.4732,
+      "lon": -77.9947,
+      "sources": [
+        {
+          "label": "DataBank",
+          "url": "https://www.databank.com/data-centers/northern-virginia/culpeper-campus/iad5/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3bb7dbeab6",
+      "name": "DataBank LGA3 - Orangeburg",
+      "operator": "DataBank",
+      "status": "existing",
+      "county_fips": "36087",
+      "notes": "DataBank LGA3 in Orangeburg NY, serving NYC metro area.",
+      "lat": 41.0567,
+      "lon": -73.9518,
+      "sources": [
+        {
+          "label": "DataBank",
+          "url": "https://www.databank.com/data-centers/new-york-city/orangeburg-campus/lga3/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c478bcbfdd",
+      "name": "Expedient Data Center - Milwaukee",
+      "operator": "Expedient",
+      "status": "existing",
+      "county_fips": "55079",
+      "notes": "Expedient colocation data center in Milwaukee WI, expanded from existing presence.",
+      "lat": 43.0389,
+      "lon": -87.9065,
+      "sources": [
+        {
+          "label": "Expedient",
+          "url": "https://expedient.com/about/media/expedient-continues-expansion-with-addition-of-new-milwaukee-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1f2928083c",
+      "name": "Expedient Data Center - Phoenix",
+      "operator": "Expedient",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Expedient new Phoenix AZ data center, opened 2023.",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Expedient",
+          "url": "https://expedient.com/about/media/expedient-opens-new-phoenix-data-center-extending-the-reach-of-its-universal-multi-cloud-services-portfolio/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6c50d7ae9c",
+      "name": "Expedient Data Center - Denver",
+      "operator": "Expedient",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Expedient new Denver CO data center, opened 2024.",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Expedient",
+          "url": "https://expedient.com/about/media/expedient-data-center-expansion-continues-with-new-facility-opening-in-denver/"
+        }
+      ]
+    },
+    {
+      "id": "fc-94cc0b1414",
+      "name": "Flexential - Collegeville",
+      "operator": "Flexential",
+      "status": "existing",
+      "county_fips": "42091",
+      "notes": "Flexential colocation data center in Collegeville PA, Philadelphia metro area.",
+      "lat": 40.1898,
+      "lon": -75.4499,
+      "sources": [
+        {
+          "label": "Flexential",
+          "url": "https://www.flexential.com/data-centers/pa/philadelphia/collegeville-data-center"
+        }
+      ]
+    },
+    {
+      "id": "fc-f4a4f711fb",
+      "name": "Flexential - Atlanta V",
+      "operator": "Flexential",
+      "status": "planned",
+      "county_fips": "13121",
+      "notes": "Flexential fifth Atlanta-area data center, announced 2025 to meet Southeast demand.",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Flexential",
+          "url": "https://www.prnewswire.com/news-releases/flexential-adding-fifth-atlanta-area-data-center-as-demand-accelerates-across-the-southeast-302741527.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-8d06a1dad9",
+      "name": "Sabey Data Centers - Austin (Round Rock)",
+      "operator": "Sabey Data Centers",
+      "status": "existing",
+      "county_fips": "48491",
+      "notes": "Sabey Data Centers Austin campus in Round Rock TX, Williamson County.",
+      "lat": 30.5083,
+      "lon": -97.6789,
+      "sources": [
+        {
+          "label": "Sabey Data Centers",
+          "url": "https://sabeydatacenters.com/locations/austin-data-center"
+        }
+      ]
+    },
+    {
+      "id": "fc-f28faebb45",
+      "name": "Equinix DE1 - Englewood",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "08005",
+      "notes": "Equinix DE1 IBX colocation at 9706 East Easter Ave, Englewood CO (Arapahoe County). Denver metro IBX.",
+      "lat": 39.6325,
+      "lon": -104.8378,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/denver-data-centers/de1"
+        }
+      ]
+    },
+    {
+      "id": "fc-994122e173",
+      "name": "H5 Data Centers - Tampa",
+      "operator": "H5 Data Centers",
+      "status": "existing",
+      "county_fips": "12057",
+      "notes": "H5 Data Centers Tampa FL, acquired from 365 Data Centers in January 2026.",
+      "lat": 27.9506,
+      "lon": -82.4572,
+      "sources": [
+        {
+          "label": "H5 Data Centers",
+          "url": "https://www.businesswire.com/news/home/20260129051919/en/H5-Data-Centers-Announces-Acquisition-of-Three-Locations-from-365-Data-Centers"
+        }
+      ]
+    },
+    {
+      "id": "fc-16c4dff3ba",
+      "name": "H5 Data Centers - San Luis Obispo",
+      "operator": "H5 Data Centers",
+      "status": "existing",
+      "county_fips": "06079",
+      "notes": "H5 Data Centers San Luis Obispo CA colocation facility.",
+      "lat": 35.2828,
+      "lon": -120.6596,
+      "sources": [
+        {
+          "label": "H5 Data Centers",
+          "url": "https://h5datacenters.com/san-luis-obispo-data-center.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-0e45c1ede6",
+      "name": "San Diego Supercomputer Center (SDSC)",
+      "operator": "UC San Diego",
+      "status": "existing",
+      "county_fips": "06073",
+      "notes": "San Diego Supercomputer Center at UC San Diego campus, La Jolla CA. Major NSF-supported HPC facility.",
+      "lat": 32.8779,
+      "lon": -117.234,
+      "sources": [
+        {
+          "label": "UC San Diego",
+          "url": "https://www.sdsc.edu/about_sdsc.html"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -32231,6 +32455,118 @@
           "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure"
         }
       ]
+    },
+    {
+      "id": "fc-0f60f69566",
+      "name": "QTS Data Center - Fayetteville",
+      "operator": "QTS Realty Trust",
+      "status": "planned",
+      "county_fips": "13113",
+      "notes": "QTS hyperscale campus in Fayette County GA, announced 2024.",
+      "lat": 33.4498,
+      "lon": -84.4641,
+      "sources": [
+        {
+          "label": "QTS Realty Trust",
+          "url": "https://qtsdatacenters.com/data-centers/fayetteville/"
+        }
+      ]
+    },
+    {
+      "id": "fc-501ce97aab",
+      "name": "QTS Data Center - Eagle Mountain",
+      "operator": "QTS Realty Trust",
+      "status": "planned",
+      "county_fips": "49049",
+      "notes": "QTS hyperscale campus in Eagle Mountain UT, announced 2024.",
+      "lat": 40.3141,
+      "lon": -111.9913,
+      "sources": [
+        {
+          "label": "QTS Realty Trust",
+          "url": "https://qtsdatacenters.com/data-centers/eagle-mountain/"
+        }
+      ]
+    },
+    {
+      "id": "fc-095c9efadc",
+      "name": "CyrusOne DFW10 - Bosque County",
+      "operator": "CyrusOne",
+      "status": "planned",
+      "county_fips": "48035",
+      "notes": "CyrusOne DFW10 hyperscale campus in Bosque County TX, partnered with Calpine for gas power.",
+      "lat": 31.9191,
+      "lon": -97.8073,
+      "sources": [
+        {
+          "label": "CyrusOne",
+          "url": "https://www.cyrusone.com/resources/press-releases/cyrusone-and-calpine-announce-newhyperscale-data-center-development-in-texas"
+        }
+      ]
+    },
+    {
+      "id": "fc-5a5eebbdce",
+      "name": "STACK Infrastructure - Chicago (Elk Grove Village)",
+      "operator": "STACK Infrastructure",
+      "status": "planned",
+      "county_fips": "17031",
+      "notes": "STACK Infrastructure 36MW data center campus in Elk Grove Village IL (Chicago O'Hare submarket).",
+      "lat": 42.0024,
+      "lon": -87.9734,
+      "sources": [
+        {
+          "label": "STACK Infrastructure",
+          "url": "https://www.stackinfra.com/about/news-press/press-releases/stack-infrastructure-announces-new-36mw-data-center-in-chicago/"
+        }
+      ]
+    },
+    {
+      "id": "fc-eb231729ae",
+      "name": "STACK Infrastructure - Caddo Parish",
+      "operator": "STACK Infrastructure",
+      "status": "planned",
+      "county_fips": "22017",
+      "notes": "STACK Infrastructure hyperscale campus in Caddo Parish LA near Shreveport.",
+      "lat": 32.5252,
+      "lon": -93.7502,
+      "sources": [
+        {
+          "label": "STACK Infrastructure",
+          "url": "https://finance.yahoo.com/news/stack-infrastructure-announces-data-center-193800728.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-779935cd73",
+      "name": "STACK Infrastructure - Berry Hill",
+      "operator": "STACK Infrastructure",
+      "status": "planned",
+      "county_fips": "51143",
+      "notes": "STACK Infrastructure Berry Hill VA campus, $7.35B investment commitment, Pittsylvania County.",
+      "lat": 36.5498,
+      "lon": -79.2001,
+      "sources": [
+        {
+          "label": "STACK Infrastructure",
+          "url": "https://www.datacenterdynamics.com/en/news/stack-commits-735bn-investment-into-data-center-campus-in-berry-hill-virginia/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d309d1ed18",
+      "name": "Related Digital - The Barn (Saline Township)",
+      "operator": "Related Digital",
+      "status": "planned",
+      "county_fips": "26161",
+      "notes": "Related Digital 'The Barn' at Saline Township MI, Washtenaw County. Stargate project with Oracle and OpenAI.",
+      "lat": 42.1764,
+      "lon": -83.7785,
+      "sources": [
+        {
+          "label": "Related Digital",
+          "url": "https://www.related.com/press-releases/2025-10-30/openai-oracle-and-related-digital-announce-stargate-data-center-site"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -32623,5 +32959,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T04:51:19Z"
+  "_facilities_exported_at": "2026-07-19T05:06:22Z"
 }
