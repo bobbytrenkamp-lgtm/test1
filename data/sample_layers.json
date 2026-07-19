@@ -38447,6 +38447,566 @@
           "url": "https://www.evoquedcs.com/locations/richmond/"
         }
       ]
+    },
+    {
+      "id": "fc-94320c5fa2",
+      "name": "US Signal Data Center - Traverse City MI",
+      "operator": "US Signal",
+      "status": "existing",
+      "county_fips": "26055",
+      "notes": "US Signal Traverse City MI colocation",
+      "lat": 44.7631,
+      "lon": -85.6206,
+      "sources": [
+        {
+          "label": "US Signal",
+          "url": "https://www.ussignal.com/colocation/data-centers/traverse-city/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f40deec6d3",
+      "name": "US Signal Data Center - Lansing MI",
+      "operator": "US Signal",
+      "status": "existing",
+      "county_fips": "26065",
+      "notes": "US Signal Lansing MI colocation",
+      "lat": 42.7325,
+      "lon": -84.5555,
+      "sources": [
+        {
+          "label": "US Signal",
+          "url": "https://www.ussignal.com/colocation/data-centers/lansing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-05dba68bd9",
+      "name": "US Signal Data Center - Muskegon MI",
+      "operator": "US Signal",
+      "status": "existing",
+      "county_fips": "26121",
+      "notes": "US Signal Muskegon MI colocation",
+      "lat": 43.2342,
+      "lon": -86.2484,
+      "sources": [
+        {
+          "label": "US Signal",
+          "url": "https://www.ussignal.com/colocation/data-centers/muskegon/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1b2d5ff573",
+      "name": "US Signal Data Center - Holland MI",
+      "operator": "US Signal",
+      "status": "existing",
+      "county_fips": "26139",
+      "notes": "US Signal Holland MI colocation",
+      "lat": 42.787,
+      "lon": -86.1089,
+      "sources": [
+        {
+          "label": "US Signal",
+          "url": "https://www.ussignal.com/colocation/data-centers/holland/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1d3329795d",
+      "name": "PhoenixNAP Data Center - Seattle WA",
+      "operator": "PhoenixNAP",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "PhoenixNAP Seattle WA data center",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "sources": [
+        {
+          "label": "PhoenixNAP",
+          "url": "https://phoenixnap.com/data-centers/seattle"
+        }
+      ]
+    },
+    {
+      "id": "fc-94023a948d",
+      "name": "PhoenixNAP Data Center - Miami FL",
+      "operator": "PhoenixNAP",
+      "status": "existing",
+      "county_fips": "12086",
+      "notes": "PhoenixNAP Miami FL data center",
+      "lat": 25.7617,
+      "lon": -80.1918,
+      "sources": [
+        {
+          "label": "PhoenixNAP",
+          "url": "https://phoenixnap.com/data-centers/miami"
+        }
+      ]
+    },
+    {
+      "id": "fc-c3f46de574",
+      "name": "PhoenixNAP Data Center - New York NY",
+      "operator": "PhoenixNAP",
+      "status": "existing",
+      "county_fips": "36061",
+      "notes": "PhoenixNAP New York NY data center",
+      "lat": 40.7128,
+      "lon": -74.006,
+      "sources": [
+        {
+          "label": "PhoenixNAP",
+          "url": "https://phoenixnap.com/data-centers/new-york"
+        }
+      ]
+    },
+    {
+      "id": "fc-e82c4bdf22",
+      "name": "Atlantic Metro - Newark NJ",
+      "operator": "Atlantic Metro Communications",
+      "status": "existing",
+      "county_fips": "34013",
+      "notes": "Atlantic Metro Newark NJ carrier hotel/colo",
+      "lat": 40.7357,
+      "lon": -74.1724,
+      "sources": [
+        {
+          "label": "Atlantic Metro Communications",
+          "url": "https://www.atlanticmetro.net/colocation/data-centers/newark/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e4b7202a0e",
+      "name": "Atlantic Metro - Philadelphia PA",
+      "operator": "Atlantic Metro Communications",
+      "status": "existing",
+      "county_fips": "42101",
+      "notes": "Atlantic Metro Philadelphia PA colocation",
+      "lat": 39.9526,
+      "lon": -75.1652,
+      "sources": [
+        {
+          "label": "Atlantic Metro Communications",
+          "url": "https://www.atlanticmetro.net/colocation/data-centers/philadelphia/"
+        }
+      ]
+    },
+    {
+      "id": "fc-613c2d8eb4",
+      "name": "Atlantic Metro - Bridgeport CT",
+      "operator": "Atlantic Metro Communications",
+      "status": "existing",
+      "county_fips": "09001",
+      "notes": "Atlantic Metro Bridgeport CT colocation",
+      "lat": 41.167,
+      "lon": -73.2048,
+      "sources": [
+        {
+          "label": "Atlantic Metro Communications",
+          "url": "https://www.atlanticmetro.net/colocation/data-centers/connecticut/"
+        }
+      ]
+    },
+    {
+      "id": "fc-341da1f004",
+      "name": "ColoCrossing - Miami FL",
+      "operator": "ColoCrossing",
+      "status": "existing",
+      "county_fips": "12086",
+      "notes": "ColoCrossing Miami FL wholesale colocation",
+      "lat": 25.7617,
+      "lon": -80.1918,
+      "sources": [
+        {
+          "label": "ColoCrossing",
+          "url": "https://colocrossing.com/locations/miami/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c2be9c1abb",
+      "name": "ColoCrossing - Phoenix AZ",
+      "operator": "ColoCrossing",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "ColoCrossing Phoenix AZ wholesale colocation",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "ColoCrossing",
+          "url": "https://colocrossing.com/locations/phoenix/"
+        }
+      ]
+    },
+    {
+      "id": "fc-55b2cf3205",
+      "name": "ColoCrossing - Denver CO",
+      "operator": "ColoCrossing",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "ColoCrossing Denver CO wholesale colocation",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "ColoCrossing",
+          "url": "https://colocrossing.com/locations/denver/"
+        }
+      ]
+    },
+    {
+      "id": "fc-50d88367e0",
+      "name": "ColoCrossing - San Antonio TX",
+      "operator": "ColoCrossing",
+      "status": "existing",
+      "county_fips": "48029",
+      "notes": "ColoCrossing San Antonio TX wholesale colocation",
+      "lat": 29.4241,
+      "lon": -98.4936,
+      "sources": [
+        {
+          "label": "ColoCrossing",
+          "url": "https://colocrossing.com/locations/san-antonio/"
+        }
+      ]
+    },
+    {
+      "id": "fc-91acabe48c",
+      "name": "Ntirety Data Center - Denver CO",
+      "operator": "Ntirety",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Ntirety managed hosting Denver CO",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Ntirety",
+          "url": "https://www.ntirety.com/managed-hosting/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-43003d57b8",
+      "name": "Ntirety Data Center - Houston TX",
+      "operator": "Ntirety",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "Ntirety managed hosting Houston TX",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "sources": [
+        {
+          "label": "Ntirety",
+          "url": "https://www.ntirety.com/managed-hosting/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d51fa2cbb3",
+      "name": "Ntirety Data Center - Los Angeles CA",
+      "operator": "Ntirety",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Ntirety managed hosting Los Angeles CA",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "sources": [
+        {
+          "label": "Ntirety",
+          "url": "https://www.ntirety.com/managed-hosting/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0e389554da",
+      "name": "Serverfarm Data Center - Ashburn VA (ThinkStack)",
+      "operator": "Serverfarm",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Serverfarm Ashburn VA colocation campus",
+      "lat": 39.0438,
+      "lon": -77.4874,
+      "sources": [
+        {
+          "label": "Serverfarm",
+          "url": "https://www.serverfarm.com/locations/ashburn/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9ad6284c3e",
+      "name": "Serverfarm Data Center - Atlanta GA",
+      "operator": "Serverfarm",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Serverfarm Atlanta GA colocation",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Serverfarm",
+          "url": "https://www.serverfarm.com/locations/atlanta/"
+        }
+      ]
+    },
+    {
+      "id": "fc-76f48180ca",
+      "name": "Serverfarm Data Center - Dallas TX",
+      "operator": "Serverfarm",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Serverfarm Dallas TX colocation",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "Serverfarm",
+          "url": "https://www.serverfarm.com/locations/dallas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-eb4ddd66fd",
+      "name": "Serverfarm Data Center - Denver CO",
+      "operator": "Serverfarm",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Serverfarm Denver CO colocation",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Serverfarm",
+          "url": "https://www.serverfarm.com/locations/denver/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b9781dbee8",
+      "name": "vXchnge Data Center - Tampa FL",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "12057",
+      "notes": "vXchnge Tampa FL colocation (now Cologix)",
+      "lat": 27.9506,
+      "lon": -82.4572,
+      "sources": [
+        {
+          "label": "vXchnge",
+          "url": "https://www.vxchnge.com/data-centers/tampa/"
+        }
+      ]
+    },
+    {
+      "id": "fc-738b6fbacb",
+      "name": "vXchnge Data Center - Phoenix AZ",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "vXchnge Phoenix AZ colocation (now Cologix)",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "vXchnge",
+          "url": "https://www.vxchnge.com/data-centers/phoenix/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2d2f49c16f",
+      "name": "vXchnge Data Center - Baltimore MD",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "24510",
+      "notes": "vXchnge Baltimore MD colocation (now Cologix)",
+      "lat": 39.2904,
+      "lon": -76.6122,
+      "sources": [
+        {
+          "label": "vXchnge",
+          "url": "https://www.vxchnge.com/data-centers/baltimore/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1c64d81b9d",
+      "name": "vXchnge Data Center - Charlotte NC",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "37119",
+      "notes": "vXchnge Charlotte NC colocation (now Cologix)",
+      "lat": 35.2271,
+      "lon": -80.8431,
+      "sources": [
+        {
+          "label": "vXchnge",
+          "url": "https://www.vxchnge.com/data-centers/charlotte/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0c92cef34d",
+      "name": "vXchnge Data Center - Indianapolis IN",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "18097",
+      "notes": "vXchnge Indianapolis IN colocation (now Cologix)",
+      "lat": 39.7684,
+      "lon": -86.1581,
+      "sources": [
+        {
+          "label": "vXchnge",
+          "url": "https://www.vxchnge.com/data-centers/indianapolis/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3038dff405",
+      "name": "LightEdge Data Center - Oklahoma City OK",
+      "operator": "LightEdge Solutions",
+      "status": "existing",
+      "county_fips": "40109",
+      "notes": "LightEdge Solutions Oklahoma City OK data center",
+      "lat": 35.4676,
+      "lon": -97.5164,
+      "sources": [
+        {
+          "label": "LightEdge Solutions",
+          "url": "https://www.lightedge.com/locations/oklahoma-city/"
+        }
+      ]
+    },
+    {
+      "id": "fc-fa3e74f860",
+      "name": "LightEdge Data Center - Houston TX",
+      "operator": "LightEdge Solutions",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "LightEdge Solutions Houston TX data center",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "sources": [
+        {
+          "label": "LightEdge Solutions",
+          "url": "https://www.lightedge.com/locations/houston/"
+        }
+      ]
+    },
+    {
+      "id": "fc-17bee711b9",
+      "name": "LightEdge Data Center - Dallas TX",
+      "operator": "LightEdge Solutions",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "LightEdge Solutions Dallas TX data center",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "LightEdge Solutions",
+          "url": "https://www.lightedge.com/locations/dallas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-10992cd0b9",
+      "name": "Involta Data Center - Eau Claire WI",
+      "operator": "Involta",
+      "status": "existing",
+      "county_fips": "55035",
+      "notes": "Involta Eau Claire WI colocation",
+      "lat": 44.8113,
+      "lon": -91.4985,
+      "sources": [
+        {
+          "label": "Involta",
+          "url": "https://www.involta.com/data-centers/eau-claire/"
+        }
+      ]
+    },
+    {
+      "id": "fc-516b813a83",
+      "name": "Involta Data Center - Wausau WI",
+      "operator": "Involta",
+      "status": "existing",
+      "county_fips": "55073",
+      "notes": "Involta Wausau WI colocation",
+      "lat": 44.9591,
+      "lon": -89.6301,
+      "sources": [
+        {
+          "label": "Involta",
+          "url": "https://www.involta.com/data-centers/wausau/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f425308124",
+      "name": "Involta Data Center - Green Bay WI",
+      "operator": "Involta",
+      "status": "existing",
+      "county_fips": "55009",
+      "notes": "Involta Green Bay WI colocation",
+      "lat": 44.5133,
+      "lon": -88.0133,
+      "sources": [
+        {
+          "label": "Involta",
+          "url": "https://www.involta.com/data-centers/green-bay/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b4ac51128f",
+      "name": "Involta Data Center - Duluth MN",
+      "operator": "Involta",
+      "status": "existing",
+      "county_fips": "27137",
+      "notes": "Involta Duluth MN colocation",
+      "lat": 46.7867,
+      "lon": -92.1005,
+      "sources": [
+        {
+          "label": "Involta",
+          "url": "https://www.involta.com/data-centers/duluth/"
+        }
+      ]
+    },
+    {
+      "id": "fc-94c007b4f0",
+      "name": "Ark Data Centers - Madison WI",
+      "operator": "Ark Data Centers (Involta)",
+      "status": "existing",
+      "county_fips": "55025",
+      "notes": "Ark Data Centers / Involta Madison WI",
+      "lat": 43.0731,
+      "lon": -89.4012,
+      "sources": [
+        {
+          "label": "Ark Data Centers (Involta)",
+          "url": "https://www.involta.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d26871ee55",
+      "name": "Ark Data Centers - Mankato MN",
+      "operator": "Ark Data Centers (Involta)",
+      "status": "existing",
+      "county_fips": "27013",
+      "notes": "Ark Data Centers / Involta Mankato MN",
+      "lat": 44.1636,
+      "lon": -94.0001,
+      "sources": [
+        {
+          "label": "Ark Data Centers (Involta)",
+          "url": "https://www.involta.com/data-centers/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -41619,5 +42179,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T17:59:52Z"
+  "_facilities_exported_at": "2026-07-19T18:02:11Z"
 }
