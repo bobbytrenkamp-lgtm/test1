@@ -35275,6 +35275,514 @@
           "url": "https://www.cox.com/business/networking/colocation.html"
         }
       ]
+    },
+    {
+      "id": "fc-c1a3c37ba3",
+      "name": "Volico Data Centers - Miami FL",
+      "operator": "Volico",
+      "status": "existing",
+      "county_fips": "12086",
+      "notes": "Volico carrier-neutral colocation data center in Miami FL (Brickell area)",
+      "lat": 25.7617,
+      "lon": -80.1918,
+      "sources": [
+        {
+          "label": "Volico",
+          "url": "https://volico.com/data-centers/"
+        },
+        {
+          "label": "Volico",
+          "url": "https://volico.com/miami-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3d1b6f1dad",
+      "name": "Volico Data Centers - Fort Lauderdale FL",
+      "operator": "Volico",
+      "status": "existing",
+      "county_fips": "12011",
+      "notes": "Volico carrier-neutral colocation data center in Fort Lauderdale FL",
+      "lat": 26.1224,
+      "lon": -80.1373,
+      "sources": [
+        {
+          "label": "Volico",
+          "url": "https://volico.com/data-centers/"
+        },
+        {
+          "label": "Volico",
+          "url": "https://volico.com/fort-lauderdale-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2eb1cd9f7a",
+      "name": "Webair Internet Development - Garden City NY",
+      "operator": "Webair",
+      "status": "existing",
+      "county_fips": "36059",
+      "notes": "Webair Tier III carrier-neutral colocation data center in Garden City NY (Long Island)",
+      "lat": 40.7268,
+      "lon": -73.6361,
+      "sources": [
+        {
+          "label": "Webair",
+          "url": "https://www.webair.com/data-center-colocation/"
+        },
+        {
+          "label": "Webair",
+          "url": "https://www.webair.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c6b43a8cca",
+      "name": "Colocation America - Los Angeles CA",
+      "operator": "Colocation America",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Colocation America carrier-neutral colocation in downtown Los Angeles CA",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "sources": [
+        {
+          "label": "Colocation America",
+          "url": "https://www.colocationamerica.com/data-center/los-angeles/"
+        },
+        {
+          "label": "Colocation America",
+          "url": "https://www.colocationamerica.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e470f527fe",
+      "name": "Colocation America - Chicago IL",
+      "operator": "Colocation America",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Colocation America carrier-neutral colocation in Chicago IL",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "sources": [
+        {
+          "label": "Colocation America",
+          "url": "https://www.colocationamerica.com/data-center/chicago/"
+        },
+        {
+          "label": "Colocation America",
+          "url": "https://www.colocationamerica.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-772826e9e4",
+      "name": "Stevens Institute of Technology Research Computing - Hoboken NJ",
+      "operator": "Stevens Institute of Technology",
+      "status": "existing",
+      "county_fips": "34017",
+      "notes": "Stevens Institute research computing HPC cluster supporting engineering and science research",
+      "lat": 40.7449,
+      "lon": -74.0249,
+      "sources": [
+        {
+          "label": "Stevens Institute of Technology",
+          "url": "https://www.stevens.edu/research/research-computing"
+        },
+        {
+          "label": "Stevens Institute of Technology",
+          "url": "https://www.stevens.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9d29678b0e",
+      "name": "Rensselaer Polytechnic Institute CCNI - Troy NY",
+      "operator": "Rensselaer Polytechnic Institute",
+      "status": "existing",
+      "county_fips": "36083",
+      "notes": "RPI Computational Center for Nanotechnology Innovations (CCNI), IBM-co-developed petaflop HPC facility",
+      "lat": 42.7298,
+      "lon": -73.6764,
+      "sources": [
+        {
+          "label": "Rensselaer Polytechnic Institute",
+          "url": "https://ccni.rpi.edu/"
+        },
+        {
+          "label": "Rensselaer Polytechnic Institute",
+          "url": "https://cci.rpi.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-03545e6f13",
+      "name": "Worcester Polytechnic Institute Research Computing - Worcester MA",
+      "operator": "Worcester Polytechnic Institute",
+      "status": "existing",
+      "county_fips": "25027",
+      "notes": "WPI Advanced Research Computing (ARC) HPC cluster and research computing facilities",
+      "lat": 42.2746,
+      "lon": -71.8063,
+      "sources": [
+        {
+          "label": "Worcester Polytechnic Institute",
+          "url": "https://www.wpi.edu/research/research-computing-facilities"
+        },
+        {
+          "label": "Worcester Polytechnic Institute",
+          "url": "https://arc.wpi.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-718ad0fd06",
+      "name": "George Mason University Research Computing - Fairfax VA",
+      "operator": "George Mason University",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "George Mason University Office of Research Computing (ORC) Hopper HPC system",
+      "lat": 38.8329,
+      "lon": -77.3076,
+      "sources": [
+        {
+          "label": "George Mason University",
+          "url": "https://orc.gmu.edu/"
+        },
+        {
+          "label": "George Mason University",
+          "url": "https://arc.gmu.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-83c5771642",
+      "name": "Federal Reserve Bank of New York - East Rutherford Operations Center NJ",
+      "operator": "Federal Reserve Bank of New York",
+      "status": "existing",
+      "county_fips": "34003",
+      "notes": "FRBNY East Rutherford Operations Center, major Fed processing and data center facility",
+      "lat": 40.8145,
+      "lon": -74.0777,
+      "sources": [
+        {
+          "label": "Federal Reserve Bank of New York",
+          "url": "https://www.newyorkfed.org/aboutthefed/the_fed_in_brief/east_rutherford_operations_center"
+        }
+      ]
+    },
+    {
+      "id": "fc-5d5a37074f",
+      "name": "Federal Reserve Bank of Dallas Data Center - Dallas TX",
+      "operator": "Federal Reserve Bank of Dallas",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Federal Reserve Bank of Dallas main operations and data center facility",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "Federal Reserve Bank of Dallas",
+          "url": "https://www.dallasfed.org/"
+        },
+        {
+          "label": "Federal Reserve Bank of Dallas",
+          "url": "https://www.dallasfed.org/fed/locations"
+        }
+      ]
+    },
+    {
+      "id": "fc-9c821611de",
+      "name": "Federal Reserve Bank of Chicago Data Center - Chicago IL",
+      "operator": "Federal Reserve Bank of Chicago",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Federal Reserve Bank of Chicago main operations and data processing facility",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "sources": [
+        {
+          "label": "Federal Reserve Bank of Chicago",
+          "url": "https://www.chicagofed.org/"
+        },
+        {
+          "label": "Federal Reserve Bank of Chicago",
+          "url": "https://www.chicagofed.org/utilities/about-us/contact-us"
+        }
+      ]
+    },
+    {
+      "id": "fc-9ca99f20fd",
+      "name": "Federal Reserve Bank of Richmond Data Center - Richmond VA",
+      "operator": "Federal Reserve Bank of Richmond",
+      "status": "existing",
+      "county_fips": "51760",
+      "notes": "Federal Reserve Bank of Richmond main operations and data processing facility",
+      "lat": 37.5407,
+      "lon": -77.436,
+      "sources": [
+        {
+          "label": "Federal Reserve Bank of Richmond",
+          "url": "https://www.richmondfed.org/"
+        },
+        {
+          "label": "Federal Reserve Bank of Richmond",
+          "url": "https://www.richmondfed.org/utilities/about-us/our_organization"
+        }
+      ]
+    },
+    {
+      "id": "fc-c4946b7cd1",
+      "name": "Federal Reserve Bank of San Francisco Data Center - San Francisco CA",
+      "operator": "Federal Reserve Bank of San Francisco",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Federal Reserve Bank of San Francisco main operations and data processing facility",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "sources": [
+        {
+          "label": "Federal Reserve Bank of San Francisco",
+          "url": "https://www.frbsf.org/"
+        },
+        {
+          "label": "Federal Reserve Bank of San Francisco",
+          "url": "https://www.frbsf.org/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7f0be2963f",
+      "name": "Goldman Sachs Data Center - Jersey City NJ",
+      "operator": "Goldman Sachs",
+      "status": "existing",
+      "county_fips": "34017",
+      "notes": "Goldman Sachs major US operations and data center in Jersey City NJ (30 Hudson St area)",
+      "lat": 40.7178,
+      "lon": -74.0431,
+      "sources": [
+        {
+          "label": "Goldman Sachs",
+          "url": "https://www.goldmansachs.com/about-us/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-04de10560d",
+      "name": "Goldman Sachs Data Center - Salt Lake City UT",
+      "operator": "Goldman Sachs",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "Goldman Sachs technology operations and data center in Salt Lake City UT",
+      "lat": 40.7608,
+      "lon": -111.891,
+      "sources": [
+        {
+          "label": "Goldman Sachs",
+          "url": "https://www.goldmansachs.com/about-us/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-68b828cf9b",
+      "name": "FM Global Data Center - Johnston RI",
+      "operator": "FM Global",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "FM Global (Factory Mutual) enterprise data center at RI headquarters; major global insurer HQ in Johnston RI",
+      "lat": 41.8261,
+      "lon": -71.5083,
+      "sources": [
+        {
+          "label": "FM Global",
+          "url": "https://www.fmglobal.com/"
+        },
+        {
+          "label": "FM Global",
+          "url": "https://www.fmglobal.com/about-fm-global/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a06168d79e",
+      "name": "Barclays US Operations Center - Wilmington DE",
+      "operator": "Barclays",
+      "status": "existing",
+      "county_fips": "10003",
+      "notes": "Barclays US consumer banking operations center and data center in Wilmington DE",
+      "lat": 39.7447,
+      "lon": -75.5484,
+      "sources": [
+        {
+          "label": "Barclays",
+          "url": "https://home.barclays/"
+        },
+        {
+          "label": "Barclays",
+          "url": "https://home.barclays/country-selector/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f0abb358cb",
+      "name": "Presbyterian Healthcare Data Center - Albuquerque NM",
+      "operator": "Presbyterian Healthcare Services",
+      "status": "existing",
+      "county_fips": "35001",
+      "notes": "Presbyterian Healthcare Services enterprise data center, NM's largest healthcare provider",
+      "lat": 35.0853,
+      "lon": -106.65,
+      "sources": [
+        {
+          "label": "Presbyterian Healthcare Services",
+          "url": "https://www.phs.org/"
+        },
+        {
+          "label": "Presbyterian Healthcare Services",
+          "url": "https://www.phs.org/about/Pages/default.aspx"
+        }
+      ]
+    },
+    {
+      "id": "fc-847f5e03a0",
+      "name": "NorthWestern Energy Data Center - Butte MT",
+      "operator": "NorthWestern Energy",
+      "status": "existing",
+      "county_fips": "30093",
+      "notes": "NorthWestern Energy enterprise data center at corporate headquarters in Butte MT",
+      "lat": 46.0038,
+      "lon": -112.5349,
+      "sources": [
+        {
+          "label": "NorthWestern Energy",
+          "url": "https://www.northwesternenergy.com/"
+        },
+        {
+          "label": "NorthWestern Energy",
+          "url": "https://www.northwesternenergy.com/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e9eb1636fd",
+      "name": "Benefis Health System Data Center - Great Falls MT",
+      "operator": "Benefis Health System",
+      "status": "existing",
+      "county_fips": "30013",
+      "notes": "Benefis Health System enterprise data center at Great Falls MT, major regional health system",
+      "lat": 47.5002,
+      "lon": -111.3008,
+      "sources": [
+        {
+          "label": "Benefis Health System",
+          "url": "https://www.benefis.org/"
+        },
+        {
+          "label": "Benefis Health System",
+          "url": "https://www.benefis.org/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-48e3883fe4",
+      "name": "First Interstate BancSystem Data Center - Billings MT",
+      "operator": "First Interstate BancSystem",
+      "status": "existing",
+      "county_fips": "30111",
+      "notes": "First Interstate BancSystem enterprise data center at corporate HQ in Billings MT",
+      "lat": 45.7833,
+      "lon": -108.5007,
+      "sources": [
+        {
+          "label": "First Interstate BancSystem",
+          "url": "https://www.firstinterstatebank.com/about/"
+        },
+        {
+          "label": "First Interstate BancSystem",
+          "url": "https://www.firstinterstatebank.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e67cef214e",
+      "name": "TelAlaska Data Center - Anchorage AK",
+      "operator": "TelAlaska",
+      "status": "existing",
+      "county_fips": "02020",
+      "notes": "TelAlaska carrier and colocation data center in Anchorage AK",
+      "lat": 61.2181,
+      "lon": -149.9003,
+      "sources": [
+        {
+          "label": "TelAlaska",
+          "url": "https://www.telalaska.com/"
+        },
+        {
+          "label": "TelAlaska",
+          "url": "https://www.telalaska.com/solutions/colocation/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ca5ffef572",
+      "name": "Cabell Huntington Hospital Data Center - Huntington WV",
+      "operator": "Cabell Huntington Hospital",
+      "status": "existing",
+      "county_fips": "54011",
+      "notes": "Cabell Huntington Hospital enterprise data center, largest hospital in WV",
+      "lat": 38.4192,
+      "lon": -82.4452,
+      "sources": [
+        {
+          "label": "Cabell Huntington Hospital",
+          "url": "https://www.cabellhuntington.org/"
+        },
+        {
+          "label": "Cabell Huntington Hospital",
+          "url": "https://www.cabellhuntington.org/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0ce323e92f",
+      "name": "New Mexico Institute of Mining and Technology HPC - Socorro NM",
+      "operator": "New Mexico Tech",
+      "status": "existing",
+      "county_fips": "35053",
+      "notes": "NM Tech research computing center and HPC cluster in Socorro NM",
+      "lat": 34.0648,
+      "lon": -106.9006,
+      "sources": [
+        {
+          "label": "New Mexico Tech",
+          "url": "https://www.nmt.edu/research/computing/"
+        },
+        {
+          "label": "New Mexico Tech",
+          "url": "https://www.nmt.edu/research/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3a4d60c1e4",
+      "name": "Dealer.com Technology Center - Burlington VT",
+      "operator": "Dealer.com (Cox Automotive)",
+      "status": "existing",
+      "county_fips": "50007",
+      "notes": "Dealer.com (Cox Automotive subsidiary) technology operations center in Burlington VT",
+      "lat": 44.4759,
+      "lon": -73.2121,
+      "sources": [
+        {
+          "label": "Dealer.com (Cox Automotive)",
+          "url": "https://www.dealer.com/"
+        },
+        {
+          "label": "Dealer.com (Cox Automotive)",
+          "url": "https://www.dealer.com/about/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -37743,6 +38251,106 @@
           "url": "https://coreweave.com/blog/"
         }
       ]
+    },
+    {
+      "id": "fc-b657b26115",
+      "name": "Lambda Labs AI Data Center - Phoenix AZ",
+      "operator": "Lambda Labs",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Lambda Labs AI/GPU cloud data center in Phoenix AZ metro",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Lambda Labs",
+          "url": "https://lambdalabs.com/service/gpu-cloud"
+        },
+        {
+          "label": "Lambda Labs",
+          "url": "https://lambdalabs.com/blog/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4ddcf4d9ed",
+      "name": "Lambda Labs AI Data Center - Duluth GA",
+      "operator": "Lambda Labs",
+      "status": "existing",
+      "county_fips": "13135",
+      "notes": "Lambda Labs AI/GPU cloud data center in Duluth GA (Atlanta metro)",
+      "lat": 34.0026,
+      "lon": -84.1444,
+      "sources": [
+        {
+          "label": "Lambda Labs",
+          "url": "https://lambdalabs.com/service/gpu-cloud"
+        },
+        {
+          "label": "Lambda Labs",
+          "url": "https://lambdalabs.com/blog/"
+        }
+      ]
+    },
+    {
+      "id": "fc-006afa1739",
+      "name": "Lambda Labs AI Data Center - Denver CO",
+      "operator": "Lambda Labs",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Lambda Labs AI/GPU cloud data center in Denver CO metro",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Lambda Labs",
+          "url": "https://lambdalabs.com/service/gpu-cloud"
+        },
+        {
+          "label": "Lambda Labs",
+          "url": "https://lambdalabs.com/blog/"
+        }
+      ]
+    },
+    {
+      "id": "fc-71e432bf4f",
+      "name": "Voltage Park Data Center - Reno NV",
+      "operator": "Voltage Park",
+      "status": "existing",
+      "county_fips": "32031",
+      "notes": "Voltage Park AI infrastructure data center in Reno/Tahoe area NV",
+      "lat": 39.5296,
+      "lon": -119.8138,
+      "sources": [
+        {
+          "label": "Voltage Park",
+          "url": "https://voltagepark.com/"
+        },
+        {
+          "label": "Voltage Park",
+          "url": "https://voltagepark.com/infrastructure/"
+        }
+      ]
+    },
+    {
+      "id": "fc-104291aa3f",
+      "name": "Voltage Park Data Center - Chicago IL",
+      "operator": "Voltage Park",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Voltage Park AI infrastructure data center in Chicago IL metro",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "sources": [
+        {
+          "label": "Voltage Park",
+          "url": "https://voltagepark.com/"
+        },
+        {
+          "label": "Voltage Park",
+          "url": "https://voltagepark.com/infrastructure/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -38135,5 +38743,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:38:28Z"
+  "_facilities_exported_at": "2026-07-19T13:42:57Z"
 }
