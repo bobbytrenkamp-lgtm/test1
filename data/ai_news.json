@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-19T00:12:37.936184+00:00",
+  "generated_at": "2026-07-19T03:59:57.436836+00:00",
   "article_count": 400,
   "sources_checked": 46,
-  "sources_succeeded": 41,
-  "sources_failed": 5,
+  "sources_succeeded": 22,
+  "sources_failed": 24,
   "articles": [
     {
       "id": "bd7b5bd8c3dfceb8",
@@ -13,7 +13,7 @@
       "source_url": "https://www.nextplatform.com",
       "url": "https://intelligence.theregister.com/paper/view/20412",
       "published_at": "2026-07-30T00:00:00+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Other AI News",
       "location": {
         "state": null,
@@ -27,7 +27,7 @@
       ],
       "why_it_matters": "This story covers developments in the AI and data center space that are relevant to infrastructure planning and policy.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:24.503080+00:00"
+      "summary_generated_at": "2026-07-19T03:59:55.015570+00:00"
     },
     {
       "id": "680d93bdee631de0",
@@ -157,7 +157,7 @@
       "source_url": "https://www.theverge.com",
       "url": "https://www.theverge.com/ai-artificial-intelligence/967630/dave-eggers-openai-chatgpt-silencing-an-entire-generation",
       "published_at": "2026-07-18T20:54:42+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "AI Products",
       "location": {
         "state": null,
@@ -175,7 +175,7 @@
       ],
       "why_it_matters": "New AI products drive demand for data center capacity, GPU supply, and energy infrastructure, and can prompt new regulatory attention.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.747248+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.225085+00:00"
     },
     {
       "id": "2ea800541b241770",
@@ -210,7 +210,7 @@
       "source_url": "https://www.theguardian.com/technology",
       "url": "https://www.theguardian.com/australia-news/2026/jul/18/anu-accused-of-hysterical-response-to-students-using-ai-to-as-unis-scramble-to-secure-assessments",
       "published_at": "2026-07-18T20:00:09+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "AI Products",
       "location": {
         "state": null,
@@ -225,7 +225,7 @@
       ],
       "why_it_matters": "New AI products drive demand for data center capacity, GPU supply, and energy infrastructure, and can prompt new regulatory attention.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.079266+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.559926+00:00"
     },
     {
       "id": "e4a1e8a8ce136fde",
@@ -357,7 +357,7 @@
       "source_url": "https://www.cnbc.com/technology/",
       "url": "https://www.cnbc.com/2026/07/18/the-ai-rotation-stole-the-spotlight-from-a-strong-start-to-earnings-season-.html",
       "published_at": "2026-07-18T16:33:19+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Business & Investment",
       "location": {
         "state": null,
@@ -371,7 +371,7 @@
       ],
       "why_it_matters": "Investment flows into AI and data center companies signal where infrastructure will be built and which jurisdictions will compete for economic development.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.150466+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.632588+00:00"
     },
     {
       "id": "47f43d48ecb6b703",
@@ -403,7 +403,7 @@
       "source_url": "https://siliconangle.com",
       "url": "https://siliconangle.com/2026/07/18/amds-next-reinvention-new-playbook-ai-era",
       "published_at": "2026-07-18T15:48:11+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Chips & Infrastructure",
       "location": {
         "state": null,
@@ -419,7 +419,7 @@
       ],
       "why_it_matters": "Semiconductor supply and export controls directly affect how quickly AI infrastructure can be built and who can access advanced computing capacity.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:24.523148+00:00"
+      "summary_generated_at": "2026-07-19T03:59:55.035858+00:00"
     },
     {
       "id": "46ecf3457596f290",
@@ -454,7 +454,7 @@
       "source_url": "https://www.datacenterdynamics.com",
       "url": "https://www.datacenterdynamics.com/en/opinions/how-ai-demand-is-redefining-risk-for-us-data-center-developers",
       "published_at": "2026-07-18T15:00:00+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Data Centers",
       "location": {
         "state": null,
@@ -470,7 +470,7 @@
       ],
       "why_it_matters": "Data center siting, construction, and operation decisions determine where AI infrastructure is physically located, affecting energy grids, water supplies, local economies, and regulatory environments.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:24.386432+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.896300+00:00"
     },
     {
       "id": "2777cce428d9636e",
@@ -740,7 +740,7 @@
       "source_url": "https://www.datacenterdynamics.com",
       "url": "https://www.datacenterdynamics.com/en/news/equinix-tops-out-munich-data-center-in-germany",
       "published_at": "2026-07-18T12:00:25+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Data Centers",
       "location": {
         "state": null,
@@ -754,7 +754,7 @@
       "key_points": [],
       "why_it_matters": "Data center siting, construction, and operation decisions determine where AI infrastructure is physically located, affecting energy grids, water supplies, local economies, and regulatory environments.",
       "summary_method": "title-only",
-      "summary_generated_at": "2026-07-19T00:12:24.387642+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.897752+00:00"
     },
     {
       "id": "bfa45bb596e060bf",
@@ -862,7 +862,7 @@
       "source_url": "https://arstechnica.com",
       "url": "https://arstechnica.com/ai/2026/07/will-ai-fix-prior-authorization-or-make-it-worse",
       "published_at": "2026-07-18T11:18:25+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Other AI News",
       "location": {
         "state": null,
@@ -878,7 +878,7 @@
       ],
       "why_it_matters": "This story covers developments in the AI and data center space that are relevant to infrastructure planning and policy.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.787065+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.256094+00:00"
     },
     {
       "id": "362c1c6b949886cf",
@@ -1135,7 +1135,7 @@
       "source_url": "https://www.wired.com",
       "url": "https://www.wired.com/story/how-googles-new-gemini-rates-work-and-how-to-track-your-usage",
       "published_at": "2026-07-18T10:00:00+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "AI Products",
       "location": {
         "state": null,
@@ -1151,7 +1151,7 @@
       ],
       "why_it_matters": "New AI products drive demand for data center capacity, GPU supply, and energy infrastructure, and can prompt new regulatory attention.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.916230+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.391254+00:00"
     },
     {
       "id": "de50ac316e08bcfb",
@@ -1256,7 +1256,7 @@
       "source_url": "https://www.wired.com",
       "url": "https://www.wired.com/story/prompt-injection-attacks-are-thwarting-ai-hacking-agents",
       "published_at": "2026-07-18T09:00:00+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Other AI News",
       "location": {
         "state": null,
@@ -1270,7 +1270,7 @@
       ],
       "why_it_matters": "This story covers developments in the AI and data center space that are relevant to infrastructure planning and policy.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.918861+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.393917+00:00"
     },
     {
       "id": "7552bf4aae42c7fb",
@@ -1757,7 +1757,7 @@
       "source_url": "https://techcrunch.com",
       "url": "https://techcrunch.com/2026/07/17/neil-rimer-thinks-the-ai-money-is-coming-back-out",
       "published_at": "2026-07-18T04:47:25+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Business & Investment",
       "location": {
         "state": null,
@@ -1771,7 +1771,7 @@
       ],
       "why_it_matters": "Investment flows into AI and data center companies signal where infrastructure will be built and which jurisdictions will compete for economic development.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.719287+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.196565+00:00"
     },
     {
       "id": "30571681fac80f2d",
@@ -2283,7 +2283,7 @@
       "source_url": "https://siliconangle.com",
       "url": "https://siliconangle.com/2026/07/17/anthropic-meta-reportedly-discussing-10b-data-center-leasing-deal",
       "published_at": "2026-07-18T01:12:53+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Data Centers",
       "location": {
         "state": "NY",
@@ -2303,7 +2303,7 @@
       ],
       "why_it_matters": "Data center siting, construction, and operation decisions determine where AI infrastructure is physically located, affecting energy grids, water supplies, local economies, and regulatory environments.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:24.525367+00:00"
+      "summary_generated_at": "2026-07-19T03:59:55.038202+00:00"
     },
     {
       "id": "b85f4d65740c4f88",
@@ -2313,7 +2313,7 @@
       "source_url": "https://www.cnbc.com/technology/",
       "url": "https://www.cnbc.com/2026/07/17/moonshot-ai-kimi-k3-model-openai-anthropic-china.html",
       "published_at": "2026-07-18T01:03:47+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "International Policy",
       "location": {
         "state": null,
@@ -2327,7 +2327,7 @@
       ],
       "why_it_matters": "International AI governance frameworks influence U.S. companies operating globally and set standards that domestic regulators often consider when drafting their own rules.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.164539+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.646857+00:00"
     },
     {
       "id": "2acee9dfc07087aa",
@@ -2536,7 +2536,7 @@
       "source_url": "https://www.cnbc.com/technology/",
       "url": "https://www.cnbc.com/2026/07/17/leather-jacket-worn-by-nvidia-ceo-goes-for-just-under-1-million-at-sothebys-auction-.html",
       "published_at": "2026-07-17T23:18:35+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Chips & Infrastructure",
       "location": {
         "state": null,
@@ -2553,7 +2553,7 @@
       ],
       "why_it_matters": "Semiconductor supply and export controls directly affect how quickly AI infrastructure can be built and who can access advanced computing capacity.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.152810+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.634924+00:00"
     },
     {
       "id": "3cbba401c1cc29cd",
@@ -2563,7 +2563,7 @@
       "source_url": "https://www.cnbc.com/technology/",
       "url": "https://www.cnbc.com/2026/07/17/white-house-ai-access-anthropic-openai.html",
       "published_at": "2026-07-17T23:10:07+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Federal Policy",
       "location": {
         "state": null,
@@ -2577,7 +2577,7 @@
       ],
       "why_it_matters": "Federal AI and data center policies set the baseline rules that all states and companies must follow, directly shaping where and how AI infrastructure can be built and operated.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.154854+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.637006+00:00"
     },
     {
       "id": "714d3ac43167b6af",
@@ -2634,7 +2634,7 @@
       "source_url": "https://techcrunch.com",
       "url": "https://techcrunch.com/2026/07/17/vertu-wants-executives-to-pay-6880-for-an-ai-agent-heres-how-it-actually-performs",
       "published_at": "2026-07-17T22:55:09+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Other AI News",
       "location": {
         "state": null,
@@ -2648,7 +2648,7 @@
       ],
       "why_it_matters": "This story covers developments in the AI and data center space that are relevant to infrastructure planning and policy.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.723024+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.200538+00:00"
     },
     {
       "id": "410e2dd0232aee97",
@@ -2777,7 +2777,7 @@
       "source_url": "https://techcrunch.com",
       "url": "https://techcrunch.com/2026/07/17/databricks-hits-188b-valuation-extending-its-run-as-ais-favorite-second-act",
       "published_at": "2026-07-17T22:12:56+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Business & Investment",
       "location": {
         "state": null,
@@ -2791,7 +2791,7 @@
       ],
       "why_it_matters": "Investment flows into AI and data center companies signal where infrastructure will be built and which jurisdictions will compete for economic development.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.725325+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.202806+00:00"
     },
     {
       "id": "3acd6de62cfe15ef",
@@ -3370,7 +3370,7 @@
       "source_url": "https://www.cnbc.com/technology/",
       "url": "https://www.cnbc.com/2026/07/17/apple-nvidia-aapl-nvda-market-cap.html",
       "published_at": "2026-07-17T20:22:41+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Chips & Infrastructure",
       "location": {
         "state": null,
@@ -3387,7 +3387,7 @@
       ],
       "why_it_matters": "Semiconductor supply and export controls directly affect how quickly AI infrastructure can be built and who can access advanced computing capacity.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.159846+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.641997+00:00"
     },
     {
       "id": "a4e9808f2443ad85",
@@ -3397,7 +3397,7 @@
       "source_url": "https://siliconangle.com",
       "url": "https://siliconangle.com/2026/07/17/inference-cloud-operator-general-compute-raises-400m-debt-financing",
       "published_at": "2026-07-17T20:20:46+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "AI Products",
       "location": {
         "state": null,
@@ -3415,7 +3415,7 @@
       ],
       "why_it_matters": "New AI products drive demand for data center capacity, GPU supply, and energy infrastructure, and can prompt new regulatory attention.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:24.531026+00:00"
+      "summary_generated_at": "2026-07-19T03:59:55.043876+00:00"
     },
     {
       "id": "c1de60beae2f80db",
@@ -3477,7 +3477,7 @@
       "source_url": "https://techcrunch.com",
       "url": "https://techcrunch.com/2026/07/17/ai-driven-memory-crunch-jolts-indias-smartphone-market",
       "published_at": "2026-07-17T20:09:27+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Business & Investment",
       "location": {
         "state": null,
@@ -3491,7 +3491,7 @@
       ],
       "why_it_matters": "Investment flows into AI and data center companies signal where infrastructure will be built and which jurisdictions will compete for economic development.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.728302+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.206226+00:00"
     },
     {
       "id": "420807cc56e0ace9",
@@ -3575,7 +3575,7 @@
       "source_url": "https://www.cnbc.com/technology/",
       "url": "https://www.cnbc.com/2026/07/17/anthropic-meta-ai-compute.html",
       "published_at": "2026-07-17T19:52:07+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "AI Products",
       "location": {
         "state": null,
@@ -3593,7 +3593,7 @@
       ],
       "why_it_matters": "New AI products drive demand for data center capacity, GPU supply, and energy infrastructure, and can prompt new regulatory attention.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.156915+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.639125+00:00"
     },
     {
       "id": "4f644d12c3f0cb67",
@@ -3603,7 +3603,7 @@
       "source_url": "https://www.wired.com",
       "url": "https://www.wired.com/story/amazon-web-services-glitch-oh-no",
       "published_at": "2026-07-17T19:50:38+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Other AI News",
       "location": {
         "state": null,
@@ -3617,7 +3617,7 @@
       ],
       "why_it_matters": "This story covers developments in the AI and data center space that are relevant to infrastructure planning and policy.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.921718+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.396797+00:00"
     },
     {
       "id": "77231fd9993dd42e",
@@ -4228,7 +4228,7 @@
       "source_url": "https://siliconangle.com",
       "url": "https://siliconangle.com/2026/07/17/compute-exchange-opens-secondary-market-used-nvidia-h100-a100-gpus",
       "published_at": "2026-07-17T18:00:08+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "AI Products",
       "location": {
         "state": null,
@@ -4247,7 +4247,7 @@
       ],
       "why_it_matters": "New AI products drive demand for data center capacity, GPU supply, and energy infrastructure, and can prompt new regulatory attention.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:24.535434+00:00"
+      "summary_generated_at": "2026-07-19T03:59:55.048628+00:00"
     },
     {
       "id": "1556edd6ddc06387",
@@ -4381,7 +4381,7 @@
       "source_url": "https://techcrunch.com",
       "url": "https://techcrunch.com/video/how-apples-big-lawsuit-could-disrupt-openais-ipo-plans",
       "published_at": "2026-07-17T17:45:46+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Business & Investment",
       "location": {
         "state": null,
@@ -4400,7 +4400,7 @@
       ],
       "why_it_matters": "Investment flows into AI and data center companies signal where infrastructure will be built and which jurisdictions will compete for economic development.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.734439+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.212217+00:00"
     },
     {
       "id": "c96da0c277b129d7",
@@ -4514,7 +4514,7 @@
       "source_url": "https://www.datacenterdynamics.com",
       "url": "https://www.datacenterdynamics.com/en/news/anthropic-considers-leasing-compute-from-meta-in-10bn-deal",
       "published_at": "2026-07-17T17:28:24+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Other AI News",
       "location": {
         "state": null,
@@ -4529,7 +4529,7 @@
       "key_points": [],
       "why_it_matters": "This story covers developments in the AI and data center space that are relevant to infrastructure planning and policy.",
       "summary_method": "title-only",
-      "summary_generated_at": "2026-07-19T00:12:24.389198+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.899313+00:00"
     },
     {
       "id": "b6271290baad30a1",
@@ -4756,7 +4756,7 @@
       "source_url": "https://www.bbc.com/news/technology",
       "url": "https://www.bbc.co.uk/news/articles/cy9w4q8pgp0o?at_campaign=rss&at_medium=RSS",
       "published_at": "2026-07-17T16:53:04+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "International Policy",
       "location": {
         "state": null,
@@ -4774,7 +4774,7 @@
       ],
       "why_it_matters": "International AI governance frameworks influence U.S. companies operating globally and set standards that domestic regulators often consider when drafting their own rules.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.046063+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.527180+00:00"
     },
     {
       "id": "441f0427733ad81c",
@@ -5246,7 +5246,7 @@
       "source_url": "https://techcrunch.com",
       "url": "https://techcrunch.com/2026/07/17/amazon-fixing-bug-that-billed-some-aws-customers-billions-of-dollars",
       "published_at": "2026-07-17T15:29:21+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Other AI News",
       "location": {
         "state": null,
@@ -5262,7 +5262,7 @@
       ],
       "why_it_matters": "This story covers developments in the AI and data center space that are relevant to infrastructure planning and policy.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.738133+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.216052+00:00"
     },
     {
       "id": "320385b77c9ce0e9",
@@ -5272,7 +5272,7 @@
       "source_url": "https://techcrunch.com",
       "url": "https://techcrunch.com/2026/07/17/patreon-stops-asking-ai-bots-not-to-scrape-and-starts-blocking-them",
       "published_at": "2026-07-17T15:21:17+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Jobs & Society",
       "location": {
         "state": null,
@@ -5287,7 +5287,7 @@
       ],
       "why_it_matters": "AI's effects on employment and society are central to the political debate that drives regulation and public acceptance of AI infrastructure.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.741670+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.219551+00:00"
     },
     {
       "id": "dad2e74d4d521ec6",
@@ -5297,7 +5297,7 @@
       "source_url": "https://www.datacenterdynamics.com",
       "url": "https://www.datacenterdynamics.com/en/news/coalition-of-environmental-action-groups-petition-fcc-to-halt-orbital-data-center-applications",
       "published_at": "2026-07-17T15:20:31+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Federal Policy",
       "location": {
         "state": null,
@@ -5313,7 +5313,7 @@
       ],
       "why_it_matters": "Federal AI and data center policies set the baseline rules that all states and companies must follow, directly shaping where and how AI infrastructure can be built and operated.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:24.390854+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.901122+00:00"
     },
     {
       "id": "2a702559533873f5",
@@ -5420,7 +5420,7 @@
       "source_url": "https://www.theguardian.com/technology",
       "url": "https://www.theguardian.com/technology/2026/jul/17/apple-nvidia-most-valuable-company",
       "published_at": "2026-07-17T15:01:09+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Chips & Infrastructure",
       "location": {
         "state": null,
@@ -5439,7 +5439,7 @@
       ],
       "why_it_matters": "Semiconductor supply and export controls directly affect how quickly AI infrastructure can be built and who can access advanced computing capacity.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.084315+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.565125+00:00"
     },
     {
       "id": "32606fd2f38166db",
@@ -5449,7 +5449,7 @@
       "source_url": "https://www.datacenterdynamics.com",
       "url": "https://www.datacenterdynamics.com/en/news/duos-edge-ai-to-provide-10mw-of-capacity-for-five-years-to-investment-grade-hyperscaler",
       "published_at": "2026-07-17T15:00:40+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Other AI News",
       "location": {
         "state": null,
@@ -5461,7 +5461,7 @@
       "key_points": [],
       "why_it_matters": "This story covers developments in the AI and data center space that are relevant to infrastructure planning and policy.",
       "summary_method": "title-only",
-      "summary_generated_at": "2026-07-19T00:12:24.392439+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.902806+00:00"
     },
     {
       "id": "13b14bf2458e120f",
@@ -5849,7 +5849,7 @@
       "source_url": "https://www.datacenterdynamics.com",
       "url": "https://www.datacenterdynamics.com/en/news/data-center-project-in-hesse-germany-canceled",
       "published_at": "2026-07-17T14:11:00+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Data Centers",
       "location": {
         "state": null,
@@ -5863,7 +5863,7 @@
       "key_points": [],
       "why_it_matters": "Data center siting, construction, and operation decisions determine where AI infrastructure is physically located, affecting energy grids, water supplies, local economies, and regulatory environments.",
       "summary_method": "title-only",
-      "summary_generated_at": "2026-07-19T00:12:24.394752+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.905186+00:00"
     },
     {
       "id": "6f548341d43933e7",
@@ -5924,7 +5924,7 @@
       "source_url": "https://www.datacenterdynamics.com",
       "url": "https://www.datacenterdynamics.com/en/news/elisa-identifies-data-center-revenue-opportunity-amid-finlands-data-center-boom",
       "published_at": "2026-07-17T14:00:41+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Data Centers",
       "location": {
         "state": null,
@@ -5940,7 +5940,7 @@
       ],
       "why_it_matters": "Data center siting, construction, and operation decisions determine where AI infrastructure is physically located, affecting energy grids, water supplies, local economies, and regulatory environments.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:24.396579+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.907030+00:00"
     },
     {
       "id": "3509989a82492aeb",
@@ -5975,7 +5975,7 @@
       "source_url": "https://siliconangle.com",
       "url": "https://siliconangle.com/2026/07/17/ai-backlash-intensifies-china-gains-us-leaders-ibm-tanks",
       "published_at": "2026-07-17T14:00:13+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "International Policy",
       "location": {
         "state": null,
@@ -5993,7 +5993,7 @@
       ],
       "why_it_matters": "International AI governance frameworks influence U.S. companies operating globally and set standards that domestic regulators often consider when drafting their own rules.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:24.541849+00:00"
+      "summary_generated_at": "2026-07-19T03:59:55.055324+00:00"
     },
     {
       "id": "305a1492d3d98ae0",
@@ -6003,7 +6003,7 @@
       "source_url": "https://www.datacenterknowledge.com",
       "url": "https://www.datacenterknowledge.com/data-center-construction/project-tango-denial-challenges-wall-street-s-ai-power-bet",
       "published_at": "2026-07-17T14:00:12+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "State/Local Policy",
       "location": {
         "state": null,
@@ -6017,7 +6017,7 @@
       ],
       "why_it_matters": "State and local regulations determine where data centers can be built, their size limits, environmental requirements, and tax treatment — factors that drive billions of dollars in siting decisions.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:24.407716+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.918246+00:00"
     },
     {
       "id": "7fef76a13ca1e585",
@@ -6406,7 +6406,7 @@
       "source_url": "https://www.datacenterdynamics.com",
       "url": "https://www.datacenterdynamics.com/en/news/colocation-data-center-proposed-in-birmingham-alabama",
       "published_at": "2026-07-17T13:00:26+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Data Centers",
       "location": {
         "state": "AL",
@@ -6420,7 +6420,7 @@
       "key_points": [],
       "why_it_matters": "Data center siting, construction, and operation decisions determine where AI infrastructure is physically located, affecting energy grids, water supplies, local economies, and regulatory environments.",
       "summary_method": "title-only",
-      "summary_generated_at": "2026-07-19T00:12:24.399530+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.909596+00:00"
     },
     {
       "id": "3e2e64c27acc7ab1",
@@ -6503,7 +6503,7 @@
       "source_url": "https://www.datacenterdynamics.com",
       "url": "https://www.datacenterdynamics.com/en/news/israeli-data-center-operator-medone-promotes-former-ceo-ronnie-sadeh-to-president",
       "published_at": "2026-07-17T12:50:29+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Federal Policy",
       "location": {
         "state": null,
@@ -6517,7 +6517,7 @@
       "key_points": [],
       "why_it_matters": "Federal AI and data center policies set the baseline rules that all states and companies must follow, directly shaping where and how AI infrastructure can be built and operated.",
       "summary_method": "title-only",
-      "summary_generated_at": "2026-07-19T00:12:24.400792+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.910872+00:00"
     },
     {
       "id": "3d6ef0c612817a21",
@@ -6717,7 +6717,7 @@
       "source_url": "https://www.technologyreview.com",
       "url": "https://www.technologyreview.com/2026/07/17/1140640/the-download-perimenopause-misinformation-china-moonshot-ai",
       "published_at": "2026-07-17T12:10:00+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "International Policy",
       "location": {
         "state": null,
@@ -6733,7 +6733,7 @@
       ],
       "why_it_matters": "International AI governance frameworks influence U.S. companies operating globally and set standards that domestic regulators often consider when drafting their own rules.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.956757+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.434057+00:00"
     },
     {
       "id": "1c65d1bd9b4ac7c8",
@@ -6743,7 +6743,7 @@
       "source_url": "https://www.wired.com",
       "url": "https://www.wired.com/story/best-smart-speakers",
       "published_at": "2026-07-17T12:01:00+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "AI Products",
       "location": {
         "state": null,
@@ -6761,7 +6761,7 @@
       ],
       "why_it_matters": "New AI products drive demand for data center capacity, GPU supply, and energy infrastructure, and can prompt new regulatory attention.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.928145+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.403529+00:00"
     },
     {
       "id": "7bd993bc94138880",
@@ -6872,7 +6872,7 @@
       "source_url": "https://www.cnbc.com/technology/",
       "url": "https://www.cnbc.com/2026/07/17/us-china-ai-feud-asml-tightrope-sales-geopolitics.html",
       "published_at": "2026-07-17T11:48:14+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "International Policy",
       "location": {
         "state": null,
@@ -6886,7 +6886,7 @@
       ],
       "why_it_matters": "International AI governance frameworks influence U.S. companies operating globally and set standards that domestic regulators often consider when drafting their own rules.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.162187+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.644582+00:00"
     },
     {
       "id": "9619548ecc9508ad",
@@ -6964,7 +6964,7 @@
       "source_url": "https://www.cnbc.com/technology/",
       "url": "https://www.cnbc.com/2026/07/16/elon-musk-memphis-ai-colossus-data-center.html",
       "published_at": "2026-07-17T11:40:00+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Data Centers",
       "location": {
         "state": null,
@@ -6980,7 +6980,7 @@
       ],
       "why_it_matters": "Data center siting, construction, and operation decisions determine where AI infrastructure is physically located, affecting energy grids, water supplies, local economies, and regulatory environments.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.173973+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.656340+00:00"
     },
     {
       "id": "34e8bb11673983e5",
@@ -6990,7 +6990,7 @@
       "source_url": "https://www.datacenterdynamics.com",
       "url": "https://www.datacenterdynamics.com/en/news/aws-cloud-lead-dave-brown-heads-to-meta-report",
       "published_at": "2026-07-17T11:37:23+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Other AI News",
       "location": {
         "state": null,
@@ -7004,7 +7004,7 @@
       "key_points": [],
       "why_it_matters": "This story covers developments in the AI and data center space that are relevant to infrastructure planning and policy.",
       "summary_method": "title-only",
-      "summary_generated_at": "2026-07-19T00:12:24.403484+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.913882+00:00"
     },
     {
       "id": "4a014871d75d9bad",
@@ -7038,7 +7038,7 @@
       "source_url": "https://www.datacenterdynamics.com",
       "url": "https://www.datacenterdynamics.com/en/news/sharon-ai-signs-132bn-cloud-computing-service-agreement-with-unnamed-ai-lab",
       "published_at": "2026-07-17T11:20:33+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Other AI News",
       "location": {
         "state": null,
@@ -7050,7 +7050,7 @@
       "key_points": [],
       "why_it_matters": "This story covers developments in the AI and data center space that are relevant to infrastructure planning and policy.",
       "summary_method": "title-only",
-      "summary_generated_at": "2026-07-19T00:12:24.404887+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.915289+00:00"
     },
     {
       "id": "d9e374bb60035b32",
@@ -7154,7 +7154,7 @@
       "source_url": "https://www.datacenterdynamics.com",
       "url": "https://www.datacenterdynamics.com/en/news/planned-data-center-in-florida-held-back-by-lack-of-available-water-from-city",
       "published_at": "2026-07-17T11:10:30+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Data Centers",
       "location": {
         "state": "FL",
@@ -7171,7 +7171,7 @@
       ],
       "why_it_matters": "Data center siting, construction, and operation decisions determine where AI infrastructure is physically located, affecting energy grids, water supplies, local economies, and regulatory environments.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:24.405841+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.916295+00:00"
     },
     {
       "id": "5dbabd753fbe7a75",
@@ -7619,7 +7619,7 @@
       "source_url": "https://www.wired.com",
       "url": "https://www.wired.com/story/san-francisco-demands-apple-and-google-delete-ai-nudify-apps-from-app-stores",
       "published_at": "2026-07-17T10:00:00+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "AI Products",
       "location": {
         "state": null,
@@ -7636,7 +7636,7 @@
       ],
       "why_it_matters": "New AI products drive demand for data center capacity, GPU supply, and energy infrastructure, and can prompt new regulatory attention.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:22.932529+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.407983+00:00"
     },
     {
       "id": "c5c5248230951857",
@@ -7646,7 +7646,7 @@
       "source_url": "https://openai.com/blog",
       "url": "https://openai.com/index/a-scorecard-for-the-ai-age",
       "published_at": "2026-07-17T10:00:00+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Other AI News",
       "location": {
         "state": null,
@@ -7662,7 +7662,7 @@
       ],
       "why_it_matters": "This story covers developments in the AI and data center space that are relevant to infrastructure planning and policy.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.609482+00:00"
+      "summary_generated_at": "2026-07-19T03:59:54.111700+00:00"
     },
     {
       "id": "c071309f2748a36e",
@@ -8334,7 +8334,7 @@
       "source_url": "https://www.cnbc.com/technology/",
       "url": "https://www.cnbc.com/2026/07/17/softbank-chip-stocks-asia-wall-street-ai-rout.html",
       "published_at": "2026-07-17T08:02:18+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Chips & Infrastructure",
       "location": {
         "state": null,
@@ -8350,7 +8350,7 @@
       ],
       "why_it_matters": "Semiconductor supply and export controls directly affect how quickly AI infrastructure can be built and who can access advanced computing capacity.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.169050+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.651340+00:00"
     },
     {
       "id": "ad7bf759bff03157",
@@ -8502,7 +8502,7 @@
       "source_url": "https://www.npr.org/sections/technology/",
       "url": "https://www.npr.org/2026/07/17/nx-s1-5897285/chinas-xi-calls-for-step-up-of-global-effort-in-ai-as-us-curbs-squeeze-chinas-tech-access",
       "published_at": "2026-07-17T07:17:04+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "International Policy",
       "location": {
         "state": null,
@@ -8516,7 +8516,7 @@
       ],
       "why_it_matters": "International AI governance frameworks influence U.S. companies operating globally and set standards that domestic regulators often consider when drafting their own rules.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.134539+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.616197+00:00"
     },
     {
       "id": "c9e1c5a4699c722b",
@@ -8714,7 +8714,7 @@
       "source_url": "https://www.cnbc.com/technology/",
       "url": "https://www.cnbc.com/2026/07/17/x-china-ai-summit-risks-security.html",
       "published_at": "2026-07-17T06:16:04+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "International Policy",
       "location": {
         "state": null,
@@ -8728,7 +8728,7 @@
       ],
       "why_it_matters": "International AI governance frameworks influence U.S. companies operating globally and set standards that domestic regulators often consider when drafting their own rules.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.166718+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.649036+00:00"
     },
     {
       "id": "fa9eaf97a9135ca7",
@@ -8992,7 +8992,7 @@
       "source_url": "https://www.theguardian.com/technology",
       "url": "https://www.theguardian.com/news/audio/2026/jul/17/theres-this-deep-mystery-of-what-actually-is-this-thing-the-philosopher-inside-google-deepmind-ai-podcast",
       "published_at": "2026-07-17T04:00:58+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "Other AI News",
       "location": {
         "state": null,
@@ -9010,7 +9010,7 @@
       ],
       "why_it_matters": "This story covers developments in the AI and data center space that are relevant to infrastructure planning and policy.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:23.066431+00:00"
+      "summary_generated_at": "2026-07-19T03:59:53.546556+00:00"
     },
     {
       "id": "38be496d122101a8",
@@ -9357,7 +9357,7 @@
       "source_url": "https://siliconangle.com",
       "url": "https://siliconangle.com/2026/07/16/google-ai-mode-gets-useful-canva-instacart-youtube-app-integrations",
       "published_at": "2026-07-17T02:00:15+00:00",
-      "collected_at": "2026-07-19T00:11:42.922721+00:00",
+      "collected_at": "2026-07-19T03:56:54.774966+00:00",
       "category": "AI Products",
       "location": {
         "state": null,
@@ -9375,7 +9375,7 @@
       ],
       "why_it_matters": "New AI products drive demand for data center capacity, GPU supply, and energy infrastructure, and can prompt new regulatory attention.",
       "summary_method": "feed-description",
-      "summary_generated_at": "2026-07-19T00:12:24.546121+00:00"
+      "summary_generated_at": "2026-07-19T03:59:55.059563+00:00"
     },
     {
       "id": "2eb9225e870fe5ba",
