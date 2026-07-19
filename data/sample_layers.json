@@ -36963,6 +36963,642 @@
           "url": "https://www.lovelace.com/about/"
         }
       ]
+    },
+    {
+      "id": "fc-56f80c3922",
+      "name": "Doyon Ltd Operations Data Center - Fairbanks AK",
+      "operator": "Doyon Limited",
+      "status": "existing",
+      "county_fips": "02090",
+      "notes": "Doyon Limited (Alaska Native regional corporation) enterprise data center in Fairbanks AK",
+      "lat": 64.8378,
+      "lon": -147.7164,
+      "sources": [
+        {
+          "label": "Doyon Limited",
+          "url": "https://www.doyon.com/"
+        },
+        {
+          "label": "Doyon Limited",
+          "url": "https://www.doyon.com/about-doyon/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8eb87c38f0",
+      "name": "Alaska Village Electric Cooperative Data Center - Anchorage AK",
+      "operator": "Alaska Village Electric Cooperative",
+      "status": "existing",
+      "county_fips": "02020",
+      "notes": "AVEC (Alaska Village Electric Cooperative) operations data center in Anchorage AK",
+      "lat": 61.2181,
+      "lon": -149.9003,
+      "sources": [
+        {
+          "label": "Alaska Village Electric Cooperative",
+          "url": "https://www.avec.org/"
+        },
+        {
+          "label": "Alaska Village Electric Cooperative",
+          "url": "https://www.avec.org/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c0a12d3cf4",
+      "name": "Vermont Electric Power Company Data Center - Rutland VT",
+      "operator": "Vermont Electric Power Company",
+      "status": "existing",
+      "county_fips": "50021",
+      "notes": "VELCO (Vermont Electric Power Company) transmission utility data center and operations center in Rutland VT",
+      "lat": 43.6106,
+      "lon": -72.9726,
+      "sources": [
+        {
+          "label": "Vermont Electric Power Company",
+          "url": "https://www.velco.com/"
+        },
+        {
+          "label": "Vermont Electric Power Company",
+          "url": "https://www.velco.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6268159d54",
+      "name": "Casella Waste Systems Data Center - Rutland VT",
+      "operator": "Casella Waste Systems",
+      "status": "existing",
+      "county_fips": "50021",
+      "notes": "Casella Waste Systems enterprise data center at corporate HQ in Rutland VT",
+      "lat": 43.6106,
+      "lon": -72.9726,
+      "sources": [
+        {
+          "label": "Casella Waste Systems",
+          "url": "https://www.casella.com/"
+        },
+        {
+          "label": "Casella Waste Systems",
+          "url": "https://www.casella.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5cce5bde00",
+      "name": "Discover Financial Services Data Center - Wilmington DE",
+      "operator": "Discover Financial Services",
+      "status": "existing",
+      "county_fips": "10003",
+      "notes": "Discover Financial Services enterprise data center at Delaware operations center",
+      "lat": 39.7447,
+      "lon": -75.5484,
+      "sources": [
+        {
+          "label": "Discover Financial Services",
+          "url": "https://www.discover.com/"
+        },
+        {
+          "label": "Discover Financial Services",
+          "url": "https://investorrelations.discover.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5631a69a0f",
+      "name": "WSFS Financial Data Center - Wilmington DE",
+      "operator": "WSFS Financial Corporation",
+      "status": "existing",
+      "county_fips": "10003",
+      "notes": "WSFS Financial (Wilmington Savings Fund Society) enterprise data center at DE HQ",
+      "lat": 39.7447,
+      "lon": -75.5484,
+      "sources": [
+        {
+          "label": "WSFS Financial Corporation",
+          "url": "https://www.wsfsbank.com/"
+        },
+        {
+          "label": "WSFS Financial Corporation",
+          "url": "https://www.wsfsbank.com/about-wsfs/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ddff07b471",
+      "name": "Kamehameha Schools Data Center - Honolulu HI",
+      "operator": "Kamehameha Schools",
+      "status": "existing",
+      "county_fips": "15003",
+      "notes": "Kamehameha Schools enterprise data center, largest private landowner in Hawaii and major educational trust",
+      "lat": 21.388,
+      "lon": -157.8094,
+      "sources": [
+        {
+          "label": "Kamehameha Schools",
+          "url": "https://www.ksbe.edu/"
+        },
+        {
+          "label": "Kamehameha Schools",
+          "url": "https://www.ksbe.edu/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4b54a1945d",
+      "name": "US Indo-Pacific Command Data Center - Pearl Harbor HI",
+      "operator": "US Indo-Pacific Command",
+      "status": "existing",
+      "county_fips": "15003",
+      "notes": "US Indo-Pacific Command (USINDOPACOM) IT operations and data center at Pearl Harbor HI",
+      "lat": 21.3622,
+      "lon": -157.976,
+      "sources": [
+        {
+          "label": "US Indo-Pacific Command",
+          "url": "https://www.pacom.mil/"
+        },
+        {
+          "label": "US Indo-Pacific Command",
+          "url": "https://www.pacom.mil/About-USINDOPACOM/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1c161ba745",
+      "name": "Marine Corps Base Hawaii Data Center - Kaneohe HI",
+      "operator": "US Marine Corps",
+      "status": "existing",
+      "county_fips": "15003",
+      "notes": "Marine Corps Base Hawaii (MCBH) IT operations data center in Kaneohe HI",
+      "lat": 21.4547,
+      "lon": -157.7693,
+      "sources": [
+        {
+          "label": "US Marine Corps",
+          "url": "https://www.mcbhawaii.marines.mil/"
+        },
+        {
+          "label": "US Marine Corps",
+          "url": "https://www.mcbhawaii.marines.mil/Units/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4eb14e70be",
+      "name": "Electric Boat Data Center - North Kingstown RI",
+      "operator": "Electric Boat (General Dynamics)",
+      "status": "existing",
+      "county_fips": "44009",
+      "notes": "Electric Boat (GD submarine builder) enterprise data center at Quonset Point RI facility",
+      "lat": 41.5496,
+      "lon": -71.4567,
+      "sources": [
+        {
+          "label": "Electric Boat (General Dynamics)",
+          "url": "https://www.gdeb.com/"
+        },
+        {
+          "label": "Electric Boat (General Dynamics)",
+          "url": "https://www.gdeb.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e825228516",
+      "name": "Gilbane Building Company Data Center - Providence RI",
+      "operator": "Gilbane Building Company",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "Gilbane Building Company enterprise data center at Providence RI HQ; major US construction firm",
+      "lat": 41.824,
+      "lon": -71.4128,
+      "sources": [
+        {
+          "label": "Gilbane Building Company",
+          "url": "https://www.gilbaneco.com/"
+        },
+        {
+          "label": "Gilbane Building Company",
+          "url": "https://www.gilbaneco.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3ec59a8b11",
+      "name": "Citizens Bank Operations Center Data Center - Manchester NH",
+      "operator": "Citizens Financial Group",
+      "status": "existing",
+      "county_fips": "33011",
+      "notes": "Citizens Bank (Citizens Financial Group) enterprise data center in Manchester NH operations area",
+      "lat": 42.9956,
+      "lon": -71.4548,
+      "sources": [
+        {
+          "label": "Citizens Financial Group",
+          "url": "https://www.citizensbank.com/"
+        },
+        {
+          "label": "Citizens Financial Group",
+          "url": "https://investor.citizensbank.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d8c99b3030",
+      "name": "Unitil Data Center - Hampton NH",
+      "operator": "Unitil Corporation",
+      "status": "existing",
+      "county_fips": "33015",
+      "notes": "Unitil Corporation (electric/gas utility) data center; NH-based utility serving NH and MA",
+      "lat": 42.9154,
+      "lon": -70.8367,
+      "sources": [
+        {
+          "label": "Unitil Corporation",
+          "url": "https://www.unitil.com/"
+        },
+        {
+          "label": "Unitil Corporation",
+          "url": "https://www.unitil.com/about-unitil/"
+        }
+      ]
+    },
+    {
+      "id": "fc-73d4c091cc",
+      "name": "Logan Health Data Center - Kalispell MT",
+      "operator": "Logan Health",
+      "status": "existing",
+      "county_fips": "30029",
+      "notes": "Logan Health (formerly Kalispell Regional Medical Center) enterprise data center in Kalispell MT",
+      "lat": 48.192,
+      "lon": -114.313,
+      "sources": [
+        {
+          "label": "Logan Health",
+          "url": "https://www.loganhealth.org/"
+        },
+        {
+          "label": "Logan Health",
+          "url": "https://www.loganhealth.org/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b40ddbca10",
+      "name": "Montana DNRC Data Center - Helena MT",
+      "operator": "Montana Dept of Natural Resources",
+      "status": "existing",
+      "county_fips": "30049",
+      "notes": "Montana Department of Natural Resources and Conservation (DNRC) enterprise data center in Helena MT",
+      "lat": 46.5958,
+      "lon": -112.027,
+      "sources": [
+        {
+          "label": "Montana Dept of Natural Resources",
+          "url": "https://dnrc.mt.gov/"
+        },
+        {
+          "label": "Montana Dept of Natural Resources",
+          "url": "https://dnrc.mt.gov/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4fccec5540",
+      "name": "Thomas Health System Data Center - South Charleston WV",
+      "operator": "Thomas Health System",
+      "status": "existing",
+      "county_fips": "54039",
+      "notes": "Thomas Health System (Thomas Memorial Hospital) enterprise data center in South Charleston WV",
+      "lat": 38.3682,
+      "lon": -81.6979,
+      "sources": [
+        {
+          "label": "Thomas Health System",
+          "url": "https://www.thomaswv.org/"
+        },
+        {
+          "label": "Thomas Health System",
+          "url": "https://www.thomaswv.org/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a96565e2d1",
+      "name": "Marshall University Research Computing - Huntington WV",
+      "operator": "Marshall University",
+      "status": "existing",
+      "county_fips": "54011",
+      "notes": "Marshall University HPC research computing center in Huntington WV",
+      "lat": 38.4192,
+      "lon": -82.4452,
+      "sources": [
+        {
+          "label": "Marshall University",
+          "url": "https://www.marshall.edu/"
+        },
+        {
+          "label": "Marshall University",
+          "url": "https://www.marshall.edu/research/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a9a799bf72",
+      "name": "World Bank Group Data Center - Washington DC",
+      "operator": "World Bank Group",
+      "status": "existing",
+      "county_fips": "11001",
+      "notes": "World Bank Group enterprise data center at Washington DC headquarters; major international institution",
+      "lat": 38.8951,
+      "lon": -77.0443,
+      "sources": [
+        {
+          "label": "World Bank Group",
+          "url": "https://www.worldbank.org/"
+        },
+        {
+          "label": "World Bank Group",
+          "url": "https://www.worldbank.org/en/about/contacts"
+        }
+      ]
+    },
+    {
+      "id": "fc-9ca4c3c769",
+      "name": "International Monetary Fund Data Center - Washington DC",
+      "operator": "International Monetary Fund",
+      "status": "existing",
+      "county_fips": "11001",
+      "notes": "International Monetary Fund (IMF) enterprise data center at Washington DC headquarters",
+      "lat": 38.8951,
+      "lon": -77.0406,
+      "sources": [
+        {
+          "label": "International Monetary Fund",
+          "url": "https://www.imf.org/"
+        },
+        {
+          "label": "International Monetary Fund",
+          "url": "https://www.imf.org/en/About/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f059eb3277",
+      "name": "UNM Health Sciences Center Data Center - Albuquerque NM",
+      "operator": "University of New Mexico Health Sciences",
+      "status": "existing",
+      "county_fips": "35001",
+      "notes": "UNM Health Sciences Center enterprise data center in Albuquerque NM",
+      "lat": 35.0853,
+      "lon": -106.65,
+      "sources": [
+        {
+          "label": "University of New Mexico Health Sciences",
+          "url": "https://hsc.unm.edu/"
+        },
+        {
+          "label": "University of New Mexico Health Sciences",
+          "url": "https://hsc.unm.edu/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ef6f688af8",
+      "name": "New Mexico Highlands University Data Center - Las Vegas NM",
+      "operator": "New Mexico Highlands University",
+      "status": "existing",
+      "county_fips": "35047",
+      "notes": "New Mexico Highlands University enterprise data center in Las Vegas NM (San Miguel County)",
+      "lat": 35.5937,
+      "lon": -105.2228,
+      "sources": [
+        {
+          "label": "New Mexico Highlands University",
+          "url": "https://www.nmhu.edu/"
+        },
+        {
+          "label": "New Mexico Highlands University",
+          "url": "https://www.nmhu.edu/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b00e22f3ee",
+      "name": "CHI St. Alexius Health Data Center - Bismarck ND",
+      "operator": "CHI St. Alexius Health",
+      "status": "existing",
+      "county_fips": "38015",
+      "notes": "CHI St. Alexius Health enterprise data center in Bismarck ND; largest hospital in ND",
+      "lat": 46.8083,
+      "lon": -100.7837,
+      "sources": [
+        {
+          "label": "CHI St. Alexius Health",
+          "url": "https://www.chistalexius.org/"
+        },
+        {
+          "label": "CHI St. Alexius Health",
+          "url": "https://www.chistalexius.org/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5eb0f73f53",
+      "name": "University of North Dakota Research Computing - Grand Forks ND",
+      "operator": "University of North Dakota",
+      "status": "existing",
+      "county_fips": "38035",
+      "notes": "University of North Dakota research computing and HPC facilities in Grand Forks ND",
+      "lat": 47.9011,
+      "lon": -97.0886,
+      "sources": [
+        {
+          "label": "University of North Dakota",
+          "url": "https://und.edu/"
+        },
+        {
+          "label": "University of North Dakota",
+          "url": "https://und.edu/research/core-research-facilities/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3010edf3a2",
+      "name": "Cheyenne Regional Medical Center Data Center - Cheyenne WY",
+      "operator": "Cheyenne Regional Medical Center",
+      "status": "existing",
+      "county_fips": "56021",
+      "notes": "Cheyenne Regional Medical Center enterprise data center; Wyoming's largest hospital",
+      "lat": 41.14,
+      "lon": -104.8202,
+      "sources": [
+        {
+          "label": "Cheyenne Regional Medical Center",
+          "url": "https://www.cheyenneregional.org/"
+        },
+        {
+          "label": "Cheyenne Regional Medical Center",
+          "url": "https://www.cheyenneregional.org/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6d9357487d",
+      "name": "Wyoming Medical Center Data Center - Casper WY",
+      "operator": "Wyoming Medical Center",
+      "status": "existing",
+      "county_fips": "56025",
+      "notes": "Wyoming Medical Center enterprise data center in Casper WY; major central Wyoming hospital",
+      "lat": 42.8501,
+      "lon": -106.3252,
+      "sources": [
+        {
+          "label": "Wyoming Medical Center",
+          "url": "https://www.wyomingmedicalcenter.org/"
+        },
+        {
+          "label": "Wyoming Medical Center",
+          "url": "https://www.wyomingmedicalcenter.org/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-893e960ff4",
+      "name": "Metronet Data Center - Kokomo IN",
+      "operator": "Metronet",
+      "status": "existing",
+      "county_fips": "18067",
+      "notes": "Metronet fiber and colocation data center in Kokomo IN (central Indiana)",
+      "lat": 40.4864,
+      "lon": -86.1336,
+      "sources": [
+        {
+          "label": "Metronet",
+          "url": "https://www.metronet.com/"
+        },
+        {
+          "label": "Metronet",
+          "url": "https://www.metronet.com/business/colocation/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4a85f558ef",
+      "name": "Metronet Data Center - Champaign IL",
+      "operator": "Metronet",
+      "status": "existing",
+      "county_fips": "17019",
+      "notes": "Metronet fiber and colocation data center in Champaign IL (Urbana-Champaign metro)",
+      "lat": 40.1164,
+      "lon": -88.2434,
+      "sources": [
+        {
+          "label": "Metronet",
+          "url": "https://www.metronet.com/"
+        },
+        {
+          "label": "Metronet",
+          "url": "https://www.metronet.com/business/colocation/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8a13287a6f",
+      "name": "Metronet Data Center - Iowa City IA",
+      "operator": "Metronet",
+      "status": "existing",
+      "county_fips": "19103",
+      "notes": "Metronet fiber and colocation data center in Iowa City IA",
+      "lat": 41.6611,
+      "lon": -91.5302,
+      "sources": [
+        {
+          "label": "Metronet",
+          "url": "https://www.metronet.com/"
+        },
+        {
+          "label": "Metronet",
+          "url": "https://www.metronet.com/business/colocation/"
+        }
+      ]
+    },
+    {
+      "id": "fc-faaf067690",
+      "name": "BAE Systems Data Center - Nashua NH",
+      "operator": "BAE Systems",
+      "status": "existing",
+      "county_fips": "33011",
+      "notes": "BAE Systems Electronic Systems division data center at major Nashua NH facility",
+      "lat": 42.7654,
+      "lon": -71.4676,
+      "sources": [
+        {
+          "label": "BAE Systems",
+          "url": "https://www.baesystems.com/en-us/our-company/our-businesses/electronic-systems"
+        }
+      ]
+    },
+    {
+      "id": "fc-c0c68b2901",
+      "name": "Leidos Data Center - Reston VA",
+      "operator": "Leidos",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "Leidos enterprise data center at corporate HQ in Reston VA; major federal IT contractor",
+      "lat": 38.9587,
+      "lon": -77.357,
+      "sources": [
+        {
+          "label": "Leidos",
+          "url": "https://www.leidos.com/"
+        },
+        {
+          "label": "Leidos",
+          "url": "https://www.leidos.com/company/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3a46f1c7a9",
+      "name": "SAIC Data Center - Reston VA",
+      "operator": "SAIC",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "SAIC (Science Applications International Corporation) data center in Reston VA",
+      "lat": 38.9587,
+      "lon": -77.357,
+      "sources": [
+        {
+          "label": "SAIC",
+          "url": "https://www.saic.com/"
+        },
+        {
+          "label": "SAIC",
+          "url": "https://www.saic.com/who-we-are/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a5a9fc85e3",
+      "name": "L3Harris Technologies Data Center - Palm Bay FL",
+      "operator": "L3Harris Technologies",
+      "status": "existing",
+      "county_fips": "12009",
+      "notes": "L3Harris Technologies enterprise data center at Melbourne/Palm Bay FL operations center",
+      "lat": 28.0345,
+      "lon": -80.5887,
+      "sources": [
+        {
+          "label": "L3Harris Technologies",
+          "url": "https://www.l3harris.com/"
+        },
+        {
+          "label": "L3Harris Technologies",
+          "url": "https://www.l3harris.com/company/about-us"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -39531,6 +40167,46 @@
           "url": "https://voltagepark.com/infrastructure/"
         }
       ]
+    },
+    {
+      "id": "fc-52875fc8f7",
+      "name": "Yondr Group Data Center - Phoenix AZ",
+      "operator": "Yondr Group",
+      "status": "planned",
+      "county_fips": "04013",
+      "notes": "Yondr Group hyperscale data center development in Phoenix AZ",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Yondr Group",
+          "url": "https://www.yondrgroup.com/"
+        },
+        {
+          "label": "Yondr Group",
+          "url": "https://www.yondrgroup.com/our-data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7f664ccd96",
+      "name": "Yondr Group Data Center - Atlanta GA",
+      "operator": "Yondr Group",
+      "status": "planned",
+      "county_fips": "13121",
+      "notes": "Yondr Group hyperscale data center development in Atlanta GA",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Yondr Group",
+          "url": "https://www.yondrgroup.com/"
+        },
+        {
+          "label": "Yondr Group",
+          "url": "https://www.yondrgroup.com/our-data-centers/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -39923,5 +40599,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:47:36Z"
+  "_facilities_exported_at": "2026-07-19T17:49:41Z"
 }
