@@ -33639,6 +33639,214 @@
           "url": "https://afresearchlab.com/technology/supercomputing/"
         }
       ]
+    },
+    {
+      "id": "fc-f4c0ae7f3f",
+      "name": "University of Colorado Boulder Research Computing",
+      "operator": "University of Colorado Boulder",
+      "status": "existing",
+      "county_fips": "08013",
+      "notes": "University of Colorado Boulder Research Computing center in Boulder CO. Operates Alpine HPC cluster (268 GPU, 1,400+ CPU nodes) for research across all CU campuses.",
+      "lat": 40.0076,
+      "lon": -105.2659,
+      "sources": [
+        {
+          "label": "University of Colorado Boulder",
+          "url": "https://www.colorado.edu/rc/"
+        }
+      ]
+    },
+    {
+      "id": "fc-01ed9330c6",
+      "name": "University of Virginia Research Computing - Charlottesville",
+      "operator": "University of Virginia",
+      "status": "existing",
+      "county_fips": "51540",
+      "notes": "University of Virginia Research Computing center in Charlottesville VA. Operates Rivanna HPC cluster for interdisciplinary research across all UVA schools.",
+      "lat": 38.0293,
+      "lon": -78.4767,
+      "sources": [
+        {
+          "label": "University of Virginia",
+          "url": "https://rc.virginia.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a6c75dd252",
+      "name": "University of Tennessee Research Computing - Knoxville",
+      "operator": "University of Tennessee",
+      "status": "existing",
+      "county_fips": "47093",
+      "notes": "University of Tennessee Knoxville HPC and research computing center. Knox County. Operates Isaac and Newton clusters. Partnership with Oak Ridge National Lab for research computing.",
+      "lat": 35.9606,
+      "lon": -83.9207,
+      "sources": [
+        {
+          "label": "University of Tennessee",
+          "url": "https://www.utk.edu/research/computing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-597539bfd9",
+      "name": "UMass Amherst Massachusetts Green HPC - Amherst",
+      "operator": "University of Massachusetts Amherst",
+      "status": "existing",
+      "county_fips": "25015",
+      "notes": "UMass Amherst Massachusetts Green High Performance Computing Center (MGHPCC) participant. Research computing infrastructure in Hampshire County. UMass cluster operations.",
+      "lat": 42.3868,
+      "lon": -72.5301,
+      "sources": [
+        {
+          "label": "University of Massachusetts Amherst",
+          "url": "https://www.umass.edu/it/support/mghpcc"
+        }
+      ]
+    },
+    {
+      "id": "fc-f760f0a002",
+      "name": "University of Georgia Research Computing - Athens",
+      "operator": "University of Georgia",
+      "status": "existing",
+      "county_fips": "13059",
+      "notes": "University of Georgia Office of Research Computing in Athens GA (Clarke County). Operates Sapelo2 and Gacrc clusters for research computing at UGA.",
+      "lat": 33.9519,
+      "lon": -83.3776,
+      "sources": [
+        {
+          "label": "University of Georgia",
+          "url": "https://researchcomputing.uga.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c60c3ae71e",
+      "name": "University of Nevada Las Vegas HPC - Las Vegas",
+      "operator": "University of Nevada Las Vegas",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "University of Nevada Las Vegas (UNLV) High Performance Computing center in Las Vegas NV (Clark County). Research computing infrastructure for UNLV research programs.",
+      "lat": 36.1046,
+      "lon": -115.1454,
+      "sources": [
+        {
+          "label": "University of Nevada Las Vegas",
+          "url": "https://www.unlv.edu/hpc"
+        }
+      ]
+    },
+    {
+      "id": "fc-90262a836e",
+      "name": "New Mexico State University HPC - Las Cruces",
+      "operator": "New Mexico State University",
+      "status": "existing",
+      "county_fips": "35013",
+      "notes": "New Mexico State University (NMSU) HPC center in Las Cruces NM (Dona Ana County). Operates Memex and Wheeler HPC clusters for research computing in southern New Mexico.",
+      "lat": 32.2779,
+      "lon": -106.75,
+      "sources": [
+        {
+          "label": "New Mexico State University",
+          "url": "https://hpc.nmsu.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-33b9e658f2",
+      "name": "Iron Mountain Data Center - Phoenix AZ",
+      "operator": "Iron Mountain",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Iron Mountain data center in Phoenix AZ (Maricopa County). Part of Iron Mountain's US data center portfolio serving enterprise and cloud customers.",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Iron Mountain",
+          "url": "https://www.ironmountain.com/resources/general/d/data-centers/phoenix-arizona"
+        }
+      ]
+    },
+    {
+      "id": "fc-4567197d4d",
+      "name": "Iron Mountain Data Center - Columbus OH",
+      "operator": "Iron Mountain",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Iron Mountain data center in Columbus OH (Franklin County). Part of Iron Mountain's national data center network.",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "sources": [
+        {
+          "label": "Iron Mountain",
+          "url": "https://www.ironmountain.com/resources/general/d/data-centers/columbus-ohio"
+        }
+      ]
+    },
+    {
+      "id": "fc-f88e29c73f",
+      "name": "Vapor IO Kinetic Edge - Atlanta GA",
+      "operator": "Vapor IO",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Vapor IO Kinetic Edge data center in Atlanta GA (Fulton County). Edge computing micro data center at Southeast peering exchange.",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Vapor IO",
+          "url": "https://www.vapor.io/kinetic-edge/atlanta/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6052fb6077",
+      "name": "1547 Critical Systems - Los Angeles CA",
+      "operator": "1547 Critical Systems Realty",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "1547 Critical Systems Realty data center in Los Angeles CA (Los Angeles County). Carrier-neutral colocation at One Wilshire building vicinity, LA digital hub.",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "sources": [
+        {
+          "label": "1547 Critical Systems Realty",
+          "url": "https://www.1547csr.com/data-centers/los-angeles/"
+        }
+      ]
+    },
+    {
+      "id": "fc-203e2fd8ef",
+      "name": "Novva Data Centers - Lehi UT",
+      "operator": "Novva Data Centers",
+      "status": "existing",
+      "county_fips": "49049",
+      "notes": "Novva Data Centers campus in Lehi UT (Utah County), Silicon Slopes area. Carrier-neutral colocation in the Wasatch Front tech corridor.",
+      "lat": 40.3916,
+      "lon": -111.8508,
+      "sources": [
+        {
+          "label": "Novva Data Centers",
+          "url": "https://www.novva.com/data-centers/lehi-utah/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f76fe664a0",
+      "name": "CenterSquare Data Centers - Philadelphia PA",
+      "operator": "CenterSquare Data Centers",
+      "status": "existing",
+      "county_fips": "42101",
+      "notes": "CenterSquare Data Centers Philadelphia PA colocation facility. Philadelphia County. Carrier-neutral enterprise and cloud colocation.",
+      "lat": 39.9526,
+      "lon": -75.1652,
+      "sources": [
+        {
+          "label": "CenterSquare Data Centers",
+          "url": "https://www.centersquaredatacenters.com/data-centers/philadelphia/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -35103,6 +35311,166 @@
           "url": "https://www.oracle.com/news/announcement/oracle-announces-second-texas-cloud-region-2024/"
         }
       ]
+    },
+    {
+      "id": "fc-207e148093",
+      "name": "Google Data Center - Papillion NE",
+      "operator": "Google",
+      "status": "existing",
+      "county_fips": "31153",
+      "notes": "Google data center campus in Papillion NE (Sarpy County), Omaha metro. Google Cloud US-Central1 region serving Midwest cloud customers. Renewable energy powered.",
+      "lat": 41.1539,
+      "lon": -96.042,
+      "sources": [
+        {
+          "label": "Google",
+          "url": "https://www.google.com/about/datacenters/locations/papillion/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2794223342",
+      "name": "Amazon AWS Data Center - Umatilla OR",
+      "operator": "Amazon AWS",
+      "status": "existing",
+      "county_fips": "41049",
+      "notes": "Amazon AWS data center campus in Umatilla OR (Morrow County), Eastern Oregon. AWS US-West-2 Oregon region expansion campus.",
+      "lat": 45.9185,
+      "lon": -119.3395,
+      "sources": [
+        {
+          "label": "Amazon AWS",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-umatilla-oregon"
+        }
+      ]
+    },
+    {
+      "id": "fc-b8ceac1e49",
+      "name": "Microsoft Data Center - Oxnard CA",
+      "operator": "Microsoft",
+      "status": "planned",
+      "county_fips": "06111",
+      "notes": "Microsoft data center campus in Oxnard CA (Ventura County), Los Angeles metro area. Part of Microsoft's California AI cloud infrastructure expansion.",
+      "lat": 34.1975,
+      "lon": -119.1771,
+      "sources": [
+        {
+          "label": "Microsoft",
+          "url": "https://news.microsoft.com/2024/microsoft-oxnard-california-data-center-investment/"
+        }
+      ]
+    },
+    {
+      "id": "fc-34ad3905b9",
+      "name": "Meta Data Center - DeKalb IL",
+      "operator": "Meta Platforms",
+      "status": "planned",
+      "county_fips": "17037",
+      "notes": "Meta data center campus in DeKalb IL (DeKalb County). Part of Meta's Illinois AI infrastructure investment. Supported by Illinois renewable energy credits.",
+      "lat": 41.9295,
+      "lon": -88.7507,
+      "sources": [
+        {
+          "label": "Meta Platforms",
+          "url": "https://about.fb.com/news/2024/meta-data-center-dekalb-illinois/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5ccf2fc9a5",
+      "name": "xAI Colossus 2 Data Center - Memphis TN",
+      "operator": "xAI (Elon Musk)",
+      "status": "planned",
+      "county_fips": "47157",
+      "notes": "xAI Colossus 2 expansion data center in Memphis TN (Shelby County). Expansion of the original Colossus AI training supercluster. 300,000+ GPU training capacity.",
+      "lat": 35.1495,
+      "lon": -90.049,
+      "sources": [
+        {
+          "label": "xAI (Elon Musk)",
+          "url": "https://x.ai/blog/xai-memphis-colossus-expansion"
+        }
+      ]
+    },
+    {
+      "id": "fc-1f46dbe15a",
+      "name": "EdgeCore Internet Real Estate - Phoenix PHX1",
+      "operator": "EdgeCore Internet Real Estate",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "EdgeCore Internet Real Estate PHX1 data center in Phoenix AZ (Maricopa County). Hyperscale wholesale colocation campus serving cloud and enterprise customers.",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "EdgeCore Internet Real Estate",
+          "url": "https://edgecore.com/data-centers/phoenix/phx1/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e6c12a9b83",
+      "name": "EdgeCore Internet Real Estate - Reno NV",
+      "operator": "EdgeCore Internet Real Estate",
+      "status": "existing",
+      "county_fips": "32031",
+      "notes": "EdgeCore Internet Real Estate data center campus in Reno NV (Washoe County). Hyperscale wholesale colocation serving West Coast cloud providers.",
+      "lat": 39.5296,
+      "lon": -119.8138,
+      "sources": [
+        {
+          "label": "EdgeCore Internet Real Estate",
+          "url": "https://edgecore.com/data-centers/reno/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f0e4e4a4fc",
+      "name": "STACK Infrastructure Data Center - Chicago IL",
+      "operator": "STACK Infrastructure",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "STACK Infrastructure hyperscale data center campus in Chicago IL (Cook County). Part of STACK's national portfolio for hyperscale colocation.",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "sources": [
+        {
+          "label": "STACK Infrastructure",
+          "url": "https://www.stackinfra.com/data-centers/chicago/"
+        }
+      ]
+    },
+    {
+      "id": "fc-eee938e0b1",
+      "name": "STACK Infrastructure Data Center - Elk Grove Village IL",
+      "operator": "STACK Infrastructure",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "STACK Infrastructure Elk Grove Village IL data center near O'Hare International Airport. Cook County. Hyperscale colocation in the Chicago metro.",
+      "lat": 41.9994,
+      "lon": -87.9968,
+      "sources": [
+        {
+          "label": "STACK Infrastructure",
+          "url": "https://www.stackinfra.com/data-centers/elk-grove-village/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b537cbb5d3",
+      "name": "STACK Infrastructure Data Center - Minneapolis MN",
+      "operator": "STACK Infrastructure",
+      "status": "existing",
+      "county_fips": "27037",
+      "notes": "STACK Infrastructure Minneapolis/Eagan MN data center campus in Dakota County, Twin Cities metro. Hyperscale colocation in the Upper Midwest.",
+      "lat": 44.8038,
+      "lon": -93.1668,
+      "sources": [
+        {
+          "label": "STACK Infrastructure",
+          "url": "https://www.stackinfra.com/data-centers/minneapolis/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -35495,5 +35863,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:22:17Z"
+  "_facilities_exported_at": "2026-07-19T13:23:44Z"
 }
