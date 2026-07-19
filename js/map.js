@@ -1643,11 +1643,17 @@ function renderComparePanel() {
   body.innerHTML = "";
 
   if (!compareCounties.length) {
-    const em = document.createElement("div");
-    em.className = "cmp-add-prompt";
-    em.style.width = "100%";
-    em.textContent = "Click counties on the map to compare up to 5 side-by-side.";
-    body.appendChild(em);
+    for (let i = 0; i < CMP_MAX; i++) {
+      const addCol = document.createElement("div");
+      addCol.className = "cmp-add-col";
+      addCol.title = "Click a county on the map to add it";
+      addCol.innerHTML =
+        `<div class="cmp-slot-card">` +
+          `<span class="cmp-slot-icon">+</span>` +
+          `<span class="cmp-slot-label">Add county</span>` +
+        `</div>`;
+      body.appendChild(addCol);
+    }
     return;
   }
 
@@ -1736,14 +1742,17 @@ function renderComparePanel() {
     body.appendChild(col);
   });
 
-  // Add-more prompt if under max
-  if (compareCounties.length < CMP_MAX) {
+  // Empty slot "+" cards for each remaining spot
+  const remaining = CMP_MAX - compareCounties.length;
+  for (let i = 0; i < remaining; i++) {
     const addCol = document.createElement("div");
     addCol.className = "cmp-add-col";
-    const prompt = document.createElement("div");
-    prompt.className = "cmp-add-prompt";
-    prompt.textContent = `Click map to add (${compareCounties.length}/${CMP_MAX})`;
-    addCol.appendChild(prompt);
+    addCol.title = "Click a county on the map to add it";
+    addCol.innerHTML =
+      `<div class="cmp-slot-card">` +
+        `<span class="cmp-slot-icon">+</span>` +
+        `<span class="cmp-slot-label">Add county</span>` +
+      `</div>`;
     body.appendChild(addCol);
   }
 }
