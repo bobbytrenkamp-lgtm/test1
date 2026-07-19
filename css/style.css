@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+/* iOS Safari: display:flex/grid on an element overrides UA [hidden]{display:none}.
+   This enforces the HTML spec globally so .hidden=true always hides. */
+[hidden] { display: none !important; }
+
 /* ── Motion system ── */
 :root {
   --motion-instant:  100ms;
