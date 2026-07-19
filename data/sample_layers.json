@@ -39007,6 +39007,518 @@
           "url": "https://www.involta.com/data-centers/"
         }
       ]
+    },
+    {
+      "id": "fc-d999f575fd",
+      "name": "Evocative Data Center - Fremont CA",
+      "operator": "Evocative",
+      "status": "existing",
+      "county_fips": "06001",
+      "notes": "Evocative (formerly Agilion) Fremont CA colocation",
+      "lat": 37.5485,
+      "lon": -121.9886,
+      "sources": [
+        {
+          "label": "Evocative",
+          "url": "https://evocative.com/data-centers/fremont/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e0cd229a6b",
+      "name": "Evocative Data Center - Phoenix AZ",
+      "operator": "Evocative",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Evocative Phoenix AZ colocation",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Evocative",
+          "url": "https://evocative.com/data-centers/phoenix/"
+        }
+      ]
+    },
+    {
+      "id": "fc-fe4cb99fc6",
+      "name": "Evocative Data Center - Las Vegas NV",
+      "operator": "Evocative",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "Evocative Las Vegas NV colocation",
+      "lat": 36.1699,
+      "lon": -115.1398,
+      "sources": [
+        {
+          "label": "Evocative",
+          "url": "https://evocative.com/data-centers/las-vegas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-781cd683cc",
+      "name": "Evocative Data Center - Denver CO",
+      "operator": "Evocative",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Evocative Denver CO colocation",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Evocative",
+          "url": "https://evocative.com/data-centers/denver/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8bf8ac84b2",
+      "name": "Evocative Data Center - Seattle WA",
+      "operator": "Evocative",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Evocative Seattle WA colocation",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "sources": [
+        {
+          "label": "Evocative",
+          "url": "https://evocative.com/data-centers/seattle/"
+        }
+      ]
+    },
+    {
+      "id": "fc-71deeba543",
+      "name": "Evocative Data Center - Atlanta GA",
+      "operator": "Evocative",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Evocative Atlanta GA colocation",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Evocative",
+          "url": "https://evocative.com/data-centers/atlanta/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7aa0154d0a",
+      "name": "Cox Communications Data Center - Kansas City KS",
+      "operator": "Cox Communications",
+      "status": "existing",
+      "county_fips": "20209",
+      "notes": "Cox Communications data center Kansas City KS",
+      "lat": 39.1141,
+      "lon": -94.6275,
+      "sources": [
+        {
+          "label": "Cox Communications",
+          "url": "https://www.cox.com/business/networking/cox-cloud-solutions.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-6ed1292b23",
+      "name": "Cox Communications Data Center - Raleigh NC",
+      "operator": "Cox Communications",
+      "status": "existing",
+      "county_fips": "37183",
+      "notes": "Cox Communications data center Raleigh NC",
+      "lat": 35.7796,
+      "lon": -78.6382,
+      "sources": [
+        {
+          "label": "Cox Communications",
+          "url": "https://www.cox.com/business/networking/cox-cloud-solutions.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-39a8df7f50",
+      "name": "Cox Communications Data Center - Hampton Roads VA",
+      "operator": "Cox Communications",
+      "status": "existing",
+      "county_fips": "51810",
+      "notes": "Cox Communications Hampton Roads VA region data center",
+      "lat": 36.8529,
+      "lon": -75.978,
+      "sources": [
+        {
+          "label": "Cox Communications",
+          "url": "https://www.cox.com/business/networking/cox-cloud-solutions.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-dfadd99d0a",
+      "name": "Corelink Data Center - Chicago IL",
+      "operator": "Corelink",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Corelink Chicago IL colocation",
+      "lat": 41.8827,
+      "lon": -87.6233,
+      "sources": [
+        {
+          "label": "Corelink",
+          "url": "https://www.corelink.net/data-centers/chicago/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c6ccadf257",
+      "name": "Corelink Data Center - Dallas TX",
+      "operator": "Corelink",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Corelink Dallas TX colocation",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "Corelink",
+          "url": "https://www.corelink.net/data-centers/dallas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-545b3e4d18",
+      "name": "Corelink Data Center - Denver CO",
+      "operator": "Corelink",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Corelink Denver CO colocation",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Corelink",
+          "url": "https://www.corelink.net/data-centers/denver/"
+        }
+      ]
+    },
+    {
+      "id": "fc-12977e8137",
+      "name": "Corelink Data Center - Phoenix AZ",
+      "operator": "Corelink",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Corelink Phoenix AZ colocation",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Corelink",
+          "url": "https://www.corelink.net/data-centers/phoenix/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5b0d33e979",
+      "name": "Ascent Data Centers - Denver CO 2",
+      "operator": "Ascent Data Centers",
+      "status": "existing",
+      "county_fips": "08005",
+      "notes": "Ascent Data Centers Aurora/Denver CO campus 2",
+      "lat": 39.7294,
+      "lon": -104.8319,
+      "sources": [
+        {
+          "label": "Ascent Data Centers",
+          "url": "https://ascentdatacenters.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a8c1dab44f",
+      "name": "Ascent Data Centers - Dallas TX",
+      "operator": "Ascent Data Centers",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Ascent Data Centers Dallas TX",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "Ascent Data Centers",
+          "url": "https://ascentdatacenters.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c9583506e7",
+      "name": "Cosentry Data Center - Lincoln NE",
+      "operator": "Cosentry",
+      "status": "existing",
+      "county_fips": "31109",
+      "notes": "Cosentry Lincoln NE data center",
+      "lat": 40.8136,
+      "lon": -96.7026,
+      "sources": [
+        {
+          "label": "Cosentry",
+          "url": "https://www.cosentry.com/locations/lincoln/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d71b9b83b3",
+      "name": "Cosentry Data Center - Des Moines IA",
+      "operator": "Cosentry",
+      "status": "existing",
+      "county_fips": "19153",
+      "notes": "Cosentry Des Moines IA data center",
+      "lat": 41.5868,
+      "lon": -93.625,
+      "sources": [
+        {
+          "label": "Cosentry",
+          "url": "https://www.cosentry.com/locations/des-moines/"
+        }
+      ]
+    },
+    {
+      "id": "fc-84e272052b",
+      "name": "Prime Data Centers - Quincy WA",
+      "operator": "Prime Data Centers",
+      "status": "existing",
+      "county_fips": "53025",
+      "notes": "Prime Data Centers Quincy WA colocation",
+      "lat": 47.2348,
+      "lon": -119.852,
+      "sources": [
+        {
+          "label": "Prime Data Centers",
+          "url": "https://www.primedatacenters.com/data-centers/quincy/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6f1b1ba097",
+      "name": "Prime Data Centers - Hillsboro OR",
+      "operator": "Prime Data Centers",
+      "status": "existing",
+      "county_fips": "41067",
+      "notes": "Prime Data Centers Hillsboro OR colocation",
+      "lat": 45.5229,
+      "lon": -122.9898,
+      "sources": [
+        {
+          "label": "Prime Data Centers",
+          "url": "https://www.primedatacenters.com/data-centers/hillsboro/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3bdae165cb",
+      "name": "Prime Data Centers - Phoenix AZ",
+      "operator": "Prime Data Centers",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Prime Data Centers Phoenix AZ colocation",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Prime Data Centers",
+          "url": "https://www.primedatacenters.com/data-centers/phoenix/"
+        }
+      ]
+    },
+    {
+      "id": "fc-66e9aac809",
+      "name": "C7 Data Centers - Draper UT",
+      "operator": "C7 Data Centers",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "C7 Data Centers Draper UT colocation",
+      "lat": 40.5246,
+      "lon": -111.8638,
+      "sources": [
+        {
+          "label": "C7 Data Centers",
+          "url": "https://www.c7dc.com/locations/draper/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3c507d2238",
+      "name": "C7 Data Centers - Lindon UT",
+      "operator": "C7 Data Centers",
+      "status": "existing",
+      "county_fips": "49049",
+      "notes": "C7 Data Centers Lindon UT colocation",
+      "lat": 40.3422,
+      "lon": -111.7183,
+      "sources": [
+        {
+          "label": "C7 Data Centers",
+          "url": "https://www.c7dc.com/locations/lindon/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8f2410db37",
+      "name": "Atrion - Providence RI Data Center",
+      "operator": "Atrion Networking",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "Atrion Networking Providence RI data center",
+      "lat": 41.824,
+      "lon": -71.4128,
+      "sources": [
+        {
+          "label": "Atrion Networking",
+          "url": "https://www.atrion.net/managed-services/data-center-services/"
+        }
+      ]
+    },
+    {
+      "id": "fc-acc37aafee",
+      "name": "Sievert Larsen - Providence RI Carrier Hotel",
+      "operator": "Sievert Larsen",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "Sievert Larsen Providence RI carrier hotel",
+      "lat": 41.824,
+      "lon": -71.4128,
+      "sources": [
+        {
+          "label": "Sievert Larsen",
+          "url": "https://www.sievertlarsen.com/facilities/providence-ri/"
+        }
+      ]
+    },
+    {
+      "id": "fc-994f9bb241",
+      "name": "Delaware Technology Park Data Center",
+      "operator": "Delaware Technology Park",
+      "status": "existing",
+      "county_fips": "10003",
+      "notes": "Delaware Technology Park Newark DE; UD research and enterprise DC",
+      "lat": 39.6837,
+      "lon": -75.7497,
+      "sources": [
+        {
+          "label": "Delaware Technology Park",
+          "url": "https://www.delawaretechnologypark.org/"
+        }
+      ]
+    },
+    {
+      "id": "fc-14b96aa837",
+      "name": "MaineHealth Data Center - Portland ME",
+      "operator": "MaineHealth",
+      "status": "existing",
+      "county_fips": "23005",
+      "notes": "MaineHealth hospital network data center Portland ME",
+      "lat": 43.6591,
+      "lon": -70.2568,
+      "sources": [
+        {
+          "label": "MaineHealth",
+          "url": "https://mainehealth.org/about/about-mainehealth"
+        }
+      ]
+    },
+    {
+      "id": "fc-799697e0b1",
+      "name": "University of Maine - Orono ME HPC",
+      "operator": "University of Maine",
+      "status": "existing",
+      "county_fips": "23019",
+      "notes": "University of Maine Orono ME HPC research computing",
+      "lat": 44.9008,
+      "lon": -68.6677,
+      "sources": [
+        {
+          "label": "University of Maine",
+          "url": "https://www.umaine.edu/it/research-computing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-423fa8dd0d",
+      "name": "University of Vermont - Burlington VT Data Center",
+      "operator": "University of Vermont",
+      "status": "existing",
+      "county_fips": "50007",
+      "notes": "University of Vermont Burlington VT enterprise data center",
+      "lat": 44.4759,
+      "lon": -73.2121,
+      "sources": [
+        {
+          "label": "University of Vermont",
+          "url": "https://www.uvm.edu/it"
+        }
+      ]
+    },
+    {
+      "id": "fc-67a6182ec9",
+      "name": "University of Hawaii - Honolulu HPC",
+      "operator": "University of Hawaii",
+      "status": "existing",
+      "county_fips": "15003",
+      "notes": "University of Hawaii Manoa HPC research computing Honolulu HI",
+      "lat": 21.2969,
+      "lon": -157.8176,
+      "sources": [
+        {
+          "label": "University of Hawaii",
+          "url": "https://www.hawaii.edu/its/hpc/"
+        }
+      ]
+    },
+    {
+      "id": "fc-758e77b449",
+      "name": "Hawaiian Telcom Data Center - Oahu HI",
+      "operator": "Hawaiian Telcom",
+      "status": "existing",
+      "county_fips": "15003",
+      "notes": "Hawaiian Telcom colocation Honolulu Oahu HI",
+      "lat": 21.3069,
+      "lon": -157.8583,
+      "sources": [
+        {
+          "label": "Hawaiian Telcom",
+          "url": "https://www.hawaiiantelcom.com/business/managed-services/cloud-and-colocation.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-ee712c6130",
+      "name": "Aloha Networks Data Center - Maui HI",
+      "operator": "Aloha Networks",
+      "status": "existing",
+      "county_fips": "15009",
+      "notes": "Aloha Networks Maui HI colocation",
+      "lat": 20.8893,
+      "lon": -156.5047,
+      "sources": [
+        {
+          "label": "Aloha Networks",
+          "url": "https://www.alohanetworks.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-36f30013a6",
+      "name": "Compass Datacenters - Louisville KY",
+      "operator": "Compass Datacenters",
+      "status": "existing",
+      "county_fips": "21111",
+      "notes": "Compass Datacenters Louisville KY campus",
+      "lat": 38.2527,
+      "lon": -85.7585,
+      "sources": [
+        {
+          "label": "Compass Datacenters",
+          "url": "https://compassdatacenters.com/locations/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -41787,6 +42299,70 @@
           "url": "https://www.switch.com/elko/"
         }
       ]
+    },
+    {
+      "id": "fc-f1cfc608c6",
+      "name": "Voltage Park Data Center - Denver CO",
+      "operator": "Voltage Park",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Voltage Park GPU cloud Denver CO; H100 cluster",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Voltage Park",
+          "url": "https://voltagepark.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-84a717bf04",
+      "name": "Voltage Park Data Center - Dallas TX",
+      "operator": "Voltage Park",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Voltage Park GPU cloud Dallas TX; H100 cluster",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "Voltage Park",
+          "url": "https://voltagepark.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d63c5abe18",
+      "name": "Voltage Park Data Center - Ashburn VA",
+      "operator": "Voltage Park",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Voltage Park GPU cloud Ashburn VA",
+      "lat": 39.0438,
+      "lon": -77.4874,
+      "sources": [
+        {
+          "label": "Voltage Park",
+          "url": "https://voltagepark.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-01029af4be",
+      "name": "Giga Energy Data Center - West Texas AI Campus",
+      "operator": "Giga Energy",
+      "status": "existing",
+      "county_fips": "48383",
+      "notes": "Giga Energy West Texas AI data center; 200 MW campus Reeves County TX",
+      "lat": 31.4226,
+      "lon": -103.4932,
+      "sources": [
+        {
+          "label": "Giga Energy",
+          "url": "https://www.gigaenergy.com/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -42179,5 +42755,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T18:02:11Z"
+  "_facilities_exported_at": "2026-07-19T18:04:41Z"
 }
