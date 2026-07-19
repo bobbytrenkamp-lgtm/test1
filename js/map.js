@@ -553,7 +553,7 @@ function clearHoveredCounty() {
 }
 
 function handleCountyMouseover(e, fips) {
-  if (measureMode) return;
+  if (measureMode || drawMode || candidatePinMode) return;
   if (isDraggingMap || isMouseDown) return;
   if (hasActiveMapFilters() && !countyMatchesFilters(fips)) return;
 
@@ -593,7 +593,7 @@ function handleCountyMouseout(e) {
 }
 
 function handleCountyClick(e, fips) {
-  if (measureMode) return; // let click bubble to map for measure point placement
+  if (measureMode || drawMode || candidatePinMode) return; // let click bubble to map for tool placement
   if (isDraggingMap || Date.now() < suppressClickUntil) return;
   if (hasActiveMapFilters() && !countyMatchesFilters(fips)) return;
   L.DomEvent.stopPropagation(e);
