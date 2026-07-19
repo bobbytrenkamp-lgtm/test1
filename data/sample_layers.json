@@ -32263,6 +32263,22 @@
           "url": "https://sabeydatacenters.com/locations/sdc-umatilla"
         }
       ]
+    },
+    {
+      "id": "fc-e097a58a7b",
+      "name": "CyrusOne NYM5 - Norwalk",
+      "operator": "CyrusOne",
+      "status": "existing",
+      "county_fips": "09001",
+      "notes": "CyrusOne NYM5 at 6 Norden Place, Norwalk CT 06855 (Fairfield County). Financial services colocation serving New York metro.",
+      "lat": 41.0534,
+      "lon": -73.5387,
+      "sources": [
+        {
+          "label": "CyrusOne",
+          "url": "https://www.cyrusone.com/data-centers/north-america/norwalk-ct"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -33055,6 +33071,150 @@
           "url": "https://cloudhq.com/campus/lc-campus/"
         }
       ]
+    },
+    {
+      "id": "fc-9b63730f77",
+      "name": "CyrusOne NVA1-NVA3 - Sterling",
+      "operator": "CyrusOne",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "CyrusOne NVA1-NVA3 campus in Sterling VA (Loudoun County). Three-building hyperscale campus in Northern Virginia data center corridor.",
+      "lat": 39.0021,
+      "lon": -77.4043,
+      "sources": [
+        {
+          "label": "CyrusOne",
+          "url": "https://www.cyrusone.com/data-centers/north-america/sterling-va-nva1-nva3"
+        }
+      ]
+    },
+    {
+      "id": "fc-0b12b3d224",
+      "name": "CyrusOne NVA4 - Sterling",
+      "operator": "CyrusOne",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "CyrusOne NVA4 in Sterling VA (Loudoun County). Hyperscale colocation in Northern Virginia corridor.",
+      "lat": 39.0025,
+      "lon": -77.4048,
+      "sources": [
+        {
+          "label": "CyrusOne",
+          "url": "https://www.cyrusone.com/data-centers/north-america/sterling-virginia-nva4"
+        }
+      ]
+    },
+    {
+      "id": "fc-e828227289",
+      "name": "CyrusOne NVA5-NVA7 - Sterling",
+      "operator": "CyrusOne",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "CyrusOne NVA5-NVA7 campus in Sterling VA (Loudoun County). Three-building hyperscale campus expansion in Northern Virginia.",
+      "lat": 39.003,
+      "lon": -77.4053,
+      "sources": [
+        {
+          "label": "CyrusOne",
+          "url": "https://www.cyrusone.com/data-centers/north-america/sterling-va-nva5-nva7"
+        }
+      ]
+    },
+    {
+      "id": "fc-6177aa2f9d",
+      "name": "CyrusOne NVA8 - Sterling",
+      "operator": "CyrusOne",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "CyrusOne NVA8 at 45905 Maries Road, Sterling VA 20166 (Loudoun County). Hyperscale colocation.",
+      "lat": 39.0018,
+      "lon": -77.406,
+      "sources": [
+        {
+          "label": "CyrusOne",
+          "url": "https://www.cyrusone.com/data-centers/north-america/sterling-virginia-nva8"
+        }
+      ]
+    },
+    {
+      "id": "fc-c3c92916ce",
+      "name": "CyrusOne NVA9 - Sterling",
+      "operator": "CyrusOne",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "CyrusOne NVA9 in Sterling VA (Loudoun County). Latest hyperscale addition to Northern Virginia campus.",
+      "lat": 39.0015,
+      "lon": -77.4065,
+      "sources": [
+        {
+          "label": "CyrusOne",
+          "url": "https://www.cyrusone.com/data-centers/north-america/sterling-virginia-nva9"
+        }
+      ]
+    },
+    {
+      "id": "fc-a16e5d5f33",
+      "name": "CyrusOne SAT5-SAT6 - San Antonio",
+      "operator": "CyrusOne",
+      "status": "existing",
+      "county_fips": "48029",
+      "notes": "CyrusOne SAT5-SAT6 campus in San Antonio TX (Bexar County). Two-building hyperscale campus west of downtown.",
+      "lat": 29.4241,
+      "lon": -98.5936,
+      "sources": [
+        {
+          "label": "CyrusOne",
+          "url": "https://www.cyrusone.com/data-centers/north-america/san-antonio-sat5-sat6"
+        }
+      ]
+    },
+    {
+      "id": "fc-bc953f814b",
+      "name": "QTS New Albany 2 - Columbus",
+      "operator": "QTS Data Centers",
+      "status": "planned",
+      "county_fips": "39049",
+      "notes": "QTS New Albany 2 data center campus in New Albany OH (Franklin County), Columbus metro. Hyperscale expansion campus.",
+      "lat": 40.0808,
+      "lon": -82.7924,
+      "sources": [
+        {
+          "label": "QTS Data Centers",
+          "url": "https://qtsdatacenters.com/data-centers/new-albany-2/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f6d3985ec5",
+      "name": "QTS Ashburn 3 - Shellhorn",
+      "operator": "QTS Data Centers",
+      "status": "planned",
+      "county_fips": "51107",
+      "notes": "QTS Ashburn 3 at Shellhorn Road, Ashburn VA (Loudoun County). New hyperscale campus expansion in Northern Virginia.",
+      "lat": 39.0445,
+      "lon": -77.485,
+      "sources": [
+        {
+          "label": "QTS Data Centers",
+          "url": "https://qtsdatacenters.com/data-centers/ashburn-shellhorn"
+        }
+      ]
+    },
+    {
+      "id": "fc-2e8d982b1e",
+      "name": "CoreWeave AI Data Center - Lancaster",
+      "operator": "CoreWeave",
+      "status": "planned",
+      "county_fips": "42071",
+      "notes": "CoreWeave AI data center in Lancaster PA (Lancaster County). 100MW initial capacity, expandable to 300MW. Part of multi-billion dollar Pennsylvania AI infrastructure commitment.",
+      "lat": 40.0379,
+      "lon": -76.3055,
+      "sources": [
+        {
+          "label": "CoreWeave",
+          "url": "https://investors.coreweave.com/news/news-details/2025/CoreWeave-Announces-Multi-Billion-Dollar-Commitment-to-AI-Infrastructure-in-Pennsylvania/default.aspx"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -33447,5 +33607,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T12:47:17Z"
+  "_facilities_exported_at": "2026-07-19T12:51:04Z"
 }
