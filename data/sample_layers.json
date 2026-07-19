@@ -39875,6 +39875,486 @@
           "url": "https://skyboxdatacenters.com/locations/"
         }
       ]
+    },
+    {
+      "id": "fc-309cf52ea9",
+      "name": "Texas Department of Information Resources - Austin TX",
+      "operator": "Texas Department of Information Resources",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "Texas DIR state data center Austin TX; consolidated state IT",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "sources": [
+        {
+          "label": "Texas Department of Information Resources",
+          "url": "https://dir.texas.gov/resource-library/information-about-dir/about-dir"
+        }
+      ]
+    },
+    {
+      "id": "fc-c6709739da",
+      "name": "Florida Data Center - Tallahassee FL (Agency for State Technology)",
+      "operator": "Florida Agency for State Technology",
+      "status": "existing",
+      "county_fips": "12073",
+      "notes": "Florida Agency for State Technology Tallahassee FL state data center",
+      "lat": 30.4518,
+      "lon": -84.2807,
+      "sources": [
+        {
+          "label": "Florida Agency for State Technology",
+          "url": "https://ast.myflorida.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b0dff68083",
+      "name": "New York State Office of Information Technology Services - Albany NY",
+      "operator": "New York State ITS",
+      "status": "existing",
+      "county_fips": "36001",
+      "notes": "New York State ITS Albany NY state data center",
+      "lat": 42.6526,
+      "lon": -73.7562,
+      "sources": [
+        {
+          "label": "New York State ITS",
+          "url": "https://its.ny.gov/about-us"
+        }
+      ]
+    },
+    {
+      "id": "fc-cf80fb4840",
+      "name": "Illinois Department of Innovation and Technology - Springfield IL",
+      "operator": "Illinois Department of Innovation and Technology",
+      "status": "existing",
+      "county_fips": "17167",
+      "notes": "Illinois DoIT Springfield IL state consolidated data center",
+      "lat": 39.7817,
+      "lon": -89.6501,
+      "sources": [
+        {
+          "label": "Illinois Department of Innovation and Technology",
+          "url": "https://doit.illinois.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d3572e3581",
+      "name": "Pennsylvania Governor's Office of Administration - Harrisburg PA",
+      "operator": "Pennsylvania Office of Administration",
+      "status": "existing",
+      "county_fips": "42043",
+      "notes": "Pennsylvania OIT Harrisburg PA state data center",
+      "lat": 40.2732,
+      "lon": -76.8867,
+      "sources": [
+        {
+          "label": "Pennsylvania Office of Administration",
+          "url": "https://www.oa.pa.gov/Technology/OIT/Pages/default.aspx"
+        }
+      ]
+    },
+    {
+      "id": "fc-7995dc61af",
+      "name": "Ohio Department of Administrative Services Data Center - Columbus OH",
+      "operator": "Ohio Department of Administrative Services",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "Ohio DAS Columbus OH state data center and IT services",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "sources": [
+        {
+          "label": "Ohio Department of Administrative Services",
+          "url": "https://das.ohio.gov/divisions/state-technology-office"
+        }
+      ]
+    },
+    {
+      "id": "fc-5b61229db6",
+      "name": "Georgia Department of Administrative Services - Atlanta GA",
+      "operator": "Georgia Department of Administrative Services",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Georgia DOAS Atlanta GA state data center",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Georgia Department of Administrative Services",
+          "url": "https://doas.ga.gov/state-purchasing/technology-services"
+        }
+      ]
+    },
+    {
+      "id": "fc-60f2f982d2",
+      "name": "Michigan Department of Technology, Management and Budget - Lansing MI",
+      "operator": "Michigan DTMB",
+      "status": "existing",
+      "county_fips": "26065",
+      "notes": "Michigan DTMB Lansing MI state consolidated data center",
+      "lat": 42.7325,
+      "lon": -84.5555,
+      "sources": [
+        {
+          "label": "Michigan DTMB",
+          "url": "https://www.michigan.gov/dtmb/"
+        }
+      ]
+    },
+    {
+      "id": "fc-90558eec40",
+      "name": "North Carolina Government Data Analytics Center - Raleigh NC",
+      "operator": "North Carolina Department of Information Technology",
+      "status": "existing",
+      "county_fips": "37183",
+      "notes": "NC GDAC Raleigh NC state data center",
+      "lat": 35.7796,
+      "lon": -78.6382,
+      "sources": [
+        {
+          "label": "North Carolina Department of Information Technology",
+          "url": "https://www.doit.nc.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a7cfa4875e",
+      "name": "Virginia Information Technologies Agency - Richmond VA",
+      "operator": "Virginia Information Technologies Agency",
+      "status": "existing",
+      "county_fips": "51760",
+      "notes": "VITA Richmond VA state data center",
+      "lat": 37.5407,
+      "lon": -77.436,
+      "sources": [
+        {
+          "label": "Virginia Information Technologies Agency",
+          "url": "https://www.vita.virginia.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-492fc9ead7",
+      "name": "Washington Technology Solutions - Olympia WA",
+      "operator": "Washington Technology Solutions (WaTech)",
+      "status": "existing",
+      "county_fips": "53067",
+      "notes": "WaTech Olympia WA state consolidated data center",
+      "lat": 47.0379,
+      "lon": -122.9007,
+      "sources": [
+        {
+          "label": "Washington Technology Solutions (WaTech)",
+          "url": "https://watech.wa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-849da80727",
+      "name": "Colorado Governor's Office of Information Technology - Denver CO",
+      "operator": "Colorado OIT",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Colorado OIT Denver state data center",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Colorado OIT",
+          "url": "https://oit.colorado.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a7d8e50744",
+      "name": "Arizona Strategic Enterprise Technology - Phoenix AZ",
+      "operator": "Arizona ASET",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Arizona ASET Phoenix state enterprise data center",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Arizona ASET",
+          "url": "https://aset.az.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3595f31ba6",
+      "name": "Indiana Office of Technology - Indianapolis IN",
+      "operator": "Indiana Office of Technology",
+      "status": "existing",
+      "county_fips": "18097",
+      "notes": "Indiana IOT Indianapolis state consolidated data center",
+      "lat": 39.7684,
+      "lon": -86.1581,
+      "sources": [
+        {
+          "label": "Indiana Office of Technology",
+          "url": "https://www.in.gov/iot/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1c7a64a68b",
+      "name": "Minnesota IT Services - Saint Paul MN",
+      "operator": "Minnesota IT Services",
+      "status": "existing",
+      "county_fips": "27123",
+      "notes": "MN.IT Services Saint Paul MN state data center",
+      "lat": 44.9537,
+      "lon": -93.09,
+      "sources": [
+        {
+          "label": "Minnesota IT Services",
+          "url": "https://mn.gov/mnit/"
+        }
+      ]
+    },
+    {
+      "id": "fc-83dff6a4e7",
+      "name": "Tennessee Department of Finance and Administration - Nashville TN",
+      "operator": "Tennessee Strategic Technology Solutions",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "Tennessee STS Nashville state data center",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "sources": [
+        {
+          "label": "Tennessee Strategic Technology Solutions",
+          "url": "https://www.tn.gov/finance/looking-for/technology-solutions.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-3222d2254c",
+      "name": "Missouri Office of Administration - Jefferson City MO",
+      "operator": "Missouri Office of Administration",
+      "status": "existing",
+      "county_fips": "29051",
+      "notes": "Missouri OA Jefferson City state data center",
+      "lat": 38.5767,
+      "lon": -92.1735,
+      "sources": [
+        {
+          "label": "Missouri Office of Administration",
+          "url": "https://oa.mo.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-bac420cc8f",
+      "name": "Maryland Department of Information Technology - Baltimore MD",
+      "operator": "Maryland DoIT",
+      "status": "existing",
+      "county_fips": "24510",
+      "notes": "Maryland DoIT Baltimore state enterprise data center",
+      "lat": 39.2904,
+      "lon": -76.6122,
+      "sources": [
+        {
+          "label": "Maryland DoIT",
+          "url": "https://doit.maryland.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9425067287",
+      "name": "Netflix Data Center - Los Gatos CA (HQ)",
+      "operator": "Netflix",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "Netflix HQ Los Gatos CA; primarily AWS-based but maintains own infrastructure",
+      "lat": 37.2358,
+      "lon": -121.9624,
+      "sources": [
+        {
+          "label": "Netflix",
+          "url": "https://netflixtechblog.com/netflix-cloud-architecture-a-view-from-the-outside-89a4e71d0c7a"
+        }
+      ]
+    },
+    {
+      "id": "fc-3f2cf2b686",
+      "name": "Comcast NBC Universal Data Center - Philadelphia PA",
+      "operator": "Comcast Corporation",
+      "status": "existing",
+      "county_fips": "42101",
+      "notes": "Comcast Corporation Philadelphia PA headquarters data center",
+      "lat": 39.9526,
+      "lon": -75.1652,
+      "sources": [
+        {
+          "label": "Comcast Corporation",
+          "url": "https://corporate.comcast.com/company-info"
+        }
+      ]
+    },
+    {
+      "id": "fc-e31d2cdbe5",
+      "name": "Warner Bros. Discovery Data Center - Atlanta GA",
+      "operator": "Warner Bros. Discovery",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Warner Bros. Discovery Atlanta GA media data center (CNN/TBS)",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Warner Bros. Discovery",
+          "url": "https://wbd.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-51ef7002c0",
+      "name": "Salesforce Data Center - San Francisco CA 2",
+      "operator": "Salesforce",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "Salesforce San Francisco CA second data center campus",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "sources": [
+        {
+          "label": "Salesforce",
+          "url": "https://www.salesforce.com/company/infrastructure/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9fd4d7d4b4",
+      "name": "Equinix NY9 - Secaucus NJ",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "34017",
+      "notes": "Equinix NY9 IBX Secaucus NJ; New York metro carrier hotel",
+      "lat": 40.796,
+      "lon": -74.0566,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/new-york-data-centers/new-york"
+        }
+      ]
+    },
+    {
+      "id": "fc-8eb8f6a9d8",
+      "name": "Equinix NY10 - Secaucus NJ",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "34017",
+      "notes": "Equinix NY10 IBX Secaucus NJ New York metro",
+      "lat": 40.796,
+      "lon": -74.0566,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/new-york-data-centers/new-york"
+        }
+      ]
+    },
+    {
+      "id": "fc-74005802ef",
+      "name": "Equinix SY9 - Secaucus NJ (additional)",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "34017",
+      "notes": "Equinix NY campus expansion Secaucus NJ",
+      "lat": 40.7982,
+      "lon": -74.0607,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/new-york-data-centers/new-york"
+        }
+      ]
+    },
+    {
+      "id": "fc-f673036a37",
+      "name": "Equinix CH4 - Chicago IL",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Equinix CH4 IBX Chicago IL; fourth Chicago campus",
+      "lat": 41.8827,
+      "lon": -87.6233,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/chicago-data-centers/chicago"
+        }
+      ]
+    },
+    {
+      "id": "fc-e0f214c6cf",
+      "name": "Equinix LA5 - Los Angeles CA",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "Equinix LA5 IBX Los Angeles CA",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/los-angeles-data-centers/los-angeles"
+        }
+      ]
+    },
+    {
+      "id": "fc-1e9cbf4785",
+      "name": "Equinix SE4 - Seattle WA",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "Equinix SE4 IBX Seattle WA",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/seattle-data-centers/seattle"
+        }
+      ]
+    },
+    {
+      "id": "fc-f124d17976",
+      "name": "Equinix HH1 - Houston TX",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "Equinix HH1 IBX Houston TX",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/houston-data-centers/houston"
+        }
+      ]
+    },
+    {
+      "id": "fc-6735cc40d4",
+      "name": "Equinix HH2 - Houston TX",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "Equinix HH2 IBX Houston TX second campus",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/houston-data-centers/houston"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -42719,6 +43199,110 @@
           "url": "https://www.gigaenergy.com/"
         }
       ]
+    },
+    {
+      "id": "fc-4d47cf76e4",
+      "name": "Oracle Cloud - Reston VA (us-gov-ashburn-1)",
+      "operator": "Oracle Corporation",
+      "status": "existing",
+      "county_fips": "51059",
+      "notes": "Oracle Cloud us-gov-ashburn-1 FedRAMP government region Reston VA",
+      "lat": 38.9697,
+      "lon": -77.3403,
+      "sources": [
+        {
+          "label": "Oracle Corporation",
+          "url": "https://www.oracle.com/cloud/data-regions/"
+        },
+        {
+          "label": "Oracle Corporation",
+          "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/govregions.htm"
+        }
+      ]
+    },
+    {
+      "id": "fc-cbd5df8d13",
+      "name": "Oracle Cloud - Phoenix AZ (us-gov-phoenix-1)",
+      "operator": "Oracle Corporation",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Oracle Cloud us-gov-phoenix-1 FedRAMP government region Phoenix AZ",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Oracle Corporation",
+          "url": "https://www.oracle.com/cloud/data-regions/"
+        },
+        {
+          "label": "Oracle Corporation",
+          "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/govregions.htm"
+        }
+      ]
+    },
+    {
+      "id": "fc-9c1f99a018",
+      "name": "CoreWeave Data Center - Salt Lake City UT",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "CoreWeave GPU cloud data center Salt Lake City UT",
+      "lat": 40.7608,
+      "lon": -111.891,
+      "sources": [
+        {
+          "label": "CoreWeave",
+          "url": "https://www.coreweave.com/data-centers"
+        }
+      ]
+    },
+    {
+      "id": "fc-d6e2d374bc",
+      "name": "CoreWeave Data Center - Phoenix AZ 2",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "CoreWeave GPU cloud data center Phoenix AZ; second campus",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "CoreWeave",
+          "url": "https://www.coreweave.com/data-centers"
+        }
+      ]
+    },
+    {
+      "id": "fc-276323bca8",
+      "name": "CoreWeave Data Center - Atlanta GA",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "CoreWeave GPU cloud data center Atlanta GA",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "CoreWeave",
+          "url": "https://www.coreweave.com/data-centers"
+        }
+      ]
+    },
+    {
+      "id": "fc-828b9760cd",
+      "name": "CoreWeave Data Center - Seattle WA",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "CoreWeave GPU cloud data center Seattle WA",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "sources": [
+        {
+          "label": "CoreWeave",
+          "url": "https://www.coreweave.com/data-centers"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -43111,5 +43695,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T18:06:06Z"
+  "_facilities_exported_at": "2026-07-19T18:07:41Z"
 }
