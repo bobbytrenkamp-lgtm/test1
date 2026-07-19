@@ -41219,6 +41219,518 @@
           "url": "https://www.t5datacenters.com/data-centers/las-vegas/"
         }
       ]
+    },
+    {
+      "id": "fc-76bf23351c",
+      "name": "Equinix CL1 - Charlotte NC",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "37119",
+      "notes": "Equinix CL1 IBX Charlotte NC",
+      "lat": 35.2271,
+      "lon": -80.8431,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/charlotte-data-centers/charlotte"
+        }
+      ]
+    },
+    {
+      "id": "fc-6eb285ab46",
+      "name": "Equinix CL2 - Charlotte NC",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "37119",
+      "notes": "Equinix CL2 IBX Charlotte NC second campus",
+      "lat": 35.2271,
+      "lon": -80.8431,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/charlotte-data-centers/charlotte"
+        }
+      ]
+    },
+    {
+      "id": "fc-085782e391",
+      "name": "Equinix AT3 - Atlanta GA",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Equinix AT3 IBX Atlanta GA",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/atlanta-data-centers/atlanta"
+        }
+      ]
+    },
+    {
+      "id": "fc-92e6be765e",
+      "name": "Equinix AT4 - Atlanta GA",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "Equinix AT4 IBX Atlanta GA; Macon Rd campus",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/atlanta-data-centers/atlanta"
+        }
+      ]
+    },
+    {
+      "id": "fc-155f520445",
+      "name": "Equinix SL1 - Salt Lake City UT",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "Equinix SL1 IBX Salt Lake City UT",
+      "lat": 40.7608,
+      "lon": -111.891,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/salt-lake-city-data-centers/salt-lake-city"
+        }
+      ]
+    },
+    {
+      "id": "fc-ffa56a1222",
+      "name": "Equinix SL2 - Salt Lake City UT",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "49035",
+      "notes": "Equinix SL2 IBX Salt Lake City UT West Valley",
+      "lat": 40.6916,
+      "lon": -111.939,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/salt-lake-city-data-centers/salt-lake-city"
+        }
+      ]
+    },
+    {
+      "id": "fc-de1605588d",
+      "name": "Equinix KC1 - Kansas City MO",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "29095",
+      "notes": "Equinix KC1 IBX Kansas City MO",
+      "lat": 39.0997,
+      "lon": -94.5786,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/kansas-city-data-centers/kansas-city"
+        }
+      ]
+    },
+    {
+      "id": "fc-0ed932255b",
+      "name": "Equinix KC2 - Kansas City MO",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "29095",
+      "notes": "Equinix KC2 IBX Kansas City MO second campus",
+      "lat": 39.0997,
+      "lon": -94.5786,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/kansas-city-data-centers/kansas-city"
+        }
+      ]
+    },
+    {
+      "id": "fc-160b557dc0",
+      "name": "Equinix CU1 - Culpeper VA",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51047",
+      "notes": "Equinix CU1 IBX Culpeper VA (DC Extended)",
+      "lat": 38.4732,
+      "lon": -77.9958,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/washington-dc-data-centers/washington"
+        }
+      ]
+    },
+    {
+      "id": "fc-0b841074ee",
+      "name": "OVHcloud US West - Hillsboro OR 2",
+      "operator": "OVHcloud",
+      "status": "existing",
+      "county_fips": "41067",
+      "notes": "OVHcloud US West 2 Hillsboro OR; European cloud provider US expansion",
+      "lat": 45.5229,
+      "lon": -122.9898,
+      "sources": [
+        {
+          "label": "OVHcloud",
+          "url": "https://www.ovhcloud.com/en/about-us/data-centers/north-america/us-west/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8e94cd3630",
+      "name": "OVHcloud US East - Beauharnois / Washington DC Presence",
+      "operator": "OVHcloud",
+      "status": "existing",
+      "county_fips": "11001",
+      "notes": "OVHcloud US East Washington DC metro region",
+      "lat": 38.9072,
+      "lon": -77.0369,
+      "sources": [
+        {
+          "label": "OVHcloud",
+          "url": "https://www.ovhcloud.com/en/about-us/data-centers/north-america/us-east/"
+        }
+      ]
+    },
+    {
+      "id": "fc-735f3095ed",
+      "name": "Texas Advanced Computing Center - Austin TX 2 (Frontera)",
+      "operator": "TACC/UT Austin",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "TACC UT Austin Frontera supercomputer; NSF Tier 1 HPC system",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "sources": [
+        {
+          "label": "TACC/UT Austin",
+          "url": "https://www.tacc.utexas.edu/systems/frontera"
+        }
+      ]
+    },
+    {
+      "id": "fc-b24c709183",
+      "name": "National Center for Supercomputing Applications - Champaign IL",
+      "operator": "University of Illinois",
+      "status": "existing",
+      "county_fips": "17019",
+      "notes": "NCSA University of Illinois Champaign; Delta HPC system and Blue Waters",
+      "lat": 40.102,
+      "lon": -88.2272,
+      "sources": [
+        {
+          "label": "University of Illinois",
+          "url": "https://www.ncsa.illinois.edu/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5c1792d34d",
+      "name": "Pittsburgh Supercomputing Center - Pittsburgh PA",
+      "operator": "Carnegie Mellon/Pitt",
+      "status": "existing",
+      "county_fips": "42003",
+      "notes": "Pittsburgh Supercomputing Center; Bridges-2 system; Carnegie Mellon + Pitt",
+      "lat": 40.4406,
+      "lon": -79.9959,
+      "sources": [
+        {
+          "label": "Carnegie Mellon/Pitt",
+          "url": "https://www.psc.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9cfba53726",
+      "name": "San Diego Supercomputer Center - La Jolla CA",
+      "operator": "UC San Diego",
+      "status": "existing",
+      "county_fips": "06073",
+      "notes": "San Diego Supercomputer Center SDSC La Jolla CA; Expanse system",
+      "lat": 32.8812,
+      "lon": -117.2344,
+      "sources": [
+        {
+          "label": "UC San Diego",
+          "url": "https://www.sdsc.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ecaef3cc55",
+      "name": "National Energy Research Scientific Computing Center - Berkeley CA 2",
+      "operator": "DOE/LBNL",
+      "status": "existing",
+      "county_fips": "06001",
+      "notes": "NERSC Lawrence Berkeley National Laboratory; Perlmutter supercomputer",
+      "lat": 37.8755,
+      "lon": -122.2477,
+      "sources": [
+        {
+          "label": "DOE/LBNL",
+          "url": "https://www.nersc.gov/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b5ada9915e",
+      "name": "Texas A&M HPRC - College Station TX",
+      "operator": "Texas A&M University",
+      "status": "existing",
+      "county_fips": "48041",
+      "notes": "Texas A&M High Performance Research Computing (HPRC) College Station TX",
+      "lat": 30.628,
+      "lon": -96.3344,
+      "sources": [
+        {
+          "label": "Texas A&M University",
+          "url": "https://hprc.tamu.edu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-024d86c1c9",
+      "name": "University of Texas Stampede3 - Austin TX",
+      "operator": "TACC/UT Austin",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "TACC Stampede3 supercomputer UT Austin TX; Dell/Intel HPC system",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "sources": [
+        {
+          "label": "TACC/UT Austin",
+          "url": "https://www.tacc.utexas.edu/systems/stampede3"
+        }
+      ]
+    },
+    {
+      "id": "fc-a660ef92e7",
+      "name": "Data Foundry - Addison TX",
+      "operator": "Data Foundry",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "Data Foundry Addison TX data center",
+      "lat": 32.9618,
+      "lon": -96.8205,
+      "sources": [
+        {
+          "label": "Data Foundry",
+          "url": "https://www.datafoundry.com/data-centers/addison/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7f4aa25c9c",
+      "name": "Data Foundry - Houston TX (HOU2)",
+      "operator": "Data Foundry",
+      "status": "existing",
+      "county_fips": "48201",
+      "notes": "Data Foundry Houston TX HOU2 colocation",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "sources": [
+        {
+          "label": "Data Foundry",
+          "url": "https://www.datafoundry.com/data-centers/houston/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1f739f1f83",
+      "name": "TierPoint Data Center - Baltimore MD",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "24510",
+      "notes": "TierPoint Baltimore MD colocation",
+      "lat": 39.2904,
+      "lon": -76.6122,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://www.tierpoint.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5f79bee22a",
+      "name": "TierPoint Data Center - Kansas City MO",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "29095",
+      "notes": "TierPoint Kansas City MO data center",
+      "lat": 39.0997,
+      "lon": -94.5786,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://www.tierpoint.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9f6ae50e3c",
+      "name": "TierPoint Data Center - New Orleans LA",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "22071",
+      "notes": "TierPoint New Orleans LA colocation",
+      "lat": 29.9511,
+      "lon": -90.0715,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://www.tierpoint.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b7ab58a24f",
+      "name": "TierPoint Data Center - Phoenix AZ",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "TierPoint Phoenix AZ data center",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://www.tierpoint.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-64e89beca1",
+      "name": "TierPoint Data Center - Atlanta GA",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "TierPoint Atlanta GA data center",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://www.tierpoint.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-153d3f4129",
+      "name": "Skybox Datacenters - San Angelo TX 3",
+      "operator": "Skybox Datacenters",
+      "status": "existing",
+      "county_fips": "48451",
+      "notes": "Skybox Datacenters San Angelo TX third campus",
+      "lat": 31.4638,
+      "lon": -100.437,
+      "sources": [
+        {
+          "label": "Skybox Datacenters",
+          "url": "https://skyboxdatacenters.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e479c0b58f",
+      "name": "Cloudflare Data Center - Denver CO",
+      "operator": "Cloudflare",
+      "status": "existing",
+      "county_fips": "08031",
+      "notes": "Cloudflare CDN/edge data center Denver CO",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Cloudflare",
+          "url": "https://www.cloudflare.com/network/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0a8972793c",
+      "name": "Cloudflare Data Center - Minneapolis MN",
+      "operator": "Cloudflare",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Cloudflare CDN/edge data center Minneapolis MN",
+      "lat": 44.9778,
+      "lon": -93.265,
+      "sources": [
+        {
+          "label": "Cloudflare",
+          "url": "https://www.cloudflare.com/network/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ca1b697aa5",
+      "name": "Cloudflare Data Center - Phoenix AZ",
+      "operator": "Cloudflare",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Cloudflare CDN/edge data center Phoenix AZ",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Cloudflare",
+          "url": "https://www.cloudflare.com/network/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3ed08f3a4d",
+      "name": "Cloudflare Data Center - Charlotte NC",
+      "operator": "Cloudflare",
+      "status": "existing",
+      "county_fips": "37119",
+      "notes": "Cloudflare CDN/edge data center Charlotte NC",
+      "lat": 35.2271,
+      "lon": -80.8431,
+      "sources": [
+        {
+          "label": "Cloudflare",
+          "url": "https://www.cloudflare.com/network/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2f2df5a030",
+      "name": "Cloudflare Data Center - Kansas City MO",
+      "operator": "Cloudflare",
+      "status": "existing",
+      "county_fips": "29095",
+      "notes": "Cloudflare CDN/edge data center Kansas City MO",
+      "lat": 39.0997,
+      "lon": -94.5786,
+      "sources": [
+        {
+          "label": "Cloudflare",
+          "url": "https://www.cloudflare.com/network/"
+        }
+      ]
+    },
+    {
+      "id": "fc-244795deab",
+      "name": "Cloudflare Data Center - Portland OR",
+      "operator": "Cloudflare",
+      "status": "existing",
+      "county_fips": "41051",
+      "notes": "Cloudflare CDN/edge data center Portland OR",
+      "lat": 45.5051,
+      "lon": -122.675,
+      "sources": [
+        {
+          "label": "Cloudflare",
+          "url": "https://www.cloudflare.com/network/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -44359,6 +44871,54 @@
           "url": "https://www.novva.com/locations/"
         }
       ]
+    },
+    {
+      "id": "fc-96a7a80110",
+      "name": "Rowan Digital Infrastructure - Fayetteville NC",
+      "operator": "Rowan Digital Infrastructure",
+      "status": "planned",
+      "county_fips": "37051",
+      "notes": "Rowan Digital Infrastructure Fayetteville NC planned hyperscale campus",
+      "lat": 35.0527,
+      "lon": -78.8784,
+      "sources": [
+        {
+          "label": "Rowan Digital Infrastructure",
+          "url": "https://www.rowandigital.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d9c1dcfefe",
+      "name": "Pearl Technology Campus - Savannah GA",
+      "operator": "Pearl Technology",
+      "status": "planned",
+      "county_fips": "13051",
+      "notes": "Pearl Technology Partners Savannah GA planned data center",
+      "lat": 32.0835,
+      "lon": -81.0998,
+      "sources": [
+        {
+          "label": "Pearl Technology",
+          "url": "https://www.pearltech.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-266167975e",
+      "name": "Kingsboro Digital Tech Park - Albany NY",
+      "operator": "Kingsboro Dev",
+      "status": "planned",
+      "county_fips": "36001",
+      "notes": "Kingsboro Digital Tech Park Albany NY planned campus",
+      "lat": 42.6526,
+      "lon": -73.7562,
+      "sources": [
+        {
+          "label": "Kingsboro Dev",
+          "url": "https://kingsborodigital.com/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -44751,5 +45311,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T18:10:14Z"
+  "_facilities_exported_at": "2026-07-19T18:11:43Z"
 }
