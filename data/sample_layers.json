@@ -31174,13 +31174,7 @@
       "county_fips": "47157",
       "notes": "100,000+ H100 GPUs; largest AI training cluster publicly announced as of 2024; Shelby County Memphis.; legacy_id:ai-tn-001",
       "lat": 35.15,
-      "lon": -90.05,
-      "sources": [
-        {
-          "label": "xAI — Colossus Supercomputer Announcement",
-          "url": "https://x.ai/"
-        }
-      ]
+      "lon": -90.05
     },
     {
       "id": "fc-3d3289777f",
@@ -31190,13 +31184,7 @@
       "county_fips": "48453",
       "notes": "AI research and development; GPU architecture lab.; legacy_id:ai-tx-002",
       "lat": 30.39,
-      "lon": -97.74,
-      "sources": [
-        {
-          "label": "NVIDIA AI Research — Austin",
-          "url": "https://www.nvidia.com/"
-        }
-      ]
+      "lon": -97.74
     },
     {
       "id": "fc-d15c9b68c0",
@@ -31207,13 +31195,7 @@
       "notes": "AI safety research; training conducted via cloud partnerships.; legacy_id:ai-ca-001",
       "lat": 37.77,
       "lon": -122.41,
-      "capacity_mw": 5.0,
-      "sources": [
-        {
-          "label": "Anthropic — AI Safety Company",
-          "url": "https://www.anthropic.com/"
-        }
-      ]
+      "capacity_mw": 5.0
     },
     {
       "id": "fc-1187465b4d",
@@ -31223,13 +31205,7 @@
       "county_fips": "48453",
       "notes": "Oracle AI cloud infrastructure; $1B+ investment in Texas.; legacy_id:ai-tx-003",
       "lat": 30.4,
-      "lon": -97.73,
-      "sources": [
-        {
-          "label": "Oracle Cloud Infrastructure — Austin",
-          "url": "https://www.oracle.com/cloud/"
-        }
-      ]
+      "lon": -97.73
     },
     {
       "id": "fc-5a754d62b8",
@@ -31239,13 +31215,7 @@
       "county_fips": "47037",
       "notes": "Oracle Cloud Infrastructure Nashville; AI/ML workloads.; legacy_id:ai-tn-002",
       "lat": 36.16,
-      "lon": -86.78,
-      "sources": [
-        {
-          "label": "Oracle Cloud Infrastructure — Nashville",
-          "url": "https://www.oracle.com/cloud/"
-        }
-      ]
+      "lon": -86.78
     },
     {
       "id": "fc-7376e2b4c8",
@@ -31255,13 +31225,7 @@
       "county_fips": "06085",
       "notes": "Wafer-scale engine AI training; custom CS-3 chips.; legacy_id:ai-ca-002",
       "lat": 37.36,
-      "lon": -121.98,
-      "sources": [
-        {
-          "label": "Cerebras Systems — Santa Clara HQ",
-          "url": "https://www.cerebras.net/"
-        }
-      ]
+      "lon": -121.98
     },
     {
       "id": "fc-ab6a37b665",
@@ -31272,13 +31236,7 @@
       "notes": "Aurora exascale supercomputer (AI workloads); 2 exaflops.; legacy_id:ai-il-002",
       "lat": 41.71,
       "lon": -87.98,
-      "capacity_mw": 20.0,
-      "sources": [
-        {
-          "label": "Argonne National Laboratory",
-          "url": "https://www.anl.gov/"
-        }
-      ]
+      "capacity_mw": 20.0
     },
     {
       "id": "fc-bcf2da73d6",
@@ -31288,13 +31246,7 @@
       "county_fips": "47093",
       "notes": "Frontier exascale supercomputer; #1 Top500 2022-2023.; legacy_id:ai-tn-003",
       "lat": 36.01,
-      "lon": -84.24,
-      "sources": [
-        {
-          "label": "Oak Ridge National Laboratory",
-          "url": "https://www.ornl.gov/"
-        }
-      ]
+      "lon": -84.24
     },
     {
       "id": "fc-1cfcfef36a",
@@ -31304,13 +31256,7 @@
       "county_fips": "06001",
       "notes": "Perlmutter AI-optimized supercomputer; NVIDIA A100 GPUs.; legacy_id:ai-ca-003",
       "lat": 37.88,
-      "lon": -122.25,
-      "sources": [
-        {
-          "label": "NERSC — National Energy Research Scientific Computing Center",
-          "url": "https://www.nersc.gov/"
-        }
-      ]
+      "lon": -122.25
     },
     {
       "id": "fc-0cfbbf4e00",
@@ -31320,13 +31266,7 @@
       "county_fips": "51107",
       "notes": "Dedicated AI training cluster adjacent to existing cloud campus.; legacy_id:ai-va-001",
       "lat": 39.05,
-      "lon": -77.44,
-      "sources": [
-        {
-          "label": "Microsoft Azure — Loudoun County VA",
-          "url": "https://azure.microsoft.com/"
-        }
-      ]
+      "lon": -77.44
     },
     {
       "id": "fc-d4085dae7d",
@@ -31336,13 +31276,7 @@
       "county_fips": "18059",
       "notes": "Part of Indiana AI infrastructure push; dedicated training.; legacy_id:ai-in-001",
       "lat": 39.77,
-      "lon": -86.4,
-      "sources": [
-        {
-          "label": "Microsoft Azure — Hendricks County IN",
-          "url": "https://azure.microsoft.com/"
-        }
-      ]
+      "lon": -86.4
     },
     {
       "id": "fc-9d94f96a4b",
@@ -31352,13 +31286,7 @@
       "county_fips": "34027",
       "notes": "GPU-as-a-service; massive NVIDIA H100 cluster for AI startups.; legacy_id:ai-nj-001",
       "lat": 40.87,
-      "lon": -74.42,
-      "sources": [
-        {
-          "label": "CoreWeave — Parsippany NJ Campus",
-          "url": "https://www.coreweave.com/"
-        }
-      ]
+      "lon": -74.42
     },
     {
       "id": "fc-b9fb66a08e",
@@ -31368,13 +31296,7 @@
       "county_fips": "17043",
       "notes": "DuPage County; NVIDIA AI cluster; cloud AI infrastructure.; legacy_id:ai-il-001",
       "lat": 41.85,
-      "lon": -88.12,
-      "sources": [
-        {
-          "label": "CoreWeave — Chicago IL Campus",
-          "url": "https://www.coreweave.com/"
-        }
-      ]
+      "lon": -88.12
     },
     {
       "id": "fc-9de23caa4f",
@@ -31384,13 +31306,7 @@
       "county_fips": "51107",
       "notes": "Dedicated AI training cluster adjacent to existing cloud campus.; legacy_id:ai-va-001",
       "lat": 39.05,
-      "lon": -77.44,
-      "sources": [
-        {
-          "label": "Microsoft Azure — Loudoun County VA",
-          "url": "https://azure.microsoft.com/"
-        }
-      ]
+      "lon": -77.44
     },
     {
       "id": "fc-cc16a07fe7",
@@ -31400,13 +31316,7 @@
       "county_fips": "18059",
       "notes": "Part of Indiana AI infrastructure push; dedicated training.; legacy_id:ai-in-001",
       "lat": 39.77,
-      "lon": -86.4,
-      "sources": [
-        {
-          "label": "Microsoft Azure — Hendricks County IN",
-          "url": "https://azure.microsoft.com/"
-        }
-      ]
+      "lon": -86.4
     },
     {
       "id": "fc-fbf9edf7a2",
@@ -31416,13 +31326,7 @@
       "county_fips": "34027",
       "notes": "GPU-as-a-service; massive NVIDIA H100 cluster for AI startups.; legacy_id:ai-nj-001",
       "lat": 40.87,
-      "lon": -74.42,
-      "sources": [
-        {
-          "label": "CoreWeave — Parsippany NJ Campus",
-          "url": "https://www.coreweave.com/"
-        }
-      ]
+      "lon": -74.42
     },
     {
       "id": "fc-d093fd6415",
@@ -31432,13 +31336,7 @@
       "county_fips": "17043",
       "notes": "DuPage County; NVIDIA AI cluster; cloud AI infrastructure.; legacy_id:ai-il-001",
       "lat": 41.85,
-      "lon": -88.12,
-      "sources": [
-        {
-          "label": "CoreWeave — Chicago IL Campus",
-          "url": "https://www.coreweave.com/"
-        }
-      ]
+      "lon": -88.12
     },
     {
       "id": "fc-72a599c464",
@@ -31448,13 +31346,7 @@
       "county_fips": "32003",
       "notes": "Switch SUPERNAP 7-10 campus; dedicated GPU cluster for AI/ML workloads. 100MW+ capacity. NVIDIA DGX-A100/H100 pods. Tier IV design.; legacy_id:ai-nv-001",
       "lat": 36.0875,
-      "lon": -115.1535,
-      "sources": [
-        {
-          "label": "Switch Data Centers — Las Vegas",
-          "url": "https://www.switch.com/"
-        }
-      ]
+      "lon": -115.1535
     },
     {
       "id": "fc-e076324447",
@@ -31464,13 +31356,7 @@
       "county_fips": "24003",
       "notes": "Unclassified contractor data center cluster adjacent to NSA/Fort Meade in Annapolis Junction MD.; legacy_id:ai-md-001",
       "lat": 39.1177,
-      "lon": -76.8077,
-      "sources": [
-        {
-          "label": "Defense Information Systems Agency (DISA)",
-          "url": "https://www.disa.mil/"
-        }
-      ]
+      "lon": -76.8077
     },
     {
       "id": "fc-8e04571768",
@@ -31480,13 +31366,7 @@
       "county_fips": "15009",
       "notes": "DoD-funded HPC center operated for the Air Force Research Laboratory; supports Pacific theater defense simulation and AI workloads.; legacy_id:ai-hi-002",
       "lat": 20.8783,
-      "lon": -156.6825,
-      "sources": [
-        {
-          "label": "Maui High Performance Computing Center (MHPCC)",
-          "url": "https://www.mhpcc.hpc.mil/"
-        }
-      ]
+      "lon": -156.6825
     },
     {
       "id": "fc-90901307a4",
@@ -31496,13 +31376,7 @@
       "county_fips": "45019",
       "notes": "Regional colocation data center serving Charleston's growing financial technology, healthcare, and logistics IT sectors.; legacy_id:ai-sc-003",
       "lat": 32.7765,
-      "lon": -79.9311,
-      "sources": [
-        {
-          "label": "Immedion Data Centers — Charleston SC",
-          "url": "https://www.immedion.com/"
-        }
-      ]
+      "lon": -79.9311
     },
     {
       "id": "fc-dfd7592dc0",
@@ -31512,13 +31386,7 @@
       "county_fips": "36091",
       "notes": "On-premises HPC and EDA compute supporting chip design simulation, manufacturing AI, and yield analytics for one of North America's largest semiconductor fabs.; legacy_id:ai-ny-003",
       "lat": 43.01,
-      "lon": -73.8199,
-      "sources": [
-        {
-          "label": "GlobalFoundries Fab 8 — Malta NY",
-          "url": "https://gf.com/"
-        }
-      ]
+      "lon": -73.8199
     },
     {
       "id": "fc-3bd2179f18",
@@ -31528,13 +31396,517 @@
       "county_fips": "04003",
       "notes": "Primary Army network management and enterprise IT data center; supports Army-wide network operations, defensive cyber, and Army Cyber Command missions.; legacy_id:ai-az-001",
       "lat": 31.5437,
-      "lon": -110.3445,
-      "sources": [
-        {
-          "label": "U.S. Army Network Enterprise Technology Command (NETCOM)",
-          "url": "https://www.netcom.army.mil/"
-        }
-      ]
+      "lon": -110.3445
+    },
+    {
+      "id": "fc-b62bf64575",
+      "name": "Fort Liberty Army Computing and Mission Command Center",
+      "operator": "US Army XVIII Airborne Corps / USASOC",
+      "status": "existing",
+      "county_fips": "37051",
+      "notes": "Primary Army data and mission-command computing hub for the XVIII Airborne Corps and US Army Special Operations Command; supports joint all-domain command and control (JADC2) infrastructure.; legacy_id:ai-nc-003",
+      "lat": 35.139,
+      "lon": -79.0014
+    },
+    {
+      "id": "fc-87821cf26f",
+      "name": "W.M. Keck Observatory Data Processing Center",
+      "operator": "W.M. Keck Observatory / Caltech / UC",
+      "status": "existing",
+      "county_fips": "15001",
+      "notes": "Keck Observatory processes petabytes of astronomical imaging and spectroscopy data; connected to Caltech and UC system HPC networks for reduction, AI classification, and archival storage.; legacy_id:ai-hi-003",
+      "lat": 19.8208,
+      "lon": -155.4681
+    },
+    {
+      "id": "fc-3293288fd8",
+      "name": "UC Davis Farm Computing and Research Data Center",
+      "operator": "UC Davis Research IT / CAES",
+      "status": "existing",
+      "county_fips": "06113",
+      "notes": "UC Davis operates research computing supporting the College of Agricultural and Environmental Sciences, genomics research, and UC Davis Health clinical data; part of the UC-wide research computing network.; legacy_id:ai-ca-006",
+      "lat": 38.5382,
+      "lon": -121.7405
+    },
+    {
+      "id": "fc-762af9b941",
+      "name": "Naval Base Kitsap Cyber and Network Operations Center",
+      "operator": "US Navy / CNIC Northwest",
+      "status": "existing",
+      "county_fips": "53035",
+      "notes": "Naval Base Kitsap operates Navy cybersecurity and network operations supporting submarine forces, surface forces, and Puget Sound Naval Shipyard IT; includes NUWC Keyport's undersea warfare data systems.; legacy_id:ai-wa-004",
+      "lat": 47.5676,
+      "lon": -122.6326
+    },
+    {
+      "id": "fc-5dda5091bf",
+      "name": "Leidos Global Headquarters and Technology Campus — Columbia",
+      "operator": "Leidos Holdings",
+      "status": "existing",
+      "county_fips": "24027",
+      "notes": "Leidos' Columbia MD headquarters anchors a major defense IT and AI campus; Leidos is among the largest DoD cybersecurity, intelligence, and health IT contractors, operating classified data systems supporting NSA, DHS, and DoD agencies.; legacy_id:ai-md-002",
+      "lat": 39.2037,
+      "lon": -76.861
+    },
+    {
+      "id": "fc-4ffd7b9894",
+      "name": "GlobalWafers Semiconductor Silicon Wafer Facility — Albany",
+      "operator": "GlobalWafers (formerly SunEdison Semiconductor / MEMC)",
+      "status": "existing",
+      "county_fips": "41043",
+      "notes": "GlobalWafers' Albany OR facility manufactures semiconductor-grade silicon wafers for the global chip supply chain; operations include extensive process automation, quality data systems, and manufacturing AI supporting the Willamette Valley semiconductor ecosystem.; legacy_id:ai-or-004",
+      "lat": 44.6365,
+      "lon": -123.1059
+    },
+    {
+      "id": "fc-3d3b9776de",
+      "name": "Eglin AFB Air Force Research Laboratory Munitions and Cyber Operations Center",
+      "operator": "US Air Force / AFRL / 96th Test Wing",
+      "status": "existing",
+      "county_fips": "12091",
+      "notes": "Eglin AFB's AFRL Munitions Directorate and 96th TW operate extensive weapons test and evaluation data systems; supports the Air Force's developmental and operational test missions across the Gulf Test Range.; legacy_id:ai-fl-006",
+      "lat": 30.4833,
+      "lon": -86.5253
+    },
+    {
+      "id": "fc-344f1dbb0c",
+      "name": "Lake Charles LNG and Petrochemical Industrial Operations Data Hub",
+      "operator": "Calcasieu Pass LNG / Energy Transfer (Lake Charles LNG)",
+      "status": "existing",
+      "county_fips": "22019",
+      "notes": "Calcasieu Parish hosts co-located LNG liquefaction control systems, refinery process automation, and environmental SCADA for one of the largest petrochemical industrial complexes in North America; handles real-time operations data for multiple major LNG terminals and chemical plants.; legacy_id:ai-la-003",
+      "lat": 30.2266,
+      "lon": -93.2174
+    },
+    {
+      "id": "fc-cf2cb8187f",
+      "name": "Fort Cavazos III Corps Mission Command and Network Operations Center",
+      "operator": "US Army III Corps / 1st Cavalry Division",
+      "status": "existing",
+      "county_fips": "48027",
+      "notes": "Fort Cavazos (formerly Fort Hood) III Corps mission command infrastructure supports combined-arms operations, joint all-domain command and control (JADC2) exercises, and Army-wide network operations training for the 1st Cavalry Division and III Corps subordinate units.; legacy_id:ai-tx-007",
+      "lat": 31.1344,
+      "lon": -97.7831
+    },
+    {
+      "id": "fc-4dc5d3eda5",
+      "name": "Huntington Ingalls Ingalls Shipbuilding Digital Shipyard Operations",
+      "operator": "Huntington Ingalls Industries (HII) — Ingalls Shipbuilding",
+      "status": "existing",
+      "county_fips": "28059",
+      "notes": "Ingalls Shipbuilding's Pascagoula facility operates digital shipbuilding systems including 3D design (Aveva AVEVA Marine), ship data management, and production control systems; builds US Navy destroyers, amphibious ships, and Coast Guard vessels.; legacy_id:ai-ms-003",
+      "lat": 30.3585,
+      "lon": -88.5561
+    },
+    {
+      "id": "fc-8327625880",
+      "name": "Hill AFB Ogden Air Logistics Complex (OO-ALC) — Software Engineering",
+      "operator": "US Air Force / Ogden Air Logistics Complex",
+      "status": "existing",
+      "county_fips": "49057",
+      "notes": "OO-ALC's Software Engineering Group maintains and modernizes flight control, avionics, and maintenance software for USAF aircraft; F-35 sustainment software ops co-located; one of Air Force's primary sustainment data centers.; legacy_id:ai-ut-004",
+      "lat": 41.124,
+      "lon": -111.9738
+    },
+    {
+      "id": "fc-8f0365e9be",
+      "name": "Robins AFB Warner Robins Air Logistics Complex (WR-ALC)",
+      "operator": "US Air Force / Warner Robins Air Logistics Complex",
+      "status": "existing",
+      "county_fips": "13153",
+      "notes": "WR-ALC maintains C-17, C-5, F-15, and U-2 aircraft and associated avionics, software, and intelligence systems; Air Force Life Cycle Management Center (AFLCMC) manages major acquisition programs from Robins; among largest employers in Georgia.; legacy_id:ai-ga-006",
+      "lat": 32.6401,
+      "lon": -83.5919
+    },
+    {
+      "id": "fc-2f15cd9cc1",
+      "name": "UVA Rivanna Research Computing and NRAO Headquarters — Charlottesville",
+      "operator": "University of Virginia / National Radio Astronomy Observatory",
+      "status": "existing",
+      "county_fips": "51003",
+      "notes": "UVA's Rivanna HPC cluster supports bioinformatics, data science, and clinical AI research at UVA Health; NRAO headquarters coordinates global radio telescope network data including the Very Large Array (VLA) and ALMA data archives.; legacy_id:ai-va-007",
+      "lat": 38.0293,
+      "lon": -78.4767
+    },
+    {
+      "id": "fc-26a97fdd00",
+      "name": "Fort Riley Mission Command and K-State Biosecurity Research Institute — Manhattan",
+      "operator": "US Army 1st Infantry Division / Kansas State University",
+      "status": "existing",
+      "county_fips": "20161",
+      "notes": "Fort Riley hosts 1st Infantry Division mission command and training data systems; K-State's Biosecurity Research Institute (BRI) operates BSL-3 research computing and NBAF (National Bio and Agro-defense Facility) data systems adjacent to campus.; legacy_id:ai-ks-002",
+      "lat": 39.1836,
+      "lon": -96.5847
+    },
+    {
+      "id": "fc-95a4857aa2",
+      "name": "Paducah Area TVA Power Operations and DOE Technology Center",
+      "operator": "Tennessee Valley Authority / US DOE Paducah Site",
+      "status": "existing",
+      "county_fips": "21145",
+      "notes": "TVA's Paducah area grid operations manage power distribution for western Kentucky and surrounding states; the DOE Paducah Site's ongoing deactivation and remediation program operates extensive environmental monitoring and process data systems.; legacy_id:ai-ky-001",
+      "lat": 37.0834,
+      "lon": -88.6001
+    },
+    {
+      "id": "fc-b958aec731",
+      "name": "NASA Stennis Space Center — Propulsion Test and Data Operations",
+      "operator": "NASA / National Data Buoy Center (NOAA)",
+      "status": "existing",
+      "county_fips": "28045",
+      "notes": "Stennis hosts RS-25 SLS engine test stands, National Data Buoy Center oceanographic data operations, and multiple tenant agency computing (NGA, Navy, EPA); largest NASA field installation in the Southeast by land area.; legacy_id:ai-ms-004",
+      "lat": 30.3636,
+      "lon": -89.5994
+    },
+    {
+      "id": "fc-cc7248dd65",
+      "name": "Pacific Missile Range Facility (PMRF) — Barking Sands",
+      "operator": "US Navy / Commander, Pacific Fleet",
+      "status": "existing",
+      "county_fips": "15007",
+      "notes": "PMRF operates the world's largest instrumented, multi-environment missile test range with radar, tracking, and telemetry systems for missile defense, anti-submarine warfare, and undersea warfare testing in the Pacific; hosts MDA and MDA Aegis BMD test data systems.; legacy_id:ai-hi-004",
+      "lat": 22.0221,
+      "lon": -159.7649
+    },
+    {
+      "id": "fc-86c7f17f13",
+      "name": "Fort Sill Army Fires Center of Excellence and JADOC — Lawton",
+      "operator": "US Army Fires Center of Excellence",
+      "status": "existing",
+      "county_fips": "40031",
+      "notes": "Fort Sill's Fires Center of Excellence manages joint air defense and field artillery mission command systems, Patriot battery C2, and the Joint Air Defense Operations Center (JADOC) data infrastructure supporting Army IAMD operations.; legacy_id:ai-ok-005",
+      "lat": 34.6427,
+      "lon": -98.4045
+    },
+    {
+      "id": "fc-ef43111856",
+      "name": "Vandenberg Space Force Base — Space Launch Delta 30 Mission Control",
+      "operator": "US Space Force / Space Launch Delta 30",
+      "status": "existing",
+      "county_fips": "06083",
+      "notes": "Vandenberg SFB's SLD-30 provides launch telemetry, satellite tracking (FPS-16 radar, telemetry stations), and mission control data for DoD, NASA, and commercial polar-orbit launches; SpaceX Falcon 9 and Falcon Heavy operations co-located.; legacy_id:ai-ca-008",
+      "lat": 34.742,
+      "lon": -120.5665
+    },
+    {
+      "id": "fc-651eb7f763",
+      "name": "Fort Drum 10th Mountain Division Mission Command Center",
+      "operator": "US Army 10th Mountain Division",
+      "status": "existing",
+      "county_fips": "36045",
+      "notes": "Fort Drum's 10th Mountain Division operates mission command and logistics data systems supporting the most-deployed US Army division; includes joint exercise data infrastructure and theater sustainment computing.; legacy_id:ai-ny-004",
+      "lat": 44.0527,
+      "lon": -75.7607
+    },
+    {
+      "id": "fc-38569ea657",
+      "name": "Massachusetts Green High Performance Computing Center (MGHPCC) — Holyoke",
+      "operator": "UMass / Harvard / MIT / BU / Northeastern (consortium)",
+      "status": "existing",
+      "county_fips": "25015",
+      "notes": "MGHPCC is one of the most energy-efficient research data centers in the US, serving research computing for 5 major New England universities; powered by hydroelectric power from the Connecticut River; exemplar of academic research data center design.; legacy_id:ai-ma-002",
+      "lat": 42.2036,
+      "lon": -72.6162
+    },
+    {
+      "id": "fc-b86938e3be",
+      "name": "Kohler Company Innovation Center and Manufacturing Technology Campus",
+      "operator": "Kohler Co.",
+      "status": "existing",
+      "county_fips": "55117",
+      "notes": "Kohler's Sheboygan County campus houses the company's manufacturing AI, IoT sensor integration, and enterprise data systems for global operations; Kohler's residential and hospitality technology platforms process data from millions of connected fixtures worldwide.; legacy_id:ai-wi-002",
+      "lat": 43.7369,
+      "lon": -87.7845
+    },
+    {
+      "id": "fc-0a20c1f564",
+      "name": "University of Oregon Research Computing and Talapus HPC — Eugene",
+      "operator": "University of Oregon Research Computing",
+      "status": "existing",
+      "county_fips": "41039",
+      "notes": "UO operates Talapus HPC and research computing supporting genomics, neuroscience, earth sciences, and humanities digital research; connected to Pacific Research Platform (PRP) and Internet2 networks.; legacy_id:ai-or-005",
+      "lat": 44.046,
+      "lon": -123.0789
+    },
+    {
+      "id": "fc-e5d4fff9d8",
+      "name": "Iowa State University CyEnce Research Computing and ISU Research Park — Ames",
+      "operator": "Iowa State University / ISU Research Park",
+      "status": "existing",
+      "county_fips": "19169",
+      "notes": "ISU operates CyEnce and Nova HPC clusters supporting agricultural genomics, computational fluid dynamics, and materials science; ISU Research Park co-locates Corteva Agriscience and USDA NADC computational biology with university resources.; legacy_id:ai-ia-004",
+      "lat": 42.0308,
+      "lon": -93.6502
+    },
+    {
+      "id": "fc-274df52a98",
+      "name": "NAS Patuxent River Naval Air Warfare Center Aircraft Division (NAWCAD)",
+      "operator": "US Navy / Naval Air Systems Command (NAVAIR)",
+      "status": "existing",
+      "county_fips": "24037",
+      "notes": "NAWCAD operates flight test data acquisition systems, aircraft simulation labs, and avionics test data infrastructure for all Navy and Marine Corps aircraft programs; Test Pilot School telemetry and SH-60, F/A-18, and F-35C test data systems co-located.; legacy_id:ai-md-003",
+      "lat": 38.2854,
+      "lon": -76.419
+    },
+    {
+      "id": "fc-4d01ca3d36",
+      "name": "NOAA Earth System Research Laboratories (ESRL) — Boulder CO",
+      "operator": "NOAA / U.S. Department of Commerce",
+      "status": "existing",
+      "county_fips": "08013",
+      "notes": "NOAA ESRL in Boulder operates high-performance computing systems supporting atmospheric research, climate modeling, and weather-prediction AI. Co-located with NCAR/UCAR Mesa Laboratory on the NOAA-Boulder campus.; legacy_id:ai-co-004",
+      "lat": 39.9906,
+      "lon": -105.2624
+    },
+    {
+      "id": "fc-3b7b00868a",
+      "name": "Forsyth County School District Data and AI Operations Center",
+      "operator": "Forsyth County Schools / FCSD Technology",
+      "status": "existing",
+      "county_fips": "13117",
+      "notes": "One of Georgia's largest and fastest-growing school districts, FCSD operates a substantial on-premise data center and AI-assisted learning analytics platform serving 60,000+ students. The facility anchors local fiber and data center demand in Cumming.; legacy_id:ai-ga-007",
+      "lat": 34.2099,
+      "lon": -84.1388
+    },
+    {
+      "id": "fc-f3d3c256b6",
+      "name": "Hammond Indiana University (HIU) / Calumet Research Computing Center",
+      "operator": "Purdue University Northwest / Region IV ESC",
+      "status": "existing",
+      "county_fips": "18089",
+      "notes": "Purdue University Northwest (formerly Calumet) hosts regional research computing and data analytics infrastructure serving the Northwest Indiana Calumet Region. The facility supports AI research in manufacturing optimization, steel industry process control, and Great Lakes environmental modeling.; legacy_id:ai-in-005",
+      "lat": 41.5834,
+      "lon": -87.5
+    },
+    {
+      "id": "fc-612452ea54",
+      "name": "Wolfspeed Marcy Nanotechnology Center — Utica NY",
+      "operator": "Wolfspeed / SUNY Polytechnic Institute",
+      "status": "existing",
+      "county_fips": "36065",
+      "notes": "Wolfspeed's Marcy Nanotechnology Center in Oneida County is the world's largest silicon carbide (SiC) semiconductor wafer fabrication facility. Co-located with SUNY Poly's campus, it drives substantial HPC and AI workloads for process simulation, materials science research, and semiconductor design automation.; legacy_id:ai-ny-005",
+      "lat": 43.1637,
+      "lon": -75.3779
+    },
+    {
+      "id": "fc-17e1cb9b5a",
+      "name": "Western Michigan University HPC / Kalamazoo Life Sciences Computing",
+      "operator": "Western Michigan University",
+      "status": "existing",
+      "county_fips": "26077",
+      "notes": "Western Michigan University operates high-performance computing infrastructure supporting pharmaceutical AI research in partnership with the Kalamazoo life-sciences cluster (Pfizer, Stryker, Zoetis). Research areas include protein folding, clinical trial data analytics, and orthopedic implant design AI.; legacy_id:ai-mi-002",
+      "lat": 42.2842,
+      "lon": -85.5864
+    },
+    {
+      "id": "fc-f1f7bc1b74",
+      "name": "Idaho National Laboratory (INL) Cybercore Integration Center",
+      "operator": "U.S. Department of Energy / Battelle Energy Alliance",
+      "status": "existing",
+      "county_fips": "16019",
+      "notes": "INL's Cybercore Integration Center in Idaho Falls is DOE's premier facility for industrial control system cybersecurity research and AI-driven threat detection. The facility also hosts the Mission Support Center HPC cluster supporting nuclear energy modeling, materials science AI, and critical infrastructure protection.; legacy_id:ai-id-002",
+      "lat": 43.516,
+      "lon": -112.0391
+    },
+    {
+      "id": "fc-ad01b157d9",
+      "name": "St. Tammany Corporation Innovation Center — Covington LA",
+      "operator": "St. Tammany Corporation / Northshore Tech Hub",
+      "status": "existing",
+      "county_fips": "22103",
+      "notes": "The St. Tammany Corporation operates the Northshore technology innovation hub in Covington, supporting data analytics, cybersecurity, and AI/ML startups serving the Gulf Coast energy and logistics sectors. The facility anchors Northshore Tech, a regional tech cluster attracting remote tech workers from the New Orleans metro.; legacy_id:ai-la-004",
+      "lat": 30.4752,
+      "lon": -90.0989
+    },
+    {
+      "id": "fc-beb6706f3f",
+      "name": "Fort Liberty (Fort Bragg) USSOCOM Cyber and AI Operations",
+      "operator": "U.S. Army / USSOCOM",
+      "status": "existing",
+      "county_fips": "37085",
+      "notes": "Fort Liberty hosts U.S. Army Special Operations Command (USSOCOM) cyber and intelligence computing infrastructure, including classified AI/ML platforms for mission planning, threat analysis, and tactical autonomous systems research. Fort Liberty is one of the largest military installations in the world by population.; legacy_id:ai-nc-005",
+      "lat": 35.139,
+      "lon": -79.0064
+    },
+    {
+      "id": "fc-eb356cac2e",
+      "name": "Cowlitz County PUD Industrial Computing — Longview WA",
+      "operator": "Cowlitz County PUD / Lower Columbia Economic Development Council",
+      "status": "planned",
+      "county_fips": "53015",
+      "notes": "Cowlitz County PUD has partnered with the Lower Columbia EDC to develop an industrial data center park leveraging the PUD's ultra-low hydroelectric rates (<2 cents/kWh). Several hyperscale operators have engaged in site selection processes for the Longview industrial port area, making this a planned major computing campus in the Pacific Northwest.; legacy_id:ai-wa-006",
+      "lat": 46.1382,
+      "lon": -122.9384
+    },
+    {
+      "id": "fc-2b29d166dc",
+      "name": "UMass Medical School / WPI Advanced Research Computing Hub — Worcester MA",
+      "operator": "University of Massachusetts Medical School / Worcester Polytechnic Institute",
+      "status": "existing",
+      "county_fips": "25027",
+      "notes": "UMass Medical and WPI jointly anchor central Massachusetts's life-sciences computing cluster. Research computing at UMass Medical supports genomics, clinical AI, and NIH-funded biomedical informatics. WPI's Data Science program operates HPC resources shared with regional biotech partners.; legacy_id:ai-ma-003",
+      "lat": 42.2626,
+      "lon": -71.8023
+    },
+    {
+      "id": "fc-b47ccd6859",
+      "name": "UC Merced Cyberinfrastructure and HPC Initiative",
+      "operator": "University of California, Merced",
+      "status": "existing",
+      "county_fips": "06047",
+      "notes": "UC Merced's Cyberinfrastructure Initiative provides HPC and cloud resources to researchers across UC campuses. Research areas include Central Valley climate modeling, agricultural AI, wildfire prediction, and renewable energy grid optimization. The campus is allocated compute on NSF ACCESS and XSEDE successor systems.; legacy_id:ai-ca-010",
+      "lat": 37.3656,
+      "lon": -120.4233
+    },
+    {
+      "id": "fc-601a134f44",
+      "name": "Muscogee (Creek) Nation Tribal Digital Operations Center — Okmulgee OK",
+      "operator": "Muscogee (Creek) Nation",
+      "status": "existing",
+      "county_fips": "40111",
+      "notes": "The Muscogee (Creek) Nation operates a centralized tribal government data center in Okmulgee supporting health records (Indian Health Service integration), gaming analytics, citizen services, and the Nation's e-commerce and retail technology platforms for tribal enterprises.; legacy_id:ai-ok-006",
+      "lat": 35.6239,
+      "lon": -95.967
+    },
+    {
+      "id": "fc-e474c86e05",
+      "name": "Colorado State University HPC / NCAR Wyoming Supercomputing Liaison — Fort Collins CO",
+      "operator": "Colorado State University / NCAR",
+      "status": "existing",
+      "county_fips": "08069",
+      "notes": "CSU's high-performance computing cluster in Fort Collins supports atmospheric science, climate modeling, wildfire AI, and agricultural research in partnership with NCAR's Mesa Lab (Boulder) and the NCAR-Wyoming Supercomputing Center (Cheyenne). CSU's data science and AI programs anchor Larimer County's research computing demand.; legacy_id:ai-co-005",
+      "lat": 40.5734,
+      "lon": -105.0844
+    },
+    {
+      "id": "fc-65972f1f59",
+      "name": "Library of Congress National Digital Preservation Infrastructure",
+      "operator": "Library of Congress / U.S. Congress",
+      "status": "existing",
+      "county_fips": "11001",
+      "notes": "The Library of Congress operates one of the largest digital preservation and AI-assisted cataloging infrastructures in the world, with primary systems on Capitol Hill. The LC's National Digital Information Infrastructure and Preservation Program (NDIIPP) and AI Labs for metadata enrichment serve the national digital collections.; legacy_id:ai-dc-001",
+      "lat": 38.8892,
+      "lon": -77.0047
+    },
+    {
+      "id": "fc-791a6832ef",
+      "name": "Minot Air Force Base — 91st Missile Wing Command and Control",
+      "operator": "U.S. Air Force / Air Force Global Strike Command",
+      "status": "existing",
+      "county_fips": "38101",
+      "notes": "Minot AFB hosts the 91st Missile Wing, responsible for Minuteman III ICBMs across 150 launch facilities in ND, and the 5th Bomb Wing (B-52H). The base operates classified nuclear command-and-control computing infrastructure and Air Force Global Strike Command C4ISR systems. Emerging AI/ML applications support targeting analytics and base cybersecurity.; legacy_id:ai-nd-004",
+      "lat": 48.4154,
+      "lon": -101.3579
+    },
+    {
+      "id": "fc-56827c6f44",
+      "name": "Bell Works Holmdel AI and Technology Campus",
+      "operator": "Bell Works / iStar",
+      "status": "existing",
+      "county_fips": "34025",
+      "notes": "Redevelopment of historic AT&T Bell Labs Holmdel complex (1962 Eero Saarinen building) as a mixed-use technology campus. Hosts AI, cloud, and telecom tenants leveraging the site's fiber infrastructure heritage. New Jersey's largest redeveloped corporate campus.; legacy_id:ai-nj-003",
+      "lat": 40.3573,
+      "lon": -74.1843
+    },
+    {
+      "id": "fc-2c977ceb03",
+      "name": "Portland General Electric Willamette Falls AI Grid Control Center",
+      "operator": "Portland General Electric",
+      "status": "existing",
+      "county_fips": "41005",
+      "notes": "Portland General Electric operations and grid control facility in Clackamas County near Oregon City, incorporating AI-driven predictive load management for the Willamette Valley hydro and transmission system. Supports BPA integration and real-time grid optimization.; legacy_id:ai-or-006",
+      "lat": 45.3565,
+      "lon": -122.6084
+    },
+    {
+      "id": "fc-a82e5cafa8",
+      "name": "Minnesota Power AI Grid Operations Center",
+      "operator": "Minnesota Power / ALLETE",
+      "status": "existing",
+      "county_fips": "27061",
+      "notes": "Minnesota Power (ALLETE) grid operations center in Grand Rapids serving Itasca County and the Iron Range. Integrates AI-driven load forecasting and renewable dispatch optimization for Minnesota Power's hydro, wind, and biomass generation portfolio serving northern Minnesota.; legacy_id:ai-mn-005",
+      "lat": 47.2372,
+      "lon": -93.5274
+    },
+    {
+      "id": "fc-5240af4d14",
+      "name": "Rogue Valley AI Data Analytics and Research Center",
+      "operator": "Southern Oregon University / Rogue Community College",
+      "status": "existing",
+      "county_fips": "41029",
+      "notes": "Regional higher education AI and data analytics research center serving the Rogue Valley (Medford/Ashland/Grants Pass corridor). Jointly operated through Southern Oregon University and Rogue Community College workforce development programs. Supports agricultural AI, forestry monitoring, and Klamath River restoration science computing needs.; legacy_id:ai-or-007",
+      "lat": 42.3265,
+      "lon": -122.8756
+    },
+    {
+      "id": "fc-f4b7d892c4",
+      "name": "Cal Poly San Luis Obispo Center for Computing and AI Research",
+      "operator": "California Polytechnic State University",
+      "status": "existing",
+      "county_fips": "06079",
+      "notes": "Cal Poly SLO's computing and AI research infrastructure supporting the university's Learn by Doing engineering programs. Houses HPC clusters for environmental science, agricultural tech, and structural engineering AI. Operates in proximity to Diablo Canyon nuclear plant's reliable baseload grid zone.; legacy_id:ai-ca-011",
+      "lat": 35.305,
+      "lon": -120.6596
+    },
+    {
+      "id": "fc-71a0e33a4d",
+      "name": "Rockford University and NIU AI Regional Innovation Hub",
+      "operator": "Rockford University / Northern Illinois University",
+      "status": "planned",
+      "county_fips": "17201",
+      "notes": "Planned regional AI innovation hub for Winnebago County, a collaboration between Rockford University and Northern Illinois University's Rockford academic programs. Intended to anchor Rockford's I-90 technology corridor with AI-enabled manufacturing analytics for the region's aerospace and automotive supply chain industry.; legacy_id:ai-il-007",
+      "lat": 42.2711,
+      "lon": -89.094
+    },
+    {
+      "id": "fc-e887c4786a",
+      "name": "Chippewa Falls Technology Park — HPE Cray Heritage Computing Site",
+      "operator": "Chippewa Falls Technology Park / HPE Cray Alumni Network",
+      "status": "existing",
+      "county_fips": "55017",
+      "notes": "Multi-tenant technology campus occupying the historic Cray Research supercomputer design and manufacturing site in Chippewa Falls. The campus maintains computing heritage and hosts AI, embedded systems, and engineering tenants leveraging the original Cray Research infrastructure legacy. Xcel Energy NSP provides power via legacy high-reliability feeds designed for supercomputer loads.; legacy_id:ai-wi-003",
+      "lat": 44.9369,
+      "lon": -91.3929
+    },
+    {
+      "id": "fc-e2c239f89d",
+      "name": "Northern Kentucky University AI and Data Science Research Center",
+      "operator": "Northern Kentucky University",
+      "status": "existing",
+      "county_fips": "21037",
+      "notes": "NKU's College of Informatics AI and Data Science research center in Highland Heights, Campbell County. Hosts applied AI research for Cincinnati-region healthcare, logistics, and financial services sectors. Partners with Duke Energy Ohio on smart grid AI projects and Greater Cincinnati tech ecosystem programs.; legacy_id:ai-ky-002",
+      "lat": 38.9453,
+      "lon": -84.4552
+    },
+    {
+      "id": "fc-ab90880c67",
+      "name": "Basin Electric Power Cooperative AI Energy Management Center",
+      "operator": "Basin Electric Power Cooperative",
+      "status": "existing",
+      "county_fips": "38057",
+      "notes": "Basin Electric Power Cooperative grid management and AI energy dispatch center in Beulah, Mercer County ND. Coordinates real-time generation dispatch for Basin Electric's 2.9 GW coal and 1+ GW wind generation portfolio serving 2.9 million people across nine states. AI-driven load forecasting supports coal-to-renewable transition planning.; legacy_id:ai-nd-005",
+      "lat": 47.2629,
+      "lon": -101.7796
+    },
+    {
+      "id": "fc-5b78d983ef",
+      "name": "Rowan-Cabarrus Community College Advanced Technology and AI Center",
+      "operator": "Rowan-Cabarrus Community College",
+      "status": "existing",
+      "county_fips": "37159",
+      "notes": "Rowan-Cabarrus Community College AI and advanced manufacturing technology center in Salisbury, Rowan County NC. Trains data center operations technicians, network engineers, and AI-assisted manufacturing workers for the Charlotte-Greensboro industrial corridor. Partners with Duke Energy Carolinas and Fibrant municipal broadband for hands-on grid and network training.; legacy_id:ai-nc-006",
+      "lat": 35.671,
+      "lon": -80.4775
+    },
+    {
+      "id": "fc-1eda78dc34",
+      "name": "Franklin College Center for Data Analytics and AI",
+      "operator": "Franklin College",
+      "status": "existing",
+      "county_fips": "18081",
+      "notes": "Franklin College AI and data analytics research center in Franklin, Johnson County IN. Focuses on applied AI for healthcare informatics (Johnson Memorial Health partnership), agricultural technology for southern Indiana farming operations, and supply chain optimization for Indianapolis-area logistics industry. Supported by Lilly Endowment higher education grants.; legacy_id:ai-in-006",
+      "lat": 39.4806,
+      "lon": -86.055
     }
   ],
   "power_infrastructure": [
@@ -31927,5 +32299,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-16T05:54:29Z"
+  "_facilities_exported_at": "2026-07-19T06:13:14Z"
 }
