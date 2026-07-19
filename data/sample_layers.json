@@ -32663,6 +32663,182 @@
           "url": "https://phillynap.com/colocation/"
         }
       ]
+    },
+    {
+      "id": "fc-8f4914dcb4",
+      "name": "ColoCrossing - Los Angeles",
+      "operator": "ColoCrossing",
+      "status": "existing",
+      "county_fips": "06037",
+      "notes": "ColoCrossing Los Angeles CA colocation data center. Los Angeles County. Budget colocation with redundant power and cooling.",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "sources": [
+        {
+          "label": "ColoCrossing",
+          "url": "https://www.colocrossing.com/data-centers/los-angeles/"
+        }
+      ]
+    },
+    {
+      "id": "fc-eca3cea9c2",
+      "name": "ColoCrossing - San Jose",
+      "operator": "ColoCrossing",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "ColoCrossing San Jose CA colocation data center in Silicon Valley. Santa Clara County.",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "sources": [
+        {
+          "label": "ColoCrossing",
+          "url": "https://www.colocrossing.com/data-centers/san-jose/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4646e29e94",
+      "name": "ColoCrossing - Atlanta",
+      "operator": "ColoCrossing",
+      "status": "existing",
+      "county_fips": "13121",
+      "notes": "ColoCrossing Atlanta GA colocation data center. Fulton County.",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "ColoCrossing",
+          "url": "https://www.colocrossing.com/data-centers/atlanta/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e76c762751",
+      "name": "ColoCrossing - Dallas",
+      "operator": "ColoCrossing",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "ColoCrossing Dallas TX colocation data center. Dallas County.",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "ColoCrossing",
+          "url": "https://www.colocrossing.com/data-centers/dallas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8eac9b1f7f",
+      "name": "ColoCrossing - Seattle",
+      "operator": "ColoCrossing",
+      "status": "existing",
+      "county_fips": "53033",
+      "notes": "ColoCrossing Seattle WA colocation data center. King County.",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "sources": [
+        {
+          "label": "ColoCrossing",
+          "url": "https://www.colocrossing.com/data-centers/seattle/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6a0a9f670b",
+      "name": "ColoCrossing - Las Vegas",
+      "operator": "ColoCrossing",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "ColoCrossing Las Vegas NV colocation data center. Clark County.",
+      "lat": 36.1699,
+      "lon": -115.1398,
+      "sources": [
+        {
+          "label": "ColoCrossing",
+          "url": "https://www.colocrossing.com/data-centers/las-vegas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-a862d7b482",
+      "name": "NYI Data Center - Secaucus NJ",
+      "operator": "NYI (New York Internet)",
+      "status": "existing",
+      "county_fips": "34017",
+      "notes": "NYI (New York Internet) NYI-NJ1 at 100 Delawanna Avenue, Secaucus NJ. Hudson County. Carrier-neutral colo serving NYC metro with low latency.",
+      "lat": 40.7895,
+      "lon": -74.0565,
+      "sources": [
+        {
+          "label": "NYI (New York Internet)",
+          "url": "https://www.nyi.net/data-centers/nyi-nj1/"
+        }
+      ]
+    },
+    {
+      "id": "fc-debe2b0583",
+      "name": "NCAR Wyoming Supercomputing Center - Cheyenne",
+      "operator": "National Center for Atmospheric Research (NCAR)",
+      "status": "existing",
+      "county_fips": "56021",
+      "notes": "NCAR Wyoming Supercomputing Center (NWSC) in Cheyenne WY. 1.5MW HPC facility operated by NCAR/UCAR for atmospheric and Earth system science research. Derecho supercomputer (19.87 petaflops). Laramie County.",
+      "lat": 41.14,
+      "lon": -104.8197,
+      "sources": [
+        {
+          "label": "National Center for Atmospheric Research (NCAR)",
+          "url": "https://www2.cisl.ucar.edu/resources/facilities/nwsc"
+        }
+      ]
+    },
+    {
+      "id": "fc-965f9b9316",
+      "name": "Fermilab Scientific Computing Facility - Batavia",
+      "operator": "Fermi National Accelerator Laboratory",
+      "status": "existing",
+      "county_fips": "17089",
+      "notes": "Fermilab Scientific Computing Facility at Fermi National Accelerator Lab, Batavia IL. Kane County. Operates Wilson Cluster and High Energy Physics computing infrastructure. DOE facility.",
+      "lat": 41.8404,
+      "lon": -88.254,
+      "sources": [
+        {
+          "label": "Fermi National Accelerator Laboratory",
+          "url": "https://computing.fnal.gov/scientific-computing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-30794af5f1",
+      "name": "Idaho National Laboratory - Idaho Falls",
+      "operator": "Idaho National Laboratory",
+      "status": "existing",
+      "county_fips": "16019",
+      "notes": "Idaho National Laboratory (INL) computing facilities in Idaho Falls ID. Bonneville County. DOE national laboratory with nuclear and energy research computing. Sawtooth supercomputer (1.62 petaflops).",
+      "lat": 43.4921,
+      "lon": -112.0346,
+      "sources": [
+        {
+          "label": "Idaho National Laboratory",
+          "url": "https://www.inl.gov/research/advanced-computing/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c7dd9e9d9f",
+      "name": "Jefferson Lab Data Center - Newport News",
+      "operator": "Thomas Jefferson National Accelerator Facility",
+      "status": "existing",
+      "county_fips": "51700",
+      "notes": "Thomas Jefferson National Accelerator Facility (Jefferson Lab) computing center in Newport News VA. Independent city. DOE Office of Science nuclear physics facility with large-scale scientific computing.",
+      "lat": 37.0988,
+      "lon": -76.4819,
+      "sources": [
+        {
+          "label": "Thomas Jefferson National Accelerator Facility",
+          "url": "https://www.jlab.org/physics/computing"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -33991,5 +34167,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:01:00Z"
+  "_facilities_exported_at": "2026-07-19T13:04:56Z"
 }
