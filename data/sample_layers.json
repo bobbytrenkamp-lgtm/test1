@@ -36363,6 +36363,606 @@
           "url": "https://frontier.com/local/west-virginia"
         }
       ]
+    },
+    {
+      "id": "fc-0451439cb3",
+      "name": "Federal Reserve Board of Governors Data Center - Washington DC",
+      "operator": "Federal Reserve Board of Governors",
+      "status": "existing",
+      "county_fips": "11001",
+      "notes": "Federal Reserve Board of Governors (Washington DC HQ) IT operations and data center",
+      "lat": 38.8951,
+      "lon": -77.0364,
+      "sources": [
+        {
+          "label": "Federal Reserve Board of Governors",
+          "url": "https://www.federalreserve.gov/"
+        },
+        {
+          "label": "Federal Reserve Board of Governors",
+          "url": "https://www.federalreserve.gov/aboutthefed/"
+        }
+      ]
+    },
+    {
+      "id": "fc-21e49e6d56",
+      "name": "Fannie Mae Data Center - Washington DC",
+      "operator": "Fannie Mae",
+      "status": "existing",
+      "county_fips": "11001",
+      "notes": "Fannie Mae (Federal National Mortgage Association) enterprise data center at DC HQ",
+      "lat": 38.9072,
+      "lon": -77.0369,
+      "sources": [
+        {
+          "label": "Fannie Mae",
+          "url": "https://www.fanniemae.com/"
+        },
+        {
+          "label": "Fannie Mae",
+          "url": "https://www.fanniemae.com/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2dab65dd87",
+      "name": "American Red Cross National Data Center - Washington DC",
+      "operator": "American Red Cross",
+      "status": "existing",
+      "county_fips": "11001",
+      "notes": "American Red Cross national headquarters IT and data center in Washington DC",
+      "lat": 38.894,
+      "lon": -77.0217,
+      "sources": [
+        {
+          "label": "American Red Cross",
+          "url": "https://www.redcross.org/"
+        },
+        {
+          "label": "American Red Cross",
+          "url": "https://www.redcross.org/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-c89aec8bc1",
+      "name": "University of South Dakota Research Computing - Vermillion SD",
+      "operator": "University of South Dakota",
+      "status": "existing",
+      "county_fips": "46027",
+      "notes": "University of South Dakota research computing and HPC infrastructure in Vermillion SD",
+      "lat": 42.7794,
+      "lon": -96.929,
+      "sources": [
+        {
+          "label": "University of South Dakota",
+          "url": "https://www.usd.edu/research/research-technology/"
+        },
+        {
+          "label": "University of South Dakota",
+          "url": "https://www.usd.edu/academics/research-technology/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7b154d26f0",
+      "name": "Dakota State University Technology Center - Madison SD",
+      "operator": "Dakota State University",
+      "status": "existing",
+      "county_fips": "46079",
+      "notes": "Dakota State University technology and cyber research center in Madison SD, US cybersecurity hub",
+      "lat": 44.0052,
+      "lon": -97.1145,
+      "sources": [
+        {
+          "label": "Dakota State University",
+          "url": "https://www.dsu.edu/"
+        },
+        {
+          "label": "Dakota State University",
+          "url": "https://www.dsu.edu/research/"
+        }
+      ]
+    },
+    {
+      "id": "fc-be3a507024",
+      "name": "Avera Health Data Center - Sioux Falls SD",
+      "operator": "Avera Health",
+      "status": "existing",
+      "county_fips": "46099",
+      "notes": "Avera Health enterprise data center in Sioux Falls SD; one of SD's largest health systems",
+      "lat": 43.5446,
+      "lon": -96.7311,
+      "sources": [
+        {
+          "label": "Avera Health",
+          "url": "https://www.avera.org/"
+        },
+        {
+          "label": "Avera Health",
+          "url": "https://www.avera.org/about-avera/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5c9fb4810d",
+      "name": "Black Hills Corporation Data Center - Rapid City SD",
+      "operator": "Black Hills Corporation",
+      "status": "existing",
+      "county_fips": "46103",
+      "notes": "Black Hills Corporation enterprise data center at corporate HQ in Rapid City SD",
+      "lat": 44.0805,
+      "lon": -103.231,
+      "sources": [
+        {
+          "label": "Black Hills Corporation",
+          "url": "https://www.blackhillscorp.com/"
+        },
+        {
+          "label": "Black Hills Corporation",
+          "url": "https://www.blackhillscorp.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1aa6dd5f3c",
+      "name": "Central Maine Medical Center Data Center - Lewiston ME",
+      "operator": "Central Maine Healthcare",
+      "status": "existing",
+      "county_fips": "23001",
+      "notes": "Central Maine Medical Center / Central Maine Healthcare enterprise data center in Lewiston ME",
+      "lat": 44.1003,
+      "lon": -70.2148,
+      "sources": [
+        {
+          "label": "Central Maine Healthcare",
+          "url": "https://www.cmmc.org/"
+        },
+        {
+          "label": "Central Maine Healthcare",
+          "url": "https://www.cmhc.org/"
+        }
+      ]
+    },
+    {
+      "id": "fc-58ad501c7a",
+      "name": "L.L. Bean Data Center - Freeport ME",
+      "operator": "L.L. Bean",
+      "status": "existing",
+      "county_fips": "23005",
+      "notes": "L.L. Bean enterprise data center at corporate HQ in Freeport ME",
+      "lat": 43.8565,
+      "lon": -70.1021,
+      "sources": [
+        {
+          "label": "L.L. Bean",
+          "url": "https://www.llbean.com/llb/shop/513793"
+        },
+        {
+          "label": "L.L. Bean",
+          "url": "https://www.llbean.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-673862139e",
+      "name": "Unum Group Data Center - Portland ME",
+      "operator": "Unum Group",
+      "status": "existing",
+      "county_fips": "23005",
+      "notes": "Unum Group enterprise data center in Portland ME; company originated as UNUM in Maine",
+      "lat": 43.6591,
+      "lon": -70.2568,
+      "sources": [
+        {
+          "label": "Unum Group",
+          "url": "https://www.unum.com/"
+        },
+        {
+          "label": "Unum Group",
+          "url": "https://www.unum.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-138d9e4c8d",
+      "name": "Bath Iron Works Data Center - Bath ME",
+      "operator": "Bath Iron Works",
+      "status": "existing",
+      "county_fips": "23023",
+      "notes": "Bath Iron Works (General Dynamics shipbuilding) enterprise data center in Bath ME",
+      "lat": 43.9135,
+      "lon": -69.8203,
+      "sources": [
+        {
+          "label": "Bath Iron Works",
+          "url": "https://www.gdbiw.com/"
+        },
+        {
+          "label": "Bath Iron Works",
+          "url": "https://www.gdbiw.com/about-biw/"
+        }
+      ]
+    },
+    {
+      "id": "fc-866548efcd",
+      "name": "Elliot Health System Data Center - Manchester NH",
+      "operator": "Elliot Health System",
+      "status": "existing",
+      "county_fips": "33011",
+      "notes": "Elliot Health System enterprise data center in Manchester NH, New Hampshire's largest hospital",
+      "lat": 42.9956,
+      "lon": -71.4548,
+      "sources": [
+        {
+          "label": "Elliot Health System",
+          "url": "https://www.elliothospital.org/"
+        },
+        {
+          "label": "Elliot Health System",
+          "url": "https://www.elliothospital.org/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1f88658d84",
+      "name": "Southern New Hampshire University Data Center - Manchester NH",
+      "operator": "Southern New Hampshire University",
+      "status": "existing",
+      "county_fips": "33011",
+      "notes": "Southern New Hampshire University (SNHU) data center supporting large online/campus operations",
+      "lat": 42.9956,
+      "lon": -71.4548,
+      "sources": [
+        {
+          "label": "Southern New Hampshire University",
+          "url": "https://www.snhu.edu/"
+        },
+        {
+          "label": "Southern New Hampshire University",
+          "url": "https://www.snhu.edu/about-snhu/"
+        }
+      ]
+    },
+    {
+      "id": "fc-bb655cae2e",
+      "name": "Providence Alaska Medical Center Data Center - Anchorage AK",
+      "operator": "Providence Alaska",
+      "status": "existing",
+      "county_fips": "02020",
+      "notes": "Providence Alaska Medical Center enterprise data center; Alaska's largest hospital system",
+      "lat": 61.1952,
+      "lon": -149.8834,
+      "sources": [
+        {
+          "label": "Providence Alaska",
+          "url": "https://www.providence.org/locations/ak/"
+        },
+        {
+          "label": "Providence Alaska",
+          "url": "https://alaska.providence.org/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0a99822024",
+      "name": "Alaska Native Medical Center Data Center - Anchorage AK",
+      "operator": "Alaska Native Tribal Health Consortium",
+      "status": "existing",
+      "county_fips": "02020",
+      "notes": "Alaska Native Medical Center (ANMC) data center, operated by ANTHC in Anchorage AK",
+      "lat": 61.1919,
+      "lon": -149.8401,
+      "sources": [
+        {
+          "label": "Alaska Native Tribal Health Consortium",
+          "url": "https://www.anthc.org/alaska-native-medical-center/"
+        },
+        {
+          "label": "Alaska Native Tribal Health Consortium",
+          "url": "https://www.anthc.org/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e698fd065f",
+      "name": "Incyte Corporation Data Center - Wilmington DE",
+      "operator": "Incyte Corporation",
+      "status": "existing",
+      "county_fips": "10003",
+      "notes": "Incyte Corporation enterprise data center at biopharmaceutical HQ in Wilmington DE",
+      "lat": 39.7447,
+      "lon": -75.5484,
+      "sources": [
+        {
+          "label": "Incyte Corporation",
+          "url": "https://www.incyte.com/"
+        },
+        {
+          "label": "Incyte Corporation",
+          "url": "https://www.incyte.com/our-company/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ef18026e8c",
+      "name": "W.L. Gore and Associates Data Center - Newark DE",
+      "operator": "W.L. Gore and Associates",
+      "status": "existing",
+      "county_fips": "10003",
+      "notes": "W.L. Gore and Associates (Gore-Tex) enterprise data center at corporate HQ in Newark DE",
+      "lat": 39.6837,
+      "lon": -75.7497,
+      "sources": [
+        {
+          "label": "W.L. Gore and Associates",
+          "url": "https://www.gore.com/"
+        },
+        {
+          "label": "W.L. Gore and Associates",
+          "url": "https://www.gore.com/about"
+        }
+      ]
+    },
+    {
+      "id": "fc-8bb6bcd640",
+      "name": "Nemours Children's Health Data Center - Wilmington DE",
+      "operator": "Nemours Children's Health",
+      "status": "existing",
+      "county_fips": "10003",
+      "notes": "Nemours Children's Health (Alfred I. duPont Hospital) enterprise data center in Wilmington DE",
+      "lat": 39.7447,
+      "lon": -75.5484,
+      "sources": [
+        {
+          "label": "Nemours Children's Health",
+          "url": "https://www.nemours.org/"
+        },
+        {
+          "label": "Nemours Children's Health",
+          "url": "https://www.nemours.org/about.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-25f79e35d9",
+      "name": "Queen's Medical Center Data Center - Honolulu HI",
+      "operator": "The Queen's Health Systems",
+      "status": "existing",
+      "county_fips": "15003",
+      "notes": "Queen's Medical Center enterprise data center; Hawaii's largest private hospital",
+      "lat": 21.3069,
+      "lon": -157.8574,
+      "sources": [
+        {
+          "label": "The Queen's Health Systems",
+          "url": "https://www.queensmedicalcenter.net/"
+        },
+        {
+          "label": "The Queen's Health Systems",
+          "url": "https://www.queensmedicalcenter.net/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0b8a512b7f",
+      "name": "HMSA Data Center - Honolulu HI",
+      "operator": "Hawaii Medical Service Association",
+      "status": "existing",
+      "county_fips": "15003",
+      "notes": "HMSA (Hawaii Medical Service Association) enterprise data center; Hawaii's largest health insurer",
+      "lat": 21.3069,
+      "lon": -157.8574,
+      "sources": [
+        {
+          "label": "Hawaii Medical Service Association",
+          "url": "https://www.hmsa.com/"
+        },
+        {
+          "label": "Hawaii Medical Service Association",
+          "url": "https://www.hmsa.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-4435375e94",
+      "name": "Hawaii Electric Light Company Data Center - Hilo HI",
+      "operator": "Hawaii Electric Light Company",
+      "status": "existing",
+      "county_fips": "15001",
+      "notes": "Hawaii Electric Light Company (HELCO) operations and data center in Hilo, Big Island HI",
+      "lat": 19.7297,
+      "lon": -155.09,
+      "sources": [
+        {
+          "label": "Hawaii Electric Light Company",
+          "url": "https://www.hawaiielectriclight.com/"
+        },
+        {
+          "label": "Hawaii Electric Light Company",
+          "url": "https://www.hawaiielectriclight.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-adaaa2214f",
+      "name": "Lifespan Health System Data Center - Providence RI",
+      "operator": "Lifespan",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "Lifespan Health System enterprise data center in Providence RI; RI's largest health system",
+      "lat": 41.824,
+      "lon": -71.4128,
+      "sources": [
+        {
+          "label": "Lifespan",
+          "url": "https://www.lifespan.org/"
+        },
+        {
+          "label": "Lifespan",
+          "url": "https://www.lifespan.org/about"
+        }
+      ]
+    },
+    {
+      "id": "fc-8b516bab09",
+      "name": "Textron Inc Data Center - Providence RI",
+      "operator": "Textron Inc",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "Textron Inc enterprise data center at corporate HQ in Providence RI (Bell/Cessna parent company)",
+      "lat": 41.824,
+      "lon": -71.4128,
+      "sources": [
+        {
+          "label": "Textron Inc",
+          "url": "https://www.textron.com/"
+        },
+        {
+          "label": "Textron Inc",
+          "url": "https://www.textron.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-1d2f2c6b74",
+      "name": "IGT Global Technology Data Center - Providence RI",
+      "operator": "IGT (International Game Technology)",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "IGT (formerly GTECH) global gaming technology data center at Providence RI HQ",
+      "lat": 41.824,
+      "lon": -71.4128,
+      "sources": [
+        {
+          "label": "IGT (International Game Technology)",
+          "url": "https://www.igt.com/"
+        },
+        {
+          "label": "IGT (International Game Technology)",
+          "url": "https://www.igt.com/en-us/company/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3c72d7aa9a",
+      "name": "University of Vermont Medical Center Data Center - Burlington VT",
+      "operator": "UVM Medical Center",
+      "status": "existing",
+      "county_fips": "50007",
+      "notes": "University of Vermont Medical Center enterprise data center in Burlington VT; Vermont's academic medical center",
+      "lat": 44.4757,
+      "lon": -73.2,
+      "sources": [
+        {
+          "label": "UVM Medical Center",
+          "url": "https://www.uvmhealth.org/medcenter/"
+        },
+        {
+          "label": "UVM Medical Center",
+          "url": "https://www.uvmhealth.org/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f2ec0d0cd7",
+      "name": "Green Mountain Power Data Center - Colchester VT",
+      "operator": "Green Mountain Power",
+      "status": "existing",
+      "county_fips": "50007",
+      "notes": "Green Mountain Power enterprise data center at utility HQ in Colchester VT",
+      "lat": 44.5367,
+      "lon": -73.2057,
+      "sources": [
+        {
+          "label": "Green Mountain Power",
+          "url": "https://www.greenmountainpower.com/"
+        },
+        {
+          "label": "Green Mountain Power",
+          "url": "https://www.greenmountainpower.com/about-gmp/"
+        }
+      ]
+    },
+    {
+      "id": "fc-fda38f981c",
+      "name": "Viatris Data Center - Morgantown WV",
+      "operator": "Viatris Inc",
+      "status": "existing",
+      "county_fips": "54061",
+      "notes": "Viatris (formerly Mylan Pharmaceuticals) enterprise data center at Morgantown WV operations center",
+      "lat": 39.6296,
+      "lon": -79.9559,
+      "sources": [
+        {
+          "label": "Viatris Inc",
+          "url": "https://www.viatris.com/"
+        },
+        {
+          "label": "Viatris Inc",
+          "url": "https://www.viatris.com/en/about-us"
+        }
+      ]
+    },
+    {
+      "id": "fc-852216a8df",
+      "name": "WesBanco Data Center - Wheeling WV",
+      "operator": "WesBanco",
+      "status": "existing",
+      "county_fips": "54069",
+      "notes": "WesBanco enterprise data center at corporate HQ in Wheeling WV",
+      "lat": 40.064,
+      "lon": -80.7209,
+      "sources": [
+        {
+          "label": "WesBanco",
+          "url": "https://www.wesbanco.com/"
+        },
+        {
+          "label": "WesBanco",
+          "url": "https://www.wesbanco.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "fc-74b270186c",
+      "name": "Kirtland Air Force Base Data Center - Albuquerque NM",
+      "operator": "US Air Force",
+      "status": "existing",
+      "county_fips": "35001",
+      "notes": "Kirtland Air Force Base IT operations and data center; hosts AFWERX and multiple NNSA/DOE activities",
+      "lat": 35.0452,
+      "lon": -106.5469,
+      "sources": [
+        {
+          "label": "US Air Force",
+          "url": "https://www.kirtland.af.mil/"
+        },
+        {
+          "label": "US Air Force",
+          "url": "https://www.kirtland.af.mil/Units/"
+        }
+      ]
+    },
+    {
+      "id": "fc-eecc016940",
+      "name": "Lovelace Health System Data Center - Albuquerque NM",
+      "operator": "Lovelace Health System",
+      "status": "existing",
+      "county_fips": "35001",
+      "notes": "Lovelace Health System enterprise data center in Albuquerque NM, major NM health network",
+      "lat": 35.0853,
+      "lon": -106.65,
+      "sources": [
+        {
+          "label": "Lovelace Health System",
+          "url": "https://www.lovelace.com/"
+        },
+        {
+          "label": "Lovelace Health System",
+          "url": "https://www.lovelace.com/about/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -39323,5 +39923,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:45:06Z"
+  "_facilities_exported_at": "2026-07-19T13:47:36Z"
 }
