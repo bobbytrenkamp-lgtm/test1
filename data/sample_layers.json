@@ -32231,6 +32231,38 @@
           "url": "https://www.digitalrealty.com/data-centers/americas/phoenix/phx10"
         }
       ]
+    },
+    {
+      "id": "fc-acf4b2f97e",
+      "name": "NTT Global Data Centers PH1 - Mesa",
+      "operator": "NTT Global Data Centers",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "NTT Global Data Centers PH1 at 10256 East Elliot Road, Mesa AZ 85212. 36MW, 126,000 sqft. First of 7 planned on 240MW campus. Maricopa County.",
+      "lat": 33.3529,
+      "lon": -111.789,
+      "sources": [
+        {
+          "label": "NTT Global Data Centers",
+          "url": "https://services.global.ntt/en-us/services-and-products/global-data-centers/global-locations/americas/phoenix-ph1-data-center"
+        }
+      ]
+    },
+    {
+      "id": "fc-3ca24e949c",
+      "name": "Sabey Data Centers - Umatilla",
+      "operator": "Sabey Data Centers",
+      "status": "existing",
+      "county_fips": "41059",
+      "notes": "Sabey SDC Umatilla OR. Two purpose-built buildings, 714,540 sqft total. Umatilla County.",
+      "lat": 45.9265,
+      "lon": -119.3373,
+      "sources": [
+        {
+          "label": "Sabey Data Centers",
+          "url": "https://sabeydatacenters.com/locations/sdc-umatilla"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -32927,6 +32959,102 @@
           "url": "https://www.datacenterdynamics.com/en/news/lambda-cloud-to-take-capacity-at-aligneds-dfw-04-dallas-fort-worth-data-center/"
         }
       ]
+    },
+    {
+      "id": "fc-8dc26cbf91",
+      "name": "Cologix ASH1 - Ashburn",
+      "operator": "Cologix",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Cologix ASH1 Scalelogix hyperscale at Ashburn VA. 120MW, 455,000 sqft, went into service May 2023. 700+ networks, 360+ cloud providers. Loudoun County.",
+      "lat": 39.0438,
+      "lon": -77.4874,
+      "sources": [
+        {
+          "label": "Cologix",
+          "url": "https://cologix.com/data-centers/ashburn/ash1/"
+        }
+      ]
+    },
+    {
+      "id": "fc-75ae2a4c86",
+      "name": "Cologix - Johnstown Ohio Campus",
+      "operator": "Cologix",
+      "status": "planned",
+      "county_fips": "39089",
+      "notes": "Cologix Johnstown OH campus. 154 acres, 8 buildings, 800MW AI-ready, $7B investment. Licking County. First phase development starting 2025.",
+      "lat": 40.1481,
+      "lon": -82.6874,
+      "sources": [
+        {
+          "label": "Cologix",
+          "url": "https://cologix.com/news/cologix-expands-central-ohio-footprint-with-land-acquisition-for-new-ai-ready-800mw-data-center-campus/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9ce764424e",
+      "name": "CloudHQ LC1 - Ashburn",
+      "operator": "CloudHQ",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "CloudHQ LC1 at Ashburn VA. 144MW critical power, 998,400 sqft. First building of 1.7GW LC Campus. Loudoun County.",
+      "lat": 39.044,
+      "lon": -77.487,
+      "sources": [
+        {
+          "label": "CloudHQ",
+          "url": "https://cloudhq.com/campus/lc-campus/"
+        }
+      ]
+    },
+    {
+      "id": "fc-369e968131",
+      "name": "CloudHQ LC2 - Ashburn",
+      "operator": "CloudHQ",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "CloudHQ LC2 at Ashburn VA. 88MW critical power, 580,000 sqft. Part of 1.7GW LC Campus. Loudoun County.",
+      "lat": 39.0441,
+      "lon": -77.4869,
+      "sources": [
+        {
+          "label": "CloudHQ",
+          "url": "https://cloudhq.com/campus/lc-campus/"
+        }
+      ]
+    },
+    {
+      "id": "fc-39a6b0b6db",
+      "name": "CloudHQ LC3 - Ashburn",
+      "operator": "CloudHQ",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "CloudHQ LC3 at 44631 Waxpool Rd, Ashburn VA. 96MW critical power, 580,000 sqft. Part of 1.7GW LC Campus. Loudoun County.",
+      "lat": 39.0442,
+      "lon": -77.4868,
+      "sources": [
+        {
+          "label": "CloudHQ",
+          "url": "https://cloudhq.com/campus/lc-campus/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f839b41e9a",
+      "name": "CloudHQ MCC - Manassas",
+      "operator": "CloudHQ",
+      "status": "planned",
+      "county_fips": "51153",
+      "notes": "CloudHQ Manassas Corporate Center (MCC) at 10430 Harry J Parrish Blvd. 100-acre, 2.2M sqft campus. MCC5 approved for development 2024. Prince William County VA.",
+      "lat": 38.7509,
+      "lon": -77.4753,
+      "sources": [
+        {
+          "label": "CloudHQ",
+          "url": "https://cloudhq.com/campus/lc-campus/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -33319,5 +33447,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T12:43:06Z"
+  "_facilities_exported_at": "2026-07-19T12:47:17Z"
 }
