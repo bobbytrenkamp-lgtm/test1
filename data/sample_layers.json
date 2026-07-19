@@ -32279,6 +32279,198 @@
           "url": "https://www.cyrusone.com/data-centers/north-america/norwalk-ct"
         }
       ]
+    },
+    {
+      "id": "fc-a780a35228",
+      "name": "vXchnge Data Center - Pittsburgh PA",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "42003",
+      "notes": "vXchnge Pittsburgh PA colocation data center. Allegheny County.",
+      "lat": 40.4406,
+      "lon": -79.9959,
+      "sources": [
+        {
+          "label": "vXchnge",
+          "url": "https://vxchnge.com/colocation-data-centers/pittsburgh-pa/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7b8f11c7cf",
+      "name": "vXchnge Data Center - Cincinnati OH",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "39061",
+      "notes": "vXchnge Cincinnati OH colocation data center. Hamilton County.",
+      "lat": 39.1031,
+      "lon": -84.512,
+      "sources": [
+        {
+          "label": "vXchnge",
+          "url": "https://vxchnge.com/colocation-data-centers/cincinnati-oh/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6ced196191",
+      "name": "vXchnge Data Center - Fort Worth TX",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "48439",
+      "notes": "vXchnge Fort Worth TX colocation data center. Tarrant County.",
+      "lat": 32.7555,
+      "lon": -97.3308,
+      "sources": [
+        {
+          "label": "vXchnge",
+          "url": "https://vxchnge.com/colocation-data-centers/fort-worth-tx/"
+        }
+      ]
+    },
+    {
+      "id": "fc-453316dc1c",
+      "name": "vXchnge Data Center - Jacksonville FL",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "12031",
+      "notes": "vXchnge Jacksonville FL colocation data center. Duval County.",
+      "lat": 30.3322,
+      "lon": -81.6557,
+      "sources": [
+        {
+          "label": "vXchnge",
+          "url": "https://vxchnge.com/colocation-data-centers/jacksonville-fl/"
+        }
+      ]
+    },
+    {
+      "id": "fc-bab987ae42",
+      "name": "vXchnge Data Center - Louisville KY",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "21111",
+      "notes": "vXchnge Louisville KY colocation data center. Jefferson County.",
+      "lat": 38.2527,
+      "lon": -85.7585,
+      "sources": [
+        {
+          "label": "vXchnge",
+          "url": "https://vxchnge.com/colocation-data-centers/louisville-ky/"
+        }
+      ]
+    },
+    {
+      "id": "fc-52d2b6ad7b",
+      "name": "vXchnge Data Center - Milwaukee WI",
+      "operator": "vXchnge",
+      "status": "existing",
+      "county_fips": "55079",
+      "notes": "vXchnge Milwaukee WI colocation data center. Milwaukee County.",
+      "lat": 43.0389,
+      "lon": -87.9065,
+      "sources": [
+        {
+          "label": "vXchnge",
+          "url": "https://vxchnge.com/colocation-data-centers/milwaukee-wi/"
+        }
+      ]
+    },
+    {
+      "id": "fc-fe9dd4e68c",
+      "name": "DC BLOX Data Center - Birmingham AL BHM-1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "01073",
+      "notes": "DC BLOX BHM-1 Birmingham AL data center. Jefferson County. Part of DC BLOX's Southeast US colocation network.",
+      "lat": 33.5186,
+      "lon": -86.8104,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://dcblox.com/data-centers/birmingham/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6a9930b165",
+      "name": "PhoenixNAP - Ashburn",
+      "operator": "PhoenixNAP",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "PhoenixNAP bare metal cloud and colocation at 21715 Filigree Court, Ashburn VA (Loudoun County). Part of PhoenixNAP's global cloud network.",
+      "lat": 39.0438,
+      "lon": -77.4874,
+      "sources": [
+        {
+          "label": "PhoenixNAP",
+          "url": "https://phoenixnap.com/data-centers/ashburn-virginia"
+        }
+      ]
+    },
+    {
+      "id": "fc-e9ef74dd86",
+      "name": "365 Main Data Center - San Francisco",
+      "operator": "365 Main",
+      "status": "existing",
+      "county_fips": "06075",
+      "notes": "365 Main data center at 365 Main Street, San Francisco CA (Rincon Hill area). Carrier-neutral colocation. San Francisco County.",
+      "lat": 37.7749,
+      "lon": -122.4065,
+      "sources": [
+        {
+          "label": "365 Main",
+          "url": "https://365main.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9f8e4ae61a",
+      "name": "LightEdge Data Center - Des Moines",
+      "operator": "LightEdge Solutions",
+      "status": "existing",
+      "county_fips": "19153",
+      "notes": "LightEdge Solutions primary Des Moines IA data center campus. Polk County. SOC 2 Type II certified, carrier-neutral colocation and managed cloud.",
+      "lat": 41.5868,
+      "lon": -93.625,
+      "sources": [
+        {
+          "label": "LightEdge Solutions",
+          "url": "https://www.lightedge.com/colocation/data-centers/des-moines-iowa/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3999e19a30",
+      "name": "LightEdge Data Center - Omaha",
+      "operator": "LightEdge Solutions",
+      "status": "existing",
+      "county_fips": "31055",
+      "notes": "LightEdge Solutions Omaha NE data center. Douglas County. Carrier-neutral colocation and cloud services.",
+      "lat": 41.2565,
+      "lon": -95.9345,
+      "sources": [
+        {
+          "label": "LightEdge Solutions",
+          "url": "https://www.lightedge.com/colocation/data-centers/omaha-nebraska/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0ad2ec8201",
+      "name": "LightEdge Data Center - Kansas City",
+      "operator": "LightEdge Solutions",
+      "status": "existing",
+      "county_fips": "29095",
+      "notes": "LightEdge Solutions Kansas City MO data center. Jackson County. Colocation and managed cloud.",
+      "lat": 39.0997,
+      "lon": -94.5786,
+      "sources": [
+        {
+          "label": "LightEdge Solutions",
+          "url": "https://www.lightedge.com/colocation/data-centers/kansas-city-missouri/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -33607,5 +33799,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T12:51:04Z"
+  "_facilities_exported_at": "2026-07-19T12:58:32Z"
 }
