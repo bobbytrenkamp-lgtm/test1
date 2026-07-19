@@ -34871,6 +34871,410 @@
           "url": "https://www.cologix.com/data-centers/salt-lake-city/"
         }
       ]
+    },
+    {
+      "id": "fc-4c4ef6158f",
+      "name": "DC BLOX Data Center - Columbia SC COL1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "45079",
+      "notes": "DC BLOX Southeast carrier-neutral colocation in Columbia SC",
+      "lat": 34.0007,
+      "lon": -81.0348,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b18a773098",
+      "name": "DC BLOX Data Center - Augusta GA AUG1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "13245",
+      "notes": "DC BLOX Southeast carrier-neutral colocation in Augusta GA",
+      "lat": 33.4735,
+      "lon": -82.0105,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-faef40d498",
+      "name": "DC BLOX Data Center - Nashville TN NSH1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "47037",
+      "notes": "DC BLOX Southeast carrier-neutral colocation in Nashville TN",
+      "lat": 36.1627,
+      "lon": -86.7816,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d97154f087",
+      "name": "DC BLOX Data Center - Jacksonville FL JAX1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "12031",
+      "notes": "DC BLOX Southeast carrier-neutral colocation in Jacksonville FL",
+      "lat": 30.3322,
+      "lon": -81.6557,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-f29acc9476",
+      "name": "DC BLOX Data Center - Greenville SC GSP1",
+      "operator": "DC BLOX",
+      "status": "existing",
+      "county_fips": "45045",
+      "notes": "DC BLOX Southeast carrier-neutral colocation in Greenville SC",
+      "lat": 34.8526,
+      "lon": -82.394,
+      "sources": [
+        {
+          "label": "DC BLOX",
+          "url": "https://www.dcblox.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-68f7d55c2c",
+      "name": "LightEdge Data Center - Columbus OH",
+      "operator": "LightEdge Solutions",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "LightEdge Midwest enterprise colocation and managed services in Columbus OH",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "sources": [
+        {
+          "label": "LightEdge Solutions",
+          "url": "https://www.lightedge.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-50221af679",
+      "name": "LightEdge Data Center - Wichita KS",
+      "operator": "LightEdge Solutions",
+      "status": "existing",
+      "county_fips": "20173",
+      "notes": "LightEdge Midwest enterprise colocation and managed services in Wichita KS",
+      "lat": 37.6872,
+      "lon": -97.3301,
+      "sources": [
+        {
+          "label": "LightEdge Solutions",
+          "url": "https://www.lightedge.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3fc609512c",
+      "name": "LightEdge Data Center - Madison WI",
+      "operator": "LightEdge Solutions",
+      "status": "existing",
+      "county_fips": "55025",
+      "notes": "LightEdge Midwest enterprise colocation and managed services in Madison WI",
+      "lat": 43.0731,
+      "lon": -89.4012,
+      "sources": [
+        {
+          "label": "LightEdge Solutions",
+          "url": "https://www.lightedge.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-80b41b6bd2",
+      "name": "University of Maine Research Computing - Orono ME",
+      "operator": "University of Maine",
+      "status": "existing",
+      "county_fips": "23019",
+      "notes": "UMaine ASIC research computing and HPC cluster (Acer and Limelight systems)",
+      "lat": 44.9014,
+      "lon": -68.6731,
+      "sources": [
+        {
+          "label": "University of Maine",
+          "url": "https://cyberinfrastructure.umaine.edu/"
+        },
+        {
+          "label": "University of Maine",
+          "url": "https://www.asic.oit.umaine.edu/computing/hpc/"
+        }
+      ]
+    },
+    {
+      "id": "fc-6c5230fff1",
+      "name": "University of Hawaii Research Computing - Honolulu HI",
+      "operator": "University of Hawaii",
+      "status": "existing",
+      "county_fips": "15003",
+      "notes": "UH ITS Research Computing Mana HPC cluster supporting university research",
+      "lat": 21.2969,
+      "lon": -157.8171,
+      "sources": [
+        {
+          "label": "University of Hawaii",
+          "url": "https://www.its.hawaii.edu/services/research-computing/"
+        },
+        {
+          "label": "University of Hawaii",
+          "url": "https://www.hawaii.edu/its/ci/mana/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3ccc1d05aa",
+      "name": "University of New Hampshire HPC - Durham NH",
+      "operator": "University of New Hampshire",
+      "status": "existing",
+      "county_fips": "33017",
+      "notes": "UNH Research Computing Premise HPC cluster for high-performance research workloads",
+      "lat": 43.1342,
+      "lon": -70.9342,
+      "sources": [
+        {
+          "label": "University of New Hampshire",
+          "url": "https://rc.unh.edu/"
+        },
+        {
+          "label": "University of New Hampshire",
+          "url": "https://rc.unh.edu/research-computing/clusters/premise"
+        }
+      ]
+    },
+    {
+      "id": "fc-e5238ce23d",
+      "name": "Middlebury College Research Computing - Middlebury VT",
+      "operator": "Middlebury College",
+      "status": "existing",
+      "county_fips": "50001",
+      "notes": "Middlebury College data center supporting research computing and HPC workloads",
+      "lat": 44.0154,
+      "lon": -73.1687,
+      "sources": [
+        {
+          "label": "Middlebury College",
+          "url": "https://www.middlebury.edu/information-technology/research-computing"
+        }
+      ]
+    },
+    {
+      "id": "fc-1bd8ba7243",
+      "name": "University of Alaska Anchorage Research Computing - Anchorage AK",
+      "operator": "University of Alaska Anchorage",
+      "status": "existing",
+      "county_fips": "02020",
+      "notes": "UAA research computing infrastructure supporting STEM research in Alaska",
+      "lat": 61.1908,
+      "lon": -149.831,
+      "sources": [
+        {
+          "label": "University of Alaska Anchorage",
+          "url": "https://www.uaa.alaska.edu/academics/college-of-engineering/research/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d46953bbf4",
+      "name": "ChristianaCare Health System Data Center - Wilmington DE",
+      "operator": "ChristianaCare",
+      "status": "existing",
+      "county_fips": "10003",
+      "notes": "ChristianaCare (formerly Christiana Care Health System) enterprise data center, DE's largest health system",
+      "lat": 39.7447,
+      "lon": -75.5484,
+      "sources": [
+        {
+          "label": "ChristianaCare",
+          "url": "https://christianacare.org/about/information-technology/"
+        }
+      ]
+    },
+    {
+      "id": "fc-174632c76f",
+      "name": "Care New England Data Center - Providence RI",
+      "operator": "Care New England Health System",
+      "status": "existing",
+      "county_fips": "44007",
+      "notes": "Care New England Health System enterprise data center, RI-based regional health network",
+      "lat": 41.824,
+      "lon": -71.4128,
+      "sources": [
+        {
+          "label": "Care New England Health System",
+          "url": "https://www.carenewengland.org/"
+        },
+        {
+          "label": "Care New England Health System",
+          "url": "https://www.carenewengland.org/for-employees/information-technology/"
+        }
+      ]
+    },
+    {
+      "id": "fc-831f61e507",
+      "name": "MaineGeneral Medical Center Data Center - Augusta ME",
+      "operator": "MaineGeneral Health",
+      "status": "existing",
+      "county_fips": "23011",
+      "notes": "MaineGeneral Health enterprise data center supporting central Maine healthcare operations",
+      "lat": 44.3106,
+      "lon": -69.7795,
+      "sources": [
+        {
+          "label": "MaineGeneral Health",
+          "url": "https://www.mainegeneral.org/"
+        },
+        {
+          "label": "MaineGeneral Health",
+          "url": "https://www.mainegeneral.org/about-us/information-technology"
+        }
+      ]
+    },
+    {
+      "id": "fc-8ab2d78ec5",
+      "name": "Geisinger Health System Data Center - Danville PA",
+      "operator": "Geisinger Health",
+      "status": "existing",
+      "county_fips": "42093",
+      "notes": "Geisinger Health System primary data center, one of nation's leading health systems headquartered in Danville PA",
+      "lat": 41.0031,
+      "lon": -76.6219,
+      "sources": [
+        {
+          "label": "Geisinger Health",
+          "url": "https://www.geisinger.org/"
+        },
+        {
+          "label": "Geisinger Health",
+          "url": "https://www.geisinger.org/about-geisinger/information-services"
+        }
+      ]
+    },
+    {
+      "id": "fc-9091ce0b88",
+      "name": "OhioHealth Data Center - Columbus OH",
+      "operator": "OhioHealth",
+      "status": "existing",
+      "county_fips": "39049",
+      "notes": "OhioHealth enterprise data center supporting major Central Ohio hospital network",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "sources": [
+        {
+          "label": "OhioHealth",
+          "url": "https://www.ohiohealth.com/"
+        },
+        {
+          "label": "OhioHealth",
+          "url": "https://www.ohiohealth.com/about-ohiohealth/technology-innovation/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ab6b09aad4",
+      "name": "Banner Health Data Center - Chandler AZ",
+      "operator": "Banner Health",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Banner Health enterprise data center, one of the largest non-profit health systems in the US",
+      "lat": 33.3062,
+      "lon": -111.8413,
+      "sources": [
+        {
+          "label": "Banner Health",
+          "url": "https://www.bannerhealth.com/"
+        },
+        {
+          "label": "Banner Health",
+          "url": "https://www.bannerhealth.com/about/technology-innovation"
+        }
+      ]
+    },
+    {
+      "id": "fc-0dabd0d70b",
+      "name": "Bluelock Data Center - Indianapolis IN",
+      "operator": "Bluelock",
+      "status": "existing",
+      "county_fips": "18097",
+      "notes": "Bluelock enterprise colocation and cloud services provider headquartered in Indianapolis IN",
+      "lat": 39.7684,
+      "lon": -86.1581,
+      "sources": [
+        {
+          "label": "Bluelock",
+          "url": "https://www.bluelock.com/"
+        },
+        {
+          "label": "Bluelock",
+          "url": "https://www.bluelock.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-55fd350824",
+      "name": "Cox Communications Data Center - Phoenix AZ",
+      "operator": "Cox Communications",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Cox Business colocation data center in Phoenix AZ serving Southwest US customers",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Cox Communications",
+          "url": "https://www.cox.com/business/networking/colocation.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-50f6e77975",
+      "name": "Cox Communications Data Center - San Diego CA",
+      "operator": "Cox Communications",
+      "status": "existing",
+      "county_fips": "06073",
+      "notes": "Cox Business colocation data center in San Diego CA serving Southern California customers",
+      "lat": 32.7157,
+      "lon": -117.1611,
+      "sources": [
+        {
+          "label": "Cox Communications",
+          "url": "https://www.cox.com/business/networking/colocation.html"
+        }
+      ]
+    },
+    {
+      "id": "fc-cda4fab00b",
+      "name": "Cox Communications Data Center - Oklahoma City OK",
+      "operator": "Cox Communications",
+      "status": "existing",
+      "county_fips": "40109",
+      "notes": "Cox Business colocation data center in Oklahoma City OK serving Oklahoma customers",
+      "lat": 35.4676,
+      "lon": -97.5164,
+      "sources": [
+        {
+          "label": "Cox Communications",
+          "url": "https://www.cox.com/business/networking/colocation.html"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -37199,6 +37603,146 @@
           "url": "https://news.microsoft.com/2024/microsoft-burlington-washington-data-center/"
         }
       ]
+    },
+    {
+      "id": "fc-f856053d3c",
+      "name": "Applied Digital - Big Spring TX AI Campus",
+      "operator": "Applied Digital",
+      "status": "planned",
+      "county_fips": "48227",
+      "notes": "Applied Digital hyperscale AI data center campus planned in Big Spring TX, Howard County",
+      "lat": 32.2504,
+      "lon": -101.4788,
+      "sources": [
+        {
+          "label": "Applied Digital",
+          "url": "https://ir.applieddigital.com/news-releases/"
+        },
+        {
+          "label": "Applied Digital",
+          "url": "https://applieddigital.com/data-center-campuses/"
+        }
+      ]
+    },
+    {
+      "id": "fc-7604077782",
+      "name": "Applied Digital - Cleburne TX HPC Campus",
+      "operator": "Applied Digital",
+      "status": "planned",
+      "county_fips": "48251",
+      "notes": "Applied Digital HPC data center campus planned in Cleburne TX, Johnson County",
+      "lat": 32.3513,
+      "lon": -97.3856,
+      "sources": [
+        {
+          "label": "Applied Digital",
+          "url": "https://ir.applieddigital.com/news-releases/"
+        },
+        {
+          "label": "Applied Digital",
+          "url": "https://applieddigital.com/data-center-campuses/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ffb580843e",
+      "name": "CoreWeave Data Center - Roanoke VA",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "51770",
+      "notes": "CoreWeave AI/GPU cloud hyperscale data center in Roanoke VA",
+      "lat": 37.271,
+      "lon": -79.9414,
+      "sources": [
+        {
+          "label": "CoreWeave",
+          "url": "https://coreweave.com/blog/coreweave-expands-us-data-center-presence-with-roanoke-va-facility"
+        },
+        {
+          "label": "CoreWeave",
+          "url": "https://coreweave.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-707fc09e37",
+      "name": "CoreWeave Data Center - Elk Grove Village IL",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "CoreWeave AI/GPU cloud hyperscale data center in Chicago area (Elk Grove Village IL)",
+      "lat": 42.0031,
+      "lon": -87.9701,
+      "sources": [
+        {
+          "label": "CoreWeave",
+          "url": "https://coreweave.com/data-centers/"
+        },
+        {
+          "label": "CoreWeave",
+          "url": "https://coreweave.com/blog/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b4b21ee1ed",
+      "name": "CoreWeave Data Center - Plano TX",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "48085",
+      "notes": "CoreWeave AI/GPU cloud hyperscale data center in Plano TX (DFW metro)",
+      "lat": 33.0198,
+      "lon": -96.6989,
+      "sources": [
+        {
+          "label": "CoreWeave",
+          "url": "https://coreweave.com/data-centers/"
+        },
+        {
+          "label": "CoreWeave",
+          "url": "https://coreweave.com/blog/"
+        }
+      ]
+    },
+    {
+      "id": "fc-816f0ecaaa",
+      "name": "CoreWeave Data Center - Phoenix AZ",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "CoreWeave AI/GPU cloud hyperscale data center in Phoenix AZ",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "CoreWeave",
+          "url": "https://coreweave.com/data-centers/"
+        },
+        {
+          "label": "CoreWeave",
+          "url": "https://coreweave.com/blog/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9ba6d2a121",
+      "name": "CoreWeave Data Center - Weehawken NJ",
+      "operator": "CoreWeave",
+      "status": "existing",
+      "county_fips": "34017",
+      "notes": "CoreWeave AI/GPU cloud primary data center in Weehawken NJ (original HQ location)",
+      "lat": 40.7684,
+      "lon": -74.0234,
+      "sources": [
+        {
+          "label": "CoreWeave",
+          "url": "https://coreweave.com/data-centers/"
+        },
+        {
+          "label": "CoreWeave",
+          "url": "https://coreweave.com/blog/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -37591,5 +38135,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T13:33:20Z"
+  "_facilities_exported_at": "2026-07-19T13:38:28Z"
 }
