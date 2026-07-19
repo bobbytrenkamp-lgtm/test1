@@ -1768,6 +1768,293 @@ function clearCompare() {
   renderComparePanel();
 }
 
+function generateCompareReport() {
+  if (!compareCounties.length) {
+    showMapToast("Add counties to compare before creating a report");
+    return;
+  }
+
+  const date = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+
+  // Collect data for each county
+  const cols = compareCounties.map(fips => {
+    const county  = mapData[fips] || {};
+    const sevKey  = getSeverityKey(county);
+    const sev     = SEVERITY[sevKey];
+    const suit    = computeSuitabilityScore(fips, county);
+    const types   = (county.types || []).map(t => TYPE_LABELS[t] || t).join(", ") || "—";
+    const polRec  = politicalRiskData ? politicalRiskData[fips] : null;
+    const polRisk = polRec ? (polRec.score_label || `Risk ${polRec.risk_score}/5`) : "No data";
+    return { fips, county, sevKey, sev, suit, types, polRisk };
+  });
+
+  const gradeColor = { A: "#16a34a", B: "#4ade80", C: "#f59e0b", D: "#ef4444", F: "#7f1d1d" };
+  const gradeLabel = { A: "Highly Suitable", B: "Suitable", C: "Caution", D: "High Risk", F: "Not Suitable" };
+
+  function esc(s) {
+    return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  // Table header row
+  const thCells = cols.map(c =>
+    `<th>
+      <div class="rpt-th-name">${esc(c.county.name || c.fips)}</div>
+      <div class="rpt-th-state">${esc(c.county.state || "")}</div>
+      <div class="rpt-sev-badge" style="background:${c.sev.color}22;border:1px solid ${c.sev.color};color:${c.sev.color}">
+        ${esc(c.sev.label)}
+      </div>
+    </th>`
+  ).join("");
+
+  // Row builder
+  function row(label, cells) {
+    return `<tr><td class="rpt-row-label">${esc(label)}</td>${cells}</tr>`;
+  }
+
+  const suitRow = row("Suitability Score", cols.map(c =>
+    `<td>
+      <span class="rpt-grade" style="background:${gradeColor[c.suit.grade]}22;color:${gradeColor[c.suit.grade]};border:1px solid ${gradeColor[c.suit.grade]}">${c.suit.grade}</span>
+      <strong>${c.suit.score}/100</strong>
+      <div class="rpt-sub">${esc(gradeLabel[c.suit.grade])}</div>
+    </td>`
+  ).join(""));
+
+  const sevRow = row("Restriction Severity", cols.map(c =>
+    `<td><span class="rpt-dot" style="background:${c.sev.color}"></span>${esc(c.sev.label)}</td>`
+  ).join(""));
+
+  const statusRow = row("Status", cols.map(c => {
+    const s = c.county.status || "active";
+    return `<td>${esc(s.charAt(0).toUpperCase() + s.slice(1))}</td>`;
+  }).join(""));
+
+  const typesRow = row("Policy Types", cols.map(c => `<td>${esc(c.types)}</td>`).join(""));
+
+  const dateRow = row("Enacted", cols.map(c =>
+    `<td>${esc(c.county.effective_date || c.county.date || "—")}</td>`
+  ).join(""));
+
+  const polRow = row("Political Risk", cols.map(c => `<td>${esc(c.polRisk)}</td>`).join(""));
+
+  const titleRow = cols.some(c => c.county.title)
+    ? row("Policy Title", cols.map(c => `<td>${esc(c.county.title || "—")}</td>`).join(""))
+    : "";
+
+  const descRow = cols.some(c => c.county.description)
+    ? row("Description", cols.map(c => `<td class="rpt-desc">${esc(c.county.description || "—")}</td>`).join(""))
+    : "";
+
+  // Factor breakdown rows
+  const factorRows = ["Regulatory Environment", "Political Climate", "Restriction Scope"].map((fname, fi) =>
+    row(fname, cols.map(c => {
+      const f = c.suit.factors[fi];
+      return f ? `<td><strong>${f.pts}/${f.max}</strong><div class="rpt-sub">${esc(f.note)}</div></td>` : "<td>—</td>";
+    }).join(""))
+  ).join("");
+
+  const colWidth = Math.max(160, Math.floor(720 / cols.length));
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>County Comparison Report — ${esc(date)}</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    color: #1a1a2e;
+    background: #f8f9fc;
+    padding: 32px 24px 64px;
+  }
+  .rpt-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    gap: 16px;
+  }
+  .rpt-brand { font-size: 11px; font-weight: 600; color: #4874e8; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+  .rpt-title { font-size: 22px; font-weight: 700; color: #111; line-height: 1.2; }
+  .rpt-date  { font-size: 12px; color: #666; margin-top: 4px; }
+  .rpt-print-btn {
+    flex-shrink: 0;
+    padding: 8px 18px;
+    background: #4874e8;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .rpt-print-btn:hover { background: #3660c8; }
+  .rpt-summary {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .rpt-kpi {
+    background: #fff;
+    border: 1px solid #e2e4ea;
+    border-radius: 8px;
+    padding: 10px 16px;
+    min-width: 120px;
+  }
+  .rpt-kpi-val { font-size: 20px; font-weight: 700; color: #4874e8; }
+  .rpt-kpi-lbl { font-size: 11px; color: #666; margin-top: 2px; }
+  .rpt-table-wrap { overflow-x: auto; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e2e4ea;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #e2e4ea;
+    min-width: ${colWidth}px;
+  }
+  thead th { background: #f2f4fb; border-bottom: 2px solid #d0d4e8; }
+  thead th:first-child { background: #fff; }
+  tr:last-child td, tr:last-child th { border-bottom: none; }
+  td:first-child { background: #fafbfe; }
+  tr:hover td:not(:first-child) { background: #f5f7ff; }
+  .rpt-row-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #777;
+    white-space: nowrap;
+    min-width: 130px;
+    max-width: 130px;
+    width: 130px;
+  }
+  .rpt-th-name  { font-size: 13px; font-weight: 700; color: #111; }
+  .rpt-th-state { font-size: 11px; color: #666; margin-top: 1px; margin-bottom: 6px; }
+  .rpt-sev-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 10px;
+  }
+  .rpt-grade {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 22px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .rpt-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .rpt-sub { font-size: 10.5px; color: #777; margin-top: 3px; }
+  .rpt-desc { font-size: 12px; line-height: 1.6; color: #444; max-width: 320px; }
+  .rpt-section-sep td, .rpt-section-sep th {
+    background: #f2f4fb !important;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #4874e8;
+    padding: 6px 14px;
+    border-top: 1px solid #d0d4e8;
+  }
+  .rpt-footer {
+    margin-top: 32px;
+    font-size: 11px;
+    color: #aaa;
+    text-align: center;
+    border-top: 1px solid #e2e4ea;
+    padding-top: 16px;
+  }
+  @media print {
+    body { background: #fff; padding: 16px; }
+    .rpt-print-btn { display: none !important; }
+    table { box-shadow: none; }
+    tr:hover td:not(:first-child) { background: none; }
+  }
+</style>
+</head>
+<body>
+<div class="rpt-header">
+  <div>
+    <div class="rpt-brand">US DC &amp; AI Policy Tracker</div>
+    <h1 class="rpt-title">County Comparison Report</h1>
+    <div class="rpt-date">Generated ${esc(date)} · ${cols.length} counti${cols.length === 1 ? "y" : "es"}</div>
+  </div>
+  <button class="rpt-print-btn" onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<div class="rpt-summary">
+  <div class="rpt-kpi"><div class="rpt-kpi-val">${cols.length}</div><div class="rpt-kpi-lbl">Counties</div></div>
+  <div class="rpt-kpi"><div class="rpt-kpi-val">${cols.filter(c => c.sevKey === "ban").length}</div><div class="rpt-kpi-lbl">With Bans</div></div>
+  <div class="rpt-kpi"><div class="rpt-kpi-val">${cols.filter(c => c.sevKey === "pro" || c.sevKey === "none").length}</div><div class="rpt-kpi-lbl">Unrestricted</div></div>
+  <div class="rpt-kpi"><div class="rpt-kpi-val">${Math.round(cols.reduce((s,c) => s + c.suit.score, 0) / cols.length)}</div><div class="rpt-kpi-lbl">Avg. Suitability</div></div>
+  <div class="rpt-kpi"><div class="rpt-kpi-val">${cols.sort((a,b)=>b.suit.score-a.suit.score)[0].county.name || "—"}</div><div class="rpt-kpi-lbl">Top Rated County</div></div>
+</div>
+
+<div class="rpt-table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th style="min-width:130px;width:130px"></th>
+      ${thCells}
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="rpt-section-sep"><td colspan="${cols.length + 1}">Site Suitability</td></tr>
+    ${suitRow}
+    ${factorRows}
+    <tr class="rpt-section-sep"><td colspan="${cols.length + 1}">Policy &amp; Restrictions</td></tr>
+    ${sevRow}
+    ${statusRow}
+    ${typesRow}
+    ${dateRow}
+    ${titleRow}
+    ${descRow}
+    <tr class="rpt-section-sep"><td colspan="${cols.length + 1}">Political Environment</td></tr>
+    ${polRow}
+  </tbody>
+</table>
+</div>
+
+<div class="rpt-footer">
+  US DC &amp; AI Policy Tracker · bobbytrenkamp-lgtm.github.io/test1 · Data as of ${esc(date)}
+</div>
+</body>
+</html>`;
+
+  const win = window.open("", "_blank");
+  if (win) {
+    win.document.write(html);
+    win.document.close();
+  } else {
+    showMapToast("Allow popups to open the report");
+  }
+}
+
 function toggleComparePanel() {
   compareMode = !compareMode;
   const panel = document.getElementById("compare-panel");
@@ -2201,9 +2488,10 @@ function initLeafletMap() {
   initBookmarks();
 
   // Compare panel wiring
-  document.getElementById("gis-compare")      ?.addEventListener("click", toggleComparePanel);
-  document.getElementById("compare-close-btn")?.addEventListener("click", toggleComparePanel);
-  document.getElementById("compare-clear-btn")?.addEventListener("click", clearCompare);
+  document.getElementById("gis-compare")       ?.addEventListener("click", toggleComparePanel);
+  document.getElementById("compare-close-btn") ?.addEventListener("click", toggleComparePanel);
+  document.getElementById("compare-clear-btn") ?.addEventListener("click", clearCompare);
+  document.getElementById("compare-report-btn")?.addEventListener("click", generateCompareReport);
 
   // Workspace panel wiring
   document.getElementById("gis-workspace")    ?.addEventListener("click", toggleWorkspaces);
