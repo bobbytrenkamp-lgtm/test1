@@ -31963,6 +31963,162 @@
           "url": "https://www.sdsc.edu/about_sdsc.html"
         }
       ]
+    },
+    {
+      "id": "fc-0d44752ec6",
+      "name": "CoreSite SV2 - Milpitas",
+      "operator": "CoreSite",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "CoreSite SV2 at 1656 McCarthy Blvd, Milpitas CA. 76,000+ sqft colocation in Silicon Valley metro.",
+      "lat": 37.4323,
+      "lon": -121.8996,
+      "sources": [
+        {
+          "label": "CoreSite",
+          "url": "https://www.coresite.com/data-center/sv2-milpitas-ca"
+        }
+      ]
+    },
+    {
+      "id": "fc-f3a6facd3a",
+      "name": "CoreSite SV9 - Santa Clara",
+      "operator": "CoreSite",
+      "status": "existing",
+      "county_fips": "06085",
+      "notes": "CoreSite SV9 at 2915 Stender Way, Santa Clara CA. 228,000 sqft, 34MW AI-ready facility launched July 2025. NVIDIA DGX-Ready certified.",
+      "lat": 37.3814,
+      "lon": -121.9694,
+      "sources": [
+        {
+          "label": "CoreSite",
+          "url": "https://www.coresite.com/data-center/sv9-santa-clara-ca"
+        },
+        {
+          "label": "CoreSite",
+          "url": "https://www.coresite.com/news/coresite-expands-silicon-valley-campus-with-completion-of-228000-square-foot-ai-ready-data-center"
+        }
+      ]
+    },
+    {
+      "id": "fc-725a7f4c21",
+      "name": "CoreSite NY2 - Secaucus",
+      "operator": "CoreSite",
+      "status": "existing",
+      "county_fips": "34017",
+      "notes": "CoreSite NY2 at 2 Emerson Lane, Secaucus NJ. 256,000+ sqft purpose-built colocation serving NYC metro. Hudson County.",
+      "lat": 40.7895,
+      "lon": -74.0565,
+      "sources": [
+        {
+          "label": "CoreSite",
+          "url": "https://www.coresite.com/data-center/ny2-secaucus-nj"
+        }
+      ]
+    },
+    {
+      "id": "fc-107059ed69",
+      "name": "CoreSite NY3 - Secaucus",
+      "operator": "CoreSite",
+      "status": "existing",
+      "county_fips": "34017",
+      "notes": "CoreSite NY3 adjacent to NY2 at 2 Emerson Lane, Secaucus NJ. 138,000+ sqft, 15MW AI-optimized. Launched September 2025.",
+      "lat": 40.7897,
+      "lon": -74.056,
+      "sources": [
+        {
+          "label": "CoreSite",
+          "url": "https://www.coresite.com/data-center/ny3-secaucus-nj"
+        },
+        {
+          "label": "CoreSite",
+          "url": "https://www.coresite.com/news/coresite-launches-ny3-data-center-expanding-ai-optimized-capacity-in-the-new-york-metro-area"
+        }
+      ]
+    },
+    {
+      "id": "fc-96c679005b",
+      "name": "TierPoint - Valley Forge (Norristown)",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "42091",
+      "notes": "TierPoint Valley Forge data center at 1000 Adams Ave, Norristown PA (Montgomery County). 125,000 sqft total, 52,600 sqft raised floor.",
+      "lat": 40.1015,
+      "lon": -75.3793,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://www.tierpoint.com/data-centers/pennsylvania/valley-forge/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5d009efe91",
+      "name": "TierPoint - Raleigh",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "37183",
+      "notes": "TierPoint Raleigh NC data center at 5301 Departure Drive, Wake County.",
+      "lat": 35.8114,
+      "lon": -78.5743,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://www.tierpoint.com/data-centers/north-carolina/raleigh/"
+        }
+      ]
+    },
+    {
+      "id": "fc-150a0e2949",
+      "name": "TierPoint - Dallas",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "48113",
+      "notes": "TierPoint Dallas TX colocation data center.",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://www.tierpoint.com/data-centers/texas/dallas/"
+        }
+      ]
+    },
+    {
+      "id": "fc-30a8450658",
+      "name": "TierPoint - Fort Worth",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "48439",
+      "notes": "TierPoint Fort Worth TX at 13701 Independence Pkwy. 208,000 sqft total, 45,000 sqft data center space, 5MW. Acquired Jan 2024.",
+      "lat": 32.7555,
+      "lon": -97.3308,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://www.tierpoint.com/data-centers/texas/fort-worth/"
+        },
+        {
+          "label": "TierPoint",
+          "url": "https://www.tierpoint.com/news/tierpoint-acquires-new-dallas-area-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "fc-3707b70e6a",
+      "name": "TierPoint - Dallas-Allen",
+      "operator": "TierPoint",
+      "status": "existing",
+      "county_fips": "48085",
+      "notes": "TierPoint Dallas-Allen TX data center in Allen, Collin County. Hosts TierPoint multitenant cloud pod.",
+      "lat": 33.1032,
+      "lon": -96.6706,
+      "sources": [
+        {
+          "label": "TierPoint",
+          "url": "https://www.tierpoint.com/data-centers/texas/dallas-allen/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -32567,6 +32723,42 @@
           "url": "https://www.related.com/press-releases/2025-10-30/openai-oracle-and-related-digital-announce-stargate-data-center-site"
         }
       ]
+    },
+    {
+      "id": "fc-3444b8dd0d",
+      "name": "Applied Digital - Polaris Forge 1 Ellendale",
+      "operator": "Applied Digital",
+      "status": "existing",
+      "county_fips": "38021",
+      "notes": "Applied Digital Polaris Forge 1 AI Factory Campus in Ellendale ND. 400MW fully contracted with CoreWeave. Building 1 (100MW) energized Nov 2025. Dickey County.",
+      "lat": 46.0009,
+      "lon": -98.5259,
+      "sources": [
+        {
+          "label": "Applied Digital",
+          "url": "https://ir.applieddigital.com/news-events/press-releases/detail/133/applied-digital-achieves-ready-for-service-for-phase-1-at"
+        },
+        {
+          "label": "Applied Digital",
+          "url": "https://ir.applieddigital.com/news-events/press-releases/detail/137/applied-digital-completes-phase-ii-ready-for-service-at"
+        }
+      ]
+    },
+    {
+      "id": "fc-3fc7c3332d",
+      "name": "Voltage Park - Centeris South Hill Campus (Puyallup)",
+      "operator": "Voltage Park",
+      "status": "existing",
+      "county_fips": "53053",
+      "notes": "Voltage Park AI GPU cloud at Centeris South Hill Campus, 1015-1023 39th Ave SE, Puyallup WA. 10+MW, ~24,000 NVIDIA H100 GPUs. Pierce County.",
+      "lat": 47.1354,
+      "lon": -122.2928,
+      "sources": [
+        {
+          "label": "Voltage Park",
+          "url": "https://www.choosetacomapierce.org/news-events/voltage-park-selects-centeris-data-center/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -32959,5 +33151,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T05:06:22Z"
+  "_facilities_exported_at": "2026-07-19T12:39:22Z"
 }
