@@ -40851,6 +40851,374 @@
           "url": "https://ets.wyo.gov/"
         }
       ]
+    },
+    {
+      "id": "fc-575fd88b68",
+      "name": "Equinix DE1 - Denver CO",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "08005",
+      "notes": "Equinix DE1 IBX Denver CO Englewood campus",
+      "lat": 39.6481,
+      "lon": -104.9878,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/denver-data-centers/denver"
+        }
+      ]
+    },
+    {
+      "id": "fc-d2ad16b9ba",
+      "name": "Equinix DE2 - Denver CO",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "08005",
+      "notes": "Equinix DE2 IBX Denver CO second campus",
+      "lat": 39.6481,
+      "lon": -104.9878,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/denver-data-centers/denver"
+        }
+      ]
+    },
+    {
+      "id": "fc-2114c53aec",
+      "name": "Equinix BO1 - Boston MA",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "25025",
+      "notes": "Equinix BO1 IBX Boston MA",
+      "lat": 42.3601,
+      "lon": -71.0589,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/boston-data-centers/boston"
+        }
+      ]
+    },
+    {
+      "id": "fc-d2966b3309",
+      "name": "Equinix BO2 - Boston MA",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "25017",
+      "notes": "Equinix BO2 IBX Boston MA Somerville",
+      "lat": 42.3876,
+      "lon": -71.0995,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/boston-data-centers/boston"
+        }
+      ]
+    },
+    {
+      "id": "fc-447c3a52c2",
+      "name": "Equinix DC2 - Washington DC",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "11001",
+      "notes": "Equinix DC2 IBX Washington DC",
+      "lat": 38.9072,
+      "lon": -77.0369,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/washington-dc-data-centers/washington"
+        }
+      ]
+    },
+    {
+      "id": "fc-d1a7cbd14c",
+      "name": "Equinix DC3 - Washington DC area",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Equinix DC3 IBX Ashburn VA Washington DC metro",
+      "lat": 39.0438,
+      "lon": -77.4874,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/washington-dc-data-centers/washington"
+        }
+      ]
+    },
+    {
+      "id": "fc-11fb4458a4",
+      "name": "Equinix AU1 - Austin TX",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "48453",
+      "notes": "Equinix AU1 IBX Austin TX",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/austin-data-centers/austin"
+        }
+      ]
+    },
+    {
+      "id": "fc-088c3baaf5",
+      "name": "Equinix PD1 - Portland OR",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "41051",
+      "notes": "Equinix PD1 IBX Portland OR",
+      "lat": 45.5051,
+      "lon": -122.675,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/portland-data-centers/portland"
+        }
+      ]
+    },
+    {
+      "id": "fc-53fd9e5d14",
+      "name": "Equinix PD2 - Portland OR",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "41067",
+      "notes": "Equinix PD2 IBX Hillsboro OR Portland metro",
+      "lat": 45.5229,
+      "lon": -122.9898,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/portland-data-centers/portland"
+        }
+      ]
+    },
+    {
+      "id": "fc-c52926ce0a",
+      "name": "Equinix PH1 - Phoenix AZ",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Equinix PH1 IBX Phoenix AZ",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/phoenix-data-centers/phoenix"
+        }
+      ]
+    },
+    {
+      "id": "fc-2ec29762fe",
+      "name": "Equinix PH2 - Phoenix AZ",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "Equinix PH2 IBX Phoenix AZ",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/phoenix-data-centers/phoenix"
+        }
+      ]
+    },
+    {
+      "id": "fc-12adc502d8",
+      "name": "Equinix MI1 - Minneapolis MN",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Equinix MI1 IBX Minneapolis Eden Prairie MN",
+      "lat": 44.8547,
+      "lon": -93.4708,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/minneapolis-data-centers/minneapolis"
+        }
+      ]
+    },
+    {
+      "id": "fc-670db26def",
+      "name": "Equinix MI3 - Minneapolis MN",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "27053",
+      "notes": "Equinix MI3 IBX Minneapolis Eden Prairie MN third campus",
+      "lat": 44.8547,
+      "lon": -93.4708,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/minneapolis-data-centers/minneapolis"
+        }
+      ]
+    },
+    {
+      "id": "fc-eb6bceee69",
+      "name": "Equinix CH3 - Chicago IL",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Equinix CH3 IBX Elk Grove Village IL Chicago metro",
+      "lat": 41.992,
+      "lon": -87.9737,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/chicago-data-centers/chicago"
+        }
+      ]
+    },
+    {
+      "id": "fc-b1d9f0c465",
+      "name": "Equinix CH5 - Chicago IL",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "17031",
+      "notes": "Equinix CH5 IBX Chicago IL (350 E Cermak area)",
+      "lat": 41.8533,
+      "lon": -87.6161,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/chicago-data-centers/chicago"
+        }
+      ]
+    },
+    {
+      "id": "fc-91885fc478",
+      "name": "Equinix LV1 - Las Vegas NV",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "Equinix LV1 IBX Las Vegas NV",
+      "lat": 36.1716,
+      "lon": -115.1391,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/las-vegas-data-centers/las-vegas"
+        }
+      ]
+    },
+    {
+      "id": "fc-ea3dfd2dd8",
+      "name": "Equinix LV2 - Las Vegas NV",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "Equinix LV2 IBX Las Vegas NV second campus",
+      "lat": 36.1716,
+      "lon": -115.1391,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/las-vegas-data-centers/las-vegas"
+        }
+      ]
+    },
+    {
+      "id": "fc-986bd1bec6",
+      "name": "Equinix PH1 - Philadelphia PA",
+      "operator": "Equinix",
+      "status": "existing",
+      "county_fips": "42101",
+      "notes": "Equinix PHL1 IBX Philadelphia PA",
+      "lat": 39.9526,
+      "lon": -75.1652,
+      "sources": [
+        {
+          "label": "Equinix",
+          "url": "https://www.equinix.com/data-centers/americas-colocation/philadelphia-data-centers/philadelphia"
+        }
+      ]
+    },
+    {
+      "id": "fc-9851336f2e",
+      "name": "CloudBurst Data Centers - Reno NV",
+      "operator": "CloudBurst Data Centers",
+      "status": "existing",
+      "county_fips": "32031",
+      "notes": "CloudBurst Data Centers Reno NV colocation",
+      "lat": 39.5296,
+      "lon": -119.8138,
+      "sources": [
+        {
+          "label": "CloudBurst Data Centers",
+          "url": "https://cloudburstdatacenters.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b8f83bbe64",
+      "name": "CloudBurst Data Centers - Phoenix AZ",
+      "operator": "CloudBurst Data Centers",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "CloudBurst Data Centers Phoenix AZ colocation",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "CloudBurst Data Centers",
+          "url": "https://cloudburstdatacenters.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-b9164ec730",
+      "name": "T5 Data Centers - Miami FL",
+      "operator": "T5 Data Centers",
+      "status": "existing",
+      "county_fips": "12086",
+      "notes": "T5 Data Centers Miami FL campus",
+      "lat": 25.7617,
+      "lon": -80.1918,
+      "sources": [
+        {
+          "label": "T5 Data Centers",
+          "url": "https://www.t5datacenters.com/data-centers/miami/"
+        }
+      ]
+    },
+    {
+      "id": "fc-eee9422edf",
+      "name": "T5 Data Centers - Phoenix AZ",
+      "operator": "T5 Data Centers",
+      "status": "existing",
+      "county_fips": "04013",
+      "notes": "T5 Data Centers Phoenix AZ campus",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "T5 Data Centers",
+          "url": "https://www.t5datacenters.com/data-centers/phoenix/"
+        }
+      ]
+    },
+    {
+      "id": "fc-e8cb984a27",
+      "name": "T5 Data Centers - Las Vegas NV",
+      "operator": "T5 Data Centers",
+      "status": "existing",
+      "county_fips": "32003",
+      "notes": "T5 Data Centers Las Vegas NV campus",
+      "lat": 36.1716,
+      "lon": -115.1391,
+      "sources": [
+        {
+          "label": "T5 Data Centers",
+          "url": "https://www.t5datacenters.com/data-centers/las-vegas/"
+        }
+      ]
     }
   ],
   "ai_campuses": [
@@ -43799,6 +44167,198 @@
           "url": "https://www.coreweave.com/data-centers"
         }
       ]
+    },
+    {
+      "id": "fc-5fe0a6ec02",
+      "name": "Tract Data Centers - Phoenix AZ",
+      "operator": "Tract",
+      "status": "planned",
+      "county_fips": "04013",
+      "notes": "Tract Data Centers Phoenix AZ planned campus",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Tract",
+          "url": "https://www.tract.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-0720554239",
+      "name": "Tract Data Centers - Atlanta GA",
+      "operator": "Tract",
+      "status": "planned",
+      "county_fips": "13121",
+      "notes": "Tract Data Centers Atlanta GA planned campus",
+      "lat": 33.749,
+      "lon": -84.388,
+      "sources": [
+        {
+          "label": "Tract",
+          "url": "https://www.tract.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-746518415e",
+      "name": "Tract Data Centers - Dallas TX",
+      "operator": "Tract",
+      "status": "planned",
+      "county_fips": "48113",
+      "notes": "Tract Data Centers Dallas TX planned campus",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "sources": [
+        {
+          "label": "Tract",
+          "url": "https://www.tract.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-d4b8059c4f",
+      "name": "Prologis Data Center - Ashburn VA",
+      "operator": "Prologis",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Prologis Data Centers Ashburn VA hyperscale facility",
+      "lat": 39.0438,
+      "lon": -77.4874,
+      "sources": [
+        {
+          "label": "Prologis",
+          "url": "https://www.prologis.com/data-centers"
+        }
+      ]
+    },
+    {
+      "id": "fc-9f41700c5c",
+      "name": "Prologis Data Center - Phoenix AZ",
+      "operator": "Prologis",
+      "status": "planned",
+      "county_fips": "04013",
+      "notes": "Prologis Data Centers Phoenix AZ hyperscale facility",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Prologis",
+          "url": "https://www.prologis.com/data-centers"
+        }
+      ]
+    },
+    {
+      "id": "fc-f882a33013",
+      "name": "Prologis Data Center - Chicago IL",
+      "operator": "Prologis",
+      "status": "planned",
+      "county_fips": "17031",
+      "notes": "Prologis Data Centers Chicago IL planned campus",
+      "lat": 41.8827,
+      "lon": -87.6233,
+      "sources": [
+        {
+          "label": "Prologis",
+          "url": "https://www.prologis.com/data-centers"
+        }
+      ]
+    },
+    {
+      "id": "fc-d29946bb22",
+      "name": "Starwood Digital Data Center - Ashburn VA",
+      "operator": "Starwood Digital",
+      "status": "existing",
+      "county_fips": "51107",
+      "notes": "Starwood Digital Ventures Ashburn VA hyperscale campus",
+      "lat": 39.0438,
+      "lon": -77.4874,
+      "sources": [
+        {
+          "label": "Starwood Digital",
+          "url": "https://www.starwooddigital.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-2e9a5d1cc8",
+      "name": "Starwood Digital Data Center - Phoenix AZ",
+      "operator": "Starwood Digital",
+      "status": "planned",
+      "county_fips": "04013",
+      "notes": "Starwood Digital Ventures Phoenix AZ planned campus",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "sources": [
+        {
+          "label": "Starwood Digital",
+          "url": "https://www.starwooddigital.com/data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "fc-9b503fbaa1",
+      "name": "Chirisa Technology Parks - Denver CO",
+      "operator": "Chirisa Technology Parks",
+      "status": "planned",
+      "county_fips": "08031",
+      "notes": "Chirisa Technology Parks Denver CO hyperscale campus",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "sources": [
+        {
+          "label": "Chirisa Technology Parks",
+          "url": "https://chirisatechnologyparks.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-ecef4fc35c",
+      "name": "Chirisa Technology Parks - Las Vegas NV",
+      "operator": "Chirisa Technology Parks",
+      "status": "planned",
+      "county_fips": "32003",
+      "notes": "Chirisa Technology Parks Las Vegas NV campus",
+      "lat": 36.1716,
+      "lon": -115.1391,
+      "sources": [
+        {
+          "label": "Chirisa Technology Parks",
+          "url": "https://chirisatechnologyparks.com/"
+        }
+      ]
+    },
+    {
+      "id": "fc-5fb5508385",
+      "name": "Novva Data Centers - Reno NV",
+      "operator": "Novva Data Centers",
+      "status": "planned",
+      "county_fips": "32031",
+      "notes": "Novva Data Centers Reno NV planned campus",
+      "lat": 39.5296,
+      "lon": -119.8138,
+      "sources": [
+        {
+          "label": "Novva Data Centers",
+          "url": "https://www.novva.com/locations/"
+        }
+      ]
+    },
+    {
+      "id": "fc-8eb9ca77e7",
+      "name": "Novva Data Centers - Las Vegas NV 3",
+      "operator": "Novva Data Centers",
+      "status": "planned",
+      "county_fips": "32003",
+      "notes": "Novva Data Centers Las Vegas NV third campus",
+      "lat": 36.1716,
+      "lon": -115.1391,
+      "sources": [
+        {
+          "label": "Novva Data Centers",
+          "url": "https://www.novva.com/locations/"
+        }
+      ]
     }
   ],
   "power_infrastructure": [
@@ -44191,5 +44751,5 @@
       ]
     }
   ],
-  "_facilities_exported_at": "2026-07-19T18:08:44Z"
+  "_facilities_exported_at": "2026-07-19T18:10:14Z"
 }
