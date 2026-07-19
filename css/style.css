@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+/* iOS Safari: display:flex/grid on an element overrides UA [hidden]{display:none}.
+   This enforces the HTML spec globally so .hidden=true always hides. */
+[hidden] { display: none !important; }
+
 /* ── Motion system ── */
 :root {
   --motion-instant:  100ms;
@@ -4807,6 +4811,10 @@ html[data-theme="light"] {
   white-space: nowrap;
   pointer-events: auto;
 }
+/* Ensure [hidden] wins on iOS Safari where display:flex overrides UA [hidden]{display:none} */
+#measure-readout[hidden],
+#draw-readout[hidden] { display: none !important; }
+
 /* When both measure-readout and draw-readout are visible, offset draw-readout downward */
 #measure-readout:not([hidden]) ~ #draw-readout:not([hidden]) { top: 58px; }
 #draw-area-val { font-weight: 600; }
