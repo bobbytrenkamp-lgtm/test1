@@ -46,9 +46,14 @@
   border-radius: 6px;
   padding: 0 10px;
   min-width: 0;
-  transition: border-color 0.15s;
+  transition:
+    border-color var(--dur-normal) var(--ease-standard),
+    box-shadow var(--dur-normal) var(--ease-standard);
 }
-#stocks-search-wrap:focus-within { border-color: var(--accent); }
+#stocks-search-wrap:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(72,116,232,0.16), 0 2px 8px rgba(72,116,232,0.06);
+}
 #stocks-search {
   flex: 1;
   border: none;
@@ -106,7 +111,9 @@
   padding: 6px 14px;
   margin-bottom: -1px;
   white-space: nowrap;
-  transition: color 0.15s, border-color 0.15s;
+  transition:
+    color var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard);
 }
 .stocks-list-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 .stocks-list-tab:hover:not(.active) { color: var(--text); }
@@ -129,7 +136,11 @@
   padding: 10px 12px;
   cursor: pointer;
   text-align: left;
-  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  transition:
+    border-color var(--dur-normal) var(--ease-standard),
+    background var(--dur-normal) var(--ease-standard),
+    box-shadow var(--dur-normal) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-spring);
   font-family: inherit;
   color: var(--text);
   width: 100%;
@@ -137,6 +148,11 @@
 .stocks-co-card:hover:not(.selected) {
   border-color: var(--accent);
   background: var(--surface-2);
+  transform: translateY(-1px);
+}
+.stocks-co-card:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: var(--dur-fast);
 }
 .stocks-co-card.selected {
   border-color: var(--accent);
@@ -163,9 +179,12 @@
   font-size: 0.875rem;
   padding: 0;
   line-height: 1;
-  transition: color 0.15s;
+  transition:
+    color var(--dur-fast) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-spring);
   flex-shrink: 0;
 }
+.stocks-fav-star:active { transform: scale(1.3); }
 .stocks-fav-star:hover,
 .stocks-fav-star.is-fav { color: #f59e0b; }
 .stocks-co-name {
@@ -193,11 +212,18 @@
 }
 
 /* ── Selected company panel ── */
+@keyframes stocks-panel-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 #stocks-selected {
   background: var(--surface);
   border-top: 2px solid var(--border);
   flex-shrink: 0;
   scroll-margin-top: 8px;
+}
+#stocks-selected.stocks-panel-entering {
+  animation: stocks-panel-enter var(--dur-panel) var(--ease-spring) both;
 }
 #stocks-selected-header {
   display: flex;
@@ -247,9 +273,14 @@
   font-family: inherit;
   font-weight: 500;
   padding: 5px 11px;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  transition:
+    border-color var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard),
+    background var(--dur-fast) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-spring);
   white-space: nowrap;
 }
+.stocks-action-btn:active { transform: scale(0.97); }
 .stocks-action-btn:hover { border-color: var(--accent); color: var(--text); }
 .stocks-action-btn.is-fav {
   color: #f59e0b;
@@ -292,7 +323,10 @@
   font-size: 0.75rem;
   font-weight: 600;
   padding: 4px 9px;
-  transition: all 0.12s;
+  transition:
+    background var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard);
 }
 .stocks-time-btn:hover:not(.active) {
   border-color: var(--border);
@@ -358,7 +392,9 @@
   padding: 9px 14px;
   margin-bottom: -1px;
   white-space: nowrap;
-  transition: color 0.15s, border-color 0.15s;
+  transition:
+    color var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard);
   flex-shrink: 0;
 }
 .stocks-detail-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
@@ -422,7 +458,9 @@
   font-weight: 500;
   padding: 7px 13px;
   text-decoration: none;
-  transition: border-color 0.15s, background 0.15s;
+  transition:
+    border-color var(--dur-fast) var(--ease-standard),
+    background var(--dur-fast) var(--ease-standard);
   white-space: nowrap;
 }
 .stocks-fallback-btn:hover {
@@ -481,7 +519,9 @@
   font-size: 13px;
   cursor: pointer;
   font-family: inherit;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard);
 }
 .tv-retry-btn:hover { background: var(--accent); color: #fff; }
 
@@ -503,9 +543,12 @@
   border-bottom: 1px solid var(--border);
   text-decoration: none;
   color: inherit;
+  transition: opacity var(--dur-fast) var(--ease-standard);
 }
 .stocks-news-item:last-child { border-bottom: none; }
+.stocks-news-item:hover { opacity: 0.85; }
 .stocks-news-item:hover .stocks-news-title { color: var(--accent); }
+.stocks-news-item:active { opacity: 0.7; }
 .stocks-news-cat {
   font-size: 0.6875rem;
   font-weight: 600;
@@ -520,7 +563,7 @@
   color: var(--text);
   line-height: 1.45;
   margin-bottom: 4px;
-  transition: color 0.15s;
+  transition: color var(--dur-fast) var(--ease-standard);
 }
 .stocks-news-meta {
   display: flex;
@@ -620,23 +663,28 @@
   position: fixed;
   bottom: 28px;
   left: 50%;
-  transform: translateX(-50%) translateY(12px);
-  background: var(--text);
-  color: var(--bg);
-  border-radius: 6px;
+  transform: translateX(-50%) translateY(16px) scale(0.96);
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  backdrop-filter: blur(12px) saturate(1.3);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  color: var(--text);
+  border-radius: 10px;
   padding: 8px 18px;
   font-size: 0.8125rem;
-  font-weight: 600;
+  font-weight: 500;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.18s, transform 0.18s;
+  transition:
+    opacity var(--dur-normal) var(--ease-standard),
+    transform var(--dur-normal) var(--ease-spring);
   z-index: 9999;
   white-space: nowrap;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
 }
 #stocks-toast.visible {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(0) scale(1);
 }
 
 /* ── Mobile ── */

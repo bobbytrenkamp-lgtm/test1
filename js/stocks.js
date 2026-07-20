@@ -459,7 +459,13 @@ function selectCompany(ticker) {
   renderDetailTab(stocksState.activeDetailTab);
 
   const sel = document.getElementById('stocks-selected');
-  if (sel) sel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  if (sel) {
+    sel.classList.remove('stocks-panel-entering');
+    requestAnimationFrame(() => {
+      sel.classList.add('stocks-panel-entering');
+      sel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
 }
 
 function updateFavButton() {
