@@ -858,6 +858,22 @@ function setLayerVisible(id, visible, syncUI = false) {
     if (input) input.checked = visible;
   }
   renderLegend();
+  _saveLayerState();
+}
+
+const LAYER_STATE_KEY = "dc-layer-state-v1";
+function _saveLayerState() {
+  try { localStorage.setItem(LAYER_STATE_KEY, JSON.stringify(layerState)); } catch (_) {}
+}
+function _loadLayerState() {
+  try {
+    const raw = localStorage.getItem(LAYER_STATE_KEY);
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    for (const k of Object.keys(layerState)) {
+      if (typeof s[k] === "boolean") layerState[k] = s[k];
+    }
+  } catch (_) {}
 }
 
 /* ── Toast ── */
@@ -1756,6 +1772,22 @@ function renderComparePanel() {
     return;
   }
 
+  // Pre-compute scores for diff highlighting (only meaningful with 2+ counties)
+  const _suits = {};
+  compareCounties.forEach(f => { const c = mapData[f]; if (c) _suits[f] = computeSuitabilityScore(f, c).score; });
+  const _scores = Object.values(_suits);
+  const _maxScore = _scores.length > 1 ? Math.max(..._scores) : -1;
+  const _minScore = _scores.length > 1 ? Math.min(..._scores) : -1;
+  const _multicount = compareCounties.filter(f => mapData[f]).length > 1;
+
+  // Severity rank for diff highlighting (lower = better for DC siting)
+  const SEV_RANK = { pro: 0, none: 1, proposed: 2, moderate: 3, high: 4, ban: 5 };
+  const _sevRanks = {};
+  compareCounties.forEach(f => { const c = mapData[f]; if (c) _sevRanks[f] = SEV_RANK[getSeverityKey(c)] ?? 3; });
+  const _rankVals = Object.values(_sevRanks);
+  const _bestRank = _rankVals.length > 1 ? Math.min(..._rankVals) : -1;
+  const _worstRank = _rankVals.length > 1 ? Math.max(..._rankVals) : -1;
+
   compareCounties.forEach(fips => {
     const county = mapData[fips];
     if (!county) return;
@@ -1764,10 +1796,18 @@ function renderComparePanel() {
     const sevLabel = SEVERITY[sevKey].label;
     const types    = (county.types || []).map(t => TYPE_LABELS[t] || t).join(", ") || "—";
     const date     = county.effective_date || county.date || "—";
+    const suit     = computeSuitabilityScore(fips, county);
+
+    const isBestScore  = _multicount && _suits[fips] === _maxScore && _maxScore !== _minScore;
+    const isWorstScore = _multicount && _suits[fips] === _minScore && _maxScore !== _minScore;
+    const isBestSev    = _multicount && _sevRanks[fips] === _bestRank && _bestRank !== _worstRank;
+    const isWorstSev   = _multicount && _sevRanks[fips] === _worstRank && _bestRank !== _worstRank;
 
     const col = document.createElement("div");
     col.className = "cmp-col";
     col.style.setProperty("--cmp-sev-color", sevColor);
+    if (isBestScore)  col.classList.add("cmp-col-best");
+    if (isWorstScore) col.classList.add("cmp-col-worst");
 
     // Header
     const hdr = document.createElement("div");
@@ -1788,6 +1828,20 @@ function renderComparePanel() {
     removeBtn.textContent = "×";
     removeBtn.setAttribute("aria-label", `Remove ${county.name}`);
     removeBtn.addEventListener("click", () => removeFromCompare(fips));
+
+    // Best/worst badge
+    if (isBestScore) {
+      const badge = document.createElement("span");
+      badge.className = "cmp-diff-badge cmp-diff-best";
+      badge.textContent = "Best";
+      hdr.appendChild(badge);
+    } else if (isWorstScore) {
+      const badge = document.createElement("span");
+      badge.className = "cmp-diff-badge cmp-diff-worst";
+      badge.textContent = "Highest Risk";
+      hdr.appendChild(badge);
+    }
+
     hdr.appendChild(nameWrap);
     hdr.appendChild(removeBtn);
 
@@ -1795,9 +1849,10 @@ function renderComparePanel() {
     const colBody = document.createElement("div");
     colBody.className = "cmp-col-body";
 
-    function addField(label, valueHtml) {
+    function addField(label, valueHtml, highlight) {
       const f = document.createElement("div");
       f.className = "cmp-field";
+      if (highlight) f.classList.add("cmp-field-" + highlight);
       const lEl = document.createElement("div");
       lEl.className = "cmp-field-label";
       lEl.textContent = label;
@@ -1809,12 +1864,13 @@ function renderComparePanel() {
       colBody.appendChild(f);
     }
 
-    const suit = computeSuitabilityScore(fips, county);
     addField("Suitability",
-      `<span class="cmp-suit-grade cmp-suit-${suit.grade}">${suit.grade}</span>${escHtml(suit.score + " / 100")} <span style="color:var(--text-muted);font-size:10px;">— ${escHtml(suit.label)}</span>`
+      `<span class="cmp-suit-grade cmp-suit-${suit.grade}">${suit.grade}</span>${escHtml(suit.score + " / 100")} <span style="color:var(--text-muted);font-size:10px;">— ${escHtml(suit.label)}</span>`,
+      isBestScore ? "best" : isWorstScore ? "worst" : null
     );
     addField("Severity",
-      `<span class="cmp-field-value cmp-sev-badge"><span class="cmp-sev-dot" style="background:${sevColor}"></span>${escHtml(sevLabel)}</span>`
+      `<span class="cmp-field-value cmp-sev-badge"><span class="cmp-sev-dot" style="background:${sevColor}"></span>${escHtml(sevLabel)}</span>`,
+      isBestSev ? "best" : isWorstSev ? "worst" : null
     );
     addField("Status", escHtml((county.status || "active").charAt(0).toUpperCase() + (county.status || "active").slice(1)));
     addField("Policy Types", escHtml(types));
@@ -1844,6 +1900,7 @@ function renderComparePanel() {
   // Always show one "+" slot at the end to invite more additions
   body.appendChild(_makeCmpAddSlot());
 }
+
 
 function _makeCmpAddSlot() {
   const col = document.createElement("div");
@@ -2421,6 +2478,30 @@ function initLeafletMap() {
     if (drawPoints.length > 0) drawPoints.pop();
     _closeDrawPolygon();
   });
+
+  // Auto-persist map view to localStorage so reload restores last position
+  const MAP_VIEW_KEY = "dc-map-view-v1";
+  function _saveMapView() {
+    try {
+      const c = leafletMap.getCenter();
+      localStorage.setItem(MAP_VIEW_KEY, JSON.stringify({ lat: c.lat, lng: c.lng, z: leafletMap.getZoom() }));
+    } catch (_) {}
+  }
+  function _restoreMapView() {
+    try {
+      const raw = localStorage.getItem(MAP_VIEW_KEY);
+      if (!raw) return false;
+      const { lat, lng, z } = JSON.parse(raw);
+      if (typeof lat === "number" && typeof lng === "number" && typeof z === "number") {
+        leafletMap.setView([lat, lng], z, { animate: false });
+        return true;
+      }
+    } catch (_) {}
+    return false;
+  }
+  // Restore on first load if no hash permalink is present
+  if (!window.location.hash) _restoreMapView();
+  leafletMap.on("moveend zoomend", _saveMapView);
 
   // Update dashboard extent scope when the viewport changes
   leafletMap.on("moveend", () => {
@@ -4200,7 +4281,16 @@ function buildConfidenceBadgeHtml(county) {
 }
 
 /* ── Suitability scoring ── */
+const _suitabilityCache = new Map();
+
 function computeSuitabilityScore(fips, county) {
+  if (_suitabilityCache.has(fips)) return _suitabilityCache.get(fips);
+  const result = _computeSuitabilityScore(fips, county);
+  _suitabilityCache.set(fips, result);
+  return result;
+}
+
+function _computeSuitabilityScore(fips, county) {
   // Factor 1: Regulatory Environment (max 50)
   const sevKey = county ? getSeverityKey(county) : "none";
   const regPts = { pro: 50, none: 45, proposed: 30, moderate: 18, high: 6, ban: 0 }[sevKey] ?? 45;
@@ -4282,6 +4372,60 @@ function buildSuitabilityHtml(fips, county) {
     </div>
     ${barsHtml}
     <p class="suit-disclaimer">Estimated from restriction severity, political risk signals, and restriction scope. Not a professional site assessment.</p>
+  </div>`;
+}
+
+/* ── County Timeline ── */
+function buildCountyTimelineHtml(fips, county) {
+  const events = [];
+
+  // Effective date of the ordinance
+  if (county.effective_date) {
+    const sevKey = getSeverityKey(county);
+    const dotCls = { ban: "tl-dot-ban", high: "tl-dot-high", moderate: "tl-dot-moderate",
+                     proposed: "tl-dot-proposed", pro: "tl-dot-pro", none: "tl-dot-none" }[sevKey] || "tl-dot-none";
+    events.push({ date: county.effective_date, dotCls,
+      label: county.title || LEVEL_LABELS[county.level] || "Policy enacted",
+      sub:   STATUS_LABELS[county.status || "active"] });
+  }
+
+  // Political risk signals
+  const riskRec = politicalRiskData[fips];
+  if (riskRec && riskRec.signals) {
+    for (const sig of riskRec.signals) {
+      if (!sig.detected_date) continue;
+      const favor = (sig.type || "").includes("incentive") || (sig.type || "").includes("pro") ||
+                    (sig.type || "").includes("support") || (sig.type || "").includes("enacted") && !((sig.type||"").includes("ban") || (sig.type||"").includes("moratorium"));
+      events.push({ date: sig.detected_date,
+        dotCls: favor ? "tl-dot-pro" : "tl-dot-risk",
+        label: sig.label || sig.type,
+        sub:   sig.description || "" });
+    }
+  }
+
+  // Last reviewed
+  if (county.last_reviewed) {
+    events.push({ date: county.last_reviewed, dotCls: "tl-dot-reviewed",
+      label: "Policy reviewed", sub: "Data quality check performed" });
+  }
+
+  if (!events.length) return "";
+
+  events.sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0);
+
+  const items = events.map(ev => `
+    <div class="tl-item">
+      <div class="tl-dot-wrap"><div class="tl-dot ${escHtml(ev.dotCls)}"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-date">${escHtml(ev.date)}</div>
+        <div class="tl-label">${escHtml(ev.label)}</div>
+        ${ev.sub ? `<div class="tl-sub">${escHtml(ev.sub)}</div>` : ""}
+      </div>
+    </div>`).join("");
+
+  return `<div class="tl-section">
+    <div class="tl-section-title">Policy Timeline</div>
+    <div class="tl-list">${items}</div>
   </div>`;
 }
 
@@ -4537,6 +4681,7 @@ function setDetailCounty(fips, county) {
 
   const stateFips2 = fips.slice(0, 2);
 
+  const _timelineHtml = buildCountyTimelineHtml(fips, county);
   document.getElementById("detail-body").innerHTML = `
     ${buildSuitabilityHtml(fips, county)}
     <div class="policy-divider"></div>
@@ -4547,6 +4692,7 @@ function setDetailCounty(fips, county) {
     ${buildCityPolicySectionHtml()}
     <div class="policy-divider"></div>
     ${buildPoliticalRiskSectionHtml(fips)}
+    ${_timelineHtml ? `<div class="policy-divider"></div>${_timelineHtml}` : ""}
     ${buildSampleInfraHtml(fips)}
     <div id="detail-proximity-section"></div>
     <div id="detail-zoning-summary"></div>`;
@@ -4897,22 +5043,89 @@ function initSearch() {
 
   const index = [...countyIndex, ...stateIndex, ...facilityIndex];
 
-  function renderResults(matches) {
+  /* Recent searches */
+  const RECENT_KEY = "dc-search-recent-v1";
+  const MAX_RECENT = 6;
+  function _loadRecent() { try { return JSON.parse(localStorage.getItem(RECENT_KEY) || "[]"); } catch { return []; } }
+  function _saveRecent(list) { try { localStorage.setItem(RECENT_KEY, JSON.stringify(list)); } catch {} }
+  function _addRecent(label) {
+    const list = _loadRecent().filter(r => r !== label);
+    list.unshift(label);
+    _saveRecent(list.slice(0, MAX_RECENT));
+  }
+
+  /* Fuzzy scoring — tolerates partial token matches */
+  function _searchScore(item, q) {
+    const t = item.searchText;
+    if (t === q) return 100;
+    if (t.startsWith(q)) return 80;
+    if (t.includes(q)) return 60;
+    // Token prefix matching: "ho riv" → "hood river county"
+    const qTokens = q.split(/\s+/);
+    const tTokens = t.split(/\s+/);
+    const allTokensMatch = qTokens.every(qt => tTokens.some(tt => tt.startsWith(qt)));
+    if (allTokensMatch) return 40;
+    // Character subsequence
+    let qi = 0;
+    for (let ti = 0; ti < t.length && qi < q.length; ti++) {
+      if (t[ti] === q[qi]) qi++;
+    }
+    return qi === q.length ? 10 : 0;
+  }
+
+  function renderResults(matches, isRecent) {
     results.innerHTML = "";
     if (!matches.length) { results.style.display = "none"; return; }
+    if (isRecent) {
+      const hdr = document.createElement("div");
+      hdr.className = "search-recent-hdr";
+      hdr.textContent = "Recent";
+      results.appendChild(hdr);
+    }
     for (const m of matches) {
       const item = document.createElement("div");
       item.className = "search-result-item";
-      if (m.kind === "county") {
+      if (m.kind === "recent") {
+        const ico = document.createElement("span");
+        ico.className = "search-recent-icon";
+        ico.setAttribute("aria-hidden", "true");
+        ico.textContent = "↩";
+        item.appendChild(ico);
+        const lbl = document.createElement("span");
+        lbl.textContent = m.label;
+        item.appendChild(lbl);
+      } else if (m.kind === "county") {
         item.textContent = `${m.name}, ${m.state}`;
       } else if (m.kind === "state") {
-        item.innerHTML = `${escHtml(m.name)} <span class="search-result-tag">State</span>`;
+        const n = document.createElement("span");
+        n.textContent = m.name;
+        item.appendChild(n);
+        const tag = document.createElement("span");
+        tag.className = "search-result-tag";
+        tag.textContent = "State";
+        item.appendChild(tag);
       } else {
-        item.innerHTML = `${escHtml(m.name)} <span class="sample-tag" style="margin-left:6px;">Sample</span>`;
+        const n = document.createElement("span");
+        n.textContent = m.name;
+        item.appendChild(n);
+        const tag = document.createElement("span");
+        tag.className = "sample-tag";
+        tag.style.marginLeft = "6px";
+        tag.textContent = "Facility";
+        item.appendChild(tag);
       }
       item.addEventListener("pointerdown", e => {
         e.preventDefault();
-        input.value = m.kind === "county" ? `${m.name}, ${m.state}` : m.name;
+        if (m.kind === "recent") {
+          // Re-run this search query
+          input.value = m.label;
+          results.style.display = "none";
+          input.dispatchEvent(new Event("input"));
+          return;
+        }
+        const displayVal = m.kind === "county" ? `${m.name}, ${m.state}` : m.name;
+        input.value = displayVal;
+        _addRecent(displayVal);
         results.style.display = "none";
         if (m.kind === "county") {
           zoomToFeature(m.fips);
@@ -4933,6 +5146,12 @@ function initSearch() {
     results.style.display = "block";
   }
 
+  function showRecentSearches() {
+    const recent = _loadRecent();
+    if (!recent.length) { results.style.display = "none"; return; }
+    renderResults(recent.map(r => ({ kind: "recent", label: r })), true);
+  }
+
   let kbIdx = -1;
   function highlightSearchItem(idx) {
     const items = results.querySelectorAll(".search-result-item");
@@ -4944,10 +5163,19 @@ function initSearch() {
   input.addEventListener("input", () => {
     kbIdx = -1;
     const q = input.value.trim().toLowerCase();
-    if (!q) { results.style.display = "none"; return; }
-    renderResults(index.filter(c => c.searchText.includes(q)).slice(0, 8));
+    if (!q) { showRecentSearches(); return; }
+    const scored = index
+      .map(c => ({ m: c, s: _searchScore(c, q) }))
+      .filter(x => x.s > 0)
+      .sort((a, b) => b.s - a.s)
+      .slice(0, 8)
+      .map(x => x.m);
+    renderResults(scored, false);
   });
-  input.addEventListener("focus", () => { if (input.value.trim()) input.dispatchEvent(new Event("input")); });
+  input.addEventListener("focus", () => {
+    if (input.value.trim()) input.dispatchEvent(new Event("input"));
+    else showRecentSearches();
+  });
   input.addEventListener("blur",  () => { setTimeout(() => { results.style.display = "none"; kbIdx = -1; }, 100); });
 
   input.addEventListener("keydown", e => {
@@ -5836,6 +6064,7 @@ function initThemeToggle() {
 async function init() {
   _loadLayerGroupState();
   _loadFilterState();
+  _loadLayerState(); // restore persisted layer visibility
   initThemeToggle();
   initNavTabs();
   initKeyboardShortcuts();
