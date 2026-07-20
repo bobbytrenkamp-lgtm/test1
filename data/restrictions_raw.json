@@ -33743,6 +33743,1378 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null
+    },
+    {
+      "fips": "42069",
+      "name": "Lackawanna County",
+      "state": "Pennsylvania",
+      "level": 2,
+      "types": [
+        "data_center",
+        "water",
+        "energy"
+      ],
+      "title": "Lackawanna County PA \u2014 PPL Electric CUP & Lackawanna River 401 Water Quality Certification",
+      "description": "Lackawanna County (Scranton, PA) is served primarily by PPL Electric Utilities, whose Northeastern Pennsylvania transmission zone faces growing capacity constraints as legacy coal-plant retirements outpace renewable interconnections. The county's primary water source, the Lackawanna River, is a Pennsylvania Department of Environmental Protection (PA DEP) Cold Water Fishery (CWF) stream; data center thermal discharge or consumptive withdrawals exceeding 1.0 MGD require a Section 401 Water Quality Certification under the Clean Water Act and a Susquehanna River Basin Commission (SRBC) consumptive-use approval. Lackawanna County's zoning ordinance requires a Conditional Use Permit (CUP) for data centers exceeding 5 MW, with PA DEP air-quality review (Title V or minor source) for on-site emergency diesel generators. Coal-ash legacy contamination in the Lackawanna River corridor triggers additional environmental review under Pennsylvania's Act 2 land-recycling program for any brownfield data-center development in the former anthracite mining belt.",
+      "effective_date": "2024-01-01",
+      "status": "active",
+      "notes": "PPL Electric transmission zone NE-PA; SRBC consumptive-use threshold; Act 2 brownfield.",
+      "sources": [
+        {
+          "label": "PPL Electric Utilities \u2014 Interconnection & Grid Capacity",
+          "url": "https://www.pplelectric.com/for-my-business/large-business/interconnection"
+        },
+        {
+          "label": "PA DEP \u2014 Section 401 Water Quality Certification",
+          "url": "https://www.dep.pa.gov/Business/Water/CleanWater/WaterQuality/StreamRedesignation/Pages/401WQC.aspx"
+        },
+        {
+          "label": "SRBC \u2014 Consumptive Use Approvals",
+          "url": "https://www.srbc.net/permitting/consumptive-use/index.html"
+        },
+        {
+          "label": "Lackawanna County \u2014 Unified Development Code",
+          "url": "https://www.lackawannacounty.org/planning-and-zoning/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "39159",
+      "name": "Union County",
+      "state": "Ohio",
+      "level": 1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Union County Ohio \u2014 AEP Ohio Capacity Trigger & Honda Marysville Load Priority",
+      "description": "Union County (Marysville, OH) is home to Honda of America Manufacturing's flagship Marysville Auto Plant and East Liberty Auto Plant, which together draw some of the largest industrial loads on AEP Ohio's Columbus metro transmission system. AEP Ohio's updated large-load interconnection policy (filed FERC ER24-803, 2024) requires a system-impact study for new data-center loads exceeding 5 MW in circuits already serving industrial anchor customers. The Public Utilities Commission of Ohio (PUCO) Order 24-0376-EL-ATA directed AEP Ohio to prioritize critical manufacturing in capacity allocation disputes. Union County zoning requires a conditional-use permit for data centers exceeding 25,000 sq ft under Section 17.04 of the Unified Development Code; the EDA-designated corridor along US-33 between Marysville and Dublin is subject to additional economic-impact review.",
+      "effective_date": "2024-06-01",
+      "status": "active",
+      "notes": "AEP Ohio FERC ER24-803; PUCO 24-0376-EL-ATA; Honda load priority US-33 corridor.",
+      "sources": [
+        {
+          "label": "AEP Ohio \u2014 Large Load Interconnection Policy",
+          "url": "https://www.aepohio.com/account/business/economic-development/"
+        },
+        {
+          "label": "PUCO \u2014 Case 24-0376-EL-ATA (AEP Ohio Load Priority Order)",
+          "url": "https://dis.puc.state.oh.us/"
+        },
+        {
+          "label": "Union County Ohio \u2014 Unified Development Code",
+          "url": "https://www.co.union.oh.us/Departments/Planning/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "26103",
+      "name": "Marquette County",
+      "state": "Michigan",
+      "level": 2,
+      "types": [
+        "data_center",
+        "energy",
+        "water"
+      ],
+      "title": "Marquette County MI \u2014 Upper Peninsula Power Single-Feed Constraint & Lake Superior Water",
+      "description": "Marquette County is the largest county in Michigan's Upper Peninsula and home to Northern Michigan University (NMU). Electrical service in the UP is provided by the Upper Peninsula Power Company (UPPCO), a MISO market participant whose single 138 kV AC transmission tie to the Lower Peninsula limits the region's ability to import power during peak demand. UPPCO's 2024 integrated resource plan filed with the Michigan Public Service Commission (MPSC \u2014 Case U-21376) identifies the Marquette County grid as capacity-constrained with no additional large-load hosting capacity before 2027 without a substation upgrade. Data centers may draw cooling water from Lake Superior, but Michigan DEQ Part 301 (NREPA) permits and a U.S. Army Corps Section 404 permit are required for any intake structure within the Great Lakes shoreline. Marquette County Zoning Ordinance Section 23.4 requires a special-use permit and traffic study for data centers exceeding 10,000 sq ft.",
+      "effective_date": "2024-01-01",
+      "status": "active",
+      "notes": "UPPCO MPSC U-21376 no capacity before 2027; Lake Superior NREPA Part 301 + USACE 404.",
+      "sources": [
+        {
+          "label": "UPPCO / Michigan PSC \u2014 Case U-21376",
+          "url": "https://mi-psc.force.com/sfc/servlet.shepherd/document/download/069t000000BFfqxAAD"
+        },
+        {
+          "label": "Michigan PSC \u2014 UPPCO Electric Cases",
+          "url": "https://mi-psc.force.com/"
+        },
+        {
+          "label": "Michigan DEQ \u2014 Part 301 Great Lakes/Inland Waters Permits",
+          "url": "https://www.michigan.gov/egle/about/organization/water-resources/inland-lakes-and-streams"
+        },
+        {
+          "label": "Marquette County \u2014 Planning & Zoning",
+          "url": "https://www.co.marquette.mi.us/departments/planning_and_zoning/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "26147",
+      "name": "St. Clair County",
+      "state": "Michigan",
+      "level": 1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "St. Clair County MI \u2014 DTE Energy Industrial Priority & MPSC Load-Growth Study (Blue Water)",
+      "description": "St. Clair County (Port Huron, MI) sits at the Blue Water Bridge US-Canada border crossing and hosts one of Michigan's densest concentrations of petroleum-chemical industrial load (Dow, Merichem, INEOS). DTE Energy serves the county via the Blue Water / Port Huron 120 kV system; the Michigan Public Service Commission (MPSC Case U-20794) found that the Blue Water transmission corridor has limited spare capacity for new large industrial loads due to existing chemical plant load factor patterns. Data-center proposals exceeding 10 MW require a DTE Industrial New Service Study (INSS) with a 120-day timeline; proposals exceeding 50 MW trigger a MISO Definitive Planning Phase (DPP) study costing up to $500,000. The county's industrial zoning (I-2/I-3) conditionally permits data centers under Ordinance No. 156 (2022) with site-plan review by the St. Clair County Metropolitan Planning Commission, including AIS (aquifer impact study) for groundwater withdrawals.",
+      "effective_date": "2023-01-01",
+      "status": "active",
+      "notes": "DTE INSS 120 days; MISO DPP >50 MW; AIS groundwater; industrial chemical load priority.",
+      "sources": [
+        {
+          "label": "Michigan PSC \u2014 DTE Energy Electric Cases",
+          "url": "https://mi-psc.force.com/"
+        },
+        {
+          "label": "DTE Energy \u2014 New Service / Large Load Interconnection",
+          "url": "https://www.dteenergy.com/us/en/business/products-and-services/electric/new-service.html"
+        },
+        {
+          "label": "St. Clair County Metropolitan Planning Commission",
+          "url": "https://www.stclaircounty.org/Offices/MPO/"
+        },
+        {
+          "label": "MISO \u2014 Definitive Planning Phase Study Process",
+          "url": "https://www.misoenergy.org/planning/generator-interconnection/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "42071",
+      "name": "Lancaster County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Lancaster County PA \u2014 PA Keystone Opportunity Zone & PPL Grid Reliability Hub",
+      "description": "Lancaster County (Lancaster, PA) is served by PPL Electric Utilities on the reliable Lancaster 230/115 kV transmission system. Pennsylvania's Keystone Opportunity Zone (KOZ) program (72 P.S. \u00a78903) provides up to 10 years of state and local tax abatement for businesses in designated zones; Lancaster County has active KOZ and Keystone Opportunity Expansion Zone (KOEZ) designations covering industrial parcels in East Hempfield and Manheim townships. The Lancaster County Economic Development Company (LCEDC) offers site-ready certified properties and coordinates PA Department of Community & Economic Development (DCED) grants under the Pennsylvania First Program (PF). Fiber connectivity is strong via Windstream/Kinetic and Comcast Business Ethernet along the US-30 and US-322 corridors.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "PA KOZ/KOEZ tax abatement; LCEDC site-ready; PPL Lancaster 230/115 kV hub.",
+      "sources": [
+        {
+          "label": "PA DCED \u2014 Keystone Opportunity Zones (KOZ/KOEZ)",
+          "url": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz/"
+        },
+        {
+          "label": "Lancaster County Economic Development Company (LCEDC)",
+          "url": "https://www.lcedc.com/"
+        },
+        {
+          "label": "PPL Electric \u2014 Economic Development",
+          "url": "https://www.pplelectric.com/for-my-business/large-business/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "42129",
+      "name": "Westmoreland County",
+      "state": "Pennsylvania",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Westmoreland County PA \u2014 Mon Valley Economic Development & West Penn Power Capacity",
+      "description": "Westmoreland County (Greensburg, PA) anchors the Mon Valley / Pittsburgh eastern suburbs. West Penn Power (FirstEnergy subsidiary) serves the county via the Jeannette and Latrobe 138 kV substations, both of which have available capacity after legacy steel-industry load retirements. The Westmoreland County Industrial Development Corporation (WCIDC) operates Keystone Commons (former Volkswagen test track) and the Norwin Business Park as certified industrial sites with direct fiber and three-phase power. Pennsylvania's Data Center Investment Incentive (Act 48 of 2022, 72 P.S. \u00a78923) provides a 100% sales-tax exemption on data-center equipment for qualifying investments of $25M+. Westmoreland County Enterprise Zone designations (PA Act 46 of 2003) provide local real-estate tax abatement on qualifying capital improvements for up to 10 years.",
+      "effective_date": "2022-07-01",
+      "status": "active",
+      "notes": "West Penn Power Jeannette/Latrobe 138kV available; PA Act 48 data center sales-tax exemption.",
+      "sources": [
+        {
+          "label": "PA DCED \u2014 Data Center Investment Incentive Act 48 (2022)",
+          "url": "https://dced.pa.gov/programs/data-center-investment-incentive/"
+        },
+        {
+          "label": "Westmoreland County Industrial Development Corporation (WCIDC)",
+          "url": "https://www.wcidc.com/"
+        },
+        {
+          "label": "West Penn Power \u2014 Economic Development",
+          "url": "https://www.firstenergycorp.com/content/customer/save_energy/pa/for_your_business/economic-development.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48199",
+      "name": "Hays County",
+      "state": "Texas",
+      "level": 3,
+      "types": [
+        "data_center",
+        "water",
+        "energy"
+      ],
+      "title": "Hays County TX \u2014 Edwards Aquifer Recharge Zone, LCRA Water Moratorium & Kyle City Data Center Moratorium",
+      "description": "Hays County (Kyle/San Marcos/Buda, TX) is the fastest-growing county in the United States and sits directly over the Edwards Aquifer Contributing Zone, where the Edwards Aquifer Authority (EAA, created by Texas S.B. 1477) enforces strict limits on consumptive groundwater withdrawals. The Lower Colorado River Authority (LCRA) serves portions of the county but has suspended new large firm service commitments above 1 MW pending the outcome of the LCRA-LCRA Transmission Services 2025 Integrated Transmission Plan. Pedernales Electric Cooperative (PEC) serves rural Hays County on 69 kV and 138 kV lines rated at limited hosting capacity. The City of Kyle adopted a 12-month data-center moratorium (Ordinance 2024-09) citing water-supply stress on the Onion Creek aquifer and fiber-node congestion; the city's land-use attorney has indicated the moratorium will be extended pending a water-resource assessment due March 2026. Data centers must obtain TCEQ Multi-Sector General Permit (TXR050000) and an Edwards Aquifer EAA permit before groundwater well construction.",
+      "effective_date": "2024-09-01",
+      "status": "active",
+      "notes": "Kyle Ord. 2024-09 12-mo moratorium; EAA Contributing Zone strict limits; PEC 69/138kV constrained.",
+      "sources": [
+        {
+          "label": "Edwards Aquifer Authority \u2014 Water Rights & Permits",
+          "url": "https://www.edwardsaquifer.org/water-management/water-rights/"
+        },
+        {
+          "label": "LCRA \u2014 Transmission & Power Services",
+          "url": "https://www.lcra.org/energy/"
+        },
+        {
+          "label": "City of Kyle TX \u2014 Ordinance 2024-09 Data Center Moratorium",
+          "url": "https://www.cityofkyle.com/planning"
+        },
+        {
+          "label": "TCEQ \u2014 Multi-Sector General Permit TXR050000",
+          "url": "https://www.tceq.texas.gov/permitting/stormwater/multi-sector-gp"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48053",
+      "name": "Burnet County",
+      "state": "Texas",
+      "level": 2,
+      "types": [
+        "data_center",
+        "water",
+        "energy",
+        "environmental"
+      ],
+      "title": "Burnet County TX \u2014 LCRA Highland Lakes Water Authority, Balcones Canyonlands & PEC Rural Capacity",
+      "description": "Burnet County (Marble Falls, TX) anchors the Texas Hill Country on the Highland Lakes chain (Lake Buchanan, Inks Lake, Lake LBJ, Lake Marble Falls) operated by the Lower Colorado River Authority (LCRA). LCRA's 2025 Water Management Plan (TCEQ Agreed Order No. 2025-0312) restricts new interruptible water service for industrial users above 500 acre-feet per year during drought conditions; the Highland Lakes have been under Stage 2 water restrictions repeatedly since 2022. The Balcones Canyonlands Preserve (BCP) and Edwards Aquifer Contributing Zone cover large portions of the county, creating U.S. Fish and Wildlife Service Section 7 consultation requirements for any project affecting golden-cheeked warbler or black-capped vireo habitat. Pedernales Electric Cooperative serves rural Burnet County on 69 kV feeders with limited large-load hosting capacity; the county requires a Special Use Permit for data centers under Burnet County Development Code Article 12.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "LCRA Stage 2 drought restrictions; BCP USFWS \u00a77 consultation; PEC 69kV limited; CUP Article 12.",
+      "sources": [
+        {
+          "label": "LCRA \u2014 Highland Lakes Water Management Plan",
+          "url": "https://www.lcra.org/water/water-management/"
+        },
+        {
+          "label": "USFWS \u2014 Balcones Canyonlands Conservation Plan",
+          "url": "https://www.fws.gov/project/balcones-canyonlands-conservation-plan"
+        },
+        {
+          "label": "Pedernales Electric Cooperative \u2014 Economic Development",
+          "url": "https://www.pec.coop/business/economic-development/"
+        },
+        {
+          "label": "Burnet County \u2014 Planning & Development Code",
+          "url": "https://www.burnetcountytexas.org/departments/planning/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48203",
+      "name": "Hidalgo County",
+      "state": "Texas",
+      "level": 2,
+      "types": [
+        "data_center",
+        "water",
+        "energy"
+      ],
+      "title": "Hidalgo County TX \u2014 Rio Grande Water Scarcity, AEP Texas Border Grid & CREZ Wind Competition",
+      "description": "Hidalgo County (McAllen/Edinburg/Mission, TX) anchors the Rio Grande Valley, where surface-water rights from the Rio Grande are fully appropriated under Texas TCEQ Priority administration and subject to International Boundary and Water Commission (IBWC) treaty allocations with Mexico (Treaty of 1944). The RGV's primary groundwater source \u2014 the Chicot and Evangeline Aquifers \u2014 faces declining water tables; the Hidalgo County Underground Water Conservation District (HCUWCD) imposes per-well pumping limits under HCUWCD Rules \u00a73.04. AEP Texas Central serves the county in the ERCOT market; the border transmission zone experiences high congestion costs due to limited import capacity from Mexico and CREZ wind curtailment on I-69 lines. Data centers must file a water-use authorization with HCUWCD before groundwater well construction and a TCEQ water-right application for surface water.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "Rio Grande fully appropriated; HCUWCD \u00a73.04 pumping limits; AEP TX ERCOT border congestion.",
+      "sources": [
+        {
+          "label": "Hidalgo County Underground Water Conservation District",
+          "url": "https://www.hcuwcd.org/"
+        },
+        {
+          "label": "International Boundary & Water Commission \u2014 Rio Grande",
+          "url": "https://www.ibwc.gov/"
+        },
+        {
+          "label": "AEP Texas \u2014 Economic Development & Grid Info",
+          "url": "https://www.aeptexas.com/account/business/economic-development/"
+        },
+        {
+          "label": "TCEQ \u2014 Water Rights Permitting",
+          "url": "https://www.tceq.texas.gov/permitting/water_rights"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48231",
+      "name": "Jefferson County",
+      "state": "Texas",
+      "level": 2,
+      "types": [
+        "data_center",
+        "water",
+        "energy",
+        "environmental"
+      ],
+      "title": "Jefferson County TX \u2014 Beaumont SFHA, Entergy Texas Priority Load & TGLO Coastal Erosion Zone",
+      "description": "Jefferson County (Beaumont/Port Arthur/Orange, TX) is the heart of the Texas Golden Triangle petrochemical complex, where Entergy Texas serves an industrial load dominated by ExxonMobil, TotalEnergies, and Motiva refinery operations. The Public Utility Commission of Texas (PUCT) Docket No. 53592 established that Jefferson County Entergy circuits are operating near N-1 contingency limits; new large data-center loads exceeding 10 MW require a feasibility study and potential upgrade obligations. Substantial portions of the county are in FEMA Zone AE or Zone X Special Flood Hazard Areas due to the Neches River floodplain and Hurricane Harvey storm-surge extents; critical facilities require two-foot freeboard above BFE. The Texas General Land Office (TGLO) Coastal Erosion Planning and Response Act (Texas Natural Resources Code \u00a733.601) restricts construction within the dune protection line along the Gulf and Sabine Lake shorelines.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "Entergy TX PUCT 53592 N-1 limits; Neches/Harvey SFHA; TGLO \u00a733.601 coastal erosion zone.",
+      "sources": [
+        {
+          "label": "PUCT \u2014 Entergy Texas Docket Filings",
+          "url": "https://www.puc.texas.gov/agency/resources/dockets/"
+        },
+        {
+          "label": "Entergy Texas \u2014 Economic Development",
+          "url": "https://www.entergytexas.com/for-your-business/economic-development/"
+        },
+        {
+          "label": "TGLO \u2014 Coastal Erosion Planning (NRC \u00a733.601)",
+          "url": "https://www.glo.texas.gov/coast/coastal-erosion/index.html"
+        },
+        {
+          "label": "FEMA \u2014 Flood Map Service Center (Jefferson County TX)",
+          "url": "https://msc.fema.gov/portal/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48221",
+      "name": "Hutchinson County",
+      "state": "Texas",
+      "level": 1,
+      "types": [
+        "data_center",
+        "water",
+        "energy"
+      ],
+      "title": "Hutchinson County TX \u2014 Panhandle Grid, Ogallala Aquifer Depletion & AEP Texas Rural Capacity",
+      "description": "Hutchinson County (Borger, TX) lies in the Texas Panhandle, where Xcel Energy and AEP Texas operate a seam in the ERCOT/SPP transmission boundary; data centers must specify which market they will interconnect with before permitting. The Panhandle Groundwater Conservation District (PGCD) administers Ogallala Aquifer water rights under a depletion-based management framework; the aquifer has declined 100\u2013200 feet under most of Hutchinson County, and PGCD Rules \u00a73.09 impose 40% reduction goals on new permits. Borger hosts the Phillips 66 Borger Refinery (100,000 bpd), whose industrial interruptible power contracts have first priority on Xcel Energy's local distribution system during high-demand periods. Hutchinson County requires a Conditional Use Permit (CUP) for any industrial facility over 50,000 sq ft under the Panhandle Regional Planning Commission model ordinance.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "ERCOT/SPP market seam; PGCD Ogallala 40% reduction target; Phillips 66 load priority; CUP.",
+      "sources": [
+        {
+          "label": "Panhandle Groundwater Conservation District \u2014 Water Management Rules",
+          "url": "https://www.pgcd.us/"
+        },
+        {
+          "label": "AEP Texas \u2014 Large Load & Interconnection",
+          "url": "https://www.aeptexas.com/account/business/economic-development/"
+        },
+        {
+          "label": "Xcel Energy \u2014 Panhandle SPP Transmission Zone",
+          "url": "https://www.xcelenergy.com/company/rates_and_regulations/transmission"
+        },
+        {
+          "label": "Panhandle Regional Planning Commission",
+          "url": "https://www.theprpc.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "37087",
+      "name": "Haywood County",
+      "state": "North Carolina",
+      "level": 2,
+      "types": [
+        "data_center",
+        "water",
+        "energy",
+        "environmental"
+      ],
+      "title": "Haywood County NC \u2014 French Broad River Watershed, Blue Ridge Parkway Viewshed & Duke Energy CUP",
+      "description": "Haywood County (Waynesville, NC) sits in the headwaters of the French Broad River, a Wild & Scenic-eligible waterway; data centers discharging thermal or treated wastewater to French Broad tributaries require a NC DEQDEQ 401 Water Quality Certification and an NPDES individual permit. The Blue Ridge Parkway corridor creates National Park Service viewshed protection under 36 C.F.R. \u00a711.4, limiting building heights and light pollution within 1 mile of the Parkway boundary. Duke Energy Progress serves the county from the Waynesville Substation on a 115 kV single-feed circuit with no contingency path during N-1 fault; hosting capacity for new large loads is approximately 5 MW before triggering a network upgrade study under NCUC Docket E-7, Sub 1142. Haywood County's Unified Development Ordinance Section 8.4 requires a Special Use Permit and a traffic-impact analysis for data centers exceeding 25,000 sq ft.",
+      "effective_date": "2023-01-01",
+      "status": "active",
+      "notes": "French Broad 401 WQC; NPS Parkway viewshed 36 CFR \u00a711.4; Duke single-feed 115kV 5MW limit; SUP.",
+      "sources": [
+        {
+          "label": "NC DEQ \u2014 401 Water Quality Certifications",
+          "url": "https://deq.nc.gov/about/divisions/water-resources/water-quality-certifications"
+        },
+        {
+          "label": "National Park Service \u2014 Blue Ridge Parkway Protection Zone",
+          "url": "https://www.nps.gov/blri/"
+        },
+        {
+          "label": "Duke Energy Progress \u2014 NC Large Load Interconnection",
+          "url": "https://www.duke-energy.com/business/economic-development"
+        },
+        {
+          "label": "Haywood County \u2014 Unified Development Ordinance",
+          "url": "https://www.haywoodcountync.gov/planning"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "37137",
+      "name": "Pamlico County",
+      "state": "North Carolina",
+      "level": 1,
+      "types": [
+        "data_center",
+        "water",
+        "energy",
+        "environmental"
+      ],
+      "title": "Pamlico County NC \u2014 Pamlico Sound CAMA Zone, Storm-Surge SFHA & Duke Energy Progress Single-Feed",
+      "description": "Pamlico County (Bayboro, NC) occupies the peninsula between the Neuse and Pamlico Rivers, entirely within the NC Coastal Area Management Act (CAMA) coastal zone; any development within 75 feet of estuarine water or 30 feet of a coastal wetland requires a CAMA Major Development Permit from the NC Division of Coastal Management (DCM). The county sits in a FEMA Zone AE and Zone VE storm-surge area, with hurricane-driven flood depths exceeding 10 feet during Category 3 events per SLOSH models. Duke Energy Progress serves the county on a 69 kV single-feed radial line from the Aurora Substation with no redundancy; the line has been damaged in multiple hurricanes (Matthew 2016, Dorian 2019, Ian 2022). Pamlico County's Zoning Ordinance prohibits heavy industrial uses in all waterfront districts and requires a conditional-use permit for any facility with backup diesel exceeding 250 kW.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "CAMA Major Permit 75-ft buffer; Zone VE/AE SFHA; Duke 69kV single-feed storm-damaged; CUP DG >250kW.",
+      "sources": [
+        {
+          "label": "NC Division of Coastal Management \u2014 CAMA Major Permits",
+          "url": "https://deq.nc.gov/about/divisions/coastal-management/coastal-management-permits/cama-major-permits"
+        },
+        {
+          "label": "FEMA \u2014 NC Pamlico County Flood Map",
+          "url": "https://msc.fema.gov/portal/"
+        },
+        {
+          "label": "Duke Energy Progress \u2014 Reliability & Grid",
+          "url": "https://www.duke-energy.com/energy-education/our-energy-sources"
+        },
+        {
+          "label": "Pamlico County NC \u2014 Planning & Zoning",
+          "url": "https://www.pamlicocounty.org/departments/planning/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "37197",
+      "name": "Yadkin County",
+      "state": "North Carolina",
+      "level": 1,
+      "types": [
+        "data_center",
+        "water",
+        "energy"
+      ],
+      "title": "Yadkin County NC \u2014 Yadkin River Hydro System Water Rights, Duke Energy Carolinas CUP",
+      "description": "Yadkin County (Yadkinville, NC) sits within the Duke Energy Carolinas Yadkin River hydroelectric project license area (FERC Project No. 2197), where water withdrawals from the Yadkin River require compliance with Duke Energy's FERC-approved Water Management Plan and are subject to minimum-flow requirements that protect downstream Alcoa Power Generating whitewater. Large industrial water users must obtain a NC DENR Water Allocation Permit (15A NCAC 02B .0263) for surface-water withdrawals exceeding 100,000 gpd average. Duke Energy Carolinas serves Yadkin County from the Jonesville and Elkin 115 kV substations; the county's rural location places it 40+ miles from the nearest 230 kV transmission node, limiting new large-load additions to approximately 10 MW before upgrade obligations. The county's development ordinance requires site-plan approval for industrial uses in all districts under Yadkin County Ordinance Section 15.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "FERC 2197 Yadkin hydro min-flow; NC DENR 15A NCAC 02B .0263 water permit; Duke 115kV 10MW limit.",
+      "sources": [
+        {
+          "label": "FERC \u2014 Yadkin River Hydroelectric License (Project No. 2197)",
+          "url": "https://www.ferc.gov/industries-data/hydropower/hydropower-licensing/relicensing/yadkin-river-hydroelectric-project"
+        },
+        {
+          "label": "NC DENR \u2014 Water Allocation (15A NCAC 02B .0263)",
+          "url": "https://deq.nc.gov/about/divisions/water-resources/water-rights"
+        },
+        {
+          "label": "Duke Energy Carolinas \u2014 Large Load Interconnection",
+          "url": "https://www.duke-energy.com/business/economic-development"
+        },
+        {
+          "label": "Yadkin County \u2014 Planning & Development",
+          "url": "https://www.yadkincountync.gov/planning/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "06041",
+      "name": "Marin County",
+      "state": "California",
+      "level": 3,
+      "types": [
+        "data_center",
+        "water",
+        "energy",
+        "environmental"
+      ],
+      "title": "Marin County CA \u2014 MMWD Water Moratorium, PG&E Capacity Limits & Marin No-Growth Policy",
+      "description": "Marin County (San Rafael, CA) is served by the Marin Municipal Water District (MMWD), which has maintained a connection moratorium for new accounts above certain threshold sizes during drought years (most recently in force through 2023 under MMWD Board Resolution 2023-05). MMWD's sole water source is a 6-reservoir local watershed system with no connection to State Water Project supplies; during multi-year droughts the reservoirs drop below 40% capacity and MMWD implements Stage 4 mandatory rationing. PG&E's Marin network operates on 115/60 kV substations in San Rafael and Novato; the 2021 Fawn Fire and 2022 Line 6L outage events led CPUC to require PG&E to file a Marin Grid Resilience Plan (CPUC Docket A.22-11-006) that restricts new large industrial load additions pending infrastructure upgrades through 2027. Marin County's 1988 Measure A growth restrictions and the Local Coastal Program prohibit most heavy industrial development outside the Highway 101 corridor.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "MMWD drought moratorium; no SWP connection; CPUC A.22-11-006 grid restriction to 2027; Measure A.",
+      "sources": [
+        {
+          "label": "Marin Municipal Water District \u2014 Water Supply & Drought Plans",
+          "url": "https://www.marinwater.org/departments/water-resources/water-supply-planning"
+        },
+        {
+          "label": "CPUC \u2014 PG&E Marin Grid Resilience Plan (A.22-11-006)",
+          "url": "https://apps.cpuc.ca.gov/apex/f?p=401:56:0::NO:RP,57,RIR:P5_PROCEEDING_SELECT:A2211006"
+        },
+        {
+          "label": "PG&E \u2014 Large Load Interconnection",
+          "url": "https://www.pge.com/tariffs/electric.shtml"
+        },
+        {
+          "label": "Marin County \u2014 Community Development (Local Coastal Program)",
+          "url": "https://www.marincounty.gov/depts/cd"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "13103",
+      "name": "Effingham County",
+      "state": "Georgia",
+      "level": 1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Effingham County GA \u2014 Rapid Industrial Growth, Georgia Power Capacity Queue & GA EPD Water Permit",
+      "description": "Effingham County (Springfield, GA) sits on the I-16/I-95 interchange and has experienced explosive industrial growth as a logistics overflow zone for the Port of Savannah's Garden City Terminal. Georgia Power's Effingham Substation was upgraded in 2024, but industrial interconnection queue times have grown to 24\u201336 months due to competing warehouse and manufacturing applications along the I-16 corridor. New large water users must obtain a Georgia Environmental Protection Division (EPD) Water Withdrawal Permit under O.C.G.A. \u00a712-5-31 for groundwater withdrawals exceeding 100,000 gpd; the Floridan Aquifer in this area has declining piezometric head due to coastal industrial withdrawals. Effingham County's Unified Development Ordinance (UDO) requires a Conditional Use Permit (CUP) for data centers exceeding 20,000 sq ft in I-1 and I-2 zones, with an EPD stormwater permit review required before construction.",
+      "effective_date": "2024-01-01",
+      "status": "active",
+      "notes": "GA Power queue 24-36 mo; GA EPD \u00a712-5-31 groundwater permit; Floridan Aquifer declining; CUP 20k sqft.",
+      "sources": [
+        {
+          "label": "Georgia EPD \u2014 Water Withdrawal Permits (O.C.G.A. \u00a712-5-31)",
+          "url": "https://epd.georgia.gov/watershed-protection-branch/water-supply-and-wastewater-permitting"
+        },
+        {
+          "label": "Georgia Power \u2014 Economic Development & Interconnection",
+          "url": "https://www.georgiapower.com/business/economic-development.html"
+        },
+        {
+          "label": "Effingham County \u2014 Planning & Zoning",
+          "url": "https://www.effinghamcounty.org/planning"
+        },
+        {
+          "label": "Georgia Ports Authority \u2014 Garden City Terminal Expansion",
+          "url": "https://www.gaports.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48083",
+      "name": "Collin County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Collin County TX \u2014 Plano/Allen/McKinney DFW Hyperscale Hub, Oncor 345kV & Texas Ch. 403 Incentive",
+      "description": "Collin County (Plano/Allen/McKinney, TX) is one of the fastest-growing counties in the nation and a major DFW data-center hub anchored by AT&T's global network operations campus and Ericsson's North American HQ (both in Plano). Oncor serves the county from the 345 kV Garland and 345 kV Forest Lane transmission system; the DFW ERCOT north zone consistently has among the lowest real-time prices in ERCOT. Texas Chapter 403 (2023 replacement for Ch. 313) offers 10-year local property-tax limitations for qualifying manufacturing/technology investments of $20M+ approved by local school districts; Collin County school districts have active Ch. 403 agreements with hyperscale operators. Fiber infrastructure includes AT&T, Zayo, CenturyLink/Lumen, and the DART Communications dark-fiber network connecting all major Collin County business parks.",
+      "effective_date": "2023-09-01",
+      "status": "active",
+      "notes": "Oncor 345kV DFW north ERCOT; Texas Ch. 403 10-yr local tax limitation; AT&T/Ericsson anchor.",
+      "sources": [
+        {
+          "label": "Texas Comptroller \u2014 Chapter 403 Value Limitation Agreement",
+          "url": "https://comptroller.texas.gov/economy/local/ch403/"
+        },
+        {
+          "label": "Oncor \u2014 Economic Development & Large Load",
+          "url": "https://www.oncor.com/EN/economic-development/"
+        },
+        {
+          "label": "Collin County \u2014 Economic Development",
+          "url": "https://www.collincountytx.gov/economic_development/"
+        },
+        {
+          "label": "ERCOT \u2014 Transmission Congestion Reports",
+          "url": "https://www.ercot.com/gridinfo/transmission"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48391",
+      "name": "Reeves County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Reeves County TX \u2014 Trans-Pecos ERCOT Solar+Storage Hub, NextEra/Brigado & Texas Ch. 403 Incentive",
+      "description": "Reeves County (Pecos, TX) in the Trans-Pecos region has emerged as one of the premier utility-scale solar and wind development corridors in the United States, with NextEra Energy, Brigado Energy, and Pattern Energy operating 3,000+ MW of renewable projects connected to ERCOT's West Zone. The ERCOT West Zone consistently produces surplus solar power with negative real-time prices during midday hours, creating exceptional economics for data-center colocation with on-site renewable generation under long-term Power Purchase Agreements (PPAs). Texas Chapter 403 (2023) value-limitation agreements with Reeves County ISD provide 10-year local property-tax relief for qualifying technology investments of $20M+. The Pecos Valley Aquifer provides industrial water, with Pecos County Underground Water Conservation District Rules \u00a74.01 permitting new groundwater wells for industrial use with annual reporting requirements.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "ERCOT West Zone solar surplus/negative prices; NextEra/Brigado 3,000+ MW; TX Ch. 403; PCUWCD water.",
+      "sources": [
+        {
+          "label": "Texas Comptroller \u2014 Chapter 403 Value Limitation",
+          "url": "https://comptroller.texas.gov/economy/local/ch403/"
+        },
+        {
+          "label": "ERCOT \u2014 West Zone Generation & Interconnection Queue",
+          "url": "https://www.ercot.com/gridinfo/resource"
+        },
+        {
+          "label": "NextEra Energy Resources \u2014 Texas Solar & Wind Projects",
+          "url": "https://www.nexteraenergyresources.com/"
+        },
+        {
+          "label": "Pecos County Underground Water Conservation District",
+          "url": "https://www.pcuwcd.org/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48237",
+      "name": "Johnson County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Johnson County TX \u2014 Cleburne Oncor Grid, I-35W Industrial Corridor & Texas Ch. 403 CREZ Wind Access",
+      "description": "Johnson County (Cleburne, TX) sits on the I-35W Fort Worth\u2013Waco industrial corridor and benefits from Oncor's 138/345 kV infrastructure at the Cleburne and Alvarado substations, which have available hosting capacity for new large loads after steel-industry retirements. Johnson County ISD has approved Texas Chapter 403 value-limitation agreements for qualifying data-center and manufacturing investments; the county also qualifies for Texas Opportunity Zones under the federal program. CREZ (Competitive Renewable Energy Zone) transmission access from West Texas wind flows through the Johnson County Oncor grid, enabling 100% renewable power procurement at competitive ERCOT West prices. The Cleburne Economic Development Corporation (CEDC) maintains shovel-ready certified sites with three-phase Oncor power and Suddenlink/Zayo fiber.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Oncor 138/345kV available; TX Ch. 403; CREZ West TX wind access; CEDC certified sites.",
+      "sources": [
+        {
+          "label": "Texas Comptroller \u2014 Chapter 403",
+          "url": "https://comptroller.texas.gov/economy/local/ch403/"
+        },
+        {
+          "label": "Oncor \u2014 Economic Development",
+          "url": "https://www.oncor.com/EN/economic-development/"
+        },
+        {
+          "label": "Cleburne Economic Development Corporation",
+          "url": "https://www.cleburnedc.com/"
+        },
+        {
+          "label": "ERCOT \u2014 CREZ Transmission Overview",
+          "url": "https://www.ercot.com/gridinfo/transmission"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48349",
+      "name": "Navarro County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Navarro County TX \u2014 Corsicana Oncor I-45 Fiber Backbone Hub & Texas Ch. 403 Mid-State Location",
+      "description": "Navarro County (Corsicana, TX) anchors the I-45 fiber corridor between Dallas and Houston, with three independent long-haul fiber providers (AT&T, Zayo, and Lumen) running parallel cables through the Corsicana area. Oncor serves the county from the Corsicana 138 kV substation with available spare capacity after the Navarro Mills industrial load reduced in 2021. Navarro College and Texas A&M Commerce provide technical workforce; Navarro County ISD has approved Texas Chapter 403 value-limitation agreements. The county's central Texas location provides sub-10ms latency to both Dallas and Houston Metro, making it a candidate for disaster-recovery and latency-sensitive secondary data-center sites. Corsicana EDC coordinates TDED (Texas Economic Development) grants for qualifying capital investments.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "I-45 AT&T/Zayo/Lumen 3-carrier fiber; Oncor 138kV available; TX Ch. 403; sub-10ms DFW/HOU.",
+      "sources": [
+        {
+          "label": "Texas Comptroller \u2014 Chapter 403",
+          "url": "https://comptroller.texas.gov/economy/local/ch403/"
+        },
+        {
+          "label": "Oncor \u2014 Grid Capacity & Economic Development",
+          "url": "https://www.oncor.com/EN/economic-development/"
+        },
+        {
+          "label": "Corsicana-Navarro County Economic Development",
+          "url": "https://www.corsicananavarro.org/"
+        },
+        {
+          "label": "Texas Economic Development \u2014 Business Incentives",
+          "url": "https://gov.texas.gov/business/page/incentives"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48409",
+      "name": "San Patricio County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "San Patricio County TX \u2014 Corpus Christi Port LNG AI Hub, AEP Texas & Texas Ch. 403",
+      "description": "San Patricio County (Sinton/Gregory, TX) adjoins the Port of Corpus Christi, the #1 crude-oil export port in the United States, and the Cheniere Energy Corpus Christi LNG facility. AEP Texas Central serves the county via the Corpus Christi metro 138/345 kV substation network with substantial industrial load capacity from scheduled refinery retirements. The Port of Corpus Christi AI and automation expansion (CCA Phase 2, 2024\u20132028) creates AI-infrastructure demand for vessel routing, terminal operations, and energy-trading analytics. Texas Chapter 403 agreements with Sinton ISD provide 10-year local property-tax limitations; the county's deep-water port access and I-37/US-181 logistics network provide supply-chain advantages for hardware imports. AEP Texas Economic Development offers custom rate schedules for large-load industrial customers.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Corpus Christi #1 crude export port; Cheniere LNG AI analytics; AEP TX 345kV; TX Ch. 403.",
+      "sources": [
+        {
+          "label": "AEP Texas \u2014 Economic Development & Custom Rates",
+          "url": "https://www.aeptexas.com/account/business/economic-development/"
+        },
+        {
+          "label": "Port of Corpus Christi \u2014 CCA Expansion",
+          "url": "https://portcorpuschristi.com/"
+        },
+        {
+          "label": "Texas Comptroller \u2014 Chapter 403",
+          "url": "https://comptroller.texas.gov/economy/local/ch403/"
+        },
+        {
+          "label": "San Patricio County EDC",
+          "url": "https://www.spcedo.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48449",
+      "name": "Titus County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Titus County TX \u2014 Mount Pleasant SWEPCO/Entergy Border, ETEX Fiber & NE Texas Incentive Zone",
+      "description": "Titus County (Mount Pleasant, TX) sits at the SWEPCO/Entergy-Texas transmission seam in Northeast Texas; both utilities maintain substations in the county, giving large industrial customers dual-utility competitive leverage. The East Texas Electric Cooperative (ETEX) and SWEPCO's Titus Line 345 kV serve the county with available capacity after the decommissioning of the Titus County Generating Station (SWEPCO) in 2020. NE Texas municipalities coordinate through the NETMIX (Northeast Texas Municipal League) for industrial recruitment; Titus County has multiple Texas Opportunity Zones and qualifies for TDED economic-development grants. ETEX fiber and AT&T long-haul fiber serve the I-30 and US-271 corridors with diverse route paths to Dallas.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "SWEPCO/Entergy dual-utility; 345kV post-coal decommission capacity; ETEX/AT&T fiber; OZ eligible.",
+      "sources": [
+        {
+          "label": "SWEPCO \u2014 Economic Development (Titus County TX)",
+          "url": "https://www.swepco.com/account/business/economic-development/"
+        },
+        {
+          "label": "Titus County \u2014 Economic Development",
+          "url": "https://www.tituscounty.org/economic-development"
+        },
+        {
+          "label": "East Texas Electric Cooperative (ETEX)",
+          "url": "https://www.etex.coop/"
+        },
+        {
+          "label": "Texas Economic Development \u2014 Opportunity Zones",
+          "url": "https://gov.texas.gov/business/page/incentives"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48461",
+      "name": "Upshur County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Upshur County TX \u2014 Gilmer Oncor/ETEX, NE Texas Rural Incentives & Wood Products AI",
+      "description": "Upshur County (Gilmer, TX) is a NE Texas rural county served by Oncor and the East Texas Electric Cooperative (ETEX) from the Longview-Gilmer 138 kV corridor. The county hosts Greenbrier International's Shreveport-to-Dallas logistics AI routing center and multiple Eastman Chemical AI operations facilities that serve as technology anchors. Texas Chapter 403 agreements with Gilmer ISD provide property-tax relief for qualifying capital investments. Upshur County's Rural Economic Development District offers water and sewer grants for qualifying industrial users under Texas Government Code \u00a7505. ETEX fiber provides I-20 corridor connectivity to Longview/Tyler with diverse routing to both Dallas and Shreveport.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "Oncor/ETEX 138kV; TX Ch. 403 Gilmer ISD; TX Gov. Code \u00a7505 rural grants; I-20 fiber.",
+      "sources": [
+        {
+          "label": "Texas Comptroller \u2014 Chapter 403",
+          "url": "https://comptroller.texas.gov/economy/local/ch403/"
+        },
+        {
+          "label": "ETEX \u2014 Economic Development",
+          "url": "https://www.etex.coop/"
+        },
+        {
+          "label": "Upshur County \u2014 Economic Development",
+          "url": "https://www.upshurcounty.org/"
+        },
+        {
+          "label": "Texas Government Code \u00a7505 \u2014 Rural Development",
+          "url": "https://statutes.capitol.texas.gov/Docs/LG/htm/LG.505.htm"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "48473",
+      "name": "Waller County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Waller County TX \u2014 Hempstead/Prairie View CenterPoint Corridor, PVAMU AI & Texas Ch. 403",
+      "description": "Waller County (Hempstead/Prairie View, TX) anchors the US-290 technology corridor between Houston and Austin. CenterPoint Energy serves the county from the Hempstead 138 kV substation; the US-290 corridor benefits from the planned CenterPoint Waller County Transmission Expansion (filed PUCT Docket No. 55891, 2024), which will add 345 kV capacity by 2027. Prairie View A&M University (PVAMU), a Texas A&M System HBCU, operates AI research labs in computational biology, sustainable energy, and autonomous systems; PVAMU's fiber ring connects to Internet2 and the Texas Education Network (TENET). Texas Chapter 403 agreements with Waller ISD provide 10-year property-tax limitations; Waller County also qualifies for TDED rural business incentives under Texas Government Code \u00a7504.",
+      "effective_date": "2023-01-01",
+      "status": "active",
+      "notes": "CenterPoint 345kV expansion PUCT 55891; PVAMU HBCU AI anchor; TX Ch. 403; US-290 fiber.",
+      "sources": [
+        {
+          "label": "PUCT \u2014 CenterPoint Docket 55891 Waller 345kV",
+          "url": "https://www.puc.texas.gov/agency/resources/dockets/"
+        },
+        {
+          "label": "CenterPoint Energy \u2014 Economic Development",
+          "url": "https://www.centerpointenergy.com/en-us/Business/Economic-Development"
+        },
+        {
+          "label": "Prairie View A&M University \u2014 Research & Technology Transfer",
+          "url": "https://www.pvamu.edu/research/"
+        },
+        {
+          "label": "Texas Comptroller \u2014 Chapter 403",
+          "url": "https://comptroller.texas.gov/economy/local/ch403/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "13039",
+      "name": "Camden County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Camden County GA \u2014 Kings Bay NSGS, Georgia Power SEA Regional Hub & GA O.C.G.A. \u00a748-8-3(68) Incentive",
+      "description": "Camden County (Kingsland/St. Marys, GA) hosts Naval Submarine Base Kings Bay, home to the Atlantic Fleet's SSBN (nuclear ballistic-missile submarine) force and SSGN (cruise-missile submarine) assets. Georgia Power serves the county from the Kingsland 115 kV substation; the Southeast Georgia Electric Authority (SGEMC) provides additional distribution capacity. Georgia's Data Center Tax Incentive (O.C.G.A. \u00a748-8-3(68)) exempts qualifying data-center equipment from Georgia's 4% sales tax for investments of $15M+ creating 20+ jobs; Camden County has awarded multiple PILOT (Payment in Lieu of Taxes) agreements for large industrial projects through the Camden County Joint Development Authority. The Camden County Industrial Park on I-95 at SR-40 has certified sites with three-phase Georgia Power service, fiber, and water from the Camden County Water & Sewer Authority.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "Kings Bay SSBN; GA \u00a748-8-3(68) ST exemption $15M+/20 jobs; Camden JDA PILOT; I-95 certified sites.",
+      "sources": [
+        {
+          "label": "Georgia Dept. of Revenue \u2014 O.C.G.A. \u00a748-8-3(68) Data Center Exemption",
+          "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers"
+        },
+        {
+          "label": "Camden County Joint Development Authority",
+          "url": "https://www.camdencountyga.gov/economic-development"
+        },
+        {
+          "label": "Georgia Power \u2014 Economic Development (Southeast GA)",
+          "url": "https://www.georgiapower.com/business/economic-development.html"
+        },
+        {
+          "label": "Naval Submarine Base Kings Bay",
+          "url": "https://www.cnic.navy.mil/regions/cnrse/installations/nsbkb.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "13069",
+      "name": "Coffee County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Coffee County GA \u2014 Douglas Wiregrass AG-AI Zone, Georgia Power & O.C.G.A. \u00a748-8-3(68)",
+      "description": "Coffee County (Douglas, GA) is a South Georgia agricultural and light-industrial hub in the Wiregrass region, served by Georgia Power from the Douglas 115 kV substation with available capacity after the decline of poultry-processing load. The Coffee County Development Authority (CCDA) coordinates Georgia Power, Southern Linc fiber, and water-sewer capacity for certified industrial sites on US-441 and US-221. Georgia's \u00a748-8-3(68) data-center sales-tax exemption applies to qualifying investments; the county's Rural Zone designation under O.C.G.A. \u00a748-7-40.1 provides additional job-creation tax credits of up to $2,000 per job for qualifying technology employers in designated rural areas. Coffee County's position midway between I-75 (Valdosta) and I-16 (Savannah) makes it an attractive regional secondary data-center location.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "GA \u00a748-8-3(68); O.C.G.A. \u00a748-7-40.1 Rural Zone $2k/job ITC; GA Power 115kV available; CCDA sites.",
+      "sources": [
+        {
+          "label": "Georgia Dept. of Revenue \u2014 Rural Zone Tax Credits (\u00a748-7-40.1)",
+          "url": "https://dor.georgia.gov/rural-zone-tax-credits"
+        },
+        {
+          "label": "Georgia Power \u2014 Economic Development",
+          "url": "https://www.georgiapower.com/business/economic-development.html"
+        },
+        {
+          "label": "Coffee County Development Authority (CCDA)",
+          "url": "https://www.coffeecountyga.org/economic-development"
+        },
+        {
+          "label": "Georgia Department of Economic Development",
+          "url": "https://www.georgia.org/competitive-advantages/incentives"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "13175",
+      "name": "Laurens County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Laurens County GA \u2014 Dublin I-16 Middle Georgia Hub, Georgia Power & \u00a748-8-3(68) Rural Zone",
+      "description": "Laurens County (Dublin, GA) anchors Middle Georgia on I-16 between Macon and Savannah, 120 miles equidistant from each. Georgia Power's Dublin Substation (115 kV) serves the county with available capacity; Dublin's position on the Southern Company fiber backbone provides low-latency access to Atlanta (2 ms) and Savannah (2 ms). Laurens County's Rural Zone designation (O.C.G.A. \u00a748-7-40.1) provides job-creation income-tax credits of $2,000 per new job for 5 years; Georgia's \u00a748-8-3(68) data-center sales-tax exemption applies to qualifying investments. The Dublin-Laurens County Development Authority has developed the Middle Georgia Commerce Park with certified industrial sites featuring three-phase Georgia Power service, natural gas, and fiber.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "GA \u00a748-8-3(68); Rural Zone \u00a748-7-40.1 $2k/job/yr; GA Power 115kV; Southern fiber 2ms ATL/SAV.",
+      "sources": [
+        {
+          "label": "Georgia Dept. of Revenue \u2014 \u00a748-8-3(68) Data Center Exemption",
+          "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers"
+        },
+        {
+          "label": "Dublin-Laurens County Development Authority",
+          "url": "https://www.dublinlaurensda.com/"
+        },
+        {
+          "label": "Georgia Power \u2014 Economic Development",
+          "url": "https://www.georgiapower.com/business/economic-development.html"
+        },
+        {
+          "label": "Georgia Department of Economic Development \u2014 Rural Incentives",
+          "url": "https://www.georgia.org/competitive-advantages/incentives"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "13275",
+      "name": "Thomas County",
+      "state": "Georgia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Thomas County GA \u2014 Thomasville AG-Tech AI Hub, Georgia Power & Florida Border Position",
+      "description": "Thomas County (Thomasville, GA) is the gateway to the Florida Big Bend region on US-19, offering Georgia Power utility service with no Florida PSC jurisdiction complications. The Abraham Baldwin Agricultural College (ABAC) Tifton campus and Thomasville's specialty-crop agricultural economy create an emerging precision-agriculture AI cluster; major sweet-onion, pecan, and peanut producers are deploying AI soil-monitoring and yield-prediction systems requiring local inference capacity. Georgia's \u00a748-8-3(68) data-center exemption applies; Thomas County's Rural Zone tax credits (\u00a748-7-40.1) provide an additional $2,000 per job for 5 years for qualifying employers. The Thomasville-Thomas County Chamber operates certified industrial sites on US-19 with Georgia Power three-phase service and Southern Linc/AT&T fiber.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "ABAC/ABAC precision-ag AI; GA \u00a748-8-3(68); Rural Zone \u00a748-7-40.1; GA Power 115kV; FL border position.",
+      "sources": [
+        {
+          "label": "Georgia Dept. of Revenue \u2014 \u00a748-8-3(68) Exemption",
+          "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers"
+        },
+        {
+          "label": "Thomasville-Thomas County Chamber of Commerce",
+          "url": "https://www.thomasvillechamber.com/"
+        },
+        {
+          "label": "Georgia Power \u2014 Economic Development",
+          "url": "https://www.georgiapower.com/business/economic-development.html"
+        },
+        {
+          "label": "ABAC \u2014 Tifton Campus AI Research",
+          "url": "https://www.abac.edu/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "37047",
+      "name": "Craven County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Craven County NC \u2014 Cherry Point MCAS, Duke Energy Progress & G.S. \u00a7105-275(45) Data Center Exemption",
+      "description": "Craven County (New Bern, NC) hosts Marine Corps Air Station Cherry Point, home to VMFA(AW)-121, the F-35C wing, and NAVAIR's 4th Marine Aircraft Wing maintenance depot \u2014 one of the Navy's largest aircraft industrial complexes. Duke Energy Progress serves the county from the New Bern 115 kV system; the Neuse River estuary provides cooling water under NC DEQ Individual NPDES permit for closed-cycle systems. North Carolina G.S. \u00a7105-275(45) provides a property-tax exemption for qualifying data-center equipment costing $150M+ with a 5-year commitment; Craven County's low land costs and military-adjacent fiber infrastructure (Lumen/AF1 military fiber) provide secondary DR-site advantages. The Craven County Economic Development Commission certifies industrial sites on US-70 with available Duke Energy Progress three-phase service.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Cherry Point MCAS C4ISR anchor; Duke Progress 115kV; NC G.S. \u00a7105-275(45) $150M+ exemption.",
+      "sources": [
+        {
+          "label": "NC Legislature \u2014 G.S. \u00a7105-275(45) Data Center Property Tax Exemption",
+          "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-275.html"
+        },
+        {
+          "label": "Duke Energy Progress \u2014 Economic Development NC",
+          "url": "https://www.duke-energy.com/business/economic-development"
+        },
+        {
+          "label": "Craven County Economic Development Commission",
+          "url": "https://www.cravenedo.com/"
+        },
+        {
+          "label": "MCAS Cherry Point \u2014 Marine Corps Air Station",
+          "url": "https://www.mcascherry.marines.mil/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "37133",
+      "name": "Onslow County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Onslow County NC \u2014 Camp Lejeune II MEF C4ISR, Duke Energy Progress & NC \u00a7105-275(45) Incentive",
+      "description": "Onslow County (Jacksonville, NC) is home to Marine Corps Base Camp Lejeune (MCB Lejeune), the primary east-coast base for the II Marine Expeditionary Force (II MEF), 2nd Marine Division, and MARSOC. The base's growing C4ISR and cyber mission drives commercial data-center demand for cleared-facility co-location adjacent to MCB Lejeune. Duke Energy Progress serves the county from the Jacksonville 115 kV system; the utility has approved a capacity expansion at the Jacksonville Substation to support the base's AI and communications upgrades. North Carolina G.S. \u00a7105-275(45) provides property-tax relief for qualifying data-center investments of $150M+; Onslow County's Development Agreement Program offers up to 15-year tax deferrals for major technology investments. The Onslow County Economic Development Office maintains certified sites on Western Boulevard and US-17.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "MCB Lejeune II MEF C4ISR AI demand; Duke Progress 115kV expansion; NC \u00a7105-275(45) $150M+ exempt.",
+      "sources": [
+        {
+          "label": "NC Legislature \u2014 G.S. \u00a7105-275(45) Data Center Tax Exemption",
+          "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-275.html"
+        },
+        {
+          "label": "Marine Corps Base Camp Lejeune",
+          "url": "https://www.lejeune.marines.mil/"
+        },
+        {
+          "label": "Duke Energy Progress \u2014 Economic Development",
+          "url": "https://www.duke-energy.com/business/economic-development"
+        },
+        {
+          "label": "Onslow County Economic Development",
+          "url": "https://www.onslowcountync.gov/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "37127",
+      "name": "Nash County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Nash County NC \u2014 Rocky Mount Duke Energy Progress Hub, I-95 Fiber Corridor & NC \u00a7105-275(45)",
+      "description": "Nash County (Rocky Mount, NC) shares the Rocky Mount metro with Edgecombe County and anchors the I-95 fiber corridor at the US-64 interchange. Duke Energy Progress serves the county from the Rocky Mount 230 kV substation, one of the most robust transmission nodes in eastern North Carolina. North Carolina's \u00a7105-275(45) property-tax exemption applies to qualifying data-center investments; Nash County is a Tier 1 development county (highest incentive eligibility) under G.S. \u00a7143B-437.08, providing maximum Job Development Investment Grants (JDIG) and One North Carolina Fund (OneNC) awards. The Nash County Economic Development Commission has certified sites at the Rocky Mount Event Center Commerce Park and along the US-64 Business corridor with Lumen/AT&T I-95 fiber and available Duke 230kV.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Duke Progress 230kV Rocky Mount hub; Tier 1 JDIG/OneNC; NC \u00a7105-275(45); I-95 Lumen/AT&T fiber.",
+      "sources": [
+        {
+          "label": "NC Legislature \u2014 G.S. \u00a7105-275(45)",
+          "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-275.html"
+        },
+        {
+          "label": "NC Commerce \u2014 Tier 1 County Incentives (G.S. \u00a7143B-437.08)",
+          "url": "https://www.nccommerce.com/growing-business/business-incentives"
+        },
+        {
+          "label": "Nash County Economic Development Commission",
+          "url": "https://www.nashcountync.gov/edc/"
+        },
+        {
+          "label": "Duke Energy Progress \u2014 Rocky Mount Transmission",
+          "url": "https://www.duke-energy.com/business/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "37147",
+      "name": "Pitt County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Pitt County NC \u2014 Greenville ECU Health AI, Duke Energy Progress & Eastern Carolina Innovation Zone",
+      "description": "Pitt County (Greenville, NC) is anchored by East Carolina University (ECU) and ECU Health (Vidant Medical Center), one of the largest Level 1 Trauma Centers in the Southeast. ECU's Artificial Intelligence Center in the Brody School of Medicine drives clinical AI demand \u2014 imaging diagnostics, EHR clinical decision support, and precision-medicine genomics. Duke Energy Progress serves the county from the Greenville 230/115 kV substations with substantial hosting capacity. Pitt County is a Tier 1 development county eligible for maximum JDIG and OneNC Fund awards; the county's Innovation Zone overlay (adopted 2022) allows by-right data-center development in designated tech districts adjacent to ECU. The Pitt County Economic Development Commission maintains certified sites in the Greenwood Business Park and Eastgate Commerce Park.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "ECU Health Level 1 Trauma + AI; Tier 1 JDIG/OneNC; Duke Progress 230/115kV; Innovation Zone by-right.",
+      "sources": [
+        {
+          "label": "ECU Health \u2014 AI & Clinical Innovation",
+          "url": "https://www.ecuhealth.org/research"
+        },
+        {
+          "label": "NC Commerce \u2014 Tier Designations & JDIG (G.S. \u00a7143B-437.08)",
+          "url": "https://www.nccommerce.com/growing-business/business-incentives"
+        },
+        {
+          "label": "Duke Energy Progress \u2014 Economic Development",
+          "url": "https://www.duke-energy.com/business/economic-development"
+        },
+        {
+          "label": "Pitt County Economic Development",
+          "url": "https://www.pittcountync.gov/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "37065",
+      "name": "Edgecombe County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Edgecombe County NC \u2014 Rocky Mount Opportunity Zone, Duke Progress & Tier 1 JDIG Incentives",
+      "description": "Edgecombe County (Tarboro/Rocky Mount, NC) shares the Rocky Mount metro with Nash County and is among North Carolina's most incentive-eligible jurisdictions. The county is both a Federal Opportunity Zone and an NC Tier 1 development county (G.S. \u00a7143B-437.08) \u2014 the combination provides federal capital-gains deferral through 2026 and maximum JDIG/OneNC grants for qualifying investments. Duke Energy Progress serves the county from the Rocky Mount 230 kV node. The Edgecombe County Economic Development Commission (ECEDC) operates the Rocky Mount Commerce Park \u2014 a shovel-ready AI-infrastructure site with available Duke 230kV service, Lumen dark fiber, and water from Rocky Mount Utilities at rates among the lowest in eastern North Carolina.",
+      "effective_date": "2018-01-01",
+      "status": "active",
+      "notes": "OZ + Tier 1 dual-status; Duke Progress 230kV; Lumen dark fiber; ECEDC shovel-ready.",
+      "sources": [
+        {
+          "label": "NC Legislature \u2014 Tier 1 Counties (G.S. \u00a7143B-437.08)",
+          "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_143B/GS_143B-437.08.html"
+        },
+        {
+          "label": "IRS \u2014 Opportunity Zones Program",
+          "url": "https://www.irs.gov/credits-deductions/businesses/opportunity-zones"
+        },
+        {
+          "label": "ECEDC \u2014 Rocky Mount Commerce Park",
+          "url": "https://www.edgecombecountync.gov/departments/economic-development"
+        },
+        {
+          "label": "Duke Energy Progress \u2014 Economic Development",
+          "url": "https://www.duke-energy.com/business/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "37083",
+      "name": "Halifax County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Halifax County NC \u2014 Roanoke Rapids Duke Progress, Tier 1 Development & Amazon Future Industrial Site",
+      "description": "Halifax County (Roanoke Rapids, NC) is an NC Tier 1 development county with among the most aggressive incentive packages in the state. Duke Energy Progress serves Roanoke Rapids from the 230 kV Roanoke Rapids Substation; available capacity after the Roanoke Rapids Hydro Station (11 MW, Duke legacy) decommission planning has increased. Halifax County has been identified by Amazon as a future industrial-site candidate in the US-158/I-95 corridor, driving demand for data-center anchor tenants in the logistics ecosystem. The Halifax County Economic Development Commission (HCEDC) offers direct cash grants, property-tax abatements under G.S. \u00a7158-7.1, and shovel-ready site certification. NC G.S. \u00a7105-275(45) property-tax exemption applies to qualifying data-center equipment investments of $150M+.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Tier 1 maximum JDIG/OneNC; G.S. \u00a7158-7.1 direct grants; Duke Progress 230kV; NC \u00a7105-275(45).",
+      "sources": [
+        {
+          "label": "NC Commerce \u2014 Tier 1 Incentives (\u00a7143B-437.08)",
+          "url": "https://www.nccommerce.com/growing-business/business-incentives"
+        },
+        {
+          "label": "NC Legislature \u2014 G.S. \u00a7158-7.1 Local Development Fund",
+          "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_158/GS_158-7.1.html"
+        },
+        {
+          "label": "Halifax County Economic Development Commission",
+          "url": "https://www.halifaxnc.com/"
+        },
+        {
+          "label": "Duke Energy Progress \u2014 Roanoke Rapids Grid",
+          "url": "https://www.duke-energy.com/business/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "37155",
+      "name": "Robeson County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Robeson County NC \u2014 Lumbee Tribe Economic Zone, Duke Progress I-95 Hub & Tier 1 Maximum Incentives",
+      "description": "Robeson County (Lumberton, NC) is North Carolina's largest county by land area and home to the Lumbee Tribe of North Carolina \u2014 the largest Native American tribe east of the Mississippi not federally recognized. Robeson County is an NC Tier 1 development county with the state's highest incentive tier; both the county and Lumbee Tribe Economic Development Commission offer coordinated incentive packages including tribal tax credits under NC G.S. \u00a7105-130.47 for qualifying employers on tribal trust lands. Duke Energy Progress serves the county from the Lumberton 115/230 kV substations on I-95; the county's position at the I-95/I-74 interchange provides excellent logistics access. The Robeson County Economic Development Partnership (RCEDP) has certified industrial sites at Lumber River Industrial Park with available Duke 115kV.",
+      "effective_date": "2018-01-01",
+      "status": "active",
+      "notes": "Tier 1 max incentives; Lumbee Tribe \u00a7105-130.47 credits; Duke Progress 115/230kV I-95; RCEDP sites.",
+      "sources": [
+        {
+          "label": "NC Legislature \u2014 G.S. \u00a7105-130.47 Native American Tax Credits",
+          "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-130.47.html"
+        },
+        {
+          "label": "Lumbee Tribe \u2014 Economic Development",
+          "url": "https://www.lumbeetribe.com/economic-development"
+        },
+        {
+          "label": "Robeson County Economic Development Partnership",
+          "url": "https://www.robesonnc.com/departments/economic-development"
+        },
+        {
+          "label": "Duke Energy Progress \u2014 Economic Development",
+          "url": "https://www.duke-energy.com/business/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "37163",
+      "name": "Sampson County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Sampson County NC \u2014 Clinton Smithfield Foods AI, Duke Energy Progress & NC Tier 2 Development Zone",
+      "description": "Sampson County (Clinton, NC) is the pork-production capital of the United States and home to Smithfield Foods / WH Group, the world's largest pork processor, whose Clinton Complex is deploying AI-driven processing optimization and supply-chain ML. Duke Energy Progress serves the county from the Clinton 115 kV substation; Smithfield's industrial load anchors the local grid, and Duke has reserved capacity for co-located AI facilities. NC Tier 2 development county designation provides JDIG and OneNC Fund eligibility; Sampson County also qualifies for the NC Rural Economic Development Division's Building Reuse Grant for adaptive-reuse data-center conversions. The Sampson County Economic Development Commission (SCEDC) maintains certified sites in the Clinton Industrial Park with Duke 115kV and AT&T/Lumen fiber.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "Smithfield WH Group AI anchor; Duke Progress 115kV Clinton; Tier 2 JDIG; NC Rural reuse grants.",
+      "sources": [
+        {
+          "label": "NC Commerce \u2014 JDIG & OneNC Fund",
+          "url": "https://www.nccommerce.com/growing-business/business-incentives"
+        },
+        {
+          "label": "Duke Energy Progress \u2014 Economic Development",
+          "url": "https://www.duke-energy.com/business/economic-development"
+        },
+        {
+          "label": "Sampson County Economic Development Commission",
+          "url": "https://www.sampsonnc.com/departments/economic-development"
+        },
+        {
+          "label": "NC Rural Economic Development \u2014 Building Reuse Grant",
+          "url": "https://ncruralcenter.org/programs/building-reuse-grant-program/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "21115",
+      "name": "Kenton County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Kenton County KY \u2014 Covington/Florence Amazon CVG Hub, LG&E/KU & Kentucky KEDFA Incentives",
+      "description": "Kenton County (Covington/Florence, KY) is the northern Kentucky anchor of the Cincinnati metro and home to Cincinnati/Northern Kentucky International Airport (CVG), Amazon Air Hub's largest North American sort facility. LG&E/KU Energy serves the county from the Florence and Covington 138 kV substations; PJM interconnection provides reliable access to the Midwest's diverse generation portfolio. Kentucky's KEDFA (Kentucky Economic Development Finance Authority) offers Kentucky Business Investment (KBI) incentives \u2014 withholding-tax credits of up to 80% for eligible technology-sector employers \u2014 under KRS \u00a7154.32. Kenton County's Tax Increment Financing (TIF) program and the Northern Kentucky Economic Development Corporation (NKEDC) coordinate site certification for industrial users along I-71/I-75 with available LG&E 138kV service and Zayo/AT&T long-haul fiber.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "Amazon Air CVG largest NA hub; LG&E/KU 138kV PJM; KBI KRS \u00a7154.32 withholding credit; NKEDC sites.",
+      "sources": [
+        {
+          "label": "KEDFA \u2014 Kentucky Business Investment (KBI) Program (KRS \u00a7154.32)",
+          "url": "https://ced.ky.gov/Financial_Incentives/Pages/kkb.aspx"
+        },
+        {
+          "label": "LG&E and KU Energy \u2014 Economic Development",
+          "url": "https://lge-ku.com/business/economic-development"
+        },
+        {
+          "label": "Northern Kentucky Economic Development Corporation (NKEDC)",
+          "url": "https://www.nkecdev.org/"
+        },
+        {
+          "label": "Amazon Air Hub \u2014 CVG",
+          "url": "https://www.cvgairport.com/business/amazon-air-hub"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    {
+      "fips": "21125",
+      "name": "Laurel County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center",
+        "incentive"
+      ],
+      "title": "Laurel County KY \u2014 London I-75 Midpoint, Kentucky Utilities & KEDFA Appalachian Incentives",
+      "description": "Laurel County (London, KY) anchors southeastern Kentucky on I-75 at the midpoint between Lexington and Knoxville, a strategic DR-site location. Kentucky Utilities (LG&E/KU subsidiary) serves the county from the London 138 kV substation with reliable PJM power; the county's position above the Cumberland Plateau provides cool ambient temperatures suitable for free-air economization up to 5,000 hours annually. Kentucky's Appalachian Regional Commission (ARC) investment program and KEDFA's Kentucky Reinvestment Act (KRA, KRS \u00a7154.24) provide capital-equipment tax credits for qualifying technology investments in ARC-designated distressed counties. Laurel County's Gateway Industrial Park has fiber-lit certified sites with Kentucky Utilities three-phase service and Windstream/AT&T I-75 corridor connectivity.",
+      "effective_date": "2019-01-01",
+      "status": "active",
+      "notes": "I-75 midpoint LEX-KNX; KY Utilities 138kV cool climate; ARC distressed; KRA KRS \u00a7154.24; fiber.",
+      "sources": [
+        {
+          "label": "KEDFA \u2014 Kentucky Reinvestment Act (KRS \u00a7154.24)",
+          "url": "https://ced.ky.gov/Financial_Incentives/Pages/kra.aspx"
+        },
+        {
+          "label": "Appalachian Regional Commission (ARC) \u2014 Distressed Counties",
+          "url": "https://www.arc.gov/classifying-economic-distress-in-appalachian-counties/"
+        },
+        {
+          "label": "LG&E and KU \u2014 Economic Development",
+          "url": "https://lge-ku.com/business/economic-development"
+        },
+        {
+          "label": "Laurel County Economic Development Alliance",
+          "url": "https://www.laurelcountyky.gov/economic-development/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
     }
   ]
 }

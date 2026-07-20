@@ -1,5 +1,5 @@
 {
-  "_disclaimer": "APPROXIMATE DATA — AI campus locations and details are public estimates from press releases, news, and company announcements. Not audited or officially verified. Replace with official public datasets before policy use.",
+  "_disclaimer": "APPROXIMATE DATA \u2014 AI campus locations and details are public estimates from press releases, news, and company announcements. Not audited or officially verified. Replace with official public datasets before policy use.",
   "_sources": [
     "Company press releases and investor relations (public)",
     "DOE national laboratory announcements (public)",
@@ -230,7 +230,7 @@
     },
     {
       "id": "ai-tx-004",
-      "name": "Stargate AI Campus — Abilene (Phase 1)",
+      "name": "Stargate AI Campus \u2014 Abilene (Phase 1)",
       "operator": "OpenAI / SoftBank / Oracle / MGX",
       "status": "under_construction",
       "county_fips": "48441",
@@ -240,7 +240,7 @@
     },
     {
       "id": "ai-wa-001",
-      "name": "Microsoft AI — Quincy Data Center Expansion",
+      "name": "Microsoft AI \u2014 Quincy Data Center Expansion",
       "operator": "Microsoft",
       "status": "operational",
       "county_fips": "53025",
@@ -250,7 +250,7 @@
     },
     {
       "id": "ai-nv-001",
-      "name": "Switch SUPERNAP — Las Vegas AI Cluster",
+      "name": "Switch SUPERNAP \u2014 Las Vegas AI Cluster",
       "operator": "Switch (DigitalBridge)",
       "status": "operational",
       "county_fips": "32003",
@@ -260,7 +260,7 @@
     },
     {
       "id": "ai-id-001",
-      "name": "Meta AI — Eagle Data Center Campus",
+      "name": "Meta AI \u2014 Eagle Data Center Campus",
       "operator": "Meta Platforms",
       "status": "operational",
       "county_fips": "16001",
@@ -270,7 +270,7 @@
     },
     {
       "id": "ai-ok-001",
-      "name": "Microsoft AI — Oklahoma City Campus",
+      "name": "Microsoft AI \u2014 Oklahoma City Campus",
       "operator": "Microsoft",
       "status": "under_construction",
       "county_fips": "40109",
@@ -280,7 +280,7 @@
     },
     {
       "id": "ai-ga-001",
-      "name": "Google AI — Douglas County Data Center",
+      "name": "Google AI \u2014 Douglas County Data Center",
       "operator": "Google",
       "status": "operational",
       "county_fips": "13097",
@@ -290,7 +290,7 @@
     },
     {
       "id": "ai-ms-001",
-      "name": "Google DeepMind / Google AI — Council Bluffs Expansion",
+      "name": "Google DeepMind / Google AI \u2014 Council Bluffs Expansion",
       "operator": "Google",
       "status": "operational",
       "county_fips": "19155",
@@ -300,7 +300,7 @@
     },
     {
       "id": "ai-nd-001",
-      "name": "Microsoft AI — North Dakota Hyperscale Campus",
+      "name": "Microsoft AI \u2014 North Dakota Hyperscale Campus",
       "operator": "Microsoft",
       "status": "planned",
       "county_fips": "38015",
@@ -310,7 +310,7 @@
     },
     {
       "id": "ai-mi-001",
-      "name": "Switch SUPERNAP Michigan — Grand Rapids AI Campus",
+      "name": "Switch SUPERNAP Michigan \u2014 Grand Rapids AI Campus",
       "operator": "Switch (DigitalBridge)",
       "status": "operational",
       "county_fips": "26081",
@@ -320,7 +320,7 @@
     },
     {
       "id": "ai-co-001",
-      "name": "Crusoe Energy AI Cloud — Denver Metro Campus",
+      "name": "Crusoe Energy AI Cloud \u2014 Denver Metro Campus",
       "operator": "Crusoe Energy Systems",
       "status": "operational",
       "county_fips": "08001",
@@ -530,7 +530,7 @@
     },
     {
       "id": "ai-ut-002",
-      "name": "Novva Data Centers — North Salt Lake Campus",
+      "name": "Novva Data Centers \u2014 North Salt Lake Campus",
       "operator": "Novva Data Centers",
       "status": "operational",
       "county_fips": "49011",
@@ -560,7 +560,7 @@
     },
     {
       "id": "ai-ca-004",
-      "name": "Equinix SV1 — Redwood City Silicon Valley Campus",
+      "name": "Equinix SV1 \u2014 Redwood City Silicon Valley Campus",
       "operator": "Equinix",
       "status": "operational",
       "county_fips": "06081",
@@ -650,7 +650,7 @@
     },
     {
       "id": "ai-pa-001",
-      "name": "Expedient Pittsburgh Data Center — Strip District",
+      "name": "Expedient Pittsburgh Data Center \u2014 Strip District",
       "operator": "Expedient Data Centers",
       "status": "operational",
       "county_fips": "42003",
@@ -680,7 +680,7 @@
     },
     {
       "id": "ai-va-005",
-      "name": "Amazon HQ2 National Landing — AWS Infrastructure Hub",
+      "name": "Amazon HQ2 National Landing \u2014 AWS Infrastructure Hub",
       "operator": "Amazon",
       "status": "operational",
       "county_fips": "51013",
@@ -710,17 +710,17 @@
     },
     {
       "id": "ai-fl-003",
-      "name": "Florida State Data Center — Tallahassee",
+      "name": "Florida State Data Center \u2014 Tallahassee",
       "operator": "Florida Department of Management Services",
       "status": "operational",
       "county_fips": "12073",
-      "notes": "Consolidated state agency IT infrastructure hub under Florida's §282.201 mandate.",
+      "notes": "Consolidated state agency IT infrastructure hub under Florida's \u00a7282.201 mandate.",
       "lon": -84.2807,
       "lat": 30.4383
     },
     {
       "id": "ai-ar-001",
-      "name": "Windstream / Kinetic Business Network Data Center — Little Rock",
+      "name": "Windstream / Kinetic Business Network Data Center \u2014 Little Rock",
       "operator": "Windstream / Kinetic",
       "status": "operational",
       "county_fips": "05119",
@@ -770,7 +770,7 @@
     },
     {
       "id": "ai-ak-001",
-      "name": "GCI Data Center — Anchorage",
+      "name": "GCI Data Center \u2014 Anchorage",
       "operator": "GCI (General Communication LLC)",
       "status": "operational",
       "county_fips": "02020",
@@ -800,7 +800,7 @@
     },
     {
       "id": "ai-ar-002",
-      "name": "Walmart Global Technology Data Center — Bentonville",
+      "name": "Walmart Global Technology Data Center \u2014 Bentonville",
       "operator": "Walmart Inc.",
       "status": "operational",
       "county_fips": "05007",
@@ -840,7 +840,7 @@
     },
     {
       "id": "ai-de-002",
-      "name": "Delaware DTI State Data Center — Dover",
+      "name": "Delaware DTI State Data Center \u2014 Dover",
       "operator": "Delaware Department of Technology and Information",
       "status": "operational",
       "county_fips": "10001",
@@ -870,7 +870,7 @@
     },
     {
       "id": "ai-ca-005",
-      "name": "Qualcomm Data Center — San Diego",
+      "name": "Qualcomm Data Center \u2014 San Diego",
       "operator": "Qualcomm Technologies Inc.",
       "status": "operational",
       "county_fips": "06073",
@@ -890,7 +890,7 @@
     },
     {
       "id": "ai-ut-003",
-      "name": "Adobe Systems Utah Data Center — Silicon Slopes",
+      "name": "Adobe Systems Utah Data Center \u2014 Silicon Slopes",
       "operator": "Adobe Systems",
       "status": "operational",
       "county_fips": "49049",
@@ -930,7 +930,7 @@
     },
     {
       "id": "ai-pa-002",
-      "name": "Comcast Technology Center — Philadelphia",
+      "name": "Comcast Technology Center \u2014 Philadelphia",
       "operator": "Comcast Corporation",
       "status": "operational",
       "county_fips": "42101",
@@ -940,7 +940,7 @@
     },
     {
       "id": "ai-il-005",
-      "name": "Iron Mountain Data Center — Chicago West (Aurora)",
+      "name": "Iron Mountain Data Center \u2014 Chicago West (Aurora)",
       "operator": "Iron Mountain",
       "status": "operational",
       "county_fips": "17089",
@@ -970,7 +970,7 @@
     },
     {
       "id": "ai-ny-002",
-      "name": "New York State ITS Enterprise Data Center — Albany",
+      "name": "New York State ITS Enterprise Data Center \u2014 Albany",
       "operator": "NYS Office of Information Technology Services",
       "status": "operational",
       "county_fips": "36001",
@@ -980,7 +980,7 @@
     },
     {
       "id": "ai-ny-003",
-      "name": "GlobalFoundries Fab 8 Computing Infrastructure — Malta",
+      "name": "GlobalFoundries Fab 8 Computing Infrastructure \u2014 Malta",
       "operator": "GlobalFoundries",
       "status": "operational",
       "county_fips": "36091",
@@ -990,7 +990,7 @@
     },
     {
       "id": "ai-oh-004",
-      "name": "Air Force Research Laboratory Computing Center — Wright-Patterson",
+      "name": "Air Force Research Laboratory Computing Center \u2014 Wright-Patterson",
       "operator": "US Air Force Research Laboratory (AFRL)",
       "status": "operational",
       "county_fips": "39113",
@@ -1000,7 +1000,7 @@
     },
     {
       "id": "ai-la-002",
-      "name": "Louisiana Cyber Innovation Center (LCIC) — Bossier City",
+      "name": "Louisiana Cyber Innovation Center (LCIC) \u2014 Bossier City",
       "operator": "State of Louisiana / LCIC",
       "status": "operational",
       "county_fips": "22015",
@@ -1014,13 +1014,13 @@
       "operator": "L3Harris Technologies",
       "status": "operational",
       "county_fips": "12009",
-      "notes": "L3Harris global HQ supports defense electronics, satellite communications, and intelligence systems compute at the Melbourne, FL campus — among the largest defense-tech data footprints in Florida.",
+      "notes": "L3Harris global HQ supports defense electronics, satellite communications, and intelligence systems compute at the Melbourne, FL campus \u2014 among the largest defense-tech data footprints in Florida.",
       "lon": -80.6081,
       "lat": 28.0836
     },
     {
       "id": "ai-az-001",
-      "name": "US Army NETCOM Data Center — Fort Huachuca",
+      "name": "US Army NETCOM Data Center \u2014 Fort Huachuca",
       "operator": "US Army Network Enterprise Technology Command (NETCOM)",
       "status": "operational",
       "county_fips": "04003",
@@ -1030,7 +1030,7 @@
     },
     {
       "id": "ai-in-003",
-      "name": "Purdue University RCAC Computing Cluster — West Lafayette",
+      "name": "Purdue University RCAC Computing Cluster \u2014 West Lafayette",
       "operator": "Purdue University Research Computing (RCAC)",
       "status": "operational",
       "county_fips": "18157",
@@ -1040,7 +1040,7 @@
     },
     {
       "id": "ai-in-004",
-      "name": "Indiana University UITS Data Center (BigRed) — Bloomington",
+      "name": "Indiana University UITS Data Center (BigRed) \u2014 Bloomington",
       "operator": "Indiana University UITS",
       "status": "operational",
       "county_fips": "18105",
@@ -1060,7 +1060,7 @@
     },
     {
       "id": "ai-oh-005",
-      "name": "Amazon AWS Central Ohio Data Center — Delaware County",
+      "name": "Amazon AWS Central Ohio Data Center \u2014 Delaware County",
       "operator": "Amazon Web Services",
       "status": "operational",
       "county_fips": "39041",
@@ -1140,7 +1140,7 @@
     },
     {
       "id": "ai-nc-004",
-      "name": "NOAA National Centers for Environmental Information (NCEI) — Asheville",
+      "name": "NOAA National Centers for Environmental Information (NCEI) \u2014 Asheville",
       "operator": "NOAA / National Centers for Environmental Information",
       "status": "operational",
       "county_fips": "37021",
@@ -1170,7 +1170,7 @@
     },
     {
       "id": "ai-tn-007",
-      "name": "Eastman Chemical Company Technology and Innovation Center — Kingsport",
+      "name": "Eastman Chemical Company Technology and Innovation Center \u2014 Kingsport",
       "operator": "Eastman Chemical Company",
       "status": "operational",
       "county_fips": "47163",
@@ -1180,7 +1180,7 @@
     },
     {
       "id": "ai-md-002",
-      "name": "Leidos Global Headquarters and Technology Campus — Columbia",
+      "name": "Leidos Global Headquarters and Technology Campus \u2014 Columbia",
       "operator": "Leidos Holdings",
       "status": "operational",
       "county_fips": "24027",
@@ -1190,7 +1190,7 @@
     },
     {
       "id": "ai-ga-005",
-      "name": "Global Payments (TSYS) Payment Technology Data Center — Columbus",
+      "name": "Global Payments (TSYS) Payment Technology Data Center \u2014 Columbus",
       "operator": "Global Payments Inc. (TSYS)",
       "status": "operational",
       "county_fips": "13215",
@@ -1200,7 +1200,7 @@
     },
     {
       "id": "ai-mt-001",
-      "name": "University of Montana Research Computing — Missoula",
+      "name": "University of Montana Research Computing \u2014 Missoula",
       "operator": "University of Montana",
       "status": "operational",
       "county_fips": "30063",
@@ -1210,7 +1210,7 @@
     },
     {
       "id": "ai-or-004",
-      "name": "GlobalWafers Semiconductor Silicon Wafer Facility — Albany",
+      "name": "GlobalWafers Semiconductor Silicon Wafer Facility \u2014 Albany",
       "operator": "GlobalWafers (formerly SunEdison Semiconductor / MEMC)",
       "status": "operational",
       "county_fips": "41043",
@@ -1251,7 +1251,7 @@
     {
       "id": "ai-ms-003",
       "name": "Huntington Ingalls Ingalls Shipbuilding Digital Shipyard Operations",
-      "operator": "Huntington Ingalls Industries (HII) — Ingalls Shipbuilding",
+      "operator": "Huntington Ingalls Industries (HII) \u2014 Ingalls Shipbuilding",
       "status": "operational",
       "county_fips": "28059",
       "notes": "Ingalls Shipbuilding's Pascagoula facility operates digital shipbuilding systems including 3D design (Aveva AVEVA Marine), ship data management, and production control systems; builds US Navy destroyers, amphibious ships, and Coast Guard vessels.",
@@ -1260,7 +1260,7 @@
     },
     {
       "id": "ai-sc-004",
-      "name": "University of South Carolina Research Computing and SC State Data Center — Columbia",
+      "name": "University of South Carolina Research Computing and SC State Data Center \u2014 Columbia",
       "operator": "University of South Carolina / SC Division of Technology Operations",
       "status": "operational",
       "county_fips": "45079",
@@ -1270,7 +1270,7 @@
     },
     {
       "id": "ai-ut-004",
-      "name": "Hill AFB Ogden Air Logistics Complex (OO-ALC) — Software Engineering",
+      "name": "Hill AFB Ogden Air Logistics Complex (OO-ALC) \u2014 Software Engineering",
       "operator": "US Air Force / Ogden Air Logistics Complex",
       "status": "operational",
       "county_fips": "49057",
@@ -1290,7 +1290,7 @@
     },
     {
       "id": "ai-va-007",
-      "name": "UVA Rivanna Research Computing and NRAO Headquarters — Charlottesville",
+      "name": "UVA Rivanna Research Computing and NRAO Headquarters \u2014 Charlottesville",
       "operator": "University of Virginia / National Radio Astronomy Observatory",
       "status": "operational",
       "county_fips": "51003",
@@ -1300,7 +1300,7 @@
     },
     {
       "id": "ai-ks-002",
-      "name": "Fort Riley Mission Command and K-State Biosecurity Research Institute — Manhattan",
+      "name": "Fort Riley Mission Command and K-State Biosecurity Research Institute \u2014 Manhattan",
       "operator": "US Army 1st Infantry Division / Kansas State University",
       "status": "operational",
       "county_fips": "20161",
@@ -1320,7 +1320,7 @@
     },
     {
       "id": "ai-ms-004",
-      "name": "NASA Stennis Space Center — Propulsion Test and Data Operations",
+      "name": "NASA Stennis Space Center \u2014 Propulsion Test and Data Operations",
       "operator": "NASA / National Data Buoy Center (NOAA)",
       "status": "operational",
       "county_fips": "28045",
@@ -1330,7 +1330,7 @@
     },
     {
       "id": "ai-va-008",
-      "name": "Amazon Web Services West Creek Data Center Campus — Goochland",
+      "name": "Amazon Web Services West Creek Data Center Campus \u2014 Goochland",
       "operator": "Amazon Web Services",
       "status": "operational",
       "county_fips": "51075",
@@ -1340,7 +1340,7 @@
     },
     {
       "id": "ai-hi-004",
-      "name": "Pacific Missile Range Facility (PMRF) — Barking Sands",
+      "name": "Pacific Missile Range Facility (PMRF) \u2014 Barking Sands",
       "operator": "US Navy / Commander, Pacific Fleet",
       "status": "operational",
       "county_fips": "15007",
@@ -1350,7 +1350,7 @@
     },
     {
       "id": "ai-ok-005",
-      "name": "Fort Sill Army Fires Center of Excellence and JADOC — Lawton",
+      "name": "Fort Sill Army Fires Center of Excellence and JADOC \u2014 Lawton",
       "operator": "US Army Fires Center of Excellence",
       "status": "operational",
       "county_fips": "40031",
@@ -1360,7 +1360,7 @@
     },
     {
       "id": "ai-ca-008",
-      "name": "Vandenberg Space Force Base — Space Launch Delta 30 Mission Control",
+      "name": "Vandenberg Space Force Base \u2014 Space Launch Delta 30 Mission Control",
       "operator": "US Space Force / Space Launch Delta 30",
       "status": "operational",
       "county_fips": "06083",
@@ -1380,7 +1380,7 @@
     },
     {
       "id": "ai-ma-002",
-      "name": "Massachusetts Green High Performance Computing Center (MGHPCC) — Holyoke",
+      "name": "Massachusetts Green High Performance Computing Center (MGHPCC) \u2014 Holyoke",
       "operator": "UMass / Harvard / MIT / BU / Northeastern (consortium)",
       "status": "operational",
       "county_fips": "25015",
@@ -1390,7 +1390,7 @@
     },
     {
       "id": "ai-mn-003",
-      "name": "Minnesota IT Services (MNIT) Enterprise Data Center — St. Paul",
+      "name": "Minnesota IT Services (MNIT) Enterprise Data Center \u2014 St. Paul",
       "operator": "Minnesota IT Services (MNIT)",
       "status": "operational",
       "county_fips": "27123",
@@ -1400,7 +1400,7 @@
     },
     {
       "id": "ai-ks-003",
-      "name": "Kansas Office of Information Technology Services (OITS) State Data Center — Topeka",
+      "name": "Kansas Office of Information Technology Services (OITS) State Data Center \u2014 Topeka",
       "operator": "Kansas Office of Information Technology Services",
       "status": "operational",
       "county_fips": "20177",
@@ -1430,7 +1430,7 @@
     },
     {
       "id": "ai-or-005",
-      "name": "University of Oregon Research Computing and Talapus HPC — Eugene",
+      "name": "University of Oregon Research Computing and Talapus HPC \u2014 Eugene",
       "operator": "University of Oregon Research Computing",
       "status": "operational",
       "county_fips": "41039",
@@ -1440,7 +1440,7 @@
     },
     {
       "id": "ai-ia-004",
-      "name": "Iowa State University CyEnce Research Computing and ISU Research Park — Ames",
+      "name": "Iowa State University CyEnce Research Computing and ISU Research Park \u2014 Ames",
       "operator": "Iowa State University / ISU Research Park",
       "status": "operational",
       "county_fips": "19169",
@@ -1460,7 +1460,7 @@
     },
     {
       "id": "ai-nh-001",
-      "name": "New Hampshire Bureau of Information Technology Management (BITM) — Concord",
+      "name": "New Hampshire Bureau of Information Technology Management (BITM) \u2014 Concord",
       "operator": "New Hampshire Department of Information Technology",
       "status": "operational",
       "county_fips": "33013",
@@ -1470,7 +1470,7 @@
     },
     {
       "id": "ai-co-004",
-      "name": "NOAA Earth System Research Laboratories (ESRL) — Boulder CO",
+      "name": "NOAA Earth System Research Laboratories (ESRL) \u2014 Boulder CO",
       "operator": "NOAA / U.S. Department of Commerce",
       "status": "operational",
       "county_fips": "08013",
@@ -1510,7 +1510,7 @@
     },
     {
       "id": "ai-il-006",
-      "name": "Illinois Department of Innovation and Technology (DoIT) — State Data Center",
+      "name": "Illinois Department of Innovation and Technology (DoIT) \u2014 State Data Center",
       "operator": "State of Illinois / DoIT",
       "status": "operational",
       "county_fips": "17167",
@@ -1520,7 +1520,7 @@
     },
     {
       "id": "ai-fl-007",
-      "name": "Fidelity National Information Services (FIS) — Jacksonville Global HQ",
+      "name": "Fidelity National Information Services (FIS) \u2014 Jacksonville Global HQ",
       "operator": "Fidelity National Information Services (FIS)",
       "status": "operational",
       "county_fips": "12031",
@@ -1540,7 +1540,7 @@
     },
     {
       "id": "ai-ny-005",
-      "name": "Wolfspeed Marcy Nanotechnology Center — Utica NY",
+      "name": "Wolfspeed Marcy Nanotechnology Center \u2014 Utica NY",
       "operator": "Wolfspeed / SUNY Polytechnic Institute",
       "status": "operational",
       "county_fips": "36065",
@@ -1550,7 +1550,7 @@
     },
     {
       "id": "ai-wa-005",
-      "name": "Washington State Consolidated Technology Services (CTS) — Olympia",
+      "name": "Washington State Consolidated Technology Services (CTS) \u2014 Olympia",
       "operator": "Washington State Office of the Chief Information Officer (OCIO)",
       "status": "operational",
       "county_fips": "53067",
@@ -1580,7 +1580,7 @@
     },
     {
       "id": "ai-la-004",
-      "name": "St. Tammany Corporation Innovation Center — Covington LA",
+      "name": "St. Tammany Corporation Innovation Center \u2014 Covington LA",
       "operator": "St. Tammany Corporation / Northshore Tech Hub",
       "status": "operational",
       "county_fips": "22103",
@@ -1600,7 +1600,7 @@
     },
     {
       "id": "ai-wa-006",
-      "name": "Cowlitz County PUD Industrial Computing — Longview WA",
+      "name": "Cowlitz County PUD Industrial Computing \u2014 Longview WA",
       "operator": "Cowlitz County PUD / Lower Columbia Economic Development Council",
       "status": "planned",
       "county_fips": "53015",
@@ -1610,7 +1610,7 @@
     },
     {
       "id": "ai-ar-003",
-      "name": "Arkansas State University High Performance Computing Center — Jonesboro",
+      "name": "Arkansas State University High Performance Computing Center \u2014 Jonesboro",
       "operator": "Arkansas State University (ASU)",
       "status": "operational",
       "county_fips": "05031",
@@ -1620,7 +1620,7 @@
     },
     {
       "id": "ai-ma-003",
-      "name": "UMass Medical School / WPI Advanced Research Computing Hub — Worcester MA",
+      "name": "UMass Medical School / WPI Advanced Research Computing Hub \u2014 Worcester MA",
       "operator": "University of Massachusetts Medical School / Worcester Polytechnic Institute",
       "status": "operational",
       "county_fips": "25027",
@@ -1630,7 +1630,7 @@
     },
     {
       "id": "ai-ct-001",
-      "name": "Synchrony Financial Data Operations Center — Stamford CT",
+      "name": "Synchrony Financial Data Operations Center \u2014 Stamford CT",
       "operator": "Synchrony Financial",
       "status": "operational",
       "county_fips": "09001",
@@ -1660,7 +1660,7 @@
     },
     {
       "id": "ai-ok-006",
-      "name": "Muscogee (Creek) Nation Tribal Digital Operations Center — Okmulgee OK",
+      "name": "Muscogee (Creek) Nation Tribal Digital Operations Center \u2014 Okmulgee OK",
       "operator": "Muscogee (Creek) Nation",
       "status": "operational",
       "county_fips": "40111",
@@ -1670,7 +1670,7 @@
     },
     {
       "id": "ai-co-005",
-      "name": "Colorado State University HPC / NCAR Wyoming Supercomputing Liaison — Fort Collins CO",
+      "name": "Colorado State University HPC / NCAR Wyoming Supercomputing Liaison \u2014 Fort Collins CO",
       "operator": "Colorado State University / NCAR",
       "status": "operational",
       "county_fips": "08069",
@@ -1690,7 +1690,7 @@
     },
     {
       "id": "ai-va-010",
-      "name": "Micron Technology Manassas Semiconductor Fab — AI Process Control",
+      "name": "Micron Technology Manassas Semiconductor Fab \u2014 AI Process Control",
       "operator": "Micron Technology",
       "status": "operational",
       "county_fips": "51683",
@@ -1700,7 +1700,7 @@
     },
     {
       "id": "ai-mi-003",
-      "name": "Stellantis Brighton Assembly and AI Engineering Center — Livingston County MI",
+      "name": "Stellantis Brighton Assembly and AI Engineering Center \u2014 Livingston County MI",
       "operator": "Stellantis (FCA / Chrysler)",
       "status": "operational",
       "county_fips": "26093",
@@ -1710,7 +1710,7 @@
     },
     {
       "id": "ai-nd-004",
-      "name": "Minot Air Force Base — 91st Missile Wing Command and Control",
+      "name": "Minot Air Force Base \u2014 91st Missile Wing Command and Control",
       "operator": "U.S. Air Force / Air Force Global Strike Command",
       "status": "operational",
       "county_fips": "38101",
@@ -1820,7 +1820,7 @@
     },
     {
       "id": "ai-wi-003",
-      "name": "Chippewa Falls Technology Park — HPE Cray Heritage Computing Site",
+      "name": "Chippewa Falls Technology Park \u2014 HPE Cray Heritage Computing Site",
       "operator": "Chippewa Falls Technology Park / HPE Cray Alumni Network",
       "status": "operational",
       "county_fips": "55017",
@@ -1920,7 +1920,7 @@
     },
     {
       "id": "ai-pa-003",
-      "name": "Penn State Institute for Computational and Data Sciences — Roar HPC",
+      "name": "Penn State Institute for Computational and Data Sciences \u2014 Roar HPC",
       "operator": "Pennsylvania State University ICDS",
       "status": "operational",
       "county_fips": "42027",
@@ -1970,17 +1970,17 @@
     },
     {
       "id": "ai-in-008",
-      "name": "Thor Industries / Forest River RV Manufacturing AI Center — Elkhart County IN",
+      "name": "Thor Industries / Forest River RV Manufacturing AI Center \u2014 Elkhart County IN",
       "operator": "Thor Industries / Forest River (Berkshire Hathaway)",
       "status": "operational",
       "county_fips": "18039",
-      "notes": "Elkhart County's RV manufacturing cluster — anchored by Thor Industries and Forest River — operates AI-driven design, supply chain, and telematics analytics systems supporting approximately 80% of U.S. recreational vehicle production. Computing operations span Thor's Airstream, Keystone, and Grand Design brands and Forest River's 50+ subsidiary brands.",
+      "notes": "Elkhart County's RV manufacturing cluster \u2014 anchored by Thor Industries and Forest River \u2014 operates AI-driven design, supply chain, and telematics analytics systems supporting approximately 80% of U.S. recreational vehicle production. Computing operations span Thor's Airstream, Keystone, and Grand Design brands and Forest River's 50+ subsidiary brands.",
       "lon": -85.9766,
       "lat": 41.6834
     },
     {
       "id": "ai-in-009",
-      "name": "Cummins Inc. Seymour Engine Manufacturing AI Hub — Jackson County IN",
+      "name": "Cummins Inc. Seymour Engine Manufacturing AI Hub \u2014 Jackson County IN",
       "operator": "Cummins Inc.",
       "status": "operational",
       "county_fips": "18071",
@@ -1990,7 +1990,7 @@
     },
     {
       "id": "ai-nm-002",
-      "name": "Los Alamos National Laboratory Trinity/Crossroads Supercomputer — Los Alamos County NM",
+      "name": "Los Alamos National Laboratory Trinity/Crossroads Supercomputer \u2014 Los Alamos County NM",
       "operator": "Los Alamos National Laboratory (DOE/NNSA)",
       "status": "operational",
       "county_fips": "35028",
@@ -2000,7 +2000,7 @@
     },
     {
       "id": "ai-nc-007",
-      "name": "Johnston County Research Triangle Industrial AI Park — Johnston County NC",
+      "name": "Johnston County Research Triangle Industrial AI Park \u2014 Johnston County NC",
       "operator": "Multiple tenants / Johnston County EDA",
       "status": "planned",
       "county_fips": "37099",
@@ -2010,7 +2010,7 @@
     },
     {
       "id": "ai-ms-006",
-      "name": "Toyota Motor Manufacturing Mississippi (TMMMS) AI Production System — Union County MS",
+      "name": "Toyota Motor Manufacturing Mississippi (TMMMS) AI Production System \u2014 Union County MS",
       "operator": "Toyota Motor Manufacturing Mississippi",
       "status": "operational",
       "county_fips": "28155",
@@ -2020,7 +2020,7 @@
     },
     {
       "id": "ai-tn-008",
-      "name": "General Motors Spring Hill Cadillac Lyriq EV AI Manufacturing — Maury County TN",
+      "name": "General Motors Spring Hill Cadillac Lyriq EV AI Manufacturing \u2014 Maury County TN",
       "operator": "General Motors",
       "status": "operational",
       "county_fips": "47119",
@@ -2030,7 +2030,7 @@
     },
     {
       "id": "ai-al-004",
-      "name": "Shelby County Alabama Technology Corridor — Birmingham Metro South",
+      "name": "Shelby County Alabama Technology Corridor \u2014 Birmingham Metro South",
       "operator": "Multiple tenants / Shelby County EDA",
       "status": "operational",
       "county_fips": "01117",
@@ -2040,7 +2040,7 @@
     },
     {
       "id": "ai-ga-008",
-      "name": "Georgia Ports Authority Garden City Terminal AI Logistics Hub — Chatham County GA",
+      "name": "Georgia Ports Authority Garden City Terminal AI Logistics Hub \u2014 Chatham County GA",
       "operator": "Georgia Ports Authority / GPA",
       "status": "operational",
       "county_fips": "13051",
@@ -2050,7 +2050,7 @@
     },
     {
       "id": "ai-ga-009",
-      "name": "Macon-Bibb County Technology Hub / Mercer University AI Research — Bibb County GA",
+      "name": "Macon-Bibb County Technology Hub / Mercer University AI Research \u2014 Bibb County GA",
       "operator": "Macon-Bibb County Industrial Authority / Mercer University",
       "status": "operational",
       "county_fips": "13021",
@@ -2060,37 +2060,37 @@
     },
     {
       "id": "ai-nc-008",
-      "name": "Fort Liberty (Bragg) U.S. Army FORSCOM/USASOC AI Computing — Cumberland County NC",
+      "name": "Fort Liberty (Bragg) U.S. Army FORSCOM/USASOC AI Computing \u2014 Cumberland County NC",
       "operator": "U.S. Army / Army Forces Command / USASOC",
       "status": "operational",
       "county_fips": "37051",
-      "notes": "Fort Liberty (formerly Fort Bragg) — the world's largest military installation by population — hosts U.S. Army Forces Command, XVIII Airborne Corps, 82nd Airborne Division, and U.S. Army Special Operations Command. The installation operates classified C4ISR, targeting analytics, and AI-enabled intelligence fusion systems. Pope Army Airfield provides the fixed-wing AI-supported ISR and airlift mission computing.",
+      "notes": "Fort Liberty (formerly Fort Bragg) \u2014 the world's largest military installation by population \u2014 hosts U.S. Army Forces Command, XVIII Airborne Corps, 82nd Airborne Division, and U.S. Army Special Operations Command. The installation operates classified C4ISR, targeting analytics, and AI-enabled intelligence fusion systems. Pope Army Airfield provides the fixed-wing AI-supported ISR and airlift mission computing.",
       "lon": -79.0061,
       "lat": 35.1399
     },
     {
       "id": "ai-nc-009",
-      "name": "Wake Forest Innovation Quarter / Atrium Health Baptist AI Research — Forsyth County NC",
+      "name": "Wake Forest Innovation Quarter / Atrium Health Baptist AI Research \u2014 Forsyth County NC",
       "operator": "Wake Forest University / Atrium Health",
       "status": "operational",
       "county_fips": "37067",
-      "notes": "Wake Forest Innovation Quarter (WFIQ) is a 170-acre urban innovation district in Winston-Salem anchored by Wake Forest University School of Medicine, Atrium Health Wake Forest Baptist Medical Center, and Winston-Salem State University. WFIQ houses biomedical AI research in oncology, genomics, clinical decision support, and precision medicine — one of the most concentrated health AI campuses in the Southeast.",
+      "notes": "Wake Forest Innovation Quarter (WFIQ) is a 170-acre urban innovation district in Winston-Salem anchored by Wake Forest University School of Medicine, Atrium Health Wake Forest Baptist Medical Center, and Winston-Salem State University. WFIQ houses biomedical AI research in oncology, genomics, clinical decision support, and precision medicine \u2014 one of the most concentrated health AI campuses in the Southeast.",
       "lon": -80.2442,
       "lat": 36.0999
     },
     {
       "id": "ai-wa-007",
-      "name": "Clark Public Utilities Columbia Gorge Data Center Zone — Clark County WA",
+      "name": "Clark Public Utilities Columbia Gorge Data Center Zone \u2014 Clark County WA",
       "operator": "Multiple tenants / Clark County EDC",
       "status": "planned",
       "county_fips": "53003",
-      "notes": "Clark County's position as the Washington-side component of the Portland metro area — with Washington's favorable tax treatment (no income tax, RCW 82.08.986 sales-tax exemption on data center equipment) versus Oregon's taxable environment — has driven a cluster of data center proposals along the I-5 and I-205 corridors south of Vancouver. Clark Public Utilities is the primary distributor, interconnected with BPA's high-voltage grid.",
+      "notes": "Clark County's position as the Washington-side component of the Portland metro area \u2014 with Washington's favorable tax treatment (no income tax, RCW 82.08.986 sales-tax exemption on data center equipment) versus Oregon's taxable environment \u2014 has driven a cluster of data center proposals along the I-5 and I-205 corridors south of Vancouver. Clark Public Utilities is the primary distributor, interconnected with BPA's high-voltage grid.",
       "lon": -122.5712,
       "lat": 45.628
     },
     {
       "id": "ai-or-008",
-      "name": "Jefferson County High Desert Solar Data Center Zone — Jefferson County OR",
+      "name": "Jefferson County High Desert Solar Data Center Zone \u2014 Jefferson County OR",
       "operator": "Multiple developers / Jefferson County",
       "status": "planned",
       "county_fips": "41031",
@@ -2100,17 +2100,17 @@
     },
     {
       "id": "ai-ny-006",
-      "name": "GE Vernova Global Research Center — Niskayuna / Schenectady County NY",
+      "name": "GE Vernova Global Research Center \u2014 Niskayuna / Schenectady County NY",
       "operator": "GE Vernova (General Electric Vernova Inc.)",
       "status": "operational",
       "county_fips": "36093",
-      "notes": "GE Vernova's Global Research Center in Niskayuna, NY (est. 1900 as the General Electric Research Laboratory) is one of the world's oldest and most productive industrial R&D campuses. Today it focuses on AI-enabled gas turbine efficiency, wind turbine digital twins, grid-scale energy storage, and power semiconductor research — generating some of the most demanding industrial AI HPC workloads in the Northeast.",
+      "notes": "GE Vernova's Global Research Center in Niskayuna, NY (est. 1900 as the General Electric Research Laboratory) is one of the world's oldest and most productive industrial R&D campuses. Today it focuses on AI-enabled gas turbine efficiency, wind turbine digital twins, grid-scale energy storage, and power semiconductor research \u2014 generating some of the most demanding industrial AI HPC workloads in the Northeast.",
       "lon": -73.9212,
       "lat": 42.8142
     },
     {
       "id": "ai-ny-007",
-      "name": "NYPA St. Lawrence-FDR Hydroelectric Complex AI / Clarkson University HPC — St. Lawrence County NY",
+      "name": "NYPA St. Lawrence-FDR Hydroelectric Complex AI / Clarkson University HPC \u2014 St. Lawrence County NY",
       "operator": "New York Power Authority / Clarkson University",
       "status": "operational",
       "county_fips": "36101",
@@ -2120,23 +2120,223 @@
     },
     {
       "id": "ai-or-009",
-      "name": "Roseburg Forest Products / Pacific Power Timber AI Hub — Douglas County OR",
+      "name": "Roseburg Forest Products / Pacific Power Timber AI Hub \u2014 Douglas County OR",
       "operator": "Roseburg Forest Products / Pacific Power",
       "status": "operational",
       "county_fips": "41019",
-      "notes": "Douglas County's timber industry — anchored by Roseburg Forest Products, Weyerhaeuser, and Interfor — operates AI-based log-scanning, yield optimization, and predictive sawmill maintenance systems that represent among the most mature industrial AI deployments in Oregon's forest sector. Pacific Power serves these industrial loads with Oregon West transmission system capacity, and the I-5 fiber corridor through Roseburg is the primary Pacific Northwest backbone.",
+      "notes": "Douglas County's timber industry \u2014 anchored by Roseburg Forest Products, Weyerhaeuser, and Interfor \u2014 operates AI-based log-scanning, yield optimization, and predictive sawmill maintenance systems that represent among the most mature industrial AI deployments in Oregon's forest sector. Pacific Power serves these industrial loads with Oregon West transmission system capacity, and the I-5 fiber corridor through Roseburg is the primary Pacific Northwest backbone.",
       "lon": -123.3417,
       "lat": 43.2165
     },
     {
       "id": "ai-wa-008",
-      "name": "Walla Walla Valley Precision Viticulture AI Hub — Walla Walla County WA",
+      "name": "Walla Walla Valley Precision Viticulture AI Hub \u2014 Walla Walla County WA",
       "operator": "Multiple wineries / WSU Viticulture Research",
       "status": "operational",
       "county_fips": "53071",
-      "notes": "Walla Walla County hosts 200+ wineries anchored by Woodward Canyon, L'Ecole No. 41, Seven Hills, and Leonetti Cellar. WSU's Viticulture and Enology research program (centered in Prosser but with Walla Walla extension operations) drives precision viticulture AI — soil-moisture sensing, drone-based canopy analysis, fermentation monitoring, and harvest-prediction systems — representing one of the most data-intensive per-acre agricultural AI deployments in the Pacific Northwest.",
+      "notes": "Walla Walla County hosts 200+ wineries anchored by Woodward Canyon, L'Ecole No. 41, Seven Hills, and Leonetti Cellar. WSU's Viticulture and Enology research program (centered in Prosser but with Walla Walla extension operations) drives precision viticulture AI \u2014 soil-moisture sensing, drone-based canopy analysis, fermentation monitoring, and harvest-prediction systems \u2014 representing one of the most data-intensive per-acre agricultural AI deployments in the Pacific Northwest.",
       "lon": -118.343,
       "lat": 46.0646
+    },
+    {
+      "id": "ai-oh-007",
+      "name": "Intel Ohio One Semiconductor Fab & AI HPC Campus \u2014 Licking County OH",
+      "operator": "Intel Corporation",
+      "status": "under_construction",
+      "county_fips": "39089",
+      "notes": "Intel's $20B Ohio One fab (New Albany, OH); 2\u00d71,000-acre fabs planned. On-site AI-accelerated EUV lithography control, yield-prediction ML, and fab digital-twin HPC. AEP Ohio $300M+ transmission buildout.",
+      "lon": -82.7924,
+      "lat": 40.082
+    },
+    {
+      "id": "ai-mi-004",
+      "name": "Ford Dearborn AI Research Center & ADAS Simulation \u2014 Wayne County MI",
+      "operator": "Ford Motor Company",
+      "status": "operational",
+      "county_fips": "26163",
+      "notes": "Ford Michigan Central innovation campus (Corktown, Detroit) and Dearborn Product Development Center AI lab. ADAS simulation, digital-twin vehicle testing, battery AI, and manufacturing yield modeling. DTE Energy served.",
+      "lon": -83.211,
+      "lat": 42.3223
+    },
+    {
+      "id": "ai-mi-005",
+      "name": "General Motors Global Technical Center AI & Ultium EV Simulation \u2014 Oakland County MI",
+      "operator": "General Motors Company",
+      "status": "operational",
+      "county_fips": "26125",
+      "notes": "GM Warren Technical Center (Warren, MI) AI campus: Ultium battery simulation, autonomous Cruise perception ML, manufacturing AI for assembly plants. DTE Energy served. World's largest private R&D campus by land area.",
+      "lon": -83.0277,
+      "lat": 42.5064
+    },
+    {
+      "id": "ai-mn-006",
+      "name": "Mayo Clinic AI & Clinical Decision Support Platform \u2014 Olmsted County MN",
+      "operator": "Mayo Clinic",
+      "status": "operational",
+      "county_fips": "27109",
+      "notes": "Mayo Clinic Rochester AI platform: clinical NLP, radiology AI (CT/MRI), genomics HPC (Mayo/Google Cloud partnership), federated-learning clinical trials. Mayo Clinic Data Science and AI program, Xcel Energy served.",
+      "lon": -92.4557,
+      "lat": 44.0219
+    },
+    {
+      "id": "ai-ia-005",
+      "name": "Google Council Bluffs & Altoona Hyperscale AI Data Centers \u2014 Pottawattamie & Polk Counties IA",
+      "operator": "Google LLC",
+      "status": "operational",
+      "county_fips": "19155",
+      "notes": "Google has invested $3B+ in Iowa data centers. Council Bluffs campus: 6 buildings, 1.2M sq ft, 100% renewable MidAmerican wind. AI inference/training for Google Search, YouTube, Cloud AI. Iowa \u00a7423.3(101) ST exemption beneficiary.",
+      "lon": -95.8608,
+      "lat": 41.2619
+    },
+    {
+      "id": "ai-ne-001",
+      "name": "PayPal / Gallup / First Data Omaha Fintech AI Center \u2014 Douglas County NE",
+      "operator": "PayPal Holdings / Multiple operators",
+      "status": "operational",
+      "county_fips": "31055",
+      "notes": "Omaha is a national back-office and fintech AI hub: PayPal Omaha Technology Center, Gallup AI analytics HQ, First Data/Fiserv payment-processing AI. OPPD served. NE LB 1020 PPT exemption; Berkshire Hathaway financial AI adjacent.",
+      "lon": -95.9345,
+      "lat": 41.2565
+    },
+    {
+      "id": "ai-ne-002",
+      "name": "Union Pacific Railroad AI Operations Center \u2014 Douglas County NE",
+      "operator": "Union Pacific Railroad",
+      "status": "operational",
+      "county_fips": "31055",
+      "notes": "Union Pacific's Omaha HQ hosts its AI Operations Center: locomotive predictive maintenance, network-flow optimization, precision-scheduled railroading AI. One of the largest private AI deployments in logistics. OPPD served.",
+      "lon": -95.9306,
+      "lat": 41.2523
+    },
+    {
+      "id": "ai-mt-002",
+      "name": "Montana State University AI Research & SSEL Computing Lab \u2014 Gallatin County MT",
+      "operator": "Montana State University",
+      "status": "operational",
+      "county_fips": "30031",
+      "notes": "MSU Bozeman Space Science and Engineering Lab (SSEL) AI: CubeSat ML, wildfire-spread prediction (USFS partnership), agricultural AI (soil-moisture, yield). NorthWestern Energy served. MTEC SmartZone tech-transfer for AI spinouts.",
+      "lon": -111.0494,
+      "lat": 45.6669
+    },
+    {
+      "id": "ai-id-003",
+      "name": "Micron Technology Boise HQ AI & Memory-Optimized ML Research \u2014 Ada County ID",
+      "operator": "Micron Technology Inc.",
+      "status": "operational",
+      "county_fips": "16001",
+      "notes": "Micron Boise HQ campus: DRAM/NAND AI design automation (DFM, yield AI), memory-centric computing research (AI-DRAM), fab simulation HPC. Idaho Power served. Adjacent to Boise Airport; US-20/26 fiber corridor.",
+      "lon": -116.3635,
+      "lat": 43.6187
+    },
+    {
+      "id": "ai-ks-004",
+      "name": "USDA Agricultural Research Service Plains Area AI Hub \u2014 Sedgwick County KS",
+      "operator": "USDA Agricultural Research Service (ARS)",
+      "status": "operational",
+      "county_fips": "20173",
+      "notes": "USDA ARS Hard Winter Wheat Genetics Research Unit (Wichita/Manhattan, KS): AI for wheat-genome trait prediction, drought-tolerance ML, precision-irrigation optimization for the Ogallala Aquifer region. Evergy served.",
+      "lon": -97.3301,
+      "lat": 37.6922
+    },
+    {
+      "id": "ai-tx-010",
+      "name": "AT&T Technology Development Center & Global Network AI Hub \u2014 Collin County TX",
+      "operator": "AT&T Inc.",
+      "status": "operational",
+      "county_fips": "48083",
+      "notes": "AT&T Plano campus (Legacy West): global network operations AI, 5G core AI, FirstNet AI public-safety network, network digital twins, AT&T Labs AI research (700+ data scientists). One of the largest private AI campuses in TX.",
+      "lon": -96.8005,
+      "lat": 33.0793
+    },
+    {
+      "id": "ai-tx-011",
+      "name": "NextEra Pecos Solar+Storage AI Operations Center \u2014 Reeves County TX",
+      "operator": "NextEra Energy Resources",
+      "status": "operational",
+      "county_fips": "48391",
+      "notes": "Reeves County trans-Pecos: NextEra/Brigado 3,000+ MW solar+storage. AI for real-time energy dispatch, battery state-of-health prediction, ERCOT market optimization. First major compute co-location at West TX renewable hub; negative-price solar hours enable low-cost batch AI training.",
+      "lon": -103.4937,
+      "lat": 31.4229
+    },
+    {
+      "id": "ai-ga-010",
+      "name": "Naval Submarine Base Kings Bay SSBN Navigation AI Center \u2014 Camden County GA",
+      "operator": "U.S. Navy / Naval Submarine Forces Atlantic",
+      "status": "operational",
+      "county_fips": "13039",
+      "notes": "Kings Bay NSGS: home to Ohio-class SSBN (Trident II D5) and SSGN. Navy AI: acoustic signature ML, autonomous navigation, SSBN mission planning AI, Naval Nuclear Lab simulation HPC. Georgia Power served. Classified facility.",
+      "lon": -81.597,
+      "lat": 30.799
+    },
+    {
+      "id": "ai-ga-011",
+      "name": "Effingham County I-16 Industrial AI Hub / Port of Savannah Logistics Overflow \u2014 Effingham County GA",
+      "operator": "Multiple tenants / Effingham County Development Authority",
+      "status": "planned",
+      "county_fips": "13103",
+      "notes": "Port of Savannah overflow zone on I-16/I-95 interchange. AI: Container logistics routing, warehouse robotics, last-mile delivery optimization. Amazon, Walmart, Home Depot distribution AI. Georgia Power queue expansions 2024.",
+      "lon": -81.3373,
+      "lat": 32.3577
+    },
+    {
+      "id": "ai-nc-010",
+      "name": "II Marine Expeditionary Force C4ISR & Cyber AI Hub \u2014 Camp Lejeune, Onslow County NC",
+      "operator": "U.S. Marine Corps / II MEF",
+      "status": "operational",
+      "county_fips": "37133",
+      "notes": "MCB Camp Lejeune: II MEF, 2nd Marine Division, MARSOC. C4ISR AI: MAGTF Command Element AI-assisted fires, autonomous ISR (Blue Bear, Ghost), cyber operations ML, Pope AAF logistics AI. Duke Energy Progress served.",
+      "lon": -77.3416,
+      "lat": 34.6768
+    },
+    {
+      "id": "ai-nc-011",
+      "name": "ECU Health Vidant Medical Center Clinical AI Platform \u2014 Pitt County NC",
+      "operator": "ECU Health / East Carolina University",
+      "status": "operational",
+      "county_fips": "37147",
+      "notes": "ECU Health Vidant Medical Center (Level 1 Trauma, 974 beds): clinical AI for radiology (chest X-ray, CT), sepsis early warning, precision oncology, EHR NLP. ECU Brody SOM AI Center partnership; NIH-funded federated-learning clinical trials.",
+      "lon": -77.3664,
+      "lat": 35.5793
+    },
+    {
+      "id": "ai-ky-004",
+      "name": "Amazon CVG Air Hub AI Robotics & Sortation Technology \u2014 Kenton County KY",
+      "operator": "Amazon.com Services LLC",
+      "status": "operational",
+      "county_fips": "21115",
+      "notes": "Amazon Air Hub CVG (Erlanger, KY): 3M sq ft facility, largest Amazon Air hub globally. AI: autonomous conveyor sorting (Robin robotic arms), aircraft load optimization, predictive maintenance, real-time flight-path AI. AWS edge nodes on-site.",
+      "lon": -84.6599,
+      "lat": 39.0488
+    },
+    {
+      "id": "ai-ky-005",
+      "name": "University of Kentucky Center for Applied AI Research \u2014 Fayette County KY",
+      "operator": "University of Kentucky",
+      "status": "operational",
+      "county_fips": "21067",
+      "notes": "UK CAAI: equine genome AI (world's largest equine genomics DB), energy AI (Kentucky coal transition), healthcare AI (UK HealthCare), autonomous mining systems (CAER). LG&E/KU served; connected to Internet2 and KentuckyWired fiber.",
+      "lon": -84.5037,
+      "lat": 38.0406
+    },
+    {
+      "id": "ai-ca-012",
+      "name": "Genentech / Roche South San Francisco AI Drug Discovery Hub \u2014 San Mateo County CA",
+      "operator": "Genentech Inc. (Roche Group)",
+      "status": "operational",
+      "county_fips": "06081",
+      "notes": "Genentech South San Francisco HQ: AI for antibody discovery (ATLAS ML platform), clinical trial optimization, manufacturing AI (Oceanside/Vacaville), regulatory NLP. 800+ ML scientists; PG&E served; 100% renewable since 2021.",
+      "lon": -122.3886,
+      "lat": 37.6879
+    },
+    {
+      "id": "ai-ca-013",
+      "name": "Lawrence Livermore National Laboratory AI for Nuclear & Climate Security \u2014 Alameda County CA",
+      "operator": "Lawrence Livermore National Laboratory / NNSA / DOE",
+      "status": "operational",
+      "county_fips": "06001",
+      "notes": "LLNL Livermore: El Capitan exascale supercomputer (2 exaFLOPS, top500 #1 2024). AI: nuclear-stockpile-stewardship simulation, climate modeling, cancer genomics (ATOM consortium), materials discovery. NNSA classified facility. PG&E served.",
+      "lon": -121.7067,
+      "lat": 37.6891
     }
   ]
 }
