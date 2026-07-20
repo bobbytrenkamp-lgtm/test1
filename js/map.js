@@ -104,6 +104,7 @@ const STATE_NAMES = {
   SD:"South Dakota", TN:"Tennessee", TX:"Texas", UT:"Utah", VT:"Vermont",
   VA:"Virginia", WA:"Washington", WV:"West Virginia", WI:"Wisconsin", WY:"Wyoming",
 };
+window._STATE_NAMES = STATE_NAMES; // exposed for command-palette.js
 
 /* ── Annotations (callout labels, togglable) ── */
 const ANNOTATIONS = [
@@ -160,6 +161,12 @@ let drawAreaUnit     = (function(){ try { return localStorage.getItem('draw-area
 let candidatePinMode = false;
 let _candidatePin    = null;
 
+/* ── Radius buffer tool state ── */
+let radiusMode    = false;
+let radiusCenter  = null;
+let radiusLayers  = [];
+let _radiusKm     = 16.09; // default 10 miles
+
 /* ── Save button state ── */
 let _savedCountySet   = new Set();
 let _savedFacilitySet = new Set();
@@ -180,9 +187,12 @@ const layerState = {
   water:        false,
   utility:      false,
   tax:          false,
-  annotations:     true,
-  zoning_districts: false,
-  zoning_overlays:  false,
+  annotations:        true,
+  zoning_districts:   false,
+  zoning_overlays:    false,
+  opportunity_zones:  false, // roadmap — no data yet
+  fema_flood:         false, // roadmap — no data yet
+  enterprise_zones:   false, // roadmap — no data yet
 };
 
 let mapData         = {};
@@ -851,6 +861,22 @@ function setLayerVisible(id, visible, syncUI = false) {
     if (input) input.checked = visible;
   }
   renderLegend();
+  _saveLayerState();
+}
+
+const LAYER_STATE_KEY = "dc-layer-state-v1";
+function _saveLayerState() {
+  try { localStorage.setItem(LAYER_STATE_KEY, JSON.stringify(layerState)); } catch (_) {}
+}
+function _loadLayerState() {
+  try {
+    const raw = localStorage.getItem(LAYER_STATE_KEY);
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    for (const k of Object.keys(layerState)) {
+      if (typeof s[k] === "boolean") layerState[k] = s[k];
+    }
+  } catch (_) {}
 }
 
 /* ── Toast ── */
@@ -1120,6 +1146,107 @@ function toggleCandidatePin() {
     }
   } else {
     if (el) el.hidden = true;
+  }
+}
+
+/* ── Radius buffer tool ── */
+function clearRadius() {
+  radiusLayers.forEach(l => { if (l && leafletMap) leafletMap.removeLayer(l); });
+  radiusLayers = [];
+  radiusCenter = null;
+  const readout = document.getElementById('radius-readout');
+  if (readout) readout.hidden = true;
+}
+
+function _highlightRadiusCounties() {
+  if (!radiusCenter || !countyGeoLayer) {
+    const countEl = document.getElementById('radius-count-val');
+    if (countEl) countEl.textContent = '';
+    return;
+  }
+  const radiusM = _radiusKm * 1000;
+  let count = 0;
+  countyGeoLayer.eachLayer(layer => {
+    try {
+      const c = layer.getBounds().getCenter();
+      if (radiusCenter.distanceTo(c) <= radiusM) count++;
+    } catch (_) {}
+  });
+  const countEl = document.getElementById('radius-count-val');
+  if (countEl) countEl.textContent = count > 0 ? `${count} counti${count === 1 ? 'y' : 'es'} in range` : '';
+}
+
+function _updateRadiusReadout() {
+  const distEl = document.getElementById('radius-dist-val');
+  if (distEl) {
+    if (!radiusCenter) {
+      distEl.textContent = 'Click map to place center';
+    } else {
+      const mi = (_radiusKm * 0.621371).toFixed(0);
+      const km = _radiusKm.toFixed(0);
+      distEl.textContent = `${mi} mi  (${km} km)`;
+    }
+  }
+  document.querySelectorAll('.radius-preset').forEach(btn => {
+    btn.classList.toggle('active', Math.abs(parseFloat(btn.dataset.km) - _radiusKm) < 0.01);
+  });
+  _highlightRadiusCounties();
+}
+
+function _placeRadiusCenter(latlng) {
+  clearRadius();
+  radiusCenter = latlng;
+
+  const marker = L.circleMarker(latlng, {
+    radius: 5, fillColor: '#f59e0b', color: '#fff',
+    weight: 1.5, fillOpacity: 1, interactive: false,
+  }).addTo(leafletMap);
+  radiusLayers.push(marker);
+
+  const circle = L.circle(latlng, {
+    radius: _radiusKm * 1000,
+    color: '#f59e0b', weight: 1.5, opacity: 0.85,
+    fillColor: '#f59e0b', fillOpacity: 0.06,
+    interactive: false,
+  }).addTo(leafletMap);
+  radiusLayers.push(circle);
+
+  _updateRadiusReadout();
+}
+
+function setRadiusFromPreset(km) {
+  _radiusKm = km;
+  if (radiusCenter && radiusLayers.length >= 2) {
+    const oldCircle = radiusLayers[1];
+    if (oldCircle && leafletMap) leafletMap.removeLayer(oldCircle);
+    const circle = L.circle(radiusCenter, {
+      radius: km * 1000,
+      color: '#f59e0b', weight: 1.5, opacity: 0.85,
+      fillColor: '#f59e0b', fillOpacity: 0.06,
+      interactive: false,
+    }).addTo(leafletMap);
+    radiusLayers[1] = circle;
+  }
+  _updateRadiusReadout();
+}
+
+function toggleRadius() {
+  if (measureMode)      toggleMeasure();
+  if (drawMode)         toggleDraw();
+  if (candidatePinMode) { _clearCandidatePin(); candidatePinMode = false; }
+
+  radiusMode = !radiusMode;
+  const btn   = document.getElementById('gis-radius');
+  const mapEl = document.getElementById('leaflet-map');
+  if (btn)   { btn.classList.toggle('active', radiusMode); btn.setAttribute('aria-pressed', String(radiusMode)); }
+  if (mapEl) mapEl.classList.toggle('radius-active', radiusMode);
+
+  if (radiusMode) {
+    const readout = document.getElementById('radius-readout');
+    if (readout) { readout.hidden = false; _updateRadiusReadout(); }
+    showMapToast('Click map to place radius center');
+  } else {
+    clearRadius();
   }
 }
 
@@ -1609,9 +1736,18 @@ function renderBookmarksList() {
     row.querySelector(".bookmark-del").addEventListener("click", () => {
       _saveBookmarks(_loadBookmarks().filter((_, i) => i !== idx));
       renderBookmarksList();
+      _updateBookmarksBadge();
     });
     listEl.appendChild(row);
   });
+}
+
+function _updateBookmarksBadge() {
+  const badge = document.getElementById("bm-count-badge");
+  if (!badge) return;
+  const n = _loadBookmarks().length;
+  badge.textContent = n > 0 ? String(n) : "";
+  badge.hidden = n === 0;
 }
 
 function saveCurrentViewAsBookmark() {
@@ -1623,6 +1759,7 @@ function saveCurrentViewAsBookmark() {
   bmarks.push({ name, lat: +c.lat.toFixed(4), lng: +c.lng.toFixed(4), zoom });
   _saveBookmarks(bmarks);
   renderBookmarksList();
+  _updateBookmarksBadge();
   showMapToast(`Saved "${name}"`);
 }
 
@@ -1636,17 +1773,69 @@ function toggleBookmarks() {
 }
 
 /* ── Compare panel ── */
+function _cmpRadarSvg(s) {
+  const cx = 50, cy = 32, R = 22;
+  const gradeColors = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
+  const col = gradeColors[s.grade] || "#4874e8";
+  const angles = [-Math.PI / 2, Math.PI / 6, (5 * Math.PI) / 6];
+  const ox = (a, r) => (cx + r * Math.cos(a)).toFixed(1);
+  const oy = (a, r) => (cy + r * Math.sin(a)).toFixed(1);
+  const poly = r => angles.map(a => `${ox(a, r)},${oy(a, r)}`).join(" ");
+  const grids = `<polygon points="${poly(R)}" fill="none" stroke="var(--radar-grid)" stroke-width="0.6"/>` +
+    `<polygon points="${poly(R * 0.5)}" fill="none" stroke="var(--radar-grid)" stroke-width="0.5" stroke-dasharray="2 2"/>`;
+  const axes = angles.map(a =>
+    `<line x1="${cx}" y1="${cy}" x2="${ox(a, R)}" y2="${oy(a, R)}" stroke="var(--radar-grid)" stroke-width="0.5"/>`
+  ).join("");
+  const dataPoly = s.factors.map((f, i) => {
+    const r = Math.max(1.5, (f.pts / f.max) * R);
+    return `${ox(angles[i], r)},${oy(angles[i], r)}`;
+  }).join(" ");
+  const dots = s.factors.map((f, i) => {
+    const r = Math.max(1.5, (f.pts / f.max) * R);
+    return `<circle cx="${ox(angles[i], r)}" cy="${oy(angles[i], r)}" r="1.8" fill="${col}"/>`;
+  }).join("");
+  return `<svg viewBox="0 0 100 58" aria-hidden="true" style="width:100%;height:auto;display:block;">
+    ${grids}${axes}
+    <polygon points="${dataPoly}" fill="${col}" fill-opacity="0.18" stroke="${col}" stroke-width="1.3" stroke-linejoin="round"/>
+    ${dots}
+  </svg>`;
+}
+
 function renderComparePanel() {
   const body = document.getElementById("compare-body");
   if (!body) return;
   body.innerHTML = "";
 
   if (!compareCounties.length) {
-    for (let i = 0; i < 2; i++) {
-      body.appendChild(_makeCmpAddSlot());
-    }
+    const wrap = document.createElement("div");
+    wrap.className = "cmp-empty-wrap";
+    const hint = document.createElement("p");
+    hint.className = "cmp-empty-hint";
+    hint.textContent = "Click counties on the map to compare suitability, severity, and policy details side-by-side.";
+    wrap.appendChild(hint);
+    const slots = document.createElement("div");
+    slots.className = "cmp-empty-slots";
+    for (let i = 0; i < 2; i++) slots.appendChild(_makeCmpAddSlot());
+    wrap.appendChild(slots);
+    body.appendChild(wrap);
     return;
   }
+
+  // Pre-compute scores for diff highlighting (only meaningful with 2+ counties)
+  const _suits = {};
+  compareCounties.forEach(f => { const c = mapData[f]; if (c) _suits[f] = computeSuitabilityScore(f, c).score; });
+  const _scores = Object.values(_suits);
+  const _maxScore = _scores.length > 1 ? Math.max(..._scores) : -1;
+  const _minScore = _scores.length > 1 ? Math.min(..._scores) : -1;
+  const _multicount = compareCounties.filter(f => mapData[f]).length > 1;
+
+  // Severity rank for diff highlighting (lower = better for DC siting)
+  const SEV_RANK = { pro: 0, none: 1, proposed: 2, moderate: 3, high: 4, ban: 5 };
+  const _sevRanks = {};
+  compareCounties.forEach(f => { const c = mapData[f]; if (c) _sevRanks[f] = SEV_RANK[getSeverityKey(c)] ?? 3; });
+  const _rankVals = Object.values(_sevRanks);
+  const _bestRank = _rankVals.length > 1 ? Math.min(..._rankVals) : -1;
+  const _worstRank = _rankVals.length > 1 ? Math.max(..._rankVals) : -1;
 
   compareCounties.forEach(fips => {
     const county = mapData[fips];
@@ -1656,10 +1845,20 @@ function renderComparePanel() {
     const sevLabel = SEVERITY[sevKey].label;
     const types    = (county.types || []).map(t => TYPE_LABELS[t] || t).join(", ") || "—";
     const date     = county.effective_date || county.date || "—";
+    const suit     = computeSuitabilityScore(fips, county);
+
+    const isBestScore  = _multicount && _suits[fips] === _maxScore && _maxScore !== _minScore;
+    const isWorstScore = _multicount && _suits[fips] === _minScore && _maxScore !== _minScore;
+    const isBestSev    = _multicount && _sevRanks[fips] === _bestRank && _bestRank !== _worstRank;
+    const isWorstSev   = _multicount && _sevRanks[fips] === _worstRank && _bestRank !== _worstRank;
 
     const col = document.createElement("div");
     col.className = "cmp-col";
+    col.setAttribute("role", "group");
+    col.setAttribute("aria-label", `${county.name}, ${county.state}`);
     col.style.setProperty("--cmp-sev-color", sevColor);
+    if (isBestScore)  col.classList.add("cmp-col-best");
+    if (isWorstScore) col.classList.add("cmp-col-worst");
 
     // Header
     const hdr = document.createElement("div");
@@ -1680,6 +1879,20 @@ function renderComparePanel() {
     removeBtn.textContent = "×";
     removeBtn.setAttribute("aria-label", `Remove ${county.name}`);
     removeBtn.addEventListener("click", () => removeFromCompare(fips));
+
+    // Best/worst badge
+    if (isBestScore) {
+      const badge = document.createElement("span");
+      badge.className = "cmp-diff-badge cmp-diff-best";
+      badge.textContent = "Best";
+      hdr.appendChild(badge);
+    } else if (isWorstScore) {
+      const badge = document.createElement("span");
+      badge.className = "cmp-diff-badge cmp-diff-worst";
+      badge.textContent = "Highest Risk";
+      hdr.appendChild(badge);
+    }
+
     hdr.appendChild(nameWrap);
     hdr.appendChild(removeBtn);
 
@@ -1687,9 +1900,16 @@ function renderComparePanel() {
     const colBody = document.createElement("div");
     colBody.className = "cmp-col-body";
 
-    function addField(label, valueHtml) {
+    // Mini radar for quick visual comparison
+    const radarWrap = document.createElement("div");
+    radarWrap.className = "cmp-mini-radar";
+    radarWrap.innerHTML = _cmpRadarSvg(suit); // SVG uses only computed numbers — no user data
+    colBody.appendChild(radarWrap);
+
+    function addField(label, valueHtml, highlight) {
       const f = document.createElement("div");
       f.className = "cmp-field";
+      if (highlight) f.classList.add("cmp-field-" + highlight);
       const lEl = document.createElement("div");
       lEl.className = "cmp-field-label";
       lEl.textContent = label;
@@ -1701,12 +1921,13 @@ function renderComparePanel() {
       colBody.appendChild(f);
     }
 
-    const suit = computeSuitabilityScore(fips, county);
     addField("Suitability",
-      `<span class="cmp-suit-grade cmp-suit-${suit.grade}">${suit.grade}</span>${escHtml(suit.score + " / 100")} <span style="color:var(--text-muted);font-size:10px;">— ${escHtml(suit.label)}</span>`
+      `<span class="cmp-suit-grade cmp-suit-${suit.grade}">${suit.grade}</span>${escHtml(suit.score + " / 100")} <span style="color:var(--text-muted);font-size:10px;">— ${escHtml(suit.label)}</span>`,
+      isBestScore ? "best" : isWorstScore ? "worst" : null
     );
     addField("Severity",
-      `<span class="cmp-field-value cmp-sev-badge"><span class="cmp-sev-dot" style="background:${sevColor}"></span>${escHtml(sevLabel)}</span>`
+      `<span class="cmp-field-value cmp-sev-badge"><span class="cmp-sev-dot" style="background:${sevColor}"></span>${escHtml(sevLabel)}</span>`,
+      isBestSev ? "best" : isWorstSev ? "worst" : null
     );
     addField("Status", escHtml((county.status || "active").charAt(0).toUpperCase() + (county.status || "active").slice(1)));
     addField("Policy Types", escHtml(types));
@@ -1736,6 +1957,7 @@ function renderComparePanel() {
   // Always show one "+" slot at the end to invite more additions
   body.appendChild(_makeCmpAddSlot());
 }
+
 
 function _makeCmpAddSlot() {
   const col = document.createElement("div");
@@ -2070,6 +2292,7 @@ function initBookmarks() {
   document.getElementById("gis-bookmarks")    ?.addEventListener("click", toggleBookmarks);
   document.getElementById("bookmarks-close")  ?.addEventListener("click", toggleBookmarks);
   document.getElementById("bookmark-save-btn")?.addEventListener("click", saveCurrentViewAsBookmark);
+  _updateBookmarksBadge();
 }
 
 /* ── Workspace panel ── */
@@ -2299,6 +2522,7 @@ function initLeafletMap() {
     if (measureMode)      { addMeasurePoint(e.latlng); return; }
     if (drawMode)         { drawPoints.push(e.latlng); _redrawPolygonPreview(); return; }
     if (candidatePinMode) { _placeCandidatePin(e.latlng); return; }
+    if (radiusMode)       { _placeRadiusCenter(e.latlng); return; }
     if (selectedFips && countyLayerByFips[selectedFips]) {
       countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
     }
@@ -2312,6 +2536,30 @@ function initLeafletMap() {
     if (drawPoints.length > 0) drawPoints.pop();
     _closeDrawPolygon();
   });
+
+  // Auto-persist map view to localStorage so reload restores last position
+  const MAP_VIEW_KEY = "dc-map-view-v1";
+  function _saveMapView() {
+    try {
+      const c = leafletMap.getCenter();
+      localStorage.setItem(MAP_VIEW_KEY, JSON.stringify({ lat: c.lat, lng: c.lng, z: leafletMap.getZoom() }));
+    } catch (_) {}
+  }
+  function _restoreMapView() {
+    try {
+      const raw = localStorage.getItem(MAP_VIEW_KEY);
+      if (!raw) return false;
+      const { lat, lng, z } = JSON.parse(raw);
+      if (typeof lat === "number" && typeof lng === "number" && typeof z === "number") {
+        leafletMap.setView([lat, lng], z, { animate: false });
+        return true;
+      }
+    } catch (_) {}
+    return false;
+  }
+  // Restore on first load if no hash permalink is present
+  if (!window.location.hash) _restoreMapView();
+  leafletMap.on("moveend zoomend", _saveMapView);
 
   // Update dashboard extent scope when the viewport changes
   leafletMap.on("moveend", () => {
@@ -2369,6 +2617,7 @@ function initLeafletMap() {
   document.getElementById("gis-measure")       ?.addEventListener("click", toggleMeasure);
   document.getElementById("gis-draw")          ?.addEventListener("click", toggleDraw);
   document.getElementById("gis-pin")           ?.addEventListener("click", toggleCandidatePin);
+  document.getElementById("gis-radius")        ?.addEventListener("click", toggleRadius);
   document.getElementById("gis-export")        ?.addEventListener("click", _toggleExportMenu);
   document.getElementById("exp-csv")           ?.addEventListener("click", () => { document.getElementById("export-menu").hidden = true; exportCountiesCSV(); });
   document.getElementById("exp-geojson")       ?.addEventListener("click", () => { document.getElementById("export-menu").hidden = true; exportCountiesGeoJSON(); });
@@ -2458,6 +2707,28 @@ function initLeafletMap() {
     _drawClearBtn.addEventListener('touchend',   e => { e.preventDefault(); e.stopPropagation(); _doClearDraw(); }, { passive: false });
   }
 
+  // Radius readout — preset buttons + clear button
+  const _radiusReadoutEl = document.getElementById('radius-readout');
+  if (_radiusReadoutEl) {
+    _radiusReadoutEl.querySelectorAll('.radius-preset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const km = parseFloat(btn.dataset.km);
+        if (!isNaN(km)) setRadiusFromPreset(km);
+      });
+    });
+    L.DomEvent.disableClickPropagation(_radiusReadoutEl);
+  }
+  const _radiusClearBtn = document.getElementById('radius-clear-btn');
+  if (_radiusClearBtn) {
+    const _doClearRadius = () => {
+      if (radiusMode) toggleRadius();
+      else clearRadius();
+    };
+    _radiusClearBtn.addEventListener('click', _doClearRadius);
+    _radiusClearBtn.addEventListener('touchstart', e => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+    _radiusClearBtn.addEventListener('touchend',   e => { e.preventDefault(); e.stopPropagation(); _doClearRadius(); }, { passive: false });
+  }
+
   // Fullscreen state sync
   document.addEventListener("fullscreenchange", () => {
     const btn  = document.getElementById("gis-fullscreen");
@@ -2473,6 +2744,7 @@ function initLeafletMap() {
     if ((e.key === "m" || e.key === "M") && !e.ctrlKey && !e.metaKey) toggleMeasure();
     if ((e.key === "d" || e.key === "D") && !e.ctrlKey && !e.metaKey) toggleDraw();
     if ((e.key === "p" || e.key === "P") && !e.ctrlKey && !e.metaKey) toggleCandidatePin();
+    if ((e.key === "r" || e.key === "R") && !e.ctrlKey && !e.metaKey) toggleRadius();
     if ((e.key === "l" || e.key === "L") && !e.ctrlKey && !e.metaKey) window.RESULTS_PANEL?.toggle();
     if ((e.key === "f" || e.key === "F") && !e.ctrlKey && !e.metaKey) toggleFullscreen();
     if ((e.key === "w" || e.key === "W") && !e.ctrlKey && !e.metaKey) toggleWorkspaces();
@@ -2480,6 +2752,7 @@ function initLeafletMap() {
     if (e.key === "Escape" && measureMode)      toggleMeasure();
     if (e.key === "Escape" && drawMode)         toggleDraw();
     if (e.key === "Escape" && candidatePinMode) toggleCandidatePin();
+    if (e.key === "Escape" && radiusMode)       toggleRadius();
     if (e.key === "Escape" && _wsVisible)       toggleWorkspaces();
     if (e.key === "Escape" && compareMode)      toggleComparePanel();
   });
@@ -3024,9 +3297,12 @@ function renderFilterPanel() {
   searchWrap.appendChild(searchInput);
   body.appendChild(searchWrap);
 
+  let _lsDebounce = null;
   const onSearchChange = () => {
     _layerSearch = searchInput.value.trim();
-    _applyLayerSearch();
+    clearTimeout(_lsDebounce);
+    if (!_layerSearch) { _applyLayerSearch(); return; } // clear immediately
+    _lsDebounce = setTimeout(_applyLayerSearch, 80); // debounce: 80ms delay for keystrokes
   };
   searchInput.addEventListener("input", onSearchChange);
   // "search" event fires when the native × button clears the field
@@ -4066,7 +4342,16 @@ function buildConfidenceBadgeHtml(county) {
 }
 
 /* ── Suitability scoring ── */
+const _suitabilityCache = new Map();
+
 function computeSuitabilityScore(fips, county) {
+  if (_suitabilityCache.has(fips)) return _suitabilityCache.get(fips);
+  const result = _computeSuitabilityScore(fips, county);
+  _suitabilityCache.set(fips, result);
+  return result;
+}
+
+function _computeSuitabilityScore(fips, county) {
   // Factor 1: Regulatory Environment (max 50)
   const sevKey = county ? getSeverityKey(county) : "none";
   const regPts = { pro: 50, none: 45, proposed: 30, moderate: 18, high: 6, ban: 0 }[sevKey] ?? 45;
@@ -4121,6 +4406,38 @@ function computeSuitabilityScore(fips, county) {
   };
 }
 
+function _radarSvg(s) {
+  const cx = 80, cy = 54, R = 38;
+  const gradeColors = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
+  const col = gradeColors[s.grade] || "#4874e8";
+  const angles = [-Math.PI / 2, Math.PI / 6, (5 * Math.PI) / 6];
+  const ox = (a, r) => (cx + r * Math.cos(a)).toFixed(1);
+  const oy = (a, r) => (cy + r * Math.sin(a)).toFixed(1);
+  const poly = r => angles.map(a => `${ox(a, r)},${oy(a, r)}`).join(" ");
+  const grids = [0.25, 0.5, 0.75, 1].map((f, i) =>
+    `<polygon points="${poly(R * f)}" fill="none" stroke="var(--radar-grid)" stroke-width="${i === 3 ? 0.7 : 0.5}" ${i < 3 ? 'stroke-dasharray="2 2"' : ""}/>`
+  ).join("");
+  const axisLines = angles.map(a =>
+    `<line x1="${cx}" y1="${cy}" x2="${ox(a, R)}" y2="${oy(a, R)}" stroke="var(--radar-grid)" stroke-width="0.5"/>`
+  ).join("");
+  const dataPoly = s.factors.map((f, i) => {
+    const r = Math.max(2, (f.pts / f.max) * R);
+    return `${ox(angles[i], r)},${oy(angles[i], r)}`;
+  }).join(" ");
+  const dots = s.factors.map((f, i) => {
+    const r = Math.max(2, (f.pts / f.max) * R);
+    return `<circle cx="${ox(angles[i], r)}" cy="${oy(angles[i], r)}" r="2.4" fill="${col}"/>`;
+  }).join("");
+  const lo = R + 10;
+  const lbl = (ai, txt, anc, dy) =>
+    `<text x="${ox(angles[ai], lo)}" y="${oy(angles[ai], lo)}" dy="${dy}" text-anchor="${anc}" font-size="7.5" font-family="system-ui,sans-serif" fill="var(--text-muted)">${txt}</text>`;
+  return `<svg class="suit-radar" viewBox="0 0 170 100" aria-hidden="true">
+    ${grids}${axisLines}
+    <polygon points="${dataPoly}" fill="${col}" fill-opacity="0.18" stroke="${col}" stroke-width="1.5" stroke-linejoin="round"/>
+    ${dots}${lbl(0,"Regulatory","middle","0")}${lbl(1,"Political","start","4")}${lbl(2,"Scope","end","4")}
+  </svg>`;
+}
+
 function buildSuitabilityHtml(fips, county) {
   const s = computeSuitabilityScore(fips, county);
   const barsHtml = s.factors.map(f => {
@@ -4134,7 +4451,7 @@ function buildSuitabilityHtml(fips, county) {
       <div class="suit-factor-note">${escHtml(f.note)}</div>
     </div>`;
   }).join("");
-  return `<div class="suit-section">
+  return `<div class="suit-section" role="region" aria-label="Suitability Score">
     <div class="suit-section-header">
       <span class="suit-section-title">Suitability Score</span>
       <span class="ds-badge ds-estimated" title="Algorithmically estimated from regulatory and political signals. Not a professional site assessment.">Estimated</span>
@@ -4146,8 +4463,63 @@ function buildSuitabilityHtml(fips, county) {
         <span class="suit-score-num">${s.score}<span class="suit-score-denom"> / 100</span></span>
       </div>
     </div>
+    ${_radarSvg(s)}
     ${barsHtml}
     <p class="suit-disclaimer">Estimated from restriction severity, political risk signals, and restriction scope. Not a professional site assessment.</p>
+  </div>`;
+}
+
+/* ── County Timeline ── */
+function buildCountyTimelineHtml(fips, county) {
+  const events = [];
+
+  // Effective date of the ordinance
+  if (county.effective_date) {
+    const sevKey = getSeverityKey(county);
+    const dotCls = { ban: "tl-dot-ban", high: "tl-dot-high", moderate: "tl-dot-moderate",
+                     proposed: "tl-dot-proposed", pro: "tl-dot-pro", none: "tl-dot-none" }[sevKey] || "tl-dot-none";
+    events.push({ date: county.effective_date, dotCls,
+      label: county.title || LEVEL_LABELS[county.level] || "Policy enacted",
+      sub:   STATUS_LABELS[county.status || "active"] });
+  }
+
+  // Political risk signals
+  const riskRec = politicalRiskData[fips];
+  if (riskRec && riskRec.signals) {
+    for (const sig of riskRec.signals) {
+      if (!sig.detected_date) continue;
+      const favor = (sig.type || "").includes("incentive") || (sig.type || "").includes("pro") ||
+                    (sig.type || "").includes("support") || (sig.type || "").includes("enacted") && !((sig.type||"").includes("ban") || (sig.type||"").includes("moratorium"));
+      events.push({ date: sig.detected_date,
+        dotCls: favor ? "tl-dot-pro" : "tl-dot-risk",
+        label: sig.label || sig.type,
+        sub:   sig.description || "" });
+    }
+  }
+
+  // Last reviewed
+  if (county.last_reviewed) {
+    events.push({ date: county.last_reviewed, dotCls: "tl-dot-reviewed",
+      label: "Policy reviewed", sub: "Data quality check performed" });
+  }
+
+  if (!events.length) return "";
+
+  events.sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0);
+
+  const items = events.map(ev => `
+    <div class="tl-item">
+      <div class="tl-dot-wrap"><div class="tl-dot ${escHtml(ev.dotCls)}"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-date">${escHtml(ev.date)}</div>
+        <div class="tl-label">${escHtml(ev.label)}</div>
+        ${ev.sub ? `<div class="tl-sub">${escHtml(ev.sub)}</div>` : ""}
+      </div>
+    </div>`).join("");
+
+  return `<div class="tl-section">
+    <div class="tl-section-title">Policy Timeline</div>
+    <div class="tl-list">${items}</div>
   </div>`;
 }
 
@@ -4403,6 +4775,7 @@ function setDetailCounty(fips, county) {
 
   const stateFips2 = fips.slice(0, 2);
 
+  const _timelineHtml = buildCountyTimelineHtml(fips, county);
   document.getElementById("detail-body").innerHTML = `
     ${buildSuitabilityHtml(fips, county)}
     <div class="policy-divider"></div>
@@ -4413,6 +4786,7 @@ function setDetailCounty(fips, county) {
     ${buildCityPolicySectionHtml()}
     <div class="policy-divider"></div>
     ${buildPoliticalRiskSectionHtml(fips)}
+    ${_timelineHtml ? `<div class="policy-divider"></div>${_timelineHtml}` : ""}
     ${buildSampleInfraHtml(fips)}
     <div id="detail-proximity-section"></div>
     <div id="detail-zoning-summary"></div>`;
@@ -4623,23 +4997,43 @@ function initKbOverlay() {
     <div class="kb-row"><span class="kb-desc">Toggle measure mode</span><span class="kb-keys"><kbd>M</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Toggle polygon draw</span><span class="kb-keys"><kbd>D</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Drop candidate site pin</span><span class="kb-keys"><kbd>P</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Radius buffer tool</span><span class="kb-keys"><kbd>R</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Toggle results panel</span><span class="kb-keys"><kbd>L</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Workspaces panel</span><span class="kb-keys"><kbd>W</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Compare counties</span><span class="kb-keys"><kbd>C</kbd></span></div>
     <div class="kb-section">General</div>
+    <div class="kb-row"><span class="kb-desc">Command palette</span><span class="kb-keys"><kbd>Ctrl</kbd><kbd>K</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Show this help</span><span class="kb-keys"><kbd>?</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Close / dismiss</span><span class="kb-keys"><kbd>Esc</kbd></span></div>
   </div>`;
   document.body.appendChild(overlay);
 
-  const closeOverlay = () => overlay.classList.remove("open");
+  let _kbPrevFocus = null;
+
+  const openOverlay = () => {
+    _kbPrevFocus = document.activeElement;
+    overlay.classList.add("open");
+    requestAnimationFrame(() => document.getElementById("kb-close-btn")?.focus());
+  };
+
+  const closeOverlay = () => {
+    overlay.classList.remove("open");
+    _kbPrevFocus?.focus();
+    _kbPrevFocus = null;
+  };
+
+  // Focus trap: only the close button is interactive; keep focus there
+  overlay.addEventListener("keydown", e => {
+    if (e.key === "Tab") { e.preventDefault(); document.getElementById("kb-close-btn")?.focus(); }
+  });
+
   overlay.addEventListener("click", e => { if (e.target === overlay) closeOverlay(); });
   document.getElementById("kb-close-btn").addEventListener("click", closeOverlay);
-  document.getElementById("kb-help-btn")?.addEventListener("click", () => overlay.classList.add("open"));
+  document.getElementById("kb-help-btn")?.addEventListener("click", openOverlay);
 
   return {
-    open:  () => overlay.classList.add("open"),
-    close: closeOverlay,
+    open:   openOverlay,
+    close:  closeOverlay,
     isOpen: () => overlay.classList.contains("open"),
   };
 }
@@ -4706,6 +5100,18 @@ function zoomToFeature(fips) {
   if (layer) leafletMap.flyToBounds(layer.getBounds(), { duration: 0.5, maxZoom: 10 });
 }
 
+function _pulseCountyLayer(layer) {
+  const path = layer?._path;
+  if (!path) return;
+  path.classList.remove("county-pulse");
+  // Force reflow so re-adding the class restarts the animation
+  void path.offsetWidth;
+  path.classList.add("county-pulse");
+  const cleanup = () => path.classList.remove("county-pulse");
+  path.addEventListener("animationend", cleanup, { once: true });
+  setTimeout(cleanup, 900);
+}
+
 function selectCounty(fips) {
   if (selectedFips && countyLayerByFips[selectedFips]) {
     countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
@@ -4716,6 +5122,7 @@ function selectCounty(fips) {
   if (layer) {
     layer.setStyle(selectedCountyStyle());
     layer.bringToFront();
+    _pulseCountyLayer(layer);
   }
   const county = mapData[fips];
   if (county) setDetailCounty(fips, county);
@@ -4761,22 +5168,93 @@ function initSearch() {
 
   const index = [...countyIndex, ...stateIndex, ...facilityIndex];
 
-  function renderResults(matches) {
+  /* Recent searches */
+  const RECENT_KEY = "dc-search-recent-v1";
+  const MAX_RECENT = 6;
+  function _loadRecent() { try { return JSON.parse(localStorage.getItem(RECENT_KEY) || "[]"); } catch { return []; } }
+  function _saveRecent(list) { try { localStorage.setItem(RECENT_KEY, JSON.stringify(list)); } catch {} }
+  function _addRecent(label) {
+    const list = _loadRecent().filter(r => r !== label);
+    list.unshift(label);
+    _saveRecent(list.slice(0, MAX_RECENT));
+  }
+
+  /* Fuzzy scoring — tolerates partial token matches */
+  function _searchScore(item, q) {
+    const t = item.searchText;
+    if (t === q) return 100;
+    if (t.startsWith(q)) return 80;
+    if (t.includes(q)) return 60;
+    // Token prefix matching: "ho riv" → "hood river county"
+    const qTokens = q.split(/\s+/);
+    const tTokens = t.split(/\s+/);
+    const allTokensMatch = qTokens.every(qt => tTokens.some(tt => tt.startsWith(qt)));
+    if (allTokensMatch) return 40;
+    // Character subsequence
+    let qi = 0;
+    for (let ti = 0; ti < t.length && qi < q.length; ti++) {
+      if (t[ti] === q[qi]) qi++;
+    }
+    return qi === q.length ? 10 : 0;
+  }
+
+  function renderResults(matches, isRecent) {
     results.innerHTML = "";
-    if (!matches.length) { results.style.display = "none"; return; }
+    if (!matches.length) {
+      results.style.display = "none";
+      input.setAttribute("aria-expanded", "false");
+      return;
+    }
+    if (isRecent) {
+      const hdr = document.createElement("div");
+      hdr.className = "search-recent-hdr";
+      hdr.textContent = "Recent";
+      results.appendChild(hdr);
+    }
     for (const m of matches) {
       const item = document.createElement("div");
       item.className = "search-result-item";
-      if (m.kind === "county") {
+      if (m.kind === "recent") {
+        const ico = document.createElement("span");
+        ico.className = "search-recent-icon";
+        ico.setAttribute("aria-hidden", "true");
+        ico.textContent = "↩";
+        item.appendChild(ico);
+        const lbl = document.createElement("span");
+        lbl.textContent = m.label;
+        item.appendChild(lbl);
+      } else if (m.kind === "county") {
         item.textContent = `${m.name}, ${m.state}`;
       } else if (m.kind === "state") {
-        item.innerHTML = `${escHtml(m.name)} <span class="search-result-tag">State</span>`;
+        const n = document.createElement("span");
+        n.textContent = m.name;
+        item.appendChild(n);
+        const tag = document.createElement("span");
+        tag.className = "search-result-tag";
+        tag.textContent = "State";
+        item.appendChild(tag);
       } else {
-        item.innerHTML = `${escHtml(m.name)} <span class="sample-tag" style="margin-left:6px;">Sample</span>`;
+        const n = document.createElement("span");
+        n.textContent = m.name;
+        item.appendChild(n);
+        const tag = document.createElement("span");
+        tag.className = "sample-tag";
+        tag.style.marginLeft = "6px";
+        tag.textContent = "Facility";
+        item.appendChild(tag);
       }
       item.addEventListener("pointerdown", e => {
         e.preventDefault();
-        input.value = m.kind === "county" ? `${m.name}, ${m.state}` : m.name;
+        if (m.kind === "recent") {
+          // Re-run this search query
+          input.value = m.label;
+          results.style.display = "none";
+          input.dispatchEvent(new Event("input"));
+          return;
+        }
+        const displayVal = m.kind === "county" ? `${m.name}, ${m.state}` : m.name;
+        input.value = displayVal;
+        _addRecent(displayVal);
         results.style.display = "none";
         if (m.kind === "county") {
           zoomToFeature(m.fips);
@@ -4795,6 +5273,13 @@ function initSearch() {
       results.appendChild(item);
     }
     results.style.display = "block";
+    input.setAttribute("aria-expanded", "true");
+  }
+
+  function showRecentSearches() {
+    const recent = _loadRecent();
+    if (!recent.length) { results.style.display = "none"; input.setAttribute("aria-expanded", "false"); return; }
+    renderResults(recent.map(r => ({ kind: "recent", label: r })), true);
   }
 
   let kbIdx = -1;
@@ -4807,12 +5292,31 @@ function initSearch() {
 
   input.addEventListener("input", () => {
     kbIdx = -1;
-    const q = input.value.trim().toLowerCase();
-    if (!q) { results.style.display = "none"; return; }
-    renderResults(index.filter(c => c.searchText.includes(q)).slice(0, 8));
+    const raw = input.value.trim();
+    const q   = raw.toLowerCase();
+    if (!q) { showRecentSearches(); return; }
+
+    // FIPS direct lookup: 5-digit code → jump straight to county
+    if (/^\d{5}$/.test(raw)) {
+      const fipsMatch = mapData[raw]
+        ? [{ kind: "county", fips: raw, name: mapData[raw].name, state: mapData[raw].state, searchText: "" }]
+        : countyIndex.filter(c => c.fips === raw);
+      if (fipsMatch.length) { renderResults(fipsMatch, false); return; }
+    }
+
+    const scored = index
+      .map(c => ({ m: c, s: _searchScore(c, q) }))
+      .filter(x => x.s > 0)
+      .sort((a, b) => b.s - a.s)
+      .slice(0, 8)
+      .map(x => x.m);
+    renderResults(scored, false);
   });
-  input.addEventListener("focus", () => { if (input.value.trim()) input.dispatchEvent(new Event("input")); });
-  input.addEventListener("blur",  () => { setTimeout(() => { results.style.display = "none"; kbIdx = -1; }, 100); });
+  input.addEventListener("focus", () => {
+    if (input.value.trim()) input.dispatchEvent(new Event("input"));
+    else showRecentSearches();
+  });
+  input.addEventListener("blur",  () => { setTimeout(() => { results.style.display = "none"; input.setAttribute("aria-expanded","false"); kbIdx = -1; }, 100); });
 
   input.addEventListener("keydown", e => {
     const items = results.querySelectorAll(".search-result-item");
@@ -5700,6 +6204,7 @@ function initThemeToggle() {
 async function init() {
   _loadLayerGroupState();
   _loadFilterState();
+  _loadLayerState(); // restore persisted layer visibility
   initThemeToggle();
   initNavTabs();
   initKeyboardShortcuts();

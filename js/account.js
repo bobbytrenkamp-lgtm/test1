@@ -51,26 +51,33 @@
 
   function updateAuthBtn(state, profile, user) {
     if (!authBtn) return;
-    var configured = window.AUTH && window.AUTH.configured;
-    if (!configured || state === 'loading') {
+    if (state === 'loading') {
       authBtn.hidden = true;
       return;
     }
     authBtn.hidden = false;
+    var configured = window.AUTH && window.AUTH.configured;
     if (state === 'signedIn' || state === 'resettingPassword') {
       var ini = initials(
         profile && profile.display_name,
         user && user.email
       );
       authBtn.classList.add('signed-in');
+      authBtn.classList.remove('not-configured');
       authBtn.setAttribute('aria-label', 'My account');
       authBtn.setAttribute('title', 'My account');
-      authBtn.textContent = ini;
+      // Use safe DOM construction — ini is derived from user-supplied data
+      authBtn.innerHTML = '';
+      var avatarSpan = document.createElement('span');
+      avatarSpan.className = 'auth-btn-avatar';
+      avatarSpan.textContent = ini;
+      authBtn.appendChild(avatarSpan);
     } else {
       authBtn.classList.remove('signed-in');
+      authBtn.classList.toggle('not-configured', !configured);
       authBtn.setAttribute('aria-label', 'Sign in');
-      authBtn.setAttribute('title', 'Sign in');
-      authBtn.innerHTML = PERSON_SVG;
+      authBtn.setAttribute('title', configured ? 'Sign in' : 'Sign in (Supabase not configured)');
+      authBtn.innerHTML = PERSON_SVG + '<span class="auth-btn-label">Sign In</span>';
     }
   }
 
