@@ -7,10 +7,10 @@
 
 function barChart(rows, colorFn) {
   const max = Math.max(...rows.map(r => r.count), 1);
-  return `<div class="bar-chart">${rows.map(r => `
+  return `<div class="bar-chart">${rows.map((r, i) => `
     <div class="bar-row">
       <div class="bar-row-label" title="${escHtml(r.label)}">${escHtml(r.label)}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(r.count/max*100)}%;background:${colorFn ? colorFn(r) : 'var(--accent)'}"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(r.count/max*100)}%;background:${colorFn ? colorFn(r) : 'var(--accent)'};--bar-delay:${i * 40}ms"></div></div>
       <div class="bar-count">${r.count}</div>
     </div>`).join('')}</div>`;
 }
@@ -178,7 +178,7 @@ function renderAnalyticsPage() {
                 <div class="rank-num">${i+1}</div>
                 <div class="rank-name">${escHtml(st)}</div>
                 <div class="rank-bar-wrap">
-                  <div class="bar-track" style="flex:1"><div class="bar-fill" style="width:${Math.round(n/topStates[0][1]*100)}%;background:#dc2626"></div></div>
+                  <div class="bar-track" style="flex:1"><div class="bar-fill" style="width:${Math.round(n/topStates[0][1]*100)}%;background:#dc2626;--bar-delay:${i*40}ms"></div></div>
                 </div>
                 <div class="rank-count">${n}</div>
               </div>`).join('')}
