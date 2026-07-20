@@ -6192,3 +6192,392 @@ kbd {
     transform: none !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   Enhancement Sweep — 2026-07-20
+   Auth button, Command Palette, Radius Tool, Skeletons, Polish
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Auth button — polished Sign In pill ── */
+.auth-signin-btn {
+  width: auto !important;
+  padding: 0 10px 0 8px !important;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  min-width: 32px;
+  color: var(--text-muted);
+}
+
+.auth-signin-btn:hover {
+  color: var(--accent) !important;
+}
+
+.auth-btn-label {
+  pointer-events: none;
+}
+
+/* Signed-in state — show avatar */
+#auth-btn.signed-in {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+#auth-btn.signed-in:hover {
+  background: color-mix(in srgb, var(--accent) 85%, #fff);
+  border-color: color-mix(in srgb, var(--accent) 85%, #fff);
+  color: #fff;
+}
+
+.auth-btn-avatar {
+  pointer-events: none;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Not-configured state — muted indicator */
+#auth-btn.not-configured {
+  opacity: 0.65;
+}
+
+/* ── Command Palette ── */
+#cmd-palette {
+  position: fixed;
+  inset: 0;
+  z-index: 9800;
+  background: rgba(0, 0, 0, 0.52);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: clamp(60px, 12vh, 140px);
+  animation: cmd-bg-in var(--dur-fast) var(--ease-enter) both;
+}
+
+@keyframes cmd-bg-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+#cmd-palette[hidden] { display: none !important; }
+
+#cmd-box {
+  width: min(620px, calc(100vw - 32px));
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+  overflow: hidden;
+  animation: cmd-box-in var(--dur-normal) var(--ease-spring) both;
+  display: flex;
+  flex-direction: column;
+  max-height: min(520px, calc(100vh - 120px));
+}
+
+@keyframes cmd-box-in {
+  from { opacity: 0; transform: translateY(-12px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+#cmd-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+#cmd-search-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+#cmd-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text);
+  caret-color: var(--accent);
+}
+
+#cmd-input::placeholder { color: var(--text-muted); }
+
+#cmd-esc-hint {
+  font-size: 10px;
+  font-family: inherit;
+  font-weight: 600;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 5px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+}
+
+#cmd-list {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  padding: 6px 0;
+}
+
+.cmd-cat {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 8px 16px 4px;
+  cursor: default;
+}
+
+.cmd-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background var(--dur-instant) var(--ease-standard);
+  margin: 0 4px;
+  border-radius: 7px;
+}
+
+.cmd-item.active,
+.cmd-item:hover {
+  background: var(--surface-2);
+}
+
+.cmd-icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.cmd-label {
+  font-size: 13.5px;
+  color: var(--text);
+  font-weight: 450;
+}
+
+.cmd-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+#cmd-footer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+#cmd-footer kbd {
+  font-family: inherit;
+  font-size: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 4px;
+  margin: 0 1px;
+}
+
+/* Light theme adjustments for command palette */
+html[data-theme="light"] #cmd-palette,
+html.is-light-theme #cmd-palette {
+  background: rgba(0, 0, 0, 0.32);
+}
+html[data-theme="light"] #cmd-box,
+html.is-light-theme #cmd-box {
+  box-shadow: 0 24px 80px rgba(0,0,0,0.22), 0 0 0 1px rgba(0,0,0,0.06);
+}
+
+/* ── Radius buffer tool ── */
+#leaflet-map.radius-active,
+#leaflet-map.radius-active .leaflet-grab { cursor: crosshair !important; }
+
+#radius-readout {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  width: -webkit-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  z-index: 460;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+#radius-readout[hidden] { display: none !important; }
+
+/* Stack multiple readouts: draw above, radius below */
+#draw-readout:not([hidden]) ~ #radius-readout:not([hidden]) { top: 58px; }
+#measure-readout:not([hidden]) ~ #radius-readout:not([hidden]) { top: 58px; }
+
+#radius-dist-val {
+  font-weight: 600;
+  color: var(--text);
+}
+
+#radius-count-val {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.radius-presets {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.radius-preset {
+  background: none;
+  border: none;
+  border-right: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) var(--ease-standard),
+    background var(--dur-fast) var(--ease-standard);
+  line-height: 1.4;
+}
+.radius-preset:last-child { border-right: none; }
+.radius-preset:hover { background: var(--surface-2); color: var(--text); }
+.radius-preset.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+#radius-clear-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  line-height: 1;
+  transition:
+    color var(--dur-fast) var(--ease-standard),
+    background var(--dur-fast) var(--ease-standard);
+}
+#radius-clear-btn:hover { color: var(--text); background: var(--surface-2); }
+
+/* ── Loading skeleton shimmer ── */
+@keyframes skeleton-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface-2) 25%,
+    color-mix(in srgb, var(--surface-2) 60%, var(--text-muted)) 50%,
+    var(--surface-2) 75%
+  );
+  background-size: 800px 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: 4px;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.skeleton-text {
+  height: 12px;
+  border-radius: 3px;
+}
+
+.skeleton-title {
+  height: 18px;
+  border-radius: 4px;
+  width: 65%;
+}
+
+/* ── Enhanced map county selection ── */
+@keyframes county-selected-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(232,236,248,0.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(232,236,248,0); }
+  100% { box-shadow: 0 0 0 0 rgba(232,236,248,0); }
+}
+
+/* ── Microinteraction improvements ── */
+
+/* Stat cards: lift on hover */
+.stat-card {
+  transition:
+    background var(--dur-fast) var(--ease-standard),
+    border-top-color var(--dur-fast) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-standard),
+    box-shadow var(--dur-fast) var(--ease-standard) !important;
+}
+.stat-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+}
+
+/* GIS toolbar: more pronounced active state */
+.gis-btn.active {
+  position: relative;
+}
+.gis-btn.active::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px var(--accent), inset 0 0 0 1px rgba(72,116,232,0.15);
+  pointer-events: none;
+}
+
+/* Header tab: better hover transition */
+.header-tab {
+  transition:
+    color var(--dur-fast) var(--ease-standard),
+    background var(--dur-fast) var(--ease-standard) !important;
+}
+.header-tab:hover {
+  background: rgba(255,255,255,0.04);
+  border-radius: 6px;
+}
+
+/* ── Command palette reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  #cmd-palette { animation: none !important; }
+  #cmd-box     { animation: none !important; }
+  .skeleton    { animation: none !important; }
+}

@@ -83,7 +83,7 @@
     </nav>
     <div id="header-right">
       <button id="kb-help-btn" aria-label="Keyboard shortcuts" title="Keyboard shortcuts (?)" class="header-icon-btn">?</button>
-      <button id="auth-btn" aria-label="Sign in" title="Sign in" class="header-icon-btn" hidden><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
+      <button id="auth-btn" aria-label="Sign in" title="Sign in" class="header-icon-btn auth-signin-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span class="auth-btn-label">Sign In</span></button>
       <button id="theme-toggle" aria-label="Color theme: System" title="Appearance: System"></button>
       <div id="last-updated">Loading data…</div>
     </div>
@@ -216,6 +216,9 @@
         <button class="gis-btn" id="gis-pin" title="Drop candidate site pin (P)" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </button>
+        <button class="gis-btn" id="gis-radius" title="Radius buffer — find counties within distance (R)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg>
+        </button>
         <button class="gis-btn" id="gis-export" title="Export data (CSV / GeoJSON / Report)" aria-haspopup="true" aria-expanded="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </button>
@@ -333,6 +336,17 @@
           <button class="draw-unit-opt" data-unit="mi2">mi²</button><button class="draw-unit-opt" data-unit="km2">km²</button><button class="draw-unit-opt" data-unit="acres">ac</button>
         </span>
         <button id="draw-clear-btn" aria-label="Clear drawing and pin">✕</button>
+      </div>
+
+      <!-- Radius buffer readout -->
+      <div id="radius-readout" hidden aria-live="polite">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+        <span id="radius-dist-val">Click map to place center</span>
+        <span id="radius-count-val"></span>
+        <span class="radius-presets" role="group" aria-label="Radius presets">
+          <button class="radius-preset" data-km="1.609">1 mi</button><button class="radius-preset" data-km="8.047">5 mi</button><button class="radius-preset active" data-km="16.09">10 mi</button><button class="radius-preset" data-km="40.23">25 mi</button><button class="radius-preset" data-km="80.47">50 mi</button><button class="radius-preset" data-km="160.9">100 mi</button>
+        </span>
+        <button id="radius-clear-btn" aria-label="Clear radius">✕</button>
       </div>
 
       <!-- Coordinate display -->
@@ -753,6 +767,7 @@ window.addEventListener('error', function(e) {
 <script src="js/zoning-details.js?v=20260717b" defer onload="window._track.ok.push('zoning-details')" onerror="window._track.fail.push('zoning-details')"></script>
 <script src="js/workspace.js?v=20260719a" defer onload="window._track.ok.push('workspace')" onerror="window._track.fail.push('workspace')"></script>
 <script src="js/results-panel.js?v=20260718a" defer onload="window._track.ok.push('results-panel')" onerror="window._track.fail.push('results-panel')"></script>
+<script src="js/command-palette.js?v=20260720a" defer onload="window._track.ok.push('command-palette')" onerror="window._track.fail.push('command-palette')"></script>
 <script>
 setTimeout(function() {
   if (!window._pageInitialized) {

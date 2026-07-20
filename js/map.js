@@ -104,6 +104,7 @@ const STATE_NAMES = {
   SD:"South Dakota", TN:"Tennessee", TX:"Texas", UT:"Utah", VT:"Vermont",
   VA:"Virginia", WA:"Washington", WV:"West Virginia", WI:"Wisconsin", WY:"Wyoming",
 };
+window._STATE_NAMES = STATE_NAMES; // exposed for command-palette.js
 
 /* ── Annotations (callout labels, togglable) ── */
 const ANNOTATIONS = [
@@ -159,6 +160,12 @@ let drawLayers       = [];
 let drawAreaUnit     = (function(){ try { return localStorage.getItem('draw-area-unit') || 'mi2'; } catch(_){ return 'mi2'; } })();
 let candidatePinMode = false;
 let _candidatePin    = null;
+
+/* ── Radius buffer tool state ── */
+let radiusMode    = false;
+let radiusCenter  = null;
+let radiusLayers  = [];
+let _radiusKm     = 16.09; // default 10 miles
 
 /* ── Save button state ── */
 let _savedCountySet   = new Set();
@@ -1120,6 +1127,107 @@ function toggleCandidatePin() {
     }
   } else {
     if (el) el.hidden = true;
+  }
+}
+
+/* ── Radius buffer tool ── */
+function clearRadius() {
+  radiusLayers.forEach(l => { if (l && leafletMap) leafletMap.removeLayer(l); });
+  radiusLayers = [];
+  radiusCenter = null;
+  const readout = document.getElementById('radius-readout');
+  if (readout) readout.hidden = true;
+}
+
+function _highlightRadiusCounties() {
+  if (!radiusCenter || !countyGeoLayer) {
+    const countEl = document.getElementById('radius-count-val');
+    if (countEl) countEl.textContent = '';
+    return;
+  }
+  const radiusM = _radiusKm * 1000;
+  let count = 0;
+  countyGeoLayer.eachLayer(layer => {
+    try {
+      const c = layer.getBounds().getCenter();
+      if (radiusCenter.distanceTo(c) <= radiusM) count++;
+    } catch (_) {}
+  });
+  const countEl = document.getElementById('radius-count-val');
+  if (countEl) countEl.textContent = count > 0 ? `${count} counti${count === 1 ? 'y' : 'es'} in range` : '';
+}
+
+function _updateRadiusReadout() {
+  const distEl = document.getElementById('radius-dist-val');
+  if (distEl) {
+    if (!radiusCenter) {
+      distEl.textContent = 'Click map to place center';
+    } else {
+      const mi = (_radiusKm * 0.621371).toFixed(0);
+      const km = _radiusKm.toFixed(0);
+      distEl.textContent = `${mi} mi  (${km} km)`;
+    }
+  }
+  document.querySelectorAll('.radius-preset').forEach(btn => {
+    btn.classList.toggle('active', Math.abs(parseFloat(btn.dataset.km) - _radiusKm) < 0.01);
+  });
+  _highlightRadiusCounties();
+}
+
+function _placeRadiusCenter(latlng) {
+  clearRadius();
+  radiusCenter = latlng;
+
+  const marker = L.circleMarker(latlng, {
+    radius: 5, fillColor: '#f59e0b', color: '#fff',
+    weight: 1.5, fillOpacity: 1, interactive: false,
+  }).addTo(leafletMap);
+  radiusLayers.push(marker);
+
+  const circle = L.circle(latlng, {
+    radius: _radiusKm * 1000,
+    color: '#f59e0b', weight: 1.5, opacity: 0.85,
+    fillColor: '#f59e0b', fillOpacity: 0.06,
+    interactive: false,
+  }).addTo(leafletMap);
+  radiusLayers.push(circle);
+
+  _updateRadiusReadout();
+}
+
+function setRadiusFromPreset(km) {
+  _radiusKm = km;
+  if (radiusCenter && radiusLayers.length >= 2) {
+    const oldCircle = radiusLayers[1];
+    if (oldCircle && leafletMap) leafletMap.removeLayer(oldCircle);
+    const circle = L.circle(radiusCenter, {
+      radius: km * 1000,
+      color: '#f59e0b', weight: 1.5, opacity: 0.85,
+      fillColor: '#f59e0b', fillOpacity: 0.06,
+      interactive: false,
+    }).addTo(leafletMap);
+    radiusLayers[1] = circle;
+  }
+  _updateRadiusReadout();
+}
+
+function toggleRadius() {
+  if (measureMode)      toggleMeasure();
+  if (drawMode)         toggleDraw();
+  if (candidatePinMode) { _clearCandidatePin(); candidatePinMode = false; }
+
+  radiusMode = !radiusMode;
+  const btn   = document.getElementById('gis-radius');
+  const mapEl = document.getElementById('leaflet-map');
+  if (btn)   { btn.classList.toggle('active', radiusMode); btn.setAttribute('aria-pressed', String(radiusMode)); }
+  if (mapEl) mapEl.classList.toggle('radius-active', radiusMode);
+
+  if (radiusMode) {
+    const readout = document.getElementById('radius-readout');
+    if (readout) { readout.hidden = false; _updateRadiusReadout(); }
+    showMapToast('Click map to place radius center');
+  } else {
+    clearRadius();
   }
 }
 
@@ -2299,6 +2407,7 @@ function initLeafletMap() {
     if (measureMode)      { addMeasurePoint(e.latlng); return; }
     if (drawMode)         { drawPoints.push(e.latlng); _redrawPolygonPreview(); return; }
     if (candidatePinMode) { _placeCandidatePin(e.latlng); return; }
+    if (radiusMode)       { _placeRadiusCenter(e.latlng); return; }
     if (selectedFips && countyLayerByFips[selectedFips]) {
       countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
     }
@@ -2369,6 +2478,7 @@ function initLeafletMap() {
   document.getElementById("gis-measure")       ?.addEventListener("click", toggleMeasure);
   document.getElementById("gis-draw")          ?.addEventListener("click", toggleDraw);
   document.getElementById("gis-pin")           ?.addEventListener("click", toggleCandidatePin);
+  document.getElementById("gis-radius")        ?.addEventListener("click", toggleRadius);
   document.getElementById("gis-export")        ?.addEventListener("click", _toggleExportMenu);
   document.getElementById("exp-csv")           ?.addEventListener("click", () => { document.getElementById("export-menu").hidden = true; exportCountiesCSV(); });
   document.getElementById("exp-geojson")       ?.addEventListener("click", () => { document.getElementById("export-menu").hidden = true; exportCountiesGeoJSON(); });
@@ -2458,6 +2568,28 @@ function initLeafletMap() {
     _drawClearBtn.addEventListener('touchend',   e => { e.preventDefault(); e.stopPropagation(); _doClearDraw(); }, { passive: false });
   }
 
+  // Radius readout — preset buttons + clear button
+  const _radiusReadoutEl = document.getElementById('radius-readout');
+  if (_radiusReadoutEl) {
+    _radiusReadoutEl.querySelectorAll('.radius-preset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const km = parseFloat(btn.dataset.km);
+        if (!isNaN(km)) setRadiusFromPreset(km);
+      });
+    });
+    L.DomEvent.disableClickPropagation(_radiusReadoutEl);
+  }
+  const _radiusClearBtn = document.getElementById('radius-clear-btn');
+  if (_radiusClearBtn) {
+    const _doClearRadius = () => {
+      if (radiusMode) toggleRadius();
+      else clearRadius();
+    };
+    _radiusClearBtn.addEventListener('click', _doClearRadius);
+    _radiusClearBtn.addEventListener('touchstart', e => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+    _radiusClearBtn.addEventListener('touchend',   e => { e.preventDefault(); e.stopPropagation(); _doClearRadius(); }, { passive: false });
+  }
+
   // Fullscreen state sync
   document.addEventListener("fullscreenchange", () => {
     const btn  = document.getElementById("gis-fullscreen");
@@ -2473,6 +2605,7 @@ function initLeafletMap() {
     if ((e.key === "m" || e.key === "M") && !e.ctrlKey && !e.metaKey) toggleMeasure();
     if ((e.key === "d" || e.key === "D") && !e.ctrlKey && !e.metaKey) toggleDraw();
     if ((e.key === "p" || e.key === "P") && !e.ctrlKey && !e.metaKey) toggleCandidatePin();
+    if ((e.key === "r" || e.key === "R") && !e.ctrlKey && !e.metaKey) toggleRadius();
     if ((e.key === "l" || e.key === "L") && !e.ctrlKey && !e.metaKey) window.RESULTS_PANEL?.toggle();
     if ((e.key === "f" || e.key === "F") && !e.ctrlKey && !e.metaKey) toggleFullscreen();
     if ((e.key === "w" || e.key === "W") && !e.ctrlKey && !e.metaKey) toggleWorkspaces();
@@ -2480,6 +2613,7 @@ function initLeafletMap() {
     if (e.key === "Escape" && measureMode)      toggleMeasure();
     if (e.key === "Escape" && drawMode)         toggleDraw();
     if (e.key === "Escape" && candidatePinMode) toggleCandidatePin();
+    if (e.key === "Escape" && radiusMode)       toggleRadius();
     if (e.key === "Escape" && _wsVisible)       toggleWorkspaces();
     if (e.key === "Escape" && compareMode)      toggleComparePanel();
   });
@@ -4623,10 +4757,12 @@ function initKbOverlay() {
     <div class="kb-row"><span class="kb-desc">Toggle measure mode</span><span class="kb-keys"><kbd>M</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Toggle polygon draw</span><span class="kb-keys"><kbd>D</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Drop candidate site pin</span><span class="kb-keys"><kbd>P</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Radius buffer tool</span><span class="kb-keys"><kbd>R</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Toggle results panel</span><span class="kb-keys"><kbd>L</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Workspaces panel</span><span class="kb-keys"><kbd>W</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Compare counties</span><span class="kb-keys"><kbd>C</kbd></span></div>
     <div class="kb-section">General</div>
+    <div class="kb-row"><span class="kb-desc">Command palette</span><span class="kb-keys"><kbd>Ctrl</kbd><kbd>K</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Show this help</span><span class="kb-keys"><kbd>?</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Close / dismiss</span><span class="kb-keys"><kbd>Esc</kbd></span></div>
   </div>`;
