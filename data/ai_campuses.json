@@ -2037,6 +2037,106 @@
       "notes": "Shelby County's US-31 and I-65 technology corridor hosts Amazon fulfillment AI robotics operations, Grandview Medical Center's clinical AI systems, and a dense cluster of professional services firms serving the Birmingham metro. The corridor benefits from Alabama Power's competitive industrial rates and the county's status as Alabama's fastest-growing community.",
       "lon": -86.7999,
       "lat": 33.3773
+    },
+    {
+      "id": "ai-ga-008",
+      "name": "Georgia Ports Authority Garden City Terminal AI Logistics Hub — Chatham County GA",
+      "operator": "Georgia Ports Authority / GPA",
+      "status": "operational",
+      "county_fips": "13051",
+      "notes": "The Georgia Ports Authority's Garden City Terminal in Savannah is the nation's busiest single-terminal container port, handling 5.6M TEUs annually. GPA operates AI-driven berth scheduling, automated stacking cranes (ASCs), vessel arrival prediction, and inland port logistics optimization systems across the Port of Savannah and Appalachian Regional Port network.",
+      "lon": -81.1499,
+      "lat": 32.0835
+    },
+    {
+      "id": "ai-ga-009",
+      "name": "Macon-Bibb County Technology Hub / Mercer University AI Research — Bibb County GA",
+      "operator": "Macon-Bibb County Industrial Authority / Mercer University",
+      "status": "operational",
+      "county_fips": "13021",
+      "notes": "The Macon-Bibb County industrial corridor hosts Mercer University's engineering and AI research programs, Middle Georgia State University's aviation science computing, and a growing cluster of healthcare AI operations anchored by Navicent Health (Atrium Health subsidiary). MEAG Power delivers competitive wholesale rates through the city utility system.",
+      "lon": -83.6324,
+      "lat": 32.8407
+    },
+    {
+      "id": "ai-nc-008",
+      "name": "Fort Liberty (Bragg) U.S. Army FORSCOM/USASOC AI Computing — Cumberland County NC",
+      "operator": "U.S. Army / Army Forces Command / USASOC",
+      "status": "operational",
+      "county_fips": "37051",
+      "notes": "Fort Liberty (formerly Fort Bragg) — the world's largest military installation by population — hosts U.S. Army Forces Command, XVIII Airborne Corps, 82nd Airborne Division, and U.S. Army Special Operations Command. The installation operates classified C4ISR, targeting analytics, and AI-enabled intelligence fusion systems. Pope Army Airfield provides the fixed-wing AI-supported ISR and airlift mission computing.",
+      "lon": -79.0061,
+      "lat": 35.1399
+    },
+    {
+      "id": "ai-nc-009",
+      "name": "Wake Forest Innovation Quarter / Atrium Health Baptist AI Research — Forsyth County NC",
+      "operator": "Wake Forest University / Atrium Health",
+      "status": "operational",
+      "county_fips": "37067",
+      "notes": "Wake Forest Innovation Quarter (WFIQ) is a 170-acre urban innovation district in Winston-Salem anchored by Wake Forest University School of Medicine, Atrium Health Wake Forest Baptist Medical Center, and Winston-Salem State University. WFIQ houses biomedical AI research in oncology, genomics, clinical decision support, and precision medicine — one of the most concentrated health AI campuses in the Southeast.",
+      "lon": -80.2442,
+      "lat": 36.0999
+    },
+    {
+      "id": "ai-wa-007",
+      "name": "Clark Public Utilities Columbia Gorge Data Center Zone — Clark County WA",
+      "operator": "Multiple tenants / Clark County EDC",
+      "status": "planned",
+      "county_fips": "53003",
+      "notes": "Clark County's position as the Washington-side component of the Portland metro area — with Washington's favorable tax treatment (no income tax, RCW 82.08.986 sales-tax exemption on data center equipment) versus Oregon's taxable environment — has driven a cluster of data center proposals along the I-5 and I-205 corridors south of Vancouver. Clark Public Utilities is the primary distributor, interconnected with BPA's high-voltage grid.",
+      "lon": -122.5712,
+      "lat": 45.628
+    },
+    {
+      "id": "ai-or-008",
+      "name": "Jefferson County High Desert Solar Data Center Zone — Jefferson County OR",
+      "operator": "Multiple developers / Jefferson County",
+      "status": "planned",
+      "county_fips": "41031",
+      "notes": "Jefferson County's Madras area is emerging as a solar-plus-compute destination in Oregon's high desert, with PacifiCorp/Pacific Power interconnect queues holding multiple utility-scale solar projects. The Confederated Tribes of Warm Springs have development rights to significant renewable energy capacity in the region. Land costs are low, ambient temperatures favor free-air cooling, and the I-97 fiber corridor connects to the US-97 north-south backbone.",
+      "lon": -121.1294,
+      "lat": 44.6343
+    },
+    {
+      "id": "ai-ny-006",
+      "name": "GE Vernova Global Research Center — Niskayuna / Schenectady County NY",
+      "operator": "GE Vernova (General Electric Vernova Inc.)",
+      "status": "operational",
+      "county_fips": "36093",
+      "notes": "GE Vernova's Global Research Center in Niskayuna, NY (est. 1900 as the General Electric Research Laboratory) is one of the world's oldest and most productive industrial R&D campuses. Today it focuses on AI-enabled gas turbine efficiency, wind turbine digital twins, grid-scale energy storage, and power semiconductor research — generating some of the most demanding industrial AI HPC workloads in the Northeast.",
+      "lon": -73.9212,
+      "lat": 42.8142
+    },
+    {
+      "id": "ai-ny-007",
+      "name": "NYPA St. Lawrence-FDR Hydroelectric Complex AI / Clarkson University HPC — St. Lawrence County NY",
+      "operator": "New York Power Authority / Clarkson University",
+      "status": "operational",
+      "county_fips": "36101",
+      "notes": "The New York Power Authority's 912 MW St. Lawrence-Franklin D. Roosevelt Power Project is among the most powerful hydroelectric facilities in New York State. NYPA operates AI-based water-flow optimization, generation scheduling, and grid-balancing systems for the seaway complex. Clarkson University's research computing cluster (anchored by climate modeling, autonomous vehicles, and engineering AI) benefits from adjacent NYPA low-cost hydropower allocations.",
+      "lon": -75.0891,
+      "lat": 44.7021
+    },
+    {
+      "id": "ai-or-009",
+      "name": "Roseburg Forest Products / Pacific Power Timber AI Hub — Douglas County OR",
+      "operator": "Roseburg Forest Products / Pacific Power",
+      "status": "operational",
+      "county_fips": "41019",
+      "notes": "Douglas County's timber industry — anchored by Roseburg Forest Products, Weyerhaeuser, and Interfor — operates AI-based log-scanning, yield optimization, and predictive sawmill maintenance systems that represent among the most mature industrial AI deployments in Oregon's forest sector. Pacific Power serves these industrial loads with Oregon West transmission system capacity, and the I-5 fiber corridor through Roseburg is the primary Pacific Northwest backbone.",
+      "lon": -123.3417,
+      "lat": 43.2165
+    },
+    {
+      "id": "ai-wa-008",
+      "name": "Walla Walla Valley Precision Viticulture AI Hub — Walla Walla County WA",
+      "operator": "Multiple wineries / WSU Viticulture Research",
+      "status": "operational",
+      "county_fips": "53071",
+      "notes": "Walla Walla County hosts 200+ wineries anchored by Woodward Canyon, L'Ecole No. 41, Seven Hills, and Leonetti Cellar. WSU's Viticulture and Enology research program (centered in Prosser but with Walla Walla extension operations) drives precision viticulture AI — soil-moisture sensing, drone-based canopy analysis, fermentation monitoring, and harvest-prediction systems — representing one of the most data-intensive per-acre agricultural AI deployments in the Pacific Northwest.",
+      "lon": -118.343,
+      "lat": 46.0646
     }
   ]
 }
