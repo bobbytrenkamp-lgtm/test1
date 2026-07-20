@@ -1736,9 +1736,18 @@ function renderBookmarksList() {
     row.querySelector(".bookmark-del").addEventListener("click", () => {
       _saveBookmarks(_loadBookmarks().filter((_, i) => i !== idx));
       renderBookmarksList();
+      _updateBookmarksBadge();
     });
     listEl.appendChild(row);
   });
+}
+
+function _updateBookmarksBadge() {
+  const badge = document.getElementById("bm-count-badge");
+  if (!badge) return;
+  const n = _loadBookmarks().length;
+  badge.textContent = n > 0 ? String(n) : "";
+  badge.hidden = n === 0;
 }
 
 function saveCurrentViewAsBookmark() {
@@ -1750,6 +1759,7 @@ function saveCurrentViewAsBookmark() {
   bmarks.push({ name, lat: +c.lat.toFixed(4), lng: +c.lng.toFixed(4), zoom });
   _saveBookmarks(bmarks);
   renderBookmarksList();
+  _updateBookmarksBadge();
   showMapToast(`Saved "${name}"`);
 }
 
@@ -2238,6 +2248,7 @@ function initBookmarks() {
   document.getElementById("gis-bookmarks")    ?.addEventListener("click", toggleBookmarks);
   document.getElementById("bookmarks-close")  ?.addEventListener("click", toggleBookmarks);
   document.getElementById("bookmark-save-btn")?.addEventListener("click", saveCurrentViewAsBookmark);
+  _updateBookmarksBadge();
 }
 
 /* ── Workspace panel ── */
@@ -3242,9 +3253,12 @@ function renderFilterPanel() {
   searchWrap.appendChild(searchInput);
   body.appendChild(searchWrap);
 
+  let _lsDebounce = null;
   const onSearchChange = () => {
     _layerSearch = searchInput.value.trim();
-    _applyLayerSearch();
+    clearTimeout(_lsDebounce);
+    if (!_layerSearch) { _applyLayerSearch(); return; } // clear immediately
+    _lsDebounce = setTimeout(_applyLayerSearch, 80); // debounce: 80ms delay for keystrokes
   };
   searchInput.addEventListener("input", onSearchChange);
   // "search" event fires when the native × button clears the field
@@ -4348,6 +4362,38 @@ function _computeSuitabilityScore(fips, county) {
   };
 }
 
+function _radarSvg(s) {
+  const cx = 80, cy = 54, R = 38;
+  const gradeColors = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
+  const col = gradeColors[s.grade] || "#4874e8";
+  const angles = [-Math.PI / 2, Math.PI / 6, (5 * Math.PI) / 6];
+  const ox = (a, r) => (cx + r * Math.cos(a)).toFixed(1);
+  const oy = (a, r) => (cy + r * Math.sin(a)).toFixed(1);
+  const poly = r => angles.map(a => `${ox(a, r)},${oy(a, r)}`).join(" ");
+  const grids = [0.25, 0.5, 0.75, 1].map((f, i) =>
+    `<polygon points="${poly(R * f)}" fill="none" stroke="var(--radar-grid)" stroke-width="${i === 3 ? 0.7 : 0.5}" ${i < 3 ? 'stroke-dasharray="2 2"' : ""}/>`
+  ).join("");
+  const axisLines = angles.map(a =>
+    `<line x1="${cx}" y1="${cy}" x2="${ox(a, R)}" y2="${oy(a, R)}" stroke="var(--radar-grid)" stroke-width="0.5"/>`
+  ).join("");
+  const dataPoly = s.factors.map((f, i) => {
+    const r = Math.max(2, (f.pts / f.max) * R);
+    return `${ox(angles[i], r)},${oy(angles[i], r)}`;
+  }).join(" ");
+  const dots = s.factors.map((f, i) => {
+    const r = Math.max(2, (f.pts / f.max) * R);
+    return `<circle cx="${ox(angles[i], r)}" cy="${oy(angles[i], r)}" r="2.4" fill="${col}"/>`;
+  }).join("");
+  const lo = R + 10;
+  const lbl = (ai, txt, anc, dy) =>
+    `<text x="${ox(angles[ai], lo)}" y="${oy(angles[ai], lo)}" dy="${dy}" text-anchor="${anc}" font-size="7.5" font-family="system-ui,sans-serif" fill="var(--text-muted)">${txt}</text>`;
+  return `<svg class="suit-radar" viewBox="0 0 170 100" aria-hidden="true">
+    ${grids}${axisLines}
+    <polygon points="${dataPoly}" fill="${col}" fill-opacity="0.18" stroke="${col}" stroke-width="1.5" stroke-linejoin="round"/>
+    ${dots}${lbl(0,"Regulatory","middle","0")}${lbl(1,"Political","start","4")}${lbl(2,"Scope","end","4")}
+  </svg>`;
+}
+
 function buildSuitabilityHtml(fips, county) {
   const s = computeSuitabilityScore(fips, county);
   const barsHtml = s.factors.map(f => {
@@ -4373,6 +4419,7 @@ function buildSuitabilityHtml(fips, county) {
         <span class="suit-score-num">${s.score}<span class="suit-score-denom"> / 100</span></span>
       </div>
     </div>
+    ${_radarSvg(s)}
     ${barsHtml}
     <p class="suit-disclaimer">Estimated from restriction severity, political risk signals, and restriction scope. Not a professional site assessment.</p>
   </div>`;
