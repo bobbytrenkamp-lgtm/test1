@@ -1846,6 +1846,8 @@ function renderComparePanel() {
 
     const col = document.createElement("div");
     col.className = "cmp-col";
+    col.setAttribute("role", "group");
+    col.setAttribute("aria-label", `${county.name}, ${county.state}`);
     col.style.setProperty("--cmp-sev-color", sevColor);
     if (isBestScore)  col.classList.add("cmp-col-best");
     if (isWorstScore) col.classList.add("cmp-col-worst");
@@ -4441,7 +4443,7 @@ function buildSuitabilityHtml(fips, county) {
       <div class="suit-factor-note">${escHtml(f.note)}</div>
     </div>`;
   }).join("");
-  return `<div class="suit-section">
+  return `<div class="suit-section" role="region" aria-label="Suitability Score">
     <div class="suit-section-header">
       <span class="suit-section-title">Suitability Score</span>
       <span class="ds-badge ds-estimated" title="Algorithmically estimated from regulatory and political signals. Not a professional site assessment.">Estimated</span>
@@ -4998,14 +5000,32 @@ function initKbOverlay() {
   </div>`;
   document.body.appendChild(overlay);
 
-  const closeOverlay = () => overlay.classList.remove("open");
+  let _kbPrevFocus = null;
+
+  const openOverlay = () => {
+    _kbPrevFocus = document.activeElement;
+    overlay.classList.add("open");
+    requestAnimationFrame(() => document.getElementById("kb-close-btn")?.focus());
+  };
+
+  const closeOverlay = () => {
+    overlay.classList.remove("open");
+    _kbPrevFocus?.focus();
+    _kbPrevFocus = null;
+  };
+
+  // Focus trap: only the close button is interactive; keep focus there
+  overlay.addEventListener("keydown", e => {
+    if (e.key === "Tab") { e.preventDefault(); document.getElementById("kb-close-btn")?.focus(); }
+  });
+
   overlay.addEventListener("click", e => { if (e.target === overlay) closeOverlay(); });
   document.getElementById("kb-close-btn").addEventListener("click", closeOverlay);
-  document.getElementById("kb-help-btn")?.addEventListener("click", () => overlay.classList.add("open"));
+  document.getElementById("kb-help-btn")?.addEventListener("click", openOverlay);
 
   return {
-    open:  () => overlay.classList.add("open"),
-    close: closeOverlay,
+    open:   openOverlay,
+    close:  closeOverlay,
     isOpen: () => overlay.classList.contains("open"),
   };
 }

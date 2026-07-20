@@ -283,8 +283,11 @@
   }
 
   /* ── Open / close / execute ── */
+  let _prevFocusEl = null;
+
   function open() {
     if (!_overlay) _inject();
+    _prevFocusEl = document.activeElement;
     _open = true;
     _overlay.hidden = false;
     _input.value = '';
@@ -296,6 +299,8 @@
     if (!_overlay) return;
     _open = false;
     _overlay.hidden = true;
+    _prevFocusEl?.focus();
+    _prevFocusEl = null;
   }
 
   function _execute(cmd) {
