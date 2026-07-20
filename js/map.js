@@ -5100,6 +5100,18 @@ function zoomToFeature(fips) {
   if (layer) leafletMap.flyToBounds(layer.getBounds(), { duration: 0.5, maxZoom: 10 });
 }
 
+function _pulseCountyLayer(layer) {
+  const path = layer?._path;
+  if (!path) return;
+  path.classList.remove("county-pulse");
+  // Force reflow so re-adding the class restarts the animation
+  void path.offsetWidth;
+  path.classList.add("county-pulse");
+  const cleanup = () => path.classList.remove("county-pulse");
+  path.addEventListener("animationend", cleanup, { once: true });
+  setTimeout(cleanup, 900);
+}
+
 function selectCounty(fips) {
   if (selectedFips && countyLayerByFips[selectedFips]) {
     countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
@@ -5110,6 +5122,7 @@ function selectCounty(fips) {
   if (layer) {
     layer.setStyle(selectedCountyStyle());
     layer.bringToFront();
+    _pulseCountyLayer(layer);
   }
   const county = mapData[fips];
   if (county) setDetailCounty(fips, county);

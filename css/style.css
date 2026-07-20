@@ -6849,3 +6849,16 @@ html[data-theme="light"] { --radar-grid: rgba(60,70,120,0.15); }
   font-variant-numeric: tabular-nums;
   pointer-events: none;
 }
+
+/* County selection pulse animation */
+@keyframes county-pulse {
+  0%   { stroke-width: 2.5; stroke-opacity: 1; }
+  22%  { stroke-width: 7;   stroke-opacity: 0.8; }
+  60%  { stroke-width: 4;   stroke-opacity: 0.6; }
+  100% { stroke-width: 2.5; stroke-opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .county-pulse {
+    animation: county-pulse 0.75s ease-out forwards;
+  }
+}
