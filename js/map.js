@@ -187,9 +187,12 @@ const layerState = {
   water:        false,
   utility:      false,
   tax:          false,
-  annotations:     true,
-  zoning_districts: false,
-  zoning_overlays:  false,
+  annotations:        true,
+  zoning_districts:   false,
+  zoning_overlays:    false,
+  opportunity_zones:  false, // roadmap — no data yet
+  fema_flood:         false, // roadmap — no data yet
+  enterprise_zones:   false, // roadmap — no data yet
 };
 
 let mapData         = {};
@@ -5075,7 +5078,11 @@ function initSearch() {
 
   function renderResults(matches, isRecent) {
     results.innerHTML = "";
-    if (!matches.length) { results.style.display = "none"; return; }
+    if (!matches.length) {
+      results.style.display = "none";
+      input.setAttribute("aria-expanded", "false");
+      return;
+    }
     if (isRecent) {
       const hdr = document.createElement("div");
       hdr.className = "search-recent-hdr";
@@ -5144,11 +5151,12 @@ function initSearch() {
       results.appendChild(item);
     }
     results.style.display = "block";
+    input.setAttribute("aria-expanded", "true");
   }
 
   function showRecentSearches() {
     const recent = _loadRecent();
-    if (!recent.length) { results.style.display = "none"; return; }
+    if (!recent.length) { results.style.display = "none"; input.setAttribute("aria-expanded", "false"); return; }
     renderResults(recent.map(r => ({ kind: "recent", label: r })), true);
   }
 
@@ -5162,8 +5170,18 @@ function initSearch() {
 
   input.addEventListener("input", () => {
     kbIdx = -1;
-    const q = input.value.trim().toLowerCase();
+    const raw = input.value.trim();
+    const q   = raw.toLowerCase();
     if (!q) { showRecentSearches(); return; }
+
+    // FIPS direct lookup: 5-digit code → jump straight to county
+    if (/^\d{5}$/.test(raw)) {
+      const fipsMatch = mapData[raw]
+        ? [{ kind: "county", fips: raw, name: mapData[raw].name, state: mapData[raw].state, searchText: "" }]
+        : countyIndex.filter(c => c.fips === raw);
+      if (fipsMatch.length) { renderResults(fipsMatch, false); return; }
+    }
+
     const scored = index
       .map(c => ({ m: c, s: _searchScore(c, q) }))
       .filter(x => x.s > 0)
@@ -5176,7 +5194,7 @@ function initSearch() {
     if (input.value.trim()) input.dispatchEvent(new Event("input"));
     else showRecentSearches();
   });
-  input.addEventListener("blur",  () => { setTimeout(() => { results.style.display = "none"; kbIdx = -1; }, 100); });
+  input.addEventListener("blur",  () => { setTimeout(() => { results.style.display = "none"; input.setAttribute("aria-expanded","false"); kbIdx = -1; }, 100); });
 
   input.addEventListener("keydown", e => {
     const items = results.querySelectorAll(".search-result-item");

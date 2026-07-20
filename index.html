@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260720b" />
+  <link rel="stylesheet" href="css/style.css?v=20260720c" />
   <link rel="stylesheet" href="css/stocks.css?v=20260720a" />
   <link rel="stylesheet" href="css/account.css?v=20260717a" />
   <link rel="stylesheet" href="css/zoning.css?v=20260717b" />
@@ -55,28 +55,28 @@
         <div id="header-tagline">Intelligence Platform</div>
       </div>
     </div>
-    <nav id="header-tabs" role="tablist">
-      <button class="header-tab active" data-tab="home" role="tab" aria-selected="true">
+    <nav id="header-tabs" role="tablist" aria-label="Main navigation">
+      <button class="header-tab active" data-tab="home" role="tab" aria-selected="true" aria-controls="home-view" id="tab-home">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         <span>Home</span>
       </button>
-      <button class="header-tab" data-tab="map" role="tab" aria-selected="false">
+      <button class="header-tab" data-tab="map" role="tab" aria-selected="false" aria-controls="main" id="tab-map">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
         <span>Map</span>
       </button>
-      <button class="header-tab" data-tab="news" role="tab" aria-selected="false">
+      <button class="header-tab" data-tab="news" role="tab" aria-selected="false" aria-controls="news-view" id="tab-news">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
         <span>AI News</span>
       </button>
-      <button class="header-tab" data-tab="stocks" role="tab" aria-selected="false">
+      <button class="header-tab" data-tab="stocks" role="tab" aria-selected="false" aria-controls="stocks-view" id="tab-stocks">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
         <span>AI Stocks</span>
       </button>
-      <button class="header-tab" data-tab="analytics" role="tab" aria-selected="false">
+      <button class="header-tab" data-tab="analytics" role="tab" aria-selected="false" aria-controls="analytics-view" id="tab-analytics">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         <span>Analytics</span>
       </button>
-      <button class="header-tab" data-tab="about" role="tab" aria-selected="false">
+      <button class="header-tab" data-tab="about" role="tab" aria-selected="false" aria-controls="about-view" id="tab-about">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
         <span>About</span>
       </button>
@@ -127,13 +127,14 @@
       <circle cx="11" cy="11" r="7"/>
       <path d="M21 21l-4.3-4.3"/>
     </svg>
-    <input id="search-input" type="text" placeholder="Search county, state, or facility…" autocomplete="off" />
-    <div id="search-results"></div>
+    <input id="search-input" type="text" placeholder="Search county, state, facility, or FIPS…" autocomplete="off"
+           role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false" aria-haspopup="listbox" />
+    <div id="search-results" role="listbox" aria-label="Search suggestions"></div>
   </div>
 
   <!-- Home / Command Center — visible by default so no loading screen shows
        if JS is slow or blocked. Inline skeleton is replaced by JS once ready. -->
-  <div id="home-view" class="page-view" tabindex="-1">
+  <div id="home-view" class="page-view" tabindex="-1" role="tabpanel" aria-labelledby="tab-home">
     <div class="home-wrap">
       <section class="home-hero">
         <div class="home-hero-inner">
@@ -162,7 +163,7 @@
   </div>
 
   <!-- Main — hidden by default; shown when user navigates to Map tab -->
-  <div id="main" hidden>
+  <div id="main" hidden role="tabpanel" aria-labelledby="tab-map">
 
   <!-- Map area row: map + detail panel + zoning panel -->
   <div id="map-area">
@@ -416,11 +417,11 @@
   </div><!-- /main -->
 
   <!-- Page views -->
-  <div id="stocks-view" hidden></div>
-  <div id="analytics-view" class="page-view" hidden></div>
-  <div id="about-view" class="page-view" hidden></div>
+  <div id="stocks-view" hidden role="tabpanel" aria-labelledby="tab-stocks"></div>
+  <div id="analytics-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-analytics"></div>
+  <div id="about-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-about"></div>
 
-  <div id="news-view" hidden>
+  <div id="news-view" hidden role="tabpanel" aria-labelledby="tab-news">
     <div id="news-toolbar">
       <input id="news-search" type="text" placeholder="Search articles, publishers, topics…" autocomplete="off" />
       <button id="news-filters-toggle" type="button" aria-label="Show filters" aria-expanded="false">
@@ -757,7 +758,7 @@ window.addEventListener('error', function(e) {
 <script src="js/analytics.js?v=20260720a" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
 <script src="js/home.js?v=20260712m" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
 <script src="js/layer-registry.js?v=20260718c" defer onload="window._track.ok.push('layer-registry')" onerror="window._track.fail.push('layer-registry')"></script>
-<script src="js/map.js?v=20260720b" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script src="js/map.js?v=20260720c" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer onload="window._track.ok.push('supabase')" onerror="window._track.fail.push('supabase')"></script>
 <script src="js/supabase-config.js?v=20260717a" defer onload="window._track.ok.push('supabase-config')" onerror="window._track.fail.push('supabase-config')"></script>
 <script src="js/auth.js?v=20260717a" defer onload="window._track.ok.push('auth')" onerror="window._track.fail.push('auth')"></script>
