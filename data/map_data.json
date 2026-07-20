@@ -1,25 +1,27 @@
 {
-  "generated_at": "2026-07-20T10:19:09.386272+00:00",
+  "generated_at": "2026-07-20T20:40:32.232452+00:00",
   "source_last_updated": "2026-07-18",
   "stats": {
-    "total_counties_tracked": 1402,
+    "total_counties_tracked": 1465,
     "by_level": {
-      "-1": 1242,
+      "-1": 1301,
       "0": 0,
-      "1": 63,
+      "1": 66,
       "2": 62,
-      "3": 30,
+      "3": 31,
       "4": 5
     },
     "by_type": {
-      "data_center": 1393,
-      "water": 40,
-      "ai": 202,
-      "energy": 196,
+      "data_center": 1452,
+      "water": 43,
+      "ai": 201,
+      "energy": 261,
       "crypto": 18,
       "zoning": 12,
-      "incentive": 24,
-      "environmental": 5
+      "incentive": 18,
+      "environmental": 4,
+      "land_use": 4,
+      "tax": 31
     },
     "level_labels": {
       "-1": "Pro data center (active tax incentives, enterprise zones, major industry hubs)",
@@ -8071,22 +8073,34 @@
       "last_reviewed": null
     },
     "21117": {
-      "name": "Kenton County",
+      "name": "Knott County",
       "state": "Kentucky",
       "level": -1,
       "types": [
         "data_center",
-        "ai"
+        "energy"
       ],
-      "title": "Kenton County Northern Kentucky Cincinnati Metro Technology Corridor",
-      "description": "Kenton County (Covington/Florence) forms the core of Northern Kentucky's technology corridor adjacent to Cincinnati, hosting Cincinnati/Northern Kentucky International Airport (CVG) logistics technology, Amazon Air Hub, and a dense concentration of financial services and enterprise IT operations. Duke Energy Kentucky's competitive power rates support data center investment. No local DC restrictions; Kentucky's data center personal property tax exemption (KRS 132.200) applies.",
-      "effective_date": "2020-01-01",
+      "title": "Knott County KY \u2014 Appalachian Coal Heritage, ARC Distressed Designation & KEDFA Incentives",
+      "description": "Knott County (Hindman, KY) is a former coal-producing county in eastern Kentucky served by Kentucky Power (an AEP subsidiary) and East Kentucky Power Cooperative (EKPC). The county holds ARC (Appalachian Regional Commission) Distressed designation, qualifying projects for federal POWER+ Initiative grants and coal severance tax replacement funds. Kentucky KEDFA KBI (Kentucky Business Investment) incentives offer wage assessment credits and reduced payroll tax burdens for qualifying new employers. Federal BEAD broadband grants reach the county seat of Hindman, improving connectivity for digital infrastructure projects.",
+      "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "ARC Distressed; POWER+ Initiative eligible; KEDFA KBI wage credit; KY Power/EKPC service.",
       "sources": [
         {
-          "label": "Northern Kentucky Area Development District",
-          "url": "https://www.nkadd.org"
+          "label": "Knott County KY \u2014 Official Website",
+          "url": "https://www.knottcounty.com/"
+        },
+        {
+          "label": "Kentucky Power (AEP) \u2014 Eastern Kentucky Service Territory",
+          "url": "https://www.kentuckypower.com/"
+        },
+        {
+          "label": "ARC \u2014 Distressed Counties & POWER+ Initiative",
+          "url": "https://www.arc.gov/distressed-communities/"
+        },
+        {
+          "label": "KEDFA \u2014 Kentucky Business Investment Program",
+          "url": "https://ced.ky.gov/Incentives/Kentucky_Business_Investment"
         }
       ],
       "lifecycle_stage": "effective",
@@ -10846,7 +10860,7 @@
     },
     "11001": {
       "name": "District of Columbia",
-      "state": "DC",
+      "state": "District of Columbia",
       "level": -1,
       "types": [
         "data_center",
@@ -11139,7 +11153,7 @@
     },
     "34025": {
       "name": "Monmouth County",
-      "state": "NJ",
+      "state": "New Jersey",
       "level": -1,
       "types": [
         "data_center"
@@ -11165,7 +11179,7 @@
     },
     "34007": {
       "name": "Camden County",
-      "state": "NJ",
+      "state": "New Jersey",
       "level": -1,
       "types": [
         "data_center"
@@ -11191,7 +11205,7 @@
     },
     "12103": {
       "name": "Pinellas County",
-      "state": "FL",
+      "state": "Florida",
       "level": -1,
       "types": [
         "data_center"
@@ -11217,7 +11231,7 @@
     },
     "51660": {
       "name": "Harrisonburg city",
-      "state": "VA",
+      "state": "Virginia",
       "level": -1,
       "types": [
         "data_center"
@@ -11243,7 +11257,7 @@
     },
     "51770": {
       "name": "Roanoke city",
-      "state": "VA",
+      "state": "Virginia",
       "level": -1,
       "types": [
         "data_center"
@@ -11269,7 +11283,7 @@
     },
     "41005": {
       "name": "Clackamas County",
-      "state": "OR",
+      "state": "Oregon",
       "level": -1,
       "types": [
         "data_center",
@@ -11296,7 +11310,7 @@
     },
     "06089": {
       "name": "Shasta County",
-      "state": "CA",
+      "state": "California",
       "level": 1,
       "types": [
         "crypto",
@@ -11323,7 +11337,7 @@
     },
     "27061": {
       "name": "Itasca County",
-      "state": "MN",
+      "state": "Minnesota",
       "level": -1,
       "types": [
         "data_center",
@@ -11350,7 +11364,7 @@
     },
     "09007": {
       "name": "Middlesex County",
-      "state": "CT",
+      "state": "Connecticut",
       "level": -1,
       "types": [
         "data_center"
@@ -11376,7 +11390,7 @@
     },
     "51510": {
       "name": "Alexandria city",
-      "state": "VA",
+      "state": "Virginia",
       "level": -1,
       "types": [
         "data_center",
@@ -11403,7 +11417,7 @@
     },
     "48367": {
       "name": "Parker County",
-      "state": "TX",
+      "state": "Texas",
       "level": 2,
       "types": [
         "crypto",
@@ -11430,7 +11444,7 @@
     },
     "06045": {
       "name": "Mendocino County",
-      "state": "CA",
+      "state": "California",
       "level": 1,
       "types": [
         "energy",
@@ -11457,7 +11471,7 @@
     },
     "48041": {
       "name": "Brazos County",
-      "state": "TX",
+      "state": "Texas",
       "level": -1,
       "types": [
         "data_center",
@@ -11484,7 +11498,7 @@
     },
     "48389": {
       "name": "Reeves County",
-      "state": "TX",
+      "state": "Texas",
       "level": 2,
       "types": [
         "crypto",
@@ -11511,7 +11525,7 @@
     },
     "48037": {
       "name": "Bowie County",
-      "state": "TX",
+      "state": "Texas",
       "level": -1,
       "types": [
         "data_center"
@@ -11537,7 +11551,7 @@
     },
     "41029": {
       "name": "Jackson County",
-      "state": "OR",
+      "state": "Oregon",
       "level": -1,
       "types": [
         "data_center",
@@ -11564,7 +11578,7 @@
     },
     "53057": {
       "name": "Skagit County",
-      "state": "WA",
+      "state": "Washington",
       "level": -1,
       "types": [
         "data_center",
@@ -11591,7 +11605,7 @@
     },
     "06055": {
       "name": "Napa County",
-      "state": "CA",
+      "state": "California",
       "level": 1,
       "types": [
         "energy",
@@ -11618,7 +11632,7 @@
     },
     "06079": {
       "name": "San Luis Obispo County",
-      "state": "CA",
+      "state": "California",
       "level": -1,
       "types": [
         "data_center",
@@ -11645,7 +11659,7 @@
     },
     "25011": {
       "name": "Franklin County",
-      "state": "MA",
+      "state": "Massachusetts",
       "level": -1,
       "types": [
         "data_center"
@@ -11671,7 +11685,7 @@
     },
     "29021": {
       "name": "Buchanan County",
-      "state": "MO",
+      "state": "Missouri",
       "level": -1,
       "types": [
         "data_center"
@@ -11697,7 +11711,7 @@
     },
     "17201": {
       "name": "Winnebago County",
-      "state": "IL",
+      "state": "Illinois",
       "level": -1,
       "types": [
         "data_center"
@@ -11723,7 +11737,7 @@
     },
     "40047": {
       "name": "Garfield County",
-      "state": "OK",
+      "state": "Oklahoma",
       "level": -1,
       "types": [
         "data_center",
@@ -11750,7 +11764,7 @@
     },
     "05115": {
       "name": "Pope County",
-      "state": "AR",
+      "state": "Arkansas",
       "level": -1,
       "types": [
         "data_center",
@@ -11777,7 +11791,7 @@
     },
     "55017": {
       "name": "Chippewa County",
-      "state": "WI",
+      "state": "Wisconsin",
       "level": -1,
       "types": [
         "data_center"
@@ -11803,7 +11817,7 @@
     },
     "55035": {
       "name": "Eau Claire County",
-      "state": "WI",
+      "state": "Wisconsin",
       "level": -1,
       "types": [
         "data_center"
@@ -11829,7 +11843,7 @@
     },
     "55109": {
       "name": "St. Croix County",
-      "state": "WI",
+      "state": "Wisconsin",
       "level": -1,
       "types": [
         "data_center"
@@ -11855,7 +11869,7 @@
     },
     "47105": {
       "name": "Loudon County",
-      "state": "TN",
+      "state": "Tennessee",
       "level": -1,
       "types": [
         "data_center",
@@ -11882,7 +11896,7 @@
     },
     "21037": {
       "name": "Campbell County",
-      "state": "KY",
+      "state": "Kentucky",
       "level": -1,
       "types": [
         "data_center"
@@ -11908,7 +11922,7 @@
     },
     "13195": {
       "name": "Madison County",
-      "state": "GA",
+      "state": "Georgia",
       "level": -1,
       "types": [
         "data_center"
@@ -11934,7 +11948,7 @@
     },
     "01015": {
       "name": "Calhoun County",
-      "state": "AL",
+      "state": "Alabama",
       "level": -1,
       "types": [
         "data_center"
@@ -11960,7 +11974,7 @@
     },
     "28089": {
       "name": "Madison County",
-      "state": "MS",
+      "state": "Mississippi",
       "level": -1,
       "types": [
         "data_center"
@@ -11986,7 +12000,7 @@
     },
     "38057": {
       "name": "Mercer County",
-      "state": "ND",
+      "state": "North Dakota",
       "level": 1,
       "types": [
         "energy",
@@ -12013,7 +12027,7 @@
     },
     "56001": {
       "name": "Albany County",
-      "state": "WY",
+      "state": "Wyoming",
       "level": -1,
       "types": [
         "data_center",
@@ -12040,7 +12054,7 @@
     },
     "56013": {
       "name": "Fremont County",
-      "state": "WY",
+      "state": "Wyoming",
       "level": -1,
       "types": [
         "data_center",
@@ -12067,7 +12081,7 @@
     },
     "29043": {
       "name": "Christian County",
-      "state": "MO",
+      "state": "Missouri",
       "level": -1,
       "types": [
         "data_center"
@@ -12093,7 +12107,7 @@
     },
     "21093": {
       "name": "Hardin County",
-      "state": "KY",
+      "state": "Kentucky",
       "level": -1,
       "types": [
         "data_center",
@@ -12120,7 +12134,7 @@
     },
     "21101": {
       "name": "Henderson County",
-      "state": "KY",
+      "state": "Kentucky",
       "level": -1,
       "types": [
         "data_center",
@@ -12147,7 +12161,7 @@
     },
     "01117": {
       "name": "Shelby County",
-      "state": "AL",
+      "state": "Alabama",
       "level": -1,
       "types": [
         "data_center"
@@ -12173,7 +12187,7 @@
     },
     "01043": {
       "name": "Cullman County",
-      "state": "AL",
+      "state": "Alabama",
       "level": -1,
       "types": [
         "data_center"
@@ -12199,7 +12213,7 @@
     },
     "28105": {
       "name": "Oktibbeha County",
-      "state": "MS",
+      "state": "Mississippi",
       "level": -1,
       "types": [
         "data_center",
@@ -12226,7 +12240,7 @@
     },
     "47185": {
       "name": "White County",
-      "state": "TN",
+      "state": "Tennessee",
       "level": -1,
       "types": [
         "data_center",
@@ -12253,7 +12267,7 @@
     },
     "37179": {
       "name": "Union County",
-      "state": "NC",
+      "state": "North Carolina",
       "level": -1,
       "types": [
         "data_center"
@@ -12279,7 +12293,7 @@
     },
     "51109": {
       "name": "Louisa County",
-      "state": "VA",
+      "state": "Virginia",
       "level": -1,
       "types": [
         "data_center",
@@ -12306,7 +12320,7 @@
     },
     "42027": {
       "name": "Centre County",
-      "state": "PA",
+      "state": "Pennsylvania",
       "level": -1,
       "types": [
         "data_center",
@@ -12333,7 +12347,7 @@
     },
     "42079": {
       "name": "Luzerne County",
-      "state": "PA",
+      "state": "Pennsylvania",
       "level": -1,
       "types": [
         "data_center"
@@ -12359,7 +12373,7 @@
     },
     "42081": {
       "name": "Lycoming County",
-      "state": "PA",
+      "state": "Pennsylvania",
       "level": -1,
       "types": [
         "data_center"
@@ -12385,7 +12399,7 @@
     },
     "42013": {
       "name": "Blair County",
-      "state": "PA",
+      "state": "Pennsylvania",
       "level": -1,
       "types": [
         "data_center"
@@ -12411,7 +12425,7 @@
     },
     "39099": {
       "name": "Mahoning County",
-      "state": "OH",
+      "state": "Ohio",
       "level": -1,
       "types": [
         "data_center"
@@ -12437,7 +12451,7 @@
     },
     "39045": {
       "name": "Fairfield County",
-      "state": "OH",
+      "state": "Ohio",
       "level": -1,
       "types": [
         "data_center"
@@ -12463,7 +12477,7 @@
     },
     "39003": {
       "name": "Allen County",
-      "state": "OH",
+      "state": "Ohio",
       "level": -1,
       "types": [
         "data_center"
@@ -12489,7 +12503,7 @@
     },
     "39141": {
       "name": "Ross County",
-      "state": "OH",
+      "state": "Ohio",
       "level": -1,
       "types": [
         "data_center"
@@ -12515,7 +12529,7 @@
     },
     "18081": {
       "name": "Johnson County",
-      "state": "IN",
+      "state": "Indiana",
       "level": -1,
       "types": [
         "data_center"
@@ -12541,7 +12555,7 @@
     },
     "18059": {
       "name": "Hancock County",
-      "state": "IN",
+      "state": "Indiana",
       "level": -1,
       "types": [
         "data_center"
@@ -12567,7 +12581,7 @@
     },
     "18109": {
       "name": "Morgan County",
-      "state": "IN",
+      "state": "Indiana",
       "level": -1,
       "types": [
         "data_center"
@@ -12593,7 +12607,7 @@
     },
     "18145": {
       "name": "Shelby County",
-      "state": "IN",
+      "state": "Indiana",
       "level": -1,
       "types": [
         "data_center"
@@ -33368,35 +33382,34 @@
       "last_reviewed": null
     },
     "48199": {
-      "name": "Hays County",
+      "name": "Hardin County",
       "state": "Texas",
-      "level": 3,
+      "level": -1,
       "types": [
         "data_center",
-        "water",
         "energy"
       ],
-      "title": "Hays County TX \u2014 Edwards Aquifer Recharge Zone, LCRA Water Moratorium & Kyle City Data Center Moratorium",
-      "description": "Hays County (Kyle/San Marcos/Buda, TX) is the fastest-growing county in the United States and sits directly over the Edwards Aquifer Contributing Zone, where the Edwards Aquifer Authority (EAA, created by Texas S.B. 1477) enforces strict limits on consumptive groundwater withdrawals. The Lower Colorado River Authority (LCRA) serves portions of the county but has suspended new large firm service commitments above 1 MW pending the outcome of the LCRA-LCRA Transmission Services 2025 Integrated Transmission Plan. Pedernales Electric Cooperative (PEC) serves rural Hays County on 69 kV and 138 kV lines rated at limited hosting capacity. The City of Kyle adopted a 12-month data-center moratorium (Ordinance 2024-09) citing water-supply stress on the Onion Creek aquifer and fiber-node congestion; the city's land-use attorney has indicated the moratorium will be extended pending a water-resource assessment due March 2026. Data centers must obtain TCEQ Multi-Sector General Permit (TXR050000) and an Edwards Aquifer EAA permit before groundwater well construction.",
-      "effective_date": "2024-09-01",
+      "title": "Hardin County TX \u2014 Golden Triangle Industrial Corridor & Entergy Texas Service Area",
+      "description": "Hardin County (Kountze/Silsbee, TX) lies in the Neches River bottomlands of Southeast Texas's Golden Triangle industrial corridor (Beaumont\u2013Port Arthur\u2013Orange). The county is served by Entergy Texas with competitive large-industrial rates. Neches River floodplain is mapped FEMA Special Flood Hazard Area; inland industrial parcels avoid this constraint. Hardin County qualifies for the Texas Chapter 403 data center exemption and Texas Enterprise Zone benefits via TEDC. Timber and petrochemical infrastructure provide stable utility and logistics networks.",
+      "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "Kyle Ord. 2024-09 12-mo moratorium; EAA Contributing Zone strict limits; PEC 69/138kV constrained.",
+      "notes": "Entergy Texas service area; FEMA SFHA near Neches River bottomlands; Ch.403 eligible.",
       "sources": [
         {
-          "label": "Edwards Aquifer Authority \u2014 Water Rights & Permits",
-          "url": "https://www.edwardsaquifer.org/water-management/water-rights/"
+          "label": "Hardin County TX \u2014 Commissioner's Court",
+          "url": "https://www.hardincountytx.com/"
         },
         {
-          "label": "LCRA \u2014 Transmission & Power Services",
-          "url": "https://www.lcra.org/energy/"
+          "label": "Entergy Texas \u2014 Large Industrial Rates & Tariffs",
+          "url": "https://www.entergytexas.com/our-company/rates-tariffs"
         },
         {
-          "label": "City of Kyle TX \u2014 Ordinance 2024-09 Data Center Moratorium",
-          "url": "https://www.cityofkyle.com/planning"
+          "label": "FEMA Flood Map Service Center",
+          "url": "https://msc.fema.gov/portal/home"
         },
         {
-          "label": "TCEQ \u2014 Multi-Sector General Permit TXR050000",
-          "url": "https://www.tceq.texas.gov/permitting/stormwater/multi-sector-gp"
+          "label": "TX Comptroller \u2014 Chapter 403 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
         }
       ],
       "lifecycle_stage": "effective",
@@ -33441,35 +33454,34 @@
       "last_reviewed": null
     },
     "48203": {
-      "name": "Hidalgo County",
+      "name": "Harrison County",
       "state": "Texas",
-      "level": 2,
+      "level": -1,
       "types": [
         "data_center",
-        "water",
         "energy"
       ],
-      "title": "Hidalgo County TX \u2014 Rio Grande Water Scarcity, AEP Texas Border Grid & CREZ Wind Competition",
-      "description": "Hidalgo County (McAllen/Edinburg/Mission, TX) anchors the Rio Grande Valley, where surface-water rights from the Rio Grande are fully appropriated under Texas TCEQ Priority administration and subject to International Boundary and Water Commission (IBWC) treaty allocations with Mexico (Treaty of 1944). The RGV's primary groundwater source \u2014 the Chicot and Evangeline Aquifers \u2014 faces declining water tables; the Hidalgo County Underground Water Conservation District (HCUWCD) imposes per-well pumping limits under HCUWCD Rules \u00a73.04. AEP Texas Central serves the county in the ERCOT market; the border transmission zone experiences high congestion costs due to limited import capacity from Mexico and CREZ wind curtailment on I-69 lines. Data centers must file a water-use authorization with HCUWCD before groundwater well construction and a TCEQ water-right application for surface water.",
-      "effective_date": "2021-01-01",
+      "title": "Harrison County TX \u2014 East Texas SWEPCO/AEP Territory & Chapter 403 Incentive",
+      "description": "Harrison County (Marshall, TX) is in deep East Texas, served by SWEPCO (Southwestern Electric Power Company, an AEP subsidiary). The county has abundant natural gas pipeline infrastructure from legacy East Texas oil production. Marshall is a historic rail junction with BNSF and Union Pacific freight access. Harrison County participates in the Texas Chapter 403 data center sales tax exemption and state Enterprise Zone designation. The City of Marshall EDC offers performance agreements for large employers requiring substantial capital investment.",
+      "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "Rio Grande fully appropriated; HCUWCD \u00a73.04 pumping limits; AEP TX ERCOT border congestion.",
+      "notes": "SWEPCO/AEP territory; natural gas pipeline network; Marshall EDC performance agreements; Ch.403.",
       "sources": [
         {
-          "label": "Hidalgo County Underground Water Conservation District",
-          "url": "https://www.hcuwcd.org/"
+          "label": "Harrison County TX Appraisal District",
+          "url": "https://www.harrisoncad.org/"
         },
         {
-          "label": "International Boundary & Water Commission \u2014 Rio Grande",
-          "url": "https://www.ibwc.gov/"
+          "label": "SWEPCO \u2014 Texas Large Power Service Tariff",
+          "url": "https://www.swepco.com/global/utilities/lib/docs/info/tariffs/tx-tariff.pdf"
         },
         {
-          "label": "AEP Texas \u2014 Economic Development & Grid Info",
-          "url": "https://www.aeptexas.com/account/business/economic-development/"
+          "label": "City of Marshall TX \u2014 Economic Development",
+          "url": "https://www.marshalltexas.net/economic-development"
         },
         {
-          "label": "TCEQ \u2014 Water Rights Permitting",
-          "url": "https://www.tceq.texas.gov/permitting/water_rights"
+          "label": "TX Comptroller \u2014 Chapter 403 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
         }
       ],
       "lifecycle_stage": "effective",
@@ -33477,36 +33489,34 @@
       "last_reviewed": null
     },
     "48231": {
-      "name": "Jefferson County",
+      "name": "Hunt County",
       "state": "Texas",
-      "level": 2,
+      "level": -1,
       "types": [
         "data_center",
-        "water",
-        "energy",
-        "environmental"
+        "energy"
       ],
-      "title": "Jefferson County TX \u2014 Beaumont SFHA, Entergy Texas Priority Load & TGLO Coastal Erosion Zone",
-      "description": "Jefferson County (Beaumont/Port Arthur/Orange, TX) is the heart of the Texas Golden Triangle petrochemical complex, where Entergy Texas serves an industrial load dominated by ExxonMobil, TotalEnergies, and Motiva refinery operations. The Public Utility Commission of Texas (PUCT) Docket No. 53592 established that Jefferson County Entergy circuits are operating near N-1 contingency limits; new large data-center loads exceeding 10 MW require a feasibility study and potential upgrade obligations. Substantial portions of the county are in FEMA Zone AE or Zone X Special Flood Hazard Areas due to the Neches River floodplain and Hurricane Harvey storm-surge extents; critical facilities require two-foot freeboard above BFE. The Texas General Land Office (TGLO) Coastal Erosion Planning and Response Act (Texas Natural Resources Code \u00a733.601) restricts construction within the dune protection line along the Gulf and Sabine Lake shorelines.",
-      "effective_date": "2020-01-01",
+      "title": "Hunt County TX \u2014 Greenville Industrial Heritage & Chapter 403 Data Center Incentive",
+      "description": "Hunt County (Greenville, TX) is 45 miles northeast of Dallas, served by Oncor Electric Delivery in the ERCOT North zone. Greenville's industrial tradition \u2014 anchored by Majors Field Airport and former L-3/Raytheon presence \u2014 provides a trained workforce and robust utility infrastructure. Blackland Prairie geology provides stable, low-subsidence ground for large building footprints. Hunt County participates in the Texas Chapter 403 data center exemption and offers Chapter 381 county abatements for qualified capital investments.",
+      "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "Entergy TX PUCT 53592 N-1 limits; Neches/Harvey SFHA; TGLO \u00a733.601 coastal erosion zone.",
+      "notes": "Oncor ERCOT North zone; Greenville EDC tax abatement available; Ch.403 and Ch.381 eligible.",
       "sources": [
         {
-          "label": "PUCT \u2014 Entergy Texas Docket Filings",
-          "url": "https://www.puc.texas.gov/agency/resources/dockets/"
+          "label": "Hunt County TX \u2014 Commissioner's Court",
+          "url": "https://www.huntcounty.net/"
         },
         {
-          "label": "Entergy Texas \u2014 Economic Development",
-          "url": "https://www.entergytexas.com/for-your-business/economic-development/"
+          "label": "City of Greenville TX \u2014 Economic Development",
+          "url": "https://greenvilletx.gov/economy/"
         },
         {
-          "label": "TGLO \u2014 Coastal Erosion Planning (NRC \u00a733.601)",
-          "url": "https://www.glo.texas.gov/coast/coastal-erosion/index.html"
+          "label": "TX Comptroller \u2014 Chapter 403 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
         },
         {
-          "label": "FEMA \u2014 Flood Map Service Center (Jefferson County TX)",
-          "url": "https://msc.fema.gov/portal/"
+          "label": "Oncor Electric Delivery \u2014 ERCOT North Zone",
+          "url": "https://www.oncor.com/EN/OurCompany/Pages/Wholesale.aspx"
         }
       ],
       "lifecycle_stage": "effective",
@@ -33514,35 +33524,34 @@
       "last_reviewed": null
     },
     "48221": {
-      "name": "Hutchinson County",
+      "name": "Hood County",
       "state": "Texas",
       "level": 1,
       "types": [
         "data_center",
-        "water",
         "energy"
       ],
-      "title": "Hutchinson County TX \u2014 Panhandle Grid, Ogallala Aquifer Depletion & AEP Texas Rural Capacity",
-      "description": "Hutchinson County (Borger, TX) lies in the Texas Panhandle, where Xcel Energy and AEP Texas operate a seam in the ERCOT/SPP transmission boundary; data centers must specify which market they will interconnect with before permitting. The Panhandle Groundwater Conservation District (PGCD) administers Ogallala Aquifer water rights under a depletion-based management framework; the aquifer has declined 100\u2013200 feet under most of Hutchinson County, and PGCD Rules \u00a73.09 impose 40% reduction goals on new permits. Borger hosts the Phillips 66 Borger Refinery (100,000 bpd), whose industrial interruptible power contracts have first priority on Xcel Energy's local distribution system during high-demand periods. Hutchinson County requires a Conditional Use Permit (CUP) for any industrial facility over 50,000 sq ft under the Panhandle Regional Planning Commission model ordinance.",
-      "effective_date": "2022-01-01",
+      "title": "Hood County TX \u2014 DFW Exurban Growth & Oncor 138 kV Transmission Capacity Review",
+      "description": "Hood County (Granbury, TX) is on the southern fringe of the Dallas\u2013Fort Worth Metroplex, served by Oncor Electric Delivery. The county's 138 kV transmission infrastructure is approaching capacity as DFW suburban growth accelerates; large load interconnections above 5 MW may require Oncor transmission-upgrade cost assignments under ERCOT interconnection protocols. Hood County participates in the Texas Chapter 403 data center tax exemption and multi-year county appraisal limitations under the Texas Economic Development Act. No moratorium is in place, but a grid capacity review adds timeline risk for high-density campuses.",
+      "effective_date": "2023-01-01",
       "status": "active",
-      "notes": "ERCOT/SPP market seam; PGCD Ogallala 40% reduction target; Phillips 66 load priority; CUP.",
+      "notes": "Oncor 138 kV near-capacity; ERCOT interconnection study required >5 MW; Ch.403 eligible.",
       "sources": [
         {
-          "label": "Panhandle Groundwater Conservation District \u2014 Water Management Rules",
-          "url": "https://www.pgcd.us/"
+          "label": "Hood County TX \u2014 Official Website",
+          "url": "https://www.co.hood.tx.us/"
         },
         {
-          "label": "AEP Texas \u2014 Large Load & Interconnection",
-          "url": "https://www.aeptexas.com/account/business/economic-development/"
+          "label": "Oncor Electric Delivery \u2014 Wholesale & Interconnection",
+          "url": "https://www.oncor.com/EN/OurCompany/Pages/Wholesale.aspx"
         },
         {
-          "label": "Xcel Energy \u2014 Panhandle SPP Transmission Zone",
-          "url": "https://www.xcelenergy.com/company/rates_and_regulations/transmission"
+          "label": "ERCOT \u2014 Transmission Planning Documents",
+          "url": "https://www.ercot.com/gridinfo/trans"
         },
         {
-          "label": "Panhandle Regional Planning Commission",
-          "url": "https://www.theprpc.org/"
+          "label": "TX Comptroller \u2014 Chapter 403 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
         }
       ],
       "lifecycle_stage": "effective",
@@ -33732,34 +33741,34 @@
       "last_reviewed": null
     },
     "48083": {
-      "name": "Collin County",
+      "name": "Coleman County",
       "state": "Texas",
       "level": -1,
       "types": [
         "data_center",
-        "incentive"
+        "energy"
       ],
-      "title": "Collin County TX \u2014 Plano/Allen/McKinney DFW Hyperscale Hub, Oncor 345kV & Texas Ch. 403 Incentive",
-      "description": "Collin County (Plano/Allen/McKinney, TX) is one of the fastest-growing counties in the nation and a major DFW data-center hub anchored by AT&T's global network operations campus and Ericsson's North American HQ (both in Plano). Oncor serves the county from the 345 kV Garland and 345 kV Forest Lane transmission system; the DFW ERCOT north zone consistently has among the lowest real-time prices in ERCOT. Texas Chapter 403 (2023 replacement for Ch. 313) offers 10-year local property-tax limitations for qualifying manufacturing/technology investments of $20M+ approved by local school districts; Collin County school districts have active Ch. 403 agreements with hyperscale operators. Fiber infrastructure includes AT&T, Zayo, CenturyLink/Lumen, and the DART Communications dark-fiber network connecting all major Collin County business parks.",
-      "effective_date": "2023-09-01",
+      "title": "Coleman County TX \u2014 AEP/WTU West Texas Territory & Chapter 403 Data Center Exemption",
+      "description": "Coleman County (Coleman, TX) is a sparsely populated West Texas agricultural county in the ERCOT grid, served by West Texas Utilities (an AEP subsidiary). Abundant wind generation potential and flat rangeland make it suitable for large industrial footprints. Coleman County qualifies for the Texas Chapter 403 data center sales tax exemption (TX Tax Code \u00a7151.359) and the Texas Enterprise Zone program. Low population density and favorable county appraisal caps under Chapter 381 agreements support large-campus development. No active restrictions.",
+      "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "Oncor 345kV DFW north ERCOT; Texas Ch. 403 10-yr local tax limitation; AT&T/Ericsson anchor.",
+      "notes": "AEP/WTU ERCOT West zone; Ch.403 exemption eligible; low land cost; Ch.381 abatement available.",
       "sources": [
         {
-          "label": "Texas Comptroller \u2014 Chapter 403 Value Limitation Agreement",
-          "url": "https://comptroller.texas.gov/economy/local/ch403/"
+          "label": "Coleman County TX Appraisal District",
+          "url": "https://www.colemancad.org/"
         },
         {
-          "label": "Oncor \u2014 Economic Development & Large Load",
-          "url": "https://www.oncor.com/EN/economic-development/"
+          "label": "AEP West Texas Utilities \u2014 Tariff Book",
+          "url": "https://www.aeptexas.com/customers/tariff/"
         },
         {
-          "label": "Collin County \u2014 Economic Development",
-          "url": "https://www.collincountytx.gov/economic_development/"
+          "label": "TX Comptroller \u2014 Chapter 403 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
         },
         {
-          "label": "ERCOT \u2014 Transmission Congestion Reports",
-          "url": "https://www.ercot.com/gridinfo/transmission"
+          "label": "Texas Enterprise Zone Program \u2014 Governor's Office",
+          "url": "https://gov.texas.gov/business/page/texas-enterprise-zone-program"
         }
       ],
       "lifecycle_stage": "effective",
@@ -33767,34 +33776,34 @@
       "last_reviewed": null
     },
     "48391": {
-      "name": "Reeves County",
+      "name": "Refugio County",
       "state": "Texas",
       "level": -1,
       "types": [
         "data_center",
-        "incentive"
+        "energy"
       ],
-      "title": "Reeves County TX \u2014 Trans-Pecos ERCOT Solar+Storage Hub, NextEra/Brigado & Texas Ch. 403 Incentive",
-      "description": "Reeves County (Pecos, TX) in the Trans-Pecos region has emerged as one of the premier utility-scale solar and wind development corridors in the United States, with NextEra Energy, Brigado Energy, and Pattern Energy operating 3,000+ MW of renewable projects connected to ERCOT's West Zone. The ERCOT West Zone consistently produces surplus solar power with negative real-time prices during midday hours, creating exceptional economics for data-center colocation with on-site renewable generation under long-term Power Purchase Agreements (PPAs). Texas Chapter 403 (2023) value-limitation agreements with Reeves County ISD provide 10-year local property-tax relief for qualifying technology investments of $20M+. The Pecos Valley Aquifer provides industrial water, with Pecos County Underground Water Conservation District Rules \u00a74.01 permitting new groundwater wells for industrial use with annual reporting requirements.",
+      "title": "Refugio County TX \u2014 South Texas O&G Infrastructure & AEP Texas Central Territory",
+      "description": "Refugio County (Refugio, TX) is a sparsely populated South Texas coastal county with significant oil and gas pipeline infrastructure, served by AEP Texas Central (formerly Central Power and Light) in the ERCOT South zone. The county borders the Aransas National Wildlife Refuge, requiring federal ESA Section 7 consultation for projects near the coast; inland industrial parcels are unaffected. Refugio County qualifies for Texas Chapter 403 data center tax exemptions and Enterprise Zone benefits. AEP Texas Central's large-industrial rate schedules are competitive for high-load operations.",
       "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "ERCOT West Zone solar surplus/negative prices; NextEra/Brigado 3,000+ MW; TX Ch. 403; PCUWCD water.",
+      "notes": "AEP Texas Central ERCOT South zone; ESA Section 7 near ANWR coast; Ch.403 eligible.",
       "sources": [
         {
-          "label": "Texas Comptroller \u2014 Chapter 403 Value Limitation",
-          "url": "https://comptroller.texas.gov/economy/local/ch403/"
+          "label": "Refugio County TX \u2014 Official Website",
+          "url": "https://refugiocounty.net/"
         },
         {
-          "label": "ERCOT \u2014 West Zone Generation & Interconnection Queue",
-          "url": "https://www.ercot.com/gridinfo/resource"
+          "label": "AEP Texas \u2014 Large Power & Transmission Tariffs",
+          "url": "https://www.aeptexas.com/customers/tariff/"
         },
         {
-          "label": "NextEra Energy Resources \u2014 Texas Solar & Wind Projects",
-          "url": "https://www.nexteraenergyresources.com/"
+          "label": "USFWS \u2014 Aransas National Wildlife Refuge",
+          "url": "https://www.fws.gov/refuge/aransas"
         },
         {
-          "label": "Pecos County Underground Water Conservation District",
-          "url": "https://www.pcuwcd.org/"
+          "label": "TX Comptroller \u2014 Chapter 403 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
         }
       ],
       "lifecycle_stage": "effective",
@@ -33802,34 +33811,34 @@
       "last_reviewed": null
     },
     "48237": {
-      "name": "Johnson County",
+      "name": "Jack County",
       "state": "Texas",
       "level": -1,
       "types": [
         "data_center",
-        "incentive"
+        "energy"
       ],
-      "title": "Johnson County TX \u2014 Cleburne Oncor Grid, I-35W Industrial Corridor & Texas Ch. 403 CREZ Wind Access",
-      "description": "Johnson County (Cleburne, TX) sits on the I-35W Fort Worth\u2013Waco industrial corridor and benefits from Oncor's 138/345 kV infrastructure at the Cleburne and Alvarado substations, which have available hosting capacity for new large loads after steel-industry retirements. Johnson County ISD has approved Texas Chapter 403 value-limitation agreements for qualifying data-center and manufacturing investments; the county also qualifies for Texas Opportunity Zones under the federal program. CREZ (Competitive Renewable Energy Zone) transmission access from West Texas wind flows through the Johnson County Oncor grid, enabling 100% renewable power procurement at competitive ERCOT West prices. The Cleburne Economic Development Corporation (CEDC) maintains shovel-ready certified sites with three-phase Oncor power and Suddenlink/Zayo fiber.",
+      "title": "Jack County TX \u2014 North-Central TX Mineral Belt & ERCOT North Zone Incentive",
+      "description": "Jack County (Jacksboro, TX) is in the Mineral Wells\u2013Palo Pinto region of North-Central Texas, served by Oncor Electric Delivery in the ERCOT North zone. The county has a legacy of oil and gas production and sits within 60 miles of Fort Worth. Jack County participates in the Texas Chapter 403 data center exemption and is eligible for Chapter 381 county abatements. Rural land values and stable limestone geology support large industrial site development with minimal subsidence risk. No active data center restrictions.",
       "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "Oncor 138/345kV available; TX Ch. 403; CREZ West TX wind access; CEDC certified sites.",
+      "notes": "Oncor ERCOT North zone; Ch.403 data center exemption; limestone bedrock; rural land costs.",
       "sources": [
         {
-          "label": "Texas Comptroller \u2014 Chapter 403",
-          "url": "https://comptroller.texas.gov/economy/local/ch403/"
+          "label": "Jack County TX Appraisal District",
+          "url": "https://www.jackcad.org/"
         },
         {
-          "label": "Oncor \u2014 Economic Development",
-          "url": "https://www.oncor.com/EN/economic-development/"
+          "label": "Oncor Electric Delivery \u2014 Tariff & Rates",
+          "url": "https://www.oncor.com/EN/OurCompany/Pages/Wholesale.aspx"
         },
         {
-          "label": "Cleburne Economic Development Corporation",
-          "url": "https://www.cleburnedc.com/"
+          "label": "TX Comptroller \u2014 Chapter 403 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
         },
         {
-          "label": "ERCOT \u2014 CREZ Transmission Overview",
-          "url": "https://www.ercot.com/gridinfo/transmission"
+          "label": "ERCOT \u2014 North Load Zone Reference",
+          "url": "https://www.ercot.com/gridinfo/load/load_hist"
         }
       ],
       "lifecycle_stage": "effective",
@@ -33942,34 +33951,34 @@
       "last_reviewed": null
     },
     "48461": {
-      "name": "Upshur County",
+      "name": "Upton County",
       "state": "Texas",
       "level": -1,
       "types": [
         "data_center",
-        "incentive"
+        "energy"
       ],
-      "title": "Upshur County TX \u2014 Gilmer Oncor/ETEX, NE Texas Rural Incentives & Wood Products AI",
-      "description": "Upshur County (Gilmer, TX) is a NE Texas rural county served by Oncor and the East Texas Electric Cooperative (ETEX) from the Longview-Gilmer 138 kV corridor. The county hosts Greenbrier International's Shreveport-to-Dallas logistics AI routing center and multiple Eastman Chemical AI operations facilities that serve as technology anchors. Texas Chapter 403 agreements with Gilmer ISD provide property-tax relief for qualifying capital investments. Upshur County's Rural Economic Development District offers water and sewer grants for qualifying industrial users under Texas Government Code \u00a7505. ETEX fiber provides I-20 corridor connectivity to Longview/Tyler with diverse routing to both Dallas and Shreveport.",
-      "effective_date": "2021-01-01",
+      "title": "Upton County TX \u2014 Permian Basin Core & WTU/AEP Renewable-Ready Chapter 403 Incentive",
+      "description": "Upton County (McCamey/Rankin, TX) is in the heart of the Permian Basin, one of the world's most productive oil and gas regions, and is also home to the McCamey Wind Farm cluster. The county is served by West Texas Utilities (AEP) in the ERCOT West zone with abundant co-located renewable generation. Permian Basin energy infrastructure provides multiple natural gas backup options and dense fiber connectivity through O&G operational networks. Upton County qualifies for Texas Chapter 403 data center exemptions; low land costs favor large renewable-powered campuses.",
+      "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "Oncor/ETEX 138kV; TX Ch. 403 Gilmer ISD; TX Gov. Code \u00a7505 rural grants; I-20 fiber.",
+      "notes": "WTU/AEP ERCOT West zone; Permian Basin O&G plus McCamey wind; Ch.403 eligible.",
       "sources": [
         {
-          "label": "Texas Comptroller \u2014 Chapter 403",
-          "url": "https://comptroller.texas.gov/economy/local/ch403/"
+          "label": "Upton County TX Appraisal District",
+          "url": "https://www.uptoncad.org/"
         },
         {
-          "label": "ETEX \u2014 Economic Development",
-          "url": "https://www.etex.coop/"
+          "label": "AEP West Texas Utilities \u2014 Tariff Book",
+          "url": "https://www.aeptexas.com/customers/tariff/"
         },
         {
-          "label": "Upshur County \u2014 Economic Development",
-          "url": "https://www.upshurcounty.org/"
+          "label": "ERCOT \u2014 West Load Zone Generation Resources",
+          "url": "https://www.ercot.com/gridinfo/resource"
         },
         {
-          "label": "Texas Government Code \u00a7505 \u2014 Rural Development",
-          "url": "https://statutes.capitol.texas.gov/Docs/LG/htm/LG.505.htm"
+          "label": "TX Comptroller \u2014 Chapter 403 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
         }
       ],
       "lifecycle_stage": "effective",
@@ -34152,34 +34161,34 @@
       "last_reviewed": null
     },
     "37047": {
-      "name": "Craven County",
+      "name": "Columbus County",
       "state": "North Carolina",
       "level": -1,
       "types": [
         "data_center",
-        "incentive"
+        "energy"
       ],
-      "title": "Craven County NC \u2014 Cherry Point MCAS, Duke Energy Progress & G.S. \u00a7105-275(45) Data Center Exemption",
-      "description": "Craven County (New Bern, NC) hosts Marine Corps Air Station Cherry Point, home to VMFA(AW)-121, the F-35C wing, and NAVAIR's 4th Marine Aircraft Wing maintenance depot \u2014 one of the Navy's largest aircraft industrial complexes. Duke Energy Progress serves the county from the New Bern 115 kV system; the Neuse River estuary provides cooling water under NC DEQ Individual NPDES permit for closed-cycle systems. North Carolina G.S. \u00a7105-275(45) provides a property-tax exemption for qualifying data-center equipment costing $150M+ with a 5-year commitment; Craven County's low land costs and military-adjacent fiber infrastructure (Lumen/AF1 military fiber) provide secondary DR-site advantages. The Craven County Economic Development Commission certifies industrial sites on US-70 with available Duke Energy Progress three-phase service.",
-      "effective_date": "2015-01-01",
+      "title": "Columbus County NC \u2014 Tier 1 JDIG County & Duke Energy Progress Incentive Territory",
+      "description": "Columbus County (Whiteville, NC) is in southeastern North Carolina, served by Duke Energy Progress. As a Tier 1 county under North Carolina's Job Development Investment Grant (JDIG) program, Columbus County offers the maximum 80% wage credit reimbursement for qualified new jobs. The county also benefits from G.S. \u00a7105-275(45), which exempts qualifying data center equipment from real and personal property taxation. Rural land costs and proximity to the I-74 corridor support large industrial campus development. No active restrictions on data centers.",
+      "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "Cherry Point MCAS C4ISR anchor; Duke Progress 115kV; NC G.S. \u00a7105-275(45) $150M+ exemption.",
+      "notes": "NC Tier 1 JDIG (80% wage credit); G.S. \u00a7105-275(45) equipment exemption; Duke Energy Progress.",
       "sources": [
         {
-          "label": "NC Legislature \u2014 G.S. \u00a7105-275(45) Data Center Property Tax Exemption",
+          "label": "Columbus County NC \u2014 Economic Development",
+          "url": "https://www.columbusco.org/economic-development"
+        },
+        {
+          "label": "NC Commerce \u2014 JDIG Tier 1 Job Grants",
+          "url": "https://www.nccommerce.com/jdig"
+        },
+        {
+          "label": "NC G.S. \u00a7105-275(45) \u2014 Data Center Equipment Exemption",
           "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-275.html"
         },
         {
-          "label": "Duke Energy Progress \u2014 Economic Development NC",
-          "url": "https://www.duke-energy.com/business/economic-development"
-        },
-        {
-          "label": "Craven County Economic Development Commission",
-          "url": "https://www.cravenedo.com/"
-        },
-        {
-          "label": "MCAS Cherry Point \u2014 Marine Corps Air Station",
-          "url": "https://www.mcascherry.marines.mil/"
+          "label": "Duke Energy Progress \u2014 North Carolina Rates",
+          "url": "https://www.duke-energy.com/home/products/north-carolina"
         }
       ],
       "lifecycle_stage": "effective",
@@ -34467,34 +34476,2044 @@
       "last_reviewed": null
     },
     "21125": {
+      "name": "Lawrence County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Lawrence County KY \u2014 Big Sandy Region ARC Incentives & Kentucky Power Territory",
+      "description": "Lawrence County (Louisa, KY) occupies the Big Sandy River valley on the Kentucky\u2013West Virginia border, served by Kentucky Power (AEP). ARC Distressed designation and POWER+ Initiative eligibility provide federal economic development incentives for new industries. Kentucky KEDFA KBI incentives include wage assessment credits up to 100% of withholding tax for up to 15 years. The county's proximity to the Big Sandy coalfield provides existing heavy-electrical infrastructure and skilled technical workforce. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "ARC Distressed; KY Power/AEP service; KEDFA KBI and POWER+ eligible; Big Sandy infrastructure.",
+      "sources": [
+        {
+          "label": "Lawrence County KY \u2014 Official Website",
+          "url": "https://lawrencecountykygov.com/"
+        },
+        {
+          "label": "Kentucky Power (AEP) \u2014 Eastern Kentucky",
+          "url": "https://www.kentuckypower.com/"
+        },
+        {
+          "label": "ARC \u2014 POWER+ Initiative for Coal Communities",
+          "url": "https://www.arc.gov/power-initiative/"
+        },
+        {
+          "label": "KEDFA \u2014 Kentucky Business Investment Program",
+          "url": "https://ced.ky.gov/Incentives/Kentucky_Business_Investment"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "48459": {
+      "name": "Upshur County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Upshur County TX \u2014 East Texas SWEPCO/AEP Pineywoods Territory & Chapter 403 Incentive",
+      "description": "Upshur County (Gilmer, TX) is in the Pineywoods of East Texas, served by SWEPCO (Southwestern Electric Power Company, AEP) and Wood County Electric Cooperative. The county lies within the Sabine River watershed with dense East Texas timber land and natural gas pipeline corridors providing energy backup options. Gilmer is the county seat and has existing industrial zoning. Upshur County qualifies for the Texas Chapter 403 data center exemption and Chapter 381 county abatements for qualifying projects. No active restrictions on data center construction.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "SWEPCO/AEP and WCEC cooperative territory; East TX Pineywoods; Ch.403 and Ch.381 eligible.",
+      "sources": [
+        {
+          "label": "Upshur County TX \u2014 Commissioner's Court",
+          "url": "https://www.co.upshur.tx.us/"
+        },
+        {
+          "label": "SWEPCO \u2014 Texas Large Power Service Tariff",
+          "url": "https://www.swepco.com/global/utilities/lib/docs/info/tariffs/tx-tariff.pdf"
+        },
+        {
+          "label": "Wood County Electric Cooperative",
+          "url": "https://www.wcec.net/"
+        },
+        {
+          "label": "TX Comptroller \u2014 Chapter 403 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "21123": {
       "name": "Laurel County",
       "state": "Kentucky",
       "level": -1,
       "types": [
         "data_center",
-        "incentive"
+        "energy"
       ],
-      "title": "Laurel County KY \u2014 London I-75 Midpoint, Kentucky Utilities & KEDFA Appalachian Incentives",
-      "description": "Laurel County (London, KY) anchors southeastern Kentucky on I-75 at the midpoint between Lexington and Knoxville, a strategic DR-site location. Kentucky Utilities (LG&E/KU subsidiary) serves the county from the London 138 kV substation with reliable PJM power; the county's position above the Cumberland Plateau provides cool ambient temperatures suitable for free-air economization up to 5,000 hours annually. Kentucky's Appalachian Regional Commission (ARC) investment program and KEDFA's Kentucky Reinvestment Act (KRA, KRS \u00a7154.24) provide capital-equipment tax credits for qualifying technology investments in ARC-designated distressed counties. Laurel County's Gateway Industrial Park has fiber-lit certified sites with Kentucky Utilities three-phase service and Windstream/AT&T I-75 corridor connectivity.",
-      "effective_date": "2019-01-01",
+      "title": "Laurel County KY \u2014 I-75 Corridor Hub & KEDFA KBI / KEIA Data Center Incentives",
+      "description": "Laurel County (London, KY) sits on the I-75 corridor in southeastern Kentucky, one of the most strategically located counties in the state for logistics-adjacent data center development. The county is served by Duke Energy Kentucky and East Kentucky Power Cooperative (EKPC). Laurel County qualifies for Kentucky KEDFA KBI (Kentucky Business Investment) wage assessment credits and the Kentucky Enterprise Initiative Act (KEIA) sales tax refund on construction materials. The county has a record of manufacturing investment and an affordable industrial land market. No active restrictions on data centers.",
+      "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "I-75 midpoint LEX-KNX; KY Utilities 138kV cool climate; ARC distressed; KRA KRS \u00a7154.24; fiber.",
+      "notes": "I-75 corridor access; Duke Energy KY/EKPC service; KEDFA KBI (15-yr wage credit) and KEIA eligible.",
       "sources": [
         {
-          "label": "KEDFA \u2014 Kentucky Reinvestment Act (KRS \u00a7154.24)",
-          "url": "https://ced.ky.gov/Financial_Incentives/Pages/kra.aspx"
+          "label": "Laurel County KY Economic Development \u2014 London KY",
+          "url": "https://www.laurelcountyky.gov/economic-development"
         },
         {
-          "label": "Appalachian Regional Commission (ARC) \u2014 Distressed Counties",
-          "url": "https://www.arc.gov/classifying-economic-distress-in-appalachian-counties/"
+          "label": "Duke Energy Kentucky \u2014 Industrial Service Rates",
+          "url": "https://www.duke-energy.com/home/products/kentucky"
         },
         {
-          "label": "LG&E and KU \u2014 Economic Development",
-          "url": "https://lge-ku.com/business/economic-development"
+          "label": "KEDFA \u2014 Kentucky Business Investment Program",
+          "url": "https://ced.ky.gov/Incentives/Kentucky_Business_Investment"
         },
         {
-          "label": "Laurel County Economic Development Alliance",
-          "url": "https://www.laurelcountyky.gov/economic-development/"
+          "label": "Kentucky Enterprise Initiative Act (KEIA) \u2014 Cabinet for Economic Development",
+          "url": "https://ced.ky.gov/Incentives/Kentucky_Enterprise_Initiative_Act"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "05011": {
+      "name": "Bradley County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Bradley County AR \u2014 South Arkansas Timber Belt & Entergy Arkansas Industrial Incentive",
+      "description": "Bradley County (Warren, AR) is in the south Arkansas timber belt, served by Entergy Arkansas. The county qualifies for the Arkansas Tax Back program (Act 182 of 2013), providing a direct sales/use tax refund on qualified machinery, equipment, and building materials, and the Create Rebate payroll incentive for new jobs above the state threshold. Warren's industrial park has existing three-phase power and natural gas connections. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Entergy Arkansas territory; AEDC Tax Back and Create Rebate eligible.",
+      "sources": [
+        {
+          "label": "Bradley County AR \u2014 Economic Development",
+          "url": "https://www.bradleycountyar.gov/"
+        },
+        {
+          "label": "Entergy Arkansas \u2014 Large Power Service",
+          "url": "https://www.entergy-arkansas.com/"
+        },
+        {
+          "label": "AEDC \u2014 Tax Back Program",
+          "url": "https://www.arkansasedc.com/doing-business/incentives/tax-back"
+        },
+        {
+          "label": "AEDC \u2014 Create Rebate Program",
+          "url": "https://www.arkansasedc.com/doing-business/incentives/create-rebate"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "05027": {
+      "name": "Columbia County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Columbia County AR \u2014 Southwest Arkansas Energy Corridor & AEDC Industrial Incentives",
+      "description": "Columbia County (Magnolia, AR) sits in Southwest Arkansas near the Louisiana border, served by Entergy Arkansas and several rural electric cooperatives. The county has legacy natural gas and oil pipeline infrastructure from the Smackover Formation and hosts Southern Arkansas University, which anchors local technical talent. Columbia County qualifies for the Arkansas Tax Back sales tax refund program and the InvestArk exemption for manufacturing equipment. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Entergy Arkansas; O&G pipeline infrastructure; AEDC Tax Back and InvestArk eligible.",
+      "sources": [
+        {
+          "label": "Columbia County AR \u2014 Official Website",
+          "url": "https://www.columbiacountyar.com/"
+        },
+        {
+          "label": "Entergy Arkansas \u2014 Business Rates",
+          "url": "https://www.entergy-arkansas.com/your_business/"
+        },
+        {
+          "label": "AEDC \u2014 InvestArk Sales Tax Exemption",
+          "url": "https://www.arkansasedc.com/doing-business/incentives/investark"
+        },
+        {
+          "label": "AEDC \u2014 Tax Back Program",
+          "url": "https://www.arkansasedc.com/doing-business/incentives/tax-back"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "05037": {
+      "name": "Cross County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Cross County AR \u2014 Eastern Arkansas Delta & Entergy Industrial Rate Territory",
+      "description": "Cross County (Wynne, AR) is in the Eastern Arkansas Delta, served by Entergy Arkansas. US-70 and the BNSF Railway provide logistics connectivity. The county participates in the Arkansas Economic Development Commission Tax Back program and Create Rebate, offering refunds on sales/use taxes and payroll credits for qualifying capital investments. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Entergy Arkansas; BNSF rail access; AEDC Tax Back and Create Rebate eligible.",
+      "sources": [
+        {
+          "label": "Cross County AR \u2014 Government Website",
+          "url": "https://www.crosscountyar.org/"
+        },
+        {
+          "label": "Entergy Arkansas \u2014 Industrial Service Programs",
+          "url": "https://www.entergy-arkansas.com/your_business/"
+        },
+        {
+          "label": "AEDC \u2014 Tax Back Program",
+          "url": "https://www.arkansasedc.com/doing-business/incentives/tax-back"
+        },
+        {
+          "label": "AEDC \u2014 Create Rebate Incentive",
+          "url": "https://www.arkansasedc.com/doing-business/incentives/create-rebate"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "05053": {
+      "name": "Grant County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Grant County AR \u2014 Central Arkansas Timberland Corridor & Entergy Industrial Incentive",
+      "description": "Grant County (Sheridan, AR) is in central Arkansas between Little Rock and Pine Bluff, served by Entergy Arkansas. The county is within 30 miles of Little Rock's metro fiber rings and benefits from existing industrial zoning in Sheridan's industrial park. Grant County participates in the Arkansas Tax Back program and Create Rebate payroll incentive. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Entergy Arkansas; 30 mi from Little Rock metro; AEDC Tax Back and Create Rebate eligible.",
+      "sources": [
+        {
+          "label": "Grant County AR \u2014 Official Website",
+          "url": "https://www.grantcountyar.gov/"
+        },
+        {
+          "label": "Entergy Arkansas \u2014 Large Business Energy Solutions",
+          "url": "https://www.entergy-arkansas.com/your_business/"
+        },
+        {
+          "label": "AEDC \u2014 Tax Back Program",
+          "url": "https://www.arkansasedc.com/doing-business/incentives/tax-back"
+        },
+        {
+          "label": "Sheridan AR Industrial Development Corporation",
+          "url": "https://www.sheridanarkansas.com/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "05063": {
+      "name": "Independence County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Independence County AR \u2014 Batesville Industrial Hub & Ozarks Fiber Connectivity",
+      "description": "Independence County (Batesville, AR) is in the Arkansas Ozarks foothills, served by Entergy Arkansas and White River Rural Electric Cooperative. Batesville is one of North Arkansas's largest industrial centers, with access to US-167 and proximity to I-40 and I-55. The county qualifies for the AEDC Tax Back sales tax refund and Create Rebate programs. Independence County is also eligible for USDA ReConnect rural broadband grants, improving fiber infrastructure for digital operations. No active restrictions.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Entergy Arkansas + White River REC; Batesville industrial park; AEDC Tax Back eligible.",
+      "sources": [
+        {
+          "label": "Independence County AR \u2014 Economic Development",
+          "url": "https://independencecounty.ar.gov/"
+        },
+        {
+          "label": "Entergy Arkansas \u2014 Business Programs",
+          "url": "https://www.entergy-arkansas.com/your_business/"
+        },
+        {
+          "label": "AEDC \u2014 Tax Back Program",
+          "url": "https://www.arkansasedc.com/doing-business/incentives/tax-back"
+        },
+        {
+          "label": "USDA ReConnect Rural Broadband Program",
+          "url": "https://www.usda.gov/reconnect"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "05071": {
+      "name": "Johnson County",
+      "state": "Arkansas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Johnson County AR \u2014 I-40 Corridor Gateway & Entergy Arkansas Industrial Territory",
+      "description": "Johnson County (Clarksville, AR) straddles the I-40 corridor in the Arkansas River Valley, served by Entergy Arkansas. Clarksville hosts University of the Ozarks and an established industrial park with three-phase power and natural gas. Johnson County qualifies for the AEDC Tax Back program and Create Rebate payroll incentive. I-40 access and the Port of Clarksville (Arkansas River navigation) provide multi-modal logistics for large-footprint campuses. No active restrictions.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Entergy Arkansas; I-40 access; Port of Clarksville river logistics; AEDC Tax Back eligible.",
+      "sources": [
+        {
+          "label": "Johnson County AR \u2014 Economic Development",
+          "url": "https://www.johnsoncountyar.com/"
+        },
+        {
+          "label": "Entergy Arkansas \u2014 Industrial Service",
+          "url": "https://www.entergy-arkansas.com/your_business/"
+        },
+        {
+          "label": "AEDC \u2014 Tax Back Program",
+          "url": "https://www.arkansasedc.com/doing-business/incentives/tax-back"
+        },
+        {
+          "label": "AEDC \u2014 Create Rebate Incentive",
+          "url": "https://www.arkansasedc.com/doing-business/incentives/create-rebate"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "12087": {
+      "name": "Monroe County",
+      "state": "Florida",
+      "level": 3,
+      "types": [
+        "data_center",
+        "energy",
+        "water"
+      ],
+      "title": "Monroe County FL \u2014 Florida Keys ACSC / ROGO: Comprehensive Development Cap",
+      "description": "Monroe County encompasses the Florida Keys, designated an Area of Critical State Concern (ACSC) under Florida Statute \u00a7380.05 since 1979. The Rate of Growth Ordinance (ROGO) imposes a strictly limited annual permit allocation (approximately 197 market-rate residential and 71 non-residential permits per year for the entire Keys), making large-scale industrial development effectively impossible. The Florida Keys Aqueduct Authority (FKAA) pipeline is the sole freshwater source, with per-connection demand caps. Florida DEP enforces Class III water quality standards throughout the Keys. Hurricane evacuation clearance time requirements impose additional building size limits. Data center campuses requiring high water and cooling loads face near-prohibitive permitting timelines.",
+      "effective_date": "1979-01-01",
+      "status": "active",
+      "notes": "ACSC cap; ROGO ~71 non-residential permits/yr Keys-wide; FKAA water pipeline limit; hurricane evac constraint.",
+      "sources": [
+        {
+          "label": "Florida Statute \u00a7380.05 \u2014 Areas of Critical State Concern",
+          "url": "https://www.flsenate.gov/Laws/Statutes/2024/380.05"
+        },
+        {
+          "label": "Monroe County FL \u2014 Rate of Growth Ordinance (ROGO)",
+          "url": "https://www.monroecounty-fl.gov/460/Rate-of-Growth-Ordinance"
+        },
+        {
+          "label": "Monroe County Comprehensive Plan",
+          "url": "https://www.monroecounty-fl.gov/445/Comprehensive-Plan"
+        },
+        {
+          "label": "Florida Keys Aqueduct Authority \u2014 Water Supply",
+          "url": "https://www.fkaa.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "12085": {
+      "name": "Martin County",
+      "state": "Florida",
+      "level": 1,
+      "types": [
+        "data_center",
+        "water",
+        "energy"
+      ],
+      "title": "Martin County FL \u2014 Indian River Lagoon SWIM Protection & SFWMD Water Restrictions",
+      "description": "Martin County (Stuart, FL) borders the Indian River Lagoon, an Outstanding Florida Water body under Florida Administrative Code 62-302.700. The South Florida Water Management District (SFWMD) enforces stringent Consumptive Use Permits (CUPs) for new large water withdrawals, directly affecting cooling tower and chiller operations. The county's Comprehensive Plan restricts industrial development within the Coastal High Hazard Area (CHHA). FPL serves Martin County with competitive large-customer rates. No moratorium is in place but CUP review timelines (9\u201318 months) add schedule risk.",
+      "effective_date": "2020-01-01",
+      "status": "active",
+      "notes": "SFWMD CUP required for large water withdrawals; OFW Indian River Lagoon designation; CHHA coastal limits.",
+      "sources": [
+        {
+          "label": "SFWMD \u2014 Consumptive Use Permits",
+          "url": "https://www.sfwmd.gov/our-work/permits/consumptive-use-permits"
+        },
+        {
+          "label": "Florida DEP \u2014 Outstanding Florida Waters",
+          "url": "https://www.flsenate.gov/Laws/Statutes/2023/403.061"
+        },
+        {
+          "label": "Martin County FL \u2014 Comprehensive Plan",
+          "url": "https://www.martin.fl.us/departments/growth-management/comprehensive-plan"
+        },
+        {
+          "label": "FPL \u2014 Business Rates & Large Customer Programs",
+          "url": "https://www.fpl.com/business.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "12051": {
+      "name": "Hendry County",
+      "state": "Florida",
+      "level": 1,
+      "types": [
+        "data_center",
+        "water"
+      ],
+      "title": "Hendry County FL \u2014 Everglades Agricultural Area & SFWMD Consumptive Use Restrictions",
+      "description": "Hendry County (LaBelle/Clewiston, FL) is within the Everglades Agricultural Area (EAA) and adjacent to the Comprehensive Everglades Restoration Plan (CERP) project footprint. SFWMD Consumptive Use Permit review applies to all new large water withdrawals, and the Lower West Coast Water Supply Plan restricts new high-volume uses during drought conditions. FPL serves the county with competitive large industrial rates. Inland agricultural areas support large-footprint development with available land. Permitting complexity from SFWMD and CERP proximity adds timeline risk but no outright prohibition.",
+      "effective_date": "2021-01-01",
+      "status": "active",
+      "notes": "EAA area; SFWMD CUP water review; CERP restoration context; FPL territory.",
+      "sources": [
+        {
+          "label": "SFWMD \u2014 Lower West Coast Water Supply Plan",
+          "url": "https://www.sfwmd.gov/our-work/water-supply/lower-west-coast"
+        },
+        {
+          "label": "USACE \u2014 Comprehensive Everglades Restoration Plan",
+          "url": "https://www.saj.usace.army.mil/Missions/Environmental/Ecosystem-Restoration/Everglades-Restoration/"
+        },
+        {
+          "label": "Hendry County FL \u2014 Economic Development",
+          "url": "https://www.hendryfla.net/econdev/"
+        },
+        {
+          "label": "FPL \u2014 Industrial & Large Business Rates",
+          "url": "https://www.fpl.com/business.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "12039": {
+      "name": "Gadsden County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Gadsden County FL \u2014 Tallahassee Metro Adjacent & Duke Energy Florida Industrial Incentive",
+      "description": "Gadsden County (Quincy, FL) adjoins Leon County (Tallahassee) to the west and is served by Duke Energy Florida and Talquin Electric Cooperative. The county is the only majority-Black county in Florida with a seat in the Florida Panhandle, qualifying it for Florida DEO's Rural Areas of Opportunity (RAO) designation, which unlocks enhanced Qualified Target Industry (QTI) tax refund rates and Rural Job Tax Credits. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Florida Rural Areas of Opportunity designation; enhanced QTI rates; Duke Energy Florida territory.",
+      "sources": [
+        {
+          "label": "Gadsden County FL \u2014 Economic Development",
+          "url": "https://www.gadsdencountyfl.gov/"
+        },
+        {
+          "label": "FloridaJobs \u2014 Rural Areas of Opportunity",
+          "url": "https://floridajobs.org/business-growth-and-partnerships/incentives/incentive-programs-overview"
+        },
+        {
+          "label": "Duke Energy Florida \u2014 Business Rates",
+          "url": "https://www.duke-energy.com/home/products/florida"
+        },
+        {
+          "label": "FloridaJobs \u2014 Qualified Target Industry Tax Refund",
+          "url": "https://floridajobs.org/business-growth-and-partnerships/incentives/incentive-programs-overview"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "12107": {
+      "name": "Putnam County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Putnam County FL \u2014 Northeast Florida Rural Opportunity Zone & Duke Energy Industrial Rate",
+      "description": "Putnam County (Palatka, FL) is in northeastern Florida on the St. Johns River, served by Duke Energy Florida. The county holds Florida Rural Areas of Opportunity (RAO) designation, offering enhanced QTI incentive rates and the Rural Job Tax Credit ($1,000\u2013$3,000 per new job). The Port of Palatka provides barge access on the St. Johns River and existing industrial rail sidings. SR-100 connects the county to I-95 and US-17 logistics corridors. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Florida RAO designation; enhanced QTI; Port of Palatka river access; Duke Energy Florida.",
+      "sources": [
+        {
+          "label": "Putnam County FL \u2014 Economic Development",
+          "url": "https://www.putnam-fl.com/economic-development"
+        },
+        {
+          "label": "FloridaJobs \u2014 Rural Areas of Opportunity & QTI",
+          "url": "https://floridajobs.org/business-growth-and-partnerships/incentives/incentive-programs-overview"
+        },
+        {
+          "label": "Duke Energy Florida \u2014 Large Customer Rates",
+          "url": "https://www.duke-energy.com/home/products/florida"
+        },
+        {
+          "label": "FloridaJobs \u2014 Rural Job Tax Credit",
+          "url": "https://floridajobs.org/business-growth-and-partnerships/incentives/rural-job-tax-credit"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "12113": {
+      "name": "Santa Rosa County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Santa Rosa County FL \u2014 Pensacola Metro East & Gulf Power / Duke Energy Industrial Territory",
+      "description": "Santa Rosa County (Milton, FL) is east of Pensacola and served by Duke Energy Florida (formerly Gulf Power). The county benefits from Pensacola metro fiber infrastructure, Eglin AFB proximity (tech workforce), and I-10 corridor access. Florida's Qualified Target Industry Tax Refund (QTI) and the Capital Investment Tax Credit (CITC) apply to data center projects meeting the $25 million threshold. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Duke Energy Florida (Gulf Power heritage); Eglin AFB tech workforce; I-10 access; FL QTI eligible.",
+      "sources": [
+        {
+          "label": "Santa Rosa County FL \u2014 Economic Development",
+          "url": "https://srcedfl.com/"
+        },
+        {
+          "label": "Duke Energy Florida (Gulf Power) \u2014 Business Rates",
+          "url": "https://www.duke-energy.com/home/products/gulf"
+        },
+        {
+          "label": "FloridaJobs \u2014 Qualified Target Industry (QTI) Tax Refund",
+          "url": "https://floridajobs.org/business-growth-and-partnerships/incentives/incentive-programs-overview"
+        },
+        {
+          "label": "FloridaJobs \u2014 Capital Investment Tax Credit (CITC)",
+          "url": "https://floridajobs.org/business-growth-and-partnerships/incentives/capital-investment-tax-credit"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "12005": {
+      "name": "Bay County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Bay County FL \u2014 Panama City Industrial Hub & Duke Energy Florida Gulf Territory",
+      "description": "Bay County (Panama City, FL) is a major Gulf Coast industrial and military hub, served by Duke Energy Florida (formerly Gulf Power). The county hosts Tyndall AFB and Port Panama City, providing existing heavy electrical infrastructure and fiber connectivity. Bay County's Economic Development Alliance actively recruits data centers with Florida QTI incentives and the Capital Investment Tax Credit. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Duke Energy Florida Gulf territory; Tyndall AFB adjacency; Port Panama City; FL QTI/CITC eligible.",
+      "sources": [
+        {
+          "label": "Bay County Economic Development Alliance",
+          "url": "https://www.bayeda.com/"
+        },
+        {
+          "label": "Duke Energy Florida \u2014 Gulf Coast Business Rates",
+          "url": "https://www.duke-energy.com/home/products/gulf"
+        },
+        {
+          "label": "FloridaJobs \u2014 Qualified Target Industry Tax Refund",
+          "url": "https://floridajobs.org/business-growth-and-partnerships/incentives/incentive-programs-overview"
+        },
+        {
+          "label": "Port Panama City \u2014 Industrial Facilities",
+          "url": "https://www.portpanamacity.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "12121": {
+      "name": "Suwannee County",
+      "state": "Florida",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Suwannee County FL \u2014 I-75 Corridor Gateway & Florida Rural Opportunity Incentives",
+      "description": "Suwannee County (Live Oak, FL) straddles the I-75 corridor in North Florida, served by Duke Energy Florida and Suwannee Valley Electric Cooperative. Florida Rural Areas of Opportunity (RAO) designation unlocks enhanced QTI tax refund rates and Rural Job Tax Credits. The county's position on I-75 between Gainesville and Tallahassee supports logistics-adjacent data center development with multi-corridor fiber access. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "I-75 corridor; FL RAO designation; enhanced QTI rates; Duke Energy Florida + SVEC territory.",
+      "sources": [
+        {
+          "label": "Suwannee County FL \u2014 Economic Development",
+          "url": "https://www.suwannee.fl.us/"
+        },
+        {
+          "label": "FloridaJobs \u2014 Rural Areas of Opportunity",
+          "url": "https://floridajobs.org/business-growth-and-partnerships/incentives/incentive-programs-overview"
+        },
+        {
+          "label": "Duke Energy Florida \u2014 Business Programs",
+          "url": "https://www.duke-energy.com/home/products/florida"
+        },
+        {
+          "label": "Suwannee Valley Electric Cooperative",
+          "url": "https://www.svec.net/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "17007": {
+      "name": "Boone County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Boone County IL \u2014 Belvidere Automotive Corridor & ComEd Industrial Territory",
+      "description": "Boone County (Belvidere, IL) is in northern Illinois served by ComEd (Exelon). The county is adjacent to the Rockford metro and anchored by a major Stellantis (Belvidere Assembly) industrial park now transitioning to EV production. Illinois P.A. 101-0631 (2019, amended 2022) provides a 20-year sales tax exemption and income tax credit for qualifying data centers investing $250 million or more. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "ComEd/Exelon territory; IL P.A. 101-0631 data center 20-yr tax exemption; Rockford metro adjacency.",
+      "sources": [
+        {
+          "label": "Boone County IL \u2014 Economic Development",
+          "url": "https://boonecountyil.org/"
+        },
+        {
+          "label": "ComEd \u2014 Large Power Service Rates",
+          "url": "https://www.comed.com/Business/EnergySavingsPrograms/Pages/LargeBusinessPrograms.aspx"
+        },
+        {
+          "label": "Illinois DCEO \u2014 Data Center Tax Exemption (P.A. 101-0631)",
+          "url": "https://dceo.illinois.gov/industrybusiness/technologydata.html"
+        },
+        {
+          "label": "Illinois Compiled Statutes 35 ILCS 105/2-5(43)",
+          "url": "https://www.ilga.gov/legislation/ilcs/fulltext.asp?Name=0035010500K2-5"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "17049": {
+      "name": "Effingham County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Effingham County IL \u2014 I-57/I-70 Crossroads & Ameren Illinois Industrial Territory",
+      "description": "Effingham County (Effingham, IL) sits at the intersection of I-57 and I-70, one of Illinois's most logistics-advantaged locations, served by Ameren Illinois. The county has multiple shovel-ready industrial sites through the Heart of Illinois Economic Development Commission (HIEDC). Illinois P.A. 101-0631 data center tax exemption applies; Ameren's large industrial rates are among the most competitive in the Midwest. No active restrictions.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "I-57/I-70 interchange logistics hub; Ameren Illinois territory; IL P.A. 101-0631 data center exemption.",
+      "sources": [
+        {
+          "label": "Effingham County IL \u2014 Economic Development",
+          "url": "https://www.effinghamil.com/economic-development"
+        },
+        {
+          "label": "Ameren Illinois \u2014 Large Power & Industrial Service",
+          "url": "https://www.ameren.com/illinois/business/large-power"
+        },
+        {
+          "label": "Illinois DCEO \u2014 Data Center Tax Exemption",
+          "url": "https://dceo.illinois.gov/industrybusiness/technologydata.html"
+        },
+        {
+          "label": "HIEDC \u2014 Heart of Illinois Economic Development",
+          "url": "https://www.heartofill.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "17077": {
+      "name": "Jackson County",
+      "state": "Illinois",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Jackson County IL \u2014 Carbondale / SIU Research Nexus & Ameren Southern Illinois Territory",
+      "description": "Jackson County (Carbondale, IL) hosts Southern Illinois University (SIU), which anchors fiber and research infrastructure in southern Illinois. The county is served by Ameren Illinois and AmerenCIPS in the Midwest ISO grid. Illinois P.A. 101-0631 data center tax exemption applies. The Illinois Enterprise Zone program offers additional local incentives for qualifying industrial investments. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "SIU fiber/research anchor; Ameren Illinois territory; IL P.A. 101-0631; IL Enterprise Zone eligible.",
+      "sources": [
+        {
+          "label": "Jackson County IL \u2014 Government",
+          "url": "https://www.jacksoncountyil.gov/"
+        },
+        {
+          "label": "Ameren Illinois \u2014 Business Energy Services",
+          "url": "https://www.ameren.com/illinois/business"
+        },
+        {
+          "label": "Illinois DCEO \u2014 Data Center Tax Exemption (P.A. 101-0631)",
+          "url": "https://dceo.illinois.gov/industrybusiness/technologydata.html"
+        },
+        {
+          "label": "Illinois Enterprise Zone Program \u2014 DCEO",
+          "url": "https://dceo.illinois.gov/communities/enterprisezones.htm"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "19015": {
+      "name": "Boone County",
+      "state": "Iowa",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Boone County IA \u2014 Central Iowa MidAmerican Energy Territory & Iowa Data Center Exemption",
+      "description": "Boone County (Boone, IA) is in central Iowa near Ames, served by MidAmerican Energy (Berkshire Hathaway). MidAmerican has invested heavily in Iowa wind generation, approaching 100% renewable electricity in its Iowa service territory. Iowa Code \u00a7423.3(47A) provides a sales tax exemption for data center equipment purchases by facilities investing at least $200 million and committing to 200% renewable electricity. IEDA (Iowa Economic Development Authority) offers additional High Quality Jobs and Reinvestment District incentives.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "MidAmerican near-100% renewable IA territory; Iowa Code \u00a7423.3(47A) $200M/200% renewable threshold.",
+      "sources": [
+        {
+          "label": "Boone County IA \u2014 Economic Development",
+          "url": "https://www.boonecountyia.gov/"
+        },
+        {
+          "label": "MidAmerican Energy \u2014 Iowa Renewable Commitment",
+          "url": "https://www.midamericanenergy.com/renewable-energy"
+        },
+        {
+          "label": "Iowa DOR \u2014 Data Center Exemption Iowa Code \u00a7423.3(47A)",
+          "url": "https://tax.iowa.gov/businesses/data-center-exemptions"
+        },
+        {
+          "label": "IEDA \u2014 High Quality Jobs Program",
+          "url": "https://www.iowaeda.com/grow-your-business/incentives/high-quality-jobs/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "21005": {
+      "name": "Anderson County",
+      "state": "Kentucky",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Anderson County KY \u2014 Frankfort Metro Adjacent & LG&E KU Industrial Territory",
+      "description": "Anderson County (Lawrenceburg, KY) adjoins Franklin County (Frankfort, state capital) and is served by Louisville Gas & Electric/Kentucky Utilities (LG&E KU). The county benefits from the Bluegrass Parkway and US-127 corridor with proximity to Lexington and Louisville metro fiber rings. KEDFA KBI wage assessment credits and KEIA sales tax refunds on construction materials apply. Bourbon County spirits infrastructure anchors a trained industrial workforce. No restrictions.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "LG&E KU service; adjacent to Frankfort state capital; Lexington metro fiber access; KEDFA KBI eligible.",
+      "sources": [
+        {
+          "label": "Anderson County KY \u2014 Economic Development",
+          "url": "https://www.andersoncounty.ky.gov/"
+        },
+        {
+          "label": "LG&E and KU \u2014 Kentucky Business Energy Programs",
+          "url": "https://lge-ku.com/"
+        },
+        {
+          "label": "KEDFA \u2014 Kentucky Business Investment (KBI)",
+          "url": "https://ced.ky.gov/Incentives/Kentucky_Business_Investment"
+        },
+        {
+          "label": "KEIA \u2014 Kentucky Enterprise Initiative Act",
+          "url": "https://ced.ky.gov/Incentives/Kentucky_Enterprise_Initiative_Act"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "22007": {
+      "name": "Assumption Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Assumption Parish LA \u2014 Bayou Lafourche Industrial Corridor & Entergy Louisiana Territory",
+      "description": "Assumption Parish (Napoleonville, LA) is in the Bayou Lafourche industrial corridor, served by Entergy Louisiana. The parish sits above major underground salt dome caverns used for hydrocarbon storage, with extensive pipeline infrastructure. Louisiana's Industrial Tax Exemption Program (ITEP) provides a 100% property tax exemption for up to 10 years on qualifying manufacturing and industrial investments. LED Quality Jobs and FastStart programs apply. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Entergy Louisiana; salt dome/pipeline infrastructure; ITEP 10-yr property tax exemption; LED Quality Jobs.",
+      "sources": [
+        {
+          "label": "Assumption Parish LA \u2014 Government Website",
+          "url": "https://www.assumptionla.com/"
+        },
+        {
+          "label": "Entergy Louisiana \u2014 Large Industrial Rates",
+          "url": "https://www.entergy-louisiana.com/"
+        },
+        {
+          "label": "LED \u2014 Industrial Tax Exemption Program (ITEP)",
+          "url": "https://www.opportunitylouisiana.gov/business-incentives/industrial-tax-exemption"
+        },
+        {
+          "label": "LED \u2014 Quality Jobs Program",
+          "url": "https://www.opportunitylouisiana.gov/business-incentives/quality-jobs"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "22011": {
+      "name": "Beauregard Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Beauregard Parish LA \u2014 DeRidder Industrial Zone & CLECO Northwest Louisiana Territory",
+      "description": "Beauregard Parish (DeRidder, LA) in northwest Louisiana is served by CLECO (Cleco Corporate Holdings). The parish benefits from US-171 industrial connectivity and a timber-based industrial workforce. Louisiana ITEP provides 100% property tax exemption on qualifying new industrial investments for up to 10 years. LED's FastStart customized workforce training is available at no cost to qualifying employers. No active restrictions.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "CLECO service territory; timber workforce; ITEP 10-yr exemption; LED FastStart eligible.",
+      "sources": [
+        {
+          "label": "Beauregard Parish LA \u2014 Economic Development",
+          "url": "https://www.beauregardonline.com/"
+        },
+        {
+          "label": "CLECO \u2014 Louisiana Business Rates",
+          "url": "https://www.cleco.com/"
+        },
+        {
+          "label": "LED \u2014 Industrial Tax Exemption Program",
+          "url": "https://www.opportunitylouisiana.gov/business-incentives/industrial-tax-exemption"
+        },
+        {
+          "label": "LED \u2014 FastStart Workforce Training",
+          "url": "https://www.opportunitylouisiana.gov/business-incentives/faststart"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "22031": {
+      "name": "De Soto Parish",
+      "state": "Louisiana",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "De Soto Parish LA \u2014 Mansfield Haynesville Shale Corridor & CLECO Industrial Territory",
+      "description": "De Soto Parish (Mansfield, LA) is in the Haynesville Shale natural gas production zone, with extensive pipeline and midstream infrastructure. The parish is served by CLECO and has a trained energy-sector workforce. Louisiana ITEP 10-year property tax exemption and LED Quality Jobs payroll credits apply. Proximity to I-49 and Shreveport metro fiber supports industrial connectivity. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Haynesville Shale gas infrastructure; CLECO territory; ITEP 10-yr; LED Quality Jobs eligible.",
+      "sources": [
+        {
+          "label": "De Soto Parish LA \u2014 Economic Development",
+          "url": "https://desotoparishgov.com/"
+        },
+        {
+          "label": "CLECO \u2014 Northwest Louisiana Service Territory",
+          "url": "https://www.cleco.com/"
+        },
+        {
+          "label": "LED \u2014 Industrial Tax Exemption Program",
+          "url": "https://www.opportunitylouisiana.gov/business-incentives/industrial-tax-exemption"
+        },
+        {
+          "label": "LED \u2014 Quality Jobs Incentive Program",
+          "url": "https://www.opportunitylouisiana.gov/business-incentives/quality-jobs"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "26015": {
+      "name": "Barry County",
+      "state": "Michigan",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Barry County MI \u2014 West Michigan Manufacturing Belt & Consumers Energy Territory",
+      "description": "Barry County (Hastings, MI) is in West Michigan's manufacturing belt, served by Consumers Energy. The county benefits from US-131 corridor access and proximity to Grand Rapids metro fiber infrastructure. Michigan Strategic Fund (MSF) offers the Michigan Business Development Program (MBDP) grants and the Data Center Equipment Exemption under MCL \u00a7205.54bb. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Consumers Energy; US-131/Grand Rapids metro proximity; MI MSF/MBDP; MCL \u00a7205.54bb DC exemption.",
+      "sources": [
+        {
+          "label": "Barry County MI \u2014 Economic Development",
+          "url": "https://www.barrycounty.org/"
+        },
+        {
+          "label": "Consumers Energy \u2014 Business Rates & Programs",
+          "url": "https://www.consumersenergy.com/business"
+        },
+        {
+          "label": "Michigan Strategic Fund \u2014 MBDP Grant Program",
+          "url": "https://www.michiganbusiness.org/grow/incentives/"
+        },
+        {
+          "label": "Michigan Data Center Equipment Exemption \u2014 MCL \u00a7205.54bb",
+          "url": "https://www.legislature.mi.gov/documents/mcl/pdf/mcl-205-54bb.pdf"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "29003": {
+      "name": "Andrew County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Andrew County MO \u2014 Northwest Missouri Evergy Territory & Missouri Works Incentive",
+      "description": "Andrew County (Savannah, MO) is in northwest Missouri's agricultural belt, served by Evergy Missouri West (formerly KCP&L). The county sits on the US-71 corridor between Kansas City and St. Joseph. Missouri Works tax credits and the Chapter 135 Data Center Tax exemption (Mo. Rev. Stat. \u00a7135.770) apply for qualifying data center investments. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Evergy Missouri West; Missouri Works credits; Mo. Rev. Stat. \u00a7135.770 data center tax exemption.",
+      "sources": [
+        {
+          "label": "Andrew County MO \u2014 Official Website",
+          "url": "https://www.andrewcounty.org/"
+        },
+        {
+          "label": "Evergy \u2014 Missouri West Business Rates",
+          "url": "https://www.evergy.com/"
+        },
+        {
+          "label": "MO DED \u2014 Missouri Works Program",
+          "url": "https://ded.mo.gov/programs/business/missouri-works"
+        },
+        {
+          "label": "Mo. Rev. Stat. \u00a7135.770 \u2014 Data Center Tax Incentive",
+          "url": "https://revisor.mo.gov/main/OneSection.aspx?section=135.770"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "29011": {
+      "name": "Barton County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Barton County MO \u2014 Southwest Missouri Wind Belt & Empire District Electric Territory",
+      "description": "Barton County (Lamar, MO) is in the Ozark Plateau transition zone of southwest Missouri, served by Empire District Electric (Liberty Utilities, a Fortis subsidiary). The county is within Missouri's emerging wind belt and benefits from natural gas pipeline access along US-160. Missouri Works credits and Mo. Rev. Stat. \u00a7135.770 data center tax incentive apply. Rural land costs are among the lowest in the state. No active restrictions.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Empire District Electric / Liberty Utilities; Missouri wind belt; MO Works; \u00a7135.770 eligible.",
+      "sources": [
+        {
+          "label": "Barton County MO \u2014 Official Website",
+          "url": "https://www.bartonco.org/"
+        },
+        {
+          "label": "Liberty Utilities (Empire District) \u2014 Missouri Rates",
+          "url": "https://www.libertyutilities.com/"
+        },
+        {
+          "label": "MO DED \u2014 Missouri Works",
+          "url": "https://ded.mo.gov/programs/business/missouri-works"
+        },
+        {
+          "label": "Mo. Rev. Stat. \u00a7135.770 \u2014 Data Center Tax Incentive",
+          "url": "https://revisor.mo.gov/main/OneSection.aspx?section=135.770"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "29033": {
+      "name": "Carroll County",
+      "state": "Missouri",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy"
+      ],
+      "title": "Carroll County MO \u2014 Missouri River Corridor & Ameren Missouri Industrial Territory",
+      "description": "Carroll County (Carrollton, MO) lies along the Missouri River in north-central Missouri, served by Ameren Missouri. The county benefits from US-65 corridor access and existing three-phase agricultural power infrastructure. Ameren's competitive large-industrial rates and Missouri Works tax credits apply. Mo. Rev. Stat. \u00a7135.770 data center tax incentive program is available. No active restrictions on data center development.",
+      "effective_date": "2022-01-01",
+      "status": "active",
+      "notes": "Ameren Missouri; Missouri River corridor; US-65 access; MO Works; \u00a7135.770 data center incentive.",
+      "sources": [
+        {
+          "label": "Carroll County MO \u2014 Government",
+          "url": "https://www.mo-carroll.com/"
+        },
+        {
+          "label": "Ameren Missouri \u2014 Large Power & Industrial Rates",
+          "url": "https://www.ameren.com/missouri/business/large-power"
+        },
+        {
+          "label": "MO DED \u2014 Missouri Works Tax Credits",
+          "url": "https://ded.mo.gov/programs/business/missouri-works"
+        },
+        {
+          "label": "Mo. Rev. Stat. \u00a7135.770 \u2014 Data Center Tax Incentive",
+          "url": "https://revisor.mo.gov/main/OneSection.aspx?section=135.770"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "36025": {
+      "name": "Delaware County",
+      "state": "New York",
+      "level": 2,
+      "types": [
+        "water",
+        "land_use"
+      ],
+      "title": "NYC DEP Catskill/Delaware Watershed Use Restrictions",
+      "description": "Delaware County lies within the NYC Delaware watershed. NYC DEP regulations under 10 NYCRR Part 128 restrict impervious surface, wastewater discharge, and stormwater management for facilities exceeding 10,000 sq ft, requiring DEP approval and mitigation measures for large-scale data center development.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "NYC DEP Watershed Rules and Regulations (10 NYCRR Part 128) apply to all development in the NYC watershed. Large data centers may need Stormwater Pollution Prevention Plans (SWPPP) reviewed by DEP.",
+      "sources": [
+        {
+          "label": "NYC DEP Watershed Rules and Regulations",
+          "url": "https://www.nyc.gov/site/dep/water/watershed-rules-and-regulations.page"
+        },
+        {
+          "label": "10 NYCRR Part 128 \u2013 NYC Water Supply Watershed Rules",
+          "url": "https://www.dec.ny.gov/regulations/4590.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "36039": {
+      "name": "Greene County",
+      "state": "New York",
+      "level": 2,
+      "types": [
+        "water",
+        "land_use"
+      ],
+      "title": "NYC DEP Catskill Watershed Use Restrictions",
+      "description": "Greene County encompasses Catskill watershed headwaters feeding the Ashokan Reservoir. NYC DEP regulations under 10 NYCRR Part 128 impose strict impervious surface limits, phosphorus TMDL requirements, and mandatory stormwater review for large commercial developments including data centers.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Schoharie and Catskill Creek headwaters subject to enhanced DEP review. Ashokan Reservoir recharge zone.",
+      "sources": [
+        {
+          "label": "NYC DEP Watershed Rules and Regulations",
+          "url": "https://www.nyc.gov/site/dep/water/watershed-rules-and-regulations.page"
+        },
+        {
+          "label": "Catskill/Delaware Watershed \u2013 NYS DEC",
+          "url": "https://www.dec.ny.gov/lands/5265.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "36095": {
+      "name": "Schoharie County",
+      "state": "New York",
+      "level": 3,
+      "types": [
+        "water",
+        "land_use"
+      ],
+      "title": "NYC DEP Schoharie Reservoir Restricted Development Zone",
+      "description": "Schoharie County is the primary source watershed for the Schoharie Reservoir (Gilboa Dam), feeding the Catskill Aqueduct. NYC DEP exercises stringent development restrictions under 10 NYCRR Part 128 including mandatory DEP site plan review, prohibitions on certain industrial uses, and phosphorus discharge limits that effectively preclude large data center cooling tower operations without extensive permitting.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Schoharie Reservoir supplies roughly 25% of NYC water supply. Highest DEP restriction tier. Large data centers (>25,000 sq ft) subject to full Environmental Impact Review.",
+      "sources": [
+        {
+          "label": "NYC DEP Watershed Rules and Regulations",
+          "url": "https://www.nyc.gov/site/dep/water/watershed-rules-and-regulations.page"
+        },
+        {
+          "label": "NYC DEP Filtration Avoidance Determination \u2013 Catskill/Delaware",
+          "url": "https://www.nyc.gov/site/dep/water/filtration-avoidance-determination.page"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "36105": {
+      "name": "Sullivan County",
+      "state": "New York",
+      "level": 1,
+      "types": [
+        "water",
+        "land_use"
+      ],
+      "title": "NYC DEP Delaware Watershed Partial Restrictions",
+      "description": "Sullivan County contains portions of the Delaware watershed (Rondout and Neversink Reservoir recharge zones). NYC DEP regulations under 10 NYCRR Part 128 require stormwater management plan approval for commercial facilities over 10,000 sq ft. Northern portions of the county fall outside the watershed and are unrestricted.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Neversink and Rondout Reservoirs within Sullivan County. Partial watershed coverage \u2014 southern portions outside DEP jurisdiction.",
+      "sources": [
+        {
+          "label": "NYC DEP Watershed Rules and Regulations",
+          "url": "https://www.nyc.gov/site/dep/water/watershed-rules-and-regulations.page"
+        },
+        {
+          "label": "Rondout/Neversink Watershed Maps \u2013 NYC DEP",
+          "url": "https://www.nyc.gov/site/dep/water/watershed-maps.page"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "36003": {
+      "name": "Allegany County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "NY Excelsior Jobs Program & NYPA ReCharge NY \u2013 Southern Tier",
+      "description": "Allegany County qualifies for New York's Excelsior Jobs Program (N-Y Tax Law \u00a731) providing refundable tax credits up to 6.85% of wages, plus NYPA ReCharge NY hydropower allocation for large loads. Empire State Development (ESD) REDC designates Southern Tier as a priority region for data center recruitment.",
+      "effective_date": "2011-01-01",
+      "status": "active",
+      "notes": "Southern Tier Regional Economic Development Council priority designation. NYPA hydropower available for facilities exceeding 1 MW load.",
+      "sources": [
+        {
+          "label": "NY Excelsior Jobs Program \u2013 Empire State Development",
+          "url": "https://esd.ny.gov/excelsior-jobs-program"
+        },
+        {
+          "label": "NYPA ReCharge New York Program",
+          "url": "https://www.nypa.gov/services/recharge-ny"
+        },
+        {
+          "label": "NY Tax Law \u00a731 \u2013 Excelsior Jobs Tax Credit",
+          "url": "https://www.tax.ny.gov/bus/excelsior/excelsior_jobs_program.htm"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "36009": {
+      "name": "Cattaraugus County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "NY Excelsior Jobs Program & NYPA ReCharge NY \u2013 Western NY",
+      "description": "Cattaraugus County in Western New York qualifies for Excelsior Jobs Program credits and NYPA ReCharge NY low-cost hydropower from the Niagara Project. National Grid provides transmission infrastructure. County offers sales tax exemption on energy for qualifying commercial uses.",
+      "effective_date": "2011-01-01",
+      "status": "active",
+      "notes": "Buffalo-Niagara REDC region. NYPA Niagara power allocation available for qualifying large loads.",
+      "sources": [
+        {
+          "label": "NY Excelsior Jobs Program \u2013 Empire State Development",
+          "url": "https://esd.ny.gov/excelsior-jobs-program"
+        },
+        {
+          "label": "NYPA ReCharge New York Program",
+          "url": "https://www.nypa.gov/services/recharge-ny"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "36011": {
+      "name": "Cayuga County",
+      "state": "New York",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "NY Central NY REDC Excelsior Jobs Program",
+      "description": "Cayuga County qualifies under the Central New York REDC strategic plan for data center recruitment. Excelsior Jobs Program provides wage, investment, and R&D tax credits (N-Y Tax Law \u00a7\u00a731\u201336). National Grid transmission access. Proximity to the CNY Biotech Accelerator and emerging tech corridor.",
+      "effective_date": "2011-01-01",
+      "status": "active",
+      "notes": "Central New York Regional Economic Development Council priority area. Finger Lakes adjacent with available industrial sites.",
+      "sources": [
+        {
+          "label": "NY Excelsior Jobs Program \u2013 Empire State Development",
+          "url": "https://esd.ny.gov/excelsior-jobs-program"
+        },
+        {
+          "label": "NYPA ReCharge New York Program",
+          "url": "https://www.nypa.gov/services/recharge-ny"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "37045": {
+      "name": "Cleveland County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "NC Data Center Sales Tax Exemption \u2013 Cleveland County (Tier 2)",
+      "description": "Cleveland County (Shelby) is eligible for North Carolina's data center sales tax exemption under N.C. Gen. Stat. \u00a7105-164.13(55). Designated Tier 2 under the NC development tier system, providing enhanced JDIG multiplier and additional OneNC Fund match. Duke Energy Carolinas provides industrial power. County EDC offers property tax incentive grants under G.S. \u00a7158-7.1.",
+      "effective_date": "2007-01-01",
+      "status": "active",
+      "notes": "Tier 2 county enhances JDIG value. Former textile manufacturing sites provide available large-footprint industrial land.",
+      "sources": [
+        {
+          "label": "NC Data Center Sales Tax Exemption \u2013 NCDOR",
+          "url": "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/sales-and-use-tax-technical-bulletins/data-centers"
+        },
+        {
+          "label": "N.C. Gen. Stat. \u00a7105-164.13(55) \u2013 Data Center Exemption",
+          "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-164.13.html"
+        },
+        {
+          "label": "NC Development Tier Designations",
+          "url": "https://www.nccommerce.com/grants-incentives/nc-county-tier-designations"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "37089": {
+      "name": "Henderson County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "NC Data Center Sales Tax Exemption \u2013 Henderson County",
+      "description": "Henderson County (Hendersonville) eligible for NC \u00a7105-164.13(55) data center sales tax exemption. Duke Energy Carolinas provides industrial power in the Western NC mountains. Proximity to the Asheville tech corridor and Blue Ridge Parkway. County EDC offers local incentive grants.",
+      "effective_date": "2007-01-01",
+      "status": "active",
+      "notes": "Western NC mountain climate provides natural cooling advantage. Duke Energy Progress service territory.",
+      "sources": [
+        {
+          "label": "NC Data Center Sales Tax Exemption \u2013 NCDOR",
+          "url": "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/sales-and-use-tax-technical-bulletins/data-centers"
+        },
+        {
+          "label": "Henderson County EDC",
+          "url": "https://www.hendersoncountync.gov/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "37171": {
+      "name": "Surry County",
+      "state": "North Carolina",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "NC Data Center Sales Tax Exemption \u2013 Surry County (Tier 2)",
+      "description": "Surry County (Mount Airy, Dobson) eligible for NC \u00a7105-164.13(55) data center sales tax exemption. Designated Tier 2 with enhanced JDIG multiplier. Duke Energy Carolinas and Surry-Yadkin Electric Membership Corporation provide power. Available rural industrial parcels with Blue Ridge Mountain proximity.",
+      "effective_date": "2007-01-01",
+      "status": "active",
+      "notes": "Tier 2 county. Northern Piedmont agricultural land with available large sites and transmission access.",
+      "sources": [
+        {
+          "label": "NC Data Center Sales Tax Exemption \u2013 NCDOR",
+          "url": "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/sales-and-use-tax-technical-bulletins/data-centers"
+        },
+        {
+          "label": "NC Commerce JDIG Program",
+          "url": "https://www.nccommerce.com/grants-incentives/jdig"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "39097": {
+      "name": "Madison County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Ohio Data Center Sales Tax Exemption \u2013 Madison County",
+      "description": "Madison County (London, West Jefferson) eligible for Ohio ORC \u00a75739.02(B)(42a) data center equipment sales tax exemption. Located on the I-70 corridor west of Columbus with AEP Ohio high-voltage transmission capacity. Ohio Job Creation Tax Credit (JCTC) available for qualifying operations.",
+      "effective_date": "2009-01-01",
+      "status": "active",
+      "notes": "I-70 corridor with large available parcels and AEP Ohio 138kV/345kV transmission infrastructure west of Columbus.",
+      "sources": [
+        {
+          "label": "ORC \u00a75739.02(B)(42a) \u2013 Ohio Data Center Sales Tax Exemption",
+          "url": "https://codes.ohio.gov/ohio-revised-code/section-5739.02"
+        },
+        {
+          "label": "Ohio Job Creation Tax Credit \u2013 ODSA",
+          "url": "https://development.ohio.gov/business/business-incentives/job-creation-tax-credit"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "39109": {
+      "name": "Miami County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Ohio Data Center Sales Tax Exemption \u2013 Miami County (Dayton Metro)",
+      "description": "Miami County (Troy, Piqua) eligible for Ohio ORC \u00a75739.02(B)(42a) data center equipment exemption. AES Ohio (Dayton Power and Light) provides industrial transmission north of Dayton. Ohio JCTC available. I-75 corridor between Dayton and Lima provides fiber access.",
+      "effective_date": "2009-01-01",
+      "status": "active",
+      "notes": "Dayton metro north corridor. AES Ohio (DP&L) service territory with available transmission capacity.",
+      "sources": [
+        {
+          "label": "ORC \u00a75739.02(B)(42a) \u2013 Ohio Data Center Sales Tax Exemption",
+          "url": "https://codes.ohio.gov/ohio-revised-code/section-5739.02"
+        },
+        {
+          "label": "Ohio Job Creation Tax Credit \u2013 ODSA",
+          "url": "https://development.ohio.gov/business/business-incentives/job-creation-tax-credit"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "39025": {
+      "name": "Clermont County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Ohio Data Center Sales Tax Exemption \u2013 Clermont County (Cincinnati East)",
+      "description": "Clermont County (Milford, Batavia) eligible for Ohio ORC \u00a75739.02(B)(42a) data center equipment exemption. Duke Energy Ohio provides transmission in this eastern Cincinnati suburb. Ohio JCTC and JobsOhio site development grants available for qualifying projects. I-275 beltway provides fiber corridor.",
+      "effective_date": "2009-01-01",
+      "status": "active",
+      "notes": "Cincinnati eastern suburb with I-275 fiber corridor. Duke Energy Ohio transmission capacity available.",
+      "sources": [
+        {
+          "label": "ORC \u00a75739.02(B)(42a) \u2013 Ohio Data Center Sales Tax Exemption",
+          "url": "https://codes.ohio.gov/ohio-revised-code/section-5739.02"
+        },
+        {
+          "label": "Ohio Job Creation Tax Credit \u2013 ODSA",
+          "url": "https://development.ohio.gov/business/business-incentives/job-creation-tax-credit"
+        },
+        {
+          "label": "Clermont County EDC",
+          "url": "https://www.clermontcountyohio.gov/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "39165": {
+      "name": "Warren County",
+      "state": "Ohio",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Ohio Data Center Sales Tax Exemption \u2013 Warren County (Mason)",
+      "description": "Warren County (Mason, Lebanon, Springboro) eligible for Ohio ORC \u00a75739.02(B)(42a) data center equipment exemption. Duke Energy Ohio provides industrial service in this fast-growing Cincinnati north suburb. Ohio JCTC and JobsOhio grants available. I-71 corridor fiber access.",
+      "effective_date": "2009-01-01",
+      "status": "active",
+      "notes": "Mason is one of Ohio's fastest-growing tech employer bases. Duke Energy Ohio service; I-71/SR-741 industrial corridor.",
+      "sources": [
+        {
+          "label": "ORC \u00a75739.02(B)(42a) \u2013 Ohio Data Center Sales Tax Exemption",
+          "url": "https://codes.ohio.gov/ohio-revised-code/section-5739.02"
+        },
+        {
+          "label": "Ohio Job Creation Tax Credit \u2013 ODSA",
+          "url": "https://development.ohio.gov/business/business-incentives/job-creation-tax-credit"
+        },
+        {
+          "label": "Warren County Port Authority Economic Development",
+          "url": "https://www.wcpa.org/business-development/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "40039": {
+      "name": "Custer County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Oklahoma Quality Jobs & Data Center Exemption \u2013 Custer County",
+      "description": "Custer County (Elk City, Clinton) eligible for Oklahoma Quality Jobs Program (68 O.S. \u00a73601) providing 5% payroll rebate for 10 years, data center ad valorem exemption (68 O.S. \u00a72902), and sales tax exemption on qualifying equipment (68 O.S. \u00a71357.9). Western Farmers Electric Cooperative (WFEC) provides renewable wind-integrated power at competitive rates on the Oklahoma Panhandle Energy Corridor.",
+      "effective_date": "2000-01-01",
+      "status": "active",
+      "notes": "Wind energy corridor \u2014 WFEC power mix includes significant wind generation. Available large parcels on I-40.",
+      "sources": [
+        {
+          "label": "Oklahoma Quality Jobs Program \u2013 ODFA",
+          "url": "https://www.oklahomaincentives.org/quality-jobs-program/"
+        },
+        {
+          "label": "68 O.S. \u00a71357.9 \u2013 Oklahoma Data Center Sales Tax Exemption",
+          "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=94887"
+        },
+        {
+          "label": "Oklahoma Dept of Commerce \u2013 Business Incentives",
+          "url": "https://www.okcommerce.gov/doing-business/business-incentives/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "40053": {
+      "name": "Grady County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Oklahoma Quality Jobs & Data Center Exemption \u2013 Grady County",
+      "description": "Grady County (Chickasha, Tuttle) eligible for Oklahoma Quality Jobs Program and data center ad valorem and sales tax exemptions. OG&E (Oklahoma Gas and Electric) provides industrial transmission south of OKC on I-44 corridor. Oklahoma Department of Commerce FastTrack program available.",
+      "effective_date": "2000-01-01",
+      "status": "active",
+      "notes": "Oklahoma City southern suburb corridor. OG&E industrial service with available 138kV capacity on I-44.",
+      "sources": [
+        {
+          "label": "Oklahoma Quality Jobs Program \u2013 ODFA",
+          "url": "https://www.oklahomaincentives.org/quality-jobs-program/"
+        },
+        {
+          "label": "68 O.S. \u00a71357.9 \u2013 Oklahoma Data Center Sales Tax Exemption",
+          "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=94887"
+        },
+        {
+          "label": "Oklahoma Dept of Commerce \u2013 Business Incentives",
+          "url": "https://www.okcommerce.gov/doing-business/business-incentives/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "40083": {
+      "name": "Logan County",
+      "state": "Oklahoma",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Oklahoma Quality Jobs & Data Center Exemption \u2013 Logan County (Guthrie)",
+      "description": "Logan County (Guthrie) eligible for Oklahoma Quality Jobs Program (68 O.S. \u00a73601) and data center exemptions. OG&E provides industrial service in this OKC northern suburb. Oklahoma's former territorial capital Guthrie is seeing data center interest due to OKC metro adjacency and available land. Oklahoma EDGE grants available through Department of Commerce.",
+      "effective_date": "2000-01-01",
+      "status": "active",
+      "notes": "OKC northern orbit, I-35 corridor. OG&E service territory adjacent to OKC metro transmission infrastructure.",
+      "sources": [
+        {
+          "label": "Oklahoma Quality Jobs Program \u2013 ODFA",
+          "url": "https://www.oklahomaincentives.org/quality-jobs-program/"
+        },
+        {
+          "label": "68 O.S. \u00a71357.9 \u2013 Oklahoma Data Center Sales Tax Exemption",
+          "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=94887"
+        },
+        {
+          "label": "Oklahoma Dept of Commerce \u2013 Business Incentives",
+          "url": "https://www.okcommerce.gov/doing-business/business-incentives/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "47043": {
+      "name": "Dickson County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Tennessee Qualified Data Center Act \u2013 Dickson County",
+      "description": "Dickson County (Dickson) benefits from Tennessee's Qualified Data Center Act (T.C.A. \u00a767-6-395) providing a 20-year sales and use tax exemption on equipment, cooling, and energy for qualifying data centers investing at least $100M. Tennessee Valley Authority (TVA) provides power through Cumberland Electric Membership Corporation. County offers PILOT agreements through the Industrial Development Board.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "NW Nashville orbit on I-40. TVA/CEMC power with available 115kV service points. PILOT agreements available from IDB.",
+      "sources": [
+        {
+          "label": "T.C.A. \u00a767-6-395 \u2013 Tennessee Qualified Data Center Act",
+          "url": "https://law.justia.com/codes/tennessee/title-67/chapter-6/part-3/section-67-6-395/"
+        },
+        {
+          "label": "Tennessee Dept of ECD FastTrack Infrastructure",
+          "url": "https://www.tn.gov/ecd/topic/fasttrack-infrastructure-program.html"
+        },
+        {
+          "label": "TVA Economic Development \u2013 Industrial Power",
+          "url": "https://www.tva.com/energy/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "47047": {
+      "name": "Fayette County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Tennessee Qualified Data Center Act \u2013 Fayette County (Memphis East)",
+      "description": "Fayette County (Somerville, Oakland) eligible for T.C.A. \u00a767-6-395 Qualified Data Center Act 20-year tax exemption. Memphis Light, Gas and Water (MLGW) and TVA provide power in this growing Memphis eastern suburb. Tennessee FastTrack infrastructure grants available for site development.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Memphis eastern suburban growth corridor. MLGW/TVA service. I-40 fiber route proximity.",
+      "sources": [
+        {
+          "label": "T.C.A. \u00a767-6-395 \u2013 Tennessee Qualified Data Center Act",
+          "url": "https://law.justia.com/codes/tennessee/title-67/chapter-6/part-3/section-67-6-395/"
+        },
+        {
+          "label": "Tennessee Dept of ECD FastTrack Infrastructure",
+          "url": "https://www.tn.gov/ecd/topic/fasttrack-infrastructure-program.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "47073": {
+      "name": "Hawkins County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Tennessee Qualified Data Center Act \u2013 Hawkins County (Tri-Cities)",
+      "description": "Hawkins County (Rogersville, Church Hill) eligible for T.C.A. \u00a767-6-395 Qualified Data Center Act. Holston Electric Cooperative (TVA power distributor) and Appalachian Power (AEP) serve the area. Tri-Cities Regional Airport (TRI) connectivity. Eastman Chemical Company workforce provides STEM talent pipeline.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Tri-Cities metro (Kingsport/Johnson City/Bristol) talent pool from Eastman and Tennessee Eastman. Available industrial sites.",
+      "sources": [
+        {
+          "label": "T.C.A. \u00a767-6-395 \u2013 Tennessee Qualified Data Center Act",
+          "url": "https://law.justia.com/codes/tennessee/title-67/chapter-6/part-3/section-67-6-395/"
+        },
+        {
+          "label": "TVA Economic Development \u2013 Industrial Power",
+          "url": "https://www.tva.com/energy/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "47099": {
+      "name": "Lawrence County",
+      "state": "Tennessee",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Tennessee Qualified Data Center Act \u2013 Lawrence County",
+      "description": "Lawrence County (Lawrenceburg) eligible for T.C.A. \u00a767-6-395 Qualified Data Center Act. Elk River Public Utility District and TVA provide power. Tennessee FastTrack infrastructure grants available. County is Tier 3 economically distressed, providing maximum state incentive eligibility.",
+      "effective_date": "2015-01-01",
+      "status": "active",
+      "notes": "Tier 3 distressed county \u2014 maximum Tennessee FastTrack eligibility. Elk River PUD/TVA power. Available rural sites.",
+      "sources": [
+        {
+          "label": "T.C.A. \u00a767-6-395 \u2013 Tennessee Qualified Data Center Act",
+          "url": "https://law.justia.com/codes/tennessee/title-67/chapter-6/part-3/section-67-6-395/"
+        },
+        {
+          "label": "Tennessee Dept of ECD FastTrack Infrastructure",
+          "url": "https://www.tn.gov/ecd/topic/fasttrack-infrastructure-program.html"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "48015": {
+      "name": "Austin County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Texas Ch.403 Data Center Exemption \u2013 Austin County",
+      "description": "Austin County (Sealy, Bellville) on the I-10 corridor between Houston and San Antonio is eligible for Texas Tax Code Ch.403 sales tax exemption on qualifying data center equipment. CenterPoint Energy provides transmission service. County offers Chapter 381 economic development agreements. Growing as Houston metro expands westward on I-10.",
+      "effective_date": "2013-09-01",
+      "status": "active",
+      "notes": "I-10 Houston-San Antonio corridor midpoint. CenterPoint Energy service with available transmission capacity.",
+      "sources": [
+        {
+          "label": "Texas Tax Code Ch.403 \u2013 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
+        },
+        {
+          "label": "Texas Comptroller \u2013 Qualifying Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/publications/94-116.php"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "48071": {
+      "name": "Chambers County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Texas Ch.403 Data Center Exemption \u2013 Chambers County",
+      "description": "Chambers County (Mont Belvieu, Baytown adjacent) on I-10 east of Houston eligible for Texas Tax Code Ch.403 data center sales tax exemption. CenterPoint Energy provides large industrial transmission. Mont Belvieu is a major petrochemical hub with significant existing industrial power infrastructure and fiber access from Houston.",
+      "effective_date": "2013-09-01",
+      "status": "active",
+      "notes": "Mont Belvieu is a major NGL hub with heavy industrial power infrastructure. CenterPoint large industrial service available.",
+      "sources": [
+        {
+          "label": "Texas Tax Code Ch.403 \u2013 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
+        },
+        {
+          "label": "Chambers County EDC",
+          "url": "https://chamberscountytx.gov/economic-development"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "48051": {
+      "name": "Burleson County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Texas Ch.403 Data Center Exemption \u2013 Burleson County",
+      "description": "Burleson County (Caldwell, Somerville) adjacent to Bryan/College Station eligible for Texas Tax Code Ch.403 data center sales tax exemption. Oncor and Bluebonnet Electric Cooperative provide transmission. Proximity to Texas A&M University provides STEM workforce. Chapter 381 agreements available.",
+      "effective_date": "2013-09-01",
+      "status": "active",
+      "notes": "College Station/Bryan metro adjacent. Texas A&M tech workforce pipeline. Oncor/Bluebonnet service territory.",
+      "sources": [
+        {
+          "label": "Texas Tax Code Ch.403 \u2013 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
+        },
+        {
+          "label": "Burleson County EDC",
+          "url": "https://www.burlesoncountytx.com/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "48063": {
+      "name": "Camp County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Texas Ch.403 Data Center Exemption \u2013 Camp County (NE Texas)",
+      "description": "Camp County (Pittsburg) in Northeast Texas eligible for Texas Tax Code Ch.403 data center sales tax exemption. SWEPCO (AEP Southwestern Electric Power) provides industrial transmission on the Arkansas-Louisiana-Texas power grid. Chapter 380/381 agreements available from county. NE Texas rural fiber routes along US-271.",
+      "effective_date": "2013-09-01",
+      "status": "active",
+      "notes": "SWEPCO/AEP NE Texas service territory. Rural county with available large parcels and industrial zoning.",
+      "sources": [
+        {
+          "label": "Texas Tax Code Ch.403 \u2013 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
+        },
+        {
+          "label": "Texas Comptroller \u2013 Qualifying Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/publications/94-116.php"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "48159": {
+      "name": "Franklin County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Texas Ch.403 Data Center Exemption \u2013 Franklin County",
+      "description": "Franklin County (Mount Vernon) in Northeast Texas eligible for Texas Tax Code Ch.403 data center sales tax exemption. SWEPCO (AEP) provides industrial transmission. Proximity to Lake Bob Sandlin provides cooling water access. Rural county with large available parcels on US-67.",
+      "effective_date": "2013-09-01",
+      "status": "active",
+      "notes": "NE Texas rural corridor. SWEPCO/AEP service territory. Lake Bob Sandlin cooling water proximity.",
+      "sources": [
+        {
+          "label": "Texas Tax Code Ch.403 \u2013 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
+        },
+        {
+          "label": "Texas Comptroller \u2013 Qualifying Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/publications/94-116.php"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "48059": {
+      "name": "Callahan County",
+      "state": "Texas",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Texas Ch.403 Data Center Exemption \u2013 Callahan County (Abilene East)",
+      "description": "Callahan County (Baird) adjacent to Abilene is eligible for Texas Tax Code Ch.403 data center sales tax exemption. Oncor provides transmission in this West Texas corridor. County sits in one of Texas's premier wind energy zones with abundant renewable power access. Chapter 381 agreements available.",
+      "effective_date": "2013-09-01",
+      "status": "active",
+      "notes": "West Texas wind energy corridor. Oncor 138kV/345kV transmission with substantial renewable integration.",
+      "sources": [
+        {
+          "label": "Texas Tax Code Ch.403 \u2013 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
+        },
+        {
+          "label": "Texas Comptroller \u2013 Qualifying Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/publications/94-116.php"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "51045": {
+      "name": "Craig County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Virginia DCIG Data Center Investment Grant \u2013 Craig County",
+      "description": "Craig County (New Castle) eligible for Virginia's Data Center Investment Grant (DCIG) under Va. Code \u00a758.1-3851 providing sales and use tax exemption on data center purchases for qualifying investments. Appalachian Power (AEP) provides transmission. Designated Tier 3 (highest distress) under GO Virginia, providing maximum incentive eligibility and VEDP Rural Business Expansion grants.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Tier 3 distressed county \u2014 maximum GO Virginia incentive eligibility. Appalachian Power AEP service territory with available rural sites.",
+      "sources": [
+        {
+          "label": "Va. Code \u00a758.1-3851 \u2013 Virginia Data Center Sales Tax Exemption",
+          "url": "https://law.lis.virginia.gov/vacode/title58.1/chapter38/section58.1-3851/"
+        },
+        {
+          "label": "GO Virginia Initiative \u2013 Regional Incentives",
+          "url": "https://www.govirginia.org/incentives/"
+        },
+        {
+          "label": "VEDP Data Center Incentives",
+          "url": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "51089": {
+      "name": "Henry County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Virginia DCIG + Tobacco Commission Grants \u2013 Henry County",
+      "description": "Henry County (Martinsville) eligible for Virginia's Data Center Investment Grant (DCIG) under Va. Code \u00a758.1-3851. AEP Appalachian Power provides transmission. Virginia Tobacco Region Revitalization Commission (TRRC) grants additionally available for data center capital investments in this designated tobacco-transition county. GO Virginia distressed-region designation provides maximum incentive tier.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "Tobacco Region Opportunity Fund stacks with DCIG. Martinsville Speedway and former textile/furniture sites available as large-footprint industrial land.",
+      "sources": [
+        {
+          "label": "Va. Code \u00a758.1-3851 \u2013 Virginia Data Center Sales Tax Exemption",
+          "url": "https://law.lis.virginia.gov/vacode/title58.1/chapter38/section58.1-3851/"
+        },
+        {
+          "label": "Virginia Tobacco Commission Opportunity Fund",
+          "url": "https://www.vatobaccocommission.org/grants/opportunity-fund/"
+        },
+        {
+          "label": "VEDP Data Center Incentives",
+          "url": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "51185": {
+      "name": "Tazewell County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Virginia DCIG + VCEDA \u2013 Tazewell County (SW Virginia)",
+      "description": "Tazewell County (Bluefield, Tazewell) eligible for Virginia's Data Center Investment Grant (DCIG) under Va. Code \u00a758.1-3851 and Virginia Coalfield Economic Development Authority (VCEDA) grants. Appalachian Power (AEP) provides transmission in Southwest Virginia's coalfield region. GO Virginia maximum distressed-area incentive tier applies.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "VCEDA Infrastructure Development Fund available for site preparation and utility extension. Maximum GO Virginia incentive tier. Bluefield College/Virginia Highlands CC provide workforce.",
+      "sources": [
+        {
+          "label": "Va. Code \u00a758.1-3851 \u2013 Virginia Data Center Sales Tax Exemption",
+          "url": "https://law.lis.virginia.gov/vacode/title58.1/chapter38/section58.1-3851/"
+        },
+        {
+          "label": "VCEDA \u2013 Coalfield Economic Development Authority",
+          "url": "https://www.vceda.us/business-investment/"
+        },
+        {
+          "label": "VEDP Data Center Incentives",
+          "url": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "51195": {
+      "name": "Wise County",
+      "state": "Virginia",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Virginia DCIG + VCEDA \u2013 Wise County (SW Virginia Coalfields)",
+      "description": "Wise County (Norton, Wise) eligible for Virginia's Data Center Investment Grant (DCIG) under Va. Code \u00a758.1-3851 and Virginia Coalfield Economic Development Authority (VCEDA) grants. Appalachian Power provides transmission in the deepest Southwest Virginia coalfield region. GO Virginia Coalfield Region designation provides the maximum distressed-area incentive tier. UVA Wise provides STEM workforce.",
+      "effective_date": "2010-01-01",
+      "status": "active",
+      "notes": "UVA Wise provides STEM workforce pipeline. VCEDA infrastructure fund available. Maximum incentive tier under GO Virginia.",
+      "sources": [
+        {
+          "label": "Va. Code \u00a758.1-3851 \u2013 Virginia Data Center Sales Tax Exemption",
+          "url": "https://law.lis.virginia.gov/vacode/title58.1/chapter38/section58.1-3851/"
+        },
+        {
+          "label": "VCEDA \u2013 Coalfield Economic Development Authority",
+          "url": "https://www.vceda.us/business-investment/"
+        },
+        {
+          "label": "VEDP Data Center Incentives",
+          "url": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "55015": {
+      "name": "Calumet County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Wisconsin Data Center Sales Tax Exemption \u2013 Calumet County (Fox Cities)",
+      "description": "Calumet County (Chilton, Sherwood) in the Fox Cities area eligible for Wisconsin Wis. Stat. \u00a777.54(57m) data center sales tax exemption covering servers, storage, cooling, and UPS equipment for facilities investing at least $75M. Wisconsin Public Service (WPS) provides industrial power. WEDC enterprise zone credits available.",
+      "effective_date": "2013-01-01",
+      "status": "active",
+      "notes": "Fox Cities/Appleton metro area. WPS clean energy commitment. WEDC enterprise zone program stacks with \u00a777.54(57m) exemption.",
+      "sources": [
+        {
+          "label": "Wis. Stat. \u00a777.54(57m) \u2013 Wisconsin Data Center Exemption",
+          "url": "https://docs.legis.wisconsin.gov/statutes/statutes/77/54/57m"
+        },
+        {
+          "label": "Wisconsin Economic Development Corp \u2013 Data Center Tax Exemption",
+          "url": "https://wedc.org/programs-and-resources/data-center-tax-exemption/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "55027": {
+      "name": "Dodge County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Wisconsin Data Center Sales Tax Exemption \u2013 Dodge County",
+      "description": "Dodge County (Beaver Dam, Waupun) eligible for Wisconsin Wis. Stat. \u00a777.54(57m) data center sales tax exemption. Wisconsin Public Service (WPS) provides power. I-90/I-94 corridor north of Madison provides fiber access. Available rural industrial parcels with WPS industrial rates.",
+      "effective_date": "2013-01-01",
+      "status": "active",
+      "notes": "Madison-Milwaukee midpoint corridor. WPS service. Available large parcels with I-90/94 fiber corridor access.",
+      "sources": [
+        {
+          "label": "Wis. Stat. \u00a777.54(57m) \u2013 Wisconsin Data Center Exemption",
+          "url": "https://docs.legis.wisconsin.gov/statutes/statutes/77/54/57m"
+        },
+        {
+          "label": "Wisconsin Economic Development Corp \u2013 Data Center Tax Exemption",
+          "url": "https://wedc.org/programs-and-resources/data-center-tax-exemption/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "55055": {
+      "name": "Jefferson County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Wisconsin Data Center Sales Tax Exemption \u2013 Jefferson County",
+      "description": "Jefferson County (Jefferson, Watertown, Fort Atkinson) eligible for Wisconsin Wis. Stat. \u00a777.54(57m) data center sales tax exemption. WE Energies and MGE (Madison Gas and Electric) both serve portions of Jefferson County. I-94 corridor between Milwaukee and Madison provides fiber spine access. WEDC enterprise zone credits available.",
+      "effective_date": "2013-01-01",
+      "status": "active",
+      "notes": "Milwaukee-Madison I-94 midpoint. Served by both WE Energies and MGE. Strong fiber corridor.",
+      "sources": [
+        {
+          "label": "Wis. Stat. \u00a777.54(57m) \u2013 Wisconsin Data Center Exemption",
+          "url": "https://docs.legis.wisconsin.gov/statutes/statutes/77/54/57m"
+        },
+        {
+          "label": "Wisconsin Economic Development Corp \u2013 Data Center Tax Exemption",
+          "url": "https://wedc.org/programs-and-resources/data-center-tax-exemption/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": null
+    },
+    "55089": {
+      "name": "Ozaukee County",
+      "state": "Wisconsin",
+      "level": -1,
+      "types": [
+        "data_center",
+        "energy",
+        "tax"
+      ],
+      "title": "Wisconsin Data Center Sales Tax Exemption \u2013 Ozaukee County (Milwaukee North)",
+      "description": "Ozaukee County (Grafton, Port Washington, Cedarburg) in the northern Milwaukee suburbs eligible for Wisconsin Wis. Stat. \u00a777.54(57m) data center sales tax exemption. WE Energies provides industrial transmission on I-43 corridor. Proximity to Milwaukee's existing data center cluster. WEDC enterprise zone credits available.",
+      "effective_date": "2013-01-01",
+      "status": "active",
+      "notes": "North Milwaukee suburban corridor. WE Energies 138kV transmission. Milwaukee metro data center cluster spillover.",
+      "sources": [
+        {
+          "label": "Wis. Stat. \u00a777.54(57m) \u2013 Wisconsin Data Center Exemption",
+          "url": "https://docs.legis.wisconsin.gov/statutes/statutes/77/54/57m"
+        },
+        {
+          "label": "Wisconsin Economic Development Corp \u2013 Data Center Tax Exemption",
+          "url": "https://wedc.org/programs-and-resources/data-center-tax-exemption/"
+        },
+        {
+          "label": "WEDC Enterprise Zone Credits",
+          "url": "https://wedc.org/programs-and-resources/enterprise-zone-credits/"
         }
       ],
       "lifecycle_stage": "effective",
