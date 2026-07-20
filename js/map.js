@@ -1773,6 +1773,34 @@ function toggleBookmarks() {
 }
 
 /* ── Compare panel ── */
+function _cmpRadarSvg(s) {
+  const cx = 50, cy = 32, R = 22;
+  const gradeColors = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
+  const col = gradeColors[s.grade] || "#4874e8";
+  const angles = [-Math.PI / 2, Math.PI / 6, (5 * Math.PI) / 6];
+  const ox = (a, r) => (cx + r * Math.cos(a)).toFixed(1);
+  const oy = (a, r) => (cy + r * Math.sin(a)).toFixed(1);
+  const poly = r => angles.map(a => `${ox(a, r)},${oy(a, r)}`).join(" ");
+  const grids = `<polygon points="${poly(R)}" fill="none" stroke="var(--radar-grid)" stroke-width="0.6"/>` +
+    `<polygon points="${poly(R * 0.5)}" fill="none" stroke="var(--radar-grid)" stroke-width="0.5" stroke-dasharray="2 2"/>`;
+  const axes = angles.map(a =>
+    `<line x1="${cx}" y1="${cy}" x2="${ox(a, R)}" y2="${oy(a, R)}" stroke="var(--radar-grid)" stroke-width="0.5"/>`
+  ).join("");
+  const dataPoly = s.factors.map((f, i) => {
+    const r = Math.max(1.5, (f.pts / f.max) * R);
+    return `${ox(angles[i], r)},${oy(angles[i], r)}`;
+  }).join(" ");
+  const dots = s.factors.map((f, i) => {
+    const r = Math.max(1.5, (f.pts / f.max) * R);
+    return `<circle cx="${ox(angles[i], r)}" cy="${oy(angles[i], r)}" r="1.8" fill="${col}"/>`;
+  }).join("");
+  return `<svg viewBox="0 0 100 58" aria-hidden="true" style="width:100%;height:auto;display:block;">
+    ${grids}${axes}
+    <polygon points="${dataPoly}" fill="${col}" fill-opacity="0.18" stroke="${col}" stroke-width="1.3" stroke-linejoin="round"/>
+    ${dots}
+  </svg>`;
+}
+
 function renderComparePanel() {
   const body = document.getElementById("compare-body");
   if (!body) return;
@@ -1861,6 +1889,12 @@ function renderComparePanel() {
     // Body rows
     const colBody = document.createElement("div");
     colBody.className = "cmp-col-body";
+
+    // Mini radar for quick visual comparison
+    const radarWrap = document.createElement("div");
+    radarWrap.className = "cmp-mini-radar";
+    radarWrap.innerHTML = _cmpRadarSvg(suit); // SVG uses only computed numbers — no user data
+    colBody.appendChild(radarWrap);
 
     function addField(label, valueHtml, highlight) {
       const f = document.createElement("div");

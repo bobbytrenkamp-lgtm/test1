@@ -6793,6 +6793,13 @@ html[data-theme="light"] { --radar-grid: rgba(60,70,120,0.15); }
   overflow: visible;
 }
 
+/* Compare panel mini radar */
+.cmp-mini-radar {
+  padding: 8px 14px 4px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2px;
+}
+
 /* Bookmarks count badge */
 #gis-bookmarks { position: relative; }
 .bm-badge {
