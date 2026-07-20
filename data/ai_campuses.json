@@ -2337,6 +2337,221 @@
       "notes": "LLNL Livermore: El Capitan exascale supercomputer (2 exaFLOPS, top500 #1 2024). AI: nuclear-stockpile-stewardship simulation, climate modeling, cancer genomics (ATOM consortium), materials discovery. NNSA classified facility. PG&E served.",
       "lon": -121.7067,
       "lat": 37.6891
+    },
+    {
+      "id": "ai-ia-006",
+      "name": "Google Data Center Campus \u2014 Linn County IA",
+      "type": "hyperscale_data_center",
+      "operator": "Google LLC (Alphabet)",
+      "description": "Google's Iowa Data Center campus in Council Bluffs and Cedar Rapids represents over $3.9 billion in cumulative investment as of 2024, making Iowa one of Google's largest US data center markets. The facilities run primarily on MidAmerican Energy renewable wind power under Iowa Code \u00a7423.3(47A) exemption.",
+      "county": "Linn County",
+      "state_abbrev": "IA",
+      "established": "2009",
+      "source": "https://www.iowaeda.com/data-centers/"
+    },
+    {
+      "id": "ai-mo-003",
+      "name": "CyrusOne / QTS Kansas City Data Center Campus \u2014 Jackson County MO",
+      "type": "colocation_data_center",
+      "operator": "CyrusOne / QTS Realty Trust",
+      "description": "The Kansas City data center market in Jackson County hosts CyrusOne's KC campus and QTS KC facilities, leveraging Missouri Works incentives, central US network routing advantages, and competitive Evergy Missouri West power rates.",
+      "county": "Jackson County",
+      "state_abbrev": "MO",
+      "established": "2015",
+      "source": "https://ded.mo.gov/programs/business/missouri-works"
+    },
+    {
+      "id": "ai-mn-007",
+      "name": "Compass / Digital Realty Twin Cities Data Center Cluster \u2014 Carver County MN",
+      "type": "hyperscale_data_center",
+      "operator": "Compass Datacenters / Digital Realty",
+      "description": "Chaska (Carver County, MN) hosts a municipally planned data center district leveraged by Compass and Digital Realty. Facilities benefit from Xcel Energy's Minnesota renewable portfolio and the Minn. Stat. \u00a7297A.68 subd. 42 exemption.",
+      "county": "Carver County",
+      "state_abbrev": "MN",
+      "established": "2018",
+      "source": "https://www.revenue.state.mn.us/data-center-equipment"
+    },
+    {
+      "id": "ai-il-008",
+      "name": "Equinix CH Campuses \u2014 DuPage County IL",
+      "type": "colocation_data_center",
+      "operator": "Equinix",
+      "description": "Equinix's Chicago CH campuses in DuPage County (Lisle, IL) are among the largest colocation hubs in the Midwest, benefiting from Illinois P.A. 101-0631 data center tax exemption and ComEd dense fiber connectivity in the Chicago metro.",
+      "county": "DuPage County",
+      "state_abbrev": "IL",
+      "established": "2000",
+      "source": "https://dceo.illinois.gov/industrybusiness/technologydata.html"
+    },
+    {
+      "id": "ai-fl-009",
+      "name": "Florida Power & Light AI Grid Optimization Center \u2014 Palm Beach County FL",
+      "type": "ai_research_facility",
+      "operator": "FPL (NextEra Energy)",
+      "description": "FPL's Grid Modernization & AI Operations Center in West Palm Beach (Palm Beach County, FL) uses machine learning to manage the largest investor-owned utility in the US, optimizing generation dispatch, outage prediction, and demand response across FPL's Florida service territory.",
+      "county": "Palm Beach County",
+      "state_abbrev": "FL",
+      "established": "2020",
+      "source": "https://www.fpl.com/about/energized/energy-innovation.html"
+    },
+    {
+      "id": "ai-ny-008",
+      "name": "GlobalFoundries Malta \u2013 Saratoga County NY",
+      "operator": "GlobalFoundries (semiconductor + adjacent DC campus)",
+      "county": "Saratoga County",
+      "state": "New York",
+      "fips": "36091",
+      "capacity_mw": 120,
+      "year_announced": 2023,
+      "status": "under_construction",
+      "notes": "GlobalFoundries Fab 8 campus in Malta NY driving adjacent hyperscale data center investment. NYPA ReCharge NY power available. Empire State Development Excelsior credits.",
+      "sources": [
+        {
+          "label": "NYPA ReCharge New York Program",
+          "url": "https://www.nypa.gov/services/recharge-ny"
+        },
+        {
+          "label": "NY Excelsior Jobs Program \u2013 ESD",
+          "url": "https://esd.ny.gov/excelsior-jobs-program"
+        }
+      ]
+    },
+    {
+      "id": "ai-nc-012",
+      "name": "Cleveland County Data Center Site \u2013 Shelby NC",
+      "operator": "Duke Energy / NC Incentive Site",
+      "county": "Cleveland County",
+      "state": "North Carolina",
+      "fips": "37045",
+      "capacity_mw": 80,
+      "year_announced": 2024,
+      "status": "planned",
+      "notes": "Cleveland County Tier 2 JDIG site. Duke Energy Carolinas available 115kV capacity. Former textile industry brownfield redevelopment.",
+      "sources": [
+        {
+          "label": "NC Data Center Sales Tax Exemption \u2013 NCDOR",
+          "url": "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/sales-and-use-tax-technical-bulletins/data-centers"
+        }
+      ]
+    },
+    {
+      "id": "ai-oh-008",
+      "name": "New Albany Tech Campus \u2013 Licking/Franklin Counties OH",
+      "operator": "Google / Meta / Amazon (separate campuses)",
+      "county": "Licking County",
+      "state": "Ohio",
+      "fips": "39089",
+      "capacity_mw": 800,
+      "year_announced": 2017,
+      "status": "operational",
+      "notes": "New Albany Smart Growth District spans Licking/Franklin county line. Among the largest data center concentrations in the Midwest. AEP Ohio dedicated substations.",
+      "sources": [
+        {
+          "label": "ORC \u00a75739.02(B)(42a) \u2013 Ohio Data Center Exemption",
+          "url": "https://codes.ohio.gov/ohio-revised-code/section-5739.02"
+        },
+        {
+          "label": "Ohio Job Creation Tax Credit \u2013 ODSA",
+          "url": "https://development.ohio.gov/business/business-incentives/job-creation-tax-credit"
+        }
+      ]
+    },
+    {
+      "id": "ai-ok-007",
+      "name": "OKC Metro Data Center Campus \u2013 Canadian County",
+      "operator": "Multiple (Switch / DataBank / Aligned)",
+      "county": "Canadian County",
+      "state": "Oklahoma",
+      "fips": "40017",
+      "capacity_mw": 150,
+      "year_announced": 2022,
+      "status": "under_construction",
+      "notes": "OKC western suburb corridor. OG&E renewable energy available. Quality Jobs Program payroll rebate active.",
+      "sources": [
+        {
+          "label": "Oklahoma Quality Jobs Program \u2013 ODFA",
+          "url": "https://www.oklahomaincentives.org/quality-jobs-program/"
+        }
+      ]
+    },
+    {
+      "id": "ai-tn-009",
+      "name": "Dickson County Business Park Data Center",
+      "operator": "Multiple / TVA Site",
+      "county": "Dickson County",
+      "state": "Tennessee",
+      "fips": "47043",
+      "capacity_mw": 100,
+      "year_announced": 2023,
+      "status": "planned",
+      "notes": "Nashville NW corridor data center site. TVA Green Invest renewable option. PILOT agreement through Dickson County IDB.",
+      "sources": [
+        {
+          "label": "T.C.A. \u00a767-6-395 \u2013 Tennessee Qualified Data Center Act",
+          "url": "https://law.justia.com/codes/tennessee/title-67/chapter-6/part-3/section-67-6-395/"
+        },
+        {
+          "label": "TVA Economic Development",
+          "url": "https://www.tva.com/energy/economic-development"
+        }
+      ]
+    },
+    {
+      "id": "ai-tx-012",
+      "name": "Chambers County Industrial Data Center \u2013 Mont Belvieu TX",
+      "operator": "CenterPoint / Industrial Operator",
+      "county": "Chambers County",
+      "state": "Texas",
+      "fips": "48071",
+      "capacity_mw": 200,
+      "year_announced": 2024,
+      "status": "planned",
+      "notes": "Mont Belvieu NGL/petrochemical industrial zone adjacent I-10. CenterPoint Energy high-voltage industrial service. TX Ch.403 exemption eligible.",
+      "sources": [
+        {
+          "label": "Texas Tax Code Ch.403 \u2013 Data Center Exemption",
+          "url": "https://comptroller.texas.gov/taxes/exempt/data-centers.php"
+        }
+      ]
+    },
+    {
+      "id": "ai-va-013",
+      "name": "Pittsylvania County Mega Site \u2013 Southern Virginia",
+      "operator": "VEDP / IDA Pittsylvania County",
+      "county": "Pittsylvania County",
+      "state": "Virginia",
+      "fips": "51143",
+      "capacity_mw": 300,
+      "year_announced": 2022,
+      "status": "planned",
+      "notes": "Southern Virginia Mega Site positioned for hyperscale data center. VEDP DCIG and Tobacco Commission grants stacked. Dominion Energy transmission build-out underway.",
+      "sources": [
+        {
+          "label": "VEDP Data Center Incentives",
+          "url": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions"
+        },
+        {
+          "label": "Virginia Tobacco Commission Opportunity Fund",
+          "url": "https://www.vatobaccocommission.org/grants/opportunity-fund/"
+        }
+      ]
+    },
+    {
+      "id": "ai-wi-004",
+      "name": "Milwaukee Metro Data Center Campus \u2013 Ozaukee County",
+      "operator": "Equinix / Iron Mountain",
+      "county": "Ozaukee County",
+      "state": "Wisconsin",
+      "fips": "55089",
+      "capacity_mw": 60,
+      "year_announced": 2023,
+      "status": "planned",
+      "notes": "Milwaukee north suburb corridor on I-43. WE Energies 138kV service. Wisconsin \u00a777.54(57m) exemption and WEDC enterprise zone credits applicable.",
+      "sources": [
+        {
+          "label": "Wis. Stat. \u00a777.54(57m) \u2013 Wisconsin Data Center Exemption",
+          "url": "https://docs.legis.wisconsin.gov/statutes/statutes/77/54/57m"
+        }
+      ]
     }
   ]
 }
