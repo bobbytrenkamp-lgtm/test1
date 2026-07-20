@@ -6793,6 +6793,27 @@ html[data-theme="light"] { --radar-grid: rgba(60,70,120,0.15); }
   overflow: visible;
 }
 
+/* Compare panel empty state */
+.cmp-empty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0 0;
+  width: 100%;
+}
+.cmp-empty-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  text-align: center;
+  padding: 8px 20px 10px;
+  max-width: 280px;
+}
+.cmp-empty-slots {
+  display: flex;
+  width: 100%;
+}
+
 /* GIS toolbar group separator */
 .gis-sep {
   width: 20px;

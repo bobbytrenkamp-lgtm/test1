@@ -1807,9 +1807,17 @@ function renderComparePanel() {
   body.innerHTML = "";
 
   if (!compareCounties.length) {
-    for (let i = 0; i < 2; i++) {
-      body.appendChild(_makeCmpAddSlot());
-    }
+    const wrap = document.createElement("div");
+    wrap.className = "cmp-empty-wrap";
+    const hint = document.createElement("p");
+    hint.className = "cmp-empty-hint";
+    hint.textContent = "Click counties on the map to compare suitability, severity, and policy details side-by-side.";
+    wrap.appendChild(hint);
+    const slots = document.createElement("div");
+    slots.className = "cmp-empty-slots";
+    for (let i = 0; i < 2; i++) slots.appendChild(_makeCmpAddSlot());
+    wrap.appendChild(slots);
+    body.appendChild(wrap);
     return;
   }
 
