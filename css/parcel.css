@@ -1,0 +1,433 @@
+/* ─────────────────────────────────────────────────────────────────────────── *
+ * Parcel Intelligence — styles                                                *
+ * Uses the same CSS token system as style.css.                               *
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Parcel panel (flex sibling of #detail-panel and #zoning-panel) ── */
+#parcel-panel {
+  width: 0;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: width 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 13px;
+  min-width: 0;
+  position: relative;
+}
+
+#parcel-panel.open {
+  width: 340px;
+}
+
+#parcel-panel > * {
+  min-width: 340px;
+}
+
+/* ── Panel header ── */
+.pp-header {
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.pp-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  line-height: 1;
+}
+.pp-close:hover { color: var(--text); background: var(--border); }
+
+.pp-address {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-right: 28px;
+  line-height: 1.3;
+}
+
+.pp-owner {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+.pp-pin {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  font-family: monospace;
+}
+
+/* ── Tabs ── */
+.pp-tab-row {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  flex-shrink: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.pp-tab-row::-webkit-scrollbar { display: none; }
+
+.pp-tab {
+  flex: 1;
+  min-width: 64px;
+  padding: 9px 10px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-size: 11.5px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+  font-family: inherit;
+}
+
+.pp-tab:hover { color: var(--text); }
+
+.pp-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ── Scrollable body ── */
+.pp-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 14px;
+  overscroll-behavior: contain;
+}
+
+/* ── Field groups ── */
+.pp-group {
+  margin-bottom: 14px;
+}
+
+.pp-group-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pp-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.pp-field:last-child { border-bottom: none; }
+
+.pp-field-label {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  min-width: 90px;
+  line-height: 1.4;
+}
+
+.pp-field-value {
+  color: var(--text);
+  text-align: right;
+  word-break: break-word;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Empty / muted states ── */
+.pp-empty {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 8px 0;
+}
+
+.pp-muted {
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+/* ── Zoning tab ── */
+.pp-zoning-badge {
+  display: inline-block;
+  background: rgba(91, 141, 239, 0.15);
+  border: 1px solid rgba(91, 141, 239, 0.35);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+
+.pp-zoning-link-row {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.pp-zoning-btn {
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.12s;
+}
+.pp-zoning-btn:hover { background: rgba(91, 141, 239, 0.12); }
+
+/* ── Compare tab ── */
+.pp-compare-wrap {
+  padding: 4px 0;
+}
+
+.pp-compare-empty {
+  padding: 12px 0;
+}
+.pp-compare-empty p { color: var(--text-muted); font-size: 12px; margin: 4px 0; }
+
+.pp-compare-table-scroll {
+  overflow-x: auto;
+  margin-bottom: 10px;
+}
+
+.pp-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+  min-width: 280px;
+}
+
+.pp-compare-table th,
+.pp-compare-table td {
+  padding: 5px 8px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+.pp-compare-table th {
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.pp-compare-th {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 10.5px;
+  color: var(--text);
+}
+
+.pp-compare-table td {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.pp-compare-remove {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+.pp-compare-remove:hover { color: #dc2626; background: rgba(220,38,38,0.1); }
+
+.pp-compare-clear {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 4px;
+}
+.pp-compare-clear:hover { border-color: #dc2626; color: #dc2626; }
+
+/* ── Attribution ── */
+.pp-attribution {
+  padding: 8px 14px;
+  border-top: 1px solid var(--border);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.pp-attribution a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.pp-attribution a:hover { text-decoration: underline; }
+
+.pp-attr-license {
+  display: block;
+  margin-top: 2px;
+  font-size: 10px;
+  opacity: 0.75;
+}
+
+/* ── Action row ── */
+.pp-actions {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+  flex-shrink: 0;
+}
+
+.pp-action-primary {
+  flex: 1;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.12s;
+}
+.pp-action-primary:hover { opacity: 0.88; }
+
+.pp-action-secondary {
+  background: none;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.12s, border-color 0.12s;
+}
+.pp-action-secondary:hover { color: var(--text); border-color: var(--text-muted); }
+
+/* ── Parcel layer status bar (inside map area) ── */
+.parcel-layer-status {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 800;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 14px;
+  border-radius: 20px;
+  pointer-events: none;
+  white-space: nowrap;
+  max-width: calc(100% - 40px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.parcel-status-loading {
+  background: rgba(72, 116, 232, 0.92);
+  color: #fff;
+}
+
+.parcel-status-count {
+  background: rgba(16, 22, 40, 0.9);
+  color: var(--text-muted);
+}
+
+.parcel-status-hint {
+  background: rgba(22, 30, 55, 0.88);
+  color: var(--text-muted);
+}
+
+.parcel-status-error {
+  background: rgba(127, 29, 29, 0.9);
+  color: #fca5a5;
+}
+
+/* ── Parcel tooltip (Leaflet tooltip) ── */
+.parcel-tooltip {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  font-size: 11.5px !important;
+  padding: 4px 8px !important;
+  border-radius: 5px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.28) !important;
+}
+
+.parcel-tooltip::before {
+  border-top-color: var(--border) !important;
+}
+
+/* ── Mobile: bottom sheet ── */
+@media (max-width: 767px) {
+  #parcel-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100% !important;
+    height: 0;
+    max-height: 70vh;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    border-radius: 12px 12px 0 0;
+    z-index: 1200;
+    transition: height 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+    overflow: hidden;
+  }
+
+  #parcel-panel.open {
+    height: 65vh;
+    width: 100% !important;
+  }
+
+  #parcel-panel > * {
+    min-width: 0;
+  }
+
+  .parcel-layer-status {
+    bottom: 70px;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  #parcel-panel { transition: none; }
+  .pp-tab { transition: none; }
+  .pp-action-primary { transition: none; }
+}

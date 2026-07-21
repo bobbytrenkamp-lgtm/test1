@@ -193,6 +193,7 @@ const layerState = {
   opportunity_zones:  false, // roadmap — no data yet
   fema_flood:         false, // roadmap — no data yet
   enterprise_zones:   false, // roadmap — no data yet
+  parcels:            false, // parcel-level data (zoom ≥14; pilot: Loudoun County VA)
 };
 
 let mapData         = {};
@@ -429,6 +430,8 @@ async function initMapFromGeo() {
     window.RESULTS_PANEL?.update(mapData, () => true);
     // Pre-populate save cache if user is already signed in at load time
     _refreshSavedCache();
+    // Initialize parcel intelligence module
+    window.PARCEL?.init(leafletMap);
     if (loadEl) loadEl.style.display = "none";
     // Staggered invalidateSize calls catch iOS Safari layout finalization at
     // different stages: after layers paint, after first user interaction window,
@@ -626,6 +629,10 @@ function handleCountyClick(e, fips) {
   /* Notify zoning module if the zoning layer is active */
   if (layerState.zoning_districts && window.ZONING_MAP) {
     window.ZONING_MAP.onCountySelected(fips);
+  }
+  /* Notify parcel module — switches connector to new jurisdiction if parcels are active */
+  if (window.PARCEL) {
+    window.PARCEL.onCountyChanged(fips);
   }
 }
 
@@ -848,6 +855,10 @@ function setLayerVisible(id, visible, syncUI = false) {
     }
     const panel = document.getElementById("zoning-panel");
     if (panel) panel.setAttribute("aria-hidden", visible ? "false" : "true");
+  } else if (id === "parcels") {
+    if (window.PARCEL) {
+      window.PARCEL.onLayerToggle(id, visible, selectedFips);
+    }
   } else {
     const group = leafletLayerGroups[id];
     if (group) {
@@ -2502,6 +2513,7 @@ function initLeafletMap() {
   leafletMap.getPane("labelsPane").style.pointerEvents = "none";
 
   initBasemaps();
+  window.leafletMap = leafletMap; // expose for parcel renderer and other cross-module consumers
 
   // Drag-guard: set/clear flags so county hover/select is suppressed during pan
   leafletMap.on("mousedown", () => { isMouseDown = true; });
