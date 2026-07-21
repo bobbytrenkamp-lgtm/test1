@@ -5646,9 +5646,9 @@ function switchTab(tab) {
   });
 
   // Fullpage tabs (home/analytics/about) always show the header expanded;
-  // map and news restore the user's saved collapsed preference.
+  // map, news, and stocks restore the user's saved collapsed preference.
   const isFullpage = tab === "analytics" || tab === "about" || tab === "home";
-  if (isFullpage || tab === "stocks") appEl.classList.remove("top-hidden");
+  if (isFullpage) appEl.classList.remove("top-hidden");
 
   appEl.classList.toggle("stocks-mode",   tab === "stocks");
   appEl.classList.toggle("fullpage-mode", isFullpage);
@@ -5676,6 +5676,7 @@ function switchTab(tab) {
     if (stocksEl) { stocksEl.hidden = false; triggerViewEnter(stocksEl); }
     searchBar.classList.add("news-mode");
     if (typeof initStocksPage === "function") initStocksPage();
+    savedHidden();
   } else if (tab === "analytics") {
     if (analyticsEl) { analyticsEl.hidden = false; triggerViewEnter(analyticsEl); }
     searchBar.classList.add("news-mode");
