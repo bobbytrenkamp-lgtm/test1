@@ -184,6 +184,7 @@ const layerState = {
   power:        false,
   transmission: false,
   fiber:        false,
+  political_risk: false,
   water:        false,
   utility:      false,
   tax:          false,
@@ -374,19 +375,29 @@ function stateStyle(feature) {
 /* Core data (small JSON files) — loaded immediately on page start */
 async function loadCoreData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
-  const [data, sample, stateReg, newsData, riskRaw] = await Promise.all([
+  const [data, sample, stateReg, newsData, riskRaw, incentivesRaw] = await Promise.all([
     get("data/map_data.json"),
     get("data/sample_layers.json").catch(() => null),
     get("data/state_regulations.json").catch(() => ({ states: {} })),
     fetch("data/ai_news.json", { cache: "no-store" }).then(r => r.json()).catch(() => ({ articles: [] })),
     get("data/political_risk.json").catch(() => ({ scores: [] })),
+    get("data/tax_incentives.json").catch(() => ({ tax_incentives: [] })),
   ]);
   // Index risk scores by fips for O(1) lookup
   const riskByFips = {};
   for (const rec of (riskRaw.scores || [])) {
     if (rec.fips) riskByFips[String(rec.fips).padStart(5, "0")] = rec;
   }
-  return { data, sample, stateReg, newsData, riskByFips };
+  // Index tax incentive programs by FIPS for O(1) lookup
+  const incentivesByFips = {};
+  for (const prog of (incentivesRaw.tax_incentives || [])) {
+    for (const fips of (prog.fips_list || [])) {
+      const key = String(fips).padStart(5, "0");
+      if (!incentivesByFips[key]) incentivesByFips[key] = [];
+      incentivesByFips[key].push(prog);
+    }
+  }
+  return { data, sample, stateReg, newsData, riskByFips, incentivesByFips };
 }
 
 /* County TopoJSON (~2 MB) — lazy-loaded only when Map tab is opened */
@@ -794,6 +805,24 @@ function renderSampleMarkerLayers(countiesGeoJSON) {
     });
   leafletLayerGroups.water = waterGroup;
 
+  // Political risk overlay (county fill by risk_score 0-4)
+  const riskLayerGroup = L.layerGroup();
+  const riskColors = { 0: null, 1: "#16a34a", 2: "#d97706", 3: "#dc2626", 4: "#7f1d1d" };
+  const riskOpacity = { 0: 0, 1: 0.20, 2: 0.30, 3: 0.42, 4: 0.55 };
+  if (politicalRiskData) {
+    countiesGeoJSON.features.forEach(f => {
+      const rec = politicalRiskData[fipsKey(f.id)];
+      if (!rec || rec.risk_score === 0) return;
+      const col = riskColors[rec.risk_score];
+      if (!col) return;
+      L.geoJSON(f, {
+        style: { fillColor: col, fillOpacity: riskOpacity[rec.risk_score] || 0.2, color: col, weight: 0.5, opacity: 0.3 },
+        interactive: false,
+      }).addTo(riskLayerGroup);
+    });
+  }
+  leafletLayerGroups.political_risk = riskLayerGroup;
+
   // Utility territories
   const utilityGroup = L.layerGroup();
   (sampleLayers.utility_territories || []).forEach((territory, idx) => {
@@ -871,6 +900,17 @@ function setLayerVisible(id, visible, syncUI = false) {
     const input = document.querySelector(`#filter-panel-body input[data-layer="${id}"]`);
     if (input) input.checked = visible;
   }
+
+  // Warn when a sample/estimated layer is enabled
+  if (visible) {
+    const reg = (window.LAYER_REGISTRY || []).find(r => r.id === id);
+    if (reg && reg.data_status === "sample") {
+      showMapToast(`⚠ ${reg.label}: sample data — not verified`, 4500);
+    } else if (reg && reg.data_status === "estimated") {
+      showMapToast(`ℹ ${reg.label}: estimated data — accuracy unverified`, 3500);
+    }
+  }
+
   renderLegend();
   _saveLayerState();
 }
@@ -1465,7 +1505,7 @@ function importWorkspacesJSON(file) {
 /* ── Share URL (full GIS state) ── */
 const _SHARE_LAYER_KEYS = [
   "restrictions", "state_policy", "city_policy", "dc_existing", "dc_planned",
-  "ai_campus", "power", "transmission", "fiber", "water",
+  "ai_campus", "power", "transmission", "fiber", "political_risk", "water",
   "utility", "tax", "annotations", "zoning_districts", "zoning_overlays",
 ];
 
@@ -1999,6 +2039,55 @@ function removeFromCompare(fips) {
 function clearCompare() {
   compareCounties.length = 0;
   renderComparePanel();
+}
+
+function exportCompareCsv() {
+  if (!compareCounties.length) {
+    showMapToast("Add counties to compare before exporting");
+    return;
+  }
+  const padded = fips => String(fips).padStart(5, "0");
+  const fields = [
+    ["County FIPS",       c => padded(c.fips)],
+    ["County",            c => c.county.name || ""],
+    ["State",             c => c.county.state || ""],
+    ["Restriction Level", c => c.county.level ?? ""],
+    ["Severity",          c => c.sev ? c.sev.label : ""],
+    ["Suitability Score", c => c.suit ? c.suit.score : ""],
+    ["Suitability Grade", c => c.suit ? c.suit.grade : ""],
+    ["Policy Types",      c => c.types],
+    ["Political Risk",    c => c.polRisk],
+    ["Effective Date",    c => c.county.effective_date || c.county.date || ""],
+    ["Status",            c => c.county.status || ""],
+    ["Notes",             c => c.county.description || ""],
+  ];
+  const cols = compareCounties.map(fips => {
+    const county = mapData[fips] || {};
+    const sevKey = getSeverityKey(county);
+    const sev    = SEVERITY[sevKey];
+    const suit   = computeSuitabilityScore(fips, county);
+    const types  = (county.types || []).map(t => TYPE_LABELS[t] || t).join("; ") || "—";
+    const polRec = politicalRiskData ? politicalRiskData[fips] : null;
+    const polRisk = polRec ? (polRec.score_label || `Risk ${polRec.risk_score}/4`) : "No data";
+    return { fips, county, sevKey, sev, suit, types, polRisk };
+  });
+  const csvCell = v => {
+    const s = String(v ?? "");
+    if (s.includes(",") || s.includes('"') || s.includes("\n")) return '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  };
+  const header = fields.map(([h]) => csvCell(h)).join(",");
+  const rows   = cols.map(c => fields.map(([, fn]) => csvCell(fn(c))).join(","));
+  const csv    = [header, ...rows].join("\r\n");
+  const blob   = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url    = URL.createObjectURL(blob);
+  const a      = document.createElement("a");
+  a.href       = url;
+  a.download   = `county-comparison-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
 }
 
 function generateCompareReport() {
@@ -2665,6 +2754,16 @@ function initLeafletMap() {
     });
   }
 
+  // Report button: generate county due-diligence report
+  const _reportBtnEl = document.getElementById("detail-report-btn");
+  if (_reportBtnEl) {
+    _reportBtnEl.addEventListener("click", () => {
+      if (_reportFips && window.REPORT) {
+        window.REPORT.generate(_reportFips, _reportName, _reportState, _reportCounty);
+      }
+    });
+  }
+
   // Refresh save cache when auth state changes
   document.addEventListener('auth:stateChange', ({ detail }) => {
     _refreshSavedCache().then(() => _updateDetailSaveBtn());
@@ -2777,6 +2876,14 @@ function initLeafletMap() {
   document.getElementById("compare-close-btn") ?.addEventListener("click", toggleComparePanel);
   document.getElementById("compare-clear-btn") ?.addEventListener("click", clearCompare);
   document.getElementById("compare-report-btn")?.addEventListener("click", generateCompareReport);
+  document.getElementById("compare-csv-btn")   ?.addEventListener("click", exportCompareCsv);
+
+  document.getElementById("detail-compare-btn")?.addEventListener("click", () => {
+    if (_compareBtnFips) {
+      addToCompare(_compareBtnFips);
+      _updateDetailCompareBtn(_compareBtnFips);
+    }
+  });
 
   // Workspace panel wiring
   document.getElementById("gis-workspace")    ?.addEventListener("click", toggleWorkspaces);
@@ -3717,6 +3824,7 @@ function initFilterPanelControls() {
     if (!fpDragging) return;
     fpDragging = false;
     document.body.classList.remove("is-dragging-floating-panel");
+    try { localStorage.setItem("fp-pos", JSON.stringify(fpSavedPos)); } catch (_) {}
   };
   panel.addEventListener("pointerup",     endFpDrag);
   panel.addEventListener("pointercancel", endFpDrag);
@@ -3755,6 +3863,7 @@ function initFilterPanelControls() {
     if (!fpResizing) return;
     fpResizing = false;
     document.body.classList.remove("is-resizing-floating-panel");
+    try { localStorage.setItem("fp-size", JSON.stringify(fpSavedSize)); } catch (_) {}
   };
   panel.addEventListener("pointerup",     endFpResize);
   panel.addEventListener("pointercancel", endFpResize);
@@ -4598,6 +4707,68 @@ const _RISK_SIGNAL_WEIGHT_TIER = {
   council_pro_vote: "w-favor", state_incentive_program: "w-favor", dedicated_zoning_created: "w-favor",
 };
 
+/* ── Policy Simulator ── */
+function buildPolicySimulatorHtml(fips, county) {
+  if (!county || county.level < 1) return "";
+
+  const padded     = String(fips).padStart(5, "0");
+  const riskRec    = politicalRiskData[fips];
+  const riskScore  = riskRec ? (riskRec.risk_score || 0) : null;
+  const wsRaw      = window.DC_WATER_STRESS || {};
+  const waterLevel = wsRaw[padded] ?? wsRaw[fips] ?? null;
+  const incentives = (window.DC_INCENTIVES_FIPS || {})[padded] || [];
+
+  const regScore     = Math.max(0, 35 - (county.level / 4) * 35);
+  const riskPct      = riskScore != null ? Math.max(0, 25 - (riskScore / 4) * 25) : 12.5;
+  const waterPct     = waterLevel != null ? Math.max(0, 20 - (waterLevel / 4) * 20) : 10;
+  const incentivePct = incentives.length > 0 ? 10 : 0;
+
+  const currentScore = Math.round(regScore + riskPct + waterPct + incentivePct + 10);
+  const simScore     = Math.round(35       + riskPct + waterPct + incentivePct + 10);
+  const delta        = simScore - currentScore;
+
+  const scoreCol = v => v >= 70 ? "#16a34a" : v >= 50 ? "#d97706" : v >= 30 ? "#dc2626" : "#7f1d1d";
+
+  return `<div class="policy-simulator">
+    <div class="policy-simulator-header">
+      <span class="policy-simulator-title">Policy Simulator</span>
+      <span class="ds-badge ds-estimated" title="Indicative score — not a certified site assessment" style="margin-left:4px;">Estimated</span>
+    </div>
+    <div class="sim-scores">
+      <div class="sim-score-block">
+        <div class="sim-score-label">Current Score</div>
+        <div class="sim-score-value" style="color:${scoreCol(currentScore)}">${currentScore}</div>
+        <div class="sim-score-sub">/ 100</div>
+      </div>
+      <svg class="sim-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <div class="sim-score-block">
+        <div class="sim-score-label">Restriction Removed</div>
+        <div class="sim-score-value" style="color:${scoreCol(simScore)}">${simScore}</div>
+        <div class="sim-score-sub">/ 100 <span class="sim-delta">+${delta}</span></div>
+      </div>
+    </div>
+    <div class="sim-factors">
+      ${_simFactor("Regulatory stance", regScore, 35, 35)}
+      ${_simFactor("Political risk",    riskPct,  25, riskPct)}
+      ${_simFactor("Water stress",      waterPct, 20, waterPct)}
+      ${_simFactor("Tax incentives",    incentivePct, 10, incentivePct)}
+    </div>
+    <p class="sim-disclaimer">Indicative only. Does not constitute a professional site assessment.</p>
+  </div>`;
+}
+
+function _simFactor(label, current, max, sim) {
+  const changed = Math.round(current) !== Math.round(sim);
+  return `<div class="sim-factor-row">
+    <div class="sim-factor-label">${escHtml(label)}</div>
+    <div class="sim-factor-bar-track">
+      <div class="sim-factor-bar-fill" style="width:${Math.round(current / max * 100)}%"></div>
+      ${changed ? `<div class="sim-factor-bar-sim" style="width:${Math.round(sim / max * 100)}%"></div>` : ""}
+    </div>
+    <div class="sim-factor-score">${Math.round(current)}/${max}${changed ? ` <span class="sim-factor-arrow">→ ${Math.round(sim)}</span>` : ""}</div>
+  </div>`;
+}
+
 function buildPoliticalRiskSectionHtml(fips) {
   const rec = politicalRiskData[fips];
   const RISK_LABELS = {1:"Very Favorable", 2:"Mostly Favorable", 3:"Mixed/Neutral", 4:"Elevated Political Risk", 5:"High Political Risk"};
@@ -4630,6 +4801,36 @@ function buildPoliticalRiskSectionHtml(fips) {
     ${badge}
     ${summary}
     ${signals ? `<ul class="risk-signals-list" style="margin-top:6px;">${signals}</ul>` : ""}
+  </div>`;
+}
+
+/* ── Tax Incentives Section ── */
+function buildIncentivesSectionHtml(fips) {
+  const programs = (window.DC_INCENTIVES_FIPS || {})[String(fips).padStart(5, "0")];
+  if (!programs || programs.length === 0) return "";
+
+  const items = programs.slice(0, 5).map(p => {
+    const minInvest = p.min_investment_m ? `$${p.min_investment_m}M+ required` : "";
+    return `<div class="incentive-item">
+      <div class="incentive-name">${escHtml(p.program_name)}</div>
+      <div class="incentive-meta">
+        <span class="incentive-type-tag">${escHtml(p.incentive_type || "")}</span>
+        ${minInvest ? `<span class="incentive-min-invest">${escHtml(minInvest)}</span>` : ""}
+      </div>
+      ${p.notes ? `<div class="incentive-notes">${escHtml(p.notes)}</div>` : ""}
+    </div>`;
+  }).join("");
+
+  const more = programs.length > 5 ? `<div class="incentive-more">+${programs.length - 5} more programs</div>` : "";
+
+  return `<div class="divider"></div><div class="incentive-section">
+    <div class="incentive-section-header">
+      <span class="incentive-section-title">Tax Incentives</span>
+      <span class="ds-badge ds-estimated" title="Estimated — verify with state economic development agency">Estimated</span>
+    </div>
+    ${items}
+    ${more}
+    <p class="incentive-disclaimer">Incentive eligibility and amounts vary. Verify requirements with the applicable state or local agency before relying on these figures.</p>
   </div>`;
 }
 
@@ -4752,6 +4953,36 @@ async function _refreshSavedCache() {
   _savedFacilitySet = new Set((facilities || []).map(i => i.item_id));
 }
 
+let _reportFips  = null;
+let _reportName  = null;
+let _reportState = null;
+let _reportCounty= null;
+
+function _updateDetailReportBtn(fips, name, state, countyData) {
+  const btn = document.getElementById("detail-report-btn");
+  if (!btn) return;
+  if (!fips || !window.REPORT) { btn.hidden = true; return; }
+  _reportFips   = fips;
+  _reportName   = name;
+  _reportState  = state;
+  _reportCounty = countyData || null;
+  btn.hidden = false;
+}
+
+let _compareBtnFips = null;
+
+function _updateDetailCompareBtn(fips) {
+  const btn = document.getElementById("detail-compare-btn");
+  if (!btn) return;
+  if (!fips) { btn.hidden = true; return; }
+  _compareBtnFips = fips;
+  const already = compareCounties.includes(fips);
+  btn.hidden = false;
+  btn.setAttribute("title", already ? "Already in Compare" : "Add to Compare");
+  btn.setAttribute("aria-label", already ? "Already in Compare" : "Add to Compare");
+  btn.classList.toggle("detail-compare-btn-active", already);
+}
+
 function _updateDetailSaveBtn() {
   const btn = document.getElementById('detail-save-btn');
   if (!btn) return;
@@ -4785,6 +5016,8 @@ function setDetailCounty(fips, county) {
   _saveCurrentId   = fips;
   _saveCurrentData = { name: county.name, state: county.state, level: county.level };
   _updateDetailSaveBtn();
+  _updateDetailReportBtn(fips, county.name, county.state, county);
+  _updateDetailCompareBtn(fips);
 
   const stateFips2 = fips.slice(0, 2);
 
@@ -4799,6 +5032,8 @@ function setDetailCounty(fips, county) {
     ${buildCityPolicySectionHtml()}
     <div class="policy-divider"></div>
     ${buildPoliticalRiskSectionHtml(fips)}
+    ${buildIncentivesSectionHtml(fips)}
+    ${buildPolicySimulatorHtml(fips, county)}
     ${_timelineHtml ? `<div class="policy-divider"></div>${_timelineHtml}` : ""}
     ${buildSampleInfraHtml(fips)}
     <div id="detail-proximity-section"></div>
@@ -4822,6 +5057,8 @@ function setDetailNoRestriction(name, state, fips) {
     _saveCurrentData = null;
   }
   _updateDetailSaveBtn();
+  _updateDetailReportBtn(fips, name, state, null);
+  _updateDetailCompareBtn(fips);
   const stateFips2 = fips ? fips.slice(0, 2) : null;
   document.getElementById("detail-body").innerHTML = `
     ${fips ? buildSuitabilityHtml(fips, null) : ""}
@@ -4833,6 +5070,7 @@ function setDetailNoRestriction(name, state, fips) {
     ${buildCityPolicySectionHtml()}
     <div class="policy-divider"></div>
     ${fips ? buildPoliticalRiskSectionHtml(fips) : ""}
+    ${fips ? buildIncentivesSectionHtml(fips) : ""}
     ${fips ? buildSampleInfraHtml(fips) : ""}
     ${fips ? '<div id="detail-proximity-section"></div>' : ""}
     ${fips ? '<div id="detail-zoning-summary"></div>' : ""}`;
@@ -4869,6 +5107,7 @@ function setDetailFacility(facility, kind) {
   _saveCurrentId   = facility.id || facility.name;
   _saveCurrentData = { name: facility.name, kind: kind, county_fips: facility.county_fips || '' };
   _updateDetailSaveBtn();
+  _updateDetailReportBtn(null, null, null, null);
   const county = mapData[facility.county_fips];
 
   const reg = (window.LAYER_REGISTRY || []).find(r => r.id === kind) || {};
@@ -5004,7 +5243,8 @@ function initKbOverlay() {
     <div class="kb-row"><span class="kb-desc">AI News tab</span><span class="kb-keys"><kbd>3</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">AI Stocks tab</span><span class="kb-keys"><kbd>4</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Analytics tab</span><span class="kb-keys"><kbd>5</kbd></span></div>
-    <div class="kb-row"><span class="kb-desc">About tab</span><span class="kb-keys"><kbd>6</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Pipeline tab</span><span class="kb-keys"><kbd>6</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">About tab</span><span class="kb-keys"><kbd>7</kbd></span></div>
     <div class="kb-section">Map Tools</div>
     <div class="kb-row"><span class="kb-desc">Toggle fullscreen</span><span class="kb-keys"><kbd>F</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Toggle measure mode</span><span class="kb-keys"><kbd>M</kbd></span></div>
@@ -5054,7 +5294,7 @@ function initKbOverlay() {
 /* ── Keyboard shortcuts ── */
 function initKeyboardShortcuts() {
   const kbOverlay = initKbOverlay();
-  const TAB_KEYS  = { "1": "home", "2": "map", "3": "news", "4": "stocks", "5": "analytics", "6": "about" };
+  const TAB_KEYS  = { "1": "home", "2": "map", "3": "news", "4": "stocks", "5": "analytics", "6": "pipeline", "7": "about" };
 
   document.addEventListener("keydown", e => {
     const inField = e.target.matches("input, textarea, select, [contenteditable]");
@@ -5181,6 +5421,29 @@ function initSearch() {
 
   const index = [...countyIndex, ...stateIndex, ...facilityIndex];
 
+  function _scoredPipeline(q) {
+    const pl = window.PIPELINE ? window.PIPELINE.getData() : null;
+    if (!pl) return [];
+    return pl.filter(d => {
+      const hay = [d.name, d.operator, d.city, d.state, d.state_abbr, d.county, d.parent_company]
+        .filter(Boolean).join(" ").toLowerCase();
+      return hay.includes(q);
+    }).slice(0, 3).map(d => ({
+      kind: "pipeline", raw: d, name: d.name,
+      sub: [d.city, d.state_abbr, d.operational_status].filter(Boolean).join(" · "),
+    }));
+  }
+
+  function _scoredNews(q) {
+    const arr = typeof newsArticles !== "undefined" ? newsArticles : [];
+    return arr.filter(a => {
+      const hay = [a.title, a.source, a.category].filter(Boolean).join(" ").toLowerCase();
+      return hay.includes(q);
+    }).slice(0, 2).map(a => ({
+      kind: "news", raw: a, name: a.title, sub: a.source || "",
+    }));
+  }
+
   /* Recent searches */
   const RECENT_KEY = "dc-search-recent-v1";
   const MAX_RECENT = 6;
@@ -5225,6 +5488,13 @@ function initSearch() {
       results.appendChild(hdr);
     }
     for (const m of matches) {
+      if (m.kind === "section") {
+        const hdr = document.createElement("div");
+        hdr.className = "search-section-hdr";
+        hdr.textContent = m.label;
+        results.appendChild(hdr);
+        continue;
+      }
       const item = document.createElement("div");
       item.className = "search-result-item";
       if (m.kind === "recent") {
@@ -5246,6 +5516,26 @@ function initSearch() {
         tag.className = "search-result-tag";
         tag.textContent = "State";
         item.appendChild(tag);
+      } else if (m.kind === "pipeline" || m.kind === "news") {
+        const wrap = document.createElement("div");
+        wrap.style.cssText = "display:flex;flex-direction:column;gap:1px;min-width:0";
+        const n = document.createElement("span");
+        n.textContent = m.name;
+        n.style.cssText = "white-space:nowrap;overflow:hidden;text-overflow:ellipsis";
+        wrap.appendChild(n);
+        if (m.sub) {
+          const s = document.createElement("span");
+          s.textContent = m.sub;
+          s.style.cssText = "font-size:10px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis";
+          wrap.appendChild(s);
+        }
+        item.appendChild(wrap);
+        const tag = document.createElement("span");
+        tag.className = "search-result-tag";
+        tag.style.cssText = "flex-shrink:0;margin-left:6px";
+        tag.textContent = m.kind === "pipeline" ? "Project" : "News";
+        item.appendChild(tag);
+        item.style.alignItems = "flex-start";
       } else {
         const n = document.createElement("span");
         n.textContent = m.name;
@@ -5259,16 +5549,16 @@ function initSearch() {
       item.addEventListener("pointerdown", e => {
         e.preventDefault();
         if (m.kind === "recent") {
-          // Re-run this search query
           input.value = m.label;
           results.style.display = "none";
           input.dispatchEvent(new Event("input"));
           return;
         }
         const displayVal = m.kind === "county" ? `${m.name}, ${m.state}` : m.name;
-        input.value = displayVal;
-        _addRecent(displayVal);
+        input.value = "";
         results.style.display = "none";
+        input.setAttribute("aria-expanded", "false");
+        if (m.kind !== "pipeline" && m.kind !== "news") _addRecent(displayVal);
         if (m.kind === "county") {
           zoomToFeature(m.fips);
           selectCounty(m.fips);
@@ -5276,6 +5566,14 @@ function initSearch() {
           const stLayer = stateGeoLayer.getLayers().find(l => String(l.feature.id).padStart(2, "0") === m.fips2);
           if (stLayer) leafletMap.flyToBounds(stLayer.getBounds(), { duration: 0.6, padding: [20, 20] });
           showStateDetail(m.fips2);
+        } else if (m.kind === "pipeline") {
+          if (window.PIPELINE) window.PIPELINE.searchAndOpen(m.raw.name);
+        } else if (m.kind === "news") {
+          switchTab("news");
+          setTimeout(() => {
+            const newsSearchEl = document.getElementById("news-search");
+            if (newsSearchEl) { newsSearchEl.value = m.raw.title.slice(0, 40); newsSearchEl.dispatchEvent(new Event("input")); }
+          }, 300);
         } else {
           zoomToFeature(m.fips);
           setLayerVisible(m.facilityKind, true, true);
@@ -5317,13 +5615,22 @@ function initSearch() {
       if (fipsMatch.length) { renderResults(fipsMatch, false); return; }
     }
 
-    const scored = index
+    const scoredMain = index
       .map(c => ({ m: c, s: _searchScore(c, q) }))
       .filter(x => x.s > 0)
       .sort((a, b) => b.s - a.s)
-      .slice(0, 8)
+      .slice(0, 5)
       .map(x => x.m);
-    renderResults(scored, false);
+
+    const plResults   = _scoredPipeline(q);
+    const newsResults = _scoredNews(q);
+
+    const combined = [];
+    if (scoredMain.length)   { combined.push({ kind: "section", label: "Locations" }); combined.push(...scoredMain); }
+    if (plResults.length)    { combined.push({ kind: "section", label: "Pipeline Projects" }); combined.push(...plResults); }
+    if (newsResults.length)  { combined.push({ kind: "section", label: "News" }); combined.push(...newsResults); }
+
+    renderResults(combined.length ? combined : scoredMain, false);
   });
   input.addEventListener("focus", () => {
     if (input.value.trim()) input.dispatchEvent(new Event("input"));
@@ -5647,6 +5954,7 @@ function switchTab(tab) {
   const newsEl      = document.getElementById("news-view");
   const stocksEl    = document.getElementById("stocks-view");
   const analyticsEl = document.getElementById("analytics-view");
+  const pipelineEl  = document.getElementById("pipeline-view");
   const aboutEl     = document.getElementById("about-view");
   const searchBar   = document.getElementById("search-bar");
   const appEl       = document.getElementById("app");
@@ -5657,9 +5965,9 @@ function switchTab(tab) {
     btn.setAttribute("aria-selected", isActive ? "true" : "false");
   });
 
-  // Fullpage tabs (home/analytics/about) always show the header expanded;
+  // Fullpage tabs (home/analytics/pipeline/about) always show the header expanded;
   // map, news, and stocks restore the user's saved collapsed preference.
-  const isFullpage = tab === "analytics" || tab === "about" || tab === "home";
+  const isFullpage = tab === "analytics" || tab === "about" || tab === "home" || tab === "pipeline";
   if (isFullpage) appEl.classList.remove("top-hidden");
 
   appEl.classList.toggle("stocks-mode",   tab === "stocks");
@@ -5671,6 +5979,7 @@ function switchTab(tab) {
   if (homeEl)      homeEl.hidden      = true;
   if (stocksEl)    stocksEl.hidden    = true;
   if (analyticsEl) analyticsEl.hidden = true;
+  if (pipelineEl)  pipelineEl.hidden  = true;
   if (aboutEl)     aboutEl.hidden     = true;
 
   const savedHidden = () => appEl.classList.toggle("top-hidden", localStorage.getItem("topHidden") === "1");
@@ -5693,6 +6002,10 @@ function switchTab(tab) {
     if (analyticsEl) { analyticsEl.hidden = false; triggerViewEnter(analyticsEl); }
     searchBar.classList.add("news-mode");
     if (typeof renderAnalyticsPage === "function") renderAnalyticsPage();
+  } else if (tab === "pipeline") {
+    if (pipelineEl) { pipelineEl.hidden = false; triggerViewEnter(pipelineEl); }
+    searchBar.classList.add("news-mode");
+    if (window.PIPELINE) window.PIPELINE.init();
   } else if (tab === "about") {
     if (aboutEl) { aboutEl.hidden = false; triggerViewEnter(aboutEl); }
     searchBar.classList.add("news-mode");
@@ -6716,6 +7029,13 @@ async function init() {
   _loadLayerGroupState();
   _loadFilterState();
   _loadLayerState(); // restore persisted layer visibility
+  // Restore filter-panel position/size across sessions
+  try {
+    const sp = localStorage.getItem("fp-pos");
+    const ss = localStorage.getItem("fp-size");
+    if (sp) fpSavedPos  = JSON.parse(sp);
+    if (ss) fpSavedSize = JSON.parse(ss);
+  } catch (_) {}
   initThemeToggle();
   initNavTabs();
   initKeyboardShortcuts();
@@ -6732,13 +7052,18 @@ async function init() {
   fetchGeoData();
 
   try {
-    const { data, sample, stateReg, newsData, riskByFips } = await loadCoreData();
+    const { data, sample, stateReg, newsData, riskByFips, incentivesByFips } = await loadCoreData();
 
     mapData           = data.counties || {};
     sampleLayers      = sample || null;
     stateRegData      = stateReg.states || {};
     newsArticles      = (newsData && newsData.articles) ? newsData.articles : [];
     politicalRiskData = riskByFips || {};
+
+    // Expose risk, water, and incentives data as globals for parcel intelligence modules
+    window.DC_RISK_BY_FIPS     = politicalRiskData;
+    window.DC_WATER_STRESS     = (sample && sample.water_stress) ? sample.water_stress : {};
+    window.DC_INCENTIVES_FIPS  = incentivesByFips || {};
 
     // Re-render home with real data (clears skeleton state)
     const hv = document.getElementById("home-view");

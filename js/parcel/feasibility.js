@@ -103,6 +103,29 @@ window.PARCEL_FEASIBILITY = (function () {
     return DC_MARKET_SCORES[String(fips).padStart(5, '0')] ?? 45;
   }
 
+  /* Political risk (0 = lowest risk, 4 = highest risk) → score 0–100 */
+  function _politicalRiskScore(fips) {
+    const riskData = window.DC_RISK_BY_FIPS;
+    if (!riskData) return null;
+    const rec = riskData[String(fips).padStart(5, '0')];
+    if (!rec) return null;
+    // Invert: low raw_score = favorable = high component score
+    const raw = Number(rec.risk_score ?? rec.raw_score ?? 2);
+    return Math.round(Math.max(0, 100 - (raw / 4) * 100));
+  }
+
+  /* Water stress (0–4 scale: 0=low, 4=very high) → score 0–100 */
+  function _waterStressScore(fips) {
+    const waterData = window.DC_WATER_STRESS;
+    if (!waterData || typeof waterData !== 'object') return null;
+    const level = waterData[String(fips).padStart(5, '0')];
+    if (level === undefined || level === null) return null;
+    // Invert: lower stress = better score
+    const n = Number(level);
+    if (isNaN(n)) return null;
+    return Math.round(Math.max(0, 100 - (n / 4) * 100));
+  }
+
   /* ── Buildable envelope ── */
 
   function _buildableEnvelope(props, standards) {
@@ -192,12 +215,37 @@ window.PARCEL_FEASIBILITY = (function () {
     const envelope = _buildableEnvelope(props, district.standards);
 
     // Composite development potential score (0–100)
+    // Base factors always present; optional data-backed factors added when available
     const acres = Number(props.area_acres) || ((Number(props.area_sqft) || 0) / 43560);
+
+    const riskScore  = _politicalRiskScore(resolvedFips);
+    const waterScore = _waterStressScore(resolvedFips);
+
+    // Build factors with adaptive weighting
+    // Core factors always present; optional factors injected when data exists.
+    // Weights sum to exactly 1.0 regardless of which optional factors fire.
+    const coreFactors = [
+      { id: 'eligibility', label: 'Zoning Eligibility', score: _eligibilityScore(permissionStatus), group: 'Zoning' },
+      { id: 'site_size',   label: 'Site Size',          score: _siteSizeScore(acres),               group: 'Site'   },
+      { id: 'land_use',    label: 'Land Use Match',     score: _landUseScore(zoningCode),            group: 'Zoning' },
+      { id: 'market',      label: 'Market Strength',    score: _marketScore(resolvedFips),           group: 'Market' },
+    ];
+    const optFactors = [
+      riskScore  != null ? { id: 'risk',  label: 'Political Risk',  score: riskScore,  group: 'Risk'  } : null,
+      waterScore != null ? { id: 'water', label: 'Water Stress',    score: waterScore, group: 'Site'  } : null,
+    ].filter(Boolean);
+
+    // Core weights (no optional factors): eligibility 40%, size 25%, land_use 20%, market 15%
+    // With optional factors: redistribute 12% proportionally from all core factors
+    const coreWeights  = [0.40, 0.25, 0.20, 0.15];
+    const optWeight    = optFactors.length > 0 ? 0.06 * optFactors.length : 0;
+    const coreTotal    = 1 - optWeight;
+    const weightedCore = coreWeights.map(w => +(w * coreTotal).toFixed(4));
+    const optPerFactor = optFactors.length > 0 ? +(optWeight / optFactors.length).toFixed(4) : 0;
+
     const factors = [
-      { id: 'eligibility', label: 'Zoning Eligibility', weight: 0.40, score: _eligibilityScore(permissionStatus) },
-      { id: 'site_size',   label: 'Site Size',          weight: 0.25, score: _siteSizeScore(acres)              },
-      { id: 'land_use',    label: 'Land Use Match',     weight: 0.20, score: _landUseScore(zoningCode)          },
-      { id: 'market',      label: 'Market Strength',    weight: 0.15, score: _marketScore(resolvedFips)         },
+      ...coreFactors.map((f, i) => ({ ...f, weight: weightedCore[i] })),
+      ...optFactors.map(f  => ({ ...f, weight: optPerFactor })),
     ];
     const compositeScore = Math.round(factors.reduce((sum, f) => sum + f.score * f.weight, 0));
 

@@ -574,9 +574,9 @@
 
 /* ── Score factors ── */
 .pf-factors {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   margin: 0 0 10px;
   padding: 8px;
   background: var(--surface-2);
@@ -585,14 +585,26 @@
 
 .pf-factor {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 3px;
   font-size: 11px;
-  padding: 2px 0;
+}
+
+.pf-factor-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .pf-factor-label {
   color: var(--text-muted);
+  flex: 1;
+}
+
+.pf-factor-weight {
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.6;
 }
 
 .pf-factor-score {
@@ -602,9 +614,25 @@
   text-align: right;
 }
 
+.pf-factor-bar-bg {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.pf-factor-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
 .pf-factor-hi  { color: #10b981; }
 .pf-factor-mid { color: #f59e0b; }
 .pf-factor-lo  { color: #ef4444; }
+.pf-factor-bar-fill.pf-factor-hi  { background: #10b981; }
+.pf-factor-bar-fill.pf-factor-mid { background: #f59e0b; }
+.pf-factor-bar-fill.pf-factor-lo  { background: #ef4444; }
 
 /* ── Buildable Envelope ── */
 .pf-envelope {

@@ -17,14 +17,18 @@ function barChart(rows, colorFn) {
 
 function analyticsIcon(name) {
   const icons = {
-    county:  `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>`,
-    restrict:`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>`,
-    state:   `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
-    news:    `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>`,
-    company: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>`,
-    energy:  `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
-    pro:     `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
-    clock:   `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    county:   `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>`,
+    restrict: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>`,
+    state:    `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    news:     `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>`,
+    company:  `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>`,
+    energy:   `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+    pro:      `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+    clock:    `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    pipeline: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>`,
+    server:   `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
+    zap:      `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+    fiber:    `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12c0-3.87 3.13-7 7-7"/><path d="M19 12c0 3.87-3.13 7-7 7"/><path d="M12 5v2"/><path d="M12 17v2"/><circle cx="12" cy="12" r="3"/><path d="M3 12h2"/><path d="M19 12h2"/></svg>`,
   };
   return icons[name] || icons.county;
 }
@@ -210,11 +214,587 @@ function renderAnalyticsPage() {
       </div>
     </div>
 
+    <div class="page-section">
+      <div class="page-section-title">Policy Timeline</div>
+      <div id="analytics-policy-timeline">
+        ${_buildPolicyTimelineHtml(counties)}
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-title">Infrastructure Pipeline</div>
+      <div id="analytics-pipeline-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Loading pipeline data…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-title">Power Intelligence</div>
+      <div id="analytics-power-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Loading power data…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-title">Fiber Intelligence</div>
+      <div id="analytics-fiber-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Loading fiber data…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-title">Development Scenario Builder</div>
+      <div id="analytics-scenario-section"></div>
+    </div>
+
     <div id="analytics-footer-target"></div>
   `;
 
   // Inject footer
   renderPageFooter('analytics-footer-target');
+
+  // Async fill pipeline stats
+  _fillPipelineStats();
+  _fillPowerStats();
+  _fillFiberStats();
+  _renderScenarioBuilder();
+}
+
+function _buildPolicyTimelineHtml(counties) {
+  const SEV_COLORS = { "-1": "#16a34a", "0": "#6b7280", "1": "#86efac", "2": "#f97316", "3": "#dc2626", "4": "#7f1d1d" };
+  const SEV_LABELS = { "-1": "Pro-Business Hub", "0": "No Restriction", "1": "Light", "2": "Moderate", "3": "Significant", "4": "Ban" };
+  const TYPE_MAP   = { data_center: "DC", ai: "AI", energy: "Energy", crypto: "Crypto", water: "Water" };
+
+  const entries = [];
+  for (const fips in counties) {
+    const c = counties[fips];
+    const date = c.effective_date || c.date || c.last_updated || null;
+    if (!date) continue;
+    entries.push({ fips, name: c.name, state: c.state, level: String(c.level), date, types: c.types || [] });
+  }
+
+  if (!entries.length) {
+    return `<p class="empty-note" style="font-size:12px;color:var(--text-muted);padding:8px 0;">No dated policy records available.</p>`;
+  }
+
+  entries.sort((a, b) => b.date.localeCompare(a.date));
+  const recent = entries.slice(0, 30);
+
+  const rows = recent.map(e => {
+    const col   = SEV_COLORS[e.level] || "#6b7280";
+    const lbl   = SEV_LABELS[e.level] || "Unknown";
+    const types = e.types.map(t => TYPE_MAP[t] || t).join(", ") || "—";
+    return `<div class="ptl-row">
+      <div class="ptl-date">${escHtml(e.date.slice(0, 10))}</div>
+      <div class="ptl-dot-col"><div class="ptl-dot" style="background:${escHtml(col)}"></div><div class="ptl-line"></div></div>
+      <div class="ptl-content">
+        <div class="ptl-county">${escHtml(e.name)}, <span class="ptl-state">${escHtml(e.state)}</span></div>
+        <div class="ptl-meta">
+          <span class="ptl-badge" style="color:${escHtml(col)};border-color:${escHtml(col)}20;background:${escHtml(col)}12">${escHtml(lbl)}</span>
+          <span class="ptl-types">${escHtml(types)}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+
+  const more = entries.length > 30 ? `<div class="ptl-more">+${entries.length - 30} older records not shown</div>` : "";
+  return `<div class="ptl-list">${rows}${more}</div>`;
+}
+
+async function _fillPipelineStats() {
+  const container = document.getElementById("analytics-pipeline-section");
+  if (!container || !window.PIPELINE) return;
+
+  const s = await window.PIPELINE.stats();
+  if (!s) {
+    container.innerHTML = `<div class="callout warning" style="margin:0">Pipeline data unavailable.</div>`;
+    return;
+  }
+
+  const fmtMw = mw => {
+    if (!mw) return "—";
+    if (mw >= 1000) return (mw / 1000).toFixed(1).replace(/\.0$/, "") + " GW";
+    return mw.toFixed(0) + " MW";
+  };
+
+  const operational = s.statusCounts["operational"] || 0;
+  const construction = s.statusCounts["construction"] || 0;
+  const planned      = s.statusCounts["planned"] || 0;
+
+  const statusColors = { operational: "#22c55e", construction: "#f59e0b", planned: "#60a5fa", decommissioned: "#9ca3af", unknown: "#6b7280" };
+  const typeColors   = { Hyperscale: "#4874e8", Colocation: "#a78bfa", Enterprise: "#34d399", Edge: "#f59e0b", "AI Campus": "#60a5fa" };
+
+  const statusRows = Object.entries(s.statusCounts).sort((a,b)=>b[1]-a[1]).map(([k,v])=>({
+    label: k.charAt(0).toUpperCase() + k.slice(1), count: v, key: k
+  }));
+  const typeRows = Object.entries(s.typeCounts).sort((a,b)=>b[1]-a[1]).map(([k,v])=>({
+    label: k, count: v, key: k
+  }));
+
+  container.innerHTML = `
+    <div class="analytics-kpi-grid" style="margin-bottom:20px">
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(72,116,232,0.12);color:#4874e8">${analyticsIcon('server')}</div>
+        <div class="analytics-kpi-label">Total Projects</div>
+        <div class="analytics-kpi-value">${s.total.toLocaleString()}</div>
+        <div class="analytics-kpi-meta">tracked data centers</div>
+      </div>
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(34,197,94,0.12);color:#22c55e">${analyticsIcon('zap')}</div>
+        <div class="analytics-kpi-label">Total Known Capacity</div>
+        <div class="analytics-kpi-value">${fmtMw(s.totalMw)}</div>
+        <div class="analytics-kpi-meta">${s.knownMwCount.toLocaleString()} projects with known MW</div>
+      </div>
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(34,197,94,0.12);color:#22c55e">${analyticsIcon('pro')}</div>
+        <div class="analytics-kpi-label">Operational</div>
+        <div class="analytics-kpi-value">${operational.toLocaleString()}</div>
+        <div class="analytics-kpi-meta">live data centers</div>
+      </div>
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(245,158,11,0.12);color:#f59e0b">${analyticsIcon('clock')}</div>
+        <div class="analytics-kpi-label">Under Construction</div>
+        <div class="analytics-kpi-value">${construction.toLocaleString()}</div>
+        <div class="analytics-kpi-meta">projects in construction</div>
+      </div>
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(96,165,250,0.12);color:#60a5fa">${analyticsIcon('pipeline')}</div>
+        <div class="analytics-kpi-label">Planned</div>
+        <div class="analytics-kpi-value">${planned.toLocaleString()}</div>
+        <div class="analytics-kpi-meta">announced projects</div>
+      </div>
+    </div>
+    <div class="analytics-card-grid">
+      <div class="analytics-card">
+        <div class="analytics-card-header"><div class="analytics-card-title">By Status</div></div>
+        <div class="analytics-card-body">
+          ${barChart(statusRows, r => statusColors[r.key] || "#9ca3af")}
+        </div>
+      </div>
+      <div class="analytics-card">
+        <div class="analytics-card-header"><div class="analytics-card-title">By Facility Type</div></div>
+        <div class="analytics-card-body">
+          ${barChart(typeRows, r => typeColors[r.label] || "#9ca3af")}
+        </div>
+      </div>
+      <div class="analytics-card">
+        <div class="analytics-card-header"><div class="analytics-card-title">Top Operators by Count</div></div>
+        <div class="analytics-card-body">
+          ${barChart(s.topOperators.map(([label,count])=>({label,count})), () => "#4874e8")}
+        </div>
+      </div>
+      <div class="analytics-card">
+        <div class="analytics-card-header"><div class="analytics-card-title">Top States by Known MW</div></div>
+        <div class="analytics-card-body">
+          <div class="ranked-list">
+            ${s.topStatesMw.map(([st,mw],i) => `
+            <div class="ranked-item">
+              <div class="rank-num">${i+1}</div>
+              <div class="rank-name">${escHtml(st)}</div>
+              <div class="rank-bar-wrap">
+                <div class="bar-track" style="flex:1"><div class="bar-fill" style="width:${Math.round(mw/s.topStatesMw[0][1]*100)}%;background:#4874e8;--bar-delay:${i*40}ms"></div></div>
+              </div>
+              <div class="rank-count">${fmtMw(mw)}</div>
+            </div>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+async function _fillPowerStats() {
+  const container = document.getElementById("analytics-power-section");
+  if (!container || !window.PIPELINE) return;
+
+  const facilities = await window.PIPELINE.stats().then(() => window.PIPELINE.getData()).catch(() => null);
+  if (!facilities) {
+    container.innerHTML = `<div class="callout warning" style="margin:0">Power data unavailable.</div>`;
+    return;
+  }
+
+  const fmtMw = mw => {
+    if (!mw) return "—";
+    if (mw >= 1000) return (mw / 1000).toFixed(1).replace(/\.0$/, "") + " GW";
+    return Math.round(mw).toLocaleString() + " MW";
+  };
+
+  // Aggregate by state: total MW known + planned
+  const stateKnown   = {};
+  const statePlanned = {};
+  const topMwFacilities = [];
+
+  facilities.forEach(f => {
+    const st = f.state_abbr || f.state || "?";
+    if (f.capacity_mw_known > 0)   stateKnown[st]   = (stateKnown[st]   || 0) + f.capacity_mw_known;
+    if (f.capacity_mw_planned > 0) statePlanned[st]  = (statePlanned[st] || 0) + f.capacity_mw_planned;
+    if (f.capacity_mw_known > 0 || f.capacity_mw_planned > 0) topMwFacilities.push(f);
+  });
+
+  topMwFacilities.sort((a, b) => {
+    const mwA = (a.capacity_mw_known || 0) + (a.capacity_mw_planned || 0);
+    const mwB = (b.capacity_mw_known || 0) + (b.capacity_mw_planned || 0);
+    return mwB - mwA;
+  });
+
+  const totalKnown   = Object.values(stateKnown).reduce((s,v) => s+v, 0);
+  const totalPlanned = Object.values(statePlanned).reduce((s,v) => s+v, 0);
+  const withMw       = facilities.filter(f => f.capacity_mw_known > 0).length;
+
+  // Top 8 states by combined MW
+  const topStatesMw = Object.keys(stateKnown).map(st => ({
+    st, known: stateKnown[st] || 0, planned: statePlanned[st] || 0,
+    total: (stateKnown[st] || 0) + (statePlanned[st] || 0),
+  })).sort((a, b) => b.total - a.total).slice(0, 8);
+
+  const maxTotal = topStatesMw[0] ? topStatesMw[0].total : 1;
+
+  // Top 5 facilities by MW
+  const top5 = topMwFacilities.slice(0, 5);
+
+  const stateRows = topStatesMw.map((r, i) => {
+    const knownPct   = Math.round(r.known / maxTotal * 100);
+    const plannedPct = Math.round(r.planned / maxTotal * 100);
+    return `<div class="ranked-item">
+      <div class="rank-num">${i + 1}</div>
+      <div class="rank-name">${escHtml(r.st)}</div>
+      <div class="rank-bar-wrap" style="flex:1;display:flex;flex-direction:column;gap:2px">
+        <div class="bar-track" style="flex:1">
+          <div class="bar-fill" style="width:${knownPct}%;background:#22c55e;--bar-delay:${i*40}ms" title="Known: ${fmtMw(r.known)}"></div>
+        </div>
+        <div class="bar-track" style="flex:1">
+          <div class="bar-fill" style="width:${plannedPct}%;background:#f59e0b;--bar-delay:${i*40+20}ms" title="Planned: ${fmtMw(r.planned)}"></div>
+        </div>
+      </div>
+      <div class="rank-count">${fmtMw(r.total)}</div>
+    </div>`;
+  }).join("");
+
+  const facilityRows = top5.map(f => {
+    const mw = (f.capacity_mw_known || 0) + (f.capacity_mw_planned || 0);
+    const knownPct = f.capacity_mw_known > 0 ? Math.round(f.capacity_mw_known / mw * 100) : 0;
+    return `<div class="pw-facility-row">
+      <div class="pw-facility-name">${escHtml(f.name || "Unknown")}</div>
+      <div class="pw-facility-loc">${escHtml([f.city, f.state_abbr].filter(Boolean).join(", "))}</div>
+      <div class="pw-facility-bar">
+        <div class="bar-track" style="flex:1">
+          <div class="bar-fill" style="width:${knownPct}%;background:#22c55e" title="Known: ${fmtMw(f.capacity_mw_known)}"></div>
+        </div>
+      </div>
+      <div class="pw-facility-mw">${fmtMw(mw)}</div>
+    </div>`;
+  }).join("");
+
+  container.innerHTML = `
+    <div class="power-intel-note callout info" style="margin-bottom:16px;font-size:12px">
+      Power capacity data is derived from the facility pipeline. Figures represent known and announced
+      megawatt draw from public sources. Infrastructure points (substations, plants) are a sample set only.
+    </div>
+    <div class="analytics-kpi-grid" style="margin-bottom:20px">
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(34,197,94,0.12);color:#22c55e">${analyticsIcon('zap')}</div>
+        <div class="analytics-kpi-label">Known IT Load</div>
+        <div class="analytics-kpi-value">${fmtMw(totalKnown)}</div>
+        <div class="analytics-kpi-meta">${withMw.toLocaleString()} facilities with known MW</div>
+      </div>
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(245,158,11,0.12);color:#f59e0b">${analyticsIcon('pipeline')}</div>
+        <div class="analytics-kpi-label">Planned Capacity</div>
+        <div class="analytics-kpi-value">${fmtMw(totalPlanned)}</div>
+        <div class="analytics-kpi-meta">announced but not yet operational</div>
+      </div>
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(72,116,232,0.12);color:#4874e8">${analyticsIcon('server')}</div>
+        <div class="analytics-kpi-label">Combined Pipeline</div>
+        <div class="analytics-kpi-value">${fmtMw(totalKnown + totalPlanned)}</div>
+        <div class="analytics-kpi-meta">known + planned IT load</div>
+      </div>
+    </div>
+    <div class="analytics-card-grid">
+      <div class="analytics-card">
+        <div class="analytics-card-header">
+          <div class="analytics-card-title">Top States by Capacity</div>
+          <div class="analytics-card-legend">
+            <span class="pw-legend-dot" style="background:#22c55e"></span> Known
+            <span class="pw-legend-dot" style="background:#f59e0b;margin-left:8px"></span> Planned
+          </div>
+        </div>
+        <div class="analytics-card-body">
+          <div class="ranked-list">${stateRows}</div>
+        </div>
+      </div>
+      <div class="analytics-card">
+        <div class="analytics-card-header"><div class="analytics-card-title">Largest Facilities by MW</div></div>
+        <div class="analytics-card-body">
+          <div class="pw-facility-list">${facilityRows}</div>
+          <div class="pw-disclaimer" style="font-size:11px;color:var(--text-muted);margin-top:10px">
+            Known + planned capacity combined. Top 5 of ${topMwFacilities.length.toLocaleString()} facilities with MW data.
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Development Scenario Builder                                      */
+/* ─────────────────────────────────────────────────────────────── */
+
+const SCENARIO_PROFILES = [
+  {
+    id: "hyperscale",
+    label: "Hyperscale Campus",
+    desc: "Optimizes for zero regulatory friction and stable long-term political environment.",
+    icon: "server",
+    color: "#4874e8",
+    weights: { reg: 0.60, pol: 0.30, scope: 0.10 },
+  },
+  {
+    id: "colocation",
+    label: "Colocation Facility",
+    desc: "Balanced approach — regulatory clarity matters most, political risk a secondary concern.",
+    icon: "pipeline",
+    color: "#a78bfa",
+    weights: { reg: 0.50, pol: 0.25, scope: 0.25 },
+  },
+  {
+    id: "edge",
+    label: "Edge Deployment",
+    desc: "Distributed sites tolerate moderate restrictions if scope is narrow.",
+    icon: "zap",
+    color: "#34d399",
+    weights: { reg: 0.35, pol: 0.20, scope: 0.45 },
+  },
+  {
+    id: "ai_campus",
+    label: "AI Campus",
+    desc: "Zero tolerance for AI-specific legislation; political signals weighted heavily.",
+    icon: "pro",
+    color: "#f59e0b",
+    weights: { reg: 0.45, pol: 0.40, scope: 0.15 },
+  },
+];
+
+function _scenarioScore(fips, county, weights) {
+  if (typeof computeSuitabilityScore !== "function") return null;
+  const base = computeSuitabilityScore(fips, county);
+  if (!base) return null;
+  const { reg, pol, scope } = weights;
+  const [f0, f1, f2] = base.factors;
+  const raw = (f0.pts / f0.max) * reg * 100
+            + (f1.pts / f1.max) * pol * 100
+            + (f2.pts / f2.max) * scope * 100;
+  const score = Math.round(Math.min(100, raw));
+  const grade = score >= 80 ? "A" : score >= 65 ? "B" : score >= 45 ? "C" : score >= 25 ? "D" : "F";
+  const label = { A: "Highly Suitable", B: "Suitable", C: "Proceed with Caution", D: "High Risk", F: "Not Suitable" }[grade];
+  return { score, grade, label, base };
+}
+
+function _renderScenarioBuilder() {
+  const container = document.getElementById("analytics-scenario-section");
+  if (!container) return;
+
+  if (typeof mapData === "undefined" || !Object.keys(mapData).length) {
+    container.innerHTML = `<div class="callout warning" style="margin:0">Policy data not yet loaded. Navigate to the map first, then return to Analytics.</div>`;
+    return;
+  }
+
+  if (typeof computeSuitabilityScore !== "function") {
+    container.innerHTML = `<div class="callout warning" style="margin:0">Suitability scoring unavailable.</div>`;
+    return;
+  }
+
+  function renderProfile(profile) {
+    const results = [];
+    for (const fips in mapData) {
+      const county = mapData[fips];
+      const s = _scenarioScore(fips, county, profile.weights);
+      if (s) results.push({ fips, county, s });
+    }
+    results.sort((a, b) => b.s.score - a.s.score);
+    const top10 = results.slice(0, 10);
+
+    const gradeColors = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
+    const rows = top10.map((r, i) => {
+      const col = gradeColors[r.s.grade] || "#4874e8";
+      return `<div class="scenario-county-row" data-fips="${escHtml(r.fips)}">
+        <div class="scenario-rank">${i + 1}</div>
+        <div class="scenario-county-info">
+          <div class="scenario-county-name">${escHtml(r.county.name || r.fips)}</div>
+          <div class="scenario-county-state">${escHtml(r.county.state || "")}</div>
+        </div>
+        <div class="scenario-bar-wrap">
+          <div class="bar-track"><div class="bar-fill" style="width:${r.s.score}%;background:${col};--bar-delay:${i*40}ms"></div></div>
+        </div>
+        <div class="scenario-grade" style="color:${col}">${r.s.grade}</div>
+        <div class="scenario-score">${r.s.score}</div>
+      </div>`;
+    }).join("");
+
+    const wt = profile.weights;
+    const wtBars = [
+      { label: "Regulatory", pct: Math.round(wt.reg * 100), col: "#4874e8" },
+      { label: "Political",  pct: Math.round(wt.pol * 100), col: "#f59e0b" },
+      { label: "Scope",      pct: Math.round(wt.scope * 100), col: "#a78bfa" },
+    ].map(w => `<div class="scenario-wt-row">
+      <div class="scenario-wt-label">${w.label}</div>
+      <div class="bar-track" style="flex:1"><div class="bar-fill" style="width:${w.pct}%;background:${w.col}"></div></div>
+      <div class="scenario-wt-pct">${w.pct}%</div>
+    </div>`).join("");
+
+    return `<div class="scenario-results" id="scenario-results-${profile.id}">
+      <div class="scenario-weights-panel">
+        <div class="scenario-weights-title">Factor Weights</div>
+        ${wtBars}
+      </div>
+      <div class="scenario-county-list">${rows || '<div class="empty-note">No matching counties.</div>'}</div>
+    </div>`;
+  }
+
+  const tabs = SCENARIO_PROFILES.map((p, i) =>
+    `<button class="scenario-tab${i === 0 ? " active" : ""}" data-scenario="${p.id}" style="${i === 0 ? `--tab-col:${p.color}` : ''}">
+      ${analyticsIcon(p.icon)}
+      ${escHtml(p.label)}
+    </button>`
+  ).join("");
+
+  container.innerHTML = `
+    <div class="scenario-intro">
+      Select a development profile to see the top-ranked counties under that scenario's weighting of
+      regulatory, political, and scope risk factors.
+    </div>
+    <div class="scenario-tabs">${tabs}</div>
+    <div class="scenario-profile-desc" id="scenario-profile-desc">${escHtml(SCENARIO_PROFILES[0].desc)}</div>
+    <div id="scenario-profile-content">${renderProfile(SCENARIO_PROFILES[0])}</div>`;
+
+  container.querySelectorAll(".scenario-tab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      container.querySelectorAll(".scenario-tab").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const pid = btn.dataset.scenario;
+      const prof = SCENARIO_PROFILES.find(p => p.id === pid);
+      if (!prof) return;
+      btn.style.setProperty("--tab-col", prof.color);
+      document.getElementById("scenario-profile-desc").textContent = prof.desc;
+      document.getElementById("scenario-profile-content").innerHTML = renderProfile(prof);
+    });
+  });
+
+  container.querySelectorAll(".scenario-county-row").forEach(row => {
+    row.addEventListener("click", () => {
+      const fips = row.dataset.fips;
+      if (fips && typeof switchTab === "function") switchTab("map");
+      if (fips && typeof selectCounty === "function") selectCounty(fips);
+    });
+  });
+}
+
+async function _fillFiberStats() {
+  const container = document.getElementById("analytics-fiber-section");
+  if (!container) return;
+
+  let sl = (typeof sampleLayers !== "undefined" ? sampleLayers : null);
+  if (!sl || !sl.fiber_network) {
+    try {
+      const resp = await fetch("data/sample_layers.json");
+      sl = await resp.json();
+    } catch (_) {}
+  }
+  const fiberRoutes = sl ? (sl.fiber_network || []) : [];
+
+  if (!fiberRoutes.length) {
+    container.innerHTML = `<div class="callout warning" style="margin:0">Fiber data unavailable.</div>`;
+    return;
+  }
+
+  // Haversine distance in km between two [lon, lat] points
+  function haversineKm([lon1, lat1], [lon2, lat2]) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  // Calculate total length of each route in km
+  const routeStats = fiberRoutes.map(r => {
+    let km = 0;
+    const pts = r.path || [];
+    for (let i = 1; i < pts.length; i++) km += haversineKm(pts[i-1], pts[i]);
+    return { ...r, km: Math.round(km), pts };
+  });
+
+  const totalKm = routeStats.reduce((s, r) => s + r.km, 0);
+
+  // Find nearby facilities for each route (within ~100 km of any point)
+  const facilities = window.PIPELINE ? window.PIPELINE.getData() : null;
+
+  function routeMinDistKm(route, lat, lon) {
+    let minD = Infinity;
+    for (const [rlon, rlat] of route.pts) {
+      const d = haversineKm([rlon, rlat], [lon, lat]);
+      if (d < minD) minD = d;
+    }
+    return minD;
+  }
+
+  const routeCards = routeStats.map(r => {
+    let nearbyCount = 0;
+    let nearbyMw = 0;
+    if (facilities) {
+      facilities.forEach(f => {
+        if (!f.latitude || !f.longitude) return;
+        const d = routeMinDistKm(r, f.latitude, f.longitude);
+        if (d <= 100) {
+          nearbyCount++;
+          nearbyMw += f.capacity_mw_known || 0;
+        }
+      });
+    }
+    const kmLabel = r.km >= 1000 ? (r.km/1000).toFixed(1) + "k km" : r.km + " km";
+    const mwLabel = nearbyMw >= 1000 ? (nearbyMw/1000).toFixed(1) + " GW" : Math.round(nearbyMw) + " MW";
+    return `<div class="fiber-route-card">
+      <div class="fiber-route-header">
+        <div class="fiber-route-icon">${analyticsIcon('fiber')}</div>
+        <div class="fiber-route-name">${escHtml(r.name || r.id)}</div>
+        <div class="fiber-sample-badge">SAMPLE</div>
+      </div>
+      <div class="fiber-route-stats">
+        <div class="fiber-stat"><div class="fiber-stat-val">${escHtml(kmLabel)}</div><div class="fiber-stat-lbl">Route Length</div></div>
+        <div class="fiber-stat"><div class="fiber-stat-val">${nearbyCount.toLocaleString()}</div><div class="fiber-stat-lbl">Nearby Facilities</div></div>
+        <div class="fiber-stat"><div class="fiber-stat-val">${escHtml(mwLabel)}</div><div class="fiber-stat-lbl">Nearby Known MW</div></div>
+        <div class="fiber-stat"><div class="fiber-stat-val">${r.pts.length}</div><div class="fiber-stat-lbl">Path Points</div></div>
+      </div>
+    </div>`;
+  }).join("");
+
+  container.innerHTML = `
+    <div class="callout info" style="margin-bottom:16px;font-size:12px">
+      Fiber network routes are sample data only — exact alignments are unverified. Nearby facility counts
+      use a 100 km proximity radius from any point on the route.
+    </div>
+    <div class="analytics-kpi-grid" style="margin-bottom:20px">
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(96,165,250,0.12);color:#60a5fa">${analyticsIcon('fiber')}</div>
+        <div class="analytics-kpi-label">Sample Routes</div>
+        <div class="analytics-kpi-value">${fiberRoutes.length}</div>
+        <div class="analytics-kpi-meta">mapped fiber corridors</div>
+      </div>
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(96,165,250,0.12);color:#60a5fa">${analyticsIcon('zap')}</div>
+        <div class="analytics-kpi-label">Total Route Length</div>
+        <div class="analytics-kpi-value">${totalKm >= 1000 ? (totalKm/1000).toFixed(1) + "k" : totalKm} km</div>
+        <div class="analytics-kpi-meta">approximate sample coverage</div>
+      </div>
+    </div>
+    <div class="fiber-routes-grid">${routeCards}</div>`;
 }
 
 /* ─────────────────────────────────────────────────────────────── */
@@ -351,12 +931,44 @@ function renderAboutPage() {
             <span class="roadmap-badge done">Live</span>
           </div>
           <div class="roadmap-item">
-            <div class="roadmap-dot wip"></div>
+            <div class="roadmap-dot done"></div>
             <div class="roadmap-content">
-              <div class="roadmap-title">Policy Timeline</div>
-              <div class="roadmap-desc">Chronological view of legislation, court decisions, and zoning changes with date filtering.</div>
+              <div class="roadmap-title">Infrastructure Pipeline Database</div>
+              <div class="roadmap-desc">3,700+ tracked data center and AI campus projects with searchable table, filters, detail panels, and CSV export.</div>
             </div>
-            <span class="roadmap-badge wip">In Progress</span>
+            <span class="roadmap-badge done">Live</span>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot done"></div>
+            <div class="roadmap-content">
+              <div class="roadmap-title">Policy Simulator</div>
+              <div class="roadmap-desc">County attractiveness scoring with "what if restriction removed" scenario modeling in the detail panel.</div>
+            </div>
+            <span class="roadmap-badge done">Live</span>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot done"></div>
+            <div class="roadmap-content">
+              <div class="roadmap-title">Due-Diligence Report Generator</div>
+              <div class="roadmap-desc">One-click printable county intelligence reports covering policy, risk, water, incentives, and pipeline data.</div>
+            </div>
+            <span class="roadmap-badge done">Live</span>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot done"></div>
+            <div class="roadmap-content">
+              <div class="roadmap-title">Parcel Intelligence</div>
+              <div class="roadmap-desc">Live parcel data for 5 counties with DC feasibility scoring, zoning analysis, and proximity assessment.</div>
+            </div>
+            <span class="roadmap-badge done">Live</span>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot done"></div>
+            <div class="roadmap-content">
+              <div class="roadmap-title">Political Risk &amp; Water Stress Layers</div>
+              <div class="roadmap-desc">Algorithmically-scored political risk and water stress overlays for 100+ counties on the main map.</div>
+            </div>
+            <span class="roadmap-badge done">Live</span>
           </div>
           <div class="roadmap-item">
             <div class="roadmap-dot planned"></div>
@@ -377,8 +989,8 @@ function renderAboutPage() {
           <div class="roadmap-item">
             <div class="roadmap-dot planned"></div>
             <div class="roadmap-content">
-              <div class="roadmap-title">Data Export</div>
-              <div class="roadmap-desc">Download county policy data as CSV, GeoJSON, or Shapefile for GIS analysis.</div>
+              <div class="roadmap-title">Opportunity Zone &amp; FEMA Flood Integration</div>
+              <div class="roadmap-desc">Federal Opportunity Zones and FEMA NFHL flood zone boundaries integrated as map layers.</div>
             </div>
             <span class="roadmap-badge planned">Planned</span>
           </div>
