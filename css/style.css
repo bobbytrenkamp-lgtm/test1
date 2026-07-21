@@ -7088,6 +7088,20 @@ html.is-light-theme #cmd-box {
 .cmp-field-best  { background: rgba(72, 199, 116, 0.07); border-left: 3px solid #4ade80; padding-left: 8px !important; }
 .cmp-field-worst { background: rgba(220, 38, 38, 0.05); border-left: 3px solid #dc2626; padding-left: 8px !important; }
 
+.cmp-col-facility .cmp-col-header { border-top-color: #4874e8 !important; }
+.cmp-facility-type-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: #4874e8;
+  background: rgba(72,116,232,0.12);
+  border: 1px solid rgba(72,116,232,0.25);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-bottom: 4px;
+  display: inline-block;
+}
 
 /* ── Search section headers ── */
 .search-section-hdr {

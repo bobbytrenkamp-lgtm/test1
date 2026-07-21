@@ -150,7 +150,8 @@ let _wsVisible        = false;
 const WS_LOCAL_KEY    = "dc-workspaces-local-v1";
 const WS_MAX_LOCAL    = 10;
 let compareMode       = false;
-const compareCounties = []; // array of fips strings, unlimited
+const compareCounties   = []; // array of fips strings
+const compareFacilities = []; // array of pipeline facility objects
 let countyFillOpacity = 1.0;
 
 /* ── Draw / Pin tool state ── */
@@ -1857,12 +1858,12 @@ function renderComparePanel() {
   if (!body) return;
   body.innerHTML = "";
 
-  if (!compareCounties.length) {
+  if (!compareCounties.length && !compareFacilities.length) {
     const wrap = document.createElement("div");
     wrap.className = "cmp-empty-wrap";
     const hint = document.createElement("p");
     hint.className = "cmp-empty-hint";
-    hint.textContent = "Click counties on the map to compare suitability, severity, and policy details side-by-side.";
+    hint.textContent = "Click counties on the map, or use “Add to Compare” on any facility, to compare up to 6 items side-by-side.";
     wrap.appendChild(hint);
     const slots = document.createElement("div");
     slots.className = "cmp-empty-slots";
@@ -2005,8 +2006,92 @@ function renderComparePanel() {
     body.appendChild(col);
   });
 
-  // Always show one "+" slot at the end to invite more additions
-  body.appendChild(_makeCmpAddSlot());
+  // Render facility columns
+  compareFacilities.forEach(facility => {
+    const facilityId = facility.facility_id || facility.id || facility.name;
+    const col = document.createElement("div");
+    col.className = "cmp-col cmp-col-facility";
+    col.setAttribute("role", "group");
+    col.setAttribute("aria-label", facility.name);
+    col.style.setProperty("--cmp-sev-color", "#4874e8");
+
+    const hdr = document.createElement("div");
+    hdr.className = "cmp-col-header";
+    hdr.style.borderTopColor = "#4874e8";
+    hdr.innerHTML = `<div class="cmp-facility-type-badge">Facility</div>`;
+    const nameWrap = document.createElement("div");
+    const nameEl   = document.createElement("div");
+    nameEl.className = "cmp-col-name";
+    nameEl.textContent = facility.name || "Unknown";
+    const stateEl  = document.createElement("div");
+    stateEl.className = "cmp-col-state";
+    stateEl.textContent = [facility.city, facility.state_abbr].filter(Boolean).join(", ");
+    nameWrap.appendChild(nameEl);
+    nameWrap.appendChild(stateEl);
+    const removeBtn = document.createElement("button");
+    removeBtn.className  = "cmp-col-remove";
+    removeBtn.type       = "button";
+    removeBtn.textContent = "×";
+    removeBtn.setAttribute("aria-label", `Remove ${facility.name}`);
+    removeBtn.addEventListener("click", () => removeFacilityFromCompare(facilityId));
+    hdr.appendChild(nameWrap);
+    hdr.appendChild(removeBtn);
+
+    const colBody = document.createElement("div");
+    colBody.className = "cmp-col-body";
+
+    function addFacilityField(label, text) {
+      const f = document.createElement("div");
+      f.className = "cmp-field";
+      const lEl = document.createElement("div");
+      lEl.className = "cmp-field-label";
+      lEl.textContent = label;
+      const vEl = document.createElement("div");
+      vEl.className = "cmp-field-value";
+      vEl.textContent = text;
+      f.appendChild(lEl);
+      f.appendChild(vEl);
+      colBody.appendChild(f);
+    }
+
+    const statusColors = { operational: "#22c55e", construction: "#f59e0b", planned: "#60a5fa", decommissioned: "#9ca3af" };
+    const statusCol = statusColors[facility.operational_status] || "#6b7280";
+    const statusBadge = document.createElement("div");
+    statusBadge.className = "cmp-field";
+    statusBadge.innerHTML = `<div class="cmp-field-label">Status</div><div class="cmp-field-value"><span class="cmp-sev-dot" style="background:${statusCol}"></span>${escHtml(facility.operational_status || "unknown")}</div>`;
+    colBody.appendChild(statusBadge);
+
+    if (facility.capacity_mw_known) {
+      const mw = facility.capacity_mw_known;
+      addFacilityField("Known Capacity", mw >= 1000 ? (mw/1000).toFixed(1) + " GW" : Math.round(mw) + " MW");
+    }
+    if (facility.capacity_mw_planned) {
+      const mw = facility.capacity_mw_planned;
+      addFacilityField("Planned Capacity", mw >= 1000 ? (mw/1000).toFixed(1) + " GW" : Math.round(mw) + " MW");
+    }
+    if (facility.facility_type) addFacilityField("Facility Type", facility.facility_type);
+    if (facility.operator)      addFacilityField("Operator", facility.operator);
+    if (facility.county)        addFacilityField("County", facility.county);
+
+    // Show county suitability if FIPS available
+    if (facility.county_fips) {
+      const cty = mapData[facility.county_fips];
+      if (cty) {
+        const suit = computeSuitabilityScore(facility.county_fips, cty);
+        const f2 = document.createElement("div");
+        f2.className = "cmp-field";
+        f2.innerHTML = `<div class="cmp-field-label">County Suitability</div><div class="cmp-field-value"><span class="cmp-suit-grade cmp-suit-${suit.grade}">${suit.grade}</span>${suit.score}/100 — ${escHtml(suit.label)}</div>`;
+        colBody.appendChild(f2);
+      }
+    }
+
+    col.appendChild(hdr);
+    col.appendChild(colBody);
+    body.appendChild(col);
+  });
+
+  // Always show one "+" slot at the end to invite more additions (up to max)
+  if (_cmpTotal() < CMP_MAX) body.appendChild(_makeCmpAddSlot());
 }
 
 
@@ -2022,12 +2107,37 @@ function _makeCmpAddSlot() {
   return col;
 }
 
+const CMP_MAX = 6;
+
+function _cmpTotal() { return compareCounties.length + compareFacilities.length; }
+
 function addToCompare(fips) {
   if (!fips || compareCounties.includes(fips)) return;
+  if (_cmpTotal() >= CMP_MAX) { showMapToast(`Compare is full (max ${CMP_MAX} items)`); return; }
   compareCounties.push(fips);
   renderComparePanel();
   const county = mapData[fips];
   if (county) showMapToast(`Added: ${county.name}`);
+}
+
+function addFacilityToCompare(facility) {
+  if (!facility) return;
+  const id = facility.facility_id || facility.id || facility.name;
+  if (compareFacilities.find(f => (f.facility_id || f.id || f.name) === id)) {
+    showMapToast("Already in compare");
+    return;
+  }
+  if (_cmpTotal() >= CMP_MAX) { showMapToast(`Compare is full (max ${CMP_MAX} items)`); return; }
+  compareFacilities.push(facility);
+  if (!compareMode) toggleComparePanel();
+  renderComparePanel();
+  showMapToast(`Added: ${facility.name || "Facility"}`);
+}
+
+function removeFacilityFromCompare(id) {
+  const idx = compareFacilities.findIndex(f => (f.facility_id || f.id || f.name) === id);
+  if (idx >= 0) compareFacilities.splice(idx, 1);
+  renderComparePanel();
 }
 
 function removeFromCompare(fips) {
@@ -2038,6 +2148,7 @@ function removeFromCompare(fips) {
 
 function clearCompare() {
   compareCounties.length = 0;
+  compareFacilities.length = 0;
   renderComparePanel();
 }
 
@@ -2882,6 +2993,9 @@ function initLeafletMap() {
     if (_compareBtnFips) {
       addToCompare(_compareBtnFips);
       _updateDetailCompareBtn(_compareBtnFips);
+    } else if (_compareBtnFacility) {
+      addFacilityToCompare(_compareBtnFacility);
+      _updateDetailFacilityCompareBtn(_compareBtnFacility);
     }
   });
 
@@ -4969,14 +5083,29 @@ function _updateDetailReportBtn(fips, name, state, countyData) {
   btn.hidden = false;
 }
 
-let _compareBtnFips = null;
+let _compareBtnFips     = null;
+let _compareBtnFacility = null;
 
 function _updateDetailCompareBtn(fips) {
   const btn = document.getElementById("detail-compare-btn");
   if (!btn) return;
+  _compareBtnFacility = null; // clear facility mode
   if (!fips) { btn.hidden = true; return; }
   _compareBtnFips = fips;
   const already = compareCounties.includes(fips);
+  btn.hidden = false;
+  btn.setAttribute("title", already ? "Already in Compare" : "Add to Compare");
+  btn.setAttribute("aria-label", already ? "Already in Compare" : "Add to Compare");
+  btn.classList.toggle("detail-compare-btn-active", already);
+}
+
+function _updateDetailFacilityCompareBtn(facility) {
+  const btn = document.getElementById("detail-compare-btn");
+  if (!btn) return;
+  _compareBtnFips = null; // clear county mode
+  _compareBtnFacility = facility;
+  const id = facility.facility_id || facility.id || facility.name;
+  const already = compareFacilities.some(f => (f.facility_id || f.id || f.name) === id);
   btn.hidden = false;
   btn.setAttribute("title", already ? "Already in Compare" : "Add to Compare");
   btn.setAttribute("aria-label", already ? "Already in Compare" : "Add to Compare");
@@ -5108,6 +5237,7 @@ function setDetailFacility(facility, kind) {
   _saveCurrentData = { name: facility.name, kind: kind, county_fips: facility.county_fips || '' };
   _updateDetailSaveBtn();
   _updateDetailReportBtn(null, null, null, null);
+  _updateDetailFacilityCompareBtn(facility);
   const county = mapData[facility.county_fips];
 
   const reg = (window.LAYER_REGISTRY || []).find(r => r.id === kind) || {};
