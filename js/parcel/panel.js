@@ -423,6 +423,7 @@ window.PARCEL_PANEL = (function () {
       <div class="pp-actions">
         <button class="pp-action-primary" onclick="window.PARCEL_PANEL._addToCompare()">+ Compare</button>
         <button class="pp-action-draw" onclick="window.PARCEL_DRAW_TOOL?.activate()" title="Draw polygon to select multiple parcels">◻ Draw</button>
+        <button class="pp-action-report" onclick="window.PARCEL_PANEL._openReport()" title="Open printable parcel report">⎙ Report</button>
         <button class="pp-action-secondary" onclick="window.PARCEL_PANEL.close()">Close</button>
       </div>
     `;
@@ -471,6 +472,12 @@ window.PARCEL_PANEL = (function () {
       if (zoningCode) {
         setTimeout(() => window.ZONING?.selectDistrict?.(zoningCode), 600);
       }
+    }
+  }
+
+  function _openReport() {
+    if (_lastFeature) {
+      window.PARCEL_REPORT?.open(_lastFeature, _lastJurisId);
     }
   }
 
@@ -549,5 +556,5 @@ window.PARCEL_PANEL = (function () {
     }
   });
 
-  return { show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh, _exportCSV };
+  return { show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh, _exportCSV, _openReport };
 })();

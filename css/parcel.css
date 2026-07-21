@@ -341,6 +341,20 @@
 .pp-action-draw:hover { background: #06b6d4; color: #fff; }
 .pp-action-draw.active { background: #06b6d4; color: #fff; }
 
+.pp-action-report {
+  background: none;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.12s, border-color 0.12s;
+}
+.pp-action-report:hover { color: var(--text); border-color: var(--text-muted); }
+
 .pp-action-secondary {
   background: none;
   color: var(--text-muted);
