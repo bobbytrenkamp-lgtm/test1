@@ -83,6 +83,61 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Prince William County, Virginia — Phase 2 pilot ────────────────
+     *
+     * Prince William County (the Manassas/Gainesville/Haymarket corridor) is
+     * the second-largest data center market in Virginia and one of the fastest-
+     * growing in the US.  Major operators including Microsoft, Amazon, and Meta
+     * have facilities here.  The county operates its own ArcGIS REST service.
+     *
+     * SERVICE URL VERIFICATION REQUIRED:
+     *   Confirm the parcel FeatureServer path at:
+     *   https://www.pwcgis.com/arcgis/rest/services/
+     *   Field names must be verified against the live service schema.
+     * ─────────────────────────────────────────────────────────────────── */
+    '51153': {
+      id:          'va-prince-william-county',
+      name:        'Prince William County, Virginia',
+      state:       'VA',
+      fips:        '51153',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis.pwcgov.org/arcgis/rest/services/Property/Parcels/FeatureServer/0',
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'OBJECTID',
+        pin:                 'GPIN',
+        address:             'SITE_ADDRESS',
+        owner:               'OWNER',
+        zoning_code:         'ZONING_CODE',
+        land_use_code:       'LAND_USE',
+        land_use_desc:       'LAND_USE_DESC',
+        area_sqft:           'SHAPE_Area',
+        area_acres:          'ACREAGE',
+        assessed_value:      'TOTAL_ASSD',
+        land_value:          'LAND_ASSD',
+        improvement_value:   'IMPRV_ASSD',
+        tax_year:            'TAX_YEAR',
+        last_sale_date:      'SALE_DATE',
+        last_sale_price:     'SALE_PRICE',
+        deed_book:           'DEED_BOOK',
+        deed_page:           'DEED_PAGE',
+        subdivision:         'SUBDIV',
+        county_fips:         '__computed__',
+      },
+
+      outFields: null,
+
+      attribution: {
+        name:    'Prince William County GIS',
+        url:     'https://www.pwcgov.org/government/dept/it/Pages/GIS.aspx',
+        portal:  'https://gis.pwcgov.org/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Manassas/Gainesville corridor — second-largest VA data center market.',
+      },
+    },
+
   };
 
   function get(fips) {

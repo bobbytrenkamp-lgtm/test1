@@ -431,3 +431,263 @@
   .pp-tab { transition: none; }
   .pp-action-primary { transition: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════ *
+ * Parcel Feasibility — Phase 2 styles                                        *
+ * ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Feasibility group wrapper */
+.pp-feasibility {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+
+/* ── Eligibility badge ── */
+.pf-eligibility {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 7px;
+  margin: 8px 0 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.pf-eligible {
+  background: rgba(16, 185, 129, 0.14);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.pf-conditional {
+  background: rgba(245, 158, 11, 0.13);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.pf-prohibited {
+  background: rgba(239, 68, 68, 0.13);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.pf-unknown {
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.pf-eligibility-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.pf-eligibility-label {
+  flex: 1;
+}
+
+.pf-conf {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pf-conf-mod { background: rgba(245, 158, 11, 0.18); color: #f59e0b; }
+.pf-conf-low { background: rgba(148, 163, 184, 0.15); color: var(--text-muted); }
+
+/* ── Development Potential Score ── */
+.pf-score-row {
+  margin: 4px 0 10px;
+}
+
+.pf-score-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 5px;
+}
+
+.pf-score-bar-wrap {
+  height: 7px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.pf-score-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.pf-score-high { background: #10b981; }
+.pf-score-mod  { background: #f59e0b; }
+.pf-score-low  { background: #ef4444; }
+
+.pf-score-value {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.pf-score-band {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* ── Score factors ── */
+.pf-factors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin: 0 0 10px;
+  padding: 8px;
+  background: var(--surface-2);
+  border-radius: 6px;
+}
+
+.pf-factor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  padding: 2px 0;
+}
+
+.pf-factor-label {
+  color: var(--text-muted);
+}
+
+.pf-factor-score {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  min-width: 26px;
+  text-align: right;
+}
+
+.pf-factor-hi  { color: #10b981; }
+.pf-factor-mid { color: #f59e0b; }
+.pf-factor-lo  { color: #ef4444; }
+
+/* ── Buildable Envelope ── */
+.pf-envelope {
+  margin: 0 0 10px;
+  padding: 10px;
+  background: var(--surface-2);
+  border-radius: 7px;
+  border: 1px solid var(--border);
+}
+
+.pf-envelope-title {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.pf-envelope-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.pf-env-stat {
+  text-align: center;
+}
+
+.pf-env-val {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.pf-env-lbl {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.pf-setbacks {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 5px;
+  margin-top: 4px;
+}
+
+/* ── Approval & conditions ── */
+.pf-approval {
+  font-size: 12px;
+  color: var(--text);
+  margin: 0 0 8px;
+  padding: 6px 8px;
+  background: var(--surface-2);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+}
+
+.pf-conditions {
+  margin: 0 0 8px;
+  font-size: 12px;
+}
+
+.pf-conditions > summary {
+  cursor: pointer;
+  color: var(--text-muted);
+  user-select: none;
+  padding: 4px 0;
+}
+
+.pf-conditions > summary:hover { color: var(--text); }
+
+.pf-conditions-list {
+  margin: 6px 0 0 14px;
+  padding: 0;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pf-conditions-list li {
+  line-height: 1.4;
+}
+
+/* ── DC summary & disclaimer ── */
+.pf-dc-summary {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin: 0 0 8px;
+  font-style: italic;
+}
+
+.pf-disclaimer {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 5px;
+  padding: 6px 8px;
+  line-height: 1.4;
+  margin: 0 0 4px;
+}
+
+/* Light theme overrides */
+html[data-theme="light"] .pf-eligible    { background: rgba(5, 150, 105, 0.10); color: #047857; border-color: rgba(5, 150, 105, 0.25); }
+html[data-theme="light"] .pf-conditional { background: rgba(217, 119, 6, 0.10);  color: #92400e; border-color: rgba(217, 119, 6, 0.25); }
+html[data-theme="light"] .pf-prohibited  { background: rgba(220, 38, 38, 0.10);  color: #991b1b; border-color: rgba(220, 38, 38, 0.25); }
+html[data-theme="light"] .pf-conf-mod    { background: rgba(217, 119, 6, 0.12);  color: #92400e; }
+html[data-theme="light"] .pf-disclaimer  { background: rgba(217, 119, 6, 0.07);  border-color: rgba(217, 119, 6, 0.2); }

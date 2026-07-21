@@ -102,5 +102,11 @@ window.PARCEL = (function () {
     }
   }
 
+  /* When zoning data finishes loading, refresh the panel so the feasibility
+   * section can render (it requires cached zoning data). */
+  document.addEventListener('zoning:jurisdiction-loaded', () => {
+    window.PARCEL_PANEL?.refresh();
+  });
+
   return { init, onLayerToggle, onCountyChanged, search, focusParcel };
 })();
