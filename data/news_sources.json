@@ -1,7 +1,7 @@
 {
   "_note": "Configurable news sources for update_ai_news.py. Set enabled:false to disable without removing. Verify feed URLs return valid RSS/Atom before enabling.",
   "settings": {
-    "max_articles_total": 400,
+    "max_articles_total": 600,
     "max_articles_per_source": 30,
     "retention_days": 30,
     "relevance_threshold": 3,
@@ -42,7 +42,7 @@
       "url": "https://venturebeat.com/category/ai/feed/",
       "homepage": "https://venturebeat.com",
       "enabled": true,
-      "note": "AI-specific feed — high relevance expected"
+      "note": "AI-specific feed \u2014 high relevance expected"
     },
     {
       "id": "wired",
@@ -107,7 +107,7 @@
       "url": "https://blog.google/technology/ai/rss/",
       "homepage": "https://blog.google/technology/ai/",
       "enabled": true,
-      "note": "Google AI blog — expect high relevance"
+      "note": "Google AI blog \u2014 expect high relevance"
     },
     {
       "id": "microsoft_ai_blog",
@@ -175,7 +175,7 @@
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "homepage": "https://www.datacenterdynamics.com",
       "enabled": true,
-      "note": "Data center industry news — high relevance expected"
+      "note": "Data center industry news \u2014 high relevance expected"
     },
     {
       "id": "dc_knowledge",
@@ -205,7 +205,7 @@
     },
     {
       "id": "theregister_dc",
-      "name": "The Register — Data Centres",
+      "name": "The Register \u2014 Data Centres",
       "tier": "industry",
       "url": "https://www.theregister.com/data_centre/headlines.atom",
       "homepage": "https://www.theregister.com/data_centre/",
@@ -228,7 +228,7 @@
       "url": "https://www.fierceelectronics.com/rss/xml",
       "homepage": "https://www.fierceelectronics.com",
       "enabled": false,
-      "note": "Disabled — URL reliability uncertain; re-enable after manual verification"
+      "note": "Disabled \u2014 URL reliability uncertain; re-enable after manual verification"
     },
     {
       "id": "electrek",
