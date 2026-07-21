@@ -405,6 +405,26 @@
 }
 .pl-map-link:hover { background: #3a63d4; }
 
+.pl-compare-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #4874e8;
+  background: transparent;
+  border: 1px solid #4874e8;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  justify-content: center;
+  transition: background .15s, color .15s;
+}
+.pl-compare-link:hover { background: #4874e8; color: #fff; }
+
 /* ── Light theme overrides ── */
 html[data-theme="light"] #pipeline-table thead th { background: #f4f6fb; }
 html[data-theme="light"] #pipeline-table tbody tr.selected { background: rgba(72,116,232,0.08); }

@@ -334,6 +334,12 @@ window.PIPELINE = (function () {
       _jumpToMap(d);
     });
 
+    bodyEl.querySelector(".pl-compare-link")?.addEventListener("click", () => {
+      if (typeof addFacilityToCompare === "function") {
+        addFacilityToCompare(d);
+      }
+    });
+
     panel.classList.add("open");
   }
 
@@ -397,6 +403,10 @@ window.PIPELINE = (function () {
       <button class="pl-map-link">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
         View on Map
+      </button>
+      <button class="pl-compare-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Add to Compare
       </button>`;
   }
 
