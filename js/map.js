@@ -3755,7 +3755,7 @@ function initDashboardToggle() {
     const hidden = document.getElementById("app").classList.toggle("top-hidden");
     btn.setAttribute("aria-label", hidden ? "Expand dashboard" : "Minimize dashboard");
     btn.title = hidden ? "Expand dashboard" : "Minimize dashboard";
-    if (activeTab === "news") localStorage.setItem("newsTopHidden", hidden ? "1" : "0");
+    localStorage.setItem("topHidden", hidden ? "1" : "0");
   });
 }
 
@@ -5645,11 +5645,13 @@ function switchTab(tab) {
     btn.setAttribute("aria-selected", isActive ? "true" : "false");
   });
 
-  // Restore news-tab collapsed preference; always expand on other tabs
-  if (tab !== "news") appEl.classList.remove("top-hidden");
+  // Fullpage tabs (home/analytics/about) always show the header expanded;
+  // map and news restore the user's saved collapsed preference.
+  const isFullpage = tab === "analytics" || tab === "about" || tab === "home";
+  if (isFullpage || tab === "stocks") appEl.classList.remove("top-hidden");
 
   appEl.classList.toggle("stocks-mode",   tab === "stocks");
-  appEl.classList.toggle("fullpage-mode", tab === "analytics" || tab === "about" || tab === "home");
+  appEl.classList.toggle("fullpage-mode", isFullpage);
 
   // Hide all views, show the active one
   mainEl.hidden = true;
@@ -5659,6 +5661,8 @@ function switchTab(tab) {
   if (analyticsEl) analyticsEl.hidden = true;
   if (aboutEl)     aboutEl.hidden     = true;
 
+  const savedHidden = () => appEl.classList.toggle("top-hidden", localStorage.getItem("topHidden") === "1");
+
   if (tab === "home") {
     if (homeEl) { homeEl.hidden = false; triggerViewEnter(homeEl); }
     searchBar.classList.add("news-mode");
@@ -5667,8 +5671,7 @@ function switchTab(tab) {
     newsEl.hidden = false; triggerViewEnter(newsEl);
     searchBar.classList.add("news-mode");
     renderNews();
-    // Apply after renderNews so nothing in the render path can override it
-    appEl.classList.toggle("top-hidden", localStorage.getItem("newsTopHidden") === "1");
+    savedHidden();
   } else if (tab === "stocks") {
     if (stocksEl) { stocksEl.hidden = false; triggerViewEnter(stocksEl); }
     searchBar.classList.add("news-mode");
@@ -5684,6 +5687,7 @@ function switchTab(tab) {
   } else {
     mainEl.hidden = false;
     searchBar.classList.remove("news-mode");
+    savedHidden();
     if (!leafletMap) {
       mapInitPromise = initMapFromGeo();
     } else {
