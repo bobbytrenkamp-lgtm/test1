@@ -3755,6 +3755,7 @@ function initDashboardToggle() {
     const hidden = document.getElementById("app").classList.toggle("top-hidden");
     btn.setAttribute("aria-label", hidden ? "Expand dashboard" : "Minimize dashboard");
     btn.title = hidden ? "Expand dashboard" : "Minimize dashboard";
+    if (activeTab === "news") sessionStorage.setItem("newsTopHidden", hidden ? "1" : "0");
   });
 }
 
@@ -5644,8 +5645,12 @@ function switchTab(tab) {
     btn.setAttribute("aria-selected", isActive ? "true" : "false");
   });
 
-  // Restore header whenever leaving the map — top-toggle is hidden on other tabs on mobile
-  if (tab !== "map") appEl.classList.remove("top-hidden");
+  // Restore header whenever leaving the map; restore news-tab collapsed preference
+  if (tab === "news") {
+    appEl.classList.toggle("top-hidden", sessionStorage.getItem("newsTopHidden") === "1");
+  } else {
+    appEl.classList.remove("top-hidden");
+  }
 
   appEl.classList.toggle("stocks-mode",   tab === "stocks");
   appEl.classList.toggle("fullpage-mode", tab === "analytics" || tab === "about" || tab === "home");
