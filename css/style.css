@@ -7805,3 +7805,141 @@ html[data-theme="light"] .news-developing-strip { background: rgba(239,68,68,0.0
   .news-pub-header { padding: 6px 12px 0; }
   .news-developing-strip { margin: 0 12px; }
 }
+
+/* ── County Rankings ── */
+.rnk-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.rnk-search {
+  flex: 1;
+  min-width: 160px;
+  max-width: 260px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  outline: none;
+}
+.rnk-search:focus { border-color: #4874e8; }
+.rnk-grade-btns { display: flex; gap: 2px; }
+.rnk-grade-btn {
+  padding: 5px 9px;
+  font-size: 11px;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.rnk-grade-btn:hover { background: var(--hover); color: var(--text); }
+.rnk-grade-btn.active { background: #4874e8; color: #fff; border-color: #4874e8; }
+.rnk-state-sel {
+  padding: 5px 8px;
+  font-size: 11.5px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  max-width: 160px;
+}
+.rnk-count {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.rnk-table-wrap { overflow-x: auto; border-radius: 6px; border: 1px solid var(--border); }
+.rnk-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  min-width: 560px;
+}
+.rnk-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 7px 10px;
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.rnk-th-rank { width: 40px; text-align: center; }
+.rnk-row {
+  border-bottom: 1px solid var(--border-faint, rgba(255,255,255,0.05));
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.rnk-row:hover { background: var(--hover); }
+.rnk-row:focus { outline: 2px solid #4874e8; outline-offset: -2px; }
+.rnk-table tbody td { padding: 7px 10px; vertical-align: middle; }
+.rnk-rank { text-align: center; color: var(--text-muted); font-size: 11px; width: 40px; }
+.rnk-county { font-weight: 500; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rnk-state { color: var(--text-muted); white-space: nowrap; }
+.rnk-grade-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid;
+  letter-spacing: 0.02em;
+}
+.rnk-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 100px;
+}
+.rnk-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  min-width: 4px;
+  max-width: 70px;
+  opacity: 0.75;
+}
+.rnk-score-val { font-size: 12px; color: var(--text); white-space: nowrap; min-width: 24px; }
+.rnk-lv-chip { font-size: 11px; font-weight: 500; white-space: nowrap; }
+.rnk-more-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: 500;
+  color: #4874e8;
+  background: transparent;
+  border: 1px solid #4874e8;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.15s, color 0.15s;
+}
+.rnk-more-btn:hover { background: #4874e8; color: #fff; }
+.rnk-note {
+  margin-top: 10px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
