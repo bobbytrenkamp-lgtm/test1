@@ -222,6 +222,16 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">County Suitability Rankings</div>
+      <div id="analytics-rankings-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Computing suitability scores…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">Infrastructure Pipeline</div>
       <div id="analytics-pipeline-section">
         <div class="analytics-pipeline-loading">
@@ -267,6 +277,7 @@ function renderAnalyticsPage() {
   _fillPowerStats();
   _fillFiberStats();
   _renderScenarioBuilder();
+  _renderCountyRankings();
 }
 
 function _buildPolicyTimelineHtml(counties) {
@@ -1047,6 +1058,178 @@ function renderAboutPage() {
   `;
 
   renderPageFooter('about-footer-target');
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* County Suitability Rankings                                        */
+
+function _renderCountyRankings() {
+  const container = document.getElementById("analytics-rankings-section");
+  if (!container) return;
+
+  if (typeof computeSuitabilityScore !== "function" || !mapData || !Object.keys(mapData).length) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted);padding:8px 0;">Suitability data not available — load the map first.</p>`;
+    return;
+  }
+
+  // Build and score county list
+  const fipsSet = new Set(Object.keys(mapData));
+  // Include any risk-data FIPS not in mapData (counties scored by political risk only)
+  const riskData = window.DC_RISK_BY_FIPS || {};
+  for (const f of Object.keys(riskData)) {
+    if (!fipsSet.has(f)) fipsSet.add(f);
+  }
+
+  const ranked = [];
+  for (const fips of fipsSet) {
+    const county = mapData[fips] || null;
+    const s = computeSuitabilityScore(fips, county);
+    const name  = county ? county.name  : (riskData[fips] ? riskData[fips].county_name || fips : fips);
+    const state = county ? county.state : (riskData[fips] ? riskData[fips].state || "" : "");
+    const level = county ? county.level : 0;
+    ranked.push({ fips, name, state, score: s.score, grade: s.grade, label: s.label, level });
+  }
+  ranked.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+
+  // Collect states for filter
+  const stateSet = new Set(ranked.map(r => r.state).filter(Boolean));
+  const states   = ["All States", ...Array.from(stateSet).sort()];
+
+  const GRADE_COLORS = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
+  const LEVEL_CHIPS  = {
+    "-1": { lbl: "Pro-DC Hub",    col: "#22c55e" },
+    "0":  { lbl: "No Restriction", col: "#6b7280" },
+    "1":  { lbl: "Light",          col: "#86efac" },
+    "2":  { lbl: "Moderate",       col: "#f97316" },
+    "3":  { lbl: "Significant",    col: "#dc2626" },
+    "4":  { lbl: "Ban",            col: "#7f1d1d" },
+  };
+
+  function rowHtml(r, rank) {
+    const gc  = GRADE_COLORS[r.grade] || "#9ca3af";
+    const lv  = LEVEL_CHIPS[String(r.level)] || { lbl: "Unknown", col: "#9ca3af" };
+    const bar = Math.round(r.score);
+    return `<tr class="rnk-row" data-fips="${escHtml(r.fips)}" tabindex="0" role="button" aria-label="Open ${escHtml(r.name)}, ${escHtml(r.state)} on the map">
+      <td class="rnk-rank">${rank}</td>
+      <td class="rnk-county">${escHtml(r.name)}</td>
+      <td class="rnk-state">${escHtml(r.state)}</td>
+      <td class="rnk-grade"><span class="rnk-grade-chip" style="background:${gc}22;color:${gc};border-color:${gc}44">${r.grade}</span></td>
+      <td class="rnk-score">
+        <div class="rnk-bar-wrap">
+          <div class="rnk-bar" style="width:${bar}%;background:${gc}"></div>
+        </div>
+        <span class="rnk-score-val">${r.score}</span>
+      </td>
+      <td class="rnk-restrict"><span class="rnk-lv-chip" style="color:${lv.col}">${escHtml(lv.lbl)}</span></td>
+    </tr>`;
+  }
+
+  // State for filtering
+  let _filterGrade = "All";
+  let _filterState = "All States";
+  let _filterSearch = "";
+  let _page = 0;
+  const PAGE_SIZE = 50;
+
+  function filtered() {
+    return ranked.filter(r => {
+      if (_filterGrade !== "All" && r.grade !== _filterGrade) return false;
+      if (_filterState !== "All States" && r.state !== _filterState) return false;
+      if (_filterSearch) {
+        const q = _filterSearch.toLowerCase();
+        if (!r.name.toLowerCase().includes(q) && !r.state.toLowerCase().includes(q)) return false;
+      }
+      return true;
+    });
+  }
+
+  function renderTable() {
+    const rows = filtered();
+    const page = rows.slice(0, (_page + 1) * PAGE_SIZE);
+    const tbody = container.querySelector("#rnk-tbody");
+    const countEl = container.querySelector("#rnk-count");
+    const moreBtn = container.querySelector("#rnk-more-btn");
+    if (tbody)   tbody.innerHTML = page.map((r, i) => rowHtml(r, i + 1)).join("");
+    if (countEl) countEl.textContent = `${rows.length} counties`;
+    if (moreBtn) {
+      const hasMore = rows.length > page.length;
+      moreBtn.hidden = !hasMore;
+      moreBtn.textContent = `Load more (${rows.length - page.length} remaining)`;
+    }
+    // Re-wire row clicks after re-render
+    tbody?.querySelectorAll(".rnk-row").forEach(tr => {
+      const handler = () => {
+        const fips = tr.dataset.fips;
+        if (!fips) return;
+        if (typeof switchTab === "function") switchTab("map");
+        setTimeout(() => {
+          if (typeof selectCounty === "function") selectCounty(fips);
+          if (typeof zoomToFeature === "function") zoomToFeature(fips);
+        }, 150);
+      };
+      tr.addEventListener("click", handler);
+      tr.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+    });
+  }
+
+  container.innerHTML = `
+    <div class="rnk-toolbar">
+      <input id="rnk-search" class="rnk-search" type="text" placeholder="Search county or state…" autocomplete="off" />
+      <div class="rnk-grade-btns" role="group" aria-label="Filter by grade">
+        ${["All","A","B","C","D","F"].map(g => `<button class="rnk-grade-btn${g === "All" ? " active" : ""}" data-grade="${g}">${g === "All" ? "All grades" : "Grade " + g}</button>`).join("")}
+      </div>
+      <select id="rnk-state-sel" class="rnk-state-sel">
+        ${states.map(s => `<option>${escHtml(s)}</option>`).join("")}
+      </select>
+      <span id="rnk-count" class="rnk-count">${ranked.length} counties</span>
+    </div>
+    <div class="rnk-table-wrap">
+      <table class="rnk-table">
+        <thead>
+          <tr>
+            <th class="rnk-th-rank">#</th>
+            <th>County</th>
+            <th>State</th>
+            <th>Grade</th>
+            <th>Score</th>
+            <th>Restriction Level</th>
+          </tr>
+        </thead>
+        <tbody id="rnk-tbody"></tbody>
+      </table>
+    </div>
+    <button id="rnk-more-btn" class="rnk-more-btn" hidden>Load more</button>
+    <p class="rnk-note">Suitability score combines regulatory environment (50%), political climate (30%), and restriction scope (20%). Click any row to open that county on the map.</p>
+  `;
+
+  renderTable();
+
+  container.querySelector("#rnk-search")?.addEventListener("input", e => {
+    _filterSearch = e.target.value.trim();
+    _page = 0;
+    renderTable();
+  });
+
+  container.querySelectorAll(".rnk-grade-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      container.querySelectorAll(".rnk-grade-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      _filterGrade = btn.dataset.grade;
+      _page = 0;
+      renderTable();
+    });
+  });
+
+  container.querySelector("#rnk-state-sel")?.addEventListener("change", e => {
+    _filterState = e.target.value;
+    _page = 0;
+    renderTable();
+  });
+
+  container.querySelector("#rnk-more-btn")?.addEventListener("click", () => {
+    _page++;
+    renderTable();
+  });
 }
 
 /* ─────────────────────────────────────────────────────────────── */
