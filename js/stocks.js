@@ -623,7 +623,7 @@ function renderTickerTape() {
   if (!el) return;
   const symbols = AI_COMPANIES.slice(0, 30).map(c => ({ proName: c.ticker, title: c.symbol }));
   createTVWidget(el, 'ticker-tape', {
-    symbols, showSymbolLogo: true, isTransparent: false,
+    symbols, showSymbolLogo: true, isTransparent: true,
     displayMode: 'compact', colorTheme: tvTheme(), locale: 'en',
   });
 }

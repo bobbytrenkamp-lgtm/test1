@@ -12,8 +12,10 @@
 }
 #stocks-view[hidden] { display: none; }
 
-/* Hide dashboard metrics (map-only) in stocks mode */
-#app.stocks-mode #dashboard { display: none !important; }
+/* Hide all dashboard chrome (map-only) in stocks mode */
+#app.stocks-mode #dashboard           { display: none !important; }
+#app.stocks-mode #dashboard-scope-bar { display: none !important; }
+#app.stocks-mode #dashboard-toggle-bar{ display: none !important; }
 
 /* ── Ticker tape ── */
 .stocks-tape {
