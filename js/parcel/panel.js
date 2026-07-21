@@ -138,14 +138,19 @@ window.PARCEL_PANEL = (function () {
       <div class="pf-score-value ${esc(scoreCls)}">${f.score}<span class="pf-score-band"> — ${esc(scoreBand)}</span></div>
     </div>`;
 
-    // Score factors breakdown
+    // Score factors breakdown — transparent per-factor weights
     out += `<div class="pf-factors">`;
     for (const factor of f.factors) {
-      const fw = Math.round(factor.score * factor.weight);
-      const fcls = factor.score >= 70 ? 'pf-factor-hi' : factor.score >= 40 ? 'pf-factor-mid' : 'pf-factor-lo';
+      const fcls    = factor.score >= 70 ? 'pf-factor-hi' : factor.score >= 40 ? 'pf-factor-mid' : 'pf-factor-lo';
+      const wPct    = Math.round((factor.weight || 0) * 100);
+      const barFill = factor.score;
       out += `<div class="pf-factor">
-        <span class="pf-factor-label">${esc(factor.label)}</span>
-        <span class="pf-factor-score ${esc(fcls)}">${factor.score}</span>
+        <div class="pf-factor-header">
+          <span class="pf-factor-label">${esc(factor.label)}</span>
+          <span class="pf-factor-weight">${wPct}%</span>
+          <span class="pf-factor-score ${esc(fcls)}">${factor.score}</span>
+        </div>
+        <div class="pf-factor-bar-bg"><div class="pf-factor-bar-fill ${esc(fcls)}" style="width:${barFill}%"></div></div>
       </div>`;
     }
     out += `</div>`;
