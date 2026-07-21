@@ -71,18 +71,36 @@ window.PARCEL_PANEL = (function () {
 
     let html = '';
 
-    if (code) {
-      html += `<div class="pp-zoning-badge">${esc(code)}${desc ? ` — ${esc(desc)}` : ''}</div>`;
+    // DC Feasibility section (shown first when data is available)
+    const feasibility = window.PARCEL_FEASIBILITY?.assess(props, fips);
+    if (feasibility?.available) {
+      html += _renderFeasibility(feasibility, fips, code);
     }
-    html += _fmtFieldRow('land_use_code', props.land_use_code);
-    html += _fmtFieldRow('land_use_desc', props.land_use_desc);
-    html += _fieldRow('Overlay Districts', props.overlay_districts);
 
-    // Link to Zoning Intelligence if this jurisdiction has coverage
+    // Zoning fields
+    let zoningFields = '';
+    if (code) {
+      zoningFields += `<div class="pp-zoning-badge">${esc(code)}${desc ? ` — ${esc(desc)}` : ''}</div>`;
+    }
+    zoningFields += _fmtFieldRow('land_use_code', props.land_use_code);
+    zoningFields += _fmtFieldRow('land_use_desc', props.land_use_desc);
+    zoningFields += _fieldRow('Overlay Districts', props.overlay_districts);
+
+    if (zoningFields) {
+      html += `<div class="pp-group">${zoningFields}</div>`;
+    }
+
+    // Zoning intelligence link / status
     if (fips && window.ZONING?.hasCoverage(fips) && code) {
       html += `<div class="pp-zoning-link-row">
         <button class="pp-zoning-btn" onclick="window.PARCEL_PANEL._openZoning(${JSON.stringify(fips)}, ${JSON.stringify(code)})">
-          View Zoning Intelligence →
+          View Full Zoning Intelligence →
+        </button>
+      </div>`;
+    } else if (fips && !feasibility?.available && window.ZONING?.hasCoverage(fips) && !window.ZONING?.getCachedByFips?.(fips)) {
+      html += `<div class="pp-zoning-link-row">
+        <button class="pp-zoning-btn" onclick="window.PARCEL_PANEL._loadAndRefresh(${JSON.stringify(fips)}, ${JSON.stringify(code)})">
+          Load Zoning Data for Feasibility →
         </button>
       </div>`;
     } else if (fips && !window.ZONING?.hasCoverage(fips)) {
@@ -90,7 +108,130 @@ window.PARCEL_PANEL = (function () {
     }
 
     if (!html) return '<p class="pp-empty">Zoning data not available for this parcel.</p>';
-    return `<div class="pp-group">${html}</div>`;
+    return html;
+  }
+
+  /* ── Feasibility section renderer ── */
+  function _renderFeasibility(f, fips, zoningCode) {
+    const sm = f.statusMeta;
+
+    // Score band label
+    const scoreBand = f.score >= 75 ? 'High' : f.score >= 50 ? 'Moderate' : f.score >= 25 ? 'Low' : 'Very Low';
+    const scoreCls  = f.score >= 75 ? 'pf-score-high' : f.score >= 50 ? 'pf-score-mod' : 'pf-score-low';
+
+    // Eligibility badge
+    let out = `<div class="pp-group pp-feasibility">
+      <div class="pp-group-label">DC Development Feasibility</div>
+      <div class="pf-eligibility ${esc(sm.cls)}">
+        <span class="pf-eligibility-icon">${esc(sm.icon)}</span>
+        <span class="pf-eligibility-label">${esc(sm.label)}</span>
+        ${f.confidence === 'moderate' ? '<span class="pf-conf pf-conf-mod">Moderate confidence</span>'
+          : '<span class="pf-conf pf-conf-low">Low confidence — verify</span>'}
+      </div>`;
+
+    // Score gauge
+    out += `<div class="pf-score-row">
+      <div class="pf-score-label">Development Potential</div>
+      <div class="pf-score-bar-wrap">
+        <div class="pf-score-bar ${esc(scoreCls)}" style="width:${f.score}%"></div>
+      </div>
+      <div class="pf-score-value ${esc(scoreCls)}">${f.score}<span class="pf-score-band"> — ${esc(scoreBand)}</span></div>
+    </div>`;
+
+    // Score factors breakdown
+    out += `<div class="pf-factors">`;
+    for (const factor of f.factors) {
+      const fw = Math.round(factor.score * factor.weight);
+      const fcls = factor.score >= 70 ? 'pf-factor-hi' : factor.score >= 40 ? 'pf-factor-mid' : 'pf-factor-lo';
+      out += `<div class="pf-factor">
+        <span class="pf-factor-label">${esc(factor.label)}</span>
+        <span class="pf-factor-score ${esc(fcls)}">${factor.score}</span>
+      </div>`;
+    }
+    out += `</div>`;
+
+    // Buildable envelope
+    if (f.envelope) {
+      const e = f.envelope;
+      out += `<div class="pf-envelope">
+        <div class="pf-envelope-title">Buildable Envelope (est.)</div>
+        <div class="pf-envelope-grid">`;
+
+      if (e.footprintSqft != null) {
+        out += `<div class="pf-env-stat">
+          <div class="pf-env-val">${Number(e.footprintAcres).toFixed(2)} ac</div>
+          <div class="pf-env-lbl">Max Footprint</div>
+        </div>`;
+      }
+      if (e.maxCoverage_pct != null) {
+        out += `<div class="pf-env-stat">
+          <div class="pf-env-val">${e.maxCoverage_pct}%</div>
+          <div class="pf-env-lbl">Lot Coverage</div>
+        </div>`;
+      }
+      if (e.maxHeight_ft != null) {
+        out += `<div class="pf-env-stat">
+          <div class="pf-env-val">${e.maxHeight_ft} ft</div>
+          <div class="pf-env-lbl">Max Height</div>
+        </div>`;
+      }
+      if (e.estimatedGFA_sqft != null) {
+        out += `<div class="pf-env-stat">
+          <div class="pf-env-val">${(e.estimatedGFA_sqft / 1000).toFixed(0)}k sqft</div>
+          <div class="pf-env-lbl">Est. GFA</div>
+        </div>`;
+      }
+      out += `</div>`;
+
+      // 3-D massing diagram (rendered after DOM insertion via MutationObserver hook)
+      out += `<div class="pf-massing" data-massing-envelope='${JSON.stringify({
+        footprintSqft:  e.footprintSqft,
+        footprintAcres: e.footprintAcres,
+        maxHeight_ft:   e.maxHeight_ft,
+        estimatedGFA_sqft: e.estimatedGFA_sqft,
+        lotCoveragePct: e.maxCoverage_pct,
+        setbacks:       e.setbacks,
+      })}'></div>`;
+
+      // Setbacks summary line
+      const sb = e.setbacks;
+      if (sb.front != null || sb.side != null || sb.rear != null) {
+        const parts = [];
+        if (sb.front != null) parts.push(`Front: ${sb.front} ft`);
+        if (sb.side  != null) parts.push(`Side: ${sb.side} ft`);
+        if (sb.rear  != null) parts.push(`Rear: ${sb.rear} ft`);
+        out += `<div class="pf-setbacks">Setbacks: ${esc(parts.join(' · '))}</div>`;
+      }
+      out += `</div>`;
+    }
+
+    // Approval requirements
+    if (f.approvalType) {
+      out += `<div class="pf-approval"><strong>Approval:</strong> ${esc(f.approvalType)}</div>`;
+    }
+
+    // Conditions (collapsible if more than 1)
+    if (f.conditions?.length) {
+      out += `<details class="pf-conditions">
+        <summary>Requirements (${f.conditions.length})</summary>
+        <ul class="pf-conditions-list">
+          ${f.conditions.map(c => `<li>${esc(c)}</li>`).join('')}
+        </ul>
+      </details>`;
+    }
+
+    // District DC summary
+    if (f.dcSummary) {
+      out += `<p class="pf-dc-summary">${esc(f.dcSummary)}</p>`;
+    }
+
+    // Manual review notice
+    if (f.manualReviewRequired) {
+      out += `<p class="pf-disclaimer">⚠ Low confidence estimates. Verify all zoning requirements with ${esc(f.jurisdictionName || 'the jurisdiction')} before relying on this data.</p>`;
+    }
+
+    out += `</div>`;
+    return out;
   }
 
   /* ── Tab: Valuation ── */
@@ -115,7 +256,15 @@ window.PARCEL_PANEL = (function () {
   function _tabCompare() {
     const compared = window.PARCEL_SELECTION?.getCompared() || [];
 
+    // Suggest comparables when tray is empty but a parcel is selected
     if (!compared.length) {
+      const sel = window.PARCEL_SELECTION?.getSelected();
+      if (sel) {
+        const suggestions = window.PARCEL_COMPARABLES?.find(sel.feature, { maxResults: 4 }) || [];
+        if (suggestions.length) {
+          return _renderCompareSuggestions(sel.feature, suggestions);
+        }
+      }
       return `<div class="pp-compare-empty">
         <p>No parcels in the compare tray.</p>
         <p class="pp-muted">Click "+ Compare" to add the current parcel, then select others to add them too.</p>
@@ -142,10 +291,9 @@ window.PARCEL_PANEL = (function () {
     }
 
     // Remove buttons per parcel
-    const removeBtns = compared.map(c => {
-      const pid = esc(c.feature.properties.parcel_id);
-      return `<td><button class="pp-compare-remove" onclick="window.PARCEL_SELECTION.removeFromCompare(${JSON.stringify(c.feature.properties.parcel_id)});window.PARCEL_PANEL.refresh();" aria-label="Remove">✕</button></td>`;
-    }).join('');
+    const removeBtns = compared.map(c =>
+      `<td><button class="pp-compare-remove" onclick="window.PARCEL_SELECTION.removeFromCompare(${JSON.stringify(c.feature.properties.parcel_id)});window.PARCEL_PANEL.refresh();" aria-label="Remove">✕</button></td>`
+    ).join('');
 
     return `<div class="pp-compare-wrap">
       <div class="pp-compare-table-scroll">
@@ -157,8 +305,46 @@ window.PARCEL_PANEL = (function () {
           </tbody>
         </table>
       </div>
-      <button class="pp-compare-clear" onclick="window.PARCEL_SELECTION.clearCompare();window.PARCEL_PANEL.refresh();">Clear all</button>
+      <div class="pp-compare-actions">
+        <button class="pp-compare-export" onclick="window.PARCEL_PANEL._exportCSV()">⬇ Export CSV</button>
+        <button class="pp-compare-clear" onclick="window.PARCEL_SELECTION.clearCompare();window.PARCEL_PANEL.refresh();">Clear all</button>
+      </div>
     </div>`;
+  }
+
+  function _renderCompareSuggestions(subject, suggestions) {
+    const sp = subject.properties || {};
+    const subLabel = esc(sp.address || sp.pin || 'Selected Parcel');
+
+    let html = `<div class="pp-compare-empty">
+      <p>No parcels in the compare tray.</p>
+      <p class="pp-muted">Similar parcels found nearby:</p>
+    </div>
+    <div class="pp-suggest-list">`;
+
+    for (const { feature, score } of suggestions) {
+      const p = feature.properties || {};
+      const label = p.address || p.pin || 'Parcel';
+      const sub = [
+        p.zoning_code || null,
+        p.area_acres ? `${Number(p.area_acres).toFixed(2)} ac` : null,
+        p.assessed_value ? ('$' + Number(p.assessed_value).toLocaleString()) : null,
+      ].filter(Boolean).join(' · ');
+
+      const scoreCls = score >= 70 ? 'pf-factor-hi' : score >= 45 ? 'pf-factor-mid' : 'pf-factor-lo';
+
+      html += `<div class="pp-suggest-item" onclick="window.PARCEL?.focusParcel(${JSON.stringify(feature)})">
+        <div class="pp-suggest-main">
+          <span class="pp-suggest-label">${esc(label)}</span>
+          <span class="pp-suggest-score ${esc(scoreCls)}">${score}% match</span>
+        </div>
+        ${sub ? `<div class="pp-suggest-sub">${esc(sub)}</div>` : ''}
+        <button class="pp-suggest-add" onclick="event.stopPropagation();window.PARCEL_SELECTION?.addToCompare(${JSON.stringify(feature)});window.PARCEL_PANEL.refresh();">+ Compare</button>
+      </div>`;
+    }
+
+    html += `</div>`;
+    return html;
   }
 
   /* ── Attribution footer ── */
@@ -246,9 +432,19 @@ window.PARCEL_PANEL = (function () {
 
       <div class="pp-actions">
         <button class="pp-action-primary" onclick="window.PARCEL_PANEL._addToCompare()">+ Compare</button>
+        <button class="pp-action-draw" onclick="window.PARCEL_DRAW_TOOL?.activate()" title="Draw polygon to select multiple parcels">◻ Draw</button>
+        <button class="pp-action-report" onclick="window.PARCEL_PANEL._openReport()" title="Open printable parcel report">⎙ Report</button>
         <button class="pp-action-secondary" onclick="window.PARCEL_PANEL.close()">Close</button>
       </div>
     `;
+
+    // Render 3-D massing diagrams for any envelope containers now in DOM
+    panel.querySelectorAll('.pf-massing[data-massing-envelope]').forEach(el => {
+      try {
+        const env = JSON.parse(el.dataset.massingEnvelope);
+        window.PARCEL_MASSING?.render(el, env);
+      } catch (_) { /* ignore parse errors */ }
+    });
 
     // Wire tab buttons (no inline onclick to avoid CSP issues with nonces)
     panel.querySelectorAll('[data-ptab]').forEach(btn => {
@@ -297,6 +493,61 @@ window.PARCEL_PANEL = (function () {
     }
   }
 
+  function _openReport() {
+    if (_lastFeature) {
+      window.PARCEL_REPORT?.open(_lastFeature, _lastJurisId);
+    }
+  }
+
+  function _exportCSV() {
+    const compared = window.PARCEL_SELECTION?.getCompared() || [];
+    if (!compared.length) return;
+
+    const fields = [
+      'parcel_id', 'pin', 'address', 'owner',
+      'zoning_code', 'land_use_code', 'land_use_desc',
+      'area_sqft', 'area_acres',
+      'assessed_value', 'land_value', 'improvement_value',
+      'tax_year', 'last_sale_date', 'last_sale_price',
+      'county_fips',
+    ];
+
+    const schema = window.PARCEL_SCHEMA;
+    const header = fields.map(fid => {
+      const field = schema?.FIELD_MAP[fid];
+      return field ? field.label : fid;
+    });
+
+    const rows = compared.map(c => {
+      const p = c.feature.properties || {};
+      return fields.map(fid => {
+        const v = p[fid];
+        if (v == null || v === '') return '';
+        const s = String(v);
+        return s.includes(',') || s.includes('"') || s.includes('\n')
+          ? `"${s.replace(/"/g, '""')}"` : s;
+      }).join(',');
+    });
+
+    const csv  = [header.join(','), ...rows].join('\r\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = `parcel-compare-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+  }
+
+  async function _loadAndRefresh(fips, zoningCode) {
+    if (!fips) return;
+    try {
+      await window.ZONING?.loadByFips(fips);
+    } catch (_) {}
+    refresh();
+  }
+
   /* ── Event listeners ── */
 
   document.addEventListener('parcel:selected', e => {
@@ -323,5 +574,49 @@ window.PARCEL_PANEL = (function () {
     }
   });
 
-  return { show, refresh, close, _addToCompare, _openZoning };
+  /* ── Mobile swipe-to-dismiss ── */
+  (function _initSwipe() {
+    let startY = 0;
+    let startX = 0;
+    let dragging = false;
+    const DISMISS_THRESHOLD = 90; // px downward to trigger close
+
+    document.addEventListener('touchstart', e => {
+      const panel = _getPanel();
+      if (!panel?.classList.contains('open')) return;
+      // Only initiate drag if touch begins inside the panel
+      if (!panel.contains(e.target)) return;
+      startY   = e.touches[0].clientY;
+      startX   = e.touches[0].clientX;
+      dragging = true;
+      panel.style.transition = 'none';
+    }, { passive: true });
+
+    document.addEventListener('touchmove', e => {
+      if (!dragging) return;
+      const panel = _getPanel();
+      if (!panel) return;
+      const dy = e.touches[0].clientY - startY;
+      const dx = e.touches[0].clientX - startX;
+      // Only treat as vertical swipe if predominantly downward
+      if (Math.abs(dy) < Math.abs(dx) || dy < 0) return;
+      panel.style.transform = `translateY(${Math.min(dy, 220)}px)`;
+    }, { passive: true });
+
+    document.addEventListener('touchend', e => {
+      if (!dragging) return;
+      dragging = false;
+      const panel = _getPanel();
+      if (!panel) return;
+      const dy = e.changedTouches[0].clientY - startY;
+      panel.style.transition = '';
+      panel.style.transform  = '';
+      if (dy > DISMISS_THRESHOLD) {
+        // Enough of a downward swipe — dismiss the panel
+        window.PARCEL_PANEL.close();
+      }
+    }, { passive: true });
+  })();
+
+  return { show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh, _exportCSV, _openReport };
 })();

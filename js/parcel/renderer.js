@@ -194,6 +194,17 @@ window.PARCEL_RENDERER = (function () {
     el.textContent = msg;
   }
 
+  /* ── Connector factory ── */
+
+  function _makeConnector(config) {
+    switch (config.connector) {
+      case 'geojson': return new window.GeoJSONParcelConnector(config);
+      case 'wfs':     return new window.WFSParcelConnector(config);
+      case 'arcgis':
+      default:        return new window.ArcGISParcelConnector(config);
+    }
+  }
+
   /* ── Public API ── */
 
   function init(map) {
@@ -215,7 +226,7 @@ window.PARCEL_RENDERER = (function () {
     const config = fips ? window.PARCEL_REGISTRY?.get(fips) : null;
 
     if (_active && config) {
-      _connector = new window.ArcGISParcelConnector(config);
+      _connector = _makeConnector(config);
       _jurisId   = config.id;
       _fetch();
     } else {
@@ -246,5 +257,14 @@ window.PARCEL_RENDERER = (function () {
     _syncCompareStyles();
   }
 
-  return { init, setActive, refresh, clearHighlight, onCompareChanged };
+  /* Return all features currently rendered on the map as an array.
+   * Used by the comparables engine to find similar parcels within the viewport. */
+  function getFeatures() {
+    if (!_layer) return [];
+    const out = [];
+    _layer.eachLayer(lyr => { if (lyr.feature) out.push(lyr.feature); });
+    return out;
+  }
+
+  return { init, setActive, refresh, clearHighlight, onCompareChanged, getFeatures };
 })();

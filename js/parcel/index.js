@@ -23,6 +23,7 @@ window.PARCEL = (function () {
     if (_initialized) return;
     _initialized = true;
     window.PARCEL_RENDERER?.init(map);
+    window.PARCEL_DRAW_TOOL?.init(map);
   }
 
   /* Called by map.js setLayerVisible when the 'parcels' layer is toggled on/off.
@@ -34,6 +35,7 @@ window.PARCEL = (function () {
     const hasData = visible && fips && window.PARCEL_REGISTRY?.has(fips);
 
     window.PARCEL_RENDERER?.setActive(fips, hasData);
+    window.PARCEL_SEARCH?.setContext(visible, fips);
 
     if (!visible) {
       window.PARCEL_SELECTION?.deselect();
@@ -52,6 +54,7 @@ window.PARCEL = (function () {
 
     const hasData = fips && window.PARCEL_REGISTRY?.has(fips);
     window.PARCEL_RENDERER?.setActive(fips, hasData);
+    window.PARCEL_SEARCH?.setContext(_layerActive, fips);
 
     // Clear existing parcel selection when county changes
     window.PARCEL_SELECTION?.deselect();
@@ -101,6 +104,12 @@ window.PARCEL = (function () {
       el.textContent = `No parcel data available for FIPS ${fips}`;
     }
   }
+
+  /* When zoning data finishes loading, refresh the panel so the feasibility
+   * section can render (it requires cached zoning data). */
+  document.addEventListener('zoning:jurisdiction-loaded', () => {
+    window.PARCEL_PANEL?.refresh();
+  });
 
   return { init, onLayerToggle, onCountyChanged, search, focusParcel };
 })();

@@ -254,6 +254,229 @@
 
   console.groupEnd();
 
+  // ── PARCEL_FEASIBILITY (Phase 2) ─────────────────────────────────────────
+
+  if (typeof window !== 'undefined' && window.PARCEL_FEASIBILITY) {
+    console.group('PARCEL_FEASIBILITY');
+
+    // No zoning data available — should degrade gracefully
+    const noData = window.PARCEL_FEASIBILITY.assess({ zoning_code: 'PD-IP', county_fips: '51107' }, '51107');
+    assert(typeof noData === 'object', 'assess() returns an object');
+    assert('available' in noData, 'assess() returns an object with .available');
+
+    // With mock zoning data
+    const mockZoning = window.ZONING;
+    if (mockZoning?.getCachedByFips?.('51107')) {
+      const result = window.PARCEL_FEASIBILITY.assess({
+        zoning_code:   'PD-IP',
+        county_fips:   '51107',
+        area_acres:    25,
+        area_sqft:     1089000,
+        assessed_value: 5000000,
+        land_use_code:  'PD-IP',
+      }, '51107');
+
+      if (result.available) {
+        assert(typeof result.score === 'number',    'assess() score is a number');
+        assert(result.score >= 0 && result.score <= 100, 'assess() score 0-100');
+        assert(result.permissionStatus === 'permitted_by_right', 'PD-IP → permitted_by_right');
+        assert(result.factors.length === 4, 'assess() has 4 factors');
+        assert(result.envelope != null,       'assess() buildable envelope computed');
+        const totalWeight = result.factors.reduce((s, f) => s + f.weight, 0);
+        assert(Math.abs(totalWeight - 1.0) < 0.001, 'factor weights sum to 1.0');
+      }
+    }
+
+    console.groupEnd();
+  }
+
+  // ── PARCEL_COMPARABLES (Phase 3) ─────────────────────────────────────────
+
+  if (typeof window !== 'undefined' && window.PARCEL_COMPARABLES) {
+    console.group('PARCEL_COMPARABLES');
+
+    const subject = {
+      type: 'Feature',
+      geometry: null,
+      properties: {
+        parcel_id: 'A1', zoning_code: 'PD-IP', area_sqft: 500000, area_acres: 11.5,
+        land_use_code: 'PD-IP', assessed_value: 8000000, land_value: 3000000,
+      },
+    };
+
+    const candidates = [
+      { type: 'Feature', geometry: null, properties: { parcel_id: 'A2', zoning_code: 'PD-IP', area_sqft: 600000, area_acres: 13.8, land_use_code: 'PD-IP', assessed_value: 9500000, land_value: 3500000 } },
+      { type: 'Feature', geometry: null, properties: { parcel_id: 'A3', zoning_code: 'R1',    area_sqft: 5000,   area_acres: 0.11,  land_use_code: 'R1' } },
+      { type: 'Feature', geometry: null, properties: { parcel_id: 'A4', zoning_code: 'I1',    area_sqft: 250000, area_acres: 5.7,   land_use_code: 'I1' } },
+    ];
+
+    // Mock getFeatures
+    const origGetFeatures = window.PARCEL_RENDERER?.getFeatures;
+    if (window.PARCEL_RENDERER) {
+      window.PARCEL_RENDERER.getFeatures = () => candidates;
+    }
+
+    const results = window.PARCEL_COMPARABLES.find(subject, { maxResults: 5 });
+    assert(Array.isArray(results), 'find() returns an array');
+    if (results.length) {
+      assert(results[0].feature.properties.parcel_id !== 'A1', 'find() excludes subject parcel');
+      assert(results[0].score >= results[results.length - 1].score, 'find() sorted desc by score');
+      // A2 (same zone, similar size) should score higher than A3 (tiny residential)
+      const a2 = results.find(r => r.feature.properties.parcel_id === 'A2');
+      const a3 = results.find(r => r.feature.properties.parcel_id === 'A3');
+      if (a2 && a3) assert(a2.score > a3.score, 'same-zone similar-size scores higher than tiny residential');
+      // A3 (ratio 0.01) is outside band — should be excluded
+      assert(!a3, 'very small residential parcel outside area band excluded');
+    }
+
+    // diff()
+    const d = window.PARCEL_COMPARABLES.diff(subject.properties, candidates[0].properties);
+    assert(typeof d === 'object', 'diff() returns an object');
+    if (d.assessed_value) {
+      assert(typeof d.assessed_value.delta_pct === 'number', 'diff() computes delta_pct');
+    }
+
+    if (origGetFeatures && window.PARCEL_RENDERER) {
+      window.PARCEL_RENDERER.getFeatures = origGetFeatures;
+    }
+
+    console.groupEnd();
+  }
+
+  // ── PARCEL_DRAW_TOOL (Phase 4) ────────────────────────────────────────────
+
+  if (typeof window !== 'undefined' && window.PARCEL_DRAW_TOOL) {
+    console.group('PARCEL_DRAW_TOOL');
+
+    assert(typeof window.PARCEL_DRAW_TOOL.activate   === 'function', 'activate is a function');
+    assert(typeof window.PARCEL_DRAW_TOOL.deactivate === 'function', 'deactivate is a function');
+    assert(typeof window.PARCEL_DRAW_TOOL.isActive   === 'function', 'isActive is a function');
+    assert(!window.PARCEL_DRAW_TOOL.isActive(), 'initially not active');
+
+    console.groupEnd();
+  }
+
+  // ── GeoJSONParcelConnector (Phase 4) ─────────────────────────────────────
+
+  if (typeof window !== 'undefined' && window.GeoJSONParcelConnector) {
+    console.group('GeoJSONParcelConnector');
+
+    const cfg = {
+      fips: '51107',
+      serviceUrl: 'data:application/json,{"type":"FeatureCollection","features":[]}',
+      fieldMap: { parcel_id: 'OBJECTID', pin: 'PIN', address: 'SITE_ADDR' },
+    };
+    const conn = new window.GeoJSONParcelConnector(cfg);
+    assert(conn != null, 'GeoJSONParcelConnector can be instantiated');
+    assert(typeof conn.fetchViewport === 'function',  'fetchViewport is a function');
+    assert(typeof conn.searchByQuery === 'function', 'searchByQuery is a function');
+    assert(typeof conn.fetchById    === 'function',  'fetchById is a function');
+
+    console.groupEnd();
+  }
+
+  console.groupEnd();
+
+  // ── WFSParcelConnector (Phase 4) ─────────────────────────────────────────
+
+  if (typeof window !== 'undefined' && window.WFSParcelConnector) {
+    console.group('WFSParcelConnector');
+
+    const wfsCfg = {
+      fips: '51153',
+      serviceUrl: 'https://example.com/geoserver/ows',
+      layerName:  'parcel_data:parcels',
+      wfsVersion: '2.0.0',
+      fieldMap:   { parcel_id: 'OBJECTID', pin: 'GPIN', address: 'SITE_ADDRESS' },
+    };
+    const wfsConn = new window.WFSParcelConnector(wfsCfg);
+    assert(wfsConn != null, 'WFSParcelConnector can be instantiated');
+    assert(typeof wfsConn.fetchViewport   === 'function', 'fetchViewport is a function');
+    assert(typeof wfsConn.searchByQuery   === 'function', 'searchByQuery is a function');
+    assert(typeof wfsConn.fetchById       === 'function', 'fetchById is a function');
+
+    // Test normalisation
+    const wfsRaw = {
+      type: 'FeatureCollection',
+      features: [{
+        type: 'Feature',
+        id: 'parcels.1',
+        geometry: { type: 'Point', coordinates: [-77.5, 38.8] },
+        properties: { OBJECTID: 99, GPIN: 'GP-42', SITE_ADDRESS: '456 Oak Ave' },
+      }],
+    };
+    const wfsNorm = wfsConn._normalize(wfsRaw);
+    assertEq(wfsNorm.features.length, 1, 'WFS _normalize preserves feature count');
+    assertEq(wfsNorm.features[0].properties.pin, 'GP-42', 'WFS _normalize maps GPIN → pin');
+    assertEq(wfsNorm.features[0].properties._source, 'wfs', 'WFS _normalize stamps _source');
+    assertEq(wfsNorm.features[0].properties.county_fips, '51153', 'WFS _normalize stamps county_fips');
+
+    // Verify 2.0.0 bbox axis order (lat-first)
+    const u200 = wfsConn._buildUrl({ REQUEST: 'GetFeature', BBOX: 'test', COUNT: '10' });
+    assert(u200.includes('VERSION=2.0.0'), 'WFS 2.0.0 version in URL');
+    assert(u200.includes('outputFormat=application%2Fjson') || u200.includes('outputFormat=application/json'), 'JSON output format in URL');
+
+    const wfsCfg11 = { ...wfsCfg, wfsVersion: '1.1.0' };
+    const wfsConn11 = new window.WFSParcelConnector(wfsCfg11);
+    const u110 = wfsConn11._buildUrl({ REQUEST: 'GetFeature', BBOX: 'test', COUNT: '10' });
+    assert(u110.includes('VERSION=1.1.0'), 'WFS 1.1.0 version in URL');
+
+    console.groupEnd();
+  }
+
+  // ── PARCEL_MASSING (Phase 5) ──────────────────────────────────────────────
+
+  if (typeof window !== 'undefined' && window.PARCEL_MASSING) {
+    console.group('PARCEL_MASSING');
+
+    assert(typeof window.PARCEL_MASSING.render === 'function', 'render is a function');
+
+    const container = document.createElement('div');
+    const envelope = {
+      footprintSqft:    20000,
+      footprintAcres:   0.46,
+      maxHeight_ft:     60,
+      estimatedGFA_sqft: 120000,
+      lotCoveragePct:   60,
+      setbacks:         { front: 25, side: 10, rear: 20 },
+    };
+    window.PARCEL_MASSING.render(container, envelope, { theme: 'dark' });
+    assert(container.querySelector('svg') !== null, 'render produces an SVG element');
+    const svg = container.querySelector('svg');
+    assert(svg.querySelectorAll('polygon').length >= 4, 'SVG contains at least 4 polygon faces');
+    assert(svg.querySelector('text') !== null, 'SVG contains text labels');
+
+    // Light theme
+    const containerL = document.createElement('div');
+    window.PARCEL_MASSING.render(containerL, envelope, { theme: 'light' });
+    assert(containerL.querySelector('svg') !== null, 'render works in light theme');
+
+    // Graceful no-op with missing envelope
+    window.PARCEL_MASSING.render(container, null);
+    assert(true, 'render with null envelope does not throw');
+
+    console.groupEnd();
+  }
+
+  // ── PARCEL_REGISTRY jurisdictions (Phase 5) ───────────────────────────────
+
+  if (typeof window !== 'undefined' && window.PARCEL_REGISTRY) {
+    console.group('PARCEL_REGISTRY — jurisdiction coverage');
+
+    const expectedFips = ['51107', '51153', '51059', '24031', '24027'];
+    expectedFips.forEach(fips => {
+      assert(window.PARCEL_REGISTRY.has(fips), `Registry has FIPS ${fips}`);
+      const cfg = window.PARCEL_REGISTRY.get(fips);
+      assert(cfg?.id?.length > 0, `${fips} has a non-empty id`);
+      assert(['arcgis', 'geojson', 'wfs'].includes(cfg?.connector), `${fips} has valid connector type`);
+    });
+    assert(window.PARCEL_REGISTRY.all().length >= 5, 'Registry has at least 5 jurisdictions');
+
+    console.groupEnd();
+  }
+
+  console.groupEnd();
+
   // ── Summary ──────────────────────────────────────────────────────────────
 
   const total  = passed + failed;
