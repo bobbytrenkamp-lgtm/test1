@@ -204,6 +204,7 @@ let stateRegData    = {};
 let legendOpen      = true;  // true=visible, false=collapsed to restore button
 let politicalRiskData = {};   // fips → risk record from political_risk.json
 let showPoliticalRisk = false;
+let _suitMode       = false;
 let selectedFips    = null;
 let cityLabelsLayer = null;
 
@@ -285,7 +286,22 @@ function hasActiveMapFilters() {
 /* ── Helpers ── */
 function fipsKey(id) { return String(id).padStart(5, "0"); }
 
+const SUIT_GRADE_COLORS = {
+  A: "#22c55e",
+  B: "#22d3ee",
+  C: "#eab308",
+  D: "#f97316",
+  F: "#ef4444",
+};
+
+function getSuitabilityColor(fips) {
+  const county = mapData[fips];
+  const s = computeSuitabilityScore(fips, county || null);
+  return SUIT_GRADE_COLORS[s.grade] || themeColors().noData;
+}
+
 function getColor(fips) {
+  if (_suitMode) return getSuitabilityColor(fips);
   const county = mapData[fips];
   return county ? getSeverityColor(county) : themeColors().noData;
 }
@@ -353,7 +369,7 @@ function countyStyle(feature) {
 
   return {
     fillColor:   getColor(fips),
-    fillOpacity: isSat ? (hasData ? 0.70 * zoomFade * countyFillOpacity : 0) : 0.75 * zoomFade * countyFillOpacity,
+    fillOpacity: isSat ? ((hasData || _suitMode) ? 0.70 * zoomFade * countyFillOpacity : 0) : 0.75 * zoomFade * countyFillOpacity,
     color:       tc.countyBorder,
     weight:      0.35,
   };
@@ -2674,6 +2690,25 @@ function toggleWorkspaces() {
   if (_wsVisible) renderWorkspaceList();
 }
 
+/* ── Suitability mode ── */
+function toggleSuitabilityMode() {
+  _suitMode = !_suitMode;
+  const btn = document.getElementById("gis-suitability");
+  if (btn) {
+    btn.classList.toggle("active", _suitMode);
+    btn.setAttribute("aria-pressed", String(_suitMode));
+    btn.setAttribute("title", _suitMode ? "Suitability mode — click to restore restriction view (S)" : "Suitability score view — color counties by A–F grade (S)");
+  }
+  if (countyGeoLayer) countyGeoLayer.setStyle(countyStyle);
+  if (selectedFips && countyLayerByFips[selectedFips]) {
+    countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
+  }
+  renderLegend();
+  showMapToast(_suitMode
+    ? "Suitability mode: counties colored A (green) → F (red)"
+    : "Restriction view restored");
+}
+
 /* ── Map init ── */
 function initLeafletMap() {
   leafletMap = L.map("leaflet-map", {
@@ -2838,6 +2873,7 @@ function initLeafletMap() {
   document.getElementById("gis-print")         ?.addEventListener("click", printMap);
   document.getElementById("gis-minimap")       ?.addEventListener("click", toggleMinimap);
   document.getElementById("gis-political-risk")?.addEventListener("click", togglePoliticalRiskLayer);
+  document.getElementById("gis-suitability")?.addEventListener("click", toggleSuitabilityMode);
   document.getElementById("gis-results")        ?.addEventListener("click", () => window.RESULTS_PANEL?.toggle());
 
   // Save button: toggle save/unsave for current county or facility
@@ -2971,6 +3007,7 @@ function initLeafletMap() {
     if ((e.key === "f" || e.key === "F") && !e.ctrlKey && !e.metaKey) toggleFullscreen();
     if ((e.key === "w" || e.key === "W") && !e.ctrlKey && !e.metaKey) toggleWorkspaces();
     if ((e.key === "c" || e.key === "C") && !e.ctrlKey && !e.metaKey) toggleComparePanel();
+    if ((e.key === "s" || e.key === "S") && !e.ctrlKey && !e.metaKey) toggleSuitabilityMode();
     if (e.key === "Escape" && measureMode)      toggleMeasure();
     if (e.key === "Escape" && drawMode)         toggleDraw();
     if (e.key === "Escape" && candidatePinMode) toggleCandidatePin();
@@ -3254,28 +3291,58 @@ function renderLegend() {
   legendBody.className = "legend-body";
 
   if (layerState.restrictions) {
-    const h = document.createElement("h3");
-    h.textContent = "Restriction Severity";
-    legendBody.appendChild(h);
+    if (_suitMode) {
+      const h = document.createElement("h3");
+      h.textContent = "Suitability Score";
+      legendBody.appendChild(h);
 
-    const items = [
-      { key: "ban",      sub: "Outright prohibition" },
-      { key: "high",     sub: "Active, significant limits" },
-      { key: "moderate", sub: "Active, light-to-moderate limits" },
-      { key: "proposed", sub: "Pending / not yet enacted" },
-      { key: "none",     sub: "No known restrictions" },
-      { key: "pro",      sub: "Tax incentives / major hub" },
-    ];
-    for (const item of items) {
-      const el = document.createElement("div");
-      el.className = "legend-item";
-      el.innerHTML = `
-        <div class="legend-swatch" style="background:${SEVERITY[item.key].color};"></div>
-        <div>
-          <div class="legend-label-main">${SEVERITY[item.key].label}</div>
-          <div class="legend-label-sub">${item.sub}</div>
-        </div>`;
-      legendBody.appendChild(el);
+      const suitItems = [
+        { grade: "A", label: "Highly Suitable",     sub: "Score 80–100" },
+        { grade: "B", label: "Suitable",             sub: "Score 65–79" },
+        { grade: "C", label: "Proceed with Caution", sub: "Score 45–64" },
+        { grade: "D", label: "High Risk",            sub: "Score 25–44" },
+        { grade: "F", label: "Not Suitable",         sub: "Score 0–24" },
+      ];
+      for (const item of suitItems) {
+        const el = document.createElement("div");
+        el.className = "legend-item";
+        el.innerHTML = `
+          <div class="legend-swatch" style="background:${SUIT_GRADE_COLORS[item.grade]};"></div>
+          <div>
+            <div class="legend-label-main">${item.grade} — ${item.label}</div>
+            <div class="legend-label-sub">${item.sub}</div>
+          </div>`;
+        legendBody.appendChild(el);
+      }
+
+      const note = document.createElement("div");
+      note.className = "legend-suit-note";
+      note.textContent = "Factors: Regulatory 50% · Political 30% · Scope 20%";
+      legendBody.appendChild(note);
+    } else {
+      const h = document.createElement("h3");
+      h.textContent = "Restriction Severity";
+      legendBody.appendChild(h);
+
+      const items = [
+        { key: "ban",      sub: "Outright prohibition" },
+        { key: "high",     sub: "Active, significant limits" },
+        { key: "moderate", sub: "Active, light-to-moderate limits" },
+        { key: "proposed", sub: "Pending / not yet enacted" },
+        { key: "none",     sub: "No known restrictions" },
+        { key: "pro",      sub: "Tax incentives / major hub" },
+      ];
+      for (const item of items) {
+        const el = document.createElement("div");
+        el.className = "legend-item";
+        el.innerHTML = `
+          <div class="legend-swatch" style="background:${SEVERITY[item.key].color};"></div>
+          <div>
+            <div class="legend-label-main">${SEVERITY[item.key].label}</div>
+            <div class="legend-label-sub">${item.sub}</div>
+          </div>`;
+        legendBody.appendChild(el);
+      }
     }
 
     const div = document.createElement("div");
@@ -5384,6 +5451,7 @@ function initKbOverlay() {
     <div class="kb-row"><span class="kb-desc">Toggle results panel</span><span class="kb-keys"><kbd>L</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Workspaces panel</span><span class="kb-keys"><kbd>W</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Compare counties</span><span class="kb-keys"><kbd>C</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Suitability score view</span><span class="kb-keys"><kbd>S</kbd></span></div>
     <div class="kb-section">General</div>
     <div class="kb-row"><span class="kb-desc">Command palette</span><span class="kb-keys"><kbd>Ctrl</kbd><kbd>K</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Show this help</span><span class="kb-keys"><kbd>?</kbd></span></div>
