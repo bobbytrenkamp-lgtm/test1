@@ -6563,10 +6563,7 @@ function renderNewsStatusBar(newsData) {
   const updEl = document.createElement("span");
   updEl.textContent = `Last refreshed ${fmt}`;
   row.append(mkSep(), updEl);
-  const autoEl = document.createElement("span");
-  autoEl.className = "news-status-auto";
-  autoEl.textContent = "Automatic monitoring active";
-  row.append(mkSep(), autoEl);
+  /* "Automatic monitoring active" omitted — shown via status-dot instead */
 
   bar.appendChild(row);
   bar.hidden = false;
