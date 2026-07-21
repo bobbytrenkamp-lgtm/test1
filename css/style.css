@@ -7943,3 +7943,156 @@ html[data-theme="light"] .news-developing-strip { background: rgba(239,68,68,0.0
   color: var(--text-muted);
   line-height: 1.5;
 }
+
+/* ── Tax Incentive Explorer ── */
+.inc-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.inc-search {
+  flex: 1;
+  min-width: 160px;
+  max-width: 220px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  outline: none;
+}
+.inc-search:focus { border-color: #4874e8; }
+.inc-state-sel, .inc-type-sel, .inc-tier-sel {
+  padding: 5px 8px;
+  font-size: 11.5px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  max-width: 140px;
+}
+.inc-count {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.inc-grid { display: flex; flex-direction: column; gap: 6px; }
+.inc-card {
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  overflow: hidden;
+  background: var(--surface);
+  transition: border-color 0.15s;
+}
+.inc-card:hover { border-color: #4874e8; }
+.inc-card-expanded { border-color: #4874e8; }
+.inc-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  flex-wrap: wrap;
+}
+.inc-card-left { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+.inc-state-badge {
+  flex-shrink: 0;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(72,116,232,0.12);
+  color: #4874e8;
+  letter-spacing: 0.04em;
+}
+.inc-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+.inc-card-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.inc-type-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10.5px;
+  font-weight: 600;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.inc-min {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.inc-county-count {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.inc-expand-btn {
+  padding: 4px 9px;
+  font-size: 11px;
+  font-family: inherit;
+  font-weight: 500;
+  color: #4874e8;
+  background: transparent;
+  border: 1px solid #4874e8;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s;
+}
+.inc-expand-btn:hover { background: #4874e8; color: #fff; }
+.inc-card-body {
+  border-top: 1px solid var(--border);
+  padding: 10px 12px;
+  background: var(--bg);
+}
+.inc-notes {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.inc-county-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+.inc-county-btn {
+  padding: 3px 8px;
+  font-size: 11px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.inc-county-btn:hover { background: #4874e8; color: #fff; border-color: #4874e8; }
+.inc-disclaimer {
+  margin-top: 10px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.5;
+}
