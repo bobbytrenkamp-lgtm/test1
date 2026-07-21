@@ -183,6 +183,16 @@ window.PARCEL_PANEL = (function () {
       }
       out += `</div>`;
 
+      // 3-D massing diagram (rendered after DOM insertion via MutationObserver hook)
+      out += `<div class="pf-massing" data-massing-envelope='${JSON.stringify({
+        footprintSqft:  e.footprintSqft,
+        footprintAcres: e.footprintAcres,
+        maxHeight_ft:   e.maxHeight_ft,
+        estimatedGFA_sqft: e.estimatedGFA_sqft,
+        lotCoveragePct: e.maxCoverage_pct,
+        setbacks:       e.setbacks,
+      })}'></div>`;
+
       // Setbacks summary line
       const sb = e.setbacks;
       if (sb.front != null || sb.side != null || sb.rear != null) {
@@ -428,6 +438,14 @@ window.PARCEL_PANEL = (function () {
       </div>
     `;
 
+    // Render 3-D massing diagrams for any envelope containers now in DOM
+    panel.querySelectorAll('.pf-massing[data-massing-envelope]').forEach(el => {
+      try {
+        const env = JSON.parse(el.dataset.massingEnvelope);
+        window.PARCEL_MASSING?.render(el, env);
+      } catch (_) { /* ignore parse errors */ }
+    });
+
     // Wire tab buttons (no inline onclick to avoid CSP issues with nonces)
     panel.querySelectorAll('[data-ptab]').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -555,6 +573,50 @@ window.PARCEL_PANEL = (function () {
       if (_activeTab === 'compare') compareTab.classList.add('active');
     }
   });
+
+  /* ── Mobile swipe-to-dismiss ── */
+  (function _initSwipe() {
+    let startY = 0;
+    let startX = 0;
+    let dragging = false;
+    const DISMISS_THRESHOLD = 90; // px downward to trigger close
+
+    document.addEventListener('touchstart', e => {
+      const panel = _getPanel();
+      if (!panel?.classList.contains('open')) return;
+      // Only initiate drag if touch begins inside the panel
+      if (!panel.contains(e.target)) return;
+      startY   = e.touches[0].clientY;
+      startX   = e.touches[0].clientX;
+      dragging = true;
+      panel.style.transition = 'none';
+    }, { passive: true });
+
+    document.addEventListener('touchmove', e => {
+      if (!dragging) return;
+      const panel = _getPanel();
+      if (!panel) return;
+      const dy = e.touches[0].clientY - startY;
+      const dx = e.touches[0].clientX - startX;
+      // Only treat as vertical swipe if predominantly downward
+      if (Math.abs(dy) < Math.abs(dx) || dy < 0) return;
+      panel.style.transform = `translateY(${Math.min(dy, 220)}px)`;
+    }, { passive: true });
+
+    document.addEventListener('touchend', e => {
+      if (!dragging) return;
+      dragging = false;
+      const panel = _getPanel();
+      if (!panel) return;
+      const dy = e.changedTouches[0].clientY - startY;
+      panel.style.transition = '';
+      panel.style.transform  = '';
+      if (dy > DISMISS_THRESHOLD) {
+        // Enough of a downward swipe — dismiss the panel
+        window.PARCEL_PANEL.close();
+      }
+    }, { passive: true });
+  })();
 
   return { show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh, _exportCSV, _openReport };
 })();

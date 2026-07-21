@@ -40,14 +40,58 @@ window.PARCEL_DRAW_TOOL = (function () {
     return inside;
   }
 
+  /* ── Grid spatial index for fast candidate pre-filtering ──
+   * Divides the lat/lng space into GRID_SIZE × GRID_SIZE cells.
+   * Only features whose centroid cell overlaps the polygon bbox
+   * are tested with the full ray-casting check.
+   */
+  const GRID_SIZE = 20;
+
+  function _buildIndex(features, bbox) {
+    // bbox: { minLat, maxLat, minLng, maxLng }
+    const latRange = bbox.maxLat - bbox.minLat || 0.001;
+    const lngRange = bbox.maxLng - bbox.minLng || 0.001;
+    const cells    = {};
+
+    features.forEach((f, idx) => {
+      const c = _featureCentroid(f);
+      if (!c) return;
+      // Only index features within or near the bbox
+      if (c[0] < bbox.minLat - latRange * 0.1 || c[0] > bbox.maxLat + latRange * 0.1) return;
+      if (c[1] < bbox.minLng - lngRange * 0.1 || c[1] > bbox.maxLng + lngRange * 0.1) return;
+      const row = Math.floor(((c[0] - bbox.minLat) / latRange) * GRID_SIZE);
+      const col = Math.floor(((c[1] - bbox.minLng) / lngRange) * GRID_SIZE);
+      const key = `${Math.max(0, Math.min(row, GRID_SIZE - 1))}_${Math.max(0, Math.min(col, GRID_SIZE - 1))}`;
+      if (!cells[key]) cells[key] = [];
+      cells[key].push({ f, c });
+    });
+    return { cells, latRange, lngRange, minLat: bbox.minLat, minLng: bbox.minLng };
+  }
+
+  function _candidatesFromIndex(index) {
+    return Object.values(index.cells).flat();
+  }
+
   /* ── Query parcels within the drawn polygon ── */
   function _queryWithin(vertices) {
     const features = window.PARCEL_RENDERER?.getFeatures() || [];
-    return features.filter(f => {
-      const centroid = _featureCentroid(f);
-      if (!centroid) return false;
-      return _pointInPolygon(centroid[0], centroid[1], vertices);
+    if (!features.length) return [];
+
+    // Compute polygon bounding box for spatial-index pre-filter
+    let minLat = Infinity, maxLat = -Infinity, minLng = Infinity, maxLng = -Infinity;
+    vertices.forEach(v => {
+      if (v.lat < minLat) minLat = v.lat;
+      if (v.lat > maxLat) maxLat = v.lat;
+      if (v.lng < minLng) minLng = v.lng;
+      if (v.lng > maxLng) maxLng = v.lng;
     });
+
+    const index      = _buildIndex(features, { minLat, maxLat, minLng, maxLng });
+    const candidates = _candidatesFromIndex(index);
+
+    return candidates
+      .filter(({ c }) => _pointInPolygon(c[0], c[1], vertices))
+      .map(({ f }) => f);
   }
 
   function _featureCentroid(feature) {

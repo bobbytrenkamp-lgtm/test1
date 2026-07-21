@@ -45,7 +45,9 @@ window.PARCEL_FEASIBILITY = (function () {
   const DC_MARKET_SCORES = {
     '51107': 100, // Loudoun County, VA — Data Center Alley #1
     '51153': 92,  // Prince William County, VA — Manassas/Gainesville corridor
-    '51059': 80,  // Fairfax County, VA
+    '51059': 80,  // Fairfax County, VA — Reston/Tysons
+    '24031': 75,  // Montgomery County, MD — Silver Spring/Germantown
+    '24027': 68,  // Howard County, MD — Columbia/Jessup emerging market
     '13121': 78,  // Fulton County, GA — Atlanta metro
     '17031': 72,  // Cook County, IL — Chicago
     '04013': 78,  // Maricopa County, AZ — Phoenix

@@ -377,6 +377,106 @@
 
   console.groupEnd();
 
+  // ── WFSParcelConnector (Phase 4) ─────────────────────────────────────────
+
+  if (typeof window !== 'undefined' && window.WFSParcelConnector) {
+    console.group('WFSParcelConnector');
+
+    const wfsCfg = {
+      fips: '51153',
+      serviceUrl: 'https://example.com/geoserver/ows',
+      layerName:  'parcel_data:parcels',
+      wfsVersion: '2.0.0',
+      fieldMap:   { parcel_id: 'OBJECTID', pin: 'GPIN', address: 'SITE_ADDRESS' },
+    };
+    const wfsConn = new window.WFSParcelConnector(wfsCfg);
+    assert(wfsConn != null, 'WFSParcelConnector can be instantiated');
+    assert(typeof wfsConn.fetchViewport   === 'function', 'fetchViewport is a function');
+    assert(typeof wfsConn.searchByQuery   === 'function', 'searchByQuery is a function');
+    assert(typeof wfsConn.fetchById       === 'function', 'fetchById is a function');
+
+    // Test normalisation
+    const wfsRaw = {
+      type: 'FeatureCollection',
+      features: [{
+        type: 'Feature',
+        id: 'parcels.1',
+        geometry: { type: 'Point', coordinates: [-77.5, 38.8] },
+        properties: { OBJECTID: 99, GPIN: 'GP-42', SITE_ADDRESS: '456 Oak Ave' },
+      }],
+    };
+    const wfsNorm = wfsConn._normalize(wfsRaw);
+    assertEq(wfsNorm.features.length, 1, 'WFS _normalize preserves feature count');
+    assertEq(wfsNorm.features[0].properties.pin, 'GP-42', 'WFS _normalize maps GPIN → pin');
+    assertEq(wfsNorm.features[0].properties._source, 'wfs', 'WFS _normalize stamps _source');
+    assertEq(wfsNorm.features[0].properties.county_fips, '51153', 'WFS _normalize stamps county_fips');
+
+    // Verify 2.0.0 bbox axis order (lat-first)
+    const u200 = wfsConn._buildUrl({ REQUEST: 'GetFeature', BBOX: 'test', COUNT: '10' });
+    assert(u200.includes('VERSION=2.0.0'), 'WFS 2.0.0 version in URL');
+    assert(u200.includes('outputFormat=application%2Fjson') || u200.includes('outputFormat=application/json'), 'JSON output format in URL');
+
+    const wfsCfg11 = { ...wfsCfg, wfsVersion: '1.1.0' };
+    const wfsConn11 = new window.WFSParcelConnector(wfsCfg11);
+    const u110 = wfsConn11._buildUrl({ REQUEST: 'GetFeature', BBOX: 'test', COUNT: '10' });
+    assert(u110.includes('VERSION=1.1.0'), 'WFS 1.1.0 version in URL');
+
+    console.groupEnd();
+  }
+
+  // ── PARCEL_MASSING (Phase 5) ──────────────────────────────────────────────
+
+  if (typeof window !== 'undefined' && window.PARCEL_MASSING) {
+    console.group('PARCEL_MASSING');
+
+    assert(typeof window.PARCEL_MASSING.render === 'function', 'render is a function');
+
+    const container = document.createElement('div');
+    const envelope = {
+      footprintSqft:    20000,
+      footprintAcres:   0.46,
+      maxHeight_ft:     60,
+      estimatedGFA_sqft: 120000,
+      lotCoveragePct:   60,
+      setbacks:         { front: 25, side: 10, rear: 20 },
+    };
+    window.PARCEL_MASSING.render(container, envelope, { theme: 'dark' });
+    assert(container.querySelector('svg') !== null, 'render produces an SVG element');
+    const svg = container.querySelector('svg');
+    assert(svg.querySelectorAll('polygon').length >= 4, 'SVG contains at least 4 polygon faces');
+    assert(svg.querySelector('text') !== null, 'SVG contains text labels');
+
+    // Light theme
+    const containerL = document.createElement('div');
+    window.PARCEL_MASSING.render(containerL, envelope, { theme: 'light' });
+    assert(containerL.querySelector('svg') !== null, 'render works in light theme');
+
+    // Graceful no-op with missing envelope
+    window.PARCEL_MASSING.render(container, null);
+    assert(true, 'render with null envelope does not throw');
+
+    console.groupEnd();
+  }
+
+  // ── PARCEL_REGISTRY jurisdictions (Phase 5) ───────────────────────────────
+
+  if (typeof window !== 'undefined' && window.PARCEL_REGISTRY) {
+    console.group('PARCEL_REGISTRY — jurisdiction coverage');
+
+    const expectedFips = ['51107', '51153', '51059', '24031', '24027'];
+    expectedFips.forEach(fips => {
+      assert(window.PARCEL_REGISTRY.has(fips), `Registry has FIPS ${fips}`);
+      const cfg = window.PARCEL_REGISTRY.get(fips);
+      assert(cfg?.id?.length > 0, `${fips} has a non-empty id`);
+      assert(['arcgis', 'geojson', 'wfs'].includes(cfg?.connector), `${fips} has valid connector type`);
+    });
+    assert(window.PARCEL_REGISTRY.all().length >= 5, 'Registry has at least 5 jurisdictions');
+
+    console.groupEnd();
+  }
+
+  console.groupEnd();
+
   // ── Summary ──────────────────────────────────────────────────────────────
 
   const total  = passed + failed;
