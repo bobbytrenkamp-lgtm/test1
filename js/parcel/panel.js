@@ -246,7 +246,15 @@ window.PARCEL_PANEL = (function () {
   function _tabCompare() {
     const compared = window.PARCEL_SELECTION?.getCompared() || [];
 
+    // Suggest comparables when tray is empty but a parcel is selected
     if (!compared.length) {
+      const sel = window.PARCEL_SELECTION?.getSelected();
+      if (sel) {
+        const suggestions = window.PARCEL_COMPARABLES?.find(sel.feature, { maxResults: 4 }) || [];
+        if (suggestions.length) {
+          return _renderCompareSuggestions(sel.feature, suggestions);
+        }
+      }
       return `<div class="pp-compare-empty">
         <p>No parcels in the compare tray.</p>
         <p class="pp-muted">Click "+ Compare" to add the current parcel, then select others to add them too.</p>
@@ -273,10 +281,9 @@ window.PARCEL_PANEL = (function () {
     }
 
     // Remove buttons per parcel
-    const removeBtns = compared.map(c => {
-      const pid = esc(c.feature.properties.parcel_id);
-      return `<td><button class="pp-compare-remove" onclick="window.PARCEL_SELECTION.removeFromCompare(${JSON.stringify(c.feature.properties.parcel_id)});window.PARCEL_PANEL.refresh();" aria-label="Remove">✕</button></td>`;
-    }).join('');
+    const removeBtns = compared.map(c =>
+      `<td><button class="pp-compare-remove" onclick="window.PARCEL_SELECTION.removeFromCompare(${JSON.stringify(c.feature.properties.parcel_id)});window.PARCEL_PANEL.refresh();" aria-label="Remove">✕</button></td>`
+    ).join('');
 
     return `<div class="pp-compare-wrap">
       <div class="pp-compare-table-scroll">
@@ -288,8 +295,46 @@ window.PARCEL_PANEL = (function () {
           </tbody>
         </table>
       </div>
-      <button class="pp-compare-clear" onclick="window.PARCEL_SELECTION.clearCompare();window.PARCEL_PANEL.refresh();">Clear all</button>
+      <div class="pp-compare-actions">
+        <button class="pp-compare-export" onclick="window.PARCEL_PANEL._exportCSV()">⬇ Export CSV</button>
+        <button class="pp-compare-clear" onclick="window.PARCEL_SELECTION.clearCompare();window.PARCEL_PANEL.refresh();">Clear all</button>
+      </div>
     </div>`;
+  }
+
+  function _renderCompareSuggestions(subject, suggestions) {
+    const sp = subject.properties || {};
+    const subLabel = esc(sp.address || sp.pin || 'Selected Parcel');
+
+    let html = `<div class="pp-compare-empty">
+      <p>No parcels in the compare tray.</p>
+      <p class="pp-muted">Similar parcels found nearby:</p>
+    </div>
+    <div class="pp-suggest-list">`;
+
+    for (const { feature, score } of suggestions) {
+      const p = feature.properties || {};
+      const label = p.address || p.pin || 'Parcel';
+      const sub = [
+        p.zoning_code || null,
+        p.area_acres ? `${Number(p.area_acres).toFixed(2)} ac` : null,
+        p.assessed_value ? ('$' + Number(p.assessed_value).toLocaleString()) : null,
+      ].filter(Boolean).join(' · ');
+
+      const scoreCls = score >= 70 ? 'pf-factor-hi' : score >= 45 ? 'pf-factor-mid' : 'pf-factor-lo';
+
+      html += `<div class="pp-suggest-item" onclick="window.PARCEL?.focusParcel(${JSON.stringify(feature)})">
+        <div class="pp-suggest-main">
+          <span class="pp-suggest-label">${esc(label)}</span>
+          <span class="pp-suggest-score ${esc(scoreCls)}">${score}% match</span>
+        </div>
+        ${sub ? `<div class="pp-suggest-sub">${esc(sub)}</div>` : ''}
+        <button class="pp-suggest-add" onclick="event.stopPropagation();window.PARCEL_SELECTION?.addToCompare(${JSON.stringify(feature)});window.PARCEL_PANEL.refresh();">+ Compare</button>
+      </div>`;
+    }
+
+    html += `</div>`;
+    return html;
   }
 
   /* ── Attribution footer ── */
@@ -428,6 +473,47 @@ window.PARCEL_PANEL = (function () {
     }
   }
 
+  function _exportCSV() {
+    const compared = window.PARCEL_SELECTION?.getCompared() || [];
+    if (!compared.length) return;
+
+    const fields = [
+      'parcel_id', 'pin', 'address', 'owner',
+      'zoning_code', 'land_use_code', 'land_use_desc',
+      'area_sqft', 'area_acres',
+      'assessed_value', 'land_value', 'improvement_value',
+      'tax_year', 'last_sale_date', 'last_sale_price',
+      'county_fips',
+    ];
+
+    const schema = window.PARCEL_SCHEMA;
+    const header = fields.map(fid => {
+      const field = schema?.FIELD_MAP[fid];
+      return field ? field.label : fid;
+    });
+
+    const rows = compared.map(c => {
+      const p = c.feature.properties || {};
+      return fields.map(fid => {
+        const v = p[fid];
+        if (v == null || v === '') return '';
+        const s = String(v);
+        return s.includes(',') || s.includes('"') || s.includes('\n')
+          ? `"${s.replace(/"/g, '""')}"` : s;
+      }).join(',');
+    });
+
+    const csv  = [header.join(','), ...rows].join('\r\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = `parcel-compare-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+  }
+
   async function _loadAndRefresh(fips, zoningCode) {
     if (!fips) return;
     try {
@@ -462,5 +548,5 @@ window.PARCEL_PANEL = (function () {
     }
   });
 
-  return { show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh };
+  return { show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh, _exportCSV };
 })();

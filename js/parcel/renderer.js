@@ -246,5 +246,14 @@ window.PARCEL_RENDERER = (function () {
     _syncCompareStyles();
   }
 
-  return { init, setActive, refresh, clearHighlight, onCompareChanged };
+  /* Return all features currently rendered on the map as an array.
+   * Used by the comparables engine to find similar parcels within the viewport. */
+  function getFeatures() {
+    if (!_layer) return [];
+    const out = [];
+    _layer.eachLayer(lyr => { if (lyr.feature) out.push(lyr.feature); });
+    return out;
+  }
+
+  return { init, setActive, refresh, clearHighlight, onCompareChanged, getFeatures };
 })();

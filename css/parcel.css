@@ -691,3 +691,163 @@ html[data-theme="light"] .pf-conditional { background: rgba(217, 119, 6, 0.10); 
 html[data-theme="light"] .pf-prohibited  { background: rgba(220, 38, 38, 0.10);  color: #991b1b; border-color: rgba(220, 38, 38, 0.25); }
 html[data-theme="light"] .pf-conf-mod    { background: rgba(217, 119, 6, 0.12);  color: #92400e; }
 html[data-theme="light"] .pf-disclaimer  { background: rgba(217, 119, 6, 0.07);  border-color: rgba(217, 119, 6, 0.2); }
+
+/* ═══════════════════════════════════════════════════════════════════════════ *
+ * Comparable Suggestions — Phase 3 styles                                    *
+ * ═══════════════════════════════════════════════════════════════════════════ */
+
+.pp-suggest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0 8px;
+}
+
+.pp-suggest-item {
+  position: relative;
+  padding: 8px 10px;
+  background: var(--surface-2);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s;
+}
+
+.pp-suggest-item:hover {
+  border-color: var(--accent);
+  background: rgba(72, 116, 232, 0.07);
+}
+
+.pp-suggest-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.pp-suggest-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 8px;
+}
+
+.pp-suggest-score {
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pp-suggest-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.pp-suggest-add {
+  font-size: 11px;
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 4px;
+  padding: 2px 7px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  transition: background 0.12s, color 0.12s;
+}
+
+.pp-suggest-add:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Compare tab actions bar */
+.pp-compare-actions {
+  display: flex;
+  gap: 8px;
+  padding: 8px 0 0;
+}
+
+.pp-compare-export {
+  flex: 1;
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.12s, color 0.12s;
+}
+
+.pp-compare-export:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ *
+ * Parcel Search — search results section augmentation (Phase 3)              *
+ * ═══════════════════════════════════════════════════════════════════════════ */
+
+.search-parcel-section {
+  border-top: 1px solid var(--border);
+  margin-top: 2px;
+  padding-top: 2px;
+}
+
+.search-parcel-hdr {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  padding: 5px 12px 3px;
+}
+
+.search-parcel-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+}
+
+.search-parcel-icon {
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.search-parcel-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-parcel-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-parcel-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-parcel-more {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 4px 12px 6px;
+  font-style: italic;
+}
