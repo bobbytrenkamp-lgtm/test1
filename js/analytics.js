@@ -266,6 +266,16 @@ function renderAnalyticsPage() {
       <div id="analytics-scenario-section"></div>
     </div>
 
+    <div class="page-section">
+      <div class="page-section-title">Tax Incentive Explorer</div>
+      <div id="analytics-incentives-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Loading incentive programs…</span>
+        </div>
+      </div>
+    </div>
+
     <div id="analytics-footer-target"></div>
   `;
 
@@ -278,6 +288,7 @@ function renderAnalyticsPage() {
   _fillFiberStats();
   _renderScenarioBuilder();
   _renderCountyRankings();
+  _fillIncentiveExplorer();
 }
 
 function _buildPolicyTimelineHtml(counties) {
@@ -1229,6 +1240,186 @@ function _renderCountyRankings() {
   container.querySelector("#rnk-more-btn")?.addEventListener("click", () => {
     _page++;
     renderTable();
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Tax Incentive Explorer                                             */
+/* ─────────────────────────────────────────────────────────────── */
+
+async function _fillIncentiveExplorer() {
+  const container = document.getElementById("analytics-incentives-section");
+  if (!container) return;
+
+  let programs;
+  try {
+    const raw = await fetch("data/tax_incentives.json").then(r => r.json());
+    programs = raw.tax_incentives || [];
+  } catch (_) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Incentive data unavailable.</p>`;
+    return;
+  }
+
+  if (!programs.length) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">No incentive programs found.</p>`;
+    return;
+  }
+
+  // Collect unique states and incentive types for filters
+  const states  = ["All States", ...Array.from(new Set(programs.map(p => p.state))).sort()];
+  const rawTypes = Array.from(new Set(programs.map(p => p.incentive_type || "Other"))).sort();
+  // Simplified type buckets
+  const typeBuckets = {
+    "Sales Tax":    p => (p.incentive_type || "").toLowerCase().includes("sales"),
+    "Property Tax": p => (p.incentive_type || "").toLowerCase().includes("property"),
+    "Income / B&O": p => (p.incentive_type || "").toLowerCase().match(/income|b&o|franchise/),
+    "Grant":        p => (p.incentive_type || "").toLowerCase().includes("grant"),
+    "Other":        p => true,
+  };
+
+  const TIER_LABELS = [
+    { label: "Any amount",  test: () => true },
+    { label: "< $10M",      test: p => !p.min_investment_m || p.min_investment_m < 10 },
+    { label: "$10M–$50M",   test: p => p.min_investment_m >= 10 && p.min_investment_m <= 50 },
+    { label: "> $50M",      test: p => p.min_investment_m > 50 },
+  ];
+
+  // county name lookup (from mapData if available)
+  function countyLabel(fips) {
+    const county = (typeof mapData !== "undefined") ? mapData[fips] : null;
+    return county ? `${county.name}, ${county.state}` : fips;
+  }
+
+  let _filterState = "All States";
+  let _filterType  = "All Types";
+  let _filterTier  = "Any amount";
+  let _filterSearch = "";
+  let _expandedIdx = -1;
+
+  function filtered() {
+    return programs.filter(p => {
+      if (_filterState !== "All States" && p.state !== _filterState) return false;
+      if (_filterType !== "All Types") {
+        const fn = typeBuckets[_filterType];
+        if (fn && !fn(p)) return false;
+      }
+      const tierFn = TIER_LABELS.find(t => t.label === _filterTier)?.test;
+      if (tierFn && !tierFn(p)) return false;
+      if (_filterSearch) {
+        const q = _filterSearch.toLowerCase();
+        if (!p.program_name.toLowerCase().includes(q) &&
+            !(p.state || "").toLowerCase().includes(q) &&
+            !(p.incentive_type || "").toLowerCase().includes(q)) return false;
+      }
+      return true;
+    });
+  }
+
+  function progCard(p, idx, expanded) {
+    const counties = (p.fips_list || []).slice(0, expanded ? 999 : 0);
+    const minStr   = p.min_investment_m ? `$${p.min_investment_m}M+` : "No minimum";
+    const typeCol  = (p.incentive_type || "").toLowerCase().includes("sales") ? "#4874e8"
+                   : (p.incentive_type || "").toLowerCase().includes("property") ? "#f59e0b"
+                   : (p.incentive_type || "").toLowerCase().includes("grant") ? "#22c55e"
+                   : "#a78bfa";
+    const fipsCount = (p.fips_list || []).length;
+    const countyHtml = expanded && fipsCount > 0
+      ? `<div class="inc-county-list">${(p.fips_list || []).map(f => {
+          const lbl = countyLabel(f);
+          return `<button class="inc-county-btn" data-fips="${escHtml(f)}">${escHtml(lbl)}</button>`;
+        }).join("")}</div>`
+      : "";
+    return `<div class="inc-card${expanded ? " inc-card-expanded" : ""}" data-idx="${idx}">
+      <div class="inc-card-header">
+        <div class="inc-card-left">
+          <span class="inc-state-badge">${escHtml(p.state)}</span>
+          <div class="inc-name">${escHtml(p.program_name)}</div>
+        </div>
+        <div class="inc-card-right">
+          <span class="inc-type-chip" style="color:${typeCol};border-color:${typeCol}33;background:${typeCol}11">${escHtml(p.incentive_type || "Incentive")}</span>
+          <span class="inc-min">${escHtml(minStr)}</span>
+          <span class="inc-county-count">${fipsCount} ${fipsCount === 1 ? "county" : "counties"}</span>
+          <button class="inc-expand-btn" aria-expanded="${expanded}" data-idx="${idx}">${expanded ? "▲ Collapse" : "▼ Details"}</button>
+        </div>
+      </div>
+      ${expanded ? `<div class="inc-card-body">
+        ${p.notes ? `<p class="inc-notes">${escHtml(p.notes)}</p>` : ""}
+        ${countyHtml}
+      </div>` : ""}
+    </div>`;
+  }
+
+  function renderCards() {
+    const rows = filtered();
+    const grid = container.querySelector("#inc-grid");
+    const count = container.querySelector("#inc-count");
+    if (count) count.textContent = `${rows.length} programs`;
+    if (grid) {
+      grid.innerHTML = rows.map((p, i) => progCard(p, i, i === _expandedIdx)).join("");
+      // Wire expand buttons
+      grid.querySelectorAll(".inc-expand-btn").forEach(btn => {
+        btn.addEventListener("click", e => {
+          e.stopPropagation();
+          const idx = parseInt(btn.dataset.idx, 10);
+          _expandedIdx = _expandedIdx === idx ? -1 : idx;
+          renderCards();
+        });
+      });
+      // Wire county buttons
+      grid.querySelectorAll(".inc-county-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const fips = btn.dataset.fips;
+          if (!fips) return;
+          if (typeof switchTab === "function") switchTab("map");
+          setTimeout(() => {
+            if (typeof selectCounty === "function") selectCounty(fips);
+            if (typeof zoomToFeature === "function") zoomToFeature(fips);
+          }, 150);
+        });
+      });
+    }
+  }
+
+  container.innerHTML = `
+    <div class="inc-toolbar">
+      <input id="inc-search" class="inc-search" type="text" placeholder="Search programs…" autocomplete="off" />
+      <select id="inc-state-sel" class="inc-state-sel">
+        ${states.map(s => `<option>${escHtml(s)}</option>`).join("")}
+      </select>
+      <select id="inc-type-sel" class="inc-type-sel">
+        <option>All Types</option>
+        ${Object.keys(typeBuckets).map(t => `<option>${escHtml(t)}</option>`).join("")}
+      </select>
+      <select id="inc-tier-sel" class="inc-tier-sel">
+        ${TIER_LABELS.map(t => `<option>${escHtml(t.label)}</option>`).join("")}
+      </select>
+      <span id="inc-count" class="inc-count">${programs.length} programs</span>
+    </div>
+    <div id="inc-grid" class="inc-grid"></div>
+    <p class="inc-disclaimer">Incentive data is approximate. Verify eligibility and amounts with state economic development agencies before making investment decisions.</p>
+  `;
+
+  renderCards();
+
+  container.querySelector("#inc-search")?.addEventListener("input", e => {
+    _filterSearch = e.target.value.trim();
+    _expandedIdx = -1;
+    renderCards();
+  });
+  container.querySelector("#inc-state-sel")?.addEventListener("change", e => {
+    _filterState = e.target.value;
+    _expandedIdx = -1;
+    renderCards();
+  });
+  container.querySelector("#inc-type-sel")?.addEventListener("change", e => {
+    _filterType = e.target.value;
+    _expandedIdx = -1;
+    renderCards();
+  });
+  container.querySelector("#inc-tier-sel")?.addEventListener("change", e => {
+    _filterTier = e.target.value;
+    _expandedIdx = -1;
+    renderCards();
   });
 }
 
