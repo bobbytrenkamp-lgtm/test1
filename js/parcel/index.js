@@ -23,6 +23,7 @@ window.PARCEL = (function () {
     if (_initialized) return;
     _initialized = true;
     window.PARCEL_RENDERER?.init(map);
+    window.PARCEL_DRAW_TOOL?.init(map);
   }
 
   /* Called by map.js setLayerVisible when the 'parcels' layer is toggled on/off.

@@ -194,6 +194,16 @@ window.PARCEL_RENDERER = (function () {
     el.textContent = msg;
   }
 
+  /* ── Connector factory ── */
+
+  function _makeConnector(config) {
+    switch (config.connector) {
+      case 'geojson': return new window.GeoJSONParcelConnector(config);
+      case 'arcgis':
+      default:        return new window.ArcGISParcelConnector(config);
+    }
+  }
+
   /* ── Public API ── */
 
   function init(map) {
@@ -215,7 +225,7 @@ window.PARCEL_RENDERER = (function () {
     const config = fips ? window.PARCEL_REGISTRY?.get(fips) : null;
 
     if (_active && config) {
-      _connector = new window.ArcGISParcelConnector(config);
+      _connector = _makeConnector(config);
       _jurisId   = config.id;
       _fetch();
     } else {

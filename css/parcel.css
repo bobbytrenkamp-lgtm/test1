@@ -326,6 +326,21 @@
 }
 .pp-action-primary:hover { opacity: 0.88; }
 
+.pp-action-draw {
+  background: none;
+  color: #06b6d4;
+  border: 1px solid #06b6d4;
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.12s, color 0.12s;
+}
+.pp-action-draw:hover { background: #06b6d4; color: #fff; }
+.pp-action-draw.active { background: #06b6d4; color: #fff; }
+
 .pp-action-secondary {
   background: none;
   color: var(--text-muted);
@@ -850,4 +865,156 @@ html[data-theme="light"] .pf-disclaimer  { background: rgba(217, 119, 6, 0.07); 
   color: var(--text-muted);
   padding: 4px 12px 6px;
   font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ *
+ * Polygon Draw Tool — Phase 4 styles                                         *
+ * ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Drawing cursor state */
+.pd-drawing,
+.pd-drawing * { cursor: crosshair !important; }
+
+/* Draw hint toast */
+.pd-draw-hint {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  background: rgba(6, 182, 212, 0.92);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 20px;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.35);
+  font-family: inherit;
+}
+
+/* Stats card overlay */
+.pd-stats-card {
+  position: fixed;
+  bottom: 80px;
+  right: 16px;
+  z-index: 1500;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid #06b6d4;
+  border-radius: 10px;
+  padding: 14px 16px 12px;
+  min-width: 220px;
+  max-width: 280px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.pd-stats-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 5px;
+}
+.pd-stats-close:hover { color: var(--text); }
+
+.pd-stats-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #06b6d4;
+  margin-bottom: 10px;
+}
+
+.pd-stats-grid {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.pd-stat {
+  flex: 1;
+  text-align: center;
+}
+
+.pd-stat-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.pd-stat-lbl {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.pd-zoning-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.pd-zoning-chip {
+  font-size: 11px;
+  padding: 2px 7px;
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  color: #06b6d4;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.pd-stats-actions {
+  display: flex;
+  gap: 6px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+
+.pd-action-add,
+.pd-action-csv {
+  flex: 1;
+  border-radius: 5px;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.12s, color 0.12s;
+}
+
+.pd-action-add {
+  background: #06b6d4;
+  color: #fff;
+  border: none;
+}
+.pd-action-add:hover { background: #0891b2; }
+
+.pd-action-csv {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.pd-action-csv:hover { color: var(--text); border-color: var(--text-muted); }
+
+@media (max-width: 767px) {
+  .pd-stats-card {
+    left: 8px;
+    right: 8px;
+    bottom: 72vh;
+    max-width: none;
+  }
 }

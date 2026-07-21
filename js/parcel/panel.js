@@ -422,6 +422,7 @@ window.PARCEL_PANEL = (function () {
 
       <div class="pp-actions">
         <button class="pp-action-primary" onclick="window.PARCEL_PANEL._addToCompare()">+ Compare</button>
+        <button class="pp-action-draw" onclick="window.PARCEL_DRAW_TOOL?.activate()" title="Draw polygon to select multiple parcels">◻ Draw</button>
         <button class="pp-action-secondary" onclick="window.PARCEL_PANEL.close()">Close</button>
       </div>
     `;
