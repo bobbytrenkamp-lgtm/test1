@@ -269,6 +269,16 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">State Opportunity Matrix</div>
+      <div id="analytics-state-matrix">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Computing state opportunity scores…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">Conflict Zone Analysis</div>
       <div id="analytics-conflict-section">
         <div class="analytics-pipeline-loading">
@@ -348,6 +358,7 @@ function renderAnalyticsPage() {
   _renderInvestmentHotspots();
   _renderPoliticalRisk();
   _renderStateScorecard();
+  _renderStateOpportunityMatrix();
   _fillConflictZones();
   _fillCapacityIntelligence();
   _fillIncentiveExplorer();
@@ -2174,6 +2185,208 @@ function _renderInvestmentHotspots() {
     setTimeout(() => {
       if (typeof selectCounty === "function") selectCounty(fips);
       if (typeof zoomToFeature === "function") zoomToFeature(fips);
+    }, 120);
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* State Opportunity Matrix                                           */
+/* ─────────────────────────────────────────────────────────────── */
+
+async function _renderStateOpportunityMatrix() {
+  const container = document.getElementById("analytics-state-matrix");
+  if (!container) return;
+
+  if (!mapData || !Object.keys(mapData).length) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Map data required.</p>`;
+    return;
+  }
+
+  // Fetch state regulations for state-level policy info
+  let stateRegs = {};
+  try {
+    const res = await fetch("data/state_regulations.json");
+    const raw = await res.json();
+    stateRegs = raw.states || {};
+  } catch (_) {}
+
+  // Build per-state aggregates from county data
+  const wsData  = window.DC_WATER_STRESS_FULL || {};
+  const incData = window.DC_INCENTIVES_FIPS   || {};
+
+  const byState = {};
+  for (const fips in mapData) {
+    const c  = mapData[fips];
+    const st = c.state;
+    if (!st) continue;
+    if (!byState[st]) byState[st] = { counties: 0, restricted: 0, suitTotal: 0, wsTotal: 0, wsCount: 0, incCounties: 0 };
+    const s = byState[st];
+    s.counties++;
+    if ((c.level ?? 0) >= 1) s.restricted++;
+    if (typeof computeSuitabilityScore === "function") {
+      const suit = computeSuitabilityScore(fips, c);
+      s.suitTotal += suit.score;
+    }
+    const ws = wsData[fips];
+    if (ws !== undefined && ws !== null) { s.wsTotal += ws; s.wsCount++; }
+    if (incData[fips]) s.incCounties++;
+  }
+
+  // Map state FIPS to abbr for stateRegs lookup
+  const STATE_FIPS_MAP = {
+    "01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT",
+    "10":"DE","11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL",
+    "18":"IN","19":"IA","20":"KS","21":"KY","22":"LA","23":"ME","24":"MD",
+    "25":"MA","26":"MI","27":"MN","28":"MS","29":"MO","30":"MT","31":"NE",
+    "32":"NV","33":"NH","34":"NJ","35":"NM","36":"NY","37":"NC","38":"ND",
+    "39":"OH","40":"OK","41":"OR","42":"PA","44":"RI","45":"SC","46":"SD",
+    "47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA","54":"WV",
+    "55":"WI","56":"WY",
+  };
+  // Build abbr → state reg info
+  const stateRegByAbbr = {};
+  for (const fips2 in stateRegs) {
+    const rec = stateRegs[fips2];
+    if (rec.abbr) stateRegByAbbr[rec.abbr] = rec;
+  }
+
+  // Compute composite opportunity score for each state
+  // Score = avgSuit - 15*(restrictRatio) - 5*(avgWS) + 5*(incRatio > 0 ? 1 : 0) + (stateLevel === -1 ? 8 : 0)
+  const rows = Object.entries(byState).map(([st, s]) => {
+    const restrictRatio = s.counties > 0 ? s.restricted / s.counties : 0;
+    const avgSuit       = s.counties > 0 ? s.suitTotal / s.counties : 0;
+    const avgWS         = s.wsCount > 0  ? s.wsTotal  / s.wsCount  : 2;
+    const incRatio      = s.counties > 0 ? s.incCounties / s.counties : 0;
+    const reg           = stateRegByAbbr[st] || {};
+    const stateLevel    = reg.level ?? 0;
+
+    const oppScore = Math.round(
+      avgSuit
+      - 15 * restrictRatio
+      - 5  * avgWS
+      + 5  * (incRatio > 0 ? 1 : 0)
+      + (stateLevel === -1 ? 8 : 0)
+      - (stateLevel >= 2  ? 5 : 0)
+    );
+
+    const tier =
+      oppScore >= 55 ? "high" :
+      oppScore >= 40 ? "medium" :
+      oppScore >= 25 ? "low" :
+      "caution";
+
+    return { st, s, restrictRatio, avgSuit, avgWS, incRatio, stateLevel, oppScore, tier, reg };
+  });
+
+  rows.sort((a, b) => b.oppScore - a.oppScore);
+
+  const TIER_LABELS = { high: "High Opportunity", medium: "Moderate", low: "Limited", caution: "Caution" };
+  const TIER_COLORS = { high: "#16a34a", medium: "#eab308", low: "#f97316", caution: "#dc2626" };
+  const WS_LABELS   = ["Low", "Low-Med", "Med-High", "High", "Ext High"];
+
+  let _sortCol = "opp";
+  let _sortDir = -1;
+
+  const renderTable = (data) => {
+    const cols = [
+      { key: "st",    label: "State",          title: "State abbreviation" },
+      { key: "opp",   label: "Opp. Score",     title: "Composite opportunity score (higher = better)" },
+      { key: "tier",  label: "Tier",           title: "Opportunity tier" },
+      { key: "suit",  label: "Avg Suitability",title: "Average suitability score across counties in this state" },
+      { key: "rest",  label: "Restriction %",  title: "% of tracked counties with active restrictions" },
+      { key: "ws",    label: "Avg Water",      title: "Average water stress (0=Low, 4=Extreme)" },
+      { key: "inc",   label: "Inc. Counties",  title: "Counties with at least one tax incentive program" },
+      { key: "state", label: "State Policy",   title: "State-level policy posture" },
+    ];
+
+    const th = cols.map(c =>
+      `<th data-scol="${c.key}" title="${c.title}" style="cursor:pointer">
+        ${escHtml(c.label)}${_sortCol===c.key ? (_sortDir<0?" ↓":" ↑") : ""}
+      </th>`
+    ).join("");
+
+    const tbody = data.map(r => {
+      const tier = r.tier;
+      const wsAvg = r.avgWS;
+      const wsRnd = Math.round(wsAvg);
+      const wsLabel = WS_LABELS[Math.min(wsRnd, 4)] || "—";
+      const wsColor = ["#2563eb","#60a5fa","#facc15","#f97316","#dc2626"][Math.min(wsRnd, 4)];
+      const stateLabel = r.reg.name ? escHtml(r.reg.name) : escHtml(r.st);
+      const statePol = r.reg.level !== undefined
+        ? (r.reg.level === -1 ? "Pro-DC" : r.reg.level >= 3 ? "Restrictive" : r.reg.level >= 1 ? "Moderate" : "Neutral")
+        : "—";
+      const statePolColor = r.reg.level === -1 ? "#16a34a" : r.reg.level >= 3 ? "#dc2626" : r.reg.level >= 1 ? "#f97316" : "var(--text-muted)";
+
+      return `<tr data-st="${escHtml(r.st)}">
+        <td class="som-st">${escHtml(r.st)}<span class="som-stname">${stateLabel}</span></td>
+        <td class="som-score" style="font-variant-numeric:tabular-nums">${r.oppScore}</td>
+        <td><span class="som-tier" style="color:${TIER_COLORS[tier]};background:${TIER_COLORS[tier]}18">${escHtml(TIER_LABELS[tier])}</span></td>
+        <td style="font-variant-numeric:tabular-nums">${Math.round(r.avgSuit)}</td>
+        <td style="font-variant-numeric:tabular-nums">${Math.round(r.restrictRatio*100)}%</td>
+        <td><span style="color:${wsColor};font-weight:600;font-size:11px">${escHtml(wsLabel)}</span></td>
+        <td style="font-variant-numeric:tabular-nums">${r.s.incCounties}</td>
+        <td><span style="color:${statePolColor};font-size:11px;font-weight:600">${escHtml(statePol)}</span></td>
+      </tr>`;
+    }).join("");
+
+    return `<div class="som-wrap">
+      <table class="som-table">
+        <thead><tr>${th}</tr></thead>
+        <tbody>${tbody}</tbody>
+      </table>
+    </div>`;
+  };
+
+  const sortAndRender = () => {
+    const KEY_MAP = {
+      st:    r => r.st,
+      opp:   r => r.oppScore,
+      tier:  r => ({ high:0, medium:1, low:2, caution:3 })[r.tier],
+      suit:  r => r.avgSuit,
+      rest:  r => r.restrictRatio,
+      ws:    r => r.avgWS,
+      inc:   r => r.s.incCounties,
+      state: r => r.stateLevel,
+    };
+    const sortFn = KEY_MAP[_sortCol] || (r => r.oppScore);
+    const sorted = [...rows].sort((a, b) => _sortDir * (sortFn(b) - sortFn(a)));
+    const tableEl = container.querySelector(".som-wrap");
+    if (tableEl) tableEl.outerHTML = renderTable(sorted);
+    else container.innerHTML = `
+      <p class="som-desc">Composite score combines average county suitability, restriction exposure, water stress, incentive coverage, and state-level policy. Higher = more favorable for data center investment.</p>
+      ${renderTable(sorted)}
+    `;
+    // Re-attach sort listener
+    container.querySelector(".som-table thead")?.addEventListener("click", e => {
+      const th = e.target.closest("th[data-scol]");
+      if (!th) return;
+      const col = th.dataset.scol;
+      if (_sortCol === col) _sortDir *= -1; else { _sortCol = col; _sortDir = -1; }
+      sortAndRender();
+    });
+  };
+
+  container.innerHTML = `
+    <p class="som-desc">Composite score combines average county suitability, restriction exposure, water stress, incentive coverage, and state-level policy. Higher = more favorable for data center investment. Click any column header to sort.</p>
+    <div class="som-wrap"><table class="som-table"><thead><tr><th>Computing…</th></tr></thead><tbody></tbody></table></div>
+  `;
+  sortAndRender();
+
+  container.querySelector(".som-table tbody")?.addEventListener("click", e => {
+    const row = e.target.closest("tr[data-st]");
+    if (!row) return;
+    const st = row.dataset.st;
+    switchTab("map");
+    setTimeout(() => {
+      if (typeof leafletMap !== "undefined" && leafletMap) {
+        // Find a county in this state to zoom to
+        for (const fips in mapData) {
+          if (mapData[fips].state === st) {
+            if (typeof zoomToFeature === "function") zoomToFeature(fips);
+            break;
+          }
+        }
+      }
     }, 120);
   });
 }
