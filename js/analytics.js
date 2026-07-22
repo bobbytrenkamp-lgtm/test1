@@ -252,6 +252,16 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Conflict Zone Analysis</div>
+      <div id="analytics-conflict-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Computing conflict zones…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">Facility Capacity Intelligence</div>
       <div id="analytics-capacity-section">
         <div class="analytics-pipeline-loading">
@@ -320,6 +330,7 @@ function renderAnalyticsPage() {
   _renderCountyRankings();
   _renderPoliticalRisk();
   _renderStateScorecard();
+  _fillConflictZones();
   _fillCapacityIntelligence();
   _fillIncentiveExplorer();
 }
@@ -1102,6 +1113,172 @@ function renderAboutPage() {
   `;
 
   renderPageFooter('about-footer-target');
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Conflict Zone Analysis                                              */
+/* ─────────────────────────────────────────────────────────────── */
+
+async function _fillConflictZones() {
+  const container = document.getElementById("analytics-conflict-section");
+  if (!container) return;
+
+  let camps, dcs;
+  try {
+    [camps, dcs] = await Promise.all([
+      fetch("data/ai_campuses.json").then(r => r.json()).then(d => d.ai_campuses || []),
+      fetch("data/data_centers.json").then(r => r.json()).then(d => d.data_centers || []),
+    ]);
+  } catch (_) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Conflict zone data unavailable.</p>`;
+    return;
+  }
+
+  // We need mapData and politicalRiskData — both are globals from map.js
+  const counties  = (typeof mapData !== "undefined") ? mapData : {};
+  const riskIndex = (typeof window !== "undefined" && window.DC_RISK_BY_FIPS) ? window.DC_RISK_BY_FIPS : {};
+
+  // Build FIPS-indexed lookups
+  const campsByFips = {};
+  for (const c of camps) {
+    const f = c.county_fips;
+    if (!f) continue;
+    campsByFips[f] = (campsByFips[f] || []);
+    campsByFips[f].push(c);
+  }
+  const dcsByFips = {};
+  for (const d of dcs) {
+    const f = d.county_fips;
+    if (!f) continue;
+    dcsByFips[f] = (dcsByFips[f] || []);
+    dcsByFips[f].push(d);
+  }
+
+  const SEV_LABEL = { 1: "Light", 2: "Moderate", 3: "Significant", 4: "Ban" };
+  const SEV_COLOR = { 1: "#86efac", 2: "#f97316", 3: "#dc2626", 4: "#7f1d1d" };
+  const PR_COLOR  = { 1: "#22c55e", 2: "#84cc16", 3: "#eab308", 4: "#f97316", 5: "#ef4444" };
+
+  // Find all FIPS in either AI campuses or DCs
+  const candidateFips = new Set([...Object.keys(campsByFips), ...Object.keys(dcsByFips)]);
+
+  const conflicts = [];
+  for (const fips of candidateFips) {
+    const county = counties[fips];
+    const level  = county ? county.level : null;
+    if (level === null || level === undefined || level < 1) continue;
+
+    const campList = campsByFips[fips] || [];
+    const dcList   = dcsByFips[fips]   || [];
+    const pr       = riskIndex[fips];
+
+    conflicts.push({
+      fips,
+      name:        (county && county.name) || fips,
+      state:       (county && county.state) || "—",
+      level,
+      status:      (county && county.status) || "active",
+      ai_campuses: campList,
+      dcs:         dcList,
+      pr_score:    pr ? pr.risk_score : null,
+      pr_label:    pr ? pr.score_label : null,
+      total_infra: campList.length + dcList.length,
+    });
+  }
+
+  conflicts.sort((a, b) => b.level - a.level || b.total_infra - a.total_infra);
+
+  if (!conflicts.length) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">No conflict zones identified with current data.</p>`;
+    return;
+  }
+
+  // Summary KPIs
+  const totalConflict = conflicts.length;
+  const highRisk = conflicts.filter(c => c.level >= 3).length;
+  const totalAI  = conflicts.reduce((s, c) => s + c.ai_campuses.length, 0);
+  const totalDC  = conflicts.reduce((s, c) => s + c.dcs.length, 0);
+
+  let _expanded = null;
+
+  function rowHtml(c) {
+    const isOpen = _expanded === c.fips;
+    const sevColor = SEV_COLOR[c.level] || "#9ca3af";
+    const prChip = c.pr_score
+      ? `<span class="cz-pr-chip" style="color:${PR_COLOR[c.pr_score] || '#9ca3af'};border-color:${PR_COLOR[c.pr_score] || '#9ca3af'}">PR ${c.pr_score}</span>`
+      : "";
+
+    const campHtml = c.ai_campuses.map(cam =>
+      `<div class="cz-infra-item">🤖 ${escHtml(cam.name)} <span class="cz-infra-status">${escHtml(cam.status || "")}</span></div>`
+    ).join("");
+    const dcHtml = c.dcs.slice(0, 8).map(d =>
+      `<div class="cz-infra-item">🏢 ${escHtml(d.name)} ${d.capacity_mw ? `<span class="cz-infra-status">${d.capacity_mw} MW</span>` : ""}</div>`
+    ).join("");
+    const moreNote = c.dcs.length > 8
+      ? `<div class="cz-infra-more">+${c.dcs.length - 8} more data centers</div>` : "";
+
+    return `<div class="cz-row${isOpen ? " expanded" : ""}" data-fips="${escHtml(c.fips)}">
+      <div class="cz-row-header">
+        <div class="cz-sev-dot" style="background:${sevColor}" title="Level ${c.level}: ${escHtml(SEV_LABEL[c.level] || '')}"></div>
+        <div class="cz-row-info">
+          <div class="cz-row-name">${escHtml(c.name)}, ${escHtml(c.state)}</div>
+          <div class="cz-row-sub">
+            <span class="cz-sev-chip" style="color:${sevColor};border-color:${sevColor}">${escHtml(SEV_LABEL[c.level] || `Level ${c.level}`)}</span>
+            ${prChip}
+            ${c.ai_campuses.length ? `<span class="cz-infra-chip cz-ai">${c.ai_campuses.length} AI campus${c.ai_campuses.length>1?"es":""}</span>` : ""}
+            ${c.dcs.length ? `<span class="cz-infra-chip cz-dc">${c.dcs.length} data center${c.dcs.length>1?"s":""}</span>` : ""}
+          </div>
+        </div>
+        <button class="cz-expand-btn" data-fips="${escHtml(c.fips)}" aria-expanded="${isOpen}">${isOpen ? "▲" : "▼"}</button>
+      </div>
+      ${isOpen ? `<div class="cz-row-body">
+        <div class="cz-infra-list">${campHtml}${dcHtml}${moreNote}</div>
+        <div class="cz-row-actions">
+          <button class="cz-map-btn" data-fips="${escHtml(c.fips)}">View on map</button>
+        </div>
+      </div>` : ""}
+    </div>`;
+  }
+
+  function render() {
+    const rows = conflicts.map(rowHtml).join("");
+    container.innerHTML = `
+      <div class="cz-kpi-row">
+        <div class="cz-kpi"><span class="cz-kpi-val">${totalConflict}</span><span class="cz-kpi-label">Conflict zone counties</span></div>
+        <div class="cz-kpi"><span class="cz-kpi-val" style="color:#dc2626">${highRisk}</span><span class="cz-kpi-label">High / Significant restriction</span></div>
+        <div class="cz-kpi"><span class="cz-kpi-val">${totalAI}</span><span class="cz-kpi-label">AI campuses at risk</span></div>
+        <div class="cz-kpi"><span class="cz-kpi-val">${totalDC}</span><span class="cz-kpi-label">Data centers at risk</span></div>
+      </div>
+      <div class="cz-list">${rows}</div>
+      <p class="cz-note">Counties where documented data center or AI campus infrastructure exists alongside active restrictive policy (level ≥ 1). Political Risk (PR) score where available. Sorted by restriction severity then infrastructure count.</p>
+    `;
+    wireEvents();
+  }
+
+  function wireEvents() {
+    container.querySelectorAll(".cz-row-header, .cz-expand-btn").forEach(el => {
+      el.addEventListener("click", e => {
+        if (e.target.closest(".cz-map-btn")) return;
+        const row = e.target.closest(".cz-row");
+        if (!row) return;
+        const fips = row.dataset.fips;
+        _expanded = _expanded === fips ? null : fips;
+        render();
+      });
+    });
+    container.querySelectorAll(".cz-map-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const fips = btn.dataset.fips;
+        if (!fips) return;
+        if (typeof switchTab === "function") switchTab("map");
+        setTimeout(() => {
+          if (typeof selectCounty === "function") selectCounty(fips);
+          if (typeof zoomToFeature === "function") zoomToFeature(fips);
+        }, 150);
+      });
+    });
+  }
+
+  render();
 }
 
 /* ─────────────────────────────────────────────────────────────── */
