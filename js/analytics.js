@@ -232,6 +232,16 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Political Risk Intelligence</div>
+      <div id="analytics-political-risk-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Loading political risk signals…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">Infrastructure Pipeline</div>
       <div id="analytics-pipeline-section">
         <div class="analytics-pipeline-loading">
@@ -288,6 +298,7 @@ function renderAnalyticsPage() {
   _fillFiberStats();
   _renderScenarioBuilder();
   _renderCountyRankings();
+  _renderPoliticalRisk();
   _fillIncentiveExplorer();
 }
 
@@ -1072,7 +1083,199 @@ function renderAboutPage() {
 }
 
 /* ─────────────────────────────────────────────────────────────── */
+/* Political Risk Intelligence                                         */
+/* ─────────────────────────────────────────────────────────────── */
+
+async function _renderPoliticalRisk() {
+  const container = document.getElementById("analytics-political-risk-section");
+  if (!container) return;
+
+  let prData;
+  try {
+    const raw = await fetch("data/political_risk.json").then(r => r.json());
+    prData = raw;
+  } catch (_) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Political risk data unavailable.</p>`;
+    return;
+  }
+
+  const scores = prData.scores || [];
+  if (!scores.length) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">No political risk records found.</p>`;
+    return;
+  }
+
+  const RISK_LABEL = { 1: "Very Favorable", 2: "Mostly Favorable", 3: "Mixed/Neutral", 4: "Elevated Risk", 5: "High Risk" };
+  const RISK_COLOR = { 1: "#22c55e", 2: "#84cc16", 3: "#eab308", 4: "#f97316", 5: "#ef4444" };
+  const RISK_CLS   = { 1: "pr-score-1", 2: "pr-score-2", 3: "pr-score-3", 4: "pr-score-4", 5: "pr-score-5" };
+
+  // Collect all unique signal types
+  const allSignalTypes = new Set();
+  scores.forEach(r => (r.signals || []).forEach(s => allSignalTypes.add(s.type)));
+  const signalTypes = Array.from(allSignalTypes).sort();
+
+  // Collect all states
+  const allStates = Array.from(new Set(scores.map(r => r.state))).sort();
+
+  let _filterScore = "all";
+  let _filterState = "All States";
+  let _filterSig   = "all";
+  let _search      = "";
+  let _expandedFips = null;
+
+  function buildHtml() {
+    const filtered = scores.filter(r => {
+      if (_filterScore !== "all" && String(r.risk_score) !== _filterScore) return false;
+      if (_filterState !== "All States" && r.state !== _filterState) return false;
+      if (_filterSig !== "all" && !(r.signals || []).some(s => s.type === _filterSig)) return false;
+      if (_search) {
+        const q = _search.toLowerCase();
+        const hit = r.name.toLowerCase().includes(q) ||
+                    r.state.toLowerCase().includes(q) ||
+                    (r.evidence_summary || "").toLowerCase().includes(q);
+        if (!hit) return false;
+      }
+      return true;
+    });
+
+    const stateOpts = allStates.map(s => `<option${s === _filterState ? " selected" : ""}>${escHtml(s)}</option>`).join("");
+    const sigOpts   = signalTypes.map(t => `<option value="${escHtml(t)}"${t === _filterSig ? " selected" : ""}>${escHtml(t.replace(/_/g, " "))}</option>`).join("");
+
+    const scoreBtn = (v, lbl) =>
+      `<button class="pr-score-btn${_filterScore === v ? " active" : ""}" data-score="${escHtml(v)}">${escHtml(lbl)}</button>`;
+
+    const rows = filtered.sort((a, b) => b.risk_score - a.risk_score || a.name.localeCompare(b.name)).map(r => {
+      const isOpen = _expandedFips === r.fips;
+      const sigHtml = (r.signals || []).map(s => {
+        const dt = s.detected_date ? ` <span class="pr-sig-date">${escHtml(s.detected_date.slice(0,7))}</span>` : "";
+        const srcLink = s.source_url
+          ? ` <a class="pr-sig-src" href="${escHtml(s.source_url)}" target="_blank" rel="noopener noreferrer">source</a>`
+          : "";
+        return `<div class="pr-signal">
+          <span class="pr-sig-type">${escHtml(s.label || s.type.replace(/_/g," "))}</span>${dt}${srcLink}
+          <div class="pr-sig-desc">${escHtml(s.description || "")}</div>
+        </div>`;
+      }).join("");
+
+      return `<div class="pr-row${isOpen ? " expanded" : ""}" data-fips="${escHtml(r.fips)}">
+        <div class="pr-row-header">
+          <div class="pr-score-chip ${escHtml(RISK_CLS[r.risk_score] || "pr-score-3")}">${r.risk_score}</div>
+          <div class="pr-row-info">
+            <div class="pr-row-name">${escHtml(r.name)}, ${escHtml(r.state)}</div>
+            <div class="pr-row-summary">${escHtml(r.evidence_summary || r.score_label || "")}</div>
+          </div>
+          <div class="pr-row-meta">
+            <span class="pr-conf-badge pr-conf-${escHtml(r.confidence || "low")}">${escHtml(r.confidence || "low")}</span>
+            <span class="pr-sig-count">${(r.signals || []).length} signal${(r.signals||[]).length===1?"":"s"}</span>
+          </div>
+          <button class="pr-expand-btn" data-fips="${escHtml(r.fips)}" aria-expanded="${isOpen}" title="${isOpen ? "Collapse" : "Expand"} signals">
+            ${isOpen ? "▲" : "▼"}
+          </button>
+        </div>
+        ${isOpen ? `<div class="pr-row-body">
+          <div class="pr-signals-list">${sigHtml || "<em style='color:var(--text-muted);font-size:11px'>No signals recorded.</em>"}</div>
+          <div class="pr-row-actions">
+            <button class="pr-map-btn" data-fips="${escHtml(r.fips)}">View on map</button>
+          </div>
+        </div>` : ""}
+      </div>`;
+    }).join("");
+
+    const meta = prData.meta || {};
+    const countNote = filtered.length === scores.length
+      ? `Showing all <strong>${scores.length}</strong> scored counties`
+      : `<strong>${filtered.length}</strong> of ${scores.length} counties`;
+
+    return `
+      <div class="pr-toolbar">
+        <input class="pr-search" id="pr-search" type="search" placeholder="Search county, state, or description…" value="${escHtml(_search)}" />
+        <select class="pr-sel" id="pr-state-sel">
+          <option value="All States">All States</option>
+          ${stateOpts}
+        </select>
+        <select class="pr-sel" id="pr-sig-sel">
+          <option value="all">All Signal Types</option>
+          ${sigOpts}
+        </select>
+        <div class="pr-score-btns">
+          ${scoreBtn("all","All")}
+          ${scoreBtn("5","Risk 5")}
+          ${scoreBtn("4","Risk 4")}
+          ${scoreBtn("3","Mixed")}
+          ${scoreBtn("2","Risk 2")}
+          ${scoreBtn("1","Favorable")}
+        </div>
+        <span class="pr-count">${countNote}</span>
+      </div>
+      <div class="pr-list">${rows || `<div class="pr-empty">No counties match the current filters.</div>`}</div>
+      <p class="pr-note">Scale: 1 = Very Favorable → 5 = High Political Risk. Coverage: ${meta.total_scored || scores.length} counties with documented public evidence. Unscored counties have insufficient data and are not assumed favorable. Last updated: ${escHtml(meta.last_updated || "—")}.</p>
+    `;
+  }
+
+  function render() {
+    container.innerHTML = buildHtml();
+    wireEvents();
+  }
+
+  function wireEvents() {
+    container.querySelector("#pr-search")?.addEventListener("input", e => {
+      _search = e.target.value.trim();
+      _expandedFips = null;
+      render();
+    });
+    container.querySelector("#pr-state-sel")?.addEventListener("change", e => {
+      _filterState = e.target.value;
+      _expandedFips = null;
+      render();
+    });
+    container.querySelector("#pr-sig-sel")?.addEventListener("change", e => {
+      _filterSig = e.target.value;
+      _expandedFips = null;
+      render();
+    });
+    container.querySelectorAll(".pr-score-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        _filterScore = btn.dataset.score;
+        _expandedFips = null;
+        render();
+      });
+    });
+    container.querySelectorAll(".pr-expand-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const fips = btn.dataset.fips;
+        _expandedFips = _expandedFips === fips ? null : fips;
+        render();
+      });
+    });
+    container.querySelectorAll(".pr-row-header").forEach(hdr => {
+      hdr.addEventListener("click", e => {
+        if (e.target.closest(".pr-expand-btn")) return;
+        const row = hdr.closest(".pr-row");
+        if (!row) return;
+        const fips = row.dataset.fips;
+        _expandedFips = _expandedFips === fips ? null : fips;
+        render();
+      });
+    });
+    container.querySelectorAll(".pr-map-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const fips = btn.dataset.fips;
+        if (!fips) return;
+        if (typeof switchTab === "function") switchTab("map");
+        setTimeout(() => {
+          if (typeof selectCounty === "function") selectCounty(fips);
+          if (typeof zoomToFeature === "function") zoomToFeature(fips);
+        }, 150);
+      });
+    });
+  }
+
+  render();
+}
+
+/* ─────────────────────────────────────────────────────────────── */
 /* County Suitability Rankings                                        */
+/* ─────────────────────────────────────────────────────────────── */
 
 function _renderCountyRankings() {
   const container = document.getElementById("analytics-rankings-section");
