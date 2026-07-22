@@ -175,6 +175,77 @@ let _saveCurrentType  = null;
 let _saveCurrentId    = null;
 let _saveCurrentData  = null;
 
+/* ── County watchlist (localStorage, no auth required) ── */
+const WATCHLIST_KEY = "dc-watchlist-v1";
+const WATCHLIST_MAX = 50;
+
+function _loadWatchlist() {
+  try { return new Set(JSON.parse(localStorage.getItem(WATCHLIST_KEY) || "[]")); }
+  catch (_) { return new Set(); }
+}
+
+function _saveWatchlistSet(set) {
+  try { localStorage.setItem(WATCHLIST_KEY, JSON.stringify([...set])); } catch (_) {}
+}
+
+function _isWatched(fips) {
+  return _loadWatchlist().has(fips);
+}
+
+function toggleWatchCounty(fips) {
+  if (!fips) return;
+  const set = _loadWatchlist();
+  if (set.has(fips)) {
+    set.delete(fips);
+    showMapToast("Removed from watchlist");
+  } else {
+    if (set.size >= WATCHLIST_MAX) { showMapToast(`Watchlist full (max ${WATCHLIST_MAX})`); return; }
+    set.add(fips);
+    const c = mapData[fips];
+    showMapToast(c ? `Watching ${c.name}` : "Added to watchlist");
+  }
+  _saveWatchlistSet(set);
+  _updateDetailWatchBtn(fips);
+  // Invalidate home page so watchlist section reflects the change on next visit
+  const homeEl = document.getElementById("home-view");
+  if (homeEl) delete homeEl.dataset.built;
+}
+
+function _updateDetailWatchBtn(fips) {
+  const btn  = document.getElementById("detail-watch-btn");
+  const icon = document.getElementById("detail-watch-icon");
+  if (!btn) return;
+  if (!fips) { btn.hidden = true; return; }
+  btn.hidden = false;
+  const watched = _isWatched(fips);
+  btn.setAttribute("title", watched ? "Remove from watchlist" : "Watch county");
+  btn.setAttribute("aria-label", watched ? "Remove from watchlist" : "Add to watchlist");
+  btn.classList.toggle("detail-watch-btn-active", watched);
+  if (icon) icon.setAttribute("fill", watched ? "currentColor" : "none");
+}
+
+/* ── Share/Permalink helper ── */
+function _copyCountyLink(fips) {
+  const url = fips
+    ? `${window.location.origin}${window.location.pathname}${window.location.search}#${fips}`
+    : window.location.href;
+  const done = () => showMapToast("Link copied!");
+  const fail = () => {
+    const ta = Object.assign(document.createElement("textarea"), { value: url, style: "position:fixed;opacity:0" });
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try { document.execCommand("copy"); done(); } catch (_) { showMapToast("Copy failed — check browser permissions"); }
+    ta.remove();
+  };
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(url).then(done).catch(fail);
+  else fail();
+}
+
+function _updateDetailShareBtn(fips) {
+  const btn = document.getElementById("detail-share-btn");
+  if (!btn) return;
+  btn.hidden = !fips;
+}
+
 const layerState = {
   restrictions: true,
   state_policy: true,
@@ -1807,6 +1878,11 @@ function initContextMenu() {
     if (!menu.contains(e.target)) closeMenu();
   });
 
+  document.getElementById("ctx-share-county")?.addEventListener("click", () => {
+    _copyCountyLink(selectedFips);
+    closeMenu();
+  });
+
   document.getElementById("ctx-copy-coords")?.addEventListener("click", () => {
     if (!_ctxLatLng) return;
     const text = `${_ctxLatLng.lat.toFixed(5)}, ${_ctxLatLng.lng.toFixed(5)}`;
@@ -3277,6 +3353,16 @@ function initLeafletMap() {
       }
     });
   }
+
+  // Watch button: toggle county watchlist (localStorage, no auth required)
+  document.getElementById("detail-watch-btn")?.addEventListener("click", () => {
+    if (selectedFips) toggleWatchCounty(selectedFips);
+  });
+
+  // Share button: copy county permalink to clipboard
+  document.getElementById("detail-share-btn")?.addEventListener("click", () => {
+    _copyCountyLink(selectedFips);
+  });
 
   // Refresh save cache when auth state changes
   document.addEventListener('auth:stateChange', ({ detail }) => {
@@ -5476,6 +5562,8 @@ function setDetailEmpty() {
   _saveCurrentId   = null;
   _saveCurrentData = null;
   _updateDetailSaveBtn();
+  _updateDetailWatchBtn(null);
+  _updateDetailShareBtn(null);
   document.getElementById("detail-body").innerHTML = `
     <div id="detail-empty">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -5659,6 +5747,8 @@ function setDetailCounty(fips, county) {
   _updateDetailSaveBtn();
   _updateDetailReportBtn(fips, county.name, county.state, county);
   _updateDetailCompareBtn(fips);
+  _updateDetailWatchBtn(fips);
+  _updateDetailShareBtn(fips);
 
   const stateFips2 = fips.slice(0, 2);
 
@@ -5700,6 +5790,8 @@ function setDetailNoRestriction(name, state, fips) {
   _updateDetailSaveBtn();
   _updateDetailReportBtn(fips, name, state, null);
   _updateDetailCompareBtn(fips);
+  _updateDetailWatchBtn(fips);
+  _updateDetailShareBtn(fips);
   const stateFips2 = fips ? fips.slice(0, 2) : null;
   document.getElementById("detail-body").innerHTML = `
     ${fips ? buildSuitabilityHtml(fips, null) : ""}

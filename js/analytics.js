@@ -37,6 +37,64 @@ function analyticsIcon(name) {
 /* Analytics Page                                                    */
 /* ─────────────────────────────────────────────────────────────── */
 
+function exportCountiesCSV() {
+  const counties = mapData || {};
+  const wsData   = window.DC_WATER_STRESS_FULL || {};
+  const incData  = window.DC_INCENTIVES_FIPS   || {};
+  const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
+  const LVL_LABELS = {"-1":"Pro / Incentive Hub","0":"No Restrictions","1":"Light Regulations","2":"Moderate Restrictions","3":"Significant Restrictions","4":"Ban / Moratorium"};
+  const TYPE_MAP = { data_center:"Data Center", ai:"AI Regulation", energy:"Energy / Grid", crypto:"Crypto / HPC", water:"Water Use" };
+
+  const csvCell = v => {
+    const s = String(v ?? "");
+    if (s.includes(",") || s.includes('"') || s.includes("\n")) return '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  };
+
+  const header = ["FIPS","County","State","Restriction Level","Level Label","Status","Effective Date","Policy Types","Suitability Score","Suitability Grade","Water Stress","Water Stress Label","Incentive Programs","Description"];
+
+  const rows = Object.keys(counties).sort().map(fips => {
+    const c    = counties[fips];
+    const lvl  = c.level ?? 0;
+    const ws   = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : "";
+    const wsLabel = ws !== "" ? (WS_LABELS[ws] || String(ws)) : "";
+    const incProgs = (incData[fips] || []).map(p => p.program_name || p.name || "").filter(Boolean).join("; ");
+    const types    = (c.types || []).map(t => TYPE_MAP[t] || t).join("; ");
+    let suit = { score: "", grade: "" };
+    if (typeof computeSuitabilityScore === "function") {
+      try { suit = computeSuitabilityScore(fips, c); } catch (_) {}
+    }
+    return [
+      fips,
+      c.name || "",
+      c.state || "",
+      lvl,
+      LVL_LABELS[String(lvl)] || String(lvl),
+      c.status || "active",
+      c.effective_date || c.date || "",
+      types,
+      suit.score,
+      suit.grade,
+      ws,
+      wsLabel,
+      incProgs,
+      (c.description || "").replace(/\s+/g, " ").trim(),
+    ].map(csvCell).join(",");
+  });
+
+  const csv  = [header.join(","), ...rows].join("\r\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), {
+    href: url,
+    download: `dc-ai-policy-tracker-${new Date().toISOString().slice(0,10)}.csv`,
+  });
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+}
+
 function renderAnalyticsPage() {
   const el = document.getElementById('analytics-view');
   if (!el) return;
@@ -96,6 +154,10 @@ function renderAnalyticsPage() {
     <div class="page-hero">
       <div class="page-hero-title">Policy <span>Analytics</span></div>
       <div class="page-hero-sub">Real-time summary of US data center and AI policy coverage, derived from the live dataset across all ${totalCounties} tracked jurisdictions.</div>
+      <button class="analytics-export-btn" id="analytics-export-csv" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export All Counties CSV
+      </button>
     </div>
 
     <div class="page-section">
@@ -383,6 +445,8 @@ function renderAnalyticsPage() {
   _fillConflictZones();
   _fillCapacityIntelligence();
   _fillIncentiveExplorer();
+
+  el.querySelector("#analytics-export-csv")?.addEventListener("click", exportCountiesCSV);
 }
 
 function _buildVelocityChartHtml(counties) {

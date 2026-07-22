@@ -296,6 +296,27 @@ function buildTopSites() {
   return results.slice(0, 10);
 }
 
+/* ── County watchlist (reads from localStorage written by map.js) ── */
+function buildWatchlist() {
+  if (!mapData) return [];
+  let fipsArr;
+  try { fipsArr = JSON.parse(localStorage.getItem("dc-watchlist-v1") || "[]"); }
+  catch (_) { fipsArr = []; }
+  const wsData  = window.DC_WATER_STRESS_FULL || {};
+  const WS_LABELS = ["Low", "Low-Med", "Med-High", "High", "Extreme"];
+  return fipsArr.map(fips => {
+    const c = mapData[fips];
+    const ws = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : null;
+    return {
+      fips,
+      name:    c ? c.name  : fips,
+      state:   c ? c.state : "",
+      level:   c ? (c.level ?? 0) : 0,
+      wsLabel: ws !== null ? (WS_LABELS[ws] || String(ws)) : null,
+    };
+  });
+}
+
 /* ── Recent policy activity (most recently dated entries, any level) ── */
 function buildRecentActivity() {
   if (!mapData) return [];
@@ -447,6 +468,7 @@ function renderHomePage() {
   const featured       = buildFeatured();
   const recentActivity = buildRecentActivity();
   const topSites       = buildTopSites();
+  const watchlist      = buildWatchlist();
   const newsTS   = newsArticles && newsArticles.length
     ? fmtRelDate(
         [...newsArticles].sort((a,b) => (b.published_at||"").localeCompare(a.published_at||""))[0]?.published_at
@@ -641,6 +663,36 @@ function renderHomePage() {
     </div>
   </section>` : ""}
 
+  <!-- Watched Counties -->
+  ${watchlist.length ? `
+  <section class="home-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Watched Counties</h2>
+      <button class="home-col-link" onclick="if(typeof toggleWatchCounty==='function'){}" type="button" title="Manage watchlist">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        ${watchlist.length} watched
+      </button>
+    </div>
+    <div class="home-watchlist">
+      ${watchlist.map(w => {
+        const lvl = w.level;
+        const sevCls = SEV_CLASSES[lvl] || SEV_CLASSES[0];
+        const sevLbl = SEV_LABELS[lvl]  ?? SEV_LABELS[0];
+        return `<div class="home-watch-row" role="button" tabindex="0" data-fips="${escHtml(w.fips)}" aria-label="${escHtml(w.name)}, ${escHtml(w.state)}">
+          <div class="home-watch-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="home-watch-info">
+            <span class="home-watch-name">${escHtml(w.name)}</span>
+            <span class="home-watch-state">${escHtml(w.state)}</span>
+          </div>
+          <span class="sev-badge ${sevCls}">${escHtml(sevLbl)}</span>
+          ${w.wsLabel !== null ? `<span class="home-watch-ws">${escHtml(w.wsLabel)}</span>` : ""}
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
   <!-- Market ticker -->
   <section class="home-section home-ticker-section">
     <div class="home-col-header">
@@ -785,6 +837,20 @@ function renderHomePage() {
 
   /* Bind featured card clicks */
   view.querySelectorAll(".home-featured-card[data-fips]").forEach(el => {
+    const handler = () => {
+      const fips = el.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise
+        : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    el.addEventListener("click",   handler);
+    el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+  });
+
+  /* Bind watchlist row clicks */
+  view.querySelectorAll(".home-watch-row[data-fips]").forEach(el => {
     const handler = () => {
       const fips = el.dataset.fips;
       switchTab("map");
