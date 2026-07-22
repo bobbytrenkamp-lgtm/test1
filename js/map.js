@@ -206,6 +206,8 @@ let politicalRiskData = {};   // fips → risk record from political_risk.json
 let showPoliticalRisk = false;
 let _suitMode       = false;
 let _wsMode         = false;
+let _densityMode    = false;
+let _densityCache   = null;   // fips → facility count, loaded lazily
 let selectedFips    = null;
 let cityLabelsLayer = null;
 
@@ -316,9 +318,33 @@ function getWaterStressColor(fips) {
   return WATER_STRESS_COLORS[level] || themeColors().noData;
 }
 
+const DENSITY_TIERS = [
+  { min: 1,   max: 1,   color: "#bfdbfe", label: "1 facility"       },
+  { min: 2,   max: 5,   color: "#60a5fa", label: "2–5 facilities"   },
+  { min: 6,   max: 20,  color: "#3b82f6", label: "6–20 facilities"  },
+  { min: 21,  max: 50,  color: "#2563eb", label: "21–50 facilities" },
+  { min: 51,  max: Infinity, color: "#1e3a8a", label: "51+ facilities"  },
+];
+
+function getDensityTier(count) {
+  for (const t of DENSITY_TIERS) {
+    if (count >= t.min && count <= t.max) return t;
+  }
+  return null;
+}
+
+function getDensityColor(fips) {
+  const d = _densityCache || {};
+  const count = d[fips] || 0;
+  if (!count) return themeColors().noData;
+  const t = getDensityTier(count);
+  return t ? t.color : themeColors().noData;
+}
+
 function getColor(fips) {
-  if (_wsMode)   return getWaterStressColor(fips);
-  if (_suitMode) return getSuitabilityColor(fips);
+  if (_densityMode) return getDensityColor(fips);
+  if (_wsMode)      return getWaterStressColor(fips);
+  if (_suitMode)    return getSuitabilityColor(fips);
   const county = mapData[fips];
   return county ? getSeverityColor(county) : themeColors().noData;
 }
@@ -386,7 +412,7 @@ function countyStyle(feature) {
 
   return {
     fillColor:   getColor(fips),
-    fillOpacity: isSat ? ((hasData || _suitMode || _wsMode) ? 0.70 * zoomFade * countyFillOpacity : 0) : 0.75 * zoomFade * countyFillOpacity,
+    fillOpacity: isSat ? ((hasData || _suitMode || _wsMode || _densityMode) ? 0.70 * zoomFade * countyFillOpacity : 0) : 0.75 * zoomFade * countyFillOpacity,
     color:       tc.countyBorder,
     weight:      0.35,
   };
@@ -2712,7 +2738,8 @@ function toggleWorkspaces() {
 /* ── Suitability mode ── */
 function toggleSuitabilityMode() {
   _suitMode = !_suitMode;
-  if (_suitMode && _wsMode) { _wsMode = false; _syncWsBtn(); }
+  if (_suitMode && _wsMode)      { _wsMode = false; _syncWsBtn(); }
+  if (_suitMode && _densityMode) { _densityMode = false; _syncDensityBtn(); }
   const btn = document.getElementById("gis-suitability");
   if (btn) {
     btn.classList.toggle("active", _suitMode);
@@ -2742,6 +2769,7 @@ function _syncWsBtn() {
 function toggleWaterStressMode() {
   _wsMode = !_wsMode;
   if (_wsMode && _suitMode) { _suitMode = false; const sb = document.getElementById("gis-suitability"); if (sb) { sb.classList.remove("active"); sb.setAttribute("aria-pressed","false"); } }
+  if (_wsMode && _densityMode) { _densityMode = false; _syncDensityBtn(); }
   _syncWsBtn();
   if (countyGeoLayer) countyGeoLayer.setStyle(countyStyle);
   if (selectedFips && countyLayerByFips[selectedFips]) {
@@ -2750,6 +2778,57 @@ function toggleWaterStressMode() {
   renderLegend();
   showMapToast(_wsMode
     ? "Water stress mode: Low (blue) → Extremely High (red)"
+    : "Restriction view restored");
+}
+
+function _syncDensityBtn() {
+  const btn = document.getElementById("gis-infrastructure-density");
+  if (!btn) return;
+  btn.classList.toggle("active", _densityMode);
+  btn.setAttribute("aria-pressed", String(_densityMode));
+  btn.setAttribute("title", _densityMode
+    ? "Density mode — click to restore restriction view (I)"
+    : "Infrastructure density — color counties by facility count (I)");
+}
+
+async function toggleDensityMode() {
+  _densityMode = !_densityMode;
+  if (_densityMode && _suitMode) { _suitMode = false; const sb = document.getElementById("gis-suitability"); if (sb) { sb.classList.remove("active"); sb.setAttribute("aria-pressed","false"); } }
+  if (_densityMode && _wsMode)   { _wsMode   = false; _syncWsBtn(); }
+
+  if (_densityMode && !_densityCache) {
+    showMapToast("Loading infrastructure data…");
+    try {
+      const [dcRes, campRes] = await Promise.all([
+        fetch("data/data_centers.json"),
+        fetch("data/ai_campuses.json"),
+      ]);
+      const dcs    = await dcRes.json();
+      const camps  = await campRes.json();
+      const cache  = {};
+      for (const f of [...dcs, ...camps]) {
+        const fips = f.fips || f.county_fips;
+        if (fips) cache[fips] = (cache[fips] || 0) + 1;
+      }
+      _densityCache = cache;
+      window.DC_DENSITY_BY_FIPS = cache;
+    } catch (err) {
+      console.error("Density load failed:", err);
+      _densityMode = false;
+      _syncDensityBtn();
+      showMapToast("Failed to load facility data");
+      return;
+    }
+  }
+
+  _syncDensityBtn();
+  if (countyGeoLayer) countyGeoLayer.setStyle(countyStyle);
+  if (selectedFips && countyLayerByFips[selectedFips]) {
+    countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
+  }
+  renderLegend();
+  showMapToast(_densityMode
+    ? "Infrastructure density: darker blue = more facilities"
     : "Restriction view restored");
 }
 
@@ -2919,6 +2998,7 @@ function initLeafletMap() {
   document.getElementById("gis-political-risk")?.addEventListener("click", togglePoliticalRiskLayer);
   document.getElementById("gis-suitability")?.addEventListener("click", toggleSuitabilityMode);
   document.getElementById("gis-water-stress")?.addEventListener("click", toggleWaterStressMode);
+  document.getElementById("gis-infrastructure-density")?.addEventListener("click", toggleDensityMode);
   document.getElementById("gis-results")        ?.addEventListener("click", () => window.RESULTS_PANEL?.toggle());
 
   // Save button: toggle save/unsave for current county or facility
@@ -3054,6 +3134,7 @@ function initLeafletMap() {
     if ((e.key === "c" || e.key === "C") && !e.ctrlKey && !e.metaKey) toggleComparePanel();
     if ((e.key === "s" || e.key === "S") && !e.ctrlKey && !e.metaKey) toggleSuitabilityMode();
     if ((e.key === "v" || e.key === "V") && !e.ctrlKey && !e.metaKey) toggleWaterStressMode();
+    if ((e.key === "i" || e.key === "I") && !e.ctrlKey && !e.metaKey) toggleDensityMode();
     if (e.key === "Escape" && measureMode)      toggleMeasure();
     if (e.key === "Escape" && drawMode)         toggleDraw();
     if (e.key === "Escape" && candidatePinMode) toggleCandidatePin();
@@ -3337,7 +3418,34 @@ function renderLegend() {
   legendBody.className = "legend-body";
 
   if (layerState.restrictions) {
-    if (_wsMode) {
+    if (_densityMode) {
+      const h = document.createElement("h3");
+      h.textContent = "Infrastructure Density";
+      legendBody.appendChild(h);
+
+      for (const t of DENSITY_TIERS) {
+        const el = document.createElement("div");
+        el.className = "legend-item";
+        el.innerHTML = `
+          <div class="legend-swatch" style="background:${t.color};"></div>
+          <div>
+            <div class="legend-label-main">${t.label}</div>
+          </div>`;
+        legendBody.appendChild(el);
+      }
+
+      const noDataEl = document.createElement("div");
+      noDataEl.className = "legend-item";
+      noDataEl.innerHTML = `
+        <div class="legend-swatch" style="background:${themeColors().noData};"></div>
+        <div><div class="legend-label-main">No facilities</div></div>`;
+      legendBody.appendChild(noDataEl);
+
+      const note = document.createElement("div");
+      note.className = "legend-suit-note";
+      note.textContent = "Source: Data Centers + AI Campus locations (~3,300 facilities)";
+      legendBody.appendChild(note);
+    } else if (_wsMode) {
       const h = document.createElement("h3");
       h.textContent = "Water Stress Level";
       legendBody.appendChild(h);
@@ -5527,6 +5635,7 @@ function initKbOverlay() {
     <div class="kb-row"><span class="kb-desc">Compare counties</span><span class="kb-keys"><kbd>C</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Suitability score view</span><span class="kb-keys"><kbd>S</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Water stress view</span><span class="kb-keys"><kbd>V</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Infrastructure density view</span><span class="kb-keys"><kbd>I</kbd></span></div>
     <div class="kb-section">General</div>
     <div class="kb-row"><span class="kb-desc">Command palette</span><span class="kb-keys"><kbd>Ctrl</kbd><kbd>K</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Show this help</span><span class="kb-keys"><kbd>?</kbd></span></div>
