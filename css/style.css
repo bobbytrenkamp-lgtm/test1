@@ -9399,3 +9399,133 @@ html.is-light-theme .home-site-inc {
 @media (max-width: 480px) {
   .home-site-score { display: none; }
 }
+
+/* ── Map View Mode Bar ── */
+#map-mode-bar {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 410;
+  display: flex;
+  gap: 3px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 4px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.22);
+  pointer-events: auto;
+  user-select: none;
+}
+.map-mode-chip {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 5px 13px;
+  border: none;
+  border-radius: 18px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard);
+  white-space: nowrap;
+  line-height: 1;
+  font-family: inherit;
+}
+.map-mode-chip:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+.map-mode-chip.active {
+  background: var(--accent);
+  color: #fff;
+}
+html[data-theme="light"] .map-mode-chip.active,
+html.is-light-theme .map-mode-chip.active {
+  color: #fff;
+}
+@media (max-width: 540px) {
+  #map-mode-bar { bottom: 14px; }
+  .map-mode-chip { font-size: 10px; padding: 4px 9px; }
+}
+
+/* ── Regulatory Momentum section ── */
+.mom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 640px) {
+  .mom-grid { grid-template-columns: 1fr; }
+}
+.mom-col-hdr {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-bottom: 8px;
+  margin-bottom: 6px;
+  border-bottom: 2px solid;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.mom-hdr-restrict { color: #ef4444; border-color: #ef4444; }
+.mom-hdr-pro      { color: #22c55e; border-color: #22c55e; }
+.mom-hdr-count {
+  font-weight: 400;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.mom-list { display: flex; flex-direction: column; gap: 5px; }
+.mom-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mom-rank {
+  width: 18px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: right;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.mom-state {
+  width: 32px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text);
+  flex-shrink: 0;
+}
+.mom-bar-wrap {
+  flex: 1;
+  height: 7px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.mom-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s var(--ease-enter);
+}
+.mom-count {
+  width: 24px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: right;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.mom-empty {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 8px 0;
+}

@@ -243,6 +243,13 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Regulatory Momentum — Last 12 Months</div>
+      <div id="analytics-momentum-section">
+        ${_buildRegulatoryMomentumHtml(counties)}
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">County Suitability Rankings</div>
       <div id="analytics-rankings-section">
         <div class="analytics-pipeline-loading">
@@ -693,6 +700,57 @@ function _buildMonthlyHeatmapHtml(counties) {
       <text x="${PAD_L}" y="${sec2Y - 8}" font-size="9.5" font-weight="700" letter-spacing="0.06em" fill="var(--text-muted)" font-family="inherit">PRO-BUSINESS / INCENTIVE PROGRAMS</text>
       ${renderGrid(proCount, 'p', sec2Y + PAD_T - 16)}
     </svg>
+    </div>
+  `;
+}
+
+function _buildRegulatoryMomentumHtml(counties) {
+  const now       = new Date();
+  const cutoff    = new Date(now);
+  cutoff.setFullYear(cutoff.getFullYear() - 1);
+  const cutoffStr = cutoff.toISOString().slice(0, 10);
+
+  const newRestrict = {};
+  const newPro      = {};
+
+  for (const fips in counties) {
+    const c    = counties[fips];
+    const date = c.effective_date || c.date || "";
+    if (!date || date < cutoffStr) continue;
+    const st = c.state || "Unknown";
+    if ((c.level ?? 0) >= 1)   newRestrict[st] = (newRestrict[st] || 0) + 1;
+    else if (c.level === -1)   newPro[st]      = (newPro[st]      || 0) + 1;
+  }
+
+  const topR   = Object.entries(newRestrict).sort((a, b) => b[1] - a[1]).slice(0, 8);
+  const topP   = Object.entries(newPro).sort((a, b) => b[1] - a[1]).slice(0, 8);
+  const totR   = Object.values(newRestrict).reduce((s, v) => s + v, 0);
+  const totP   = Object.values(newPro).reduce((s, v) => s + v, 0);
+
+  function renderList(rows, barColor, emptyMsg) {
+    if (!rows.length) return `<div class="mom-empty">${escHtml(emptyMsg)}</div>`;
+    const maxN = rows[0][1];
+    return rows.map(([st, n], i) =>
+      `<div class="mom-row">
+        <div class="mom-rank">${i + 1}</div>
+        <div class="mom-state">${escHtml(st)}</div>
+        <div class="mom-bar-wrap"><div class="mom-bar" style="width:${Math.round(n / maxN * 100)}%;background:${barColor}"></div></div>
+        <div class="mom-count">${n}</div>
+      </div>`
+    ).join("");
+  }
+
+  return `
+    <p class="vel-note" style="margin-bottom:14px">States ranked by the number of new county-level policy enactments in the trailing 12 months, split by direction. Counties are counted once at their <em>effective_date</em>. Total: ${totR + totP} new enactments recorded.</p>
+    <div class="mom-grid">
+      <div class="mom-col">
+        <div class="mom-col-hdr mom-hdr-restrict">Trending Restrictive <span class="mom-hdr-count">${totR} counties</span></div>
+        <div class="mom-list">${renderList(topR, "#ef4444", "No new restrictions in the last 12 months.")}</div>
+      </div>
+      <div class="mom-col">
+        <div class="mom-col-hdr mom-hdr-pro">Trending Pro-Business <span class="mom-hdr-count">${totP} counties</span></div>
+        <div class="mom-list">${renderList(topP, "#22c55e", "No new incentive programs in the last 12 months.")}</div>
+      </div>
     </div>
   `;
 }

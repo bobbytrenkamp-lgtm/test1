@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260722k" />
+  <link rel="stylesheet" href="css/style.css?v=20260722l" />
   <link rel="stylesheet" href="css/stocks.css?v=20260721a" />
   <link rel="stylesheet" href="css/account.css?v=20260717a" />
   <link rel="stylesheet" href="css/zoning.css?v=20260717b" />
@@ -183,6 +183,14 @@
 
       <!-- Filter status bar -->
       <div id="filter-status" hidden></div>
+
+      <!-- Map view mode switcher -->
+      <div id="map-mode-bar" role="group" aria-label="Map view mode">
+        <button class="map-mode-chip" data-mode="severity" aria-pressed="true">Restrictions</button>
+        <button class="map-mode-chip" data-mode="suitability" aria-pressed="false">Suitability</button>
+        <button class="map-mode-chip" data-mode="water" aria-pressed="false">Water Stress</button>
+        <button class="map-mode-chip" data-mode="density" aria-pressed="false">Density</button>
+      </div>
 
       <!-- Legend -->
       <div id="legend"></div>
@@ -881,10 +889,10 @@ window.addEventListener('error', function(e) {
 <script src="vendor/leaflet.js" defer onload="window._track.ok.push('leaflet')" onerror="window._track.fail.push('leaflet')"></script>
 <script src="vendor/topojson-client.min.js" defer onload="window._track.ok.push('topo')" onerror="window._track.fail.push('topo')"></script>
 <script src="js/stocks.js?v=20260721a" defer onload="window._track.ok.push('stocks')" onerror="window._track.fail.push('stocks')"></script>
-<script src="js/analytics.js?v=20260722k" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
+<script src="js/analytics.js?v=20260722l" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
 <script src="js/home.js?v=20260722b" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
 <script src="js/layer-registry.js?v=20260721a" defer onload="window._track.ok.push('layer-registry')" onerror="window._track.fail.push('layer-registry')"></script>
-<script src="js/map.js?v=20260722h" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script src="js/map.js?v=20260722l" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer onload="window._track.ok.push('supabase')" onerror="window._track.fail.push('supabase')"></script>
 <script src="js/supabase-config.js?v=20260717a" defer onload="window._track.ok.push('supabase-config')" onerror="window._track.fail.push('supabase-config')"></script>
 <script src="js/auth.js?v=20260717a" defer onload="window._track.ok.push('auth')" onerror="window._track.fail.push('auth')"></script>

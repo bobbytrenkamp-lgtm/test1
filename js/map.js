@@ -2782,9 +2782,21 @@ function toggleSuitabilityMode() {
     countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
   }
   renderLegend();
+  _syncMapModeBar();
   showMapToast(_suitMode
     ? "Suitability mode: counties colored A (green) → F (red)"
     : "Restriction view restored");
+}
+
+function _syncMapModeBar() {
+  const bar = document.getElementById("map-mode-bar");
+  if (!bar) return;
+  const active = _densityMode ? "density" : _wsMode ? "water" : _suitMode ? "suitability" : "severity";
+  bar.querySelectorAll(".map-mode-chip").forEach(chip => {
+    const on = chip.dataset.mode === active;
+    chip.classList.toggle("active", on);
+    chip.setAttribute("aria-pressed", String(on));
+  });
 }
 
 function _syncWsBtn() {
@@ -2807,6 +2819,7 @@ function toggleWaterStressMode() {
     countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
   }
   renderLegend();
+  _syncMapModeBar();
   showMapToast(_wsMode
     ? "Water stress mode: Low (blue) → Extremely High (red)"
     : "Restriction view restored");
@@ -2858,6 +2871,7 @@ async function toggleDensityMode() {
     countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
   }
   renderLegend();
+  _syncMapModeBar();
   showMapToast(_densityMode
     ? "Infrastructure density: darker blue = more facilities"
     : "Restriction view restored");
@@ -3208,6 +3222,25 @@ function initLeafletMap() {
   document.getElementById("gis-water-stress")?.addEventListener("click", toggleWaterStressMode);
   document.getElementById("gis-infrastructure-density")?.addEventListener("click", toggleDensityMode);
   document.getElementById("gis-screener")?.addEventListener("click", toggleSiteScreener);
+
+  // Map mode bar chip clicks
+  document.getElementById("map-mode-bar")?.addEventListener("click", e => {
+    const chip = e.target.closest(".map-mode-chip");
+    if (!chip) return;
+    const mode = chip.dataset.mode;
+    if (mode === "severity") {
+      if (_suitMode)    toggleSuitabilityMode();
+      else if (_wsMode) toggleWaterStressMode();
+      else if (_densityMode) toggleDensityMode();
+    } else if (mode === "suitability") {
+      if (!_suitMode) toggleSuitabilityMode();
+    } else if (mode === "water") {
+      if (!_wsMode) toggleWaterStressMode();
+    } else if (mode === "density") {
+      if (!_densityMode) toggleDensityMode();
+    }
+  });
+  _syncMapModeBar();
   document.getElementById("gis-results")        ?.addEventListener("click", () => window.RESULTS_PANEL?.toggle());
 
   // Save button: toggle save/unsave for current county or facility
