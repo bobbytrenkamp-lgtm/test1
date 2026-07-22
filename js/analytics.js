@@ -242,6 +242,16 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">State Regulatory Scorecard</div>
+      <div id="analytics-state-scorecard">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Loading state regulations…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">Infrastructure Pipeline</div>
       <div id="analytics-pipeline-section">
         <div class="analytics-pipeline-loading">
@@ -299,6 +309,7 @@ function renderAnalyticsPage() {
   _renderScenarioBuilder();
   _renderCountyRankings();
   _renderPoliticalRisk();
+  _renderStateScorecard();
   _fillIncentiveExplorer();
 }
 
@@ -1080,6 +1091,190 @@ function renderAboutPage() {
   `;
 
   renderPageFooter('about-footer-target');
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* State Regulatory Scorecard                                          */
+/* ─────────────────────────────────────────────────────────────── */
+
+async function _renderStateScorecard() {
+  const container = document.getElementById("analytics-state-scorecard");
+  if (!container) return;
+
+  let statesRaw;
+  try {
+    const raw = await fetch("data/state_regulations.json").then(r => r.json());
+    statesRaw = raw.states || {};
+  } catch (_) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">State regulation data unavailable.</p>`;
+    return;
+  }
+
+  // Flatten to array and normalise
+  const states = Object.entries(statesRaw).map(([fips2, s]) => ({
+    fips2,
+    name:    s.name,
+    abbr:    s.abbr || "",
+    level:   s.level,
+    status:  s.status || "active",
+    summary: s.summary || "",
+    types:   s.types  || [],
+    sources: s.sources || [],
+  }));
+
+  const LEVEL_META = {
+    "-1": { label: "Pro-Business",    color: "#22c55e", cls: "sr-lv--1" },
+    "0":  { label: "No Restrictions", color: "#6b7280", cls: "sr-lv-0"  },
+    "1":  { label: "Light",           color: "#86efac", cls: "sr-lv-1"  },
+    "2":  { label: "Moderate",        color: "#f97316", cls: "sr-lv-2"  },
+    "3":  { label: "Significant",     color: "#dc2626", cls: "sr-lv-3"  },
+    "4":  { label: "Moratorium/Ban",  color: "#7f1d1d", cls: "sr-lv-4"  },
+  };
+
+  const TYPE_LABELS = { data_center: "Data Center", ai: "AI", energy: "Energy", crypto: "Crypto", water: "Water" };
+  const ALL_TYPES   = ["data_center", "ai", "energy", "crypto", "water"];
+
+  let _filterType  = "all";
+  let _filterLevel = "all";
+  let _search      = "";
+  let _sortKey     = "level";
+  let _sortDir     = -1;  // -1 = desc (most restrictive first)
+  let _expandedAbbr = null;
+
+  function sorted(arr) {
+    return [...arr].sort((a, b) => {
+      let av = a[_sortKey], bv = b[_sortKey];
+      if (_sortKey === "name") return _sortDir * av.localeCompare(bv);
+      return _sortDir * (Number(av) - Number(bv));
+    });
+  }
+
+  function buildHtml() {
+    const filtered = states.filter(s => {
+      if (_filterType  !== "all" && !s.types.includes(_filterType)) return false;
+      if (_filterLevel !== "all" && String(s.level) !== _filterLevel) return false;
+      if (_search) {
+        const q = _search.toLowerCase();
+        if (!s.name.toLowerCase().includes(q) && !s.summary.toLowerCase().includes(q)) return false;
+      }
+      return true;
+    });
+
+    const rows = sorted(filtered).map(s => {
+      const lv   = LEVEL_META[String(s.level)] || LEVEL_META["0"];
+      const isOpen = _expandedAbbr === s.abbr;
+      const typeChips = s.types.map(t =>
+        `<span class="sr-type-chip">${escHtml(TYPE_LABELS[t] || t)}</span>`
+      ).join("");
+
+      const sourceLinks = s.sources.length
+        ? s.sources.map(src =>
+            `<a class="sr-source-link" href="${escHtml(src.url)}" target="_blank" rel="noopener noreferrer">${escHtml(src.label || src.url)}</a>`
+          ).join("")
+        : "";
+
+      return `<div class="sr-row${isOpen ? " expanded" : ""}" data-abbr="${escHtml(s.abbr)}">
+        <div class="sr-row-header">
+          <div class="sr-abbr">${escHtml(s.abbr)}</div>
+          <div class="sr-row-info">
+            <div class="sr-row-name">${escHtml(s.name)}</div>
+            <div class="sr-row-summary">${escHtml(s.summary.slice(0, 120))}${s.summary.length > 120 ? "…" : ""}</div>
+          </div>
+          <div class="sr-chips">${typeChips}</div>
+          <div class="sr-lv-badge ${escHtml(lv.cls)}" style="--lv-color:${lv.color}">${escHtml(lv.label)}</div>
+          <button class="sr-expand-btn" data-abbr="${escHtml(s.abbr)}" aria-expanded="${isOpen}" title="${isOpen ? "Collapse" : "Expand"}">${isOpen ? "▲" : "▼"}</button>
+        </div>
+        ${isOpen ? `<div class="sr-row-body">
+          <p class="sr-full-summary">${escHtml(s.summary)}</p>
+          ${sourceLinks ? `<div class="sr-sources"><span class="sr-sources-label">Official sources:</span>${sourceLinks}</div>` : ""}
+          <div class="sr-row-actions">
+            <button class="sr-map-btn" data-fips2="${escHtml(s.fips2)}">View counties on map</button>
+          </div>
+        </div>` : ""}
+      </div>`;
+    }).join("");
+
+    const levelOpts = ["-1","0","1","2","3"].map(v =>
+      `<option value="${v}"${_filterLevel === v ? " selected" : ""}>${escHtml(LEVEL_META[v]?.label || v)}</option>`
+    ).join("");
+
+    const typeOpts = ALL_TYPES.map(t =>
+      `<option value="${t}"${_filterType === t ? " selected" : ""}>${escHtml(TYPE_LABELS[t])}</option>`
+    ).join("");
+
+    const countNote = filtered.length === states.length
+      ? `All <strong>${states.length}</strong> states`
+      : `<strong>${filtered.length}</strong> of ${states.length} states`;
+
+    return `
+      <div class="sr-toolbar">
+        <input class="sr-search" id="sr-search" type="search" placeholder="Search state or policy text…" value="${escHtml(_search)}" />
+        <select class="sr-sel" id="sr-type-sel">
+          <option value="all">All Policy Types</option>
+          ${typeOpts}
+        </select>
+        <select class="sr-sel" id="sr-level-sel">
+          <option value="all">All Levels</option>
+          ${levelOpts}
+        </select>
+        <div class="sr-sort-btns">
+          <button class="sr-sort-btn${_sortKey === "level" ? " active" : ""}" data-sort="level">By Level</button>
+          <button class="sr-sort-btn${_sortKey === "name"  ? " active" : ""}" data-sort="name">A–Z</button>
+        </div>
+        <span class="sr-count">${countNote}</span>
+      </div>
+      <div class="sr-list">${rows || `<div class="sr-empty">No states match the current filters.</div>`}</div>
+      <p class="sr-note">State-level regulatory posture. Level −1 = active incentive hub; Level 3+ = enacted moratorium or ban. County-level data may differ — see map for detail.</p>
+    `;
+  }
+
+  function render() {
+    container.innerHTML = buildHtml();
+    wireEvents();
+  }
+
+  function wireEvents() {
+    container.querySelector("#sr-search")?.addEventListener("input", e => {
+      _search = e.target.value.trim();
+      _expandedAbbr = null;
+      render();
+    });
+    container.querySelector("#sr-type-sel")?.addEventListener("change", e => {
+      _filterType = e.target.value;
+      _expandedAbbr = null;
+      render();
+    });
+    container.querySelector("#sr-level-sel")?.addEventListener("change", e => {
+      _filterLevel = e.target.value;
+      _expandedAbbr = null;
+      render();
+    });
+    container.querySelectorAll(".sr-sort-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.sort;
+        if (_sortKey === key) { _sortDir *= -1; }
+        else { _sortKey = key; _sortDir = key === "level" ? -1 : 1; }
+        render();
+      });
+    });
+    container.querySelectorAll(".sr-expand-btn, .sr-row-header").forEach(el => {
+      el.addEventListener("click", e => {
+        if (e.target.closest(".sr-map-btn") || e.target.closest(".sr-source-link")) return;
+        const row = e.target.closest(".sr-row");
+        if (!row) return;
+        const abbr = row.dataset.abbr;
+        _expandedAbbr = _expandedAbbr === abbr ? null : abbr;
+        render();
+      });
+    });
+    container.querySelectorAll(".sr-map-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (typeof switchTab === "function") switchTab("map");
+      });
+    });
+  }
+
+  render();
 }
 
 /* ─────────────────────────────────────────────────────────────── */
