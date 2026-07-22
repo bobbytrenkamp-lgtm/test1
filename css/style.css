@@ -8968,6 +8968,12 @@ html[data-theme="light"] .sr-row { background: #f8f9fc; }
   max-height: 260px;
   overflow-y: auto;
 }
+#screener-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px 0 0;
+}
 #screener-count {
   padding: 6px 10px 4px;
   font-size: 11px;
@@ -8975,6 +8981,23 @@ html[data-theme="light"] .sr-row { background: #f8f9fc; }
   color: var(--text-muted);
   letter-spacing: 0.02em;
 }
+#screener-export-csv {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-alpha);
+  border: 1px solid var(--accent-border, color-mix(in srgb, var(--accent) 30%, transparent));
+  border-radius: 4px;
+  padding: 3px 7px;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  transition: background var(--dur-fast) var(--ease-standard);
+}
+#screener-export-csv:hover { background: var(--accent-alpha-hover, color-mix(in srgb, var(--accent) 20%, transparent)); }
 .scr-result-row {
   display: flex;
   align-items: center;

@@ -229,6 +229,13 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Cumulative Regulatory Pressure</div>
+      <div id="analytics-cumulative-section">
+        ${_buildCumulativeChartHtml(counties)}
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">County Suitability Rankings</div>
       <div id="analytics-rankings-section">
         <div class="analytics-pipeline-loading">
@@ -466,6 +473,124 @@ function _buildVelocityChartHtml(counties) {
       ${legendItems}
     </svg>
     <p class="vel-note">County-level policy enactments by year, colored by restriction severity. Includes both new restrictions (levels 1–4) and new incentive programs (−1). Pre-2018 data is sparse — many records lack precise dates. 2026 is partial-year.</p>
+  `;
+}
+
+function _buildCumulativeChartHtml(counties) {
+  const YEARS  = ["2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"];
+  // Track by severity: restrictive (1-4) vs. pro-business (-1) vs. no-restriction (0/null)
+  const SEV_COLOR = {
+    pro:      "#22c55e",
+    restrict: "#ef4444",
+    total:    "#4874e8",
+  };
+
+  // Count counties with a dated entry per year per category
+  // For cumulative: once a county has a policy by year Y, it counts in Y and all subsequent years
+  const dated = {};   // fips → year string (first dated policy)
+  const datePro  = {}; // fips → year (pro-business)
+  const dateRestr = {}; // fips → year (restriction)
+
+  for (const fips in counties) {
+    const c = counties[fips];
+    const raw = c.effective_date || c.date || c.last_updated || "";
+    if (!raw || raw.length < 4) continue;
+    const yr = raw.slice(0, 4);
+    if (!YEARS.includes(yr)) continue;
+    if (c.level === -1) {
+      if (!datePro[fips] || yr < datePro[fips]) datePro[fips] = yr;
+    } else if (c.level >= 1) {
+      if (!dateRestr[fips] || yr < dateRestr[fips]) dateRestr[fips] = yr;
+    }
+  }
+
+  // Cumulative counts per year
+  const cumPro    = [];
+  const cumRestr  = [];
+  const cumTotal  = [];
+  for (const yr of YEARS) {
+    const proCount  = Object.values(datePro).filter(y => y <= yr).length;
+    const restrCount = Object.values(dateRestr).filter(y => y <= yr).length;
+    cumPro.push(proCount);
+    cumRestr.push(restrCount);
+    cumTotal.push(proCount + restrCount);
+  }
+
+  const maxVal  = Math.max(...cumTotal, 1);
+  const W = 620, H = 240, PAD_L = 40, PAD_R = 20, PAD_T = 28, PAD_B = 52;
+  const chartW  = W - PAD_L - PAD_R;
+  const chartH  = H - PAD_T - PAD_B;
+
+  const xPos  = i => PAD_L + (i / (YEARS.length - 1)) * chartW;
+  const yPos  = v => PAD_T + chartH - (v / maxVal) * chartH;
+
+  // Y gridlines
+  const gridSteps = 4;
+  const gridLines = [];
+  for (let i = 0; i <= gridSteps; i++) {
+    const val = Math.round(maxVal * i / gridSteps);
+    const y   = yPos(val);
+    gridLines.push(`
+      <line x1="${PAD_L}" y1="${y.toFixed(1)}" x2="${W - PAD_R}" y2="${y.toFixed(1)}" stroke="var(--border)" stroke-width="${i===0 ? 1 : 0.6}" stroke-dasharray="${i>0 ? '3,3' : ''}"/>
+      <text x="${PAD_L - 5}" y="${(y + 4).toFixed(1)}" text-anchor="end" font-size="9" fill="var(--text-muted)" font-family="inherit">${val}</text>
+    `);
+  }
+
+  // Build SVG polyline point strings
+  const ptStr = arr => YEARS.map((_, i) => `${xPos(i).toFixed(1)},${yPos(arr[i]).toFixed(1)}`).join(" ");
+
+  // Area fills
+  const closedPath = (arr, col) => {
+    const pts = YEARS.map((_, i) => `${xPos(i).toFixed(1)},${yPos(arr[i]).toFixed(1)}`).join(" ");
+    const baseLeft  = `${PAD_L},${(PAD_T + chartH).toFixed(1)}`;
+    const baseRight = `${(PAD_L + chartW).toFixed(1)},${(PAD_T + chartH).toFixed(1)}`;
+    return `<polygon points="${baseLeft} ${pts} ${baseRight}" fill="${col}" fill-opacity="0.12"/>`;
+  };
+
+  // Endpoint labels
+  const lastI   = YEARS.length - 1;
+  const endLabels = [
+    { arr: cumTotal,  col: SEV_COLOR.total,    dy: -8 },
+    { arr: cumRestr,  col: SEV_COLOR.restrict,  dy: -8 },
+    { arr: cumPro,    col: SEV_COLOR.pro,       dy: -8 },
+  ].map(({ arr, col, dy }) => {
+    const x = xPos(lastI), y = yPos(arr[lastI]);
+    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" fill="${col}"/>
+            <text x="${(x+6).toFixed(1)}" y="${(y+3).toFixed(1)}" font-size="9" fill="${col}" font-family="inherit" font-weight="600">${arr[lastI]}</text>`;
+  }).join("");
+
+  // X labels
+  const xLabels = YEARS.map((yr, i) =>
+    `<text x="${xPos(i).toFixed(1)}" y="${(PAD_T + chartH + 14).toFixed(1)}" text-anchor="middle" font-size="9.5" fill="var(--text-muted)" font-family="inherit">${yr}</text>`
+  ).join("");
+
+  const legendW = 420;
+  const lgItems = [
+    { col: SEV_COLOR.total,   label: "Total (restrictions + incentives)" },
+    { col: SEV_COLOR.restrict, label: "Active Restrictions (levels 1–4)" },
+    { col: SEV_COLOR.pro,     label: "Pro-Business / Incentive Hubs" },
+  ].map((d, i) => `<g transform="translate(${i * 140}, 0)">
+    <line x1="0" y1="6" x2="14" y2="6" stroke="${d.col}" stroke-width="2"/>
+    <circle cx="7" cy="6" r="2.5" fill="${d.col}"/>
+    <text x="18" y="10" font-size="9" fill="var(--text-muted)" font-family="inherit">${d.label}</text>
+  </g>`).join("");
+
+  return `
+    <svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px;display:block;overflow:visible" role="img" aria-label="Cumulative regulatory pressure chart">
+      ${gridLines.join("")}
+      ${closedPath(cumTotal,  SEV_COLOR.total)}
+      ${closedPath(cumRestr,  SEV_COLOR.restrict)}
+      ${closedPath(cumPro,    SEV_COLOR.pro)}
+      <polyline points="${ptStr(cumTotal)}"  fill="none" stroke="${SEV_COLOR.total}"    stroke-width="2"   stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="${ptStr(cumRestr)}"  fill="none" stroke="${SEV_COLOR.restrict}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="${ptStr(cumPro)}"    fill="none" stroke="${SEV_COLOR.pro}"      stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+      ${endLabels}
+      ${xLabels}
+    </svg>
+    <svg viewBox="0 0 ${legendW} 16" width="100%" style="max-width:${legendW}px;display:block;margin-top:6px" aria-hidden="true">
+      ${lgItems}
+    </svg>
+    <p class="vel-note">Running total of counties with dated policy records, accumulated by year. Shows the compound trajectory of regulatory exposure — not just new enactments, but the cumulative count in effect at any point in time. Pre-2018 data is sparse; 2026 is partial-year.</p>
   `;
 }
 
