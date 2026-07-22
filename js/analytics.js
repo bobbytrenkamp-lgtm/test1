@@ -239,6 +239,16 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Investment Hotspots</div>
+      <div id="analytics-hotspots-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Identifying investment-grade counties…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">Political Risk Intelligence</div>
       <div id="analytics-political-risk-section">
         <div class="analytics-pipeline-loading">
@@ -335,6 +345,7 @@ function renderAnalyticsPage() {
   _fillFiberStats();
   _renderScenarioBuilder();
   _renderCountyRankings();
+  _renderInvestmentHotspots();
   _renderPoliticalRisk();
   _renderStateScorecard();
   _fillConflictZones();
@@ -2050,6 +2061,120 @@ function _renderCountyRankings() {
   container.querySelector("#rnk-more-btn")?.addEventListener("click", () => {
     _page++;
     renderTable();
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Investment Hotspots                                                */
+/* ─────────────────────────────────────────────────────────────── */
+
+function _renderInvestmentHotspots() {
+  const container = document.getElementById("analytics-hotspots-section");
+  if (!container) return;
+
+  if (typeof computeSuitabilityScore !== "function" || !mapData || !Object.keys(mapData).length) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted);padding:8px 0;">Map data required — navigate to the Map tab first.</p>`;
+    return;
+  }
+
+  const wsData  = window.DC_WATER_STRESS_FULL || {};
+  const incData = window.DC_INCENTIVES_FIPS   || {};
+
+  // A hotspot must pass all three green signals:
+  //  1. No active restriction (level ≤ 0 i.e. pro or none)
+  //  2. Water stress ≤ 2 (medium-high or lower)
+  //  3. Has at least one tax incentive program
+  const hotspots = [];
+
+  for (const fips in mapData) {
+    const county = mapData[fips];
+    const level  = county.level ?? 0;
+
+    const sigRestrict = level <= 0;
+    const wsLevel     = wsData[fips];
+    const sigWater    = wsLevel !== undefined && wsLevel !== null && wsLevel <= 2;
+    const sigInc      = !!incData[fips];
+
+    if (!sigRestrict || !sigWater || !sigInc) continue;
+
+    const suit = computeSuitabilityScore(fips, county);
+    if (suit.grade === "D" || suit.grade === "F") continue;
+
+    hotspots.push({ fips, county, suit, wsLevel, sigRestrict, sigWater, sigInc });
+  }
+
+  hotspots.sort((a, b) => b.suit.score - a.suit.score);
+
+  const total = hotspots.length;
+  const show  = hotspots.slice(0, 24);
+
+  if (total === 0) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted);padding:8px 0;">No counties currently meet all three green-signal criteria (no restriction + low water stress + tax incentive).</p>`;
+    return;
+  }
+
+  const WS_LABELS = ["Low", "Low-Med", "Med-High", "High", "Ext High"];
+  const WS_COLORS = ["#2563eb", "#60a5fa", "#facc15", "#f97316", "#dc2626"];
+
+  const gradeColor = { A: "#16a34a", B: "#22c55e", C: "#eab308", D: "#f97316", F: "#dc2626" };
+
+  const cards = show.map(h => {
+    const incCount = (incData[h.fips] || []).length;
+    const wsLabel  = WS_LABELS[h.wsLevel] || "Unknown";
+    const wsColor  = WS_COLORS[h.wsLevel] || "#888";
+    const sevLabel = h.county.level === -1 ? "Pro-DC Hub" : "No Restrictions";
+    const sevColor = h.county.level === -1 ? "#16a34a" : "#22c55e";
+    return `
+      <div class="hs-card" data-fips="${escHtml(h.fips)}">
+        <div class="hs-card-top">
+          <div class="hs-grade" style="color:${gradeColor[h.suit.grade] || '#888'};background:${gradeColor[h.suit.grade] || '#888'}18">${escHtml(h.suit.grade)}</div>
+          <div class="hs-name-block">
+            <div class="hs-name">${escHtml(h.county.name || h.fips)}</div>
+            <div class="hs-state">${escHtml(h.county.state || "")}</div>
+          </div>
+          <div class="hs-score">${h.suit.score}</div>
+        </div>
+        <div class="hs-signals">
+          <span class="hs-sig hs-sig-green" title="No active restrictions">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            ${escHtml(sevLabel)}
+          </span>
+          <span class="hs-sig hs-sig-water" style="--ws-color:${wsColor}" title="Water stress: ${wsLabel}">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            ${escHtml(wsLabel)}
+          </span>
+          <span class="hs-sig hs-sig-green" title="${incCount} tax incentive program${incCount !== 1 ? 's' : ''}">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            ${incCount} incentive${incCount !== 1 ? 's' : ''}
+          </span>
+        </div>
+        <button class="hs-map-btn" data-fips="${escHtml(h.fips)}">View on Map</button>
+      </div>`;
+  }).join("");
+
+  container.innerHTML = `
+    <div class="hs-header">
+      <div class="hs-header-desc">Counties passing all three green signals: no active restriction, water stress ≤ medium-high, and at least one tax incentive program. Ranked by suitability score.</div>
+      <div class="hs-badge">${total} qualifying counties</div>
+    </div>
+    <div class="hs-legend">
+      <span class="hs-legend-item"><span class="hs-sig hs-sig-green" style="display:inline-flex;align-items:center;gap:3px;font-size:10px">✓</span> = green signal</span>
+      <span class="hs-legend-item" style="color:var(--text-muted);font-size:10.5px">Score = suitability 0–100</span>
+    </div>
+    <div class="hs-grid">${cards}</div>
+    ${total > 24 ? `<p class="hs-overflow">Showing top 24 of ${total} qualifying counties. Use the Site Screener on the Map tab to explore all matches.</p>` : ""}
+  `;
+
+  container.addEventListener("click", e => {
+    const btn = e.target.closest(".hs-map-btn, .hs-card");
+    if (!btn) return;
+    const fips = btn.dataset.fips;
+    if (!fips) return;
+    switchTab("map");
+    setTimeout(() => {
+      if (typeof selectCounty === "function") selectCounty(fips);
+      if (typeof zoomToFeature === "function") zoomToFeature(fips);
+    }, 120);
   });
 }
 
