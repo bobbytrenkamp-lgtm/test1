@@ -8846,3 +8846,15 @@ html[data-theme="light"] .sr-row { background: #f8f9fc; }
   line-height: 1.5;
   font-style: italic;
 }
+
+/* ── Policy Velocity Chart ── */
+#analytics-velocity-section svg {
+  overflow: visible;
+}
+.vel-note {
+  margin-top: 8px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-style: italic;
+}

@@ -222,6 +222,13 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Restriction Enactment Velocity</div>
+      <div id="analytics-velocity-section">
+        ${_buildVelocityChartHtml(counties)}
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">County Suitability Rankings</div>
       <div id="analytics-rankings-section">
         <div class="analytics-pipeline-loading">
@@ -333,6 +340,111 @@ function renderAnalyticsPage() {
   _fillConflictZones();
   _fillCapacityIntelligence();
   _fillIncentiveExplorer();
+}
+
+function _buildVelocityChartHtml(counties) {
+  // Aggregate enactments by year + restriction level
+  const SEV_COLORS = {
+    "-1": "#22c55e",  // Pro-business
+    "1":  "#86efac",  // Light
+    "2":  "#f97316",  // Moderate
+    "3":  "#dc2626",  // Significant
+    "4":  "#7f1d1d",  // Ban
+  };
+  const SEV_LABELS = {
+    "-1": "Pro-Business / Incentive",
+    "1":  "Light",
+    "2":  "Moderate",
+    "3":  "Significant",
+    "4":  "Moratorium / Ban",
+  };
+  const LEVELS = ["-1", "1", "2", "3", "4"];
+  const YEARS  = ["2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"];
+
+  const yearLevel = {};
+  for (const yr of YEARS) yearLevel[yr] = {};
+
+  for (const fips in counties) {
+    const c  = counties[fips];
+    const lv = String(c.level ?? 0);
+    if (!LEVELS.includes(lv)) continue;
+    const raw = c.effective_date || c.date || c.last_updated || "";
+    if (!raw || raw.length < 4) continue;
+    const yr = raw.slice(0, 4);
+    if (!YEARS.includes(yr)) continue;
+    yearLevel[yr][lv] = (yearLevel[yr][lv] || 0) + 1;
+  }
+
+  // Compute max total per year for scaling
+  const totals = YEARS.map(yr => Object.values(yearLevel[yr]).reduce((s, v) => s + v, 0));
+  const maxTotal = Math.max(...totals, 1);
+
+  // Chart dimensions
+  const W = 620, H = 220, PAD_L = 36, PAD_R = 16, PAD_T = 24, PAD_B = 56;
+  const chartW = W - PAD_L - PAD_R;
+  const chartH = H - PAD_T - PAD_B;
+  const barW   = Math.floor(chartW / YEARS.length * 0.7);
+  const barGap  = chartW / YEARS.length;
+
+  // Y-axis gridlines
+  const gridSteps = 4;
+  const gridLines = [];
+  for (let i = 0; i <= gridSteps; i++) {
+    const val = Math.round(maxTotal * i / gridSteps);
+    const y   = PAD_T + chartH - (chartH * i / gridSteps);
+    gridLines.push(`
+      <line x1="${PAD_L}" y1="${y}" x2="${W - PAD_R}" y2="${y}" stroke="var(--border)" stroke-width="0.7" stroke-dasharray="${i > 0 ? '3,3' : ''}"/>
+      <text x="${PAD_L - 4}" y="${y + 4}" text-anchor="end" font-size="9" fill="var(--text-muted)" font-family="inherit">${val}</text>
+    `);
+  }
+
+  // Bars (stacked)
+  const bars = [];
+  const labels = [];
+  YEARS.forEach((yr, xi) => {
+    const x = PAD_L + xi * barGap + (barGap - barW) / 2;
+    let yBottom = PAD_T + chartH;
+    const total = totals[xi];
+
+    for (const lv of LEVELS) {
+      const count = yearLevel[yr][lv] || 0;
+      if (!count) continue;
+      const barH = Math.max(2, (count / maxTotal) * chartH);
+      yBottom -= barH;
+      bars.push(`<rect x="${x.toFixed(1)}" y="${yBottom.toFixed(1)}" width="${barW}" height="${barH.toFixed(1)}" fill="${SEV_COLORS[lv]}" rx="1">
+        <title>${YEARS[xi]} · ${SEV_LABELS[lv]}: ${count} enactments</title>
+      </rect>`);
+    }
+
+    // X label
+    labels.push(`<text x="${(x + barW / 2).toFixed(1)}" y="${PAD_T + chartH + 14}" text-anchor="middle" font-size="9.5" fill="var(--text-muted)" font-family="inherit">${yr}</text>`);
+
+    // Total above bar
+    if (total > 0) {
+      const topY = PAD_T + chartH - (total / maxTotal) * chartH - 3;
+      labels.push(`<text x="${(x + barW / 2).toFixed(1)}" y="${topY.toFixed(1)}" text-anchor="middle" font-size="8.5" fill="var(--text-muted)" font-family="inherit">${total}</text>`);
+    }
+  });
+
+  // Legend
+  const legendItems = LEVELS.map((lv, i) =>
+    `<g transform="translate(${i * 110}, 0)">
+      <rect width="10" height="10" rx="2" fill="${SEV_COLORS[lv]}"/>
+      <text x="14" y="9" font-size="9" fill="var(--text-muted)" font-family="inherit">${SEV_LABELS[lv]}</text>
+    </g>`
+  ).join("");
+
+  return `
+    <svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px;display:block;overflow:visible" role="img" aria-label="Restriction enactment velocity chart">
+      ${gridLines.join("")}
+      ${bars.join("")}
+      ${labels.join("")}
+    </svg>
+    <svg viewBox="0 0 560 16" width="100%" style="max-width:560px;display:block;margin-top:6px" aria-hidden="true">
+      ${legendItems}
+    </svg>
+    <p class="vel-note">County-level policy enactments by year, colored by restriction severity. Includes both new restrictions (levels 1–4) and new incentive programs (−1). Pre-2018 data is sparse — many records lack precise dates. 2026 is partial-year.</p>
+  `;
 }
 
 function _buildPolicyTimelineHtml(counties) {
