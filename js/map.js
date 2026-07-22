@@ -205,6 +205,7 @@ let legendOpen      = true;  // true=visible, false=collapsed to restore button
 let politicalRiskData = {};   // fips → risk record from political_risk.json
 let showPoliticalRisk = false;
 let _suitMode       = false;
+let _wsMode         = false;
 let selectedFips    = null;
 let cityLabelsLayer = null;
 
@@ -300,7 +301,23 @@ function getSuitabilityColor(fips) {
   return SUIT_GRADE_COLORS[s.grade] || themeColors().noData;
 }
 
+const WATER_STRESS_COLORS = [
+  "#2563eb", // 0 Low
+  "#0ea5e9", // 1 Low-Medium
+  "#eab308", // 2 Medium-High
+  "#f97316", // 3 High
+  "#dc2626", // 4 Extremely High
+];
+
+function getWaterStressColor(fips) {
+  const ws = window.DC_WATER_STRESS_FULL || {};
+  const level = ws[fips];
+  if (level === undefined || level === null) return themeColors().noData;
+  return WATER_STRESS_COLORS[level] || themeColors().noData;
+}
+
 function getColor(fips) {
+  if (_wsMode)   return getWaterStressColor(fips);
   if (_suitMode) return getSuitabilityColor(fips);
   const county = mapData[fips];
   return county ? getSeverityColor(county) : themeColors().noData;
@@ -369,7 +386,7 @@ function countyStyle(feature) {
 
   return {
     fillColor:   getColor(fips),
-    fillOpacity: isSat ? ((hasData || _suitMode) ? 0.70 * zoomFade * countyFillOpacity : 0) : 0.75 * zoomFade * countyFillOpacity,
+    fillOpacity: isSat ? ((hasData || _suitMode || _wsMode) ? 0.70 * zoomFade * countyFillOpacity : 0) : 0.75 * zoomFade * countyFillOpacity,
     color:       tc.countyBorder,
     weight:      0.35,
   };
@@ -392,13 +409,14 @@ function stateStyle(feature) {
 /* Core data (small JSON files) — loaded immediately on page start */
 async function loadCoreData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
-  const [data, sample, stateReg, newsData, riskRaw, incentivesRaw] = await Promise.all([
+  const [data, sample, stateReg, newsData, riskRaw, incentivesRaw, waterRaw] = await Promise.all([
     get("data/map_data.json"),
     get("data/sample_layers.json").catch(() => null),
     get("data/state_regulations.json").catch(() => ({ states: {} })),
     fetch("data/ai_news.json", { cache: "no-store" }).then(r => r.json()).catch(() => ({ articles: [] })),
     get("data/political_risk.json").catch(() => ({ scores: [] })),
     get("data/tax_incentives.json").catch(() => ({ tax_incentives: [] })),
+    get("data/water_stress.json").catch(() => ({ water_stress: {} })),
   ]);
   // Index risk scores by fips for O(1) lookup
   const riskByFips = {};
@@ -414,7 +432,8 @@ async function loadCoreData() {
       incentivesByFips[key].push(prog);
     }
   }
-  return { data, sample, stateReg, newsData, riskByFips, incentivesByFips };
+  const waterStressFull = waterRaw.water_stress || {};
+  return { data, sample, stateReg, newsData, riskByFips, incentivesByFips, waterStressFull };
 }
 
 /* County TopoJSON (~2 MB) — lazy-loaded only when Map tab is opened */
@@ -2693,6 +2712,7 @@ function toggleWorkspaces() {
 /* ── Suitability mode ── */
 function toggleSuitabilityMode() {
   _suitMode = !_suitMode;
+  if (_suitMode && _wsMode) { _wsMode = false; _syncWsBtn(); }
   const btn = document.getElementById("gis-suitability");
   if (btn) {
     btn.classList.toggle("active", _suitMode);
@@ -2706,6 +2726,30 @@ function toggleSuitabilityMode() {
   renderLegend();
   showMapToast(_suitMode
     ? "Suitability mode: counties colored A (green) → F (red)"
+    : "Restriction view restored");
+}
+
+function _syncWsBtn() {
+  const btn = document.getElementById("gis-water-stress");
+  if (!btn) return;
+  btn.classList.toggle("active", _wsMode);
+  btn.setAttribute("aria-pressed", String(_wsMode));
+  btn.setAttribute("title", _wsMode
+    ? "Water stress mode — click to restore restriction view (V)"
+    : "Water stress view — color counties by WRI stress level (V)");
+}
+
+function toggleWaterStressMode() {
+  _wsMode = !_wsMode;
+  if (_wsMode && _suitMode) { _suitMode = false; const sb = document.getElementById("gis-suitability"); if (sb) { sb.classList.remove("active"); sb.setAttribute("aria-pressed","false"); } }
+  _syncWsBtn();
+  if (countyGeoLayer) countyGeoLayer.setStyle(countyStyle);
+  if (selectedFips && countyLayerByFips[selectedFips]) {
+    countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
+  }
+  renderLegend();
+  showMapToast(_wsMode
+    ? "Water stress mode: Low (blue) → Extremely High (red)"
     : "Restriction view restored");
 }
 
@@ -2874,6 +2918,7 @@ function initLeafletMap() {
   document.getElementById("gis-minimap")       ?.addEventListener("click", toggleMinimap);
   document.getElementById("gis-political-risk")?.addEventListener("click", togglePoliticalRiskLayer);
   document.getElementById("gis-suitability")?.addEventListener("click", toggleSuitabilityMode);
+  document.getElementById("gis-water-stress")?.addEventListener("click", toggleWaterStressMode);
   document.getElementById("gis-results")        ?.addEventListener("click", () => window.RESULTS_PANEL?.toggle());
 
   // Save button: toggle save/unsave for current county or facility
@@ -3008,6 +3053,7 @@ function initLeafletMap() {
     if ((e.key === "w" || e.key === "W") && !e.ctrlKey && !e.metaKey) toggleWorkspaces();
     if ((e.key === "c" || e.key === "C") && !e.ctrlKey && !e.metaKey) toggleComparePanel();
     if ((e.key === "s" || e.key === "S") && !e.ctrlKey && !e.metaKey) toggleSuitabilityMode();
+    if ((e.key === "v" || e.key === "V") && !e.ctrlKey && !e.metaKey) toggleWaterStressMode();
     if (e.key === "Escape" && measureMode)      toggleMeasure();
     if (e.key === "Escape" && drawMode)         toggleDraw();
     if (e.key === "Escape" && candidatePinMode) toggleCandidatePin();
@@ -3291,7 +3337,35 @@ function renderLegend() {
   legendBody.className = "legend-body";
 
   if (layerState.restrictions) {
-    if (_suitMode) {
+    if (_wsMode) {
+      const h = document.createElement("h3");
+      h.textContent = "Water Stress Level";
+      legendBody.appendChild(h);
+
+      const wsItems = [
+        { level: 0, color: WATER_STRESS_COLORS[0], label: "Low",             sub: "Score 0 — minimal demand vs. supply" },
+        { level: 1, color: WATER_STRESS_COLORS[1], label: "Low-Medium",       sub: "Score 1 — manageable stress" },
+        { level: 2, color: WATER_STRESS_COLORS[2], label: "Medium-High",      sub: "Score 2 — elevated competition" },
+        { level: 3, color: WATER_STRESS_COLORS[3], label: "High",             sub: "Score 3 — significant supply risk" },
+        { level: 4, color: WATER_STRESS_COLORS[4], label: "Extremely High",   sub: "Score 4 — critical water scarcity" },
+      ];
+      for (const item of wsItems) {
+        const el = document.createElement("div");
+        el.className = "legend-item";
+        el.innerHTML = `
+          <div class="legend-swatch" style="background:${item.color};"></div>
+          <div>
+            <div class="legend-label-main">${item.label}</div>
+            <div class="legend-label-sub">${item.sub}</div>
+          </div>`;
+        legendBody.appendChild(el);
+      }
+
+      const note = document.createElement("div");
+      note.className = "legend-suit-note";
+      note.textContent = "Source: WRI Aqueduct · USGS Water Use · EPA drought data (approx.)";
+      legendBody.appendChild(note);
+    } else if (_suitMode) {
       const h = document.createElement("h3");
       h.textContent = "Suitability Score";
       legendBody.appendChild(h);
@@ -5452,6 +5526,7 @@ function initKbOverlay() {
     <div class="kb-row"><span class="kb-desc">Workspaces panel</span><span class="kb-keys"><kbd>W</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Compare counties</span><span class="kb-keys"><kbd>C</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Suitability score view</span><span class="kb-keys"><kbd>S</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Water stress view</span><span class="kb-keys"><kbd>V</kbd></span></div>
     <div class="kb-section">General</div>
     <div class="kb-row"><span class="kb-desc">Command palette</span><span class="kb-keys"><kbd>Ctrl</kbd><kbd>K</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Show this help</span><span class="kb-keys"><kbd>?</kbd></span></div>
@@ -7250,7 +7325,7 @@ async function init() {
   fetchGeoData();
 
   try {
-    const { data, sample, stateReg, newsData, riskByFips, incentivesByFips } = await loadCoreData();
+    const { data, sample, stateReg, newsData, riskByFips, incentivesByFips, waterStressFull } = await loadCoreData();
 
     mapData           = data.counties || {};
     sampleLayers      = sample || null;
@@ -7261,6 +7336,7 @@ async function init() {
     // Expose risk, water, and incentives data as globals for parcel intelligence modules
     window.DC_RISK_BY_FIPS     = politicalRiskData;
     window.DC_WATER_STRESS     = (sample && sample.water_stress) ? sample.water_stress : {};
+    window.DC_WATER_STRESS_FULL = waterStressFull || {};
     window.DC_INCENTIVES_FIPS  = incentivesByFips || {};
 
     // Re-render home with real data (clears skeleton state)
