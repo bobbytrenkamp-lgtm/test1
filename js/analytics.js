@@ -252,6 +252,16 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Facility Capacity Intelligence</div>
+      <div id="analytics-capacity-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Loading facility data…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">Infrastructure Pipeline</div>
       <div id="analytics-pipeline-section">
         <div class="analytics-pipeline-loading">
@@ -310,6 +320,7 @@ function renderAnalyticsPage() {
   _renderCountyRankings();
   _renderPoliticalRisk();
   _renderStateScorecard();
+  _fillCapacityIntelligence();
   _fillIncentiveExplorer();
 }
 
@@ -1091,6 +1102,118 @@ function renderAboutPage() {
   `;
 
   renderPageFooter('about-footer-target');
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Facility Capacity Intelligence                                      */
+/* ─────────────────────────────────────────────────────────────── */
+
+async function _fillCapacityIntelligence() {
+  const container = document.getElementById("analytics-capacity-section");
+  if (!container) return;
+
+  let facilities;
+  try {
+    facilities = await fetch("data/facilities_master.json").then(r => r.json());
+  } catch (_) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Facility data unavailable.</p>`;
+    return;
+  }
+
+  if (!Array.isArray(facilities) || !facilities.length) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">No facility records found.</p>`;
+    return;
+  }
+
+  // Aggregate
+  let totalMW = 0, opMW = 0, planMW = 0, opCount = 0, planCount = 0;
+  let hyperCount = 0, coloCount = 0, edgeCount = 0;
+  const stateMW    = {};
+  const stateCount = {};
+  const stateName  = {};
+
+  for (const f of facilities) {
+    const mw  = f.capacity_mw_known || 0;
+    const st  = f.state_abbr || "—";
+    const stn = f.state || st;
+    totalMW += mw;
+    stateMW[st]    = (stateMW[st]    || 0) + mw;
+    stateCount[st] = (stateCount[st] || 0) + 1;
+    stateName[st]  = stn;
+    if (f.operational_status === "operational") { opMW += mw; opCount++; }
+    else if (f.operational_status === "planned") { planMW += mw; planCount++; }
+    if (f.is_hyperscale) hyperCount++;
+    if (f.is_colocation) coloCount++;
+    if (f.is_edge)       edgeCount++;
+  }
+
+  const fmt = n => n >= 1000 ? `${(n/1000).toFixed(1)}K` : String(Math.round(n));
+  const fmtMW = n => n >= 1000 ? `${(n/1000).toFixed(1)}K MW` : `${Math.round(n)} MW`;
+
+  // Top 20 states by MW (exclude XX = unknown state)
+  const topStates = Object.entries(stateMW)
+    .filter(([k]) => k !== "XX" && k !== "—")
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 20);
+  const maxStateMW = topStates[0]?.[1] || 1;
+
+  const stateRows = topStates.map(([abbr, mw], i) => {
+    const pct = (mw / maxStateMW * 100).toFixed(1);
+    const cnt = stateCount[abbr] || 0;
+    return `<div class="cap-state-row">
+      <span class="cap-state-rank">${i + 1}</span>
+      <span class="cap-state-abbr">${escHtml(abbr)}</span>
+      <div class="cap-state-bar-wrap">
+        <div class="cap-state-bar" style="width:${pct}%"></div>
+      </div>
+      <span class="cap-state-mw">${escHtml(fmtMW(mw))}</span>
+      <span class="cap-state-cnt">${cnt} facilit${cnt===1?"y":"ies"}</span>
+    </div>`;
+  }).join("");
+
+  // Status split bar
+  const knownMW = opMW + planMW;
+  const opPct   = knownMW > 0 ? (opMW / knownMW * 100).toFixed(1) : "50";
+  const plPct   = knownMW > 0 ? (planMW / knownMW * 100).toFixed(1) : "50";
+
+  container.innerHTML = `
+    <div class="cap-kpi-row">
+      <div class="cap-kpi">
+        <div class="cap-kpi-val">${escHtml(fmtMW(totalMW))}</div>
+        <div class="cap-kpi-label">Total tracked capacity</div>
+      </div>
+      <div class="cap-kpi">
+        <div class="cap-kpi-val" style="color:#22c55e">${escHtml(fmtMW(opMW))}</div>
+        <div class="cap-kpi-label">Operational (${escHtml(fmt(opCount))} facilities)</div>
+      </div>
+      <div class="cap-kpi">
+        <div class="cap-kpi-val" style="color:#60a5fa">${escHtml(fmtMW(planMW))}</div>
+        <div class="cap-kpi-label">Planned (${escHtml(fmt(planCount))} facilities)</div>
+      </div>
+      <div class="cap-kpi">
+        <div class="cap-kpi-val">${escHtml(fmt(hyperCount))}</div>
+        <div class="cap-kpi-label">Hyperscale facilities</div>
+      </div>
+      <div class="cap-kpi">
+        <div class="cap-kpi-val">${escHtml(fmt(coloCount))}</div>
+        <div class="cap-kpi-label">Colocation facilities</div>
+      </div>
+    </div>
+
+    <div class="cap-split-label">Operational vs. Planned (by known MW)</div>
+    <div class="cap-split-bar">
+      <div class="cap-split-op"  style="width:${opPct}%" title="Operational: ${fmtMW(opMW)}"></div>
+      <div class="cap-split-plan" style="width:${plPct}%" title="Planned: ${fmtMW(planMW)}"></div>
+    </div>
+    <div class="cap-split-legend">
+      <span><span class="cap-dot" style="background:#22c55e"></span>Operational ${opPct}%</span>
+      <span><span class="cap-dot" style="background:#60a5fa"></span>Planned ${plPct}%</span>
+    </div>
+
+    <div class="cap-states-title">Top States by Known Capacity</div>
+    <div class="cap-states-list">${stateRows}</div>
+    <p class="cap-note">Known capacity only — many facilities do not publicly disclose MW figures. Total tracked: ${escHtml(String(facilities.length))} facilities. Source: facilities_master.json pipeline run 2026-07-13.</p>
+  `;
 }
 
 /* ─────────────────────────────────────────────────────────────── */
