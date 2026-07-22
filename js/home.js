@@ -267,6 +267,35 @@ function buildFeatured() {
   }).filter(Boolean);
 }
 
+/* ── Top development sites: no restrictions, B+ suitability, sorted by score ── */
+function buildTopSites() {
+  if (typeof computeSuitabilityScore !== "function" || !mapData) return [];
+  const wsData  = window.DC_WATER_STRESS_FULL || {};
+  const incData = window.DC_INCENTIVES_FIPS   || {};
+  const WS_LABELS = ["Low", "Low-Med", "Med-High", "High", "Extreme"];
+
+  const results = [];
+  for (const fips in mapData) {
+    const c = mapData[fips];
+    if ((c.level || 0) > 0) continue;
+    const suit = computeSuitabilityScore(fips, c);
+    if (suit.score < 65) continue;
+    const ws     = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : null;
+    const hasInc = !!(incData[fips]);
+    results.push({ fips, name: c.name, state: c.state, level: c.level, suit, ws, wsLabel: ws !== null ? (WS_LABELS[ws] || String(ws)) : null, hasInc });
+  }
+
+  results.sort((a, b) => {
+    if (b.suit.score !== a.suit.score) return b.suit.score - a.suit.score;
+    const wa = a.ws !== null ? a.ws : 99;
+    const wb = b.ws !== null ? b.ws : 99;
+    if (wa !== wb) return wa - wb;
+    return (b.hasInc ? 1 : 0) - (a.hasInc ? 1 : 0);
+  });
+
+  return results.slice(0, 10);
+}
+
 /* ── Recent policy activity (most recently dated entries, any level) ── */
 function buildRecentActivity() {
   if (!mapData) return [];
@@ -417,6 +446,7 @@ function renderHomePage() {
   const news           = buildLatestNews();
   const featured       = buildFeatured();
   const recentActivity = buildRecentActivity();
+  const topSites       = buildTopSites();
   const newsTS   = newsArticles && newsArticles.length
     ? fmtRelDate(
         [...newsArticles].sort((a,b) => (b.published_at||"").localeCompare(a.published_at||""))[0]?.published_at
@@ -581,6 +611,36 @@ function renderHomePage() {
     </div>
   </section>` : ""}
 
+  <!-- Top Development Sites -->
+  ${topSites.length ? `
+  <section class="home-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Top Development Sites</h2>
+      <button class="home-col-link" onclick="switchTab('map'); setTimeout(()=>document.getElementById('gis-screener')?.click(),300)" type="button">Full screener ${HOME_ICONS.arrow}</button>
+    </div>
+    <p class="home-sites-desc">Best counties for data center development — B+ suitability grade (≥65 pts), no active restrictions, ranked by composite score. Click any row to open on the map.</p>
+    <div class="home-sites-list">
+      ${topSites.map((s, i) => {
+        const GRADE_COLOR = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
+        const wsColor = s.ws !== null ? (s.ws <= 1 ? "#22c55e" : s.ws === 2 ? "#eab308" : "#ef4444") : "var(--text-muted)";
+        const incLevel = s.level === -1 ? "Pro-Dev" : (s.hasInc ? "Incentives" : "");
+        return `<div class="home-site-row" role="button" tabindex="0" data-fips="${escHtml(s.fips)}" aria-label="${escHtml(s.name)}, ${escHtml(s.state)}">
+          <div class="home-site-rank">${i + 1}</div>
+          <div class="home-site-info">
+            <div class="home-site-name">${escHtml(s.name)}</div>
+            <div class="home-site-state">${escHtml(s.state)}</div>
+          </div>
+          <div class="home-site-metrics">
+            <span class="home-site-grade" style="color:${GRADE_COLOR[s.suit.grade] || "var(--accent)"};">${s.suit.grade}</span>
+            <span class="home-site-score">${s.suit.score}pts</span>
+            ${s.wsLabel !== null ? `<span class="home-site-ws" style="color:${wsColor}">${escHtml(s.wsLabel)}</span>` : ""}
+            ${incLevel ? `<span class="home-site-inc">${escHtml(incLevel)}</span>` : ""}
+          </div>
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
   <!-- Market ticker -->
   <section class="home-section home-ticker-section">
     <div class="home-col-header">
@@ -697,6 +757,20 @@ function renderHomePage() {
 
   /* Bind activity card clicks */
   view.querySelectorAll(".home-activity-card[data-fips]").forEach(el => {
+    const handler = () => {
+      const fips = el.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise
+        : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    el.addEventListener("click",   handler);
+    el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+  });
+
+  /* Bind top-sites row clicks */
+  view.querySelectorAll(".home-site-row[data-fips]").forEach(el => {
     const handler = () => {
       const fips = el.dataset.fips;
       switchTab("map");

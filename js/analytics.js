@@ -236,6 +236,13 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Monthly Enactment Heatmap</div>
+      <div id="analytics-heatmap-section">
+        ${_buildMonthlyHeatmapHtml(counties)}
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">County Suitability Rankings</div>
       <div id="analytics-rankings-section">
         <div class="analytics-pipeline-loading">
@@ -591,6 +598,102 @@ function _buildCumulativeChartHtml(counties) {
       ${lgItems}
     </svg>
     <p class="vel-note">Running total of counties with dated policy records, accumulated by year. Shows the compound trajectory of regulatory exposure — not just new enactments, but the cumulative count in effect at any point in time. Pre-2018 data is sparse; 2026 is partial-year.</p>
+  `;
+}
+
+function _buildMonthlyHeatmapHtml(counties) {
+  const YEARS  = [2020, 2021, 2022, 2023, 2024, 2025, 2026];
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+  const restricCount = {};
+  const proCount     = {};
+
+  for (const fips in counties) {
+    const c   = counties[fips];
+    const raw = c.effective_date || c.date || "";
+    if (!raw || raw.length < 7) continue;
+    const yr  = parseInt(raw.slice(0, 4), 10);
+    const mo  = parseInt(raw.slice(5, 7), 10);
+    if (!YEARS.includes(yr) || mo < 1 || mo > 12) continue;
+    const key = `${yr}-${mo}`;
+    if (c.level >= 1)        restricCount[key] = (restricCount[key] || 0) + 1;
+    else if (c.level === -1) proCount[key]     = (proCount[key]     || 0) + 1;
+  }
+
+  const maxR = Math.max(...Object.values(restricCount), 1);
+  const maxP = Math.max(...Object.values(proCount),     1);
+
+  function cellColor(count, type) {
+    if (!count) return "var(--surface-2)";
+    const frac = count / (type === 'r' ? maxR : maxP);
+    if (type === 'r') {
+      if (frac < 0.25) return "#fca5a5";
+      if (frac < 0.50) return "#f87171";
+      if (frac < 0.75) return "#ef4444";
+      return "#dc2626";
+    } else {
+      if (frac < 0.25) return "#86efac";
+      if (frac < 0.50) return "#4ade80";
+      if (frac < 0.75) return "#22c55e";
+      return "#16a34a";
+    }
+  }
+
+  const CELL_W = 42, CELL_H = 21, GAP = 3;
+  const PAD_L  = 42, PAD_T  = 20;
+  const gridW  = 12 * (CELL_W + GAP) - GAP;
+  const gridH  = YEARS.length * (CELL_H + GAP) - GAP;
+  const W      = PAD_L + gridW + 16;
+  const SEC_GAP = 40;
+  const totalH = PAD_T + gridH + SEC_GAP + PAD_T + gridH + 12;
+
+  const now        = new Date();
+  const thisYear   = now.getFullYear();
+  const thisMonth  = now.getMonth() + 1;
+
+  function renderGrid(counts, type, offsetY) {
+    const parts = [];
+    MONTHS.forEach((m, mi) => {
+      const x = PAD_L + mi * (CELL_W + GAP);
+      parts.push(`<text x="${x + CELL_W / 2}" y="${offsetY - 5}" text-anchor="middle" font-size="9" fill="var(--text-muted)" font-family="inherit">${m}</text>`);
+    });
+    YEARS.forEach((yr, yi) => {
+      const rowY = offsetY + yi * (CELL_H + GAP);
+      parts.push(`<text x="${PAD_L - 6}" y="${rowY + CELL_H / 2 + 3}" text-anchor="end" font-size="9" fill="var(--text-muted)" font-family="inherit">${yr}</text>`);
+      for (let mo = 1; mo <= 12; mo++) {
+        const isFuture = yr > thisYear || (yr === thisYear && mo > thisMonth);
+        const key      = `${yr}-${mo}`;
+        const count    = isFuture ? 0 : (counts[key] || 0);
+        const x        = PAD_L + (mo - 1) * (CELL_W + GAP);
+        if (isFuture) {
+          parts.push(`<rect x="${x}" y="${rowY}" width="${CELL_W}" height="${CELL_H}" rx="3" fill="var(--surface-2)" opacity="0.3"/>`);
+          continue;
+        }
+        const fill    = cellColor(count, type);
+        const tip     = `${MONTHS[mo - 1]} ${yr}${count ? `: ${count} enactment${count > 1 ? "s" : ""}` : ": no activity"}`;
+        parts.push(`<rect x="${x}" y="${rowY}" width="${CELL_W}" height="${CELL_H}" rx="3" fill="${fill}"><title>${escHtml(tip)}</title></rect>`);
+        if (count > 0) {
+          const frac      = count / (type === 'r' ? maxR : maxP);
+          const textFill  = frac >= 0.5 ? "#fff" : (type === 'r' ? "#7f1d1d" : "#14532d");
+          parts.push(`<text x="${x + CELL_W / 2}" y="${rowY + CELL_H / 2 + 3.5}" text-anchor="middle" font-size="8.5" fill="${textFill}" font-weight="600" font-family="inherit" pointer-events="none">${count}</text>`);
+        }
+      }
+    });
+    return parts.join("");
+  }
+
+  const sec2Y = PAD_T + gridH + SEC_GAP;
+
+  return `
+    <p class="vel-note" style="margin-bottom:16px">Policy enactments per calendar month, Jan 2020 – present. Hover a cell for the exact count. Faded cells are future months. Months with no dated records are shown in the panel background color.</p>
+    <div style="overflow-x:auto">
+    <svg viewBox="0 0 ${W} ${totalH}" width="100%" style="min-width:420px;max-width:${W}px;display:block;overflow:visible" role="img" aria-label="Monthly policy enactment heatmap 2020–2026">
+      <text x="${PAD_L}" y="11" font-size="9.5" font-weight="700" letter-spacing="0.06em" fill="var(--text-muted)" font-family="inherit">RESTRICTIONS (LEVEL 1–4)</text>
+      ${renderGrid(restricCount, 'r', PAD_T)}
+      <text x="${PAD_L}" y="${sec2Y - 8}" font-size="9.5" font-weight="700" letter-spacing="0.06em" fill="var(--text-muted)" font-family="inherit">PRO-BUSINESS / INCENTIVE PROGRAMS</text>
+      ${renderGrid(proCount, 'p', sec2Y + PAD_T - 16)}
+    </svg>
+    </div>
   `;
 }
 
