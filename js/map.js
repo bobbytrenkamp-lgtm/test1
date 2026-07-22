@@ -210,6 +210,7 @@ let _densityMode    = false;
 let _densityCache   = null;   // fips → facility count, loaded lazily
 let _screenerActive = false;
 let _screenerMatches = new Set();
+let _screenerRanked  = [];   // full sorted results array for CSV export
 let selectedFips    = null;
 let cityLabelsLayer = null;
 
@@ -2933,6 +2934,8 @@ function runSiteScreener() {
 
   _screenerMatches = matches;
   _screenerActive  = matches.size > 0;
+  ranked.sort((a, b) => b.score - a.score);
+  _screenerRanked  = ranked;
 
   if (countyGeoLayer) countyGeoLayer.setStyle(countyStyle);
   if (selectedFips && countyLayerByFips[selectedFips]) {
@@ -2940,18 +2943,20 @@ function runSiteScreener() {
   }
 
   // Render results
-  const resultsEl = document.getElementById("screener-results");
-  const countEl   = document.getElementById("screener-count");
-  const listEl    = document.getElementById("screener-list");
+  const resultsEl  = document.getElementById("screener-results");
+  const countEl    = document.getElementById("screener-count");
+  const listEl     = document.getElementById("screener-list");
+  const exportBtn  = document.getElementById("screener-export-csv");
   if (!resultsEl || !countEl || !listEl) return;
 
-  ranked.sort((a, b) => b.score - a.score);
   const total = ranked.length;
   const show  = ranked.slice(0, 15);
 
   countEl.textContent = total === 0
     ? "No counties match your criteria"
     : `${total.toLocaleString()} matching ${total === 1 ? "county" : "counties"}`;
+
+  if (exportBtn) exportBtn.hidden = total === 0;
 
   listEl.innerHTML = "";
   for (const r of show) {
@@ -2973,7 +2978,7 @@ function runSiteScreener() {
   if (total > 15) {
     const more = document.createElement("div");
     more.className = "scr-result-more";
-    more.textContent = `+${total - 15} more — refine criteria to narrow results`;
+    more.textContent = `+${total - 15} more — download CSV to see all`;
     listEl.appendChild(more);
   }
 
@@ -2985,6 +2990,7 @@ function runSiteScreener() {
 function clearSiteScreener() {
   _screenerMatches = new Set();
   _screenerActive  = false;
+  _screenerRanked  = [];
   if (countyGeoLayer) countyGeoLayer.setStyle(countyStyle);
   if (selectedFips && countyLayerByFips[selectedFips]) {
     countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
@@ -2992,6 +2998,40 @@ function clearSiteScreener() {
   const resultsEl = document.getElementById("screener-results");
   if (resultsEl) resultsEl.hidden = true;
   showMapToast("Screener cleared");
+}
+
+function exportScreenerCSV() {
+  if (!_screenerRanked.length) { showMapToast("Run the screener first"); return; }
+  const wsData  = window.DC_WATER_STRESS_FULL || {};
+  const incData = window.DC_INCENTIVES_FIPS   || {};
+  const WS_LABELS = ["Low","Low-Medium","Medium-High","High","Extreme High"];
+  const headers = ["Rank","FIPS","County","State","Suitability Score","Suitability Grade","Restriction Severity","Policy Types","Water Stress","Has Incentive","Effective Date"];
+  const rows = [headers];
+  _screenerRanked.forEach(({ fips, county, score, grade }, i) => {
+    const sevKey = getSeverityKey(county);
+    const ws     = wsData[fips];
+    rows.push([
+      i + 1,
+      fips,
+      county.name || "",
+      county.state || "",
+      score,
+      grade,
+      SEVERITY[sevKey]?.label || "",
+      (county.types || []).map(t => TYPE_LABELS[t] || t).join("; "),
+      ws !== undefined && ws !== null ? `${ws} – ${WS_LABELS[ws] || ws}` : "",
+      incData[fips] ? "Yes" : "No",
+      county.effective_date || "",
+    ]);
+  });
+  const csv  = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), { href: url, download: `screener-results-${new Date().toISOString().slice(0,10)}.csv` });
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+  showMapToast(`Exported ${_screenerRanked.length} screener matches`);
 }
 
 /* ── Map init ── */
@@ -3344,9 +3384,10 @@ function initLeafletMap() {
   });
 
   // Screener panel wiring
-  document.getElementById("screener-close")?.addEventListener("click", toggleSiteScreener);
-  document.getElementById("screener-run")  ?.addEventListener("click", runSiteScreener);
-  document.getElementById("screener-clear")?.addEventListener("click", clearSiteScreener);
+  document.getElementById("screener-close")      ?.addEventListener("click", toggleSiteScreener);
+  document.getElementById("screener-run")        ?.addEventListener("click", runSiteScreener);
+  document.getElementById("screener-clear")      ?.addEventListener("click", clearSiteScreener);
+  document.getElementById("screener-export-csv") ?.addEventListener("click", exportScreenerCSV);
 
   // Close export menu when clicking outside it
   document.addEventListener("click", e => {
