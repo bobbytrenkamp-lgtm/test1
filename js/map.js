@@ -208,6 +208,8 @@ let _suitMode       = false;
 let _wsMode         = false;
 let _densityMode    = false;
 let _densityCache   = null;   // fips → facility count, loaded lazily
+let _screenerActive = false;
+let _screenerMatches = new Set();
 let selectedFips    = null;
 let cityLabelsLayer = null;
 
@@ -410,12 +412,24 @@ function countyStyle(feature) {
     };
   }
 
-  return {
+  const style = {
     fillColor:   getColor(fips),
     fillOpacity: isSat ? ((hasData || _suitMode || _wsMode || _densityMode) ? 0.70 * zoomFade * countyFillOpacity : 0) : 0.75 * zoomFade * countyFillOpacity,
     color:       tc.countyBorder,
     weight:      0.35,
   };
+
+  if (_screenerActive) {
+    if (_screenerMatches.has(fips)) {
+      style.color  = "#22c55e";
+      style.weight = 2;
+      style.fillOpacity = Math.max(style.fillOpacity, isSat ? 0.65 : 0.75);
+    } else {
+      style.fillOpacity = style.fillOpacity * 0.12;
+    }
+  }
+
+  return style;
 }
 
 function stateStyle(feature) {
@@ -2832,6 +2846,144 @@ async function toggleDensityMode() {
     : "Restriction view restored");
 }
 
+/* ── Site Screener ── */
+function toggleSiteScreener() {
+  const panel = document.getElementById("screener-panel");
+  const btn   = document.getElementById("gis-screener");
+  if (!panel) return;
+  const opening = panel.hidden;
+  panel.hidden = !opening;
+  if (btn) {
+    btn.classList.toggle("active", opening);
+    btn.setAttribute("aria-pressed", String(opening));
+  }
+  if (opening) _populateScreenerStates();
+}
+
+function _populateScreenerStates() {
+  const sel = document.getElementById("scr-state");
+  if (!sel || sel.options.length > 1) return;
+  const seen = new Set();
+  for (const fips in mapData) seen.add(mapData[fips].state);
+  const states = [...seen].sort();
+  for (const st of states) {
+    const opt = document.createElement("option");
+    opt.value = st;
+    opt.textContent = st;
+    sel.appendChild(opt);
+  }
+}
+
+function runSiteScreener() {
+  const restrictionVal = document.getElementById("scr-restriction")?.value || "any";
+  const suitVal        = document.getElementById("scr-suitability")?.value || "any";
+  const wsVal          = document.getElementById("scr-water-stress")?.value || "any";
+  const stateVal       = document.getElementById("scr-state")?.value || "";
+  const requireInc     = document.getElementById("scr-require-incentive")?.checked || false;
+
+  const wsData  = window.DC_WATER_STRESS_FULL || {};
+  const incData = window.DC_INCENTIVES_FIPS   || {};
+  const matches = new Set();
+  const ranked  = [];
+
+  for (const fips in mapData) {
+    const county = mapData[fips];
+
+    // State filter
+    if (stateVal && county.state !== stateVal) continue;
+
+    // Restriction level filter
+    if (restrictionVal !== "any") {
+      const sevKey = getSeverityKey(county);
+      if (restrictionVal === "no-ban"      && sevKey === "ban")                         continue;
+      if (restrictionVal === "no-high"     && (sevKey === "ban" || sevKey === "high"))  continue;
+      if (restrictionVal === "no-moderate" && !["none","pro","proposed"].includes(sevKey)) continue;
+      if (restrictionVal === "pro-none"    && !["none","pro"].includes(sevKey))         continue;
+    }
+
+    // Water stress filter
+    if (wsVal !== "any") {
+      const level = wsData[fips];
+      if (level === undefined || level === null || level > parseInt(wsVal, 10)) continue;
+    }
+
+    // Incentive filter
+    if (requireInc && !incData[fips]) continue;
+
+    // Suitability filter — uses computeSuitabilityScore (cached)
+    const suit = computeSuitabilityScore(fips, county);
+    if (suitVal !== "any") {
+      const minScore = { A: 80, B: 65, C: 45 }[suitVal] || 0;
+      if (suit.score < minScore) continue;
+    }
+
+    matches.add(fips);
+    ranked.push({ fips, county, score: suit.score, grade: suit.grade });
+  }
+
+  _screenerMatches = matches;
+  _screenerActive  = matches.size > 0;
+
+  if (countyGeoLayer) countyGeoLayer.setStyle(countyStyle);
+  if (selectedFips && countyLayerByFips[selectedFips]) {
+    countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
+  }
+
+  // Render results
+  const resultsEl = document.getElementById("screener-results");
+  const countEl   = document.getElementById("screener-count");
+  const listEl    = document.getElementById("screener-list");
+  if (!resultsEl || !countEl || !listEl) return;
+
+  ranked.sort((a, b) => b.score - a.score);
+  const total = ranked.length;
+  const show  = ranked.slice(0, 15);
+
+  countEl.textContent = total === 0
+    ? "No counties match your criteria"
+    : `${total.toLocaleString()} matching ${total === 1 ? "county" : "counties"}`;
+
+  listEl.innerHTML = "";
+  for (const r of show) {
+    const row = document.createElement("div");
+    row.className = "scr-result-row";
+    row.dataset.fips = r.fips;
+    const gradeClass = { A: "scr-grade-a", B: "scr-grade-b", C: "scr-grade-c", D: "scr-grade-d", F: "scr-grade-f" }[r.grade] || "";
+    row.innerHTML =
+      `<span class="scr-result-grade ${gradeClass}">${escHtml(r.grade)}</span>` +
+      `<span class="scr-result-name">${escHtml(r.county.name || r.fips)}</span>` +
+      `<span class="scr-result-state">${escHtml(r.county.state || "")}</span>`;
+    row.addEventListener("click", () => {
+      selectCounty(r.fips);
+      zoomToFeature(r.fips);
+    });
+    listEl.appendChild(row);
+  }
+
+  if (total > 15) {
+    const more = document.createElement("div");
+    more.className = "scr-result-more";
+    more.textContent = `+${total - 15} more — refine criteria to narrow results`;
+    listEl.appendChild(more);
+  }
+
+  resultsEl.hidden = false;
+  if (total === 0) showMapToast("No counties match those criteria");
+  else showMapToast(`${total} matching ${total === 1 ? "county" : "counties"} highlighted`);
+}
+
+function clearSiteScreener() {
+  _screenerMatches = new Set();
+  _screenerActive  = false;
+  if (countyGeoLayer) countyGeoLayer.setStyle(countyStyle);
+  if (selectedFips && countyLayerByFips[selectedFips]) {
+    countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
+  }
+  const resultsEl = document.getElementById("screener-results");
+  if (resultsEl) resultsEl.hidden = true;
+  showMapToast("Screener cleared");
+}
+
 /* ── Map init ── */
 function initLeafletMap() {
   leafletMap = L.map("leaflet-map", {
@@ -2999,6 +3151,7 @@ function initLeafletMap() {
   document.getElementById("gis-suitability")?.addEventListener("click", toggleSuitabilityMode);
   document.getElementById("gis-water-stress")?.addEventListener("click", toggleWaterStressMode);
   document.getElementById("gis-infrastructure-density")?.addEventListener("click", toggleDensityMode);
+  document.getElementById("gis-screener")?.addEventListener("click", toggleSiteScreener);
   document.getElementById("gis-results")        ?.addEventListener("click", () => window.RESULTS_PANEL?.toggle());
 
   // Save button: toggle save/unsave for current county or facility
@@ -3135,6 +3288,7 @@ function initLeafletMap() {
     if ((e.key === "s" || e.key === "S") && !e.ctrlKey && !e.metaKey) toggleSuitabilityMode();
     if ((e.key === "v" || e.key === "V") && !e.ctrlKey && !e.metaKey) toggleWaterStressMode();
     if ((e.key === "i" || e.key === "I") && !e.ctrlKey && !e.metaKey) toggleDensityMode();
+    if ((e.key === "x" || e.key === "X") && !e.ctrlKey && !e.metaKey) toggleSiteScreener();
     if (e.key === "Escape" && measureMode)      toggleMeasure();
     if (e.key === "Escape" && drawMode)         toggleDraw();
     if (e.key === "Escape" && candidatePinMode) toggleCandidatePin();
@@ -3179,6 +3333,11 @@ function initLeafletMap() {
     e.target.value = "";
   });
 
+  // Screener panel wiring
+  document.getElementById("screener-close")?.addEventListener("click", toggleSiteScreener);
+  document.getElementById("screener-run")  ?.addEventListener("click", runSiteScreener);
+  document.getElementById("screener-clear")?.addEventListener("click", clearSiteScreener);
+
   // Close export menu when clicking outside it
   document.addEventListener("click", e => {
     const menu = document.getElementById("export-menu");
@@ -3193,7 +3352,7 @@ function initLeafletMap() {
   // Without this, Leaflet's touchstart handler on the map can swallow taps on
   // absolutely-positioned controls on iOS Safari.
   [
-    "map-gis-bar", "measure-readout", "draw-readout", "bookmarks-panel", "workspace-panel", "compare-panel", "export-menu", "map-ctx-menu",
+    "map-gis-bar", "measure-readout", "draw-readout", "bookmarks-panel", "workspace-panel", "compare-panel", "screener-panel", "export-menu", "map-ctx-menu",
     "ws-settings-panel", "ws-settings-backdrop",
     "minimap-wrap", "legend", "legend-restore", "stats-bar", "filter-status",
   ].forEach(id => {
@@ -3201,7 +3360,7 @@ function initLeafletMap() {
     if (el) L.DomEvent.disableClickPropagation(el);
   });
   // Prevent scroll-wheel/pinch inside overlay panels from zooming the map
-  ["bookmarks-list", "workspace-list", "compare-body", "legend"].forEach(id => {
+  ["bookmarks-list", "workspace-list", "compare-body", "screener-results", "legend"].forEach(id => {
     const el = document.getElementById(id);
     if (el) L.DomEvent.disableScrollPropagation(el);
   });
@@ -5636,6 +5795,7 @@ function initKbOverlay() {
     <div class="kb-row"><span class="kb-desc">Suitability score view</span><span class="kb-keys"><kbd>S</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Water stress view</span><span class="kb-keys"><kbd>V</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Infrastructure density view</span><span class="kb-keys"><kbd>I</kbd></span></div>
+    <div class="kb-row"><span class="kb-desc">Site screener</span><span class="kb-keys"><kbd>X</kbd></span></div>
     <div class="kb-section">General</div>
     <div class="kb-row"><span class="kb-desc">Command palette</span><span class="kb-keys"><kbd>Ctrl</kbd><kbd>K</kbd></span></div>
     <div class="kb-row"><span class="kb-desc">Show this help</span><span class="kb-keys"><kbd>?</kbd></span></div>

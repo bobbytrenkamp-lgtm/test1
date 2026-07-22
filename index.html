@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260722b" />
+  <link rel="stylesheet" href="css/style.css?v=20260722d" />
   <link rel="stylesheet" href="css/stocks.css?v=20260721a" />
   <link rel="stylesheet" href="css/account.css?v=20260717a" />
   <link rel="stylesheet" href="css/zoning.css?v=20260717b" />
@@ -278,6 +278,9 @@
         <button class="gis-btn" id="gis-infrastructure-density" title="Infrastructure density — color counties by facility count (I)" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="9" height="14" rx="1"/><rect x="13" y="3" width="9" height="18" rx="1"/><line x1="6" y1="7" x2="6" y2="3"/><line x1="6" y1="3" x2="13" y2="3"/></svg>
         </button>
+        <button class="gis-btn" id="gis-screener" title="Site screener — filter counties by criteria (X)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+        </button>
         <button class="gis-btn" id="gis-results" title="Toggle results panel (L)" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
         </button>
@@ -310,6 +313,64 @@
             <button id="workspace-import-btn" title="Import workspaces from JSON file">Import JSON</button>
             <input id="workspace-import-file" type="file" accept=".json" hidden />
           </div>
+        </div>
+      </div>
+
+      <!-- Site Screener panel -->
+      <div id="screener-panel" hidden>
+        <div id="screener-header">
+          <span>Site Screener</span>
+          <button id="screener-close" aria-label="Close site screener">&times;</button>
+        </div>
+        <div id="screener-body">
+          <div class="scr-row">
+            <label class="scr-label" for="scr-restriction">Restriction level</label>
+            <select id="scr-restriction">
+              <option value="any">Any restriction level</option>
+              <option value="no-ban">No moratorium / ban</option>
+              <option value="no-high">No high restrictions</option>
+              <option value="no-moderate">Proposed or better</option>
+              <option value="pro-none">Pro-DC or no restrictions only</option>
+            </select>
+          </div>
+          <div class="scr-row">
+            <label class="scr-label" for="scr-suitability">Min suitability grade</label>
+            <select id="scr-suitability">
+              <option value="any">Any grade</option>
+              <option value="C">C or better (score ≥ 45)</option>
+              <option value="B">B or better (score ≥ 65)</option>
+              <option value="A">A only (score ≥ 80)</option>
+            </select>
+          </div>
+          <div class="scr-row">
+            <label class="scr-label" for="scr-water-stress">Max water stress</label>
+            <select id="scr-water-stress">
+              <option value="any">Any stress level</option>
+              <option value="2">Medium-High or lower</option>
+              <option value="1">Low-Medium or lower</option>
+              <option value="0">Low stress only</option>
+            </select>
+          </div>
+          <div class="scr-row">
+            <label class="scr-label" for="scr-state">State</label>
+            <select id="scr-state">
+              <option value="">All states</option>
+            </select>
+          </div>
+          <div class="scr-row scr-check-row">
+            <label class="scr-check-label">
+              <input type="checkbox" id="scr-require-incentive" />
+              Require tax incentive program
+            </label>
+          </div>
+        </div>
+        <div id="screener-footer">
+          <button id="screener-run">Find Matches</button>
+          <button id="screener-clear">Clear</button>
+        </div>
+        <div id="screener-results" hidden>
+          <div id="screener-count"></div>
+          <div id="screener-list"></div>
         </div>
       </div>
 
@@ -797,7 +858,7 @@ window.addEventListener('error', function(e) {
 <script src="js/analytics.js?v=20260721o" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
 <script src="js/home.js?v=20260712m" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
 <script src="js/layer-registry.js?v=20260721a" defer onload="window._track.ok.push('layer-registry')" onerror="window._track.fail.push('layer-registry')"></script>
-<script src="js/map.js?v=20260722c" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script src="js/map.js?v=20260722e" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer onload="window._track.ok.push('supabase')" onerror="window._track.fail.push('supabase')"></script>
 <script src="js/supabase-config.js?v=20260717a" defer onload="window._track.ok.push('supabase-config')" onerror="window._track.fail.push('supabase-config')"></script>
 <script src="js/auth.js?v=20260717a" defer onload="window._track.ok.push('auth')" onerror="window._track.fail.push('auth')"></script>
