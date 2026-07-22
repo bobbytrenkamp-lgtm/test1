@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="vendor/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css?v=20260722j" />
+  <link rel="stylesheet" href="css/style.css?v=20260722m" />
   <link rel="stylesheet" href="css/stocks.css?v=20260721a" />
   <link rel="stylesheet" href="css/account.css?v=20260717a" />
   <link rel="stylesheet" href="css/zoning.css?v=20260717b" />
@@ -183,6 +183,14 @@
 
       <!-- Filter status bar -->
       <div id="filter-status" hidden></div>
+
+      <!-- Map view mode switcher -->
+      <div id="map-mode-bar" role="group" aria-label="Map view mode">
+        <button class="map-mode-chip" data-mode="severity" aria-pressed="true">Restrictions</button>
+        <button class="map-mode-chip" data-mode="suitability" aria-pressed="false">Suitability</button>
+        <button class="map-mode-chip" data-mode="water" aria-pressed="false">Water Stress</button>
+        <button class="map-mode-chip" data-mode="density" aria-pressed="false">Density</button>
+      </div>
 
       <!-- Legend -->
       <div id="legend"></div>
@@ -404,6 +412,7 @@
       <!-- Right-click context menu -->
       <div id="map-ctx-menu" hidden role="menu">
         <button id="ctx-copy-coords" role="menuitem">Copy coordinates</button>
+        <button id="ctx-share-county" role="menuitem">Copy county link</button>
         <button id="ctx-open-google" role="menuitem">Open in Google Maps</button>
         <button id="ctx-measure-from" role="menuitem">Measure from here</button>
         <div class="ctx-divider" role="separator"></div>
@@ -468,6 +477,12 @@
         </button>
         <button id="detail-compare-btn" class="detail-compare-btn" aria-label="Add to compare" title="Add to Compare" hidden>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </button>
+        <button id="detail-watch-btn" class="detail-watch-btn" aria-label="Add to watchlist" title="Watch county" hidden>
+          <svg id="detail-watch-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </button>
+        <button id="detail-share-btn" class="detail-share-btn" aria-label="Copy link to this county" title="Copy permalink" hidden>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
         </button>
       </div>
       <div id="detail-body">
@@ -881,10 +896,10 @@ window.addEventListener('error', function(e) {
 <script src="vendor/leaflet.js" defer onload="window._track.ok.push('leaflet')" onerror="window._track.fail.push('leaflet')"></script>
 <script src="vendor/topojson-client.min.js" defer onload="window._track.ok.push('topo')" onerror="window._track.fail.push('topo')"></script>
 <script src="js/stocks.js?v=20260721a" defer onload="window._track.ok.push('stocks')" onerror="window._track.fail.push('stocks')"></script>
-<script src="js/analytics.js?v=20260722j" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
-<script src="js/home.js?v=20260722a" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
+<script src="js/analytics.js?v=20260722m" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
+<script src="js/home.js?v=20260722m" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
 <script src="js/layer-registry.js?v=20260721a" defer onload="window._track.ok.push('layer-registry')" onerror="window._track.fail.push('layer-registry')"></script>
-<script src="js/map.js?v=20260722h" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
+<script src="js/map.js?v=20260722m" defer onload="window._track.ok.push('map')" onerror="window._track.fail.push('map')"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer onload="window._track.ok.push('supabase')" onerror="window._track.fail.push('supabase')"></script>
 <script src="js/supabase-config.js?v=20260717a" defer onload="window._track.ok.push('supabase-config')" onerror="window._track.fail.push('supabase-config')"></script>
 <script src="js/auth.js?v=20260717a" defer onload="window._track.ok.push('auth')" onerror="window._track.fail.push('auth')"></script>

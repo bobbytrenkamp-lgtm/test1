@@ -37,6 +37,64 @@ function analyticsIcon(name) {
 /* Analytics Page                                                    */
 /* ─────────────────────────────────────────────────────────────── */
 
+function exportCountiesCSV() {
+  const counties = mapData || {};
+  const wsData   = window.DC_WATER_STRESS_FULL || {};
+  const incData  = window.DC_INCENTIVES_FIPS   || {};
+  const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
+  const LVL_LABELS = {"-1":"Pro / Incentive Hub","0":"No Restrictions","1":"Light Regulations","2":"Moderate Restrictions","3":"Significant Restrictions","4":"Ban / Moratorium"};
+  const TYPE_MAP = { data_center:"Data Center", ai:"AI Regulation", energy:"Energy / Grid", crypto:"Crypto / HPC", water:"Water Use" };
+
+  const csvCell = v => {
+    const s = String(v ?? "");
+    if (s.includes(",") || s.includes('"') || s.includes("\n")) return '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  };
+
+  const header = ["FIPS","County","State","Restriction Level","Level Label","Status","Effective Date","Policy Types","Suitability Score","Suitability Grade","Water Stress","Water Stress Label","Incentive Programs","Description"];
+
+  const rows = Object.keys(counties).sort().map(fips => {
+    const c    = counties[fips];
+    const lvl  = c.level ?? 0;
+    const ws   = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : "";
+    const wsLabel = ws !== "" ? (WS_LABELS[ws] || String(ws)) : "";
+    const incProgs = (incData[fips] || []).map(p => p.program_name || p.name || "").filter(Boolean).join("; ");
+    const types    = (c.types || []).map(t => TYPE_MAP[t] || t).join("; ");
+    let suit = { score: "", grade: "" };
+    if (typeof computeSuitabilityScore === "function") {
+      try { suit = computeSuitabilityScore(fips, c); } catch (_) {}
+    }
+    return [
+      fips,
+      c.name || "",
+      c.state || "",
+      lvl,
+      LVL_LABELS[String(lvl)] || String(lvl),
+      c.status || "active",
+      c.effective_date || c.date || "",
+      types,
+      suit.score,
+      suit.grade,
+      ws,
+      wsLabel,
+      incProgs,
+      (c.description || "").replace(/\s+/g, " ").trim(),
+    ].map(csvCell).join(",");
+  });
+
+  const csv  = [header.join(","), ...rows].join("\r\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), {
+    href: url,
+    download: `dc-ai-policy-tracker-${new Date().toISOString().slice(0,10)}.csv`,
+  });
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+}
+
 function renderAnalyticsPage() {
   const el = document.getElementById('analytics-view');
   if (!el) return;
@@ -96,6 +154,10 @@ function renderAnalyticsPage() {
     <div class="page-hero">
       <div class="page-hero-title">Policy <span>Analytics</span></div>
       <div class="page-hero-sub">Real-time summary of US data center and AI policy coverage, derived from the live dataset across all ${totalCounties} tracked jurisdictions.</div>
+      <button class="analytics-export-btn" id="analytics-export-csv" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export All Counties CSV
+      </button>
     </div>
 
     <div class="page-section">
@@ -176,11 +238,11 @@ function renderAnalyticsPage() {
             <span class="status-badge danger">${statesWithRestrict.size} states</span>
           </div>
           <div class="analytics-card-body">
-            <div class="ranked-list">
+            <div class="ranked-list" id="analytics-top-states-list">
               ${topStates.map(([st,n],i) => `
-              <div class="ranked-item">
+              <div class="ranked-item ranked-item-clickable" data-state="${escHtml(st)}" role="button" tabindex="0" title="View ${escHtml(st)} counties">
                 <div class="rank-num">${i+1}</div>
-                <div class="rank-name">${escHtml(st)}</div>
+                <div class="rank-name rank-name-link">${escHtml(st)}</div>
                 <div class="rank-bar-wrap">
                   <div class="bar-track" style="flex:1"><div class="bar-fill" style="width:${Math.round(n/topStates[0][1]*100)}%;background:#dc2626;--bar-delay:${i*40}ms"></div></div>
                 </div>
@@ -232,6 +294,20 @@ function renderAnalyticsPage() {
       <div class="page-section-title">Cumulative Regulatory Pressure</div>
       <div id="analytics-cumulative-section">
         ${_buildCumulativeChartHtml(counties)}
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-title">Monthly Enactment Heatmap</div>
+      <div id="analytics-heatmap-section">
+        ${_buildMonthlyHeatmapHtml(counties)}
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-title">Regulatory Momentum — Last 12 Months</div>
+      <div id="analytics-momentum-section">
+        ${_buildRegulatoryMomentumHtml(counties)}
       </div>
     </div>
 
@@ -369,6 +445,161 @@ function renderAnalyticsPage() {
   _fillConflictZones();
   _fillCapacityIntelligence();
   _fillIncentiveExplorer();
+
+  el.querySelector("#analytics-export-csv")?.addEventListener("click", exportCountiesCSV);
+
+  // State drill-down: click any row in "Most Restricted States" chart
+  el.querySelector("#analytics-top-states-list")?.addEventListener("click", e => {
+    const item = e.target.closest(".ranked-item-clickable[data-state]");
+    if (item) _showStateModal(item.dataset.state);
+  });
+  el.querySelector("#analytics-top-states-list")?.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      const item = e.target.closest(".ranked-item-clickable[data-state]");
+      if (item) { e.preventDefault(); _showStateModal(item.dataset.state); }
+    }
+  });
+}
+
+/* ── State county drill-down modal ── */
+function _showStateModal(stateName) {
+  const counties = mapData || {};
+  const wsData   = window.DC_WATER_STRESS_FULL || {};
+  const incData  = window.DC_INCENTIVES_FIPS   || {};
+  const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
+
+  const LVL_LABELS = {"-1":"Pro / Incentive","0":"No Restrictions","1":"Light","2":"Moderate","3":"Significant","4":"Ban / Moratorium"};
+  const LVL_COLORS = {"-1":"#22c55e","0":"#6b7280","1":"#86efac","2":"#f97316","3":"#dc2626","4":"#7f1d1d"};
+
+  const rows = [];
+  for (const fips in counties) {
+    const c = counties[fips];
+    if (c.state !== stateName) continue;
+    const lvl  = c.level ?? 0;
+    const ws   = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : null;
+    let suit   = { score: null, grade: "—" };
+    if (typeof computeSuitabilityScore === "function") {
+      try { suit = computeSuitabilityScore(fips, c); } catch (_) {}
+    }
+    const hasInc = !!(incData[fips] && incData[fips].length);
+    rows.push({ fips, name: c.name, lvl, date: c.effective_date || c.date || "", status: c.status || "active", suit, ws, wsLabel: ws !== null ? (WS_LABELS[ws] || String(ws)) : "—", hasInc });
+  }
+  rows.sort((a, b) => {
+    if (b.lvl !== a.lvl) return b.lvl - a.lvl;
+    return (b.suit.score ?? 0) - (a.suit.score ?? 0);
+  });
+
+  const esc = s => escHtml(String(s ?? ""));
+  const GRADE_COLOR = { A:"#22c55e", B:"#22d3ee", C:"#eab308", D:"#f97316", F:"#ef4444" };
+  const WS_COLOR    = (ws) => ws !== null ? (ws <= 1 ? "#22c55e" : ws === 2 ? "#eab308" : "#ef4444") : "var(--text-muted)";
+
+  const tableRows = rows.map((r, i) => `
+    <tr class="sdm-row" data-fips="${esc(r.fips)}" role="button" tabindex="0" title="Open ${esc(r.name)} on the map">
+      <td class="sdm-rank">${i + 1}</td>
+      <td class="sdm-county">${esc(r.name)}</td>
+      <td class="sdm-lvl">
+        <span class="sdm-badge" style="background:${LVL_COLORS[String(r.lvl)]||"#6b7280"}22;color:${LVL_COLORS[String(r.lvl)]||"#6b7280"};border:1px solid ${LVL_COLORS[String(r.lvl)]||"#6b7280"}44">
+          ${esc(LVL_LABELS[String(r.lvl)] || String(r.lvl))}
+        </span>
+      </td>
+      <td class="sdm-suit" style="color:${GRADE_COLOR[r.suit.grade]||"var(--text-muted)"}">
+        ${r.suit.grade !== "—" ? `${r.suit.grade} <span class="sdm-score">${r.suit.score}pt</span>` : "—"}
+      </td>
+      <td class="sdm-ws" style="color:${WS_COLOR(r.ws)}">${esc(r.wsLabel)}</td>
+      <td class="sdm-date">${esc(r.date ? r.date.slice(0,10) : "")}</td>
+      ${r.hasInc ? '<td class="sdm-inc">✓</td>' : '<td class="sdm-inc sdm-inc-empty">—</td>'}
+    </tr>`).join("");
+
+  const totalR  = rows.filter(r => r.lvl >= 1).length;
+  const totalP  = rows.filter(r => r.lvl === -1).length;
+  const totalNR = rows.filter(r => r.lvl <= 0 && r.lvl !== -1).length;
+
+  const html = `
+<div id="state-modal-overlay" class="sdm-overlay" role="dialog" aria-modal="true" aria-label="${esc(stateName)} county breakdown">
+  <div class="sdm-modal">
+    <div class="sdm-hdr">
+      <div class="sdm-hdr-left">
+        <div class="sdm-title">${esc(stateName)}</div>
+        <div class="sdm-subtitle">${rows.length} counties tracked &nbsp;·&nbsp; <span style="color:#ef4444">${totalR} restricted</span> &nbsp;·&nbsp; <span style="color:#22c55e">${totalP} pro-dev</span> &nbsp;·&nbsp; ${totalNR} no restrictions</div>
+      </div>
+      <div class="sdm-hdr-right">
+        <button class="sdm-map-btn" id="sdm-map-btn" type="button">View on map</button>
+        <button class="sdm-close" id="sdm-close" type="button" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="sdm-body">
+      <div class="sdm-table-wrap">
+        <table class="sdm-table">
+          <thead>
+            <tr>
+              <th class="sdm-rank">#</th>
+              <th class="sdm-county">County</th>
+              <th class="sdm-lvl">Restriction</th>
+              <th class="sdm-suit">Suitability</th>
+              <th class="sdm-ws">Water Stress</th>
+              <th class="sdm-date">Effective Date</th>
+              <th class="sdm-inc">Incentives</th>
+            </tr>
+          </thead>
+          <tbody>${tableRows || '<tr><td colspan="7" class="sdm-empty">No county data for this state.</td></tr>'}</tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>`;
+
+  document.getElementById("state-modal-overlay")?.remove();
+  document.body.insertAdjacentHTML("beforeend", html);
+
+  const overlay = document.getElementById("state-modal-overlay");
+  const _sNames = (typeof STATE_NAMES !== "undefined" ? STATE_NAMES : {});
+  const _sFips  = (typeof STATE_FIPS  !== "undefined" ? STATE_FIPS  : {});
+  const stAbbr  = Object.entries(_sNames).find(([, name]) => name === stateName)?.[0] || "";
+  const fips2   = stAbbr ? Object.entries(_sFips).find(([, abbr]) => abbr === stAbbr)?.[0] : null;
+
+  function closeModal() { overlay?.remove(); }
+
+  overlay.addEventListener("click", e => { if (e.target === overlay) closeModal(); });
+  document.getElementById("sdm-close")?.addEventListener("click", closeModal);
+  document.getElementById("sdm-map-btn")?.addEventListener("click", () => {
+    closeModal();
+    switchTab("map");
+    setTimeout(() => {
+      if (typeof stateGeoLayer !== "undefined" && stateGeoLayer && fips2) {
+        const stLayer = stateGeoLayer.getLayers().find(l => String(l.feature.id).padStart(2,"0") === fips2);
+        if (stLayer && typeof leafletMap !== "undefined") {
+          leafletMap.flyToBounds(stLayer.getBounds(), { duration: 0.6, padding: [20, 20] });
+        }
+      }
+      if (typeof showStateDetail === "function" && fips2) showStateDetail(fips2);
+    }, 300);
+  });
+
+  // Row click → navigate to county on map
+  overlay.querySelector(".sdm-table tbody")?.addEventListener("click", e => {
+    const row = e.target.closest(".sdm-row[data-fips]");
+    if (!row) return;
+    closeModal();
+    switchTab("map");
+    setTimeout(() => {
+      if (typeof selectCounty === "function") selectCounty(row.dataset.fips);
+      if (typeof zoomToFeature === "function") zoomToFeature(row.dataset.fips);
+    }, 300);
+  });
+  overlay.querySelector(".sdm-table tbody")?.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      const row = e.target.closest(".sdm-row[data-fips]");
+      if (row) { e.preventDefault(); row.click(); }
+    }
+  });
+
+  const keyHandler = e => { if (e.key === "Escape") { closeModal(); document.removeEventListener("keydown", keyHandler); } };
+  document.addEventListener("keydown", keyHandler);
+
+  // Focus modal for accessibility
+  setTimeout(() => overlay.querySelector(".sdm-modal")?.focus(), 50);
 }
 
 function _buildVelocityChartHtml(counties) {
@@ -591,6 +822,153 @@ function _buildCumulativeChartHtml(counties) {
       ${lgItems}
     </svg>
     <p class="vel-note">Running total of counties with dated policy records, accumulated by year. Shows the compound trajectory of regulatory exposure — not just new enactments, but the cumulative count in effect at any point in time. Pre-2018 data is sparse; 2026 is partial-year.</p>
+  `;
+}
+
+function _buildMonthlyHeatmapHtml(counties) {
+  const YEARS  = [2020, 2021, 2022, 2023, 2024, 2025, 2026];
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+  const restricCount = {};
+  const proCount     = {};
+
+  for (const fips in counties) {
+    const c   = counties[fips];
+    const raw = c.effective_date || c.date || "";
+    if (!raw || raw.length < 7) continue;
+    const yr  = parseInt(raw.slice(0, 4), 10);
+    const mo  = parseInt(raw.slice(5, 7), 10);
+    if (!YEARS.includes(yr) || mo < 1 || mo > 12) continue;
+    const key = `${yr}-${mo}`;
+    if (c.level >= 1)        restricCount[key] = (restricCount[key] || 0) + 1;
+    else if (c.level === -1) proCount[key]     = (proCount[key]     || 0) + 1;
+  }
+
+  const maxR = Math.max(...Object.values(restricCount), 1);
+  const maxP = Math.max(...Object.values(proCount),     1);
+
+  function cellColor(count, type) {
+    if (!count) return "var(--surface-2)";
+    const frac = count / (type === 'r' ? maxR : maxP);
+    if (type === 'r') {
+      if (frac < 0.25) return "#fca5a5";
+      if (frac < 0.50) return "#f87171";
+      if (frac < 0.75) return "#ef4444";
+      return "#dc2626";
+    } else {
+      if (frac < 0.25) return "#86efac";
+      if (frac < 0.50) return "#4ade80";
+      if (frac < 0.75) return "#22c55e";
+      return "#16a34a";
+    }
+  }
+
+  const CELL_W = 42, CELL_H = 21, GAP = 3;
+  const PAD_L  = 42, PAD_T  = 20;
+  const gridW  = 12 * (CELL_W + GAP) - GAP;
+  const gridH  = YEARS.length * (CELL_H + GAP) - GAP;
+  const W      = PAD_L + gridW + 16;
+  const SEC_GAP = 40;
+  const totalH = PAD_T + gridH + SEC_GAP + PAD_T + gridH + 12;
+
+  const now        = new Date();
+  const thisYear   = now.getFullYear();
+  const thisMonth  = now.getMonth() + 1;
+
+  function renderGrid(counts, type, offsetY) {
+    const parts = [];
+    MONTHS.forEach((m, mi) => {
+      const x = PAD_L + mi * (CELL_W + GAP);
+      parts.push(`<text x="${x + CELL_W / 2}" y="${offsetY - 5}" text-anchor="middle" font-size="9" fill="var(--text-muted)" font-family="inherit">${m}</text>`);
+    });
+    YEARS.forEach((yr, yi) => {
+      const rowY = offsetY + yi * (CELL_H + GAP);
+      parts.push(`<text x="${PAD_L - 6}" y="${rowY + CELL_H / 2 + 3}" text-anchor="end" font-size="9" fill="var(--text-muted)" font-family="inherit">${yr}</text>`);
+      for (let mo = 1; mo <= 12; mo++) {
+        const isFuture = yr > thisYear || (yr === thisYear && mo > thisMonth);
+        const key      = `${yr}-${mo}`;
+        const count    = isFuture ? 0 : (counts[key] || 0);
+        const x        = PAD_L + (mo - 1) * (CELL_W + GAP);
+        if (isFuture) {
+          parts.push(`<rect x="${x}" y="${rowY}" width="${CELL_W}" height="${CELL_H}" rx="3" fill="var(--surface-2)" opacity="0.3"/>`);
+          continue;
+        }
+        const fill    = cellColor(count, type);
+        const tip     = `${MONTHS[mo - 1]} ${yr}${count ? `: ${count} enactment${count > 1 ? "s" : ""}` : ": no activity"}`;
+        parts.push(`<rect x="${x}" y="${rowY}" width="${CELL_W}" height="${CELL_H}" rx="3" fill="${fill}"><title>${escHtml(tip)}</title></rect>`);
+        if (count > 0) {
+          const frac      = count / (type === 'r' ? maxR : maxP);
+          const textFill  = frac >= 0.5 ? "#fff" : (type === 'r' ? "#7f1d1d" : "#14532d");
+          parts.push(`<text x="${x + CELL_W / 2}" y="${rowY + CELL_H / 2 + 3.5}" text-anchor="middle" font-size="8.5" fill="${textFill}" font-weight="600" font-family="inherit" pointer-events="none">${count}</text>`);
+        }
+      }
+    });
+    return parts.join("");
+  }
+
+  const sec2Y = PAD_T + gridH + SEC_GAP;
+
+  return `
+    <p class="vel-note" style="margin-bottom:16px">Policy enactments per calendar month, Jan 2020 – present. Hover a cell for the exact count. Faded cells are future months. Months with no dated records are shown in the panel background color.</p>
+    <div style="overflow-x:auto">
+    <svg viewBox="0 0 ${W} ${totalH}" width="100%" style="min-width:420px;max-width:${W}px;display:block;overflow:visible" role="img" aria-label="Monthly policy enactment heatmap 2020–2026">
+      <text x="${PAD_L}" y="11" font-size="9.5" font-weight="700" letter-spacing="0.06em" fill="var(--text-muted)" font-family="inherit">RESTRICTIONS (LEVEL 1–4)</text>
+      ${renderGrid(restricCount, 'r', PAD_T)}
+      <text x="${PAD_L}" y="${sec2Y - 8}" font-size="9.5" font-weight="700" letter-spacing="0.06em" fill="var(--text-muted)" font-family="inherit">PRO-BUSINESS / INCENTIVE PROGRAMS</text>
+      ${renderGrid(proCount, 'p', sec2Y + PAD_T - 16)}
+    </svg>
+    </div>
+  `;
+}
+
+function _buildRegulatoryMomentumHtml(counties) {
+  const now       = new Date();
+  const cutoff    = new Date(now);
+  cutoff.setFullYear(cutoff.getFullYear() - 1);
+  const cutoffStr = cutoff.toISOString().slice(0, 10);
+
+  const newRestrict = {};
+  const newPro      = {};
+
+  for (const fips in counties) {
+    const c    = counties[fips];
+    const date = c.effective_date || c.date || "";
+    if (!date || date < cutoffStr) continue;
+    const st = c.state || "Unknown";
+    if ((c.level ?? 0) >= 1)   newRestrict[st] = (newRestrict[st] || 0) + 1;
+    else if (c.level === -1)   newPro[st]      = (newPro[st]      || 0) + 1;
+  }
+
+  const topR   = Object.entries(newRestrict).sort((a, b) => b[1] - a[1]).slice(0, 8);
+  const topP   = Object.entries(newPro).sort((a, b) => b[1] - a[1]).slice(0, 8);
+  const totR   = Object.values(newRestrict).reduce((s, v) => s + v, 0);
+  const totP   = Object.values(newPro).reduce((s, v) => s + v, 0);
+
+  function renderList(rows, barColor, emptyMsg) {
+    if (!rows.length) return `<div class="mom-empty">${escHtml(emptyMsg)}</div>`;
+    const maxN = rows[0][1];
+    return rows.map(([st, n], i) =>
+      `<div class="mom-row">
+        <div class="mom-rank">${i + 1}</div>
+        <div class="mom-state">${escHtml(st)}</div>
+        <div class="mom-bar-wrap"><div class="mom-bar" style="width:${Math.round(n / maxN * 100)}%;background:${barColor}"></div></div>
+        <div class="mom-count">${n}</div>
+      </div>`
+    ).join("");
+  }
+
+  return `
+    <p class="vel-note" style="margin-bottom:14px">States ranked by the number of new county-level policy enactments in the trailing 12 months, split by direction. Counties are counted once at their <em>effective_date</em>. Total: ${totR + totP} new enactments recorded.</p>
+    <div class="mom-grid">
+      <div class="mom-col">
+        <div class="mom-col-hdr mom-hdr-restrict">Trending Restrictive <span class="mom-hdr-count">${totR} counties</span></div>
+        <div class="mom-list">${renderList(topR, "#ef4444", "No new restrictions in the last 12 months.")}</div>
+      </div>
+      <div class="mom-col">
+        <div class="mom-col-hdr mom-hdr-pro">Trending Pro-Business <span class="mom-hdr-count">${totP} counties</span></div>
+        <div class="mom-list">${renderList(topP, "#22c55e", "No new incentive programs in the last 12 months.")}</div>
+      </div>
+    </div>
   `;
 }
 

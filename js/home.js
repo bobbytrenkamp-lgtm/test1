@@ -267,6 +267,66 @@ function buildFeatured() {
   }).filter(Boolean);
 }
 
+/* ── Top development sites: no restrictions, B+ suitability, sorted by score ── */
+function buildTopSites() {
+  if (typeof computeSuitabilityScore !== "function" || !mapData) return [];
+  const wsData  = window.DC_WATER_STRESS_FULL || {};
+  const incData = window.DC_INCENTIVES_FIPS   || {};
+  const WS_LABELS = ["Low", "Low-Med", "Med-High", "High", "Extreme"];
+
+  const results = [];
+  for (const fips in mapData) {
+    const c = mapData[fips];
+    if ((c.level || 0) > 0) continue;
+    const suit = computeSuitabilityScore(fips, c);
+    if (suit.score < 65) continue;
+    const ws     = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : null;
+    const hasInc = !!(incData[fips]);
+    results.push({ fips, name: c.name, state: c.state, level: c.level, suit, ws, wsLabel: ws !== null ? (WS_LABELS[ws] || String(ws)) : null, hasInc });
+  }
+
+  results.sort((a, b) => {
+    if (b.suit.score !== a.suit.score) return b.suit.score - a.suit.score;
+    const wa = a.ws !== null ? a.ws : 99;
+    const wb = b.ws !== null ? b.ws : 99;
+    if (wa !== wb) return wa - wb;
+    return (b.hasInc ? 1 : 0) - (a.hasInc ? 1 : 0);
+  });
+
+  return results.slice(0, 10);
+}
+
+/* ── Recently reviewed counties (using last_reviewed field) ── */
+function buildRecentlyReviewed() {
+  if (!mapData) return [];
+  return Object.entries(mapData)
+    .filter(([, c]) => c.last_reviewed)
+    .sort((a, b) => (b[1].last_reviewed || "").localeCompare(a[1].last_reviewed || ""))
+    .slice(0, 6)
+    .map(([fips, c]) => ({ fips, ...c }));
+}
+
+/* ── County watchlist (reads from localStorage written by map.js) ── */
+function buildWatchlist() {
+  if (!mapData) return [];
+  let fipsArr;
+  try { fipsArr = JSON.parse(localStorage.getItem("dc-watchlist-v1") || "[]"); }
+  catch (_) { fipsArr = []; }
+  const wsData  = window.DC_WATER_STRESS_FULL || {};
+  const WS_LABELS = ["Low", "Low-Med", "Med-High", "High", "Extreme"];
+  return fipsArr.map(fips => {
+    const c = mapData[fips];
+    const ws = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : null;
+    return {
+      fips,
+      name:    c ? c.name  : fips,
+      state:   c ? c.state : "",
+      level:   c ? (c.level ?? 0) : 0,
+      wsLabel: ws !== null ? (WS_LABELS[ws] || String(ws)) : null,
+    };
+  });
+}
+
 /* ── Recent policy activity (most recently dated entries, any level) ── */
 function buildRecentActivity() {
   if (!mapData) return [];
@@ -417,6 +477,9 @@ function renderHomePage() {
   const news           = buildLatestNews();
   const featured       = buildFeatured();
   const recentActivity = buildRecentActivity();
+  const topSites           = buildTopSites();
+  const watchlist          = buildWatchlist();
+  const recentlyReviewed   = buildRecentlyReviewed();
   const newsTS   = newsArticles && newsArticles.length
     ? fmtRelDate(
         [...newsArticles].sort((a,b) => (b.published_at||"").localeCompare(a.published_at||""))[0]?.published_at
@@ -581,6 +644,96 @@ function renderHomePage() {
     </div>
   </section>` : ""}
 
+  <!-- Recently Reviewed Counties -->
+  ${recentlyReviewed.length ? `
+  <section class="home-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Recently Reviewed</h2>
+      <button class="home-col-link" onclick="switchTab('analytics')" type="button">Full analytics ${HOME_ICONS.arrow}</button>
+    </div>
+    <p class="home-sites-desc">Counties where policy records were most recently verified or updated by the research team.</p>
+    <div class="home-reviewed-grid">
+      ${recentlyReviewed.map(c => {
+        const lvl    = c.level ?? 0;
+        const sevCls = SEV_CLASSES[lvl] || SEV_CLASSES[0];
+        const sevLbl = SEV_LABELS[lvl]  ?? SEV_LABELS[0];
+        const reviewed = c.last_reviewed ? c.last_reviewed.slice(0, 10) : "";
+        const daysAgo = reviewed ? Math.round((Date.now() - new Date(reviewed + "T00:00:00").getTime()) / 86400000) : null;
+        const daysStr = daysAgo !== null ? (daysAgo === 0 ? "today" : daysAgo === 1 ? "1d ago" : `${daysAgo}d ago`) : "";
+        return `<div class="home-reviewed-card" role="button" tabindex="0" data-fips="${escHtml(c.fips)}" aria-label="${escHtml(c.name)}, ${escHtml(c.state)}">
+          <div class="home-reviewed-top">
+            <span class="home-reviewed-name">${escHtml(c.name)}</span>
+            <span class="sev-badge ${escHtml(sevCls)}">${escHtml(sevLbl)}</span>
+          </div>
+          <div class="home-reviewed-meta">
+            <span class="home-reviewed-state">${escHtml(c.state)}</span>
+            ${daysStr ? `<span class="home-reviewed-date">${escHtml(daysStr)}</span>` : ""}
+          </div>
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
+  <!-- Top Development Sites -->
+  ${topSites.length ? `
+  <section class="home-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Top Development Sites</h2>
+      <button class="home-col-link" onclick="switchTab('map'); setTimeout(()=>document.getElementById('gis-screener')?.click(),300)" type="button">Full screener ${HOME_ICONS.arrow}</button>
+    </div>
+    <p class="home-sites-desc">Best counties for data center development — B+ suitability grade (≥65 pts), no active restrictions, ranked by composite score. Click any row to open on the map.</p>
+    <div class="home-sites-list">
+      ${topSites.map((s, i) => {
+        const GRADE_COLOR = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
+        const wsColor = s.ws !== null ? (s.ws <= 1 ? "#22c55e" : s.ws === 2 ? "#eab308" : "#ef4444") : "var(--text-muted)";
+        const incLevel = s.level === -1 ? "Pro-Dev" : (s.hasInc ? "Incentives" : "");
+        return `<div class="home-site-row" role="button" tabindex="0" data-fips="${escHtml(s.fips)}" aria-label="${escHtml(s.name)}, ${escHtml(s.state)}">
+          <div class="home-site-rank">${i + 1}</div>
+          <div class="home-site-info">
+            <div class="home-site-name">${escHtml(s.name)}</div>
+            <div class="home-site-state">${escHtml(s.state)}</div>
+          </div>
+          <div class="home-site-metrics">
+            <span class="home-site-grade" style="color:${GRADE_COLOR[s.suit.grade] || "var(--accent)"};">${s.suit.grade}</span>
+            <span class="home-site-score">${s.suit.score}pts</span>
+            ${s.wsLabel !== null ? `<span class="home-site-ws" style="color:${wsColor}">${escHtml(s.wsLabel)}</span>` : ""}
+            ${incLevel ? `<span class="home-site-inc">${escHtml(incLevel)}</span>` : ""}
+          </div>
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
+  <!-- Watched Counties -->
+  ${watchlist.length ? `
+  <section class="home-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Watched Counties</h2>
+      <button class="home-col-link" onclick="if(typeof toggleWatchCounty==='function'){}" type="button" title="Manage watchlist">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        ${watchlist.length} watched
+      </button>
+    </div>
+    <div class="home-watchlist">
+      ${watchlist.map(w => {
+        const lvl = w.level;
+        const sevCls = SEV_CLASSES[lvl] || SEV_CLASSES[0];
+        const sevLbl = SEV_LABELS[lvl]  ?? SEV_LABELS[0];
+        return `<div class="home-watch-row" role="button" tabindex="0" data-fips="${escHtml(w.fips)}" aria-label="${escHtml(w.name)}, ${escHtml(w.state)}">
+          <div class="home-watch-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="home-watch-info">
+            <span class="home-watch-name">${escHtml(w.name)}</span>
+            <span class="home-watch-state">${escHtml(w.state)}</span>
+          </div>
+          <span class="sev-badge ${sevCls}">${escHtml(sevLbl)}</span>
+          ${w.wsLabel !== null ? `<span class="home-watch-ws">${escHtml(w.wsLabel)}</span>` : ""}
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
   <!-- Market ticker -->
   <section class="home-section home-ticker-section">
     <div class="home-col-header">
@@ -709,8 +862,50 @@ function renderHomePage() {
     el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
   });
 
+  /* Bind top-sites row clicks */
+  view.querySelectorAll(".home-site-row[data-fips]").forEach(el => {
+    const handler = () => {
+      const fips = el.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise
+        : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    el.addEventListener("click",   handler);
+    el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+  });
+
   /* Bind featured card clicks */
   view.querySelectorAll(".home-featured-card[data-fips]").forEach(el => {
+    const handler = () => {
+      const fips = el.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise
+        : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    el.addEventListener("click",   handler);
+    el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+  });
+
+  /* Bind recently-reviewed card clicks */
+  view.querySelectorAll(".home-reviewed-card[data-fips]").forEach(el => {
+    const handler = () => {
+      const fips = el.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise
+        : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    el.addEventListener("click",   handler);
+    el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+  });
+
+  /* Bind watchlist row clicks */
+  view.querySelectorAll(".home-watch-row[data-fips]").forEach(el => {
     const handler = () => {
       const fips = el.dataset.fips;
       switchTab("map");
