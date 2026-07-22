@@ -9160,3 +9160,68 @@ html[data-theme="light"] .sr-row { background: #f8f9fc; }
   color: var(--text-muted);
   font-style: italic;
 }
+
+/* ── State Opportunity Matrix ── */
+.som-desc {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+.som-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.som-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.som-table thead th {
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 7px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  user-select: none;
+}
+.som-table thead th:hover { color: var(--text); }
+.som-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-standard);
+}
+.som-table tbody tr:last-child { border-bottom: none; }
+.som-table tbody tr:hover { background: var(--surface-2); }
+.som-table td {
+  padding: 6px 10px;
+  color: var(--text);
+  vertical-align: middle;
+}
+.som-st {
+  font-weight: 700;
+  white-space: nowrap;
+}
+.som-stname {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: 5px;
+}
+.som-score {
+  font-weight: 700;
+  font-size: 13px;
+}
+.som-tier {
+  font-size: 10.5px;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
