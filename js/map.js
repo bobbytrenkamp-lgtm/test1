@@ -2621,6 +2621,8 @@ function _captureWorkspaceState(name) {
       typeFilterMode:  typeFilterMode,
       statusFilters:   [...activeStatusFilters],
       dateFilter:      activeDateFilter,
+      wsMax:           activeWsMaxFilter,
+      suitMin:         activeSuitMinFilter,
     },
     mapView: { lat: +c.lat.toFixed(5), lng: +c.lng.toFixed(5), zoom: leafletMap.getZoom() },
     selectedFips: selectedFips || null,
@@ -2649,6 +2651,10 @@ function _applyWorkspace(ws) {
     (ws.filters.statusFilters || []).forEach(k => activeStatusFilters.add(k));
     activeDateFilter = (typeof ws.filters.dateFilter === "string" && /^\d{4}$/.test(ws.filters.dateFilter))
       ? ws.filters.dateFilter : null;
+    activeWsMaxFilter   = (typeof ws.filters.wsMax === "number" && ws.filters.wsMax >= 0 && ws.filters.wsMax <= 4)
+      ? ws.filters.wsMax : null;
+    activeSuitMinFilter = (typeof ws.filters.suitMin === "number" && ws.filters.suitMin >= 0)
+      ? ws.filters.suitMin : null;
     applyFilters();
   }
   if (ws.mapView) {

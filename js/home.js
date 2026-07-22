@@ -267,6 +267,16 @@ function buildFeatured() {
   }).filter(Boolean);
 }
 
+/* ── Recent policy activity (most recently dated entries, any level) ── */
+function buildRecentActivity() {
+  if (!mapData) return [];
+  return Object.entries(mapData)
+    .filter(([, c]) => c.effective_date || c.date)
+    .map(([fips, c]) => ({ fips, ...c, _date: c.effective_date || c.date }))
+    .sort((a, b) => b._date.localeCompare(a._date))
+    .slice(0, 10);
+}
+
 /* ── KPI summary ── */
 function buildKPIs() {
   if (!mapData) return { total: 0, bans: 0, high: 0, moderate: 0, states: 0, dcExisting: null, dcProposed: null };
@@ -402,10 +412,11 @@ function renderHomePage() {
     return;
   }
 
-  const kpis     = buildKPIs();
-  const regs     = buildRecentRegs();
-  const news     = buildLatestNews();
-  const featured = buildFeatured();
+  const kpis           = buildKPIs();
+  const regs           = buildRecentRegs();
+  const news           = buildLatestNews();
+  const featured       = buildFeatured();
+  const recentActivity = buildRecentActivity();
   const newsTS   = newsArticles && newsArticles.length
     ? fmtRelDate(
         [...newsArticles].sort((a,b) => (b.published_at||"").localeCompare(a.published_at||""))[0]?.published_at
@@ -546,6 +557,30 @@ function renderHomePage() {
 
   </section>
 
+  <!-- Recent Policy Activity timeline strip -->
+  ${recentActivity.length ? `
+  <section class="home-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Recent Policy Activity</h2>
+      <button class="home-col-link" onclick="switchTab('map')" type="button">View all ${HOME_ICONS.arrow}</button>
+    </div>
+    <div class="home-activity-strip">
+      ${recentActivity.map(c => {
+        const sevCls = SEV_CLASSES[c.level] || "";
+        const sevLbl = SEV_LABELS[c.level] ?? "";
+        const dateStr = c._date ? c._date.slice(0, 10) : "";
+        const types = (c.types || []).map(t => `<span class="home-type-chip">${escHtml(TYPE_LABELS[t] || t)}</span>`).join("");
+        return `<div class="home-activity-card" role="button" tabindex="0" data-fips="${escHtml(c.fips)}" aria-label="${escHtml(c.name)}, ${escHtml(c.state)}">
+          <div class="home-activity-date">${escHtml(dateStr)}</div>
+          <div class="home-activity-name">${escHtml(c.name)}</div>
+          <div class="home-activity-state">${escHtml(c.state)}</div>
+          <div class="home-activity-badge"><span class="sev-badge ${escHtml(sevCls)}">${escHtml(sevLbl)}</span></div>
+          ${types ? `<div class="home-activity-types">${types}</div>` : ""}
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
   <!-- Market ticker -->
   <section class="home-section home-ticker-section">
     <div class="home-col-header">
@@ -648,6 +683,20 @@ function renderHomePage() {
 
   /* Bind regulation item clicks → map tab + county select */
   view.querySelectorAll(".home-reg-item[data-fips]").forEach(el => {
+    const handler = () => {
+      const fips = el.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise
+        : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    el.addEventListener("click",   handler);
+    el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+  });
+
+  /* Bind activity card clicks */
+  view.querySelectorAll(".home-activity-card[data-fips]").forEach(el => {
     const handler = () => {
       const fips = el.dataset.fips;
       switchTab("map");
