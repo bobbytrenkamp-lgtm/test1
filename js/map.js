@@ -241,6 +241,8 @@ const activeTypeFilters     = new Set();  // policy type keys e.g. "data_center"
 let   typeFilterMode        = "any";       // "any" (OR) | "all" (AND) for activeTypeFilters
 const activeStatusFilters   = new Set();  // "active" | "proposed" | "pending"
 let   activeDateFilter      = null;        // null = off, 4-digit year string e.g. "2020"
+let   activeWsMaxFilter    = null;        // null = off, 0–4 = max allowed water stress level
+let   activeSuitMinFilter  = null;        // null = off, minimum suitability score (45=C+, 65=B+, 80=A)
 
 /* ── Tab / news state ── */
 let activeTab      = "map";
@@ -279,13 +281,21 @@ function countyMatchesFilters(fips) {
     // Counties without a date are kept (we don't know their enactment date).
     if (effDate && effDate.slice(0, 4) > activeDateFilter) return false;
   }
+  if (activeWsMaxFilter !== null) {
+    const ws = (window.DC_WATER_STRESS_FULL || {})[fips];
+    if (ws !== undefined && ws !== null && ws > activeWsMaxFilter) return false;
+  }
+  if (activeSuitMinFilter !== null) {
+    const suit = computeSuitabilityScore(fips, county);
+    if (suit.score < activeSuitMinFilter) return false;
+  }
   return true;
 }
 
 function hasActiveMapFilters() {
   return activeRestrictFilters.size > 0 || activeStateFilter !== "" ||
          activeTypeFilters.size > 0 || activeStatusFilters.size > 0 ||
-         activeDateFilter !== null;
+         activeDateFilter !== null || activeWsMaxFilter !== null || activeSuitMinFilter !== null;
 }
 
 /* ── Helpers ── */
@@ -3411,10 +3421,12 @@ function toggleRestrictFilter(key) {
 
 function clearAllFilters() {
   activeRestrictFilters.clear();
-  activeStateFilter = "";
+  activeStateFilter  = "";
   activeTypeFilters.clear();
   activeStatusFilters.clear();
-  activeDateFilter  = null;
+  activeDateFilter   = null;
+  activeWsMaxFilter  = null;
+  activeSuitMinFilter = null;
   _saveFilterState();
   applyFilters();
   syncAdvancedFilterUI();
@@ -3429,6 +3441,8 @@ function _saveFilterState() {
       typeMode:   typeFilterMode,
       status:     [...activeStatusFilters],
       dateFilter: activeDateFilter,
+      wsMax:      activeWsMaxFilter,
+      suitMin:    activeSuitMinFilter,
     }));
   } catch (_) {}
 }
@@ -3444,6 +3458,8 @@ function _loadFilterState() {
     if (s.typeMode === "all" || s.typeMode === "any") typeFilterMode = s.typeMode;
     if (Array.isArray(s.status))  s.status.forEach(t => activeStatusFilters.add(t));
     if (typeof s.dateFilter === "string" && /^\d{4}$/.test(s.dateFilter)) activeDateFilter = s.dateFilter;
+    if (typeof s.wsMax === "number" && s.wsMax >= 0 && s.wsMax <= 4) activeWsMaxFilter = s.wsMax;
+    if (typeof s.suitMin === "number" && s.suitMin >= 0) activeSuitMinFilter = s.suitMin;
   } catch (_) {}
 }
 
@@ -3499,6 +3515,14 @@ function renderFilterStatus() {
   if (activeStatusFilters.size > 0) {
     const stLabels = [...activeStatusFilters].map(s => STATUS_LABELS[s] || s).join(", ");
     parts.push(stLabels);
+  }
+  if (activeWsMaxFilter !== null) {
+    const WS_LABELS = ["Low", "Low-Med", "Med-High", "High", "Extreme"];
+    parts.push(`Water ≤ ${WS_LABELS[activeWsMaxFilter] || activeWsMaxFilter}`);
+  }
+  if (activeSuitMinFilter !== null) {
+    const g = activeSuitMinFilter >= 80 ? "A" : activeSuitMinFilter >= 65 ? "B" : "C";
+    parts.push(`Suitability ≥ ${g}`);
   }
 
   el.hidden = false;
@@ -6225,6 +6249,12 @@ function syncAdvancedFilterUI() {
   document.querySelectorAll("#adv-status-chips .adv-chip").forEach(chip => {
     chip.classList.toggle("active", activeStatusFilters.has(chip.dataset.status));
   });
+  // Sync water stress max select
+  const wsMaxSel = document.getElementById("adv-ws-max");
+  if (wsMaxSel) wsMaxSel.value = activeWsMaxFilter !== null ? String(activeWsMaxFilter) : "";
+  // Sync min suitability select
+  const suitMinSel = document.getElementById("adv-suit-min");
+  if (suitMinSel) suitMinSel.value = activeSuitMinFilter !== null ? String(activeSuitMinFilter) : "";
   // Sync date filter
   const _dcb = document.getElementById("adv-date-enabled");
   const _dsl = document.getElementById("adv-date-slider");
@@ -6249,7 +6279,8 @@ function syncAdvancedFilterUI() {
   if (advBtn) {
     advBtn.classList.toggle("active", hasActiveMapFilters());
     const filterCount = activeRestrictFilters.size + (activeStateFilter ? 1 : 0) +
-                        activeTypeFilters.size + activeStatusFilters.size;
+                        activeTypeFilters.size + activeStatusFilters.size +
+                        (activeWsMaxFilter !== null ? 1 : 0) + (activeSuitMinFilter !== null ? 1 : 0);
     if (filterCount > 0) advBtn.setAttribute("data-count", filterCount);
     else advBtn.removeAttribute("data-count");
   }
@@ -6442,6 +6473,32 @@ function initAdvancedFiltersPanel() {
       });
       presetsRow.appendChild(btn);
     }
+  }
+
+  // Water Stress max level select
+  const wsMaxSel = document.getElementById("adv-ws-max");
+  if (wsMaxSel) {
+    if (activeWsMaxFilter !== null) wsMaxSel.value = String(activeWsMaxFilter);
+    wsMaxSel.addEventListener("change", () => {
+      activeWsMaxFilter = wsMaxSel.value === "" ? null : Number(wsMaxSel.value);
+      clearBtn.hidden = !hasActiveMapFilters();
+      if (!hasActiveMapFilters()) openBtn.classList.remove("active");
+      else openBtn.classList.add("active");
+      applyFilters();
+    });
+  }
+
+  // Min suitability grade select
+  const suitMinSel = document.getElementById("adv-suit-min");
+  if (suitMinSel) {
+    if (activeSuitMinFilter !== null) suitMinSel.value = String(activeSuitMinFilter);
+    suitMinSel.addEventListener("change", () => {
+      activeSuitMinFilter = suitMinSel.value === "" ? null : Number(suitMinSel.value);
+      clearBtn.hidden = !hasActiveMapFilters();
+      if (!hasActiveMapFilters()) openBtn.classList.remove("active");
+      else openBtn.classList.add("active");
+      applyFilters();
+    });
   }
 
   // Date filter (Enacted By Year)
