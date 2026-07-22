@@ -238,11 +238,11 @@ function renderAnalyticsPage() {
             <span class="status-badge danger">${statesWithRestrict.size} states</span>
           </div>
           <div class="analytics-card-body">
-            <div class="ranked-list">
+            <div class="ranked-list" id="analytics-top-states-list">
               ${topStates.map(([st,n],i) => `
-              <div class="ranked-item">
+              <div class="ranked-item ranked-item-clickable" data-state="${escHtml(st)}" role="button" tabindex="0" title="View ${escHtml(st)} counties">
                 <div class="rank-num">${i+1}</div>
-                <div class="rank-name">${escHtml(st)}</div>
+                <div class="rank-name rank-name-link">${escHtml(st)}</div>
                 <div class="rank-bar-wrap">
                   <div class="bar-track" style="flex:1"><div class="bar-fill" style="width:${Math.round(n/topStates[0][1]*100)}%;background:#dc2626;--bar-delay:${i*40}ms"></div></div>
                 </div>
@@ -447,6 +447,159 @@ function renderAnalyticsPage() {
   _fillIncentiveExplorer();
 
   el.querySelector("#analytics-export-csv")?.addEventListener("click", exportCountiesCSV);
+
+  // State drill-down: click any row in "Most Restricted States" chart
+  el.querySelector("#analytics-top-states-list")?.addEventListener("click", e => {
+    const item = e.target.closest(".ranked-item-clickable[data-state]");
+    if (item) _showStateModal(item.dataset.state);
+  });
+  el.querySelector("#analytics-top-states-list")?.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      const item = e.target.closest(".ranked-item-clickable[data-state]");
+      if (item) { e.preventDefault(); _showStateModal(item.dataset.state); }
+    }
+  });
+}
+
+/* ── State county drill-down modal ── */
+function _showStateModal(stateName) {
+  const counties = mapData || {};
+  const wsData   = window.DC_WATER_STRESS_FULL || {};
+  const incData  = window.DC_INCENTIVES_FIPS   || {};
+  const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
+
+  const LVL_LABELS = {"-1":"Pro / Incentive","0":"No Restrictions","1":"Light","2":"Moderate","3":"Significant","4":"Ban / Moratorium"};
+  const LVL_COLORS = {"-1":"#22c55e","0":"#6b7280","1":"#86efac","2":"#f97316","3":"#dc2626","4":"#7f1d1d"};
+
+  const rows = [];
+  for (const fips in counties) {
+    const c = counties[fips];
+    if (c.state !== stateName) continue;
+    const lvl  = c.level ?? 0;
+    const ws   = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : null;
+    let suit   = { score: null, grade: "—" };
+    if (typeof computeSuitabilityScore === "function") {
+      try { suit = computeSuitabilityScore(fips, c); } catch (_) {}
+    }
+    const hasInc = !!(incData[fips] && incData[fips].length);
+    rows.push({ fips, name: c.name, lvl, date: c.effective_date || c.date || "", status: c.status || "active", suit, ws, wsLabel: ws !== null ? (WS_LABELS[ws] || String(ws)) : "—", hasInc });
+  }
+  rows.sort((a, b) => {
+    if (b.lvl !== a.lvl) return b.lvl - a.lvl;
+    return (b.suit.score ?? 0) - (a.suit.score ?? 0);
+  });
+
+  const esc = s => escHtml(String(s ?? ""));
+  const GRADE_COLOR = { A:"#22c55e", B:"#22d3ee", C:"#eab308", D:"#f97316", F:"#ef4444" };
+  const WS_COLOR    = (ws) => ws !== null ? (ws <= 1 ? "#22c55e" : ws === 2 ? "#eab308" : "#ef4444") : "var(--text-muted)";
+
+  const tableRows = rows.map((r, i) => `
+    <tr class="sdm-row" data-fips="${esc(r.fips)}" role="button" tabindex="0" title="Open ${esc(r.name)} on the map">
+      <td class="sdm-rank">${i + 1}</td>
+      <td class="sdm-county">${esc(r.name)}</td>
+      <td class="sdm-lvl">
+        <span class="sdm-badge" style="background:${LVL_COLORS[String(r.lvl)]||"#6b7280"}22;color:${LVL_COLORS[String(r.lvl)]||"#6b7280"};border:1px solid ${LVL_COLORS[String(r.lvl)]||"#6b7280"}44">
+          ${esc(LVL_LABELS[String(r.lvl)] || String(r.lvl))}
+        </span>
+      </td>
+      <td class="sdm-suit" style="color:${GRADE_COLOR[r.suit.grade]||"var(--text-muted)"}">
+        ${r.suit.grade !== "—" ? `${r.suit.grade} <span class="sdm-score">${r.suit.score}pt</span>` : "—"}
+      </td>
+      <td class="sdm-ws" style="color:${WS_COLOR(r.ws)}">${esc(r.wsLabel)}</td>
+      <td class="sdm-date">${esc(r.date ? r.date.slice(0,10) : "")}</td>
+      ${r.hasInc ? '<td class="sdm-inc">✓</td>' : '<td class="sdm-inc sdm-inc-empty">—</td>'}
+    </tr>`).join("");
+
+  const totalR  = rows.filter(r => r.lvl >= 1).length;
+  const totalP  = rows.filter(r => r.lvl === -1).length;
+  const totalNR = rows.filter(r => r.lvl <= 0 && r.lvl !== -1).length;
+
+  const html = `
+<div id="state-modal-overlay" class="sdm-overlay" role="dialog" aria-modal="true" aria-label="${esc(stateName)} county breakdown">
+  <div class="sdm-modal">
+    <div class="sdm-hdr">
+      <div class="sdm-hdr-left">
+        <div class="sdm-title">${esc(stateName)}</div>
+        <div class="sdm-subtitle">${rows.length} counties tracked &nbsp;·&nbsp; <span style="color:#ef4444">${totalR} restricted</span> &nbsp;·&nbsp; <span style="color:#22c55e">${totalP} pro-dev</span> &nbsp;·&nbsp; ${totalNR} no restrictions</div>
+      </div>
+      <div class="sdm-hdr-right">
+        <button class="sdm-map-btn" id="sdm-map-btn" type="button">View on map</button>
+        <button class="sdm-close" id="sdm-close" type="button" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="sdm-body">
+      <div class="sdm-table-wrap">
+        <table class="sdm-table">
+          <thead>
+            <tr>
+              <th class="sdm-rank">#</th>
+              <th class="sdm-county">County</th>
+              <th class="sdm-lvl">Restriction</th>
+              <th class="sdm-suit">Suitability</th>
+              <th class="sdm-ws">Water Stress</th>
+              <th class="sdm-date">Effective Date</th>
+              <th class="sdm-inc">Incentives</th>
+            </tr>
+          </thead>
+          <tbody>${tableRows || '<tr><td colspan="7" class="sdm-empty">No county data for this state.</td></tr>'}</tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>`;
+
+  document.getElementById("state-modal-overlay")?.remove();
+  document.body.insertAdjacentHTML("beforeend", html);
+
+  const overlay = document.getElementById("state-modal-overlay");
+  const _sNames = (typeof STATE_NAMES !== "undefined" ? STATE_NAMES : {});
+  const _sFips  = (typeof STATE_FIPS  !== "undefined" ? STATE_FIPS  : {});
+  const stAbbr  = Object.entries(_sNames).find(([, name]) => name === stateName)?.[0] || "";
+  const fips2   = stAbbr ? Object.entries(_sFips).find(([, abbr]) => abbr === stAbbr)?.[0] : null;
+
+  function closeModal() { overlay?.remove(); }
+
+  overlay.addEventListener("click", e => { if (e.target === overlay) closeModal(); });
+  document.getElementById("sdm-close")?.addEventListener("click", closeModal);
+  document.getElementById("sdm-map-btn")?.addEventListener("click", () => {
+    closeModal();
+    switchTab("map");
+    setTimeout(() => {
+      if (typeof stateGeoLayer !== "undefined" && stateGeoLayer && fips2) {
+        const stLayer = stateGeoLayer.getLayers().find(l => String(l.feature.id).padStart(2,"0") === fips2);
+        if (stLayer && typeof leafletMap !== "undefined") {
+          leafletMap.flyToBounds(stLayer.getBounds(), { duration: 0.6, padding: [20, 20] });
+        }
+      }
+      if (typeof showStateDetail === "function" && fips2) showStateDetail(fips2);
+    }, 300);
+  });
+
+  // Row click → navigate to county on map
+  overlay.querySelector(".sdm-table tbody")?.addEventListener("click", e => {
+    const row = e.target.closest(".sdm-row[data-fips]");
+    if (!row) return;
+    closeModal();
+    switchTab("map");
+    setTimeout(() => {
+      if (typeof selectCounty === "function") selectCounty(row.dataset.fips);
+      if (typeof zoomToFeature === "function") zoomToFeature(row.dataset.fips);
+    }, 300);
+  });
+  overlay.querySelector(".sdm-table tbody")?.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      const row = e.target.closest(".sdm-row[data-fips]");
+      if (row) { e.preventDefault(); row.click(); }
+    }
+  });
+
+  const keyHandler = e => { if (e.key === "Escape") { closeModal(); document.removeEventListener("keydown", keyHandler); } };
+  document.addEventListener("keydown", keyHandler);
+
+  // Focus modal for accessibility
+  setTimeout(() => overlay.querySelector(".sdm-modal")?.focus(), 50);
 }
 
 function _buildVelocityChartHtml(counties) {

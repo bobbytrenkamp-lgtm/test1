@@ -9642,3 +9642,216 @@ html.is-light-theme .map-mode-chip.active {
 .analytics-export-btn svg {
   flex-shrink: 0;
 }
+
+/* ── State county drill-down modal ── */
+.sdm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0,0,0,0.62);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(3px);
+  animation: fadeIn var(--dur-fast) var(--ease-enter);
+}
+.sdm-modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 780px;
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.44);
+  outline: none;
+  animation: slideUp var(--dur-normal) var(--ease-spring);
+}
+@keyframes slideUp {
+  from { transform: translateY(18px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.sdm-hdr {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.sdm-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.sdm-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.sdm-hdr-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.sdm-map-btn {
+  padding: 7px 14px;
+  background: var(--accent);
+  border: none;
+  border-radius: 7px;
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity var(--dur-fast);
+}
+.sdm-map-btn:hover { opacity: 0.85; }
+.sdm-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 7px;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background var(--dur-fast), color var(--dur-fast);
+}
+.sdm-close:hover { background: var(--border); color: var(--text); }
+.sdm-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.sdm-table-wrap {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+.sdm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.sdm-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  z-index: 1;
+}
+.sdm-table tbody td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+}
+.sdm-row { cursor: pointer; transition: background var(--dur-fast); }
+.sdm-row:hover td { background: var(--surface-2); }
+.sdm-row:focus td { background: var(--surface-2); outline: none; }
+.sdm-rank { color: var(--text-muted); font-variant-numeric: tabular-nums; width: 32px; }
+.sdm-county { font-weight: 600; }
+.sdm-suit { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sdm-score { font-size: 10.5px; opacity: 0.7; }
+.sdm-badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.sdm-inc { color: #22c55e; font-weight: 600; }
+.sdm-inc-empty { color: var(--text-muted); }
+.sdm-date { color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sdm-empty { text-align: center; padding: 32px; color: var(--text-muted); font-style: italic; }
+.rank-name-link { cursor: pointer; }
+.ranked-item-clickable { cursor: pointer; border-radius: 6px; transition: background var(--dur-fast); }
+.ranked-item-clickable:hover { background: var(--surface-2); }
+.ranked-item-clickable:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 600px) {
+  .sdm-modal { max-height: 92vh; border-radius: 10px; }
+  .sdm-hdr { padding: 16px; }
+  .sdm-table-wrap { font-size: 11.5px; }
+}
+@media (prefers-color-scheme: light) {
+  .sdm-modal { background: #fff; }
+  .sdm-table thead th { background: #fff; }
+  .sdm-row:hover td { background: #f4f6ff; }
+}
+:root[data-theme="light"] .sdm-modal { background: #fff; }
+:root[data-theme="light"] .sdm-table thead th { background: #fff; }
+:root[data-theme="light"] .sdm-row:hover td { background: #f4f6ff; }
+
+/* ── Home: Recently Reviewed grid ── */
+.home-reviewed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+.home-reviewed-card {
+  padding: 12px 14px;
+  border-radius: 9px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background var(--dur-fast), border-color var(--dur-fast);
+}
+.home-reviewed-card:hover {
+  background: var(--surface-2);
+  border-color: var(--accent);
+}
+.home-reviewed-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+.home-reviewed-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.home-reviewed-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.home-reviewed-state {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+.home-reviewed-date {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+@media (prefers-color-scheme: light) {
+  .home-reviewed-card { background: #fff; }
+  .home-reviewed-card:hover { background: #f0f4ff; }
+}
+:root[data-theme="light"] .home-reviewed-card { background: #fff; }
+:root[data-theme="light"] .home-reviewed-card:hover { background: #f0f4ff; }

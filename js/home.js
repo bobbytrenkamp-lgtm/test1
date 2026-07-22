@@ -296,6 +296,16 @@ function buildTopSites() {
   return results.slice(0, 10);
 }
 
+/* ── Recently reviewed counties (using last_reviewed field) ── */
+function buildRecentlyReviewed() {
+  if (!mapData) return [];
+  return Object.entries(mapData)
+    .filter(([, c]) => c.last_reviewed)
+    .sort((a, b) => (b[1].last_reviewed || "").localeCompare(a[1].last_reviewed || ""))
+    .slice(0, 6)
+    .map(([fips, c]) => ({ fips, ...c }));
+}
+
 /* ── County watchlist (reads from localStorage written by map.js) ── */
 function buildWatchlist() {
   if (!mapData) return [];
@@ -467,8 +477,9 @@ function renderHomePage() {
   const news           = buildLatestNews();
   const featured       = buildFeatured();
   const recentActivity = buildRecentActivity();
-  const topSites       = buildTopSites();
-  const watchlist      = buildWatchlist();
+  const topSites           = buildTopSites();
+  const watchlist          = buildWatchlist();
+  const recentlyReviewed   = buildRecentlyReviewed();
   const newsTS   = newsArticles && newsArticles.length
     ? fmtRelDate(
         [...newsArticles].sort((a,b) => (b.published_at||"").localeCompare(a.published_at||""))[0]?.published_at
@@ -628,6 +639,36 @@ function renderHomePage() {
           <div class="home-activity-state">${escHtml(c.state)}</div>
           <div class="home-activity-badge"><span class="sev-badge ${escHtml(sevCls)}">${escHtml(sevLbl)}</span></div>
           ${types ? `<div class="home-activity-types">${types}</div>` : ""}
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
+  <!-- Recently Reviewed Counties -->
+  ${recentlyReviewed.length ? `
+  <section class="home-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Recently Reviewed</h2>
+      <button class="home-col-link" onclick="switchTab('analytics')" type="button">Full analytics ${HOME_ICONS.arrow}</button>
+    </div>
+    <p class="home-sites-desc">Counties where policy records were most recently verified or updated by the research team.</p>
+    <div class="home-reviewed-grid">
+      ${recentlyReviewed.map(c => {
+        const lvl    = c.level ?? 0;
+        const sevCls = SEV_CLASSES[lvl] || SEV_CLASSES[0];
+        const sevLbl = SEV_LABELS[lvl]  ?? SEV_LABELS[0];
+        const reviewed = c.last_reviewed ? c.last_reviewed.slice(0, 10) : "";
+        const daysAgo = reviewed ? Math.round((Date.now() - new Date(reviewed + "T00:00:00").getTime()) / 86400000) : null;
+        const daysStr = daysAgo !== null ? (daysAgo === 0 ? "today" : daysAgo === 1 ? "1d ago" : `${daysAgo}d ago`) : "";
+        return `<div class="home-reviewed-card" role="button" tabindex="0" data-fips="${escHtml(c.fips)}" aria-label="${escHtml(c.name)}, ${escHtml(c.state)}">
+          <div class="home-reviewed-top">
+            <span class="home-reviewed-name">${escHtml(c.name)}</span>
+            <span class="sev-badge ${escHtml(sevCls)}">${escHtml(sevLbl)}</span>
+          </div>
+          <div class="home-reviewed-meta">
+            <span class="home-reviewed-state">${escHtml(c.state)}</span>
+            ${daysStr ? `<span class="home-reviewed-date">${escHtml(daysStr)}</span>` : ""}
+          </div>
         </div>`;
       }).join("")}
     </div>
@@ -837,6 +878,20 @@ function renderHomePage() {
 
   /* Bind featured card clicks */
   view.querySelectorAll(".home-featured-card[data-fips]").forEach(el => {
+    const handler = () => {
+      const fips = el.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise
+        : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    el.addEventListener("click",   handler);
+    el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+  });
+
+  /* Bind recently-reviewed card clicks */
+  view.querySelectorAll(".home-reviewed-card[data-fips]").forEach(el => {
     const handler = () => {
       const fips = el.dataset.fips;
       switchTab("map");
