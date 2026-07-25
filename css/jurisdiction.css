@@ -1,0 +1,332 @@
+/* css/jurisdiction.css — Jurisdiction Intelligence Pages (Phase 3)
+   Uses the shared design tokens from style.css (--sp-*, --r-*, --shadow-*).
+   Do not introduce new raw colors here; derive from tokens so both themes work. */
+
+#jurisdiction-view {
+  height: 100%;
+  overflow-y: auto;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.juris-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: var(--sp-6) var(--sp-5) var(--sp-12);
+}
+
+/* ── Hero ── */
+.juris-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  padding-bottom: var(--sp-5);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--sp-6);
+}
+.juris-back {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: var(--sp-2);
+}
+.juris-back:hover { color: var(--accent); }
+.juris-title {
+  font-size: 28px;
+  font-weight: 650;
+  line-height: 1.15;
+  margin: 0 0 var(--sp-1);
+  text-wrap: balance;
+}
+.juris-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-3);
+}
+.juris-badges { display: flex; gap: var(--sp-2); flex-wrap: wrap; align-items: center; }
+.juris-sev {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: var(--r-xl);
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 600;
+}
+.juris-sev-unknown {
+  background: var(--surface-2);
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+.juris-chip {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.juris-chip-ok { color: #22c55e; border-color: #22c55e55; }
+
+.juris-hero-actions { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+.juris-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 12.5px;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-standard),
+              border-color var(--dur-fast) var(--ease-standard);
+}
+.juris-btn:hover { background: var(--surface-2); border-color: var(--accent); }
+.juris-btn-watch.is-on { color: #eab308; border-color: #eab30855; }
+
+/* ── Layout ── */
+.juris-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: var(--sp-5);
+  align-items: start;
+}
+.juris-col { display: flex; flex-direction: column; gap: var(--sp-5); min-width: 0; }
+
+/* ── Cards ── */
+.juris-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  box-shadow: var(--shadow-xs);
+}
+.juris-h2 {
+  font-size: 12px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin: 0 0 var(--sp-4);
+}
+.juris-policy-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: var(--sp-3);
+  line-height: 1.35;
+}
+
+/* ── Definition list ── */
+.juris-dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--sp-3) var(--sp-4);
+  margin: 0 0 var(--sp-4);
+}
+.juris-dl > div { min-width: 0; }
+.juris-dl dt {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+}
+.juris-dl dd { margin: 0; font-size: 13px; }
+
+.juris-desc { font-size: 13.5px; line-height: 1.6; margin: 0 0 var(--sp-3); }
+.juris-notes {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0 0 var(--sp-3);
+}
+
+/* ── Sources ── */
+.juris-sources { border-top: 1px solid var(--border); padding-top: var(--sp-4); }
+.juris-sources-h {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-2);
+}
+.juris-sources ul { margin: 0 0 var(--sp-2); padding-left: 18px; }
+.juris-sources li { font-size: 12.5px; margin-bottom: 4px; }
+.juris-sources a { color: var(--accent); }
+.juris-source-note {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: var(--sp-2) 0 0;
+}
+
+/* ── Stats row ── */
+.juris-stat-row {
+  display: flex;
+  gap: var(--sp-5);
+  flex-wrap: wrap;
+  padding-bottom: var(--sp-4);
+  margin-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+.juris-stat { display: flex; flex-direction: column; gap: 2px; }
+.juris-stat-n { font-size: 20px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.juris-stat-l {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+/* ── Table ── */
+.juris-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.juris-table th {
+  text-align: left;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 0 var(--sp-3) var(--sp-2) 0;
+  border-bottom: 1px solid var(--border);
+}
+.juris-table td {
+  padding: var(--sp-2) var(--sp-3) var(--sp-2) 0;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.juris-table tr:last-child td { border-bottom: none; }
+.juris-table td:last-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.juris-status {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: var(--r-xs);
+  font-size: 10.5px;
+  text-transform: capitalize;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.juris-status-operational { color: #22c55e; border-color: #22c55e44; }
+.juris-status-planned     { color: #eab308; border-color: #eab30844; }
+
+.juris-more { font-size: 12px; color: var(--text-muted); margin: var(--sp-3) 0 0; }
+.juris-more a { color: var(--accent); }
+
+/* ── Score ── */
+.juris-score {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-2);
+}
+.juris-score-grade {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+  min-width: 44px;
+}
+.juris-score-n { font-size: 20px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.juris-score-n span { font-size: 12px; color: var(--text-muted); font-weight: 400; }
+.juris-score-l {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+/* ── Links row ── */
+.juris-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+}
+.juris-link {
+  display: inline-block;
+  padding: 6px 11px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 12px;
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color var(--dur-fast) var(--ease-standard);
+}
+.juris-link:hover { border-color: var(--accent); color: var(--accent); }
+.juris-link.is-off { opacity: 0.45; cursor: default; }
+.juris-link.is-off:hover { border-color: var(--border); color: var(--text); }
+
+/* ── News ── */
+.juris-news { list-style: none; margin: 0; padding: 0; }
+.juris-news-item { padding: var(--sp-2) 0; border-bottom: 1px solid var(--border); }
+.juris-news-item:last-child { border-bottom: none; }
+.juris-news-item a {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text);
+  text-decoration: none;
+}
+.juris-news-item a:hover { color: var(--accent); }
+.juris-news-meta { font-size: 10.5px; color: var(--text-muted); margin-top: 3px; }
+.juris-news-sub {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin: var(--sp-4) 0 var(--sp-1);
+}
+
+/* ── Empty states ── */
+.juris-empty { padding: var(--sp-4) 0; }
+.juris-empty p { font-size: 13px; margin: 0 0 var(--sp-2); }
+.juris-empty-sub { font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+.juris-empty-inline { font-size: 12.5px; color: var(--text-muted); margin: 0; }
+
+/* ── Entry point from the map detail panel ──
+   Lives here rather than style.css so the whole jurisdiction feature (page +
+   its entry affordance) stays in one file. */
+.detail-juris-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding: 9px 12px;
+  margin-bottom: var(--sp-3);
+  border-radius: var(--r-md);
+  border: 1px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-standard);
+}
+.detail-juris-link:hover {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .juris-grid { grid-template-columns: minmax(0, 1fr); }
+  .juris-wrap { padding: var(--sp-4) var(--sp-4) var(--sp-8); }
+  .juris-title { font-size: 23px; }
+  .juris-hero { flex-direction: column; }
+}
+@media (max-width: 560px) {
+  .juris-stat-row { gap: var(--sp-4); }
+  .juris-table { font-size: 11.5px; }
+  /* Table must scroll inside its own container, never the page body */
+  .juris-card > .juris-table { display: block; overflow-x: auto; }
+}

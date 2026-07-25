@@ -42,7 +42,7 @@ function exportCountiesCSV() {
   const wsData   = window.DC_WATER_STRESS_FULL || {};
   const incData  = window.DC_INCENTIVES_FIPS   || {};
   const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
-  const LVL_LABELS = {"-1":"Pro / Incentive Hub","0":"No Restrictions","1":"Light Regulations","2":"Moderate Restrictions","3":"Significant Restrictions","4":"Ban / Moratorium"};
+  const LVL_LABELS = window.LEVEL_LABELS;
   const TYPE_MAP = { data_center:"Data Center", ai:"AI Regulation", energy:"Energy / Grid", crypto:"Crypto / HPC", water:"Water Use" };
 
   const csvCell = v => {
@@ -143,7 +143,7 @@ function renderAnalyticsPage() {
   const typeRows = Object.entries(typeCounts).map(([k,v]) => ({ key: k, label: typeLabels[k]||k, count: v })).sort((a,b)=>b.count-a.count);
 
   // Level distribution
-  const levelLabels = { '-1':'Pro / Incentive Hub', 1:'Light Regulations', 2:'Moderate Restrictions', 3:'Significant Restrictions', 4:'Ban / Moratorium' };
+  const levelLabels = window.LEVEL_LABELS;
   const levelColors = { '-1':'#4ade80', 1:'#86efac', 2:'#f97316', 3:'#dc2626', 4:'#7f1d1d' };
 
   // News category top 8
@@ -235,7 +235,7 @@ function renderAnalyticsPage() {
         </div>
         <div class="analytics-kpi-card">
           <div class="analytics-kpi-card-icon" style="background:rgba(245,158,11,0.12);color:#f59e0b">${analyticsIcon('county')}</div>
-          <div class="analytics-kpi-label">Counties Tracked</div>
+          <div class="analytics-kpi-label">Counties Researched</div>
           <div class="analytics-kpi-value">${totalCounties}</div>
           <div class="analytics-kpi-meta">with known policy data</div>
         </div>
@@ -867,7 +867,7 @@ function _showStateModal(stateName) {
   const incData  = window.DC_INCENTIVES_FIPS   || {};
   const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
 
-  const LVL_LABELS = {"-1":"Pro / Incentive","0":"No Restrictions","1":"Light","2":"Moderate","3":"Significant","4":"Ban / Moratorium"};
+  const LVL_LABELS = window.LEVEL_SHORT;
   const LVL_COLORS = {"-1":"#22c55e","0":"#6b7280","1":"#86efac","2":"#f97316","3":"#dc2626","4":"#7f1d1d"};
 
   const rows = [];
@@ -1965,7 +1965,7 @@ function renderAboutPage() {
             <li><strong>County policy data:</strong> Manually updated as laws change</li>
             <li><strong>State regulations:</strong> Reviewed quarterly and on major changes</li>
             <li><strong>Infrastructure data:</strong> Updated quarterly from public filings</li>
-            <li><strong>AI Stock data:</strong> Real-time delayed quotes via TradingView</li>
+            <li><strong>AI Stock data:</strong> Quotes via TradingView, delayed 15 minutes</li>
           </ul>
         </div>
       </div>
@@ -2020,7 +2020,7 @@ function renderAboutPage() {
             <div class="roadmap-dot done"></div>
             <div class="roadmap-content">
               <div class="roadmap-title">AI Stocks Dashboard</div>
-              <div class="roadmap-desc">50+ publicly traded AI companies with TradingView charts, watchlist, and market heatmap.</div>
+              <div class="roadmap-desc">44 publicly traded AI companies with TradingView charts (delayed 15 min), watchlist, and market heatmap.</div>
             </div>
             <span class="roadmap-badge done">Live</span>
           </div>
@@ -2460,7 +2460,7 @@ async function _renderStateScorecard() {
 
   const LEVEL_META = {
     "-1": { label: "Pro-Business",    color: "#22c55e", cls: "sr-lv--1" },
-    "0":  { label: "No Restrictions", color: "#6b7280", cls: "sr-lv-0"  },
+    "0":  { label: "No Known Restrictions", color: "#6b7280", cls: "sr-lv-0"  },
     "1":  { label: "Light",           color: "#86efac", cls: "sr-lv-1"  },
     "2":  { label: "Moderate",        color: "#f97316", cls: "sr-lv-2"  },
     "3":  { label: "Significant",     color: "#dc2626", cls: "sr-lv-3"  },
@@ -3035,7 +3035,7 @@ function _renderInvestmentHotspots() {
     const incCount = (incData[h.fips] || []).length;
     const wsLabel  = WS_LABELS[h.wsLevel] || "Unknown";
     const wsColor  = WS_COLORS[h.wsLevel] || "#888";
-    const sevLabel = h.county.level === -1 ? "Pro-DC Hub" : "No Restrictions";
+    const sevLabel = window.LEVEL_SHORT[String(h.county.level)] || window.LEVEL_SHORT["0"];
     const sevColor = h.county.level === -1 ? "#16a34a" : "#22c55e";
     return `
       <div class="hs-card" data-fips="${escHtml(h.fips)}">

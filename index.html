@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="css/results-panel.css?v=20260718a" />
   <link rel="stylesheet" href="css/parcel.css?v=20260721h" />
   <link rel="stylesheet" href="css/pipeline.css?v=20260725h" />
+  <link rel="stylesheet" href="css/jurisdiction.css?v=20260726a" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -540,6 +541,9 @@
   <div id="stocks-view" hidden role="tabpanel" aria-labelledby="tab-stocks"></div>
   <div id="analytics-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-analytics"></div>
   <div id="pipeline-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-pipeline"></div>
+
+  <!-- Jurisdiction Intelligence Page — virtual route #jurisdiction?fips=XXXXX (no header tab) -->
+  <div id="jurisdiction-view" class="page-view" hidden role="region" aria-label="Jurisdiction detail"></div>
   <div id="about-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-about"></div>
 
   <div id="news-view" hidden role="tabpanel" aria-labelledby="tab-news">
@@ -899,6 +903,9 @@ window.addEventListener('error', function(e) {
 </script>
 <script src="vendor/leaflet.js" defer onload="window._track.ok.push('leaflet')" onerror="window._track.fail.push('leaflet')"></script>
 <script src="vendor/topojson-client.min.js" defer onload="window._track.ok.push('topo')" onerror="window._track.fail.push('topo')"></script>
+<!-- constants.js MUST load first — defines SEVERITY/LEVEL label maps the other modules read at top level -->
+<script src="js/constants.js?v=20260726a" defer onload="window._track.ok.push('constants')" onerror="window._track.fail.push('constants')"></script>
+<script src="js/router.js?v=20260726a" defer onload="window._track.ok.push('router')" onerror="window._track.fail.push('router')"></script>
 <script src="js/stocks.js?v=20260725g" defer onload="window._track.ok.push('stocks')" onerror="window._track.fail.push('stocks')"></script>
 <script src="js/analytics.js?v=20260725h" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
 <script src="js/home.js?v=20260725h" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
@@ -930,6 +937,7 @@ window.addEventListener('error', function(e) {
 <script src="js/results-panel.js?v=20260718a" defer onload="window._track.ok.push('results-panel')" onerror="window._track.fail.push('results-panel')"></script>
 <script src="js/command-palette.js?v=20260720a" defer onload="window._track.ok.push('command-palette')" onerror="window._track.fail.push('command-palette')"></script>
 <script src="js/pipeline.js?v=20260725h" defer onload="window._track.ok.push('pipeline')" onerror="window._track.fail.push('pipeline')"></script>
+<script src="js/jurisdiction.js?v=20260726a" defer onload="window._track.ok.push('jurisdiction')" onerror="window._track.fail.push('jurisdiction')"></script>
 <script src="js/report.js?v=20260721a" defer onload="window._track.ok.push('report')" onerror="window._track.fail.push('report')"></script>
 <script>
 setTimeout(function() {

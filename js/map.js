@@ -1,14 +1,13 @@
 /* US Data Center & AI Restrictions Map — Leaflet Edition */
 
 /* ── Severity model ── */
-const SEVERITY = {
-  pro:      { color: "#4ade80", label: "Pro-Development Hub" },
-  none:     { color: "#16a34a", label: "No Known Restrictions" },
-  proposed: { color: "#eab308", label: "Proposed Restrictions" },
-  moderate: { color: "#f97316", label: "Moderate Restrictions" },
-  high:     { color: "#dc2626", label: "Significant Restrictions" },
-  ban:      { color: "#7f1d1d", label: "Moratorium / Ban" },
-};
+/* Severity colors + labels come from js/constants.js (single source of truth).
+   Do not hardcode label text here — see docs/TERMINOLOGY.md. */
+const SEVERITY = Object.fromEntries(
+  Object.keys(window.SEVERITY_LABELS).map(k => [
+    k, { color: window.SEVERITY_COLORS[k], label: window.SEVERITY_LABELS[k] },
+  ])
+);
 
 function getSeverityKey(county) {
   if (!county) return "none";
@@ -56,14 +55,9 @@ function selectedCountyStyle() {
   return { color: themeColors().selectedOutline, weight: 2.5, fillOpacity: 0.92 };
 }
 
-const LEVEL_LABELS = {
-  "-1": "Pro-Development Hub",
-  0:    "No Known Restrictions",
-  1:    "Light Regulations",
-  2:    "Moderate Restrictions",
-  3:    "Significant Restrictions",
-  4:    "Ban / Moratorium",
-};
+/* LEVEL_LABELS is defined in js/constants.js and exposed on window. Aliased here
+   so existing bare references keep working. */
+const LEVEL_LABELS = window.LEVEL_LABELS;
 
 const TYPE_LABELS = {
   data_center: "Data Center",
@@ -339,7 +333,7 @@ function _renderSimilarCounties(fips, county) {
   similar.sort((a, b) => a.diff - b.diff || b.score - a.score);
   const top = similar.slice(0, 5);
   const GRADE_COLOR = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
-  const SEV_KEY_LABELS = { ban: "Ban", high: "High", moderate: "Moderate", proposed: "Proposed", pro: "Pro-Dev", none: "No Restrictions" };
+  const SEV_KEY_LABELS = window.SEVERITY_SHORT;
   container.innerHTML = `
     <div class="policy-divider"></div>
     <div class="detail-similar-wrap">
@@ -350,7 +344,7 @@ function _renderSimilarCounties(fips, county) {
       <div class="detail-similar-list">
         ${top.map(c => {
           const sevKey = getSeverityKey(mapData[c.fips]);
-          const sevLbl = SEV_KEY_LABELS[sevKey] || "No Restrictions";
+          const sevLbl = SEV_KEY_LABELS[sevKey] || window.SEVERITY_SHORT.none;
           return `<button class="detail-similar-item" data-fips="${escHtml(c.fips)}" type="button" title="View ${escHtml(c.name)}, ${escHtml(c.state)}">
             <span class="detail-similar-grade" style="color:${GRADE_COLOR[c.grade] || 'var(--accent)'}">${escHtml(c.grade)}</span>
             <span class="detail-similar-info">
@@ -5893,6 +5887,10 @@ function setDetailCounty(fips, county) {
 
   const _timelineHtml = buildCountyTimelineHtml(fips, county);
   document.getElementById("detail-body").innerHTML = `
+    <a class="detail-juris-link" href="#jurisdiction?fips=${escHtml(fips)}">
+      <span>Full intelligence report</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
     ${buildSuitabilityHtml(fips, county)}
     <div class="policy-divider"></div>
     ${buildStatePolicySectionHtml(stateFips2)}
@@ -6906,6 +6904,7 @@ function switchTab(tab) {
   const analyticsEl = document.getElementById("analytics-view");
   const pipelineEl  = document.getElementById("pipeline-view");
   const aboutEl     = document.getElementById("about-view");
+  const jurisEl     = document.getElementById("jurisdiction-view");
   const searchBar   = document.getElementById("search-bar");
   const appEl       = document.getElementById("app");
 
@@ -6917,7 +6916,9 @@ function switchTab(tab) {
 
   // Fullpage tabs (home/analytics/pipeline/about) always show the header expanded;
   // map, news, and stocks restore the user's saved collapsed preference.
-  const isFullpage = tab === "analytics" || tab === "about" || tab === "home" || tab === "pipeline";
+  // "jurisdiction" is a virtual route with no header tab but renders fullpage.
+  const isFullpage = tab === "analytics" || tab === "about" || tab === "home"
+                  || tab === "pipeline" || tab === "jurisdiction";
   if (isFullpage) appEl.classList.remove("top-hidden");
 
   appEl.classList.toggle("stocks-mode",   tab === "stocks");
@@ -6931,6 +6932,7 @@ function switchTab(tab) {
   if (analyticsEl) analyticsEl.hidden = true;
   if (pipelineEl)  pipelineEl.hidden  = true;
   if (aboutEl)     aboutEl.hidden     = true;
+  if (jurisEl)     jurisEl.hidden     = true;
 
   const savedHidden = () => appEl.classList.toggle("top-hidden", localStorage.getItem("topHidden") === "1");
 
@@ -6960,6 +6962,10 @@ function switchTab(tab) {
     if (aboutEl) { aboutEl.hidden = false; triggerViewEnter(aboutEl); }
     searchBar.classList.add("news-mode");
     if (typeof renderAboutPage === "function") renderAboutPage();
+  } else if (tab === "jurisdiction") {
+    // Virtual route — content is rendered by the router, which knows the fips.
+    if (jurisEl) { jurisEl.hidden = false; triggerViewEnter(jurisEl); }
+    searchBar.classList.add("news-mode");
   } else {
     mainEl.hidden = false;
     searchBar.classList.remove("news-mode");
@@ -6981,10 +6987,65 @@ function triggerViewEnter(el) {
 
 function initNavTabs() {
   document.querySelectorAll(".header-tab").forEach(btn => {
-    btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+    btn.addEventListener("click", () => {
+      switchTab(btn.dataset.tab);
+      // Reflect the tab in the URL so every view is deep-linkable and the
+      // browser back button works across tabs.
+      if (window.Router) window.Router.navigate(btn.dataset.tab, {});
+    });
   });
   /* Logo / brand click → Home */
-  document.getElementById("header-brand")?.addEventListener("click", () => switchTab("home"));
+  document.getElementById("header-brand")?.addEventListener("click", () => {
+    switchTab("home");
+    if (window.Router) window.Router.navigate("home", {});
+  });
+
+  initRouterBinding();
+}
+
+/* ── Router → view binding ──────────────────────────────────────────────────
+   Handles modern routes (#news, #jurisdiction?fips=...). Legacy hash formats
+   (#51107, #s=..., #@lat,lng,zoom) continue to be handled by restoreFromHash()
+   so old shared links keep working. */
+function initRouterBinding() {
+  if (!window.Router) return;
+
+  window.Router.onChange(r => {
+    // Legacy formats are owned by restoreFromHash(); don't double-handle them.
+    if (r.legacy) { restoreFromHash(); return; }
+
+    if (r.route === "jurisdiction") {
+      switchTab("jurisdiction");
+      if (window.JURISDICTION) window.JURISDICTION.init(r.params);
+      announceView(`Jurisdiction detail`);
+      return;
+    }
+    if (r.route === "methodology") {
+      switchTab("about");
+      if (typeof renderAboutPage === "function") renderAboutPage();
+      document.getElementById("methodology-section")?.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    switchTab(r.route);
+    const label = document.getElementById("tab-" + r.route)?.textContent?.trim();
+    if (label) announceView(label);
+  });
+}
+
+/* Announce view changes to screen readers. Tab buttons update aria-selected,
+   but SPA view swaps are otherwise silent for assistive tech. */
+function announceView(name) {
+  let el = document.getElementById("route-announcer");
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "route-announcer";
+    el.className = "sr-only";
+    el.setAttribute("role", "status");
+    el.setAttribute("aria-live", "polite");
+    el.setAttribute("aria-atomic", "true");
+    document.body.appendChild(el);
+  }
+  el.textContent = `${name} view loaded`;
 }
 
 /* ── AI News Feed ── */

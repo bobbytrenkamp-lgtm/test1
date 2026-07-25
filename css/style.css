@@ -83,6 +83,19 @@
 }
 .skip-link:focus { top: 0; }
 
+/* Visually hidden but exposed to assistive tech. Used by #route-announcer to
+   announce SPA view changes, which are otherwise silent for screen readers. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ── Light theme ── */
 html[data-theme="light"] {
   --bg: #f2f4f8;
