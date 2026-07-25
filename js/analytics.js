@@ -217,7 +217,7 @@ function renderAnalyticsPage() {
   el.innerHTML = `
     <div class="page-hero">
       <div class="page-hero-title">Policy <span>Analytics</span></div>
-      <div class="page-hero-sub">Real-time summary of US data center and AI policy coverage, derived from the live dataset across all ${totalCounties} tracked jurisdictions.</div>
+      <div class="page-hero-sub">Policy coverage summary derived from ${totalCounties.toLocaleString()} manually researched jurisdictions (${Math.round(totalCounties/3143*100)}% of 3,143 US counties). Policy data verified from official government sources — not real-time.</div>
       <button class="analytics-export-btn" id="analytics-export-csv" type="button">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Export All Counties CSV
@@ -1988,7 +1988,7 @@ function renderAboutPage() {
             <tr><td><span class="src-name">FERC / State PUCs</span></td><td class="callout-body">Power interconnection, utility territory data</td><td><span class="src-freq">Quarterly</span></td></tr>
             <tr><td><span class="src-name">EIA (Energy Information Administration)</span></td><td class="callout-body">Data center electricity demand, power infrastructure</td><td><span class="src-freq">Quarterly</span></td></tr>
             <tr><td><span class="src-name">Google News RSS</span></td><td class="callout-body">AI industry news, policy announcements</td><td><span class="src-freq">Hourly</span></td></tr>
-            <tr><td><span class="src-name">TradingView</span></td><td class="callout-body">AI company stock data (delayed 15 min)</td><td><span class="src-freq">Real-time</span></td></tr>
+            <tr><td><span class="src-name">TradingView</span></td><td class="callout-body">AI company stock data (delayed 15 min, not investment advice)</td><td><span class="src-freq">Delayed 15 min</span></td></tr>
             <tr><td><span class="src-name">US Census TIGER/Line</span></td><td class="callout-body">County boundary geometry for choropleth map</td><td><span class="src-freq">Annual</span></td></tr>
             <tr><td><span class="src-name">Water utility reports</span></td><td class="callout-body">Water availability stress indices by county</td><td><span class="src-freq">Annual</span></td></tr>
           </tbody>
@@ -2028,7 +2028,7 @@ function renderAboutPage() {
             <div class="roadmap-dot done"></div>
             <div class="roadmap-content">
               <div class="roadmap-title">Analytics Dashboard</div>
-              <div class="roadmap-desc">Real-time policy distribution, state rankings, and coverage summary from live data.</div>
+              <div class="roadmap-desc">Policy distribution, state rankings, and coverage summary derived from manually researched data.</div>
             </div>
             <span class="roadmap-badge done">Live</span>
           </div>

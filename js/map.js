@@ -2,11 +2,11 @@
 
 /* ── Severity model ── */
 const SEVERITY = {
-  pro:      { color: "#4ade80", label: "Pro / Incentive Hub" },
-  none:     { color: "#16a34a", label: "No Restrictions" },
+  pro:      { color: "#4ade80", label: "Pro-Development Hub" },
+  none:     { color: "#16a34a", label: "No Known Restrictions" },
   proposed: { color: "#eab308", label: "Proposed Restrictions" },
   moderate: { color: "#f97316", label: "Moderate Restrictions" },
-  high:     { color: "#dc2626", label: "High Restrictions" },
+  high:     { color: "#dc2626", label: "Significant Restrictions" },
   ban:      { color: "#7f1d1d", label: "Moratorium / Ban" },
 };
 
@@ -57,8 +57,8 @@ function selectedCountyStyle() {
 }
 
 const LEVEL_LABELS = {
-  "-1": "Pro Data Center",
-  0:    "No Specific Law",
+  "-1": "Pro-Development Hub",
+  0:    "No Known Restrictions",
   1:    "Light Regulations",
   2:    "Moderate Restrictions",
   3:    "Significant Restrictions",
@@ -3977,12 +3977,12 @@ function renderLegend() {
       legendBody.appendChild(h);
 
       const items = [
-        { key: "ban",      sub: "Outright prohibition" },
-        { key: "high",     sub: "Active, significant limits" },
-        { key: "moderate", sub: "Active, light-to-moderate limits" },
+        { key: "ban",      sub: "Outright prohibition or moratorium" },
+        { key: "high",     sub: "Active, significant limits — verified" },
+        { key: "moderate", sub: "Active, light-to-moderate limits — verified" },
         { key: "proposed", sub: "Pending / not yet enacted" },
-        { key: "none",     sub: "No known restrictions" },
-        { key: "pro",      sub: "Tax incentives / major hub" },
+        { key: "none",     sub: "Researched — no known restrictions found" },
+        { key: "pro",      sub: "Verified tax incentives or active development hub" },
       ];
       for (const item of items) {
         const el = document.createElement("div");
@@ -3995,6 +3995,23 @@ function renderLegend() {
           </div>`;
         legendBody.appendChild(el);
       }
+
+      // Add "Not yet researched" entry so the dark background color is explained
+      const noResEl = document.createElement("div");
+      noResEl.className = "legend-item";
+      noResEl.innerHTML = `
+        <div class="legend-swatch" style="background:${themeColors().noData};border:1px solid var(--border);"></div>
+        <div>
+          <div class="legend-label-main">Not yet researched</div>
+          <div class="legend-label-sub">1,678 counties — no data collected</div>
+        </div>`;
+      legendBody.appendChild(noResEl);
+
+      const coverNote = document.createElement("div");
+      coverNote.className = "legend-suit-note";
+      coverNote.style.cssText = "margin-top:4px;";
+      coverNote.textContent = `${Object.keys(mapData).length.toLocaleString()} of 3,143 US counties researched`;
+      legendBody.appendChild(coverNote);
     }
 
     const div = document.createElement("div");
