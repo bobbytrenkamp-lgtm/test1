@@ -314,6 +314,59 @@ function _renderNotesSection(fips) {
   });
 }
 
+/* ── Similar Counties (same restriction level, comparable suitability) ── */
+function _renderSimilarCounties(fips, county) {
+  const container = document.getElementById("detail-similar-section");
+  if (!container || !fips || !county || !mapData) return;
+  container.innerHTML = "";
+  const targetSuit = computeSuitabilityScore(fips, county);
+  if (!targetSuit) return;
+  const targetLvl = county.level ?? 0;
+  const targetState = county.state || "";
+  const SCORE_WINDOW = 8;
+  const similar = [];
+  for (const f in mapData) {
+    if (f === fips) continue;
+    const c = mapData[f];
+    if ((c.level ?? 0) !== targetLvl) continue;
+    if (c.state === targetState) continue;
+    const s = computeSuitabilityScore(f, c);
+    if (!s) continue;
+    const diff = Math.abs(s.score - targetSuit.score);
+    if (diff <= SCORE_WINDOW) similar.push({ fips: f, name: c.name, state: c.state, level: c.level ?? 0, score: s.score, grade: s.grade, diff });
+  }
+  if (!similar.length) return;
+  similar.sort((a, b) => a.diff - b.diff || b.score - a.score);
+  const top = similar.slice(0, 5);
+  const GRADE_COLOR = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
+  const SEV_KEY_LABELS = { ban: "Ban", high: "High", moderate: "Moderate", proposed: "Proposed", pro: "Pro-Dev", none: "No Restrictions" };
+  container.innerHTML = `
+    <div class="policy-divider"></div>
+    <div class="detail-similar-wrap">
+      <div class="detail-label" style="margin-bottom:8px">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right:4px;vertical-align:-1px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Similar Counties
+      </div>
+      <div class="detail-similar-list">
+        ${top.map(c => {
+          const sevKey = getSeverityKey(mapData[c.fips]);
+          const sevLbl = SEV_KEY_LABELS[sevKey] || "No Restrictions";
+          return `<button class="detail-similar-item" data-fips="${escHtml(c.fips)}" type="button" title="View ${escHtml(c.name)}, ${escHtml(c.state)}">
+            <span class="detail-similar-grade" style="color:${GRADE_COLOR[c.grade] || 'var(--accent)'}">${escHtml(c.grade)}</span>
+            <span class="detail-similar-info">
+              <span class="detail-similar-name">${escHtml(c.name)}</span>
+              <span class="detail-similar-state">${escHtml(c.state)}</span>
+            </span>
+            <span class="detail-similar-score">${c.score}pts</span>
+          </button>`;
+        }).join("")}
+      </div>
+    </div>`;
+  container.querySelectorAll(".detail-similar-item[data-fips]").forEach(btn => {
+    btn.addEventListener("click", () => { selectCounty(btn.dataset.fips); zoomToFeature(btn.dataset.fips); });
+  });
+}
+
 const layerState = {
   restrictions: true,
   state_policy: true,
@@ -5836,10 +5889,12 @@ function setDetailCounty(fips, county) {
     ${_timelineHtml ? `<div class="policy-divider"></div>${_timelineHtml}` : ""}
     ${buildSampleInfraHtml(fips)}
     <div id="detail-proximity-section"></div>
+    <div id="detail-similar-section"></div>
     <div id="detail-zoning-summary"></div>
     <div id="detail-notes-section"></div>`;
   openMobileSheet();
   _renderProximitySectionForCounty(fips);
+  _renderSimilarCounties(fips, county);
   _renderZoningSummaryForCounty(fips);
   _renderNotesSection(fips);
 }

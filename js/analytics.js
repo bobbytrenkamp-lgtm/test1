@@ -509,6 +509,55 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Policy Type Adoption by Year</div>
+      <p class="pmon-desc">Restrictions enacted per year, broken down by regulated technology category. Only counties with known enactment dates are counted.</p>
+      ${(function() {
+        const TYPE_ORDER = ["data_center", "ai", "crypto", "energy", "water"];
+        const TYPE_LABELS2 = { data_center: "Data Center", ai: "AI", crypto: "Crypto / HPC", energy: "Energy", water: "Water" };
+        const TYPE_COLORS2 = { data_center: "#dc2626", ai: "#8b5cf6", crypto: "#f97316", energy: "#f59e0b", water: "#3b82f6" };
+        const yearTypeMap = {};
+        let minYr = 2020, maxYr = new Date().getFullYear();
+        for (const fips in counties) {
+          const c = counties[fips];
+          if (!c.types || !c.types.length) continue;
+          const dateStr = c.effective_date || c.date || "";
+          if (!dateStr) continue;
+          const yr = parseInt(dateStr.slice(0, 4), 10);
+          if (isNaN(yr) || yr < 2010 || yr > maxYr) continue;
+          if (yr < minYr) minYr = yr;
+          if (!yearTypeMap[yr]) yearTypeMap[yr] = {};
+          for (const t of c.types) {
+            yearTypeMap[yr][t] = (yearTypeMap[yr][t] || 0) + 1;
+          }
+        }
+        const years = [];
+        for (let y = minYr; y <= maxYr; y++) years.push(y);
+        if (!years.length) return "<p class='empty-note'>No dated policy records found.</p>";
+        const maxVal = Math.max(1, ...Object.values(yearTypeMap).flatMap(m => Object.values(m)));
+        const rows = years.map(yr => {
+          const ym = yearTypeMap[yr] || {};
+          const cells = TYPE_ORDER.map(t => {
+            const v = ym[t] || 0;
+            const barPct = Math.round((v / maxVal) * 100);
+            return `<td class="pty-td">
+              <div class="pty-cell-wrap">
+                ${v > 0 ? `<div class="pty-bar" style="height:${barPct}%;background:${TYPE_COLORS2[t]}" title="${v} ${TYPE_LABELS2[t]} restrictions in ${yr}"></div><span class="pty-num">${v}</span>` : `<span class="pty-zero">—</span>`}
+              </div>
+            </td>`;
+          }).join("");
+          return `<tr class="pty-row"><td class="pty-yr">${yr}</td>${cells}</tr>`;
+        }).join("");
+        const headers = TYPE_ORDER.map(t =>
+          `<th class="pty-th" style="color:${TYPE_COLORS2[t]}">${TYPE_LABELS2[t]}</th>`
+        ).join("");
+        return `<div class="pty-table-wrap"><table class="pty-table">
+          <thead><tr><th class="pty-th pty-th-yr">Year</th>${headers}</tr></thead>
+          <tbody>${rows}</tbody>
+        </table></div>`;
+      })()}
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">Policy Timeline</div>
       <div id="analytics-policy-timeline">
         ${_buildPolicyTimelineHtml(counties)}
