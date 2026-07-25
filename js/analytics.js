@@ -149,6 +149,21 @@ function renderAnalyticsPage() {
   // News category top 8
   const newsCatRows = Object.entries(newsCats).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([k,v])=>({ label:k, count:v }));
 
+  // Proposed restrictions (pending legislation)
+  const proposedCounties = Object.entries(counties)
+    .filter(([, c]) => {
+      const s = c.status || "active";
+      return s === "proposed" || s === "pending" || (c.lifecycle_stage === "proposed");
+    })
+    .map(([fips, c]) => ({ fips, ...c }))
+    .sort((a, b) => {
+      // Sort by effective_date ascending (soonest first), then by level desc
+      const da = a.effective_date || a.date || "9999";
+      const db = b.effective_date || b.date || "9999";
+      if (da !== db) return da.localeCompare(db);
+      return (b.level || 0) - (a.level || 0);
+    });
+
   /* ── Render ── */
   el.innerHTML = `
     <div class="page-hero">
@@ -275,6 +290,51 @@ function renderAnalyticsPage() {
         </div>
       </div>
     </div>
+
+    ${proposedCounties.length ? `
+    <div class="page-section">
+      <div class="page-section-title">Proposed Restrictions Monitor
+        <span class="pmon-badge">${proposedCounties.length}</span>
+      </div>
+      <p class="pmon-desc">Counties with pending or proposed legislation — these restrictions are not yet enacted but may become active. Click any row to open the county on the map.</p>
+      <div class="pmon-table-wrap">
+        <table class="pmon-table" role="grid">
+          <thead>
+            <tr>
+              <th class="pmon-th">County</th>
+              <th class="pmon-th">State</th>
+              <th class="pmon-th">Type</th>
+              <th class="pmon-th">Proposed Level</th>
+              <th class="pmon-th pmon-th-date">Proposed Date</th>
+              <th class="pmon-th pmon-th-watch" aria-label="Watch"></th>
+            </tr>
+          </thead>
+          <tbody>
+            ${proposedCounties.map(c => {
+              const typeLabels2 = { data_center:'Data Center', ai:'AI', energy:'Energy', crypto:'Crypto', water:'Water' };
+              const types = (c.types || []).map(t => escHtml(typeLabels2[t] || t)).join(', ');
+              const lvl   = c.level ?? 1;
+              const lvlLbl = lvl >= 4 ? "Ban / Moratorium" : lvl === 3 ? "Significant" : lvl === 2 ? "Moderate" : "Light";
+              const lvlColor = lvl >= 4 ? "#7f1d1d" : lvl === 3 ? "#dc2626" : lvl === 2 ? "#f97316" : "#eab308";
+              const dateStr = c.effective_date || c.date || "";
+              const fmtDate = dateStr ? new Date(dateStr + "T00:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}) : "Unknown";
+              return `<tr class="pmon-row" role="row" data-fips="${escHtml(c.fips)}" tabindex="0">
+                <td class="pmon-county">${escHtml(c.name || c.fips)}</td>
+                <td class="pmon-state">${escHtml(c.state || "")}</td>
+                <td class="pmon-type">${types || "—"}</td>
+                <td class="pmon-level"><span class="pmon-level-dot" style="background:${lvlColor}"></span>${escHtml(lvlLbl)}</td>
+                <td class="pmon-date">${escHtml(fmtDate)}</td>
+                <td class="pmon-watch-cell">
+                  <button class="pmon-watch-btn" data-fips="${escHtml(c.fips)}" aria-label="Watch ${escHtml(c.name || c.fips)}" title="Watch county" type="button">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  </button>
+                </td>
+              </tr>`;
+            }).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>` : ""}
 
     <div class="page-section">
       <div class="page-section-title">Policy Timeline</div>
@@ -458,6 +518,43 @@ function renderAnalyticsPage() {
       const item = e.target.closest(".ranked-item-clickable[data-state]");
       if (item) { e.preventDefault(); _showStateModal(item.dataset.state); }
     }
+  });
+
+  // Proposed restrictions monitor: row click → map, watch button
+  el.querySelectorAll(".pmon-row[data-fips]").forEach(row => {
+    const nav = () => {
+      const fips = row.dataset.fips;
+      if (!fips) return;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    row.addEventListener("click", e => {
+      if (e.target.closest(".pmon-watch-btn")) return;
+      nav();
+    });
+    row.addEventListener("keydown", e => {
+      if ((e.key === "Enter" || e.key === " ") && !e.target.closest(".pmon-watch-btn")) {
+        e.preventDefault(); nav();
+      }
+    });
+  });
+  el.querySelectorAll(".pmon-watch-btn[data-fips]").forEach(btn => {
+    const fips = btn.dataset.fips;
+    const updateBtn = () => {
+      const watched = typeof toggleWatchCounty !== "undefined" &&
+        (() => { try { return new Set(JSON.parse(localStorage.getItem("dc-watchlist-v1")||"[]")).has(fips); } catch(_){return false;} })();
+      btn.classList.toggle("pmon-watch-btn-active", watched);
+      btn.title = watched ? "Remove from watchlist" : "Watch county";
+      btn.querySelector("svg")?.setAttribute("fill", watched ? "currentColor" : "none");
+    };
+    updateBtn();
+    btn.addEventListener("click", e => {
+      e.stopPropagation();
+      if (typeof toggleWatchCounty === "function") toggleWatchCounty(fips);
+      updateBtn();
+    });
   });
 }
 

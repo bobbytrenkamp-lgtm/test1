@@ -411,6 +411,51 @@ function homeSkeletonRows(n) {
   ).join("");
 }
 
+/* ── Export watchlist as CSV ── */
+function _exportWatchlistCSV() {
+  if (!mapData) return;
+  let fipsArr;
+  try { fipsArr = JSON.parse(localStorage.getItem("dc-watchlist-v1") || "[]"); }
+  catch (_) { fipsArr = []; }
+  if (!fipsArr.length) { showMapToast && showMapToast("Watchlist is empty"); return; }
+
+  const wsData   = window.DC_WATER_STRESS_FULL || {};
+  const incData  = window.DC_INCENTIVES_FIPS   || {};
+  const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
+  const LVL_LABELS = {"-1":"Pro / Incentive Hub","0":"No Restrictions","1":"Light Regulations","2":"Moderate Restrictions","3":"Significant Restrictions","4":"Ban / Moratorium"};
+  const TYPE_MAP  = { data_center:"Data Center", ai:"AI Regulation", energy:"Energy / Grid", crypto:"Crypto / HPC", water:"Water Use" };
+
+  const csvCell = v => {
+    const s = String(v ?? "");
+    return (s.includes(",") || s.includes('"') || s.includes("\n")) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  };
+
+  const header = ["FIPS","County","State","Restriction Level","Level Label","Status","Effective Date","Policy Types","Suitability Score","Suitability Grade","Water Stress","Water Stress Label","Incentive Programs"];
+  const rows = fipsArr.map(fips => {
+    const c   = mapData[fips] || {};
+    const lvl = c.level ?? 0;
+    const ws  = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : "";
+    const wsLabel = ws !== "" ? (WS_LABELS[ws] || String(ws)) : "";
+    const incProgs = (incData[fips] || []).map(p => p.program_name || p.name || "").filter(Boolean).join("; ");
+    const types    = (c.types || []).map(t => TYPE_MAP[t] || t).join("; ");
+    let suit = { score: "", grade: "" };
+    if (typeof computeSuitabilityScore === "function") {
+      try { suit = computeSuitabilityScore(fips, c); } catch (_) {}
+    }
+    return [fips, c.name||fips, c.state||"", lvl, LVL_LABELS[String(lvl)]||String(lvl), c.status||"active",
+      c.effective_date||c.date||"", types, suit.score, suit.grade, ws, wsLabel, incProgs].map(csvCell).join(",");
+  });
+
+  const csv  = [header.join(","), ...rows].join("\r\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), {
+    href: url, download: `dc-watchlist-${new Date().toISOString().slice(0,10)}.csv`,
+  });
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+}
+
 /* ── Main render ── */
 function renderHomePage() {
   const view = document.getElementById("home-view");
@@ -706,15 +751,18 @@ function renderHomePage() {
 
   <!-- Watched Counties -->
   ${watchlist.length ? `
-  <section class="home-section">
+  <section class="home-section" id="home-watchlist-section">
     <div class="home-col-header">
       <h2 class="home-section-title">Watched Counties</h2>
-      <button class="home-col-link" onclick="if(typeof toggleWatchCounty==='function'){}" type="button" title="Manage watchlist">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        ${watchlist.length} watched
-      </button>
+      <div class="home-watchlist-actions">
+        <button class="home-watchlist-export-btn" id="home-watchlist-export" type="button" title="Export watched counties as CSV" aria-label="Export watchlist CSV">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export CSV
+        </button>
+        <span class="home-watchlist-count" id="home-watchlist-count">${watchlist.length} watched</span>
+      </div>
     </div>
-    <div class="home-watchlist">
+    <div class="home-watchlist" id="home-watchlist-list">
       ${watchlist.map(w => {
         const lvl = w.level;
         const sevCls = SEV_CLASSES[lvl] || SEV_CLASSES[0];
@@ -729,6 +777,7 @@ function renderHomePage() {
           </div>
           <span class="sev-badge ${sevCls}">${escHtml(sevLbl)}</span>
           ${w.wsLabel !== null ? `<span class="home-watch-ws">${escHtml(w.wsLabel)}</span>` : ""}
+          <button class="home-watch-remove" data-fips="${escHtml(w.fips)}" type="button" aria-label="Remove ${escHtml(w.name)} from watchlist" title="Remove from watchlist">×</button>
         </div>`;
       }).join("")}
     </div>
@@ -904,18 +953,54 @@ function renderHomePage() {
     el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
   });
 
-  /* Bind watchlist row clicks */
-  view.querySelectorAll(".home-watch-row[data-fips]").forEach(el => {
-    const handler = () => {
-      const fips = el.dataset.fips;
+  /* Bind watchlist row clicks and remove buttons */
+  view.querySelectorAll(".home-watch-row[data-fips]").forEach(rowEl => {
+    const nav = () => {
+      const fips = rowEl.dataset.fips;
       switchTab("map");
       (typeof mapInitPromise !== "undefined" && mapInitPromise
         ? mapInitPromise
         : Promise.resolve()
       ).then(() => { selectCounty(fips); zoomToFeature(fips); });
     };
-    el.addEventListener("click",   handler);
-    el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+    rowEl.addEventListener("click", e => {
+      if (e.target.closest(".home-watch-remove")) return;
+      nav();
+    });
+    rowEl.addEventListener("keydown", e => {
+      if ((e.key === "Enter" || e.key === " ") && !e.target.closest(".home-watch-remove")) {
+        e.preventDefault(); nav();
+      }
+    });
+  });
+
+  view.querySelectorAll(".home-watch-remove[data-fips]").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.stopPropagation();
+      const fips = btn.dataset.fips;
+      if (typeof toggleWatchCounty === "function") toggleWatchCounty(fips);
+      const row = btn.closest(".home-watch-row");
+      if (row) {
+        row.style.transition = "opacity 0.15s";
+        row.style.opacity = "0";
+        setTimeout(() => {
+          row.remove();
+          const list = view.querySelector("#home-watchlist-list");
+          const countEl = view.querySelector("#home-watchlist-count");
+          if (list && !list.querySelector(".home-watch-row")) {
+            view.querySelector("#home-watchlist-section")?.remove();
+          } else if (countEl) {
+            const remaining = list?.querySelectorAll(".home-watch-row").length || 0;
+            countEl.textContent = `${remaining} watched`;
+          }
+        }, 160);
+      }
+    });
+  });
+
+  /* Bind watchlist CSV export */
+  view.querySelector("#home-watchlist-export")?.addEventListener("click", () => {
+    _exportWatchlistCSV();
   });
 
   /* Bind news item clicks */

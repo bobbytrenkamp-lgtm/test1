@@ -246,6 +246,63 @@ function _updateDetailShareBtn(fips) {
   btn.hidden = !fips;
 }
 
+/* ── County notes (localStorage, never uploaded) ── */
+const NOTES_KEY = "dc-county-notes-v1";
+
+function _loadNote(fips) {
+  try {
+    const notes = JSON.parse(localStorage.getItem(NOTES_KEY) || "{}");
+    return (typeof notes[fips] === "string") ? notes[fips] : "";
+  } catch (_) { return ""; }
+}
+
+function _saveNote(fips, text) {
+  if (!fips) return;
+  try {
+    const notes = JSON.parse(localStorage.getItem(NOTES_KEY) || "{}");
+    if (text.trim()) notes[fips] = text;
+    else delete notes[fips];
+    localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+  } catch (_) {}
+}
+
+function _renderNotesSection(fips) {
+  const container = document.getElementById("detail-notes-section");
+  if (!container || !fips) return;
+  const note = _loadNote(fips);
+  container.innerHTML = `
+    <div class="policy-divider"></div>
+    <div class="detail-notes-wrap">
+      <div class="detail-notes-hdr">
+        <span class="detail-label">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right:4px;vertical-align:-1px"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Notes
+        </span>
+        <span class="detail-notes-status" id="detail-notes-status">${note ? "Saved" : ""}</span>
+      </div>
+      <textarea id="detail-notes-ta" class="detail-notes-ta"
+        placeholder="Private analyst notes — saved only on this device…"
+        rows="3" aria-label="County analyst notes"></textarea>
+      <div class="detail-notes-hint">Auto-saved locally · never uploaded</div>
+    </div>`;
+  const ta     = container.querySelector("#detail-notes-ta");
+  const status = container.querySelector("#detail-notes-status");
+  ta.value = note;
+  let _noteTimer = null;
+  ta.addEventListener("input", () => {
+    clearTimeout(_noteTimer);
+    status.textContent = "";
+    _noteTimer = setTimeout(() => {
+      _saveNote(fips, ta.value);
+      status.textContent = ta.value.trim() ? "Saved" : "";
+    }, 700);
+  });
+  ta.addEventListener("blur", () => {
+    clearTimeout(_noteTimer);
+    _saveNote(fips, ta.value);
+    status.textContent = ta.value.trim() ? "Saved" : "";
+  });
+}
+
 const layerState = {
   restrictions: true,
   state_policy: true,
@@ -5768,10 +5825,12 @@ function setDetailCounty(fips, county) {
     ${_timelineHtml ? `<div class="policy-divider"></div>${_timelineHtml}` : ""}
     ${buildSampleInfraHtml(fips)}
     <div id="detail-proximity-section"></div>
-    <div id="detail-zoning-summary"></div>`;
+    <div id="detail-zoning-summary"></div>
+    <div id="detail-notes-section"></div>`;
   openMobileSheet();
   _renderProximitySectionForCounty(fips);
   _renderZoningSummaryForCounty(fips);
+  _renderNotesSection(fips);
 }
 
 function setDetailNoRestriction(name, state, fips) {
@@ -5806,10 +5865,12 @@ function setDetailNoRestriction(name, state, fips) {
     ${fips ? buildIncentivesSectionHtml(fips) : ""}
     ${fips ? buildSampleInfraHtml(fips) : ""}
     ${fips ? '<div id="detail-proximity-section"></div>' : ""}
-    ${fips ? '<div id="detail-zoning-summary"></div>' : ""}`;
+    ${fips ? '<div id="detail-zoning-summary"></div>' : ""}
+    ${fips ? '<div id="detail-notes-section"></div>' : ""}`;
   openMobileSheet();
   if (fips) _renderProximitySectionForCounty(fips);
   if (fips) _renderZoningSummaryForCounty(fips);
+  if (fips) _renderNotesSection(fips);
 }
 
 const FACILITY_KIND_LABELS = {
