@@ -6519,6 +6519,9 @@ function syncAdvancedFilterUI() {
   // Sync clear button visibility
   const clearBtn = document.getElementById("adv-filter-clear");
   if (clearBtn) clearBtn.hidden = !hasActiveMapFilters();
+  // Sync export button visibility
+  const expBtn = document.getElementById("adv-filter-export");
+  if (expBtn) expBtn.hidden = !hasActiveMapFilters();
   // Sync adv-filter-toggle button + active count badge
   const advBtn = document.getElementById("adv-filter-toggle");
   if (advBtn) {
@@ -6563,8 +6566,38 @@ function initAdvancedFiltersPanel() {
     if (!hasActiveMapFilters()) openBtn.classList.remove("active");
   }
 
-  const doneBtn = document.getElementById("adv-filter-done");
+  const doneBtn   = document.getElementById("adv-filter-done");
   if (doneBtn) doneBtn.addEventListener("click", closePanel);
+
+  const exportBtn = document.getElementById("adv-filter-export");
+  if (exportBtn) {
+    exportBtn.addEventListener("click", () => {
+      const rows = [["FIPS", "County", "State", "Level", "Severity", "Types", "Suitability Grade", "Suitability Score", "Water Stress", "Effective Date"]];
+      const wsData = window.DC_WATER_STRESS_FULL || {};
+      const WS_LABELS_EXP = ["Low", "Low-Med", "Med-High", "High", "Extreme"];
+      for (const fips in mapData) {
+        if (!countyMatchesFilters(fips)) continue;
+        const c = mapData[fips];
+        const suit = computeSuitabilityScore(fips, c);
+        const ws = wsData[fips] !== undefined ? (WS_LABELS_EXP[wsData[fips]] || String(wsData[fips])) : "";
+        rows.push([
+          fips, c.name || "", c.state || "",
+          String(c.level ?? 0),
+          getSeverityKey(c),
+          (c.types || []).join("; "),
+          suit.grade, String(suit.score),
+          ws,
+          c.effective_date || c.date || "",
+        ]);
+      }
+      const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+      const a = Object.assign(document.createElement("a"), {
+        href: URL.createObjectURL(new Blob([csv], { type: "text/csv" })),
+        download: `dc-policy-filter-export-${new Date().toISOString().slice(0,10)}.csv`,
+      });
+      document.body.appendChild(a); a.click(); setTimeout(() => { a.remove(); URL.revokeObjectURL(a.href); }, 1000);
+    });
+  }
 
   openBtn.addEventListener("click", () => {
     panel.classList.contains("open") ? closePanel() : openPanel();

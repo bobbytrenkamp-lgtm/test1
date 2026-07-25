@@ -184,6 +184,35 @@ function renderAnalyticsPage() {
     oppOpenList.sort((a, b) => b.score - a.score);
   }
 
+  // State Risk Ranking — aggregate per-state metrics
+  const stateRisk = {};
+  const stateNames = typeof STATE_NAMES !== "undefined" ? STATE_NAMES : {};
+  const stFipMap   = typeof STATE_FIPS   !== "undefined" ? STATE_FIPS   : {};
+  for (const fips in counties) {
+    const c   = counties[fips];
+    const st  = c.state || "Unknown";
+    if (!stateRisk[st]) stateRisk[st] = { state: st, bans: 0, high: 0, moderate: 0, proposed: 0, proDev: 0, total: 0, suitSum: 0, suitN: 0 };
+    const r = stateRisk[st];
+    r.total++;
+    const lvl = c.level ?? 0;
+    if (lvl === 4) r.bans++;
+    else if (lvl === 3) r.high++;
+    else if (lvl === 2) r.moderate++;
+    else if (lvl === 1) r.proposed++;
+    else if (lvl === -1) r.proDev++;
+    if (typeof computeSuitabilityScore === "function") {
+      const suit = computeSuitabilityScore(fips, c);
+      if (suit) { r.suitSum += suit.score; r.suitN++; }
+    }
+  }
+  const stateRankRows = Object.values(stateRisk)
+    .map(r => ({
+      ...r,
+      restricted: r.bans + r.high + r.moderate,
+      avgSuit: r.suitN ? Math.round(r.suitSum / r.suitN) : null,
+    }))
+    .sort((a, b) => b.restricted - a.restricted || b.bans - a.bans);
+
   /* ── Render ── */
   el.innerHTML = `
     <div class="page-hero">
@@ -435,6 +464,51 @@ function renderAnalyticsPage() {
     </div>` : ""}
 
     <div class="page-section">
+      <div class="page-section-title">State Risk Ranking</div>
+      <p class="pmon-desc">All states with tracked county-level policy activity, ranked by total active restrictions. Click column headers to sort. Click any row to view state-level details.</p>
+      <div class="srr-table-wrap">
+        <table class="srr-table" id="analytics-srr-table">
+          <thead>
+            <tr>
+              <th class="srr-th srr-th-sort" data-col="restricted" data-dir="desc"># Restricted <span class="srr-sort-icon">↓</span></th>
+              <th class="srr-th srr-th-state">State</th>
+              <th class="srr-th srr-th-sort" data-col="bans" data-dir="asc">Bans</th>
+              <th class="srr-th srr-th-sort" data-col="high" data-dir="asc">High</th>
+              <th class="srr-th srr-th-sort" data-col="moderate" data-dir="asc">Moderate</th>
+              <th class="srr-th srr-th-sort" data-col="proDev" data-dir="asc">Pro-Dev</th>
+              <th class="srr-th srr-th-sort" data-col="avgSuit" data-dir="asc">Avg Suit.</th>
+              <th class="srr-th srr-th-sort" data-col="total" data-dir="asc">Total Tracked</th>
+            </tr>
+          </thead>
+          <tbody id="analytics-srr-tbody">
+            ${(function() {
+              return stateRankRows.map(r => {
+                const riskPct = r.total > 0 ? (r.restricted / r.total) * 100 : 0;
+                const riskColor = riskPct >= 50 ? "#dc2626" : riskPct >= 25 ? "#f97316" : riskPct >= 10 ? "#eab308" : "#22c55e";
+                const suitColor = r.avgSuit !== null ? (r.avgSuit >= 80 ? "#22c55e" : r.avgSuit >= 65 ? "#22d3ee" : r.avgSuit >= 45 ? "#eab308" : "#ef4444") : "var(--text-muted)";
+                return `<tr class="srr-row" data-state="${escHtml(r.state)}">
+                  <td class="srr-td srr-td-restricted">
+                    <div class="srr-bar-wrap">
+                      <div class="srr-bar" style="width:${Math.min(100, riskPct).toFixed(1)}%;background:${riskColor}"></div>
+                    </div>
+                    <span class="srr-num" style="color:${riskColor}">${r.restricted}</span>
+                  </td>
+                  <td class="srr-td srr-td-name">${escHtml(r.state)}</td>
+                  <td class="srr-td srr-td-num">${r.bans || "—"}</td>
+                  <td class="srr-td srr-td-num">${r.high || "—"}</td>
+                  <td class="srr-td srr-td-num">${r.moderate || "—"}</td>
+                  <td class="srr-td srr-td-num srr-pro">${r.proDev || "—"}</td>
+                  <td class="srr-td srr-td-suit" style="color:${suitColor}">${r.avgSuit !== null ? r.avgSuit : "—"}</td>
+                  <td class="srr-td srr-td-num srr-muted">${r.total}</td>
+                </tr>`;
+              }).join("");
+            })()}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">Policy Timeline</div>
       <div id="analytics-policy-timeline">
         ${_buildPolicyTimelineHtml(counties)}
@@ -668,6 +742,51 @@ function renderAnalyticsPage() {
     row.addEventListener("click",   nav);
     row.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nav(); } });
   });
+
+  // State Risk Ranking: sortable columns + row click → state modal
+  const srrTable = el.querySelector("#analytics-srr-table");
+  if (srrTable) {
+    let _srrSortCol = "restricted", _srrSortDir = -1;
+    const tbody = el.querySelector("#analytics-srr-tbody");
+    function _srrSort(col, dir) {
+      _srrSortCol = col; _srrSortDir = dir;
+      const rows = Array.from(tbody.querySelectorAll(".srr-row"));
+      rows.sort((a, b) => {
+        const getVal = r => {
+          if (col === "state") return r.dataset.state || "";
+          const td = r.querySelector(`.srr-td-${col === "restricted" ? "restricted" : col === "state" ? "name" : "num"}`);
+          if (!td) return 0;
+          const txt = td.textContent.trim();
+          if (txt === "—") return dir * -Infinity;
+          const n = parseFloat(txt);
+          return isNaN(n) ? txt : n;
+        };
+        const av = getVal(a), bv = getVal(b);
+        if (typeof av === "number" && typeof bv === "number") return dir * (bv - av);
+        return dir * String(av).localeCompare(String(bv));
+      });
+      rows.forEach(r => tbody.appendChild(r));
+      srrTable.querySelectorAll(".srr-th-sort").forEach(th => {
+        const isCur = th.dataset.col === col;
+        const icon = th.querySelector(".srr-sort-icon");
+        if (icon) icon.textContent = isCur ? (dir === -1 ? "↓" : "↑") : "";
+        th.classList.toggle("srr-th-active", isCur);
+      });
+    }
+    srrTable.querySelectorAll(".srr-th-sort").forEach(th => {
+      th.style.cursor = "pointer";
+      th.addEventListener("click", () => {
+        const col = th.dataset.col;
+        const newDir = (col === _srrSortCol && _srrSortDir === -1) ? 1 : -1;
+        _srrSort(col, newDir);
+      });
+    });
+    tbody.querySelectorAll(".srr-row[data-state]").forEach(row => {
+      row.addEventListener("click", () => {
+        if (typeof _showStateModal === "function") _showStateModal(row.dataset.state);
+      });
+    });
+  }
 }
 
 /* ── State county drill-down modal ── */

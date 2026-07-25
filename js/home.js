@@ -351,16 +351,23 @@ function buildRecentActivity() {
 
 /* ── KPI summary ── */
 function buildKPIs() {
-  if (!mapData) return { total: 0, bans: 0, high: 0, moderate: 0, states: 0, dcExisting: null, dcProposed: null };
+  if (!mapData) return { total: 0, bans: 0, high: 0, moderate: 0, states: 0, dcExisting: null, dcProposed: null, dataDate: null };
   const counties = Object.values(mapData);
   const bans     = counties.filter(c => c.level === 4).length;
   const high     = counties.filter(c => c.level === 3).length;
   const moderate = counties.filter(c => c.level === 2).length;
   const stSet    = new Set(counties.map(c => c.state));
+  // Most recent effective_date/date in the dataset
+  let dataDate = null;
+  for (const c of counties) {
+    const d = c.effective_date || c.date;
+    if (d && (!dataDate || d > dataDate)) dataDate = d;
+  }
   return {
     total: counties.length, bans, high, moderate, states: stSet.size,
     dcExisting: _dcStats ? _dcStats.existing : null,
     dcProposed: _dcStats ? _dcStats.proposed : null,
+    dataDate,
   };
 }
 
@@ -662,6 +669,11 @@ function renderHomePage() {
       <div class="home-kpi-label">Proposed</div>
     </div>
   </section>
+  ${kpis.dataDate ? `<div class="home-freshness-bar">
+    <span class="home-freshness-dot"></span>
+    Dataset last updated: <strong>${escHtml(kpis.dataDate.slice(0, 10))}</strong>
+    &nbsp;·&nbsp; Policy data updated manually as regulations change
+  </div>` : ""}
 
   <!-- Quick nav cards -->
   <section class="home-section home-nav-section">
