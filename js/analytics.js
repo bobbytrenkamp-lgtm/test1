@@ -1944,8 +1944,11 @@ function renderAboutPage() {
       </div>
     </div>
 
-    <div class="page-section">
+    <div class="page-section" id="methodology-section">
       <div class="page-section-title">Methodology</div>
+      <!-- Live coverage + data-quality figures, populated from
+           data/platform_metadata.json by renderDataQualityPanel(). -->
+      <div id="about-data-quality"></div>
       <div class="about-two-col">
         <div class="about-card">
           <div class="about-card-title">
@@ -2149,6 +2152,76 @@ function renderAboutPage() {
   `;
 
   renderPageFooter('about-footer-target');
+  renderDataQualityPanel();
+}
+
+/* ── Data quality & coverage panel (Phase 5 — commercial readiness) ─────────
+   Renders the real coverage and quality figures from platform_metadata.json
+   rather than prose claims, plus the canonical disclaimer list. Everything
+   here is read from the metadata file so it can never drift from the data. */
+function renderDataQualityPanel() {
+  const host = document.getElementById('about-data-quality');
+  if (!host) return;
+
+  const paint = () => {
+    const stat = window.platformStat;
+    if (typeof stat !== 'function' || !window.PLATFORM_META) {
+      host.innerHTML = `<div class="about-card" style="margin-bottom:18px">
+        <p style="font-size:12.5px;color:var(--text-muted);margin:0">
+          Coverage statistics are currently unavailable.</p></div>`;
+      return;
+    }
+
+    const inDb    = stat('coverage.counties_in_database', 0);
+    const total   = stat('coverage.total_us_counties', 3143);
+    const unres   = stat('coverage.counties_not_yet_researched', 0);
+    const pct     = typeof window.coveragePct === 'function' ? window.coveragePct() : 0;
+    const broken  = stat('data_quality.broken_source_urls', 0);
+    const checked = stat('data_quality.total_source_urls_checked', 0);
+    const through = stat('freshness.policy_data_through', null);
+    const brokenPct = checked ? Math.round(broken / checked * 100) : 0;
+    const disclaimers = Array.isArray(window.PLATFORM_META.disclaimers)
+      ? window.PLATFORM_META.disclaimers : [];
+
+    const cell = (n, label, note) => `
+      <div class="dq-cell">
+        <div class="dq-n">${escHtml(String(n))}</div>
+        <div class="dq-l">${escHtml(label)}</div>
+        ${note ? `<div class="dq-note">${escHtml(note)}</div>` : ''}
+      </div>`;
+
+    host.innerHTML = `
+      <div class="about-card dq-card">
+        <div class="about-card-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Coverage &amp; Data Quality
+        </div>
+        <p class="dq-lead">
+          These are the platform's actual measured figures, published so you can judge
+          how far to trust any given answer. They are read directly from
+          <code>data/platform_metadata.json</code>.
+        </p>
+        <div class="dq-grid">
+          ${cell(inDb.toLocaleString(), 'Counties researched', `of ${total.toLocaleString()} US counties`)}
+          ${cell(pct + '%', 'Coverage', 'share of US counties reviewed')}
+          ${cell(unres.toLocaleString(), 'Not yet researched', 'no data collected — not "no restrictions"')}
+          ${cell(brokenPct + '%', 'Broken source links', `${broken.toLocaleString()} of ${checked.toLocaleString()} checked`)}
+        </div>
+        ${through ? `<p class="dq-through">Policy data current through
+          <strong>${escHtml(String(through).slice(0, 10))}</strong> &middot;
+          manually researched, not automatically updated.</p>` : ''}
+        ${disclaimers.length ? `
+          <div class="dq-disc">
+            <div class="dq-disc-h">Limitations you should read before relying on this data</div>
+            <ul>${disclaimers.map(d => `<li>${escHtml(d)}</li>`).join('')}</ul>
+          </div>` : ''}
+      </div>`;
+  };
+
+  // Metadata may still be in flight on first paint.
+  if (window.PLATFORM_META) paint();
+  else if (typeof window.loadPlatformMeta === 'function') window.loadPlatformMeta().then(paint);
+  else paint();
 }
 
 /* ─────────────────────────────────────────────────────────────── */

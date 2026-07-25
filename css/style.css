@@ -4349,13 +4349,93 @@ html[data-theme="light"] {
 /* Header brand clickable */
 #header-brand { cursor: pointer; }
 
-/* Mobile tab bar: allow horizontal scroll so all 5 tabs fit without truncation */
 #header-tabs {
   overflow-x: auto;
   scrollbar-width: none;
 }
 #header-tabs::-webkit-scrollbar { display: none; }
 .header-tab { flex-shrink: 0; flex: none; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MOBILE NAVIGATION — "More" overflow pattern
+   Below 700px only 4 primary tabs stay in the bar; the rest move into a
+   bottom sheet behind the More button. Horizontal scrolling was hiding tabs
+   off-screen where users never found them.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.header-tab-more { display: none; }
+
+@media (max-width: 700px) {
+  /* Secondary tabs are represented in the sheet instead of the bar. */
+  #header-tabs .header-tab[data-mobile-secondary="1"] { display: none; }
+
+  .header-tab-more { display: flex; }
+  /* Keep More highlighted while one of its tabs is the active view. */
+  .header-tab-more.has-active {
+    background: rgba(72,116,232,0.18);
+    color: var(--accent);
+  }
+
+  /* With only 5 chips left there is no overflow, so drop the scroll. */
+  #header-tabs { overflow-x: visible; }
+  #header-tabs .header-tab { flex: 1; min-width: 0; }
+}
+
+#mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 300;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-standard);
+}
+#mobile-nav-backdrop.is-open { opacity: 1; }
+
+#mobile-nav-sheet {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 301;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  padding: var(--sp-3) var(--sp-3) calc(var(--sp-4) + env(safe-area-inset-bottom, 0px));
+  box-shadow: var(--shadow-lg);
+  transform: translateY(100%);
+  transition: transform var(--dur-panel) var(--ease-panel);
+}
+#mobile-nav-sheet.is-open { transform: translateY(0); }
+
+.mobile-nav-grip {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  margin: 0 auto var(--sp-3);
+}
+.mobile-nav-list { display: flex; flex-direction: column; gap: 2px; }
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  min-height: 48px;          /* thumb-friendly target */
+  padding: 0 var(--sp-3);
+  border: none;
+  border-radius: var(--r-md);
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.mobile-nav-item:hover { background: var(--surface-2); }
+.mobile-nav-item.active { background: rgba(72,116,232,0.18); color: var(--accent); }
+.mobile-nav-item svg { flex-shrink: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  #mobile-nav-sheet, #mobile-nav-backdrop { transition: none; }
+}
 
 /* Compact tabs at narrow widths — labels visible but tighter spacing */
 @media (max-width: 450px) {
@@ -11012,3 +11092,56 @@ html.is-light-theme .map-mode-chip.active {
 :root[data-theme="light"] .home-wl-portfolio { background: #f8f9fc; }
 :root[data-theme="light"] .op-risk-row.expanded .op-risk-td { background: #f8f9fc; }
 :root[data-theme="light"] .op-risk-detail { background: #fff; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DATA QUALITY PANEL — About > Methodology (Phase 5)
+   Figures rendered from data/platform_metadata.json by renderDataQualityPanel().
+   ══════════════════════════════════════════════════════════════════════════ */
+.dq-card { margin-bottom: 18px; }
+.dq-lead {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0 0 var(--sp-4);
+}
+.dq-lead code {
+  font-size: 11.5px;
+  padding: 1px 5px;
+  border-radius: var(--r-xs);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+.dq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--sp-4);
+  padding: var(--sp-4) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.dq-cell { min-width: 0; }
+.dq-n {
+  font-size: 22px;
+  font-weight: 650;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.dq-l {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+.dq-note { font-size: 11px; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
+.dq-through { font-size: 12px; color: var(--text-muted); margin: var(--sp-4) 0 0; }
+.dq-disc { margin-top: var(--sp-4); padding-top: var(--sp-4); border-top: 1px solid var(--border); }
+.dq-disc-h {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-2);
+}
+.dq-disc ul { margin: 0; padding-left: 18px; }
+.dq-disc li { font-size: 12.5px; line-height: 1.6; margin-bottom: 6px; }

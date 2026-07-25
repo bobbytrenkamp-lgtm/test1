@@ -437,6 +437,55 @@ window.APP_CONFIG = {
 window._applyTheme(theme);  // 'dark' | 'light' — triggers full Leaflet style refresh
 ```
 
+## Shared Constants (js/constants.js) — LOAD ORDER CRITICAL
+
+`js/constants.js` MUST be the first application script in `index.html`. `map.js` reads
+`window.SEVERITY_LABELS` at top level and will throw if constants has not run.
+
+It is the single source of truth for:
+- `SEVERITY_LABELS` / `SEVERITY_SHORT` / `SEVERITY_COLORS` — severity key -> display
+- `LEVEL_LABELS` / `LEVEL_SHORT` — numeric level (-1..4) -> display
+- `LEVEL_TO_SEVERITY` — numeric level -> severity key
+- `platformStat(path, fallback)` / `coveragePct()` — accessors over platform_metadata.json
+
+**Do NOT re-declare these maps anywhere.** Seven duplicate copies previously existed across
+map.js, home.js, and analytics.js; when Phase 1 corrected the labels in one place the others
+silently drifted back to the banned wording. `tests/test_frontend_core.mjs` asserts the banned
+phrases cannot reappear. See `docs/TERMINOLOGY.md` for the canonical definitions.
+
+**Do NOT hardcode coverage numbers.** Use `platformStat("coverage.counties_in_database", 0)`.
+
+## Router (js/router.js)
+
+Unified hash router. `Router.parse()` / `.build()` / `.navigate()` / `.onChange()` / `.setParam()`.
+
+Route grammar:
+- `#<tab>` and `#<tab>?<k>=<v>` — home, map, news, stocks, analytics, pipeline, about
+- `#jurisdiction?fips=51107` — virtual route, renders its own view with no header tab
+
+Legacy formats that MUST keep working (older shared links depend on them). `parse()` flags
+these via `.legacy` and `map.js` delegates them to `restoreFromHash()`:
+- `#51107` bare FIPS, `#s=<base64url>` GIS share state, `#@lat,lng,zoom` viewport, `#ai-stocks`
+
+## Jurisdiction Intelligence Pages (js/jurisdiction.js)
+
+Route `#jurisdiction?fips=XXXXX`. Joins, all keyed on 5-digit county FIPS:
+- `mapData[fips]` policy record
+- `facilities_master.json` filtered on `county_fips` (lazy-loaded; 2 MB)
+- `newsArticles` matched on county name, then state as a weaker fallback
+- `computeSuitabilityScore()` and `ZONING.hasJurisdiction()`
+
+Counties absent from `mapData` render an explicit "Not yet researched" page. That state is
+semantically distinct from level 0 "No Known Restrictions" and the copy must keep saying so.
+
+All interpolated values pass through `escHtml()` — county names, source labels, and facility
+operators all come from data files and are untrusted.
+
+## Testing
+
+`./tests/run_all.sh` runs everything (112 tests). jsdom-dependent tests skip cleanly if jsdom
+is absent; `NODE_PATH=/tmp/node_modules ./tests/run_all.sh` if installed outside the repo.
+
 ## Platform Metadata (data/platform_metadata.json)
 
 Central source of truth for platform-wide statistics. Loaded by `home.js`, `analytics.js`, and `map.js`. **Do NOT hardcode these numbers in JS** — read from this file.

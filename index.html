@@ -87,7 +87,17 @@
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
         <span>About</span>
       </button>
+      <!-- Mobile-only overflow trigger; populated from the secondary tabs above by initMobileNav() -->
+      <button class="header-tab header-tab-more" id="header-tab-more" type="button"
+              aria-expanded="false" aria-controls="mobile-nav-sheet" aria-haspopup="true" hidden>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+        <span>More</span>
+      </button>
     </nav>
+
+    <!-- Mobile navigation overflow sheet -->
+    <div id="mobile-nav-backdrop" hidden></div>
+    <div id="mobile-nav-sheet" role="dialog" aria-modal="true" aria-label="More navigation" hidden></div>
     <div id="header-right">
       <button id="kb-help-btn" aria-label="Keyboard shortcuts" title="Keyboard shortcuts (?)" class="header-icon-btn">?</button>
       <button id="auth-btn" aria-label="Sign in" title="Sign in" class="header-icon-btn auth-signin-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span class="auth-btn-label">Sign In</span></button>

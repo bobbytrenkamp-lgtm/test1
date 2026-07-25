@@ -7001,6 +7001,107 @@ function initNavTabs() {
   });
 
   initRouterBinding();
+  initMobileNav();
+}
+
+/* ── Mobile "More" overflow navigation ──────────────────────────────────────
+   Tabs beyond the first four are hidden from the mobile bar (CSS) and mirrored
+   into a bottom sheet, so nothing is stranded off-screen in a scroll area. */
+const MOBILE_PRIMARY_TABS = ["home", "map", "news", "analytics"];
+
+function initMobileNav() {
+  const tabsNav  = document.getElementById("header-tabs");
+  const moreBtn  = document.getElementById("header-tab-more");
+  const sheet    = document.getElementById("mobile-nav-sheet");
+  const backdrop = document.getElementById("mobile-nav-backdrop");
+  if (!tabsNav || !moreBtn || !sheet || !backdrop) return;
+
+  const secondary = [...tabsNav.querySelectorAll(".header-tab[data-tab]")]
+    .filter(b => !MOBILE_PRIMARY_TABS.includes(b.dataset.tab));
+  if (!secondary.length) return;
+
+  secondary.forEach(b => b.setAttribute("data-mobile-secondary", "1"));
+  moreBtn.hidden = false;
+
+  /* Mirror each secondary tab into the sheet, reusing its icon and label. */
+  sheet.innerHTML = `<div class="mobile-nav-grip"></div>
+    <div class="mobile-nav-list" role="menu"></div>`;
+  const list = sheet.querySelector(".mobile-nav-list");
+
+  secondary.forEach(src => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "mobile-nav-item";
+    item.setAttribute("role", "menuitem");
+    item.dataset.tab = src.dataset.tab;
+    const icon = src.querySelector("svg");
+    if (icon) item.appendChild(icon.cloneNode(true));
+    const span = document.createElement("span");
+    span.textContent = src.querySelector("span")?.textContent || src.dataset.tab;
+    item.appendChild(span);
+    item.addEventListener("click", () => {
+      close();
+      switchTab(item.dataset.tab);
+      if (window.Router) window.Router.navigate(item.dataset.tab, {});
+    });
+    list.appendChild(item);
+  });
+
+  let lastFocus = null;
+
+  function open() {
+    lastFocus = document.activeElement;
+    backdrop.hidden = false;
+    sheet.hidden = false;
+    void sheet.offsetWidth;                 // force reflow so the transition runs
+    backdrop.classList.add("is-open");
+    sheet.classList.add("is-open");
+    moreBtn.setAttribute("aria-expanded", "true");
+    syncActive();
+    list.querySelector(".mobile-nav-item")?.focus();
+    document.addEventListener("keydown", onKey);
+  }
+
+  function close() {
+    backdrop.classList.remove("is-open");
+    sheet.classList.remove("is-open");
+    moreBtn.setAttribute("aria-expanded", "false");
+    document.removeEventListener("keydown", onKey);
+    const done = () => { sheet.hidden = true; backdrop.hidden = true; };
+    // Respect reduced-motion: no transition fires, so hide immediately.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) done();
+    else setTimeout(done, 300);
+    lastFocus?.focus?.();
+  }
+
+  function onKey(e) {
+    if (e.key === "Escape") { e.preventDefault(); close(); return; }
+    if (e.key !== "Tab") return;
+    // Trap focus inside the sheet while it is modal.
+    const items = [...list.querySelectorAll(".mobile-nav-item")];
+    if (!items.length) return;
+    const first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
+  /* Keep the sheet's active row and the More button's highlight in sync with
+     whichever tab is currently showing. */
+  function syncActive() {
+    const active = document.querySelector(".header-tab.active")?.dataset.tab;
+    list.querySelectorAll(".mobile-nav-item").forEach(i =>
+      i.classList.toggle("active", i.dataset.tab === active));
+    moreBtn.classList.toggle("has-active",
+      !!active && !MOBILE_PRIMARY_TABS.includes(active));
+  }
+
+  moreBtn.addEventListener("click", () =>
+    sheet.classList.contains("is-open") ? close() : open());
+  backdrop.addEventListener("click", close);
+
+  // Reflect tab changes made elsewhere (keyboard shortcuts, router, deep links).
+  window.Router?.onChange(syncActive);
+  syncActive();
 }
 
 /* ── Router → view binding ──────────────────────────────────────────────────

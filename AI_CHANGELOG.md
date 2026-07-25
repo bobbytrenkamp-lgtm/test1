@@ -2,6 +2,75 @@
 
 ---
 
+Date: 2026-07-26
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phases 2-5 — Design consistency, navigation, connected intelligence
+
+## Summary
+Implemented Phases 2 through 5 of the platform improvement specification: a shared constants module that ends label drift, a unified hash router with deep links, mobile "More" overflow navigation, the Jurisdiction Intelligence Pages that connect previously siloed data, and a data-driven methodology/data-quality panel. Added a 112-test suite.
+
+## New Files
+- `js/constants.js` — single source of truth for SEVERITY/LEVEL label maps and platform metadata accessors
+- `js/router.js` — unified hash router (modern routes + all four legacy formats)
+- `js/jurisdiction.js` — Jurisdiction Intelligence Pages
+- `css/jurisdiction.css` — jurisdiction page styles
+- `tests/test_frontend_core.mjs` — 28 tests for constants + router
+- `tests/test_jurisdiction.mjs` — 19 DOM tests for the jurisdiction page
+- `tests/run_all.sh` — full suite runner
+
+## Phase 2 — Unified design and navigation
+
+### Label drift eliminated (root cause fix)
+Phase 1 corrected severity labels in `map.js`, but seven *duplicate* label maps existed in `home.js` and `analytics.js`. Those copies had already drifted back to the banned pre-Phase-1 wording. Consolidated all of them into `js/constants.js`:
+- `analytics.js` x5: two `LVL_LABELS` maps, "Counties Tracked", "Real-time delayed quotes", "50+ publicly traded", severity ramp "No Restrictions", inline "Pro-DC Hub" ternary
+- `home.js` x2: `SEV_LABELS`, `LVL_LABELS`
+- `map.js` x3: `SEVERITY`, `LEVEL_LABELS`, `SEV_KEY_LABELS`
+Regression tests now assert the banned phrases can never reappear in the label maps.
+
+### Unified router with deep links
+`js/router.js` adds `#<tab>?<params>` and virtual routes while preserving every legacy format (`#51107`, `#s=<base64>`, `#@lat,lng,zoom`, `#ai-stocks`) so previously shared links keep working. Tab clicks now write to the URL, making every view deep-linkable with a working browser back button.
+
+### Mobile navigation
+Replaced the horizontally-scrolling 7-tab bar (which stranded tabs off-screen where users never found them) with a "More" overflow sheet. Four primary tabs stay in the bar; the rest move into a bottom sheet with 48px touch targets, focus trapping, Escape-to-close, and reduced-motion support.
+
+### Accessibility
+- `#route-announcer` aria-live region announces SPA view changes, previously silent for screen readers
+- `.sr-only` utility added
+- Focus returns to the trigger when the mobile sheet closes
+
+## Phase 3 — Connected intelligence
+
+### Jurisdiction Intelligence Pages
+`#jurisdiction?fips=XXXXX` renders one page per county joining data that previously lived on four unconnected tabs:
+- policy record from `map_data.json`
+- facilities from `facilities_master.json` joined on `county_fips` (Loudoun County: 129 facilities, 115 operational, 10.1 GW)
+- related news matched on county then state
+- suitability score and zoning coverage
+- cross-links back to map, pipeline, and analytics
+
+Counties with no record get an explicit "Not yet researched" page stating this is **not** the same as "no restrictions" — rather than a 404 or an empty page implying no restrictions exist. Facilities load lazily so the 2 MB file never blocks first paint. Entry point added to the map's county detail panel.
+
+## Phase 5 — Commercial readiness
+
+### Data quality panel
+The About > Methodology section now renders real measured figures from `platform_metadata.json` — counties researched, coverage %, unresearched count, broken-source-link rate — plus the canonical disclaimer list. Published so users can judge how far to trust any given answer, and read from the metadata file so it can never drift from the data.
+
+## Testing
+`tests/run_all.sh` runs five suites, 112 tests, all passing:
+- platform metadata validator, AI companies validator
+- 65 existing policy pipeline tests (no regressions)
+- 28 frontend core tests: label maps incl. banned-phrase guards, router build/parse across all legacy + modern formats, metadata accessors
+- 19 jurisdiction DOM tests: cross-source joins, watchlist persistence, unresearched-county wording, XSS escaping of data-file values, malformed input
+
+## Notes for the next assistant
+- `js/constants.js` MUST stay first in the script order in `index.html` — `map.js` reads `window.SEVERITY_LABELS` at top level.
+- Never re-declare severity/level label maps. Import from `constants.js`. See `docs/TERMINOLOGY.md`.
+- Never hardcode coverage numbers. Use `platformStat()` / `coveragePct()`.
+- jsdom is not vendored; `tests/test_jurisdiction.mjs` skips cleanly without it.
+
+---
+
 Date: 2026-07-25
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
