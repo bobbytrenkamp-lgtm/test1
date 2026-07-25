@@ -535,6 +535,37 @@ function _jumpToState(abbr) {
   });
 }
 
+/* ── Live Policy Digest ── */
+function _buildPolicyDigest() {
+  if (!mapData || !Object.keys(mapData).length) return null;
+  const now = Date.now();
+  const ninetyDays = 90 * 24 * 60 * 60 * 1000;
+  const recent = [];
+  const openA   = [];
+  const proposed = [];
+  for (const fips in mapData) {
+    const c = mapData[fips];
+    const dateStr = c.effective_date || c.date || "";
+    if (dateStr) {
+      const d = new Date(dateStr + "T00:00:00").getTime();
+      if (!isNaN(d) && now - d <= ninetyDays && (c.level ?? 0) >= 1) {
+        recent.push({ fips, name: c.name, state: c.state, level: c.level, date: dateStr });
+      }
+    }
+    const st = c.status || "active";
+    if (st === "proposed" || st === "pending" || c.lifecycle_stage === "proposed") {
+      proposed.push({ fips, name: c.name, state: c.state, level: c.level ?? 1 });
+    }
+    if ((c.level ?? 0) <= 0 && typeof computeSuitabilityScore === "function") {
+      const suit = computeSuitabilityScore(fips, c);
+      if (suit && suit.grade === "A") openA.push({ fips, name: c.name, state: c.state, score: suit.score });
+    }
+  }
+  recent.sort((a, b) => b.date.localeCompare(a.date));
+  openA.sort((a, b) => b.score - a.score);
+  return { recent: recent.slice(0, 3), openA: openA.slice(0, 3), proposedCount: proposed.length };
+}
+
 /* ── Main render ── */
 function renderHomePage() {
   const view = document.getElementById("home-view");
@@ -605,6 +636,7 @@ function renderHomePage() {
   const watchlist          = buildWatchlist();
   const recentlyVisited    = buildRecentlyVisited();
   const recentlyReviewed   = buildRecentlyReviewed();
+  const digest             = _buildPolicyDigest();
   const policyChanges      = _detectPolicyChanges();
   if (!policyChanges.length) _savePolicySnapshot();  // keep baseline current when no changes
   const newsTS   = newsArticles && newsArticles.length
@@ -930,6 +962,11 @@ function renderHomePage() {
     <div class="home-col-header">
       <h2 class="home-section-title">Watched Counties</h2>
       <div class="home-watchlist-actions">
+        ${watchlist.length >= 2 ? `
+        <button class="home-watchlist-compare-btn" id="home-watchlist-compare" type="button" title="Open county compare panel with all watched counties">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="3" width="7" height="18"/></svg>
+          Compare All
+        </button>` : ""}
         <button class="home-watchlist-export-btn" id="home-watchlist-export" type="button" title="Export watched counties as CSV" aria-label="Export watchlist CSV">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Export CSV
@@ -990,17 +1027,60 @@ function renderHomePage() {
     </div>
   </section>` : ""}
 
-  <!-- Newsletter placeholder -->
-  <section class="home-section">
-    <div class="home-newsletter-card">
-      <div class="home-newsletter-icon">${HOME_ICONS.mail}</div>
-      <div class="home-newsletter-body">
-        <div class="home-newsletter-title">Policy Digest</div>
-        <div class="home-newsletter-sub">Weekly summary of new data center restrictions, AI regulations, and policy developments. Coming soon.</div>
-      </div>
-      <span class="home-newsletter-coming">Coming soon</span>
+  <!-- Policy Digest (live computed) -->
+  ${digest ? `
+  <section class="home-section home-digest-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Policy Digest</h2>
+      <span class="home-digest-badge">Live</span>
     </div>
-  </section>
+    <div class="home-digest-grid">
+
+      ${digest.recent.length ? `
+      <div class="home-digest-card">
+        <div class="home-digest-card-title">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Recent Enactments <span class="home-digest-sub">(last 90 days)</span>
+        </div>
+        ${digest.recent.map(c => {
+          const lvl = c.level ?? 0;
+          const lvlCls = SEV_CLASSES[lvl] || SEV_CLASSES[0];
+          const lvlLbl = SEV_LABELS[lvl] ?? SEV_LABELS[0];
+          return `<div class="home-digest-row" role="button" tabindex="0" data-fips="${escHtml(c.fips)}">
+            <span class="sev-badge ${escHtml(lvlCls)}">${escHtml(lvlLbl)}</span>
+            <span class="home-digest-name">${escHtml(c.name)}, ${escHtml(c.state)}</span>
+            <span class="home-digest-date">${escHtml(c.date.slice(0,10))}</span>
+          </div>`;
+        }).join("")}
+      </div>` : ""}
+
+      ${digest.openA.length ? `
+      <div class="home-digest-card">
+        <div class="home-digest-card-title">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Top Open Sites <span class="home-digest-sub">(A-grade, unrestricted)</span>
+        </div>
+        ${digest.openA.map(c => {
+          return `<div class="home-digest-row" role="button" tabindex="0" data-fips="${escHtml(c.fips)}">
+            <span class="sev-badge badge-none">Open</span>
+            <span class="home-digest-name">${escHtml(c.name)}, ${escHtml(c.state)}</span>
+            <span class="home-digest-score">${c.score}pts</span>
+          </div>`;
+        }).join("")}
+      </div>` : ""}
+
+      <div class="home-digest-card home-digest-stat-card">
+        <div class="home-digest-card-title">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Pending Decisions
+        </div>
+        <div class="home-digest-stat">${digest.proposedCount}</div>
+        <div class="home-digest-stat-label">proposed restrictions awaiting enactment</div>
+        ${digest.proposedCount > 0 ? `<button class="home-digest-link" onclick="switchTab('analytics')" type="button">View monitor ${HOME_ICONS.arrow}</button>` : ""}
+      </div>
+
+    </div>
+  </section>` : ""}
 
   <!-- Footer -->
   <footer id="site-footer">
@@ -1178,6 +1258,24 @@ function renderHomePage() {
     _exportWatchlistCSV();
   });
 
+  /* Compare All watched counties → open compare panel */
+  view.querySelector("#home-watchlist-compare")?.addEventListener("click", () => {
+    let fipsArr;
+    try { fipsArr = JSON.parse(localStorage.getItem("dc-watchlist-v1") || "[]"); }
+    catch (_) { fipsArr = []; }
+    if (!fipsArr.length) return;
+    switchTab("map");
+    (typeof mapInitPromise !== "undefined" && mapInitPromise
+      ? mapInitPromise : Promise.resolve()
+    ).then(() => {
+      if (typeof clearCompare === "function") clearCompare();
+      if (typeof toggleComparePanel === "function" && !compareMode) toggleComparePanel();
+      for (const fips of fipsArr.slice(0, 4)) {
+        if (typeof addToCompare === "function") addToCompare(fips);
+      }
+    });
+  });
+
   /* Bind policy alert rows → map navigation */
   view.querySelectorAll(".home-alert-row[data-fips]").forEach(rowEl => {
     const nav = () => {
@@ -1218,6 +1316,19 @@ function renderHomePage() {
     try { localStorage.removeItem("dc-recent-counties-v1"); } catch (_) {}
     const sec = view.querySelector("#home-recently-visited");
     if (sec) { sec.style.transition = "opacity 0.2s"; sec.style.opacity = "0"; setTimeout(() => sec.remove(), 220); }
+  });
+
+  /* Policy Digest rows → county navigation */
+  view.querySelectorAll(".home-digest-row[data-fips]").forEach(row => {
+    const nav = () => {
+      const fips = row.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    row.addEventListener("click",   nav);
+    row.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nav(); } });
   });
 
   /* State chip clicks → map + state detail */
