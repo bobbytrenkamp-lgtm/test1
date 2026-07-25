@@ -25,14 +25,14 @@ const AI_COMPANIES = [
   { ticker: 'NASDAQ:MSFT',  symbol: 'MSFT',  name: 'Microsoft',            shortName: 'Microsoft',      category: 'Cloud & Hyperscalers', description: 'Azure AI platform and deep OpenAI partnership; Copilot embedded across Office, GitHub, and Windows.' },
   { ticker: 'NASDAQ:GOOGL', symbol: 'GOOGL', name: 'Alphabet',             shortName: 'Alphabet',       category: 'Cloud & Hyperscalers', description: 'Google Cloud AI, Gemini frontier models, DeepMind research, and Waymo autonomous vehicles.' },
   { ticker: 'NASDAQ:AMZN',  symbol: 'AMZN',  name: 'Amazon',               shortName: 'Amazon',         category: 'Cloud & Hyperscalers', description: 'AWS Bedrock AI platform, custom Trainium/Inferentia chips, Alexa+, and Anthropic investment.' },
-  { ticker: 'NYSE:META',    symbol: 'META',  name: 'Meta Platforms',       shortName: 'Meta',           category: 'Cloud & Hyperscalers', description: 'Open-source Llama models, Meta AI assistant, and massive GPU infrastructure expansion.' },
+  { ticker: 'NASDAQ:META',  symbol: 'META',  name: 'Meta Platforms',       shortName: 'Meta',           category: 'Cloud & Hyperscalers', description: 'Open-source Llama models, Meta AI assistant, and massive GPU infrastructure expansion.' },
   { ticker: 'NYSE:ORCL',    symbol: 'ORCL',  name: 'Oracle',               shortName: 'Oracle',         category: 'Cloud & Hyperscalers', description: 'OCI cloud for AI workloads, AI in Oracle Database, and Stargate data center partnership.' },
   { ticker: 'NYSE:IBM',     symbol: 'IBM',   name: 'IBM',                  shortName: 'IBM',            category: 'Cloud & Hyperscalers', description: 'Watson AI and Granite open models for enterprise; hybrid cloud AI deployment platform.' },
 
   // AI Software & Platforms
   { ticker: 'NYSE:PLTR',    symbol: 'PLTR',  name: 'Palantir',             shortName: 'Palantir',       category: 'AI Software & Platforms', description: 'AI-powered data analytics for government and enterprise with the Artificial Intelligence Platform (AIP).' },
   { ticker: 'NYSE:AI',      symbol: 'AI',    name: 'C3.ai',                shortName: 'C3.ai',          category: 'AI Software & Platforms', description: 'Enterprise AI application platform with vertical-specific AI solutions across industries.' },
-  { ticker: 'NASDAQ:PATH',  symbol: 'PATH',  name: 'UiPath',               shortName: 'UiPath',         category: 'AI Software & Platforms', description: 'AI-powered robotic process automation (RPA) leader for enterprise workflow automation.' },
+  { ticker: 'NYSE:PATH',    symbol: 'PATH',  name: 'UiPath',               shortName: 'UiPath',         category: 'AI Software & Platforms', description: 'AI-powered robotic process automation (RPA) leader for enterprise workflow automation.' },
   { ticker: 'NYSE:SNOW',    symbol: 'SNOW',  name: 'Snowflake',            shortName: 'Snowflake',      category: 'AI Software & Platforms', description: 'Data cloud platform with Snowpark ML, Cortex AI, and AI-powered data products.' },
   { ticker: 'NASDAQ:DDOG',  symbol: 'DDOG',  name: 'Datadog',              shortName: 'Datadog',        category: 'AI Software & Platforms', description: 'Observability platform with AI monitoring, LLM observability, and Bits AI assistant.' },
   { ticker: 'NASDAQ:SOUN',  symbol: 'SOUN',  name: 'SoundHound AI',        shortName: 'SoundHound',     category: 'AI Software & Platforms', description: 'Voice AI and conversational interfaces for automotive, restaurants, and enterprise.' },
@@ -42,7 +42,7 @@ const AI_COMPANIES = [
   { ticker: 'NASDAQ:ADBE',  symbol: 'ADBE',  name: 'Adobe',                shortName: 'Adobe',          category: 'Enterprise AI', description: 'Firefly generative AI for creative tools; Sensei AI across Document Cloud products.' },
   { ticker: 'NYSE:NOW',     symbol: 'NOW',   name: 'ServiceNow',           shortName: 'ServiceNow',     category: 'Enterprise AI', description: 'Now Assist AI agents for IT service management and enterprise workflow automation.' },
   { ticker: 'NASDAQ:WDAY',  symbol: 'WDAY',  name: 'Workday',              shortName: 'Workday',        category: 'Enterprise AI', description: 'AI-native HCM and financial management; Workday AI-powered co-pilot assistant.' },
-  { ticker: 'NASDAQ:VEEV',  symbol: 'VEEV',  name: 'Veeva Systems',        shortName: 'Veeva',          category: 'Enterprise AI', description: 'AI cloud for life sciences; Vault AI and CRM AI for pharma R&D and commercial.' },
+  { ticker: 'NYSE:VEEV',    symbol: 'VEEV',  name: 'Veeva Systems',        shortName: 'Veeva',          category: 'Enterprise AI', description: 'AI cloud for life sciences; Vault AI and CRM AI for pharma R&D and commercial.' },
 
   // Networking & Infrastructure
   { ticker: 'NYSE:ANET',    symbol: 'ANET',  name: 'Arista Networks',      shortName: 'Arista',         category: 'Networking & Infrastructure', description: 'High-speed data center networking for AI clusters; CloudVision network management.' },
@@ -60,18 +60,53 @@ const AI_COMPANIES = [
   { ticker: 'NASDAQ:ISRG',  symbol: 'ISRG',  name: 'Intuitive Surgical',   shortName: 'Intuitive',      category: 'Robotics & Autonomous', description: 'da Vinci robotic surgical systems with AI assistance, image analysis, and haptic feedback.' },
 
   // Other AI
-  { ticker: 'NASDAQ:UBER',  symbol: 'UBER',  name: 'Uber',                 shortName: 'Uber',           category: 'Other AI', description: 'AI-driven ride matching, dynamic pricing, and autonomous vehicle technology partnerships.' },
+  { ticker: 'NYSE:UBER',    symbol: 'UBER',  name: 'Uber',                 shortName: 'Uber',           category: 'Other AI', description: 'AI-driven ride matching, dynamic pricing, and autonomous vehicle technology partnerships.' },
   { ticker: 'NASDAQ:MRNA',  symbol: 'MRNA',  name: 'Moderna',              shortName: 'Moderna',        category: 'Other AI', description: 'mRNA platform with AI-driven drug discovery and personalized cancer vaccine programs.' },
   { ticker: 'NYSE:GS',      symbol: 'GS',    name: 'Goldman Sachs',        shortName: 'Goldman Sachs',  category: 'Other AI', description: 'AI-powered trading, GS Dossier research tool, and significant enterprise AI adoption.' },
   { ticker: 'NASDAQ:HOOD',  symbol: 'HOOD',  name: 'Robinhood',            shortName: 'Robinhood',      category: 'Other AI', description: 'AI-powered investing tools, Robinhood Strategies, and personalized financial insights.' },
 ];
 
 const PRIVATE_COMPANIES = [
-  { name: 'OpenAI',     valuation: '~$300B+', description: 'GPT-4, o3, ChatGPT, DALL-E, Sora. Microsoft partnership with $13B+ invested.' },
-  { name: 'Anthropic',  valuation: '~$60B',   description: 'Claude AI assistant family. Backed by Google ($2B) and Amazon ($4B).' },
-  { name: 'xAI',        valuation: '~$50B',   description: "Elon Musk's AI company; Grok AI assistant integrated with X (Twitter)." },
-  { name: 'Databricks', valuation: '~$62B',   description: 'Data + AI lakehouse platform. DBRX open model. Used by 10,000+ enterprises.' },
-  { name: 'Scale AI',   valuation: '~$14B',   description: 'AI training data, RLHF annotation, and evaluation for frontier AI models.' },
+  {
+    name: 'OpenAI',
+    valuationText: '~$300B+',
+    valuationAsOf: '2025-Q4',
+    sourceName: 'Bloomberg, Forbes',
+    lastReviewed: '2026-01',
+    description: 'GPT-4o, o3, ChatGPT, DALL-E 3, Sora. Deep Microsoft partnership with $13B+ invested. Pursuing semiconductor and AGI strategy.',
+  },
+  {
+    name: 'Anthropic',
+    valuationText: '~$60B',
+    valuationAsOf: '2025-Q1',
+    sourceName: 'Reuters, WSJ',
+    lastReviewed: '2026-01',
+    description: 'Claude AI assistant family. Backed by Google and Amazon. Focus on AI safety, constitutional AI, and responsible scaling.',
+  },
+  {
+    name: 'xAI',
+    valuationText: '~$50B',
+    valuationAsOf: '2024-Q4',
+    sourceName: 'Bloomberg',
+    lastReviewed: '2026-01',
+    description: "Elon Musk's AI company. Grok AI assistant integrated with X (Twitter). Building large-scale AI supercomputer infrastructure.",
+  },
+  {
+    name: 'Databricks',
+    valuationText: '~$62B',
+    valuationAsOf: '2024-Q4',
+    sourceName: 'TechCrunch',
+    lastReviewed: '2026-01',
+    description: 'Data + AI lakehouse platform. DBRX open model. Used by 10,000+ enterprises for analytics, ML, and AI application development.',
+  },
+  {
+    name: 'Scale AI',
+    valuationText: '~$14B',
+    valuationAsOf: '2024-Q2',
+    sourceName: 'Reuters',
+    lastReviewed: '2026-01',
+    description: 'AI training data platform, RLHF annotation, and evaluation for frontier AI models including major LLM providers.',
+  },
 ];
 
 const COMPARISON_PRESETS = [
@@ -100,12 +135,12 @@ const NEWS_ALIASES = {
   'NASDAQ:MSFT':  ['microsoft', 'msft', 'azure', 'copilot', 'satya nadella', 'openai microsoft'],
   'NASDAQ:GOOGL': ['google', 'alphabet', 'googl', 'gemini', 'deepmind', 'waymo', 'sundar pichai'],
   'NASDAQ:AMZN':  ['amazon', 'aws', 'amzn', 'bedrock', 'trainium', 'alexa', 'amazon web services'],
-  'NYSE:META':    ['meta', 'facebook', 'llama', 'zuckerberg', 'meta ai', 'instagram ai'],
+  'NASDAQ:META':  ['meta', 'facebook', 'llama', 'zuckerberg', 'meta ai', 'instagram ai'],
   'NYSE:ORCL':    ['oracle', 'orcl', 'larry ellison', 'stargate oracle'],
   'NYSE:IBM':     ['ibm', 'watson', 'granite'],
   'NYSE:PLTR':    ['palantir', 'pltr', 'alex karp', 'aip'],
   'NYSE:AI':      ['c3.ai', 'c3ai'],
-  'NASDAQ:PATH':  ['uipath'],
+  'NYSE:PATH':    ['uipath'],
   'NYSE:SNOW':    ['snowflake', 'snowpark', 'cortex ai'],
   'NASDAQ:DDOG':  ['datadog', 'ddog'],
   'NASDAQ:SOUN':  ['soundhound', 'soun'],
@@ -148,7 +183,27 @@ const stocksState = {
   comparePreset:   0,
   activeDetailTab: 'overview',
   themeObserver:   null,
+  sidebarOpen:     false,
+  heatmapLoaded:   false,
+  moversLoaded:    false,
+  universeLoaded:  false,
+  lazyObserver:    null,
 };
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Company helpers                                                   */
+/* ─────────────────────────────────────────────────────────────── */
+
+function getCompanyByTicker(ticker) {
+  return AI_COMPANIES.find(c => c.ticker === ticker) || null;
+}
+
+function getPlainSymbol(ticker) {
+  const c = getCompanyByTicker(ticker);
+  if (c) return c.symbol;
+  const colon = ticker.indexOf(':');
+  return colon >= 0 ? ticker.slice(colon + 1) : ticker;
+}
 
 /* ─────────────────────────────────────────────────────────────── */
 /* LocalStorage helpers                                              */
@@ -186,6 +241,30 @@ function stocksSavePrefs(patch) {
   try { localStorage.setItem(LS_PREFS, JSON.stringify({ ...stocksLoadPrefs(), ...patch })); } catch {}
 }
 
+function stocksExportCSV() {
+  const favs = stocksLoadFavorites();
+  if (favs.length === 0) { stocksToast('No favorites to export'); return; }
+  const rows = [['Symbol', 'Name', 'Exchange', 'Category', 'Description']];
+  favs.forEach(ticker => {
+    const c = getCompanyByTicker(ticker);
+    if (c) rows.push([
+      c.symbol, c.name,
+      c.ticker.split(':')[0],
+      c.category,
+      c.description.replace(/"/g, '""'),
+    ]);
+  });
+  const csv = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url  = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'ai-stocks-favorites.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  stocksToast('Favorites exported as CSV');
+}
+
 /* ─────────────────────────────────────────────────────────────── */
 /* URL routing                                                       */
 /* ─────────────────────────────────────────────────────────────── */
@@ -206,7 +285,11 @@ function stocksUpdateURL(symbol) {
 /* TradingView widget factory                                        */
 /* ─────────────────────────────────────────────────────────────── */
 
+let _tvRenderCounter = 0;
+
 function createTVWidget(container, widgetName, config) {
+  const renderId = ++_tvRenderCounter;
+  container._tvRenderId = renderId;
   container.innerHTML = '<div class="tv-loading"><div class="tv-loading-spinner"></div><span>Loading chart…</span></div>';
   const w = document.createElement('div');
   w.className = 'tradingview-widget-container__widget';
@@ -218,19 +301,20 @@ function createTVWidget(container, widgetName, config) {
   const TIMEOUT_MS = 12000;
   let settled = false;
   const timer = setTimeout(() => {
-    if (!settled) {
+    if (!settled && container._tvRenderId === renderId) {
       settled = true;
       _tvShowError(container, widgetName, config);
     }
   }, TIMEOUT_MS);
   s.onload = () => {
+    if (container._tvRenderId !== renderId) return;
     settled = true;
     clearTimeout(timer);
     const loading = container.querySelector('.tv-loading');
     if (loading) loading.remove();
   };
   s.onerror = () => {
-    if (!settled) {
+    if (!settled && container._tvRenderId === renderId) {
       settled = true;
       clearTimeout(timer);
       _tvShowError(container, widgetName, config);
@@ -275,66 +359,97 @@ function buildStocksUI() {
   view.innerHTML = `
     <div id="stocks-tape" class="tv-widget-wrap stocks-tape"></div>
 
-    <div id="stocks-controls-bar">
-      <div id="stocks-search-wrap">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-        <input id="stocks-search" type="text" placeholder="Search companies…" autocomplete="off" />
-        <button id="stocks-search-clear" hidden aria-label="Clear">&times;</button>
-      </div>
-      <select id="stocks-cat-filter" aria-label="Filter by category">
-        <option value="">All Categories</option>${catOpts}
-      </select>
-    </div>
-
-    <div id="stocks-list-tabs" role="tablist">
-      <button class="stocks-list-tab active" data-list="all" role="tab" aria-selected="true">All Companies</button>
-      <button class="stocks-list-tab" data-list="favorites" role="tab" aria-selected="false">★ Favorites</button>
-      <button class="stocks-list-tab" data-list="recent" role="tab" aria-selected="false">Recent</button>
-    </div>
-
-    <div id="stocks-company-grid"></div>
-
-    <div id="stocks-selected">
-      <div id="stocks-selected-header">
-        <div id="stocks-selected-title">
-          <span id="stocks-selected-symbol"></span>
-          <span id="stocks-selected-name"></span>
+    <div id="stocks-workspace">
+      <main id="stocks-main">
+        <div id="stocks-selected">
+          <div id="stocks-selected-header">
+            <div id="stocks-selected-title">
+              <span id="stocks-selected-symbol"></span>
+              <span id="stocks-selected-name"></span>
+            </div>
+            <div id="stocks-selected-actions">
+              <button id="stocks-fav-btn" class="stocks-action-btn" aria-pressed="false">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span id="stocks-fav-label">Favorite</span>
+              </button>
+              <button id="stocks-share-btn" class="stocks-action-btn" aria-label="Share this stock">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                Share
+              </button>
+            </div>
+          </div>
+          <div id="stocks-selected-desc"></div>
         </div>
-        <div id="stocks-selected-actions">
-          <button id="stocks-fav-btn" class="stocks-action-btn" aria-pressed="false">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <span id="stocks-fav-label">Favorite</span>
+
+        <div id="stocks-symbol-info" class="tv-widget-wrap"></div>
+
+        <div id="stocks-chart-controls">
+          <div id="stocks-time-btns" role="group" aria-label="Time range">${timeBtns}</div>
+          <div id="stocks-compare-wrap">
+            <label for="stocks-compare-select" class="stocks-compare-label">Compare</label>
+            <select id="stocks-compare-select">${cmpOpts}</select>
+          </div>
+        </div>
+
+        <div id="stocks-chart" class="tv-widget-wrap"></div>
+
+        <div id="stocks-detail-tabs" role="tablist">
+          <button class="stocks-detail-tab active" data-tab="overview"      role="tab" aria-selected="true">Overview</button>
+          <button class="stocks-detail-tab"         data-tab="fundamentals" role="tab" aria-selected="false">Fundamentals</button>
+          <button class="stocks-detail-tab"         data-tab="technical"    role="tab" aria-selected="false">Technical</button>
+          <button class="stocks-detail-tab"         data-tab="profile"      role="tab" aria-selected="false">Profile</button>
+          <button class="stocks-detail-tab"         data-tab="news"         role="tab" aria-selected="false">News</button>
+        </div>
+        <div id="stocks-detail-body" class="tv-widget-wrap"></div>
+      </main>
+
+      <aside id="stocks-sidebar">
+        <div id="stocks-sidebar-toggle-bar">
+          <button id="stocks-browser-btn" aria-expanded="false" aria-controls="stocks-sidebar-body">
+            <span id="stocks-browser-btn-label">Browse Companies (${AI_COMPANIES.length})</span>
+            <svg class="stocks-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </button>
-          <button id="stocks-share-btn" class="stocks-action-btn" aria-label="Share this stock">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-            Share
-          </button>
         </div>
-      </div>
-      <div id="stocks-selected-desc"></div>
+        <div id="stocks-sidebar-body">
+          <div id="stocks-controls-bar">
+            <div id="stocks-search-wrap">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+              <input id="stocks-search" type="text" placeholder="Search companies… ( / )" autocomplete="off" aria-label="Search companies" />
+              <button id="stocks-search-clear" hidden aria-label="Clear search">&times;</button>
+            </div>
+            <select id="stocks-cat-filter" aria-label="Filter by category">
+              <option value="">All Categories</option>${catOpts}
+            </select>
+          </div>
 
-      <div id="stocks-chart-controls">
-        <div id="stocks-time-btns" role="group" aria-label="Time range">${timeBtns}</div>
-        <div id="stocks-compare-wrap">
-          <label for="stocks-compare-select" class="stocks-compare-label">Compare</label>
-          <select id="stocks-compare-select">${cmpOpts}</select>
+          <div id="stocks-list-tabs" role="tablist">
+            <button class="stocks-list-tab active" data-list="all"       role="tab" aria-selected="true">All</button>
+            <button class="stocks-list-tab"         data-list="favorites" role="tab" aria-selected="false">★ Favs</button>
+            <button class="stocks-list-tab"         data-list="recent"   role="tab" aria-selected="false">Recent</button>
+          </div>
+
+          <ul id="stocks-watchlist" role="list" aria-label="AI company watchlist"></ul>
+
+          <div id="stocks-sidebar-footer">
+            <button id="stocks-export-csv" class="stocks-export-btn" type="button" title="Export favorites as CSV">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export Favorites CSV
+            </button>
+            <span class="stocks-kb-hint">
+              <kbd>/</kbd> search &nbsp;·&nbsp; <kbd>F</kbd> favorite
+            </span>
+          </div>
         </div>
-      </div>
-
-      <div id="stocks-chart" class="tv-widget-wrap"></div>
-
-      <div id="stocks-detail-tabs" role="tablist">
-        <button class="stocks-detail-tab active" data-tab="overview"      role="tab" aria-selected="true">Overview</button>
-        <button class="stocks-detail-tab"         data-tab="fundamentals" role="tab" aria-selected="false">Fundamentals</button>
-        <button class="stocks-detail-tab"         data-tab="technical"    role="tab" aria-selected="false">Technical</button>
-        <button class="stocks-detail-tab"         data-tab="profile"      role="tab" aria-selected="false">Profile</button>
-        <button class="stocks-detail-tab"         data-tab="news"         role="tab" aria-selected="false">News</button>
-      </div>
-      <div id="stocks-detail-body" class="tv-widget-wrap"></div>
+      </aside>
     </div>
 
     <div class="stocks-section" id="stocks-heatmap-section">
-      <div class="stocks-section-header"><h3>AI Market Heatmap</h3></div>
+      <div class="stocks-section-header">
+        <div>
+          <h3>US Market Heatmap</h3>
+          <p class="stocks-section-sub">S&amp;P 500 by sector and market cap</p>
+        </div>
+      </div>
       <div id="stocks-heatmap" class="tv-widget-wrap tv-heatmap"></div>
     </div>
 
@@ -343,16 +458,26 @@ function buildStocksUI() {
       <div id="stocks-movers" class="tv-widget-wrap"></div>
     </div>
 
+    <div class="stocks-section" id="stocks-universe-section">
+      <div class="stocks-section-header">
+        <div>
+          <h3>AI Company Universe</h3>
+          <p class="stocks-section-sub">Market overview by AI sector</p>
+        </div>
+      </div>
+      <div id="stocks-universe-widget" class="tv-widget-wrap"></div>
+    </div>
+
     <div class="stocks-section" id="stocks-private-section">
       <div class="stocks-section-header">
         <h3>Private AI Companies</h3>
-        <span class="stocks-section-note">Not publicly traded</span>
+        <span class="stocks-section-note">Not publicly traded — valuations are estimates</span>
       </div>
       <div id="stocks-private-cards"></div>
     </div>
 
     <div id="stocks-disclaimer">
-      Market data may be delayed. Charts and market data provided by
+      Market data may be delayed up to 15 minutes. Charts and market data provided by
       <a href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer">TradingView</a>.
       This information is for research and educational purposes only and is not investment advice.
     </div>
@@ -362,12 +487,12 @@ function buildStocksUI() {
 }
 
 /* ─────────────────────────────────────────────────────────────── */
-/* Company grid                                                      */
+/* Watchlist (company browser — row list)                           */
 /* ─────────────────────────────────────────────────────────────── */
 
-function renderCompanyGrid() {
-  const grid = document.getElementById('stocks-company-grid');
-  if (!grid) return;
+function renderWatchlist() {
+  const list = document.getElementById('stocks-watchlist');
+  if (!list) return;
 
   const { activeListTab, searchQuery, categoryFilter, selectedSymbol } = stocksState;
   const favs   = stocksLoadFavorites();
@@ -378,8 +503,7 @@ function renderCompanyGrid() {
   if (activeListTab === 'favorites') {
     companies = AI_COMPANIES.filter(c => favs.includes(c.ticker));
   } else if (activeListTab === 'recent') {
-    const byTicker = {};
-    AI_COMPANIES.forEach(c => { byTicker[c.ticker] = c; });
+    const byTicker = Object.fromEntries(AI_COMPANIES.map(c => [c.ticker, c]));
     companies = recent.map(t => byTicker[t]).filter(Boolean);
   }
 
@@ -397,39 +521,46 @@ function renderCompanyGrid() {
     companies = companies.filter(c => c.category === categoryFilter);
   }
 
+  const btnLabel = document.getElementById('stocks-browser-btn-label');
+  if (btnLabel) btnLabel.textContent = `Browse Companies (${AI_COMPANIES.length})`;
+
   if (companies.length === 0) {
-    grid.innerHTML = '<div class="stocks-empty">No companies match your filters.</div>';
+    list.innerHTML = '<li class="stocks-wl-empty">No companies match your filters.</li>';
     return;
   }
 
-  grid.innerHTML = companies.map(c => {
+  list.innerHTML = companies.map(c => {
     const isFav = favs.includes(c.ticker);
     const isSel = c.ticker === selectedSymbol;
-    return `<button class="stocks-co-card${isSel ? ' selected' : ''}" data-ticker="${escHtml(c.ticker)}" aria-pressed="${isSel}">
-      <div class="stocks-co-card-top">
-        <span class="stocks-co-symbol">${escHtml(c.symbol)}</span>
-        <span role="button" tabindex="0" class="stocks-fav-star${isFav ? ' is-fav' : ''}" data-ticker="${escHtml(c.ticker)}" aria-label="${isFav ? 'Remove from favorites' : 'Add to favorites'}" title="${isFav ? 'Remove from favorites' : 'Add to favorites'}">★</span>
-      </div>
-      <div class="stocks-co-name">${escHtml(c.shortName)}</div>
-      <div class="stocks-co-cat">${escHtml(c.category)}</div>
-    </button>`;
+    return `<li class="stocks-wl-row${isSel ? ' selected' : ''}" data-ticker="${escHtml(c.ticker)}">
+      <button class="stocks-wl-main" data-ticker="${escHtml(c.ticker)}" aria-current="${isSel ? 'true' : 'false'}" type="button">
+        <span class="stocks-wl-symbol">${escHtml(c.symbol)}</span>
+        <span class="stocks-wl-info">
+          <span class="stocks-wl-name">${escHtml(c.shortName)}</span>
+          <span class="stocks-wl-cat">${escHtml(c.category)}</span>
+        </span>
+      </button>
+      <button class="stocks-wl-fav${isFav ? ' is-fav' : ''}" data-ticker="${escHtml(c.ticker)}" aria-label="${isFav ? 'Remove from favorites' : 'Add to favorites'}" type="button">★</button>
+    </li>`;
   }).join('');
 
-  grid.querySelectorAll('.stocks-co-card').forEach(card => {
-    card.addEventListener('click', e => {
-      if (e.target.classList.contains('stocks-fav-star')) return;
-      selectCompany(card.dataset.ticker);
-    });
+  list.querySelectorAll('.stocks-wl-main').forEach(btn => {
+    btn.addEventListener('click', () => selectCompany(btn.dataset.ticker));
   });
-  grid.querySelectorAll('.stocks-fav-star').forEach(btn => {
-    const toggle = e => {
+  list.querySelectorAll('.stocks-wl-fav').forEach(btn => {
+    btn.addEventListener('click', e => {
       e.stopPropagation();
       stocksToggleFavorite(btn.dataset.ticker);
-      renderCompanyGrid();
+      renderWatchlist();
       if (btn.dataset.ticker === stocksState.selectedSymbol) updateFavButton();
-    };
-    btn.addEventListener('click', toggle);
-    btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); } });
+      stocksToast(stocksIsFavorite(btn.dataset.ticker) ? 'Added to favorites' : 'Removed from favorites');
+    });
+  });
+
+  // Scroll selected row into view within the sidebar list
+  requestAnimationFrame(() => {
+    const selRow = list.querySelector('.stocks-wl-row.selected');
+    if (selRow) selRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
 }
 
@@ -443,7 +574,7 @@ function selectCompany(ticker) {
   stocksSavePrefs({ lastSymbol: ticker });
   stocksUpdateURL(ticker);
 
-  const co = AI_COMPANIES.find(c => c.ticker === ticker);
+  const co = getCompanyByTicker(ticker);
   if (co) {
     const symEl  = document.getElementById('stocks-selected-symbol');
     const nameEl = document.getElementById('stocks-selected-name');
@@ -454,17 +585,15 @@ function selectCompany(ticker) {
   }
 
   updateFavButton();
-  renderCompanyGrid();
+  renderWatchlist();
+  renderSymbolInfo();
   renderChart();
   renderDetailTab(stocksState.activeDetailTab);
 
   const sel = document.getElementById('stocks-selected');
   if (sel) {
     sel.classList.remove('stocks-panel-entering');
-    requestAnimationFrame(() => {
-      sel.classList.add('stocks-panel-entering');
-      sel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
+    requestAnimationFrame(() => sel.classList.add('stocks-panel-entering'));
   }
 }
 
@@ -476,6 +605,22 @@ function updateFavButton() {
   btn.classList.toggle('is-fav', isFav);
   btn.setAttribute('aria-pressed', isFav ? 'true' : 'false');
   if (label) label.textContent = isFav ? 'Favorited' : 'Favorite';
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Symbol info (header area)                                         */
+/* ─────────────────────────────────────────────────────────────── */
+
+function renderSymbolInfo() {
+  const el = document.getElementById('stocks-symbol-info');
+  if (!el) return;
+  createTVWidget(el, 'symbol-info', {
+    symbol:          stocksState.selectedSymbol,
+    width:           '100%',
+    locale:          'en',
+    colorTheme:      tvTheme(),
+    isTransparent:   false,
+  });
 }
 
 /* ─────────────────────────────────────────────────────────────── */
@@ -525,53 +670,72 @@ function renderDetailTab(tab) {
     btn.setAttribute('aria-selected', active ? 'true' : 'false');
   });
 
-  const el    = document.getElementById('stocks-detail-body');
-  const sym   = stocksState.selectedSymbol;
-  const theme = tvTheme();
+  const el      = document.getElementById('stocks-detail-body');
+  const ticker  = stocksState.selectedSymbol;
+  const plainSym = getPlainSymbol(ticker);
+  const company = getCompanyByTicker(ticker);
+  const theme   = tvTheme();
   if (!el) return;
 
   if (tab === 'overview') {
-    createTVWidget(el, 'symbol-info', {
-      symbol: sym, width: '100%', locale: 'en', colorTheme: theme, isTransparent: false,
-    });
-  } else if (tab === 'fundamentals') {
-    const company = AI_COMPANIES.find(c => c.symbol === sym);
+    const tvLink = `https://www.tradingview.com/symbols/${encodeURIComponent(ticker.replace(':', '-'))}/`;
+    const yhLink = `https://finance.yahoo.com/quote/${encodeURIComponent(plainSym)}/`;
     el.innerHTML = `
-      <div class="stocks-data-fallback">
-        <div class="stocks-fallback-heading">Financial Data for ${escHtml(sym)}</div>
-        <div class="stocks-fallback-body">Detailed financial statements and ratios are available on these free platforms:</div>
-        <div class="stocks-fallback-links">
-          <a href="https://finance.yahoo.com/quote/${encodeURIComponent(sym)}/financials/" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance — Financials</a>
-          <a href="https://finance.yahoo.com/quote/${encodeURIComponent(sym)}/balance-sheet/" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance — Balance Sheet</a>
-          <a href="https://finance.yahoo.com/quote/${encodeURIComponent(sym)}/cash-flow/" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance — Cash Flow</a>
+      <div class="stocks-overview-panel">
+        ${company ? `
+        <div class="stocks-overview-cat">${escHtml(company.category)}</div>
+        <div class="stocks-overview-desc">${escHtml(company.description)}</div>` : ''}
+        <div class="stocks-fallback-links" style="margin-top:14px;">
+          <a href="${escHtml(yhLink)}" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance</a>
+          <a href="${escHtml(tvLink)}" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">TradingView</a>
         </div>
       </div>`;
+  } else if (tab === 'fundamentals') {
+    createTVWidget(el, 'financials', {
+      symbol:        ticker,
+      colorTheme:    theme,
+      isTransparent: false,
+      locale:        'en',
+      width:         '100%',
+      height:        550,
+      displayMode:   'regular',
+    });
   } else if (tab === 'technical') {
     createTVWidget(el, 'technical-analysis', {
-      interval: 'D', width: '100%', isTransparent: false, height: 450,
-      symbol: sym, showIntervalTabs: false, displayMode: 'single', locale: 'en', colorTheme: theme,
+      interval:         'D',
+      width:            '100%',
+      isTransparent:    false,
+      height:           450,
+      symbol:           ticker,
+      showIntervalTabs: false,
+      displayMode:      'single',
+      locale:           'en',
+      colorTheme:       theme,
     });
   } else if (tab === 'profile') {
-    const company = AI_COMPANIES.find(c => c.symbol === sym);
+    const yhProfileLink = `https://finance.yahoo.com/quote/${encodeURIComponent(plainSym)}/profile/`;
+    const yhSummaryLink = `https://finance.yahoo.com/quote/${encodeURIComponent(plainSym)}/`;
     el.innerHTML = `
       <div class="stocks-data-fallback">
         ${company ? `
         <div class="stocks-profile-cat">${escHtml(company.category)}</div>
         <div class="stocks-profile-name">${escHtml(company.name)}</div>
         <div class="stocks-profile-desc">${escHtml(company.description)}</div>` : ''}
-        <div class="stocks-fallback-heading" style="margin-top:${company ? '16px' : '0'}">More information</div>
+        <div class="stocks-fallback-heading" style="margin-top:${company ? '16px' : '0'}">Company information</div>
         <div class="stocks-fallback-links">
-          <a href="https://finance.yahoo.com/quote/${encodeURIComponent(sym)}/profile/" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance — Company Profile</a>
-          <a href="https://finance.yahoo.com/quote/${encodeURIComponent(sym)}/" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance — Summary</a>
+          <a href="${escHtml(yhProfileLink)}" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance — Profile</a>
+          <a href="${escHtml(yhSummaryLink)}" target="_blank" rel="noopener noreferrer" class="stocks-fallback-btn">Yahoo Finance — Summary</a>
         </div>
       </div>`;
   } else if (tab === 'news') {
-    renderNewsTab(el, sym);
+    renderNewsTab(el, ticker);
   }
 }
 
 function renderNewsTab(container, ticker) {
   container.innerHTML = '';
+  const today = new Date();
+  today.setHours(23, 59, 59, 999);
 
   const tvSection = document.createElement('div');
   tvSection.className = 'stocks-news-tv';
@@ -581,15 +745,29 @@ function renderNewsTab(container, ticker) {
   });
   container.appendChild(tvSection);
 
-  const aliases = NEWS_ALIASES[ticker] || [];
-  const sym     = (AI_COMPANIES.find(c => c.ticker === ticker)?.symbol || '').toLowerCase();
-  const terms   = [sym, ...aliases].filter(Boolean);
+  const aliases  = NEWS_ALIASES[ticker] || [];
+  const plainSym = getPlainSymbol(ticker).toLowerCase();
+  const terms    = [plainSym, ...aliases].filter(Boolean);
 
   const pool = (typeof newsArticles !== 'undefined' && Array.isArray(newsArticles))
     ? newsArticles : [];
+
+  const seenUrls   = new Set();
+  const seenTitles = new Set();
+
   const local = pool.filter(a => {
+    const url = a.url || '';
+    if (!url.startsWith('http://') && !url.startsWith('https://')) return false;
+    const pubDate = new Date(a.published_at || a.publishedAt || '');
+    if (!isNaN(pubDate.getTime()) && pubDate > today) return false;
+    if (url && seenUrls.has(url)) return false;
+    const titleKey = (a.title || '').toLowerCase().trim();
+    if (titleKey && seenTitles.has(titleKey)) return false;
     const hay = `${a.title || ''} ${a.summary || ''} ${(a.tags || []).join(' ')}`.toLowerCase();
-    return terms.some(t => t && hay.includes(t));
+    if (!terms.some(t => t && hay.includes(t))) return false;
+    if (url) seenUrls.add(url);
+    if (titleKey) seenTitles.add(titleKey);
+    return true;
   }).slice(0, 12);
 
   if (local.length === 0) return;
@@ -602,7 +780,7 @@ function renderNewsTab(container, ticker) {
   const list = document.createElement('div');
   list.className = 'stocks-news-local-list';
   list.innerHTML = local.map(a => `
-    <a href="${escHtml(a.url || '#')}" target="_blank" rel="noopener noreferrer" class="stocks-news-item">
+    <a href="${escHtml(a.url)}" target="_blank" rel="noopener noreferrer" class="stocks-news-item">
       <div class="stocks-news-cat">${escHtml(a.category || '')}</div>
       <div class="stocks-news-title">${escHtml(a.title || '')}</div>
       <div class="stocks-news-meta">
@@ -612,7 +790,6 @@ function renderNewsTab(container, ticker) {
     </a>`).join('');
   container.appendChild(list);
 }
-
 
 /* ─────────────────────────────────────────────────────────────── */
 /* Ticker tape                                                       */
@@ -629,7 +806,7 @@ function renderTickerTape() {
 }
 
 /* ─────────────────────────────────────────────────────────────── */
-/* Heatmap & movers                                                  */
+/* Heatmap, movers, universe (lazy-loaded)                          */
 /* ─────────────────────────────────────────────────────────────── */
 
 function renderHeatmap() {
@@ -655,6 +832,70 @@ function renderMovers() {
   });
 }
 
+function renderUniverse() {
+  const el = document.getElementById('stocks-universe-widget');
+  if (!el) return;
+  const byCategory = {};
+  AI_COMPANIES.forEach(c => {
+    if (!byCategory[c.category]) byCategory[c.category] = [];
+    if (byCategory[c.category].length < 10) byCategory[c.category].push({ s: c.ticker, d: c.symbol });
+  });
+  const tabs = Object.entries(byCategory).map(([title, symbols]) => ({ title, symbols }));
+  createTVWidget(el, 'market-overview', {
+    colorTheme:          tvTheme(),
+    dateRange:           '12M',
+    showChart:           true,
+    locale:              'en',
+    largeChartUrl:       '',
+    isTransparent:       false,
+    showSymbolLogo:      true,
+    showFloatingTooltip: false,
+    width:               '100%',
+    height:              550,
+    tabs,
+  });
+}
+
+function initLazyWidgets() {
+  if (!('IntersectionObserver' in window)) {
+    renderHeatmap();
+    renderMovers();
+    renderUniverse();
+    stocksState.heatmapLoaded = stocksState.moversLoaded = stocksState.universeLoaded = true;
+    return;
+  }
+
+  const targets = [
+    { id: 'stocks-heatmap-section',  flag: 'heatmapLoaded',  render: renderHeatmap },
+    { id: 'stocks-movers-section',   flag: 'moversLoaded',   render: renderMovers },
+    { id: 'stocks-universe-section', flag: 'universeLoaded', render: renderUniverse },
+  ];
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const t = targets.find(x => x.id === entry.target.id);
+      if (t && !stocksState[t.flag]) {
+        stocksState[t.flag] = true;
+        t.render();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '200px' });
+
+  targets.forEach(t => {
+    const el = document.getElementById(t.id);
+    if (el) observer.observe(el);
+  });
+  stocksState.lazyObserver = observer;
+}
+
+function _rerenderLoadedWidgets() {
+  if (stocksState.heatmapLoaded)  renderHeatmap();
+  if (stocksState.moversLoaded)   renderMovers();
+  if (stocksState.universeLoaded) renderUniverse();
+}
+
 /* ─────────────────────────────────────────────────────────────── */
 /* Private companies                                                 */
 /* ─────────────────────────────────────────────────────────────── */
@@ -668,17 +909,20 @@ function renderPrivateCompanies() {
         <span class="stocks-private-name">${escHtml(p.name)}</span>
         <span class="stocks-private-badge">Private</span>
       </div>
-      <div class="stocks-private-val">Est. valuation: ${escHtml(p.valuation)}</div>
+      <div class="stocks-private-val">
+        Est. valuation: <strong>${escHtml(p.valuationText)}</strong>
+        <span class="stocks-private-val-meta">· as of ${escHtml(p.valuationAsOf)} · ${escHtml(p.sourceName)}</span>
+      </div>
       <div class="stocks-private-desc">${escHtml(p.description)}</div>
     </div>`).join('');
 }
 
 /* ─────────────────────────────────────────────────────────────── */
-/* Share                                                             */
+/* Share / toast                                                     */
 /* ─────────────────────────────────────────────────────────────── */
 
 async function stocksShare() {
-  const co  = AI_COMPANIES.find(c => c.ticker === stocksState.selectedSymbol);
+  const co  = getCompanyByTicker(stocksState.selectedSymbol);
   const url = `${location.origin}${location.pathname}#ai-stocks?symbol=${encodeURIComponent(stocksState.selectedSymbol)}`;
   const text = co ? `${co.name} (${co.symbol}) — AI Stocks tracker` : 'AI Stocks tracker';
 
@@ -703,21 +947,68 @@ function stocksToast(msg, dur) {
 }
 
 /* ─────────────────────────────────────────────────────────────── */
-/* Theme observer                                                    */
+/* Theme observer (debounced)                                        */
 /* ─────────────────────────────────────────────────────────────── */
 
 function initStocksThemeObserver() {
   if (stocksState.themeObserver) return;
+  let _debounceTimer = null;
+  let _lastTheme     = tvTheme();
+
   stocksState.themeObserver = new MutationObserver(() => {
-    if (typeof activeTab !== 'undefined' && activeTab !== 'stocks') return;
-    renderTickerTape();
-    renderChart();
-    renderDetailTab(stocksState.activeDetailTab);
-    renderHeatmap();
-    renderMovers();
+    const nowTheme = tvTheme();
+    if (nowTheme === _lastTheme) return;
+    _lastTheme = nowTheme;
+    clearTimeout(_debounceTimer);
+    _debounceTimer = setTimeout(() => {
+      if (typeof activeTab !== 'undefined' && activeTab !== 'stocks') return;
+      renderTickerTape();
+      renderSymbolInfo();
+      renderChart();
+      renderDetailTab(stocksState.activeDetailTab);
+      _rerenderLoadedWidgets();
+    }, 150);
   });
   stocksState.themeObserver.observe(document.documentElement, {
     attributes: true, attributeFilter: ['data-theme', 'class'],
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Mobile sidebar toggle                                             */
+/* ─────────────────────────────────────────────────────────────── */
+
+function initMobileBrowserToggle() {
+  const btn     = document.getElementById('stocks-browser-btn');
+  const sidebar = document.getElementById('stocks-sidebar');
+  if (!btn || !sidebar) return;
+  btn.addEventListener('click', () => {
+    const isOpen = sidebar.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    stocksState.sidebarOpen = isOpen;
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Keyboard shortcuts                                                */
+/* ─────────────────────────────────────────────────────────────── */
+
+function initStocksKeyboard() {
+  document.addEventListener('keydown', e => {
+    if (typeof activeTab === 'undefined' || activeTab !== 'stocks') return;
+    const tag = document.activeElement?.tagName;
+    const inInput = tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA';
+    if (e.key === '/' && !inInput && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      document.getElementById('stocks-search')?.focus();
+    }
+    if ((e.key === 'f' || e.key === 'F') && !inInput && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      stocksToggleFavorite(stocksState.selectedSymbol);
+      updateFavButton();
+      renderWatchlist();
+      stocksToast(stocksIsFavorite(stocksState.selectedSymbol) ? 'Added to favorites' : 'Removed from favorites');
+    }
   });
 }
 
@@ -733,7 +1024,7 @@ function bindStocksEvents() {
     searchInput.addEventListener('input', () => {
       stocksState.searchQuery = searchInput.value.trim();
       if (searchClear) searchClear.hidden = !stocksState.searchQuery;
-      renderCompanyGrid();
+      renderWatchlist();
     });
   }
   if (searchClear) {
@@ -741,7 +1032,7 @@ function bindStocksEvents() {
       stocksState.searchQuery = '';
       if (searchInput) searchInput.value = '';
       searchClear.hidden = true;
-      renderCompanyGrid();
+      renderWatchlist();
     });
   }
 
@@ -749,7 +1040,7 @@ function bindStocksEvents() {
   if (catFilter) {
     catFilter.addEventListener('change', () => {
       stocksState.categoryFilter = catFilter.value;
-      renderCompanyGrid();
+      renderWatchlist();
     });
   }
 
@@ -760,7 +1051,7 @@ function bindStocksEvents() {
         b.classList.toggle('active', b === btn);
         b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
       });
-      renderCompanyGrid();
+      renderWatchlist();
     });
   });
 
@@ -778,6 +1069,7 @@ function bindStocksEvents() {
   if (compareSelect) {
     compareSelect.addEventListener('change', () => {
       stocksState.comparePreset = parseInt(compareSelect.value, 10) || 0;
+      stocksSavePrefs({ comparePreset: stocksState.comparePreset });
       renderChart();
     });
   }
@@ -791,13 +1083,16 @@ function bindStocksEvents() {
     favBtn.addEventListener('click', () => {
       stocksToggleFavorite(stocksState.selectedSymbol);
       updateFavButton();
-      renderCompanyGrid();
+      renderWatchlist();
       stocksToast(stocksIsFavorite(stocksState.selectedSymbol) ? 'Added to favorites' : 'Removed from favorites');
     });
   }
 
   const shareBtn = document.getElementById('stocks-share-btn');
   if (shareBtn) shareBtn.addEventListener('click', stocksShare);
+
+  const exportBtn = document.getElementById('stocks-export-csv');
+  if (exportBtn) exportBtn.addEventListener('click', stocksExportCSV);
 }
 
 /* ─────────────────────────────────────────────────────────────── */
@@ -814,34 +1109,31 @@ function initStocksPage() {
     stocksState.comparePreset   = prefs.comparePreset   || 0;
     stocksState.activeDetailTab = prefs.activeDetailTab || 'overview';
 
-    // Resolve symbol: URL → last pref → default
-    const fromURL = stocksGetSymbolFromURL();
-    const fromPref = AI_COMPANIES.find(c => c.ticker === prefs.lastSymbol);
-    const fromURLco = fromURL && AI_COMPANIES.find(c => c.ticker === fromURL);
+    const fromURL   = stocksGetSymbolFromURL();
+    const fromPref  = getCompanyByTicker(prefs.lastSymbol);
+    const fromURLco = fromURL && getCompanyByTicker(fromURL);
     const defaultCo = fromURLco || fromPref || AI_COMPANIES[0];
     stocksState.selectedSymbol = defaultCo.ticker;
 
     buildStocksUI();
     bindStocksEvents();
+    initMobileBrowserToggle();
     renderPrivateCompanies();
     initStocksThemeObserver();
+    initStocksKeyboard();
     stocksState.initialized = true;
 
-    // Once-only widgets (no symbol dependency)
     renderTickerTape();
-    renderHeatmap();
-    renderMovers();
+    initLazyWidgets();
   } else {
-    // On re-visit: pick up URL change if any
     const fromURL = stocksGetSymbolFromURL();
     if (fromURL) {
-      const co = AI_COMPANIES.find(c => c.ticker === fromURL);
+      const co = getCompanyByTicker(fromURL);
       if (co) stocksState.selectedSymbol = co.ticker;
     }
   }
 
-  // Sync selected company header
-  const co = AI_COMPANIES.find(c => c.ticker === stocksState.selectedSymbol) || AI_COMPANIES[0];
+  const co = getCompanyByTicker(stocksState.selectedSymbol) || AI_COMPANIES[0];
   stocksState.selectedSymbol = co.ticker;
 
   const symEl  = document.getElementById('stocks-selected-symbol');
@@ -851,16 +1143,15 @@ function initStocksPage() {
   if (nameEl) nameEl.textContent = co.name;
   if (descEl) descEl.textContent = co.description;
 
-  // Sync time range buttons
   document.querySelectorAll('.stocks-time-btn').forEach(btn =>
     btn.classList.toggle('active', btn.textContent.trim() === stocksState.timeRange));
 
-  // Sync compare select
   const cmpSel = document.getElementById('stocks-compare-select');
   if (cmpSel) cmpSel.value = String(stocksState.comparePreset);
 
   updateFavButton();
-  renderCompanyGrid();
+  renderWatchlist();
+  renderSymbolInfo();
   renderChart();
   renderDetailTab(stocksState.activeDetailTab);
   stocksUpdateURL(stocksState.selectedSymbol);

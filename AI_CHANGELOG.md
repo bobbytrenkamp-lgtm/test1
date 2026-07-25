@@ -2,6 +2,121 @@
 
 ---
 
+Date: 2026-07-25
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: AI Stocks Page — Full Product-Quality Redesign
+
+## Summary
+Performed a comprehensive redesign and bug-fix pass of the AI Stocks tab (`js/stocks.js`, `css/stocks.css`). Fixed 6 correctness bugs, replaced the card grid with a professional watchlist row layout, introduced a desktop workstation two-column layout (sidebar + main workspace), added lazy-loaded market sections, upgraded the Fundamentals tab to use the TradingView `financials` widget, added a Symbol Info widget above the chart, added an AI Company Universe section with the TradingView `market-overview` widget, fixed the theme observer (debounced + last-theme tracking to prevent stale renders), added keyboard shortcuts (`/` search, `F` favorite), added CSV export, fixed news tab (future-date filter, dedup, URL validation), created `data/ai_companies.json` schema and `data/validate_ai_companies.py` validator, and updated all documentation.
+
+## Files Modified
+- `js/stocks.js` — Full rewrite (~950 lines); see correctness fixes and feature additions below
+- `css/stocks.css` — Full rewrite (~620 lines); new workstation layout, watchlist rows, four responsive breakpoints
+- `index.html` — Bumped version strings for stocks.js and stocks.css to `v=20260725g`
+- `AI_CHANGELOG.md` — This entry
+- `BUG_TRACKER.md` — Added newly fixed bugs
+- `AI_CONTEXT.md` — Added stocks architecture section
+
+## New Files
+- `data/ai_companies.json` — Canonical company universe schema (44 public + 5 private companies)
+- `data/validate_ai_companies.py` — Validation script cross-referencing JSON against js/stocks.js
+
+## Correctness Fixes
+
+### Exchange Prefix Bugs (4 fixed)
+- `NYSE:META` → `NASDAQ:META` (Meta Platforms trades on NASDAQ, not NYSE)
+- `NASDAQ:PATH` → `NYSE:PATH` (UiPath trades on NYSE, not NASDAQ)
+- `NASDAQ:VEEV` → `NYSE:VEEV` (Veeva Systems trades on NYSE, not NASDAQ)
+- `NASDAQ:UBER` → `NYSE:UBER` (Uber trades on NYSE, not NASDAQ)
+- Updated `NEWS_ALIASES` keys to match corrected tickers
+
+### `renderDetailTab()` symbol lookup bug (fixed)
+- Was: `AI_COMPANIES.find(c => c.symbol === sym)` where `sym = stocksState.selectedSymbol` (= "NASDAQ:NVDA") — never matched because `.symbol` is "NVDA"
+- Fixed: Replaced with `getCompanyByTicker(ticker)` using the full ticker key
+
+### Yahoo Finance URL bug (fixed)
+- Was: `encodeURIComponent(sym)` where `sym` was the full ticker ("NASDAQ:NVDA") → URLs contained "NASDAQ%3ANVDA" which 404s
+- Fixed: Used `getPlainSymbol(ticker)` which returns just "NVDA" for Yahoo Finance links
+
+### Compare preset not saved (fixed)
+- Was: `compareSelect` change handler called `renderChart()` but never `stocksSavePrefs()`
+- Fixed: Added `stocksSavePrefs({ comparePreset: stocksState.comparePreset })` in the handler
+
+### Heatmap mislabeled (fixed)
+- Was: "AI Market Heatmap" — misleading; the data source is `SPX500` (S&P 500, not AI stocks)
+- Fixed: Renamed to "US Market Heatmap" with subtitle "S&P 500 by sector and market cap"
+
+### Theme observer: no debounce, re-renders all widgets on any mutation (fixed)
+- Was: Fired on every DOM mutation (even unrelated ones), re-rendered all 5 widgets synchronously
+- Fixed: Added last-theme tracking (skip if theme didn't change) and 150ms debounce; only rerenders widgets that have already been lazy-loaded
+
+## Feature Additions
+
+### Desktop workstation layout (≥1180px)
+- Two-column CSS grid: 280px sidebar (company browser) | flex-1 main workspace
+- Sidebar is `position: sticky; top: 0; height: 100vh` — remains visible while main content scrolls
+- Sidebar has independent internal scrolling for the watchlist
+
+### Watchlist row list (replaced card grid)
+- Replaced `<button role="button">` nested-inside-`<button>` card grid with semantic `<ul>/<li>` rows
+- Each row: separate `<button class="stocks-wl-main">` (company select) + `<button class="stocks-wl-fav">` (star) — no nested interactive elements
+- Selected row has left accent stripe; hover background; accessible `aria-current` attribute
+
+### Mobile layout redesign (≤767px)
+- Chart area (`#stocks-main`) appears first via CSS `order: -1`
+- Company browser (`#stocks-sidebar`) appears below chart with collapsible toggle (`#stocks-browser-btn`)
+- Default state: collapsed; opens to `max-height: 480px` with smooth CSS transition
+
+### Symbol Info widget
+- Added `#stocks-symbol-info` div between company header and chart controls
+- Renders TradingView `symbol-info` widget showing live price, change, and market cap for selected company
+
+### Fundamentals tab: TradingView Financials widget
+- Replaced static Yahoo Finance links with TradingView `financials` widget (revenue, EPS, margins)
+
+### AI Company Universe section
+- New `#stocks-universe-section` below Market Movers
+- TradingView `market-overview` widget with per-category tabs from AI_COMPANIES grouping
+
+### Lazy loading
+- `initLazyWidgets()` — IntersectionObserver with 200px rootMargin for heatmap, movers, universe
+- Widgets only load when scrolled near viewport; graceful fallback for browsers without IntersectionObserver
+- Theme rerenders only touch already-loaded widgets (`_rerenderLoadedWidgets()`)
+
+### Keyboard shortcuts
+- `/` — focus search input (when not already in an input)
+- `F` — toggle favorite for selected company (when not in an input)
+
+### CSV export
+- "Export Favorites CSV" button in sidebar footer
+- Generates `ai-stocks-favorites.csv` with Symbol, Name, Exchange, Category, Description columns
+
+### Render ID system (`createTVWidget`)
+- Each widget call increments `_tvRenderCounter` and stamps `container._tvRenderId`
+- Timeout/load/error callbacks check render ID before mutating DOM — prevents stale callbacks when widget is replaced before timeout fires
+
+### News tab improvements
+- Filters articles with future publication dates (> today)
+- Deduplicates by URL and title (case-insensitive)
+- Validates URLs start with `http://` or `https://` before using in `href`
+
+### Private companies data model upgrade
+- Added `valuationText`, `valuationAsOf`, `sourceName`, `lastReviewed` fields
+- Displayed `valuationAsOf` and `sourceName` as metadata beneath the valuation figure
+
+### Overview tab
+- Moved `symbol-info` widget to dedicated `#stocks-symbol-info` area above the chart
+- Overview tab now shows company description + category + links to Yahoo Finance and TradingView
+
+### Four responsive breakpoints
+- ≥1180px: desktop workstation (sidebar + main grid)
+- 768–1179px: tablet (sidebar stacked above main, compact watchlist)
+- ≤767px: mobile (chart first, collapsible browser below)
+- ≤400px: small mobile (reduced chart height, smaller time buttons)
+
+---
+
 Date: 2026-07-18
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7

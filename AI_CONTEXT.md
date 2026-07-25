@@ -437,6 +437,143 @@ window.APP_CONFIG = {
 window._applyTheme(theme);  // 'dark' | 'light' — triggers full Leaflet style refresh
 ```
 
+## AI Stocks Architecture (js/stocks.js + css/stocks.css)
+
+### Overview
+The AI Stocks tab is a self-contained, pure vanilla JS module. It embeds TradingView widgets and renders structured company data. No paid APIs. No market data is fabricated — all prices and charts come directly from TradingView widgets.
+
+### Key Globals (stocks.js)
+```javascript
+// Module-level state
+const stocksState = {
+  selectedSymbol: 'NASDAQ:NVDA', // full ticker ("EXCHANGE:SYMBOL")
+  filter: 'all',                 // active watchlist filter: 'all' | 'favs' | category
+  search: '',                    // live search string
+  comparePreset: 'None',         // compare overlay for chart widget
+  sidebarOpen: false,            // mobile sidebar drawer state
+  heatmapLoaded: false,          // lazy-load flag: heatmap widget
+  moversLoaded: false,           // lazy-load flag: hotlists widget
+  universeLoaded: false,         // lazy-load flag: market-overview widget
+  lazyObserver: null,            // IntersectionObserver instance
+};
+
+// Company data
+const AI_COMPANIES = [ /* 44 public companies with {ticker, symbol, exchange, name, shortName, category, description} */ ];
+const PRIVATE_COMPANIES = [ /* 5 private companies */ ];
+const NEWS_ALIASES = { /* ticker → array of search terms for news lookup */ };
+```
+
+### Helper Functions
+```javascript
+getCompanyByTicker(ticker)   // looks up by full .ticker field (e.g. "NASDAQ:NVDA"); returns null if not found
+getPlainSymbol(ticker)       // strips exchange prefix → "NVDA" from "NASDAQ:NVDA"; used for Yahoo Finance links
+escHtml(s)                   // XSS-safe HTML escaping (imported from global map.js scope)
+isDarkTheme()                // global from map.js — checks data-theme attr + prefers-color-scheme
+```
+
+### TradingView Widget Names Used
+| Widget Name         | Used For                              |
+|---------------------|---------------------------------------|
+| `ticker-tape`       | Scrolling market tape at top          |
+| `advanced-chart`    | Main interactive price chart          |
+| `symbol-info`       | Company price/market cap summary      |
+| `technical-analysis`| Technical indicators in Detail tab    |
+| `timeline`          | News timeline in Detail tab           |
+| `financials`        | Fundamentals tab in Detail panel      |
+| `stock-heatmap`     | S&P 500 heatmap (below chart)         |
+| `hotlists`          | Top movers (below chart)              |
+| `market-overview`   | AI Universe by category (bottom)      |
+
+### Render ID Pattern (stale widget prevention)
+```javascript
+let _tvRenderCounter = 0;
+
+function createTVWidget(container, widgetName, config) {
+  const renderId = ++_tvRenderCounter;
+  container._tvRenderId = renderId;
+  const div = document.createElement('div');
+  const script = document.createElement('script');
+  // All timeout/load/error callbacks check:
+  //   if (container._tvRenderId !== renderId) return;  // stale, abort
+  container.appendChild(div);
+  document.head.appendChild(script);
+}
+```
+This prevents a slow-loading widget from rendering into a container that has since been reused for a different symbol.
+
+### localStorage Keys
+```
+aiPolicyTracker.stockFavorites.v1   // JSON array of favorited ticker strings
+aiPolicyTracker.stockRecent.v1      // JSON array of recently viewed tickers (max 10)
+aiPolicyTracker.stockPrefs.v1       // JSON object { comparePreset, filter, selectedSymbol }
+```
+
+### DOM Layout Structure
+```html
+#stocks-view
+  #stocks-tape                    ← TradingView ticker-tape (full width)
+  #stocks-sidebar-toggle-bar      ← mobile only: "Company Browser" button
+  #stocks-workspace               ← CSS grid (280px sidebar + 1fr main) on desktop
+    #stocks-main                  ← DOM-first; order: -1 on mobile (appears above sidebar)
+      #stocks-selected            ← chart area + controls
+        #stocks-symbol-info       ← TradingView symbol-info widget
+        #stocks-chart-controls    ← time period + compare controls
+        #stocks-chart             ← TradingView advanced-chart widget
+      #stocks-detail              ← tabbed detail panel (Overview/Fundamentals/Technical/News/Profile)
+      #stocks-universe-section    ← TradingView market-overview (lazy)
+      #stocks-heatmap-section     ← TradingView stock-heatmap (lazy)
+      #stocks-movers-section      ← TradingView hotlists (lazy)
+    #stocks-sidebar               ← DOM-second; sticky on desktop; collapsible drawer on mobile
+      #stocks-sidebar-controls    ← search input + filter tabs
+      #stocks-watchlist           ← <ul> of company rows
+      #stocks-private-section     ← private company cards
+      #stocks-sidebar-footer      ← CSV export button + keyboard shortcuts hint
+```
+
+### Watchlist Row Structure (semantic, no nested interactives)
+```html
+<ul id="stocks-watchlist">
+  <li class="stocks-wl-row [selected]" data-ticker="NASDAQ:NVDA">
+    <button class="stocks-wl-main" data-ticker="NASDAQ:NVDA" aria-current="[true|false]">
+      <span class="stocks-wl-symbol">NVDA</span>
+      <span class="stocks-wl-info">
+        <span class="stocks-wl-name">NVIDIA</span>
+        <span class="stocks-wl-cat">Compute &amp; Semiconductors</span>
+      </span>
+    </button>
+    <button class="stocks-wl-fav [is-fav]" data-ticker="NASDAQ:NVDA" aria-label="Add/Remove from favorites">★</button>
+  </li>
+</ul>
+```
+
+### Responsive Layout Breakpoints
+- **≥1180px** (desktop workstation): CSS grid `280px 1fr`; sidebar `position: sticky; top: 0; height: 100vh`
+- **768–1179px** (tablet): flex-column; sidebar shown inline as flex-row; watchlist max-height 180px
+- **≤767px** (mobile): `#stocks-main { order: -1 }` (chart above sidebar); sidebar collapses to drawer via `is-open` class
+- **≤400px** (small phone): chart height 300px; smaller time buttons
+
+### Lazy Loading (IntersectionObserver)
+`initLazyWidgets()` is called from `initStocks()`. It observes `#stocks-heatmap-section`, `#stocks-movers-section`, `#stocks-universe-section` with `rootMargin: '200px'`. On intersection, it calls the relevant render function and sets `stocksState.xLoaded = true`.
+
+### Theme Observer (debounced)
+`initStocksThemeObserver()` watches `document.documentElement` for `data-theme` / `class` attribute changes. Uses `_lastTheme` to short-circuit if theme unchanged. Debounced 150ms. Only rerenders widgets where `stocksState.xLoaded === true`.
+
+### Keyboard Shortcuts
+- `/` — focuses `#stocks-search` input
+- `F` (when not in an input) — toggles favorite for the currently selected company
+
+### Data Files
+- `data/ai_companies.json` — canonical company universe (44 public + 5 private); JS `AI_COMPANIES` array is the runtime source of truth; JSON is for documentation and external tooling
+- `data/validate_ai_companies.py` — validates JSON schema and cross-references `js/stocks.js`; run with `python3 data/validate_ai_companies.py`
+
+### Security Constraints (do not violate)
+- No passwords, keys, or secrets in frontend code or JSON files
+- No `innerHTML` with untrusted/user-supplied data — use `textContent` or `escHtml()`
+- No fabricated prices, analyst ratings, valuations, or financial metrics
+- No brokerage functionality (no buy/sell buttons, no fake alerts)
+- All market data comes from TradingView widgets with proper attribution
+- Do not introduce paid market-data APIs
+
 ## AI Handoff Summary
 
 **Current state**: Fully functional Leaflet GIS app with authentication, AI News, AI Stocks, Analytics, Home/Command Center tabs, and Zoning Intelligence layer (Phase 1 pilot — Loudoun County, VA). All dependencies vendored. County data covers 1,303 records (Round 40). Authentication gracefully degrades when Supabase is not configured.
