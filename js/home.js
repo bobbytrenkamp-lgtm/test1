@@ -1171,7 +1171,7 @@ function renderHomePage() {
       </div>
     </div>
     <div id="footer-bottom">
-      <span>Data updated daily. Not legal advice.</span>
+      <span>Policy data manually researched — not real-time. Not legal advice.</span>
       <span id="footer-year"></span>
     </div>
   </footer>

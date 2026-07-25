@@ -3140,6 +3140,9 @@ body.is-resizing-floating-panel * {
 .news-status-auto {
   display: none; /* "Automatic monitoring active" — too verbose */
 }
+.news-status-freq {
+  color: var(--text-muted, #888);
+}
 
 .news-meta-sep {
   color: var(--border);

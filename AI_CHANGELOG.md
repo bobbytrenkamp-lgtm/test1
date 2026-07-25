@@ -5,6 +5,63 @@
 Date: 2026-07-25
 AI Assistant: Claude Code (claude-sonnet-4-6)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 1 — Trust, Safety, and Data Accuracy
+
+## Summary
+Phase 1 of the platform improvement specification. Addressed misleading data claims throughout the UI, created a central metadata file as the source of truth for platform statistics, and improved map legend accuracy.
+
+## Files Modified
+- `data/platform_metadata.json` — NEW: central source of truth for coverage, freshness, and quality stats
+- `js/home.js` — Fixed misleading hero text, KPI labels, stocks nav card, freshness bar
+- `js/analytics.js` — Fixed "real-time" language; corrected TradingView delay label
+- `js/map.js` — Renamed SEVERITY/LEVEL_LABELS for accuracy; added "Not yet researched" legend entry
+- `index.html` — Fixed static skeleton hero text; bumped cache-bust versions to `v=20260725h`
+- `AI_CHANGELOG.md` — This entry
+- `AI_CONTEXT.md` — Updated platform metadata section
+- `BUG_TRACKER.md` — Logged accuracy issues as resolved
+
+## Correctness Fixes
+
+### Misleading "every US county" claim (fixed)
+- Was: "covering every US county. Updated daily." in hero and static skeleton
+- Fixed: "1,465+ researched jurisdictions. Policy data manually verified from official government sources."
+- Rationale: Only 1,465 of 3,143 US counties (46.6%) have been individually researched
+
+### "Live Intelligence Platform" badge (fixed)
+- Was: "Live Intelligence Platform" — implies real-time data throughout
+- Fixed: "Intelligence Platform" — only the news feed is automated; policy data is manually curated
+
+### Analytics hero "Real-time summary" (fixed)
+- Was: "Real-time summary of US data center and AI policy coverage, derived from the live dataset across all X tracked jurisdictions."
+- Fixed: "Policy coverage summary derived from X manually researched jurisdictions (Y% of 3,143 US counties). Policy data verified from official government sources — not real-time."
+
+### TradingView "Real-time" data label (fixed)
+- Was: Data sources table listed TradingView as "Real-time"
+- Fixed: "Delayed 15 min" — TradingView free tier provides 15-minute delayed quotes
+
+### Stocks nav card "50+ companies" (fixed)
+- Was: "Live market data for 50+ publicly traded AI companies"
+- Fixed: "44 publicly traded AI companies — market data via TradingView (delayed 15 min)"
+- Rationale: ai_companies.json has exactly 44 public companies
+
+### Map legend missing "Not yet researched" entry (fixed)
+- Was: The dark `noData` background color had no legend entry — users had no way to know what it meant
+- Fixed: Added explicit "Not yet researched — 1,678 counties — no data collected" legend entry
+
+### SEVERITY label inconsistencies (fixed)
+- "High Restrictions" → "Significant Restrictions" (more precise)
+- "Pro / Incentive Hub" → "Pro-Development Hub" (cleaner)
+- "No Restrictions" → "No Known Restrictions" (more accurate — researched but nothing found)
+- Updated LEVEL_LABELS to match SEVERITY terminology
+
+## New Files
+- `data/platform_metadata.json` — Platform-wide statistics: coverage (1,465 counties, 46.6%), freshness dates, data quality (711 broken URLs / 1,690 checked), disclaimers. Intended to be loaded by home.js, analytics.js, and map.js. Update via `process_data.py` or manually.
+
+---
+
+Date: 2026-07-25
+AI Assistant: Claude Code (claude-sonnet-4-6)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: AI Stocks Page — Full Product-Quality Redesign
 
 ## Summary

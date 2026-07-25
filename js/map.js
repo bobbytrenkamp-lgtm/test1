@@ -7808,7 +7808,7 @@ function renderNewsStatusBar(newsData) {
 
   const dot = document.createElement("span");
   dot.className = "news-status-dot";
-  dot.setAttribute("aria-label", "Live");
+  dot.setAttribute("aria-label", "Auto-updated hourly");
 
   const countEl = document.createElement("span");
   countEl.id = "news-status-count";
@@ -7819,13 +7819,17 @@ function renderNewsStatusBar(newsData) {
   row.append(dot, countEl);
   if (srcCount) {
     const srcEl = document.createElement("span");
-    srcEl.textContent = `${srcCount} sources monitored`;
+    srcEl.textContent = `${srcCount} sources`;
     row.append(mkSep(), srcEl);
   }
   const updEl = document.createElement("span");
-  updEl.textContent = `Last refreshed ${fmt}`;
+  updEl.textContent = `Refreshed ${fmt}`;
   row.append(mkSep(), updEl);
-  /* "Automatic monitoring active" omitted — shown via status-dot instead */
+
+  const freqEl = document.createElement("span");
+  freqEl.className = "news-status-freq";
+  freqEl.textContent = "Auto-updated hourly";
+  row.append(mkSep(), freqEl);
 
   bar.appendChild(row);
   bar.hidden = false;
