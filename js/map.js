@@ -4795,6 +4795,7 @@ function initLegendControls() {
     if (!lgDragging) return;
     lgDragging = false;
     document.body.classList.remove("is-dragging-floating-panel");
+    try { localStorage.setItem("lg-pos", JSON.stringify(lgSavedPos)); } catch (_) {}
   };
   legend.addEventListener("pointerup",     endLgDrag);
   legend.addEventListener("pointercancel", endLgDrag);
@@ -7986,8 +7987,10 @@ async function init() {
   try {
     const sp = localStorage.getItem("fp-pos");
     const ss = localStorage.getItem("fp-size");
+    const lp = localStorage.getItem("lg-pos");
     if (sp) fpSavedPos  = JSON.parse(sp);
     if (ss) fpSavedSize = JSON.parse(ss);
+    if (lp) lgSavedPos  = JSON.parse(lp);
   } catch (_) {}
   initThemeToggle();
   initNavTabs();

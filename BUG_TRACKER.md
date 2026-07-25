@@ -1,15 +1,6 @@
 # Active Bugs
 
----
-
-Bug: Filter panel and legend panel positions not persisted to localStorage across sessions
-Priority: Low
-Affected Files: `js/map.js` (initFilterPanelControls, initLeafletMap)
-Root Cause: `fpSavedPos` and `lgSavedPos` are computed during drag and stored in module-level variables, but they are never written to localStorage and are never read back on init. The panel always opens at its CSS default position on page load.
-Fix Needed: On dragend, serialize `fpSavedPos` / `lgSavedPos` to a localStorage key (e.g. `dc-panel-positions-v1`). On init, read that key and apply the saved positions if they exist and are within the viewport.
-Discovered By: Claude Code (claude-sonnet-4-6) during ARCGIS_FEATURE_GAP_AUDIT pass
-Date Discovered: 2026-07-18
-Status: Active — not yet fixed
+No active bugs.
 
 ---
 
@@ -192,14 +183,14 @@ Status: Fixed
 
 ---
 
-Bug: Filter panel and legend panel positions not persisted to localStorage across sessions
+Bug: Legend panel position not persisted to localStorage across sessions
 Priority: Low
-Affected Files: `js/map.js` (initFilterPanelControls, initLeafletMap)
-Root Cause: `fpSavedPos` and `lgSavedPos` are computed during drag and stored in module-level variables, but they are never written to localStorage and are never read back on init. The panel always opens at its CSS default position on page load.
-Fix Needed: On dragend, serialize `fpSavedPos` / `lgSavedPos` to a localStorage key (e.g. `dc-panel-positions-v1`). On init, read that key and apply the saved positions if they exist and are within the viewport.
-Discovered By: Claude Code (claude-sonnet-4-6) during ARCGIS_FEATURE_GAP_AUDIT pass
-Date Discovered: 2026-07-18
-Status: Active — not yet fixed
+Affected Files: `js/map.js` (endLgDrag, initLeafletMap)
+Root Cause: `lgSavedPos` was updated on drag but never written to localStorage. Filter panel (`fp-pos`) was already persisted correctly, but legend was missed.
+Fix: Added `localStorage.setItem("lg-pos", ...)` in `endLgDrag`; added `lg-pos` read in the init block.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
 
 ---
 
