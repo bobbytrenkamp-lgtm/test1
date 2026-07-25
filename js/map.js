@@ -266,6 +266,17 @@ function _saveNote(fips, text) {
   } catch (_) {}
 }
 
+/* ── Recently-viewed county tracking (stored locally, never uploaded) ── */
+const COUNTY_VISIT_KEY = "dc-recent-counties-v1";
+function _trackRecentCounty(fips) {
+  if (!fips) return;
+  try {
+    let list = JSON.parse(localStorage.getItem(COUNTY_VISIT_KEY) || "[]");
+    list = [fips, ...list.filter(f => f !== fips)].slice(0, 20);
+    localStorage.setItem(COUNTY_VISIT_KEY, JSON.stringify(list));
+  } catch (_) {}
+}
+
 function _renderNotesSection(fips) {
   const container = document.getElementById("detail-notes-section");
   if (!container || !fips) return;
@@ -6169,6 +6180,7 @@ function selectCounty(fips) {
     countyGeoLayer.resetStyle(countyLayerByFips[selectedFips]);
   }
   selectedFips = fips;
+  _trackRecentCounty(fips);
   setLocationHash(fips);
   const layer  = countyLayerByFips[fips];
   if (layer) {

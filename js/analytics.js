@@ -164,6 +164,26 @@ function renderAnalyticsPage() {
       return (b.level || 0) - (a.level || 0);
     });
 
+  // Opportunity gap analysis
+  const oppGemList = [];
+  const oppOpenList = [];
+  if (typeof computeSuitabilityScore === "function") {
+    for (const fips in counties) {
+      const c = counties[fips];
+      const suit = computeSuitabilityScore(fips, c);
+      if (!suit) continue;
+      const lvl = c.level ?? 0;
+      if (suit.grade === "A" || suit.grade === "B") {
+        if (lvl >= 2) oppGemList.push({ fips, name: c.name, state: c.state, level: lvl, score: suit.score, grade: suit.grade });
+      }
+      if (suit.grade === "A" && lvl <= 0) {
+        oppOpenList.push({ fips, name: c.name, state: c.state, level: lvl, score: suit.score, grade: suit.grade });
+      }
+    }
+    oppGemList.sort((a, b) => b.score - a.score);
+    oppOpenList.sort((a, b) => b.score - a.score);
+  }
+
   /* ── Render ── */
   el.innerHTML = `
     <div class="page-hero">
@@ -333,6 +353,84 @@ function renderAnalyticsPage() {
             }).join("")}
           </tbody>
         </table>
+      </div>
+    </div>` : ""}
+
+    ${(oppGemList.length || oppOpenList.length) ? `
+    <div class="page-section">
+      <div class="page-section-title">Opportunity Gap Analysis</div>
+      <p class="pmon-desc">Counties where market conditions diverge sharply from policy reality — revealing underserved locations worth watching.</p>
+      <div class="opp-gap-grid">
+
+        ${oppGemList.length ? `
+        <div class="opp-gap-card">
+          <div class="opp-gap-card-hdr">
+            <span class="opp-gap-icon opp-gem-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
+            <div>
+              <div class="opp-gap-card-title">Restricted Gems</div>
+              <div class="opp-gap-card-sub">A/B-grade counties with active restrictions — high potential, policy headwinds</div>
+            </div>
+            <span class="opp-gap-count">${oppGemList.length}</span>
+          </div>
+          <div class="opp-gap-table-wrap">
+            <table class="opp-gap-table">
+              <thead><tr>
+                <th>County</th><th>State</th><th>Grade</th><th>Score</th><th>Restriction</th>
+              </tr></thead>
+              <tbody>
+                ${oppGemList.slice(0, 12).map(c => {
+                  const GRADE_COLOR = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
+                  const lvlLbl = c.level >= 4 ? "Ban" : c.level === 3 ? "High" : c.level === 2 ? "Moderate" : "Light";
+                  const lvlColor = c.level >= 4 ? "#ef4444" : c.level === 3 ? "#dc2626" : c.level === 2 ? "#f97316" : "#eab308";
+                  return `<tr class="opp-gap-row" data-fips="${escHtml(c.fips)}" tabindex="0" role="button" aria-label="${escHtml(c.name)}, ${escHtml(c.state)}">
+                    <td class="opp-gap-name">${escHtml(c.name || c.fips)}</td>
+                    <td class="opp-gap-state">${escHtml(c.state || "")}</td>
+                    <td class="opp-gap-grade" style="color:${GRADE_COLOR[c.grade] || "var(--accent)"}">${escHtml(c.grade)}</td>
+                    <td class="opp-gap-score">${c.score}</td>
+                    <td class="opp-gap-lvl" style="color:${lvlColor}">${escHtml(lvlLbl)}</td>
+                  </tr>`;
+                }).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>` : ""}
+
+        ${oppOpenList.length ? `
+        <div class="opp-gap-card">
+          <div class="opp-gap-card-hdr">
+            <span class="opp-gap-icon opp-open-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </span>
+            <div>
+              <div class="opp-gap-card-title">Policy-Free Opportunities</div>
+              <div class="opp-gap-card-sub">A-grade counties with no restrictions — best open markets right now</div>
+            </div>
+            <span class="opp-gap-count opp-open-count">${oppOpenList.length}</span>
+          </div>
+          <div class="opp-gap-table-wrap">
+            <table class="opp-gap-table">
+              <thead><tr>
+                <th>County</th><th>State</th><th>Grade</th><th>Score</th><th>Status</th>
+              </tr></thead>
+              <tbody>
+                ${oppOpenList.slice(0, 12).map(c => {
+                  const lvlLbl = c.level === -1 ? "Pro-Dev" : "Open";
+                  const lvlColor = c.level === -1 ? "#22c55e" : "var(--text-muted)";
+                  return `<tr class="opp-gap-row" data-fips="${escHtml(c.fips)}" tabindex="0" role="button" aria-label="${escHtml(c.name)}, ${escHtml(c.state)}">
+                    <td class="opp-gap-name">${escHtml(c.name || c.fips)}</td>
+                    <td class="opp-gap-state">${escHtml(c.state || "")}</td>
+                    <td class="opp-gap-grade" style="color:#22c55e">${escHtml(c.grade)}</td>
+                    <td class="opp-gap-score">${c.score}</td>
+                    <td class="opp-gap-lvl" style="color:${lvlColor}">${escHtml(lvlLbl)}</td>
+                  </tr>`;
+                }).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>` : ""}
+
       </div>
     </div>` : ""}
 
@@ -555,6 +653,20 @@ function renderAnalyticsPage() {
       if (typeof toggleWatchCounty === "function") toggleWatchCounty(fips);
       updateBtn();
     });
+  });
+
+  // Opportunity gap rows → map navigation
+  el.querySelectorAll(".opp-gap-row[data-fips]").forEach(row => {
+    const nav = () => {
+      const fips = row.dataset.fips;
+      if (!fips) return;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    row.addEventListener("click",   nav);
+    row.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nav(); } });
   });
 }
 

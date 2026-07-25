@@ -306,6 +306,18 @@ function buildRecentlyReviewed() {
     .map(([fips, c]) => ({ fips, ...c }));
 }
 
+/* ── Recently visited counties (set by map.js selectCounty) ── */
+function buildRecentlyVisited() {
+  if (!mapData) return [];
+  let fipsArr;
+  try { fipsArr = JSON.parse(localStorage.getItem("dc-recent-counties-v1") || "[]"); }
+  catch (_) { fipsArr = []; }
+  return fipsArr.slice(0, 8).map(fips => {
+    const c = mapData[fips];
+    return { fips, name: c ? c.name : fips, state: c ? c.state : "", level: c ? (c.level ?? 0) : 0 };
+  });
+}
+
 /* ── County watchlist (reads from localStorage written by map.js) ── */
 function buildWatchlist() {
   if (!mapData) return [];
@@ -584,6 +596,7 @@ function renderHomePage() {
   const recentActivity = buildRecentActivity();
   const topSites           = buildTopSites();
   const watchlist          = buildWatchlist();
+  const recentlyVisited    = buildRecentlyVisited();
   const recentlyReviewed   = buildRecentlyReviewed();
   const policyChanges      = _detectPolicyChanges();
   if (!policyChanges.length) _savePolicySnapshot();  // keep baseline current when no changes
@@ -809,6 +822,31 @@ function renderHomePage() {
           <div class="home-activity-state">${escHtml(c.state)}</div>
           <div class="home-activity-badge"><span class="sev-badge ${escHtml(sevCls)}">${escHtml(sevLbl)}</span></div>
           ${types ? `<div class="home-activity-types">${types}</div>` : ""}
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
+  <!-- Recently Visited Counties (user's own browsing history) -->
+  ${recentlyVisited.length ? `
+  <section class="home-section" id="home-recently-visited">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Recently Visited</h2>
+      <button class="home-col-link home-rv-clear" type="button">Clear history</button>
+    </div>
+    <div class="home-reviewed-grid">
+      ${recentlyVisited.map(c => {
+        const lvl    = c.level ?? 0;
+        const sevCls = SEV_CLASSES[lvl] || SEV_CLASSES[0];
+        const sevLbl = SEV_LABELS[lvl]  ?? SEV_LABELS[0];
+        return `<div class="home-reviewed-card" role="button" tabindex="0" data-fips="${escHtml(c.fips)}" aria-label="${escHtml(c.name)}, ${escHtml(c.state)}">
+          <div class="home-reviewed-top">
+            <span class="home-reviewed-name">${escHtml(c.name)}</span>
+            <span class="sev-badge ${escHtml(sevCls)}">${escHtml(sevLbl)}</span>
+          </div>
+          <div class="home-reviewed-meta">
+            <span class="home-reviewed-state">${escHtml(c.state)}</span>
+          </div>
         </div>`;
       }).join("")}
     </div>
@@ -1150,6 +1188,24 @@ function renderHomePage() {
       sec.style.opacity = "0";
       setTimeout(() => sec.remove(), 220);
     }
+  });
+
+  /* Recently visited — card clicks → county, clear button */
+  view.querySelectorAll("#home-recently-visited .home-reviewed-card[data-fips]").forEach(card => {
+    const nav = () => {
+      const fips = card.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    card.addEventListener("click",   nav);
+    card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nav(); } });
+  });
+  view.querySelector(".home-rv-clear")?.addEventListener("click", () => {
+    try { localStorage.removeItem("dc-recent-counties-v1"); } catch (_) {}
+    const sec = view.querySelector("#home-recently-visited");
+    if (sec) { sec.style.transition = "opacity 0.2s"; sec.style.opacity = "0"; setTimeout(() => sec.remove(), 220); }
   });
 
   /* State chip clicks → map + state detail */
