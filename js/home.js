@@ -14,7 +14,8 @@ const HOME_ICONS = {
   mail: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
 };
 
-const SEV_LABELS = { 4: "Ban / Moratorium", 3: "Significant", 2: "Moderate", 1: "Light", 0: "No Restrictions", "-1": "Pro-Development" };
+/* Compact level labels — defined in js/constants.js (see docs/TERMINOLOGY.md). */
+const SEV_LABELS = window.LEVEL_SHORT;
 const SEV_CLASSES = { 4: "badge-ban", 3: "badge-high", 2: "badge-moderate", 1: "badge-proposed", 0: "badge-none", "-1": "badge-pro" };
 
 /* Featured jurisdictions drawn from ANNOTATIONS (Hood River, Loudoun, Chelan, Umatilla, Berkeley, Cedar Rapids) */
@@ -464,7 +465,7 @@ function _exportWatchlistCSV() {
   const wsData   = window.DC_WATER_STRESS_FULL || {};
   const incData  = window.DC_INCENTIVES_FIPS   || {};
   const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
-  const LVL_LABELS = {"-1":"Pro / Incentive Hub","0":"No Restrictions","1":"Light Regulations","2":"Moderate Restrictions","3":"Significant Restrictions","4":"Ban / Moratorium"};
+  const LVL_LABELS = window.LEVEL_LABELS;
   const TYPE_MAP  = { data_center:"Data Center", ai:"AI Regulation", energy:"Energy / Grid", crypto:"Crypto / HPC", water:"Water Use" };
 
   const csvCell = v => {

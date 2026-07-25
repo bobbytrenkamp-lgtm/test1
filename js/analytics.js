@@ -42,7 +42,7 @@ function exportCountiesCSV() {
   const wsData   = window.DC_WATER_STRESS_FULL || {};
   const incData  = window.DC_INCENTIVES_FIPS   || {};
   const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
-  const LVL_LABELS = {"-1":"Pro / Incentive Hub","0":"No Restrictions","1":"Light Regulations","2":"Moderate Restrictions","3":"Significant Restrictions","4":"Ban / Moratorium"};
+  const LVL_LABELS = window.LEVEL_LABELS;
   const TYPE_MAP = { data_center:"Data Center", ai:"AI Regulation", energy:"Energy / Grid", crypto:"Crypto / HPC", water:"Water Use" };
 
   const csvCell = v => {
@@ -143,7 +143,7 @@ function renderAnalyticsPage() {
   const typeRows = Object.entries(typeCounts).map(([k,v]) => ({ key: k, label: typeLabels[k]||k, count: v })).sort((a,b)=>b.count-a.count);
 
   // Level distribution
-  const levelLabels = { '-1':'Pro / Incentive Hub', 1:'Light Regulations', 2:'Moderate Restrictions', 3:'Significant Restrictions', 4:'Ban / Moratorium' };
+  const levelLabels = window.LEVEL_LABELS;
   const levelColors = { '-1':'#4ade80', 1:'#86efac', 2:'#f97316', 3:'#dc2626', 4:'#7f1d1d' };
 
   // News category top 8
@@ -235,7 +235,7 @@ function renderAnalyticsPage() {
         </div>
         <div class="analytics-kpi-card">
           <div class="analytics-kpi-card-icon" style="background:rgba(245,158,11,0.12);color:#f59e0b">${analyticsIcon('county')}</div>
-          <div class="analytics-kpi-label">Counties Tracked</div>
+          <div class="analytics-kpi-label">Counties Researched</div>
           <div class="analytics-kpi-value">${totalCounties}</div>
           <div class="analytics-kpi-meta">with known policy data</div>
         </div>
@@ -867,7 +867,7 @@ function _showStateModal(stateName) {
   const incData  = window.DC_INCENTIVES_FIPS   || {};
   const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
 
-  const LVL_LABELS = {"-1":"Pro / Incentive","0":"No Restrictions","1":"Light","2":"Moderate","3":"Significant","4":"Ban / Moratorium"};
+  const LVL_LABELS = window.LEVEL_SHORT;
   const LVL_COLORS = {"-1":"#22c55e","0":"#6b7280","1":"#86efac","2":"#f97316","3":"#dc2626","4":"#7f1d1d"};
 
   const rows = [];
@@ -1944,8 +1944,11 @@ function renderAboutPage() {
       </div>
     </div>
 
-    <div class="page-section">
+    <div class="page-section" id="methodology-section">
       <div class="page-section-title">Methodology</div>
+      <!-- Live coverage + data-quality figures, populated from
+           data/platform_metadata.json by renderDataQualityPanel(). -->
+      <div id="about-data-quality"></div>
       <div class="about-two-col">
         <div class="about-card">
           <div class="about-card-title">
@@ -1965,7 +1968,7 @@ function renderAboutPage() {
             <li><strong>County policy data:</strong> Manually updated as laws change</li>
             <li><strong>State regulations:</strong> Reviewed quarterly and on major changes</li>
             <li><strong>Infrastructure data:</strong> Updated quarterly from public filings</li>
-            <li><strong>AI Stock data:</strong> Real-time delayed quotes via TradingView</li>
+            <li><strong>AI Stock data:</strong> Quotes via TradingView, delayed 15 minutes</li>
           </ul>
         </div>
       </div>
@@ -2020,7 +2023,7 @@ function renderAboutPage() {
             <div class="roadmap-dot done"></div>
             <div class="roadmap-content">
               <div class="roadmap-title">AI Stocks Dashboard</div>
-              <div class="roadmap-desc">50+ publicly traded AI companies with TradingView charts, watchlist, and market heatmap.</div>
+              <div class="roadmap-desc">44 publicly traded AI companies with TradingView charts (delayed 15 min), watchlist, and market heatmap.</div>
             </div>
             <span class="roadmap-badge done">Live</span>
           </div>
@@ -2149,6 +2152,76 @@ function renderAboutPage() {
   `;
 
   renderPageFooter('about-footer-target');
+  renderDataQualityPanel();
+}
+
+/* ── Data quality & coverage panel (Phase 5 — commercial readiness) ─────────
+   Renders the real coverage and quality figures from platform_metadata.json
+   rather than prose claims, plus the canonical disclaimer list. Everything
+   here is read from the metadata file so it can never drift from the data. */
+function renderDataQualityPanel() {
+  const host = document.getElementById('about-data-quality');
+  if (!host) return;
+
+  const paint = () => {
+    const stat = window.platformStat;
+    if (typeof stat !== 'function' || !window.PLATFORM_META) {
+      host.innerHTML = `<div class="about-card" style="margin-bottom:18px">
+        <p style="font-size:12.5px;color:var(--text-muted);margin:0">
+          Coverage statistics are currently unavailable.</p></div>`;
+      return;
+    }
+
+    const inDb    = stat('coverage.counties_in_database', 0);
+    const total   = stat('coverage.total_us_counties', 3143);
+    const unres   = stat('coverage.counties_not_yet_researched', 0);
+    const pct     = typeof window.coveragePct === 'function' ? window.coveragePct() : 0;
+    const broken  = stat('data_quality.broken_source_urls', 0);
+    const checked = stat('data_quality.total_source_urls_checked', 0);
+    const through = stat('freshness.policy_data_through', null);
+    const brokenPct = checked ? Math.round(broken / checked * 100) : 0;
+    const disclaimers = Array.isArray(window.PLATFORM_META.disclaimers)
+      ? window.PLATFORM_META.disclaimers : [];
+
+    const cell = (n, label, note) => `
+      <div class="dq-cell">
+        <div class="dq-n">${escHtml(String(n))}</div>
+        <div class="dq-l">${escHtml(label)}</div>
+        ${note ? `<div class="dq-note">${escHtml(note)}</div>` : ''}
+      </div>`;
+
+    host.innerHTML = `
+      <div class="about-card dq-card">
+        <div class="about-card-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Coverage &amp; Data Quality
+        </div>
+        <p class="dq-lead">
+          These are the platform's actual measured figures, published so you can judge
+          how far to trust any given answer. They are read directly from
+          <code>data/platform_metadata.json</code>.
+        </p>
+        <div class="dq-grid">
+          ${cell(inDb.toLocaleString(), 'Counties researched', `of ${total.toLocaleString()} US counties`)}
+          ${cell(pct + '%', 'Coverage', 'share of US counties reviewed')}
+          ${cell(unres.toLocaleString(), 'Not yet researched', 'no data collected — not "no restrictions"')}
+          ${cell(brokenPct + '%', 'Broken source links', `${broken.toLocaleString()} of ${checked.toLocaleString()} checked`)}
+        </div>
+        ${through ? `<p class="dq-through">Policy data current through
+          <strong>${escHtml(String(through).slice(0, 10))}</strong> &middot;
+          manually researched, not automatically updated.</p>` : ''}
+        ${disclaimers.length ? `
+          <div class="dq-disc">
+            <div class="dq-disc-h">Limitations you should read before relying on this data</div>
+            <ul>${disclaimers.map(d => `<li>${escHtml(d)}</li>`).join('')}</ul>
+          </div>` : ''}
+      </div>`;
+  };
+
+  // Metadata may still be in flight on first paint.
+  if (window.PLATFORM_META) paint();
+  else if (typeof window.loadPlatformMeta === 'function') window.loadPlatformMeta().then(paint);
+  else paint();
 }
 
 /* ─────────────────────────────────────────────────────────────── */
@@ -2460,7 +2533,7 @@ async function _renderStateScorecard() {
 
   const LEVEL_META = {
     "-1": { label: "Pro-Business",    color: "#22c55e", cls: "sr-lv--1" },
-    "0":  { label: "No Restrictions", color: "#6b7280", cls: "sr-lv-0"  },
+    "0":  { label: "No Known Restrictions", color: "#6b7280", cls: "sr-lv-0"  },
     "1":  { label: "Light",           color: "#86efac", cls: "sr-lv-1"  },
     "2":  { label: "Moderate",        color: "#f97316", cls: "sr-lv-2"  },
     "3":  { label: "Significant",     color: "#dc2626", cls: "sr-lv-3"  },
@@ -3035,7 +3108,7 @@ function _renderInvestmentHotspots() {
     const incCount = (incData[h.fips] || []).length;
     const wsLabel  = WS_LABELS[h.wsLevel] || "Unknown";
     const wsColor  = WS_COLORS[h.wsLevel] || "#888";
-    const sevLabel = h.county.level === -1 ? "Pro-DC Hub" : "No Restrictions";
+    const sevLabel = window.LEVEL_SHORT[String(h.county.level)] || window.LEVEL_SHORT["0"];
     const sevColor = h.county.level === -1 ? "#16a34a" : "#22c55e";
     return `
       <div class="hs-card" data-fips="${escHtml(h.fips)}">

@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="css/results-panel.css?v=20260718a" />
   <link rel="stylesheet" href="css/parcel.css?v=20260721h" />
   <link rel="stylesheet" href="css/pipeline.css?v=20260725h" />
+  <link rel="stylesheet" href="css/jurisdiction.css?v=20260726a" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -86,7 +87,17 @@
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
         <span>About</span>
       </button>
+      <!-- Mobile-only overflow trigger; populated from the secondary tabs above by initMobileNav() -->
+      <button class="header-tab header-tab-more" id="header-tab-more" type="button"
+              aria-expanded="false" aria-controls="mobile-nav-sheet" aria-haspopup="true" hidden>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+        <span>More</span>
+      </button>
     </nav>
+
+    <!-- Mobile navigation overflow sheet -->
+    <div id="mobile-nav-backdrop" hidden></div>
+    <div id="mobile-nav-sheet" role="dialog" aria-modal="true" aria-label="More navigation" hidden></div>
     <div id="header-right">
       <button id="kb-help-btn" aria-label="Keyboard shortcuts" title="Keyboard shortcuts (?)" class="header-icon-btn">?</button>
       <button id="auth-btn" aria-label="Sign in" title="Sign in" class="header-icon-btn auth-signin-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span class="auth-btn-label">Sign In</span></button>
@@ -540,6 +551,9 @@
   <div id="stocks-view" hidden role="tabpanel" aria-labelledby="tab-stocks"></div>
   <div id="analytics-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-analytics"></div>
   <div id="pipeline-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-pipeline"></div>
+
+  <!-- Jurisdiction Intelligence Page — virtual route #jurisdiction?fips=XXXXX (no header tab) -->
+  <div id="jurisdiction-view" class="page-view" hidden role="region" aria-label="Jurisdiction detail"></div>
   <div id="about-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-about"></div>
 
   <div id="news-view" hidden role="tabpanel" aria-labelledby="tab-news">
@@ -899,6 +913,9 @@ window.addEventListener('error', function(e) {
 </script>
 <script src="vendor/leaflet.js" defer onload="window._track.ok.push('leaflet')" onerror="window._track.fail.push('leaflet')"></script>
 <script src="vendor/topojson-client.min.js" defer onload="window._track.ok.push('topo')" onerror="window._track.fail.push('topo')"></script>
+<!-- constants.js MUST load first — defines SEVERITY/LEVEL label maps the other modules read at top level -->
+<script src="js/constants.js?v=20260726a" defer onload="window._track.ok.push('constants')" onerror="window._track.fail.push('constants')"></script>
+<script src="js/router.js?v=20260726a" defer onload="window._track.ok.push('router')" onerror="window._track.fail.push('router')"></script>
 <script src="js/stocks.js?v=20260725g" defer onload="window._track.ok.push('stocks')" onerror="window._track.fail.push('stocks')"></script>
 <script src="js/analytics.js?v=20260725h" defer onload="window._track.ok.push('analytics')" onerror="window._track.fail.push('analytics')"></script>
 <script src="js/home.js?v=20260725h" defer onload="window._track.ok.push('home')" onerror="window._track.fail.push('home')"></script>
@@ -930,6 +947,7 @@ window.addEventListener('error', function(e) {
 <script src="js/results-panel.js?v=20260718a" defer onload="window._track.ok.push('results-panel')" onerror="window._track.fail.push('results-panel')"></script>
 <script src="js/command-palette.js?v=20260720a" defer onload="window._track.ok.push('command-palette')" onerror="window._track.fail.push('command-palette')"></script>
 <script src="js/pipeline.js?v=20260725h" defer onload="window._track.ok.push('pipeline')" onerror="window._track.fail.push('pipeline')"></script>
+<script src="js/jurisdiction.js?v=20260726a" defer onload="window._track.ok.push('jurisdiction')" onerror="window._track.fail.push('jurisdiction')"></script>
 <script src="js/report.js?v=20260721a" defer onload="window._track.ok.push('report')" onerror="window._track.fail.push('report')"></script>
 <script>
 setTimeout(function() {
