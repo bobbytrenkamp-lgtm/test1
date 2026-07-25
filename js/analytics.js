@@ -37,6 +37,64 @@ function analyticsIcon(name) {
 /* Analytics Page                                                    */
 /* ─────────────────────────────────────────────────────────────── */
 
+function exportCountiesCSV() {
+  const counties = mapData || {};
+  const wsData   = window.DC_WATER_STRESS_FULL || {};
+  const incData  = window.DC_INCENTIVES_FIPS   || {};
+  const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
+  const LVL_LABELS = {"-1":"Pro / Incentive Hub","0":"No Restrictions","1":"Light Regulations","2":"Moderate Restrictions","3":"Significant Restrictions","4":"Ban / Moratorium"};
+  const TYPE_MAP = { data_center:"Data Center", ai:"AI Regulation", energy:"Energy / Grid", crypto:"Crypto / HPC", water:"Water Use" };
+
+  const csvCell = v => {
+    const s = String(v ?? "");
+    if (s.includes(",") || s.includes('"') || s.includes("\n")) return '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  };
+
+  const header = ["FIPS","County","State","Restriction Level","Level Label","Status","Effective Date","Policy Types","Suitability Score","Suitability Grade","Water Stress","Water Stress Label","Incentive Programs","Description"];
+
+  const rows = Object.keys(counties).sort().map(fips => {
+    const c    = counties[fips];
+    const lvl  = c.level ?? 0;
+    const ws   = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : "";
+    const wsLabel = ws !== "" ? (WS_LABELS[ws] || String(ws)) : "";
+    const incProgs = (incData[fips] || []).map(p => p.program_name || p.name || "").filter(Boolean).join("; ");
+    const types    = (c.types || []).map(t => TYPE_MAP[t] || t).join("; ");
+    let suit = { score: "", grade: "" };
+    if (typeof computeSuitabilityScore === "function") {
+      try { suit = computeSuitabilityScore(fips, c); } catch (_) {}
+    }
+    return [
+      fips,
+      c.name || "",
+      c.state || "",
+      lvl,
+      LVL_LABELS[String(lvl)] || String(lvl),
+      c.status || "active",
+      c.effective_date || c.date || "",
+      types,
+      suit.score,
+      suit.grade,
+      ws,
+      wsLabel,
+      incProgs,
+      (c.description || "").replace(/\s+/g, " ").trim(),
+    ].map(csvCell).join(",");
+  });
+
+  const csv  = [header.join(","), ...rows].join("\r\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), {
+    href: url,
+    download: `dc-ai-policy-tracker-${new Date().toISOString().slice(0,10)}.csv`,
+  });
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+}
+
 function renderAnalyticsPage() {
   const el = document.getElementById('analytics-view');
   if (!el) return;
@@ -91,11 +149,79 @@ function renderAnalyticsPage() {
   // News category top 8
   const newsCatRows = Object.entries(newsCats).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([k,v])=>({ label:k, count:v }));
 
+  // Proposed restrictions (pending legislation)
+  const proposedCounties = Object.entries(counties)
+    .filter(([, c]) => {
+      const s = c.status || "active";
+      return s === "proposed" || s === "pending" || (c.lifecycle_stage === "proposed");
+    })
+    .map(([fips, c]) => ({ fips, ...c }))
+    .sort((a, b) => {
+      // Sort by effective_date ascending (soonest first), then by level desc
+      const da = a.effective_date || a.date || "9999";
+      const db = b.effective_date || b.date || "9999";
+      if (da !== db) return da.localeCompare(db);
+      return (b.level || 0) - (a.level || 0);
+    });
+
+  // Opportunity gap analysis
+  const oppGemList = [];
+  const oppOpenList = [];
+  if (typeof computeSuitabilityScore === "function") {
+    for (const fips in counties) {
+      const c = counties[fips];
+      const suit = computeSuitabilityScore(fips, c);
+      if (!suit) continue;
+      const lvl = c.level ?? 0;
+      if (suit.grade === "A" || suit.grade === "B") {
+        if (lvl >= 2) oppGemList.push({ fips, name: c.name, state: c.state, level: lvl, score: suit.score, grade: suit.grade });
+      }
+      if (suit.grade === "A" && lvl <= 0) {
+        oppOpenList.push({ fips, name: c.name, state: c.state, level: lvl, score: suit.score, grade: suit.grade });
+      }
+    }
+    oppGemList.sort((a, b) => b.score - a.score);
+    oppOpenList.sort((a, b) => b.score - a.score);
+  }
+
+  // State Risk Ranking — aggregate per-state metrics
+  const stateRisk = {};
+  const stateNames = typeof STATE_NAMES !== "undefined" ? STATE_NAMES : {};
+  const stFipMap   = typeof STATE_FIPS   !== "undefined" ? STATE_FIPS   : {};
+  for (const fips in counties) {
+    const c   = counties[fips];
+    const st  = c.state || "Unknown";
+    if (!stateRisk[st]) stateRisk[st] = { state: st, bans: 0, high: 0, moderate: 0, proposed: 0, proDev: 0, total: 0, suitSum: 0, suitN: 0 };
+    const r = stateRisk[st];
+    r.total++;
+    const lvl = c.level ?? 0;
+    if (lvl === 4) r.bans++;
+    else if (lvl === 3) r.high++;
+    else if (lvl === 2) r.moderate++;
+    else if (lvl === 1) r.proposed++;
+    else if (lvl === -1) r.proDev++;
+    if (typeof computeSuitabilityScore === "function") {
+      const suit = computeSuitabilityScore(fips, c);
+      if (suit) { r.suitSum += suit.score; r.suitN++; }
+    }
+  }
+  const stateRankRows = Object.values(stateRisk)
+    .map(r => ({
+      ...r,
+      restricted: r.bans + r.high + r.moderate,
+      avgSuit: r.suitN ? Math.round(r.suitSum / r.suitN) : null,
+    }))
+    .sort((a, b) => b.restricted - a.restricted || b.bans - a.bans);
+
   /* ── Render ── */
   el.innerHTML = `
     <div class="page-hero">
       <div class="page-hero-title">Policy <span>Analytics</span></div>
       <div class="page-hero-sub">Real-time summary of US data center and AI policy coverage, derived from the live dataset across all ${totalCounties} tracked jurisdictions.</div>
+      <button class="analytics-export-btn" id="analytics-export-csv" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export All Counties CSV
+      </button>
     </div>
 
     <div class="page-section">
@@ -176,11 +302,11 @@ function renderAnalyticsPage() {
             <span class="status-badge danger">${statesWithRestrict.size} states</span>
           </div>
           <div class="analytics-card-body">
-            <div class="ranked-list">
+            <div class="ranked-list" id="analytics-top-states-list">
               ${topStates.map(([st,n],i) => `
-              <div class="ranked-item">
+              <div class="ranked-item ranked-item-clickable" data-state="${escHtml(st)}" role="button" tabindex="0" title="View ${escHtml(st)} counties">
                 <div class="rank-num">${i+1}</div>
-                <div class="rank-name">${escHtml(st)}</div>
+                <div class="rank-name rank-name-link">${escHtml(st)}</div>
                 <div class="rank-bar-wrap">
                   <div class="bar-track" style="flex:1"><div class="bar-fill" style="width:${Math.round(n/topStates[0][1]*100)}%;background:#dc2626;--bar-delay:${i*40}ms"></div></div>
                 </div>
@@ -214,6 +340,223 @@ function renderAnalyticsPage() {
       </div>
     </div>
 
+    ${proposedCounties.length ? `
+    <div class="page-section">
+      <div class="page-section-title">Proposed Restrictions Monitor
+        <span class="pmon-badge">${proposedCounties.length}</span>
+      </div>
+      <p class="pmon-desc">Counties with pending or proposed legislation — these restrictions are not yet enacted but may become active. Click any row to open the county on the map.</p>
+      <div class="pmon-table-wrap">
+        <table class="pmon-table" role="grid">
+          <thead>
+            <tr>
+              <th class="pmon-th">County</th>
+              <th class="pmon-th">State</th>
+              <th class="pmon-th">Type</th>
+              <th class="pmon-th">Proposed Level</th>
+              <th class="pmon-th pmon-th-date">Proposed Date</th>
+              <th class="pmon-th pmon-th-watch" aria-label="Watch"></th>
+            </tr>
+          </thead>
+          <tbody>
+            ${proposedCounties.map(c => {
+              const typeLabels2 = { data_center:'Data Center', ai:'AI', energy:'Energy', crypto:'Crypto', water:'Water' };
+              const types = (c.types || []).map(t => escHtml(typeLabels2[t] || t)).join(', ');
+              const lvl   = c.level ?? 1;
+              const lvlLbl = lvl >= 4 ? "Ban / Moratorium" : lvl === 3 ? "Significant" : lvl === 2 ? "Moderate" : "Light";
+              const lvlColor = lvl >= 4 ? "#7f1d1d" : lvl === 3 ? "#dc2626" : lvl === 2 ? "#f97316" : "#eab308";
+              const dateStr = c.effective_date || c.date || "";
+              const fmtDate = dateStr ? new Date(dateStr + "T00:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}) : "Unknown";
+              return `<tr class="pmon-row" role="row" data-fips="${escHtml(c.fips)}" tabindex="0">
+                <td class="pmon-county">${escHtml(c.name || c.fips)}</td>
+                <td class="pmon-state">${escHtml(c.state || "")}</td>
+                <td class="pmon-type">${types || "—"}</td>
+                <td class="pmon-level"><span class="pmon-level-dot" style="background:${lvlColor}"></span>${escHtml(lvlLbl)}</td>
+                <td class="pmon-date">${escHtml(fmtDate)}</td>
+                <td class="pmon-watch-cell">
+                  <button class="pmon-watch-btn" data-fips="${escHtml(c.fips)}" aria-label="Watch ${escHtml(c.name || c.fips)}" title="Watch county" type="button">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  </button>
+                </td>
+              </tr>`;
+            }).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>` : ""}
+
+    ${(oppGemList.length || oppOpenList.length) ? `
+    <div class="page-section">
+      <div class="page-section-title">Opportunity Gap Analysis</div>
+      <p class="pmon-desc">Counties where market conditions diverge sharply from policy reality — revealing underserved locations worth watching.</p>
+      <div class="opp-gap-grid">
+
+        ${oppGemList.length ? `
+        <div class="opp-gap-card">
+          <div class="opp-gap-card-hdr">
+            <span class="opp-gap-icon opp-gem-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
+            <div>
+              <div class="opp-gap-card-title">Restricted Gems</div>
+              <div class="opp-gap-card-sub">A/B-grade counties with active restrictions — high potential, policy headwinds</div>
+            </div>
+            <span class="opp-gap-count">${oppGemList.length}</span>
+          </div>
+          <div class="opp-gap-table-wrap">
+            <table class="opp-gap-table">
+              <thead><tr>
+                <th>County</th><th>State</th><th>Grade</th><th>Score</th><th>Restriction</th>
+              </tr></thead>
+              <tbody>
+                ${oppGemList.slice(0, 12).map(c => {
+                  const GRADE_COLOR = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
+                  const lvlLbl = c.level >= 4 ? "Ban" : c.level === 3 ? "High" : c.level === 2 ? "Moderate" : "Light";
+                  const lvlColor = c.level >= 4 ? "#ef4444" : c.level === 3 ? "#dc2626" : c.level === 2 ? "#f97316" : "#eab308";
+                  return `<tr class="opp-gap-row" data-fips="${escHtml(c.fips)}" tabindex="0" role="button" aria-label="${escHtml(c.name)}, ${escHtml(c.state)}">
+                    <td class="opp-gap-name">${escHtml(c.name || c.fips)}</td>
+                    <td class="opp-gap-state">${escHtml(c.state || "")}</td>
+                    <td class="opp-gap-grade" style="color:${GRADE_COLOR[c.grade] || "var(--accent)"}">${escHtml(c.grade)}</td>
+                    <td class="opp-gap-score">${c.score}</td>
+                    <td class="opp-gap-lvl" style="color:${lvlColor}">${escHtml(lvlLbl)}</td>
+                  </tr>`;
+                }).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>` : ""}
+
+        ${oppOpenList.length ? `
+        <div class="opp-gap-card">
+          <div class="opp-gap-card-hdr">
+            <span class="opp-gap-icon opp-open-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </span>
+            <div>
+              <div class="opp-gap-card-title">Policy-Free Opportunities</div>
+              <div class="opp-gap-card-sub">A-grade counties with no restrictions — best open markets right now</div>
+            </div>
+            <span class="opp-gap-count opp-open-count">${oppOpenList.length}</span>
+          </div>
+          <div class="opp-gap-table-wrap">
+            <table class="opp-gap-table">
+              <thead><tr>
+                <th>County</th><th>State</th><th>Grade</th><th>Score</th><th>Status</th>
+              </tr></thead>
+              <tbody>
+                ${oppOpenList.slice(0, 12).map(c => {
+                  const lvlLbl = c.level === -1 ? "Pro-Dev" : "Open";
+                  const lvlColor = c.level === -1 ? "#22c55e" : "var(--text-muted)";
+                  return `<tr class="opp-gap-row" data-fips="${escHtml(c.fips)}" tabindex="0" role="button" aria-label="${escHtml(c.name)}, ${escHtml(c.state)}">
+                    <td class="opp-gap-name">${escHtml(c.name || c.fips)}</td>
+                    <td class="opp-gap-state">${escHtml(c.state || "")}</td>
+                    <td class="opp-gap-grade" style="color:#22c55e">${escHtml(c.grade)}</td>
+                    <td class="opp-gap-score">${c.score}</td>
+                    <td class="opp-gap-lvl" style="color:${lvlColor}">${escHtml(lvlLbl)}</td>
+                  </tr>`;
+                }).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>` : ""}
+
+      </div>
+    </div>` : ""}
+
+    <div class="page-section">
+      <div class="page-section-title">State Risk Ranking</div>
+      <p class="pmon-desc">All states with tracked county-level policy activity, ranked by total active restrictions. Click column headers to sort. Click any row to view state-level details.</p>
+      <div class="srr-table-wrap">
+        <table class="srr-table" id="analytics-srr-table">
+          <thead>
+            <tr>
+              <th class="srr-th srr-th-sort" data-col="restricted" data-dir="desc"># Restricted <span class="srr-sort-icon">↓</span></th>
+              <th class="srr-th srr-th-state">State</th>
+              <th class="srr-th srr-th-sort" data-col="bans" data-dir="asc">Bans</th>
+              <th class="srr-th srr-th-sort" data-col="high" data-dir="asc">High</th>
+              <th class="srr-th srr-th-sort" data-col="moderate" data-dir="asc">Moderate</th>
+              <th class="srr-th srr-th-sort" data-col="proDev" data-dir="asc">Pro-Dev</th>
+              <th class="srr-th srr-th-sort" data-col="avgSuit" data-dir="asc">Avg Suit.</th>
+              <th class="srr-th srr-th-sort" data-col="total" data-dir="asc">Total Tracked</th>
+            </tr>
+          </thead>
+          <tbody id="analytics-srr-tbody">
+            ${(function() {
+              return stateRankRows.map(r => {
+                const riskPct = r.total > 0 ? (r.restricted / r.total) * 100 : 0;
+                const riskColor = riskPct >= 50 ? "#dc2626" : riskPct >= 25 ? "#f97316" : riskPct >= 10 ? "#eab308" : "#22c55e";
+                const suitColor = r.avgSuit !== null ? (r.avgSuit >= 80 ? "#22c55e" : r.avgSuit >= 65 ? "#22d3ee" : r.avgSuit >= 45 ? "#eab308" : "#ef4444") : "var(--text-muted)";
+                return `<tr class="srr-row" data-state="${escHtml(r.state)}">
+                  <td class="srr-td srr-td-restricted">
+                    <div class="srr-bar-wrap">
+                      <div class="srr-bar" style="width:${Math.min(100, riskPct).toFixed(1)}%;background:${riskColor}"></div>
+                    </div>
+                    <span class="srr-num" style="color:${riskColor}">${r.restricted}</span>
+                  </td>
+                  <td class="srr-td srr-td-name">${escHtml(r.state)}</td>
+                  <td class="srr-td srr-td-num">${r.bans || "—"}</td>
+                  <td class="srr-td srr-td-num">${r.high || "—"}</td>
+                  <td class="srr-td srr-td-num">${r.moderate || "—"}</td>
+                  <td class="srr-td srr-td-num srr-pro">${r.proDev || "—"}</td>
+                  <td class="srr-td srr-td-suit" style="color:${suitColor}">${r.avgSuit !== null ? r.avgSuit : "—"}</td>
+                  <td class="srr-td srr-td-num srr-muted">${r.total}</td>
+                </tr>`;
+              }).join("");
+            })()}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-title">Policy Type Adoption by Year</div>
+      <p class="pmon-desc">Restrictions enacted per year, broken down by regulated technology category. Only counties with known enactment dates are counted.</p>
+      ${(function() {
+        const TYPE_ORDER = ["data_center", "ai", "crypto", "energy", "water"];
+        const TYPE_LABELS2 = { data_center: "Data Center", ai: "AI", crypto: "Crypto / HPC", energy: "Energy", water: "Water" };
+        const TYPE_COLORS2 = { data_center: "#dc2626", ai: "#8b5cf6", crypto: "#f97316", energy: "#f59e0b", water: "#3b82f6" };
+        const yearTypeMap = {};
+        let minYr = 2020, maxYr = new Date().getFullYear();
+        for (const fips in counties) {
+          const c = counties[fips];
+          if (!c.types || !c.types.length) continue;
+          const dateStr = c.effective_date || c.date || "";
+          if (!dateStr) continue;
+          const yr = parseInt(dateStr.slice(0, 4), 10);
+          if (isNaN(yr) || yr < 2010 || yr > maxYr) continue;
+          if (yr < minYr) minYr = yr;
+          if (!yearTypeMap[yr]) yearTypeMap[yr] = {};
+          for (const t of c.types) {
+            yearTypeMap[yr][t] = (yearTypeMap[yr][t] || 0) + 1;
+          }
+        }
+        const years = [];
+        for (let y = minYr; y <= maxYr; y++) years.push(y);
+        if (!years.length) return "<p class='empty-note'>No dated policy records found.</p>";
+        const maxVal = Math.max(1, ...Object.values(yearTypeMap).flatMap(m => Object.values(m)));
+        const rows = years.map(yr => {
+          const ym = yearTypeMap[yr] || {};
+          const cells = TYPE_ORDER.map(t => {
+            const v = ym[t] || 0;
+            const barPct = Math.round((v / maxVal) * 100);
+            return `<td class="pty-td">
+              <div class="pty-cell-wrap">
+                ${v > 0 ? `<div class="pty-bar" style="height:${barPct}%;background:${TYPE_COLORS2[t]}" title="${v} ${TYPE_LABELS2[t]} restrictions in ${yr}"></div><span class="pty-num">${v}</span>` : `<span class="pty-zero">—</span>`}
+              </div>
+            </td>`;
+          }).join("");
+          return `<tr class="pty-row"><td class="pty-yr">${yr}</td>${cells}</tr>`;
+        }).join("");
+        const headers = TYPE_ORDER.map(t =>
+          `<th class="pty-th" style="color:${TYPE_COLORS2[t]}">${TYPE_LABELS2[t]}</th>`
+        ).join("");
+        return `<div class="pty-table-wrap"><table class="pty-table">
+          <thead><tr><th class="pty-th pty-th-yr">Year</th>${headers}</tr></thead>
+          <tbody>${rows}</tbody>
+        </table></div>`;
+      })()}
+    </div>
+
     <div class="page-section">
       <div class="page-section-title">Policy Timeline</div>
       <div id="analytics-policy-timeline">
@@ -236,11 +579,35 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Monthly Enactment Heatmap</div>
+      <div id="analytics-heatmap-section">
+        ${_buildMonthlyHeatmapHtml(counties)}
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-title">Regulatory Momentum — Last 12 Months</div>
+      <div id="analytics-momentum-section">
+        ${_buildRegulatoryMomentumHtml(counties)}
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">County Suitability Rankings</div>
       <div id="analytics-rankings-section">
         <div class="analytics-pipeline-loading">
           <div class="spinner"></div>
           <span>Computing suitability scores…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-title">Suitability Score Distribution</div>
+      <div id="analytics-score-dist-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Computing score distribution…</span>
         </div>
       </div>
     </div>
@@ -291,6 +658,16 @@ function renderAnalyticsPage() {
         <div class="analytics-pipeline-loading">
           <div class="spinner"></div>
           <span>Computing conflict zones…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-title">AI Campus Operator Risk Profile</div>
+      <div id="analytics-operator-risk-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Loading operator exposure data…</span>
         </div>
       </div>
     </div>
@@ -366,9 +743,262 @@ function renderAnalyticsPage() {
   _renderPoliticalRisk();
   _renderStateScorecard();
   _renderStateOpportunityMatrix();
+  _fillScoreDist();
+  _fillOperatorRisk();
   _fillConflictZones();
   _fillCapacityIntelligence();
   _fillIncentiveExplorer();
+
+  el.querySelector("#analytics-export-csv")?.addEventListener("click", exportCountiesCSV);
+
+  // State drill-down: click any row in "Most Restricted States" chart
+  el.querySelector("#analytics-top-states-list")?.addEventListener("click", e => {
+    const item = e.target.closest(".ranked-item-clickable[data-state]");
+    if (item) _showStateModal(item.dataset.state);
+  });
+  el.querySelector("#analytics-top-states-list")?.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      const item = e.target.closest(".ranked-item-clickable[data-state]");
+      if (item) { e.preventDefault(); _showStateModal(item.dataset.state); }
+    }
+  });
+
+  // Proposed restrictions monitor: row click → map, watch button
+  el.querySelectorAll(".pmon-row[data-fips]").forEach(row => {
+    const nav = () => {
+      const fips = row.dataset.fips;
+      if (!fips) return;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    row.addEventListener("click", e => {
+      if (e.target.closest(".pmon-watch-btn")) return;
+      nav();
+    });
+    row.addEventListener("keydown", e => {
+      if ((e.key === "Enter" || e.key === " ") && !e.target.closest(".pmon-watch-btn")) {
+        e.preventDefault(); nav();
+      }
+    });
+  });
+  el.querySelectorAll(".pmon-watch-btn[data-fips]").forEach(btn => {
+    const fips = btn.dataset.fips;
+    const updateBtn = () => {
+      const watched = typeof toggleWatchCounty !== "undefined" &&
+        (() => { try { return new Set(JSON.parse(localStorage.getItem("dc-watchlist-v1")||"[]")).has(fips); } catch(_){return false;} })();
+      btn.classList.toggle("pmon-watch-btn-active", watched);
+      btn.title = watched ? "Remove from watchlist" : "Watch county";
+      btn.querySelector("svg")?.setAttribute("fill", watched ? "currentColor" : "none");
+    };
+    updateBtn();
+    btn.addEventListener("click", e => {
+      e.stopPropagation();
+      if (typeof toggleWatchCounty === "function") toggleWatchCounty(fips);
+      updateBtn();
+    });
+  });
+
+  // Opportunity gap rows → map navigation
+  el.querySelectorAll(".opp-gap-row[data-fips]").forEach(row => {
+    const nav = () => {
+      const fips = row.dataset.fips;
+      if (!fips) return;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    row.addEventListener("click",   nav);
+    row.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nav(); } });
+  });
+
+  // State Risk Ranking: sortable columns + row click → state modal
+  const srrTable = el.querySelector("#analytics-srr-table");
+  if (srrTable) {
+    let _srrSortCol = "restricted", _srrSortDir = -1;
+    const tbody = el.querySelector("#analytics-srr-tbody");
+    function _srrSort(col, dir) {
+      _srrSortCol = col; _srrSortDir = dir;
+      const rows = Array.from(tbody.querySelectorAll(".srr-row"));
+      rows.sort((a, b) => {
+        const getVal = r => {
+          if (col === "state") return r.dataset.state || "";
+          const td = r.querySelector(`.srr-td-${col === "restricted" ? "restricted" : col === "state" ? "name" : "num"}`);
+          if (!td) return 0;
+          const txt = td.textContent.trim();
+          if (txt === "—") return dir * -Infinity;
+          const n = parseFloat(txt);
+          return isNaN(n) ? txt : n;
+        };
+        const av = getVal(a), bv = getVal(b);
+        if (typeof av === "number" && typeof bv === "number") return dir * (bv - av);
+        return dir * String(av).localeCompare(String(bv));
+      });
+      rows.forEach(r => tbody.appendChild(r));
+      srrTable.querySelectorAll(".srr-th-sort").forEach(th => {
+        const isCur = th.dataset.col === col;
+        const icon = th.querySelector(".srr-sort-icon");
+        if (icon) icon.textContent = isCur ? (dir === -1 ? "↓" : "↑") : "";
+        th.classList.toggle("srr-th-active", isCur);
+      });
+    }
+    srrTable.querySelectorAll(".srr-th-sort").forEach(th => {
+      th.style.cursor = "pointer";
+      th.addEventListener("click", () => {
+        const col = th.dataset.col;
+        const newDir = (col === _srrSortCol && _srrSortDir === -1) ? 1 : -1;
+        _srrSort(col, newDir);
+      });
+    });
+    tbody.querySelectorAll(".srr-row[data-state]").forEach(row => {
+      row.addEventListener("click", () => {
+        if (typeof _showStateModal === "function") _showStateModal(row.dataset.state);
+      });
+    });
+  }
+}
+
+/* ── State county drill-down modal ── */
+function _showStateModal(stateName) {
+  const counties = mapData || {};
+  const wsData   = window.DC_WATER_STRESS_FULL || {};
+  const incData  = window.DC_INCENTIVES_FIPS   || {};
+  const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
+
+  const LVL_LABELS = {"-1":"Pro / Incentive","0":"No Restrictions","1":"Light","2":"Moderate","3":"Significant","4":"Ban / Moratorium"};
+  const LVL_COLORS = {"-1":"#22c55e","0":"#6b7280","1":"#86efac","2":"#f97316","3":"#dc2626","4":"#7f1d1d"};
+
+  const rows = [];
+  for (const fips in counties) {
+    const c = counties[fips];
+    if (c.state !== stateName) continue;
+    const lvl  = c.level ?? 0;
+    const ws   = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : null;
+    let suit   = { score: null, grade: "—" };
+    if (typeof computeSuitabilityScore === "function") {
+      try { suit = computeSuitabilityScore(fips, c); } catch (_) {}
+    }
+    const hasInc = !!(incData[fips] && incData[fips].length);
+    rows.push({ fips, name: c.name, lvl, date: c.effective_date || c.date || "", status: c.status || "active", suit, ws, wsLabel: ws !== null ? (WS_LABELS[ws] || String(ws)) : "—", hasInc });
+  }
+  rows.sort((a, b) => {
+    if (b.lvl !== a.lvl) return b.lvl - a.lvl;
+    return (b.suit.score ?? 0) - (a.suit.score ?? 0);
+  });
+
+  const esc = s => escHtml(String(s ?? ""));
+  const GRADE_COLOR = { A:"#22c55e", B:"#22d3ee", C:"#eab308", D:"#f97316", F:"#ef4444" };
+  const WS_COLOR    = (ws) => ws !== null ? (ws <= 1 ? "#22c55e" : ws === 2 ? "#eab308" : "#ef4444") : "var(--text-muted)";
+
+  const tableRows = rows.map((r, i) => `
+    <tr class="sdm-row" data-fips="${esc(r.fips)}" role="button" tabindex="0" title="Open ${esc(r.name)} on the map">
+      <td class="sdm-rank">${i + 1}</td>
+      <td class="sdm-county">${esc(r.name)}</td>
+      <td class="sdm-lvl">
+        <span class="sdm-badge" style="background:${LVL_COLORS[String(r.lvl)]||"#6b7280"}22;color:${LVL_COLORS[String(r.lvl)]||"#6b7280"};border:1px solid ${LVL_COLORS[String(r.lvl)]||"#6b7280"}44">
+          ${esc(LVL_LABELS[String(r.lvl)] || String(r.lvl))}
+        </span>
+      </td>
+      <td class="sdm-suit" style="color:${GRADE_COLOR[r.suit.grade]||"var(--text-muted)"}">
+        ${r.suit.grade !== "—" ? `${r.suit.grade} <span class="sdm-score">${r.suit.score}pt</span>` : "—"}
+      </td>
+      <td class="sdm-ws" style="color:${WS_COLOR(r.ws)}">${esc(r.wsLabel)}</td>
+      <td class="sdm-date">${esc(r.date ? r.date.slice(0,10) : "")}</td>
+      ${r.hasInc ? '<td class="sdm-inc">✓</td>' : '<td class="sdm-inc sdm-inc-empty">—</td>'}
+    </tr>`).join("");
+
+  const totalR  = rows.filter(r => r.lvl >= 1).length;
+  const totalP  = rows.filter(r => r.lvl === -1).length;
+  const totalNR = rows.filter(r => r.lvl <= 0 && r.lvl !== -1).length;
+
+  const html = `
+<div id="state-modal-overlay" class="sdm-overlay" role="dialog" aria-modal="true" aria-label="${esc(stateName)} county breakdown">
+  <div class="sdm-modal">
+    <div class="sdm-hdr">
+      <div class="sdm-hdr-left">
+        <div class="sdm-title">${esc(stateName)}</div>
+        <div class="sdm-subtitle">${rows.length} counties tracked &nbsp;·&nbsp; <span style="color:#ef4444">${totalR} restricted</span> &nbsp;·&nbsp; <span style="color:#22c55e">${totalP} pro-dev</span> &nbsp;·&nbsp; ${totalNR} no restrictions</div>
+      </div>
+      <div class="sdm-hdr-right">
+        <button class="sdm-map-btn" id="sdm-map-btn" type="button">View on map</button>
+        <button class="sdm-close" id="sdm-close" type="button" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="sdm-body">
+      <div class="sdm-table-wrap">
+        <table class="sdm-table">
+          <thead>
+            <tr>
+              <th class="sdm-rank">#</th>
+              <th class="sdm-county">County</th>
+              <th class="sdm-lvl">Restriction</th>
+              <th class="sdm-suit">Suitability</th>
+              <th class="sdm-ws">Water Stress</th>
+              <th class="sdm-date">Effective Date</th>
+              <th class="sdm-inc">Incentives</th>
+            </tr>
+          </thead>
+          <tbody>${tableRows || '<tr><td colspan="7" class="sdm-empty">No county data for this state.</td></tr>'}</tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>`;
+
+  document.getElementById("state-modal-overlay")?.remove();
+  document.body.insertAdjacentHTML("beforeend", html);
+
+  const overlay = document.getElementById("state-modal-overlay");
+  const _sNames = (typeof STATE_NAMES !== "undefined" ? STATE_NAMES : {});
+  const _sFips  = (typeof STATE_FIPS  !== "undefined" ? STATE_FIPS  : {});
+  const stAbbr  = Object.entries(_sNames).find(([, name]) => name === stateName)?.[0] || "";
+  const fips2   = stAbbr ? Object.entries(_sFips).find(([, abbr]) => abbr === stAbbr)?.[0] : null;
+
+  function closeModal() { overlay?.remove(); }
+
+  overlay.addEventListener("click", e => { if (e.target === overlay) closeModal(); });
+  document.getElementById("sdm-close")?.addEventListener("click", closeModal);
+  document.getElementById("sdm-map-btn")?.addEventListener("click", () => {
+    closeModal();
+    switchTab("map");
+    setTimeout(() => {
+      if (typeof stateGeoLayer !== "undefined" && stateGeoLayer && fips2) {
+        const stLayer = stateGeoLayer.getLayers().find(l => String(l.feature.id).padStart(2,"0") === fips2);
+        if (stLayer && typeof leafletMap !== "undefined") {
+          leafletMap.flyToBounds(stLayer.getBounds(), { duration: 0.6, padding: [20, 20] });
+        }
+      }
+      if (typeof showStateDetail === "function" && fips2) showStateDetail(fips2);
+    }, 300);
+  });
+
+  // Row click → navigate to county on map
+  overlay.querySelector(".sdm-table tbody")?.addEventListener("click", e => {
+    const row = e.target.closest(".sdm-row[data-fips]");
+    if (!row) return;
+    closeModal();
+    switchTab("map");
+    setTimeout(() => {
+      if (typeof selectCounty === "function") selectCounty(row.dataset.fips);
+      if (typeof zoomToFeature === "function") zoomToFeature(row.dataset.fips);
+    }, 300);
+  });
+  overlay.querySelector(".sdm-table tbody")?.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      const row = e.target.closest(".sdm-row[data-fips]");
+      if (row) { e.preventDefault(); row.click(); }
+    }
+  });
+
+  const keyHandler = e => { if (e.key === "Escape") { closeModal(); document.removeEventListener("keydown", keyHandler); } };
+  document.addEventListener("keydown", keyHandler);
+
+  // Focus modal for accessibility
+  setTimeout(() => overlay.querySelector(".sdm-modal")?.focus(), 50);
 }
 
 function _buildVelocityChartHtml(counties) {
@@ -591,6 +1221,153 @@ function _buildCumulativeChartHtml(counties) {
       ${lgItems}
     </svg>
     <p class="vel-note">Running total of counties with dated policy records, accumulated by year. Shows the compound trajectory of regulatory exposure — not just new enactments, but the cumulative count in effect at any point in time. Pre-2018 data is sparse; 2026 is partial-year.</p>
+  `;
+}
+
+function _buildMonthlyHeatmapHtml(counties) {
+  const YEARS  = [2020, 2021, 2022, 2023, 2024, 2025, 2026];
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+  const restricCount = {};
+  const proCount     = {};
+
+  for (const fips in counties) {
+    const c   = counties[fips];
+    const raw = c.effective_date || c.date || "";
+    if (!raw || raw.length < 7) continue;
+    const yr  = parseInt(raw.slice(0, 4), 10);
+    const mo  = parseInt(raw.slice(5, 7), 10);
+    if (!YEARS.includes(yr) || mo < 1 || mo > 12) continue;
+    const key = `${yr}-${mo}`;
+    if (c.level >= 1)        restricCount[key] = (restricCount[key] || 0) + 1;
+    else if (c.level === -1) proCount[key]     = (proCount[key]     || 0) + 1;
+  }
+
+  const maxR = Math.max(...Object.values(restricCount), 1);
+  const maxP = Math.max(...Object.values(proCount),     1);
+
+  function cellColor(count, type) {
+    if (!count) return "var(--surface-2)";
+    const frac = count / (type === 'r' ? maxR : maxP);
+    if (type === 'r') {
+      if (frac < 0.25) return "#fca5a5";
+      if (frac < 0.50) return "#f87171";
+      if (frac < 0.75) return "#ef4444";
+      return "#dc2626";
+    } else {
+      if (frac < 0.25) return "#86efac";
+      if (frac < 0.50) return "#4ade80";
+      if (frac < 0.75) return "#22c55e";
+      return "#16a34a";
+    }
+  }
+
+  const CELL_W = 42, CELL_H = 21, GAP = 3;
+  const PAD_L  = 42, PAD_T  = 20;
+  const gridW  = 12 * (CELL_W + GAP) - GAP;
+  const gridH  = YEARS.length * (CELL_H + GAP) - GAP;
+  const W      = PAD_L + gridW + 16;
+  const SEC_GAP = 40;
+  const totalH = PAD_T + gridH + SEC_GAP + PAD_T + gridH + 12;
+
+  const now        = new Date();
+  const thisYear   = now.getFullYear();
+  const thisMonth  = now.getMonth() + 1;
+
+  function renderGrid(counts, type, offsetY) {
+    const parts = [];
+    MONTHS.forEach((m, mi) => {
+      const x = PAD_L + mi * (CELL_W + GAP);
+      parts.push(`<text x="${x + CELL_W / 2}" y="${offsetY - 5}" text-anchor="middle" font-size="9" fill="var(--text-muted)" font-family="inherit">${m}</text>`);
+    });
+    YEARS.forEach((yr, yi) => {
+      const rowY = offsetY + yi * (CELL_H + GAP);
+      parts.push(`<text x="${PAD_L - 6}" y="${rowY + CELL_H / 2 + 3}" text-anchor="end" font-size="9" fill="var(--text-muted)" font-family="inherit">${yr}</text>`);
+      for (let mo = 1; mo <= 12; mo++) {
+        const isFuture = yr > thisYear || (yr === thisYear && mo > thisMonth);
+        const key      = `${yr}-${mo}`;
+        const count    = isFuture ? 0 : (counts[key] || 0);
+        const x        = PAD_L + (mo - 1) * (CELL_W + GAP);
+        if (isFuture) {
+          parts.push(`<rect x="${x}" y="${rowY}" width="${CELL_W}" height="${CELL_H}" rx="3" fill="var(--surface-2)" opacity="0.3"/>`);
+          continue;
+        }
+        const fill    = cellColor(count, type);
+        const tip     = `${MONTHS[mo - 1]} ${yr}${count ? `: ${count} enactment${count > 1 ? "s" : ""}` : ": no activity"}`;
+        parts.push(`<rect x="${x}" y="${rowY}" width="${CELL_W}" height="${CELL_H}" rx="3" fill="${fill}"><title>${escHtml(tip)}</title></rect>`);
+        if (count > 0) {
+          const frac      = count / (type === 'r' ? maxR : maxP);
+          const textFill  = frac >= 0.5 ? "#fff" : (type === 'r' ? "#7f1d1d" : "#14532d");
+          parts.push(`<text x="${x + CELL_W / 2}" y="${rowY + CELL_H / 2 + 3.5}" text-anchor="middle" font-size="8.5" fill="${textFill}" font-weight="600" font-family="inherit" pointer-events="none">${count}</text>`);
+        }
+      }
+    });
+    return parts.join("");
+  }
+
+  const sec2Y = PAD_T + gridH + SEC_GAP;
+
+  return `
+    <p class="vel-note" style="margin-bottom:16px">Policy enactments per calendar month, Jan 2020 – present. Hover a cell for the exact count. Faded cells are future months. Months with no dated records are shown in the panel background color.</p>
+    <div style="overflow-x:auto">
+    <svg viewBox="0 0 ${W} ${totalH}" width="100%" style="min-width:420px;max-width:${W}px;display:block;overflow:visible" role="img" aria-label="Monthly policy enactment heatmap 2020–2026">
+      <text x="${PAD_L}" y="11" font-size="9.5" font-weight="700" letter-spacing="0.06em" fill="var(--text-muted)" font-family="inherit">RESTRICTIONS (LEVEL 1–4)</text>
+      ${renderGrid(restricCount, 'r', PAD_T)}
+      <text x="${PAD_L}" y="${sec2Y - 8}" font-size="9.5" font-weight="700" letter-spacing="0.06em" fill="var(--text-muted)" font-family="inherit">PRO-BUSINESS / INCENTIVE PROGRAMS</text>
+      ${renderGrid(proCount, 'p', sec2Y + PAD_T - 16)}
+    </svg>
+    </div>
+  `;
+}
+
+function _buildRegulatoryMomentumHtml(counties) {
+  const now       = new Date();
+  const cutoff    = new Date(now);
+  cutoff.setFullYear(cutoff.getFullYear() - 1);
+  const cutoffStr = cutoff.toISOString().slice(0, 10);
+
+  const newRestrict = {};
+  const newPro      = {};
+
+  for (const fips in counties) {
+    const c    = counties[fips];
+    const date = c.effective_date || c.date || "";
+    if (!date || date < cutoffStr) continue;
+    const st = c.state || "Unknown";
+    if ((c.level ?? 0) >= 1)   newRestrict[st] = (newRestrict[st] || 0) + 1;
+    else if (c.level === -1)   newPro[st]      = (newPro[st]      || 0) + 1;
+  }
+
+  const topR   = Object.entries(newRestrict).sort((a, b) => b[1] - a[1]).slice(0, 8);
+  const topP   = Object.entries(newPro).sort((a, b) => b[1] - a[1]).slice(0, 8);
+  const totR   = Object.values(newRestrict).reduce((s, v) => s + v, 0);
+  const totP   = Object.values(newPro).reduce((s, v) => s + v, 0);
+
+  function renderList(rows, barColor, emptyMsg) {
+    if (!rows.length) return `<div class="mom-empty">${escHtml(emptyMsg)}</div>`;
+    const maxN = rows[0][1];
+    return rows.map(([st, n], i) =>
+      `<div class="mom-row">
+        <div class="mom-rank">${i + 1}</div>
+        <div class="mom-state">${escHtml(st)}</div>
+        <div class="mom-bar-wrap"><div class="mom-bar" style="width:${Math.round(n / maxN * 100)}%;background:${barColor}"></div></div>
+        <div class="mom-count">${n}</div>
+      </div>`
+    ).join("");
+  }
+
+  return `
+    <p class="vel-note" style="margin-bottom:14px">States ranked by the number of new county-level policy enactments in the trailing 12 months, split by direction. Counties are counted once at their <em>effective_date</em>. Total: ${totR + totP} new enactments recorded.</p>
+    <div class="mom-grid">
+      <div class="mom-col">
+        <div class="mom-col-hdr mom-hdr-restrict">Trending Restrictive <span class="mom-hdr-count">${totR} counties</span></div>
+        <div class="mom-list">${renderList(topR, "#ef4444", "No new restrictions in the last 12 months.")}</div>
+      </div>
+      <div class="mom-col">
+        <div class="mom-col-hdr mom-hdr-pro">Trending Pro-Business <span class="mom-hdr-count">${totP} counties</span></div>
+        <div class="mom-list">${renderList(topP, "#22c55e", "No new incentive programs in the last 12 months.")}</div>
+      </div>
+    </div>
   `;
 }
 
@@ -2694,6 +3471,231 @@ async function _fillIncentiveExplorer() {
     _expandedIdx = -1;
     renderCards();
   });
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Suitability Score Distribution                                   */
+/* ─────────────────────────────────────────────────────────────── */
+
+function _fillScoreDist() {
+  const container = document.getElementById("analytics-score-dist-section");
+  if (!container) return;
+  const counties = (typeof mapData !== "undefined") ? mapData : {};
+  if (!Object.keys(counties).length || typeof computeSuitabilityScore !== "function") {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Score data unavailable.</p>`;
+    return;
+  }
+
+  const bins = new Array(10).fill(0);
+  const scores = [];
+  const gradeCount = { A: 0, B: 0, C: 0, D: 0, F: 0 };
+
+  for (const fips in counties) {
+    const c = counties[fips];
+    const s = computeSuitabilityScore(fips, c);
+    if (!s) continue;
+    scores.push(s.score);
+    const bin = Math.min(9, Math.floor(s.score / 10));
+    bins[bin]++;
+    gradeCount[s.grade] = (gradeCount[s.grade] || 0) + 1;
+  }
+
+  if (!scores.length) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">No scores computed.</p>`;
+    return;
+  }
+
+  scores.sort((a, b) => a - b);
+  const mean   = Math.round(scores.reduce((s, v) => s + v, 0) / scores.length);
+  const median = scores[Math.floor(scores.length / 2)];
+  const maxBin = Math.max(...bins, 1);
+  const total  = scores.length;
+
+  const ZONE_COLORS  = ["#ef4444","#ef4444","#ef4444","#f97316","#f97316","#eab308","#eab308","#84cc16","#22c55e","#22c55e"];
+  const GRADE_ZONES  = ["F","F","F","D","D","C","C","B","A","A"];
+  const RANGE_LABELS = ["0–9","10–19","20–29","30–39","40–49","50–59","60–69","70–79","80–89","90–100"];
+
+  const bars = bins.map((count, i) => {
+    const heightPct  = (count / maxBin * 100).toFixed(1);
+    const color      = ZONE_COLORS[i];
+    const zone       = GRADE_ZONES[i];
+    const pctOfTotal = total > 0 ? ((count / total) * 100).toFixed(1) : "0";
+    return `<div class="score-hist-col" title="${RANGE_LABELS[i]}: ${count} counties (${pctOfTotal}%)">
+      <div class="score-hist-bar-wrap">
+        <div class="score-hist-bar" style="height:${heightPct}%;background:${color}"></div>
+      </div>
+      <div class="score-hist-count">${count}</div>
+      <div class="score-hist-label">${RANGE_LABELS[i]}</div>
+      <div class="score-hist-zone-label" style="color:${color}">${zone}</div>
+    </div>`;
+  }).join("");
+
+  const gradePills = Object.entries(gradeCount)
+    .filter(([, n]) => n > 0)
+    .sort(([a], [b]) => "ABCDF".indexOf(a) - "ABCDF".indexOf(b))
+    .map(([g, n]) => `<span class="score-hist-grade-pill grade-${g}">${g}: ${n} <small>(${((n/total)*100).toFixed(0)}%)</small></span>`)
+    .join("");
+
+  container.innerHTML = `
+    <div class="score-hist-stats">
+      <div class="score-hist-stat"><span class="score-hist-stat-val">${total.toLocaleString()}</span><span class="score-hist-stat-label">Counties scored</span></div>
+      <div class="score-hist-stat"><span class="score-hist-stat-val">${mean}</span><span class="score-hist-stat-label">Mean score</span></div>
+      <div class="score-hist-stat"><span class="score-hist-stat-val">${median}</span><span class="score-hist-stat-label">Median score</span></div>
+    </div>
+    <div class="score-hist-grade-row">${gradePills}</div>
+    <div class="score-hist-wrap"><div class="score-hist-grid">${bars}</div></div>
+    <p class="cap-note" style="margin-top:8px">Distribution of computed suitability scores across all tracked counties. Scores derived from restriction severity, political risk, infrastructure density, water stress, and tax incentives.</p>
+  `;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* AI Campus Operator Risk Profile                                  */
+/* ─────────────────────────────────────────────────────────────── */
+
+async function _fillOperatorRisk() {
+  const container = document.getElementById("analytics-operator-risk-section");
+  if (!container) return;
+
+  let camps;
+  try {
+    camps = await fetch("data/ai_campuses.json").then(r => r.json()).then(d => d.ai_campuses || []);
+  } catch (_) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Operator data unavailable.</p>`;
+    return;
+  }
+
+  const counties = (typeof mapData !== "undefined") ? mapData : {};
+
+  const operatorMap = {};
+  for (const cam of camps) {
+    const op = cam.operator || "Unknown";
+    if (!operatorMap[op]) operatorMap[op] = [];
+    operatorMap[op].push(cam);
+  }
+
+  const opRows = [];
+  for (const [op, camList] of Object.entries(operatorMap)) {
+    let restricted = 0, banned = 0, open = 0, suitSum = 0, suitN = 0;
+    const fipsSet = new Set(camList.map(c => c.county_fips).filter(Boolean));
+    for (const fips of fipsSet) {
+      const county = counties[fips];
+      if (!county) continue;
+      const lvl = county.level ?? 0;
+      if (lvl >= 4) banned++;
+      else if (lvl >= 1) restricted++;
+      else open++;
+      if (typeof computeSuitabilityScore === "function") {
+        const s = computeSuitabilityScore(fips, county);
+        if (s) { suitSum += s.score; suitN++; }
+      }
+    }
+    const atRisk   = restricted + banned;
+    const avgSuit  = suitN ? Math.round(suitSum / suitN) : null;
+    const avgGrade = avgSuit !== null ? (avgSuit >= 80 ? "A" : avgSuit >= 65 ? "B" : avgSuit >= 45 ? "C" : avgSuit >= 25 ? "D" : "F") : null;
+    opRows.push({ op, total: camList.length, uniqueFips: fipsSet.size, restricted, banned, open, atRisk, avgSuit, avgGrade, camps: camList });
+  }
+
+  opRows.sort((a, b) => b.atRisk - a.atRisk || b.total - a.total);
+
+  const totalCamps  = camps.length;
+  const totalAtRisk = camps.filter(c => { const co = counties[c.county_fips]; return co && (co.level ?? 0) >= 1; }).length;
+  const totalBanned = camps.filter(c => { const co = counties[c.county_fips]; return co && (co.level ?? 0) >= 4; }).length;
+  const uniqueOps   = opRows.length;
+
+  let _expanded = null;
+
+  const GRADE_COLORS = { A: "#22c55e", B: "#84cc16", C: "#eab308", D: "#f97316", F: "#ef4444" };
+
+  function rowHtml(r) {
+    const isOpen    = _expanded === r.op;
+    const maxAtRisk = opRows[0] ? opRows[0].atRisk : 1;
+    const barPct    = maxAtRisk > 0 ? (r.atRisk / maxAtRisk * 100).toFixed(0) : 0;
+    const riskColor = r.banned > 0 ? "#dc2626" : r.restricted > 0 ? "#f97316" : "#22c55e";
+    const gradeColor = GRADE_COLORS[r.avgGrade] || "#9ca3af";
+
+    const campDetails = [...r.camps]
+      .sort((a, b) => ((counties[b.county_fips]?.level ?? 0) - (counties[a.county_fips]?.level ?? 0)))
+      .slice(0, 10)
+      .map(cam => {
+        const co  = counties[cam.county_fips];
+        const lvl = co ? (co.level ?? 0) : null;
+        const cls = lvl !== null && lvl >= 4 ? "op-risk-camp-ban" : lvl >= 1 ? "op-risk-camp-restricted" : "op-risk-camp-open";
+        return `<div class="op-risk-camp-item ${cls}">
+          <span class="op-risk-camp-name">${escHtml(cam.name)}</span>
+          ${co ? `<span class="op-risk-camp-loc">${escHtml(co.name)}, ${escHtml(co.state)}</span>` : ""}
+          <span class="op-risk-camp-status">${escHtml(cam.status || "")}</span>
+          ${cam.county_fips ? `<button class="op-risk-map-btn" data-fips="${escHtml(cam.county_fips)}">View</button>` : ""}
+        </div>`;
+      }).join("");
+    const moreNote = r.camps.length > 10 ? `<div class="op-risk-more">+${r.camps.length - 10} more</div>` : "";
+
+    return `<tr class="op-risk-row${isOpen ? " expanded" : ""}" data-op="${escHtml(r.op)}">
+      <td class="op-risk-td op-risk-name">
+        <span class="op-risk-expand-icon">${isOpen ? "▲" : "▼"}</span>
+        ${escHtml(r.op)}
+        ${isOpen ? `<div class="op-risk-detail">${campDetails}${moreNote}</div>` : ""}
+      </td>
+      <td class="op-risk-td op-risk-num">${r.total}</td>
+      <td class="op-risk-td">
+        <div class="op-risk-bar-wrap"><div class="op-risk-bar" style="width:${barPct}%;background:${riskColor}"></div></div>
+        <span class="op-risk-num" style="color:${riskColor}">${r.atRisk}</span>
+      </td>
+      <td class="op-risk-td op-risk-num" style="color:#dc2626">${r.banned || "—"}</td>
+      <td class="op-risk-td">
+        ${r.avgGrade ? `<span class="op-risk-grade-badge" style="color:${gradeColor};border-color:${gradeColor}">${r.avgGrade}</span>` : ""}
+        ${r.avgSuit !== null ? `<span class="op-risk-num" style="color:var(--text-muted)">${r.avgSuit}</span>` : ""}
+      </td>
+    </tr>`;
+  }
+
+  function render() {
+    container.innerHTML = `
+      <div class="op-risk-kpi-row">
+        <div class="op-risk-kpi"><span class="op-risk-kpi-val">${totalCamps}</span><span class="op-risk-kpi-label">AI campuses tracked</span></div>
+        <div class="op-risk-kpi"><span class="op-risk-kpi-val" style="color:#f97316">${totalAtRisk}</span><span class="op-risk-kpi-label">In restricted counties</span></div>
+        <div class="op-risk-kpi"><span class="op-risk-kpi-val" style="color:#dc2626">${totalBanned}</span><span class="op-risk-kpi-label">In ban zones</span></div>
+        <div class="op-risk-kpi"><span class="op-risk-kpi-val">${uniqueOps}</span><span class="op-risk-kpi-label">Operators tracked</span></div>
+      </div>
+      <div class="op-risk-table-wrap">
+        <table class="op-risk-table">
+          <thead>
+            <tr>
+              <th class="op-risk-th op-risk-th-op">Operator</th>
+              <th class="op-risk-th">Campuses</th>
+              <th class="op-risk-th">At Risk</th>
+              <th class="op-risk-th">Ban Zone</th>
+              <th class="op-risk-th">Avg. Suit.</th>
+            </tr>
+          </thead>
+          <tbody>${opRows.map(rowHtml).join("")}</tbody>
+        </table>
+      </div>
+      <p class="cap-note">AI campuses cross-referenced with county restriction data. "At Risk" = campuses in counties with any active restriction (level ≥ 1). "Ban Zone" = ban or moratorium (level ≥ 4). Click a row to expand campus details. Source: ai_campuses.json (${totalCamps} campuses, public data).</p>
+    `;
+    container.querySelectorAll(".op-risk-row .op-risk-name").forEach(td => {
+      td.addEventListener("click", () => {
+        const row = td.closest(".op-risk-row");
+        if (!row) return;
+        const op = row.dataset.op;
+        _expanded = _expanded === op ? null : op;
+        render();
+      });
+    });
+    container.querySelectorAll(".op-risk-map-btn").forEach(btn => {
+      btn.addEventListener("click", e => {
+        e.stopPropagation();
+        const fips = btn.dataset.fips;
+        if (!fips) return;
+        if (typeof switchTab === "function") switchTab("map");
+        setTimeout(() => {
+          if (typeof selectCounty === "function") selectCounty(fips);
+          if (typeof zoomToFeature === "function") zoomToFeature(fips);
+        }, 150);
+      });
+    });
+  }
+
+  render();
 }
 
 /* ─────────────────────────────────────────────────────────────── */

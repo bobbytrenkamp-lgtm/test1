@@ -267,6 +267,101 @@ function buildFeatured() {
   }).filter(Boolean);
 }
 
+/* ── Top development sites: no restrictions, B+ suitability, sorted by score ── */
+function buildTopSites() {
+  if (typeof computeSuitabilityScore !== "function" || !mapData) return [];
+  const wsData  = window.DC_WATER_STRESS_FULL || {};
+  const incData = window.DC_INCENTIVES_FIPS   || {};
+  const WS_LABELS = ["Low", "Low-Med", "Med-High", "High", "Extreme"];
+
+  const results = [];
+  for (const fips in mapData) {
+    const c = mapData[fips];
+    if ((c.level || 0) > 0) continue;
+    const suit = computeSuitabilityScore(fips, c);
+    if (suit.score < 65) continue;
+    const ws     = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : null;
+    const hasInc = !!(incData[fips]);
+    results.push({ fips, name: c.name, state: c.state, level: c.level, suit, ws, wsLabel: ws !== null ? (WS_LABELS[ws] || String(ws)) : null, hasInc });
+  }
+
+  results.sort((a, b) => {
+    if (b.suit.score !== a.suit.score) return b.suit.score - a.suit.score;
+    const wa = a.ws !== null ? a.ws : 99;
+    const wb = b.ws !== null ? b.ws : 99;
+    if (wa !== wb) return wa - wb;
+    return (b.hasInc ? 1 : 0) - (a.hasInc ? 1 : 0);
+  });
+
+  return results.slice(0, 10);
+}
+
+/* ── Recently reviewed counties (using last_reviewed field) ── */
+function buildRecentlyReviewed() {
+  if (!mapData) return [];
+  return Object.entries(mapData)
+    .filter(([, c]) => c.last_reviewed)
+    .sort((a, b) => (b[1].last_reviewed || "").localeCompare(a[1].last_reviewed || ""))
+    .slice(0, 6)
+    .map(([fips, c]) => ({ fips, ...c }));
+}
+
+/* ── Recently visited counties (set by map.js selectCounty) ── */
+function buildRecentlyVisited() {
+  if (!mapData) return [];
+  let fipsArr;
+  try { fipsArr = JSON.parse(localStorage.getItem("dc-recent-counties-v1") || "[]"); }
+  catch (_) { fipsArr = []; }
+  return fipsArr.slice(0, 8).map(fips => {
+    const c = mapData[fips];
+    return { fips, name: c ? c.name : fips, state: c ? c.state : "", level: c ? (c.level ?? 0) : 0 };
+  });
+}
+
+/* ── Watchlist portfolio health summary ── */
+function _buildWatchlistPortfolio(watchlist) {
+  if (!watchlist.length || typeof computeSuitabilityScore !== "function" || !mapData) return null;
+  const grades = { A: 0, B: 0, C: 0, D: 0, F: 0 };
+  let scoreSum = 0, scoreN = 0;
+  let bans = 0, restricted = 0, open = 0, pro = 0;
+  for (const w of watchlist) {
+    const county = mapData[w.fips];
+    if (!county) continue;
+    const s = computeSuitabilityScore(w.fips, county);
+    if (s) { grades[s.grade] = (grades[s.grade] || 0) + 1; scoreSum += s.score; scoreN++; }
+    const lvl = w.level;
+    if (lvl >= 4) bans++;
+    else if (lvl >= 1) restricted++;
+    else if (lvl === -1) pro++;
+    else open++;
+  }
+  if (!scoreN) return null;
+  const avgScore = Math.round(scoreSum / scoreN);
+  const avgGrade = avgScore >= 80 ? "A" : avgScore >= 65 ? "B" : avgScore >= 45 ? "C" : avgScore >= 25 ? "D" : "F";
+  return { grades, avgScore, avgGrade, bans, restricted, open, pro, total: watchlist.length };
+}
+
+/* ── County watchlist (reads from localStorage written by map.js) ── */
+function buildWatchlist() {
+  if (!mapData) return [];
+  let fipsArr;
+  try { fipsArr = JSON.parse(localStorage.getItem("dc-watchlist-v1") || "[]"); }
+  catch (_) { fipsArr = []; }
+  const wsData  = window.DC_WATER_STRESS_FULL || {};
+  const WS_LABELS = ["Low", "Low-Med", "Med-High", "High", "Extreme"];
+  return fipsArr.map(fips => {
+    const c = mapData[fips];
+    const ws = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : null;
+    return {
+      fips,
+      name:    c ? c.name  : fips,
+      state:   c ? c.state : "",
+      level:   c ? (c.level ?? 0) : 0,
+      wsLabel: ws !== null ? (WS_LABELS[ws] || String(ws)) : null,
+    };
+  });
+}
+
 /* ── Recent policy activity (most recently dated entries, any level) ── */
 function buildRecentActivity() {
   if (!mapData) return [];
@@ -279,16 +374,23 @@ function buildRecentActivity() {
 
 /* ── KPI summary ── */
 function buildKPIs() {
-  if (!mapData) return { total: 0, bans: 0, high: 0, moderate: 0, states: 0, dcExisting: null, dcProposed: null };
+  if (!mapData) return { total: 0, bans: 0, high: 0, moderate: 0, states: 0, dcExisting: null, dcProposed: null, dataDate: null };
   const counties = Object.values(mapData);
   const bans     = counties.filter(c => c.level === 4).length;
   const high     = counties.filter(c => c.level === 3).length;
   const moderate = counties.filter(c => c.level === 2).length;
   const stSet    = new Set(counties.map(c => c.state));
+  // Most recent effective_date/date in the dataset
+  let dataDate = null;
+  for (const c of counties) {
+    const d = c.effective_date || c.date;
+    if (d && (!dataDate || d > dataDate)) dataDate = d;
+  }
   return {
     total: counties.length, bans, high, moderate, states: stSet.size,
     dcExisting: _dcStats ? _dcStats.existing : null,
     dcProposed: _dcStats ? _dcStats.proposed : null,
+    dataDate,
   };
 }
 
@@ -349,6 +451,142 @@ function homeSkeletonRows(n) {
   return Array.from({ length: n }, () =>
     `<div class="home-skeleton-row"><div class="home-skel home-skel-line"></div><div class="home-skel home-skel-short"></div></div>`
   ).join("");
+}
+
+/* ── Export watchlist as CSV ── */
+function _exportWatchlistCSV() {
+  if (!mapData) return;
+  let fipsArr;
+  try { fipsArr = JSON.parse(localStorage.getItem("dc-watchlist-v1") || "[]"); }
+  catch (_) { fipsArr = []; }
+  if (!fipsArr.length) { showMapToast && showMapToast("Watchlist is empty"); return; }
+
+  const wsData   = window.DC_WATER_STRESS_FULL || {};
+  const incData  = window.DC_INCENTIVES_FIPS   || {};
+  const WS_LABELS = ["Low","Low-Med","Med-High","High","Extreme"];
+  const LVL_LABELS = {"-1":"Pro / Incentive Hub","0":"No Restrictions","1":"Light Regulations","2":"Moderate Restrictions","3":"Significant Restrictions","4":"Ban / Moratorium"};
+  const TYPE_MAP  = { data_center:"Data Center", ai:"AI Regulation", energy:"Energy / Grid", crypto:"Crypto / HPC", water:"Water Use" };
+
+  const csvCell = v => {
+    const s = String(v ?? "");
+    return (s.includes(",") || s.includes('"') || s.includes("\n")) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  };
+
+  const header = ["FIPS","County","State","Restriction Level","Level Label","Status","Effective Date","Policy Types","Suitability Score","Suitability Grade","Water Stress","Water Stress Label","Incentive Programs"];
+  const rows = fipsArr.map(fips => {
+    const c   = mapData[fips] || {};
+    const lvl = c.level ?? 0;
+    const ws  = (wsData[fips] !== undefined && wsData[fips] !== null) ? wsData[fips] : "";
+    const wsLabel = ws !== "" ? (WS_LABELS[ws] || String(ws)) : "";
+    const incProgs = (incData[fips] || []).map(p => p.program_name || p.name || "").filter(Boolean).join("; ");
+    const types    = (c.types || []).map(t => TYPE_MAP[t] || t).join("; ");
+    let suit = { score: "", grade: "" };
+    if (typeof computeSuitabilityScore === "function") {
+      try { suit = computeSuitabilityScore(fips, c); } catch (_) {}
+    }
+    return [fips, c.name||fips, c.state||"", lvl, LVL_LABELS[String(lvl)]||String(lvl), c.status||"active",
+      c.effective_date||c.date||"", types, suit.score, suit.grade, ws, wsLabel, incProgs].map(csvCell).join(",");
+  });
+
+  const csv  = [header.join(","), ...rows].join("\r\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), {
+    href: url, download: `dc-watchlist-${new Date().toISOString().slice(0,10)}.csv`,
+  });
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+}
+
+/* ── Policy change detection ── */
+let _policySnapshot = null;
+
+(function _initSnapshot() {
+  try {
+    const raw = localStorage.getItem("dc-policy-snapshot-v1");
+    if (raw) _policySnapshot = JSON.parse(raw);
+  } catch (_) {}
+}());
+
+function _detectPolicyChanges() {
+  if (!_policySnapshot || !_policySnapshot.data || !mapData || !Object.keys(mapData).length) return [];
+  const snap  = _policySnapshot.data;
+  const out   = [];
+  for (const fips in mapData) {
+    const cur  = mapData[fips].level ?? 0;
+    const prev = snap[fips];
+    if (prev !== undefined && prev !== cur) {
+      out.push({ fips, name: mapData[fips].name, state: mapData[fips].state, oldLevel: prev, newLevel: cur });
+    }
+  }
+  // Sort: biggest change first (abs diff), then by newLevel desc
+  out.sort((a, b) => {
+    const da = Math.abs(b.newLevel - b.oldLevel);
+    const db = Math.abs(a.newLevel - a.oldLevel);
+    if (da !== db) return da - db;
+    return b.newLevel - a.newLevel;
+  });
+  return out.slice(0, 12);
+}
+
+function _savePolicySnapshot() {
+  if (!mapData || !Object.keys(mapData).length) return;
+  try {
+    const data = {};
+    for (const fips in mapData) data[fips] = mapData[fips].level ?? 0;
+    const snap = { ts: new Date().toISOString().slice(0, 10), data };
+    localStorage.setItem("dc-policy-snapshot-v1", JSON.stringify(snap));
+    _policySnapshot = snap;
+  } catch (_) {}
+}
+
+/* ── Navigate map to a state (used by state chips) ── */
+function _jumpToState(abbr) {
+  // Build abbr → fips2 reverse map from STATE_FIPS (const in map.js scope)
+  const sfMap = typeof STATE_FIPS !== "undefined" ? STATE_FIPS : {};
+  const fips2 = Object.keys(sfMap).find(k => sfMap[k] === abbr);
+  if (!fips2) return;
+  switchTab("map");
+  (typeof mapInitPromise !== "undefined" && mapInitPromise
+    ? mapInitPromise : Promise.resolve()
+  ).then(() => {
+    if (typeof stateGeoLayer !== "undefined" && stateGeoLayer && typeof leafletMap !== "undefined" && leafletMap) {
+      const layer = stateGeoLayer.getLayers().find(l => String(l.feature.id).padStart(2,"0") === fips2);
+      if (layer) leafletMap.flyToBounds(layer.getBounds(), { duration: 0.7, padding: [30, 30] });
+    }
+    if (typeof showStateDetail === "function") showStateDetail(fips2);
+  });
+}
+
+/* ── Live Policy Digest ── */
+function _buildPolicyDigest() {
+  if (!mapData || !Object.keys(mapData).length) return null;
+  const now = Date.now();
+  const ninetyDays = 90 * 24 * 60 * 60 * 1000;
+  const recent = [];
+  const openA   = [];
+  const proposed = [];
+  for (const fips in mapData) {
+    const c = mapData[fips];
+    const dateStr = c.effective_date || c.date || "";
+    if (dateStr) {
+      const d = new Date(dateStr + "T00:00:00").getTime();
+      if (!isNaN(d) && now - d <= ninetyDays && (c.level ?? 0) >= 1) {
+        recent.push({ fips, name: c.name, state: c.state, level: c.level, date: dateStr });
+      }
+    }
+    const st = c.status || "active";
+    if (st === "proposed" || st === "pending" || c.lifecycle_stage === "proposed") {
+      proposed.push({ fips, name: c.name, state: c.state, level: c.level ?? 1 });
+    }
+    if ((c.level ?? 0) <= 0 && typeof computeSuitabilityScore === "function") {
+      const suit = computeSuitabilityScore(fips, c);
+      if (suit && suit.grade === "A") openA.push({ fips, name: c.name, state: c.state, score: suit.score });
+    }
+  }
+  recent.sort((a, b) => b.date.localeCompare(a.date));
+  openA.sort((a, b) => b.score - a.score);
+  return { recent: recent.slice(0, 3), openA: openA.slice(0, 3), proposedCount: proposed.length };
 }
 
 /* ── Main render ── */
@@ -417,6 +655,14 @@ function renderHomePage() {
   const news           = buildLatestNews();
   const featured       = buildFeatured();
   const recentActivity = buildRecentActivity();
+  const topSites           = buildTopSites();
+  const watchlist          = buildWatchlist();
+  const portfolio          = _buildWatchlistPortfolio(watchlist);
+  const recentlyVisited    = buildRecentlyVisited();
+  const recentlyReviewed   = buildRecentlyReviewed();
+  const digest             = _buildPolicyDigest();
+  const policyChanges      = _detectPolicyChanges();
+  if (!policyChanges.length) _savePolicySnapshot();  // keep baseline current when no changes
   const newsTS   = newsArticles && newsArticles.length
     ? fmtRelDate(
         [...newsArticles].sort((a,b) => (b.published_at||"").localeCompare(a.published_at||""))[0]?.published_at
@@ -479,6 +725,11 @@ function renderHomePage() {
       <div class="home-kpi-label">Proposed</div>
     </div>
   </section>
+  ${kpis.dataDate ? `<div class="home-freshness-bar">
+    <span class="home-freshness-dot"></span>
+    Dataset last updated: <strong>${escHtml(kpis.dataDate.slice(0, 10))}</strong>
+    &nbsp;·&nbsp; Policy data updated manually as regulations change
+  </div>` : ""}
 
   <!-- Quick nav cards -->
   <section class="home-section home-nav-section">
@@ -508,6 +759,69 @@ function renderHomePage() {
         <span class="home-nav-desc">Policy distribution, state rankings, and trend analysis</span>
         <span class="home-nav-arrow">${HOME_ICONS.arrow}</span>
       </button>
+    </div>
+  </section>
+
+  <!-- Policy Change Alerts -->
+  ${policyChanges.length ? `
+  <section class="home-section home-alerts-section" id="home-policy-alerts">
+    <div class="home-alerts-hdr">
+      <div class="home-alerts-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Policy Updates Since Your Last Visit
+        <span class="home-alerts-count">${policyChanges.length}</span>
+      </div>
+      <button class="home-alerts-dismiss" id="home-alerts-dismiss" type="button" aria-label="Mark changes as reviewed">Mark as reviewed</button>
+    </div>
+    <div class="home-alerts-list">
+      ${policyChanges.map(ch => {
+        const oldCls  = SEV_CLASSES[ch.oldLevel] || SEV_CLASSES[0];
+        const oldLbl  = SEV_LABELS[ch.oldLevel]  ?? SEV_LABELS[0];
+        const newCls  = SEV_CLASSES[ch.newLevel] || SEV_CLASSES[0];
+        const newLbl  = SEV_LABELS[ch.newLevel]  ?? SEV_LABELS[0];
+        const arrow   = ch.newLevel > ch.oldLevel ? "↑" : "↓";
+        const dir     = ch.newLevel > ch.oldLevel ? "home-alert-up" : "home-alert-down";
+        return `<div class="home-alert-row" role="button" tabindex="0" data-fips="${escHtml(ch.fips)}" aria-label="${escHtml(ch.name)}, ${escHtml(ch.state)}">
+          <span class="home-alert-arrow ${dir}">${arrow}</span>
+          <div class="home-alert-info">
+            <span class="home-alert-name">${escHtml(ch.name)}</span>
+            <span class="home-alert-state">${escHtml(ch.state)}</span>
+          </div>
+          <span class="sev-badge ${oldCls}" style="opacity:0.6">${escHtml(oldLbl)}</span>
+          <span class="home-alert-to">→</span>
+          <span class="sev-badge ${newCls}">${escHtml(newLbl)}</span>
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
+  <!-- State Quick Navigation -->
+  <section class="home-section home-state-nav-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Browse by State</h2>
+      <button class="home-col-link" onclick="switchTab('map')" type="button">Open map ${HOME_ICONS.arrow}</button>
+    </div>
+    <div class="home-state-chips" role="list" aria-label="States">
+      ${(typeof STATE_NAMES !== "undefined" ? Object.entries(STATE_NAMES) : []).sort((a,b)=>a[1].localeCompare(b[1])).map(([abbr, name]) => {
+        // Count restricted counties in this state
+        let restrictCount = 0;
+        if (mapData) {
+          const sfMap = typeof STATE_FIPS !== "undefined" ? STATE_FIPS : {};
+          const fips2 = Object.keys(sfMap).find(k => sfMap[k] === abbr);
+          if (fips2) {
+            for (const fips in mapData) {
+              if (fips.startsWith(fips2) && (mapData[fips].level || 0) >= 1) restrictCount++;
+            }
+          }
+        }
+        const hasPolicies = restrictCount > 0;
+        return `<button class="home-state-chip${hasPolicies ? " home-state-chip-active" : ""}"
+          role="listitem" data-abbr="${escHtml(abbr)}" type="button"
+          title="${escHtml(name)}${hasPolicies ? ` — ${restrictCount} restricted county${restrictCount === 1 ? "" : "s"}` : ""}">
+          ${escHtml(abbr)}
+          ${hasPolicies ? `<span class="home-state-chip-dot" aria-hidden="true"></span>` : ""}
+        </button>`;
+      }).join("")}
     </div>
   </section>
 
@@ -581,6 +895,156 @@ function renderHomePage() {
     </div>
   </section>` : ""}
 
+  <!-- Recently Visited Counties (user's own browsing history) -->
+  ${recentlyVisited.length ? `
+  <section class="home-section" id="home-recently-visited">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Recently Visited</h2>
+      <button class="home-col-link home-rv-clear" type="button">Clear history</button>
+    </div>
+    <div class="home-reviewed-grid">
+      ${recentlyVisited.map(c => {
+        const lvl    = c.level ?? 0;
+        const sevCls = SEV_CLASSES[lvl] || SEV_CLASSES[0];
+        const sevLbl = SEV_LABELS[lvl]  ?? SEV_LABELS[0];
+        return `<div class="home-reviewed-card" role="button" tabindex="0" data-fips="${escHtml(c.fips)}" aria-label="${escHtml(c.name)}, ${escHtml(c.state)}">
+          <div class="home-reviewed-top">
+            <span class="home-reviewed-name">${escHtml(c.name)}</span>
+            <span class="sev-badge ${escHtml(sevCls)}">${escHtml(sevLbl)}</span>
+          </div>
+          <div class="home-reviewed-meta">
+            <span class="home-reviewed-state">${escHtml(c.state)}</span>
+          </div>
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
+  <!-- Recently Reviewed Counties -->
+  ${recentlyReviewed.length ? `
+  <section class="home-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Recently Reviewed</h2>
+      <button class="home-col-link" onclick="switchTab('analytics')" type="button">Full analytics ${HOME_ICONS.arrow}</button>
+    </div>
+    <p class="home-sites-desc">Counties where policy records were most recently verified or updated by the research team.</p>
+    <div class="home-reviewed-grid">
+      ${recentlyReviewed.map(c => {
+        const lvl    = c.level ?? 0;
+        const sevCls = SEV_CLASSES[lvl] || SEV_CLASSES[0];
+        const sevLbl = SEV_LABELS[lvl]  ?? SEV_LABELS[0];
+        const reviewed = c.last_reviewed ? c.last_reviewed.slice(0, 10) : "";
+        const daysAgo = reviewed ? Math.round((Date.now() - new Date(reviewed + "T00:00:00").getTime()) / 86400000) : null;
+        const daysStr = daysAgo !== null ? (daysAgo === 0 ? "today" : daysAgo === 1 ? "1d ago" : `${daysAgo}d ago`) : "";
+        return `<div class="home-reviewed-card" role="button" tabindex="0" data-fips="${escHtml(c.fips)}" aria-label="${escHtml(c.name)}, ${escHtml(c.state)}">
+          <div class="home-reviewed-top">
+            <span class="home-reviewed-name">${escHtml(c.name)}</span>
+            <span class="sev-badge ${escHtml(sevCls)}">${escHtml(sevLbl)}</span>
+          </div>
+          <div class="home-reviewed-meta">
+            <span class="home-reviewed-state">${escHtml(c.state)}</span>
+            ${daysStr ? `<span class="home-reviewed-date">${escHtml(daysStr)}</span>` : ""}
+          </div>
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
+  <!-- Top Development Sites -->
+  ${topSites.length ? `
+  <section class="home-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Top Development Sites</h2>
+      <button class="home-col-link" onclick="switchTab('map'); setTimeout(()=>document.getElementById('gis-screener')?.click(),300)" type="button">Full screener ${HOME_ICONS.arrow}</button>
+    </div>
+    <p class="home-sites-desc">Best counties for data center development — B+ suitability grade (≥65 pts), no active restrictions, ranked by composite score. Click any row to open on the map.</p>
+    <div class="home-sites-list">
+      ${topSites.map((s, i) => {
+        const GRADE_COLOR = { A: "#22c55e", B: "#22d3ee", C: "#eab308", D: "#f97316", F: "#ef4444" };
+        const wsColor = s.ws !== null ? (s.ws <= 1 ? "#22c55e" : s.ws === 2 ? "#eab308" : "#ef4444") : "var(--text-muted)";
+        const incLevel = s.level === -1 ? "Pro-Dev" : (s.hasInc ? "Incentives" : "");
+        return `<div class="home-site-row" role="button" tabindex="0" data-fips="${escHtml(s.fips)}" aria-label="${escHtml(s.name)}, ${escHtml(s.state)}">
+          <div class="home-site-rank">${i + 1}</div>
+          <div class="home-site-info">
+            <div class="home-site-name">${escHtml(s.name)}</div>
+            <div class="home-site-state">${escHtml(s.state)}</div>
+          </div>
+          <div class="home-site-metrics">
+            <span class="home-site-grade" style="color:${GRADE_COLOR[s.suit.grade] || "var(--accent)"};">${s.suit.grade}</span>
+            <span class="home-site-score">${s.suit.score}pts</span>
+            ${s.wsLabel !== null ? `<span class="home-site-ws" style="color:${wsColor}">${escHtml(s.wsLabel)}</span>` : ""}
+            ${incLevel ? `<span class="home-site-inc">${escHtml(incLevel)}</span>` : ""}
+          </div>
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
+  <!-- Watched Counties -->
+  ${watchlist.length ? `
+  <section class="home-section" id="home-watchlist-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Watched Counties</h2>
+      <div class="home-watchlist-actions">
+        ${watchlist.length >= 2 ? `
+        <button class="home-watchlist-compare-btn" id="home-watchlist-compare" type="button" title="Open county compare panel with all watched counties">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="3" width="7" height="18"/></svg>
+          Compare All
+        </button>` : ""}
+        <button class="home-watchlist-export-btn" id="home-watchlist-export" type="button" title="Export watched counties as CSV" aria-label="Export watchlist CSV">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export CSV
+        </button>
+        <span class="home-watchlist-count" id="home-watchlist-count">${watchlist.length} watched</span>
+      </div>
+    </div>
+    ${portfolio ? `<div class="home-wl-portfolio">
+      <div class="home-wl-port-stat">
+        <span class="home-wl-port-label">Avg. Suitability</span>
+        <div class="home-wl-port-val">
+          <span class="home-wl-port-grade home-wl-grade-${escHtml(portfolio.avgGrade)}">${escHtml(portfolio.avgGrade)}</span>
+          <span class="home-wl-port-score">${portfolio.avgScore}/100</span>
+        </div>
+      </div>
+      <div class="home-wl-port-stat">
+        <span class="home-wl-port-label">Grade Mix</span>
+        <div class="home-wl-port-grades">
+          ${["A","B","C","D","F"].filter(g => portfolio.grades[g]).map(g =>
+            `<span class="home-wl-port-grade-pill grade-${g}">${g}<small>${portfolio.grades[g]}</small></span>`
+          ).join("")}
+        </div>
+      </div>
+      <div class="home-wl-port-stat">
+        <span class="home-wl-port-label">Risk Exposure</span>
+        <div class="home-wl-port-risk">
+          ${portfolio.bans       ? `<span class="home-wl-port-risk-chip ban">${portfolio.bans} ban</span>` : ""}
+          ${portfolio.restricted ? `<span class="home-wl-port-risk-chip restricted">${portfolio.restricted} restricted</span>` : ""}
+          ${portfolio.open       ? `<span class="home-wl-port-risk-chip open">${portfolio.open} open</span>` : ""}
+          ${portfolio.pro        ? `<span class="home-wl-port-risk-chip pro">${portfolio.pro} pro-dev</span>` : ""}
+        </div>
+      </div>
+    </div>` : ""}
+    <div class="home-watchlist" id="home-watchlist-list">
+      ${watchlist.map(w => {
+        const lvl = w.level;
+        const sevCls = SEV_CLASSES[lvl] || SEV_CLASSES[0];
+        const sevLbl = SEV_LABELS[lvl]  ?? SEV_LABELS[0];
+        return `<div class="home-watch-row" role="button" tabindex="0" data-fips="${escHtml(w.fips)}" aria-label="${escHtml(w.name)}, ${escHtml(w.state)}">
+          <div class="home-watch-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="home-watch-info">
+            <span class="home-watch-name">${escHtml(w.name)}</span>
+            <span class="home-watch-state">${escHtml(w.state)}</span>
+          </div>
+          <span class="sev-badge ${sevCls}">${escHtml(sevLbl)}</span>
+          ${w.wsLabel !== null ? `<span class="home-watch-ws">${escHtml(w.wsLabel)}</span>` : ""}
+          <button class="home-watch-remove" data-fips="${escHtml(w.fips)}" type="button" aria-label="Remove ${escHtml(w.name)} from watchlist" title="Remove from watchlist">×</button>
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
   <!-- Market ticker -->
   <section class="home-section home-ticker-section">
     <div class="home-col-header">
@@ -613,17 +1077,60 @@ function renderHomePage() {
     </div>
   </section>` : ""}
 
-  <!-- Newsletter placeholder -->
-  <section class="home-section">
-    <div class="home-newsletter-card">
-      <div class="home-newsletter-icon">${HOME_ICONS.mail}</div>
-      <div class="home-newsletter-body">
-        <div class="home-newsletter-title">Policy Digest</div>
-        <div class="home-newsletter-sub">Weekly summary of new data center restrictions, AI regulations, and policy developments. Coming soon.</div>
-      </div>
-      <span class="home-newsletter-coming">Coming soon</span>
+  <!-- Policy Digest (live computed) -->
+  ${digest ? `
+  <section class="home-section home-digest-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Policy Digest</h2>
+      <span class="home-digest-badge">Live</span>
     </div>
-  </section>
+    <div class="home-digest-grid">
+
+      ${digest.recent.length ? `
+      <div class="home-digest-card">
+        <div class="home-digest-card-title">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Recent Enactments <span class="home-digest-sub">(last 90 days)</span>
+        </div>
+        ${digest.recent.map(c => {
+          const lvl = c.level ?? 0;
+          const lvlCls = SEV_CLASSES[lvl] || SEV_CLASSES[0];
+          const lvlLbl = SEV_LABELS[lvl] ?? SEV_LABELS[0];
+          return `<div class="home-digest-row" role="button" tabindex="0" data-fips="${escHtml(c.fips)}">
+            <span class="sev-badge ${escHtml(lvlCls)}">${escHtml(lvlLbl)}</span>
+            <span class="home-digest-name">${escHtml(c.name)}, ${escHtml(c.state)}</span>
+            <span class="home-digest-date">${escHtml(c.date.slice(0,10))}</span>
+          </div>`;
+        }).join("")}
+      </div>` : ""}
+
+      ${digest.openA.length ? `
+      <div class="home-digest-card">
+        <div class="home-digest-card-title">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Top Open Sites <span class="home-digest-sub">(A-grade, unrestricted)</span>
+        </div>
+        ${digest.openA.map(c => {
+          return `<div class="home-digest-row" role="button" tabindex="0" data-fips="${escHtml(c.fips)}">
+            <span class="sev-badge badge-none">Open</span>
+            <span class="home-digest-name">${escHtml(c.name)}, ${escHtml(c.state)}</span>
+            <span class="home-digest-score">${c.score}pts</span>
+          </div>`;
+        }).join("")}
+      </div>` : ""}
+
+      <div class="home-digest-card home-digest-stat-card">
+        <div class="home-digest-card-title">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Pending Decisions
+        </div>
+        <div class="home-digest-stat">${digest.proposedCount}</div>
+        <div class="home-digest-stat-label">proposed restrictions awaiting enactment</div>
+        ${digest.proposedCount > 0 ? `<button class="home-digest-link" onclick="switchTab('analytics')" type="button">View monitor ${HOME_ICONS.arrow}</button>` : ""}
+      </div>
+
+    </div>
+  </section>` : ""}
 
   <!-- Footer -->
   <footer id="site-footer">
@@ -709,6 +1216,20 @@ function renderHomePage() {
     el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
   });
 
+  /* Bind top-sites row clicks */
+  view.querySelectorAll(".home-site-row[data-fips]").forEach(el => {
+    const handler = () => {
+      const fips = el.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise
+        : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    el.addEventListener("click",   handler);
+    el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+  });
+
   /* Bind featured card clicks */
   view.querySelectorAll(".home-featured-card[data-fips]").forEach(el => {
     const handler = () => {
@@ -721,6 +1242,151 @@ function renderHomePage() {
     };
     el.addEventListener("click",   handler);
     el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+  });
+
+  /* Bind recently-reviewed card clicks */
+  view.querySelectorAll(".home-reviewed-card[data-fips]").forEach(el => {
+    const handler = () => {
+      const fips = el.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise
+        : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    el.addEventListener("click",   handler);
+    el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+  });
+
+  /* Bind watchlist row clicks and remove buttons */
+  view.querySelectorAll(".home-watch-row[data-fips]").forEach(rowEl => {
+    const nav = () => {
+      const fips = rowEl.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise
+        : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    rowEl.addEventListener("click", e => {
+      if (e.target.closest(".home-watch-remove")) return;
+      nav();
+    });
+    rowEl.addEventListener("keydown", e => {
+      if ((e.key === "Enter" || e.key === " ") && !e.target.closest(".home-watch-remove")) {
+        e.preventDefault(); nav();
+      }
+    });
+  });
+
+  view.querySelectorAll(".home-watch-remove[data-fips]").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.stopPropagation();
+      const fips = btn.dataset.fips;
+      if (typeof toggleWatchCounty === "function") toggleWatchCounty(fips);
+      const row = btn.closest(".home-watch-row");
+      if (row) {
+        row.style.transition = "opacity 0.15s";
+        row.style.opacity = "0";
+        setTimeout(() => {
+          row.remove();
+          const list = view.querySelector("#home-watchlist-list");
+          const countEl = view.querySelector("#home-watchlist-count");
+          if (list && !list.querySelector(".home-watch-row")) {
+            view.querySelector("#home-watchlist-section")?.remove();
+          } else if (countEl) {
+            const remaining = list?.querySelectorAll(".home-watch-row").length || 0;
+            countEl.textContent = `${remaining} watched`;
+          }
+        }, 160);
+      }
+    });
+  });
+
+  /* Bind watchlist CSV export */
+  view.querySelector("#home-watchlist-export")?.addEventListener("click", () => {
+    _exportWatchlistCSV();
+  });
+
+  /* Compare All watched counties → open compare panel */
+  view.querySelector("#home-watchlist-compare")?.addEventListener("click", () => {
+    let fipsArr;
+    try { fipsArr = JSON.parse(localStorage.getItem("dc-watchlist-v1") || "[]"); }
+    catch (_) { fipsArr = []; }
+    if (!fipsArr.length) return;
+    switchTab("map");
+    (typeof mapInitPromise !== "undefined" && mapInitPromise
+      ? mapInitPromise : Promise.resolve()
+    ).then(() => {
+      if (typeof clearCompare === "function") clearCompare();
+      if (typeof toggleComparePanel === "function" && !compareMode) toggleComparePanel();
+      for (const fips of fipsArr.slice(0, 4)) {
+        if (typeof addToCompare === "function") addToCompare(fips);
+      }
+    });
+  });
+
+  /* Bind policy alert rows → map navigation */
+  view.querySelectorAll(".home-alert-row[data-fips]").forEach(rowEl => {
+    const nav = () => {
+      const fips = rowEl.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    rowEl.addEventListener("click",   nav);
+    rowEl.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nav(); } });
+  });
+
+  /* Dismiss policy alerts → update baseline snapshot */
+  view.querySelector("#home-alerts-dismiss")?.addEventListener("click", () => {
+    _savePolicySnapshot();
+    const sec = view.querySelector("#home-policy-alerts");
+    if (sec) {
+      sec.style.transition = "opacity 0.2s";
+      sec.style.opacity = "0";
+      setTimeout(() => sec.remove(), 220);
+    }
+  });
+
+  /* Recently visited — card clicks → county, clear button */
+  view.querySelectorAll("#home-recently-visited .home-reviewed-card[data-fips]").forEach(card => {
+    const nav = () => {
+      const fips = card.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    card.addEventListener("click",   nav);
+    card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nav(); } });
+  });
+  view.querySelector(".home-rv-clear")?.addEventListener("click", () => {
+    try { localStorage.removeItem("dc-recent-counties-v1"); } catch (_) {}
+    const sec = view.querySelector("#home-recently-visited");
+    if (sec) { sec.style.transition = "opacity 0.2s"; sec.style.opacity = "0"; setTimeout(() => sec.remove(), 220); }
+  });
+
+  /* Policy Digest rows → county navigation */
+  view.querySelectorAll(".home-digest-row[data-fips]").forEach(row => {
+    const nav = () => {
+      const fips = row.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    row.addEventListener("click",   nav);
+    row.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nav(); } });
+  });
+
+  /* State chip clicks → map + state detail */
+  view.querySelectorAll(".home-state-chip[data-abbr]").forEach(chip => {
+    chip.addEventListener("click", () => _jumpToState(chip.dataset.abbr));
+    chip.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); _jumpToState(chip.dataset.abbr); }
+    });
   });
 
   /* Bind news item clicks */
