@@ -456,6 +456,66 @@ function _exportWatchlistCSV() {
   setTimeout(() => URL.revokeObjectURL(url), 10000);
 }
 
+/* ── Policy change detection ── */
+let _policySnapshot = null;
+
+(function _initSnapshot() {
+  try {
+    const raw = localStorage.getItem("dc-policy-snapshot-v1");
+    if (raw) _policySnapshot = JSON.parse(raw);
+  } catch (_) {}
+}());
+
+function _detectPolicyChanges() {
+  if (!_policySnapshot || !_policySnapshot.data || !mapData || !Object.keys(mapData).length) return [];
+  const snap  = _policySnapshot.data;
+  const out   = [];
+  for (const fips in mapData) {
+    const cur  = mapData[fips].level ?? 0;
+    const prev = snap[fips];
+    if (prev !== undefined && prev !== cur) {
+      out.push({ fips, name: mapData[fips].name, state: mapData[fips].state, oldLevel: prev, newLevel: cur });
+    }
+  }
+  // Sort: biggest change first (abs diff), then by newLevel desc
+  out.sort((a, b) => {
+    const da = Math.abs(b.newLevel - b.oldLevel);
+    const db = Math.abs(a.newLevel - a.oldLevel);
+    if (da !== db) return da - db;
+    return b.newLevel - a.newLevel;
+  });
+  return out.slice(0, 12);
+}
+
+function _savePolicySnapshot() {
+  if (!mapData || !Object.keys(mapData).length) return;
+  try {
+    const data = {};
+    for (const fips in mapData) data[fips] = mapData[fips].level ?? 0;
+    const snap = { ts: new Date().toISOString().slice(0, 10), data };
+    localStorage.setItem("dc-policy-snapshot-v1", JSON.stringify(snap));
+    _policySnapshot = snap;
+  } catch (_) {}
+}
+
+/* ── Navigate map to a state (used by state chips) ── */
+function _jumpToState(abbr) {
+  // Build abbr → fips2 reverse map from STATE_FIPS (const in map.js scope)
+  const sfMap = typeof STATE_FIPS !== "undefined" ? STATE_FIPS : {};
+  const fips2 = Object.keys(sfMap).find(k => sfMap[k] === abbr);
+  if (!fips2) return;
+  switchTab("map");
+  (typeof mapInitPromise !== "undefined" && mapInitPromise
+    ? mapInitPromise : Promise.resolve()
+  ).then(() => {
+    if (typeof stateGeoLayer !== "undefined" && stateGeoLayer && typeof leafletMap !== "undefined" && leafletMap) {
+      const layer = stateGeoLayer.getLayers().find(l => String(l.feature.id).padStart(2,"0") === fips2);
+      if (layer) leafletMap.flyToBounds(layer.getBounds(), { duration: 0.7, padding: [30, 30] });
+    }
+    if (typeof showStateDetail === "function") showStateDetail(fips2);
+  });
+}
+
 /* ── Main render ── */
 function renderHomePage() {
   const view = document.getElementById("home-view");
@@ -525,6 +585,8 @@ function renderHomePage() {
   const topSites           = buildTopSites();
   const watchlist          = buildWatchlist();
   const recentlyReviewed   = buildRecentlyReviewed();
+  const policyChanges      = _detectPolicyChanges();
+  if (!policyChanges.length) _savePolicySnapshot();  // keep baseline current when no changes
   const newsTS   = newsArticles && newsArticles.length
     ? fmtRelDate(
         [...newsArticles].sort((a,b) => (b.published_at||"").localeCompare(a.published_at||""))[0]?.published_at
@@ -616,6 +678,69 @@ function renderHomePage() {
         <span class="home-nav-desc">Policy distribution, state rankings, and trend analysis</span>
         <span class="home-nav-arrow">${HOME_ICONS.arrow}</span>
       </button>
+    </div>
+  </section>
+
+  <!-- Policy Change Alerts -->
+  ${policyChanges.length ? `
+  <section class="home-section home-alerts-section" id="home-policy-alerts">
+    <div class="home-alerts-hdr">
+      <div class="home-alerts-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Policy Updates Since Your Last Visit
+        <span class="home-alerts-count">${policyChanges.length}</span>
+      </div>
+      <button class="home-alerts-dismiss" id="home-alerts-dismiss" type="button" aria-label="Mark changes as reviewed">Mark as reviewed</button>
+    </div>
+    <div class="home-alerts-list">
+      ${policyChanges.map(ch => {
+        const oldCls  = SEV_CLASSES[ch.oldLevel] || SEV_CLASSES[0];
+        const oldLbl  = SEV_LABELS[ch.oldLevel]  ?? SEV_LABELS[0];
+        const newCls  = SEV_CLASSES[ch.newLevel] || SEV_CLASSES[0];
+        const newLbl  = SEV_LABELS[ch.newLevel]  ?? SEV_LABELS[0];
+        const arrow   = ch.newLevel > ch.oldLevel ? "↑" : "↓";
+        const dir     = ch.newLevel > ch.oldLevel ? "home-alert-up" : "home-alert-down";
+        return `<div class="home-alert-row" role="button" tabindex="0" data-fips="${escHtml(ch.fips)}" aria-label="${escHtml(ch.name)}, ${escHtml(ch.state)}">
+          <span class="home-alert-arrow ${dir}">${arrow}</span>
+          <div class="home-alert-info">
+            <span class="home-alert-name">${escHtml(ch.name)}</span>
+            <span class="home-alert-state">${escHtml(ch.state)}</span>
+          </div>
+          <span class="sev-badge ${oldCls}" style="opacity:0.6">${escHtml(oldLbl)}</span>
+          <span class="home-alert-to">→</span>
+          <span class="sev-badge ${newCls}">${escHtml(newLbl)}</span>
+        </div>`;
+      }).join("")}
+    </div>
+  </section>` : ""}
+
+  <!-- State Quick Navigation -->
+  <section class="home-section home-state-nav-section">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Browse by State</h2>
+      <button class="home-col-link" onclick="switchTab('map')" type="button">Open map ${HOME_ICONS.arrow}</button>
+    </div>
+    <div class="home-state-chips" role="list" aria-label="States">
+      ${(typeof STATE_NAMES !== "undefined" ? Object.entries(STATE_NAMES) : []).sort((a,b)=>a[1].localeCompare(b[1])).map(([abbr, name]) => {
+        // Count restricted counties in this state
+        let restrictCount = 0;
+        if (mapData) {
+          const sfMap = typeof STATE_FIPS !== "undefined" ? STATE_FIPS : {};
+          const fips2 = Object.keys(sfMap).find(k => sfMap[k] === abbr);
+          if (fips2) {
+            for (const fips in mapData) {
+              if (fips.startsWith(fips2) && (mapData[fips].level || 0) >= 1) restrictCount++;
+            }
+          }
+        }
+        const hasPolicies = restrictCount > 0;
+        return `<button class="home-state-chip${hasPolicies ? " home-state-chip-active" : ""}"
+          role="listitem" data-abbr="${escHtml(abbr)}" type="button"
+          title="${escHtml(name)}${hasPolicies ? ` — ${restrictCount} restricted county${restrictCount === 1 ? "" : "s"}` : ""}">
+          ${escHtml(abbr)}
+          ${hasPolicies ? `<span class="home-state-chip-dot" aria-hidden="true"></span>` : ""}
+        </button>`;
+      }).join("")}
     </div>
   </section>
 
@@ -1001,6 +1126,38 @@ function renderHomePage() {
   /* Bind watchlist CSV export */
   view.querySelector("#home-watchlist-export")?.addEventListener("click", () => {
     _exportWatchlistCSV();
+  });
+
+  /* Bind policy alert rows → map navigation */
+  view.querySelectorAll(".home-alert-row[data-fips]").forEach(rowEl => {
+    const nav = () => {
+      const fips = rowEl.dataset.fips;
+      switchTab("map");
+      (typeof mapInitPromise !== "undefined" && mapInitPromise
+        ? mapInitPromise : Promise.resolve()
+      ).then(() => { selectCounty(fips); zoomToFeature(fips); });
+    };
+    rowEl.addEventListener("click",   nav);
+    rowEl.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nav(); } });
+  });
+
+  /* Dismiss policy alerts → update baseline snapshot */
+  view.querySelector("#home-alerts-dismiss")?.addEventListener("click", () => {
+    _savePolicySnapshot();
+    const sec = view.querySelector("#home-policy-alerts");
+    if (sec) {
+      sec.style.transition = "opacity 0.2s";
+      sec.style.opacity = "0";
+      setTimeout(() => sec.remove(), 220);
+    }
+  });
+
+  /* State chip clicks → map + state detail */
+  view.querySelectorAll(".home-state-chip[data-abbr]").forEach(chip => {
+    chip.addEventListener("click", () => _jumpToState(chip.dataset.abbr));
+    chip.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); _jumpToState(chip.dataset.abbr); }
+    });
   });
 
   /* Bind news item clicks */

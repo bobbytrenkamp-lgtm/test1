@@ -10070,3 +10070,165 @@ html.is-light-theme .map-mode-chip.active {
 :root[data-theme="light"] .pmon-row:hover { background: #f0f4ff; }
 :root[data-theme="light"] .pmon-table-wrap { border-color: #d0d8f0; }
 :root[data-theme="light"] .detail-notes-ta { background: #fff; border-color: #d0d8f0; }
+
+/* ── Policy Change Alerts (home) ── */
+.home-alerts-section {
+  border: 1px solid rgba(234,179,8,0.35);
+  border-radius: 10px;
+  background: rgba(234,179,8,0.05);
+  padding: 14px 16px;
+}
+.home-alerts-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.home-alerts-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #eab308;
+}
+.home-alerts-count {
+  background: rgba(234,179,8,0.2);
+  color: #eab308;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 20px;
+}
+.home-alerts-dismiss {
+  background: none;
+  border: 1px solid rgba(234,179,8,0.4);
+  color: #eab308;
+  cursor: pointer;
+  font-size: 11.5px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background var(--dur-fast), border-color var(--dur-fast);
+}
+.home-alerts-dismiss:hover {
+  background: rgba(234,179,8,0.1);
+  border-color: #eab308;
+}
+.home-alerts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.home-alert-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: background var(--dur-fast);
+}
+.home-alert-row:hover { background: var(--surface-2); }
+.home-alert-row:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.home-alert-arrow {
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+}
+.home-alert-up   { color: #ef4444; }
+.home-alert-down { color: #22c55e; }
+.home-alert-info {
+  flex: 1;
+  min-width: 0;
+}
+.home-alert-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.home-alert-state {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.home-alert-to {
+  color: var(--text-muted);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+/* ── State Quick Navigation ── */
+.home-state-nav-section {}
+.home-state-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.home-state-chip {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 5px 9px;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+  transition:
+    color var(--dur-fast),
+    border-color var(--dur-fast),
+    background var(--dur-fast);
+}
+.home-state-chip:hover,
+.home-state-chip:focus {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--surface-2);
+  outline: none;
+}
+.home-state-chip-active {
+  color: var(--text);
+  border-color: rgba(72,116,232,0.45);
+}
+.home-state-chip-active:hover,
+.home-state-chip-active:focus {
+  border-color: var(--accent);
+}
+.home-state-chip-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #f97316;
+}
+/* Light theme */
+@media (prefers-color-scheme: light) {
+  .home-alerts-section { background: rgba(234,179,8,0.06); }
+  .home-alert-row { background: #fff; }
+  .home-alert-row:hover { background: #f8f9ff; }
+  .home-state-chip { background: #fff; border-color: #d0d8f0; color: #6470a0; }
+  .home-state-chip:hover, .home-state-chip:focus { background: #f0f4ff; border-color: var(--accent); }
+  .home-state-chip-active { border-color: #a0b4f0; color: #2a3a70; }
+}
+:root[data-theme="light"] .home-alerts-section { background: rgba(234,179,8,0.06); }
+:root[data-theme="light"] .home-alert-row { background: #fff; }
+:root[data-theme="light"] .home-alert-row:hover { background: #f8f9ff; }
+:root[data-theme="light"] .home-state-chip { background: #fff; border-color: #d0d8f0; color: #6470a0; }
+:root[data-theme="light"] .home-state-chip:hover,
+:root[data-theme="light"] .home-state-chip:focus { background: #f0f4ff; border-color: var(--accent); }
+:root[data-theme="light"] .home-state-chip-active { border-color: #a0b4f0; color: #2a3a70; }
