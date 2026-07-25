@@ -2,6 +2,113 @@
 
 ---
 
+Bug: Filter panel and legend panel positions not persisted to localStorage across sessions
+Priority: Low
+Affected Files: `js/map.js` (initFilterPanelControls, initLeafletMap)
+Root Cause: `fpSavedPos` and `lgSavedPos` are computed during drag and stored in module-level variables, but they are never written to localStorage and are never read back on init. The panel always opens at its CSS default position on page load.
+Fix Needed: On dragend, serialize `fpSavedPos` / `lgSavedPos` to a localStorage key (e.g. `dc-panel-positions-v1`). On init, read that key and apply the saved positions if they exist and are within the viewport.
+Discovered By: Claude Code (claude-sonnet-4-6) during ARCGIS_FEATURE_GAP_AUDIT pass
+Date Discovered: 2026-07-18
+Status: Active — not yet fixed
+
+---
+
+# Recently Fixed Bugs (2026-07-25)
+
+---
+
+Bug: AI Stocks — Wrong exchange prefix for META, PATH, VEEV, UBER
+Priority: High
+Affected Files: `js/stocks.js` (AI_COMPANIES array, lines 28/35/45/63)
+Root Cause: Four tickers had wrong exchange prefixes: `NYSE:META` (should be `NASDAQ:META`), `NASDAQ:PATH` (should be `NYSE:PATH`), `NASDAQ:VEEV` (should be `NYSE:VEEV`), `NASDAQ:UBER` (should be `NYSE:UBER`). Wrong prefixes caused TradingView widgets to either fail to load or display incorrect data.
+Fix: Corrected all four tickers. Updated `NEWS_ALIASES` keys to match. Updated `data/ai_companies.json`.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+Bug: AI Stocks — renderDetailTab() company lookup never matched
+Priority: High
+Affected Files: `js/stocks.js` (renderDetailTab, ~line 538)
+Root Cause: `AI_COMPANIES.find(c => c.symbol === sym)` where `sym = stocksState.selectedSymbol` = "NASDAQ:NVDA", but `.symbol` field is just "NVDA". The find always returned undefined, breaking the Fundamentals and Profile tabs.
+Fix: Added `getCompanyByTicker(ticker)` helper that looks up by `.ticker` (the full "EXCHANGE:SYMBOL" format). Replaced all broken `.find(c => c.symbol === sym)` calls.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+Bug: AI Stocks — Yahoo Finance URLs contained encoded exchange prefix
+Priority: Medium
+Affected Files: `js/stocks.js` (renderDetailTab, ~lines 544-548)
+Root Cause: `encodeURIComponent(sym)` where `sym = "NASDAQ:NVDA"` → URL became `finance.yahoo.com/quote/NASDAQ%3ANVDA/` which returns a 404.
+Fix: Added `getPlainSymbol(ticker)` helper that strips the exchange prefix. All Yahoo Finance links now use just the plain symbol (e.g., "NVDA").
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+Bug: AI Stocks — Compare preset not persisted across sessions
+Priority: Medium
+Affected Files: `js/stocks.js` (bindStocksEvents, compareSelect handler ~line 779)
+Root Cause: The `compareSelect` change handler updated `stocksState.comparePreset` and called `renderChart()` but never called `stocksSavePrefs()`. On page reload, the comparison always reset to "None".
+Fix: Added `stocksSavePrefs({ comparePreset: stocksState.comparePreset })` to the handler.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+Bug: AI Stocks — Heatmap section misleadingly labeled "AI Market Heatmap"
+Priority: Low
+Affected Files: `js/stocks.js` (buildStocksUI), `css/stocks.css`
+Root Cause: The TradingView `stock-heatmap` widget was configured with `dataSource: 'SPX500'` (the S&P 500 universe), but the heading said "AI Market Heatmap", implying it showed AI stocks specifically.
+Fix: Renamed to "US Market Heatmap" with subtitle "S&P 500 by sector and market cap".
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+Bug: AI Stocks — Theme observer re-rendered all widgets on every DOM mutation
+Priority: Medium
+Affected Files: `js/stocks.js` (initStocksThemeObserver)
+Root Cause: The MutationObserver fired on any `data-theme` or `class` attribute change and immediately re-rendered all 5 TradingView widgets, even if the theme didn't actually change (e.g., from a CSS class toggle for something unrelated).
+Fix: Added last-theme tracking (`_lastTheme`) to short-circuit if the theme is unchanged. Added 150ms debounce. Only rerenders lazy-loaded widgets that have already been rendered.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+Bug: AI Stocks — Nested interactive elements (span[role="button"] inside button)
+Priority: Medium
+Affected Files: `js/stocks.js` (renderCompanyGrid), `css/stocks.css`
+Root Cause: The old card grid used `<button class="stocks-co-card">` containing `<span role="button" tabindex="0" class="stocks-fav-star">`. Nested interactive elements are invalid HTML and cause screen reader / keyboard focus issues.
+Fix: Replaced card grid entirely with a semantic `<ul>/<li>` watchlist row layout. Each row has two separate `<button>` elements (company select + favorite star) as siblings — no nesting.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+Bug: AI Stocks — News tab did not filter future-dated or duplicate articles
+Priority: Low
+Affected Files: `js/stocks.js` (renderNewsTab)
+Root Cause: (1) Articles with `published_at` dates in the future were shown. (2) Articles with duplicate URLs or titles could appear multiple times. (3) Articles with non-HTTP URLs were used in `href` attributes (potential XSS vector).
+Fix: Added future-date filter (`pubDate > today`), URL scheme validation (`http://` or `https://`), and deduplication by URL and normalized title.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+# Recently Fixed Bugs (pre-2026-07-25)
+
+---
+
 Bug: togglePoliticalRiskLayer() references undefined variable `countyLayer`
 Priority: Medium
 Affected Files: `js/map.js` (line ~991)
