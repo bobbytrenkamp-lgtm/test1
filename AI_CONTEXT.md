@@ -437,6 +437,26 @@ window.APP_CONFIG = {
 window._applyTheme(theme);  // 'dark' | 'light' — triggers full Leaflet style refresh
 ```
 
+## Platform Metadata (data/platform_metadata.json)
+
+Central source of truth for platform-wide statistics. Loaded by `home.js`, `analytics.js`, and `map.js`. **Do NOT hardcode these numbers in JS** — read from this file.
+
+Schema version: `platform_metadata_v1`
+
+Key sections:
+- `coverage` — county counts: 3,143 total US counties, 1,465 in database (46.6%), 164 with active restrictions, 1,678 not yet researched
+- `freshness` — data-through dates, update frequencies, facilities counts (3,764 total / 3,333 operational / 431 planned), AI companies (44 public / 5 private)
+- `data_quality` — last validation run, broken source URLs (711 / 1,690 checked)
+- `disclaimers` — array of required user-facing disclaimer strings
+
+Update process: Run `process_data.py` or edit manually. The `_generated_at` timestamp should reflect the actual generation time.
+
+**Critical distinctions enforced by this file:**
+- Policy data is **manually curated** — NOT automatically updated; `policy_data_update_frequency: "manually-updated"`
+- TradingView market data is **delayed 15 minutes** — NOT real-time
+- Counties without database records are "not yet researched" — NOT assumed restriction-free
+- Only 46.6% of US counties have been individually researched
+
 ## AI Stocks Architecture (js/stocks.js + css/stocks.css)
 
 ### Overview

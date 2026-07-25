@@ -1,15 +1,76 @@
 # Active Bugs
 
+No active bugs.
+
 ---
 
-Bug: Filter panel and legend panel positions not persisted to localStorage across sessions
+# Recently Fixed Bugs (2026-07-25 — Phase 1 accuracy pass)
+
+---
+
+Bug: Map legend missing "Not yet researched" entry
+Priority: High
+Affected Files: `js/map.js` (renderLegend)
+Root Cause: The dark `noData` background color used for counties not in the database had no corresponding legend entry. Users had no way to know what the dark counties represented.
+Fix: Added explicit "Not yet researched — 1,678 counties — no data collected" legend item with the `noData` swatch color and a coverage note showing how many counties have been researched.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+Bug: Misleading "every US county / Updated daily" claim throughout UI
+Priority: High
+Affected Files: `index.html` (static skeleton), `js/home.js` (skeleton + loaded states)
+Root Cause: Hero text claimed the platform covers "every US county" and data is "Updated daily." In reality only 1,465 of 3,143 US counties (46.6%) have been researched, and policy data is manually curated — not automatically updated.
+Fix: Replaced with "1,465+ researched jurisdictions. Policy data manually verified from official government sources." everywhere. Removed "Live" from "Live Intelligence Platform" badge.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+Bug: Analytics tab "Real-time summary" language
+Priority: Medium
+Affected Files: `js/analytics.js` (buildAnalyticsDashboard)
+Root Cause: Hero subtitle said "Real-time summary of US data center and AI policy coverage." Policy data is manually curated, not real-time.
+Fix: Updated to "Policy coverage summary derived from X manually researched jurisdictions (Y% of 3,143 US counties). Policy data verified from official government sources — not real-time."
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+Bug: TradingView labeled "Real-time" in data sources table
+Priority: Medium
+Affected Files: `js/analytics.js` (data sources table)
+Root Cause: Data sources table listed TradingView update frequency as "Real-time." TradingView's free tier provides 15-minute delayed quotes.
+Fix: Changed to "Delayed 15 min."
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+Bug: Stocks nav card claimed "50+ publicly traded AI companies"
 Priority: Low
-Affected Files: `js/map.js` (initFilterPanelControls, initLeafletMap)
-Root Cause: `fpSavedPos` and `lgSavedPos` are computed during drag and stored in module-level variables, but they are never written to localStorage and are never read back on init. The panel always opens at its CSS default position on page load.
-Fix Needed: On dragend, serialize `fpSavedPos` / `lgSavedPos` to a localStorage key (e.g. `dc-panel-positions-v1`). On init, read that key and apply the saved positions if they exist and are within the viewport.
-Discovered By: Claude Code (claude-sonnet-4-6) during ARCGIS_FEATURE_GAP_AUDIT pass
-Date Discovered: 2026-07-18
-Status: Active — not yet fixed
+Affected Files: `js/home.js` (stocks nav card — skeleton and loaded states)
+Root Cause: Nav card said "50+ publicly traded AI companies" but ai_companies.json has exactly 44 public companies.
+Fix: Updated to "44 publicly traded AI companies — market data via TradingView (delayed 15 min)."
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
+
+---
+
+Bug: SEVERITY labels "High Restrictions" and "No Restrictions" imprecise
+Priority: Low
+Affected Files: `js/map.js` (SEVERITY, LEVEL_LABELS objects)
+Root Cause: "High Restrictions" understates severity; "No Restrictions" implies certainty when the meaning is "researched and found no restrictions." "Pro / Incentive Hub" was unnecessarily slash-heavy.
+Fix: Renamed: "High" → "Significant Restrictions"; "No Restrictions" → "No Known Restrictions"; "Pro / Incentive Hub" → "Pro-Development Hub". Updated LEVEL_LABELS to match.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
 
 ---
 
@@ -122,14 +183,14 @@ Status: Fixed
 
 ---
 
-Bug: Filter panel and legend panel positions not persisted to localStorage across sessions
+Bug: Legend panel position not persisted to localStorage across sessions
 Priority: Low
-Affected Files: `js/map.js` (initFilterPanelControls, initLeafletMap)
-Root Cause: `fpSavedPos` and `lgSavedPos` are computed during drag and stored in module-level variables, but they are never written to localStorage and are never read back on init. The panel always opens at its CSS default position on page load.
-Fix Needed: On dragend, serialize `fpSavedPos` / `lgSavedPos` to a localStorage key (e.g. `dc-panel-positions-v1`). On init, read that key and apply the saved positions if they exist and are within the viewport.
-Discovered By: Claude Code (claude-sonnet-4-6) during ARCGIS_FEATURE_GAP_AUDIT pass
-Date Discovered: 2026-07-18
-Status: Active — not yet fixed
+Affected Files: `js/map.js` (endLgDrag, initLeafletMap)
+Root Cause: `lgSavedPos` was updated on drag but never written to localStorage. Filter panel (`fp-pos`) was already persisted correctly, but legend was missed.
+Fix: Added `localStorage.setItem("lg-pos", ...)` in `endLgDrag`; added `lg-pos` read in the init block.
+Fixed By: Claude Code (claude-sonnet-4-6)
+Date Fixed: 2026-07-25
+Status: Fixed
 
 ---
 

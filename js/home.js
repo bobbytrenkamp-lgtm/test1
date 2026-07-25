@@ -608,10 +608,10 @@ function renderHomePage() {
     <div class="home-hero-inner">
       <div class="home-live-row">
         <span class="home-live-dot"></span>
-        <span class="home-live-label">Live Intelligence Platform</span>
+        <span class="home-live-label">Intelligence Platform</span>
       </div>
       <h1 class="home-hero-title">US Data Center &amp; AI<br>Policy Intelligence</h1>
-      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across every US county. Updated daily.</p>
+      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across 1,465+ researched jurisdictions. Policy data manually verified from official government sources.</p>
       <div class="home-search-wrap">
         <div class="home-search-box">
           ${HOME_ICONS.search}
@@ -622,7 +622,7 @@ function renderHomePage() {
     </div>
   </section>
   <section class="home-kpi-strip">
-    ${["Counties Tracked","Active Bans","Significant Restrictions","Moderate Restrictions","States with Activity","Data Centers","Proposed"].map(l =>
+    ${["Counties Researched","Active Bans","Significant Restrictions","Moderate Restrictions","States with Activity","Data Centers","Proposed"].map(l =>
       `<div class="home-kpi-card"><div class="home-skel home-skel-num"></div><div class="home-kpi-label">${l}</div></div>`
     ).join("")}
   </section>
@@ -631,7 +631,7 @@ function renderHomePage() {
     <div class="home-nav-grid">
       <button class="home-nav-card home-nav-map"       onclick="switchTab('map')"       type="button"><span class="home-nav-icon">${HOME_ICONS.map}</span><span class="home-nav-name">Policy Map</span><span class="home-nav-desc">County-level choropleth of data center &amp; AI restrictions</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
       <button class="home-nav-card home-nav-news"      onclick="switchTab('news')"      type="button"><span class="home-nav-icon">${HOME_ICONS.news}</span><span class="home-nav-name">AI News</span><span class="home-nav-desc">Curated AI regulation &amp; industry news</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
-      <button class="home-nav-card home-nav-stocks"    onclick="switchTab('stocks')"    type="button"><span class="home-nav-icon">${HOME_ICONS.stocks}</span><span class="home-nav-name">AI Stocks</span><span class="home-nav-desc">Live market data for 50+ publicly traded AI companies</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
+      <button class="home-nav-card home-nav-stocks"    onclick="switchTab('stocks')"    type="button"><span class="home-nav-icon">${HOME_ICONS.stocks}</span><span class="home-nav-name">AI Stocks</span><span class="home-nav-desc">44 publicly traded AI companies — market data via TradingView (delayed 15 min)</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
       <button class="home-nav-card home-nav-analytics" onclick="switchTab('analytics')" type="button"><span class="home-nav-icon">${HOME_ICONS.analytics}</span><span class="home-nav-name">Analytics</span><span class="home-nav-desc">Policy distribution, state rankings, and trend analysis</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
     </div>
   </section>
@@ -677,10 +677,10 @@ function renderHomePage() {
     <div class="home-hero-inner">
       <div class="home-live-row">
         <span class="home-live-dot"></span>
-        <span class="home-live-label">Live Intelligence Platform</span>
+        <span class="home-live-label">Intelligence Platform</span>
       </div>
       <h1 class="home-hero-title">US Data Center &amp; AI<br>Policy Intelligence</h1>
-      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across every US county. Updated daily.</p>
+      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across 1,465+ researched jurisdictions. Policy data manually verified from official government sources.</p>
 
       <!-- Search -->
       <div class="home-search-wrap">
@@ -698,7 +698,7 @@ function renderHomePage() {
   <section class="home-kpi-strip">
     <div class="home-kpi-card">
       <div class="home-kpi-num">${kpis.total}</div>
-      <div class="home-kpi-label">Counties Tracked</div>
+      <div class="home-kpi-label">Counties Researched</div>
     </div>
     <div class="home-kpi-card home-kpi-ban">
       <div class="home-kpi-num">${kpis.bans}</div>
@@ -725,11 +725,12 @@ function renderHomePage() {
       <div class="home-kpi-label">Proposed</div>
     </div>
   </section>
-  ${kpis.dataDate ? `<div class="home-freshness-bar">
+  <div class="home-freshness-bar">
     <span class="home-freshness-dot"></span>
-    Dataset last updated: <strong>${escHtml(kpis.dataDate.slice(0, 10))}</strong>
-    &nbsp;·&nbsp; Policy data updated manually as regulations change
-  </div>` : ""}
+    ${kpis.dataDate ? `Policy data through: <strong>${escHtml(kpis.dataDate.slice(0, 10))}</strong>` : "Policy data verified from official sources"}
+    &nbsp;·&nbsp; Manually researched — not real-time
+    &nbsp;·&nbsp; ${kpis.total.toLocaleString()} of 3,143 US counties researched (${Math.round(kpis.total/3143*100)}%)
+  </div>
 
   <!-- Quick nav cards -->
   <section class="home-section home-nav-section">
@@ -750,7 +751,7 @@ function renderHomePage() {
       <button class="home-nav-card home-nav-stocks" onclick="switchTab('stocks')" type="button">
         <span class="home-nav-icon">${HOME_ICONS.stocks}</span>
         <span class="home-nav-name">AI Stocks</span>
-        <span class="home-nav-desc">Live market data for 50+ publicly traded AI companies</span>
+        <span class="home-nav-desc">44 publicly traded AI companies — market data via TradingView (delayed 15 min)</span>
         <span class="home-nav-arrow">${HOME_ICONS.arrow}</span>
       </button>
       <button class="home-nav-card home-nav-analytics" onclick="switchTab('analytics')" type="button">
@@ -1170,7 +1171,7 @@ function renderHomePage() {
       </div>
     </div>
     <div id="footer-bottom">
-      <span>Data updated daily. Not legal advice.</span>
+      <span>Policy data manually researched — not real-time. Not legal advice.</span>
       <span id="footer-year"></span>
     </div>
   </footer>

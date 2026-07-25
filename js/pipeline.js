@@ -63,6 +63,7 @@ window.PIPELINE = (function () {
           Export CSV
         </button>
       </div>
+      <div id="pipeline-freshness-bar" class="pipeline-freshness-bar" hidden></div>
       <div id="pipeline-body">
         <div id="pipeline-table-wrap">
           <div id="pipeline-loading">
@@ -129,11 +130,23 @@ window.PIPELINE = (function () {
       _data = await r.json();
       _populateStateFilter();
       _applyFilters();
+      _renderFreshnessBar();
     } catch (err) {
       console.error("[Pipeline] load error:", err);
       document.getElementById("pipeline-loading").hidden = true;
       document.getElementById("pipeline-error").hidden   = false;
     }
+  }
+
+  /* ── Freshness / disclaimer bar ── */
+  function _renderFreshnessBar() {
+    const bar = document.getElementById("pipeline-freshness-bar");
+    if (!bar || !_data) return;
+    const total = _data.length;
+    const operational = _data.filter(d => d.operational_status === "operational").length;
+    const planned     = _data.filter(d => d.operational_status === "planned").length;
+    bar.textContent = `${total.toLocaleString()} facilities · ${operational.toLocaleString()} operational · ${planned.toLocaleString()} planned — aggregated from public sources via automated pipeline. Not independently verified. Updated weekly via GitHub Actions.`;
+    bar.hidden = false;
   }
 
   /* ── Populate state dropdown from data ── */

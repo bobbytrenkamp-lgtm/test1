@@ -1,0 +1,54 @@
+{
+  "_schema": "platform_metadata_v1",
+  "_note": "Central source of truth for platform-wide statistics. Read by home.js, analytics.js, and map.js. Do NOT hardcode these numbers elsewhere — load this file instead. Update via process_data.py or manually when data changes.",
+  "_generated_at": "2026-07-25T00:00:00Z",
+  "methodology_version": "1.0",
+
+  "coverage": {
+    "total_us_counties": 3143,
+    "counties_in_database": 1465,
+    "counties_coverage_pct": 46.6,
+    "counties_with_active_restrictions": 164,
+    "counties_with_bans": 5,
+    "counties_with_high_restrictions": 31,
+    "counties_with_moderate_restrictions": 62,
+    "counties_with_proposed_restrictions": 66,
+    "counties_pro_development": 1301,
+    "counties_no_known_restrictions": 0,
+    "counties_not_yet_researched": 1678,
+    "states_total": 51,
+    "states_in_database": 51,
+    "states_with_active_restrictions": 14
+  },
+
+  "freshness": {
+    "policy_data_through": "2026-07-20",
+    "policy_data_update_frequency": "manually-updated",
+    "policy_data_update_note": "Policy records are manually researched and verified from primary government sources including county council records, state legislature databases, and utility commission filings. Records are not updated on an automated schedule.",
+    "state_regulations_through": "2026-07-18",
+    "news_through": null,
+    "news_update_frequency": "hourly-via-github-actions",
+    "news_articles_in_feed": 6,
+    "facilities_total": 3764,
+    "facilities_operational": 3333,
+    "facilities_planned": 431,
+    "facilities_note": "Facility data aggregated from public sources via automated pipeline. Not independently verified for every record. Some records may be duplicates or contain errors.",
+    "ai_companies_public": 44,
+    "ai_companies_private": 5
+  },
+
+  "data_quality": {
+    "validation_last_run": "2026-07-19T08:25:51Z",
+    "broken_source_urls": 711,
+    "total_source_urls_checked": 1690,
+    "methodology_note": "County data manually researched from primary government sources. Counties without database records are shown as unresearched on the map and should not be assumed to be restriction-free."
+  },
+
+  "disclaimers": [
+    "Policy data is manually curated and may not reflect recent legislative changes. Always verify with primary government sources before making decisions.",
+    "Only 1,465 of 3,143 US counties have been individually researched. Counties without records are shown as unresearched and should not be assumed restriction-free.",
+    "Facility data is aggregated from public sources and may be incomplete or contain errors.",
+    "Market data for AI companies is provided via TradingView with a 15-minute delay. Not investment advice.",
+    "Zoning data covers pilot jurisdictions only (currently Loudoun County, VA). Do not rely on zoning data for permitting or legal decisions."
+  ]
+}
