@@ -603,6 +603,16 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Suitability Score Distribution</div>
+      <div id="analytics-score-dist-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Computing score distribution…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">Investment Hotspots</div>
       <div id="analytics-hotspots-section">
         <div class="analytics-pipeline-loading">
@@ -648,6 +658,16 @@ function renderAnalyticsPage() {
         <div class="analytics-pipeline-loading">
           <div class="spinner"></div>
           <span>Computing conflict zones…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
+      <div class="page-section-title">AI Campus Operator Risk Profile</div>
+      <div id="analytics-operator-risk-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Loading operator exposure data…</span>
         </div>
       </div>
     </div>
@@ -723,6 +743,8 @@ function renderAnalyticsPage() {
   _renderPoliticalRisk();
   _renderStateScorecard();
   _renderStateOpportunityMatrix();
+  _fillScoreDist();
+  _fillOperatorRisk();
   _fillConflictZones();
   _fillCapacityIntelligence();
   _fillIncentiveExplorer();
@@ -3449,6 +3471,231 @@ async function _fillIncentiveExplorer() {
     _expandedIdx = -1;
     renderCards();
   });
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Suitability Score Distribution                                   */
+/* ─────────────────────────────────────────────────────────────── */
+
+function _fillScoreDist() {
+  const container = document.getElementById("analytics-score-dist-section");
+  if (!container) return;
+  const counties = (typeof mapData !== "undefined") ? mapData : {};
+  if (!Object.keys(counties).length || typeof computeSuitabilityScore !== "function") {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Score data unavailable.</p>`;
+    return;
+  }
+
+  const bins = new Array(10).fill(0);
+  const scores = [];
+  const gradeCount = { A: 0, B: 0, C: 0, D: 0, F: 0 };
+
+  for (const fips in counties) {
+    const c = counties[fips];
+    const s = computeSuitabilityScore(fips, c);
+    if (!s) continue;
+    scores.push(s.score);
+    const bin = Math.min(9, Math.floor(s.score / 10));
+    bins[bin]++;
+    gradeCount[s.grade] = (gradeCount[s.grade] || 0) + 1;
+  }
+
+  if (!scores.length) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">No scores computed.</p>`;
+    return;
+  }
+
+  scores.sort((a, b) => a - b);
+  const mean   = Math.round(scores.reduce((s, v) => s + v, 0) / scores.length);
+  const median = scores[Math.floor(scores.length / 2)];
+  const maxBin = Math.max(...bins, 1);
+  const total  = scores.length;
+
+  const ZONE_COLORS  = ["#ef4444","#ef4444","#ef4444","#f97316","#f97316","#eab308","#eab308","#84cc16","#22c55e","#22c55e"];
+  const GRADE_ZONES  = ["F","F","F","D","D","C","C","B","A","A"];
+  const RANGE_LABELS = ["0–9","10–19","20–29","30–39","40–49","50–59","60–69","70–79","80–89","90–100"];
+
+  const bars = bins.map((count, i) => {
+    const heightPct  = (count / maxBin * 100).toFixed(1);
+    const color      = ZONE_COLORS[i];
+    const zone       = GRADE_ZONES[i];
+    const pctOfTotal = total > 0 ? ((count / total) * 100).toFixed(1) : "0";
+    return `<div class="score-hist-col" title="${RANGE_LABELS[i]}: ${count} counties (${pctOfTotal}%)">
+      <div class="score-hist-bar-wrap">
+        <div class="score-hist-bar" style="height:${heightPct}%;background:${color}"></div>
+      </div>
+      <div class="score-hist-count">${count}</div>
+      <div class="score-hist-label">${RANGE_LABELS[i]}</div>
+      <div class="score-hist-zone-label" style="color:${color}">${zone}</div>
+    </div>`;
+  }).join("");
+
+  const gradePills = Object.entries(gradeCount)
+    .filter(([, n]) => n > 0)
+    .sort(([a], [b]) => "ABCDF".indexOf(a) - "ABCDF".indexOf(b))
+    .map(([g, n]) => `<span class="score-hist-grade-pill grade-${g}">${g}: ${n} <small>(${((n/total)*100).toFixed(0)}%)</small></span>`)
+    .join("");
+
+  container.innerHTML = `
+    <div class="score-hist-stats">
+      <div class="score-hist-stat"><span class="score-hist-stat-val">${total.toLocaleString()}</span><span class="score-hist-stat-label">Counties scored</span></div>
+      <div class="score-hist-stat"><span class="score-hist-stat-val">${mean}</span><span class="score-hist-stat-label">Mean score</span></div>
+      <div class="score-hist-stat"><span class="score-hist-stat-val">${median}</span><span class="score-hist-stat-label">Median score</span></div>
+    </div>
+    <div class="score-hist-grade-row">${gradePills}</div>
+    <div class="score-hist-wrap"><div class="score-hist-grid">${bars}</div></div>
+    <p class="cap-note" style="margin-top:8px">Distribution of computed suitability scores across all tracked counties. Scores derived from restriction severity, political risk, infrastructure density, water stress, and tax incentives.</p>
+  `;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* AI Campus Operator Risk Profile                                  */
+/* ─────────────────────────────────────────────────────────────── */
+
+async function _fillOperatorRisk() {
+  const container = document.getElementById("analytics-operator-risk-section");
+  if (!container) return;
+
+  let camps;
+  try {
+    camps = await fetch("data/ai_campuses.json").then(r => r.json()).then(d => d.ai_campuses || []);
+  } catch (_) {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Operator data unavailable.</p>`;
+    return;
+  }
+
+  const counties = (typeof mapData !== "undefined") ? mapData : {};
+
+  const operatorMap = {};
+  for (const cam of camps) {
+    const op = cam.operator || "Unknown";
+    if (!operatorMap[op]) operatorMap[op] = [];
+    operatorMap[op].push(cam);
+  }
+
+  const opRows = [];
+  for (const [op, camList] of Object.entries(operatorMap)) {
+    let restricted = 0, banned = 0, open = 0, suitSum = 0, suitN = 0;
+    const fipsSet = new Set(camList.map(c => c.county_fips).filter(Boolean));
+    for (const fips of fipsSet) {
+      const county = counties[fips];
+      if (!county) continue;
+      const lvl = county.level ?? 0;
+      if (lvl >= 4) banned++;
+      else if (lvl >= 1) restricted++;
+      else open++;
+      if (typeof computeSuitabilityScore === "function") {
+        const s = computeSuitabilityScore(fips, county);
+        if (s) { suitSum += s.score; suitN++; }
+      }
+    }
+    const atRisk   = restricted + banned;
+    const avgSuit  = suitN ? Math.round(suitSum / suitN) : null;
+    const avgGrade = avgSuit !== null ? (avgSuit >= 80 ? "A" : avgSuit >= 65 ? "B" : avgSuit >= 45 ? "C" : avgSuit >= 25 ? "D" : "F") : null;
+    opRows.push({ op, total: camList.length, uniqueFips: fipsSet.size, restricted, banned, open, atRisk, avgSuit, avgGrade, camps: camList });
+  }
+
+  opRows.sort((a, b) => b.atRisk - a.atRisk || b.total - a.total);
+
+  const totalCamps  = camps.length;
+  const totalAtRisk = camps.filter(c => { const co = counties[c.county_fips]; return co && (co.level ?? 0) >= 1; }).length;
+  const totalBanned = camps.filter(c => { const co = counties[c.county_fips]; return co && (co.level ?? 0) >= 4; }).length;
+  const uniqueOps   = opRows.length;
+
+  let _expanded = null;
+
+  const GRADE_COLORS = { A: "#22c55e", B: "#84cc16", C: "#eab308", D: "#f97316", F: "#ef4444" };
+
+  function rowHtml(r) {
+    const isOpen    = _expanded === r.op;
+    const maxAtRisk = opRows[0] ? opRows[0].atRisk : 1;
+    const barPct    = maxAtRisk > 0 ? (r.atRisk / maxAtRisk * 100).toFixed(0) : 0;
+    const riskColor = r.banned > 0 ? "#dc2626" : r.restricted > 0 ? "#f97316" : "#22c55e";
+    const gradeColor = GRADE_COLORS[r.avgGrade] || "#9ca3af";
+
+    const campDetails = [...r.camps]
+      .sort((a, b) => ((counties[b.county_fips]?.level ?? 0) - (counties[a.county_fips]?.level ?? 0)))
+      .slice(0, 10)
+      .map(cam => {
+        const co  = counties[cam.county_fips];
+        const lvl = co ? (co.level ?? 0) : null;
+        const cls = lvl !== null && lvl >= 4 ? "op-risk-camp-ban" : lvl >= 1 ? "op-risk-camp-restricted" : "op-risk-camp-open";
+        return `<div class="op-risk-camp-item ${cls}">
+          <span class="op-risk-camp-name">${escHtml(cam.name)}</span>
+          ${co ? `<span class="op-risk-camp-loc">${escHtml(co.name)}, ${escHtml(co.state)}</span>` : ""}
+          <span class="op-risk-camp-status">${escHtml(cam.status || "")}</span>
+          ${cam.county_fips ? `<button class="op-risk-map-btn" data-fips="${escHtml(cam.county_fips)}">View</button>` : ""}
+        </div>`;
+      }).join("");
+    const moreNote = r.camps.length > 10 ? `<div class="op-risk-more">+${r.camps.length - 10} more</div>` : "";
+
+    return `<tr class="op-risk-row${isOpen ? " expanded" : ""}" data-op="${escHtml(r.op)}">
+      <td class="op-risk-td op-risk-name">
+        <span class="op-risk-expand-icon">${isOpen ? "▲" : "▼"}</span>
+        ${escHtml(r.op)}
+        ${isOpen ? `<div class="op-risk-detail">${campDetails}${moreNote}</div>` : ""}
+      </td>
+      <td class="op-risk-td op-risk-num">${r.total}</td>
+      <td class="op-risk-td">
+        <div class="op-risk-bar-wrap"><div class="op-risk-bar" style="width:${barPct}%;background:${riskColor}"></div></div>
+        <span class="op-risk-num" style="color:${riskColor}">${r.atRisk}</span>
+      </td>
+      <td class="op-risk-td op-risk-num" style="color:#dc2626">${r.banned || "—"}</td>
+      <td class="op-risk-td">
+        ${r.avgGrade ? `<span class="op-risk-grade-badge" style="color:${gradeColor};border-color:${gradeColor}">${r.avgGrade}</span>` : ""}
+        ${r.avgSuit !== null ? `<span class="op-risk-num" style="color:var(--text-muted)">${r.avgSuit}</span>` : ""}
+      </td>
+    </tr>`;
+  }
+
+  function render() {
+    container.innerHTML = `
+      <div class="op-risk-kpi-row">
+        <div class="op-risk-kpi"><span class="op-risk-kpi-val">${totalCamps}</span><span class="op-risk-kpi-label">AI campuses tracked</span></div>
+        <div class="op-risk-kpi"><span class="op-risk-kpi-val" style="color:#f97316">${totalAtRisk}</span><span class="op-risk-kpi-label">In restricted counties</span></div>
+        <div class="op-risk-kpi"><span class="op-risk-kpi-val" style="color:#dc2626">${totalBanned}</span><span class="op-risk-kpi-label">In ban zones</span></div>
+        <div class="op-risk-kpi"><span class="op-risk-kpi-val">${uniqueOps}</span><span class="op-risk-kpi-label">Operators tracked</span></div>
+      </div>
+      <div class="op-risk-table-wrap">
+        <table class="op-risk-table">
+          <thead>
+            <tr>
+              <th class="op-risk-th op-risk-th-op">Operator</th>
+              <th class="op-risk-th">Campuses</th>
+              <th class="op-risk-th">At Risk</th>
+              <th class="op-risk-th">Ban Zone</th>
+              <th class="op-risk-th">Avg. Suit.</th>
+            </tr>
+          </thead>
+          <tbody>${opRows.map(rowHtml).join("")}</tbody>
+        </table>
+      </div>
+      <p class="cap-note">AI campuses cross-referenced with county restriction data. "At Risk" = campuses in counties with any active restriction (level ≥ 1). "Ban Zone" = ban or moratorium (level ≥ 4). Click a row to expand campus details. Source: ai_campuses.json (${totalCamps} campuses, public data).</p>
+    `;
+    container.querySelectorAll(".op-risk-row .op-risk-name").forEach(td => {
+      td.addEventListener("click", () => {
+        const row = td.closest(".op-risk-row");
+        if (!row) return;
+        const op = row.dataset.op;
+        _expanded = _expanded === op ? null : op;
+        render();
+      });
+    });
+    container.querySelectorAll(".op-risk-map-btn").forEach(btn => {
+      btn.addEventListener("click", e => {
+        e.stopPropagation();
+        const fips = btn.dataset.fips;
+        if (!fips) return;
+        if (typeof switchTab === "function") switchTab("map");
+        setTimeout(() => {
+          if (typeof selectCounty === "function") selectCounty(fips);
+          if (typeof zoomToFeature === "function") zoomToFeature(fips);
+        }, 150);
+      });
+    });
+  }
+
+  render();
 }
 
 /* ─────────────────────────────────────────────────────────────── */

@@ -318,6 +318,29 @@ function buildRecentlyVisited() {
   });
 }
 
+/* ── Watchlist portfolio health summary ── */
+function _buildWatchlistPortfolio(watchlist) {
+  if (!watchlist.length || typeof computeSuitabilityScore !== "function" || !mapData) return null;
+  const grades = { A: 0, B: 0, C: 0, D: 0, F: 0 };
+  let scoreSum = 0, scoreN = 0;
+  let bans = 0, restricted = 0, open = 0, pro = 0;
+  for (const w of watchlist) {
+    const county = mapData[w.fips];
+    if (!county) continue;
+    const s = computeSuitabilityScore(w.fips, county);
+    if (s) { grades[s.grade] = (grades[s.grade] || 0) + 1; scoreSum += s.score; scoreN++; }
+    const lvl = w.level;
+    if (lvl >= 4) bans++;
+    else if (lvl >= 1) restricted++;
+    else if (lvl === -1) pro++;
+    else open++;
+  }
+  if (!scoreN) return null;
+  const avgScore = Math.round(scoreSum / scoreN);
+  const avgGrade = avgScore >= 80 ? "A" : avgScore >= 65 ? "B" : avgScore >= 45 ? "C" : avgScore >= 25 ? "D" : "F";
+  return { grades, avgScore, avgGrade, bans, restricted, open, pro, total: watchlist.length };
+}
+
 /* ── County watchlist (reads from localStorage written by map.js) ── */
 function buildWatchlist() {
   if (!mapData) return [];
@@ -634,6 +657,7 @@ function renderHomePage() {
   const recentActivity = buildRecentActivity();
   const topSites           = buildTopSites();
   const watchlist          = buildWatchlist();
+  const portfolio          = _buildWatchlistPortfolio(watchlist);
   const recentlyVisited    = buildRecentlyVisited();
   const recentlyReviewed   = buildRecentlyReviewed();
   const digest             = _buildPolicyDigest();
@@ -974,6 +998,32 @@ function renderHomePage() {
         <span class="home-watchlist-count" id="home-watchlist-count">${watchlist.length} watched</span>
       </div>
     </div>
+    ${portfolio ? `<div class="home-wl-portfolio">
+      <div class="home-wl-port-stat">
+        <span class="home-wl-port-label">Avg. Suitability</span>
+        <div class="home-wl-port-val">
+          <span class="home-wl-port-grade home-wl-grade-${escHtml(portfolio.avgGrade)}">${escHtml(portfolio.avgGrade)}</span>
+          <span class="home-wl-port-score">${portfolio.avgScore}/100</span>
+        </div>
+      </div>
+      <div class="home-wl-port-stat">
+        <span class="home-wl-port-label">Grade Mix</span>
+        <div class="home-wl-port-grades">
+          ${["A","B","C","D","F"].filter(g => portfolio.grades[g]).map(g =>
+            `<span class="home-wl-port-grade-pill grade-${g}">${g}<small>${portfolio.grades[g]}</small></span>`
+          ).join("")}
+        </div>
+      </div>
+      <div class="home-wl-port-stat">
+        <span class="home-wl-port-label">Risk Exposure</span>
+        <div class="home-wl-port-risk">
+          ${portfolio.bans       ? `<span class="home-wl-port-risk-chip ban">${portfolio.bans} ban</span>` : ""}
+          ${portfolio.restricted ? `<span class="home-wl-port-risk-chip restricted">${portfolio.restricted} restricted</span>` : ""}
+          ${portfolio.open       ? `<span class="home-wl-port-risk-chip open">${portfolio.open} open</span>` : ""}
+          ${portfolio.pro        ? `<span class="home-wl-port-risk-chip pro">${portfolio.pro} pro-dev</span>` : ""}
+        </div>
+      </div>
+    </div>` : ""}
     <div class="home-watchlist" id="home-watchlist-list">
       ${watchlist.map(w => {
         const lvl = w.level;
