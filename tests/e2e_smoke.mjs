@@ -62,7 +62,8 @@ await run('Home / critical path', async (p, reqs) => {
   await p.waitForTimeout(1500);   // let the KPI count-up animation settle
   const atPaint = [...new Set(reqs)].sort();
   console.log('requested by first paint :', atPaint.join(', '));
-  console.log('facilities_master on home:', atPaint.includes('facilities_master.json') ? 'YES (4.85MB waste!)' : 'no (good)');
+  const facOnHome = atPaint.filter(f => f.startsWith('facilities_'));
+  console.log('facility files on home   :', facOnHome.length ? `${facOnHome} <-- WASTE` : 'none (good)');
   console.log('secondary in flight early :', atPaint.includes('sample_layers.json') ? 'yes (parallel, by design)' : 'no');
   console.log('KPIs                     :', await p.$$eval('.home-kpi-num', n => n.map(x => x.textContent.trim()).slice(0, 5)));
   console.log('KPI labels               :', await p.$$eval('.home-kpi-label', n => n.map(x => x.textContent.trim()).slice(0, 5)));

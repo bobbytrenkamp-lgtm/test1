@@ -2400,7 +2400,7 @@ async function _fillCapacityIntelligence() {
 
   let facilities;
   try {
-    facilities = await fetch("data/facilities_master.json").then(r => r.json());
+    facilities = await fetch("data/facilities_index.json").then(r => r.json());
   } catch (_) {
     container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Facility data unavailable.</p>`;
     return;
@@ -2498,7 +2498,7 @@ async function _fillCapacityIntelligence() {
 
     <div class="cap-states-title">Top States by Known Capacity</div>
     <div class="cap-states-list">${stateRows}</div>
-    <p class="cap-note">Known capacity only — many facilities do not publicly disclose MW figures. Total tracked: ${escHtml(String(facilities.length))} facilities. Source: facilities_master.json pipeline run 2026-07-13.</p>
+    <p class="cap-note">Known capacity only — many facilities do not publicly disclose MW figures. Total tracked: ${escHtml(String(facilities.length))} facilities, aggregated from public sources via automated pipeline and not independently verified.</p>
   `;
 }
 

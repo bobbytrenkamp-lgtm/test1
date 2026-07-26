@@ -44,14 +44,14 @@ function injectScript(code) {
 
 const meta       = JSON.parse(rd('data/platform_metadata.json'));
 const mapData    = JSON.parse(rd('data/map_data.json'));
-const facilities = JSON.parse(rd('data/facilities_master.json'));
+const facilities = JSON.parse(rd('data/facilities_index.json'));
 const news       = JSON.parse(rd('data/ai_news.json'));
 
 window.fetch = (u) => Promise.resolve({
   ok: true,
   json: () => Promise.resolve(
     String(u).includes('platform_metadata') ? meta
-      : String(u).includes('facilities_master') ? facilities
+      : String(u).includes('facilities_index') ? facilities
         : {}),
 });
 

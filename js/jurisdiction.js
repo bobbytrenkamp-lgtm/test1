@@ -9,9 +9,9 @@
 
    Data joins, all keyed on 5-digit county FIPS:
      mapData[fips]                          policy record
-     facilities_master.json .county_fips    data center facilities
+     facilities_index.json .county_fips     data center facilities
      ai_news.json .location                 related news (name/state match)
-     ZONING.hasJurisdiction(fips)           zoning pilot coverage
+     ZONING.hasCoverage(fips)               zoning pilot coverage
      computeSuitabilityScore(fips, county)  suitability grade
 
    Every value rendered through innerHTML is passed through escHtml() — county
@@ -23,7 +23,7 @@
 window.JURISDICTION = (function () {
   'use strict';
 
-  let _facilities = null;      // lazily fetched facilities_master.json
+  let _facilities = null;      // lazily fetched facilities_index.json
   let _facLoading = null;      // in-flight promise, so we fetch at most once
   let _currentFips = null;
 
@@ -52,7 +52,7 @@ window.JURISDICTION = (function () {
   function loadFacilities() {
     if (_facilities) return Promise.resolve(_facilities);
     if (_facLoading) return _facLoading;
-    _facLoading = fetch("data/facilities_master.json")
+    _facLoading = fetch("data/facilities_index.json")
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
       .then(j => { _facilities = Array.isArray(j) ? j : []; return _facilities; })
       .catch(err => {
