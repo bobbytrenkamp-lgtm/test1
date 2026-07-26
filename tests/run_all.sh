@@ -31,6 +31,19 @@ run "watchlist (migration + alerts)" node tests/test_watchlist.mjs
 run "data loading (critical/deferred)" node tests/test_data_loading.mjs
 run "pipeline (windowing + a11y)"   node tests/test_pipeline.mjs
 
+# End-to-end browser suite. Needs a served copy of the repo and a Chrome
+# binary, so it is opt-in rather than part of the default run:
+#   python3 -m http.server 8099 &
+#   E2E=1 NODE_PATH=/tmp/node_modules ./tests/run_all.sh
+# See the header of tests/e2e_smoke.mjs for how to obtain the browser.
+if [ "${E2E:-}" = "1" ]; then
+  run "end-to-end browser smoke" node tests/e2e_smoke.mjs
+else
+  echo ""
+  echo "=== end-to-end browser smoke ==="
+  echo "  SKIPPED (set E2E=1 with a server on :8099 to run it)"
+fi
+
 echo ""
 if [ "$status" -eq 0 ]; then
   echo "All suites passed."

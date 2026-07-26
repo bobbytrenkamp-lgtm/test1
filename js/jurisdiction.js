@@ -284,8 +284,11 @@ window.JURISDICTION = (function () {
       } catch (_) { /* scoring is best-effort context, never blocks the page */ }
     }
 
-    const hasZoning = !!(window.ZONING && typeof window.ZONING.hasJurisdiction === "function"
-      && window.ZONING.hasJurisdiction(fips));
+    // js/zoning.js exports hasCoverage() — not hasJurisdiction(). Calling the
+    // wrong name silently reported every county as uncovered, including the
+    // one pilot county that does have zoning data.
+    const hasZoning = !!(window.ZONING && typeof window.ZONING.hasCoverage === "function"
+      && window.ZONING.hasCoverage(fips));
 
     return `
       <section class="juris-card">

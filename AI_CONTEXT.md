@@ -538,8 +538,26 @@ operators all come from data files and are untrusted.
 
 ## Testing
 
-`./tests/run_all.sh` runs everything (112 tests). jsdom-dependent tests skip cleanly if jsdom
-is absent; `NODE_PATH=/tmp/node_modules ./tests/run_all.sh` if installed outside the repo.
+`./tests/run_all.sh` runs the offline suites (200 tests). jsdom-dependent tests skip cleanly if
+jsdom is absent; `NODE_PATH=/tmp/node_modules ./tests/run_all.sh` if installed outside the repo.
+
+### End-to-end browser suite — run after touching routing, data loading, or header/nav layout
+
+`tests/e2e_smoke.mjs` is opt-in because it needs a served copy of the repo plus a Chrome binary:
+
+    python3 -m http.server 8099 &
+    E2E=1 NODE_PATH=/tmp/node_modules ./tests/run_all.sh
+
+**Getting a browser:** Playwright's own CDN (`playwright.download.prss.microsoft.com`) is blocked
+by the environment proxy with `403 host not permitted`, and the Ubuntu archives 404. Chrome for
+Testing on `storage.googleapis.com` IS reachable — the exact curl is in the header of
+`tests/e2e_smoke.mjs`. Override paths with `CHROME_PATH` / `BASE_URL`.
+
+**Why it matters:** this suite found six real bugs the jsdom tests could not, including deep
+links silently failing on cold load (`hashchange` never fires for the initial URL) and the mobile
+nav sheet rendering off-screen because an ancestor `transform` re-anchors `position: fixed`. jsdom
+has no layout and no real navigation, so it cannot catch either class of bug. Errors from
+unreachable external hosts (TradingView, remote tiles) are filtered so real errors stay visible.
 
 ## Platform Metadata (data/platform_metadata.json)
 

@@ -285,6 +285,12 @@ html, body {
   display: flex;
   gap: 0;
   align-items: center;
+  /* A flex item's automatic minimum size is its min-content width, so the tab
+     strip refused to shrink and overlapped #header-right at every desktop
+     width (the About tab rendered underneath the Sign In button). min-width:0
+     lets it shrink so the overflow-x:auto below can actually scroll instead. */
+  min-width: 0;
+  flex-shrink: 1;
 }
 
 .header-tab {
@@ -3069,9 +3075,17 @@ body.is-resizing-floating-panel * {
 
 @media (min-width: 701px) {
   #header-tabs {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    /* Was absolutely centered (left:50% + translateX(-50%)). True centering
+       ignores how much room the brand and the right-hand controls actually
+       need, so with seven tabs the strip ran underneath #header-right at every
+       desktop width — the About tab sat beneath the Sign In button. Staying in
+       the flex flow with `margin: 0 auto` centers it within the space that is
+       genuinely free, and min-width:0 lets it scroll rather than overlap when
+       that space runs out. */
+    position: static;
+    transform: none;
+    margin: 0 auto;
+    min-width: 0;
     height: 100%;
     align-items: stretch;
   }
@@ -11209,4 +11223,19 @@ html.is-light-theme .map-mode-chip.active {
   font-size: 11px;
   line-height: 1.5;
   color: var(--text-muted);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HEADER FIT — narrower desktops
+   Seven tabs (754px) plus the brand (238px) and the right-hand controls
+   (404px) do not fit under ~1500px. The "DATA UPDATED" badge is 181px of that
+   and duplicates the freshness line already shown on the Home page, so it is
+   the first thing to drop; that alone lets every tab fit down to 1200px. Below
+   1200px the tabs also tighten before the strip falls back to scrolling.
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 701px) and (max-width: 1500px) {
+  #last-updated { display: none; }
+}
+@media (min-width: 701px) and (max-width: 1200px) {
+  .header-tab { padding: 0 11px; }
 }

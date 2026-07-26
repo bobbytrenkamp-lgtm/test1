@@ -24,21 +24,31 @@ const FEATURED_FIPS = ["41027", "51107", "53007", "41059", "45015", "19113"];
 /* ── Facility statistics (loaded async from data files) ── */
 let _dcStats = null;
 
+/* Read the three facility counts from platform_metadata.json (a few hundred
+   bytes) rather than downloading facilities_master.json, which is 4.85 MB and
+   was being fetched on every page load — including on Home, which only needs
+   these totals. The metadata file is the declared source of truth for them and
+   is validated against facilities_master.json by
+   data/validate_platform_metadata.py, so the numbers cannot silently drift. */
 (function loadFacilityStats() {
-  fetch("data/facilities_master.json")
-    .then(r => r.json())
-    .then(records => {
-      _dcStats = {
-        existing: records.filter(r => r.operational_status === "operational" || r.operational_status === "under_construction").length,
-        proposed: records.filter(r => r.operational_status === "planned").length,
-        total:    records.length,
-      };
-      const view = document.getElementById("home-view");
-      if (view && view.dataset.built === "1") {
-        view.dataset.built = "";
-        renderHomePage();
-      }
-    }).catch(() => {});
+  const apply = () => {
+    const stat = window.platformStat;
+    if (typeof stat !== "function") return;
+    const total = stat("freshness.facilities_total", null);
+    if (total == null) return;
+    _dcStats = {
+      existing: stat("freshness.facilities_operational", 0),
+      proposed: stat("freshness.facilities_planned", 0),
+      total,
+    };
+    const view = document.getElementById("home-view");
+    if (view && view.dataset.built === "1") {
+      view.dataset.built = "";
+      renderHomePage();
+    }
+  };
+  if (window.PLATFORM_META) apply();
+  else if (typeof window.loadPlatformMeta === "function") window.loadPlatformMeta().then(apply);
 }());
 
 /* ── Home search ── */
@@ -451,6 +461,20 @@ function homeSkeletonRows(n) {
   return Array.from({ length: n }, () =>
     `<div class="home-skeleton-row"><div class="home-skel home-skel-line"></div><div class="home-skel home-skel-short"></div></div>`
   ).join("");
+}
+
+/* Any watchlist change invalidates the cached Home render. Without this, a
+   county watched from the Jurisdiction page did not appear on Home until a
+   full reload, because renderHomePage() early-returns once dataset.built is
+   set. Subscribing centrally covers every caller, not just the map's
+   toggleWatchCounty(). */
+if (window.WATCHLIST && typeof window.WATCHLIST.onChange === "function") {
+  window.WATCHLIST.onChange(() => {
+    const view = document.getElementById("home-view");
+    if (!view) return;
+    delete view.dataset.built;
+    if (!view.hidden) renderHomePage();
+  });
 }
 
 /* ── Policy change alerts (Phase 4) ───────────────────────────────────────
