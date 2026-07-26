@@ -638,33 +638,72 @@ function stateStyle(feature) {
 
 /* ── Data loading ── */
 /* Core data (small JSON files) — loaded immediately on page start */
+const _fetchJSON = url =>
+  fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
+
+/* ── Critical data ──────────────────────────────────────────────────────────
+   Only what the Home tab needs to render: county records (KPIs, search,
+   watchlist) and the news feed. Everything else was previously fetched here
+   too, putting ~1.6 MB of map-only payloads on the critical path before the
+   home page could paint. See loadSecondaryData(). */
 async function loadCoreData() {
-  const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
-  const [data, sample, stateReg, newsData, riskRaw, incentivesRaw, waterRaw] = await Promise.all([
-    get("data/map_data.json"),
-    get("data/sample_layers.json").catch(() => null),
-    get("data/state_regulations.json").catch(() => ({ states: {} })),
+  const [data, newsData] = await Promise.all([
+    _fetchJSON("data/map_data.json"),
     fetch("data/ai_news.json", { cache: "no-store" }).then(r => r.json()).catch(() => ({ articles: [] })),
-    get("data/political_risk.json").catch(() => ({ scores: [] })),
-    get("data/tax_incentives.json").catch(() => ({ tax_incentives: [] })),
-    get("data/water_stress.json").catch(() => ({ water_stress: {} })),
   ]);
-  // Index risk scores by fips for O(1) lookup
-  const riskByFips = {};
-  for (const rec of (riskRaw.scores || [])) {
-    if (rec.fips) riskByFips[String(rec.fips).padStart(5, "0")] = rec;
-  }
-  // Index tax incentive programs by FIPS for O(1) lookup
-  const incentivesByFips = {};
-  for (const prog of (incentivesRaw.tax_incentives || [])) {
-    for (const fips of (prog.fips_list || [])) {
-      const key = String(fips).padStart(5, "0");
-      if (!incentivesByFips[key]) incentivesByFips[key] = [];
-      incentivesByFips[key].push(prog);
+  return { data, newsData };
+}
+
+/* ── Secondary data ─────────────────────────────────────────────────────────
+   Map overlays and enrichment layers. Started in parallel with the critical
+   fetches so total wall time is unchanged, but never awaited before first
+   paint. The Map tab awaits this; Home renders without it and re-renders when
+   it lands. Every consumer already guards with `window.DC_X || {}` or a null
+   check on `sampleLayers`, so a not-yet-loaded state renders as "no data"
+   rather than throwing. */
+let _secondaryPromise = null;
+
+function loadSecondaryData() {
+  if (_secondaryPromise) return _secondaryPromise;
+
+  _secondaryPromise = Promise.all([
+    _fetchJSON("data/sample_layers.json").catch(() => null),
+    _fetchJSON("data/state_regulations.json").catch(() => ({ states: {} })),
+    _fetchJSON("data/political_risk.json").catch(() => ({ scores: [] })),
+    _fetchJSON("data/tax_incentives.json").catch(() => ({ tax_incentives: [] })),
+    _fetchJSON("data/water_stress.json").catch(() => ({ water_stress: {} })),
+  ]).then(([sample, stateReg, riskRaw, incentivesRaw, waterRaw]) => {
+    // Index risk scores by fips for O(1) lookup
+    const riskByFips = {};
+    for (const rec of (riskRaw.scores || [])) {
+      if (rec.fips) riskByFips[String(rec.fips).padStart(5, "0")] = rec;
     }
-  }
-  const waterStressFull = waterRaw.water_stress || {};
-  return { data, sample, stateReg, newsData, riskByFips, incentivesByFips, waterStressFull };
+    // Index tax incentive programs by FIPS for O(1) lookup
+    const incentivesByFips = {};
+    for (const prog of (incentivesRaw.tax_incentives || [])) {
+      for (const fips of (prog.fips_list || [])) {
+        const key = String(fips).padStart(5, "0");
+        if (!incentivesByFips[key]) incentivesByFips[key] = [];
+        incentivesByFips[key].push(prog);
+      }
+    }
+
+    sampleLayers      = sample || null;
+    stateRegData      = (stateReg && stateReg.states) || {};
+    politicalRiskData = riskByFips;
+
+    window.DC_RISK_BY_FIPS      = riskByFips;
+    window.DC_WATER_STRESS      = (sample && sample.water_stress) ? sample.water_stress : {};
+    window.DC_WATER_STRESS_FULL = (waterRaw && waterRaw.water_stress) || {};
+    window.DC_INCENTIVES_FIPS   = incentivesByFips;
+
+    return { sample, stateReg, riskByFips, incentivesByFips };
+  }).catch(err => {
+    console.error("Secondary data failed:", err);
+    return null;
+  });
+
+  return _secondaryPromise;
 }
 
 /* County TopoJSON (~2 MB) — lazy-loaded only when Map tab is opened */
@@ -682,7 +721,10 @@ async function initMapFromGeo() {
   const loadEl = document.getElementById("loading");
   if (loadEl) loadEl.style.display = "";
   try {
-    const us = await fetchGeoData();
+    // The map draws overlay layers from sampleLayers / risk / incentives, which
+    // are deferred off the critical path. Wait for them here so the map never
+    // renders with empty overlays. Both downloads run in parallel.
+    const [us] = await Promise.all([fetchGeoData(), loadSecondaryData()]);
     // Yield to the browser so it can apply the flex layout for #main before
     // Leaflet reads the container height. When fetchGeoData() resolves from
     // cache it resolves as a microtask — before the browser has had a chance
@@ -6948,6 +6990,16 @@ function switchTab(tab) {
     if (analyticsEl) { analyticsEl.hidden = false; triggerViewEnter(analyticsEl); }
     searchBar.classList.add("news-mode");
     if (typeof renderAnalyticsPage === "function") renderAnalyticsPage();
+    // Analytics reads water-stress, incentives, and political-risk data, which
+    // are deferred off the critical path. Re-render once they arrive so those
+    // sections are not left empty when the tab is opened early.
+    if (typeof loadSecondaryData === "function" && !window.DC_RISK_BY_FIPS) {
+      loadSecondaryData().then(res => {
+        if (!res || !analyticsEl || analyticsEl.hidden) return;
+        delete analyticsEl.dataset.built;
+        if (typeof renderAnalyticsPage === "function") renderAnalyticsPage();
+      });
+    }
   } else if (tab === "pipeline") {
     if (pipelineEl) { pipelineEl.hidden = false; triggerViewEnter(pipelineEl); }
     searchBar.classList.add("news-mode");
@@ -8164,24 +8216,34 @@ async function init() {
   fetchGeoData();
 
   try {
-    const { data, sample, stateReg, newsData, riskByFips, incentivesByFips, waterStressFull } = await loadCoreData();
+    // Start the map/enrichment payloads now so they download alongside the
+    // critical ones, but do not await them — Home must not wait on ~1.6 MB it
+    // does not need to paint.
+    const secondary = loadSecondaryData();
 
-    mapData           = data.counties || {};
-    sampleLayers      = sample || null;
-    stateRegData      = stateReg.states || {};
-    newsArticles      = (newsData && newsData.articles) ? newsData.articles : [];
-    politicalRiskData = riskByFips || {};
+    const { data, newsData } = await loadCoreData();
 
-    // Expose risk, water, and incentives data as globals for parcel intelligence modules
-    window.DC_RISK_BY_FIPS     = politicalRiskData;
-    window.DC_WATER_STRESS     = (sample && sample.water_stress) ? sample.water_stress : {};
-    window.DC_WATER_STRESS_FULL = waterStressFull || {};
-    window.DC_INCENTIVES_FIPS  = incentivesByFips || {};
+    mapData      = data.counties || {};
+    newsArticles = (newsData && newsData.articles) ? newsData.articles : [];
 
     // Re-render home with real data (clears skeleton state)
     const hv = document.getElementById("home-view");
     if (hv) delete hv.dataset.built;
     if (typeof renderHomePage === "function") renderHomePage();
+
+    // When the enrichment layers land, refresh Home so fields that depend on
+    // them (water stress, tax incentives, political risk) fill in.
+    secondary.then(res => {
+      if (!res) return;
+      const homeEl = document.getElementById("home-view");
+      if (homeEl && !homeEl.hidden && typeof renderHomePage === "function") {
+        delete homeEl.dataset.built;
+        renderHomePage();
+      }
+      // initSearch() indexes facilities out of sampleLayers, which was still
+      // null when it first ran. Rebuild the index now that they exist.
+      initSearch();
+    });
 
     initSearch();
     initAdvancedFiltersPanel();

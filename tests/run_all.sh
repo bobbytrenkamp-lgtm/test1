@@ -28,6 +28,8 @@ run "policy pipeline unit tests"  python3 -m pytest tests/test_policy_pipeline.p
 run "frontend core (constants + router)" node tests/test_frontend_core.mjs
 run "jurisdiction page (DOM)"     node tests/test_jurisdiction.mjs
 run "watchlist (migration + alerts)" node tests/test_watchlist.mjs
+run "data loading (critical/deferred)" node tests/test_data_loading.mjs
+run "pipeline (windowing + a11y)"   node tests/test_pipeline.mjs
 
 echo ""
 if [ "$status" -eq 0 ]; then

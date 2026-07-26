@@ -437,6 +437,31 @@ window.APP_CONFIG = {
 window._applyTheme(theme);  // 'dark' | 'light' — triggers full Leaflet style refresh
 ```
 
+## Data Loading — critical vs deferred (performance)
+
+`loadCoreData()` fetches ONLY what Home needs to paint: `map_data.json` and `ai_news.json`.
+
+`loadSecondaryData()` fetches the map/enrichment payloads — `sample_layers.json` (1.4 MB),
+`state_regulations.json`, `political_risk.json`, `tax_incentives.json`, `water_stress.json`.
+It is memoized, starts in parallel with the critical fetches, and is NEVER awaited before
+first paint.
+
+**Do not add a file to `loadCoreData()` unless Home genuinely needs it to render.**
+`tests/test_data_loading.mjs` asserts the critical path requests exactly two files and greps
+the source to stop deferred files creeping back in.
+
+Consumers must stay defensive (`window.DC_X || {}`, null check on `sampleLayers`) because
+they can run before secondary lands. These re-run when it resolves:
+- Home re-renders; `initSearch()` re-indexes (its facility index comes from `sampleLayers`)
+- Analytics re-renders (reads the DC_* globals in nine places)
+- `initMapFromGeo()` awaits it so the map never draws with empty overlays
+
+## Pipeline table rendering
+
+Windowed: `PAGE_SIZE` (150) rows per page, appended on scroll via `_appendRows()`. Row clicks
+use ONE delegated listener on `<tbody>` — do not add per-row listeners. Sortable `<th>`s carry
+`tabindex`, Enter/Space handlers, and `aria-sort`; keep those in sync in `_updateSortHeaders()`.
+
 ## Watchlist (js/watchlist.js) — Phase 4
 
 `window.WATCHLIST` owns all watchlist state. **Do not read `dc-watchlist-v1` directly.**

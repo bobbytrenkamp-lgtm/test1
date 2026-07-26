@@ -14,7 +14,10 @@ window.PIPELINE = (function () {
   let _view      = "table";  // "table" (only mode for now)
   let _inited    = false;
 
+  let _rendered  = 0;        // rows currently in the DOM (windowed rendering)
+
   const MAX_MW   = 4000;     // cap for MW bar scaling
+  const PAGE_SIZE = 150;     // rows appended per scroll page
 
   /* ── Public: called once when Pipeline tab is first opened ── */
   function init() {
@@ -117,9 +120,23 @@ window.PIPELINE = (function () {
     document.getElementById("pipeline-detail-close")?.addEventListener("click", _closeDetail);
     document.getElementById("pipeline-export-btn")?.addEventListener("click", _exportCsv);
 
+    /* Sortable headers must be operable by keyboard, not just mouse. Each gets
+       a tab stop, Enter/Space activation, and an aria-sort state that reflects
+       the current ordering for screen readers. */
     document.getElementById("pipeline-table")?.querySelectorAll("thead th[data-col]").forEach(th => {
+      th.tabIndex = 0;
+      th.setAttribute("aria-sort", "none");
+      th.title = `Sort by ${th.textContent.trim()}`;
       th.addEventListener("click", () => _sortBy(th.dataset.col));
+      th.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+        e.preventDefault();          // stop Space from scrolling the table
+        _sortBy(th.dataset.col);
+      });
     });
+
+    _wireRowDelegation();
+    _wireInfiniteScroll();
   }
 
   /* ── Load data ── */
@@ -240,16 +257,56 @@ window.PIPELINE = (function () {
 
     _updateSortHeaders();
 
+    // Render the first window only. Building all 3,700+ rows up front meant
+    // thousands of innerHTML parses and one click listener per row; rows now
+    // stream in on scroll and clicks are handled by delegation on <tbody>.
+    _rendered = 0;
+    tbody.replaceChildren();
+    _appendRows(tbody);
+  }
+
+  /* Rows are appended a page at a time as the user scrolls. */
+  function _appendRows(tbody) {
+    tbody = tbody || document.getElementById("pipeline-tbody");
+    if (!tbody) return;
+    const slice = _filtered.slice(_rendered, _rendered + PAGE_SIZE);
+    if (!slice.length) return;
+
     const frag = document.createDocumentFragment();
-    _filtered.slice(0, 2000).forEach(d => {
+    for (const d of slice) {
       const tr = document.createElement("tr");
       if (_selected && _selected.facility_id === d.facility_id) tr.classList.add("selected");
       tr.dataset.id = d.facility_id;
       tr.innerHTML = _rowHTML(d);
-      tr.addEventListener("click", () => _openDetail(d));
       frag.appendChild(tr);
+    }
+    tbody.appendChild(frag);
+    _rendered += slice.length;
+  }
+
+  /* Append the next page when the scroll container nears its end. */
+  function _wireInfiniteScroll() {
+    const wrap = document.getElementById("pipeline-table-wrap");
+    if (!wrap || wrap.dataset.scrollWired === "1") return;
+    wrap.dataset.scrollWired = "1";
+    wrap.addEventListener("scroll", () => {
+      if (_rendered >= _filtered.length) return;
+      if (wrap.scrollTop + wrap.clientHeight >= wrap.scrollHeight - 400) _appendRows();
+    }, { passive: true });
+  }
+
+  /* One delegated listener for the whole table instead of one per row. */
+  function _wireRowDelegation() {
+    const tbody = document.getElementById("pipeline-tbody");
+    if (!tbody || tbody.dataset.delegated === "1") return;
+    tbody.dataset.delegated = "1";
+    tbody.addEventListener("click", (e) => {
+      const tr = e.target.closest("tr[data-id]");
+      if (!tr) return;
+      const rec = _filtered.find(f => f.facility_id === tr.dataset.id)
+               || (_data || []).find(f => f.facility_id === tr.dataset.id);
+      if (rec) _openDetail(rec);
     });
-    tbody.replaceChildren(frag);
   }
 
   function _rowHTML(d) {
@@ -312,8 +369,11 @@ window.PIPELINE = (function () {
   function _updateSortHeaders() {
     const ths = document.querySelectorAll("#pipeline-table thead th[data-col]");
     ths.forEach(th => {
-      th.classList.toggle("sort-asc",  th.dataset.col === _sortKey && _sortDir === 1);
-      th.classList.toggle("sort-desc", th.dataset.col === _sortKey && _sortDir === -1);
+      const active = th.dataset.col === _sortKey;
+      th.classList.toggle("sort-asc",  active && _sortDir === 1);
+      th.classList.toggle("sort-desc", active && _sortDir === -1);
+      th.setAttribute("aria-sort",
+        active ? (_sortDir === 1 ? "ascending" : "descending") : "none");
     });
   }
 

@@ -5,6 +5,56 @@
 Date: 2026-07-26
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Performance and accessibility (spec items #8 and #9)
+
+## Summary
+Two high-priority spec items that were still outstanding after Phases 1-5: performance and accessibility. Took ~1.6 MB off the home page critical path and replaced the pipeline's 2,000-row render with a windowed one, plus keyboard access for its sortable headers.
+
+## New Files
+- `tests/test_data_loading.mjs` — 32 tests for the critical/deferred split
+- `tests/test_pipeline.mjs` — 16 tests for table windowing and header a11y
+
+## Performance
+
+### Critical path cut by ~1.6 MB
+`loadCoreData()` was fetching seven files before Home could paint, four of which Home does not use:
+
+| File | Size | Needed by |
+|---|---|---|
+| map_data.json | 2.07 MB | Home (KPIs, search, watchlist) |
+| ai_news.json | 846 KB | Home (news feed) |
+| sample_layers.json | 1.42 MB | Map tab only |
+| political_risk.json | 185 KB | Map / detail panel only |
+| tax_incentives.json | — | Detail panel only |
+| water_stress.json | — | Map views only |
+| state_regulations.json | — | County detail only |
+
+Split into `loadCoreData()` (the first two) and `loadSecondaryData()` (the rest). Secondary starts in parallel so total wall time is unchanged, but it is never awaited before first paint.
+
+Consumers were already defensive (`window.DC_X || {}`, null checks on `sampleLayers`), so a not-yet-loaded state renders as "no data" rather than throwing. Three call sites re-run once secondary lands:
+- Home re-renders (water stress, incentives, political risk fields)
+- `initSearch()` re-indexes, since it builds its facility index from `sampleLayers`
+- Analytics re-renders — it reads these globals in nine places
+
+`initMapFromGeo()` awaits secondary alongside the geo download so the map never draws with empty overlays.
+
+### Pipeline table
+Was building up to 2,000 rows in one pass, each through its own `innerHTML` parse and each with its own click listener. Now renders 150 rows and appends a page at a time on scroll, with a single delegated click listener on `<tbody>`.
+
+## Accessibility
+
+The pipeline's sortable column headers were mouse-only — bare `<th>` elements with click handlers, no tab stop, no keyboard activation, no state exposed. Added `tabindex`, Enter/Space activation (with `preventDefault` so Space does not scroll the table), and `aria-sort` that tracks the current column and direction.
+
+## Testing
+`./tests/run_all.sh` — 200 tests across 8 suites, all passing.
+
+The data-loading suite extracts `loadCoreData` / `loadSecondaryData` from map.js and runs them against a stub fetch, asserting the critical path requests exactly two files, the deferred set indexes correctly (including FIPS zero-padding), the loader is memoized across the map and analytics callers, and a partial network failure degrades to defaults instead of rejecting. It also guards the source directly so a deferred file cannot creep back into `loadCoreData`.
+
+---
+
+Date: 2026-07-26
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 4 — Professional account features
 
 ## Summary
