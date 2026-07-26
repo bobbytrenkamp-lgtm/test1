@@ -1,15 +1,4691 @@
 {
  "_schema": "source_link_health_v1",
- "_note": "Citation link reachability, produced by data/check_source_links.py and refreshed weekly by .github/workflows/check_source_links.yml. This file ships empty so the frontend does not 404 on first load; until the workflow has run, every citation renders unannotated. An empty 'urls' map means NOT CHECKED YET, which is deliberately different from 'checked and healthy'.",
- "checked_at": null,
+ "checked_at": "2026-07-26T21:23:29+00:00",
+ "counties_with_textual_only_citations": [
+  "13097",
+  "17031",
+  "18057",
+  "24031",
+  "24033",
+  "25017",
+  "31055",
+  "32029",
+  "34035",
+  "37035",
+  "37063",
+  "37115",
+  "37119",
+  "37161",
+  "37173",
+  "37183",
+  "37189",
+  "39049",
+  "41059",
+  "45015",
+  "47031",
+  "48085",
+  "48113",
+  "48201",
+  "48453",
+  "53033",
+  "56021"
+ ],
  "summary": {
+  "checked": 600,
+  "counties_with_textual_only_citations": 27,
+  "reachable": 290,
   "total_citation_urls": 1990,
-  "checked": 0,
-  "reachable": 0,
-  "unreachable": 0,
-  "unreachable_pct": 0,
-  "unreachable_with_archive": 0,
-  "counties_with_textual_only_citations": 27
+  "unreachable": 310,
+  "unreachable_pct": 51.7,
+  "unreachable_with_archive": 85
  },
- "urls": {}
+ "urls": {
+  "https://about.att.com/innovation/labs": {
+   "archive": {
+    "timestamp": "20181110044725",
+    "url": "http://web.archive.org/web/20181110044725/https://about.att.com/innovation/labs"
+   },
+   "checked_at": "2026-07-26T21:19:49+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://accd.vermont.gov/": {
+   "archive": {
+    "timestamp": "20260704222531",
+    "url": "http://web.archive.org/web/20260704222531/https://accd.vermont.gov/"
+   },
+   "checked_at": "2026-07-26T21:22:20+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=&pddocfullpath=%2Fshared%2Fdocument%2Fstatutes-legislation%2Furn%3AcontentItem%3A4WVD-B6P0-R03N-M0XG-00000-00&pdcontentcomponentid=234195": {
+   "checked_at": "2026-07-26T21:21:31+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://app.leg.wa.gov/RCW/default.aspx?cite=82.08.986": {
+   "checked_at": "2026-07-26T21:15:11+00:00",
+   "counties": 3,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://apps.cpuc.ca.gov/apex/f?p=401:56:0::NO:RP,57,RIR:P5_PROCEEDING_SELECT:A2211006": {
+   "checked_at": "2026-07-26T21:23:19+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://arcs.gmu.edu/": {
+   "checked_at": "2026-07-26T21:21:21+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://aws.amazon.com/about-aws/global-infrastructure/": {
+   "checked_at": "2026-07-26T21:20:01+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://boonecounty.in.gov/2026/06/15/19190/": {
+   "checked_at": "2026-07-26T21:23:07+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://business.wv.gov": {
+   "checked_at": "2026-07-26T21:17:43+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://ced.ky.gov": {
+   "checked_at": "2026-07-26T21:22:47+00:00",
+   "counties": 4,
+   "error": null,
+   "final_url": "https://newkentuckyhome.ky.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://ced.ky.gov/": {
+   "checked_at": "2026-07-26T21:20:16+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://newkentuckyhome.ky.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://ced.ky.gov/Business/StartGrowBusiness/Pages/Incentives.aspx": {
+   "checked_at": "2026-07-26T21:16:48+00:00",
+   "counties": 3,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://ced.ky.gov/Financial_Incentives/Pages/kkb.aspx": {
+   "checked_at": "2026-07-26T21:20:09+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://chamberscountytx.gov/economic-development": {
+   "checked_at": "2026-07-26T21:22:01+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://codes.ohio.gov/ohio-revised-code/section-5709.65": {
+   "checked_at": "2026-07-26T21:22:20+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://commerce.maryland.gov": {
+   "checked_at": "2026-07-26T21:18:58+00:00",
+   "counties": 2,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://comptroller.texas.gov/economy/local/ch313/": {
+   "checked_at": "2026-07-26T21:17:43+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://comptroller.texas.gov/economy/development/",
+   "ok": true,
+   "status": 200
+  },
+  "https://comptroller.texas.gov/economy/local/ch403/": {
+   "checked_at": "2026-07-26T21:17:40+00:00",
+   "counties": 3,
+   "error": null,
+   "final_url": "https://comptroller.texas.gov/economy/development/",
+   "ok": true,
+   "status": 200
+  },
+  "https://comptroller.texas.gov/taxes/data-center": {
+   "checked_at": "2026-07-26T21:23:04+00:00",
+   "counties": 5,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://comptroller.texas.gov/taxes/property-tax/chapter312/": {
+   "checked_at": "2026-07-26T21:15:27+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://comptroller.texas.gov/taxes/publications/94-116.php": {
+   "checked_at": "2026-07-26T21:21:13+00:00",
+   "counties": 4,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://cyrusone.com/data-centers/north-america/florida/pompano-beach/": {
+   "checked_at": "2026-07-26T21:16:12+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://cyrusone.com/data-centers/north-america/texas/": {
+   "checked_at": "2026-07-26T21:17:39+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.cyrusone.com/data-centers#north-america",
+   "ok": true,
+   "status": 200
+  },
+  "https://dat.maryland.gov/businesses/Pages/data-center-credit.aspx": {
+   "checked_at": "2026-07-26T21:19:29+00:00",
+   "counties": 2,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://dced.pa.gov/": {
+   "checked_at": "2026-07-26T21:21:13+00:00",
+   "counties": 2,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://dceo.illinois.gov/communities/enterprisezones.htm": {
+   "checked_at": "2026-07-26T21:15:17+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://dceo.illinois.gov/whyillinois/incentives/highimpactbusiness": {
+   "checked_at": "2026-07-26T21:21:12+00:00",
+   "counties": 3,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://ded.mo.gov/content/business-tax-incentives": {
+   "checked_at": "2026-07-26T21:21:49+00:00",
+   "counties": 2,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://deq.nc.gov/about/divisions/water-resources/water-quality-certifications": {
+   "checked_at": "2026-07-26T21:20:34+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://desotoparishgov.com/": {
+   "checked_at": "2026-07-26T21:21:44+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://development.ohio.gov": {
+   "archive": {
+    "timestamp": "20260611043155",
+    "url": "http://web.archive.org/web/20260611043155/https://development.ohio.gov/"
+   },
+   "checked_at": "2026-07-26T21:18:33+00:00",
+   "counties": 7,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://development.ohio.gov/": {
+   "archive": {
+    "timestamp": "20260611043155",
+    "url": "http://web.archive.org/web/20260611043155/https://development.ohio.gov/"
+   },
+   "checked_at": "2026-07-26T21:17:49+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://development.ohio.gov/business/business-incentives/job-creation-tax-credit": {
+   "checked_at": "2026-07-26T21:20:41+00:00",
+   "counties": 4,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://docs.legis.wisconsin.gov/statutes/statutes/77/54/57m": {
+   "checked_at": "2026-07-26T21:20:04+00:00",
+   "counties": 4,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://doit.illinois.gov/": {
+   "checked_at": "2026-07-26T21:15:10+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://dor.sc.gov/business/corporate-incentives/data-center-incentives": {
+   "checked_at": "2026-07-26T21:19:09+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://downeastmaine.com/": {
+   "checked_at": "2026-07-26T21:21:08+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.ellsworthamerican.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://ebit.ks.gov": {
+   "archive": {
+    "timestamp": "20260514163631",
+    "url": "http://web.archive.org/web/20260514163631/https://www.ebit.ks.gov/"
+   },
+   "checked_at": "2026-07-26T21:21:03+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://ecology.wa.gov/Water-Shorelines/Water-supply/Water-rights/Yakima-basin-water-rights": {
+   "checked_at": "2026-07-26T21:17:17+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://edd.nm.gov/tax-incentives/data-centers": {
+   "checked_at": "2026-07-26T21:17:53+00:00",
+   "counties": 2,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://eng.vt.edu": {
+   "checked_at": "2026-07-26T21:19:09+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://engineering.ucsc.edu": {
+   "checked_at": "2026-07-26T21:18:58+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://epd.georgia.gov/watershed-protection-branch/water-withdrawal-permitting": {
+   "checked_at": "2026-07-26T21:21:07+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://flathead.mt.gov/commissioners/": {
+   "checked_at": "2026-07-26T21:18:03+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://floridajobs.org": {
+   "archive": {
+    "timestamp": "20260626192849",
+    "url": "http://web.archive.org/web/20260626192849/https://floridajobs.org/"
+   },
+   "checked_at": "2026-07-26T21:19:39+00:00",
+   "counties": 4,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://floridajobs.org/business-growth-and-partnerships/incentives/capital-investment-tax-credit": {
+   "checked_at": "2026-07-26T21:21:20+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://gf.com/manufacturing/fab-8/": {
+   "checked_at": "2026-07-26T21:18:53+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://gov.texas.gov/business/page/incentives": {
+   "checked_at": "2026-07-26T21:21:24+00:00",
+   "counties": 4,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://hced.com/": {
+   "archive": {
+    "timestamp": "20250710010749",
+    "url": "http://web.archive.org/web/20250710010749/http://hced.com/"
+   },
+   "checked_at": "2026-07-26T21:19:31+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://hmsc.oregonstate.edu/": {
+   "checked_at": "2026-07-26T21:16:13+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://home.army.mil/riley/": {
+   "checked_at": "2026-07-26T21:21:03+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://iedc.in.gov/programs/tax-credits/edge": {
+   "checked_at": "2026-07-26T21:17:56+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://iga.in.gov/laws/2023/ic/titles/6#6-2.5-5-37": {
+   "checked_at": "2026-07-26T21:23:07+00:00",
+   "counties": 4,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://independencecounty.ar.gov/": {
+   "checked_at": "2026-07-26T21:15:11+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://ingalls.huntingtoningalls.com": {
+   "checked_at": "2026-07-26T21:17:26+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.hii.com/ingalls-shipbuilding",
+   "ok": true,
+   "status": 200
+  },
+  "https://its.ny.gov": {
+   "checked_at": "2026-07-26T21:22:38+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://jaspercountyiowa.gov/": {
+   "checked_at": "2026-07-26T21:21:25+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://juneau.org/economic-development": {
+   "checked_at": "2026-07-26T21:22:19+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://kcix.net": {
+   "checked_at": "2026-07-26T21:17:05+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://keystonedp.com": {
+   "checked_at": "2026-07-26T21:17:19+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://le.utah.gov/xcode/Title59/Chapter12/C59-12-P1_1800010118000101.pdf": {
+   "checked_at": "2026-07-26T21:17:30+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://leg.colorado.gov/bills/sb24-205": {
+   "checked_at": "2026-07-26T21:19:09+00:00",
+   "counties": 2,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB1364": {
+   "checked_at": "2026-07-26T21:16:54+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1047": {
+   "checked_at": "2026-07-26T21:21:20+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://letchercounty.ky.gov/": {
+   "checked_at": "2026-07-26T21:20:40+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://lumpkincounty.gov/": {
+   "checked_at": "2026-07-26T21:18:59+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://mahaskacounty.org": {
+   "checked_at": "2026-07-26T21:21:58+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.mahaskacountyia.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://mi-psc.force.com/sfc/servlet.shepherd/document/download/069t000000BFfqxAAD": {
+   "checked_at": "2026-07-26T21:20:16+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://missouri.edu/": {
+   "checked_at": "2026-07-26T21:18:45+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://mn.gov/deed": {
+   "checked_at": "2026-07-26T21:16:54+00:00",
+   "counties": 5,
+   "error": null,
+   "final_url": "http://validate.perfdrive.com/d5bd5333eafe8b0ccd6023ba818d1aa6/?ssa=817fd70c-f416-46f4-9909-f57d98921bad&ssb=27778256232&ssc=https%3A%2F%2Fmn.gov%2Fdeed%2F&ssi=0419aad9-bf56-4893-b549-4ac435c22fb9&ssk=support@shieldsquare.com&ssm=59197094687653615109148600478267&ssn=09c682948fa55f159d0b0df6fe9e6eb6fd70413ebc03-e32d-4299-88fb94&sso=0522af05-fa1d82e44cc6a10ecc82d834c2419a009c86d131cee3a005&ssp=34494364631785198021178512020361896&ssq=87373630052583378372100525066802406837665&ssr=MTM1LjIzMi4yMjQuOTg=&sst=USDataCenterPolicyTracker-LinkCheck/1.0%20(+https://bobbytrenkamp-lgtm.github.io/test1/)&ssu=&ssv=&ssw=&ssx=W10=",
+   "ok": true,
+   "status": 200
+  },
+  "https://mn.gov/mnit/": {
+   "checked_at": "2026-07-26T21:23:14+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "http://validate.perfdrive.com/d5bd5333eafe8b0ccd6023ba818d1aa6/?ssa=2a8162f6-ab8e-46f7-9401-9ff01e21b85d&ssb=50888258073&ssc=https%3A%2F%2Fmn.gov%2Fmnit%2F&ssi=8599550c-bf56-468a-adf4-3d232f594311&ssk=support@shieldsquare.com&ssm=06554334794758564106386117445757&ssn=3e631050161cf55238c7c493770041488413468370d4-5870-41de-8e0c8b&sso=4828390f-bd6bb78afb9e78209a0a645df95aaa86ad13a0ce4d1982a7&ssp=31117650361785135065178513891801252&ssq=44809780059516602531700595321224725461852&ssr=MTM1LjIzMi4yMjQuOTg=&sst=USDataCenterPolicyTracker-LinkCheck/1.0%20(+https://bobbytrenkamp-lgtm.github.io/test1/)&ssu=&ssv=&ssw=&ssx=W10=",
+   "ok": true,
+   "status": 200
+  },
+  "https://monadnockedc.org/": {
+   "checked_at": "2026-07-26T21:20:21+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://nancecounty.ne.gov/": {
+   "checked_at": "2026-07-26T21:21:45+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://ncruralcenter.org/programs/building-reuse-grant-program/": {
+   "checked_at": "2026-07-26T21:19:01+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.ncruralcenter.org/",
+   "ok": true,
+   "status": 200
+  },
+  "https://newlook.dteenergy.com/wps/wcm/connect/dte-web/home/home": {
+   "archive": {
+    "timestamp": "20170920072458",
+    "url": "http://web.archive.org/web/20170920072458/https://www.newlook.dteenergy.com/wps/wcm/connect/dte-web/home/home/"
+   },
+   "checked_at": "2026-07-26T21:19:24+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://nezpercecounty.id.gov/": {
+   "checked_at": "2026-07-26T21:17:55+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://oedit.colorado.gov/advanced-industries": {
+   "checked_at": "2026-07-26T21:18:19+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://openai.com/index/announcing-the-stargate-project/": {
+   "archive": {
+    "timestamp": "20260723141025",
+    "url": "http://web.archive.org/web/20260723141025/https://openai.com/index/announcing-the-stargate-project/"
+   },
+   "checked_at": "2026-07-26T21:15:35+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://opportunity.nebraska.gov/programs/business/imagine-nebraska-act/": {
+   "checked_at": "2026-07-26T21:19:28+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://paristexas.com": {
+   "checked_at": "2026-07-26T21:23:07+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.paristexas.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://piutecounty.utah.gov": {
+   "checked_at": "2026-07-26T21:21:18+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://portal.ct.gov/DRS/Sales-Tax/Data-Centers": {
+   "checked_at": "2026-07-26T21:19:49+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://portal.ct.gov/en/404error/?item=%2fdrs%2fsales-tax%2fdata-centers&user=extranet%5cAnonymous&site=website",
+   "ok": true,
+   "status": 200
+  },
+  "https://research.iu.edu/facilities/supercomputing.html": {
+   "checked_at": "2026-07-26T21:16:38+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://research.uconn.edu/": {
+   "checked_at": "2026-07-26T21:20:40+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://researchcomputing.princeton.edu": {
+   "archive": {
+    "timestamp": "20260721050540",
+    "url": "http://web.archive.org/web/20260721050540/https://researchcomputing.princeton.edu/"
+   },
+   "checked_at": "2026-07-26T21:18:58+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://researchcomputing.uoregon.edu": {
+   "checked_at": "2026-07-26T21:21:04+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://revisor.mo.gov/main/OneChapter.aspx?chapter=100": {
+   "checked_at": "2026-07-26T21:19:24+00:00",
+   "counties": 2,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://sccommerce.com/business-services/incentives": {
+   "checked_at": "2026-07-26T21:17:41+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://sdgoed.com/why-sd/incentives/": {
+   "checked_at": "2026-07-26T21:16:31+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://sdready.org": {
+   "checked_at": "2026-07-26T21:20:13+00:00",
+   "counties": 2,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://services.global.ntt/en-us/services/data-centers": {
+   "checked_at": "2026-07-26T21:21:00+00:00",
+   "counties": 2,
+   "error": null,
+   "final_url": "https://services.global.ntt/en-us/services-and-products/global-data-centers",
+   "ok": true,
+   "status": 200
+  },
+  "https://sfbos.org/": {
+   "checked_at": "2026-07-26T21:17:29+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.sf.gov/departments--board-supervisors",
+   "ok": true,
+   "status": 202
+  },
+  "https://sill.army.mil": {
+   "archive": {
+    "timestamp": "20250602061858",
+    "url": "http://web.archive.org/web/20250602061858/https://www.sill.army.mil/"
+   },
+   "checked_at": "2026-07-26T21:23:06+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://sonomaedb.org": {
+   "checked_at": "2026-07-26T21:21:12+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://sonomaedc.org/",
+   "ok": true,
+   "status": 200
+  },
+  "https://statutes.capitol.texas.gov/Docs/TX/htm/TX.151.htm#151.318": {
+   "checked_at": "2026-07-26T21:20:28+00:00",
+   "counties": 2,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://sustainability.fb.com/data-centers/": {
+   "checked_at": "2026-07-26T21:17:52+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://sustainability.atmeta.com/data-centers/",
+   "ok": true,
+   "status": 200
+  },
+  "https://therealdeal.com/texas/2026/06/30/can-san-marcos-data-center-ban-survive-legal-challenges/": {
+   "archive": {
+    "timestamp": "20260701200607",
+    "url": "http://web.archive.org/web/20260701200607/https://therealdeal.com/texas/2026/06/30/can-san-marcos-data-center-ban-survive-legal-challenges/"
+   },
+   "checked_at": "2026-07-26T21:21:31+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://ucnj.org/": {
+   "checked_at": "2026-07-26T21:22:30+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://ulstercountyny.gov/economic-development": {
+   "checked_at": "2026-07-26T21:16:48+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.ulstercountyny.gov/Departments/Economic-Development",
+   "ok": true,
+   "status": 200
+  },
+  "https://web.cs.dartmouth.edu": {
+   "checked_at": "2026-07-26T21:17:10+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://web.uri.edu/it/research-computing/": {
+   "checked_at": "2026-07-26T21:22:36+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://wedc.org/programs-and-resources/data-center-tax-exemption/": {
+   "checked_at": "2026-07-26T21:17:35+00:00",
+   "counties": 4,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://wedc.org/programs-and-resources/programs/": {
+   "checked_at": "2026-07-26T21:15:44+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://wedc.org/programs/",
+   "ok": true,
+   "status": 200
+  },
+  "https://ww2.arb.ca.gov/": {
+   "archive": {
+    "timestamp": "20260529191817",
+    "url": "http://web.archive.org/web/20260529191817/https://ww2.arb.ca.gov/"
+   },
+   "checked_at": "2026-07-26T21:19:56+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.1si.org": {
+   "checked_at": "2026-07-26T21:22:04+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://1si.org/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.aberdeensd.com": {
+   "checked_at": "2026-07-26T21:17:43+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://aberdeensd.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.abileneedc.com": {
+   "archive": {
+    "timestamp": "20190507231232",
+    "url": "http://web.archive.org/web/20190507231232/http://abileneedc.com/"
+   },
+   "checked_at": "2026-07-26T21:23:09+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.abqjournal.com/news/santa-fe-county-becomes-latest-new-mexico-community-to-adopt-data-center-moratorium/3074758": {
+   "checked_at": "2026-07-26T21:17:03+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.abqjournal.com/news/socorro-county-approves-data-center-moratorium-amid-opposition/3060408": {
+   "checked_at": "2026-07-26T21:17:39+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.acgov.org/planning/generalplan/": {
+   "checked_at": "2026-07-26T21:15:12+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.act.org/": {
+   "checked_at": "2026-07-26T21:15:00+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.adamscountyms.net/": {
+   "checked_at": "2026-07-26T21:15:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.aeptexas.com/": {
+   "checked_at": "2026-07-26T21:20:15+00:00",
+   "counties": 3,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.alabamapower.com/business/": {
+   "archive": {
+    "timestamp": "20160914083931",
+    "url": "http://web.archive.org/web/20160914083931/http://www.alabamapower.com:80/business/"
+   },
+   "checked_at": "2026-07-26T21:18:23+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.alamance-nc.com/commissioners/": {
+   "checked_at": "2026-07-26T21:21:24+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://commissioners.alamancecountync.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.alamance-nc.com/planningdevelopment/": {
+   "checked_at": "2026-07-26T21:18:54+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.amarilloedc.com": {
+   "checked_at": "2026-07-26T21:18:39+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://amarilloedc.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ameren.com/illinois": {
+   "checked_at": "2026-07-26T21:21:34+00:00",
+   "counties": 3,
+   "error": null,
+   "final_url": "https://www.ameren.com/?state=il",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ameren.com/illinois/business": {
+   "checked_at": "2026-07-26T21:22:47+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.ameren.com/business-solutions",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ameren.com/missouri/business/economic-development": {
+   "checked_at": "2026-07-26T21:16:05+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.ameren.com/economic-development/missouri",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.andersoncountysc.org/": {
+   "checked_at": "2026-07-26T21:22:59+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.andrewcounty.org/": {
+   "checked_at": "2026-07-26T21:18:35+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://andrewcounty.org/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.androscoggincounty.com": {
+   "checked_at": "2026-07-26T21:23:24+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.antelopecounty.ne.gov": {
+   "checked_at": "2026-07-26T21:19:05+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.apple.com/environment/": {
+   "checked_at": "2026-07-26T21:17:55+00:00",
+   "counties": 2,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.apple.com/newsroom/": {
+   "checked_at": "2026-07-26T21:17:41+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.arc.gov/power-initiative/": {
+   "checked_at": "2026-07-26T21:15:18+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.arkansascountyar.gov": {
+   "checked_at": "2026-07-26T21:22:43+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.arkansasedc.com/doing-business/incentives/investark": {
+   "checked_at": "2026-07-26T21:17:52+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.arlingtoneconomicdevelopment.com/": {
+   "checked_at": "2026-07-26T21:17:19+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.arlingtoneconomicdevelopment.com/Home",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.asdd.com": {
+   "archive": {
+    "timestamp": "20240817073232",
+    "url": "http://web.archive.org/web/20240817073232/http://asdd.com/"
+   },
+   "checked_at": "2026-07-26T21:20:33+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.ashecountync.gov": {
+   "checked_at": "2026-07-26T21:18:59+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.auduboncountyiowa.gov/": {
+   "checked_at": "2026-07-26T21:14:59+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.avistautilities.com/": {
+   "checked_at": "2026-07-26T21:16:59+00:00",
+   "counties": 2,
+   "error": null,
+   "final_url": "https://www.myavista.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.azwater.gov/ama/pinal": {
+   "checked_at": "2026-07-26T21:21:08+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.bakercountyga.org": {
+   "archive": {
+    "timestamp": "20240905065821",
+    "url": "http://web.archive.org/web/20240905065821/https://www.bakercountyga.org/"
+   },
+   "checked_at": "2026-07-26T21:21:44+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.baldwincountyga.com": {
+   "checked_at": "2026-07-26T21:20:22+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bankscountyga.org": {
+   "checked_at": "2026-07-26T21:21:23+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bannercountyne.gov": {
+   "checked_at": "2026-07-26T21:19:05+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://bannercountyne.gov:443/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.barbercountyks.org/": {
+   "checked_at": "2026-07-26T21:16:16+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.barnescountynd.com/": {
+   "checked_at": "2026-07-26T21:15:50+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.barrencountyky.gov/": {
+   "checked_at": "2026-07-26T21:21:23+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.barrowcounty.com/development-authority": {
+   "checked_at": "2026-07-26T21:20:40+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.bartoncounty.org/": {
+   "checked_at": "2026-07-26T21:22:30+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bastropcounty.org/edc": {
+   "checked_at": "2026-07-26T21:22:27+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.baxtercounty.org": {
+   "archive": {
+    "timestamp": "20221231180830",
+    "url": "http://web.archive.org/web/20221231180830/https://www.baxtercounty.org/"
+   },
+   "checked_at": "2026-07-26T21:20:00+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.bayfieldcounty.org": {
+   "checked_at": "2026-07-26T21:22:01+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bcunlimited.org": {
+   "checked_at": "2026-07-26T21:15:32+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://bcunlimited.org/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.beaufort.marines.mil/": {
+   "archive": {
+    "timestamp": "20260702230942",
+    "url": "http://web.archive.org/web/20260702230942/https://www.beaufort.marines.mil/"
+   },
+   "checked_at": "2026-07-26T21:23:14+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.bentoncity.org/": {
+   "checked_at": "2026-07-26T21:22:14+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://bentoncity.org/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bentoncounty.in.gov": {
+   "checked_at": "2026-07-26T21:15:43+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bgchamber.com": {
+   "checked_at": "2026-07-26T21:15:10+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bighornmt.com/": {
+   "checked_at": "2026-07-26T21:15:53+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.blackhillsenergy.com/": {
+   "checked_at": "2026-07-26T21:16:34+00:00",
+   "counties": 3,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.blainecountymt.gov": {
+   "checked_at": "2026-07-26T21:15:42+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.blaircountedc.com/": {
+   "checked_at": "2026-07-26T21:16:32+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.boonecountyar.com/": {
+   "checked_at": "2026-07-26T21:15:43+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.borough.kenai.ak.us/economic-development": {
+   "checked_at": "2026-07-26T21:15:06+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.kpb.us/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bourboncountyks.org": {
+   "checked_at": "2026-07-26T21:20:22+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bpc.edu": {
+   "checked_at": "2026-07-26T21:17:58+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://bpc.edu/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bradleycountytn.gov": {
+   "checked_at": "2026-07-26T21:16:34+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 202
+  },
+  "https://www.braxtonwv.org/": {
+   "checked_at": "2026-07-26T21:18:18+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://braxtonwv.org/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bryancountyga.org": {
+   "archive": {
+    "timestamp": "20240124234347",
+    "url": "http://web.archive.org/web/20240124234347/https://www.bryancountyga.org/"
+   },
+   "checked_at": "2026-07-26T21:18:28+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.bsb.mt.gov/": {
+   "archive": {
+    "timestamp": "20181216104739",
+    "url": "http://web.archive.org/web/20181216104739/http://www.bsb.mt.gov/"
+   },
+   "checked_at": "2026-07-26T21:17:45+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.buchananva.gov": {
+   "checked_at": "2026-07-26T21:19:02+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.buffaloniagara.org": {
+   "checked_at": "2026-07-26T21:22:27+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://buffaloniagara.org/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bullochcounty.net": {
+   "checked_at": "2026-07-26T21:21:19+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://bullochcounty.net/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.bureaucountyil.gov": {
+   "checked_at": "2026-07-26T21:23:17+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.butlercountyiowa.gov/": {
+   "checked_at": "2026-07-26T21:21:37+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.butlercountymo.com/": {
+   "checked_at": "2026-07-26T21:23:04+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://butlercountymo.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.butlercountyohio.org/economic": {
+   "checked_at": "2026-07-26T21:19:55+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.byui.edu/": {
+   "checked_at": "2026-07-26T21:16:02+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.caedc.org": {
+   "archive": {
+    "timestamp": "20260606045132",
+    "url": "http://web.archive.org/web/20260606045132/https://caedc.org/"
+   },
+   "checked_at": "2026-07-26T21:17:47+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.caes.uga.edu/about/county/tifton.html": {
+   "checked_at": "2026-07-26T21:17:18+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.caldwellcountytx.com": {
+   "checked_at": "2026-07-26T21:21:19+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.calhouncountyarkansas.gov": {
+   "checked_at": "2026-07-26T21:18:11+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.calhouncountyil.gov": {
+   "checked_at": "2026-07-26T21:23:04+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.calvertcountymd.gov/economic-development": {
+   "checked_at": "2026-07-26T21:16:04+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.camdencounty.com/": {
+   "archive": {
+    "timestamp": "20260706225010",
+    "url": "http://web.archive.org/web/20260706225010/https://www.camdencounty.com/"
+   },
+   "checked_at": "2026-07-26T21:21:51+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.cameronparishla.gov": {
+   "checked_at": "2026-07-26T21:21:34+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.campbellcountytn.gov": {
+   "checked_at": "2026-07-26T21:17:00+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://campbellcountytn.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.candlercountyga.gov": {
+   "checked_at": "2026-07-26T21:20:14+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.capechamber.com": {
+   "checked_at": "2026-07-26T21:20:22+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.carrollcounty.in.gov": {
+   "checked_at": "2026-07-26T21:22:36+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.in.gov/counties/carroll/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.carrolliowa.com": {
+   "checked_at": "2026-07-26T21:18:52+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.cartercountymt.gov": {
+   "checked_at": "2026-07-26T21:17:28+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.caseycountyky.us": {
+   "checked_at": "2026-07-26T21:17:52+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.catoosacounty.org": {
+   "archive": {
+    "timestamp": "20180810053338",
+    "url": "http://web.archive.org/web/20180810053338/http://catoosacounty.org/"
+   },
+   "checked_at": "2026-07-26T21:19:48+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.cceconomicdevelopment.com": {
+   "checked_at": "2026-07-26T21:21:03+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.cedarcountyne.gov": {
+   "checked_at": "2026-07-26T21:21:23+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://cedarcountyne.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.cedc.org/": {
+   "checked_at": "2026-07-26T21:22:20+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.centerpointenergy.com/en-us/Business/Economic-Development": {
+   "checked_at": "2026-07-26T21:19:09+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.centralhudson.com/": {
+   "checked_at": "2026-07-26T21:18:28+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.cenhud.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.chamberlainsd.com": {
+   "checked_at": "2026-07-26T21:22:19+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 202
+  },
+  "https://www.charlevoixcounty.org": {
+   "checked_at": "2026-07-26T21:19:09+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.chautauquaedc.com": {
+   "checked_at": "2026-07-26T21:16:57+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.cherokeecountysc.com": {
+   "checked_at": "2026-07-26T21:19:01+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://cherokeecountysc.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.chesterfield.gov/government/departments/economic-development": {
+   "checked_at": "2026-07-26T21:20:38+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.chippewafallschamber.com/": {
+   "checked_at": "2026-07-26T21:19:52+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.cityofroseburg.org/": {
+   "checked_at": "2026-07-26T21:20:39+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://roseburgor.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ciwt.navy.mil": {
+   "checked_at": "2026-07-26T21:16:14+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.claibornemsco.gov": {
+   "checked_at": "2026-07-26T21:16:17+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.clarkcounty.ky.gov/": {
+   "checked_at": "2026-07-26T21:22:46+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.clarkcountyohio.gov/": {
+   "checked_at": "2026-07-26T21:15:02+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.clarkpud.com/": {
+   "checked_at": "2026-07-26T21:19:01+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.clarkpublicutilities.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.clarkson.edu/": {
+   "checked_at": "2026-07-26T21:21:09+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.claycountygeorgia.com": {
+   "checked_at": "2026-07-26T21:15:20+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.claytoncoia.com": {
+   "checked_at": "2026-07-26T21:17:40+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.cleburnecounty.net/": {
+   "archive": {
+    "timestamp": "20181101061333",
+    "url": "http://web.archive.org/web/20181101061333/http://cleburnecounty.net/"
+   },
+   "checked_at": "2026-07-26T21:15:26+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.cleco.com/": {
+   "archive": {
+    "timestamp": "20260624192025",
+    "url": "http://web.archive.org/web/20260624192025/https://www.cleco.com/"
+   },
+   "checked_at": "2026-07-26T21:16:15+00:00",
+   "counties": 2,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.cloudcountyks.org": {
+   "checked_at": "2026-07-26T21:22:59+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.co.armstrong.pa.us": {
+   "checked_at": "2026-07-26T21:16:14+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.co.ashland.wi.us": {
+   "archive": {
+    "timestamp": "20231117154222",
+    "url": "http://web.archive.org/web/20231117154222/https://co.ashland.wi.us/"
+   },
+   "checked_at": "2026-07-26T21:22:59+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.barron.wi.us/": {
+   "archive": {
+    "timestamp": "20150102164947",
+    "url": "http://web.archive.org/web/20150102164947/http://www.co.barron.wi.us/"
+   },
+   "checked_at": "2026-07-26T21:18:39+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.co.benton.wa.us/departments/economic_development": {
+   "checked_at": "2026-07-26T21:18:28+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.co.cass.mn.us": {
+   "archive": {
+    "timestamp": "20220713130818",
+    "url": "http://web.archive.org/web/20220713130818/http://www.co.cass.mn.us/"
+   },
+   "checked_at": "2026-07-26T21:20:58+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.chisago.mn.us/": {
+   "archive": {
+    "timestamp": "20190101183728",
+    "url": "http://web.archive.org/web/20190101183728/http://co.chisago.mn.us/"
+   },
+   "checked_at": "2026-07-26T21:15:34+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.clinton.oh.us": {
+   "checked_at": "2026-07-26T21:15:10+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://co.clinton.oh.us/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.co.coles.il.us/": {
+   "archive": {
+    "timestamp": "20251011001921",
+    "url": "http://web.archive.org/web/20251011001921/http://www.co.coles.il.us/"
+   },
+   "checked_at": "2026-07-26T21:23:22+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.columbia.wa.us/commissioners": {
+   "checked_at": "2026-07-26T21:23:18+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.columbia.wi.us/County-Board": {
+   "checked_at": "2026-07-26T21:20:33+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.co.cottonwood.mn.us": {
+   "checked_at": "2026-07-26T21:21:30+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.cottonwoodcountymn.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.co.custer.mt.us/": {
+   "archive": {
+    "timestamp": "20110914104954",
+    "url": "http://web.archive.org/web/20110914104954/http://www.co.custer.mt.us:80/"
+   },
+   "checked_at": "2026-07-26T21:15:06+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.dakota.ne.us/": {
+   "checked_at": "2026-07-26T21:18:56+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.green.wi.gov": {
+   "archive": {
+    "timestamp": "20210328070053",
+    "url": "http://web.archive.org/web/20210328070053/http://www.co.green.wi.gov/"
+   },
+   "checked_at": "2026-07-26T21:18:29+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.hunterdon.nj.us/planning/economic-development": {
+   "checked_at": "2026-07-26T21:17:19+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.co.jackson.mi.us/": {
+   "checked_at": "2026-07-26T21:18:33+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.mijackson.org/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.co.jefferson.or.us/planning": {
+   "checked_at": "2026-07-26T21:23:21+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.co.lafayette.ms.us/": {
+   "checked_at": "2026-07-26T21:19:26+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.loving.tx.us/": {
+   "checked_at": "2026-07-26T21:15:10+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.co.mckenzie.nd.us/": {
+   "checked_at": "2026-07-26T21:16:59+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.monroe.mi.us/brd": {
+   "checked_at": "2026-07-26T21:21:49+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.co.oldham.tx.us": {
+   "checked_at": "2026-07-26T21:17:39+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.co.polk.tx.us/": {
+   "archive": {
+    "timestamp": "20250609205809",
+    "url": "http://web.archive.org/web/20250609205809/https://www.co.polk.tx.us/"
+   },
+   "checked_at": "2026-07-26T21:16:02+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.prairie.mt.gov": {
+   "checked_at": "2026-07-26T21:19:01+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.richardson.ne.us": {
+   "checked_at": "2026-07-26T21:17:05+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://richardsoncounty.ne.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.co.rio-blanco.co.us": {
+   "archive": {
+    "timestamp": "20191222052709",
+    "url": "http://web.archive.org/web/20191222052709/http://www.co.rio-blanco.co.us:80/"
+   },
+   "checked_at": "2026-07-26T21:21:07+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.robertson.tx.us/": {
+   "checked_at": "2026-07-26T21:21:33+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.co.scurry.tx.us": {
+   "checked_at": "2026-07-26T21:20:59+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.co.shackelford.tx.us": {
+   "archive": {
+    "timestamp": "20181117072942",
+    "url": "http://web.archive.org/web/20181117072942/http://www.co.shackelford.tx.us:80/"
+   },
+   "checked_at": "2026-07-26T21:16:34+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.sherburne.mn.us/economic-development": {
+   "checked_at": "2026-07-26T21:22:13+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.co.terrell.tx.us": {
+   "checked_at": "2026-07-26T21:22:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.co.trumbull.oh.us/planning": {
+   "checked_at": "2026-07-26T21:17:19+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.co.trumbull.oh.us/planning/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.co.upshur.tx.us/": {
+   "checked_at": "2026-07-26T21:15:44+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.wallowa.or.us/planning/": {
+   "checked_at": "2026-07-26T21:17:57+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.co.washington.ms.us/": {
+   "archive": {
+    "timestamp": "20211128101112",
+    "url": "http://web.archive.org/web/20211128101112/http://co.washington.ms.us/"
+   },
+   "checked_at": "2026-07-26T21:22:07+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.co.wright.mn.us/203/Economic-Development": {
+   "checked_at": "2026-07-26T21:17:19+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.wrightcountymn.gov/203/Free-Law-Clinic",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.coalcountychamber.com": {
+   "archive": {
+    "timestamp": "20230208092623",
+    "url": "http://web.archive.org/web/20230208092623/http://coalcountychamber.com/"
+   },
+   "checked_at": "2026-07-26T21:23:07+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.coffeecounty-al.gov/": {
+   "checked_at": "2026-07-26T21:15:09+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.colfaxcounty.ne.gov/": {
+   "archive": {
+    "timestamp": "20130117204420",
+    "url": "http://web.archive.org/web/20130117204420/http://www.colfaxcounty.ne.gov/"
+   },
+   "checked_at": "2026-07-26T21:21:09+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.cologix.com/data-centers/new-orleans/": {
+   "checked_at": "2026-07-26T21:22:39+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.columbiacountyar.com/": {
+   "checked_at": "2026-07-26T21:19:04+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.columbus.in.gov/": {
+   "checked_at": "2026-07-26T21:18:18+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.columbusco.org/economic-development": {
+   "checked_at": "2026-07-26T21:16:48+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.columbustexa.org": {
+   "checked_at": "2026-07-26T21:15:52+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.congress.gov/": {
+   "archive": {
+    "timestamp": "20260726183302",
+    "url": "http://web.archive.org/web/20260726183302/https://www.congress.gov/"
+   },
+   "checked_at": "2026-07-26T21:21:30+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.coopercountymo.gov": {
+   "checked_at": "2026-07-26T21:16:31+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.copiahcounty.org": {
+   "checked_at": "2026-07-26T21:16:34+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.coreweave.com/": {
+   "checked_at": "2026-07-26T21:21:49+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.corporatesherman.com": {
+   "checked_at": "2026-07-26T21:17:29+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.corsicananavarro.org/": {
+   "checked_at": "2026-07-26T21:15:32+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.coruscorpuschristi.com": {
+   "checked_at": "2026-07-26T21:22:47+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.cox.com/business/": {
+   "checked_at": "2026-07-26T21:16:42+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.cox.com/business/home.html",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.crawfordco.org": {
+   "checked_at": "2026-07-26T21:18:12+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.crawfordcountyar.com/": {
+   "checked_at": "2026-07-26T21:17:30+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.crawfordcountywi.org": {
+   "checked_at": "2026-07-26T21:23:14+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.crawfordcountywi.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.crawfordil.gov": {
+   "checked_at": "2026-07-26T21:15:24+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.crosscountyar.org/": {
+   "checked_at": "2026-07-26T21:16:38+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.crowwing.us/": {
+   "checked_at": "2026-07-26T21:22:27+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.crowwing.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.cs.cornell.edu": {
+   "archive": {
+    "timestamp": "20260725005513",
+    "url": "http://web.archive.org/web/20260725005513/https://www.cs.cornell.edu/"
+   },
+   "checked_at": "2026-07-26T21:16:42+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.csu.org/": {
+   "checked_at": "2026-07-26T21:15:25+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.cummins.com/": {
+   "archive": {
+    "timestamp": "20260205142624",
+    "url": "http://web.archive.org/web/20260205142624/https://www.cummins.com/"
+   },
+   "checked_at": "2026-07-26T21:16:48+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.custercountysd.gov/": {
+   "checked_at": "2026-07-26T21:17:36+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.dailyherald.com/20260609/business-openings/taking-this-issue-extremely-seriously-lake-county-pursues-data-center-moratorium/": {
+   "checked_at": "2026-07-26T21:16:34+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.dalecountyalabama.gov/": {
+   "checked_at": "2026-07-26T21:17:02+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.danecounty.gov/PressDetail/11883": {
+   "checked_at": "2026-07-26T21:15:06+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.dec.ny.gov/regulations/4590.html": {
+   "checked_at": "2026-07-26T21:18:39+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.decaturcountyks.org": {
+   "checked_at": "2026-07-26T21:17:28+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.decaturedge.com": {
+   "checked_at": "2026-07-26T21:22:09+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.defiance-county.com": {
+   "checked_at": "2026-07-26T21:17:58+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.dekalbcountyal.us/": {
+   "checked_at": "2026-07-26T21:23:14+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://dekalbcountyal.us/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.delmarva.com/": {
+   "checked_at": "2026-07-26T21:17:40+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.dentoncounty.gov/323/Economic-Development": {
+   "checked_at": "2026-07-26T21:17:51+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.dentoncounty.gov/323/Vital-Records-Fee-Schedule",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.dep.pa.gov/Business/Water/CleanWater/WasteWater/Pages/Act-537-Planning.aspx": {
+   "checked_at": "2026-07-26T21:15:35+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.pa.gov/agencies/dep",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.dewittcountyil.com": {
+   "archive": {
+    "timestamp": "20240907143126",
+    "url": "http://web.archive.org/web/20240907143126/https://dewittcountyil.com/"
+   },
+   "checked_at": "2026-07-26T21:15:30+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.dickinsoncountymi.gov/": {
+   "checked_at": "2026-07-26T21:19:42+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.dickinsonnd.com/": {
+   "archive": {
+    "timestamp": "20220112155233",
+    "url": "http://web.archive.org/web/20220112155233/http://www.dickinsonnd.com/"
+   },
+   "checked_at": "2026-07-26T21:18:20+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.diversifynevada.com/industries/data-centers": {
+   "checked_at": "2026-07-26T21:20:41+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://diversifynevada.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.diversifynevada.com/industries/data-centers/": {
+   "checked_at": "2026-07-26T21:20:01+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://diversifynevada.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.dodgeiowa.com/": {
+   "checked_at": "2026-07-26T21:16:17+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.dominionenergy.com/south-carolina": {
+   "checked_at": "2026-07-26T21:22:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.dow.com/en-us/about-dow/facilities/north-america/midland.html": {
+   "checked_at": "2026-07-26T21:19:41+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.dow.com/en-us/site/texas-operations.html": {
+   "checked_at": "2026-07-26T21:21:55+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.drfortress.com": {
+   "checked_at": "2026-07-26T21:17:39+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 202
+  },
+  "https://www.duchesnecounty.net": {
+   "checked_at": "2026-07-26T21:22:14+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.duke-energy.com/business/economic-development": {
+   "checked_at": "2026-07-26T21:15:55+00:00",
+   "counties": 9,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.duke-energy.com/business/products/powering-data-centers": {
+   "checked_at": "2026-07-26T21:16:54+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.duke-energy.com/home/products/gulf": {
+   "checked_at": "2026-07-26T21:15:25+00:00",
+   "counties": 2,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.duke-energy.com/home/products/north-carolina": {
+   "checked_at": "2026-07-26T21:21:52+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.dunklincountymo.gov/": {
+   "checked_at": "2026-07-26T21:18:25+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.dutchesscountyny.gov/economic-development": {
+   "checked_at": "2026-07-26T21:22:26+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.eastfelicianaparish.net": {
+   "checked_at": "2026-07-26T21:20:21+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.eatoncounty.org": {
+   "checked_at": "2026-07-26T21:21:45+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ecuhealth.org/research": {
+   "checked_at": "2026-07-26T21:20:52+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.ecuhealth.org/research/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.edglima.com/": {
+   "checked_at": "2026-07-26T21:22:36+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.eglin.af.mil": {
+   "archive": {
+    "timestamp": "20260716184847",
+    "url": "http://web.archive.org/web/20260716184847/https://www.eglin.af.mil/"
+   },
+   "checked_at": "2026-07-26T21:21:33+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.eldoradoar.gov/": {
+   "checked_at": "2026-07-26T21:20:40+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.elkcountyks.com/": {
+   "archive": {
+    "timestamp": "20130404001628",
+    "url": "http://web.archive.org/web/20130404001628/http://elkcountyks.com"
+   },
+   "checked_at": "2026-07-26T21:21:24+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.elkhartcountyed.com/": {
+   "checked_at": "2026-07-26T21:21:50+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.elmorecounty.org/": {
+   "checked_at": "2026-07-26T21:16:32+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://elmorecounty.org/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.emmonscountynd.gov/": {
+   "checked_at": "2026-07-26T21:20:53+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.entergy-arkansas.com/your_business/": {
+   "checked_at": "2026-07-26T21:15:42+00:00",
+   "counties": 5,
+   "error": null,
+   "final_url": "https://www.entergyarkansas.com/business",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.entergy-louisiana.com/": {
+   "checked_at": "2026-07-26T21:17:02+00:00",
+   "counties": 2,
+   "error": null,
+   "final_url": "https://www.entergylouisiana.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.entergy-louisiana.com/business/industrial/": {
+   "checked_at": "2026-07-26T21:17:05+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.entergytexas.com/our-company/rates-tariffs": {
+   "checked_at": "2026-07-26T21:15:43+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.eou.edu/": {
+   "checked_at": "2026-07-26T21:19:27+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/st-louis-data-centers/stl1": {
+   "checked_at": "2026-07-26T21:20:22+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.ercot.com/gridinfo/generation": {
+   "checked_at": "2026-07-26T21:15:17+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ercot.com/gridinfo/load/load_hist": {
+   "checked_at": "2026-07-26T21:22:07+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.erdc.usace.army.mil/": {
+   "archive": {
+    "timestamp": "20260724013844",
+    "url": "http://web.archive.org/web/20260724013844/https://www.erdc.usace.army.mil/"
+   },
+   "checked_at": "2026-07-26T21:15:55+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.eriecountypa.gov/": {
+   "checked_at": "2026-07-26T21:22:14+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.expedient.com/data-centers/cleveland/": {
+   "checked_at": "2026-07-26T21:18:18+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.expedient.com/data-centers/orlando/": {
+   "checked_at": "2026-07-26T21:20:28+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.fairfaxcounty.gov/boardofsupervisors/": {
+   "checked_at": "2026-07-26T21:15:55+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.fairmontwv.gov/": {
+   "checked_at": "2026-07-26T21:22:46+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.fayettecountyga.gov/community_development/planning_zoning": {
+   "checked_at": "2026-07-26T21:22:46+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.fcva.us/government/departments/planning-development": {
+   "checked_at": "2026-07-26T21:18:33+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.fire.ca.gov/incidents/2020/9/27/glass-fire/": {
+   "checked_at": "2026-07-26T21:19:04+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.fkaa.com/": {
+   "checked_at": "2026-07-26T21:22:13+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.flochamber.com": {
+   "checked_at": "2026-07-26T21:18:52+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.fortliberty.mil": {
+   "checked_at": "2026-07-26T21:19:04+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.fpl.com/business": {
+   "checked_at": "2026-07-26T21:19:39+00:00",
+   "counties": 4,
+   "error": null,
+   "final_url": "https://www.fpl.com/business.html",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.franklincountync.us/economic-development": {
+   "checked_at": "2026-07-26T21:20:37+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.franklincountyne.gov/": {
+   "checked_at": "2026-07-26T21:18:59+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://franklincountyne.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.fremontne.gov/": {
+   "checked_at": "2026-07-26T21:15:02+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.fultoncountyar.gov/": {
+   "checked_at": "2026-07-26T21:21:12+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.gainescounty.org/": {
+   "checked_at": "2026-07-26T21:15:53+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.gaports.com/": {
+   "checked_at": "2026-07-26T21:15:35+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://gaports.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.garfield-county.com/": {
+   "checked_at": "2026-07-26T21:22:30+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.garfieldcountyco.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.gehealthcare.com": {
+   "checked_at": "2026-07-26T21:20:15+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.gehealthcare.com/en-us",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.genevacountyalabama.com": {
+   "checked_at": "2026-07-26T21:19:17+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.georgia.org/competitive-advantages/incentives": {
+   "archive": {
+    "timestamp": "20251112040912",
+    "url": "http://web.archive.org/web/20251112040912/https://georgia.org/competitive-advantages/incentives"
+   },
+   "checked_at": "2026-07-26T21:15:35+00:00",
+   "counties": 2,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.georgiapower.com/": {
+   "checked_at": "2026-07-26T21:18:06+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.georgiapower.com/company/about-us/hydro-operations.html": {
+   "checked_at": "2026-07-26T21:15:10+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.gevernova.com/research": {
+   "checked_at": "2026-07-26T21:16:24+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.glensfallshospital.org/": {
+   "checked_at": "2026-07-26T21:19:01+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.albanymed.org/glensfalls/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.google.com/about/datacenters/locations/covington/": {
+   "checked_at": "2026-07-26T21:19:03+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.grand-island.com/": {
+   "checked_at": "2026-07-26T21:15:44+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.grantcountyar.gov/": {
+   "checked_at": "2026-07-26T21:18:04+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.granvilleedc.com": {
+   "checked_at": "2026-07-26T21:21:12+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.greater-fwchamber.com": {
+   "checked_at": "2026-07-26T21:22:21+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.greensboroedc.org/": {
+   "checked_at": "2026-07-26T21:16:04+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.grimescounty.org": {
+   "archive": {
+    "timestamp": "20041127234850",
+    "url": "http://web.archive.org/web/20041127234850/http://www.grimescounty.org:80/"
+   },
+   "checked_at": "2026-07-26T21:20:07+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.gvtc.com/business": {
+   "checked_at": "2026-07-26T21:16:54+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://gvtc.com/business",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.hancockcountytn.gov": {
+   "checked_at": "2026-07-26T21:15:17+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.hanovercounty.gov/economy": {
+   "checked_at": "2026-07-26T21:15:56+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.haralsoncounty.org/": {
+   "archive": {
+    "timestamp": "20260521173053",
+    "url": "http://web.archive.org/web/20260521173053/http://haralsoncounty.org/"
+   },
+   "checked_at": "2026-07-26T21:22:11+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.haralsoncounty.org/planning-zoning": {
+   "checked_at": "2026-07-26T21:16:30+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.harrisoncad.org/": {
+   "checked_at": "2026-07-26T21:21:04+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://harrisoncad.net/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.harrisoncountyia.org/": {
+   "archive": {
+    "timestamp": "20260204092006",
+    "url": "http://web.archive.org/web/20260204092006/https://harrisoncountyia.org/"
+   },
+   "checked_at": "2026-07-26T21:21:57+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.hastingsne.gov/": {
+   "checked_at": "2026-07-26T21:21:58+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.hcedc.com/": {
+   "checked_at": "2026-07-26T21:16:59+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.hendersonkyeda.com/": {
+   "checked_at": "2026-07-26T21:17:03+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.hettingercountynd.com": {
+   "checked_at": "2026-07-26T21:18:59+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.hillcountymt.gov/": {
+   "checked_at": "2026-07-26T21:16:59+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.hotspringcountyarkansas.gov": {
+   "checked_at": "2026-07-26T21:17:15+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.hpe.com": {
+   "archive": {
+    "timestamp": "20251114054004",
+    "url": "http://web.archive.org/web/20251114054004/http://www.hpe.com/"
+   },
+   "checked_at": "2026-07-26T21:23:23+00:00",
+   "counties": 1,
+   "error": "TimeoutError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.htrnews.com/": {
+   "archive": {
+    "timestamp": "20260725142031",
+    "url": "http://web.archive.org/web/20260725142031/https://www.htrnews.com/"
+   },
+   "checked_at": "2026-07-26T21:22:58+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.huntcounty.net/": {
+   "checked_at": "2026-07-26T21:15:18+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.hutchinsonks.com/": {
+   "checked_at": "2026-07-26T21:23:01+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ibj.com/articles/boone-county-passes-moratorium-on-data-center-development": {
+   "checked_at": "2026-07-26T21:22:13+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.idahocounty.org": {
+   "checked_at": "2026-07-26T21:16:24+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://idahocounty.org/planb/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.idahopower.com/energy-environment/producing-power/economic-development/": {
+   "checked_at": "2026-07-26T21:15:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ilga.gov/legislation/BillStatus.asp?DocNum=3680&GAID=17&DocTypeID=HB&SessionID=112": {
+   "checked_at": "2026-07-26T21:17:10+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.illinois.gov/sites/dceo/": {
+   "checked_at": "2026-07-26T21:22:27+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.in.gov/iurc/": {
+   "checked_at": "2026-07-26T21:20:21+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.iowaeconomicdevelopment.com/": {
+   "archive": {
+    "timestamp": "20201016155952",
+    "url": "http://web.archive.org/web/20201016155952/https://www.iowaeconomicdevelopment.com/"
+   },
+   "checked_at": "2026-07-26T21:22:38+00:00",
+   "counties": 2,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.ironcountymissouri.org": {
+   "checked_at": "2026-07-26T21:17:49+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.ironcountywi.gov/": {
+   "checked_at": "2026-07-26T21:22:11+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.ironmountain.com/resources/data-centers": {
+   "checked_at": "2026-07-26T21:18:45+00:00",
+   "counties": 6,
+   "error": "HTTP 429",
+   "ok": false,
+   "status": 429
+  },
+  "https://www.isleofwightus.net": {
+   "archive": {
+    "timestamp": "20160516193457",
+    "url": "http://web.archive.org/web/20160516193457/http://isleofwightus.net:80/"
+   },
+   "checked_at": "2026-07-26T21:21:15+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.jaspercounty.in.gov/": {
+   "checked_at": "2026-07-26T21:16:31+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.jeffersoncountyar.gov/": {
+   "archive": {
+    "timestamp": "20260718222438",
+    "url": "http://web.archive.org/web/20260718222438/https://www.jeffersoncountyar.gov/"
+   },
+   "checked_at": "2026-07-26T21:15:59+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.jeffersonedc.com": {
+   "archive": {
+    "timestamp": "20250710011357",
+    "url": "http://web.archive.org/web/20250710011357/http://jeffersonedc.com/"
+   },
+   "checked_at": "2026-07-26T21:16:43+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.jeffparish.net/": {
+   "checked_at": "2026-07-26T21:22:13+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.jeffparish.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.jessaminecounty.com": {
+   "checked_at": "2026-07-26T21:17:39+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.christembassyky.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.jonescountytexas.gov": {
+   "checked_at": "2026-07-26T21:16:01+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.kaba.org": {
+   "archive": {
+    "timestamp": "20260514010906",
+    "url": "http://web.archive.org/web/20260514010906/https://www.kaba.org/"
+   },
+   "checked_at": "2026-07-26T21:22:50+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.kandiyohicounty.org/": {
+   "checked_at": "2026-07-26T21:18:38+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.kansascommerce.gov": {
+   "checked_at": "2026-07-26T21:16:38+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.kcapc.org/": {
+   "checked_at": "2026-07-26T21:16:05+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.kcsmartport.com": {
+   "checked_at": "2026-07-26T21:15:59+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://onekc.org/kc-smartport/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.keckobservatory.org": {
+   "checked_at": "2026-07-26T21:15:11+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://keckobservatory.org/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.kentuckypower.com/": {
+   "checked_at": "2026-07-26T21:19:05+00:00",
+   "counties": 2,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.keokukcountyia.gov": {
+   "checked_at": "2026-07-26T21:17:02+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.kitcarsoncountyco.com": {
+   "archive": {
+    "timestamp": "20020126013327",
+    "url": "http://web.archive.org/web/20020126013327/http://kitcarsoncountyco.com:80/"
+   },
+   "checked_at": "2026-07-26T21:18:50+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.knoxnews.com/": {
+   "archive": {
+    "timestamp": "20260726132316",
+    "url": "http://web.archive.org/web/20260726132316/https://www.knoxnews.com/"
+   },
+   "checked_at": "2026-07-26T21:20:01+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.krqe.com/news/new-mexico/socorro-county-commissioners-stop-data-center-projects-for-1-year/": {
+   "checked_at": "2026-07-26T21:22:05+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.lakecountyil.gov/m/newsflash/Home/Detail/4726": {
+   "checked_at": "2026-07-26T21:15:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.latah.id.us/": {
+   "checked_at": "2026-07-26T21:20:28+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.lcedc.com": {
+   "checked_at": "2026-07-26T21:23:06+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.lcic.org": {
+   "checked_at": "2026-07-26T21:22:51+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.lcra.org/water/water-management/": {
+   "checked_at": "2026-07-26T21:20:40+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.lcra.org/download/water-management-plan-2016-wqac-pdf/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.leavenworthcounty.gov/": {
+   "checked_at": "2026-07-26T21:22:04+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.leecountyiowa.gov/": {
+   "checked_at": "2026-07-26T21:16:34+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.legis.nd.gov/cencode/t57c02.html": {
+   "checked_at": "2026-07-26T21:23:07+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://ndlegis.gov/cencode/t57c02.html",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.les.com/power-your-business/economic-development": {
+   "checked_at": "2026-07-26T21:15:02+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.lincolncountyga.gov": {
+   "checked_at": "2026-07-26T21:15:00+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.lincolncountytn.gov": {
+   "checked_at": "2026-07-26T21:15:17+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.linnbiz.com": {
+   "archive": {
+    "timestamp": "20190809212134",
+    "url": "http://web.archive.org/web/20190809212134/http://linnbiz.com/"
+   },
+   "checked_at": "2026-07-26T21:18:21+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.linncountyiowa.gov/CivicAlerts.aspx?AID=4487": {
+   "checked_at": "2026-07-26T21:20:40+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.linncountyiowa.gov/m/newsflash/home/detail/4487",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.logancountyarkansas.com": {
+   "checked_at": "2026-07-26T21:15:32+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.longviewtexas.gov/": {
+   "checked_at": "2026-07-26T21:20:39+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.losalamosnm.us/": {
+   "checked_at": "2026-07-26T21:16:05+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.losalamosnm.gov/Home",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.lumen.com/": {
+   "checked_at": "2026-07-26T21:18:21+00:00",
+   "counties": 3,
+   "error": null,
+   "final_url": "https://www.lumen.com/en-us/home.html",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.lyoncountymneda.com": {
+   "checked_at": "2026-07-26T21:18:12+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.macombgov.org/": {
+   "checked_at": "2026-07-26T21:16:31+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.madisoncountyid.gov/": {
+   "checked_at": "2026-07-26T21:17:00+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.maine.gov/mpuc/": {
+   "checked_at": "2026-07-26T21:15:06+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.maine.gov/oit/": {
+   "checked_at": "2026-07-26T21:21:30+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.maineregionaledc.com/": {
+   "checked_at": "2026-07-26T21:16:36+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.manassascity.org/": {
+   "archive": {
+    "timestamp": "20260309194756",
+    "url": "http://web.archive.org/web/20260309194756/https://www.manassascity.org/"
+   },
+   "checked_at": "2026-07-26T21:19:51+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.marincounty.gov/depts/cd": {
+   "checked_at": "2026-07-26T21:19:54+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.mass.gov/economic-development-incentive-program-edip": {
+   "checked_at": "2026-07-26T21:15:04+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.matsugov.us": {
+   "checked_at": "2026-07-26T21:17:58+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://matsu.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.mcallenedc.org": {
+   "checked_at": "2026-07-26T21:15:10+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.mcminnvilleoregon.gov/economic-development": {
+   "checked_at": "2026-07-26T21:16:35+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.mcphersoncountyks.us/": {
+   "checked_at": "2026-07-26T21:20:39+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.mde.state.md.us/programs/water/chesapeakebay/Pages/criticalarea.aspx": {
+   "checked_at": "2026-07-26T21:22:28+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.medina-county.com/economic": {
+   "checked_at": "2026-07-26T21:20:16+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://medina-county.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.mercercountywv.org": {
+   "checked_at": "2026-07-26T21:20:39+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://mercercountywv.com/wp-signup.php?new=www.mercercountywv.org",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.meriweathercounty.com/": {
+   "checked_at": "2026-07-26T21:18:57+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.meriweathercounty.com/planning": {
+   "checked_at": "2026-07-26T21:18:18+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.mhpcc.edu": {
+   "archive": {
+    "timestamp": "20220702094844",
+    "url": "http://web.archive.org/web/20220702094844/http://www42.mhpcc.edu/"
+   },
+   "checked_at": "2026-07-26T21:15:51+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.miamidade.gov/environment/climate-change.asp": {
+   "checked_at": "2026-07-26T21:19:26+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.miamidade.gov/permits/": {
+   "checked_at": "2026-07-26T21:21:12+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.michigan.gov/mpsc": {
+   "archive": {
+    "timestamp": "20260703024119",
+    "url": "http://web.archive.org/web/20260703024119/https://www.michigan.gov/mpsc"
+   },
+   "checked_at": "2026-07-26T21:15:01+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.michiganbusiness.org/industries/data-centers/": {
+   "checked_at": "2026-07-26T21:23:12+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.midamericanenergy.com/": {
+   "checked_at": "2026-07-26T21:15:10+00:00",
+   "counties": 3,
+   "error": null,
+   "final_url": "https://www.midamericanenergy.com/home",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.middlegeorgiarc.org": {
+   "checked_at": "2026-07-26T21:22:36+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.mississippi.org": {
+   "checked_at": "2026-07-26T21:19:05+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 202
+  },
+  "https://www.mississippi.org/": {
+   "checked_at": "2026-07-26T21:16:30+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 202
+  },
+  "https://www.monroecountyalabama.gov/": {
+   "checked_at": "2026-07-26T21:21:14+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.montcopa.org/1007/Planning-Commission": {
+   "checked_at": "2026-07-26T21:16:37+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.montgomerycountypa.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.montgomerycoks.gov/": {
+   "checked_at": "2026-07-26T21:20:51+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.montmorencymi.gov": {
+   "checked_at": "2026-07-26T21:20:46+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.montrosecounty.net/": {
+   "checked_at": "2026-07-26T21:17:49+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.morgancountywv.gov/": {
+   "checked_at": "2026-07-26T21:15:30+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://morgancountywv.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.mtmc.edu/": {
+   "archive": {
+    "timestamp": "20220504062508",
+    "url": "http://web.archive.org/web/20220504062508/http://www.mtmc.edu/"
+   },
+   "checked_at": "2026-07-26T21:21:03+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.muhlenbergcounty.ky.gov/": {
+   "archive": {
+    "timestamp": "20161118013325",
+    "url": "http://web.archive.org/web/20161118013325/http://www.muhlenbergcounty.ky.gov/"
+   },
+   "checked_at": "2026-07-26T21:15:03+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.muskegonareafirst.org": {
+   "checked_at": "2026-07-26T21:22:46+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.developmuskegon.org/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.muskogeecity.org/": {
+   "checked_at": "2026-07-26T21:19:34+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.musselshellcountymt.gov": {
+   "checked_at": "2026-07-26T21:17:26+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.mvredc.com/": {
+   "checked_at": "2026-07-26T21:16:24+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.nasa.gov/centers/stennis/": {
+   "archive": {
+    "timestamp": "20230407174921",
+    "url": "http://web.archive.org/web/20230407174921/https://www.nasa.gov/centers/stennis/"
+   },
+   "checked_at": "2026-07-26T21:23:01+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.navair.navy.mil/nawcad": {
+   "checked_at": "2026-07-26T21:22:26+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.navair.navy.mil/nawcad/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.navsea.navy.mil/Home/Warfare-Centers/NSWC-Dahlgren": {
+   "archive": {
+    "timestamp": "20260724024252",
+    "url": "http://web.archive.org/web/20260724024252/https://www.navsea.navy.mil/Home/Warfare-Centers/NSWC-Dahlgren/"
+   },
+   "checked_at": "2026-07-26T21:17:54+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.nccommerce.com": {
+   "checked_at": "2026-07-26T21:17:17+00:00",
+   "counties": 3,
+   "error": null,
+   "final_url": "https://www.commerce.nc.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ncei.noaa.gov": {
+   "checked_at": "2026-07-26T21:16:15+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-275.html": {
+   "checked_at": "2026-07-26T21:15:02+00:00",
+   "counties": 3,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_158/GS_158-7.1.html": {
+   "checked_at": "2026-07-26T21:22:36+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ncleg.net/enactedlegislation/statutes/html/bysection/chapter_105/gs_105-129.95.html": {
+   "checked_at": "2026-07-26T21:22:19+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ncsa.illinois.edu": {
+   "checked_at": "2026-07-26T21:22:47+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.nelsoncountyky.gov/": {
+   "checked_at": "2026-07-26T21:18:21+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.netl.doe.gov/": {
+   "checked_at": "2026-07-26T21:21:44+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.njleg.state.nj.us/Bills/2011/PL12/52_.HTM": {
+   "checked_at": "2026-07-26T21:22:03+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.northwesternenergy.com/": {
+   "checked_at": "2026-07-26T21:19:18+00:00",
+   "counties": 2,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.northwesternenergy.com/business": {
+   "checked_at": "2026-07-26T21:21:38+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.nppd.com": {
+   "checked_at": "2026-07-26T21:19:05+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.nyc.gov/site/dep/water/watershed-maps.page": {
+   "checked_at": "2026-07-26T21:19:48+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.nyc.gov/site/mocej/index.page": {
+   "checked_at": "2026-07-26T21:22:55+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.nyecounty.net": {
+   "checked_at": "2026-07-26T21:21:19+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.nyecountynv.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.nypa.gov/economic-development": {
+   "checked_at": "2026-07-26T21:22:37+00:00",
+   "counties": 2,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.nypa.gov/power/generation/niagara-power-project": {
+   "checked_at": "2026-07-26T21:19:27+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.nypa.gov/power/recharge-ny": {
+   "checked_at": "2026-07-26T21:20:59+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.nyseg.com/": {
+   "archive": {
+    "timestamp": "20260725171517",
+    "url": "http://web.archive.org/web/20260725171517/https://www.nyseg.com/"
+   },
+   "checked_at": "2026-07-26T21:18:55+00:00",
+   "counties": 1,
+   "error": "TimeoutError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.nysenate.gov/legislation/bills/2019/S6599": {
+   "archive": {
+    "timestamp": "20260714062339",
+    "url": "http://web.archive.org/web/20260714062339/https://www.nysenate.gov/legislation/bills/2019/S6599"
+   },
+   "checked_at": "2026-07-26T21:15:00+00:00",
+   "counties": 3,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.ocalacep.com": {
+   "checked_at": "2026-07-26T21:20:40+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://ocalacep.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.oconeecounty.com/planning": {
+   "checked_at": "2026-07-26T21:15:53+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.oconeecountyga.gov/367/Planning-Code-Enforcement",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ocpartnership.org": {
+   "checked_at": "2026-07-26T21:16:34+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.okcommerce.gov/doing-business/business-incentives/quality-jobs-program/": {
+   "checked_at": "2026-07-26T21:19:18+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.okcommerce.gov/industries/data-centers/": {
+   "checked_at": "2026-07-26T21:22:24+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.onslowcountync.gov/economic-development": {
+   "checked_at": "2026-07-26T21:20:39+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.opportunitylouisiana.gov/": {
+   "checked_at": "2026-07-26T21:17:52+00:00",
+   "counties": 2,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.oracle.com/cloud/infrastructure/": {
+   "checked_at": "2026-07-26T21:19:10+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.oracle.com/health/": {
+   "checked_at": "2026-07-26T21:22:57+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.oregoncountymo.gov/": {
+   "checked_at": "2026-07-26T21:19:01+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.ornl.gov/directorate/computing-and-data-sciences": {
+   "checked_at": "2026-07-26T21:22:57+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.oshkoshchamber.com": {
+   "checked_at": "2026-07-26T21:16:07+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.otsegocounty.com/departments/economic_development/index.php": {
+   "checked_at": "2026-07-26T21:20:38+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ottawacountyok.com/": {
+   "checked_at": "2026-07-26T21:22:06+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.ou.edu/oscer": {
+   "checked_at": "2026-07-26T21:19:01+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.outagamie.org/government/departments-f-o/economic-development": {
+   "checked_at": "2026-07-26T21:18:35+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.overtoncountygov.com": {
+   "checked_at": "2026-07-26T21:17:16+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.owencounty.org": {
+   "checked_at": "2026-07-26T21:15:53+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.manchesters-hotels.com/owencountyorg/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.pacificorp.com/content/dam/pcorp/documents/en/pacificorp/energy/transmission/energy-gateway/EGW_Brochure.pdf": {
+   "checked_at": "2026-07-26T21:15:04+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.pamlicocounty.org/departments/planning/": {
+   "checked_at": "2026-07-26T21:22:29+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.passaiccountynj.gov/government/departments/planning": {
+   "checked_at": "2026-07-26T21:18:30+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.pct.edu/academics/programs/network-systems.shtml": {
+   "checked_at": "2026-07-26T21:19:30+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.pembinacounty.com": {
+   "checked_at": "2026-07-26T21:16:05+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.pendletoncountywv.gov": {
+   "checked_at": "2026-07-26T21:15:23+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.pge.com/": {
+   "checked_at": "2026-07-26T21:21:04+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.phelpscountyne.com": {
+   "checked_at": "2026-07-26T21:16:31+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.pidc-pa.org": {
+   "checked_at": "2026-07-26T21:18:59+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.pikecountyms.com/": {
+   "checked_at": "2026-07-26T21:16:07+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://gopikems.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.pitkincounty.com/": {
+   "checked_at": "2026-07-26T21:22:57+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.polkgeorgia.gov/planning-zoning": {
+   "checked_at": "2026-07-26T21:22:04+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.portpanamacity.com/": {
+   "checked_at": "2026-07-26T21:23:20+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.pplelectric.com/for-my-business/large-business/economic-development": {
+   "checked_at": "2026-07-26T21:18:18+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.psegliny.com/": {
+   "checked_at": "2026-07-26T21:15:55+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.psoklahoma.com/": {
+   "checked_at": "2026-07-26T21:19:39+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.pueblocounty.us/": {
+   "archive": {
+    "timestamp": "20160110212424",
+    "url": "http://web.archive.org/web/20160110212424/http://pueblocounty.us/"
+   },
+   "checked_at": "2026-07-26T21:21:23+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.pulaskicounty.org/": {
+   "checked_at": "2026-07-26T21:16:31+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.pushmatahacounty.gov": {
+   "checked_at": "2026-07-26T21:17:51+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.pvamu.edu/research/": {
+   "checked_at": "2026-07-26T21:19:18+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.pwcva.gov/department/planning-office/digital-gateway": {
+   "checked_at": "2026-07-26T21:17:39+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.ramseycountynd.com/": {
+   "checked_at": "2026-07-26T21:23:05+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.randallcounty.com/": {
+   "checked_at": "2026-07-26T21:19:59+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.randallcounty.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.rappahannockcountyva.gov/": {
+   "checked_at": "2026-07-26T21:17:39+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ravallicounty.mt.gov/": {
+   "archive": {
+    "timestamp": "20110531073324",
+    "url": "http://web.archive.org/web/20110531073324/http://ravallicounty.mt.gov/"
+   },
+   "checked_at": "2026-07-26T21:16:37+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.rc.ufl.edu/services/hipergator": {
+   "archive": {
+    "timestamp": "20211202134337",
+    "url": "http://web.archive.org/web/20211202134337/https://www.rc.ufl.edu/services/hipergator/"
+   },
+   "checked_at": "2026-07-26T21:22:25+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.redwingeda.org/": {
+   "checked_at": "2026-07-26T21:16:07+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.richlandcountymt.gov/": {
+   "checked_at": "2026-07-26T21:18:06+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.richlandcountyoh.us": {
+   "checked_at": "2026-07-26T21:18:12+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.richlandcountyoh.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.rilegislature.gov/": {
+   "checked_at": "2026-07-26T21:21:08+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.rilegislature.gov/Pages/Default.aspx",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.roanoke.org/industries/technology": {
+   "checked_at": "2026-07-26T21:16:16+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://roanoke.org/target-industries/technology-innovation/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.rochesterbizjournal.com/": {
+   "checked_at": "2026-07-26T21:22:30+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.rockdaleedc.com": {
+   "checked_at": "2026-07-26T21:22:02+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.rockeda.com": {
+   "checked_at": "2026-07-26T21:19:42+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.rockymountainpower.net/": {
+   "checked_at": "2026-07-26T21:21:23+00:00",
+   "counties": 3,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.rowancountync.gov/government/board_of_county_commissioners/": {
+   "checked_at": "2026-07-26T21:23:14+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.sc.gov/residents/technology": {
+   "checked_at": "2026-07-26T21:17:20+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.sccmo.org/": {
+   "checked_at": "2026-07-26T21:20:58+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.scottcountyva.com": {
+   "checked_at": "2026-07-26T21:16:48+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.scottcountyva.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.sdstate.edu/": {
+   "checked_at": "2026-07-26T21:19:26+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.sewardcounty.org/": {
+   "archive": {
+    "timestamp": "20160820102209",
+    "url": "http://web.archive.org/web/20160820102209/http://www.sewardcounty.org/"
+   },
+   "checked_at": "2026-07-26T21:16:34+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.shannoncountymo.gov": {
+   "checked_at": "2026-07-26T21:18:51+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.shelbycountyin.us/government/departments/economic_development/": {
+   "checked_at": "2026-07-26T21:17:00+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.shell.com/business-customers/chemicals/our-businesses/pennsylvania-chemicals.html": {
+   "checked_at": "2026-07-26T21:20:05+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.shenandoahcountyva.us/": {
+   "checked_at": "2026-07-26T21:21:07+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.shenandoahcountyva.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.sheridanarkansas.com/economic-development": {
+   "checked_at": "2026-07-26T21:21:00+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.sioux-city.org/": {
+   "checked_at": "2026-07-26T21:16:38+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.sjcedc.com": {
+   "archive": {
+    "timestamp": "20220813005633",
+    "url": "http://web.archive.org/web/20220813005633/https://www.sjcedc.com/"
+   },
+   "checked_at": "2026-07-26T21:20:10+00:00",
+   "counties": 1,
+   "error": "HTTP 500",
+   "ok": false,
+   "status": 500
+  },
+  "https://www.smsu.edu": {
+   "checked_at": "2026-07-26T21:15:17+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.solanoedc.com": {
+   "archive": {
+    "timestamp": "20240807095015",
+    "url": "http://web.archive.org/web/20240807095015/http://www.solanoedc.com/"
+   },
+   "checked_at": "2026-07-26T21:16:05+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.spaldingedc.com/": {
+   "checked_at": "2026-07-26T21:16:13+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.stcroixedc.com/": {
+   "checked_at": "2026-07-26T21:19:17+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 202
+  },
+  "https://www.stevenscountywa.gov/planning/": {
+   "checked_at": "2026-07-26T21:20:52+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.sussexcountyde.gov/economic-development": {
+   "checked_at": "2026-07-26T21:15:10+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://excitesussex.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.svec.net/": {
+   "archive": {
+    "timestamp": "20180329043035",
+    "url": "http://web.archive.org/web/20180329043035/http://svec.net/"
+   },
+   "checked_at": "2026-07-26T21:20:06+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.swepco.com/account/business/economic-development/": {
+   "checked_at": "2026-07-26T21:18:52+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.tax.ny.gov/bus/excelsior/excelsior_jobs_program.htm": {
+   "checked_at": "2026-07-26T21:19:33+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.tcida.com": {
+   "checked_at": "2026-07-26T21:17:19+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://tcoeda.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.telfaircounty.org": {
+   "archive": {
+    "timestamp": "20130720104954",
+    "url": "http://web.archive.org/web/20130720104954/http://telfaircounty.org/"
+   },
+   "checked_at": "2026-07-26T21:21:10+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.texastribune.org/2026/06/30/texas-san-marcos-data-center-ban-zoning-laws/": {
+   "checked_at": "2026-07-26T21:16:02+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.tiftcounty.org/economic-development": {
+   "checked_at": "2026-07-26T21:21:32+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.toledoportauthority.org": {
+   "archive": {
+    "timestamp": "20160413003824",
+    "url": "http://web.archive.org/web/20160413003824/http://www.toledoportauthority.org:80/"
+   },
+   "checked_at": "2026-07-26T21:17:04+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.tooeleco.org/": {
+   "archive": {
+    "timestamp": "20240628172456",
+    "url": "http://web.archive.org/web/20240628172456/https://tooeleco.org/"
+   },
+   "checked_at": "2026-07-26T21:19:59+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.toombs.ga.gov/": {
+   "checked_at": "2026-07-26T21:23:20+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.transcom.mil/": {
+   "archive": {
+    "timestamp": "20151026193107",
+    "url": "http://web.archive.org/web/20151026193107/http://www.transcom.mil:80/"
+   },
+   "checked_at": "2026-07-26T21:20:15+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.tuckercountywv.org": {
+   "checked_at": "2026-07-26T21:19:27+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.turnercountyga.gov": {
+   "checked_at": "2026-07-26T21:22:51+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.tva.com/energy/economics-of-power/power-rates": {
+   "checked_at": "2026-07-26T21:21:01+00:00",
+   "counties": 2,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.tva.com/energy/our-power-system/nuclear/watts-bar-nuclear-plant": {
+   "archive": {
+    "timestamp": "20260720011051",
+    "url": "http://web.archive.org/web/20260720011051/https://www.tva.com/energy/our-power-system/nuclear/watts-bar-nuclear-plant"
+   },
+   "checked_at": "2026-07-26T21:19:57+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.umt.edu/it/research-computing/": {
+   "checked_at": "2026-07-26T21:19:40+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.unioncountyed.com/": {
+   "checked_at": "2026-07-26T21:15:45+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.unioncountync.gov/departments/economic-development": {
+   "checked_at": "2026-07-26T21:22:19+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
+  "https://www.up.com/aboutup/community/inside_track/bailey_yard/index.htm": {
+   "checked_at": "2026-07-26T21:17:37+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.usd.edu/": {
+   "checked_at": "2026-07-26T21:21:10+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.utmb.edu": {
+   "checked_at": "2026-07-26T21:18:33+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.valverdecounty.texas.gov/": {
+   "checked_at": "2026-07-26T21:19:04+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.vedp.org/location/hanover-county": {
+   "checked_at": "2026-07-26T21:15:36+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.vicksburg.org/": {
+   "checked_at": "2026-07-26T21:21:03+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.wabe.org/dekalb-county-commission-extends-data-center-moratorium/": {
+   "checked_at": "2026-07-26T21:22:23+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.warmsprings-nsn.gov/": {
+   "checked_at": "2026-07-26T21:15:35+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://warmsprings-nsn.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.warrencountyva.gov/departments/community_development": {
+   "checked_at": "2026-07-26T21:22:23+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.washcochamber.com": {
+   "checked_at": "2026-07-26T21:16:42+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.washtenaw.org/gov/boc/": {
+   "checked_at": "2026-07-26T21:21:04+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.watytownsd.com": {
+   "checked_at": "2026-07-26T21:22:01+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.waynecountyga.us/": {
+   "checked_at": "2026-07-26T21:18:12+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.webstercounty.ne.gov/": {
+   "checked_at": "2026-07-26T21:19:01+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://webstercounty.ne.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.westbatonrouge.net": {
+   "checked_at": "2026-07-26T21:16:31+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://westbatonrouge.net/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.whatcomcounty.us/1280/Economic-Development": {
+   "checked_at": "2026-07-26T21:21:30+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.whatcomcounty.us/631/Fire-Codes",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.willcountyced.com/": {
+   "checked_at": "2026-07-26T21:20:21+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 202
+  },
+  "https://www.williamsoncountyillinois.gov/": {
+   "checked_at": "2026-07-26T21:20:01+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.wilsoncounty.net/": {
+   "checked_at": "2026-07-26T21:21:45+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.wilsonedc.com/": {
+   "archive": {
+    "timestamp": "20260606165141",
+    "url": "http://web.archive.org/web/20260606165141/https://www.wilsonedc.com/"
+   },
+   "checked_at": "2026-07-26T21:16:02+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.wisbusiness.com/2026/dane-county-board-approves-18-month-pause-on-hyperscale-data-center-development/": {
+   "checked_at": "2026-07-26T21:18:20+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.wolfecounty.ky.gov": {
+   "checked_at": "2026-07-26T21:17:58+00:00",
+   "counties": 1,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  },
+  "https://www.woodcountyohio.gov/economic": {
+   "checked_at": "2026-07-26T21:17:26+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.wvlegislature.gov/": {
+   "checked_at": "2026-07-26T21:17:47+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.wvlegislature.gov/Bill_Status/bills_history.cfm?input=2002&year=2023&sessiontype=RS&btype=bill": {
+   "checked_at": "2026-07-26T21:15:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.xcelenergy.com/business/products_and_services/high_density_computing": {
+   "checked_at": "2026-07-26T21:21:13+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.xcelenergy.com/staticfiles/xe/Corporate/Corporate%20PDFs/eco-dev-MN.pdf": {
+   "checked_at": "2026-07-26T21:19:53+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.yadkincountync.gov/planning/": {
+   "checked_at": "2026-07-26T21:23:03+00:00",
+   "counties": 1,
+   "error": "HTTP 404",
+   "ok": false,
+   "status": 404
+  },
+  "https://www.yahoo.com/news/politics/articles/zoning-authority-could-answer-data-210500398.html": {
+   "checked_at": "2026-07-26T21:15:52+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.ynhh.org/": {
+   "checked_at": "2026-07-26T21:15:24+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.yorkcity.org/": {
+   "checked_at": "2026-07-26T21:17:55+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.youngcounty.org/": {
+   "archive": {
+    "timestamp": "20220812211925",
+    "url": "http://web.archive.org/web/20220812211925/http://youngcounty.org/"
+   },
+   "checked_at": "2026-07-26T21:20:55+00:00",
+   "counties": 1,
+   "error": "HTTP 502",
+   "ok": false,
+   "status": 502
+  },
+  "https://wyoleg.gov/statutes/compress/title39.pdf": {
+   "archive": {
+    "timestamp": "20260707192531",
+    "url": "http://web.archive.org/web/20260707192531/https://wyoleg.gov/statutes/compress/title39.pdf"
+   },
+   "checked_at": "2026-07-26T21:17:39+00:00",
+   "counties": 2,
+   "error": "URLError",
+   "ok": false,
+   "status": null
+  }
+ }
 }
