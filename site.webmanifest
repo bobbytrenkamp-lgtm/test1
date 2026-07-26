@@ -1,0 +1,27 @@
+{
+  "name": "US DC & AI Policy Tracker",
+  "short_name": "US DC Policy",
+  "description": "A data and intelligence platform tracking US data center and AI policy.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#F1F4FF",
+  "theme_color": "#F1F4FF",
+  "icons": [
+    {
+      "src": "favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

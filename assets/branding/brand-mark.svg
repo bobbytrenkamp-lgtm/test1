@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="US DC &amp; AI Policy Tracker">
+  <title>US DC &amp; AI Policy Tracker</title>
+  <!--
+    Standalone brand mark, derived from the inline #header-logo SVG in index.html.
+    Geometry is the header polygon (viewBox 0 0 28 28, symbol centred at 14,15.5)
+    scaled 2.15x onto a 64x64 canvas, so the folded-map shape is preserved exactly
+    rather than redrawn.
+
+    The header paints the square as #4874e8 at 15% opacity. A translucent fill
+    would read as transparent in a browser tab, so this uses the flattened
+    equivalent (#4874e8 at 15% over white = #E4EAFC) — same appearance, opaque.
+  -->
+  <rect x="2" y="2" width="60" height="60" rx="13.5" fill="#E4EAFC"/>
+  <polygon points="10.5,15.88 23.4,9.43 40.6,15.88 53.5,9.43 53.5,48.12 40.6,54.58 23.4,48.12 10.5,54.58"
+           fill="none" stroke="#4874e8" stroke-width="3.87" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="23.4" y1="9.43"  x2="23.4" y2="48.12" stroke="#4874e8" stroke-width="3.22" stroke-linecap="round"/>
+  <line x1="40.6" y1="15.88" x2="40.6" y2="54.58" stroke="#4874e8" stroke-width="3.22" stroke-linecap="round"/>
+</svg>
