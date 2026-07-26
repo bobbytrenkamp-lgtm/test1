@@ -718,6 +718,17 @@ function fetchGeoData() {
 
 /* Initialize Leaflet map from already-fetched geo data */
 async function initMapFromGeo() {
+  // Guard against concurrent invocation. initMapFromGeo() awaits before it
+  // assigns leafletMap, so a `if (!leafletMap)` check at the call site is not
+  // enough — two callers in the same tick would both pass it and Leaflet would
+  // throw "Map container is already initialized". Returning the in-flight
+  // promise makes repeat calls harmless.
+  if (mapInitPromise) return mapInitPromise;
+  mapInitPromise = _initMapFromGeo();
+  return mapInitPromise;
+}
+
+async function _initMapFromGeo() {
   const loadEl = document.getElementById("loading");
   if (loadEl) loadEl.style.display = "";
   try {
@@ -6095,9 +6106,11 @@ function formatCountyDate(d) {
 
 /* ── URL hash permalink ── */
 function setLocationHash(fips) {
-  if (history.replaceState) {
-    history.replaceState(null, "", fips ? `#${fips}` : window.location.pathname + window.location.search);
-  }
+  if (!history.replaceState) return;
+  // Deselecting used to strip the hash entirely, which lost the current tab
+  // from the URL and broke the back button for the Map view. Fall back to
+  // "#map" instead of an empty hash.
+  history.replaceState(null, "", fips ? `#${fips}` : "#map");
 }
 
 function restoreFromHash() {
@@ -7017,7 +7030,7 @@ function switchTab(tab) {
     searchBar.classList.remove("news-mode");
     savedHidden();
     if (!leafletMap) {
-      mapInitPromise = initMapFromGeo();
+      initMapFromGeo();          // self-guarding; returns any in-flight promise
     } else {
       setTimeout(() => leafletMap && leafletMap.invalidateSize(), 200);
     }
@@ -7031,20 +7044,26 @@ function triggerViewEnter(el) {
   el.classList.add("view-enter");
 }
 
+/* Navigate to a tab through the router so there is exactly ONE path into
+   switchTab(). Calling switchTab() here *and* navigating ran it twice per
+   click — harmless for most tabs, but it started two concurrent map inits and
+   Leaflet threw "Map container is already initialized". */
+function goToTab(tab) {
+  if (!window.Router) { switchTab(tab); return; }
+  const before = window.location.hash;
+  window.Router.navigate(tab, {});
+  // navigate() is a no-op when the hash is already correct, in which case no
+  // hashchange fires and nothing would drive the view — switch directly.
+  if (window.location.hash === before) switchTab(tab);
+}
+
 function initNavTabs() {
   document.querySelectorAll(".header-tab").forEach(btn => {
-    btn.addEventListener("click", () => {
-      switchTab(btn.dataset.tab);
-      // Reflect the tab in the URL so every view is deep-linkable and the
-      // browser back button works across tabs.
-      if (window.Router) window.Router.navigate(btn.dataset.tab, {});
-    });
+    if (!btn.dataset.tab) return;   // skips the mobile "More" trigger
+    btn.addEventListener("click", () => goToTab(btn.dataset.tab));
   });
   /* Logo / brand click → Home */
-  document.getElementById("header-brand")?.addEventListener("click", () => {
-    switchTab("home");
-    if (window.Router) window.Router.navigate("home", {});
-  });
+  document.getElementById("header-brand")?.addEventListener("click", () => goToTab("home"));
 
   initRouterBinding();
   initMobileNav();
@@ -7069,6 +7088,13 @@ function initMobileNav() {
   secondary.forEach(b => b.setAttribute("data-mobile-secondary", "1"));
   moreBtn.hidden = false;
 
+  /* #header carries a transform, which makes it the containing block for any
+     position:fixed descendant — the sheet was anchoring to the header instead
+     of the viewport and rendering off the top of the screen. Reparent both
+     elements to <body> so "inset: auto 0 0 0" means the actual viewport. */
+  if (sheet.parentElement !== document.body) document.body.appendChild(sheet);
+  if (backdrop.parentElement !== document.body) document.body.appendChild(backdrop);
+
   /* Mirror each secondary tab into the sheet, reusing its icon and label. */
   sheet.innerHTML = `<div class="mobile-nav-grip"></div>
     <div class="mobile-nav-list" role="menu"></div>`;
@@ -7087,8 +7113,7 @@ function initMobileNav() {
     item.appendChild(span);
     item.addEventListener("click", () => {
       close();
-      switchTab(item.dataset.tab);
-      if (window.Router) window.Router.navigate(item.dataset.tab, {});
+      goToTab(item.dataset.tab);
     });
     list.appendChild(item);
   });
@@ -7177,6 +7202,29 @@ function initRouterBinding() {
     const label = document.getElementById("tab-" + r.route)?.textContent?.trim();
     if (label) announceView(label);
   });
+}
+
+/* Dispatch whatever route the page was loaded with. hashchange does not fire
+   for the initial URL, so a cold load of a deep link needs this explicitly.
+   Called once, after core data is in place so the target view can render. */
+function applyInitialRoute() {
+  if (!window.Router) return;
+  const r = window.Router.parse();
+  if (r.legacy) return;                 // handled by restoreFromHash()
+  if (r.route === "home") return;       // already showing
+
+  if (r.route === "jurisdiction") {
+    switchTab("jurisdiction");
+    if (window.JURISDICTION) window.JURISDICTION.init(r.params);
+    return;
+  }
+  if (r.route === "methodology") {
+    switchTab("about");
+    if (typeof renderAboutPage === "function") renderAboutPage();
+    document.getElementById("methodology-section")?.scrollIntoView();
+    return;
+  }
+  switchTab(r.route);
 }
 
 /* Announce view changes to screen readers. Tab buttons update aria-selected,
@@ -8263,6 +8311,12 @@ async function init() {
     if (hasHashFips || hasHashShare) {
       await initMapFromGeo();
       restoreFromHash();
+    } else {
+      // Modern routes (#jurisdiction?fips=…, #news, #analytics, …) were only
+      // ever handled by the router's hashchange listener, which does not fire
+      // on a cold load. Without this, every deep link landed on Home when
+      // opened directly or from a shared URL.
+      applyInitialRoute();
     }
 
   } catch (err) {

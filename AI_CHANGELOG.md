@@ -5,6 +5,51 @@
 Date: 2026-07-26
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Real-browser verification — six bugs found and fixed
+
+## Summary
+Obtained a working headless browser and ran the app end to end for the first time. Six real bugs surfaced that the jsdom and Node suites could not see, four of them introduced by my own Phase 2-5 work. All fixed and re-verified.
+
+## How the browser was obtained
+Playwright's CDN (`playwright.download.prss.microsoft.com`) is blocked by the environment proxy with `403 host not permitted`, and the Ubuntu archives 404. `storage.googleapis.com` is allowed, so Chrome for Testing's `chrome-headless-shell` was fetched from there and Playwright pointed at it via `executablePath`.
+
+## Bugs found and fixed
+
+### 1. Deep links did not work on cold load (introduced in Phase 2)
+Opening `#jurisdiction?fips=51107` directly — or any modern route from a shared URL — landed on Home. The router only reacted to `hashchange`, which does not fire for the initial URL; startup handled only the legacy `#fips` and `#s=` formats. Added `applyInitialRoute()`, called once after core data is in place.
+
+This defeated the entire point of the deep-link work and was invisible to the earlier tests, which navigated to the page first and only then set the hash.
+
+### 2. Leaflet "Map container is already initialized" (introduced in Phase 2)
+Tab clicks called `switchTab()` directly *and* `Router.navigate()`, whose `hashchange` called `switchTab()` again — two runs per click, and two concurrent map inits. Routing now goes through a single `goToTab()` helper so the router is the only path into `switchTab()`. `initMapFromGeo()` also self-guards by returning any in-flight promise, since it awaits before assigning `leafletMap` and a call-site `if (!leafletMap)` check cannot catch same-tick double entry.
+
+### 3. Mobile nav sheet rendered off the top of the screen (introduced in Phase 2)
+`#header` carries a `transform`, which makes it the containing block for `position: fixed` descendants. The sheet, being a child of the header, anchored to it rather than the viewport and sat at `top: -84px` with its first item clipped. It is now reparented to `<body>` on init.
+
+### 4. Zoning always reported "not covered" (introduced in Phase 3)
+`js/jurisdiction.js` called `ZONING.hasJurisdiction()`. The real export is `ZONING.hasCoverage()`. The call silently returned undefined, so even Loudoun County — the one jurisdiction with zoning data — showed "Zoning — not covered".
+
+### 5. Home downloaded 4.85 MB it did not need (pre-existing)
+`js/home.js` fetched `facilities_master.json` on every page load to compute three counts. Those exact figures are already in `platform_metadata.json` (verified identical: 3,764 / 3,333 / 431) and are validated against the master file by `validate_platform_metadata.py`, so they cannot drift. Now read from metadata — a few hundred bytes instead of 4.85 MB.
+
+This is on top of the ~1.6 MB removed earlier, and it was the single largest download on the landing page.
+
+### 6. Header tabs overlapped the right-hand controls (pre-existing)
+`#header-tabs` was absolutely centered (`left: 50%` + `translateX(-50%)`), which ignores how much room the brand and controls actually need. The About tab rendered underneath the Sign In button at every desktop width — 85px of overlap at 1440px, 255px at 1100px.
+
+Moved into the flex flow with `margin: 0 auto` and `min-width: 0`, so it centers in genuinely free space and scrolls rather than overlapping. To make all seven tabs actually fit, the 181px "DATA UPDATED" badge is hidden below 1500px (it duplicates the Home freshness line) and tab padding tightens below 1200px. All tabs are now visible at 1920, 1600, 1500, 1440, 1366, 1280, and 1200px with no overlap at any width.
+
+## Also corrected
+A KPI reading of "248 counties" during testing turned out to be the count-up animation sampled mid-flight, not a data bug. With the animation allowed to settle the values are 1,465 / 5 / 31 / 62 / 51, matching `map_data.json` exactly.
+
+## Verification
+Six end-to-end browser scenarios — Home critical path, Map, Jurisdiction page, watchlist and change alerts, pipeline windowing and keyboard sort, mobile nav at 390x844 — now run with **zero JavaScript errors**. Hash routing and the browser back button were confirmed across tabs. The 200-test unit suite still passes.
+
+---
+
+Date: 2026-07-26
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Performance and accessibility (spec items #8 and #9)
 
 ## Summary
