@@ -169,36 +169,30 @@ let _saveCurrentType  = null;
 let _saveCurrentId    = null;
 let _saveCurrentData  = null;
 
-/* ── County watchlist (localStorage, no auth required) ── */
-const WATCHLIST_KEY = "dc-watchlist-v1";
+/* ── County watchlist ──
+   Backed by js/watchlist.js (window.WATCHLIST), which owns storage, notes,
+   policy snapshots, and optional cloud sync. These wrappers exist so the
+   surrounding map code keeps its original call signatures. */
 const WATCHLIST_MAX = 50;
 
-function _loadWatchlist() {
-  try { return new Set(JSON.parse(localStorage.getItem(WATCHLIST_KEY) || "[]")); }
-  catch (_) { return new Set(); }
-}
-
-function _saveWatchlistSet(set) {
-  try { localStorage.setItem(WATCHLIST_KEY, JSON.stringify([...set])); } catch (_) {}
-}
-
 function _isWatched(fips) {
-  return _loadWatchlist().has(fips);
+  return !!(window.WATCHLIST && window.WATCHLIST.has(fips));
 }
 
 function toggleWatchCounty(fips) {
-  if (!fips) return;
-  const set = _loadWatchlist();
-  if (set.has(fips)) {
-    set.delete(fips);
+  if (!fips || !window.WATCHLIST) return;
+  if (window.WATCHLIST.has(fips)) {
+    window.WATCHLIST.remove(fips);
     showMapToast("Removed from watchlist");
   } else {
-    if (set.size >= WATCHLIST_MAX) { showMapToast(`Watchlist full (max ${WATCHLIST_MAX})`); return; }
-    set.add(fips);
+    if (window.WATCHLIST.count() >= WATCHLIST_MAX) {
+      showMapToast(`Watchlist full (max ${WATCHLIST_MAX})`);
+      return;
+    }
+    window.WATCHLIST.add(fips);
     const c = mapData[fips];
     showMapToast(c ? `Watching ${c.name}` : "Added to watchlist");
   }
-  _saveWatchlistSet(set);
   _updateDetailWatchBtn(fips);
   // Invalidate home page so watchlist section reflects the change on next visit
   const homeEl = document.getElementById("home-view");

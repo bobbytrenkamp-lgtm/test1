@@ -330,3 +330,36 @@
   /* Table must scroll inside its own container, never the page body */
   .juris-card > .juris-table { display: block; overflow-x: auto; }
 }
+
+/* ── Private notes on a watched county (Phase 4) ── */
+.juris-notes-input {
+  width: 100%;
+  min-height: 88px;
+  padding: var(--sp-3);
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12.5px;
+  line-height: 1.55;
+  resize: vertical;
+}
+.juris-notes-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.juris-notes-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  margin-top: var(--sp-2);
+}
+.juris-notes-foot .juris-source-note { margin: 0; }
+.juris-notes-status {
+  font-size: 11px;
+  color: var(--text-muted);
+  min-height: 1em;      /* reserve space so the row does not jump on save */
+}

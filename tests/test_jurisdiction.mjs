@@ -80,6 +80,9 @@ injectScript(`
   };
 `);
 injectScript(rd('js/constants.js'));
+/* jurisdiction.js delegates watch state to window.WATCHLIST (js/watchlist.js),
+   which index.html loads first. Mirror that ordering here. */
+injectScript(rd('js/watchlist.js'));
 injectScript(rd('js/jurisdiction.js'));
 
 let pass = 0, fail = 0;
@@ -120,6 +123,23 @@ ok('watch button present',   /Watch/.test(txt('.juris-btn-watch') || ''));
 view.querySelector('.juris-btn-watch').dispatchEvent(new window.Event('click'));
 const stored = JSON.parse(window.localStorage.getItem('dc-watchlist-v1') || '[]');
 ok('watch toggle persists fips', stored.includes('51107'), JSON.stringify(stored));
+
+/* ── Notes editor is tied to watch state (Phase 4) ── */
+J.render('51059');
+ok('no notes editor when unwatched', !view.querySelector('.juris-notes-input'));
+window.WATCHLIST.add('51059');
+J.render('51059');
+const notesEl = view.querySelector('.juris-notes-input');
+ok('notes editor appears once watched', !!notesEl);
+if (notesEl) {
+  notesEl.value = 'Board vote in March';
+  notesEl.dispatchEvent(new window.Event('blur'));
+  ok('notes persist to watchlist',
+     window.WATCHLIST.get('51059').notes === 'Board vote in March',
+     window.WATCHLIST.get('51059').notes);
+} else {
+  ok('notes persist to watchlist', false, 'editor missing');
+}
 
 /* ── An unresearched county must NOT read as "no restrictions" ── */
 J.render('99999');

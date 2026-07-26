@@ -787,7 +787,7 @@ function renderAnalyticsPage() {
     const fips = btn.dataset.fips;
     const updateBtn = () => {
       const watched = typeof toggleWatchCounty !== "undefined" &&
-        (() => { try { return new Set(JSON.parse(localStorage.getItem("dc-watchlist-v1")||"[]")).has(fips); } catch(_){return false;} })();
+        !!(window.WATCHLIST && window.WATCHLIST.has(fips));
       btn.classList.toggle("pmon-watch-btn-active", watched);
       btn.title = watched ? "Remove from watchlist" : "Watch county";
       btn.querySelector("svg")?.setAttribute("fill", watched ? "currentColor" : "none");

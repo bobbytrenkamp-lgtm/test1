@@ -11145,3 +11145,68 @@ html.is-light-theme .map-mode-chip.active {
 }
 .dq-disc ul { margin: 0; padding-left: 18px; }
 .dq-disc li { font-size: 12.5px; line-height: 1.6; margin-bottom: 6px; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   WATCHLIST POLICY CHANGE ALERTS (Phase 4)
+   Rendered by _renderWatchlistChanges() from WATCHLIST.diff().
+   ══════════════════════════════════════════════════════════════════════════ */
+.wl-changes {
+  margin: 0 0 var(--sp-4);
+  padding: var(--sp-4);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+}
+.wl-changes-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-3);
+}
+.wl-changes-title { font-size: 13px; font-weight: 650; }
+.wl-changes-ack {
+  padding: 5px 11px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 11.5px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.wl-changes-ack:hover { border-color: var(--accent); color: var(--accent); }
+
+.wl-changes-list { list-style: none; margin: 0; padding: 0; }
+.wl-changes-list > li { margin-bottom: var(--sp-3); }
+.wl-changes-list > li:last-child { margin-bottom: 0; }
+.wl-changes-county {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+}
+.wl-changes-county:hover { color: var(--accent); }
+.wl-changes-list ul { list-style: none; margin: 4px 0 0; padding: 0 0 0 var(--sp-3); }
+.wl-change-item {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  padding-left: 10px;
+  border-left: 2px solid var(--border);
+  margin-bottom: 3px;
+}
+/* Direction is meaningful: an escalation deserves more weight than a rollback. */
+.wl-change-increased { border-left-color: #dc2626; color: var(--text); }
+.wl-change-decreased { border-left-color: #22c55e; }
+
+.wl-changes-note {
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
