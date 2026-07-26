@@ -8,7 +8,41 @@
  *
  * Usage (Node.js — schema/selection/registry only, no DOM or Leaflet):
  *   node tests/parcel.test.js
+ *
+ * The line above described Node usage but never worked: every js/parcel/*.js
+ * module assigns to window.X at load time (`window.PARCEL_SCHEMA = ...`), so
+ * requiring one under plain Node threw "window is not defined" before a
+ * single assertion ran. This file therefore had no working CI coverage for
+ * a 3,443-line subsystem. The bootstrap below loads the non-DOM modules
+ * (panel.js and renderer.js touch Leaflet/the live document and are excluded,
+ * matching the file's own "no DOM or Leaflet" scope) under a minimal shim.
  */
+
+if (typeof window === 'undefined') {
+  const path = require('path');
+  const ROOT = path.join(__dirname, '..');
+
+  global.window = global;
+  global.CustomEvent = class CustomEvent {
+    constructor(type, opts) { this.type = type; this.detail = (opts || {}).detail; }
+  };
+  global.document = {
+    dispatchEvent: () => true,
+    addEventListener: () => {},
+    getElementById: () => null,
+  };
+
+  // Dependency order: registry/schema before the connectors and index.js that
+  // reference them; selection has no dependents among these.
+  for (const rel of [
+    'js/parcel/schema.js', 'js/parcel/registry.js', 'js/parcel/selection.js',
+    'js/parcel/connector-arcgis.js', 'js/parcel/connector-geojson.js', 'js/parcel/connector-wfs.js',
+    'js/parcel/feasibility.js', 'js/parcel/comparables.js', 'js/parcel/massing.js',
+    'js/parcel/draw-tool.js', 'js/parcel/search.js', 'js/parcel/index.js',
+  ]) {
+    require(path.join(ROOT, rel));
+  }
+}
 
 (function runTests() {
   'use strict';
@@ -426,7 +460,10 @@
 
   // ── PARCEL_MASSING (Phase 5) ──────────────────────────────────────────────
 
-  if (typeof window !== 'undefined' && window.PARCEL_MASSING) {
+  // PARCEL_MASSING.render() builds real SVG DOM nodes, which is outside this
+  // file's stated "no DOM" Node scope. Runs in the browser; skipped under the
+  // Node bootstrap, whose document stub has no createElement.
+  if (typeof window !== 'undefined' && window.PARCEL_MASSING && typeof document.createElement === 'function') {
     console.group('PARCEL_MASSING');
 
     assert(typeof window.PARCEL_MASSING.render === 'function', 'render is a function');

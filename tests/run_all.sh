@@ -31,6 +31,7 @@ run "jurisdiction page (DOM)"     node tests/test_jurisdiction.mjs
 run "watchlist (migration + alerts)" node tests/test_watchlist.mjs
 run "data loading (critical/deferred)" node tests/test_data_loading.mjs
 run "pipeline (windowing + a11y)"   node tests/test_pipeline.mjs
+run "parcel intelligence (schema, connectors, registry)" node tests/parcel.test.js
 
 # End-to-end browser suite. Needs a served copy of the repo and a Chrome
 # binary, so it is opt-in rather than part of the default run:
