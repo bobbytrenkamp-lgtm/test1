@@ -1,6 +1,8 @@
 /* ── Data Center Project Pipeline ── */
-/* Lazy-loads data/facilities_master.json and renders a searchable, filterable
-   table of 3,700+ data center projects with a detail side panel. */
+/* Lazy-loads data/facilities_master.json and renders 3,800+ data center
+   projects as either a searchable table or a geographic map, with a shared
+   filter set and a detail side panel. Rows are windowed; the map plots the
+   ~99.7% of facilities that carry usable coordinates. */
 window.PIPELINE = (function () {
 
   /* ── State ── */
@@ -11,7 +13,7 @@ window.PIPELINE = (function () {
   let _sortDir   = 1;        // 1 = asc, -1 = desc
   let _query     = "";
   let _filters   = { status: "", state: "", type: "", mw: "" };
-  let _view      = "table";  // "table" (only mode for now)
+  let _view      = "table";  // "table" | "map"
   let _inited    = false;
 
   let _rendered  = 0;        // rows currently in the DOM (windowed rendering)
@@ -61,6 +63,16 @@ window.PIPELINE = (function () {
           <option value="1000">1,000+ MW</option>
         </select>
         <span id="pipeline-count"></span>
+        <div class="pl-view-toggle" role="group" aria-label="View mode">
+          <button id="pl-view-table" class="pl-view-btn active" type="button" aria-pressed="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><rect x="3" y="4" width="18" height="16" rx="2"/></svg>
+            Table
+          </button>
+          <button id="pl-view-map" class="pl-view-btn" type="button" aria-pressed="false">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+            Map
+          </button>
+        </div>
         <button id="pipeline-export-btn" class="pl-export-btn" title="Export filtered results as CSV">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Export CSV
@@ -90,6 +102,11 @@ window.PIPELINE = (function () {
             </thead>
             <tbody id="pipeline-tbody"></tbody>
           </table>
+        </div>
+        <div id="pipeline-map-wrap" hidden>
+          <div id="pipeline-map"></div>
+          <div id="pipeline-map-legend" class="pl-map-legend"></div>
+          <div id="pipeline-map-unavailable" class="pl-map-msg" hidden></div>
         </div>
         <div id="pipeline-detail">
           <div id="pipeline-detail-header">
@@ -134,6 +151,9 @@ window.PIPELINE = (function () {
         _sortBy(th.dataset.col);
       });
     });
+
+    document.getElementById("pl-view-table")?.addEventListener("click", () => _switchView("table"));
+    document.getElementById("pl-view-map")?.addEventListener("click", () => _switchView("map"));
 
     _wireRowDelegation();
     _wireInfiniteScroll();
@@ -206,7 +226,8 @@ window.PIPELINE = (function () {
     });
 
     _sortFiltered();
-    _renderTable();
+    // Refresh whichever view is active — filters apply to both.
+    if (_view === "map") _renderMap(); else _renderTable();
     _updateCount();
   }
 
@@ -414,12 +435,21 @@ window.PIPELINE = (function () {
     });
 
     panel.classList.add("open");
+    _resizeMapSoon();
+  }
+
+  /* The detail panel's open/close changes the map container's width, and
+     Leaflet caches container size. Re-measure after the 0.22s transition. */
+  function _resizeMapSoon() {
+    if (!_map) return;
+    setTimeout(() => _map && _map.invalidateSize(), 260);
   }
 
   function _closeDetail() {
     _selected = null;
     document.querySelectorAll("#pipeline-tbody tr.selected").forEach(tr => tr.classList.remove("selected"));
     document.getElementById("pipeline-detail")?.classList.remove("open");
+    _resizeMapSoon();
   }
 
   function _detailHTML(d) {
@@ -581,10 +611,175 @@ window.PIPELINE = (function () {
 
   /* ── Re-render (called when tab is re-opened) ── */
   function _render() {
-    if (_data) {
-      _renderTable();
-      _updateCount();
+    if (!_data) return;
+    if (_view === "map") _renderMap();
+    else _renderTable();
+    _updateCount();
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     MAP VIEW
+     99.7% of facilities carry usable lat/lon, so the filtered set can be shown
+     geographically as well as in the table. Reuses the vendored Leaflet that
+     the main map already loads — no new dependency.
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  let _map = null;          // L.Map instance
+  let _markerLayer = null;  // L.layerGroup holding the current markers
+
+  const STATUS_COLOR = {
+    operational:    "#22c55e",
+    construction:   "#eab308",
+    planned:        "#f97316",
+    decommissioned: "#6b7280",
+  };
+
+  function _switchView(view) {
+    if (view === _view) return;
+    _view = view;
+
+    const tableWrap = document.getElementById("pipeline-table-wrap");
+    const mapWrap   = document.getElementById("pipeline-map-wrap");
+    const tBtn      = document.getElementById("pl-view-table");
+    const mBtn      = document.getElementById("pl-view-map");
+
+    const isMap = view === "map";
+    if (tableWrap) tableWrap.hidden = isMap;
+    if (mapWrap)   mapWrap.hidden   = !isMap;
+    if (tBtn) { tBtn.classList.toggle("active", !isMap); tBtn.setAttribute("aria-pressed", String(!isMap)); }
+    if (mBtn) { mBtn.classList.toggle("active", isMap);  mBtn.setAttribute("aria-pressed", String(isMap)); }
+
+    _render();
+  }
+
+  /* Radius scales with known capacity so large campuses read at a glance.
+     sqrt keeps a 2 GW site from dwarfing everything else. */
+  function _markerRadius(mw) {
+    const n = Number(mw) || 0;
+    if (!n) return 3.5;
+    return Math.min(16, 3.5 + Math.sqrt(n) * 0.34);
+  }
+
+  function _renderMap() {
+    const wrap = document.getElementById("pipeline-map-wrap");
+    const msg  = document.getElementById("pipeline-map-unavailable");
+    if (!wrap) return;
+
+    // Leaflet is loaded with `defer` for the main map; if the user reaches the
+    // Pipeline tab first it may not be parsed yet.
+    if (typeof L === "undefined") {
+      if (msg) {
+        msg.textContent = "Map library still loading — switch to Map again in a moment.";
+        msg.hidden = false;
+      }
+      return;
     }
+    if (msg) msg.hidden = true;
+
+    if (!_map) {
+      _map = L.map("pipeline-map", {
+        center: [39.5, -98.35],
+        zoom: 4,
+        preferCanvas: true,        // thousands of circle markers
+        worldCopyJump: false,
+      });
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        maxZoom: 18,
+      }).addTo(_map);
+      _markerLayer = L.layerGroup().addTo(_map);
+      _renderMapLegend();
+    }
+
+    // Leaflet cannot measure a container that was hidden when it initialized.
+    setTimeout(() => _map && _map.invalidateSize(), 60);
+
+    _markerLayer.clearLayers();
+
+    const plotted = _filtered.filter(d =>
+      typeof d.latitude === "number" && typeof d.longitude === "number" &&
+      d.latitude && d.longitude);
+
+    for (const d of plotted) {
+      const color = STATUS_COLOR[d.operational_status] || "#6b7280";
+      const m = L.circleMarker([d.latitude, d.longitude], {
+        radius: _markerRadius(d.capacity_mw_known),
+        color,
+        weight: 1,
+        opacity: 0.9,
+        fillColor: color,
+        fillOpacity: 0.45,
+      });
+      // Tooltip text is set via a text node, not HTML, since names and
+      // operators come from an aggregated data file.
+      const label = document.createElement("div");
+      const strong = document.createElement("strong");
+      strong.textContent = d.name || "Unnamed facility";
+      label.appendChild(strong);
+      const meta = document.createElement("div");
+      meta.style.cssText = "font-size:11px;opacity:0.8";
+      meta.textContent = [
+        d.operator || d.owner,
+        [d.city, d.state_abbr].filter(Boolean).join(", "),
+        d.capacity_mw_known ? _fmtMw(d.capacity_mw_known) : null,
+        d.operational_status,
+      ].filter(Boolean).join(" · ");
+      label.appendChild(meta);
+      m.bindTooltip(label, { direction: "top", sticky: true });
+      m.on("click", () => _openDetail(d));
+      _markerLayer.addLayer(m);
+    }
+
+    const dropped = _filtered.length - plotted.length;
+    const legend = document.getElementById("pipeline-map-legend");
+    if (legend) {
+      const note = legend.querySelector("[data-plotted]");
+      if (note) {
+        note.textContent = dropped > 0
+          ? `${plotted.length.toLocaleString()} of ${_filtered.length.toLocaleString()} shown — ${dropped.toLocaleString()} lack coordinates`
+          : `${plotted.length.toLocaleString()} facilities shown`;
+      }
+    }
+
+    // Frame the current selection, but do not zoom in so far that a single
+    // result fills the screen with no context.
+    if (plotted.length) {
+      const bounds = L.latLngBounds(plotted.map(d => [d.latitude, d.longitude]));
+      _map.fitBounds(bounds, { padding: [40, 40], maxZoom: 9 });
+    }
+  }
+
+  function _renderMapLegend() {
+    const el = document.getElementById("pipeline-map-legend");
+    if (!el) return;
+    el.textContent = "";
+
+    const rows = [
+      ["operational", "Operational"],
+      ["planned", "Planned"],
+      ["construction", "Under construction"],
+      ["decommissioned", "Decommissioned"],
+    ];
+    for (const [key, label] of rows) {
+      const row = document.createElement("div");
+      row.className = "pl-legend-row";
+      const dot = document.createElement("span");
+      dot.className = "pl-legend-dot";
+      dot.style.background = STATUS_COLOR[key];
+      const txt = document.createElement("span");
+      txt.textContent = label;
+      row.append(dot, txt);
+      el.appendChild(row);
+    }
+    const sizeNote = document.createElement("div");
+    sizeNote.className = "pl-legend-note";
+    sizeNote.textContent = "Circle size reflects known capacity (MW).";
+    el.appendChild(sizeNote);
+
+    const plotted = document.createElement("div");
+    plotted.className = "pl-legend-note";
+    plotted.setAttribute("data-plotted", "1");
+    el.appendChild(plotted);
   }
 
   /* ── Public stats API — loads data if not yet loaded ── */

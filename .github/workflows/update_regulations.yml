@@ -177,6 +177,11 @@ jobs:
           print(f"State Regulations: {len(reg.get('states', {}))} states tracked")
           EOF
 
+      # platform_metadata.json is the source of truth the frontend reads coverage
+      # counts from. Regenerate it here or the UI silently shows stale numbers.
+      - name: Refresh platform metadata
+        run: python data/refresh_platform_metadata.py
+
       - name: Commit updated regulation data
         run: |
           git config user.name "github-actions[bot]"
@@ -186,7 +191,8 @@ jobs:
             data/ai_campuses.json \
             data/tax_incentives.json \
             data/state_regulations.json \
-            data/map_data.json
+            data/map_data.json \
+            data/platform_metadata.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else

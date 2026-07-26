@@ -1,9 +1,8 @@
 {
   "_schema": "platform_metadata_v1",
   "_note": "Central source of truth for platform-wide statistics. Read by home.js, analytics.js, and map.js. Do NOT hardcode these numbers elsewhere — load this file instead. Update via process_data.py or manually when data changes.",
-  "_generated_at": "2026-07-25T00:00:00Z",
+  "_generated_at": "2026-07-26T15:10:47Z",
   "methodology_version": "1.0",
-
   "coverage": {
     "total_us_counties": 3143,
     "counties_in_database": 1465,
@@ -20,7 +19,6 @@
     "states_in_database": 51,
     "states_with_active_restrictions": 14
   },
-
   "freshness": {
     "policy_data_through": "2026-07-20",
     "policy_data_update_frequency": "manually-updated",
@@ -29,21 +27,19 @@
     "news_through": null,
     "news_update_frequency": "hourly-via-github-actions",
     "news_articles_in_feed": 6,
-    "facilities_total": 3764,
-    "facilities_operational": 3333,
-    "facilities_planned": 431,
+    "facilities_total": 3842,
+    "facilities_operational": 3395,
+    "facilities_planned": 442,
     "facilities_note": "Facility data aggregated from public sources via automated pipeline. Not independently verified for every record. Some records may be duplicates or contain errors.",
     "ai_companies_public": 44,
     "ai_companies_private": 5
   },
-
   "data_quality": {
     "validation_last_run": "2026-07-19T08:25:51Z",
     "broken_source_urls": 711,
     "total_source_urls_checked": 1690,
     "methodology_note": "County data manually researched from primary government sources. Counties without database records are shown as unresearched on the map and should not be assumed to be restriction-free."
   },
-
   "disclaimers": [
     "Policy data is manually curated and may not reflect recent legislative changes. Always verify with primary government sources before making decisions.",
     "Only 1,465 of 3,143 US counties have been individually researched. Counties without records are shown as unresearched and should not be assumed restriction-free.",

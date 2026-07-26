@@ -50,11 +50,16 @@ jobs:
           python data/validate_sources.py
           echo "exit_code=$?" >> "$GITHUB_OUTPUT"
 
+      # platform_metadata.json is the source of truth the frontend reads coverage
+      # counts from. Regenerate it here or the UI silently shows stale numbers.
+      - name: Refresh platform metadata
+        run: python data/refresh_platform_metadata.py
+
       - name: Commit and push updated data
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/map_data.json data/restrictions_raw.json
+          git add data/map_data.json data/restrictions_raw.json data/platform_metadata.json
           if git diff --staged --quiet; then
             echo "No data changes — skipping commit."
           else

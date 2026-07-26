@@ -268,9 +268,15 @@
   overflow: hidden;
   background: var(--surface);
   transform: translateX(100%);
-  transition: transform 0.22s ease;
+  /* translateX alone moves the panel off-screen but it still reserves its
+     340px of flex width, leaving a dead gap beside the content. The negative
+     margin gives that space back while closed — barely noticeable behind the
+     table, but an obvious blank strip next to the map view. */
+  margin-right: -340px;
+  transition: transform 0.22s ease, margin-right 0.22s ease;
 }
 #pipeline-detail.open {
+  margin-right: 0;
   transform: translateX(0);
 }
 
@@ -457,4 +463,73 @@ html[data-theme="light"] #pipeline-detail { background: #f8f9fc; }
     z-index: 120;
   }
   #pipeline-detail.open { transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MAP VIEW
+   The .pl-view-toggle / .pl-view-btn styles live in the toolbar section above.
+   ══════════════════════════════════════════════════════════════════════════ */
+#pipeline-map-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+#pipeline-map {
+  position: absolute;
+  inset: 0;
+  background: var(--map-bg, #03040c);
+}
+
+.pl-map-legend {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 500;                 /* above Leaflet panes, below app modals */
+  padding: 9px 11px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(6px);
+  font-size: 11px;
+  color: var(--text);
+  max-width: 240px;
+}
+.pl-legend-row { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+.pl-legend-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+.pl-legend-note {
+  margin-top: 5px;
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+.pl-map-msg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-5);
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  z-index: 600;
+}
+
+/* Leaflet tooltip needs to inherit the app's surface colors, not its defaults */
+#pipeline-map .leaflet-tooltip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  box-shadow: var(--shadow-md);
+  font-family: inherit;
+}
+#pipeline-map .leaflet-tooltip-top::before { border-top-color: var(--border); }
+
+@media (max-width: 700px) {
+  .pl-map-legend { max-width: 170px; font-size: 10px; left: 8px; bottom: 8px; }
 }

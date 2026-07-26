@@ -5,6 +5,45 @@
 Date: 2026-07-26
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Final Phase 3 item (pipeline map view) + metadata drift fix
+
+## Summary
+Closes the last outstanding spec item. Also fixed a real metadata drift my own validator caught, and removed the cause so it cannot recur.
+
+## Metadata drift — caught by the validator built earlier
+The weekly facilities pipeline had updated `facilities_master.json` (3,764 -> 3,842) without regenerating `platform_metadata.json`. Because `home.js` now reads facility counts from that file rather than downloading 4.85 MB, Home was displaying stale totals.
+
+### New: data/refresh_platform_metadata.py
+Recomputes only the derived counts, preserving editorial fields (disclaimers, notes, update frequencies) exactly. Idempotent, and `--check` exits non-zero when stale for CI use. Wired into all three workflows that touch the feeding datasets — `update_facilities.yml`, `update_data.yml`, and `update_regulations.yml` — so drift cannot recur silently.
+
+**One subtlety worth recording:** the first version of this script recomputed `states_with_active_restrictions` from county rows and produced 32 instead of 14. That field is a *state-level* metric derived from `state_regulations.json` (states with a statewide `level >= 1`). Deriving it from counties silently changes what the number means — a state can have restrictive counties with no statewide law. The script now reads it from `state_regulations.json` and documents why. It also needed `ensure_ascii=False` to avoid mangling the em-dash in `_note`.
+
+## Pipeline map view — last Phase 3 item
+`js/pipeline.js` carried `_view = "table"  // (only mode for now)`. 99.7% of the 3,842 facilities have usable US coordinates, so the filtered set is now viewable geographically as well.
+
+- Table/Map toggle with `aria-pressed` state, reusing the `.pl-view-toggle` styles already present from an earlier partial implementation rather than adding a parallel set
+- Leaflet circle markers on the vendored Leaflet — no new dependency; canvas rendering (`preferCanvas`) for thousands of markers
+- Colored by operational status, radius scaled by `sqrt(capacity_mw)` so a 2 GW campus does not dwarf everything
+- Filters drive both views; `_applyFilters()` refreshes whichever is active
+- Tooltips built from text nodes, not HTML, since names and operators come from an aggregated data file
+- Legend states plainly how many facilities are plotted and how many lack coordinates (`3,831 of 3,842 shown — 11 lack coordinates`) rather than quietly dropping them
+- `fitBounds` capped at zoom 9 so a single result does not fill the screen without context
+
+### Layout fix found while testing
+`#pipeline-detail` used `transform: translateX(100%)` to hide itself but still reserved its 340px of flex width. Barely visible behind the table, but an obvious blank strip beside the map. Now also uses `margin-right: -340px` while closed, and the map re-measures after the transition since Leaflet caches container size.
+
+## Testing
+- `tests/e2e_smoke.mjs` gains a ninth scenario covering the map view: toggle state, Leaflet init, width, filters driving the map, and re-entering the map without re-initializing.
+- All 9 browser scenarios pass with zero JavaScript errors; 200 unit tests pass.
+
+## Status: all five phases complete
+Phases 1-5 of the specification are implemented. Remaining known gap, deliberately not built: real multi-user team workspaces, which need Supabase tables and RLS policies that cannot be provisioned from the frontend. The portable watchlist bundles cover hand-off in the meantime.
+
+---
+
+Date: 2026-07-26
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Real-browser verification — six bugs found and fixed
 
 ## Summary
