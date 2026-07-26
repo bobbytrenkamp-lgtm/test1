@@ -5,6 +5,55 @@
 Date: 2026-07-26
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Favicon — extract the header's folded-map mark
+
+## Summary
+The site had no favicon at all, so browsers showed the generic globe. Added a full icon set derived from the existing header logo. No redesign — the mark is the header's own geometry, scaled.
+
+## Source of the mark
+Inline SVG in `index.html` (`#header-logo`) — not a file, component, or image asset. Nothing existed under `assets/`, and there were no `.ico`, logo, or branding files anywhere in the repo.
+
+The header mark is:
+- `rect 28x28 rx=6 fill=#4874e8 opacity=0.15` — the light-blue rounded square
+- `polygon 4,8 10,5 18,8 24,5 24,23 18,26 10,23 4,26` stroke `#4874e8` width 1.8, round joins
+- two fold lines at x=10 and x=18, stroke width 1.5
+
+## New: assets/branding/brand-mark.svg
+The header polygon transformed onto a 64x64 canvas — `(x-14)*2.15+32`, `(y-15.5)*2.15+32`, centred on the source symbol at (14, 15.5). The shape is *transformed*, not redrawn, so the geometry is identical.
+
+**One deliberate change:** the header paints the square at 15% opacity. A translucent fill reads as transparent in a browser tab, so the icon uses the flattened equivalent — `#4874e8` at 15% over white = `#E4EAFC`. Same appearance, opaque.
+
+`brand-mark-small.svg` is the same file with strokes at 5.2/4.4 instead of 3.87/3.22, used for the 16px and 32px rasters so the fold lines survive at tab size.
+
+## Files created
+- `assets/branding/brand-mark.svg`, `brand-mark-small.svg`, `brand-mark-1024.png`
+- `favicon.ico` (multi-resolution: 16, 32, 48 — each embedding its own tuned raster, not one downscale)
+- `favicon-16x16.png`, `-32x32`, `-48x48`, `-192x192`, `-512x512`
+- `apple-touch-icon.png` (180px)
+- `site.webmanifest`
+
+PNGs were rasterised through headless Chrome's SVG renderer; no ImageMagick, rsvg, or cairosvg is available in this environment.
+
+## Two corrections worth recording
+
+**Relative paths, not root-absolute.** The brief specified `/favicon.ico`, `/site.webmanifest`, and `"start_url": "/"`. This deploys to a GitHub Pages *project* site at `bobbytrenkamp-lgtm.github.io/test1/`, where a root-absolute path resolves to the user domain and 404s. All paths are relative, and the manifest uses `"start_url": "."` / `"scope": "."`, which resolve against the manifest's own location. The brief allowed for this ("adapt the paths correctly ... configurable base URL").
+
+**Apple touch icon is full-bleed.** iOS composites alpha onto black and applies its own rounded mask, so a rounded-corner icon with transparent corners renders with black corners on the home screen. `apple-touch-icon.png` is generated separately: square, no corner radius, fully opaque. The browser-tab icons keep their rounded transparent corners, which is correct there.
+
+## Header untouched
+`#header-logo`, the divider, "US DC & AI Policy Tracker", and "Intelligence Platform" are unchanged — verified in-browser and asserted by the new test. The only edit to `index.html` is 14 added lines in `<head>`.
+
+## Data safety
+No data, workflow, JS, or CSS file was modified. There were no pre-existing favicon or brand assets, so nothing was overwritten or backed up — every icon file is new.
+
+## Testing
+`tests/e2e_smoke.mjs` gains an eleventh scenario asserting all 7 declared assets return 200 and decode in-browser, that **no path is root-absolute** (the GitHub Pages 404 trap), that the manifest parses with resolvable icons, and that the header branding still renders. 200 unit tests and all 11 browser scenarios pass.
+
+---
+
+Date: 2026-07-26
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: AI Stocks page — fix clipping and layout collapse
 
 ## Summary

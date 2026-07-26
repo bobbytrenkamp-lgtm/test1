@@ -293,4 +293,66 @@ await run('AI Stocks layout', async (p) => {
   }
 });
 
+/* 11. Favicon assets — every declared icon must return 200 and decode. Paths
+       are relative because this deploys to a GitHub Pages *project* site at
+       /test1/; a root-absolute "/favicon.ico" would 404 there, which is the
+       exact regression this guards. Also asserts the header branding is
+       untouched, since the mark was extracted from it. */
+await run('Favicon + header branding', async (p) => {
+  await p.goto(URL, { waitUntil: 'domcontentloaded' });
+  await p.waitForTimeout(2000);
+
+  const declared = await p.evaluate(() =>
+    [...document.querySelectorAll('link[rel*="icon"], link[rel="manifest"]')]
+      .map(el => el.getAttribute('href')));
+  console.log('declared assets     :', declared.length);
+
+  const rootAbsolute = declared.filter(h => h.startsWith('/'));
+  console.log('root-absolute paths :', rootAbsolute.length === 0
+    ? 'none (correct for a project site)' : `${rootAbsolute} <-- WILL 404 ON GITHUB PAGES`);
+
+  // NOTE: the global URL constructor is shadowed by this file's URL constant,
+  // so relative hrefs are resolved against the page's directory by hand.
+  const dir = p.url().replace(/[^/]*$/, '');
+  let bad = [];
+  for (const href of declared) {
+    const r = await p.request.get(dir + href);
+    if (r.status() !== 200 || (await r.body()).length === 0) bad.push(`${r.status()} ${href}`);
+  }
+  console.log('non-200 assets      :', bad.length ? bad : 'none');
+
+  const decoded = await p.evaluate(async () => {
+    const urls = ['favicon.ico', 'assets/branding/brand-mark.svg',
+                  'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png'];
+    const out = [];
+    for (const u of urls) {
+      const ok = await new Promise(res => {
+        const i = new Image();
+        i.onload = () => res(i.naturalWidth > 0);
+        i.onerror = () => res(false);
+        i.src = u + '?cb=' + Date.now();
+      });
+      if (!ok) out.push(u);
+    }
+    return out;
+  });
+  console.log('failed to decode    :', decoded.length ? decoded : 'none');
+
+  const man = await (await p.request.get(dir + 'site.webmanifest')).json();
+  console.log('manifest icons      :', man.icons.map(i => i.sizes).join(', '));
+
+  // The favicon was derived from the header mark — the header must still show it.
+  const hdr = await p.evaluate(() => {
+    const l = document.getElementById('header-logo');
+    return {
+      logo: !!l,
+      polygon: !!(l && l.querySelector('polygon')),
+      wordmark: document.querySelector('#header-wordmark h1')?.textContent.trim(),
+      tagline: document.getElementById('header-tagline')?.textContent.trim(),
+    };
+  });
+  console.log('header preserved    :', `logo=${hdr.logo} polygon=${hdr.polygon} ` +
+    `wordmark="${hdr.wordmark}" tagline="${hdr.tagline}"`);
+});
+
 await b.close();
