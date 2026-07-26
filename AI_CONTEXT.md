@@ -456,11 +456,33 @@ they can run before secondary lands. These re-run when it resolves:
 - Analytics re-renders (reads the DC_* globals in nine places)
 - `initMapFromGeo()` awaits it so the map never draws with empty overlays
 
-## Pipeline table rendering
+## Pipeline views (js/pipeline.js)
 
-Windowed: `PAGE_SIZE` (150) rows per page, appended on scroll via `_appendRows()`. Row clicks
-use ONE delegated listener on `<tbody>` — do not add per-row listeners. Sortable `<th>`s carry
-`tabindex`, Enter/Space handlers, and `aria-sort`; keep those in sync in `_updateSortHeaders()`.
+Two views over the same filtered set: `_view` is `"table"` or `"map"`.
+
+**Table** is windowed — `PAGE_SIZE` (150) rows per page, appended on scroll by `_appendRows()`.
+Row clicks use ONE delegated listener on `<tbody>`; do not add per-row listeners. Sortable `<th>`s
+carry `tabindex`, Enter/Space handlers, and `aria-sort` — keep those in sync in `_updateSortHeaders()`.
+
+**Map** plots the ~99.7% of facilities with usable coordinates using the vendored Leaflet, with
+`preferCanvas: true` for thousands of markers. Status sets color, `sqrt(capacity_mw)` sets radius.
+The legend must keep stating how many facilities are plotted versus lacking coordinates — silently
+dropping rows would misrepresent the dataset. Tooltips are built from text nodes, not HTML.
+
+`_applyFilters()` refreshes whichever view is active — if you add a third view, update it there.
+`#pipeline-detail` uses `margin-right: -340px` while closed so it does not reserve flex width;
+the map calls `invalidateSize()` after that transition because Leaflet caches container size.
+
+## Platform metadata must be regenerated after data changes
+
+`data/refresh_platform_metadata.py` recomputes the derived counts in `platform_metadata.json`.
+It is wired into `update_facilities.yml`, `update_data.yml`, and `update_regulations.yml`, because
+the frontend reads counts from that file instead of downloading multi-megabyte datasets — so a
+stale file means the UI shows wrong numbers. `--check` exits non-zero when stale.
+
+**Do not derive `states_with_active_restrictions` from county rows.** It is a state-level metric
+from `state_regulations.json` (statewide `level >= 1`). Computing it from counties changes its
+meaning — a state can have restrictive counties without any statewide law.
 
 ## Watchlist (js/watchlist.js) — Phase 4
 

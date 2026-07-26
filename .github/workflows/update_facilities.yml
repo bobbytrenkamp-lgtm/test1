@@ -60,6 +60,15 @@ jobs:
       - name: Export facilities to map layers
         run: python data/export_facilities_to_layers.py
 
+      # platform_metadata.json is the source of truth the frontend reads facility
+      # counts from instead of downloading the 4.8 MB master file. It must be
+      # regenerated here or Home silently shows stale totals.
+      - name: Refresh platform metadata
+        run: python data/refresh_platform_metadata.py
+
+      - name: Validate platform metadata
+        run: python data/validate_platform_metadata.py
+
       - name: Commit updated facility data
         run: |
           git config user.name "github-actions[bot]"
@@ -70,7 +79,8 @@ jobs:
             data/facilities_changelog.json \
             data/facilities_sync_state.json \
             data/facilities_version_history/ \
-            data/sample_layers.json
+            data/sample_layers.json \
+            data/platform_metadata.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else

@@ -198,4 +198,41 @@ await run('Header fit across widths', async (p) => {
   }
 });
 
+/* 9. Pipeline map view — filters must drive both views, and re-entering the
+      map must not re-initialize Leaflet. */
+await run('Pipeline map view', async (p) => {
+  await p.goto(URL, { waitUntil: 'domcontentloaded' });
+  await p.waitForTimeout(2500);
+  await p.click('#tab-pipeline');
+  await p.waitForSelector('#pipeline-table tbody tr', { timeout: 45000 });
+
+  await p.click('#pl-view-map');
+  await p.waitForTimeout(3000);
+  console.log('map visible              :', await p.isVisible('#pipeline-map-wrap'));
+  console.log('table hidden             :', !(await p.isVisible('#pipeline-table-wrap')));
+  console.log('leaflet initialized      :', await p.evaluate(() => !!document.querySelector('#pipeline-map .leaflet-pane')));
+  console.log('aria-pressed map/table   :',
+    await p.getAttribute('#pl-view-map', 'aria-pressed'), '/',
+    await p.getAttribute('#pl-view-table', 'aria-pressed'));
+  console.log('plotted note             :', (await p.textContent('[data-plotted]')).trim());
+  const fills = await p.evaluate(() => {
+    const m = document.getElementById('pipeline-map').getBoundingClientRect();
+    const b = document.getElementById('pipeline-body').getBoundingClientRect();
+    return Math.abs(m.width - b.width) < 3;
+  });
+  console.log('map fills body width     :', fills);
+
+  // A filter must re-plot, not just re-render the table.
+  await p.selectOption('#pl-filter-state', 'VA');
+  await p.waitForTimeout(1800);
+  console.log('after VA filter          :', (await p.textContent('[data-plotted]')).trim());
+
+  await p.click('#pl-view-table');
+  await p.waitForTimeout(1000);
+  console.log('back to table            :', await p.$$eval('#pipeline-tbody tr', n => n.length) + ' rows');
+  await p.click('#pl-view-map');
+  await p.waitForTimeout(1800);
+  console.log('re-entered map           :', await p.isVisible('#pipeline-map-wrap'));
+});
+
 await b.close();
