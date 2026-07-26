@@ -47,12 +47,39 @@ const mapData    = JSON.parse(rd('data/map_data.json'));
 const facilities = JSON.parse(rd('data/facilities_index.json'));
 const news       = JSON.parse(rd('data/ai_news.json'));
 
+/* Synthetic citation-health fixture. The real file is produced by
+   data/check_source_links.py in CI; this exercises the dead-link and archive
+   rendering without depending on network state. */
+/* A purpose-built county with two DISTINCT source URLs. Real records often
+   cite the same page twice (Loudoun does), which would collapse the fixture. */
+const DEAD_URL = 'https://example.gov/moved-page';
+const LIVE_URL = 'https://example.gov/current-page';
+mapData.counties['00002'] = {
+  name: 'Linkcheck County', state: 'Virginia', level: 2, status: 'active',
+  title: 'Test ordinance',
+  sources: [
+    { label: 'Moved ordinance PDF', url: DEAD_URL },
+    { label: 'Current policy page', url: LIVE_URL },
+  ],
+};
+const linkHealth = {
+  _schema: 'source_link_health_v1',
+  urls: {
+    [DEAD_URL]: {
+      ok: false, status: 404, checked_at: '2026-07-20T00:00:00+00:00',
+      archive: { url: 'https://web.archive.org/web/2023/example', timestamp: '20230101' },
+    },
+    [LIVE_URL]: { ok: true, status: 200, checked_at: '2026-07-20T00:00:00+00:00' },
+  },
+};
+
 window.fetch = (u) => Promise.resolve({
   ok: true,
   json: () => Promise.resolve(
     String(u).includes('platform_metadata') ? meta
       : String(u).includes('facilities_index') ? facilities
-        : {}),
+        : String(u).includes('source_link_health') ? linkHealth
+          : {}),
 });
 
 /* Classic scripts share one global scope. map.js declares `let mapData` and
@@ -116,6 +143,22 @@ ok('shows planned count',     /Planned/.test(statText));
 ok('shows known capacity',    /Known capacity/.test(statText));
 
 ok('renders policy sources', view.querySelectorAll('.juris-sources li').length > 0);
+
+/* ── Citation link health: warn before sending a reader to a dead page ── */
+J.render('00002');
+await new Promise((r) => setTimeout(r, 120));
+ok('flags exactly the dead citation', view.querySelectorAll('.juris-src-dead').length === 1,
+   view.querySelectorAll('.juris-src-dead').length);
+ok('shows a not-responding badge', view.querySelectorAll('.juris-src-flag').length === 1);
+ok('offers the archived copy',
+   !!view.querySelector('.juris-src-archive[href*="web.archive.org"]'));
+ok('reachable citation is left unflagged',
+   view.querySelectorAll('.juris-sources li:not(.juris-src-dead)').length >= 1);
+ok('dead citation still links to the original',
+   !!view.querySelector(`.juris-src-dead > a[href="${DEAD_URL}"]`));
+delete mapData.counties['00002'];
+J.render('51107');
+await new Promise((r) => setTimeout(r, 120));
 ok('renders cross-links',    view.querySelectorAll('.juris-link').length >= 3);
 ok('watch button present',   /Watch/.test(txt('.juris-btn-watch') || ''));
 

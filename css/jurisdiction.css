@@ -363,3 +363,30 @@
   color: var(--text-muted);
   min-height: 1em;      /* reserve space so the row does not jump on save */
 }
+
+/* ── Citation link health (data/source_link_health.json) ──
+   A source that did not respond when last checked is flagged inline rather than
+   silently sending the reader to a dead page. Links with no health record are
+   left completely unstyled — absence of data is not evidence of a problem. */
+.juris-src-dead > a:first-child {
+  color: var(--text-muted);
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+}
+.juris-src-flag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: var(--r-xs);
+  border: 1px solid #eab30855;
+  background: color-mix(in srgb, #eab308 12%, transparent);
+  color: #eab308;
+  font-size: 10px;
+  white-space: nowrap;
+  vertical-align: 1px;
+}
+.juris-src-archive {
+  font-size: 11.5px;
+  color: var(--accent);
+  white-space: nowrap;
+}

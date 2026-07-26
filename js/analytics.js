@@ -2210,6 +2210,9 @@ function renderDataQualityPanel() {
         ${through ? `<p class="dq-through">Policy data current through
           <strong>${escHtml(String(through).slice(0, 10))}</strong> &middot;
           manually researched, not automatically updated.</p>` : ''}
+        <p class="dq-through">Citation links are re-checked weekly. Where a source has
+          moved, the county page links to an archived copy alongside the original,
+          and flags links that did not respond when last checked.</p>
         ${disclaimers.length ? `
           <div class="dq-disc">
             <div class="dq-disc-h">Limitations you should read before relying on this data</div>

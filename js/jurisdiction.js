@@ -10,6 +10,7 @@
    Data joins, all keyed on 5-digit county FIPS:
      mapData[fips]                          policy record
      facilities_index.json .county_fips     data center facilities
+     source_link_health.json .urls          citation reachability + archive
      ai_news.json .location                 related news (name/state match)
      ZONING.hasCoverage(fips)               zoning pilot coverage
      computeSuitabilityScore(fips, county)  suitability grade
@@ -48,6 +49,28 @@ window.JURISDICTION = (function () {
   }
 
   /* ── Data loading ───────────────────────────────────────────────────────── */
+
+  /* Citation link health, produced by data/check_source_links.py in CI. Optional:
+     if the file is absent (never run yet) every link simply renders unannotated,
+     exactly as before. */
+  let _linkHealth = null;
+  let _linkHealthLoading = null;
+
+  function loadLinkHealth() {
+    if (_linkHealth) return Promise.resolve(_linkHealth);
+    if (_linkHealthLoading) return _linkHealthLoading;
+    _linkHealthLoading = fetch("data/source_link_health.json")
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => { _linkHealth = (j && j.urls) ? j : { urls: {} }; return _linkHealth; })
+      .catch(() => { _linkHealth = { urls: {} }; return _linkHealth; });
+    return _linkHealthLoading;
+  }
+
+  function linkStatus(url) {
+    const rec = _linkHealth && _linkHealth.urls ? _linkHealth.urls[url] : null;
+    if (!rec) return null;                 // never checked — say nothing
+    return rec;
+  }
 
   function loadFacilities() {
     if (_facilities) return Promise.resolve(_facilities);
@@ -143,10 +166,20 @@ window.JURISDICTION = (function () {
           <div class="juris-sources">
             <div class="juris-sources-h">Sources</div>
             <ul>
-              ${sources.map(s => `
-                <li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">
-                  ${esc(s.label || s.url)}
-                </a></li>`).join("")}
+              ${sources.map(s => {
+                const h = linkStatus(s.url);
+                const dead = h && h.ok === false;
+                const archive = dead && h.archive && h.archive.url ? h.archive.url : null;
+                return `
+                <li class="${dead ? "juris-src-dead" : ""}">
+                  <a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer"
+                     ${dead ? `title="This link did not respond when last checked${h.status ? ` (HTTP ${esc(String(h.status))})` : ""}"` : ""}>
+                    ${esc(s.label || s.url)}
+                  </a>
+                  ${dead ? `<span class="juris-src-flag" title="Checked ${esc((h.checked_at || "").slice(0, 10))}">link not responding</span>` : ""}
+                  ${archive ? ` <a class="juris-src-archive" href="${esc(archive)}" target="_blank" rel="noopener noreferrer">archived copy</a>` : ""}
+                </li>`;
+              }).join("")}
             </ul>
             <p class="juris-source-note">
               Source links point to third-party government sites and may move or expire.
@@ -387,6 +420,7 @@ window.JURISDICTION = (function () {
 
     paint();
     if (!_facilities) loadFacilities().then(paint);
+    if (!_linkHealth) loadLinkHealth().then(paint);
   }
 
   /* ── Event wiring ───────────────────────────────────────────────────────── */
