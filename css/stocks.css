@@ -32,7 +32,12 @@
 #stocks-workspace {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  /* `flex: 1` (basis 0) collapsed this to height:0 inside the scrolling column
+     that is #stocks-view — there is no free space to grow into when the page
+     already overflows, so its ~950px of content spilled out and painted over
+     the market sections below it. Sizing to content keeps the sections
+     stacked. */
+  flex: 0 0 auto;
   min-height: 0;
 }
 
@@ -242,15 +247,30 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.25;
+  line-height: 1.35;
 }
-.stocks-wl-cat {
-  font-size: 0.6875rem;
+
+/* Sticky category header. Replaces the per-row category label, which repeated
+   the same string on up to 14 consecutive rows. */
+.stocks-wl-group {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 7px 14px 5px;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text-muted);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.stocks-wl-group + .stocks-wl-row { border-top: none; }
+/* .stocks-wl-cat is retired — the category now renders once as a sticky
+   .stocks-wl-group header instead of on every row. */
 .stocks-wl-fav {
   background: none;
   border: none;
@@ -641,19 +661,50 @@
   animation: tv-spin 0.7s linear infinite;
 }
 @keyframes tv-spin { to { transform: rotate(360deg); } }
+/* Widget containers range from a ~44px strip to a 520px chart. Filling the
+   container (rather than sizing to content) keeps a failed widget inside its
+   own box — previously a fixed-height error block spilled out of the short
+   containers and collided with the sections below. */
+/* Keyed on .tv-has-error alone — not every widget container carries
+   .tv-widget-wrap (#stocks-chart does not), and without a positioned parent
+   the absolute error escapes to the page and overlaps other sections. */
+.tv-has-error { position: relative; }
 .tv-error {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  padding: 32px 24px;
+  padding: 20px 24px;
   text-align: center;
   color: var(--text-muted);
   font-size: 13px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
-.tv-error-icon { font-size: 28px; }
+.tv-error-icon { font-size: 26px; opacity: 0.75; }
 .tv-error-msg { color: var(--text); font-weight: 600; font-size: 14px; }
-.tv-error-sub { font-size: 12px; }
+.tv-error-sub { font-size: 12px; max-width: 46ch; line-height: 1.5; }
+
+/* Short containers collapse to a single line so nothing is cut off. The icon
+   and body copy are hidden rather than removed, so the same markup works at
+   both sizes and the class can be applied after layout. */
+.tv-error-compact {
+  flex-direction: row;
+  gap: 12px;
+  padding: 0 16px;
+}
+.tv-error-compact .tv-error-icon,
+.tv-error-compact .tv-error-sub { display: none; }
+.tv-error-compact .tv-error-msg {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.tv-error-compact .tv-retry-btn { margin-top: 0; padding: 3px 12px; font-size: 12px; }
 .tv-retry-btn {
   margin-top: 4px;
   padding: 6px 16px;
@@ -853,9 +904,9 @@
   #stocks-workspace {
     display: grid;
     grid-template-columns: 280px 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: auto;
     align-items: start;
-    flex: 1;
+    flex: 0 0 auto;      /* see the base rule — flex:1 collapsed this to 0 */
   }
 
   #stocks-main {
