@@ -6,11 +6,31 @@ window.REPORT = (function () {
   const SEV_COLORS = { "-1": "#16a34a", "0": "#6b7280", "1": "#15803d", "2": "#c2410c", "3": "#b91c1c", "4": "#7f1d1d" };
   const SEV_BG     = { "-1": "#f0fdf4", "0": "#f9fafb", "1": "#f0fdf4", "2": "#fff7ed", "3": "#fef2f2", "4": "#450a0a" };
 
-  const RISK_LABELS = ["No Data", "Low", "Moderate", "Elevated", "High"];
-  const RISK_COLORS = ["#9ca3af", "#16a34a", "#d97706", "#dc2626", "#7f1d1d"];
+  /* Political risk is scored 1–5, not 0–4 — see the scoring_model block in
+     data/political_risk.json: "clamp(1, 5, round(1.0 + Σ(signal_weight)))".
+     Indexing a 0-based array with it mislabelled every county and left score 5
+     (the highest risk) rendering as "Unknown". Keyed by score, and each record
+     also carries its own score_label, which we prefer when present. */
+  const RISK_LABELS = { 1: "Low", 2: "Moderate", 3: "Elevated", 4: "High", 5: "Very High" };
+  const RISK_COLORS = { 1: "#16a34a", 2: "#d97706", 3: "#ea580c", 4: "#dc2626", 5: "#7f1d1d" };
+  const RISK_MAX    = 5;
 
-  const WATER_LABELS = ["No Stress", "Low Stress", "Moderate Stress", "High Stress", "Very High Stress"];
-  const WATER_COLORS = ["#2563eb", "#16a34a", "#d97706", "#dc2626", "#7f1d1d"];
+  /* Labels are the dataset's own scale, verbatim from the _scale field in
+     data/water_stress.json ("0=Low, 1=Low-Medium, ..."). The previous list
+     called level 0 "No Stress", which asserts more than the source does. */
+  const WATER_LABELS = ["Low", "Low-Medium", "Medium-High", "High", "Extremely High"];
+  const WATER_COLORS = ["#16a34a", "#65a30d", "#d97706", "#dc2626", "#7f1d1d"];
+
+  /* Provenance of a facility record, not a quality score — a bare "5" reads as
+     better than "2" when it means the opposite. Mirrors SOURCE_TIER_LABELS in
+     data/run_quality_report.py. */
+  const FACILITY_TIER_LABELS = {
+    1: "Company official",
+    2: "Hand-curated",
+    3: "OpenStreetMap",
+    4: "Permit / filing",
+    5: "News — unverified",
+  };
 
   const TYPE_LABELS = {
     data_center: "Data Center Restriction",
@@ -24,7 +44,11 @@ window.REPORT = (function () {
   async function generate(fips, name, state, countyData) {
     const padded     = String(fips).padStart(5, "0");
     const risk       = (window.DC_RISK_BY_FIPS || {})[padded];
-    const wsRaw      = window.DC_WATER_STRESS || {};
+    // DC_WATER_STRESS is a 79-county sample used by the map's demo layer;
+    // DC_WATER_STRESS_FULL is the real 1,988-county dataset that every other
+    // module reads. Reading the sample reported the wrong level for most
+    // counties (Loudoun came back 0 against a real value of 2).
+    const wsRaw      = window.DC_WATER_STRESS_FULL || window.DC_WATER_STRESS || {};
     const waterLevel = wsRaw[padded] ?? wsRaw[fips] ?? null;
     const incentives = (window.DC_INCENTIVES_FIPS || {})[padded] || [];
     let facilities   = [];
@@ -58,24 +82,27 @@ window.REPORT = (function () {
     const types    = county?.types    || [];
 
     const riskScore  = risk?.risk_score  ?? null;
-    const riskLabel  = riskScore != null ? (RISK_LABELS[riskScore] || "Unknown") : "No Data";
+    const riskLabel  = riskScore != null
+      ? (risk.score_label || RISK_LABELS[riskScore] || "Unrated")
+      : "Not scored";
     const riskColor  = riskScore != null ? (RISK_COLORS[riskScore] || "#9ca3af") : "#9ca3af";
     const riskSummary = risk?.evidence_summary || "";
+    const riskConf    = risk?.confidence || "";
 
-    const waterIdx   = waterLevel != null ? Math.min(waterLevel, 4) : null;
+    const waterIdx   = waterLevel != null ? Math.min(Math.max(waterLevel, 0), 4) : null;
     const waterLabel = waterIdx != null ? WATER_LABELS[waterIdx] : "No Data";
     const waterColor = waterIdx != null ? WATER_COLORS[waterIdx] : "#9ca3af";
 
     const facilitiesHtml = facilities.length
       ? `<table class="data-table">
-           <thead><tr><th>Project Name</th><th>Operator</th><th>Status</th><th>Capacity</th><th>Confidence</th></tr></thead>
+           <thead><tr><th>Project Name</th><th>Operator</th><th>Status</th><th>Capacity</th><th>Source Type</th></tr></thead>
            <tbody>${facilities.slice(0, 25).map(f => `
              <tr>
                <td>${_esc(f.name)}</td>
                <td>${_esc(f.operator || f.owner || "—")}</td>
                <td>${_esc(f.operational_status || "—")}</td>
                <td>${f.capacity_mw_known != null ? _esc(String(f.capacity_mw_known)) + " MW" : "—"}</td>
-               <td>${_esc(f.confidence_tier || "—")}</td>
+               <td>${_esc(_facilityTier(f.confidence_tier))}</td>
              </tr>`).join("")}
            </tbody>
          </table>
@@ -94,17 +121,41 @@ window.REPORT = (function () {
           </div>`).join("")
       : `<p class="empty-note">No tracked tax incentive programs for this county.</p>`;
 
+    /* The field names here are the ones map_data.json actually uses. The
+       previous version read county.summary / county.descriptions /
+       county.source_url — none of which exist — so every report silently
+       shipped without the policy text, its dates, or a single citation, on a
+       platform whose central claim is primary-source verification. */
     const policyDetails = county ? (() => {
-      const descs = county.descriptions || [];
+      const sources = (county.sources || [])
+        .map(s => (typeof s === "string" ? { label: s, url: s } : (s || {})))
+        .filter(s => s.label || s.url);
+      const meta = [
+        county.status         ? ["Status",        _titleCase(county.status)] : null,
+        county.effective_date ? ["Effective",     _fmtDate(county.effective_date)] : null,
+        county.lifecycle_stage? ["Stage",         _titleCase(county.lifecycle_stage)] : null,
+        county.confidence     ? ["Record confidence", _titleCase(county.confidence)] : null,
+        county.last_reviewed  ? ["Last reviewed", _fmtDate(county.last_reviewed)] : null,
+      ].filter(Boolean);
+
       return `
         <section class="section">
           <h2 class="section-title">Policy Details</h2>
+          ${county.title ? `<p class="policy-title">${_esc(county.title)}</p>` : ""}
           ${types.length ? `<p><strong>Restriction Types:</strong> ${types.map(t => TYPE_LABELS[t] || t).map(_esc).join(", ")}</p>` : ""}
-          ${county.summary  ? `<p><strong>Summary:</strong> ${_esc(county.summary)}</p>` : ""}
-          ${descs.length
-            ? `<ul class="policy-list">${descs.map(d => `<li>${_esc(d)}</li>`).join("")}</ul>`
-            : ""}
-          ${county.source_url ? `<p><a href="${_esc(county.source_url)}" class="source-link" target="_blank" rel="noopener noreferrer">View primary source →</a></p>` : ""}
+          ${county.description ? `<p>${_esc(county.description)}</p>` : ""}
+          ${county.notes ? `<p><strong>Notes:</strong> ${_esc(county.notes)}</p>` : ""}
+          ${meta.length ? `<table class="kv-table"><tbody>${meta.map(([k, v]) =>
+            `<tr><th>${_esc(k)}</th><td>${_esc(v)}</td></tr>`).join("")}</tbody></table>` : ""}
+          <h3 class="sub-title">Primary Sources (${sources.length})</h3>
+          ${sources.length
+            ? `<ol class="source-list">${sources.map(s => `<li>${
+                s.url
+                  ? `<a href="${_esc(s.url)}" class="source-link" target="_blank" rel="noopener noreferrer">${_esc(s.label || s.url)}</a>
+                     <div class="source-url">${_esc(s.url)}</div>`
+                  : _esc(s.label)
+              }</li>`).join("")}</ol>`
+            : `<p class="empty-note">No source citation is recorded for this county. Treat the policy details above as unverified.</p>`}
         </section>`;
     })() : "";
 
@@ -222,6 +273,39 @@ window.REPORT = (function () {
     /* ── Policy list ── */
     .policy-list { margin: 8px 0 8px 20px; }
     .policy-list li { margin-bottom: 4px; }
+    .policy-title { font-size: 15px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+    .sub-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; color: #6b7280;
+      margin: 16px 0 8px;
+    }
+    /* ── Key/value metadata ── */
+    .kv-table { border-collapse: collapse; margin: 10px 0; }
+    .kv-table th {
+      text-align: left; font-size: 11px; font-weight: 700; color: #6b7280;
+      padding: 3px 14px 3px 0; white-space: nowrap; vertical-align: top;
+    }
+    .kv-table td { font-size: 12px; padding: 3px 0; }
+    /* ── Citations ── */
+    .source-list { margin: 4px 0 4px 20px; }
+    .source-list li { margin-bottom: 8px; }
+    .source-url {
+      font-size: 10px; color: #9ca3af; word-break: break-all; line-height: 1.4;
+    }
+    /* ── Risk signals ── */
+    .signal-list { list-style: none; margin: 4px 0; }
+    .signal-list li {
+      padding: 8px 0 8px 12px;
+      border-left: 2px solid #e5e7eb;
+      margin-bottom: 6px;
+    }
+    .signal-head {
+      font-size: 12.5px; font-weight: 600; color: #111827;
+      display: flex; justify-content: space-between; gap: 10px; align-items: baseline;
+    }
+    .signal-date { font-size: 10.5px; font-weight: 400; color: #9ca3af; white-space: nowrap; }
+    .signal-desc { font-size: 11.5px; color: #4b5563; margin-top: 2px; }
+    .signal-src  { font-size: 10px; margin-top: 3px; word-break: break-all; }
     /* ── Source link ── */
     .source-link { color: #1d4ed8; }
     /* ── Notes ── */
@@ -288,7 +372,7 @@ window.REPORT = (function () {
     <div class="summary-card">
       <div class="summary-card-label">Political Risk</div>
       <div class="summary-card-value" style="color:${_esc(riskColor)}">${_esc(riskLabel)}</div>
-      <div class="summary-card-sub">${riskScore != null ? "Score: " + _esc(String(riskScore)) + " / 4" : "Insufficient data"}</div>
+      <div class="summary-card-sub">${riskScore != null ? "Score: " + _esc(String(riskScore)) + " / " + RISK_MAX : "No documented signals — not scored"}</div>
     </div>
     <div class="summary-card">
       <div class="summary-card-label">Water Stress</div>
@@ -305,18 +389,26 @@ window.REPORT = (function () {
       <div class="risk-item">
         <div class="risk-item-label">Political Risk</div>
         <div class="risk-item-value" style="color:${_esc(riskColor)}">${_esc(riskLabel)}</div>
+        <div class="risk-item-note">${riskScore != null
+          ? `Score ${_esc(String(riskScore))} of ${RISK_MAX}${riskConf ? ` · ${_esc(_titleCase(riskConf))} confidence` : ""}`
+          : "No political-risk signals are documented for this county, so it is not scored. Absence of a score is not evidence of low risk."}</div>
         ${riskSummary ? `<div class="risk-item-note">${_esc(riskSummary)}</div>` : ""}
       </div>
       <div class="risk-item">
         <div class="risk-item-label">Water Stress</div>
         <div class="risk-item-value" style="color:${_esc(waterColor)}">${_esc(waterLabel)}</div>
-        <div class="risk-item-note">${waterIdx != null ? "Index: " + _esc(String(waterIdx)) + " / 4 (USGS Water Supply Stress Index)" : "No water stress data available for this county."}</div>
+        <!-- Attribution matches the _sources/_disclaimer in data/water_stress.json.
+             This was previously credited solely to a "USGS Water Supply Stress
+             Index", which is not what the dataset is. -->
+        <div class="risk-item-note">${waterIdx != null
+          ? "Index: " + _esc(String(waterIdx)) + " / 4 — approximate, derived from WRI Aqueduct, USGS water-use reports and EPA drought indicators. County-level granularity is estimated."
+          : "No water stress data available for this county."}</div>
       </div>
     </div>
     ${risk?.signals?.length ? `
     <div class="section">
-      <strong>Risk Signals:</strong>
-      <ul class="policy-list">${(risk.signals || []).map(sig => `<li>${_esc(sig)}</li>`).join("")}</ul>
+      <h3 class="sub-title">Documented Risk Signals (${risk.signals.length})</h3>
+      <ul class="signal-list">${risk.signals.map(_signalItem).join("")}</ul>
     </div>` : ""}
   </section>
 
@@ -337,6 +429,41 @@ window.REPORT = (function () {
   </div>
 </body>
 </html>`;
+  }
+
+  /* Signals are objects — {type, label, description, detected_date,
+     source_url} — so passing one to _esc() printed "[object Object]" in every
+     report. Each one carries its own citation, which belongs in the output. */
+  function _signalItem(sig) {
+    if (sig == null) return "";
+    if (typeof sig === "string") return `<li>${_esc(sig)}</li>`;
+    const title = sig.label || _titleCase(String(sig.type || "").replace(/_/g, " ")) || "Signal";
+    const when  = sig.detected_date ? _fmtDate(sig.detected_date) : "";
+    return `<li>
+      <div class="signal-head">${_esc(title)}${when ? `<span class="signal-date">${_esc(when)}</span>` : ""}</div>
+      ${sig.description ? `<div class="signal-desc">${_esc(sig.description)}</div>` : ""}
+      ${sig.source_url ? `<div class="signal-src"><a href="${_esc(sig.source_url)}" class="source-link" target="_blank" rel="noopener noreferrer">${_esc(sig.source_url)}</a></div>` : ""}
+    </li>`;
+  }
+
+  function _facilityTier(tier) {
+    if (tier == null || tier === "") return "—";
+    return FACILITY_TIER_LABELS[Number(tier)] || String(tier);
+  }
+
+  function _titleCase(s) {
+    return String(s || "").replace(/\b[a-z]/g, ch => ch.toUpperCase());
+  }
+
+  /* Dates in the dataset are ISO yyyy-mm-dd. Parsing them with new Date()
+     treats them as UTC and can render the previous day in western timezones,
+     so format the parts directly. */
+  function _fmtDate(iso) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso || ""));
+    if (!m) return String(iso || "");
+    const MONTHS = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"];
+    return `${MONTHS[Number(m[2]) - 1]} ${Number(m[3])}, ${m[1]}`;
   }
 
   function _esc(s) {

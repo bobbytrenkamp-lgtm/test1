@@ -70,8 +70,14 @@ window.ZONING_MAP = (function () {
 
   /* ── Layer build ── */
 
-  async function _buildZoningLayer(jurisdictionId) {
-    /* Try loading the GeoJSON geometry file for this jurisdiction */
+  async function _buildZoningLayer(jurisdictionId, record) {
+    /* The normalized jurisdiction record already states whether polygon
+       geometry exists. Consulting it first avoids a request that is certain to
+       404 — data/zoning/geometry/ is currently empty, so every activation of
+       the zoning layer logged a failed fetch before falling back to the
+       district browser. The fallback was always correct; the noise was not. */
+    if (record && record.geometry_available === false) return null;
+
     const url = `data/zoning/geometry/${jurisdictionId}.geojson`;
     let geojson;
     try {
@@ -147,7 +153,13 @@ window.ZONING_MAP = (function () {
       _zoningGeoLayer = null;
     }
 
-    const layer = await _buildZoningLayer(jid);
+    /* Cached after the first load; handleCountySelect() needs it regardless. */
+    let record = window.ZONING.getCachedByFips?.(fips) || null;
+    if (!record) {
+      try { record = await window.ZONING.loadByFips(fips); } catch { record = null; }
+    }
+
+    const layer = await _buildZoningLayer(jid, record);
     if (!layer) {
       /* No geometry file — still open panel in district-browser mode */
       _openPanel();

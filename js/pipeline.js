@@ -520,6 +520,13 @@ window.PIPELINE = (function () {
       medium: { pips: 2, label: "Medium confidence",  cls: "filled-medium" },
       low:    { pips: 1, label: "Low confidence",     cls: "filled-low" },
     };
+    /* confidence_tier is the numeric provenance tier from
+       data/run_quality_report.py (1 company-official … 5 news/unverified), so
+       the string lookup below never matched and every record showed "Medium
+       confidence". Map the numbers first; note that a HIGHER tier is WORSE. */
+    const NUMERIC = { 1: "high", 2: "high", 3: "medium", 4: "medium", 5: "low" };
+    const n = Number(tier);
+    if (Number.isFinite(n) && NUMERIC[n]) tier = NUMERIC[n];
     const t = tiers[String(tier).toLowerCase()] || tiers.medium;
     const pips = [1,2,3].map(i =>
       `<div class="pl-conf-pip ${i <= t.pips ? t.cls : ''}"></div>`
