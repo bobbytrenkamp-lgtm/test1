@@ -655,3 +655,33 @@
     transition: none;
   }
 }
+
+/* ── Accounts-unavailable notice ──
+   Shown instead of the credential form when Supabase is not configured. A
+   working-looking form with no backend would be a fake login; this states the
+   situation and confirms nothing is lost by not having an account. */
+.auth-unconfigured {
+  padding: 4px 0 2px;
+}
+.auth-unconfigured-title {
+  font-size: 15px;
+  font-weight: 650;
+  margin: 0 0 10px;
+  color: var(--text);
+}
+.auth-unconfigured-body {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+.auth-unconfigured-note {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  opacity: 0.8;
+  margin: 0 0 16px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.auth-unconfigured .auth-unconfigured-close { width: 100%; }
