@@ -1,0 +1,79 @@
+name: Check Source Link Health
+
+# The site claims policy records are "verified from primary government sources"
+# and links out to them. A validation run found roughly two in five of those
+# citations unreachable. This checks them on a rolling basis and records a
+# Wayback fallback so a moved page still has a readable citation.
+#
+# Runs weekly, in slices, so no host is hammered and the whole corpus is
+# revisited roughly monthly. Never modifies map_data.json — link health is
+# written to its own derived file.
+
+on:
+  schedule:
+    - cron: "17 4 * * 1"        # Mondays, 04:17 UTC
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Max URLs to check this run (0 = all)"
+        required: false
+        default: "600"
+      max_age_days:
+        description: "Skip URLs checked within this many days"
+        required: false
+        default: "14"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: source-link-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check citation links
+        run: |
+          python data/check_source_links.py \
+            --limit "${{ github.event.inputs.limit || 600 }}" \
+            --max-age-days "${{ github.event.inputs.max_age_days || 14 }}" \
+            --workers 8 \
+            --timeout 15
+
+      # The script exits 2 and writes nothing if every request failed at the
+      # connection layer, which means the runner's network is broken rather
+      # than the government sites. Treat that as a failed run, not a data update.
+      - name: Commit link health
+        run: |
+          if [ ! -f data/source_link_health.json ]; then
+            echo "No health file produced — nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/source_link_health.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git commit -m "chore: refresh source link health [${TIMESTAMP}] [skip ci]"
+            git push origin HEAD
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ -f data/source_link_health.json ]; then
+            python data/check_source_links.py --report-only
+          fi

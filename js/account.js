@@ -84,12 +84,69 @@
   // ── Auth modal ────────────────────────────────────────────────────
 
   function openAuthModal(page) {
+    /* When Supabase is not configured there is no backend to authenticate
+       against. Showing a working-looking credential form would invite people to
+       type a real password into something that cannot do anything with it —
+       a fake login in all but intent. Say so plainly instead. */
+    if (window.AUTH && !window.AUTH.configured) {
+      showUnconfiguredNotice();
+      authModalOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      var closeBtn = authModal.querySelector('.auth-unconfigured-close');
+      if (closeBtn) setTimeout(function () { closeBtn.focus(); }, 80);
+      return;
+    }
     showModalPage(page || 'signin');
     clearModalMessages();
     authModalOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     var firstInput = authModal.querySelector('.auth-page.active input');
     if (firstInput) setTimeout(function () { firstInput.focus(); }, 80);
+  }
+
+  /* Replaces the credential form with an honest explanation. Built with DOM
+     nodes and textContent — no user data is involved, but this keeps the auth
+     surface free of innerHTML entirely. */
+  function showUnconfiguredNotice() {
+    authModal.querySelectorAll('.auth-page').forEach(function (el) {
+      el.classList.remove('active');
+    });
+    var existing = authModal.querySelector('#auth-page-unconfigured');
+    if (existing) { existing.classList.add('active'); return; }
+
+    var pg = document.createElement('div');
+    pg.className = 'auth-page active auth-unconfigured';
+    pg.id = 'auth-page-unconfigured';
+
+    var h = document.createElement('p');
+    h.className = 'auth-unconfigured-title';
+    h.textContent = 'Accounts are not enabled on this deployment';
+    pg.appendChild(h);
+
+    var body = document.createElement('p');
+    body.className = 'auth-unconfigured-body';
+    body.textContent =
+      'This site is running without an authentication backend, so there is '
+      + 'nothing to sign in to. Everything on the platform works without an '
+      + 'account — your watchlist, notes, and preferences are saved in this '
+      + 'browser.';
+    pg.appendChild(body);
+
+    var note = document.createElement('p');
+    note.className = 'auth-unconfigured-note';
+    note.textContent = 'Site owner: see SUPABASE_SETUP.md to enable accounts.';
+    pg.appendChild(note);
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'auth-btn-primary auth-unconfigured-close';
+    btn.textContent = 'Got it';
+    btn.addEventListener('click', closeAuthModal);
+    pg.appendChild(btn);
+
+    authModal.appendChild(pg);
+    var title = document.getElementById('auth-modal-title');
+    if (title) title.textContent = 'Accounts unavailable';
   }
 
   function closeAuthModal() {

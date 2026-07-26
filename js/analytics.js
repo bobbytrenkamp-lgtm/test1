@@ -2210,6 +2210,9 @@ function renderDataQualityPanel() {
         ${through ? `<p class="dq-through">Policy data current through
           <strong>${escHtml(String(through).slice(0, 10))}</strong> &middot;
           manually researched, not automatically updated.</p>` : ''}
+        <p class="dq-through">Citation links are re-checked weekly. Where a source has
+          moved, the county page links to an archived copy alongside the original,
+          and flags links that did not respond when last checked.</p>
         ${disclaimers.length ? `
           <div class="dq-disc">
             <div class="dq-disc-h">Limitations you should read before relying on this data</div>
@@ -2400,7 +2403,7 @@ async function _fillCapacityIntelligence() {
 
   let facilities;
   try {
-    facilities = await fetch("data/facilities_master.json").then(r => r.json());
+    facilities = await fetch("data/facilities_index.json").then(r => r.json());
   } catch (_) {
     container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Facility data unavailable.</p>`;
     return;
@@ -2498,7 +2501,7 @@ async function _fillCapacityIntelligence() {
 
     <div class="cap-states-title">Top States by Known Capacity</div>
     <div class="cap-states-list">${stateRows}</div>
-    <p class="cap-note">Known capacity only — many facilities do not publicly disclose MW figures. Total tracked: ${escHtml(String(facilities.length))} facilities. Source: facilities_master.json pipeline run 2026-07-13.</p>
+    <p class="cap-note">Known capacity only — many facilities do not publicly disclose MW figures. Total tracked: ${escHtml(String(facilities.length))} facilities, aggregated from public sources via automated pipeline and not independently verified.</p>
   `;
 }
 

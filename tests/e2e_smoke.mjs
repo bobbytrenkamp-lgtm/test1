@@ -62,7 +62,8 @@ await run('Home / critical path', async (p, reqs) => {
   await p.waitForTimeout(1500);   // let the KPI count-up animation settle
   const atPaint = [...new Set(reqs)].sort();
   console.log('requested by first paint :', atPaint.join(', '));
-  console.log('facilities_master on home:', atPaint.includes('facilities_master.json') ? 'YES (4.85MB waste!)' : 'no (good)');
+  const facOnHome = atPaint.filter(f => f.startsWith('facilities_'));
+  console.log('facility files on home   :', facOnHome.length ? `${facOnHome} <-- WASTE` : 'none (good)');
   console.log('secondary in flight early :', atPaint.includes('sample_layers.json') ? 'yes (parallel, by design)' : 'no');
   console.log('KPIs                     :', await p.$$eval('.home-kpi-num', n => n.map(x => x.textContent.trim()).slice(0, 5)));
   console.log('KPI labels               :', await p.$$eval('.home-kpi-label', n => n.map(x => x.textContent.trim()).slice(0, 5)));
@@ -353,6 +354,53 @@ await run('Favicon + header branding', async (p) => {
   });
   console.log('header preserved    :', `logo=${hdr.logo} polygon=${hdr.polygon} ` +
     `wordmark="${hdr.wordmark}" tagline="${hdr.tagline}"`);
+});
+
+/* 12. Accounts when Supabase is unconfigured. Showing a working-looking
+       credential form with no backend invites people to type a real password
+       into something that cannot use it — a fake login in all but intent. */
+await run('Auth degradation (unconfigured)', async (p) => {
+  await p.goto(URL, { waitUntil: 'domcontentloaded' });
+  await p.waitForTimeout(3000);
+
+  const cfg = await p.evaluate(() => ({
+    configured: !!(window.AUTH && window.AUTH.configured),
+    state: window.AUTH && window.AUTH.state,
+  }));
+  console.log('AUTH.configured        :', cfg.configured, '| state:', cfg.state);
+
+  if (cfg.configured) {
+    console.log('  Supabase IS configured — skipping the unconfigured-path checks');
+    return;
+  }
+
+  await p.click('#auth-btn');
+  await p.waitForTimeout(800);
+
+  console.log('shows honest notice    :', await p.isVisible('#auth-page-unconfigured'));
+  const inputs = await p.evaluate(() =>
+    [...document.querySelectorAll('#auth-modal input')].filter(i => i.offsetParent !== null).length);
+  console.log('visible credential inputs:', inputs, inputs === 0 ? '(correct)' : '<-- FAKE LOGIN');
+  console.log('modal title            :', await p.textContent('#auth-modal-title'));
+
+  await p.click('.auth-unconfigured-close');
+  await p.waitForTimeout(500);
+  // opacity-based close: assert the state class, not paint visibility.
+  const closed = await p.evaluate(() => {
+    const ov = document.getElementById('auth-modal-overlay');
+    return { open: ov.classList.contains('open'), pe: getComputedStyle(ov).pointerEvents };
+  });
+  console.log('closed                 :', !closed.open, '| pointer-events:', closed.pe);
+
+  // The app must stay fully operable — a closed overlay must not eat clicks.
+  await p.click('#tab-map');
+  await p.waitForTimeout(1200);
+  console.log('app still operable     :', await p.evaluate(() => location.hash) === '#map');
+
+  // Everything must work without an account.
+  const worksSignedOut = await p.evaluate(() =>
+    !!(window.WATCHLIST && window.WATCHLIST.add('51107') && window.WATCHLIST.has('51107')));
+  console.log('watchlist works signed out:', worksSignedOut);
 });
 
 await b.close();

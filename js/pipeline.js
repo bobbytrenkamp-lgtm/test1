@@ -1,12 +1,13 @@
 /* ── Data Center Project Pipeline ── */
-/* Lazy-loads data/facilities_master.json and renders 3,800+ data center
-   projects as either a searchable table or a geographic map, with a shared
-   filter set and a detail side panel. Rows are windowed; the map plots the
-   ~99.7% of facilities that carry usable coordinates. */
+/* Loads data/facilities_index.json — the slim, UI-only projection of
+   facilities_master.json (66% smaller), built by data/build_facilities_index.py —
+   and renders 3,800+ data center projects as either a searchable table or a
+   geographic map, sharing one filter set and a detail side panel. Rows are
+   windowed; the map plots the ~99.7% of facilities with usable coordinates. */
 window.PIPELINE = (function () {
 
   /* ── State ── */
-  let _data      = null;     // raw array from facilities_master.json
+  let _data      = null;     // raw array from facilities_index.json
   let _filtered  = [];       // currently displayed rows
   let _selected  = null;     // active facility record
   let _sortKey   = "name";
@@ -162,7 +163,7 @@ window.PIPELINE = (function () {
   /* ── Load data ── */
   async function _loadData() {
     try {
-      const r = await fetch("data/facilities_master.json");
+      const r = await fetch("data/facilities_index.json");
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       _data = await r.json();
       _populateStateFilter();
@@ -786,7 +787,7 @@ window.PIPELINE = (function () {
   async function stats() {
     if (!_data) {
       try {
-        const r = await fetch("data/facilities_master.json");
+        const r = await fetch("data/facilities_index.json");
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         _data = await r.json();
       } catch (_) {
@@ -836,7 +837,7 @@ window.PIPELINE = (function () {
   async function getByFips(fips) {
     if (!_data) {
       try {
-        const r = await fetch("data/facilities_master.json");
+        const r = await fetch("data/facilities_index.json");
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         _data = await r.json();
       } catch (_) {
