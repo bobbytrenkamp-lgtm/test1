@@ -324,15 +324,42 @@ function createTVWidget(container, widgetName, config) {
   container.appendChild(s);
 }
 
+/* Widget containers vary from a ~44px ticker strip to a 520px chart. A single
+   fixed-height error block overflowed the short ones and visually collided with
+   the sections below it, so the error is sized from the container it lands in
+   and is absolutely positioned to fill it — it can never spill. */
 function _tvShowError(container, widgetName, config) {
+  // A decorative ticker strip that fails should recede, not shout. Hiding it
+  // avoids a broken-looking band across the top of the page.
+  if (container.id === 'stocks-tape') {
+    container.hidden = true;
+    return;
+  }
+
+  container.classList.add('tv-has-error');
   container.innerHTML =
     '<div class="tv-error">' +
-    '<div class="tv-error-icon">📡</div>' +
-    '<div class="tv-error-msg">Chart unavailable</div>' +
-    '<div class="tv-error-sub">TradingView could not be reached. Check your connection and try again.</div>' +
+    '<div class="tv-error-icon" aria-hidden="true">📡</div>' +
+    '<div class="tv-error-msg">Data unavailable</div>' +
+    '<div class="tv-error-sub">TradingView could not be reached. ' +
+    'Market data is provided by TradingView and delayed 15 minutes.</div>' +
     '<button class="tv-retry-btn" type="button">Retry</button>' +
     '</div>';
+
+  /* Decide the layout AFTER the browser has laid the container out. Measuring
+     synchronously here reads 0 when the widget failed before first layout, so
+     a short strip such as #stocks-symbol-info kept the tall variant and had
+     its text clipped. Below ~140px there is no room for icon + heading + body
+     + button, so those collapse to a single line. */
+  const el = container.querySelector('.tv-error');
+  requestAnimationFrame(() => {
+    if (!el.isConnected) return;
+    const h = container.getBoundingClientRect().height;
+    if (h > 0 && h < 140) el.classList.add('tv-error-compact');
+  });
+
   container.querySelector('.tv-retry-btn')?.addEventListener('click', () => {
+    container.classList.remove('tv-has-error');
     createTVWidget(container, widgetName, config);
   });
 }
@@ -529,18 +556,29 @@ function renderWatchlist() {
     return;
   }
 
+  /* Rows carry the full company name, not the abbreviated `shortName`
+     ("Applied Matls", "Texas Instrs") which read as truncation bugs. The
+     sidebar has room for the real names, and CSS ellipsis covers the rare
+     overflow. The category moves to a sticky group header rather than
+     repeating on every row — with 14 consecutive "Compute & Semiconductors"
+     labels it was noise, not information. */
+  let lastCategory = null;
   list.innerHTML = companies.map(c => {
     const isFav = favs.includes(c.ticker);
     const isSel = c.ticker === selectedSymbol;
-    return `<li class="stocks-wl-row${isSel ? ' selected' : ''}" data-ticker="${escHtml(c.ticker)}">
-      <button class="stocks-wl-main" data-ticker="${escHtml(c.ticker)}" aria-current="${isSel ? 'true' : 'false'}" type="button">
+    let header = '';
+    if (c.category !== lastCategory) {
+      lastCategory = c.category;
+      header = `<li class="stocks-wl-group" role="presentation">${escHtml(c.category)}</li>`;
+    }
+    return `${header}<li class="stocks-wl-row${isSel ? ' selected' : ''}" data-ticker="${escHtml(c.ticker)}">
+      <button class="stocks-wl-main" data-ticker="${escHtml(c.ticker)}" aria-current="${isSel ? 'true' : 'false'}" type="button" title="${escHtml(c.name)} (${escHtml(c.symbol)})">
         <span class="stocks-wl-symbol">${escHtml(c.symbol)}</span>
         <span class="stocks-wl-info">
-          <span class="stocks-wl-name">${escHtml(c.shortName)}</span>
-          <span class="stocks-wl-cat">${escHtml(c.category)}</span>
+          <span class="stocks-wl-name">${escHtml(c.name)}</span>
         </span>
       </button>
-      <button class="stocks-wl-fav${isFav ? ' is-fav' : ''}" data-ticker="${escHtml(c.ticker)}" aria-label="${isFav ? 'Remove from favorites' : 'Add to favorites'}" type="button">★</button>
+      <button class="stocks-wl-fav${isFav ? ' is-fav' : ''}" data-ticker="${escHtml(c.ticker)}" aria-label="${isFav ? 'Remove ' + escHtml(c.symbol) + ' from favorites' : 'Add ' + escHtml(c.symbol) + ' to favorites'}" type="button">★</button>
     </li>`;
   }).join('');
 
@@ -798,6 +836,9 @@ function renderNewsTab(container, ticker) {
 function renderTickerTape() {
   const el = document.getElementById('stocks-tape');
   if (!el) return;
+  // _tvShowError() hides the strip when the widget fails; restore it so a
+  // re-render (theme change, tab re-entry) gets another chance to load.
+  el.hidden = false;
   const symbols = AI_COMPANIES.slice(0, 30).map(c => ({ proName: c.ticker, title: c.symbol }));
   createTVWidget(el, 'ticker-tape', {
     symbols, showSymbolLogo: true, isTransparent: true,

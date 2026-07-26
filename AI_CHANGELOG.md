@@ -5,6 +5,44 @@
 Date: 2026-07-26
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: AI Stocks page — fix clipping and layout collapse
+
+## Summary
+Reported symptom was words being clipped off. Three distinct causes, one of them a layout bug that was breaking the whole page.
+
+## Root cause 1 — workspace collapsed to height:0 (the significant one)
+`#stocks-workspace` had `flex: 1` inside `#stocks-view`, which is a scrolling column flex container. `flex: 1` implies `flex-basis: 0`, and there is no free space to grow into when the page already overflows — so the workspace computed to **height: 0px** while holding ~950px of content.
+
+That content overflowed its zero-height box and painted directly over every section below it. Measured overlaps at 1440px:
+- `stocks-chart` x `stocks-heatmap` — 354px
+- `stocks-chart` x `stocks-movers` — 121px
+- `stocks-symbol-info` x `stocks-heatmap` — 79px
+
+This is why the original screenshot showed two "Chart unavailable" blocks stacked on each other. Fixed with `flex: 0 0 auto` in both the base rule and the desktop grid rule, so the workspace sizes to its content and the sections stack.
+
+## Root cause 2 — error blocks larger than their containers
+`.tv-error` rendered at a fixed ~190px regardless of where it landed, from a 44px ticker strip to a 520px chart. In short containers the content was clipped by `overflow: hidden` — literally cutting words off.
+
+- `.tv-error` is now absolutely positioned to fill its container, so it can never spill
+- The positioning is keyed on `.tv-has-error`, not `.tv-widget-wrap` — `#stocks-chart` does not carry that class, and without a positioned parent the absolute error escaped to the page and overlapped other sections (caught on the first fix attempt)
+- Containers under ~140px get a single-line compact variant
+- Compactness is decided in `requestAnimationFrame`, not synchronously: when a widget fails before first layout `clientHeight` reads 0, so the tall variant was being kept and clipped anyway
+- A failed ticker tape now hides rather than showing a large error band across the top
+
+## Root cause 3 — pre-truncated names in the data
+The watchlist rendered `shortName`, which contains hand-abbreviated values: "Applied Matls", "Texas Instrs", "NXP Semi", "SuperMicro". These read as truncation bugs. Rows now use the full `name` field ("Applied Materials", "Texas Instruments", "NXP Semiconductors"), with the existing CSS ellipsis as the safety net for genuine overflow.
+
+## Polish
+The per-row category label repeated the same string on up to 14 consecutive rows. It is now a single sticky group header per category (8 headers), which is both cleaner and how a real terminal presents a grouped instrument list.
+
+## Verification
+Measured at 1440 / 1180 / 900 / 390: zero clipped text nodes, zero section overlaps, no horizontal body scroll, no JS errors. `tests/e2e_smoke.mjs` gains a tenth scenario asserting all of that plus a non-collapsed workspace height, so the collapse cannot silently return. 200 unit tests still pass.
+
+---
+
+Date: 2026-07-26
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Final Phase 3 item (pipeline map view) + metadata drift fix
 
 ## Summary

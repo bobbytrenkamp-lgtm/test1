@@ -235,4 +235,62 @@ await run('Pipeline map view', async (p) => {
   console.log('re-entered map           :', await p.isVisible('#pipeline-map-wrap'));
 });
 
+/* 10. AI Stocks layout — this page had a workspace collapsed to height:0 whose
+       content painted over every section below it, and error blocks that
+       overflowed short containers and clipped their own text. Both are
+       layout-only failures that jsdom cannot see. */
+await run('AI Stocks layout', async (p) => {
+  for (const [w, h, label] of [[1440, 950, 'desktop'], [1180, 900, 'small-desktop'], [900, 800, 'tablet']]) {
+    await p.setViewportSize({ width: w, height: h });
+    await p.goto(URL, { waitUntil: 'domcontentloaded' });
+    await p.waitForTimeout(2200);
+    await p.click('#tab-stocks');
+    await p.waitForTimeout(4500);
+
+    const r = await p.evaluate(() => {
+      const clipped = [];
+      document.querySelectorAll('#stocks-view *').forEach(el => {
+        const cs = getComputedStyle(el);
+        if (cs.display === 'none' || cs.visibility === 'hidden') return;
+        const own = [...el.childNodes].filter(n => n.nodeType === 3)
+          .map(n => n.textContent.trim()).join('').trim();
+        if (!own) return;
+        if (el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1) {
+          clipped.push((el.className || el.tagName) + ' :: ' + own.slice(0, 32));
+        }
+      });
+      const v = document.getElementById('stocks-view');
+      const secs = [...v.children]
+        .filter(k => getComputedStyle(k).position !== 'fixed' && k.getBoundingClientRect().height > 0)
+        .map(k => { const b = k.getBoundingClientRect(); return { id: k.id, t: b.top, b: b.bottom }; });
+      const overlaps = [];
+      for (let i = 0; i < secs.length; i++) {
+        for (let j = i + 1; j < secs.length; j++) {
+          if (Math.min(secs[i].b, secs[j].b) - Math.max(secs[i].t, secs[j].t) > 1) {
+            overlaps.push(secs[i].id + ' x ' + secs[j].id);
+          }
+        }
+      }
+      const ws = document.getElementById('stocks-workspace');
+      return {
+        clipped, overlaps,
+        workspaceH: ws ? Math.round(ws.getBoundingClientRect().height) : 0,
+        groups: document.querySelectorAll('.stocks-wl-group').length,
+        firstNames: [...document.querySelectorAll('.stocks-wl-name')].slice(0, 3).map(n => n.textContent),
+      };
+    });
+
+    console.log(`  ${label.padEnd(14)} clipped=${r.clipped.length} overlaps=${r.overlaps.length} ` +
+      `workspaceH=${r.workspaceH} categoryHeaders=${r.groups}` +
+      (r.workspaceH < 100 ? '  <-- WORKSPACE COLLAPSED' : '') +
+      (r.clipped.length || r.overlaps.length ? '  <-- REGRESSION' : ''));
+    if (r.clipped.length) console.log('     clipped:', r.clipped.slice(0, 3));
+    if (r.overlaps.length) console.log('     overlaps:', r.overlaps.slice(0, 3));
+    if (label === 'desktop') {
+      // Full company names, not the abbreviated shortName that read as clipping.
+      console.log('     names:', r.firstNames.join(' | '));
+    }
+  }
+});
+
 await b.close();
