@@ -269,6 +269,7 @@ def main():
         del urls[gone]
 
     health["_schema"] = "source_link_health_v1"
+    health.pop("_note", None)          # the shipped placeholder note is obsolete once real data exists
     health["checked_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     health["summary"] = summarise(health, by_url, textual_only)
     health["counties_with_textual_only_citations"] = sorted(textual_only)

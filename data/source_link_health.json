@@ -1,0 +1,15 @@
+{
+ "_schema": "source_link_health_v1",
+ "_note": "Citation link reachability, produced by data/check_source_links.py and refreshed weekly by .github/workflows/check_source_links.yml. This file ships empty so the frontend does not 404 on first load; until the workflow has run, every citation renders unannotated. An empty 'urls' map means NOT CHECKED YET, which is deliberately different from 'checked and healthy'.",
+ "checked_at": null,
+ "summary": {
+  "total_citation_urls": 1990,
+  "checked": 0,
+  "reachable": 0,
+  "unreachable": 0,
+  "unreachable_pct": 0,
+  "unreachable_with_archive": 0,
+  "counties_with_textual_only_citations": 27
+ },
+ "urls": {}
+}
