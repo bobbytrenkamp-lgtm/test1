@@ -437,6 +437,44 @@ window.APP_CONFIG = {
 window._applyTheme(theme);  // 'dark' | 'light' — triggers full Leaflet style refresh
 ```
 
+## Module layout (map.js is being broken up)
+
+`js/map.js` was 8,347 lines; two cohesive blocks have been extracted verbatim:
+- `js/news.js` (921) — AI News feed, filtering, article detail
+- `js/compare.js` (682) — county/facility comparison panel
+
+map.js is now 6,744 lines. Classic scripts share one global scope, so extraction is pure
+relocation: cross-module calls resolve by bare name and need no rewiring. Load order in
+index.html is map.js -> news.js -> compare.js.
+
+**Trap worth knowing:** `formatDate()` lives in news.js but is called by `js/stocks.js`.
+That dependency predates the split. Check for cross-file callers before moving anything else.
+
+Remaining large blocks still in map.js, in rough size order: Advanced Filters Panel (~350),
+Map init (~412), Nav Tabs (~300), Legend (~287), Search (~276), Detail sheet swipe (~270).
+
+## Citation link health
+
+`data/check_source_links.py` checks all 1,990 citation URLs and records reachability plus a
+Wayback fallback into `data/source_link_health.json`. Runs weekly in CI in 600-URL slices
+(`.github/workflows/check_source_links.yml`); network is required so it cannot run in a sandbox.
+
+**Safety property:** if every check in a run fails at the connection layer with no HTTP status,
+the script aborts and writes nothing — that state means the runner's network broke, not that
+every government host died. Writing it would mark thousands of live citations dead.
+
+The shipped file has an empty `urls` map, which means NOT CHECKED YET — deliberately distinct
+from "checked and healthy". `js/jurisdiction.js` renders citations unannotated when a URL has no
+record; absence of data is never presented as a problem.
+
+## Facilities: index vs master
+
+The browser loads `data/facilities_index.json` (1.9 MB), NOT `facilities_master.json` (5.5 MB).
+The index is the 33 fields the UI actually renders, built by `data/build_facilities_index.py`.
+`--check` re-derives which fields the JS reads and fails if the curated list drifted, so adding a
+field to a template without adding it to the index is caught in CI. Wired into run_all.sh and
+update_facilities.yml. The master file stays the source of truth for the pipeline.
+
 ## Data Loading — critical vs deferred (performance)
 
 `loadCoreData()` fetches ONLY what Home needs to paint: `map_data.json` and `ai_news.json`.
