@@ -2403,8 +2403,14 @@ async function toggleDensityMode() {
         fetch("data/data_centers.json"),
         fetch("data/ai_campuses.json"),
       ]);
-      const dcs    = await dcRes.json();
-      const camps  = await campRes.json();
+      // Both files are objects with the records nested under a key, not bare
+      // arrays — spreading the raw response threw "dcs is not iterable" and the
+      // Infrastructure Density view mode failed on every click. js/analytics.js
+      // already unwraps these correctly; this now matches.
+      const dcJson   = await dcRes.json();
+      const campJson = await campRes.json();
+      const dcs   = Array.isArray(dcJson)   ? dcJson   : (dcJson.data_centers  || []);
+      const camps = Array.isArray(campJson) ? campJson : (campJson.ai_campuses || []);
       const cache  = {};
       for (const f of [...dcs, ...camps]) {
         const fips = f.fips || f.county_fips;

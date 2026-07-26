@@ -359,6 +359,127 @@ await run('Favicon + header branding', async (p) => {
 /* 12. Accounts when Supabase is unconfigured. Showing a working-looking
        credential form with no backend invites people to type a real password
        into something that cannot use it — a fake login in all but intent. */
+/* 13. The map's own subsystems — GIS view modes, command palette, results
+   panel, zoning, workspaces. None of these were reachable from jsdom, and a
+   survey here found the Infrastructure Density mode had never worked (both
+   source files are objects, not the arrays the code spread). Note the bare
+   identifiers below: map.js is a classic script, so its top-level `const`
+   bindings (layerState, leafletMap, selectedFips) live in the global lexical
+   environment and are NOT properties of window — reaching for window.layerState
+   returns undefined and quietly reports a false pass. */
+await run('Map subsystems (GIS modes, palette, zoning, workspaces)', async (p) => {
+  // The GIS toolbar collapses on a narrow map pane, so give this one a desktop
+  // viewport rather than run()'s 1280x720 default.
+  await p.setViewportSize({ width: 1600, height: 1000 });
+  // Toggling the zoning layer used to fetch a geometry file the dataset
+  // records as unavailable, 404ing every time. Watch for local misses.
+  const misses = [];
+  p.on('response', r => {
+    if (r.status() >= 400 && r.url().startsWith('http://localhost')) {
+      misses.push(r.status() + ' ' + r.url().split(':8099')[1]);
+    }
+  });
+  await p.goto(URL, { waitUntil: 'domcontentloaded' });
+  await p.waitForTimeout(2500);
+  await p.click('#tab-map');
+  await p.waitForFunction(() => document.querySelectorAll('#leaflet-map path').length > 100, { timeout: 45000 });
+  await p.waitForTimeout(2000);
+
+  /* View modes. Density regressed silently for the entire life of the feature;
+     assert the cache actually filled, not just that the button looks pressed. */
+  for (const id of ['gis-infrastructure-density', 'gis-suitability']) {
+    await p.click('#' + id);
+    await p.waitForTimeout(1800);
+    const pressed = await p.getAttribute('#' + id, 'aria-pressed');
+    console.log(`${id.padEnd(28)}: aria-pressed=${pressed}`);
+    if (id === 'gis-infrastructure-density') {
+      const counties = await p.evaluate(() => {
+        try { return _densityCache ? Object.keys(_densityCache).length : 0; }
+        catch (e) { return 'no cache: ' + e.message.slice(0, 40); }
+      });
+      console.log('  density counties :', counties, (Number(counties) > 100 ? '(good)' : '<-- BROKEN'));
+    }
+    await p.click('#' + id);           // restore the default restriction view
+    await p.waitForTimeout(600);
+  }
+
+  /* Command palette — real ids are #cmd-palette / #cmd-input. */
+  await p.keyboard.press('Control+k');
+  await p.waitForTimeout(800);
+  console.log('palette opens     :', await p.isVisible('#cmd-input'));
+  await p.fill('#cmd-input', 'loudoun');
+  await p.waitForTimeout(700);
+  console.log('palette results   :', await p.$$eval('#cmd-list [role=option], #cmd-list > *', n => n.length));
+  await p.keyboard.press('Escape');
+  await p.waitForTimeout(400);
+
+  /* Results panel — content is present but the panel starts collapsed. */
+  const rp = await p.evaluate(() => {
+    const el = document.getElementById('results-panel');
+    return el ? { text: el.textContent.replace(/\s+/g, ' ').trim().slice(0, 40) } : 'missing';
+  });
+  console.log('results panel     :', JSON.stringify(rp));
+
+  /* Zoning — districts is a dict keyed by code, not an array. */
+  await p.evaluate(() => selectCounty('51107'));
+  await p.waitForTimeout(2000);
+  console.log('zoning coverage   :', await p.evaluate(() => window.ZONING?.hasCoverage?.('51107')));
+  await p.evaluate(() => setLayerVisible('zoning_districts', true, true));
+  await p.waitForTimeout(2500);
+  console.log('zoning layer on   :', await p.evaluate(() => layerState.zoning_districts));
+  console.log('zoning panel      :', await p.evaluate(() =>
+    document.getElementById('zoning-panel')?.textContent.replace(/\s+/g, ' ').trim().slice(0, 46)));
+  await p.evaluate(() => setLayerVisible('zoning_districts', false, true));
+
+  /* Workspace save/restore round trip: flip a layer, save, flip it back,
+     restore, and confirm the layer came back. */
+  await p.evaluate(() => toggleWorkspaces());
+  await p.waitForTimeout(600);
+  const trip = await p.evaluate(async () => {
+    setLayerVisible('data_centers', true, true);
+    await new Promise(r => setTimeout(r, 500));
+    const input = document.getElementById('workspace-name')
+               || document.querySelector('#workspace-panel input[type=text]');
+    if (input) { input.value = 'e2e-probe'; input.dispatchEvent(new Event('input', { bubbles: true })); }
+    saveCurrentWorkspace();
+    await new Promise(r => setTimeout(r, 400));
+    setLayerVisible('data_centers', false, true);
+    await new Promise(r => setTimeout(r, 400));
+    const off = layerState.data_centers;
+    const btn = [...document.querySelectorAll('#workspace-panel button')]
+      .find(b => /e2e-probe/.test(b.textContent));
+    if (!btn) return { saved: false };
+    btn.click();
+    await new Promise(r => setTimeout(r, 1200));
+    return { saved: true, clearedTo: off, restoredTo: layerState.data_centers };
+  });
+  console.log('workspace round trip:', JSON.stringify(trip),
+    trip.saved && trip.clearedTo === false && trip.restoredTo === true ? '(good)' : '<-- CHECK');
+
+  /* Report generator: assert the content, not just that a window opened. The
+     old version rendered "[object Object]" for every risk signal and dropped
+     every citation because it read field names map_data.json does not use. */
+  const pop = p.context().waitForEvent('page', { timeout: 10000 }).catch(() => null);
+  await p.click('#detail-report-btn');
+  const rep = await pop;
+  if (!rep) { console.log('report window     : DID NOT OPEN'); return; }
+  await rep.waitForLoadState('domcontentloaded').catch(() => {});
+  await new Promise(r => setTimeout(r, 1500));
+  const t = await rep.evaluate(() => document.body.innerText);
+  const junk = (t.match(/\[object Object\]|undefined|NaN/g) || []);
+  console.log('report length     :', t.length, 'chars');
+  console.log('report junk       :', junk.length ? junk.slice(0, 4) + ' <-- BAD' : 'none (good)');
+  console.log('has policy title  :', /Data Center Overlay Zone/.test(t));
+  console.log('has citations     :', /PRIMARY SOURCES \(2\)/.test(t) && /loudoun\.gov/.test(t));
+  console.log('risk scale        :', /Score: 5 \/ 5/.test(t) ? '5 / 5 (correct)' : '<-- WRONG SCALE');
+  console.log('water from full ds:', /Medium-High/.test(t) ? 'yes (correct)' : '<-- SAMPLE DATA');
+  console.log('signals expanded  :', /Organized Political Campaign/.test(t));
+  console.log('facility source   :', /Hand-curated/.test(t) ? 'labelled (good)' : '<-- RAW TIER NUMBER');
+  await rep.close();
+
+  console.log('local 4xx/5xx     :', misses.length ? misses.slice(0, 4) + ' <-- BAD' : 'none (good)');
+});
+
 await run('Auth degradation (unconfigured)', async (p) => {
   await p.goto(URL, { waitUntil: 'domcontentloaded' });
   await p.waitForTimeout(3000);
