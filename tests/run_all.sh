@@ -27,6 +27,7 @@ run "AI companies validator"      python3 data/validate_ai_companies.py
 run "policy pipeline unit tests"  python3 -m pytest tests/test_policy_pipeline.py -q
 run "frontend core (constants + router)" node tests/test_frontend_core.mjs
 run "jurisdiction page (DOM)"     node tests/test_jurisdiction.mjs
+run "watchlist (migration + alerts)" node tests/test_watchlist.mjs
 
 echo ""
 if [ "$status" -eq 0 ]; then

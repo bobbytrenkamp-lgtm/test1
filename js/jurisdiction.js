@@ -91,10 +91,7 @@ window.JURISDICTION = (function () {
     const sevLbl = window.SEVERITY_LABELS[sevKey] || "";
     const sevCol = window.SEVERITY_COLORS[sevKey] || "var(--text-muted)";
 
-    let watched = false;
-    try {
-      watched = new Set(JSON.parse(localStorage.getItem("dc-watchlist-v1") || "[]")).has(fips);
-    } catch (_) {}
+    const watched = !!(window.WATCHLIST && window.WATCHLIST.has(fips));
 
     return `
       <div class="juris-hero">
@@ -244,6 +241,26 @@ window.JURISDICTION = (function () {
       </section>`;
   }
 
+  /* Private notes for a watched county. Only shown once the county is on the
+     watchlist, since the note is stored on the watchlist entry. */
+  function renderNotes(fips) {
+    if (!window.WATCHLIST || !window.WATCHLIST.has(fips)) return "";
+    const entry = window.WATCHLIST.get(fips) || {};
+    return `
+      <section class="juris-card">
+        <h2 class="juris-h2">Your Notes</h2>
+        <textarea class="juris-notes-input" data-juris-notes="${esc(fips)}" rows="4"
+          placeholder="Track board votes, contacts, or why this county matters to you."
+          aria-label="Private notes for this county">${esc(entry.notes || "")}</textarea>
+        <div class="juris-notes-foot">
+          <span class="juris-notes-status" data-juris-notes-status></span>
+          <span class="juris-source-note">Stored in this browser${
+            window.AUTH && window.AUTH.configured
+              ? ", and synced to your account when signed in" : ""}.</span>
+        </div>
+      </section>`;
+  }
+
   function renderContext(fips, county) {
     /* Suitability score, zoning coverage, and cross-links. */
     let scoreBlock = "";
@@ -357,6 +374,7 @@ window.JURISDICTION = (function () {
             </div>
             <div class="juris-col juris-col-side">
               ${renderContext(fips, county)}
+              ${renderNotes(fips)}
               ${renderNewsSection(county)}
             </div>
           </div>
@@ -373,16 +391,41 @@ window.JURISDICTION = (function () {
   function _wire(view) {
     view.querySelectorAll("[data-juris-watch]").forEach(btn => {
       btn.addEventListener("click", () => {
+        if (!window.WATCHLIST) return;
         const fips = btn.dataset.jurisWatch;
-        let list = [];
-        try { list = JSON.parse(localStorage.getItem("dc-watchlist-v1") || "[]"); }
-        catch (_) { list = []; }
-        const set = new Set(list);
-        const on  = !set.has(fips);
-        if (on) set.add(fips); else set.delete(fips);
-        try { localStorage.setItem("dc-watchlist-v1", JSON.stringify([...set])); } catch (_) {}
-        btn.classList.toggle("is-on", on);
-        btn.innerHTML = on ? "&#9733; Watching" : "&#9734; Watch";
+        window.WATCHLIST.toggle(fips);
+        // Re-render so the notes card appears/disappears with watch state.
+        render(fips);
+      });
+    });
+
+    /* Notes autosave — debounced so we are not writing on every keystroke. */
+    view.querySelectorAll("[data-juris-notes]").forEach(area => {
+      const status = view.querySelector("[data-juris-notes-status]");
+      let timer = null;
+      area.addEventListener("input", () => {
+        if (!window.WATCHLIST) return;
+        if (status) status.textContent = "Saving…";
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          window.WATCHLIST.setNotes(area.dataset.jurisNotes, area.value);
+          if (status) {
+            status.textContent = "Saved";
+            setTimeout(() => { if (status.textContent === "Saved") status.textContent = ""; }, 2000);
+          }
+        }, 500);
+      });
+      /* On blur, commit whenever the field differs from what is stored —
+         not just when a debounce is pending. This also catches value changes
+         that arrive without an input event (autofill, some paste paths). */
+      area.addEventListener("blur", () => {
+        if (!window.WATCHLIST) return;
+        clearTimeout(timer); timer = null;
+        const fips = area.dataset.jurisNotes;
+        const stored = (window.WATCHLIST.get(fips) || {}).notes || "";
+        if (area.value === stored) return;
+        window.WATCHLIST.setNotes(fips, area.value);
+        if (status) status.textContent = "Saved";
       });
     });
   }

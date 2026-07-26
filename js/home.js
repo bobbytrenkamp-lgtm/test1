@@ -346,8 +346,7 @@ function _buildWatchlistPortfolio(watchlist) {
 function buildWatchlist() {
   if (!mapData) return [];
   let fipsArr;
-  try { fipsArr = JSON.parse(localStorage.getItem("dc-watchlist-v1") || "[]"); }
-  catch (_) { fipsArr = []; }
+  fipsArr = window.WATCHLIST ? window.WATCHLIST.fipsList() : [];
   const wsData  = window.DC_WATER_STRESS_FULL || {};
   const WS_LABELS = ["Low", "Low-Med", "Med-High", "High", "Extreme"];
   return fipsArr.map(fips => {
@@ -454,12 +453,145 @@ function homeSkeletonRows(n) {
   ).join("");
 }
 
+/* ── Policy change alerts (Phase 4) ───────────────────────────────────────
+   Renders real changes detected by comparing each watched county's stored
+   policy snapshot against the current dataset. This is in-app detection that
+   runs when the page loads — deliberately NOT described as email or push,
+   because no such delivery exists. Built with DOM nodes rather than innerHTML
+   since county names and policy titles come from data files. */
+function _renderWatchlistChanges(view) {
+  const host = view.querySelector("#home-watchlist-changes");
+  if (!host || !window.WATCHLIST) return;
+  host.textContent = "";
+
+  const changed = window.WATCHLIST.diff();
+  if (!changed.length) return;
+
+  const total = changed.reduce((n, c) => n + c.changes.length, 0);
+
+  const box = document.createElement("div");
+  box.className = "wl-changes";
+  box.setAttribute("role", "status");
+
+  const head = document.createElement("div");
+  head.className = "wl-changes-head";
+
+  const title = document.createElement("div");
+  title.className = "wl-changes-title";
+  title.textContent = `${total} policy ${total === 1 ? "change" : "changes"} since you last checked`;
+
+  const ack = document.createElement("button");
+  ack.type = "button";
+  ack.className = "wl-changes-ack";
+  ack.textContent = "Mark all reviewed";
+  ack.addEventListener("click", () => {
+    window.WATCHLIST.acknowledge();
+    host.textContent = "";
+    if (typeof showMapToast === "function") showMapToast("Watchlist changes marked reviewed");
+  });
+
+  head.append(title, ack);
+  box.appendChild(head);
+
+  const list = document.createElement("ul");
+  list.className = "wl-changes-list";
+  for (const c of changed) {
+    const li = document.createElement("li");
+
+    const link = document.createElement("a");
+    link.className = "wl-changes-county";
+    link.href = `#jurisdiction?fips=${encodeURIComponent(c.fips)}`;
+    link.textContent = c.state ? `${c.name}, ${c.state}` : c.name;
+    li.appendChild(link);
+
+    const ul = document.createElement("ul");
+    for (const ch of c.changes) {
+      const d = document.createElement("li");
+      d.className = "wl-change-item" + (ch.dir ? ` wl-change-${ch.dir}` : "");
+      d.textContent = ch.text;
+      ul.appendChild(d);
+    }
+    li.appendChild(ul);
+    list.appendChild(li);
+  }
+  box.appendChild(list);
+
+  const note = document.createElement("div");
+  note.className = "wl-changes-note";
+  note.textContent = "Detected in your browser when this page loads by comparing each county "
+    + "against its state when you added it. No email or push notifications are sent.";
+  box.appendChild(note);
+
+  host.appendChild(box);
+}
+
+/* ── Portable watchlist bundles (Phase 4) ─────────────────────────────────
+   A downloadable file a colleague can import. Not realtime collaboration —
+   there is no shared backend; this is an explicit hand-off. */
+function _shareWatchlistBundle() {
+  if (!window.WATCHLIST || !window.WATCHLIST.count()) {
+    if (typeof showMapToast === "function") showMapToast("Watchlist is empty");
+    return;
+  }
+  const bundle = window.WATCHLIST.exportBundle();
+  const blob = new Blob([JSON.stringify(bundle, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = Object.assign(document.createElement("a"), {
+    href: url,
+    download: `watchlist-${new Date().toISOString().slice(0, 10)}.json`,
+  });
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  if (typeof showMapToast === "function") {
+    showMapToast(`Exported ${bundle.count} counties — share this file with your team`);
+  }
+}
+
+function _importWatchlistBundle() {
+  if (!window.WATCHLIST) return;
+  const input = Object.assign(document.createElement("input"), {
+    type: "file",
+    accept: "application/json,.json",
+  });
+  input.addEventListener("change", () => {
+    const file = input.files && input.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      let parsed;
+      try { parsed = JSON.parse(String(reader.result)); }
+      catch (_) {
+        if (typeof showMapToast === "function") showMapToast("That file is not valid JSON");
+        return;
+      }
+      const r = window.WATCHLIST.importBundle(parsed);
+      if (!r.ok) {
+        if (typeof showMapToast === "function") showMapToast(r.error || "Import failed");
+        return;
+      }
+      if (typeof showMapToast === "function") {
+        const parts = [];
+        if (r.added) parts.push(`${r.added} added`);
+        if (r.notesFilled) parts.push(`${r.notesFilled} notes merged`);
+        if (r.skipped) parts.push(`${r.skipped} skipped`);
+        showMapToast(parts.length ? `Imported: ${parts.join(", ")}` : "Nothing new to import");
+      }
+      // Rebuild home so the watchlist section reflects the import.
+      const homeEl = document.getElementById("home-view");
+      if (homeEl) { delete homeEl.dataset.built; renderHomePage(); }
+    };
+    reader.readAsText(file);
+  });
+  input.click();
+}
+
 /* ── Export watchlist as CSV ── */
 function _exportWatchlistCSV() {
   if (!mapData) return;
   let fipsArr;
-  try { fipsArr = JSON.parse(localStorage.getItem("dc-watchlist-v1") || "[]"); }
-  catch (_) { fipsArr = []; }
+  fipsArr = window.WATCHLIST ? window.WATCHLIST.fipsList() : [];
   if (!fipsArr.length) { showMapToast && showMapToast("Watchlist is empty"); return; }
 
   const wsData   = window.DC_WATER_STRESS_FULL || {};
@@ -997,9 +1129,19 @@ function renderHomePage() {
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Export CSV
         </button>
+        <button class="home-watchlist-export-btn" id="home-watchlist-share" type="button" title="Export watchlist as a shareable file a colleague can import" aria-label="Share watchlist">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="10.7" x2="15.4" y2="6.3"/><line x1="8.6" y1="13.3" x2="15.4" y2="17.7"/></svg>
+          Share
+        </button>
+        <button class="home-watchlist-export-btn" id="home-watchlist-import" type="button" title="Import a watchlist file shared by a colleague" aria-label="Import watchlist">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Import
+        </button>
         <span class="home-watchlist-count" id="home-watchlist-count">${watchlist.length} watched</span>
       </div>
     </div>
+    <!-- Policy change alerts — populated by _renderWatchlistChanges() -->
+    <div id="home-watchlist-changes"></div>
     ${portfolio ? `<div class="home-wl-portfolio">
       <div class="home-wl-port-stat">
         <span class="home-wl-port-label">Avg. Suitability</span>
@@ -1310,11 +1452,15 @@ function renderHomePage() {
     _exportWatchlistCSV();
   });
 
+  /* Policy change alerts + portable watchlist bundles (Phase 4) */
+  _renderWatchlistChanges(view);
+  view.querySelector("#home-watchlist-share")?.addEventListener("click", _shareWatchlistBundle);
+  view.querySelector("#home-watchlist-import")?.addEventListener("click", _importWatchlistBundle);
+
   /* Compare All watched counties → open compare panel */
   view.querySelector("#home-watchlist-compare")?.addEventListener("click", () => {
     let fipsArr;
-    try { fipsArr = JSON.parse(localStorage.getItem("dc-watchlist-v1") || "[]"); }
-    catch (_) { fipsArr = []; }
+    fipsArr = window.WATCHLIST ? window.WATCHLIST.fipsList() : [];
     if (!fipsArr.length) return;
     switchTab("map");
     (typeof mapInitPromise !== "undefined" && mapInitPromise

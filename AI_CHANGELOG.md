@@ -5,6 +5,55 @@
 Date: 2026-07-26
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 4 — Professional account features
+
+## Summary
+Watchlist rebuilt as a real module with notes, policy snapshots, genuine change detection, optional cloud sync, and portable bundles. Migration from the legacy storage key is non-destructive by design.
+
+## New Files
+- `js/watchlist.js` — watchlist store (storage, notes, snapshots, diff, bundles, cloud sync)
+- `tests/test_watchlist.mjs` — 37 tests, migration safety first
+
+## Watchlist store (js/watchlist.js)
+The watchlist was a flat array of FIPS strings read directly in **eight** places across map.js, home.js, analytics.js, and jurisdiction.js. There was nowhere to hang notes, no record of a county's state when you started watching it, and no sync. All eight call sites now go through one API.
+
+### Migration safety (most important behavior)
+Users have real watchlists under `dc-watchlist-v1`. The new v2 store:
+- imports v1 on **every** load, not once, so a county added by an older cached build is still picked up
+- **never deletes or rewrites v1 destructively** — v1 is mirrored with the current FIPS set so an older build or a rollback still finds the user's counties
+- survives corrupt JSON in either key without throwing
+
+### Entry shape
+`{ fips, added_at, notes, snapshot: { level, status, effective_date, title } }`
+
+## Policy change detection
+The snapshot records policy state when a county is added or acknowledged. `diff()` compares it against live `mapData` and reports real changes: restriction level moves (with direction), status changes, effective-date changes, title revisions, and records appearing or disappearing. `acknowledge()` re-baselines.
+
+Entries migrated from v1 have no snapshot and are correctly **not** reported as changed, rather than producing a false "everything changed" on first run.
+
+Surfaced on the home page above the watchlist. The UI states plainly that detection happens in the browser on page load and that **no email or push notifications are sent**, because none exist. Built with DOM nodes rather than innerHTML since county names come from data files.
+
+## Portable watchlist bundles
+Export/import as a JSON file a colleague can load. Import is additive: existing counties are kept and a note is only filled where the user has none, so importing can never silently overwrite someone's annotations. Bundles contain only county IDs and notes — no account data.
+
+This is an explicit hand-off, **not** realtime collaboration. True shared team workspaces would need new Supabase tables and RLS policies that cannot be provisioned from the frontend.
+
+## Notes UI
+Per-county notes editor on the Jurisdiction page, shown once a county is watched. Debounced autosave with a commit-on-blur that fires whenever the field differs from what is stored.
+
+## Cloud sync
+When Supabase is configured and the user is signed in, entries mirror to the existing `saved_items` table via `AUTH.saveItem('county', ...)`. Local storage stays authoritative for reads so the feature works fully signed-out. Sync is additive only — `getSavedItems` returns `[]` on error, which is indistinguishable from "no items", so deleting on an empty response could destroy data.
+
+Note: Supabase is still unconfigured in this repo (`js/supabase-config.js` holds placeholders), so sync paths are inert and untested against a live backend. Everything else works signed-out.
+
+## Testing
+`./tests/run_all.sh` — 152 tests across 6 suites, all passing. The 37 new watchlist tests cover migration (v1 preserved, mirrored, late additions folded in, corrupt storage), notes, change detection including the no-false-positives case, acknowledge, bundle merge semantics, and cloud-sync degradation.
+
+---
+
+Date: 2026-07-26
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phases 2-5 — Design consistency, navigation, connected intelligence
 
 ## Summary

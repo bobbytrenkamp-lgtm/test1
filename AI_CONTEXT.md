@@ -437,6 +437,36 @@ window.APP_CONFIG = {
 window._applyTheme(theme);  // 'dark' | 'light' — triggers full Leaflet style refresh
 ```
 
+## Watchlist (js/watchlist.js) — Phase 4
+
+`window.WATCHLIST` owns all watchlist state. **Do not read `dc-watchlist-v1` directly.**
+Eight call sites previously did; they all now go through this API.
+
+- `has/get/list/fipsList/count`, `add/remove/toggle`, `setNotes`
+- `diff()` / `acknowledge(fips?)` — policy change detection
+- `exportBundle()` / `importBundle(b)` — portable hand-off files
+- `syncFromCloud()` / `pushAllToCloud()` — optional, no-ops when signed out
+- `onChange(fn)`
+
+### Storage — migration is non-destructive
+- `dc-watchlist-v2` — structured entries owned by this module
+- `dc-watchlist-v1` — legacy flat array. **Migrated FROM, never deleted.** v1 is kept
+  mirrored with the current FIPS set so an older cached build or a rollback still finds
+  the user's counties. v1 is re-read on every load, so counties added by older code are
+  still picked up.
+
+### Change detection is real, and it is not notifications
+Each entry stores a snapshot of `{level, status, effective_date, title}` from when it was
+added or last acknowledged. `diff()` compares that against live `mapData`. Entries migrated
+from v1 have `snapshot === null` and are skipped so they do not produce false positives.
+
+This runs in the browser on page load. There is no email or push delivery, and the UI must
+never imply otherwise.
+
+### Cloud sync is additive only
+`AUTH.getSavedItems()` returns `[]` on error, indistinguishable from "no saved items", so
+sync never deletes local entries based on a cloud response.
+
 ## Shared Constants (js/constants.js) — LOAD ORDER CRITICAL
 
 `js/constants.js` MUST be the first application script in `index.html`. `map.js` reads
