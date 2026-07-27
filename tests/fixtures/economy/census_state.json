@@ -1,0 +1,6191 @@
+{
+ "_schema": "economy_census_state_v1",
+ "_synthetic": "SYNTHETIC TEST DATA \u2014 invented numbers used only to verify that the Economy UI renders. NOT real economic data. Never copy into data/economy/.",
+ "acs_vintage": 2024,
+ "dollar_note": "Dollar figures are ACS 2024 inflation-adjusted dollars and are not directly comparable to other vintages.",
+ "generated_at": "2026-07-26T06:22:40+00:00",
+ "oldest_history_year": 2019,
+ "selected_variables": {
+  "broadband_pct": {
+   "broadband": "B28002_004E",
+   "denominator": "B28002_001E"
+  },
+  "population": {
+   "value": "B01003_001E"
+  }
+ },
+ "source": "U.S. Census Bureau, American Community Survey 5-Year Estimates",
+ "states": {
+  "01": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      121446
+     ],
+     [
+      2020,
+      125400
+     ],
+     [
+      2021,
+      129354
+     ],
+     [
+      2022,
+      133308
+     ],
+     [
+      2023,
+      137262
+     ],
+     [
+      2024,
+      141217
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      886235
+     ],
+     [
+      2020,
+      883344
+     ],
+     [
+      2021,
+      880464
+     ],
+     [
+      2022,
+      877592
+     ],
+     [
+      2023,
+      874730
+     ],
+     [
+      2024,
+      871878
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      12.8
+     ],
+     [
+      2020,
+      12.2
+     ],
+     [
+      2021,
+      11.5
+     ],
+     [
+      2022,
+      10.8
+     ],
+     [
+      2023,
+      10.2
+     ],
+     [
+      2024,
+      9.5
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 56.3
+    },
+    "broadband_pct": {
+     "value": 57.1
+    },
+    "median_age": {
+     "value": 50.7
+    },
+    "median_gross_rent": {
+     "value": 2598
+    },
+    "median_home_value": {
+     "value": 876118
+    },
+    "median_household_income": {
+     "change_1y_pct": 2.46,
+     "change_5y_pct": 29.9,
+     "value": 141217
+    },
+    "per_capita_income": {
+     "value": 73432
+    },
+    "population": {
+     "cagr_5y_pct": -0.33,
+     "change_1y_pct": -0.32,
+     "change_5y_pct": -1.62,
+     "value": 871878
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 15.51,
+     "change_5y_pct": -18.54,
+     "value": 9.5
+    }
+   },
+   "name": "Alabama",
+   "state": "Alabama",
+   "state_fips": "01"
+  },
+  "02": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      60519
+     ],
+     [
+      2020,
+      62489
+     ],
+     [
+      2021,
+      64459
+     ],
+     [
+      2022,
+      66430
+     ],
+     [
+      2023,
+      68400
+     ],
+     [
+      2024,
+      70371
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      929891
+     ],
+     [
+      2020,
+      958864
+     ],
+     [
+      2021,
+      988739
+     ],
+     [
+      2022,
+      1019546
+     ],
+     [
+      2023,
+      1051312
+     ],
+     [
+      2024,
+      1084068
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      5.5
+     ],
+     [
+      2020,
+      5.2
+     ],
+     [
+      2021,
+      5.0
+     ],
+     [
+      2022,
+      4.7
+     ],
+     [
+      2023,
+      4.4
+     ],
+     [
+      2024,
+      4.1
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 25.4
+    },
+    "broadband_pct": {
+     "value": 68.0
+    },
+    "median_age": {
+     "value": 39.5
+    },
+    "median_gross_rent": {
+     "value": 2250
+    },
+    "median_home_value": {
+     "value": 279808
+    },
+    "median_household_income": {
+     "change_1y_pct": 2.96,
+     "change_5y_pct": 31.86,
+     "value": 70371
+    },
+    "per_capita_income": {
+     "value": 36592
+    },
+    "population": {
+     "cagr_5y_pct": 3.12,
+     "change_1y_pct": 3.32,
+     "change_5y_pct": 16.58,
+     "value": 1084068
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 13.15,
+     "change_5y_pct": -17.62,
+     "value": 4.1
+    }
+   },
+   "name": "Alaska",
+   "state": "Alaska",
+   "state_fips": "02"
+  },
+  "04": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      41985
+     ],
+     [
+      2020,
+      43352
+     ],
+     [
+      2021,
+      44719
+     ],
+     [
+      2022,
+      46086
+     ],
+     [
+      2023,
+      47453
+     ],
+     [
+      2024,
+      48820
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      337331
+     ],
+     [
+      2020,
+      332011
+     ],
+     [
+      2021,
+      326775
+     ],
+     [
+      2022,
+      321622
+     ],
+     [
+      2023,
+      316550
+     ],
+     [
+      2024,
+      311559
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      11.9
+     ],
+     [
+      2020,
+      11.3
+     ],
+     [
+      2021,
+      10.6
+     ],
+     [
+      2022,
+      10.0
+     ],
+     [
+      2023,
+      9.4
+     ],
+     [
+      2024,
+      8.8
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 33.7
+    },
+    "broadband_pct": {
+     "value": 70.4
+    },
+    "median_age": {
+     "value": 48.9
+    },
+    "median_gross_rent": {
+     "value": 1285
+    },
+    "median_home_value": {
+     "value": 781157
+    },
+    "median_household_income": {
+     "change_1y_pct": 5.84,
+     "change_5y_pct": 13.35,
+     "value": 48820
+    },
+    "per_capita_income": {
+     "value": 25386
+    },
+    "population": {
+     "cagr_5y_pct": -1.58,
+     "change_1y_pct": -1.53,
+     "change_5y_pct": -7.64,
+     "value": 311559
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -12.73,
+     "change_5y_pct": -1.96,
+     "value": 8.8
+    }
+   },
+   "name": "Arizona",
+   "state": "Arizona",
+   "state_fips": "04"
+  },
+  "05": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      105939
+     ],
+     [
+      2020,
+      109388
+     ],
+     [
+      2021,
+      112837
+     ],
+     [
+      2022,
+      116286
+     ],
+     [
+      2023,
+      119735
+     ],
+     [
+      2024,
+      123185
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      126685
+     ],
+     [
+      2020,
+      129751
+     ],
+     [
+      2021,
+      132891
+     ],
+     [
+      2022,
+      136107
+     ],
+     [
+      2023,
+      139401
+     ],
+     [
+      2024,
+      142775
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      16.7
+     ],
+     [
+      2020,
+      15.9
+     ],
+     [
+      2021,
+      15.0
+     ],
+     [
+      2022,
+      14.1
+     ],
+     [
+      2023,
+      13.3
+     ],
+     [
+      2024,
+      12.4
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 11.7
+    },
+    "broadband_pct": {
+     "value": 84.4
+    },
+    "median_age": {
+     "value": 32.5
+    },
+    "median_gross_rent": {
+     "value": 1466
+    },
+    "median_home_value": {
+     "value": 380425
+    },
+    "median_household_income": {
+     "change_1y_pct": -0.12,
+     "change_5y_pct": 33.09,
+     "value": 123185
+    },
+    "per_capita_income": {
+     "value": 64056
+    },
+    "population": {
+     "cagr_5y_pct": 2.42,
+     "change_1y_pct": 2.54,
+     "change_5y_pct": 12.7,
+     "value": 142775
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 14.76,
+     "change_5y_pct": 0.88,
+     "value": 12.4
+    }
+   },
+   "name": "Arkansas",
+   "state": "Arkansas",
+   "state_fips": "05"
+  },
+  "06": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      80134
+     ],
+     [
+      2020,
+      82743
+     ],
+     [
+      2021,
+      85352
+     ],
+     [
+      2022,
+      87961
+     ],
+     [
+      2023,
+      90570
+     ],
+     [
+      2024,
+      93180
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      29139
+     ],
+     [
+      2020,
+      28995
+     ],
+     [
+      2021,
+      28850
+     ],
+     [
+      2022,
+      28707
+     ],
+     [
+      2023,
+      28564
+     ],
+     [
+      2024,
+      28423
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      14.2
+     ],
+     [
+      2020,
+      13.4
+     ],
+     [
+      2021,
+      12.7
+     ],
+     [
+      2022,
+      12.0
+     ],
+     [
+      2023,
+      11.2
+     ],
+     [
+      2024,
+      10.5
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 49.9
+    },
+    "broadband_pct": {
+     "value": 62.8
+    },
+    "median_age": {
+     "value": 51.9
+    },
+    "median_gross_rent": {
+     "value": 1861
+    },
+    "median_home_value": {
+     "value": 667556
+    },
+    "median_household_income": {
+     "change_1y_pct": -1.51,
+     "change_5y_pct": 6.98,
+     "value": 93180
+    },
+    "per_capita_income": {
+     "value": 48453
+    },
+    "population": {
+     "cagr_5y_pct": -0.5,
+     "change_1y_pct": -0.49,
+     "change_5y_pct": -2.46,
+     "value": 28423
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -1.25,
+     "change_5y_pct": -3.12,
+     "value": 10.5
+    }
+   },
+   "name": "California",
+   "state": "California",
+   "state_fips": "06"
+  },
+  "08": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      83193
+     ],
+     [
+      2020,
+      85902
+     ],
+     [
+      2021,
+      88611
+     ],
+     [
+      2022,
+      91319
+     ],
+     [
+      2023,
+      94028
+     ],
+     [
+      2024,
+      96737
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      687189
+     ],
+     [
+      2020,
+      678231
+     ],
+     [
+      2021,
+      669390
+     ],
+     [
+      2022,
+      660664
+     ],
+     [
+      2023,
+      652052
+     ],
+     [
+      2024,
+      643553
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      12.6
+     ],
+     [
+      2020,
+      11.9
+     ],
+     [
+      2021,
+      11.3
+     ],
+     [
+      2022,
+      10.6
+     ],
+     [
+      2023,
+      10.0
+     ],
+     [
+      2024,
+      9.3
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 30.1
+    },
+    "broadband_pct": {
+     "value": 65.8
+    },
+    "median_age": {
+     "value": 33.4
+    },
+    "median_gross_rent": {
+     "value": 2371
+    },
+    "median_home_value": {
+     "value": 176240
+    },
+    "median_household_income": {
+     "change_1y_pct": 5.37,
+     "change_5y_pct": 4.92,
+     "value": 96737
+    },
+    "per_capita_income": {
+     "value": 50303
+    },
+    "population": {
+     "cagr_5y_pct": -1.3,
+     "change_1y_pct": -1.27,
+     "change_5y_pct": -6.35,
+     "value": 643553
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 17.02,
+     "change_5y_pct": -20.87,
+     "value": 9.3
+    }
+   },
+   "name": "Colorado",
+   "state": "Colorado",
+   "state_fips": "08"
+  },
+  "09": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      94366
+     ],
+     [
+      2020,
+      97438
+     ],
+     [
+      2021,
+      100510
+     ],
+     [
+      2022,
+      103583
+     ],
+     [
+      2023,
+      106655
+     ],
+     [
+      2024,
+      109728
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      739374
+     ],
+     [
+      2020,
+      733484
+     ],
+     [
+      2021,
+      727641
+     ],
+     [
+      2022,
+      721845
+     ],
+     [
+      2023,
+      716095
+     ],
+     [
+      2024,
+      710391
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      16.3
+     ],
+     [
+      2020,
+      15.5
+     ],
+     [
+      2021,
+      14.6
+     ],
+     [
+      2022,
+      13.8
+     ],
+     [
+      2023,
+      12.9
+     ],
+     [
+      2024,
+      12.1
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 13.4
+    },
+    "broadband_pct": {
+     "value": 85.9
+    },
+    "median_age": {
+     "value": 41.4
+    },
+    "median_gross_rent": {
+     "value": 628
+    },
+    "median_home_value": {
+     "value": 815714
+    },
+    "median_household_income": {
+     "change_1y_pct": 0.2,
+     "change_5y_pct": 20.99,
+     "value": 109728
+    },
+    "per_capita_income": {
+     "value": 57058
+    },
+    "population": {
+     "cagr_5y_pct": -0.8,
+     "change_1y_pct": -0.78,
+     "change_5y_pct": -3.92,
+     "value": 710391
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -11.98,
+     "change_5y_pct": -8.5,
+     "value": 12.1
+    }
+   },
+   "name": "Connecticut",
+   "state": "Connecticut",
+   "state_fips": "09"
+  },
+  "10": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      60232
+     ],
+     [
+      2020,
+      62193
+     ],
+     [
+      2021,
+      64154
+     ],
+     [
+      2022,
+      66115
+     ],
+     [
+      2023,
+      68076
+     ],
+     [
+      2024,
+      70038
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      363362
+     ],
+     [
+      2020,
+      365963
+     ],
+     [
+      2021,
+      368582
+     ],
+     [
+      2022,
+      371220
+     ],
+     [
+      2023,
+      373877
+     ],
+     [
+      2024,
+      376553
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      9.9
+     ],
+     [
+      2020,
+      9.3
+     ],
+     [
+      2021,
+      8.8
+     ],
+     [
+      2022,
+      8.3
+     ],
+     [
+      2023,
+      7.8
+     ],
+     [
+      2024,
+      7.3
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 27.1
+    },
+    "broadband_pct": {
+     "value": 71.9
+    },
+    "median_age": {
+     "value": 50.3
+    },
+    "median_gross_rent": {
+     "value": 1287
+    },
+    "median_home_value": {
+     "value": 351324
+    },
+    "median_household_income": {
+     "change_1y_pct": 1.27,
+     "change_5y_pct": 18.77,
+     "value": 70038
+    },
+    "per_capita_income": {
+     "value": 36419
+    },
+    "population": {
+     "cagr_5y_pct": 0.72,
+     "change_1y_pct": 0.73,
+     "change_5y_pct": 3.63,
+     "value": 376553
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -14.98,
+     "change_5y_pct": -14.61,
+     "value": 7.3
+    }
+   },
+   "name": "Delaware",
+   "state": "Delaware",
+   "state_fips": "10"
+  },
+  "11": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      55811
+     ],
+     [
+      2020,
+      57628
+     ],
+     [
+      2021,
+      59445
+     ],
+     [
+      2022,
+      61262
+     ],
+     [
+      2023,
+      63079
+     ],
+     [
+      2024,
+      64897
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      669455
+     ],
+     [
+      2020,
+      692899
+     ],
+     [
+      2021,
+      717164
+     ],
+     [
+      2022,
+      742279
+     ],
+     [
+      2023,
+      768274
+     ],
+     [
+      2024,
+      795179
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      15.7
+     ],
+     [
+      2020,
+      14.8
+     ],
+     [
+      2021,
+      14.0
+     ],
+     [
+      2022,
+      13.2
+     ],
+     [
+      2023,
+      12.4
+     ],
+     [
+      2024,
+      11.6
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 55.5
+    },
+    "broadband_pct": {
+     "value": 57.4
+    },
+    "median_age": {
+     "value": 42.3
+    },
+    "median_gross_rent": {
+     "value": 1103
+    },
+    "median_home_value": {
+     "value": 897280
+    },
+    "median_household_income": {
+     "change_1y_pct": 0.49,
+     "change_5y_pct": 31.93,
+     "value": 64897
+    },
+    "per_capita_income": {
+     "value": 33746
+    },
+    "population": {
+     "cagr_5y_pct": 3.5,
+     "change_1y_pct": 3.76,
+     "change_5y_pct": 18.78,
+     "value": 795179
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -14.04,
+     "change_5y_pct": -15.02,
+     "value": 11.6
+    }
+   },
+   "name": "District of Columbia",
+   "state": "District of Columbia",
+   "state_fips": "11"
+  },
+  "12": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      43897
+     ],
+     [
+      2020,
+      45327
+     ],
+     [
+      2021,
+      46756
+     ],
+     [
+      2022,
+      48185
+     ],
+     [
+      2023,
+      49614
+     ],
+     [
+      2024,
+      51044
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      587608
+     ],
+     [
+      2020,
+      591505
+     ],
+     [
+      2021,
+      595427
+     ],
+     [
+      2022,
+      599376
+     ],
+     [
+      2023,
+      603350
+     ],
+     [
+      2024,
+      607352
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      5.9
+     ],
+     [
+      2020,
+      5.6
+     ],
+     [
+      2021,
+      5.3
+     ],
+     [
+      2022,
+      5.0
+     ],
+     [
+      2023,
+      4.7
+     ],
+     [
+      2024,
+      4.4
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 23.9
+    },
+    "broadband_pct": {
+     "value": 53.0
+    },
+    "median_age": {
+     "value": 40.2
+    },
+    "median_gross_rent": {
+     "value": 1059
+    },
+    "median_home_value": {
+     "value": 802215
+    },
+    "median_household_income": {
+     "change_1y_pct": 4.1,
+     "change_5y_pct": 28.81,
+     "value": 51044
+    },
+    "per_capita_income": {
+     "value": 26542
+    },
+    "population": {
+     "cagr_5y_pct": 0.66,
+     "change_1y_pct": 0.67,
+     "change_5y_pct": 3.36,
+     "value": 607352
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -1.86,
+     "change_5y_pct": 0.95,
+     "value": 4.4
+    }
+   },
+   "name": "Florida",
+   "state": "Florida",
+   "state_fips": "12"
+  },
+  "13": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      127620
+     ],
+     [
+      2020,
+      131775
+     ],
+     [
+      2021,
+      135930
+     ],
+     [
+      2022,
+      140085
+     ],
+     [
+      2023,
+      144240
+     ],
+     [
+      2024,
+      148396
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      149294
+     ],
+     [
+      2020,
+      154173
+     ],
+     [
+      2021,
+      159210
+     ],
+     [
+      2022,
+      164412
+     ],
+     [
+      2023,
+      169784
+     ],
+     [
+      2024,
+      175332
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      10.5
+     ],
+     [
+      2020,
+      10.0
+     ],
+     [
+      2021,
+      9.4
+     ],
+     [
+      2022,
+      8.9
+     ],
+     [
+      2023,
+      8.3
+     ],
+     [
+      2024,
+      7.8
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 65.3
+    },
+    "broadband_pct": {
+     "value": 86.5
+    },
+    "median_age": {
+     "value": 37.6
+    },
+    "median_gross_rent": {
+     "value": 1944
+    },
+    "median_home_value": {
+     "value": 748443
+    },
+    "median_household_income": {
+     "change_1y_pct": 0.49,
+     "change_5y_pct": 9.23,
+     "value": 148396
+    },
+    "per_capita_income": {
+     "value": 77165
+    },
+    "population": {
+     "cagr_5y_pct": 3.27,
+     "change_1y_pct": 3.49,
+     "change_5y_pct": 17.44,
+     "value": 175332
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 15.83,
+     "change_5y_pct": -30.32,
+     "value": 7.8
+    }
+   },
+   "name": "Georgia",
+   "state": "Georgia",
+   "state_fips": "13"
+  },
+  "15": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      83145
+     ],
+     [
+      2020,
+      85852
+     ],
+     [
+      2021,
+      88559
+     ],
+     [
+      2022,
+      91266
+     ],
+     [
+      2023,
+      93973
+     ],
+     [
+      2024,
+      96681
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      497396
+     ],
+     [
+      2020,
+      495724
+     ],
+     [
+      2021,
+      494057
+     ],
+     [
+      2022,
+      492395
+     ],
+     [
+      2023,
+      490740
+     ],
+     [
+      2024,
+      489090
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      4.6
+     ],
+     [
+      2020,
+      4.4
+     ],
+     [
+      2021,
+      4.1
+     ],
+     [
+      2022,
+      3.9
+     ],
+     [
+      2023,
+      3.6
+     ],
+     [
+      2024,
+      3.4
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 46.3
+    },
+    "broadband_pct": {
+     "value": 90.7
+    },
+    "median_age": {
+     "value": 36.0
+    },
+    "median_gross_rent": {
+     "value": 2042
+    },
+    "median_home_value": {
+     "value": 651157
+    },
+    "median_household_income": {
+     "change_1y_pct": 3.98,
+     "change_5y_pct": 32.3,
+     "value": 96681
+    },
+    "per_capita_income": {
+     "value": 50274
+    },
+    "population": {
+     "cagr_5y_pct": -0.34,
+     "change_1y_pct": -0.33,
+     "change_5y_pct": -1.67,
+     "value": 489090
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -9.87,
+     "change_5y_pct": -24.29,
+     "value": 3.4
+    }
+   },
+   "name": "Hawaii",
+   "state": "Hawaii",
+   "state_fips": "15"
+  },
+  "16": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      82555
+     ],
+     [
+      2020,
+      85243
+     ],
+     [
+      2021,
+      87931
+     ],
+     [
+      2022,
+      90619
+     ],
+     [
+      2023,
+      93307
+     ],
+     [
+      2024,
+      95995
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      1214571
+     ],
+     [
+      2020,
+      1243544
+     ],
+     [
+      2021,
+      1273208
+     ],
+     [
+      2022,
+      1303579
+     ],
+     [
+      2023,
+      1334676
+     ],
+     [
+      2024,
+      1366514
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      3.1
+     ],
+     [
+      2020,
+      2.9
+     ],
+     [
+      2021,
+      2.8
+     ],
+     [
+      2022,
+      2.6
+     ],
+     [
+      2023,
+      2.5
+     ],
+     [
+      2024,
+      2.3
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 42.6
+    },
+    "broadband_pct": {
+     "value": 62.6
+    },
+    "median_age": {
+     "value": 34.9
+    },
+    "median_gross_rent": {
+     "value": 2557
+    },
+    "median_home_value": {
+     "value": 104363
+    },
+    "median_household_income": {
+     "change_1y_pct": 1.88,
+     "change_5y_pct": 25.83,
+     "value": 95995
+    },
+    "per_capita_income": {
+     "value": 49917
+    },
+    "population": {
+     "cagr_5y_pct": 2.39,
+     "change_1y_pct": 2.5,
+     "change_5y_pct": 12.51,
+     "value": 1366514
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -17.03,
+     "change_5y_pct": -21.76,
+     "value": 2.3
+    }
+   },
+   "name": "Idaho",
+   "state": "Idaho",
+   "state_fips": "16"
+  },
+  "17": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      136925
+     ],
+     [
+      2020,
+      141383
+     ],
+     [
+      2021,
+      145841
+     ],
+     [
+      2022,
+      150299
+     ],
+     [
+      2023,
+      154757
+     ],
+     [
+      2024,
+      159216
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      985529
+     ],
+     [
+      2020,
+      1006786
+     ],
+     [
+      2021,
+      1028502
+     ],
+     [
+      2022,
+      1050686
+     ],
+     [
+      2023,
+      1073348
+     ],
+     [
+      2024,
+      1096500
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      6.3
+     ],
+     [
+      2020,
+      6.0
+     ],
+     [
+      2021,
+      5.7
+     ],
+     [
+      2022,
+      5.4
+     ],
+     [
+      2023,
+      5.0
+     ],
+     [
+      2024,
+      4.7
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 41.6
+    },
+    "broadband_pct": {
+     "value": 85.0
+    },
+    "median_age": {
+     "value": 45.2
+    },
+    "median_gross_rent": {
+     "value": 1691
+    },
+    "median_home_value": {
+     "value": 445532
+    },
+    "median_household_income": {
+     "change_1y_pct": 2.87,
+     "change_5y_pct": 14.49,
+     "value": 159216
+    },
+    "per_capita_income": {
+     "value": 82792
+    },
+    "population": {
+     "cagr_5y_pct": 2.16,
+     "change_1y_pct": 2.25,
+     "change_5y_pct": 11.26,
+     "value": 1096500
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 10.84,
+     "change_5y_pct": 1.16,
+     "value": 4.7
+    }
+   },
+   "name": "Illinois",
+   "state": "Illinois",
+   "state_fips": "17"
+  },
+  "18": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      94612
+     ],
+     [
+      2020,
+      97693
+     ],
+     [
+      2021,
+      100773
+     ],
+     [
+      2022,
+      103854
+     ],
+     [
+      2023,
+      106934
+     ],
+     [
+      2024,
+      110015
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      315391
+     ],
+     [
+      2020,
+      316225
+     ],
+     [
+      2021,
+      317062
+     ],
+     [
+      2022,
+      317901
+     ],
+     [
+      2023,
+      318742
+     ],
+     [
+      2024,
+      319586
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      15.5
+     ],
+     [
+      2020,
+      14.7
+     ],
+     [
+      2021,
+      13.9
+     ],
+     [
+      2022,
+      13.1
+     ],
+     [
+      2023,
+      12.3
+     ],
+     [
+      2024,
+      11.5
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 45.7
+    },
+    "broadband_pct": {
+     "value": 81.2
+    },
+    "median_age": {
+     "value": 37.2
+    },
+    "median_gross_rent": {
+     "value": 1167
+    },
+    "median_home_value": {
+     "value": 616890
+    },
+    "median_household_income": {
+     "change_1y_pct": 6.79,
+     "change_5y_pct": 33.94,
+     "value": 110015
+    },
+    "per_capita_income": {
+     "value": 57207
+    },
+    "population": {
+     "cagr_5y_pct": 0.26,
+     "change_1y_pct": 0.27,
+     "change_5y_pct": 1.33,
+     "value": 319586
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -9.12,
+     "change_5y_pct": -16.24,
+     "value": 11.5
+    }
+   },
+   "name": "Indiana",
+   "state": "Indiana",
+   "state_fips": "18"
+  },
+  "19": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      85526
+     ],
+     [
+      2020,
+      88310
+     ],
+     [
+      2021,
+      91095
+     ],
+     [
+      2022,
+      93879
+     ],
+     [
+      2023,
+      96664
+     ],
+     [
+      2024,
+      99449
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      148120
+     ],
+     [
+      2020,
+      150615
+     ],
+     [
+      2021,
+      153152
+     ],
+     [
+      2022,
+      155731
+     ],
+     [
+      2023,
+      158354
+     ],
+     [
+      2024,
+      161022
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      8.5
+     ],
+     [
+      2020,
+      8.1
+     ],
+     [
+      2021,
+      7.6
+     ],
+     [
+      2022,
+      7.2
+     ],
+     [
+      2023,
+      6.7
+     ],
+     [
+      2024,
+      6.3
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 52.7
+    },
+    "broadband_pct": {
+     "value": 55.8
+    },
+    "median_age": {
+     "value": 36.2
+    },
+    "median_gross_rent": {
+     "value": 998
+    },
+    "median_home_value": {
+     "value": 582926
+    },
+    "median_household_income": {
+     "change_1y_pct": 4.92,
+     "change_5y_pct": 25.81,
+     "value": 99449
+    },
+    "per_capita_income": {
+     "value": 51713
+    },
+    "population": {
+     "cagr_5y_pct": 1.68,
+     "change_1y_pct": 1.74,
+     "change_5y_pct": 8.71,
+     "value": 161022
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 15.57,
+     "change_5y_pct": -5.05,
+     "value": 6.3
+    }
+   },
+   "name": "Iowa",
+   "state": "Iowa",
+   "state_fips": "19"
+  },
+  "20": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      130308
+     ],
+     [
+      2020,
+      134551
+     ],
+     [
+      2021,
+      138794
+     ],
+     [
+      2022,
+      143036
+     ],
+     [
+      2023,
+      147279
+     ],
+     [
+      2024,
+      151522
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      1143504
+     ],
+     [
+      2020,
+      1125934
+     ],
+     [
+      2021,
+      1108634
+     ],
+     [
+      2022,
+      1091600
+     ],
+     [
+      2023,
+      1074827
+     ],
+     [
+      2024,
+      1058313
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      5.7
+     ],
+     [
+      2020,
+      5.4
+     ],
+     [
+      2021,
+      5.1
+     ],
+     [
+      2022,
+      4.8
+     ],
+     [
+      2023,
+      4.5
+     ],
+     [
+      2024,
+      4.2
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 21.0
+    },
+    "broadband_pct": {
+     "value": 81.9
+    },
+    "median_age": {
+     "value": 38.8
+    },
+    "median_gross_rent": {
+     "value": 2393
+    },
+    "median_home_value": {
+     "value": 845427
+    },
+    "median_household_income": {
+     "change_1y_pct": 0.54,
+     "change_5y_pct": 24.81,
+     "value": 151522
+    },
+    "per_capita_income": {
+     "value": 78791
+    },
+    "population": {
+     "cagr_5y_pct": -1.54,
+     "change_1y_pct": -1.49,
+     "change_5y_pct": -7.45,
+     "value": 1058313
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -5.87,
+     "change_5y_pct": 16.16,
+     "value": 4.2
+    }
+   },
+   "name": "Kansas",
+   "state": "Kansas",
+   "state_fips": "20"
+  },
+  "21": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      101912
+     ],
+     [
+      2020,
+      105230
+     ],
+     [
+      2021,
+      108548
+     ],
+     [
+      2022,
+      111866
+     ],
+     [
+      2023,
+      115184
+     ],
+     [
+      2024,
+      118503
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      957208
+     ],
+     [
+      2020,
+      975789
+     ],
+     [
+      2021,
+      994731
+     ],
+     [
+      2022,
+      1014040
+     ],
+     [
+      2023,
+      1033724
+     ],
+     [
+      2024,
+      1053791
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      8.4
+     ],
+     [
+      2020,
+      7.9
+     ],
+     [
+      2021,
+      7.5
+     ],
+     [
+      2022,
+      7.1
+     ],
+     [
+      2023,
+      6.6
+     ],
+     [
+      2024,
+      6.2
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 24.9
+    },
+    "broadband_pct": {
+     "value": 88.3
+    },
+    "median_age": {
+     "value": 30.7
+    },
+    "median_gross_rent": {
+     "value": 869
+    },
+    "median_home_value": {
+     "value": 289820
+    },
+    "median_household_income": {
+     "change_1y_pct": 1.02,
+     "change_5y_pct": 24.95,
+     "value": 118503
+    },
+    "per_capita_income": {
+     "value": 61621
+    },
+    "population": {
+     "cagr_5y_pct": 1.94,
+     "change_1y_pct": 2.02,
+     "change_5y_pct": 10.09,
+     "value": 1053791
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -7.54,
+     "change_5y_pct": -19.38,
+     "value": 6.2
+    }
+   },
+   "name": "Kentucky",
+   "state": "Kentucky",
+   "state_fips": "21"
+  },
+  "22": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      119294
+     ],
+     [
+      2020,
+      123178
+     ],
+     [
+      2021,
+      127062
+     ],
+     [
+      2022,
+      130946
+     ],
+     [
+      2023,
+      134830
+     ],
+     [
+      2024,
+      138714
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      838062
+     ],
+     [
+      2020,
+      857443
+     ],
+     [
+      2021,
+      877271
+     ],
+     [
+      2022,
+      897559
+     ],
+     [
+      2023,
+      918315
+     ],
+     [
+      2024,
+      939552
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      5.0
+     ],
+     [
+      2020,
+      4.7
+     ],
+     [
+      2021,
+      4.5
+     ],
+     [
+      2022,
+      4.2
+     ],
+     [
+      2023,
+      4.0
+     ],
+     [
+      2024,
+      3.7
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 43.9
+    },
+    "broadband_pct": {
+     "value": 62.6
+    },
+    "median_age": {
+     "value": 50.2
+    },
+    "median_gross_rent": {
+     "value": 2030
+    },
+    "median_home_value": {
+     "value": 478816
+    },
+    "median_household_income": {
+     "change_1y_pct": 3.06,
+     "change_5y_pct": 23.96,
+     "value": 138714
+    },
+    "per_capita_income": {
+     "value": 72131
+    },
+    "population": {
+     "cagr_5y_pct": 2.31,
+     "change_1y_pct": 2.42,
+     "change_5y_pct": 12.11,
+     "value": 939552
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 16.16,
+     "change_5y_pct": 15.27,
+     "value": 3.7
+    }
+   },
+   "name": "Louisiana",
+   "state": "Louisiana",
+   "state_fips": "22"
+  },
+  "23": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      38756
+     ],
+     [
+      2020,
+      40018
+     ],
+     [
+      2021,
+      41280
+     ],
+     [
+      2022,
+      42542
+     ],
+     [
+      2023,
+      43804
+     ],
+     [
+      2024,
+      45066
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      1152451
+     ],
+     [
+      2020,
+      1168654
+     ],
+     [
+      2021,
+      1185084
+     ],
+     [
+      2022,
+      1201745
+     ],
+     [
+      2023,
+      1218641
+     ],
+     [
+      2024,
+      1235774
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      7.4
+     ],
+     [
+      2020,
+      7.0
+     ],
+     [
+      2021,
+      6.7
+     ],
+     [
+      2022,
+      6.3
+     ],
+     [
+      2023,
+      5.9
+     ],
+     [
+      2024,
+      5.5
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 12.8
+    },
+    "broadband_pct": {
+     "value": 81.9
+    },
+    "median_age": {
+     "value": 50.9
+    },
+    "median_gross_rent": {
+     "value": 2089
+    },
+    "median_home_value": {
+     "value": 693355
+    },
+    "median_household_income": {
+     "change_1y_pct": 1.26,
+     "change_5y_pct": 4.51,
+     "value": 45066
+    },
+    "per_capita_income": {
+     "value": 23434
+    },
+    "population": {
+     "cagr_5y_pct": 1.41,
+     "change_1y_pct": 1.45,
+     "change_5y_pct": 7.23,
+     "value": 1235774
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 14.05,
+     "change_5y_pct": -37.21,
+     "value": 5.5
+    }
+   },
+   "name": "Maine",
+   "state": "Maine",
+   "state_fips": "23"
+  },
+  "24": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      60906
+     ],
+     [
+      2020,
+      62889
+     ],
+     [
+      2021,
+      64872
+     ],
+     [
+      2022,
+      66855
+     ],
+     [
+      2023,
+      68838
+     ],
+     [
+      2024,
+      70821
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      74827
+     ],
+     [
+      2020,
+      76495
+     ],
+     [
+      2021,
+      78199
+     ],
+     [
+      2022,
+      79942
+     ],
+     [
+      2023,
+      81723
+     ],
+     [
+      2024,
+      83545
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      4.9
+     ],
+     [
+      2020,
+      4.6
+     ],
+     [
+      2021,
+      4.4
+     ],
+     [
+      2022,
+      4.1
+     ],
+     [
+      2023,
+      3.9
+     ],
+     [
+      2024,
+      3.6
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 67.0
+    },
+    "broadband_pct": {
+     "value": 72.3
+    },
+    "median_age": {
+     "value": 40.7
+    },
+    "median_gross_rent": {
+     "value": 1622
+    },
+    "median_home_value": {
+     "value": 867331
+    },
+    "median_household_income": {
+     "change_1y_pct": -1.41,
+     "change_5y_pct": 20.04,
+     "value": 70821
+    },
+    "per_capita_income": {
+     "value": 36826
+    },
+    "population": {
+     "cagr_5y_pct": 2.23,
+     "change_1y_pct": 2.33,
+     "change_5y_pct": 11.65,
+     "value": 83545
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -10.55,
+     "change_5y_pct": -24.63,
+     "value": 3.6
+    }
+   },
+   "name": "Maryland",
+   "state": "Maryland",
+   "state_fips": "24"
+  },
+  "25": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      76754
+     ],
+     [
+      2020,
+      79253
+     ],
+     [
+      2021,
+      81752
+     ],
+     [
+      2022,
+      84251
+     ],
+     [
+      2023,
+      86750
+     ],
+     [
+      2024,
+      89249
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      855331
+     ],
+     [
+      2020,
+      876155
+     ],
+     [
+      2021,
+      897485
+     ],
+     [
+      2022,
+      919334
+     ],
+     [
+      2023,
+      941716
+     ],
+     [
+      2024,
+      964643
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      7.0
+     ],
+     [
+      2020,
+      6.7
+     ],
+     [
+      2021,
+      6.3
+     ],
+     [
+      2022,
+      5.9
+     ],
+     [
+      2023,
+      5.6
+     ],
+     [
+      2024,
+      5.2
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 53.1
+    },
+    "broadband_pct": {
+     "value": 87.2
+    },
+    "median_age": {
+     "value": 40.9
+    },
+    "median_gross_rent": {
+     "value": 885
+    },
+    "median_home_value": {
+     "value": 894663
+    },
+    "median_household_income": {
+     "change_1y_pct": 0.42,
+     "change_5y_pct": 32.67,
+     "value": 89249
+    },
+    "per_capita_income": {
+     "value": 46409
+    },
+    "population": {
+     "cagr_5y_pct": 2.43,
+     "change_1y_pct": 2.56,
+     "change_5y_pct": 12.78,
+     "value": 964643
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 9.97,
+     "change_5y_pct": 8.0,
+     "value": 5.2
+    }
+   },
+   "name": "Massachusetts",
+   "state": "Massachusetts",
+   "state_fips": "25"
+  },
+  "26": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      35319
+     ],
+     [
+      2020,
+      36469
+     ],
+     [
+      2021,
+      37619
+     ],
+     [
+      2022,
+      38769
+     ],
+     [
+      2023,
+      39919
+     ],
+     [
+      2024,
+      41069
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      231478
+     ],
+     [
+      2020,
+      231962
+     ],
+     [
+      2021,
+      232447
+     ],
+     [
+      2022,
+      232933
+     ],
+     [
+      2023,
+      233420
+     ],
+     [
+      2024,
+      233909
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      3.8
+     ],
+     [
+      2020,
+      3.6
+     ],
+     [
+      2021,
+      3.4
+     ],
+     [
+      2022,
+      3.2
+     ],
+     [
+      2023,
+      3.0
+     ],
+     [
+      2024,
+      2.8
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 16.3
+    },
+    "broadband_pct": {
+     "value": 63.2
+    },
+    "median_age": {
+     "value": 29.8
+    },
+    "median_gross_rent": {
+     "value": 1483
+    },
+    "median_home_value": {
+     "value": 419089
+    },
+    "median_household_income": {
+     "change_1y_pct": -0.9,
+     "change_5y_pct": 7.75,
+     "value": 41069
+    },
+    "per_capita_income": {
+     "value": 21355
+    },
+    "population": {
+     "cagr_5y_pct": 0.21,
+     "change_1y_pct": 0.21,
+     "change_5y_pct": 1.05,
+     "value": 233909
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -5.7,
+     "change_5y_pct": 19.49,
+     "value": 2.8
+    }
+   },
+   "name": "Michigan",
+   "state": "Michigan",
+   "state_fips": "26"
+  },
+  "27": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      47691
+     ],
+     [
+      2020,
+      49244
+     ],
+     [
+      2021,
+      50796
+     ],
+     [
+      2022,
+      52349
+     ],
+     [
+      2023,
+      53902
+     ],
+     [
+      2024,
+      55455
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      630063
+     ],
+     [
+      2020,
+      630164
+     ],
+     [
+      2021,
+      630265
+     ],
+     [
+      2022,
+      630366
+     ],
+     [
+      2023,
+      630467
+     ],
+     [
+      2024,
+      630568
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      2.7
+     ],
+     [
+      2020,
+      2.6
+     ],
+     [
+      2021,
+      2.4
+     ],
+     [
+      2022,
+      2.3
+     ],
+     [
+      2023,
+      2.1
+     ],
+     [
+      2024,
+      2.0
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 52.5
+    },
+    "broadband_pct": {
+     "value": 65.2
+    },
+    "median_age": {
+     "value": 41.8
+    },
+    "median_gross_rent": {
+     "value": 2258
+    },
+    "median_home_value": {
+     "value": 255855
+    },
+    "median_household_income": {
+     "change_1y_pct": 4.71,
+     "change_5y_pct": 31.67,
+     "value": 55455
+    },
+    "per_capita_income": {
+     "value": 28836
+    },
+    "population": {
+     "cagr_5y_pct": 0.02,
+     "change_1y_pct": 0.02,
+     "change_5y_pct": 0.08,
+     "value": 630568
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -14.01,
+     "change_5y_pct": 20.77,
+     "value": 2.0
+    }
+   },
+   "name": "Minnesota",
+   "state": "Minnesota",
+   "state_fips": "27"
+  },
+  "28": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      63286
+     ],
+     [
+      2020,
+      65347
+     ],
+     [
+      2021,
+      67407
+     ],
+     [
+      2022,
+      69468
+     ],
+     [
+      2023,
+      71528
+     ],
+     [
+      2024,
+      73589
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      648031
+     ],
+     [
+      2020,
+      642144
+     ],
+     [
+      2021,
+      636311
+     ],
+     [
+      2022,
+      630531
+     ],
+     [
+      2023,
+      624804
+     ],
+     [
+      2024,
+      619129
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      9.6
+     ],
+     [
+      2020,
+      9.1
+     ],
+     [
+      2021,
+      8.6
+     ],
+     [
+      2022,
+      8.1
+     ],
+     [
+      2023,
+      7.6
+     ],
+     [
+      2024,
+      7.1
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 22.5
+    },
+    "broadband_pct": {
+     "value": 93.8
+    },
+    "median_age": {
+     "value": 46.5
+    },
+    "median_gross_rent": {
+     "value": 673
+    },
+    "median_home_value": {
+     "value": 877998
+    },
+    "median_household_income": {
+     "change_1y_pct": 4.62,
+     "change_5y_pct": 10.54,
+     "value": 73589
+    },
+    "per_capita_income": {
+     "value": 38266
+    },
+    "population": {
+     "cagr_5y_pct": -0.91,
+     "change_1y_pct": -0.89,
+     "change_5y_pct": -4.46,
+     "value": 619129
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 2.38,
+     "change_5y_pct": -39.57,
+     "value": 7.1
+    }
+   },
+   "name": "Mississippi",
+   "state": "Mississippi",
+   "state_fips": "28"
+  },
+  "29": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      40991
+     ],
+     [
+      2020,
+      42326
+     ],
+     [
+      2021,
+      43661
+     ],
+     [
+      2022,
+      44995
+     ],
+     [
+      2023,
+      46330
+     ],
+     [
+      2024,
+      47665
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      474561
+     ],
+     [
+      2020,
+      472087
+     ],
+     [
+      2021,
+      469625
+     ],
+     [
+      2022,
+      467177
+     ],
+     [
+      2023,
+      464741
+     ],
+     [
+      2024,
+      462318
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      10.9
+     ],
+     [
+      2020,
+      10.4
+     ],
+     [
+      2021,
+      9.8
+     ],
+     [
+      2022,
+      9.2
+     ],
+     [
+      2023,
+      8.7
+     ],
+     [
+      2024,
+      8.1
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 59.2
+    },
+    "broadband_pct": {
+     "value": 61.5
+    },
+    "median_age": {
+     "value": 32.9
+    },
+    "median_gross_rent": {
+     "value": 2423
+    },
+    "median_home_value": {
+     "value": 75140
+    },
+    "median_household_income": {
+     "change_1y_pct": 2.41,
+     "change_5y_pct": 30.38,
+     "value": 47665
+    },
+    "per_capita_income": {
+     "value": 24785
+    },
+    "population": {
+     "cagr_5y_pct": -0.52,
+     "change_1y_pct": -0.52,
+     "change_5y_pct": -2.58,
+     "value": 462318
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -9.72,
+     "change_5y_pct": -34.34,
+     "value": 8.1
+    }
+   },
+   "name": "Missouri",
+   "state": "Missouri",
+   "state_fips": "29"
+  },
+  "30": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      104554
+     ],
+     [
+      2020,
+      107958
+     ],
+     [
+      2021,
+      111362
+     ],
+     [
+      2022,
+      114766
+     ],
+     [
+      2023,
+      118170
+     ],
+     [
+      2024,
+      121575
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      243095
+     ],
+     [
+      2020,
+      243313
+     ],
+     [
+      2021,
+      243532
+     ],
+     [
+      2022,
+      243750
+     ],
+     [
+      2023,
+      243969
+     ],
+     [
+      2024,
+      244189
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      5.4
+     ],
+     [
+      2020,
+      5.1
+     ],
+     [
+      2021,
+      4.8
+     ],
+     [
+      2022,
+      4.6
+     ],
+     [
+      2023,
+      4.3
+     ],
+     [
+      2024,
+      4.0
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 34.4
+    },
+    "broadband_pct": {
+     "value": 67.7
+    },
+    "median_age": {
+     "value": 45.2
+    },
+    "median_gross_rent": {
+     "value": 1203
+    },
+    "median_home_value": {
+     "value": 660310
+    },
+    "median_household_income": {
+     "change_1y_pct": 6.22,
+     "change_5y_pct": 28.8,
+     "value": 121575
+    },
+    "per_capita_income": {
+     "value": 63219
+    },
+    "population": {
+     "cagr_5y_pct": 0.09,
+     "change_1y_pct": 0.09,
+     "change_5y_pct": 0.45,
+     "value": 244189
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 6.6,
+     "change_5y_pct": 11.06,
+     "value": 4.0
+    }
+   },
+   "name": "Montana",
+   "state": "Montana",
+   "state_fips": "30"
+  },
+  "31": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      98506
+     ],
+     [
+      2020,
+      101713
+     ],
+     [
+      2021,
+      104920
+     ],
+     [
+      2022,
+      108127
+     ],
+     [
+      2023,
+      111334
+     ],
+     [
+      2024,
+      114542
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      144915
+     ],
+     [
+      2020,
+      144665
+     ],
+     [
+      2021,
+      144415
+     ],
+     [
+      2022,
+      144166
+     ],
+     [
+      2023,
+      143917
+     ],
+     [
+      2024,
+      143669
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      13.9
+     ],
+     [
+      2020,
+      13.2
+     ],
+     [
+      2021,
+      12.5
+     ],
+     [
+      2022,
+      11.7
+     ],
+     [
+      2023,
+      11.0
+     ],
+     [
+      2024,
+      10.3
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 10.9
+    },
+    "broadband_pct": {
+     "value": 87.9
+    },
+    "median_age": {
+     "value": 48.6
+    },
+    "median_gross_rent": {
+     "value": 1793
+    },
+    "median_home_value": {
+     "value": 156248
+    },
+    "median_household_income": {
+     "change_1y_pct": 2.5,
+     "change_5y_pct": 28.44,
+     "value": 114542
+    },
+    "per_capita_income": {
+     "value": 59561
+    },
+    "population": {
+     "cagr_5y_pct": -0.17,
+     "change_1y_pct": -0.17,
+     "change_5y_pct": -0.86,
+     "value": 143669
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -1.65,
+     "change_5y_pct": -17.37,
+     "value": 10.3
+    }
+   },
+   "name": "Nebraska",
+   "state": "Nebraska",
+   "state_fips": "31"
+  },
+  "32": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      70470
+     ],
+     [
+      2020,
+      72765
+     ],
+     [
+      2021,
+      75059
+     ],
+     [
+      2022,
+      77354
+     ],
+     [
+      2023,
+      79648
+     ],
+     [
+      2024,
+      81943
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      719817
+     ],
+     [
+      2020,
+      725304
+     ],
+     [
+      2021,
+      730833
+     ],
+     [
+      2022,
+      736404
+     ],
+     [
+      2023,
+      742017
+     ],
+     [
+      2024,
+      747674
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      9.0
+     ],
+     [
+      2020,
+      8.6
+     ],
+     [
+      2021,
+      8.1
+     ],
+     [
+      2022,
+      7.6
+     ],
+     [
+      2023,
+      7.2
+     ],
+     [
+      2024,
+      6.7
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 17.3
+    },
+    "broadband_pct": {
+     "value": 83.3
+    },
+    "median_age": {
+     "value": 35.8
+    },
+    "median_gross_rent": {
+     "value": 812
+    },
+    "median_home_value": {
+     "value": 388401
+    },
+    "median_household_income": {
+     "change_1y_pct": 1.32,
+     "change_5y_pct": 25.06,
+     "value": 81943
+    },
+    "per_capita_income": {
+     "value": 42610
+    },
+    "population": {
+     "cagr_5y_pct": 0.76,
+     "change_1y_pct": 0.77,
+     "change_5y_pct": 3.87,
+     "value": 747674
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 4.44,
+     "change_5y_pct": -13.49,
+     "value": 6.7
+    }
+   },
+   "name": "Nevada",
+   "state": "Nevada",
+   "state_fips": "32"
+  },
+  "33": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      51035
+     ],
+     [
+      2020,
+      52697
+     ],
+     [
+      2021,
+      54359
+     ],
+     [
+      2022,
+      56020
+     ],
+     [
+      2023,
+      57682
+     ],
+     [
+      2024,
+      59344
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      841296
+     ],
+     [
+      2020,
+      839539
+     ],
+     [
+      2021,
+      837785
+     ],
+     [
+      2022,
+      836035
+     ],
+     [
+      2023,
+      834289
+     ],
+     [
+      2024,
+      832547
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      4.9
+     ],
+     [
+      2020,
+      4.6
+     ],
+     [
+      2021,
+      4.4
+     ],
+     [
+      2022,
+      4.1
+     ],
+     [
+      2023,
+      3.9
+     ],
+     [
+      2024,
+      3.6
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 10.4
+    },
+    "broadband_pct": {
+     "value": 83.9
+    },
+    "median_age": {
+     "value": 37.9
+    },
+    "median_gross_rent": {
+     "value": 1984
+    },
+    "median_home_value": {
+     "value": 624390
+    },
+    "median_household_income": {
+     "change_1y_pct": 6.33,
+     "change_5y_pct": 17.85,
+     "value": 59344
+    },
+    "per_capita_income": {
+     "value": 30858
+    },
+    "population": {
+     "cagr_5y_pct": -0.21,
+     "change_1y_pct": -0.21,
+     "change_5y_pct": -1.04,
+     "value": 832547
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 6.53,
+     "change_5y_pct": -37.72,
+     "value": 3.6
+    }
+   },
+   "name": "New Hampshire",
+   "state": "New Hampshire",
+   "state_fips": "33"
+  },
+  "34": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      55900
+     ],
+     [
+      2020,
+      57720
+     ],
+     [
+      2021,
+      59540
+     ],
+     [
+      2022,
+      61360
+     ],
+     [
+      2023,
+      63180
+     ],
+     [
+      2024,
+      65001
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      422329
+     ],
+     [
+      2020,
+      433406
+     ],
+     [
+      2021,
+      444773
+     ],
+     [
+      2022,
+      456439
+     ],
+     [
+      2023,
+      468410
+     ],
+     [
+      2024,
+      480696
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      14.2
+     ],
+     [
+      2020,
+      13.4
+     ],
+     [
+      2021,
+      12.7
+     ],
+     [
+      2022,
+      12.0
+     ],
+     [
+      2023,
+      11.2
+     ],
+     [
+      2024,
+      10.5
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 51.9
+    },
+    "broadband_pct": {
+     "value": 75.9
+    },
+    "median_age": {
+     "value": 44.9
+    },
+    "median_gross_rent": {
+     "value": 1537
+    },
+    "median_home_value": {
+     "value": 322893
+    },
+    "median_household_income": {
+     "change_1y_pct": 3.31,
+     "change_5y_pct": 32.93,
+     "value": 65001
+    },
+    "per_capita_income": {
+     "value": 33800
+    },
+    "population": {
+     "cagr_5y_pct": 2.62,
+     "change_1y_pct": 2.76,
+     "change_5y_pct": 13.82,
+     "value": 480696
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -21.74,
+     "change_5y_pct": 9.37,
+     "value": 10.5
+    }
+   },
+   "name": "New Jersey",
+   "state": "New Jersey",
+   "state_fips": "34"
+  },
+  "35": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      87188
+     ],
+     [
+      2020,
+      90027
+     ],
+     [
+      2021,
+      92865
+     ],
+     [
+      2022,
+      95704
+     ],
+     [
+      2023,
+      98543
+     ],
+     [
+      2024,
+      101382
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      703410
+     ],
+     [
+      2020,
+      717403
+     ],
+     [
+      2021,
+      731674
+     ],
+     [
+      2022,
+      746229
+     ],
+     [
+      2023,
+      761074
+     ],
+     [
+      2024,
+      776214
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      2.7
+     ],
+     [
+      2020,
+      2.6
+     ],
+     [
+      2021,
+      2.4
+     ],
+     [
+      2022,
+      2.3
+     ],
+     [
+      2023,
+      2.1
+     ],
+     [
+      2024,
+      2.0
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 58.0
+    },
+    "broadband_pct": {
+     "value": 93.9
+    },
+    "median_age": {
+     "value": 48.8
+    },
+    "median_gross_rent": {
+     "value": 1278
+    },
+    "median_home_value": {
+     "value": 872002
+    },
+    "median_household_income": {
+     "change_1y_pct": 1.08,
+     "change_5y_pct": 11.91,
+     "value": 101382
+    },
+    "per_capita_income": {
+     "value": 52718
+    },
+    "population": {
+     "cagr_5y_pct": 1.99,
+     "change_1y_pct": 2.07,
+     "change_5y_pct": 10.35,
+     "value": 776214
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -19.34,
+     "change_5y_pct": 9.04,
+     "value": 2.0
+    }
+   },
+   "name": "New Mexico",
+   "state": "New Mexico",
+   "state_fips": "35"
+  },
+  "36": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      93598
+     ],
+     [
+      2020,
+      96646
+     ],
+     [
+      2021,
+      99693
+     ],
+     [
+      2022,
+      102741
+     ],
+     [
+      2023,
+      105788
+     ],
+     [
+      2024,
+      108836
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      508559
+     ],
+     [
+      2020,
+      523057
+     ],
+     [
+      2021,
+      537968
+     ],
+     [
+      2022,
+      553304
+     ],
+     [
+      2023,
+      569077
+     ],
+     [
+      2024,
+      585301
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      14.4
+     ],
+     [
+      2020,
+      13.7
+     ],
+     [
+      2021,
+      12.9
+     ],
+     [
+      2022,
+      12.2
+     ],
+     [
+      2023,
+      11.4
+     ],
+     [
+      2024,
+      10.7
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 66.1
+    },
+    "broadband_pct": {
+     "value": 80.3
+    },
+    "median_age": {
+     "value": 45.2
+    },
+    "median_gross_rent": {
+     "value": 1388
+    },
+    "median_home_value": {
+     "value": 854327
+    },
+    "median_household_income": {
+     "change_1y_pct": 1.29,
+     "change_5y_pct": 15.47,
+     "value": 108836
+    },
+    "per_capita_income": {
+     "value": 56594
+    },
+    "population": {
+     "cagr_5y_pct": 2.85,
+     "change_1y_pct": 3.02,
+     "change_5y_pct": 15.09,
+     "value": 585301
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -3.26,
+     "change_5y_pct": 6.46,
+     "value": 10.7
+    }
+   },
+   "name": "New York",
+   "state": "New York",
+   "state_fips": "36"
+  },
+  "37": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      43106
+     ],
+     [
+      2020,
+      44510
+     ],
+     [
+      2021,
+      45913
+     ],
+     [
+      2022,
+      47317
+     ],
+     [
+      2023,
+      48720
+     ],
+     [
+      2024,
+      50124
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      817998
+     ],
+     [
+      2020,
+      814367
+     ],
+     [
+      2021,
+      810752
+     ],
+     [
+      2022,
+      807153
+     ],
+     [
+      2023,
+      803570
+     ],
+     [
+      2024,
+      800003
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      4.5
+     ],
+     [
+      2020,
+      4.2
+     ],
+     [
+      2021,
+      4.0
+     ],
+     [
+      2022,
+      3.8
+     ],
+     [
+      2023,
+      3.5
+     ],
+     [
+      2024,
+      3.3
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 14.4
+    },
+    "broadband_pct": {
+     "value": 86.4
+    },
+    "median_age": {
+     "value": 50.2
+    },
+    "median_gross_rent": {
+     "value": 2080
+    },
+    "median_home_value": {
+     "value": 586791
+    },
+    "median_household_income": {
+     "change_1y_pct": 4.91,
+     "change_5y_pct": 27.97,
+     "value": 50124
+    },
+    "per_capita_income": {
+     "value": 26064
+    },
+    "population": {
+     "cagr_5y_pct": -0.44,
+     "change_1y_pct": -0.44,
+     "change_5y_pct": -2.2,
+     "value": 800003
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -16.82,
+     "change_5y_pct": 16.9,
+     "value": 3.3
+    }
+   },
+   "name": "North Carolina",
+   "state": "North Carolina",
+   "state_fips": "37"
+  },
+  "38": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      76202
+     ],
+     [
+      2020,
+      78683
+     ],
+     [
+      2021,
+      81164
+     ],
+     [
+      2022,
+      83645
+     ],
+     [
+      2023,
+      86126
+     ],
+     [
+      2024,
+      88607
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      572911
+     ],
+     [
+      2020,
+      593592
+     ],
+     [
+      2021,
+      615019
+     ],
+     [
+      2022,
+      637220
+     ],
+     [
+      2023,
+      660223
+     ],
+     [
+      2024,
+      684056
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      5.3
+     ],
+     [
+      2020,
+      5.0
+     ],
+     [
+      2021,
+      4.7
+     ],
+     [
+      2022,
+      4.4
+     ],
+     [
+      2023,
+      4.2
+     ],
+     [
+      2024,
+      3.9
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 67.4
+    },
+    "broadband_pct": {
+     "value": 86.2
+    },
+    "median_age": {
+     "value": 32.1
+    },
+    "median_gross_rent": {
+     "value": 2370
+    },
+    "median_home_value": {
+     "value": 520238
+    },
+    "median_household_income": {
+     "change_1y_pct": 2.67,
+     "change_5y_pct": 23.29,
+     "value": 88607
+    },
+    "per_capita_income": {
+     "value": 46075
+    },
+    "population": {
+     "cagr_5y_pct": 3.61,
+     "change_1y_pct": 3.88,
+     "change_5y_pct": 19.4,
+     "value": 684056
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -13.19,
+     "change_5y_pct": -0.11,
+     "value": 3.9
+    }
+   },
+   "name": "North Dakota",
+   "state": "North Dakota",
+   "state_fips": "38"
+  },
+  "39": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      32252
+     ],
+     [
+      2020,
+      33302
+     ],
+     [
+      2021,
+      34352
+     ],
+     [
+      2022,
+      35402
+     ],
+     [
+      2023,
+      36452
+     ],
+     [
+      2024,
+      37503
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      158292
+     ],
+     [
+      2020,
+      157904
+     ],
+     [
+      2021,
+      157516
+     ],
+     [
+      2022,
+      157130
+     ],
+     [
+      2023,
+      156745
+     ],
+     [
+      2024,
+      156361
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      16.6
+     ],
+     [
+      2020,
+      15.7
+     ],
+     [
+      2021,
+      14.9
+     ],
+     [
+      2022,
+      14.0
+     ],
+     [
+      2023,
+      13.2
+     ],
+     [
+      2024,
+      12.3
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 40.0
+    },
+    "broadband_pct": {
+     "value": 71.8
+    },
+    "median_age": {
+     "value": 35.2
+    },
+    "median_gross_rent": {
+     "value": 1440
+    },
+    "median_home_value": {
+     "value": 733472
+    },
+    "median_household_income": {
+     "change_1y_pct": 2.08,
+     "change_5y_pct": 33.38,
+     "value": 37503
+    },
+    "per_capita_income": {
+     "value": 19501
+    },
+    "population": {
+     "cagr_5y_pct": -0.25,
+     "change_1y_pct": -0.24,
+     "change_5y_pct": -1.22,
+     "value": 156361
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -3.83,
+     "change_5y_pct": -14.52,
+     "value": 12.3
+    }
+   },
+   "name": "Ohio",
+   "state": "Ohio",
+   "state_fips": "39"
+  },
+  "40": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      121834
+     ],
+     [
+      2020,
+      125801
+     ],
+     [
+      2021,
+      129767
+     ],
+     [
+      2022,
+      133734
+     ],
+     [
+      2023,
+      137701
+     ],
+     [
+      2024,
+      141668
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      87375
+     ],
+     [
+      2020,
+      88572
+     ],
+     [
+      2021,
+      89786
+     ],
+     [
+      2022,
+      91016
+     ],
+     [
+      2023,
+      92263
+     ],
+     [
+      2024,
+      93527
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      6.2
+     ],
+     [
+      2020,
+      5.9
+     ],
+     [
+      2021,
+      5.6
+     ],
+     [
+      2022,
+      5.2
+     ],
+     [
+      2023,
+      4.9
+     ],
+     [
+      2024,
+      4.6
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 50.8
+    },
+    "broadband_pct": {
+     "value": 76.4
+    },
+    "median_age": {
+     "value": 46.2
+    },
+    "median_gross_rent": {
+     "value": 1226
+    },
+    "median_home_value": {
+     "value": 768523
+    },
+    "median_household_income": {
+     "change_1y_pct": 5.08,
+     "change_5y_pct": 16.05,
+     "value": 141668
+    },
+    "per_capita_income": {
+     "value": 73667
+    },
+    "population": {
+     "cagr_5y_pct": 1.37,
+     "change_1y_pct": 1.41,
+     "change_5y_pct": 7.04,
+     "value": 93527
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -13.53,
+     "change_5y_pct": 24.11,
+     "value": 4.6
+    }
+   },
+   "name": "Oklahoma",
+   "state": "Oklahoma",
+   "state_fips": "40"
+  },
+  "41": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      45254
+     ],
+     [
+      2020,
+      46727
+     ],
+     [
+      2021,
+      48200
+     ],
+     [
+      2022,
+      49674
+     ],
+     [
+      2023,
+      51147
+     ],
+     [
+      2024,
+      52621
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      469668
+     ],
+     [
+      2020,
+      476750
+     ],
+     [
+      2021,
+      483939
+     ],
+     [
+      2022,
+      491236
+     ],
+     [
+      2023,
+      498643
+     ],
+     [
+      2024,
+      506162
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      5.1
+     ],
+     [
+      2020,
+      4.9
+     ],
+     [
+      2021,
+      4.6
+     ],
+     [
+      2022,
+      4.3
+     ],
+     [
+      2023,
+      4.1
+     ],
+     [
+      2024,
+      3.8
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 38.3
+    },
+    "broadband_pct": {
+     "value": 69.1
+    },
+    "median_age": {
+     "value": 47.3
+    },
+    "median_gross_rent": {
+     "value": 1723
+    },
+    "median_home_value": {
+     "value": 190076
+    },
+    "median_household_income": {
+     "change_1y_pct": 3.32,
+     "change_5y_pct": 19.58,
+     "value": 52621
+    },
+    "per_capita_income": {
+     "value": 27362
+    },
+    "population": {
+     "cagr_5y_pct": 1.51,
+     "change_1y_pct": 1.55,
+     "change_5y_pct": 7.77,
+     "value": 506162
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 5.08,
+     "change_5y_pct": 19.3,
+     "value": 3.8
+    }
+   },
+   "name": "Oregon",
+   "state": "Oregon",
+   "state_fips": "41"
+  },
+  "42": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      62601
+     ],
+     [
+      2020,
+      64640
+     ],
+     [
+      2021,
+      66678
+     ],
+     [
+      2022,
+      68716
+     ],
+     [
+      2023,
+      70754
+     ],
+     [
+      2024,
+      72793
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      486196
+     ],
+     [
+      2020,
+      494830
+     ],
+     [
+      2021,
+      503617
+     ],
+     [
+      2022,
+      512561
+     ],
+     [
+      2023,
+      521663
+     ],
+     [
+      2024,
+      530927
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      7.7
+     ],
+     [
+      2020,
+      7.3
+     ],
+     [
+      2021,
+      6.9
+     ],
+     [
+      2022,
+      6.5
+     ],
+     [
+      2023,
+      6.1
+     ],
+     [
+      2024,
+      5.7
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 52.5
+    },
+    "broadband_pct": {
+     "value": 71.6
+    },
+    "median_age": {
+     "value": 30.9
+    },
+    "median_gross_rent": {
+     "value": 801
+    },
+    "median_home_value": {
+     "value": 444285
+    },
+    "median_household_income": {
+     "change_1y_pct": 6.24,
+     "change_5y_pct": 32.58,
+     "value": 72793
+    },
+    "per_capita_income": {
+     "value": 37852
+    },
+    "population": {
+     "cagr_5y_pct": 1.78,
+     "change_1y_pct": 1.84,
+     "change_5y_pct": 9.2,
+     "value": 530927
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -11.0,
+     "change_5y_pct": 19.59,
+     "value": 5.7
+    }
+   },
+   "name": "Pennsylvania",
+   "state": "Pennsylvania",
+   "state_fips": "42"
+  },
+  "44": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      75511
+     ],
+     [
+      2020,
+      77969
+     ],
+     [
+      2021,
+      80428
+     ],
+     [
+      2022,
+      82886
+     ],
+     [
+      2023,
+      85345
+     ],
+     [
+      2024,
+      87804
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      1160673
+     ],
+     [
+      2020,
+      1164135
+     ],
+     [
+      2021,
+      1167606
+     ],
+     [
+      2022,
+      1171088
+     ],
+     [
+      2023,
+      1174581
+     ],
+     [
+      2024,
+      1178084
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      8.0
+     ],
+     [
+      2020,
+      7.6
+     ],
+     [
+      2021,
+      7.1
+     ],
+     [
+      2022,
+      6.7
+     ],
+     [
+      2023,
+      6.3
+     ],
+     [
+      2024,
+      5.9
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 18.5
+    },
+    "broadband_pct": {
+     "value": 80.6
+    },
+    "median_age": {
+     "value": 33.6
+    },
+    "median_gross_rent": {
+     "value": 751
+    },
+    "median_home_value": {
+     "value": 264664
+    },
+    "median_household_income": {
+     "change_1y_pct": 4.94,
+     "change_5y_pct": 28.81,
+     "value": 87804
+    },
+    "per_capita_income": {
+     "value": 45658
+    },
+    "population": {
+     "cagr_5y_pct": 0.3,
+     "change_1y_pct": 0.3,
+     "change_5y_pct": 1.5,
+     "value": 1178084
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 17.66,
+     "change_5y_pct": -8.32,
+     "value": 5.9
+    }
+   },
+   "name": "Rhode Island",
+   "state": "Rhode Island",
+   "state_fips": "44"
+  },
+  "45": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      122160
+     ],
+     [
+      2020,
+      126137
+     ],
+     [
+      2021,
+      130115
+     ],
+     [
+      2022,
+      134092
+     ],
+     [
+      2023,
+      138069
+     ],
+     [
+      2024,
+      142047
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      1263804
+     ],
+     [
+      2020,
+      1269689
+     ],
+     [
+      2021,
+      1275601
+     ],
+     [
+      2022,
+      1281541
+     ],
+     [
+      2023,
+      1287508
+     ],
+     [
+      2024,
+      1293504
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      7.3
+     ],
+     [
+      2020,
+      6.9
+     ],
+     [
+      2021,
+      6.5
+     ],
+     [
+      2022,
+      6.2
+     ],
+     [
+      2023,
+      5.8
+     ],
+     [
+      2024,
+      5.4
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 43.2
+    },
+    "broadband_pct": {
+     "value": 90.0
+    },
+    "median_age": {
+     "value": 31.0
+    },
+    "median_gross_rent": {
+     "value": 2450
+    },
+    "median_home_value": {
+     "value": 82610
+    },
+    "median_household_income": {
+     "change_1y_pct": 1.58,
+     "change_5y_pct": 2.33,
+     "value": 142047
+    },
+    "per_capita_income": {
+     "value": 73864
+    },
+    "population": {
+     "cagr_5y_pct": 0.47,
+     "change_1y_pct": 0.47,
+     "change_5y_pct": 2.35,
+     "value": 1293504
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -6.34,
+     "change_5y_pct": -17.27,
+     "value": 5.4
+    }
+   },
+   "name": "South Carolina",
+   "state": "South Carolina",
+   "state_fips": "45"
+  },
+  "46": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      96676
+     ],
+     [
+      2020,
+      99824
+     ],
+     [
+      2021,
+      102972
+     ],
+     [
+      2022,
+      106119
+     ],
+     [
+      2023,
+      109267
+     ],
+     [
+      2024,
+      112415
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      66418
+     ],
+     [
+      2020,
+      67227
+     ],
+     [
+      2021,
+      68046
+     ],
+     [
+      2022,
+      68875
+     ],
+     [
+      2023,
+      69713
+     ],
+     [
+      2024,
+      70563
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      12.2
+     ],
+     [
+      2020,
+      11.5
+     ],
+     [
+      2021,
+      10.9
+     ],
+     [
+      2022,
+      10.3
+     ],
+     [
+      2023,
+      9.6
+     ],
+     [
+      2024,
+      9.0
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 55.5
+    },
+    "broadband_pct": {
+     "value": 72.4
+    },
+    "median_age": {
+     "value": 44.8
+    },
+    "median_gross_rent": {
+     "value": 1181
+    },
+    "median_home_value": {
+     "value": 881628
+    },
+    "median_household_income": {
+     "change_1y_pct": 3.15,
+     "change_5y_pct": 27.81,
+     "value": 112415
+    },
+    "per_capita_income": {
+     "value": 58455
+    },
+    "population": {
+     "cagr_5y_pct": 1.22,
+     "change_1y_pct": 1.25,
+     "change_5y_pct": 6.24,
+     "value": 70563
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 4.58,
+     "change_5y_pct": -32.06,
+     "value": 9.0
+    }
+   },
+   "name": "South Dakota",
+   "state": "South Dakota",
+   "state_fips": "46"
+  },
+  "47": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      104811
+     ],
+     [
+      2020,
+      108224
+     ],
+     [
+      2021,
+      111636
+     ],
+     [
+      2022,
+      115049
+     ],
+     [
+      2023,
+      118461
+     ],
+     [
+      2024,
+      121874
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      1113727
+     ],
+     [
+      2020,
+      1110996
+     ],
+     [
+      2021,
+      1108272
+     ],
+     [
+      2022,
+      1105554
+     ],
+     [
+      2023,
+      1102844
+     ],
+     [
+      2024,
+      1100140
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      6.2
+     ],
+     [
+      2020,
+      5.9
+     ],
+     [
+      2021,
+      5.6
+     ],
+     [
+      2022,
+      5.2
+     ],
+     [
+      2023,
+      4.9
+     ],
+     [
+      2024,
+      4.6
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 30.8
+    },
+    "broadband_pct": {
+     "value": 69.3
+    },
+    "median_age": {
+     "value": 50.4
+    },
+    "median_gross_rent": {
+     "value": 1592
+    },
+    "median_home_value": {
+     "value": 423469
+    },
+    "median_household_income": {
+     "change_1y_pct": -0.28,
+     "change_5y_pct": 3.58,
+     "value": 121874
+    },
+    "per_capita_income": {
+     "value": 63374
+    },
+    "population": {
+     "cagr_5y_pct": -0.25,
+     "change_1y_pct": -0.24,
+     "change_5y_pct": -1.22,
+     "value": 1100140
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 6.76,
+     "change_5y_pct": 14.95,
+     "value": 4.6
+    }
+   },
+   "name": "Tennessee",
+   "state": "Tennessee",
+   "state_fips": "47"
+  },
+  "48": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      80591
+     ],
+     [
+      2020,
+      83215
+     ],
+     [
+      2021,
+      85839
+     ],
+     [
+      2022,
+      88463
+     ],
+     [
+      2023,
+      91087
+     ],
+     [
+      2024,
+      93711
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      642989
+     ],
+     [
+      2020,
+      662202
+     ],
+     [
+      2021,
+      681989
+     ],
+     [
+      2022,
+      702367
+     ],
+     [
+      2023,
+      723354
+     ],
+     [
+      2024,
+      744968
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      13.4
+     ],
+     [
+      2020,
+      12.7
+     ],
+     [
+      2021,
+      12.0
+     ],
+     [
+      2022,
+      11.3
+     ],
+     [
+      2023,
+      10.6
+     ],
+     [
+      2024,
+      9.9
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 60.5
+    },
+    "broadband_pct": {
+     "value": 67.2
+    },
+    "median_age": {
+     "value": 50.9
+    },
+    "median_gross_rent": {
+     "value": 1923
+    },
+    "median_home_value": {
+     "value": 248946
+    },
+    "median_household_income": {
+     "change_1y_pct": -0.6,
+     "change_5y_pct": 29.47,
+     "value": 93711
+    },
+    "per_capita_income": {
+     "value": 48729
+    },
+    "population": {
+     "cagr_5y_pct": 2.99,
+     "change_1y_pct": 3.17,
+     "change_5y_pct": 15.86,
+     "value": 744968
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 12.34,
+     "change_5y_pct": -2.45,
+     "value": 9.9
+    }
+   },
+   "name": "Texas",
+   "state": "Texas",
+   "state_fips": "48"
+  },
+  "49": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      38936
+     ],
+     [
+      2020,
+      40204
+     ],
+     [
+      2021,
+      41471
+     ],
+     [
+      2022,
+      42739
+     ],
+     [
+      2023,
+      44007
+     ],
+     [
+      2024,
+      45275
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      202517
+     ],
+     [
+      2020,
+      208666
+     ],
+     [
+      2021,
+      215001
+     ],
+     [
+      2022,
+      221528
+     ],
+     [
+      2023,
+      228254
+     ],
+     [
+      2024,
+      235184
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      15.3
+     ],
+     [
+      2020,
+      14.5
+     ],
+     [
+      2021,
+      13.7
+     ],
+     [
+      2022,
+      12.9
+     ],
+     [
+      2023,
+      12.1
+     ],
+     [
+      2024,
+      11.3
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 28.9
+    },
+    "broadband_pct": {
+     "value": 94.9
+    },
+    "median_age": {
+     "value": 45.6
+    },
+    "median_gross_rent": {
+     "value": 1814
+    },
+    "median_home_value": {
+     "value": 197472
+    },
+    "median_household_income": {
+     "change_1y_pct": 2.62,
+     "change_5y_pct": 14.86,
+     "value": 45275
+    },
+    "per_capita_income": {
+     "value": 23543
+    },
+    "population": {
+     "cagr_5y_pct": 3.04,
+     "change_1y_pct": 3.23,
+     "change_5y_pct": 16.13,
+     "value": 235184
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 1.06,
+     "change_5y_pct": 22.91,
+     "value": 11.3
+    }
+   },
+   "name": "Utah",
+   "state": "Utah",
+   "state_fips": "49"
+  },
+  "50": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      58079
+     ],
+     [
+      2020,
+      59970
+     ],
+     [
+      2021,
+      61861
+     ],
+     [
+      2022,
+      63752
+     ],
+     [
+      2023,
+      65643
+     ],
+     [
+      2024,
+      67534
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      274048
+     ],
+     [
+      2020,
+      284439
+     ],
+     [
+      2021,
+      295223
+     ],
+     [
+      2022,
+      306416
+     ],
+     [
+      2023,
+      318034
+     ],
+     [
+      2024,
+      330092
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      11.9
+     ],
+     [
+      2020,
+      11.3
+     ],
+     [
+      2021,
+      10.6
+     ],
+     [
+      2022,
+      10.0
+     ],
+     [
+      2023,
+      9.4
+     ],
+     [
+      2024,
+      8.8
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 57.1
+    },
+    "broadband_pct": {
+     "value": 74.0
+    },
+    "median_age": {
+     "value": 44.8
+    },
+    "median_gross_rent": {
+     "value": 2564
+    },
+    "median_home_value": {
+     "value": 210936
+    },
+    "median_household_income": {
+     "change_1y_pct": 3.67,
+     "change_5y_pct": 14.47,
+     "value": 67534
+    },
+    "per_capita_income": {
+     "value": 35117
+    },
+    "population": {
+     "cagr_5y_pct": 3.79,
+     "change_1y_pct": 4.09,
+     "change_5y_pct": 20.45,
+     "value": 330092
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -20.79,
+     "change_5y_pct": 24.66,
+     "value": 8.8
+    }
+   },
+   "name": "Vermont",
+   "state": "Vermont",
+   "state_fips": "50"
+  },
+  "51": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      117004
+     ],
+     [
+      2020,
+      120814
+     ],
+     [
+      2021,
+      124623
+     ],
+     [
+      2022,
+      128433
+     ],
+     [
+      2023,
+      132242
+     ],
+     [
+      2024,
+      136052
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      70868
+     ],
+     [
+      2020,
+      70720
+     ],
+     [
+      2021,
+      70572
+     ],
+     [
+      2022,
+      70424
+     ],
+     [
+      2023,
+      70277
+     ],
+     [
+      2024,
+      70131
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      15.1
+     ],
+     [
+      2020,
+      14.3
+     ],
+     [
+      2021,
+      13.6
+     ],
+     [
+      2022,
+      12.8
+     ],
+     [
+      2023,
+      12.0
+     ],
+     [
+      2024,
+      11.2
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 39.4
+    },
+    "broadband_pct": {
+     "value": 59.8
+    },
+    "median_age": {
+     "value": 39.7
+    },
+    "median_gross_rent": {
+     "value": 1730
+    },
+    "median_home_value": {
+     "value": 716287
+    },
+    "median_household_income": {
+     "change_1y_pct": -0.19,
+     "change_5y_pct": 6.42,
+     "value": 136052
+    },
+    "per_capita_income": {
+     "value": 70747
+    },
+    "population": {
+     "cagr_5y_pct": -0.21,
+     "change_1y_pct": -0.21,
+     "change_5y_pct": -1.04,
+     "value": 70131
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 8.73,
+     "change_5y_pct": -1.0,
+     "value": 11.2
+    }
+   },
+   "name": "Virginia",
+   "state": "Virginia",
+   "state_fips": "51"
+  },
+  "53": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      123957
+     ],
+     [
+      2020,
+      127993
+     ],
+     [
+      2021,
+      132029
+     ],
+     [
+      2022,
+      136065
+     ],
+     [
+      2023,
+      140101
+     ],
+     [
+      2024,
+      144137
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      538152
+     ],
+     [
+      2020,
+      559636
+     ],
+     [
+      2021,
+      581979
+     ],
+     [
+      2022,
+      605213
+     ],
+     [
+      2023,
+      629374
+     ],
+     [
+      2024,
+      654501
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      4.9
+     ],
+     [
+      2020,
+      4.6
+     ],
+     [
+      2021,
+      4.4
+     ],
+     [
+      2022,
+      4.1
+     ],
+     [
+      2023,
+      3.9
+     ],
+     [
+      2024,
+      3.6
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 21.0
+    },
+    "broadband_pct": {
+     "value": 87.9
+    },
+    "median_age": {
+     "value": 42.7
+    },
+    "median_gross_rent": {
+     "value": 1638
+    },
+    "median_home_value": {
+     "value": 299885
+    },
+    "median_household_income": {
+     "change_1y_pct": -1.42,
+     "change_5y_pct": 8.48,
+     "value": 144137
+    },
+    "per_capita_income": {
+     "value": 74951
+    },
+    "population": {
+     "cagr_5y_pct": 3.99,
+     "change_1y_pct": 4.32,
+     "change_5y_pct": 21.62,
+     "value": 654501
+    },
+    "unemployment_rate": {
+     "change_1y_pct": -11.99,
+     "change_5y_pct": -38.59,
+     "value": 3.6
+    }
+   },
+   "name": "Washington",
+   "state": "Washington",
+   "state_fips": "53"
+  },
+  "54": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      114250
+     ],
+     [
+      2020,
+      117969
+     ],
+     [
+      2021,
+      121689
+     ],
+     [
+      2022,
+      125409
+     ],
+     [
+      2023,
+      129129
+     ],
+     [
+      2024,
+      132849
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      1116250
+     ],
+     [
+      2020,
+      1140409
+     ],
+     [
+      2021,
+      1165090
+     ],
+     [
+      2022,
+      1190306
+     ],
+     [
+      2023,
+      1216068
+     ],
+     [
+      2024,
+      1242387
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      14.7
+     ],
+     [
+      2020,
+      14.0
+     ],
+     [
+      2021,
+      13.2
+     ],
+     [
+      2022,
+      12.4
+     ],
+     [
+      2023,
+      11.7
+     ],
+     [
+      2024,
+      10.9
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 64.8
+    },
+    "broadband_pct": {
+     "value": 76.5
+    },
+    "median_age": {
+     "value": 34.9
+    },
+    "median_gross_rent": {
+     "value": 1427
+    },
+    "median_home_value": {
+     "value": 220016
+    },
+    "median_household_income": {
+     "change_1y_pct": 1.03,
+     "change_5y_pct": 24.52,
+     "value": 132849
+    },
+    "per_capita_income": {
+     "value": 69081
+    },
+    "population": {
+     "cagr_5y_pct": 2.16,
+     "change_1y_pct": 2.26,
+     "change_5y_pct": 11.3,
+     "value": 1242387
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 2.08,
+     "change_5y_pct": -18.33,
+     "value": 10.9
+    }
+   },
+   "name": "West Virginia",
+   "state": "West Virginia",
+   "state_fips": "54"
+  },
+  "55": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      121161
+     ],
+     [
+      2020,
+      125105
+     ],
+     [
+      2021,
+      129050
+     ],
+     [
+      2022,
+      132995
+     ],
+     [
+      2023,
+      136940
+     ],
+     [
+      2024,
+      140885
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      539371
+     ],
+     [
+      2020,
+      557817
+     ],
+     [
+      2021,
+      576894
+     ],
+     [
+      2022,
+      596623
+     ],
+     [
+      2023,
+      617027
+     ],
+     [
+      2024,
+      638130
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      6.9
+     ],
+     [
+      2020,
+      6.5
+     ],
+     [
+      2021,
+      6.2
+     ],
+     [
+      2022,
+      5.8
+     ],
+     [
+      2023,
+      5.5
+     ],
+     [
+      2024,
+      5.1
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 38.2
+    },
+    "broadband_pct": {
+     "value": 52.4
+    },
+    "median_age": {
+     "value": 49.6
+    },
+    "median_gross_rent": {
+     "value": 2317
+    },
+    "median_home_value": {
+     "value": 746635
+    },
+    "median_household_income": {
+     "change_1y_pct": 4.4,
+     "change_5y_pct": 11.27,
+     "value": 140885
+    },
+    "per_capita_income": {
+     "value": 73260
+    },
+    "population": {
+     "cagr_5y_pct": 3.42,
+     "change_1y_pct": 3.66,
+     "change_5y_pct": 18.31,
+     "value": 638130
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 1.61,
+     "change_5y_pct": -3.4,
+     "value": 5.1
+    }
+   },
+   "name": "Wisconsin",
+   "state": "Wisconsin",
+   "state_fips": "55"
+  },
+  "56": {
+   "history": {
+    "median_household_income": [
+     [
+      2019,
+      111112
+     ],
+     [
+      2020,
+      114730
+     ],
+     [
+      2021,
+      118348
+     ],
+     [
+      2022,
+      121965
+     ],
+     [
+      2023,
+      125583
+     ],
+     [
+      2024,
+      129201
+     ]
+    ],
+    "population": [
+     [
+      2019,
+      449512
+     ],
+     [
+      2020,
+      441151
+     ],
+     [
+      2021,
+      432946
+     ],
+     [
+      2022,
+      424894
+     ],
+     [
+      2023,
+      416991
+     ],
+     [
+      2024,
+      409236
+     ]
+    ],
+    "unemployment_rate": [
+     [
+      2019,
+      15.9
+     ],
+     [
+      2020,
+      15.1
+     ],
+     [
+      2021,
+      14.3
+     ],
+     [
+      2022,
+      13.5
+     ],
+     [
+      2023,
+      12.6
+     ],
+     [
+      2024,
+      11.8
+     ]
+    ]
+   },
+   "metrics": {
+    "bachelors_or_higher_pct": {
+     "value": 35.4
+    },
+    "broadband_pct": {
+     "value": 89.9
+    },
+    "median_age": {
+     "value": 45.0
+    },
+    "median_gross_rent": {
+     "value": 1175
+    },
+    "median_home_value": {
+     "value": 388384
+    },
+    "median_household_income": {
+     "change_1y_pct": 5.21,
+     "change_5y_pct": 22.61,
+     "value": 129201
+    },
+    "per_capita_income": {
+     "value": 67184
+    },
+    "population": {
+     "cagr_5y_pct": -1.86,
+     "change_1y_pct": -1.79,
+     "change_5y_pct": -8.96,
+     "value": 409236
+    },
+    "unemployment_rate": {
+     "change_1y_pct": 8.86,
+     "change_5y_pct": 18.43,
+     "value": 11.8
+    }
+   },
+   "name": "Wyoming",
+   "state": "Wyoming",
+   "state_fips": "56"
+  }
+ }
+}

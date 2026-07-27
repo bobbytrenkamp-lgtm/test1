@@ -1,0 +1,40 @@
+{
+ "_schema": "economy_metadata_v1",
+ "acs_vintage": null,
+ "cbp_available": false,
+ "cbp_year": null,
+ "census": {
+  "last_successful_update": null,
+  "selected_variables": {},
+  "unverified_metrics": {}
+ },
+ "county_count": 0,
+ "fred_series_count": 0,
+ "fred_skipped": [],
+ "generated_at": "2026-07-26T21:36:15+00:00",
+ "latest_observation_date": null,
+ "oldest_history_year": null,
+ "pipeline_version": "1.0.0",
+ "source_updated_at": null,
+ "sources": [
+  {
+   "id": "fred",
+   "name": "Federal Reserve Economic Data (FRED)",
+   "note": "FRED hosts series produced by several agencies (BLS, BEA, Census). Each series records its own originating agency where FRED supplies it.",
+   "publisher": "Federal Reserve Bank of St. Louis",
+   "update_frequency": "Daily pipeline run; individual series update on their own publication schedules.",
+   "url": "https://fred.stlouisfed.org/"
+  },
+  {
+   "id": "acs5",
+   "name": "American Community Survey 5-Year Estimates",
+   "note": "5-year rolling estimates. Dollar values are expressed in the vintage's inflation-adjusted dollars and are not comparable across vintages.",
+   "publisher": "U.S. Census Bureau",
+   "update_frequency": "Annual vintage; checked weekly by the pipeline.",
+   "url": "https://www.census.gov/programs-surveys/acs/"
+  }
+ ],
+ "stale": false,
+ "state_count": 0,
+ "warnings": []
+}

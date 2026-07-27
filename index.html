@@ -43,6 +43,7 @@
   <link rel="stylesheet" href="css/parcel.css?v=20260721h" />
   <link rel="stylesheet" href="css/pipeline.css?v=20260726d" />
   <link rel="stylesheet" href="css/jurisdiction.css?v=20260726j" />
+  <link rel="stylesheet" href="css/economy.css?v=20260726a" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -80,6 +81,10 @@
       <button class="header-tab" data-tab="map" role="tab" aria-selected="false" aria-controls="main" id="tab-map">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
         <span>Map</span>
+      </button>
+      <button class="header-tab" data-tab="economy" role="tab" aria-selected="false" aria-controls="economy-view" id="tab-economy">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>
+        <span>Economy</span>
       </button>
       <button class="header-tab" data-tab="news" role="tab" aria-selected="false" aria-controls="news-view" id="tab-news">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
@@ -563,6 +568,7 @@
 
   <!-- Page views -->
   <div id="stocks-view" hidden role="tabpanel" aria-labelledby="tab-stocks"></div>
+  <div id="economy-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-economy"></div>
   <div id="analytics-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-analytics"></div>
   <div id="pipeline-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-pipeline"></div>
 
@@ -967,6 +973,11 @@ window.addEventListener('error', function(e) {
 <script src="js/command-palette.js?v=20260720a" defer onload="window._track.ok.push('command-palette')" onerror="window._track.fail.push('command-palette')"></script>
 <script src="js/pipeline.js?v=20260726i" defer onload="window._track.ok.push('pipeline')" onerror="window._track.fail.push('pipeline')"></script>
 <script src="js/jurisdiction.js?v=20260726j" defer onload="window._track.ok.push('jurisdiction')" onerror="window._track.fail.push('jurisdiction')"></script>
+<!-- Economic Intelligence. economy.js (data/format/math) must load before the
+     view and map modules, which call into window.ECONOMY. -->
+<script src="js/economy.js?v=20260726a" defer onload="window._track.ok.push('economy')" onerror="window._track.fail.push('economy')"></script>
+<script src="js/economy-view.js?v=20260726a" defer onload="window._track.ok.push('economy-view')" onerror="window._track.fail.push('economy-view')"></script>
+<script src="js/economy-map.js?v=20260726a" defer onload="window._track.ok.push('economy-map')" onerror="window._track.fail.push('economy-map')"></script>
 <script src="js/report.js?v=20260721a" defer onload="window._track.ok.push('report')" onerror="window._track.fail.push('report')"></script>
 <script>
 setTimeout(function() {

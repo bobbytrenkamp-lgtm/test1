@@ -69,6 +69,14 @@ t('multi params',     P('#news?q=x&cat=ai').params,    { q: 'x', cat: 'ai' });
 t('decodes params',   P('#news?q=a%20b').params,       { q: 'a b' });
 t('unknown -> home',  P('#bogus').route,               'home');
 
+/* Economy tab. It must be a real route rather than falling through to home —
+   an unregistered tab name silently routes to Home, which is how a new tab can
+   look wired up while every shared link to it lands on the wrong page. */
+t('economy route',    P('#economy').route,             'economy');
+t('economy build',    R.build('economy', {}),          '#economy');
+t('economy w/ params', P('#economy?metric=population').params, { metric: 'population' });
+t('economy not legacy', P('#economy').legacy,          null);
+
 /* ── platform metadata accessors (async load) ── */
 setTimeout(() => {
   t('platformStat counties', window.platformStat('coverage.counties_in_database', 0), 1465);

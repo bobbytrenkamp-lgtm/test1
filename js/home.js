@@ -483,6 +483,102 @@ if (window.WATCHLIST && typeof window.WATCHLIST.onChange === "function") {
    runs when the page loads — deliberately NOT described as email or push,
    because no such delivery exists. Built with DOM nodes rather than innerHTML
    since county names and policy titles come from data files. */
+/* ── Home Economic Pulse ─────────────────────────────────────────────────────
+   FOUR indicators and a link. Home is a landing page, not a second dashboard,
+   so this is deliberately minimal.
+
+   PERFORMANCE: reads only fred_data.json and census_state.json. It must NEVER
+   fetch data/economy/census_county.json — that file carries per-county history
+   for ~3,140 counties and would undo the critical-path work documented in
+   AI_CONTEXT.md. tests/test_economic_frontend.mjs asserts this. */
+function _renderHomeEconomicPulse(view) {
+  const strip = view.querySelector("#home-econ-strip");
+  const note  = view.querySelector("#home-econ-note");
+  const section = view.querySelector("#home-econ-pulse");
+  if (!strip || !window.ECONOMY) { if (section) section.hidden = true; return; }
+
+  const E = window.ECONOMY;
+
+  Promise.all([E.load("fred"), E.load("state"), E.load("meta")])
+    .then(([fred, stateData, meta]) => {
+      if (!E.hasFred(fred) && !E.hasState(stateData)) {
+        // Nothing generated yet. Keep it to one quiet line rather than a large
+        // awaiting-data block — this is Home, and the Economy tab explains it.
+        strip.innerHTML = "";
+        if (note) {
+          note.textContent = "Economic indicators have not been generated for this deployment yet. " +
+            "Open Economic Intelligence for details.";
+        }
+        return;
+      }
+
+      const items = [];
+
+      const add = (id, label, opts) => {
+        const s = (fred && fred.series) ? fred.series[id] : null;
+        if (!s || s.latest_value === null || s.latest_value === undefined) return;
+        const o = opts || {};
+        const value = o.yoy ? s.change_yoy_pct : s.latest_value;
+        if (value === null || value === undefined) return;
+        const dir = E.direction(o.yoy ? s.change_yoy_pct : s.change_abs, o.invert);
+        items.push({
+          label,
+          value: E.fmtValue(value, o.yoy ? "percent" : o.unit, o.dec),
+          change: o.yoy ? "year over year"
+            : (s.change_abs === null || s.change_abs === undefined ? ""
+               : `${dir.glyph} ${E.fmtChange(s.change_abs, o.unit)}`),
+          cls: dir.cls,
+          date: E.fmtDate(s.latest_date),
+        });
+      };
+
+      add("DFF",    "Fed Funds Rate",       { unit: "percent", dec: 2 });
+      add("DGS10",  "10-Year Treasury",     { unit: "percent", dec: 2 });
+      add("UNRATE", "US Unemployment",      { unit: "percent", dec: 1, invert: true });
+
+      /* Fourth slot: 5-year population growth for the featured jurisdiction.
+         Uses the STATE file, not the county file, to keep Home's payload small. */
+      const states = (stateData && stateData.states) || {};
+      const featuredFips = "51";   // Virginia — the platform's densest DC market
+      const st = states[featuredFips];
+      const g5 = st ? E.metricValue(st, "population", "change_5y") : null;
+      if (g5 !== null && g5 !== undefined) {
+        const dir = E.direction(g5, false);
+        items.push({
+          label: `${st.name} Population (5-yr)`,
+          value: E.fmtPct(g5),
+          change: `${dir.glyph} ACS ${stateData.acs_vintage}`,
+          cls: dir.cls,
+          date: `ACS ${stateData.acs_vintage} 5-year estimates`,
+        });
+      }
+
+      if (!items.length) {
+        strip.innerHTML = "";
+        if (note) note.textContent = "No economic indicators are available yet.";
+        return;
+      }
+
+      strip.innerHTML = items.slice(0, 4).map(it => `
+        <div class="home-econ-item">
+          <div class="home-econ-label">${escHtml(it.label)}</div>
+          <div class="home-econ-value">${escHtml(it.value)}</div>
+          ${it.change ? `<div class="home-econ-change ${it.cls}">${escHtml(it.change)}</div>` : ""}
+          <div class="home-econ-date">${escHtml(it.date)}</div>
+        </div>`).join("");
+
+      if (note) {
+        note.textContent = "Latest available values — Federal Reserve Economic Data (FRED), " +
+          "Federal Reserve Bank of St. Louis, and U.S. Census Bureau ACS 5-Year Estimates. " +
+          "Not real-time.";
+      }
+    })
+    .catch(() => {
+      strip.innerHTML = "";
+      if (note) note.textContent = "Economic indicators could not be loaded.";
+    });
+}
+
 function _renderWatchlistChanges(view) {
   const host = view.querySelector("#home-watchlist-changes");
   if (!host || !window.WATCHLIST) return;
@@ -952,6 +1048,19 @@ function renderHomePage() {
       }).join("")}
     </div>
   </section>` : ""}
+
+  <!-- Economic Pulse — deliberately restrained: four indicators and a link.
+       Populated by _renderHomeEconomicPulse() after render, which reads only
+       the small FRED and state files. The multi-megabyte county file is never
+       fetched for Home. -->
+  <section class="home-section home-econ-section" id="home-econ-pulse">
+    <div class="home-col-header">
+      <h2 class="home-section-title">Economic Pulse</h2>
+      <button class="home-col-link" onclick="switchTab('economy')" type="button">Explore Economic Intelligence ${HOME_ICONS.arrow}</button>
+    </div>
+    <div class="home-econ-strip" id="home-econ-strip"></div>
+    <p class="home-econ-note" id="home-econ-note"></p>
+  </section>
 
   <!-- State Quick Navigation -->
   <section class="home-section home-state-nav-section">
@@ -1475,6 +1584,9 @@ function renderHomePage() {
   view.querySelector("#home-watchlist-export")?.addEventListener("click", () => {
     _exportWatchlistCSV();
   });
+
+  /* Economic Pulse (four indicators only — see _renderHomeEconomicPulse) */
+  _renderHomeEconomicPulse(view);
 
   /* Policy change alerts + portable watchlist bundles (Phase 4) */
   _renderWatchlistChanges(view);

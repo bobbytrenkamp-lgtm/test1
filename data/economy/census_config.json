@@ -1,0 +1,161 @@
+{
+  "_schema": "economy_census_config_v1",
+  "_purpose": "Declares which ACS variables back each derived county/state metric, plus the label fragments used to VERIFY those variable IDs against the Census variables metadata endpoint for the selected vintage. Variable IDs are not trusted blindly — see _why_labels.",
+  "_why_labels": "ACS variable IDs are reused across vintages but their meaning can shift, and tables are occasionally restructured (B28002 broadband is the known example). Before requesting data the pipeline fetches https://api.census.gov/data/{year}/acs/acs5/variables.json and checks that each ID exists AND that its label contains the expected fragments. A mismatch is recorded as a warning and the metric is skipped for that vintage rather than silently populated from an unrelated variable.",
+
+  "metrics": {
+    "population": {
+      "label": "Total population",
+      "variables": { "value": "B01003_001E" },
+      "expect_label": { "B01003_001E": ["total population"] },
+      "unit_type": "count",
+      "decimals": 0,
+      "history": true,
+      "derive": "direct",
+      "good_direction": "up",
+      "scale": "sequential"
+    },
+    "median_age": {
+      "label": "Median age",
+      "variables": { "value": "B01002_001E" },
+      "expect_label": { "B01002_001E": ["median age"] },
+      "unit_type": "years",
+      "decimals": 1,
+      "history": false,
+      "derive": "direct",
+      "good_direction": "neutral",
+      "scale": "sequential"
+    },
+    "median_household_income": {
+      "label": "Median household income",
+      "variables": { "value": "B19013_001E" },
+      "expect_label": { "B19013_001E": ["median household income"] },
+      "unit_type": "usd",
+      "decimals": 0,
+      "history": true,
+      "derive": "direct",
+      "good_direction": "up",
+      "scale": "sequential",
+      "dollar_vintage_note": true
+    },
+    "per_capita_income": {
+      "label": "Per capita income",
+      "variables": { "value": "B19301_001E" },
+      "expect_label": { "B19301_001E": ["per capita income"] },
+      "unit_type": "usd",
+      "decimals": 0,
+      "history": false,
+      "derive": "direct",
+      "good_direction": "up",
+      "scale": "sequential",
+      "dollar_vintage_note": true
+    },
+    "unemployment_rate": {
+      "label": "Unemployment rate (ACS)",
+      "variables": {
+        "labor_force": "B23025_003E",
+        "employed":    "B23025_004E",
+        "unemployed":  "B23025_005E"
+      },
+      "expect_label": {
+        "B23025_003E": ["civilian labor force"],
+        "B23025_004E": ["employed"],
+        "B23025_005E": ["unemployed"]
+      },
+      "unit_type": "percent",
+      "decimals": 1,
+      "history": true,
+      "derive": "ratio",
+      "ratio_numerator": "unemployed",
+      "ratio_denominator": "labor_force",
+      "good_direction": "down",
+      "scale": "sequential",
+      "acs_vs_fred_note": true
+    },
+    "bachelors_or_higher_pct": {
+      "label": "Bachelor's degree or higher",
+      "variables": {
+        "denominator":  "B15003_001E",
+        "bachelors":    "B15003_022E",
+        "masters":      "B15003_023E",
+        "professional": "B15003_024E",
+        "doctorate":    "B15003_025E"
+      },
+      "expect_label": {
+        "B15003_001E": ["total"],
+        "B15003_022E": ["bachelor"],
+        "B15003_023E": ["master"],
+        "B15003_024E": ["professional school"],
+        "B15003_025E": ["doctorate"]
+      },
+      "unit_type": "percent",
+      "decimals": 1,
+      "history": false,
+      "derive": "sum_over_denominator",
+      "sum_parts": ["bachelors", "masters", "professional", "doctorate"],
+      "ratio_denominator": "denominator",
+      "good_direction": "up",
+      "scale": "sequential"
+    },
+    "median_home_value": {
+      "label": "Median owner-occupied home value",
+      "variables": { "value": "B25077_001E" },
+      "expect_label": { "B25077_001E": ["median value"] },
+      "unit_type": "usd",
+      "decimals": 0,
+      "history": false,
+      "derive": "direct",
+      "good_direction": "neutral",
+      "scale": "sequential",
+      "dollar_vintage_note": true
+    },
+    "median_gross_rent": {
+      "label": "Median gross rent",
+      "variables": { "value": "B25064_001E" },
+      "expect_label": { "B25064_001E": ["median gross rent"] },
+      "unit_type": "usd",
+      "decimals": 0,
+      "history": false,
+      "derive": "direct",
+      "good_direction": "neutral",
+      "scale": "sequential",
+      "dollar_vintage_note": true
+    },
+    "broadband_pct": {
+      "label": "Households with broadband subscription",
+      "variables": {
+        "denominator": "B28002_001E",
+        "broadband":   "B28002_004E"
+      },
+      "expect_label": {
+        "B28002_001E": ["total"],
+        "B28002_004E": ["broadband"]
+      },
+      "broadband_candidates": ["B28002_004E", "B28002_007E"],
+      "broadband_candidate_note": "B28002's internal ordering has changed across vintages. The pipeline tries each candidate in order and selects the first whose label contains 'broadband' and reads as an any-type broadband subscription line. The chosen ID is recorded in economic_metadata.json under census.selected_variables so the UI can state exactly what was used.",
+      "unit_type": "percent",
+      "decimals": 1,
+      "history": false,
+      "derive": "sum_over_denominator",
+      "sum_parts": ["broadband"],
+      "ratio_denominator": "denominator",
+      "good_direction": "up",
+      "scale": "sequential"
+    }
+  },
+
+  "history_years_back": 5,
+  "max_variables_per_request": 50,
+
+  "_cbp": {
+    "_purpose": "Optional County Business Patterns module. Kept in its own file (census_cbp.json) and its own request path so a CBP outage cannot break the ACS-backed Economy page.",
+    "dataset": "https://api.census.gov/data/{year}/cbp",
+    "naics_of_interest": {
+      "51":     "Information sector",
+      "518210": "Computing infrastructure, data processing, hosting and related services"
+    },
+    "suppression_flags": ["D", "S", "N", "H"],
+    "suppression_display": "Not disclosed",
+    "suppression_rule": "Suppressed values are recorded as null with a companion _suppressed flag. They must never be coerced to 0, never enter a ranking, and never be used as an endpoint in a percent-change calculation."
+  }
+}

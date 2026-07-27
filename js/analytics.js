@@ -727,6 +727,16 @@ function renderAnalyticsPage() {
       </div>
     </div>
 
+    <div class="page-section">
+      <div class="page-section-title">Economic Context</div>
+      <div id="analytics-economic-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Loading economic data…</span>
+        </div>
+      </div>
+    </div>
+
     <div id="analytics-footer-target"></div>
   `;
 
@@ -748,6 +758,7 @@ function renderAnalyticsPage() {
   _fillConflictZones();
   _fillCapacityIntelligence();
   _fillIncentiveExplorer();
+  _fillEconomicContext();
 
   el.querySelector("#analytics-export-csv")?.addEventListener("click", exportCountiesCSV);
 
@@ -3817,4 +3828,292 @@ function renderPageFooter(targetId) {
     </div>
   `;
   target.replaceWith(footerEl);
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* Economic Context (Analytics tab)                                  */
+/*                                                                   */
+/* Exploratory comparison of policy restriction level and political   */
+/* risk against county economic metrics.                             */
+/*                                                                   */
+/* WHAT THIS DELIBERATELY DOES NOT DO                                */
+/* It does not claim, imply, or rank any causal relationship. A       */
+/* county's economic profile did not "cause" its restriction level,   */
+/* and a correlation across ~1,465 researched counties cannot         */
+/* establish direction of effect: policy responds to development,     */
+/* development responds to policy, and both respond to unobserved     */
+/* local factors. The correlation figure is labelled exploratory and  */
+/* the disclaimer is not dismissible.                                */
+/* ─────────────────────────────────────────────────────────────── */
+
+const ECON_AN_STATE = { xMetric: "median_household_income", yMode: "level", minLevel: 0 };
+
+function _fillEconomicContext() {
+  const container = document.getElementById("analytics-economic-section");
+  if (!container || !window.ECONOMY) return;
+
+  const E = window.ECONOMY;
+
+  Promise.all([E.load("county"), E.load("meta")]).then(([cData, meta]) => {
+    if (!E.hasCounty(cData)) {
+      container.innerHTML = `
+        <div class="callout info" style="font-size:12px">
+          <strong>Economic data has not been generated for this deployment yet.</strong>
+          The economic pipeline has not completed a run, so there is nothing to compare against.
+          This is different from finding no relationship — nothing has been measured.
+          A maintainer can populate it by running the <code>Update Economic Data</code> workflow.
+        </div>`;
+      return;
+    }
+
+    const counties = cData.counties || {};
+    const vintage = cData.acs_vintage;
+
+    /* Join economic records to policy records on FIPS. Only counties present in
+       BOTH datasets can be compared; the count is displayed so the reader knows
+       the sample size rather than assuming national coverage. */
+    const rows = [];
+    for (const fips in counties) {
+      const pol = (mapData || {})[fips];
+      if (!pol) continue;                      // no researched policy record
+      const risk = (window.DC_RISK_BY_FIPS || {})[fips];
+      rows.push({
+        fips,
+        name: counties[fips].name,
+        state: counties[fips].state,
+        level: typeof pol.level === "number" ? pol.level : null,
+        risk: risk ? risk.risk_score : null,
+        econ: counties[fips],
+      });
+    }
+
+    const metricOptions = E.EXPLORER_METRICS.map(m =>
+      `<option value="${m}"${m === ECON_AN_STATE.xMetric ? " selected" : ""}>${escHtml(E.METRICS[m].label)}</option>`
+    ).join("");
+
+    container.innerHTML = `
+      <div class="econ-controls" style="margin-bottom:14px">
+        <div class="econ-control">
+          <label class="econ-label" for="econ-an-metric">Economic metric</label>
+          <select id="econ-an-metric" class="econ-select">${metricOptions}</select>
+        </div>
+        <div class="econ-control">
+          <label class="econ-label" for="econ-an-ymode">Compare against</label>
+          <select id="econ-an-ymode" class="econ-select">
+            <option value="level"${ECON_AN_STATE.yMode === "level" ? " selected" : ""}>Policy restriction level</option>
+            <option value="risk"${ECON_AN_STATE.yMode === "risk" ? " selected" : ""}>Political risk score</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="econ-an-scatter" class="econ-an-scatter"></div>
+      <div class="econ-corr-row" id="econ-an-corr"></div>
+
+      <p class="econ-an-note">
+        <strong>Correlation does not establish causation.</strong>
+        These are exploratory comparisons across counties that appear in both the policy
+        dataset and the ACS economic dataset. A relationship in this chart does not mean an
+        economic characteristic caused a restriction, approval, moratorium, or political
+        outcome — nor the reverse. Policy and development influence each other over time, and
+        both are shaped by local factors this platform does not measure. Only
+        ${rows.length.toLocaleString()} of ${Object.keys(counties).length.toLocaleString()}
+        counties with economic data also have a researched policy record, so this is not a
+        national sample.
+      </p>
+
+      <div class="page-section-title" style="margin-top:22px;font-size:12px">County Economic Ranking</div>
+      <div class="econ-controls" style="margin-bottom:10px">
+        <div class="econ-control">
+          <label class="econ-label" for="econ-an-rank-metric">Rank by</label>
+          <select id="econ-an-rank-metric" class="econ-select">${metricOptions}</select>
+        </div>
+        <div class="econ-control">
+          <label class="econ-label" for="econ-an-rank-filter">Policy filter</label>
+          <select id="econ-an-rank-filter" class="econ-select">
+            <option value="0">All counties</option>
+            <option value="1">Level 1+ (any restriction)</option>
+            <option value="2">Level 2+ (moderate or higher)</option>
+            <option value="3">Level 3+ (significant or higher)</option>
+            <option value="-1">Pro-development hubs only</option>
+          </select>
+        </div>
+      </div>
+      <div class="econ-rank-table-wrap"><table class="econ-rank-table" id="econ-an-rank"></table></div>
+
+      <p class="econ-detail-src" style="margin-top:12px">
+        Economic figures: U.S. Census Bureau, American Community Survey ${escHtml(String(vintage))}
+        5-Year Estimates. Policy levels: this platform's curated government-source dataset.
+        Political risk: <code>data/political_risk.json</code>, scored 1–5.
+      </p>`;
+
+    drawEconScatter(rows);
+    drawEconRanking(rows);
+
+    document.getElementById("econ-an-metric")?.addEventListener("change", (e) => {
+      ECON_AN_STATE.xMetric = e.target.value;
+      drawEconScatter(rows);
+    });
+    document.getElementById("econ-an-ymode")?.addEventListener("change", (e) => {
+      ECON_AN_STATE.yMode = e.target.value;
+      drawEconScatter(rows);
+    });
+    document.getElementById("econ-an-rank-metric")?.addEventListener("change", () => drawEconRanking(rows));
+    document.getElementById("econ-an-rank-filter")?.addEventListener("change", () => drawEconRanking(rows));
+  }).catch(err => {
+    container.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Economic data unavailable (${escHtml(err.message)}).</p>`;
+  });
+}
+
+/* Pearson correlation. Returns null rather than a number when the sample is too
+   small for the figure to mean anything. */
+function _pearson(pairs) {
+  const n = pairs.length;
+  if (n < 12) return null;
+  let sx = 0, sy = 0;
+  for (const [x, y] of pairs) { sx += x; sy += y; }
+  const mx = sx / n, my = sy / n;
+  let num = 0, dx = 0, dy = 0;
+  for (const [x, y] of pairs) {
+    num += (x - mx) * (y - my);
+    dx  += (x - mx) ** 2;
+    dy  += (y - my) ** 2;
+  }
+  if (dx === 0 || dy === 0) return null;     // no variance -> undefined
+  return num / Math.sqrt(dx * dy);
+}
+
+function drawEconScatter(rows) {
+  const host = document.getElementById("econ-an-scatter");
+  const corrHost = document.getElementById("econ-an-corr");
+  if (!host) return;
+  const E = window.ECONOMY;
+  const metric = ECON_AN_STATE.xMetric;
+  const meta = E.METRICS[metric];
+  const yMode = ECON_AN_STATE.yMode;
+
+  const pts = [];
+  for (const r of rows) {
+    const x = E.metricValue(r.econ, metric, "value");
+    const y = yMode === "level" ? r.level : r.risk;
+    if (x === null || x === undefined || y === null || y === undefined) continue;
+    pts.push({ x, y, r });
+  }
+
+  if (pts.length < 3) {
+    host.innerHTML = `<p class="empty-note" style="font-size:12px;color:var(--text-muted)">Not enough counties have both values to plot.</p>`;
+    if (corrHost) corrHost.innerHTML = "";
+    return;
+  }
+
+  const W = Math.max(320, host.clientWidth || 640), H = 320;
+  const M = { t: 14, r: 18, b: 44, l: 62 };
+  const xs = pts.map(p => p.x), ys = pts.map(p => p.y);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs);
+  const y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const px = v => M.l + (W - M.l - M.r) * ((v - x0) / Math.max(1e-9, x1 - x0));
+  const py = v => M.t + (H - M.t - M.b) * (1 - (v - y0) / Math.max(1e-9, y1 - y0));
+
+  const LEVEL_COLOR = { "-1": "#4ade80", 0: "#6b7280", 1: "#86efac", 2: "#f97316", 3: "#dc2626", 4: "#7f1d1d" };
+  const RISK_COLOR = { 1: "#1a9850", 2: "#5aac44", 3: "#b8860b", 4: "#d75e00", 5: "#d73027" };
+
+  const grid = [0, 0.25, 0.5, 0.75, 1].map(f => {
+    const v = y0 + (y1 - y0) * f;
+    return `<line x1="${M.l}" x2="${W - M.r}" y1="${py(v).toFixed(1)}" y2="${py(v).toFixed(1)}" stroke="var(--border)" stroke-width="0.5" opacity="0.5"/>
+            <text x="${M.l - 8}" y="${(py(v) + 3.5).toFixed(1)}" text-anchor="end" class="econ-chart-axis">${yMode === "level" ? Math.round(v) : v.toFixed(1)}</text>`;
+  }).join("");
+
+  const xTicks = [0, 0.5, 1].map((f, i) => {
+    const v = x0 + (x1 - x0) * f;
+    return `<text x="${px(v).toFixed(1)}" y="${H - 22}" text-anchor="${i === 0 ? "start" : i === 2 ? "end" : "middle"}" class="econ-chart-axis">${escHtml(E.fmtValue(v, meta.unit, meta.dec))}</text>`;
+  }).join("");
+
+  const dots = pts.map(p => {
+    const color = yMode === "level" ? (LEVEL_COLOR[String(p.y)] || "#6b7280") : (RISK_COLOR[p.y] || "#6b7280");
+    const label = `${p.r.name}, ${p.r.state}: ${E.fmtValue(p.x, meta.unit, meta.dec)}, ${yMode === "level" ? "level " + p.y : "risk " + p.y}`;
+    return `<circle class="econ-scatter-dot" cx="${px(p.x).toFixed(1)}" cy="${py(p.y).toFixed(1)}" r="3.2"
+             fill="${color}" fill-opacity="0.62" data-fips="${escHtml(p.r.fips)}"><title>${escHtml(label)}</title></circle>`;
+  }).join("");
+
+  host.innerHTML = `<svg class="econ-scatter-svg" viewBox="0 0 ${W} ${H}" width="100%" height="${H}" role="img"
+      aria-label="Scatter plot of ${escHtml(meta.label)} against ${yMode === "level" ? "policy restriction level" : "political risk score"} for ${pts.length} counties">
+    ${grid}${xTicks}${dots}
+    <text x="${(M.l + (W - M.r)) / 2}" y="${H - 6}" text-anchor="middle" class="econ-chart-axis">${escHtml(meta.label)}</text>
+  </svg>`;
+
+  host.querySelectorAll(".econ-scatter-dot").forEach(dot => {
+    dot.addEventListener("click", () => {
+      const fips = dot.dataset.fips;
+      if (window.Router) window.Router.navigate("jurisdiction", { fips });
+    });
+  });
+
+  const r = _pearson(pts.map(p => [p.x, p.y]));
+  if (corrHost) {
+    corrHost.innerHTML = `
+      <span class="econ-corr-stat">Counties plotted: <strong>${pts.length.toLocaleString()}</strong></span>
+      <span class="econ-corr-stat">Exploratory correlation (r): <strong>${r === null ? "—" : r.toFixed(3)}</strong></span>
+      <span class="econ-corr-stat">${r === null
+        ? "Sample too small or no variance for a meaningful figure"
+        : (Math.abs(r) < 0.2 ? "Little or no linear relationship"
+          : Math.abs(r) < 0.4 ? "Weak linear relationship"
+          : Math.abs(r) < 0.6 ? "Moderate linear relationship"
+          : "Strong linear relationship") + " — descriptive only"}</span>`;
+  }
+}
+
+function drawEconRanking(rows) {
+  const table = document.getElementById("econ-an-rank");
+  if (!table) return;
+  const E = window.ECONOMY;
+  const metric = document.getElementById("econ-an-rank-metric")?.value || ECON_AN_STATE.xMetric;
+  const filter = document.getElementById("econ-an-rank-filter")?.value || "0";
+  const meta = E.METRICS[metric];
+
+  let pool = rows.filter(r => {
+    const v = E.metricValue(r.econ, metric, "value");
+    if (v === null || v === undefined) return false;
+    if (filter === "-1") return r.level === -1;
+    return (r.level || 0) >= Number(filter);
+  });
+
+  const desc = meta.good !== "down";     // lower is better for unemployment
+  pool.sort((a, b) => {
+    const av = E.metricValue(a.econ, metric, "value");
+    const bv = E.metricValue(b.econ, metric, "value");
+    return desc ? bv - av : av - bv;
+  });
+  const top = pool.slice(0, 25);
+
+  const LEVEL_SHORT = window.LEVEL_SHORT || {};
+  table.innerHTML = `
+    <thead><tr>
+      <th>#</th><th>County</th><th>State</th>
+      <th>${escHtml(meta.label)}</th><th>5-yr</th><th>Policy level</th>
+    </tr></thead>
+    <tbody>${top.map((r, i) => {
+      const v = E.metricValue(r.econ, metric, "value");
+      const c5 = E.metricValue(r.econ, metric, "change_5y");
+      return `<tr tabindex="0" data-fips="${escHtml(r.fips)}" role="button"
+                  aria-label="${escHtml(r.name)}, ${escHtml(r.state)} — open jurisdiction profile">
+        <td>${i + 1}</td>
+        <td>${escHtml(r.name)}</td>
+        <td>${escHtml(r.state)}</td>
+        <td class="econ-num">${escHtml(E.fmtValue(v, meta.unit, meta.dec))}</td>
+        <td class="econ-num">${c5 === null || c5 === undefined ? "—" : escHtml(E.fmtPct(c5))}</td>
+        <td>${r.level === null ? "—" : escHtml(String(LEVEL_SHORT[r.level] || r.level))}</td>
+      </tr>`;
+    }).join("")}</tbody>`;
+
+  if (!top.length) {
+    table.innerHTML = `<tbody><tr><td colspan="6" style="text-align:center;padding:18px;color:var(--text-muted);font-style:italic">No counties match this filter with a value for the selected metric.</td></tr></tbody>`;
+    return;
+  }
+
+  const go = (fips) => { if (window.Router) window.Router.navigate("jurisdiction", { fips }); };
+  table.querySelectorAll("tbody tr[data-fips]").forEach(tr => {
+    tr.addEventListener("click", () => go(tr.dataset.fips));
+    tr.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(tr.dataset.fips); }
+    });
+  });
 }

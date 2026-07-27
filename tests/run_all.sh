@@ -26,6 +26,8 @@ run "facilities index freshness" python3 data/build_facilities_index.py --check
 run "platform metadata validator" python3 data/validate_platform_metadata.py
 run "AI companies validator"      python3 data/validate_ai_companies.py
 run "policy pipeline unit tests"  python3 -m pytest tests/test_policy_pipeline.py -q
+run "economic data pipeline"      python3 tests/test_economic_data.py
+run "economic output validation"  python3 data/update_economic_data.py --check
 run "frontend core (constants + router)" node tests/test_frontend_core.mjs
 run "jurisdiction page (DOM)"     node tests/test_jurisdiction.mjs
 run "watchlist (migration + alerts)" node tests/test_watchlist.mjs

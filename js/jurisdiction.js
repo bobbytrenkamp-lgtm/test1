@@ -410,17 +410,128 @@ window.JURISDICTION = (function () {
             </div>
             <div class="juris-col juris-col-side">
               ${renderContext(fips, county)}
+              <div id="juris-economy-card"></div>
               ${renderNotes(fips)}
               ${renderNewsSection(county)}
             </div>
           </div>
         </div>`;
       _wire(view);
+      _renderEconomyCard(fips);
     };
 
     paint();
     if (!_facilities) loadFacilities().then(paint);
     if (!_linkHealth) loadLinkHealth().then(paint);
+  }
+
+  /* ── Economy card ───────────────────────────────────────────────────────────
+     Rendered after paint rather than inline, because the county economic file is
+     several megabytes and this page must not block on it — the same pattern the
+     facilities join already uses here. Progressive disclosure: a summary grid is
+     visible and the trends/signals sit behind <details>. */
+  function _renderEconomyCard(fips) {
+    const host = document.getElementById("juris-economy-card");
+    if (!host || !window.ECONOMY) return;
+    const E = window.ECONOMY;
+
+    Promise.all([E.load("county"), E.load("state")]).then(([cData, sData]) => {
+      if (_currentFips !== fips) return;    // navigated away mid-fetch
+      const target = document.getElementById("juris-economy-card");
+      if (!target) return;
+
+      if (!E.hasCounty(cData)) {
+        target.innerHTML = `
+          <section class="juris-card">
+            <h2 class="juris-h2">Economic Context</h2>
+            <p class="juris-empty-inline">Economic data has not been generated for this
+              deployment yet. This is not an absence of economic activity — nothing has
+              been measured. A maintainer can populate it by running the Update Economic
+              Data workflow.</p>
+          </section>`;
+        return;
+      }
+
+      const rec = (cData.counties || {})[fips];
+      if (!rec) {
+        target.innerHTML = `
+          <section class="juris-card">
+            <h2 class="juris-h2">Economic Context</h2>
+            <p class="juris-empty-inline">No ACS economic record for this county.</p>
+          </section>`;
+        return;
+      }
+
+      const cells = [
+        ["population", "value"],
+        ["population", "change_5y"],
+        ["median_household_income", "value"],
+        ["unemployment_rate", "value"],
+        ["bachelors_or_higher_pct", "value"],
+        ["broadband_pct", "value"],
+      ].map(([metric, measure]) => {
+        const meta = E.METRICS[metric];
+        const v = E.metricValue(rec, metric, measure);
+        const cmp = E.comparisons(cData, sData, fips, metric, measure);
+        const label = measure === "value" ? meta.label : meta.label + " (5-yr)";
+        const text = v === null || v === undefined
+          ? `<span class="econ-nodata">No data</span>`
+          : esc(measure === "value" ? E.fmtValue(v, meta.unit, meta.dec) : E.fmtPct(v));
+        const ctx = cmp.us_median !== null && cmp.us_median !== undefined
+          ? `US median ${measure === "value" ? E.fmtValue(cmp.us_median, meta.unit, meta.dec) : E.fmtPct(cmp.us_median)}`
+          : "";
+        const pctl = cmp.percentile !== null && cmp.percentile !== undefined
+          ? ` · ${cmp.percentile}th pctl` : "";
+        return `<div class="econ-detail-cell">
+          <div class="econ-detail-label">${esc(label)}</div>
+          <div class="econ-detail-value">${text}</div>
+          ${ctx ? `<div class="econ-detail-cmp">${esc(ctx + pctl)}</div>` : ""}
+        </div>`;
+      }).join("");
+
+      const hist = rec.history || {};
+      const sparks = [
+        ["population", "Population"],
+        ["median_household_income", "Median income"],
+        ["unemployment_rate", "Unemployment"],
+      ].map(([k, label]) => `
+        <div class="econ-spark-row">
+          <span class="econ-spark-label">${esc(label)}</span>
+          ${E.sparklineSvg(hist[k], { label })}
+        </div>`).join("");
+
+      const signals = E.countySignals(cData, fips);
+
+      target.innerHTML = `
+        <section class="juris-card">
+          <h2 class="juris-h2">Economic Context</h2>
+          <div class="econ-detail-grid">${cells}</div>
+
+          <details class="econ-profile-more" open>
+            <summary>Trends (5 years)</summary>
+            <div class="econ-sparks">${sparks}</div>
+          </details>
+
+          ${signals.length ? `<details class="econ-profile-more">
+            <summary>Infrastructure-relevant signals (${signals.length})</summary>
+            <ul class="econ-profile-signals">
+              ${signals.map(s => `<li class="econ-sig-${esc(s.strength)}">
+                <strong>${esc(s.title)}:</strong> ${esc(s.text)}</li>`).join("")}
+            </ul>
+          </details>` : ""}
+
+          <div class="juris-links">
+            <a class="juris-link" href="#economy">Economic Intelligence</a>
+          </div>
+
+          <p class="econ-detail-src">
+            U.S. Census Bureau, American Community Survey ${esc(String(cData.acs_vintage))}
+            5-Year Estimates. Survey estimates with margins of error, not administrative
+            counts. Percentile shown only where at least 20 counties have a value.
+            Unemployment is an ACS estimate, separate from the monthly national rate.
+          </p>
+        </section>`;
+    }).catch(() => { /* card is optional; the page stands without it */ });
   }
 
   /* ── Event wiring ───────────────────────────────────────────────────────── */

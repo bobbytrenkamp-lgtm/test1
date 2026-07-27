@@ -1,0 +1,145 @@
+name: Update Economic Data
+
+# Builds the Economy tab's local JSON from the FRED and Census APIs.
+#
+# WHY A SINGLE DAILY JOB SERVES TWO CADENCES
+# FRED series publish daily-to-monthly, so they are refreshed on every run.
+# Census ACS publishes ONE new 5-year vintage per year, so re-downloading
+# ~3,140 counties every day would burn CI minutes for no new data. The script
+# reads census.last_successful_update from economic_metadata.json and skips
+# Census unless it is older than --census-max-age-days (7). That keeps the
+# schedule to one job while giving Census an effectively weekly cadence.
+#
+# API KEYS
+# Both keys live in repository secrets and are passed only as env vars to the
+# Python step. They are never echoed, never written to an output file, and any
+# URL that reaches a log line is redacted by _redact() in the script.
+#   FRED_API_KEY    https://fred.stlouisfed.org/docs/api/api_key.html
+#   CENSUS_API_KEY  https://api.census.gov/data/key_signup.html
+#
+# MISSING KEY BEHAVIOUR
+# A missing key is a warning, not a failure: that source is skipped and its
+# previously committed data is preserved untouched. The job fails only when
+# output validation says the generated data would be corrupt.
+
+on:
+  schedule:
+    # 06:20 UTC daily. Offset off the hour so it does not collide with the
+    # other data workflows in this repo.
+    - cron: "20 6 * * *"
+  workflow_dispatch:
+    inputs:
+      force_census:
+        description: "Refresh Census even if it was updated recently"
+        required: false
+        type: boolean
+        default: false
+      fred_only:
+        description: "Skip Census entirely this run"
+        required: false
+        type: boolean
+        default: false
+      skip_cbp:
+        description: "Skip the optional County Business Patterns module"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-economic-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # The pipeline deliberately uses only the standard library (urllib, json)
+      # so there is nothing to install and no dependency to audit.
+      - name: Verify no third-party dependency is required
+        run: python -c "import urllib.request, json, argparse; print('stdlib only — no pip install needed')"
+
+      - name: Run economic data tests
+        run: python tests/test_economic_data.py
+
+      - name: Fetch economic data
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.force_census }}" = "true" ]; then ARGS="$ARGS --force-census"; fi
+          if [ "${{ inputs.fred_only }}"    = "true" ]; then ARGS="$ARGS --fred-only";    fi
+          if [ "${{ inputs.skip_cbp }}"     = "true" ]; then ARGS="$ARGS --skip-cbp";     fi
+          echo "running with args:$ARGS"
+          python data/update_economic_data.py $ARGS
+
+      # Independent re-validation of what is actually on disk. Exit 1 here means
+      # committing would corrupt data, so the job fails before the commit step.
+      - name: Validate generated output
+        run: python data/update_economic_data.py --check
+
+      # Existing repo validators, so an economic run can never leave the wider
+      # dataset inconsistent.
+      - name: Run existing data validators
+        run: |
+          python data/validate_platform_metadata.py || echo "platform metadata validator reported issues (non-blocking)"
+          python data/validate_ai_companies.py      || echo "AI companies validator reported issues (non-blocking)"
+
+      - name: Commit changed data
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/economy/
+          if git diff --cached --quiet; then
+            echo "No economic data changed — nothing to commit."
+            exit 0
+          fi
+          # Summarise what actually moved, without leaking any request detail.
+          SERIES=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['fred_series_count'])" 2>/dev/null || echo "?")
+          COUNTIES=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['county_count'])" 2>/dev/null || echo "?")
+          VINTAGE=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['acs_vintage'])" 2>/dev/null || echo "?")
+          # [skip ci] prevents a Pages redeploy loop: the frontend fetches these
+          # files at runtime with cache:no-store, so a redeploy is not needed for
+          # new numbers to appear.
+          git commit -m "chore: refresh economic data — ${SERIES} FRED series, ${COUNTIES} counties, ACS ${VINTAGE} [skip ci]"
+          git push origin HEAD
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ -f data/economy/economic_metadata.json ]; then
+            python - <<'PY'
+          import json
+          m = json.load(open("data/economy/economic_metadata.json"))
+          print(f"pipeline version : {m.get('pipeline_version')}")
+          print(f"generated_at     : {m.get('generated_at')}")
+          print(f"FRED series      : {m.get('fred_series_count')}")
+          print(f"counties         : {m.get('county_count')}")
+          print(f"states           : {m.get('state_count')}")
+          print(f"ACS vintage      : {m.get('acs_vintage')}")
+          print(f"CBP available    : {m.get('cbp_available')}")
+          print(f"stale            : {m.get('stale')}")
+          skipped = m.get("fred_skipped") or []
+          if skipped:
+              print(f"skipped series   : {[s.get('series_id') for s in skipped]}")
+          w = m.get("warnings") or []
+          print(f"warnings         : {len(w)}")
+          for line in w[:15]:
+              print(f"  - {line}")
+          PY
+          else
+            echo "No metadata file produced."
+          fi
