@@ -85,7 +85,12 @@ t('economy not legacy', P('#economy').legacy,          null);
    records were corrected or added. */
 const _meta = JSON.parse(readFileSync('data/platform_metadata.json', 'utf8'));
 const _expectedCounties = _meta.coverage.counties_in_database;
-const _expectedPct = Math.round(_meta.coverage.counties_coverage_pct);
+/* coveragePct() reports RESEARCHED coverage, so compare against
+   counties_researched_pct — not counties_coverage_pct, which counts every
+   record including the 597 descriptive_only ones and reads 47% instead of 28%.
+   Using the wrong one here would have the test assert the inflated figure. */
+const _expectedPct = Math.round(
+  _meta.coverage.counties_researched_pct ?? _meta.coverage.counties_coverage_pct);
 setTimeout(() => {
   t('platformStat counties', window.platformStat('coverage.counties_in_database', 0), _expectedCounties);
   t('platformStat fallback', window.platformStat('missing.path', 'fb'), 'fb');
