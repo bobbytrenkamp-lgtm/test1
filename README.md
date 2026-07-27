@@ -260,6 +260,34 @@ generated data would be corrupt.
 - Signals describe measured conditions. They are **not** investment advice or
   evidence that a facility should be built anywhere.
 
+## Cost
+
+**Nothing in this project requires a paid account.** No paid APIs, no paid
+hosting, no npm dependency tree, no build system.
+
+- **Hosting and automation**: GitHub Pages with unlimited free Actions minutes
+  (public repository).
+- **Runs with zero configuration.** Every API key below is optional; the site
+  works fully without any of them and shows honest "not configured" or "not yet
+  measured" states rather than breaking.
+
+| Optional key | Service | Cost | Without it |
+|---|---|---|---|
+| `FRED_API_KEY` | Federal Reserve data | Free | Economy tab shows awaiting-data state |
+| `CENSUS_API_KEY` | Census ACS | Free | Regional economic data unavailable |
+| `CONGRESS_API_KEY` | Congress.gov | Free | Falls back to rate-limited `DEMO_KEY` |
+| `LEGISCAN_API_KEY` | State bill tracking | Free tier | LegiScan step skipped |
+| `SUPABASE_URL` + `SUPABASE_ANON_KEY` | Optional user accounts | Free tier | Sign-in hidden; everything else works |
+
+One paid service (Cloudscene) exists in the codebase as a **disabled stub** —
+`"active": false`, never called, costs nothing. It documents a possible upgrade
+path and should not be activated without a deliberate decision to pay.
+
+Two basemap providers (CARTO, Esri) are used key-free under their light-use
+terms with attribution. Free replacements (OpenStreetMap, USGS National Map) are
+a one-line swap if either ever rate-limits. See the **Cost & Licensing Audit** in
+`DATA_SOURCES.md` for the full breakdown.
+
 ## Tech Stack
 
 - **Leaflet.js v1.9.4** — Interactive map with native pan, zoom, touch
