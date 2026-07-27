@@ -44,9 +44,11 @@ jobs:
             echo "Master dataset exists, skipping seed"
           fi
 
+      # No env secrets: every facility source is a free, unauthenticated public
+      # dataset. A paid aggregator integration that used to be wired here was
+      # removed — see the Cost & Licensing Audit in DATA_SOURCES.md.
+      # tests/test_no_paid_dependencies.py fails if a paid service reappears.
       - name: Run facility pipeline
-        env:
-          CLOUDSCENE_API_KEY: ${{ secrets.CLOUDSCENE_API_KEY }}
         run: |
           ARGS=""
           if [ -n "${{ github.event.inputs.source }}" ]; then

@@ -57,7 +57,6 @@ def _load_adapter(name: str):
         from data.facility_pipeline.adapters.existing_datasets import ExistingDatasetsAdapter
         from data.facility_pipeline.adapters.osm import OSMAdapter
         from data.facility_pipeline.adapters.datacentermap import DataCenterMapAdapter
-        from data.facility_pipeline.adapters.cloudscene import CloudsceneAdapter
         from data.facility_pipeline.adapters.equinix import EquinixAdapter
         from data.facility_pipeline.adapters.digital_realty import DigitalRealtyAdapter
         from data.facility_pipeline.adapters.ferc_queue import FERCQueueAdapter
@@ -67,7 +66,6 @@ def _load_adapter(name: str):
             "existing_datasets": ExistingDatasetsAdapter,
             "osm": OSMAdapter,
             "datacentermap": DataCenterMapAdapter,
-            "cloudscene": CloudsceneAdapter,
             "equinix": EquinixAdapter,
             "digital_realty": DigitalRealtyAdapter,
             "ferc_queue": FERCQueueAdapter,

@@ -279,14 +279,21 @@ hosting, no npm dependency tree, no build system.
 | `LEGISCAN_API_KEY` | State bill tracking | Free tier | LegiScan step skipped |
 | `SUPABASE_URL` + `SUPABASE_ANON_KEY` | Optional user accounts | Free tier | Sign-in hidden; everything else works |
 
-One paid service (Cloudscene) exists in the codebase as a **disabled stub** —
-`"active": false`, never called, costs nothing. It documents a possible upgrade
-path and should not be activated without a deliberate decision to pay.
+**No paid service exists in the codebase.** The project's one paid integration
+was deleted in full — adapter, source entry, data field, workflow secret and
+pipeline import — rather than left disabled.
 
-Two basemap providers (CARTO, Esri) are used key-free under their light-use
-terms with attribution. Free replacements (OpenStreetMap, USGS National Map) are
-a one-line swap if either ever rate-limits. See the **Cost & Licensing Audit** in
-`DATA_SOURCES.md` for the full breakdown.
+**Tile providers cannot make this project cost money.** CARTO and Esri basemaps
+are used key-free under their light-use terms with attribution, but the app does
+not depend on them: with every third-party host blocked (tiles, TradingView,
+fonts, CDN), all 3,291 county polygons still render and every tab still works.
+Losing a tile provider costs background imagery, nothing else. Free replacements
+(USGS National Map, OpenStreetMap) are a one-line swap.
+
+**This is enforced, not just documented.** `tests/test_no_paid_dependencies.py`
+runs in `tests/run_all.sh` and fails if a paid service, a paid dependency, a
+mandatory API key, or an unreviewed tile host appears. See the **Cost &
+Licensing Audit** in `DATA_SOURCES.md` for the full breakdown.
 
 ## Tech Stack
 

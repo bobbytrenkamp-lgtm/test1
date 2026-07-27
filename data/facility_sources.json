@@ -16,7 +16,7 @@
       "requires_auth": false,
       "auth_env_var": "",
       "rate_limit_rpm": 9999,
-      "notes": "Seed dataset from prior hand-curation. Treated as tier-2 confidence (0.85). Individual records lack source URLs. Higher-tier pipeline sources will enrich these records with verified URLs and updated metadata when they match spatially or by name. Do not add new records to data_centers.json — use the pipeline adapters instead.",
+      "notes": "Seed dataset from prior hand-curation. Treated as tier-2 confidence (0.85). Individual records lack source URLs. Higher-tier pipeline sources will enrich these records with verified URLs and updated metadata when they match spatially or by name. Do not add new records to data_centers.json \u2014 use the pipeline adapters instead.",
       "operator_filter": "",
       "confidence_override": 0.85
     },
@@ -58,7 +58,7 @@
       "requires_auth": false,
       "auth_env_var": "",
       "rate_limit_rpm": 30,
-      "notes": "Equinix's own published IBX data center location pages. Tier-1 source — operator's own information. Run monthly to catch new IBX openings. Requires requests + beautifulsoup4.",
+      "notes": "Equinix's own published IBX data center location pages. Tier-1 source \u2014 operator's own information. Run monthly to catch new IBX openings. Requires requests + beautifulsoup4.",
       "operator_filter": "Equinix",
       "confidence_override": 0.92
     },
@@ -86,9 +86,9 @@
       "requires_auth": false,
       "auth_env_var": "",
       "rate_limit_rpm": 6,
-      "notes": "Federal Energy Regulatory Commission active interconnection request queue. Large power requests (>50 MW) may indicate planned data centers. All records are candidates — requires human review to verify that the project is a data center, not another industrial use. Run quarterly. Requires requests + openpyxl.",
+      "notes": "Federal Energy Regulatory Commission active interconnection request queue. Large power requests (>50 MW) may indicate planned data centers. All records are candidates \u2014 requires human review to verify that the project is a data center, not another industrial use. Run quarterly. Requires requests + openpyxl.",
       "operator_filter": "",
-      "confidence_override": 0.40
+      "confidence_override": 0.4
     },
     {
       "id": "sec_edgar",
@@ -100,23 +100,9 @@
       "requires_auth": false,
       "auth_env_var": "",
       "rate_limit_rpm": 60,
-      "notes": "SEC EDGAR full-text search for 8-K filings announcing data center facility acquisitions, leases, or construction. All results are candidates — the filing text rarely includes precise coordinates, so records need verification via mapping or operator website. Run monthly. EDGAR fair-use policy requires User-Agent with contact info.",
+      "notes": "SEC EDGAR full-text search for 8-K filings announcing data center facility acquisitions, leases, or construction. All results are candidates \u2014 the filing text rarely includes precise coordinates, so records need verification via mapping or operator website. Run monthly. EDGAR fair-use policy requires User-Agent with contact info.",
       "operator_filter": "",
       "confidence_override": 0.45
-    },
-    {
-      "id": "cloudscene",
-      "name": "Cloudscene API",
-      "tier": 1,
-      "adapter": "cloudscene",
-      "url": "https://api.cloudscene.com/v1/facilities",
-      "active": false,
-      "requires_auth": true,
-      "auth_env_var": "CLOUDSCENE_API_KEY",
-      "rate_limit_rpm": 60,
-      "notes": "Paid API with the most comprehensive colocation coverage. Set CLOUDSCENE_API_KEY environment variable to activate. Highest-trust aggregator for colocation facilities. Run weekly when active.",
-      "operator_filter": "",
-      "confidence_override": null
     },
     {
       "id": "hyperscale_press",
@@ -130,7 +116,7 @@
       "rate_limit_rpm": 12,
       "notes": "Monitors RSS feeds from Microsoft, Meta, Google, and Amazon newsrooms for data center and AI campus announcements. All results are candidates (confidence 0.50) requiring human review. Run weekly to catch new announcements early.",
       "operator_filter": "",
-      "confidence_override": 0.50
+      "confidence_override": 0.5
     }
   ],
   "planned_sources": [
@@ -232,7 +218,7 @@
     },
     {
       "id": "va_bza_permits",
-      "name": "Loudoun County VA — Building Permit Search",
+      "name": "Loudoun County VA \u2014 Building Permit Search",
       "tier": 4,
       "url": "https://aca-prod.accela.com/LOUDOUNCOUNTY/",
       "status": "not_yet_built",
@@ -240,7 +226,7 @@
     },
     {
       "id": "nc_sos_corp",
-      "name": "NC Secretary of State — Corporation Filings",
+      "name": "NC Secretary of State \u2014 Corporation Filings",
       "tier": 4,
       "url": "https://www.sosnc.gov/online_services/search/Business_Registration_Search",
       "status": "not_yet_built",
@@ -248,7 +234,7 @@
     },
     {
       "id": "epa_air_permits",
-      "name": "EPA Air Quality Permits — Large Generator Sets",
+      "name": "EPA Air Quality Permits \u2014 Large Generator Sets",
       "tier": 4,
       "url": "https://echo.epa.gov/facilities/facility-search",
       "status": "not_yet_built",

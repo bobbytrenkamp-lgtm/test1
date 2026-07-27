@@ -294,40 +294,72 @@ Every one of these degrades gracefully. **No key is required for the site to
 work** — a visitor never needs one, and an unconfigured deployment shows honest
 "not configured" / "not yet measured" states rather than breaking.
 
-### Paid — present in the codebase but DISABLED
+### Paid — REMOVED
 
-| Service | Status |
-|---|---|
-| Cloudscene API (`data/facility_pipeline/adapters/cloudscene.py`) | `"active": false` in `facility_sources.json`. The adapter is a **stub**: it raises `EnvironmentError` without a key and `NotImplementedError` with one. It is never called and costs nothing. Leaving it in place documents what a paid upgrade path would look like. |
+The project's one paid integration (a commercial colocation database) was
+**deleted on 2026-07-27**, not merely disabled. Removed together, because a
+half-removal would have left the pipeline importing a deleted module:
 
-**Do not activate Cloudscene** without a deliberate decision to pay for it.
+- the adapter file
+- its entry in `facility_sources.json`
+- the dead `cloudscene_id` field (empty in all 3,842 master and 631 candidate
+  records) from `models.py`, `merge.py` and both datasets
+- the workflow secret reference in `update_facilities.yml`
+- the adapter import and registry entry in `run_facility_pipeline.py`
 
-### Gray area — free for light use, worth watching
+`data/facilities_version_history/` snapshots still contain the empty field. Those
+are immutable archives and are deliberately left untouched.
 
-Two basemap providers are used **without an API key**. Both are free for
-low-volume use with attribution (which is present), but neither is an unlimited
-free-forever commitment:
+**There is now no paid service anywhere in the codebase**, and
+`tests/test_no_paid_dependencies.py` fails if one reappears.
 
-- **CARTO** (`{s}.basemaps.cartocdn.com`) — the no-key basemaps are intended for
-  light and non-commercial use. High traffic can be rate-limited, and CARTO's
-  terms contemplate an account above that.
-- **Esri World Imagery** (`server.arcgisonline.com`) — free for light use with
-  attribution; Esri's terms of service contemplate an ArcGIS account for
-  production applications.
+### Third-party tile providers — free, and not required either way
 
-Neither currently costs anything, and at this project's traffic neither is likely
-to. If either ever rate-limits or asks for an account, the free replacements are
-already partly wired: **OpenStreetMap standard tiles** (free, attribution only)
-and **USGS `basemap.nationalmap.gov`**, which is already one of the basemap
-options. Swapping is a one-line change per `L.tileLayer` call in `js/map.js`,
-`js/pipeline.js` and `js/economy-view.js`.
+Two basemap providers are used **without an API key**: CARTO
+(`{s}.basemaps.cartocdn.com`) and Esri (`server.arcgisonline.com`). Both are free
+for light use with attribution, which is present. Neither is an unlimited
+free-forever commitment, so the important property is not their pricing page —
+it is that **the application does not depend on them**.
 
-### Rule for future work
+**Verified 2026-07-27:** with CARTO, Esri, USGS, TradingView, Google Fonts and
+jsDelivr *all* blocked at the network layer, the app remains fully functional —
+3,291 county polygons render, the legend renders, county selection works, and
+Analytics and Pipeline both render, with zero JavaScript errors. Tiles are
+background decoration; every feature works without them.
+
+So a tile provider changing its terms could never make this project *require*
+payment. The worst case is losing background imagery. If that ever happens, the
+free replacements are already available — **USGS `basemap.nationalmap.gov`**
+(US federal, public domain, already one of the basemap options) and
+**OpenStreetMap** standard tiles. Swapping is one line per `L.tileLayer` call in
+`js/map.js`, `js/pipeline.js` and `js/economy-view.js`.
+
+`tests/test_no_paid_dependencies.py` keeps tile hosts on a reviewed allowlist, so
+a usage-priced provider such as Mapbox or MapTiler cannot be dropped in
+unnoticed.
+
+### Rule for future work — enforced by a test
 
 Do not add a dependency, data source, or service that requires payment to
-function. If a paid source is genuinely the best option, follow the Cloudscene
-pattern: implement it behind an env var, mark it `active: false`, and make its
-absence a skip rather than a failure.
+function.
+
+`tests/test_no_paid_dependencies.py` (wired into `tests/run_all.sh`) enforces
+this with 28 checks across 13 tests:
+
+- no known paid data service appears in code or config
+- no npm dependency tree exists; Python deps are on a reviewed free allowlist
+- the economic pipeline stays standard-library only
+- every API key is read with `os.environ.get()` plus a skip path — never
+  `os.environ[...]`, which would make it mandatory
+- no frontend file reads a key (naming one in maintainer-facing copy is allowed)
+- workflows contain no secret for a removed service
+- tile hosts stay on the reviewed allowlist
+
+Verified to catch real regressions: injecting a Mapbox tile layer or an
+unreviewed paid Python package both fail the suite.
+
+If a paid source is ever genuinely the best option, it must be an explicit,
+documented decision — not something that arrives with a convenient import.
 
 ---
 
