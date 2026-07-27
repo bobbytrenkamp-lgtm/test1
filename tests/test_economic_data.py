@@ -496,6 +496,46 @@ def test_collect_pep_population_no_matching_date_desc_skips():
     eq(out, {}, "no row matched the estimate pattern -> skip, never guess a code")
 
 
+def test_pep_is_fresh_direct():
+    """Same contract as _census_is_fresh/_permits_is_fresh: no timestamp ->
+    not fresh, recent timestamp -> fresh, old timestamp -> not fresh."""
+    now = datetime.now(timezone.utc)
+    eq(econ._pep_is_fresh({}, 7), False, "no prior timestamp -> not fresh")
+    eq(econ._pep_is_fresh({"pep_last_successful_update": (now - timedelta(days=1)).isoformat()}, 7),
+       True, "1 day old against a 7-day gate -> fresh")
+    eq(econ._pep_is_fresh({"pep_last_successful_update": (now - timedelta(days=10)).isoformat()}, 7),
+       False, "10 days old against a 7-day gate -> not fresh")
+
+
+def test_pep_has_its_own_freshness_gate_independent_of_acs():
+    """Regression guard for a real bug: PEP used to be nested inside the
+    ACS-refresh branch, sharing ACS's OUTCOME rather than having its own gate.
+    On any day ACS was already fresh (the common case -- gated to 7 days),
+    PEP silently never ran at all. The first live run after this module
+    shipped confirmed it: a valid CENSUS_API_KEY, and PEP still returned 0
+    counties, because it never got a turn. This checks the properties that
+    make the fix real, by source inspection since main()'s control flow
+    isn't a directly-testable function:
+      1. pep_last_successful_update exists as its own metadata field
+         (not riding on census.last_successful_update).
+      2. _pep_is_fresh() reads that field, not the census one.
+      3. The PEP execution guard checks census_key directly rather than
+         living inside the `if not census_key: ... elif ... else:` chain
+         built for the ACS branch (a literal `census_key` condition on the
+         PEP guard line means it is NOT nested inside that chain, since a
+         nested block wouldn't need to re-check a condition its enclosing
+         branch already guarantees).
+    """
+    src = (Path(econ.ROOT) / "data" / "update_economic_data.py").read_text()
+    check('"pep_last_successful_update"' in src,
+          "no independent pep_last_successful_update metadata field")
+    check("prior.get(\"pep_last_successful_update\")" in src,
+          "_pep_is_fresh's backing value must come from pep's own field, not census's")
+    check("not args.skip_pep and census_key:" in src,
+          "PEP's execution guard must independently check census_key, proving it runs "
+          "as its own top-level block rather than inheriting the ACS branch's key check")
+
+
 def test_validate_outputs_flags_bad_population_estimate():
     """A negative or non-numeric population_estimate.value is exactly the kind
     of silent corruption validate_outputs() exists to catch before it commits."""
@@ -617,6 +657,27 @@ def test_collect_permits_rejects_suspiciously_small_result():
     eq(out, {}, "2 counties is far below the 500-county sanity floor -> rejected")
 
 
+def test_collect_permits_below_floor_warning_shows_error_detail():
+    """When the result is too small, the warning must say WHY, not just how
+    many. A bare '0 counties returned real data' -- what this module actually
+    said the first time it ran live -- is not diagnosable; there is no way to
+    tell a systemic problem (wrong series ID pattern, bad key) apart from
+    genuinely sparse BPS coverage in that sample."""
+    econ.warnings.clear()
+    real_get_json = econ._get_json
+    econ._get_json = lambda url, **kw: {"__error__": "HTTP 500"}  # not a plain 404
+    try:
+        out = econ.collect_permits(["01001", "01003", "01005"], "fakekey")
+    finally:
+        econ._get_json = real_get_json
+    eq(out, {}, "3 counties is far below the floor -> rejected")
+    joined = " ".join(econ.warnings)
+    check("Building Permits" in joined, "warning was recorded")
+    check("HTTP 500" in joined,
+          f"the actual error reason must appear in the warning so a systemic problem is "
+          f"diagnosable, not just a count; got: {joined}")
+
+
 def test_collect_permits_respects_max_counties_cap():
     """--permits-max-counties bounds a test run; it must actually stop, not
     just document an intention."""
@@ -634,6 +695,37 @@ def test_collect_permits_respects_max_counties_cap():
     finally:
         econ._get_json = real_get_json
     eq(len(calls), 25, "must stop at the cap, not check every county in the list")
+
+
+def test_collect_permits_max_counties_samples_across_full_list():
+    """A capped run must be a cross-section, not a prefix. The first live
+    bounded test (max_counties=50) sampled 50 alphabetically-first FIPS,
+    which happened to all fall in Alabama, and returned 0 hits -- with a
+    prefix sample, a real 0-hit result is indistinguishable from 'the sample
+    got unlucky and only covered one state'. Striding across the whole list
+    makes a capped run a genuine test of the full geographic spread."""
+    real_get_json = econ._get_json
+    calls = []
+
+    def counting_get_json(url, **kwargs):
+        calls.append(url)
+        return _fake_fred_obs_json(url, **kwargs)
+
+    econ._get_json = counting_get_json
+    try:
+        fips_list = [f"{i:05d}" for i in range(50000, 52000)]  # 2,000 entries
+        econ.collect_permits(fips_list, "fakekey", max_counties=20)
+    finally:
+        econ._get_json = real_get_json
+    ids = [re.search(r"series_id=([A-Za-z0-9]+)", u).group(1) for u in calls]
+    checked_nums = sorted(int(i.replace("BPPRIV", "")) for i in ids)
+    span = checked_nums[-1] - checked_nums[0] if checked_nums else 0
+    # A prefix of 20 out of 2,000 sequential FIPS spans at most 19. Striding
+    # across the full 2,000-entry list should span most of that range.
+    check(span > 1000,
+          f"sample spans only {span} (min={checked_nums[0] if checked_nums else None}, "
+          f"max={checked_nums[-1] if checked_nums else None}) — looks like a prefix, not "
+          f"a cross-section of the full list")
 
 
 def test_validate_outputs_flags_bad_building_permits():
