@@ -553,11 +553,14 @@ def discover_acs_vintage(api_key, max_probe_back=4):
     start = date.today().year - 1
     for year in range(start, start - max_probe_back - 1, -1):
         url = CENSUS_VARS_URL.format(year=year)
+        if api_key:
+            url += f"?key={api_key}"
         payload = _get_json(url, timeout=60)
         if not _is_err(payload) and isinstance(payload, dict) and payload.get("variables"):
             print(f"  ACS 5-year vintage detected: {year}")
             return year, payload["variables"]
-        print(f"  ACS {year}: not available")
+        detail = payload.get("__error__") if isinstance(payload, dict) else "malformed response"
+        print(f"  ACS {year}: not available ({detail})" if detail else f"  ACS {year}: not available")
     return None, None
 
 
@@ -886,7 +889,7 @@ def collect_cbp(year, api_key, cfg):
 
 # ─────────── Population Estimates Program (PEP, optional) ───────────
 
-def discover_pep_vintage(max_probe_back=3):
+def discover_pep_vintage(api_key, max_probe_back=3):
     """Find the newest Population Estimates Program vintage that responds.
 
     PEP publishes a new vintage each year (unlike ACS 5-year, this is closer to
@@ -895,15 +898,24 @@ def discover_pep_vintage(max_probe_back=3):
     the ACS figure is more stable but can lag a fast-growing county's real
     current population by years). Not hardcoded, for the same reason ACS's
     vintage is not: Census publishes on its own schedule.
+
+    api_key is passed here (unlike the original version of this function)
+    because Census has required a key for every Data API request since
+    May 12, 2026 — a keyless probe of variables.json silently failed for
+    every candidate year, which looked identical to "no vintage published
+    yet" until the response detail was surfaced.
     """
     start = date.today().year
     for year in range(start, start - max_probe_back - 1, -1):
         url = CENSUS_PEP_VARS_URL.format(year=year)
+        if api_key:
+            url += f"?key={api_key}"
         payload = _get_json(url, timeout=60)
         if not _is_err(payload) and isinstance(payload, dict) and payload.get("variables"):
             print(f"  PEP vintage detected: {year}")
             return year
-        print(f"  PEP {year}: not available")
+        detail = payload.get("__error__") if isinstance(payload, dict) else "malformed response"
+        print(f"  PEP {year}: not available ({detail})" if detail else f"  PEP {year}: not available")
     return None
 
 
@@ -997,18 +1009,29 @@ def collect_pep_population(year, api_key):
 # ────────────── Building Permits (optional, per-county FRED series) ──────────────
 
 def _bps_series_id(fips: str) -> str:
-    """FRED's per-county housing-permits series ID: BPPRIV + 5-digit FIPS.
+    """FRED's per-county housing-permits series ID: BPPRIV + a 3-digit
+    zero-padded state code + the 3-digit county code (6 digits total) —
+    NOT the standard 5-digit FIPS (2-digit state + 3-digit county).
+
+    Standard FIPS state codes are already 2 digits, so the 3-digit form used
+    in these series IDs is just that state code with one more leading zero,
+    i.e. prepending a single "0" to the ordinary 5-digit FIPS string.
 
     This is Census Building Permits Survey data, but reached through FRED
     rather than the Census Data API — Census distributes county-level BPS only
     as an annual flat-file (not the JSON API this pipeline uses everywhere
     else), while FRED already hosts it as one series per county under this ID
-    pattern, confirmed against real published series (e.g. BPPRIV048089 for
-    Colorado County, TX). Using FRED keeps this on the one HTTP+JSON code path
-    the rest of the pipeline already uses, instead of adding a second,
+    pattern, confirmed against real published series: BPPRIV048089 for
+    Colorado County, TX (FIPS 48089 -> state 48 -> padded 048 -> 048089),
+    BPPRIV044007 for Providence County, RI (FIPS 44007 -> 044007), and
+    BPPRIV012011 for Broward County, FL (FIPS 12011 -> 012011). A live run
+    using the un-padded 5-digit FIPS directly (BPPRIV48089) returned HTTP 400
+    "the series does not exist" for every county sampled, which is what
+    exposed this. Using FRED keeps this on the one HTTP+JSON code path the
+    rest of the pipeline already uses, instead of adding a second,
     CSV-parsing ingestion path for a single module.
     """
-    return f"BPPRIV{fips}"
+    return f"BPPRIV0{fips}"
 
 
 def collect_permits(county_fips_list, api_key, max_counties=None):
@@ -1585,7 +1608,7 @@ def main():
         else:
             print("\n=== Census Population Estimates Program (optional) ===")
             try:
-                pep_year = discover_pep_vintage()
+                pep_year = discover_pep_vintage(census_key)
                 pep_by_fips = collect_pep_population(pep_year, census_key) if pep_year else {}
                 if pep_by_fips:
                     matched = 0

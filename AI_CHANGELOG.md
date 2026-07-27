@@ -5,6 +5,60 @@
 Date: 2026-07-27
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Bounded live test caught two production bugs in PEP and Building Permits
+
+## Why this happened
+The PEP and Building Permits modules shipped earlier the same day were verified
+offline (fixtures) and via a first bounded live test, but that first live test's
+Building Permits sample happened to land entirely in Alabama with plain 404s --
+indistinguishable from "this sample has genuinely low BPS coverage." A second
+bounded live test (`--force-pep --force-permits --permits-max-counties 50`,
+stride-sampled across the full county list) surfaced two real bugs instead:
+PEP reported `PEP available: False` for every probed year back to 2023, and
+Building Permits returned `HTTP 400 "Bad Request. The series does not exist."`
+for all 5 diverse sampled counties (01001, 01129, 05033, 06011, 08021) -- a
+much stronger negative signal than plain 404s, and worth investigating rather
+than accepting as "sparse coverage."
+
+## Bug 1: Building Permits series ID was missing a digit
+`_bps_series_id()` built `BPPRIV<5-digit-FIPS>` (e.g. `BPPRIV01001`), but
+verified against real published FRED series (`BPPRIV048089` Colorado County TX,
+`BPPRIV044007` Providence County RI, `BPPRIV012011` Broward County FL), the
+real pattern is `BPPRIV` + a **3-digit** zero-padded state code + the 3-digit
+county code -- 6 digits total, not 5. Every county's own FRED series ID was
+subtly wrong (missing exactly one leading zero on the state portion), which is
+why every request came back "the series does not exist" rather than a plain
+404: the series legitimately doesn't exist *under that malformed ID*. Fixed by
+changing the transform to `f"BPPRIV0{fips}"` (prepending a single zero, since
+standard FIPS state codes are already 2 digits). Notably, the function's own
+docstring already cited the correct 6-digit example (`BPPRIV048089`) while the
+code beneath it implemented the wrong 5-digit pattern -- the fix was verified
+against three independently-confirmed real series IDs, not just the one in the
+docstring, before shipping.
+
+## Bug 2: PEP's vintage probe never sent the required API key
+`discover_pep_vintage()` (and, found by the same inspection, `discover_acs_vintage()`)
+probed Census's `variables.json` metadata endpoint without appending the
+API key at all -- the `api_key` parameter existed on `discover_acs_vintage()`
+but was silently unused in its body. Since Census now requires a key for
+every Data API request (see the May 12, 2026 policy correction below), every
+probed vintage year failed identically, which looked exactly like "no vintage
+published yet" until the underlying error was surfaced. Fixed by appending
+`?key=<key>` to both probes' URLs (their base URLs carry no query string yet,
+so `?key=` rather than `_census_key_param()`'s `&key=` fragment), passing
+`census_key` through at the `discover_pep_vintage()` call site, and printing
+the actual `__error__` detail next to "not available" so a real outage is no
+longer indistinguishable from an unpublished vintage. ACS's vintage discovery
+had been succeeding in production without ever using the key it was passed --
+which held up in practice for reasons this fix does not depend on, but is
+tightened for consistency and future-proofing rather than left as an
+unexplained inconsistency between two structurally identical functions.
+
+---
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Three new FRED/Census data sources, plus a policy-change correction
 
 ## Why this happened

@@ -681,8 +681,10 @@ those functions returns nothing, by design:
   it — shown as its own labelled row in the profile panel and report, always with
   the word "estimate" and its vintage attached.
 - `building_permits` — `{value, as_of, change_yoy_pct}`. Census Building Permits
-  Survey, reached via FRED's per-county `BPPRIV<FIPS>` series rather than the
-  Census Data API (Census only distributes county-level BPS as an annual flat
+  Survey, reached via FRED's per-county `BPPRIV0<FIPS>` series (a 3-digit
+  zero-padded state code + 3-digit county code, NOT the plain 5-digit FIPS —
+  see `_bps_series_id()`) rather than the Census Data API (Census only
+  distributes county-level BPS as an annual flat
   file). Genuinely new information vs. the existing national `PERMIT` FRED
   series — this is the only county-level construction-permit trend on the
   platform. Coverage is expected to be partial (many small counties never

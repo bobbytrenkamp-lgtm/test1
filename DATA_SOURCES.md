@@ -260,8 +260,10 @@ throughout the UI.
   same way CBP is.
 
 ### Building Permits Survey (BPS, optional module, via FRED)
-- **Endpoint**: FRED's per-county series, `BPPRIV<5-digit FIPS>`
-  (e.g. `BPPRIV048089` for Colorado County, TX) — **not** the Census Data API.
+- **Endpoint**: FRED's per-county series, `BPPRIV` + a 3-digit zero-padded
+  state code + the 3-digit county code (6 digits total — one more leading
+  zero than the plain 5-digit FIPS)
+  (e.g. `BPPRIV048089` for Colorado County, TX, FIPS 48089) — **not** the Census Data API.
   Census distributes county-level BPS only as an annual flat file, not a JSON API;
   FRED already hosts the same data one series per county, so this stays on the
   same HTTP+JSON code path as every other FRED series in this pipeline instead of

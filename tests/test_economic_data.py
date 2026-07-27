@@ -572,11 +572,17 @@ def test_validate_outputs_flags_bad_population_estimate():
 # ────────────────────────── Building Permits (BPS via FRED) ──────────────────────────
 
 def test_bps_series_id_format():
-    """FRED's per-county series ID is BPPRIV + the 5-digit FIPS, verbatim --
-    confirmed against a real published series (BPPRIV048089, Colorado County,
-    TX). Getting this pattern wrong means every single county request 404s."""
-    eq(econ._bps_series_id("01001"), "BPPRIV01001", "state+county FIPS, no separator")
-    eq(econ._bps_series_id("48089"), "BPPRIV48089", "matches the real published series ID")
+    """FRED's per-county series ID is BPPRIV + a 3-digit zero-padded state
+    code + the 3-digit county code (6 digits total), NOT the plain 5-digit
+    FIPS -- confirmed against real published series: BPPRIV048089 (Colorado
+    County, TX, FIPS 48089), BPPRIV044007 (Providence County, RI, FIPS
+    44007), BPPRIV012011 (Broward County, FL, FIPS 12011). A live run using
+    the un-padded 5-digit form returned HTTP 400 'series does not exist' for
+    every county checked, which is what caught this."""
+    eq(econ._bps_series_id("48089"), "BPPRIV048089", "matches the real published series ID")
+    eq(econ._bps_series_id("44007"), "BPPRIV044007", "two-digit state FIPS gets one more leading zero")
+    eq(econ._bps_series_id("12011"), "BPPRIV012011", "matches the real published series ID")
+    eq(econ._bps_series_id("01001"), "BPPRIV001001", "single-digit-looking state FIPS still gets padded to 3 digits")
 
 
 def _fake_fred_obs_json(url, **kwargs):
@@ -594,14 +600,19 @@ def _fake_fred_obs_json(url, **kwargs):
     """
     m = re.search(r"series_id=([A-Za-z0-9]+)", url)
     sid = m.group(1) if m else None
-    if sid == "BPPRIV01001":
+    # Recover the underlying FIPS from the real series-ID transform (BPPRIV +
+    # a leading "0" + the 5-digit FIPS) so this routes on FIPS, not on a
+    # hardcoded series-ID string that would silently stop matching anything
+    # if _bps_series_id's format ever changes again.
+    fips = sid[len("BPPRIV0"):] if sid and sid.startswith("BPPRIV0") else None
+    if fips == "01001":
         return {"observations": [
             {"date": "2023-01-01", "value": "412"},
             {"date": "2024-01-01", "value": "455"},
         ]}
-    if sid == "BPPRIV01003":
+    if fips == "01003":
         return {"observations": [{"date": "2024-01-01", "value": "88"}]}
-    if sid and sid.startswith("BPPRIV9"):
+    if fips and fips.startswith("9"):
         return {"observations": [{"date": "2024-01-01", "value": "10"}]}
     return {"__error__": "HTTP 404"}
 
