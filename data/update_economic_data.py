@@ -131,10 +131,28 @@ def _get_json(url: str, timeout: int = 45, retries: int = 3):
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 raw = resp.read().decode("utf-8", "replace")
             time.sleep(REQUEST_DELAY_S)
-            return json.loads(raw)
+            try:
+                return json.loads(raw)
+            except json.JSONDecodeError:
+                # A 200 response that isn't JSON usually means the API sent an
+                # error message as plain text/HTML (a rate-limit notice, a
+                # WAF page) rather than raising an HTTP error status. The
+                # exception type alone ("JSONDecodeError") is not diagnosable
+                # on its own — keep a short snippet of what the body actually
+                # said so the next run's logs explain the failure instead of
+                # just naming it. _redact() first: some APIs echo the request
+                # URL back in their own error text, and that URL may carry
+                # api_key/key — this snippet reaches a public log line.
+                last = f"JSONDecodeError: {_redact(raw[:200])!r}"
+                break
         except urllib.error.HTTPError as e:
             # 400/404 are permanent for this URL — retrying wastes CI minutes.
-            last = f"HTTP {e.code}"
+            body = ""
+            try:
+                body = _redact(e.read().decode("utf-8", "replace")[:200])
+            except Exception:                                # noqa: BLE001
+                pass
+            last = f"HTTP {e.code}" + (f": {body!r}" if body else "")
             if e.code in (400, 401, 403, 404):
                 break
         except Exception as e:                              # noqa: BLE001

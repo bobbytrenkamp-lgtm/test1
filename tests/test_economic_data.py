@@ -452,6 +452,18 @@ def test_url_redaction():
     check("deadbeef" not in outf, "fred key removed")
 
 
+def test_get_json_error_snippets_are_redacted():
+    """_get_json() keeps a body snippet on failure for diagnosability (added
+    after a live Census keyless run failed with a bare 'JSONDecodeError' and
+    nothing else to go on). That snippet must never carry a live key: some
+    APIs echo the request URL back in their own error text."""
+    src = (Path(econ.ROOT) / "data" / "update_economic_data.py").read_text()
+    check("_redact(raw[:200])" in src or "_redact(raw" in src,
+          "JSONDecodeError snippet is not passed through _redact()")
+    check("_redact(e.read()" in src,
+          "HTTPError body snippet is not passed through _redact()")
+
+
 def test_no_api_key_in_source_defaults():
     """No literal key may be committed. Keys come only from the environment."""
     src = (Path(econ.ROOT) / "data" / "update_economic_data.py").read_text()
