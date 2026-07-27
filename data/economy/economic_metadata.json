@@ -4,8 +4,12 @@
  "cbp_available": true,
  "cbp_year": 2023,
  "census": {
-  "last_successful_update": "2026-07-27T16:04:23+00:00",
+  "last_successful_update": "2026-07-27T21:36:19+00:00",
   "selected_variables": {
+   "avg_commute_minutes": {
+    "aggregate_minutes": "B08013_001E",
+    "commuters": "B08012_001E"
+   },
    "bachelors_or_higher_pct": {
     "bachelors": "B15003_022E",
     "denominator": "B15003_001E",
@@ -16,6 +20,21 @@
    "broadband_pct": {
     "broadband": "B28002_004E",
     "denominator": "B28002_001E"
+   },
+   "homeownership_rate": {
+    "owner_occupied": "B25003_002E",
+    "total_occupied": "B25003_001E"
+   },
+   "households": {
+    "value": "B11001_001E"
+   },
+   "housing_vacancy_rate": {
+    "total_units": "B25002_001E",
+    "vacant": "B25002_003E"
+   },
+   "labor_force_participation_rate": {
+    "in_labor_force": "B23025_002E",
+    "population_16plus": "B23025_001E"
    },
    "median_age": {
     "value": "B01002_001E"
@@ -32,6 +51,10 @@
    "per_capita_income": {
     "value": "B19301_001E"
    },
+   "poverty_rate": {
+    "below_poverty": "B17001_002E",
+    "total": "B17001_001E"
+   },
    "unemployment_rate": {
     "employed": "B23025_004E",
     "labor_force": "B23025_003E",
@@ -45,10 +68,13 @@
   }
  },
  "county_count": 3222,
+ "eia_available": false,
+ "eia_last_successful_update": null,
+ "eia_state_count": 0,
  "fred_series_count": 21,
  "fred_skipped": [],
- "generated_at": "2026-07-27T21:12:34+00:00",
- "last_run_at": "2026-07-27T21:12:34+00:00",
+ "generated_at": "2026-07-27T21:36:19+00:00",
+ "last_run_at": "2026-07-27T21:36:19+00:00",
  "latest_observation_date": "2026-07-27",
  "oldest_history_year": 2019,
  "permits_available": false,
@@ -85,6 +111,6 @@
  "stale": true,
  "state_count": 52,
  "warnings": [
-  "Building Permits: only 20 counties returned real data out of 20 checked — module skipped rather than publishing a suspiciously small result — every checked county returned a plain 404 (no series), which is consistent with genuinely low BPS coverage in this sample, not a bug"
+  "ACS metric 'population': could not verify value=B01003_001E in this vintage — metric will be omitted rather than guessed"
  ]
 }
