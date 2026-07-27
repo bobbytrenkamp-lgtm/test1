@@ -363,6 +363,32 @@ every county) remains the platform's population figure. See
 - A BLS failure cannot break the ACS county data it supplements — isolated
   the same way CBP, Building Permits, and EIA are.
 
+### Data Center Readiness Score — derived, not a data source
+- Not a new data source: a client-side composite score (`js/economy.js`,
+  `readinessScore()`) computed in the browser from nine factors already
+  published by the sources above — population growth, unemployment,
+  bachelor's degree attainment, labor force participation, broadband
+  subscription, housing vacancy, building permits YoY change, average weekly
+  wage, and state electricity price. No new HTTP request, no new pipeline
+  output field, nothing to fetch, cache, or go stale independently of its
+  inputs.
+- Each factor is expressed as this county's percentile rank against every
+  other county nationally (state-level for electricity price), not a raw
+  value, so factors with very different units and scales combine on the same
+  0-100 footing. "Lower is better" factors (unemployment, housing vacancy,
+  wage, electricity price — all cost/risk signals) are inverted before
+  weighting.
+- Missing factors are excluded rather than treated as zero, and the
+  remaining weights are redistributed proportionally — a county missing
+  BLS wage data (a smaller sample than population/ACS coverage) is still
+  scored on the other eight factors, with a reported completeness
+  percentage rather than a silently penalized score.
+- Deliberately excludes the regulatory/zoning restriction level
+  (`map_data.json`): that dataset has different coverage and confidence
+  characteristics and answers a different question (legal risk, not
+  economic attractiveness). The two are shown as separate figures
+  everywhere the score appears, never blended into one hidden number.
+
 ### Pipeline and safety
 - **Script**: `data/update_economic_data.py` (Python standard library only)
 - **Workflow**: `.github/workflows/update_economic_data.yml` — daily at 06:20 UTC

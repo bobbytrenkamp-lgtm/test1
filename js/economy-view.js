@@ -636,6 +636,7 @@
       </div>`).join("");
 
     const signals = isCounty ? E().countySignals(cData, key) : [];
+    const readiness = isCounty ? E().readinessScore(cData, sData, key) : null;
 
     // Supplementary and a DIFFERENT measurement from anything in the table
     // above — never merged into that table's rows, so a reader never mistakes
@@ -679,12 +680,39 @@
         </div>` : ""}
       </div>` : "";
 
+    const readinessHtml = readiness ? (() => {
+      const slug = readiness.grade.toLowerCase().replace(/\s+/g, "-");
+      const rows = readiness.breakdown.map(f => `
+        <li class="econ-readiness-factor">
+          <span class="econ-readiness-factor-label">${E().escapeText(f.label)}</span>
+          <span class="econ-readiness-factor-bar"><span style="width:${f.score}%"></span></span>
+          <span class="econ-readiness-factor-pct">${f.score}</span>
+        </li>`).join("");
+      return `
+      <div class="econ-readiness econ-readiness-${slug}">
+        <div class="econ-readiness-headline">
+          <div class="econ-readiness-score">${readiness.score}<span class="econ-readiness-max">/100</span></div>
+          <div class="econ-readiness-meta">
+            <div class="econ-readiness-grade">${E().escapeText(readiness.grade)} economic readiness</div>
+            <div class="econ-readiness-note">Synthesizes ${readiness.breakdown.length} economic factors as national percentiles${
+              readiness.completeness < 100 ? ` (${readiness.completeness}% of the full weighting had data — the rest was excluded, not guessed)` : ""
+            }. Does not include zoning or regulatory restriction level, shown separately.</div>
+          </div>
+        </div>
+        <details class="econ-profile-more"><summary>What's driving this score</summary>
+          <ul class="econ-readiness-breakdown">${rows}</ul>
+        </details>
+      </div>`;
+    })() : "";
+
     host.innerHTML = `
       <div class="econ-profile-head">
         <h3 class="econ-profile-name">${E().escapeText(rec.name)}</h3>
         <div class="econ-profile-state">${E().escapeText(isCounty ? (rec.state || "") : "State")}</div>
         <div class="econ-profile-fips">FIPS ${E().escapeText(key)}</div>
       </div>
+
+      ${readinessHtml}
 
       <table class="econ-profile-table">
         <caption class="econ-sr-only">Economic metrics with United States and state comparisons</caption>

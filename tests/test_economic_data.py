@@ -793,6 +793,31 @@ def test_collect_bls_wages_rejects_suspiciously_small_result():
     eq(out, {}, "2 counties is far below the 500-county sanity floor -> rejected")
 
 
+def test_collect_bls_wages_high_hit_rate_below_floor_is_not_reported_as_all_404():
+    """Regression guard for a real bug found live: a bounded test run with a
+    HIGH hit rate (e.g. 299/300 real counties -- QCEW coverage is normally
+    near-universal) still gets rejected by the 500-county floor, which is
+    correct. But the warning used to unconditionally claim 'every checked
+    county returned a plain 404' whenever there were no non-404 errors to
+    report, which is simply false when most/all counties actually
+    succeeded -- this looked exactly like 'BLS is fundamentally broken'
+    from the log alone and nearly caused a working module to be retired."""
+    econ.warnings.clear()
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = _fake_bls_csv_rows
+    try:
+        real_padding = [f"9{i:04d}" for i in range(300)]  # all succeed
+        out = econ.collect_bls_wages(real_padding, 2024)
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(out, {}, "300 is still below the 500-county floor -> rejected")
+    joined = " ".join(econ.warnings)
+    check("every checked county returned a plain 404" not in joined,
+          f"must not falsely claim every county 404'd when nearly all succeeded; got: {joined}")
+    check("300/300" in joined or "a normal hit rate" in joined,
+          f"warning should say this was a normal hit rate at too small a sample, not an error; got: {joined}")
+
+
 def test_collect_bls_wages_respects_max_counties_cap():
     real_get_csv = econ._get_csv_rows
     calls = []

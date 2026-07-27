@@ -87,8 +87,9 @@ window.REPORT = (function () {
           const electricityPrice = stateFips &&
             ((stateData && stateData.states) || {})[stateFips] &&
             ((stateData.states)[stateFips]).electricity_price;
-          if (metrics.length || signals.length || buildingPermits || avgWeeklyWage || electricityPrice) {
-            econ = { metrics, signals, buildingPermits, avgWeeklyWage, electricityPrice,
+          const readiness = E.readinessScore(county, stateData, padded);
+          if (metrics.length || signals.length || buildingPermits || avgWeeklyWage || electricityPrice || readiness) {
+            econ = { metrics, signals, buildingPermits, avgWeeklyWage, electricityPrice, readiness,
                      vintage: meta && meta.acs_vintage };
           }
         }
@@ -174,9 +175,30 @@ window.REPORT = (function () {
         </tbody>
       </table>` : "";
 
+    // A single synthesis of the economic factors above, expressed as this
+    // county's national percentile on each -- deliberately NOT blended with
+    // the restriction-level severity badge shown elsewhere in this report,
+    // which is a separate kind of judgment (legal/regulatory risk, not
+    // economic attractiveness) from a different dataset with different
+    // coverage and confidence characteristics.
+    const rd = econ.readiness;
+    const readinessColors = { excellent: "#16794a", strong: "#16794a", moderate: "#9a6410",
+                               "below average": "#b3341f", weak: "#b3341f" };
+    const readinessHtml = rd ? `
+      <div style="display:flex; align-items:center; gap:14px; margin:8px 0 12px; padding:10px 12px; border:1px solid #d8dce6; border-radius:8px;">
+        <div style="font-size:26px; font-weight:800; color:${readinessColors[rd.grade.toLowerCase()] || "#111"};">${rd.score}<span style="font-size:12px; font-weight:600; color:#6b7280;">/100</span></div>
+        <div>
+          <div style="font-size:12px; font-weight:700; color:${readinessColors[rd.grade.toLowerCase()] || "#111"};">${_esc(rd.grade)} economic readiness</div>
+          <div class="note">Synthesizes ${rd.breakdown.length} economic factors as national percentiles${
+            rd.completeness < 100 ? ` (${rd.completeness}% of the full weighting had data)` : ""
+          }. Excludes zoning/regulatory restriction level, shown separately above.</div>
+        </div>
+      </div>` : "";
+
     return `
       <section class="section">
         <h2 class="section-title">Economic Context</h2>
+        ${readinessHtml}
         <table class="kv-table" style="width:100%">
           <thead><tr><th>Metric</th><th>Value</th><th>Percentile context</th></tr></thead>
           <tbody>${rows}</tbody>

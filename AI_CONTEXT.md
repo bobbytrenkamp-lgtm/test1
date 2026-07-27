@@ -713,6 +713,32 @@ referenced in old commits or PRs, it no longer exists — ACS's own
 `population` metric (a 5-year rolling average) is the platform's population
 figure.
 
+### Data Center Readiness Score — computed client-side, not a data field
+`economy.js`'s `readinessScore(countyData, stateData, fips)` is a synthesis,
+not a stored field — nothing in `census_county.json`/`census_state.json`
+carries it, and there is no pipeline change to make one. It combines nine
+already-loaded economic factors, each expressed as this county's national
+percentile (via `percentileRank()`/a factor-specific pool, not raw values),
+weighted, with graceful degradation: a county missing an optional field
+(building permits, BLS wage, EIA price) has that factor excluded and its
+weight redistributed across whatever factors remain, never a fabricated 0.
+See `READINESS_FACTORS` for the weights and `_readinessFactorPools()` for
+how each factor's percentile pool is built — electricity is collected once
+per STATE (52 values), not once per county, so a state with many counties
+cannot skew that one pool.
+
+Deliberately excludes regulatory/zoning restriction level (`map_data.json`,
+a separate dataset with different coverage/confidence) — that stays its own
+labelled figure wherever both appear (see `js/report.js`'s
+"Data Center Readiness Score" section, rendered separately from the
+existing restriction-severity badge), rather than blending two different
+kinds of judgment (economic attractiveness vs. legal risk) into one number.
+
+No JS unit-test file covers `economy.js`'s internals (a pre-existing gap).
+Verified via a standalone Node smoke test loading the real module source
+with `vm.runInContext` and synthetic multi-county data — see
+AI_CHANGELOG.md for what it checks.
+
 ### Data flow
 ```
 FRED API + Census ACS API   (GitHub Actions only — keys live in repo secrets)

@@ -209,7 +209,9 @@ center and AI infrastructure rather than as a general economics dashboard.
    unemployment, education, home value, rent, homeownership, housing vacancy,
    broadband, commute time, poverty rate — 13 ACS metrics total), latest-value
    or 1/5-year change, search, and a profile panel giving US and state
-   comparisons, percentile rank, sparklines, and — where available —
+   comparisons, percentile rank, sparklines, a **Data Center Readiness Score**
+   (a 0-100 synthesis of nine economic factors as national percentiles,
+   weighted and combined client-side — see below), and — where available —
    county-level building permit activity (Census BPS via FRED), county-level
    average weekly wage (BLS QCEW, no API key needed), and state-level
    industrial electricity price (EIA), each clearly labelled as a distinct
@@ -219,6 +221,19 @@ center and AI infrastructure rather than as a general economics dashboard.
    labor tightness, financing cost, credit availability, construction activity
    accelerating/slowing). Each comes from a fixed rule and cites a figure shown
    on the page.
+
+**Data Center Readiness Score** — computed entirely in the browser from data
+already on the page, no new API or pipeline step. Combines population growth,
+education, unemployment, labor force participation, broadband, building
+permits, wages, electricity price, and housing vacancy, each as this county's
+national percentile, weighted (heaviest: population growth 20%, education
+15%) and summed. A county missing an optional field (permits/wages/electricity
+all have partial coverage by design) has that factor's weight redistributed
+across what's available rather than scored as zero — the score reports a
+completeness percentage so this is never silent. Deliberately excludes
+zoning/regulatory restriction level, which is a separate dataset and stays
+its own clearly labelled figure (shown alongside, not blended in) wherever
+both appear, e.g. the due-diligence report.
 
 **Also integrated into** the Map tab (an *Economic Data* layer group with six
 choropleths), county detail and Jurisdiction pages (an Economy section),

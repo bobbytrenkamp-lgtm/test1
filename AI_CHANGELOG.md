@@ -5,6 +5,95 @@
 Date: 2026-07-27
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: BLS was never broken -- a misleading warning message was; plus Phase 4 (Data Center Readiness Score)
+
+## Correction: BLS QCEW works fine, a log message was lying
+The previous entry left BLS QCEW's per-county access as an open question,
+with a 300-county live test queued to determine whether a 30-county 100%
+failure was bad luck or a real problem. That test came back with **299 of
+300 counties returning real data** -- a 99.7% hit rate, essentially perfect
+QCEW coverage. Re-reading the EARLIER 30-county result closely (not just its
+prose summary) found the same pattern was already there and had been
+misread: `collect_bls_wages()`'s warning message unconditionally claimed
+"every checked county returned a plain 404" whenever there were no *non-404*
+errors to report -- which is also exactly what happens when every county
+*succeeds*, since a success produces no error of any kind. The message
+never distinguished "0 successes, all 404" from "many/all successes, just
+fewer than the 500-county floor requires" (the ordinary, expected outcome
+of any bounded test run smaller than 500). Both the 30-county and
+(re-examined) 300-county results were the latter case the whole time.
+
+This was close to causing a real mistake: the plan on the table was to
+retire a fully working, near-key-free, near-universal-coverage data source
+because its own diagnostic output said something false. Fixed the message
+to report the actual hit rate and explicitly say "a normal hit rate at too
+small a sample" when most/all counties succeed, reserving the "every county
+404'd" language for when that is actually true (`len(out) == 0`). Added a
+regression test asserting the old false claim cannot appear when the hit
+rate is high. The earlier `discover_bls_vintage()` fix (probing a real
+county instead of the national total `US000`) is still a genuine
+improvement and was kept -- it just was not the fix for this particular
+symptom, since the symptom was never real.
+
+## Phase 4: Data Center Readiness Score
+A single 0-100 synthesis of the economic factors already collected,
+computed entirely client-side in `js/economy.js` (`readinessScore()`) --
+no new data source, no pipeline change. Each factor is expressed as the
+county's NATIONAL PERCENTILE on that measure (a raw wage or price means
+nothing on its own; a percentile does), weighted, and combined:
+
+population growth 5yr (20%), bachelor's degree or higher (15%),
+unemployment rate (10%, inverted), labor force participation (10%),
+broadband subscription (10%), building permits YoY (10%), average weekly
+wage (10%, inverted), state electricity price (10%, inverted), housing
+vacancy rate (5%, inverted).
+
+Deliberately named "economic readiness", not just "readiness": excludes
+zoning/regulatory restriction level, which lives in a separate dataset
+(`map_data.json`) with different coverage and confidence characteristics
+and stays its own clearly labelled figure (the report already shows it
+prominently) rather than being blended into one number that would hide
+which kind of judgment -- economic attractiveness vs. legal risk -- is
+driving it.
+
+Every factor degrades gracefully: a county missing an optional field
+(building permits, BLS wage, and EIA electricity price all have partial
+coverage by design) has that factor excluded and its weight redistributed
+proportionally across whatever factors ARE available -- the score never
+substitutes a fabricated 0 for missing data, and reports a `completeness`
+percentage so a reader can see how much of the full weighting had real data
+behind it. Surfaced in both the Economy tab's county profile panel
+(`js/economy-view.js`) and the due-diligence report (`js/report.js`), with
+a "what's driving this score" breakdown showing every factor's own
+percentile and weight.
+
+## Phase 3: FCC Broadband Data -- researched, deferred
+Explicitly on the preferred-source list, but the official BDC public data
+API requires a full account registration plus manually-generated API
+token (heavier than any other source's simple key signup), and repeated
+research could not confirm a lightweight, county-level summary endpoint
+with enough confidence to build against -- the alternative (raw per-location
+availability files) is tens of millions of rows nationally, well beyond
+this pipeline's stdlib-only, CI-minute-conscious design. Rather than guess
+at an unconfirmed endpoint a third time in one session, this was deferred
+rather than attempted. Nothing was built or shipped for this phase.
+
+## Testing
+economy.js's `readinessScore()` has no existing JS unit-test harness to
+extend (no `tests/*.mjs` file currently covers economy.js's internals at
+all -- a pre-existing gap, not something this session introduced or chose
+to leave in scope to fix generally). Verified instead with a standalone
+Node smoke test (loading the real module source via `vm.runInContext` with
+a stub `window`, feeding synthetic multi-county data): confirms a
+high-performing county scores well above a low-performing one, missing
+optional fields reduce `completeness` without crashing or zeroing the
+score, an unknown FIPS and an all-missing-data county both return `null`
+rather than a fabricated score, and the breakdown is sorted by weight.
+386 Python offline assertions (up from 383) for the BLS warning-message fix.
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Two bugs caught by live-testing Phase 1 and Phase 2 before moving on
 
 ## Bug 1: `population` has been silently broken since the feature launched

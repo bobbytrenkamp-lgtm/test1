@@ -906,6 +906,133 @@ window.ECONOMY = (function () {
     return out;
   }
 
+  /* ── Data Center Readiness Score ──────────────────────────────────────────
+     A single 0-100 synthesis of the economic factors already on this page,
+     each expressed as this county's NATIONAL PERCENTILE on that factor (not
+     a raw value — a $60k wage means nothing on its own, but "38th percentile"
+     does), weighted and combined. Deliberately named "Economic Readiness",
+     not just "Readiness": this scores ONLY economic factors already loaded
+     into this module. It does not include zoning/regulatory restriction
+     level, which lives in a separate dataset (map_data.json) with different
+     coverage and confidence characteristics — that stays its own clearly
+     labelled figure wherever both appear together (see js/report.js), rather
+     than being blended into one number that would hide which kind of
+     judgment (economic attractiveness vs. legal risk) is driving the score.
+
+     Every factor degrades gracefully: a county missing an optional field
+     (building permits, BLS wage, EIA electricity price all have partial
+     coverage by design) simply has that factor excluded and its weight
+     redistributed proportionally across whatever factors ARE available,
+     the same honesty principle as everywhere else on this platform — never
+     a fabricated 0 standing in for "no data". */
+  const READINESS_FACTORS = [
+    { key: "population_growth",   label: "Population growth (5yr)",     weight: 20, invert: false },
+    { key: "unemployment",        label: "Unemployment rate",           weight: 10, invert: true  },
+    { key: "bachelors",           label: "Bachelor's degree or higher", weight: 15, invert: false },
+    { key: "labor_participation", label: "Labor force participation",   weight: 10, invert: false },
+    { key: "broadband",           label: "Broadband subscription",      weight: 10, invert: false },
+    { key: "housing_vacancy",     label: "Housing vacancy rate",        weight: 5,  invert: true  },
+    { key: "permits_yoy",         label: "Building permits (YoY)",      weight: 10, invert: false },
+    { key: "wage",                label: "Average weekly wage",         weight: 10, invert: true  },
+    { key: "electricity",         label: "State electricity price",     weight: 10, invert: true  },
+  ];
+
+  let _readinessCache = null;
+  function _readinessFactorPools(countyData, stateData) {
+    if (_readinessCache) return _readinessCache;
+    const counties = (countyData && countyData.counties) || {};
+    const states   = (stateData  && stateData.states)   || {};
+    const acc = { population_growth: [], unemployment: [], bachelors: [],
+                  labor_participation: [], broadband: [], housing_vacancy: [],
+                  permits_yoy: [], wage: [] };
+    const push = (arr, v) => { if (v !== null && v !== undefined && isFinite(v)) arr.push(v); };
+    for (const f in counties) {
+      const c = counties[f];
+      push(acc.population_growth, metricValue(c, "population", "change_5y"));
+      push(acc.unemployment, metricValue(c, "unemployment_rate", "value"));
+      push(acc.bachelors, metricValue(c, "bachelors_or_higher_pct", "value"));
+      push(acc.labor_participation, metricValue(c, "labor_force_participation_rate", "value"));
+      push(acc.broadband, metricValue(c, "broadband_pct", "value"));
+      push(acc.housing_vacancy, metricValue(c, "housing_vacancy_rate", "value"));
+      if (c.building_permits) push(acc.permits_yoy, c.building_permits.change_yoy_pct);
+      if (c.avg_weekly_wage) push(acc.wage, c.avg_weekly_wage.value);
+    }
+    // Electricity is STATE-level: one value per state, collected from states{}
+    // directly rather than duplicated once per county, so a state with many
+    // counties (e.g. Texas) cannot skew the percentile pool toward its own
+    // single price -- the pool must reflect the real ~50-state distribution.
+    const electricity = [];
+    for (const s in states) {
+      const ep = states[s].electricity_price;
+      push(electricity, ep && ep.value);
+    }
+    acc.electricity = electricity;
+    _readinessCache = acc;
+    return acc;
+  }
+
+  const READINESS_GRADES = [
+    [80, "Excellent"], [65, "Strong"], [50, "Moderate"], [35, "Below Average"],
+  ];
+  function _readinessGrade(score) {
+    for (const [min, label] of READINESS_GRADES) if (score >= min) return label;
+    return "Weak";
+  }
+
+  /* Returns null when the county has no economic record, or when every
+     factor is missing (never a fabricated score from zero data). Otherwise
+     { score, grade, completeness, breakdown }. completeness is the % of the
+     100-point weight scheme that had real data behind it -- e.g. 75 means a
+     quarter of the intended weight (by design, always the optional
+     supplementary factors first) had no county-level data and was excluded
+     rather than guessed. breakdown is sorted by weight, heaviest first, so a
+     UI can show "what's driving this score" without re-deriving it. */
+  function readinessScore(countyData, stateData, fips) {
+    const counties = (countyData && countyData.counties) || {};
+    const rec = counties[fips];
+    if (!rec) return null;
+
+    const pool = _readinessFactorPools(countyData, stateData);
+    const stateRec = ((stateData && stateData.states) || {})[rec.state_fips];
+    const ep = stateRec && stateRec.electricity_price;
+
+    const raw = {
+      population_growth:   metricValue(rec, "population", "change_5y"),
+      unemployment:         metricValue(rec, "unemployment_rate", "value"),
+      bachelors:             metricValue(rec, "bachelors_or_higher_pct", "value"),
+      labor_participation:   metricValue(rec, "labor_force_participation_rate", "value"),
+      broadband:             metricValue(rec, "broadband_pct", "value"),
+      housing_vacancy:       metricValue(rec, "housing_vacancy_rate", "value"),
+      permits_yoy:           rec.building_permits ? rec.building_permits.change_yoy_pct : null,
+      wage:                   rec.avg_weekly_wage ? rec.avg_weekly_wage.value : null,
+      electricity:           ep ? ep.value : null,
+    };
+
+    let weightedSum = 0, weightUsed = 0;
+    const breakdown = [];
+    for (const f of READINESS_FACTORS) {
+      const v = raw[f.key];
+      if (v === null || v === undefined || !isFinite(v)) continue;
+      // Electricity's real pool is at most ~52 states; every other factor
+      // draws from ~3,000+ counties, so the same 20-sample floor used
+      // elsewhere would be needlessly strict for the smaller pool.
+      const minSample = f.key === "electricity" ? 10 : 20;
+      const pctile = percentileRank(v, pool[f.key], minSample);
+      if (pctile === null) continue;
+      const factorScore = f.invert ? (100 - pctile) : pctile;
+      weightedSum += factorScore * f.weight;
+      weightUsed += f.weight;
+      breakdown.push({ key: f.key, label: f.label, value: v, percentile: pctile,
+                        weight: f.weight, score: Math.round(factorScore) });
+    }
+
+    if (weightUsed === 0) return null;
+
+    const overall = Math.round(weightedSum / weightUsed);
+    breakdown.sort((a, b) => b.weight - a.weight);
+    return { score: overall, grade: _readinessGrade(overall), completeness: weightUsed, breakdown };
+  }
+
   /* ── Public API ────────────────────────────────────────────────────────── */
   return {
     FILES,
@@ -918,11 +1045,13 @@ window.ECONOMY = (function () {
     median, percentileRank, comparisons, nationalMedians,
     timeSeriesChart, sparklineSvg, segments,
     nationalSignals, countySignals, SIGNAL_RULES,
+    readinessScore, READINESS_FACTORS,
     /* Test/diagnostic surface */
     _resetCache() {
       for (const k in _cache) delete _cache[k];
       for (const k in _inflight) delete _inflight[k];
       _medianCache = null;
+      _readinessCache = null;
     },
   };
 })();

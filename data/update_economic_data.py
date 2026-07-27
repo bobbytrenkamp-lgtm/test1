@@ -1527,9 +1527,24 @@ def collect_bls_wages(county_fips_list, year, max_counties=None):
         out[fips] = {"value": wage, "employment": employment, "year": year}
 
     if len(out) < 500:
-        detail = f" — sample errors: {sample_errors}" if sample_errors else \
-                 " — every checked county returned a plain 404, which is unexpected for QCEW " \
-                 "(coverage is normally near-universal, unlike Building Permits)"
+        # Three genuinely different situations, easy to conflate if the
+        # message doesn't distinguish them: a bounded test run that simply
+        # didn't sample 500 counties (the common, expected case — QCEW
+        # coverage is normally near-universal, so a high hit rate here is
+        # NOT a problem, just too small a sample to clear the full-run
+        # floor); a real fetch problem with diagnosable errors; and every
+        # single county genuinely 404ing, which — unlike Building Permits,
+        # where sparse BPS coverage is real — would be a signal something
+        # is systemically wrong (wrong area-code scheme, wrong year).
+        if sample_errors:
+            detail = f" — sample errors: {sample_errors}"
+        elif len(out) == 0:
+            detail = (" — every checked county returned a plain 404, which is unexpected "
+                       "for QCEW (coverage is normally near-universal, unlike Building Permits)")
+        else:
+            detail = (f" — {len(out)}/{checked} checked counties had real data (a normal hit "
+                       f"rate); this is just a smaller sample than the 500-county floor requires, "
+                       f"expected for a bounded test run")
         warn(f"BLS QCEW wages: only {len(out)} counties returned real data out of "
              f"{checked} checked — module skipped rather than publishing a suspiciously "
              f"small result{detail}")
