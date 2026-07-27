@@ -251,6 +251,86 @@ rather than a zero.
 
 ---
 
+## Cost & Licensing Audit
+
+Every external service this project touches, and whether it costs anything.
+Audited 2026-07-27. **Nothing in the running application requires a paid
+account.** Re-run the audit with:
+
+    grep -rhoE "https?://[a-zA-Z0-9._-]+" js/ data/ index.html | sort -u
+
+### Free, no account or key needed
+
+| Service | Used for | Terms |
+|---|---|---|
+| Leaflet 1.9.4 (vendored) | Map rendering | BSD-2-Clause |
+| topojson-client v3 (vendored) | TopoJSON to GeoJSON | BSD-3-Clause |
+| us-atlas counties-10m (vendored) | County/state boundaries | Public domain (US Census TIGER) |
+| ~130 government policy sources | Policy pipeline | Public `.gov` pages, unauthenticated |
+| County ArcGIS parcel services | Parcel layer (5 pilot counties) | Public government GIS |
+| archive.org Wayback | Dead-link fallback | Free public API |
+| TradingView embeddable widgets | AI Stocks tab | Free tier, attribution required (present). Quotes delayed 15 min |
+| Google Fonts (Inter) | Typography | Free (SIL OFL) |
+| jsDelivr CDN | Supabase JS client delivery | Free public CDN |
+| USGS `basemap.nationalmap.gov` | Topo basemap option | Free US government service |
+| GitHub Pages + Actions | Hosting and all scheduled jobs | Free with **unlimited** Actions minutes on public repositories |
+
+No `package.json` and no build step, so there is no npm dependency tree to
+license-audit. Python needs only `requests`, `beautifulsoup4` and
+`python-dateutil` (all permissively licensed); the economic pipeline uses the
+**standard library only**.
+
+### Free, but require a free API key
+
+| Key | Service | Cost | If absent |
+|---|---|---|---|
+| `FRED_API_KEY` | Federal Reserve Economic Data | Free, unlimited | FRED skipped; existing data preserved |
+| `CENSUS_API_KEY` | Census ACS / CBP | Free, 500 calls/day without a key, unlimited with | Census skipped; existing data preserved |
+| `CONGRESS_API_KEY` | Congress.gov | Free via api.data.gov | Falls back to `DEMO_KEY` — works, just rate-limited |
+| `LEGISCAN_API_KEY` | LegiScan state bills | Free tier (30k queries/month) | Logged as `[skip]`, monitor continues |
+| `SUPABASE_URL` / `SUPABASE_ANON_KEY` | Optional accounts | Free tier | Auth button hidden; site fully functional signed-out |
+
+Every one of these degrades gracefully. **No key is required for the site to
+work** — a visitor never needs one, and an unconfigured deployment shows honest
+"not configured" / "not yet measured" states rather than breaking.
+
+### Paid — present in the codebase but DISABLED
+
+| Service | Status |
+|---|---|
+| Cloudscene API (`data/facility_pipeline/adapters/cloudscene.py`) | `"active": false` in `facility_sources.json`. The adapter is a **stub**: it raises `EnvironmentError` without a key and `NotImplementedError` with one. It is never called and costs nothing. Leaving it in place documents what a paid upgrade path would look like. |
+
+**Do not activate Cloudscene** without a deliberate decision to pay for it.
+
+### Gray area — free for light use, worth watching
+
+Two basemap providers are used **without an API key**. Both are free for
+low-volume use with attribution (which is present), but neither is an unlimited
+free-forever commitment:
+
+- **CARTO** (`{s}.basemaps.cartocdn.com`) — the no-key basemaps are intended for
+  light and non-commercial use. High traffic can be rate-limited, and CARTO's
+  terms contemplate an account above that.
+- **Esri World Imagery** (`server.arcgisonline.com`) — free for light use with
+  attribution; Esri's terms of service contemplate an ArcGIS account for
+  production applications.
+
+Neither currently costs anything, and at this project's traffic neither is likely
+to. If either ever rate-limits or asks for an account, the free replacements are
+already partly wired: **OpenStreetMap standard tiles** (free, attribution only)
+and **USGS `basemap.nationalmap.gov`**, which is already one of the basemap
+options. Swapping is a one-line change per `L.tileLayer` call in `js/map.js`,
+`js/pipeline.js` and `js/economy-view.js`.
+
+### Rule for future work
+
+Do not add a dependency, data source, or service that requires payment to
+function. If a paid source is genuinely the best option, follow the Cloudscene
+pattern: implement it behind an env var, mark it `active: false`, and make its
+absence a skip rather than a failure.
+
+---
+
 ## Priority Coverage
 
 ### Priority States (31)

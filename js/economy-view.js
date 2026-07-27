@@ -513,11 +513,19 @@
       zoomControl: true, attributionControl: true,
       scrollWheelZoom: false,   // page scroll must not be hijacked mid-page
     });
+    /* {s} subdomain rotation matches the rest of the app (js/map.js) and spreads
+       tile requests across CARTO's hosts. CARTO's no-key basemaps are free for
+       light use with attribution — see the Cost & Licensing section in
+       DATA_SOURCES.md before raising traffic. */
     L.tileLayer(
       E().isLight()
-        ? "https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
-        : "https://basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png",
-      { attribution: "&copy; OpenStreetMap, &copy; CARTO", maxZoom: 9 }
+        ? "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
+        : "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png",
+      {
+        attribution: "&copy; OpenStreetMap, &copy; CARTO",
+        subdomains: "abcd",
+        maxZoom: 9,
+      }
     ).addTo(_explorerMap);
 
     const render = (geo) => {
