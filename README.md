@@ -207,10 +207,9 @@ center and AI infrastructure rather than as a general economics dashboard.
 3. **Regional Economic Explorer** — county or state choropleth with a metric
    selector (population, income, unemployment, education, housing, broadband),
    latest-value or 1/5-year change, search, and a profile panel giving US and
-   state comparisons, percentile rank, sparklines, and — where available — a
-   current-year population estimate (Census PEP) and county-level building
-   permit activity (Census BPS via FRED), each clearly labelled as a distinct
-   measurement from the ACS metrics above it.
+   state comparisons, percentile rank, sparklines, and — where available —
+   county-level building permit activity (Census BPS via FRED), clearly
+   labelled as a distinct measurement from the ACS metrics above it.
 4. **Infrastructure-Relevant Signals** — plain statements about conditions that
    matter for infrastructure planning (population momentum, skilled workforce,
    labor tightness, financing cost, credit availability, construction activity
@@ -230,7 +229,7 @@ Economic data is fetched by GitHub Actions, never by the browser. Add these unde
 | Secret | Get one from | Needed? | Used for |
 |---|---|---|---|
 | `FRED_API_KEY` | https://fred.stlouisfed.org/docs/api/api_key.html | **Required** — FRED rejects keyless requests | Federal Reserve series, plus county-level Building Permits (Census data, but reached via FRED's per-county series — see Data Sources) |
-| `CENSUS_API_KEY` | https://api.census.gov/data/key_signup.html | **Required** — see below | ACS, Population Estimates (PEP), and CBP data |
+| `CENSUS_API_KEY` | https://api.census.gov/data/key_signup.html | **Required** — see below | ACS and CBP data |
 
 They are two secrets because they are two separate free registrations at two
 different agencies — the Federal Reserve Bank of St. Louis and the U.S. Census
@@ -256,8 +255,8 @@ notice — deliberately distinct from showing a zero. To populate it:
 **Actions → Update Economic Data → Run workflow**
 
 Optional inputs: `force_census` (refresh Census even if recently updated),
-`fred_only` (skip Census this run), `skip_cbp`/`skip_pep` (skip those optional
-modules), `force_permits`/`skip_permits`/`permits_max_counties` (Building
+`fred_only` (skip Census this run), `skip_cbp` (skip that optional
+module), `force_permits`/`skip_permits`/`permits_max_counties` (Building
 Permits has its own 30-day gate and makes ~1 request per county, so a manual
 run defaults to skipping unless forced — `permits_max_counties` bounds a test
 run to a handful of counties instead of the full ~3,000). After that it runs
@@ -297,7 +296,7 @@ hosting, no npm dependency tree, no build system.
 | Optional key | Service | Cost | Without it |
 |---|---|---|---|
 | `FRED_API_KEY` | Federal Reserve data | Free | Economy tab shows awaiting-data state |
-| `CENSUS_API_KEY` | Census ACS | Free | ACS/PEP/CBP skipped (Census requires a key for all requests as of May 2026) |
+| `CENSUS_API_KEY` | Census ACS | Free | ACS/CBP skipped (Census requires a key for all requests as of May 2026) |
 | `CONGRESS_API_KEY` | Congress.gov | Free | Falls back to rate-limited `DEMO_KEY` |
 | `LEGISCAN_API_KEY` | State bill tracking | Free tier | LegiScan step skipped |
 | `SUPABASE_URL` + `SUPABASE_ANON_KEY` | Optional user accounts | Free tier | Sign-in hidden; everything else works |

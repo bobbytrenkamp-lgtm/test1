@@ -660,11 +660,9 @@
 .econ-num { text-align: right; font-variant-numeric: tabular-nums; }
 .econ-nodata { color: var(--text-muted); font-style: italic; }
 
-/* Population Estimates / Building Permits — deliberately NOT rows in
-   .econ-profile-table above: both are different measurements from their ACS
-   counterparts (current-year point estimate vs. 5-year rolling average;
-   county-level permit counts with no ACS equivalent at all), so this reads
-   as clearly separate supplementary context rather than more table rows a
+/* Building Permits — deliberately NOT a row in .econ-profile-table above:
+   county-level permit counts have no ACS equivalent at all, so this reads as
+   clearly separate supplementary context rather than another table row a
    reader might average in with the ACS figures. */
 .econ-profile-supplementary {
   margin-top: 10px;

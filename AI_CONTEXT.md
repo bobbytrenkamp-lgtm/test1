@@ -655,13 +655,13 @@ data/update_economic_data.py            the whole pipeline (stdlib only, no pip 
 data/economy/series_config.json         21 FRED series, 5 categories — presentation truth
 data/economy/census_config.json         ACS variable map + label fragments for verification
 data/economy/fred_data.json             generated
-data/economy/census_county.json         generated — also carries population_estimate (PEP)
-                                         and building_permits (BPS via FRED) per county, see below
+data/economy/census_county.json         generated — also carries building_permits
+                                         (BPS via FRED) per county, see below
 data/economy/census_state.json          generated
 data/economy/economic_metadata.json     generated — provenance, warnings, staleness
 data/economy/census_cbp.json            generated, optional
 .github/workflows/update_economic_data.yml
-tests/test_economic_data.py             316 offline assertions
+tests/test_economic_data.py             310 offline assertions
 tests/fixtures/economy/                 SYNTHETIC data for browser tests — never real
 ```
 
@@ -669,17 +669,12 @@ The three JS modules mirror the zoning split (`zoning.js` / `zoning-map.js` /
 `zoning-details.js`): `economy.js` owns data and math, the other two own DOM.
 Load order in index.html is economy.js -> economy-view.js -> economy-map.js.
 
-### Two supplementary per-county fields — read this before touching either
+### A supplementary per-county field — read this before touching it
 
-`census_county.json` counties carry two fields that are NOT part of the ACS
-`.metrics` shape `metricValue()`/`comparisons()` expect — reading them through
+`census_county.json` counties carry a field that is NOT part of the ACS
+`.metrics` shape `metricValue()`/`comparisons()` expect — reading it through
 those functions returns nothing, by design:
 
-- `population_estimate` — `{value, year, as_of_label}`. Census Population
-  Estimates Program, a current-year point estimate. **Not the same measurement**
-  as the ACS `population` metric (a 5-year rolling average) and never merged into
-  it — shown as its own labelled row in the profile panel and report, always with
-  the word "estimate" and its vintage attached.
 - `building_permits` — `{value, as_of, change_yoy_pct}`. Census Building Permits
   Survey, reached via FRED's per-county `BPPRIV0<FIPS>` series (a 3-digit
   zero-padded state code + 3-digit county code, NOT the plain 5-digit FIPS —
@@ -690,10 +685,20 @@ those functions returns nothing, by design:
   platform. Coverage is expected to be partial (many small counties never
   reported to BPS) — its absence on a given county is not a bug.
 
-Both are optional and isolated in the pipeline (a failure of either leaves ACS
-data untouched) and both drive their own `SIGNAL_RULES` entries in `economy.js`
+Optional and isolated in the pipeline (a failure leaves ACS data untouched)
+and drives its own `SIGNAL_RULES` entries in `economy.js`
 (`permits_accelerating`, `permits_slowing` read `c.building_permits` directly,
 not through `metricValue()`).
+
+A Census Population Estimates Program (PEP) module — a current-year
+`population_estimate` field, merged the same way — was tried and retired.
+A live bounded test showed every vintage year returning a plain HTTP 404 on
+Census's Data API: not an auth problem, but Census having discontinued that
+endpoint for current-year total population (vintage 2022+). See
+AI_CHANGELOG.md for the investigation. If you see `population_estimate`
+referenced in old commits or PRs, it no longer exists — ACS's own
+`population` metric (a 5-year rolling average) is the platform's population
+figure.
 
 ### Data flow
 ```
@@ -729,8 +734,8 @@ U.S. Census Bureau (`api.census.gov`). They are not interchangeable and neither
 can be billed. FRED has always rejected keyless requests. Census used to be
 different — it allowed roughly 500 unauthenticated requests/day, comfortably
 above what this pipeline needs — but **as of May 12, 2026, Census requires a
-key for every Data API request** (ACS, the Population Estimates Program, CBP,
-all of it). `_census_key_param()` still omits the `key=` parameter entirely
+key for every Data API request** (ACS, CBP, all of it). `_census_key_param()`
+still omits the `key=` parameter entirely
 when unset rather than sending it empty (Census treats a blank key as invalid,
 not as "no key") — that behavior predates the policy change and is harmless to
 keep, but there is no longer a code path where omitting the key succeeds.

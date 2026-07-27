@@ -196,7 +196,7 @@ run and never publishes an empty chart.
 - **Key**: `CENSUS_API_KEY` repository secret, server-side only — **required**.
   Census allowed roughly 500 unauthenticated requests/day until May 12, 2026,
   when it began requiring a key for every Data API request. Without the key,
-  Census (ACS, PEP, CBP) is skipped with a warning and existing data is
+  Census (ACS, CBP) is skipped with a warning and existing data is
   preserved — the pipeline never crashes, it just does not refresh. Note that
   an *empty* `key=` is not the same as no key — Census rejects a blank one, so
   `_census_key_param()` omits the parameter entirely rather than sending it empty.
@@ -240,24 +240,23 @@ throughout the UI.
 - A CBP failure cannot break the Economy page — it is fetched separately and
   wrapped so an exception is logged and ignored.
 
-### U.S. Census Bureau — Population Estimates Program (PEP, optional module)
-- **Endpoint**: `https://api.census.gov/data/{year}/pep/population`
-- **Output**: merged into each county's own record in `data/economy/census_county.json`
-  as `population_estimate` — **not** a separate file, and **not** the same field as
-  the ACS `population` metric. ACS `population` is a 5-year rolling survey average;
-  `population_estimate` is a current-year point estimate, published on its own
-  annual cadence. The UI never mixes the two into one number.
-- **Vintage selection**: PEP's response for a given year is a time series — every
-  published `DATE_CODE` comes back in one call, including the decennial Census
-  baseline row, not just the latest annual estimate. The pipeline probes a single
-  geography first, reads the real `DATE_DESC` text Census returns (e.g. "7/1/2025
-  population estimate"), and picks the highest-year row whose description actually
-  says "population estimate" — never a hardcoded `DATE_CODE` number, and never the
-  Census baseline row, which is a fixed point, not a current estimate.
-- **Sanity floor**: fewer than 2,000 counties returned is treated as a broken
-  response and discarded rather than published as a partial dataset.
-- A PEP failure cannot break the ACS county data it supplements — isolated the
-  same way CBP is.
+### U.S. Census Bureau — Population Estimates Program (PEP) — RETIRED
+A module merging a current-year `population_estimate` field (distinct from the
+ACS `population` 5-year rolling average) into each county was built and
+shipped, then retired. A live bounded test showed every vintage year
+(2023-2026) returning a plain HTTP 404 on `/data/{year}/pep/population` —
+sending the required API key made no difference, ruling out an auth problem.
+Research confirmed why: Census discontinued this endpoint from the Data API
+for current-year total population starting with vintage 2022 — even
+`tidycensus` (the standard R client for this data) had to switch to
+downloading Census's flat CSV files instead of the API for exactly this
+reason, for exactly these years. Rebuilding it properly would mean either a
+new CSV-parsing ingestion path or a FIPS-to-FRED-series lookup (FRED does
+have per-county population series, but the IDs are truncated county-name
+abbreviations, not derivable from FIPS the way `BPPRIV<FIPS>` is). Retired
+instead: ACS's own `population` metric (a 5-year rolling average, already on
+every county) remains the platform's population figure. See
+`AI_CHANGELOG.md` for the full investigation.
 
 ### Building Permits Survey (BPS, optional module, via FRED)
 - **Endpoint**: FRED's per-county series, `BPPRIV` + a 3-digit zero-padded
@@ -285,7 +284,7 @@ throughout the UI.
   total failure — wrong series ID pattern, rejected key — without demanding
   near-universal coverage the source itself does not have.
 - A Building Permits failure cannot break the ACS county data it supplements —
-  isolated the same way CBP and PEP are.
+  isolated the same way CBP is.
 
 ### Pipeline and safety
 - **Script**: `data/update_economic_data.py` (Python standard library only)
@@ -346,7 +345,7 @@ license-audit. Python needs only `requests`, `beautifulsoup4` and
 | Key | Service | Cost | If absent |
 |---|---|---|---|
 | `FRED_API_KEY` | Federal Reserve Economic Data | Free, unlimited | FRED skipped; existing data preserved. FRED rejects keyless requests. |
-| `CENSUS_API_KEY` | Census ACS / PEP / CBP | Free, unlimited | Census skipped; existing data preserved. Census required no key until May 12, 2026; it now requires one for every request, same as FRED. |
+| `CENSUS_API_KEY` | Census ACS / CBP | Free, unlimited | Census skipped; existing data preserved. Census required no key until May 12, 2026; it now requires one for every request, same as FRED. |
 | `CONGRESS_API_KEY` | Congress.gov | Free via api.data.gov | Falls back to `DEMO_KEY` — works, just rate-limited |
 | `LEGISCAN_API_KEY` | LegiScan state bills | Free tier (30k queries/month) | Logged as `[skip]`, monitor continues |
 | `SUPABASE_URL` / `SUPABASE_ANON_KEY` | Optional accounts | Free tier | Auth button hidden; site fully functional signed-out |

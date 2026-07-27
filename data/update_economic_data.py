@@ -11,9 +11,12 @@ frontend loads only the generated files.
 OUTPUTS (all under data/economy/)
     fred_data.json        national time series + latest values
     census_county.json    ~3,140 counties, FIPS-keyed. Each county record also
-                           carries two optional supplementary fields merged in
-                           by their own modules below: population_estimate
-                           (PEP) and building_permits (BPS via FRED).
+                           carries an optional supplementary field merged in by
+                           its own module below: building_permits (BPS via
+                           FRED). A Census Population Estimates Program (PEP)
+                           module was tried and retired -- see "RETIRED: PEP"
+                           below -- ACS's own `population` metric (a 5-year
+                           rolling average) is the only population figure now.
     census_state.json     52 state-level rows, FIPS-keyed
     census_cbp.json       optional County Business Patterns module
     economic_metadata.json  provenance, warnings, staleness, selected variables
@@ -37,7 +40,6 @@ Usage:
     --census-only         skip FRED entirely
     --force-census        run Census even if it was refreshed recently
     --skip-cbp            skip the optional Business Patterns module
-    --skip-pep            skip the optional Population Estimates module
     --skip-permits        skip the optional Building Permits module
     --force-permits       run Building Permits even if refreshed recently
     --permits-max-age-days N  refresh permits only if older than N days (default 30 —
@@ -54,9 +56,9 @@ Environment:
     CENSUS_API_KEY    REQUIRED for Census. Census allowed a keyless allowance of
                       roughly 500 requests/day until May 12, 2026, when it began
                       requiring a key for every request to the Data API. There is
-                      no keyless path anymore — this covers ACS, the Population
-                      Estimates Program, and every other Census dataset this
-                      pipeline reads. (https://api.census.gov/data/key_signup.html)
+                      no keyless path anymore — this covers ACS, CBP, and every
+                      other Census Data API dataset this pipeline reads.
+                      (https://api.census.gov/data/key_signup.html)
 Both keys are free. Neither is ever logged, echoed, or written to any output file.
 """
 import argparse
@@ -89,8 +91,6 @@ FRED_SERIES_URL = "https://api.stlouisfed.org/fred/series"
 CENSUS_ACS_URL  = "https://api.census.gov/data/{year}/acs/acs5"
 CENSUS_VARS_URL = "https://api.census.gov/data/{year}/acs/acs5/variables.json"
 CENSUS_CBP_URL  = "https://api.census.gov/data/{year}/cbp"
-CENSUS_PEP_URL      = "https://api.census.gov/data/{year}/pep/population"
-CENSUS_PEP_VARS_URL = "https://api.census.gov/data/{year}/pep/population/variables.json"
 
 UA = "USDataCenterPolicyTracker-EconPipeline/1.0 (+https://bobbytrenkamp-lgtm.github.io/test1/)"
 
@@ -887,123 +887,20 @@ def collect_cbp(year, api_key, cfg):
     }
 
 
-# ─────────── Population Estimates Program (PEP, optional) ───────────
-
-def discover_pep_vintage(api_key, max_probe_back=3):
-    """Find the newest Population Estimates Program vintage that responds.
-
-    PEP publishes a new vintage each year (unlike ACS 5-year, this is closer to
-    a true annual current-population figure, which is the point of pulling it
-    alongside the ACS 5-year rolling average already in census_county.json —
-    the ACS figure is more stable but can lag a fast-growing county's real
-    current population by years). Not hardcoded, for the same reason ACS's
-    vintage is not: Census publishes on its own schedule.
-
-    api_key is passed here (unlike the original version of this function)
-    because Census has required a key for every Data API request since
-    May 12, 2026 — a keyless probe of variables.json silently failed for
-    every candidate year, which looked identical to "no vintage published
-    yet" until the response detail was surfaced.
-    """
-    start = date.today().year
-    for year in range(start, start - max_probe_back - 1, -1):
-        url = CENSUS_PEP_VARS_URL.format(year=year)
-        if api_key:
-            url += f"?key={api_key}"
-        payload = _get_json(url, timeout=60)
-        if not _is_err(payload) and isinstance(payload, dict) and payload.get("variables"):
-            print(f"  PEP vintage detected: {year}")
-            return year
-        detail = payload.get("__error__") if isinstance(payload, dict) else "malformed response"
-        print(f"  PEP {year}: not available ({detail})" if detail else f"  PEP {year}: not available")
-    return None
-
-
-_PEP_ESTIMATE_RE = re.compile(r"\d{1,2}/\d{1,2}/\d{4}\s+population estimate", re.I)
-
-
-def collect_pep_population(year, api_key):
-    """Current-year county population estimates. Optional and isolated: a PEP
-    failure must never touch the ACS county data it supplements.
-
-    Returns { fips: {"value", "year", "as_of_label"} } or {} on any failure.
-
-    PEP's dataset is a time series — one call for a vintage year returns EVERY
-    published DATE_CODE (multiple estimate dates plus, in some years, the
-    decennial Census baseline itself), not just the newest. Which numeric
-    DATE_CODE means "the latest annual estimate" is not documented to be
-    stable across vintages, so this probes a single small geography first,
-    reads the real DATE_DESC text Census sent back (e.g. "7/1/2025 population
-    estimate"), and picks the code for the highest year whose description
-    actually says "population estimate" — never a hardcoded code number, and
-    never the decennial Census row, which is a baseline, not a current
-    estimate.
-    """
-    probe_url = (f"{CENSUS_PEP_URL.format(year=year)}"
-                 f"?get=NAME,POP,DATE_CODE,DATE_DESC&for=state:01"
-                 f"{_census_key_param(api_key)}")
-    probe = _get_json(probe_url, timeout=45)
-    if _is_err(probe) or not isinstance(probe, list) or len(probe) < 2:
-        err = probe.get("__error__") if isinstance(probe, dict) else "malformed response"
-        warn(f"PEP {year} probe failed ({err}) — Population Estimates module skipped")
-        return {}
-
-    header, rows = probe[0], probe[1:]
-    idx = {n: i for i, n in enumerate(header)}
-    if not {"DATE_CODE", "DATE_DESC", "POP"} <= set(idx):
-        warn(f"PEP {year}: response missing DATE_CODE/DATE_DESC/POP columns — "
-             f"schema may have changed, module skipped rather than guessing")
-        return {}
-
-    best_code, best_year, best_desc = None, -1, None
-    for row in rows:
-        desc = (row[idx["DATE_DESC"]] or "").strip()
-        if not _PEP_ESTIMATE_RE.search(desc):
-            continue
-        m = re.search(r"(\d{4})", desc)
-        y = int(m.group(1)) if m else -1
-        if y > best_year:
-            best_year, best_code, best_desc = y, row[idx["DATE_CODE"]], desc
-
-    if best_code is None:
-        warn(f"PEP {year}: no row's DATE_DESC matched 'population estimate' — "
-             f"module skipped rather than guessing a DATE_CODE")
-        return {}
-    print(f"  PEP estimate selected: {best_desc!r} (DATE_CODE={best_code})")
-
-    url = (f"{CENSUS_PEP_URL.format(year=year)}"
-           f"?get=NAME,POP&for=county:*&in=state:*&DATE_CODE={urllib.parse.quote(str(best_code))}"
-           f"{_census_key_param(api_key)}")
-    payload = _get_json(url, timeout=90)
-    if _is_err(payload) or not isinstance(payload, list) or len(payload) < 2:
-        err = payload.get("__error__") if isinstance(payload, dict) else "malformed response"
-        warn(f"PEP {year} county fetch failed ({err}) — Population Estimates module skipped")
-        return {}
-
-    header, rows = payload[0], payload[1:]
-    idx = {n: i for i, n in enumerate(header)}
-    if not {"state", "county", "POP"} <= set(idx):
-        warn(f"PEP {year}: county response missing state/county/POP columns — module skipped")
-        return {}
-
-    out = {}
-    for row in rows:
-        try:
-            fips = str(row[idx["state"]]).zfill(2) + str(row[idx["county"]]).zfill(3)
-        except (KeyError, IndexError):
-            continue
-        if len(fips) != 5 or not fips.isdigit():
-            continue
-        pop = parse_number(row[idx["POP"]])
-        if pop is None:
-            continue
-        out[fips] = {"value": pop, "year": best_year, "as_of_label": best_desc}
-
-    if len(out) < 2000:
-        warn(f"PEP {year}: only {len(out)} counties returned (expected ~3,140) — "
-             f"module skipped rather than publishing a partial/suspicious set")
-        return {}
-    return out
+# ─────────── RETIRED: Population Estimates Program (PEP) ───────────
+# A PEP module (discover_pep_vintage/collect_pep_population, merging a
+# current-year population_estimate onto each county alongside the existing
+# ACS `population` metric) shipped and was tested here, but a live bounded
+# test run showed every vintage year 2023-2026 returning a plain HTTP 404 on
+# /data/{year}/pep/population -- not an auth or key problem (confirmed by
+# then also sending the required key), but Census having discontinued this
+# endpoint from the Data API for vintage-2022-onward total population.
+# Even tidycensus (the standard R client for this data) had to switch to
+# downloading Census's flat CSV files instead of the API for exactly this
+# reason, for exactly these years. Retired rather than rebuilt with a new
+# CSV-parsing ingestion path: ACS's own `population` metric (a 5-year
+# rolling average, already on every county) remains the platform's
+# population figure. See AI_CHANGELOG.md for the full investigation.
 
 
 # ────────────── Building Permits (optional, per-county FRED series) ──────────────
@@ -1044,8 +941,8 @@ def collect_permits(county_fips_list, api_key, max_counties=None):
     construction/contractor capacity for a proposed facility. This is the
     only place on the platform that answers that at the county level.
 
-    Isolated like CBP and PEP: total failure returns an empty dict without
-    touching anything else already written. Unlike CBP/PEP, this makes ONE
+    Isolated like CBP: total failure returns an empty dict without
+    touching anything else already written. Unlike CBP, this makes ONE
     HTTP request PER COUNTY (~3,000+) since FRED does not offer a bulk
     per-county endpoint, so callers must gate this behind a freshness check --
     BPS publishes annually, so there is no reason to pay this cost daily.
@@ -1104,7 +1001,7 @@ def collect_permits(county_fips_list, api_key, max_counties=None):
             "change_yoy_pct": pct_change(last_val, yoy_val),
         }
 
-    # A low floor, not PEP's 2,000: unlike population, BPS genuinely has no
+    # A low floor: unlike a population figure, BPS genuinely has no
     # series at all for many small/rural counties, so partial coverage is the
     # expected shape of a healthy result, not a sign of a broken run. The
     # floor exists only to catch a total failure (wrong series ID pattern, key
@@ -1199,16 +1096,6 @@ def validate_outputs():
                 if any(y > today.year for y in years):
                     errors.append(f"{path.name} {fips} history.{metric} has a future year")
                     break
-            pe = rec.get("population_estimate")
-            if pe is not None:
-                if not isinstance(pe.get("value"), (int, float)) or pe.get("value") <= 0:
-                    errors.append(f"{path.name} {fips} population_estimate.value is not "
-                                   f"a positive number: {pe.get('value')!r}")
-                    break
-                if pe.get("year") and pe["year"] > today.year:
-                    errors.append(f"{path.name} {fips} population_estimate.year "
-                                   f"{pe['year']} is in the future")
-                    break
             bp = rec.get("building_permits")
             if bp is not None:
                 if not isinstance(bp.get("value"), (int, float)) or bp.get("value") < 0:
@@ -1232,7 +1119,7 @@ def validate_outputs():
 
 def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
                    acs_vintage, var_problems, prior_meta, census_ran, permits_ran=False,
-                   pep_ran=False, any_source_ok=True):
+                   any_source_ok=True):
     """Write economic_metadata.json, or skip when a run changed nothing.
 
     TWO THINGS THIS GETS RIGHT, both found by running the workflow for real
@@ -1275,23 +1162,9 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
     permits_updated = (datetime.now(timezone.utc).isoformat(timespec="seconds")
                        if permits_ran
                        else prior.get("permits_last_successful_update"))
-    # Own timestamp too (see _pep_is_fresh) — this is what was missing before:
-    # PEP had no independent freshness record, so it silently rode on
-    # whatever ACS's own gate decided, which meant it could go stale forever
-    # any day ACS itself was already fresh.
-    pep_updated = (datetime.now(timezone.utc).isoformat(timespec="seconds")
-                  if pep_ran
-                  else prior.get("pep_last_successful_update"))
 
     any_stale = any(s.get("stale") for s in fred_series.values())
 
-    # Derived from county_payload rather than a new parameter: PEP is merged
-    # directly into each county's own record (see main()), not written as a
-    # separate file, so its presence/vintage is read back off the data itself.
-    pep_years = {c["population_estimate"]["year"] for c in counties.values()
-                 if c.get("population_estimate")}
-    pep_year = max(pep_years) if pep_years else None
-    pep_count = sum(1 for c in counties.values() if c.get("population_estimate"))
     permits_count = sum(1 for c in counties.values() if c.get("building_permits"))
 
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -1317,10 +1190,6 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
         "state_count":     len(states),
         "cbp_available":   bool(cbp_payload),
         "cbp_year":        (cbp_payload or {}).get("cbp_year"),
-        "pep_available":   pep_count > 0,
-        "pep_year":        pep_year,
-        "pep_county_count": pep_count,
-        "pep_last_successful_update": pep_updated,
         "permits_available": permits_count > 0,
         "permits_county_count": permits_count,
         "permits_last_successful_update": permits_updated,
@@ -1361,15 +1230,6 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
             "publisher": "U.S. Census Bureau",
             "url": "https://www.census.gov/programs-surveys/cbp.html",
             "note": "Establishment and employment counts. Disclosure-suppressed cells are shown as 'Not disclosed' and excluded from rankings and change calculations.",
-            "update_frequency": "Annual.",
-        })
-    if pep_count:
-        meta["sources"].append({
-            "id": "pep",
-            "name": "Population Estimates Program (PEP)",
-            "publisher": "U.S. Census Bureau",
-            "url": "https://www.census.gov/programs-surveys/popest.html",
-            "note": "Current-year county population estimate, merged into each county record as population_estimate — a distinct field from the ACS 5-year rolling population metric, kept separate because the two are not the same measurement.",
             "update_frequency": "Annual.",
         })
     if permits_count:
@@ -1431,30 +1291,6 @@ def _permits_is_fresh(prior_meta, max_age_days):
     return (datetime.now(timezone.utc) - when) < timedelta(days=max_age_days)
 
 
-def _pep_is_fresh(prior_meta, max_age_days):
-    """Own timestamp, own gate — separate from Census's ACS gate.
-
-    PEP used to run nested inside the ACS-refresh branch, sharing that
-    outcome: on any day ACS itself was fresh (the common case, gated to 7
-    days), PEP never even attempted a fetch, silently going stale
-    indefinitely. That surfaced on the first live run after this module
-    shipped: PEP showed 0 counties despite CENSUS_API_KEY being valid and
-    working, simply because ACS happened to already be fresh that day.
-    Independent gating means PEP's own schedule is what decides whether it
-    runs, not an unrelated sibling's.
-    """
-    ts = (prior_meta or {}).get("pep_last_successful_update")
-    if not ts:
-        return False
-    try:
-        when = datetime.fromisoformat(ts)
-    except ValueError:
-        return False
-    if when.tzinfo is None:
-        when = when.replace(tzinfo=timezone.utc)
-    return (datetime.now(timezone.utc) - when) < timedelta(days=max_age_days)
-
-
 # ─────────────────────────── main ───────────────────────────
 
 def load_state_names():
@@ -1472,9 +1308,6 @@ def main():
     ap.add_argument("--census-only", action="store_true")
     ap.add_argument("--force-census", action="store_true")
     ap.add_argument("--skip-cbp", action="store_true")
-    ap.add_argument("--skip-pep", action="store_true")
-    ap.add_argument("--force-pep", action="store_true")
-    ap.add_argument("--pep-max-age-days", type=int, default=7)
     ap.add_argument("--skip-permits", action="store_true")
     ap.add_argument("--force-permits", action="store_true")
     ap.add_argument("--permits-max-age-days", type=int, default=30)
@@ -1515,7 +1348,6 @@ def main():
     acs_vintage    = (existing_county or {}).get("acs_vintage")
     var_problems   = {}
     census_ran     = False
-    pep_ran        = False
     permits_ran    = False
     any_source_ok  = False
 
@@ -1592,40 +1424,6 @@ def main():
                                 warn(f"CBP module raised {type(e).__name__} — "
                                      f"ignored; the Economy page does not depend on it")
 
-    # ── Population Estimates Program (optional, own cadence) ──
-    # Independent of the Census/ACS branch above on purpose: PEP used to be
-    # nested inside that branch and only ran on days ACS itself re-fetched
-    # (rare — ACS is gated to 7 days and PEP inherited that gate's OUTCOME,
-    # not its own copy of it). On a day ACS was already fresh, PEP silently
-    # never ran at all, indefinitely. First live run after this module
-    # shipped confirmed it: CENSUS_API_KEY was valid and PEP still returned
-    # 0 counties, because it never got a turn. Runs against whichever
-    # county_payload is authoritative right now, same pattern as permits below.
-    if county_payload and not args.offline and not args.skip_pep and census_key:
-        if not args.force_pep and _pep_is_fresh(prior_meta, args.pep_max_age_days):
-            print(f"\n=== Population Estimates Program ===\n  refreshed within "
-                  f"{args.pep_max_age_days} days — skipping (use --force-pep to override)")
-        else:
-            print("\n=== Census Population Estimates Program (optional) ===")
-            try:
-                pep_year = discover_pep_vintage(census_key)
-                pep_by_fips = collect_pep_population(pep_year, census_key) if pep_year else {}
-                if pep_by_fips:
-                    matched = 0
-                    for fips, county_rec in county_payload.get("counties", {}).items():
-                        pep_rec = pep_by_fips.get(fips)
-                        if pep_rec:
-                            county_rec["population_estimate"] = pep_rec
-                            matched += 1
-                    print(f"  merged PEP estimates into {matched} of "
-                          f"{len(county_payload.get('counties', {}))} counties")
-                    if _safe_write(COUNTY_OUT, county_payload, min_records=2000):
-                        pep_ran = True
-                        any_source_ok = True
-            except Exception as e:                    # noqa: BLE001
-                warn(f"PEP module raised {type(e).__name__} — "
-                     f"ignored; the Economy page does not depend on it")
-
     # ── Building Permits (optional, own cadence — see collect_permits) ──
     # Independent of the Census/ACS branch above: this needs FRED_API_KEY, not
     # CENSUS_API_KEY, and its own ~3,000-call cost means it must not ride on
@@ -1663,7 +1461,7 @@ def main():
     print("\n=== metadata ===")
     write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
                    acs_vintage, var_problems, prior_meta, census_ran, permits_ran,
-                   pep_ran, any_source_ok=any_source_ok)
+                   any_source_ok=any_source_ok)
 
     print("\n=== validation ===")
     errs = validate_outputs()

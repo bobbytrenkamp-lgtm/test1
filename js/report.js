@@ -74,16 +74,14 @@ window.REPORT = (function () {
             cmp: E.comparisons(county, stateData, padded, key, "value"),
           })).filter(m => m.cmp.value !== null);
           const signals = E.countySignals(county, padded);
-          // Both supplementary, both distinct measurements from anything in
-          // `metrics` above (current-year point estimate vs. ACS 5-year
-          // average; a county permit count with no ACS equivalent) -- kept
-          // as their own fields rather than folded into `metrics` so the
-          // report never implies they're the same kind of figure.
+          // Supplementary, a distinct measurement from anything in `metrics`
+          // above (a county permit count with no ACS equivalent) -- kept as
+          // its own field rather than folded into `metrics` so the report
+          // never implies it's the same kind of figure.
           const rec = (county.counties || {})[padded];
-          const populationEstimate = rec && rec.population_estimate;
           const buildingPermits = rec && rec.building_permits;
-          if (metrics.length || signals.length || populationEstimate || buildingPermits) {
-            econ = { metrics, signals, populationEstimate, buildingPermits,
+          if (metrics.length || signals.length || buildingPermits) {
+            econ = { metrics, signals, buildingPermits,
                      vintage: meta && meta.acs_vintage };
           }
         }
@@ -151,19 +149,17 @@ window.REPORT = (function () {
            </li>`).join("")}</ul>`
       : "";
 
-    // Both distinct measurements from anything in the metrics table above, so
-    // rendered as their own labelled rows rather than mixed into that table —
-    // a reader should never mistake "current PEP estimate" for "ACS 5-year
-    // population", or a raw permit count for a table metric with a percentile.
-    const pe = econ.populationEstimate;
+    // A distinct measurement from anything in the metrics table above, so
+    // rendered as its own labelled row rather than mixed into that table —
+    // a reader should never mistake a raw permit count for a table metric
+    // with a percentile.
     const bp = econ.buildingPermits;
-    const supplementaryHtml = (pe || bp) ? `
+    const supplementaryHtml = bp ? `
       <table class="kv-table" style="margin-top:8px">
         <tbody>
-          ${pe ? `<tr><th>Current population estimate</th><td>${_esc(E.fmtValue(pe.value, "count", 0))} <span class="note">(Census PEP, ${_esc(pe.as_of_label || String(pe.year))})</span></td></tr>` : ""}
-          ${bp ? `<tr><th>Building permits issued</th><td>${_esc(E.fmtValue(bp.value, "count", 0))}${
+          <tr><th>Building permits issued</th><td>${_esc(E.fmtValue(bp.value, "count", 0))}${
             bp.change_yoy_pct == null ? "" : ` (${_esc(E.fmtPct(bp.change_yoy_pct))} YoY)`
-          } <span class="note">(Census BPS via FRED, as of ${_esc(E.fmtDate(bp.as_of))})</span></td></tr>` : ""}
+          } <span class="note">(Census BPS via FRED, as of ${_esc(E.fmtDate(bp.as_of))})</span></td></tr>
         </tbody>
       </table>` : "";
 

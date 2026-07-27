@@ -2,22 +2,25 @@ name: Update Economic Data
 
 # Builds the Economy tab's local JSON from the FRED and Census APIs.
 #
-# WHY A SINGLE DAILY JOB SERVES FOUR CADENCES
+# WHY A SINGLE DAILY JOB SERVES THREE CADENCES
 # FRED series publish daily-to-monthly, so they are refreshed on every run.
 # Census ACS publishes ONE new 5-year vintage per year, so re-downloading
 # ~3,140 counties every day would burn CI minutes for no new data. The script
 # reads census.last_successful_update from economic_metadata.json and skips
-# Census unless it is older than --census-max-age-days (7). Population
-# Estimates (PEP) has its OWN independent gate (pep_last_successful_update,
-# --pep-max-age-days, 7) rather than riding on ACS's outcome — it used to be
-# nested inside the ACS-refresh branch and only ran on days ACS itself
-# re-fetched, which silently starved it for good on any day ACS was already
-# fresh (the common case). Building Permits (via FRED, one series PER COUNTY —
-# see collect_permits in data/update_economic_data.py) is on its own, much
-# longer gate (--permits-max-age-days, 30): BPS publishes annually and a full
-# permits run is ~3,000 individual requests, so it must not repeat on FRED's
-# own daily cadence. All four checks live in one scheduled job rather than
-# four separate workflows.
+# Census unless it is older than --census-max-age-days (7). Building Permits
+# (via FRED, one series PER COUNTY — see collect_permits in
+# data/update_economic_data.py) is on its own, much longer gate
+# (--permits-max-age-days, 30): BPS publishes annually and a full permits run
+# is ~3,000 individual requests, so it must not repeat on FRED's own daily
+# cadence. Both checks live in one scheduled job rather than separate
+# workflows.
+#
+# A Census Population Estimates Program (PEP) module was tried and retired:
+# a live bounded test showed every vintage year returning a plain HTTP 404 on
+# Census's Data API — not an auth problem, but Census having discontinued
+# that endpoint for current-year total population (vintage 2022+). See
+# AI_CHANGELOG.md for the investigation. ACS's own `population` metric (a
+# 5-year rolling average) remains the platform's population figure.
 #
 # API KEYS
 # Both are FREE registrations at two different agencies, so they are two
@@ -58,16 +61,6 @@ on:
         default: false
       skip_cbp:
         description: "Skip the optional County Business Patterns module"
-        required: false
-        type: boolean
-        default: false
-      skip_pep:
-        description: "Skip the optional Population Estimates (PEP) module"
-        required: false
-        type: boolean
-        default: false
-      force_pep:
-        description: "Refresh Population Estimates (PEP) even if recently updated"
         required: false
         type: boolean
         default: false
@@ -129,8 +122,6 @@ jobs:
           if [ "${{ inputs.force_census }}" = "true" ]; then ARGS="$ARGS --force-census"; fi
           if [ "${{ inputs.fred_only }}"    = "true" ]; then ARGS="$ARGS --fred-only";    fi
           if [ "${{ inputs.skip_cbp }}"     = "true" ]; then ARGS="$ARGS --skip-cbp";     fi
-          if [ "${{ inputs.skip_pep }}"     = "true" ]; then ARGS="$ARGS --skip-pep";     fi
-          if [ "${{ inputs.force_pep }}"    = "true" ]; then ARGS="$ARGS --force-pep";    fi
           if [ "${{ inputs.force_permits }}" = "true" ]; then ARGS="$ARGS --force-permits"; fi
           if [ "${{ inputs.skip_permits }}"  = "true" ]; then ARGS="$ARGS --skip-permits";  fi
           if [ -n "${{ inputs.permits_max_counties }}" ]; then
@@ -164,12 +155,11 @@ jobs:
           SERIES=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['fred_series_count'])" 2>/dev/null || echo "?")
           COUNTIES=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['county_count'])" 2>/dev/null || echo "?")
           VINTAGE=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['acs_vintage'])" 2>/dev/null || echo "?")
-          PEPN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['pep_county_count'])" 2>/dev/null || echo "0")
           PERMITSN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['permits_county_count'])" 2>/dev/null || echo "0")
           # [skip ci] prevents a Pages redeploy loop: the frontend fetches these
           # files at runtime with cache:no-store, so a redeploy is not needed for
           # new numbers to appear.
-          git commit -m "chore: refresh economic data — ${SERIES} FRED series, ${COUNTIES} counties, ACS ${VINTAGE}, PEP ${PEPN}, permits ${PERMITSN} [skip ci]"
+          git commit -m "chore: refresh economic data — ${SERIES} FRED series, ${COUNTIES} counties, ACS ${VINTAGE}, permits ${PERMITSN} [skip ci]"
           git push origin HEAD
 
       - name: Summary
@@ -186,7 +176,6 @@ jobs:
           print(f"states           : {m.get('state_count')}")
           print(f"ACS vintage      : {m.get('acs_vintage')}")
           print(f"CBP available    : {m.get('cbp_available')}")
-          print(f"PEP available    : {m.get('pep_available')} (year {m.get('pep_year')}, {m.get('pep_county_count')} counties)")
           print(f"Permits available: {m.get('permits_available')} ({m.get('permits_county_count')} counties)")
           print(f"stale            : {m.get('stale')}")
           skipped = m.get("fred_skipped") or []

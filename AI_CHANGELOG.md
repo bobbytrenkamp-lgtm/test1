@@ -5,7 +5,7 @@
 Date: 2026-07-27
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
-Session: Bounded live test caught two production bugs in PEP and Building Permits
+Session: Bounded live test caught two production bugs; PEP retired after the real root cause turned out to be a discontinued Census endpoint
 
 ## Why this happened
 The PEP and Building Permits modules shipped earlier the same day were verified
@@ -53,6 +53,42 @@ had been succeeding in production without ever using the key it was passed --
 which held up in practice for reasons this fix does not depend on, but is
 tightened for consistency and future-proofing rather than left as an
 unexplained inconsistency between two structurally identical functions.
+
+## PEP retired: the key fix wasn't enough, because the endpoint is gone
+A follow-up bounded live test with the key fix deployed still showed
+`PEP available: False` for every year 2023-2026 -- but now with real
+diagnostic detail: a plain `HTTP 404` ("Not Found", Tomcat's default error
+page) from `/data/{year}/pep/population/variables.json`, unchanged whether
+the key was attached or not. That ruled out auth entirely and pointed at the
+URL itself being wrong. Research confirmed it: Census discontinued the Data
+API for PEP's current-year total population starting with vintage 2022 --
+`tidycensus` (the standard R client for this exact dataset) documents having
+to switch from the API to downloading Census's flat CSV files for precisely
+these years, for precisely this reason. `pep/components` (a related
+components-of-change dataset) may still be reachable, but `pep/population`
+--the dataset this module was built against -- is not, and there is no
+FIPS-derivable substitute on FRED either: FRED does carry per-county
+population series, but their IDs are truncated county-name abbreviations
+with a disambiguating digit (e.g. `IDKOOT0POP` for Kootenai County, ID), not
+a formula like `BPPRIV<FIPS>`.
+
+Given the choice between building a new CSV-parsing ingestion path (the
+original design explicitly avoided this for a single module) or a
+FRED-series-search-based FIPS lookup (untested at scale, no guarantee of
+full coverage), the module was retired rather than rebuilt: `discover_pep_vintage()`,
+`collect_pep_population()`, `_pep_is_fresh()`, the `population_estimate`
+county field, its `write_metadata()` fields (`pep_available`, `pep_year`,
+`pep_county_count`, `pep_last_successful_update`), its CLI flags
+(`--skip-pep`, `--force-pep`, `--pep-max-age-days`), its workflow_dispatch
+inputs, its frontend rendering in `js/economy-view.js` and `js/report.js`,
+and its 12 offline tests were all removed. ACS's own `population` metric (a
+5-year rolling average, already on every county) remains the platform's
+population figure -- it was never replaced or degraded, only the
+supplementary current-year figure is gone. The already-committed
+`economic_metadata.json`'s dead `pep_*` fields (`pep_available: false`,
+`pep_year: null`, `pep_county_count: 0`, `pep_last_successful_update: null`)
+were also removed by hand rather than left to age out, since they no longer
+correspond to anything the code writes.
 
 ---
 
