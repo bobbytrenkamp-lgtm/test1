@@ -1,22 +1,26 @@
 {
  "_schema": "economy_metadata_v1",
- "acs_vintage": null,
+ "acs_vintage": 2024,
  "cbp_available": false,
  "cbp_year": null,
  "census": {
   "last_successful_update": null,
   "selected_variables": {},
-  "unverified_metrics": {}
+  "unverified_metrics": {
+   "population": [
+    "value=B01003_001E"
+   ]
+  }
  },
  "county_count": 0,
- "fred_series_count": 0,
+ "fred_series_count": 18,
  "fred_skipped": [],
- "generated_at": null,
- "last_run_at": "2026-07-27T02:30:20+00:00",
- "latest_observation_date": null,
+ "generated_at": "2026-07-27T15:50:06+00:00",
+ "last_run_at": "2026-07-27T15:50:06+00:00",
+ "latest_observation_date": "2026-07-24",
  "oldest_history_year": null,
  "pipeline_version": "1.0.0",
- "source_updated_at": null,
+ "source_updated_at": "2026-07-24 16:03:19-05",
  "sources": [
   {
    "id": "fred",
@@ -35,10 +39,13 @@
    "url": "https://www.census.gov/programs-surveys/acs/"
   }
  ],
- "stale": false,
+ "stale": true,
  "state_count": 0,
  "warnings": [
-  "FRED_API_KEY is not set — skipping FRED. Existing fred_data.json is preserved unchanged.",
-  "CENSUS_API_KEY is not set — skipping Census. Existing census_*.json are preserved unchanged."
+  "ACS metric 'population': could not verify value=B01003_001E in this vintage — metric will be omitted rather than guessed",
+  "ACS 2024 batch failed (JSONDecodeError) for 15 variables: https://api.census.gov/data/2024/acs/acs5?get=NAME%2CB01002_001E%2CB15003_001E%2CB15003_022E%2CB15003_023E%2CB",
+  "ACS 2024 batch failed (JSONDecodeError) for 15 variables: https://api.census.gov/data/2024/acs/acs5?get=NAME%2CB01002_001E%2CB15003_001E%2CB15003_022E%2CB15003_023E%2CB",
+  "CBP 2023 NAICS 51 unavailable (JSONDecodeError) — business-activity module omitted for this code",
+  "CBP 2023 NAICS 518210 unavailable (JSONDecodeError) — business-activity module omitted for this code"
  ]
 }
