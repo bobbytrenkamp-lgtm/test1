@@ -47,8 +47,8 @@
  "county_count": 3222,
  "fred_series_count": 21,
  "fred_skipped": [],
- "generated_at": "2026-07-27T20:43:05+00:00",
- "last_run_at": "2026-07-27T20:43:05+00:00",
+ "generated_at": "2026-07-27T20:54:29+00:00",
+ "last_run_at": "2026-07-27T20:54:29+00:00",
  "latest_observation_date": "2026-07-24",
  "oldest_history_year": 2019,
  "pep_available": false,
@@ -89,6 +89,6 @@
  "stale": true,
  "state_count": 52,
  "warnings": [
-  "Building Permits: only 0 counties returned real data out of 50 checked — module skipped rather than publishing a suspiciously small result — sample non-404 errors: ['BPPRIV01001: observations request failed (HTTP 400: \\'{\"error_code\":400,\"error_message\":\"Bad Request.  The series does not exist.\"}\\')', 'BPPRIV01129: observations request failed (HTTP 400: \\'{\"error_code\":400,\"error_message\":\"Bad Request.  The series does not exist.\"}\\')', 'BPPRIV05033: observations request failed (HTTP 400: \\'{\"error_code\":400,\"error_message\":\"Bad Request.  The series does not exist.\"}\\')', 'BPPRIV06011: observations request failed (HTTP 400: \\'{\"error_code\":400,\"error_message\":\"Bad Request.  The series does not exist.\"}\\')', 'BPPRIV08021: observations request failed (HTTP 400: \\'{\"error_code\":400,\"error_message\":\"Bad Request.  The series does not exist.\"}\\')']"
+  "Building Permits: only 49 counties returned real data out of 50 checked — module skipped rather than publishing a suspiciously small result — sample non-404 errors: ['BPPRIV048327: observations request failed (HTTP 400: \\'{\"error_code\":400,\"error_message\":\"Bad Request.  The series does not exist.\"}\\')']"
  ]
 }
