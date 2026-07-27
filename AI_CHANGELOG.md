@@ -5,6 +5,66 @@
 Date: 2026-07-27
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Codify "nothing may require payment" as a fixed project rule
+
+## Summary
+The no-payment guarantee was already true and already tested, but it lived only
+in DATA_SOURCES.md, README.md and a test file. PROJECT_CONTEXT.md — the stated
+"permanent source of truth for project direction, requirements, and assistant
+rules" — did not contain it. A future assistant reading the required files would
+never have encountered it.
+
+Now stated as a **fixed, non-negotiable rule** in both governance files that
+every assistant is required to read before coding.
+
+## The rule, as recorded
+No visitor may ever need an account or credential. No maintainer may ever need a
+paid plan. No paid service, API, dataset, library, font, tile provider, or
+hosting tier may be introduced as a dependency — not as a default, not as an
+optional-but-expected path, **and not as a disabled stub left in place "for
+later"** (which is exactly what the removed Cloudscene integration was).
+
+Every API key stays optional: absence is a documented skip, never an error. No
+third-party host may become load-bearing — if a free service starts charging,
+the project loses that decoration rather than breaking or costing money.
+
+It outranks convenience, feature scope, data quality and polish. If the best
+source costs money: use a free source, ship without it, or do not ship the
+feature — and say so plainly. Never add the paid dependency.
+
+## Files
+- `PROJECT_CONTEXT.md` — new top-level "Fixed Rule: Nothing May Require
+  Payment" section, plus a pointer as the first entry under Rules For AI
+  Assistants
+- `AI_CONTEXT.md` — the rule in the Mandatory Shared AI Memory Workflow, which
+  is the first thing an assistant reads
+- `tests/test_no_paid_dependencies.py` — two new tests (33 checks, 15 tests now)
+
+## The rule now defends itself in both directions
+A stated rule with no test rots. A test with no stated rule behind it looks like
+an arbitrary lint and gets exempted by whoever it inconveniences. So:
+
+- `test_fixed_rule_is_stated_in_governance_docs` fails if the rule is deleted
+  from PROJECT_CONTEXT.md or AI_CONTEXT.md, or if it stops pointing at the test
+- `test_this_guard_is_wired_into_the_suite` fails if the guard is removed from
+  run_all.sh — an enforcing test nobody runs enforces nothing
+
+Both verified to actually fail: deleting the rule section produces 3 failures,
+unwiring the guard produces 1, and both pass again on restore.
+
+The docs also now say explicitly: **do not weaken, skip, or exempt your way past
+this test. If it fails, the change is wrong — not the test.**
+
+## Verification
+33/33 paid-guard checks, all unit suites pass. Documentation changes are pure
+additions — 37 lines added to PROJECT_CONTEXT.md and 23 to AI_CONTEXT.md, zero
+deletions.
+
+---
+
+Date: 2026-07-27
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Guarantee nothing requires payment
 
 ## Summary

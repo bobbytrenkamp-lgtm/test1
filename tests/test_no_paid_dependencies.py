@@ -280,6 +280,33 @@ def test_cost_audit_documented():
     check("## Cost" in rd, "README.md lost its Cost section")
 
 
+def test_fixed_rule_is_stated_in_governance_docs():
+    """The rule and its enforcement must not drift apart.
+
+    A test with no stated rule behind it looks like an arbitrary lint and gets
+    exempted by whoever it inconveniences. A stated rule with no test rots.
+    Both must exist, in the two files every assistant is required to read.
+    """
+    pc = (ROOT / "PROJECT_CONTEXT.md").read_text()
+    check("Nothing May Require Payment" in pc,
+          "PROJECT_CONTEXT.md lost the fixed no-payment rule")
+    check("complete and fixed rule" in pc.lower(),
+          "PROJECT_CONTEXT.md no longer states the rule is fixed and non-negotiable")
+    check("test_no_paid_dependencies" in pc,
+          "PROJECT_CONTEXT.md no longer points at the enforcing test")
+
+    ac = (ROOT / "AI_CONTEXT.md").read_text()
+    check("NOTHING MAY REQUIRE PAYMENT" in ac,
+          "AI_CONTEXT.md lost the fixed no-payment rule from its mandatory workflow")
+
+
+def test_this_guard_is_wired_into_the_suite():
+    """An enforcing test that nobody runs enforces nothing."""
+    sh = (ROOT / "tests/run_all.sh").read_text()
+    check("test_no_paid_dependencies.py" in sh,
+          "this guard was removed from tests/run_all.sh — it no longer runs")
+
+
 # ── runner ──────────────────────────────────────────────────────────────────
 
 def main():
