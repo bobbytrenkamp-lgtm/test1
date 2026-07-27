@@ -78,8 +78,45 @@ The long-term vision is to become a reliable nationwide intelligence tool for da
 - The map should support deeper zooming like Google Maps.
 - Cities and landmarks should appear naturally when zooming.
 
+# Fixed Rule: Nothing May Require Payment
+
+**This is a complete and fixed rule. It is not a preference, a default, or a
+starting point for negotiation. It does not expire and it is not subject to
+convenience.**
+
+Nothing in this project may require payment to function.
+
+- **No visitor may ever need an account, subscription, or credential** to use
+  any part of the site.
+- **No maintainer may ever need a paid plan** to run the data pipelines,
+  workflows, tests, or deployment.
+- **No paid service, API, dataset, library, font, tile provider, or hosting
+  tier may be introduced as a dependency** — not as a default, not as an
+  optional-but-expected path, and not as a disabled stub left in place "for
+  later".
+- **Every API key must remain optional.** A key may improve results. Its
+  absence must be a documented skip, never an error, never a blank screen, and
+  never a degraded state presented as a failure.
+- **No third-party host may become load-bearing.** If a free service ever
+  starts charging, the correct outcome is that the project loses that
+  service's decoration — never that it stops working or starts costing money.
+
+This rule outranks convenience, feature scope, data quality, and visual
+polish. If the best available source for something costs money, the correct
+answer is to use a free source, ship the feature without it, or **not ship the
+feature** — and say so plainly. It is never to add the paid dependency.
+
+**Enforcement:** `tests/test_no_paid_dependencies.py` (28 checks, wired into
+`tests/run_all.sh`) fails the suite if a paid service, paid dependency,
+mandatory API key, client-side key read, orphaned workflow secret, or
+unreviewed tile host appears. Do not weaken, skip, or exempt your way past
+this test. If it fails, the change is wrong — not the test.
+
+Full audit and reasoning: the **Cost & Licensing Audit** in `DATA_SOURCES.md`.
+
 # Rules For AI Assistants
 
+- **Never introduce anything that requires payment. See the fixed rule above.**
 - Always read `PROJECT_CONTEXT.md` before coding.
 - Always read `AI_CHANGELOG.md` before coding.
 - Always read `BUG_TRACKER.md` before coding.

@@ -10,11 +10,34 @@ Before coding, every AI assistant must read:
 3. `BUG_TRACKER.md`
 4. This `AI_CONTEXT.md` file
 
+## FIXED RULE — NOTHING MAY REQUIRE PAYMENT
+
+**Complete and fixed. Not a preference, not a default, not negotiable.**
+
+No visitor may need an account or credential. No maintainer may need a paid
+plan. No paid service, API, dataset, library, font, tile provider, or hosting
+tier may be introduced as a dependency — not as a default, not as an
+optional-but-expected path, and not as a disabled stub kept "for later".
+
+Every API key stays optional: its absence is a documented skip, never an error.
+No third-party host may become load-bearing — if a free service starts charging,
+the project loses that decoration, it does not stop working or start costing.
+
+This outranks convenience, feature scope, data quality, and polish. If the best
+source costs money: use a free source, ship without it, or do not ship the
+feature — and say so. Never add the paid dependency.
+
+`tests/test_no_paid_dependencies.py` enforces this (28 checks, in
+`tests/run_all.sh`). **Do not weaken, skip, or exempt your way past it.** If it
+fails, the change is wrong, not the test. See PROJECT_CONTEXT.md and the Cost &
+Licensing Audit in DATA_SOURCES.md.
+
 While coding:
 1. Make targeted changes.
 2. Preserve existing working features.
 3. Do not rewrite large sections unnecessarily.
 4. Never remove existing functionality without explaining why.
+5. Never introduce anything that requires payment (see the fixed rule above).
 
 After coding:
 1. Commit code changes when the work is complete and commit access is available.
