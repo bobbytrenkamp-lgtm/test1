@@ -173,6 +173,22 @@ def confidence_score(entry, tier, source_count, url_count):
     """
     Return (score 0-100, label).
     Weights: tier (40), source count (20), url availability (20), freshness (20).
+
+    WHAT THIS SCORE ACTUALLY MEASURES — read before trusting the label.
+    Every input is a property of the CITATIONS: what domain they are on, how
+    many there are, whether they have URLs, and how recent the effective date
+    is. Nothing here inspects whether a human or a pipeline ever opened those
+    URLs and confirmed the record's claims.
+
+    So the score measures how WELL-CITED a record is, not whether it has been
+    VERIFIED. Those are different, and conflating them produced a real problem:
+    all 152 records the formula labelled "verified" had pipeline_verified:false
+    — 100% of them. A record earned "verified" purely for citing three URLs, one
+    of them a .gov domain, that nobody had read.
+
+    The label is now gated on pipeline_verified. Without independent
+    confirmation the ceiling is "high" (well-cited, unconfirmed), and only a
+    record actually verified against its sources can be called "verified".
     """
     # Tier score
     tier_scores = {1: 40, 2: 28, 3: 14}
@@ -198,8 +214,13 @@ def confidence_score(entry, tier, source_count, url_count):
         s_fresh = 2
 
     total = s_tier + s_sources + s_url + s_fresh
+
+    # "verified" is a claim about confirmation, so it requires confirmation.
+    # A well-cited but unconfirmed record caps at "high".
+    verified = bool(entry.get("pipeline_verified"))
+
     if total >= 80:
-        label = "verified"
+        label = "verified" if verified else "high"
     elif total >= 60:
         label = "high"
     elif total >= 40:

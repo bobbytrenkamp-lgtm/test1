@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-07-26T08:28:32.214584+00:00",
+  "generated_at": "2026-07-27T14:13:32.147842+00:00",
   "source_last_updated": "2026-07-18",
   "stats": {
-    "total_counties_tracked": 1465,
+    "total_counties_tracked": 1467,
     "by_level": {
-      "-1": 1301,
+      "-1": 1296,
       "0": 0,
       "1": 66,
       "2": 62,
-      "3": 31,
-      "4": 5
+      "3": 29,
+      "4": 14
     },
     "by_type": {
-      "data_center": 1452,
+      "data_center": 1454,
       "water": 43,
       "ai": 201,
-      "energy": 261,
+      "energy": 262,
       "crypto": 18,
       "zoning": 12,
       "incentive": 18,
@@ -67,7 +67,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -152,7 +152,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -184,7 +184,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -215,7 +215,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -246,7 +246,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -282,7 +282,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -339,7 +339,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -405,7 +405,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-12",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 88,
       "source_tier": 1
     },
@@ -593,7 +593,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -671,45 +671,37 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
     "19113": {
       "name": "Linn County",
       "state": "Iowa",
-      "level": 3,
+      "level": 4,
       "types": [
         "data_center"
       ],
-      "title": "Linn County 18-Month Data Center Moratorium (July 2026)",
-      "description": "Linn County Board of Supervisors voted 2-1 on July 1, 2026 to impose an 18-month moratorium on new applications to rezone unincorporated county land to the EU-3 Large-Scale Data Center Zoning District, effective immediately through January 2028. The moratorium follows a February 2026 data center ordinance that required water studies and community benefit agreements, but additional analysis on cumulative impacts to water resources, electrical infrastructure, emergency response, and long-range land use planning prompted the Board to pause new applications while updating regulations. Linn County (Cedar Rapids) had been a premier Iowa data center market hosting Microsoft and Google facilities. Iowa's \u00a7423.3 sales-tax exemption on data center equipment remains in effect statewide.",
-      "effective_date": "2026-07-01",
+      "title": "Linn County IA \u2014 Data Center Ordinance (Feb 2026) and Subsequent Moratorium",
+      "description": "The Linn County Board of Supervisors approved a data center ordinance on February 18, 2026, following its third and final consideration. Subsequently, after roughly three hours of public comment and discussion, the board passed a moratorium on data centers by a 2\u20131 vote \u2014 adopting a pause despite already having an ordinance in place.",
+      "effective_date": "2026-02-18",
       "status": "active",
-      "notes": "Moratorium runs through January 2028. Iowa's statewide data center tax exemption (\u00a7423.3) remains; this moratorium applies only to new rezoning applications in unincorporated Linn County.",
+      "notes": "Two distinct actions: an ordinance adopted February 18, 2026, and a later moratorium passed 2\u20131. The moratorium's date and duration were not established. Level 4 reflects the moratorium. Located via web search on 2026-07-27; the county's own page was identified but returned HTTP 403 to automated retrieval, so its text was not read directly by the pipeline. Facts here come from the search result summary and corroborating local news coverage. A human should open the cited government URL to confirm the exact terms before treating this as Tier 1 verified.",
       "sources": [
         {
-          "label": "Linn County, IA \u2014 Official moratorium newsflash",
-          "url": "https://www.linncountyiowa.gov/CivicAlerts.aspx?AID=4487"
-        },
-        {
-          "label": "Linn County, IA \u2014 Data Centers in Unincorporated Linn County (official page)",
+          "label": "Linn County, IA \u2014 Data Centers in Unincorporated Linn County",
           "url": "https://www.linncountyiowa.gov/1862/Data-Centers-in-Unincorporated-Linn-Coun"
         },
         {
-          "label": "CBS2 Iowa: Linn County BOS approve 18-month moratorium",
-          "url": "https://cbs2iowa.com/news/local/linn-county-bos-approve-18-month-moratorium-on-new-data-centers-in-unincorporated-areas"
-        },
-        {
-          "label": "Capture Cascade Timeline: July 1, 2026 vote details",
-          "url": "https://capturecascade.org/event/2026-07-01--linn-county-ia-18-month-data-center-moratorium-vote/"
+          "label": "KCRG: Despite putting ordinance in place, Linn County passes data center moratorium",
+          "url": "https://www.kcrg.com/2026/07/01/despite-putting-ordinance-place-linn-county-passes-data-center-moratorium/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-12",
-      "confidence": "verified",
-      "confidence_score": 100,
+      "last_reviewed": "2026-07-27",
+      "confidence": "high",
+      "confidence_score": 87,
       "source_tier": 1
     },
     "19153": {
@@ -738,7 +730,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -918,7 +910,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -977,7 +969,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -1008,7 +1000,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -1160,7 +1152,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -1219,7 +1211,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -1250,7 +1242,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -1282,7 +1274,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -1656,7 +1648,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -1688,7 +1680,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -1897,7 +1889,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -1928,7 +1920,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -2251,7 +2243,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -2341,7 +2333,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -2373,7 +2365,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -2405,7 +2397,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -2460,7 +2452,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -2498,7 +2490,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-18",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -2614,7 +2606,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-12",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -2647,7 +2639,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-12",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -2680,7 +2672,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-12",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 100,
       "source_tier": 1
     },
@@ -2714,7 +2706,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-12",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -2748,7 +2740,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-12",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -2958,7 +2950,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-14",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -2991,7 +2983,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-14",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -3140,7 +3132,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-18",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -5358,31 +5350,27 @@
     "20173": {
       "name": "Sedgwick County",
       "state": "Kansas",
-      "level": -1,
+      "level": 4,
       "types": [
         "data_center"
       ],
-      "title": "Wichita Regional Data Center Hub \u2014 Cox / AT&T Telecom Infrastructure",
-      "description": "Sedgwick County (Wichita) is Kansas's largest data center market, anchored by Cox Business's enterprise network, AT&T's Wichita Central Office campus, and several colocation facilities serving the aviation and manufacturing sectors. Spirit AeroSystems, Boeing's Wichita operations, and Cessna/Textron maintain significant enterprise IT infrastructure in the county. Kansas's High Performance Incentive Program (K.S.A. 74-5065) provides investment tax credits and sales tax refunds for qualifying technology companies creating high-wage jobs. Evergy's competitive industrial rates and Westar Energy's generation assets provide reliable power supply.",
-      "effective_date": "2015-01-01",
+      "title": "Sedgwick County KS \u2014 Data Center Moratorium, Extended May 2026",
+      "description": "The Sedgwick County Commission extended its moratorium on data center development applications by a further 90 days on May 6, 2026, continuing a pause on new applications while the county works on regulations. Sedgwick County contains Wichita, the largest city in Kansas.",
+      "effective_date": "2026-05-06",
       "status": "active",
-      "notes": "Aviation and advanced manufacturing drive Wichita data center demand.",
+      "notes": "Date shown is the May 6, 2026 extension, not the original adoption. A 90-day extension from that date implies expiry around August 2026, so this record requires re-checking for a further extension or lapse. Located via web search on 2026-07-27; the county's own page was identified but returned HTTP 403 to automated retrieval, so its text was not read directly by the pipeline. Facts here come from the search result summary and corroborating local news coverage. A human should open the cited government URL to confirm the exact terms before treating this as Tier 1 verified.",
       "sources": [
         {
-          "label": "Cox Business \u2014 Wichita",
-          "url": "https://www.cox.com/business/"
-        },
-        {
-          "label": "Kansas Commerce \u2014 HPIP Program",
-          "url": "https://www.kansascommerce.gov/program/incentives/high-performance-incentive-program/"
+          "label": "KWCH: Sedgwick County Commission extends moratorium on data centers for 90 more days",
+          "url": "https://www.kwch.com/2026/05/06/sedgwick-county-commission-extends-moratorium-data-centers-90-more-days/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "high",
-      "confidence_score": 75,
-      "source_tier": 1
+      "last_reviewed": "2026-07-27",
+      "confidence": "medium",
+      "confidence_score": 51,
+      "source_tier": 3
     },
     "21015": {
       "name": "Boone County",
@@ -6877,35 +6865,26 @@
     "35049": {
       "name": "Santa Fe County",
       "state": "New Mexico",
-      "level": 3,
+      "level": 4,
       "types": [
-        "data_center",
-        "water"
+        "data_center"
       ],
-      "title": "Santa Fe County 18-Month Data Center Moratorium (July 2026)",
-      "description": "Santa Fe County Board of County Commissioners voted unanimously on July 2, 2026 to adopt an 18-month moratorium on data center development. The moratorium applies to any facility using 1 megawatt or more of electricity \u2014 a threshold set to prevent developers from building just below a higher limit. Commissioners originally proposed a 12-month moratorium but extended it to 18 months. The moratorium allows the county to develop clear, enforceable standards, evaluate groundwater and water supply impacts, assess electrical demand, coordinate with utilities and state agencies, and ensure decisions align with the County's Sustainable Growth Management Plan. Santa Fe County joins Socorro County (June 2026) and a growing number of New Mexico jurisdictions enacting pauses on data center development. The county previously hosted DOE edge compute workloads and state IT infrastructure with no restrictions.",
-      "effective_date": "2026-07-02",
+      "title": "Santa Fe County NM \u2014 18-Month Data Center Moratorium (1 MW Threshold)",
+      "description": "The Santa Fe County Board of County Commissioners voted unanimously to adopt an 18-month moratorium on data center development. The pause was extended from the 12 months originally proposed to 18 months, and the regulatory threshold was lowered from 100 megawatts to one megawatt \u2014 meaning the moratorium reaches far smaller facilities than a typical hyperscale-focused measure.",
+      "effective_date": null,
       "status": "active",
-      "notes": "Moratorium runs July 2026 through approximately January 2028 (18 months). Unanimous 5-0 vote. Threshold: 1 MW or more. Sponsored by Commissioners Cacari Stone (District 2) and Hughes (District 5). Santa Fe County is the second NM county to adopt a moratorium in 2026 after Socorro County.",
+      "notes": "Previously recorded at level 3; upgraded to level 4 because an adopted moratorium prohibits new construction. The 1 MW threshold is unusually low and materially broadens scope. Adoption date not established. Located via web search on 2026-07-27; the county's own page was identified but returned HTTP 403 to automated retrieval, so its text was not read directly by the pipeline. Facts here come from the search result summary and corroborating local news coverage. A human should open the cited government URL to confirm the exact terms before treating this as Tier 1 verified.",
       "sources": [
         {
-          "label": "Santa Fe County NM \u2014 Official announcement: 18-month data center moratorium approved",
+          "label": "Santa Fe County \u2014 Board approves 18-month moratorium on data centers",
           "url": "https://www.santafecountynm.gov/news/detail/santa-fe-county-approves-18-month-moratorium-on-data-centers"
-        },
-        {
-          "label": "KRQE: Santa Fe County commissioners approve 18-month moratorium on data centers",
-          "url": "https://www.krqe.com/news/new-mexico/santa-fe-county-commissioners-approve-18-month-moratorium-on-data-centers/"
-        },
-        {
-          "label": "ABQ Journal: Santa Fe County becomes latest NM community to adopt data center moratorium",
-          "url": "https://www.abqjournal.com/news/santa-fe-county-becomes-latest-new-mexico-community-to-adopt-data-center-moratorium/3074758"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-18",
-      "confidence": "verified",
-      "confidence_score": 100,
+      "last_reviewed": "2026-07-27",
+      "confidence": "high",
+      "confidence_score": 77,
       "source_tier": 1
     },
     "01101": {
@@ -9042,7 +9021,7 @@
       "source_tier": 3
     },
     "21117": {
-      "name": "Knott County",
+      "name": "Kenton County",
       "state": "Kentucky",
       "level": -1,
       "types": [
@@ -9053,7 +9032,7 @@
       "description": "Knott County (Hindman, KY) is a former coal-producing county in eastern Kentucky served by Kentucky Power (an AEP subsidiary) and East Kentucky Power Cooperative (EKPC). The county holds ARC (Appalachian Regional Commission) Distressed designation, qualifying projects for federal POWER+ Initiative grants and coal severance tax replacement funds. Kentucky KEDFA KBI (Kentucky Business Investment) incentives offer wage assessment credits and reduced payroll tax burdens for qualifying new employers. Federal BEAD broadband grants reach the county seat of Hindman, improving connectivity for digital infrastructure projects.",
       "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "ARC Distressed; POWER+ Initiative eligible; KEDFA KBI wage credit; KY Power/EKPC service.",
+      "notes": "ARC Distressed; POWER+ Initiative eligible; KEDFA KBI wage credit; KY Power/EKPC service. [DATA CORRECTION 2026-07-27: this record's county name was 'Knott County' but FIPS 21117 is Kenton County. The name has been corrected; the title and description were written about Knott County and must be re-researched for Kenton County before being relied on.]",
       "sources": [
         {
           "label": "Knott County KY \u2014 Official Website",
@@ -9075,7 +9054,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -15107,7 +15086,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-18",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 100,
       "source_tier": 1
     },
@@ -16495,7 +16474,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-18",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 93,
       "source_tier": 1
     },
@@ -17032,7 +17011,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 85,
       "source_tier": 1
     },
@@ -17473,7 +17452,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 85,
       "source_tier": 1
     },
@@ -17863,7 +17842,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 85,
       "source_tier": 1
     },
@@ -17897,7 +17876,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 85,
       "source_tier": 1
     },
@@ -18346,7 +18325,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 85,
       "source_tier": 1
     },
@@ -18854,7 +18833,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 85,
       "source_tier": 1
     },
@@ -19182,7 +19161,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 85,
       "source_tier": 1
     },
@@ -19216,7 +19195,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 85,
       "source_tier": 1
     },
@@ -19250,7 +19229,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 85,
       "source_tier": 1
     },
@@ -19313,7 +19292,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 85,
       "source_tier": 1
     },
@@ -20278,31 +20257,27 @@
     "20103": {
       "name": "Leavenworth County",
       "state": "Kansas",
-      "level": -1,
+      "level": 4,
       "types": [
         "data_center"
       ],
-      "title": "Leavenworth County KS \u2014 Fort Leavenworth/Army Combined Arms Center/federal IT",
-      "description": "Leavenworth County hosts Fort Leavenworth \u2014 the Army's intellectual center, home to the Command and General Staff College (CGSC) and the Combined Arms Center. Fort Leavenworth is a major Army education and training installation with significant IT, communications, and intelligence infrastructure. The adjacent city of Leavenworth provides federal civilian employment and services. Evergy serves the county, with Kansas City Metro's fiber network providing robust connectivity adjacent to Fort Leavenworth.",
-      "effective_date": "",
+      "title": "Leavenworth County KS \u2014 90-Day Data Center Moratorium",
+      "description": "Leavenworth County commissioners voted to impose a 90-day moratorium on data center development, pausing new applications while the county considers regulations.",
+      "effective_date": null,
       "status": "active",
-      "notes": "",
+      "notes": "90-day duration reported; adoption date not established, and a short moratorium may already have expired or been extended \u2014 this record needs re-checking before use. Located via web search on 2026-07-27; the county's own page was identified but returned HTTP 403 to automated retrieval, so its text was not read directly by the pipeline. Facts here come from the search result summary and corroborating local news coverage. A human should open the cited government URL to confirm the exact terms before treating this as Tier 1 verified.",
       "sources": [
         {
-          "label": "Fort Leavenworth \u2014 Combined Arms Center",
-          "url": "https://www.army.mil/fortleavenworth/"
-        },
-        {
-          "label": "Leavenworth County KS",
-          "url": "https://www.leavenworthcounty.gov/"
+          "label": "KSHB: Leavenworth County commissioners pass 90-day moratorium on data centers",
+          "url": "https://www.kshb.com/news/local-news/kansas/leavenworth-county/leavenworth-county-commissioners-pass-90-day-moratorium-on-data-centers"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "high",
-      "confidence_score": 78,
-      "source_tier": 1
+      "last_reviewed": "2026-07-27",
+      "confidence": "medium",
+      "confidence_score": 51,
+      "source_tier": 3
     },
     "40101": {
       "name": "Muskogee County",
@@ -20800,31 +20775,28 @@
     "20169": {
       "name": "Saline County",
       "state": "Kansas",
-      "level": -1,
+      "level": 4,
       "types": [
-        "data_center"
+        "data_center",
+        "energy"
       ],
-      "title": "Saline County KS \u2014 Salina/I-70 & I-135 junction/Kansas geographic center hub",
-      "description": "Saline County (Salina) occupies the precise geographic crossroads of Kansas, where I-70 (east-west) and I-135 (north-south, connecting Wichita to I-70) intersect. This junction makes Salina a critical fiber route diversification point for network infrastructure crossing Kansas. Evergy and Salina's municipal utilities provide competitive commercial rates. Salina's aviation industry (Smoky Hill Air National Guard, Great Plains Aviation) and agricultural processing economy (Cargill, Westar Grain) drive industrial-grade electrical demand. Kansas Wesleyan University provides a modest academic computing presence.",
-      "effective_date": "",
+      "title": "Saline County KS \u2014 Moratorium on Data Centers, Nuclear and Hydrogen Facilities",
+      "description": "Saline County voted to place a moratorium on construction of data centers, nuclear power facilities and hydrogen-based energy facilities in the unincorporated areas of the county. The scope covering several categories of large-load energy infrastructure alongside data centers distinguishes it from the data-center-only moratoriums adopted elsewhere in Kansas.",
+      "effective_date": null,
       "status": "active",
-      "notes": "",
+      "notes": "Scope covers data centers plus nuclear and hydrogen energy facilities. Adoption date and duration not established. Located via web search on 2026-07-27; the county's own page was identified but returned HTTP 403 to automated retrieval, so its text was not read directly by the pipeline. Facts here come from the search result summary and corroborating local news coverage. A human should open the cited government URL to confirm the exact terms before treating this as Tier 1 verified.",
       "sources": [
         {
-          "label": "Saline County KS \u2014 City of Salina",
-          "url": "https://www.salina-ks.gov/"
-        },
-        {
-          "label": "Evergy \u2014 Central Kansas",
-          "url": "https://www.evergy.com/"
+          "label": "KSN: Kansas county puts moratorium on data centers and nuclear, hydrogen plants",
+          "url": "https://www.ksn.com/news/kansas-county-puts-moratorium-on-data-centers-and-nuclear-hydrogen-plants/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "high",
-      "confidence_score": 78,
-      "source_tier": 1
+      "last_reviewed": "2026-07-27",
+      "confidence": "medium",
+      "confidence_score": 51,
+      "source_tier": 3
     },
     "20051": {
       "name": "Ellis County",
@@ -21438,60 +21410,61 @@
     "20061": {
       "name": "Geary County",
       "state": "Kansas",
-      "level": -1,
+      "level": 4,
       "types": [
         "data_center"
       ],
-      "title": "Geary County KS \u2014 Junction City/Fort Riley/1st Infantry Division",
-      "description": "Geary County (Junction City) adjoins Fort Riley \u2014 home of the US Army's 1st Infantry Division (Big Red One), one of the most storied Army combat divisions. Fort Riley straddles the Riley-Geary county line but Junction City is the principal off-post community. The base's computing, communications, and intelligence infrastructure drives significant IT demand. Evergy serves the county. Junction City's position at the I-70/US-40 junction midway across Kansas gives it connectivity importance on the east-west fiber corridor.",
-      "effective_date": "",
+      "title": "Geary County KS \u2014 One-Year Data Center Moratorium",
+      "description": "Geary County commissioners approved a one-year moratorium on data center development. The measure is part of a cluster of 2026 Kansas county moratoriums adopted while local governments draft siting regulations for large-load facilities.",
+      "effective_date": null,
       "status": "active",
-      "notes": "",
+      "notes": "Duration reported as one year; the exact adoption date and expiry were not established from available sources. Located via web search on 2026-07-27; the county's own page was identified but returned HTTP 403 to automated retrieval, so its text was not read directly by the pipeline. Facts here come from the search result summary and corroborating local news coverage. A human should open the cited government URL to confirm the exact terms before treating this as Tier 1 verified.",
       "sources": [
         {
-          "label": "Fort Riley \u2014 1st Infantry Division",
-          "url": "https://home.army.mil/riley/"
-        },
-        {
-          "label": "Geary County KS \u2014 City of Junction City",
-          "url": "https://www.junctioncity.org/"
+          "label": "KSNT: Geary County approves moratorium on data center development",
+          "url": "https://www.ksnt.com/news/local-news/geary-co-approves-moratorium-on-data-center-development/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "high",
-      "confidence_score": 78,
-      "source_tier": 1
+      "last_reviewed": "2026-07-27",
+      "confidence": "medium",
+      "confidence_score": 51,
+      "source_tier": 3
     },
     "20079": {
       "name": "Harvey County",
       "state": "Kansas",
-      "level": -1,
+      "level": 4,
       "types": [
-        "data_center"
+        "data_center",
+        "water"
       ],
-      "title": "Harvey County KS \u2014 Newton/Wichita north suburb/BNSF railway hub",
-      "description": "Harvey County (Newton) is the northern Wichita suburb and home to one of the most significant BNSF Railway classification yards in Kansas, serving as a key junction for the transcontinental railroad network. Bethel College (one of the country's oldest Mennonite colleges) provides an academic computing presence. Evergy serves the county as part of the greater Wichita grid. Newton's BNSF yard drives telecommunications and digital operations infrastructure, and the county's proximity to Wichita's fiber network extends metro connectivity northward.",
-      "effective_date": "",
+      "title": "Harvey County KS \u2014 Data Center Moratorium Through End of 2028",
+      "description": "The Harvey County Commission adopted a resolution placing a moratorium on construction of data centers in the unincorporated areas of the county, in force through the end of 2028. The commission passed the resolution unanimously at its January 13, 2026 meeting. No data center application had been submitted at the time of adoption; the county stated the moratorium gives the planning department and zoning board time to research and draft data center regulations. Water use was a stated driver \u2014 part of the Equus Beds Aquifer, a primary groundwater source for south-central Kansas, lies within Harvey County, and commissioners cited hyperscale facilities' potential consumption of over a million gallons per day.",
+      "effective_date": "2026-01-13",
       "status": "active",
-      "notes": "",
+      "notes": "Moratorium runs through the end of 2028. Located via web search on 2026-07-27; the county's own page was identified but returned HTTP 403 to automated retrieval, so its text was not read directly by the pipeline. Facts here come from the search result summary and corroborating local news coverage. A human should open the cited government URL to confirm the exact terms before treating this as Tier 1 verified.",
       "sources": [
         {
-          "label": "Harvey County KS \u2014 City of Newton",
-          "url": "https://www.newtonkansas.com/"
+          "label": "Harvey County, KS \u2014 Commission implements moratorium on data center developments",
+          "url": "https://www.harveycounty.gov/commission-implements-moratorium-on-data-center-developments"
         },
         {
-          "label": "Evergy \u2014 Harvey County KS",
-          "url": "https://www.evergy.com/"
+          "label": "KWCH: Harvey County Commission places moratorium on data center construction",
+          "url": "https://www.kwch.com/2026/01/13/harvey-county-commission-places-moratorium-data-center-construction/"
+        },
+        {
+          "label": "KSN: Harvey County, Kansas, halts data center developments for now",
+          "url": "https://www.ksn.com/news/local/harvey-county-bans-data-centers-for-now/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "medium",
-      "confidence_score": 52,
-      "source_tier": 3
+      "last_reviewed": "2026-07-27",
+      "confidence": "high",
+      "confidence_score": 94,
+      "source_tier": 1
     },
     "40147": {
       "name": "Washington County",
@@ -35312,7 +35285,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-18",
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -35506,7 +35479,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 87,
       "source_tier": 1
     },
@@ -35536,7 +35509,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 87,
       "source_tier": 1
     },
@@ -35596,7 +35569,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 87,
       "source_tier": 1
     },
@@ -35627,7 +35600,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 87,
       "source_tier": 1
     },
@@ -35782,7 +35755,7 @@
       "source_tier": 1
     },
     "37099": {
-      "name": "Johnston County",
+      "name": "Jackson County",
       "state": "North Carolina",
       "level": -1,
       "types": [
@@ -35793,7 +35766,7 @@
       "description": "Johnston County (Smithfield/Clayton, NC) is one of North Carolina's fastest-growing counties, benefiting from Research Triangle Park spillover demand as Wake County land costs rise. The county hosts the North Carolina Global TransPark \u2014 an industrial aviation and manufacturing corridor \u2014 and significant distribution and light manufacturing operations. Duke Energy Progress serves the county with industrial rates. North Carolina's data center property-tax exemption (G.S. \u00a7105-275(45)) applies to qualifying server, storage, and networking equipment. The US-70 and I-95 corridors through Johnston County carry the principal fiber pathways connecting Raleigh-Durham to the Southeast coastal networks.",
       "effective_date": "2020-01-01",
       "status": "active",
-      "notes": "RTP spillover growth; NC Global TransPark; Duke Energy Progress; G.S. \u00a7105-275(45).",
+      "notes": "RTP spillover growth; NC Global TransPark; Duke Energy Progress; G.S. \u00a7105-275(45). [DATA CORRECTION 2026-07-27: this record's county name was 'Johnston County' but FIPS 37099 is Jackson County. The name has been corrected; the title and description were written about Johnston County and must be re-researched for Jackson County before being relied on.]",
       "sources": [
         {
           "label": "Johnston County Economic Development",
@@ -35842,7 +35815,7 @@
       "source_tier": 1
     },
     "37187": {
-      "name": "Union County",
+      "name": "Washington County",
       "state": "North Carolina",
       "level": -1,
       "types": [
@@ -35853,7 +35826,7 @@
       "description": "Union County (Monroe, NC) is a rapidly growing Charlotte suburban county immediately east of Mecklenburg County, hosting significant distribution, manufacturing, and corporate operations overflow from the Charlotte metro. Duke Energy Carolinas serves the county with access to the Carolinas industrial grid. North Carolina's data center property-tax exemption (G.S. \u00a7105-275(45)) applies to qualifying server, storage, and networking equipment. The US-74 fiber corridor through Monroe connects to Charlotte's carrier-dense Coliseum Centre and 121 West Trade Street colocation hub. Lower land and power costs than Mecklenburg County attract medium-scale data center deployments.",
       "effective_date": "2021-01-01",
       "status": "active",
-      "notes": "Charlotte suburb overflow; Duke Energy Carolinas; US-74 fiber; G.S. \u00a7105-275(45).",
+      "notes": "Charlotte suburb overflow; Duke Energy Carolinas; US-74 fiber; G.S. \u00a7105-275(45). [DATA CORRECTION 2026-07-27: this record's county name was 'Union County' but FIPS 37187 is Washington County. The name has been corrected; the title and description were written about Union County and must be re-researched for Washington County before being relied on.]",
       "sources": [
         {
           "label": "Union County Economic Development",
@@ -35902,7 +35875,7 @@
       "source_tier": 1
     },
     "28095": {
-      "name": "Marshall County",
+      "name": "Monroe County",
       "state": "Mississippi",
       "level": -1,
       "types": [
@@ -35913,7 +35886,7 @@
       "description": "Marshall County (Holly Springs, MS) is a rapidly growing Memphis suburban county on the Tennessee state line, benefiting from manufacturing and logistics overflow from the Memphis metro area. The county hosts rust belt industrial redevelopment opportunities and is served by Tennessee Valley Authority (TVA) wholesale power through Marshall County Electric Power Association (MLGW). Mississippi's data center incentive program and county industrial development bonds (Miss. Code \u00a757-1-1 et seq.) support qualifying technology facility investments. Rust College and Mississippi University for Women provide regional education anchors, and US-72 connects to the Memphis fiber gateway.",
       "effective_date": "2021-01-01",
       "status": "active",
-      "notes": "Memphis metro edge; TVA/Marshall County EPA wholesale power; MS industrial bond \u00a757-1-1.",
+      "notes": "Memphis metro edge; TVA/Marshall County EPA wholesale power; MS industrial bond \u00a757-1-1. [DATA CORRECTION 2026-07-27: this record's county name was 'Marshall County' but FIPS 28095 is Monroe County. The name has been corrected; the title and description were written about Marshall County and must be re-researched for Monroe County before being relied on.]",
       "sources": [
         {
           "label": "Marshall County Economic Development Authority",
@@ -35932,7 +35905,7 @@
       "source_tier": 3
     },
     "28155": {
-      "name": "Union County",
+      "name": "Webster County",
       "state": "Mississippi",
       "level": -1,
       "types": [
@@ -35943,7 +35916,7 @@
       "description": "Union County (New Albany/Blue Springs, MS) hosts Toyota Motor Manufacturing Mississippi (TMMMS) \u2014 Toyota's primary U.S. Corolla production facility \u2014 which opened in 2011 and employs approximately 2,000 workers. TMMMS drives substantial automotive AI computing demand for production quality, supply chain optimization, and connected vehicle data processing. The county is served by Northeast Mississippi Electric Power Association (NMEPA) operating on TVA wholesale power. Mississippi's data center sales-tax exemption (Miss. Code \u00a727-65-17) applies to qualifying equipment. New Albany's location at the US-72/MS-15 interchange provides fiber connectivity to Memphis and Birmingham technology markets.",
       "effective_date": "2021-01-01",
       "status": "active",
-      "notes": "Toyota TMMMS automotive AI; NMEPA/TVA power; Miss. Code \u00a727-65-17 exemption.",
+      "notes": "Toyota TMMMS automotive AI; NMEPA/TVA power; Miss. Code \u00a727-65-17 exemption. [DATA CORRECTION 2026-07-27: this record's county name was 'Union County' but FIPS 28155 is Webster County. The name has been corrected; the title and description were written about Union County and must be re-researched for Webster County before being relied on.]",
       "sources": [
         {
           "label": "Union County Economic Development Foundation",
@@ -35993,7 +35966,7 @@
       "source_tier": 1
     },
     "35011": {
-      "name": "Curry County",
+      "name": "De Baca County",
       "state": "New Mexico",
       "level": -1,
       "types": [
@@ -36005,7 +35978,7 @@
       "description": "Curry County (Clovis, NM) hosts Cannon Air Force Base, home to the 27th Special Operations Wing (27th SOW) \u2014 Air Force Special Operations Command's premier fixed-wing aviation unit \u2014 which operates C-130H, CV-22B, and AC-130 platforms requiring substantial intelligence, surveillance, and reconnaissance (ISR) computing. On the commercial side, Curry County sits in one of New Mexico's premier wind energy production corridors, with multiple large wind farms feeding into Xcel Energy New Mexico's grid. New Mexico's data center equipment sales-tax exemption (NMSA \u00a77-9-54.2) and renewable energy tax credits support qualifying computing investments powered by wind energy.",
       "effective_date": "2021-01-01",
       "status": "active",
-      "notes": "Cannon AFB 27th SOW ISR computing; Xcel Energy NM wind corridor; NMSA \u00a77-9-54.2 exemption.",
+      "notes": "Cannon AFB 27th SOW ISR computing; Xcel Energy NM wind corridor; NMSA \u00a77-9-54.2 exemption. [DATA CORRECTION 2026-07-27: this record's county name was 'Curry County' but FIPS 35011 is De Baca County. The name has been corrected; the title and description were written about Curry County and must be re-researched for De Baca County before being relied on.]",
       "sources": [
         {
           "label": "Clovis/Curry County Economic Development Corporation",
@@ -36054,12 +36027,12 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
     "53003": {
-      "name": "Clark County",
+      "name": "Asotin County",
       "state": "Washington",
       "level": 2,
       "types": [
@@ -36071,7 +36044,7 @@
       "description": "Clark County (Vancouver, WA) is the Washington State component of the Portland, OR metropolitan area, separated from Oregon only by the Columbia River. Clark Public Utilities serves the county's residential and commercial load, and its transmission system is deeply interconnected with PGE (Portland General Electric) and BPA (Bonneville Power Administration). The county adopted a data center special use permit requirement in 2026 following proposals for large hyperscale campuses near the Port of Vancouver and the I-5/I-205 technology corridor. Washington's data center sales-tax exemption (RCW 82.08.986) has made Clark County attractive versus Oregon's taxable environment, but Clark Public Utilities substation capacity on the south county grid is constrained. Permit conditions require written confirmation of available Clark Public Utilities interconnect capacity, a stormwater management plan under Clark County's Phase I MS4 permit, and a traffic impact analysis for sites near SR-14 and the I-205 corridor.",
       "effective_date": "2026-03-01",
       "status": "active",
-      "notes": "RCW 82.08.986 WA tax exemption drives demand; Clark Public Utilities capacity constraint; BPA interconnect.",
+      "notes": "RCW 82.08.986 WA tax exemption drives demand; Clark Public Utilities capacity constraint; BPA interconnect. [DATA CORRECTION 2026-07-27: this record's county name was 'Clark County' but FIPS 53003 is Asotin County. The name has been corrected; the title and description were written about Clark County and must be re-researched for Asotin County before being relied on.]",
       "sources": [
         {
           "label": "Clark County Community Development \u2014 Planning Division",
@@ -36093,7 +36066,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -36162,7 +36135,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -36196,7 +36169,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -36235,7 +36208,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -36274,7 +36247,7 @@
       "source_tier": 3
     },
     "13125": {
-      "name": "Glynn County",
+      "name": "Glascock County",
       "state": "Georgia",
       "level": 2,
       "types": [
@@ -36286,7 +36259,7 @@
       "description": "Glynn County (Brunswick, GA) anchors Georgia's Golden Isles coast and hosts the Port of Brunswick \u2014 the nation's leading automobile import/export terminal operated by the Georgia Ports Authority. The county planning commission adopted a conditional use permit requirement for data centers in 2025, driven by concerns about water withdrawal from the Floridan Aquifer system (the sole drinking water source for the county), Georgia Power's limited substation capacity on the Brunswick peninsula, and the character of the Sea Island/Jekyll Island resort corridor. The Brunswick-Golden Isles Airport's instrument-landing systems impose height restrictions on tall industrial structures in the northwestern industrial zone, further constraining siting options. CUP applicants must provide a Georgia Environmental Protection Division water-withdrawal permit or pre-application determination and a Georgia Power service-capacity letter for facilities exceeding 5 MW.",
       "effective_date": "2025-05-01",
       "status": "active",
-      "notes": "Port of Brunswick GPA; Floridan Aquifer sole drinking source; Georgia Power peninsula capacity; airport height limits.",
+      "notes": "Port of Brunswick GPA; Floridan Aquifer sole drinking source; Georgia Power peninsula capacity; airport height limits. [DATA CORRECTION 2026-07-27: this record's county name was 'Glynn County' but FIPS 13125 is Glascock County. The name has been corrected; the title and description were written about Glynn County and must be re-researched for Glascock County before being relied on.]",
       "sources": [
         {
           "label": "Glynn County Planning and Zoning",
@@ -36304,7 +36277,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 88,
       "source_tier": 1
     },
@@ -36365,7 +36338,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 87,
       "source_tier": 1
     },
@@ -36430,7 +36403,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 87,
       "source_tier": 1
     },
@@ -36460,7 +36433,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 81,
       "source_tier": 1
     },
@@ -36494,7 +36467,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -36533,12 +36506,12 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 88,
       "source_tier": 1
     },
     "24019": {
-      "name": "Calvert County",
+      "name": "Dorchester County",
       "state": "Maryland",
       "level": 1,
       "types": [
@@ -36550,7 +36523,7 @@
       "description": "Calvert County (Prince Frederick, MD) is home to Calvert Cliffs Nuclear Power Plant \u2014 two Constellation Energy pressurized-water reactors generating approximately 1,750 MW for PJM \u2014 on the western shore of the Chesapeake Bay. The county planning commission initiated a data center siting review in 2025 following an inquiry from an operator seeking to co-locate adjacent to the nuclear plant's transmission interconnect. The NRC Emergency Planning Zone (EPZ) extends 10 miles from Calvert Cliffs, covering most of the county and imposing emergency-planning requirements on any large new occupancy in the zone. Calvert County's Chesapeake Bay Critical Area designation and SMECO service-territory capacity constraints further complicate large facility siting. Review standards require NRC EPZ compatibility documentation and a Maryland Department of the Environment water appropriation permit for any Patuxent River or Bay withdrawal.",
       "effective_date": "2025-09-01",
       "status": "proposed",
-      "notes": "Calvert Cliffs NRC EPZ 10-mile zone; Chesapeake Bay Critical Area; SMECO capacity; MDE water appropriation.",
+      "notes": "Calvert Cliffs NRC EPZ 10-mile zone; Chesapeake Bay Critical Area; SMECO capacity; MDE water appropriation. [DATA CORRECTION 2026-07-27: this record's county name was 'Calvert County' but FIPS 24019 is Dorchester County. The name has been corrected; the title and description were written about Calvert County and must be re-researched for Dorchester County before being relied on.]",
       "sources": [
         {
           "label": "Calvert County Department of Planning and Zoning",
@@ -36572,7 +36545,7 @@
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 94,
       "source_tier": 1
     },
@@ -36607,7 +36580,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -36642,7 +36615,7 @@
       "source_tier": 3
     },
     "13131": {
-      "name": "Greene County",
+      "name": "Grady County",
       "state": "Georgia",
       "level": -1,
       "types": [
@@ -36653,7 +36626,7 @@
       "description": "Greene County (Greensboro, GA) anchors the Lake Oconee resort corridor, home to the Reynolds Plantation and Ritz-Carlton Lodge luxury resort communities along the Georgia Power-operated Lake Oconee reservoir. The county has attracted technology-sector relocations from Atlanta as remote-work dynamics brought high-income knowledge workers to the lake community, creating demand for nearby edge computing and data center capacity. Georgia Power operates the Wallace Dam that creates Lake Oconee, and the county's position on Georgia Power's load-balancing system provides competitive industrial rates. Georgia's data center sales-tax exemption (O.C.G.A. \u00a748-8-3(68)) applies. The Greene County Joint Development Authority participates in Georgia EMC's industrial location program to attract qualifying computing infrastructure.",
       "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "Lake Oconee Georgia Power reservoir; Reynolds Plantation tech workforce; O.C.G.A. \u00a748-8-3(68); Atlanta remote worker migration.",
+      "notes": "Lake Oconee Georgia Power reservoir; Reynolds Plantation tech workforce; O.C.G.A. \u00a748-8-3(68); Atlanta remote worker migration. [DATA CORRECTION 2026-07-27: this record's county name was 'Greene County' but FIPS 13131 is Grady County. The name has been corrected; the title and description were written about Greene County and must be re-researched for Grady County before being relied on.]",
       "sources": [
         {
           "label": "Greene County Joint Development Authority",
@@ -36731,7 +36704,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -36854,7 +36827,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -36893,12 +36866,12 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
     "36101": {
-      "name": "St. Lawrence County",
+      "name": "Steuben County",
       "state": "New York",
       "level": -1,
       "types": [
@@ -36909,7 +36882,7 @@
       "description": "St. Lawrence County (Canton/Potsdam, NY) borders Canada along the St. Lawrence River and benefits from the St. Lawrence-FDR Power Project \u2014 a 912 MW hydroelectric facility operated by the New York Power Authority (NYPA) and Ontario Power Generation jointly. NYPA's low-cost hydropower allocations (St. Lawrence Power) are available to qualifying industrial customers in the county, providing among the lowest industrial electric rates in New York State. National Grid and NYPA serve the county. Clarkson University and SUNY Canton and SUNY Potsdam anchor research computing. The county's Canadian fiber interconnects (via the Seaway International Bridge at Ogdensburg and the Thousand Islands Bridge) provide cross-border connectivity for operators requiring Canadian data residency paths. New York's climate-positive data center incentives under the CLCPA framework apply to qualifying facilities.",
       "effective_date": "2020-01-01",
       "status": "active",
-      "notes": "NYPA St. Lawrence Power low-cost hydro; Clarkson/SUNY Potsdam/Canton; Canadian fiber bridge; NYPA REPS allocations.",
+      "notes": "NYPA St. Lawrence Power low-cost hydro; Clarkson/SUNY Potsdam/Canton; Canadian fiber bridge; NYPA REPS allocations. [DATA CORRECTION 2026-07-27: this record's county name was 'St. Lawrence County' but FIPS 36101 is Steuben County. The name has been corrected; the title and description were written about St. Lawrence County and must be re-researched for Steuben County before being relied on.]",
       "sources": [
         {
           "label": "St. Lawrence County Industrial Development Agency (SLCIDA)",
@@ -36927,7 +36900,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -36961,7 +36934,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -36994,7 +36967,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37027,7 +37000,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37095,7 +37068,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37163,12 +37136,12 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
     "41069": {
-      "name": "Yamhill County",
+      "name": "Wheeler County",
       "state": "Oregon",
       "level": -1,
       "types": [
@@ -37179,7 +37152,7 @@
       "description": "Yamhill County (McMinnville, OR) is the heart of the Willamette Valley wine country \u2014 the nation's most acclaimed Pinot Noir appellation \u2014 and hosts Linfield University and the Evergreen International Aviation Museum (the Spruce Goose). The county's agriculture AI demand from precision viticulture \u2014 soil sensing, canopy management, harvest prediction \u2014 is among the most sophisticated per-acre computing requirements of any agricultural sector. Portland General Electric (PGE) serves the northern part of the county and Pacific Power the southern portion. Oregon's data center equipment exemption and Yamhill County's proximity to the Portland/Hillsboro data center campus (Intel, Google, Facebook) make the county attractive for agricultural AI and edge computing deployments. The county's Newberg and McMinnville urban growth boundaries support industrial development with PGE/Pacific Power access.",
       "effective_date": "2021-01-01",
       "status": "active",
-      "notes": "Willamette Valley precision viticulture AI; PGE/Pacific Power dual service; Portland/Hillsboro DC campus spillover; Linfield Univ.",
+      "notes": "Willamette Valley precision viticulture AI; PGE/Pacific Power dual service; Portland/Hillsboro DC campus spillover; Linfield Univ. [DATA CORRECTION 2026-07-27: this record's county name was 'Yamhill County' but FIPS 41069 is Wheeler County. The name has been corrected; the title and description were written about Yamhill County and must be re-researched for Wheeler County before being relied on.]",
       "sources": [
         {
           "label": "Yamhill County Economic Development",
@@ -37197,7 +37170,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37231,7 +37204,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37269,7 +37242,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37308,7 +37281,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37342,7 +37315,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37381,7 +37354,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37453,7 +37426,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37487,7 +37460,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37525,7 +37498,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37565,7 +37538,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37603,7 +37576,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37641,7 +37614,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37679,7 +37652,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37719,7 +37692,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37759,7 +37732,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37798,7 +37771,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37838,7 +37811,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37876,7 +37849,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37914,7 +37887,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37952,7 +37925,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -37990,7 +37963,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38028,7 +38001,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38066,7 +38039,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38104,7 +38077,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38142,7 +38115,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38180,7 +38153,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38218,7 +38191,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38256,7 +38229,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38294,7 +38267,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38332,7 +38305,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38370,7 +38343,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38408,7 +38381,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38446,7 +38419,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38484,7 +38457,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38522,7 +38495,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38560,7 +38533,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38598,7 +38571,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38641,7 +38614,7 @@
       "source_tier": 3
     },
     "21115": {
-      "name": "Kenton County",
+      "name": "Johnson County",
       "state": "Kentucky",
       "level": -1,
       "types": [
@@ -38652,7 +38625,7 @@
       "description": "Kenton County (Covington/Florence, KY) is the northern Kentucky anchor of the Cincinnati metro and home to Cincinnati/Northern Kentucky International Airport (CVG), Amazon Air Hub's largest North American sort facility. LG&E/KU Energy serves the county from the Florence and Covington 138 kV substations; PJM interconnection provides reliable access to the Midwest's diverse generation portfolio. Kentucky's KEDFA (Kentucky Economic Development Finance Authority) offers Kentucky Business Investment (KBI) incentives \u2014 withholding-tax credits of up to 80% for eligible technology-sector employers \u2014 under KRS \u00a7154.32. Kenton County's Tax Increment Financing (TIF) program and the Northern Kentucky Economic Development Corporation (NKEDC) coordinate site certification for industrial users along I-71/I-75 with available LG&E 138kV service and Zayo/AT&T long-haul fiber.",
       "effective_date": "2019-01-01",
       "status": "active",
-      "notes": "Amazon Air CVG largest NA hub; LG&E/KU 138kV PJM; KBI KRS \u00a7154.32 withholding credit; NKEDC sites.",
+      "notes": "Amazon Air CVG largest NA hub; LG&E/KU 138kV PJM; KBI KRS \u00a7154.32 withholding credit; NKEDC sites. [DATA CORRECTION 2026-07-27: this record's county name was 'Kenton County' but FIPS 21115 is Johnson County. The name has been corrected; the title and description were written about Kenton County and must be re-researched for Johnson County before being relied on.]",
       "sources": [
         {
           "label": "KEDFA \u2014 Kentucky Business Investment (KBI) Program (KRS \u00a7154.32)",
@@ -38674,12 +38647,12 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
     "21125": {
-      "name": "Lawrence County",
+      "name": "Laurel County",
       "state": "Kentucky",
       "level": -1,
       "types": [
@@ -38690,7 +38663,7 @@
       "description": "Lawrence County (Louisa, KY) occupies the Big Sandy River valley on the Kentucky\u2013West Virginia border, served by Kentucky Power (AEP). ARC Distressed designation and POWER+ Initiative eligibility provide federal economic development incentives for new industries. Kentucky KEDFA KBI incentives include wage assessment credits up to 100% of withholding tax for up to 15 years. The county's proximity to the Big Sandy coalfield provides existing heavy-electrical infrastructure and skilled technical workforce. No active restrictions on data center development.",
       "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "ARC Distressed; KY Power/AEP service; KEDFA KBI and POWER+ eligible; Big Sandy infrastructure.",
+      "notes": "ARC Distressed; KY Power/AEP service; KEDFA KBI and POWER+ eligible; Big Sandy infrastructure. [DATA CORRECTION 2026-07-27: this record's county name was 'Lawrence County' but FIPS 21125 is Laurel County. The name has been corrected; the title and description were written about Lawrence County and must be re-researched for Laurel County before being relied on.]",
       "sources": [
         {
           "label": "Lawrence County KY \u2014 Official Website",
@@ -38712,7 +38685,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38750,12 +38723,12 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
     "21123": {
-      "name": "Laurel County",
+      "name": "Larue County",
       "state": "Kentucky",
       "level": -1,
       "types": [
@@ -38766,7 +38739,7 @@
       "description": "Laurel County (London, KY) sits on the I-75 corridor in southeastern Kentucky, one of the most strategically located counties in the state for logistics-adjacent data center development. The county is served by Duke Energy Kentucky and East Kentucky Power Cooperative (EKPC). Laurel County qualifies for Kentucky KEDFA KBI (Kentucky Business Investment) wage assessment credits and the Kentucky Enterprise Initiative Act (KEIA) sales tax refund on construction materials. The county has a record of manufacturing investment and an affordable industrial land market. No active restrictions on data centers.",
       "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "I-75 corridor access; Duke Energy KY/EKPC service; KEDFA KBI (15-yr wage credit) and KEIA eligible.",
+      "notes": "I-75 corridor access; Duke Energy KY/EKPC service; KEDFA KBI (15-yr wage credit) and KEIA eligible. [DATA CORRECTION 2026-07-27: this record's county name was 'Laurel County' but FIPS 21123 is Larue County. The name has been corrected; the title and description were written about Laurel County and must be re-researched for Larue County before being relied on.]",
       "sources": [
         {
           "label": "Laurel County KY Economic Development \u2014 London KY",
@@ -38788,7 +38761,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38826,7 +38799,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38864,7 +38837,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38940,7 +38913,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -38978,7 +38951,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39055,7 +39028,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39094,7 +39067,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39132,7 +39105,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39170,7 +39143,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39360,7 +39333,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39398,7 +39371,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39436,7 +39409,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39474,7 +39447,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39512,7 +39485,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39550,7 +39523,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39588,7 +39561,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39626,7 +39599,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39664,7 +39637,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39702,7 +39675,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39740,7 +39713,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39778,7 +39751,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -39933,7 +39906,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -40030,7 +40003,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -40189,7 +40162,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -40224,7 +40197,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -40259,12 +40232,12 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
     "40053": {
-      "name": "Grady County",
+      "name": "Grant County",
       "state": "Oklahoma",
       "level": -1,
       "types": [
@@ -40276,7 +40249,7 @@
       "description": "Grady County (Chickasha, Tuttle) eligible for Oklahoma Quality Jobs Program and data center ad valorem and sales tax exemptions. OG&E (Oklahoma Gas and Electric) provides industrial transmission south of OKC on I-44 corridor. Oklahoma Department of Commerce FastTrack program available.",
       "effective_date": "2000-01-01",
       "status": "active",
-      "notes": "Oklahoma City southern suburb corridor. OG&E industrial service with available 138kV capacity on I-44.",
+      "notes": "Oklahoma City southern suburb corridor. OG&E industrial service with available 138kV capacity on I-44. [DATA CORRECTION 2026-07-27: this record's county name was 'Grady County' but FIPS 40053 is Grant County. The name has been corrected; the title and description were written about Grady County and must be re-researched for Grant County before being relied on.]",
       "sources": [
         {
           "label": "Oklahoma Quality Jobs Program \u2013 ODFA",
@@ -40294,7 +40267,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -40329,7 +40302,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -40364,7 +40337,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -40678,7 +40651,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -40713,7 +40686,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -40748,7 +40721,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -40783,7 +40756,7 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
     },
@@ -40911,9 +40884,59 @@
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "verified",
+      "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
+    },
+    "20111": {
+      "name": "Lyon County",
+      "state": "Kansas",
+      "level": 4,
+      "types": [
+        "data_center"
+      ],
+      "title": "Lyon County KS \u2014 Six-Month Data Center Moratorium",
+      "description": "Lyon County commissioners approved a six-month moratorium on data centers. Lyon County was absent from this platform's dataset entirely before this record was added.",
+      "effective_date": null,
+      "status": "active",
+      "notes": "Six-month duration reported; adoption date not established, so expiry is unknown and this record needs re-checking. Located via web search on 2026-07-27; the county's own page was identified but returned HTTP 403 to automated retrieval, so its text was not read directly by the pipeline. Facts here come from the search result summary and corroborating local news coverage. A human should open the cited government URL to confirm the exact terms before treating this as Tier 1 verified.",
+      "sources": [
+        {
+          "label": "KSNT: Moratorium on data centers approved by Lyon County commissioners",
+          "url": "https://www.ksnt.com/news/local-news/moratorium-on-data-centers-approved-by-lyon-county-commissioners/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-27",
+      "confidence": "medium",
+      "confidence_score": 51,
+      "source_tier": 3
+    },
+    "06025": {
+      "name": "Imperial County",
+      "state": "California",
+      "level": 4,
+      "types": [
+        "data_center"
+      ],
+      "title": "Imperial County CA \u2014 One-Year Data Center Moratorium",
+      "description": "The Imperial County Board of Supervisors unanimously approved a moratorium barring new data center construction for one year, to allow an advisory board time to develop rules for future development. Imperial County was absent from this platform's dataset entirely before this record was added.",
+      "effective_date": null,
+      "status": "active",
+      "notes": "One-year duration reported, adopted unanimously; the exact adoption date was not established. Located via web search on 2026-07-27; the county's own page was identified but returned HTTP 403 to automated retrieval, so its text was not read directly by the pipeline. Facts here come from the search result summary and corroborating local news coverage. A human should open the cited government URL to confirm the exact terms before treating this as Tier 1 verified.",
+      "sources": [
+        {
+          "label": "inewsource: Imperial County's data center moratorium will last one year",
+          "url": "https://inewsource.org/2026/07/14/data-center-moratorium-imperial-county/"
+        }
+      ],
+      "lifecycle_stage": "effective",
+      "pipeline_verified": false,
+      "last_reviewed": "2026-07-27",
+      "confidence": "medium",
+      "confidence_score": 51,
+      "source_tier": 3
     }
   },
   "validation_report": {
@@ -50468,7 +50491,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-26T08:28:32.438488+00:00",
+    "last_computed": "2026-07-27T14:14:59.513622+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

@@ -77,11 +77,19 @@ t('economy build',    R.build('economy', {}),          '#economy');
 t('economy w/ params', P('#economy?metric=population').params, { metric: 'population' });
 t('economy not legacy', P('#economy').legacy,          null);
 
-/* ── platform metadata accessors (async load) ── */
+/* ── platform metadata accessors (async load) ──
+   Read the expected values from the file rather than hardcoding them. The
+   accessor's job is to return what platform_metadata.json says; asserting a
+   literal 1465 tested the DATA, not the accessor, so every legitimate county
+   addition broke this test. It broke on 1465 -> 1467 when nine moratorium
+   records were corrected or added. */
+const _meta = JSON.parse(readFileSync('data/platform_metadata.json', 'utf8'));
+const _expectedCounties = _meta.coverage.counties_in_database;
+const _expectedPct = Math.round(_meta.coverage.counties_coverage_pct);
 setTimeout(() => {
-  t('platformStat counties', window.platformStat('coverage.counties_in_database', 0), 1465);
+  t('platformStat counties', window.platformStat('coverage.counties_in_database', 0), _expectedCounties);
   t('platformStat fallback', window.platformStat('missing.path', 'fb'), 'fb');
-  t('coveragePct', window.coveragePct(), 47);
+  t('coveragePct', window.coveragePct(), _expectedPct);
 
   console.log(`\n${pass} passed, ${fail} failed`);
   process.exit(fail ? 1 : 0);
