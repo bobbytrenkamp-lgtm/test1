@@ -164,11 +164,19 @@ regulation, and are never used to infer a policy record.
   publication schedules (daily for Treasury yields, monthly for CPI and payrolls,
   quarterly for GDP).
 - **Output**: `data/economy/fred_data.json`
-- **Series tracked (18)**: configured in `data/economy/series_config.json`, not
+- **Series tracked (21)**: configured in `data/economy/series_config.json`, not
   hardcoded. Rates & Credit (`DFF`, `DGS2`, `DGS10`, `T10Y2Y`, `MORTGAGE30US`,
   `NFCI`, `BUSLOANS`, `CREACBM027NBOG`), Inflation & Growth (`CPIAUCSL`, `PCEPI`,
   `GDPC1`, `INDPRO`), Labor & Demand (`UNRATE`, `PAYEMS`, `ICSA`, `RSAFS`),
-  Housing & Construction (`HOUST`, `PERMIT`).
+  Housing & Construction (`HOUST`, `PERMIT`), Energy & Power Costs
+  (`APU000072610`, `PCU2211102211104`, `DHHNGSP`). Power is typically a data
+  center's largest recurring operating cost and was previously untracked; the
+  three energy series give a national retail electricity price, a producer-side
+  utility-generation cost index, and the Henry Hub natural gas spot price (the
+  dominant marginal fuel for US electricity generation, so a leading indicator
+  rather than a lagging one). None is promoted to the KPI strip — the 7-KPI
+  National Economic Pulse count is a fixed design decision — but the category's
+  chart is shown by default like every other category.
 
 **Attribution note:** FRED *hosts* series produced by other agencies — BLS
 (`CPIAUCSL`, `UNRATE`, `PAYEMS`), BEA (`GDPC1`, `PCEPI`), Census (`HOUST`,
@@ -185,11 +193,11 @@ run and never publishes an empty chart.
 - **Publisher**: U.S. Census Bureau
 - **Endpoints**: `https://api.census.gov/data/{year}/acs/acs5`,
   `.../acs5/variables.json` (per-vintage variable verification)
-- **Key**: `CENSUS_API_KEY` repository secret, server-side only — and **optional**.
-  Census answers unauthenticated requests at roughly 500/day per IP; a full run
-  costs about 13 (one batch of 16 variables x 6 vintages x 2 geography levels,
-  plus the vintage probe), so the pipeline runs keyless when the secret is
-  absent. The key only raises a ceiling this pipeline does not reach. Note that
+- **Key**: `CENSUS_API_KEY` repository secret, server-side only — **required**.
+  Census allowed roughly 500 unauthenticated requests/day until May 12, 2026,
+  when it began requiring a key for every Data API request. Without the key,
+  Census (ACS, PEP, CBP) is skipped with a warning and existing data is
+  preserved — the pipeline never crashes, it just does not refresh. Note that
   an *empty* `key=` is not the same as no key — Census rejects a blank one, so
   `_census_key_param()` omits the parameter entirely rather than sending it empty.
 - **Update frequency**: one new vintage per year. The pipeline checks weekly
@@ -231,6 +239,51 @@ throughout the UI.
   rankings and percent-change calculations. They are never coerced to 0.
 - A CBP failure cannot break the Economy page — it is fetched separately and
   wrapped so an exception is logged and ignored.
+
+### U.S. Census Bureau — Population Estimates Program (PEP, optional module)
+- **Endpoint**: `https://api.census.gov/data/{year}/pep/population`
+- **Output**: merged into each county's own record in `data/economy/census_county.json`
+  as `population_estimate` — **not** a separate file, and **not** the same field as
+  the ACS `population` metric. ACS `population` is a 5-year rolling survey average;
+  `population_estimate` is a current-year point estimate, published on its own
+  annual cadence. The UI never mixes the two into one number.
+- **Vintage selection**: PEP's response for a given year is a time series — every
+  published `DATE_CODE` comes back in one call, including the decennial Census
+  baseline row, not just the latest annual estimate. The pipeline probes a single
+  geography first, reads the real `DATE_DESC` text Census returns (e.g. "7/1/2025
+  population estimate"), and picks the highest-year row whose description actually
+  says "population estimate" — never a hardcoded `DATE_CODE` number, and never the
+  Census baseline row, which is a fixed point, not a current estimate.
+- **Sanity floor**: fewer than 2,000 counties returned is treated as a broken
+  response and discarded rather than published as a partial dataset.
+- A PEP failure cannot break the ACS county data it supplements — isolated the
+  same way CBP is.
+
+### Building Permits Survey (BPS, optional module, via FRED)
+- **Endpoint**: FRED's per-county series, `BPPRIV<5-digit FIPS>`
+  (e.g. `BPPRIV048089` for Colorado County, TX) — **not** the Census Data API.
+  Census distributes county-level BPS only as an annual flat file, not a JSON API;
+  FRED already hosts the same data one series per county, so this stays on the
+  same HTTP+JSON code path as every other FRED series in this pipeline instead of
+  adding a second, CSV-parsing ingestion path for one module.
+- **Output**: merged into each county's own record as `building_permits` — new
+  private housing units authorized by permit, with a year-over-year change figure.
+  This is genuinely new information, not a duplicate of the platform's existing
+  national `PERMIT` FRED series: that one is a single national aggregate with no
+  way to tell whether any specific county's permitting activity is accelerating or
+  slowing, which speaks directly to local construction/contractor capacity.
+- **Own cadence, not the daily one**: unlike everything else in this pipeline,
+  this makes roughly one HTTP request *per county* (~3,000+) since FRED has no
+  bulk per-county endpoint. BPS also publishes annually. Both reasons mean it
+  cannot run on FRED's own daily cadence — it has an independent 30-day freshness
+  gate (`--permits-max-age-days`, `permits_last_successful_update` in the
+  metadata) so the ~3,000-request cost is paid rarely, not every day.
+- **Coverage is expected to be partial**, not universal: many small/rural counties
+  have never reported to BPS. A low floor (500 counties with real data) catches a
+  total failure — wrong series ID pattern, rejected key — without demanding
+  near-universal coverage the source itself does not have.
+- A Building Permits failure cannot break the ACS county data it supplements —
+  isolated the same way CBP and PEP are.
 
 ### Pipeline and safety
 - **Script**: `data/update_economic_data.py` (Python standard library only)
@@ -290,8 +343,8 @@ license-audit. Python needs only `requests`, `beautifulsoup4` and
 
 | Key | Service | Cost | If absent |
 |---|---|---|---|
-| `FRED_API_KEY` | Federal Reserve Economic Data | Free, unlimited | FRED skipped; existing data preserved. The only key the pipeline truly needs — FRED rejects keyless requests. |
-| `CENSUS_API_KEY` | Census ACS / CBP | Free, 500 calls/day without a key, unlimited with | **Census still runs, keyless.** A full run costs ~13 calls, so the free anonymous allowance covers it. |
+| `FRED_API_KEY` | Federal Reserve Economic Data | Free, unlimited | FRED skipped; existing data preserved. FRED rejects keyless requests. |
+| `CENSUS_API_KEY` | Census ACS / PEP / CBP | Free, unlimited | Census skipped; existing data preserved. Census required no key until May 12, 2026; it now requires one for every request, same as FRED. |
 | `CONGRESS_API_KEY` | Congress.gov | Free via api.data.gov | Falls back to `DEMO_KEY` — works, just rate-limited |
 | `LEGISCAN_API_KEY` | LegiScan state bills | Free tier (30k queries/month) | Logged as `[skip]`, monitor continues |
 | `SUPABASE_URL` / `SUPABASE_ANON_KEY` | Optional accounts | Free tier | Auth button hidden; site fully functional signed-out |

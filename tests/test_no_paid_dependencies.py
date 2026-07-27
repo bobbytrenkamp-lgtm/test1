@@ -206,35 +206,33 @@ def test_missing_key_is_a_skip_not_a_failure():
     src = (ROOT / "data/update_economic_data.py").read_text()
     check("FRED_API_KEY is not set" in src,
           "no explicit warning path for a missing FRED key")
-    check("CENSUS_API_KEY not set" in src,
+    check("CENSUS_API_KEY is not set" in src,
           "no explicit branch for a missing Census key")
     check("preserved unchanged" in src,
           "missing-key path does not state that existing data is preserved")
 
 
-def test_census_still_runs_without_a_key():
-    """Census must degrade to keyless, not to nothing.
+def test_census_key_is_required_and_degrades_gracefully():
+    """Census requires a key (Census policy since May 12, 2026) but a missing
+    one must still be a skip, not a crash — same contract as FRED.
 
-    Census answers unauthenticated requests (~500/day per IP) and a full run
-    costs ~13, so gating the whole ACS pull on an optional free key would cost
-    the user the Economy tab for no reason. Two properties make it real:
-    the key parameter must DISAPPEAR when unset (Census rejects a blank
-    `key=`), and the fetch must not sit behind an `if not census_key: skip`.
+    This test used to assert Census ran successfully WITHOUT a key, because
+    that was true when it was written: Census then allowed ~500 unauthenticated
+    requests/day. Census closed that off for every Data API request, which is
+    what turned the pipeline's real keyless attempts into unexplained
+    JSONDecodeErrors in production before this was understood. The assertion
+    changed to match; the underlying "never crash, never require a key to
+    avoid a hard failure" rule has not.
     """
     src = (ROOT / "data/update_economic_data.py").read_text()
     check("_census_key_param" in src,
-          "no helper that omits the Census key parameter when it is unset")
-    # Every `key=` interpolation must sit behind the truthiness guard. Checking
-    # for the substring alone would flag the helper's own guarded return, so
-    # look for a line that interpolates the key WITHOUT the guard on it.
-    unguarded = [ln.strip() for ln in src.splitlines()
-                 if "&key={" in ln and "if api_key else" not in ln]
-    check(not unguarded,
-          f"Census URL interpolates key= unconditionally ({unguarded}) — an "
-          f"empty key is rejected by Census, so keyless runs would fail")
-    check("skipping Census" not in src,
-          "a missing Census key still skips the ACS pull entirely; it should "
-          "run keyless instead")
+          "no helper that omits the Census key parameter when it is unset "
+          "(still correct even though a key is now required in practice: "
+          "Census rejects a blank key= outright, never treats it as 'no key')")
+    check("CENSUS_API_KEY is not set — skipping Census" in src,
+          "missing Census key no longer has an explicit skip path with a clear reason")
+    check("May 12, 2026" in src,
+          "the policy-change date should be documented, not just 'requires a key'")
 
 
 def test_no_key_required_for_the_site_itself():

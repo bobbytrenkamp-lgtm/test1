@@ -5,6 +5,128 @@
 Date: 2026-07-27
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Three new FRED/Census data sources, plus a policy-change correction
+
+## Why this happened
+Asked what else could usefully be pulled from FRED/Census beyond what the
+Economy tab already tracked. Answered with three concrete, verified-real
+candidates rather than a generic list, then built all three: FRED electricity
+price context (power is a data center's largest recurring operating cost and
+was completely untracked), Census Population Estimates Program (a current-year
+population figure less lagged than the existing ACS 5-year rolling average),
+and Census Building Permits Survey (the first COUNTY-level construction-permit
+trend on the platform — the existing PERMIT series is national-only).
+
+## A correction, not just new features
+Researching Building Permits' API surface surfaced something that corrects
+work from earlier the same day: Census changed its API policy on **May 12,
+2026** to require a key for every Data API request. The "Census runs keyless"
+fix shipped in PR #179 that morning was built against the OLD policy (roughly
+500 unauthenticated requests/day) and had never actually succeeded keyless in
+production -- the JSONDecodeError it was built to diagnose was this policy
+change, not the bulk-request quirk it was originally diagnosed as. Reverted the
+keyless attempt back to an explicit skip (matching FRED's contract exactly:
+missing key -> skip with a warning -> existing data preserved, never a crash),
+and corrected every doc/test/comment that claimed otherwise: `data/
+update_economic_data.py`, both test files, `.github/workflows/
+update_economic_data.yml`, `README.md`, `DATA_SOURCES.md`, `AI_CONTEXT.md`,
+`PROJECT_CONTEXT.md`. `_census_key_param()` itself was kept as-is -- still
+correct behavior (an empty `key=` is rejected by Census as an invalid key, not
+treated as "no key"), just no longer reachable via a code path that succeeds.
+
+## What shipped
+
+**FRED Energy & Power Costs category (3 series)** -- `APU000072610` (national
+retail electricity price), `PCU2211102211104` (utility power-generation
+producer price index), `DHHNGSP` (Henry Hub natural gas spot price, the
+dominant marginal fuel for US generation and therefore a leading rather than
+lagging indicator). Not promoted to the KPI strip -- the 7-KPI count is a fixed
+design decision from the original spec, confirmed by a test that asserts
+`len(orders) == 7` -- but the category renders like any other, verified live:
+5 category tabs, chart renders with real data once the fixture was updated to
+carry a synthetic series for it.
+
+**Census Population Estimates Program** -- `data/update_economic_data.py`:
+`discover_pep_vintage()` + `collect_pep_population()`. PEP's response for a
+vintage year is a time series covering every published DATE_CODE at once
+(including the decennial Census baseline row, not just the latest annual
+estimate), and which numeric DATE_CODE means "latest" is not documented to be
+stable across vintages -- so this probes one geography first, reads the actual
+DATE_DESC text Census sends back, and picks the highest-year row whose
+description says "population estimate" by regex, never a hardcoded code. Merged
+into each county's own record as `population_estimate`, kept explicitly
+separate from the ACS `population` metric (different measurement, different
+cadence) rather than merged into it. 2,000-county sanity floor.
+
+**Census Building Permits Survey** -- reached via FRED, not the Census Data
+API: Census only distributes county-level BPS as an annual flat file, while
+FRED already hosts the same data one series per county
+(`BPPRIV<5-digit-FIPS>`, confirmed against real published series). That's
+roughly one HTTP request PER COUNTY (~3,000+) with no bulk endpoint, so it
+cannot run on the pipeline's daily cadence -- it has its own 30-day freshness
+gate (`--permits-max-age-days`, `permits_last_successful_update`, independent
+of Census's own 7-day ACS gate), plus `--force-permits`/`--skip-permits`/
+`--permits-max-counties` for manual control. Merged in as `building_permits`
+per county. Coverage is expected to be partial (many small counties never
+reported to BPS) -- floor is 500 real results, not PEP's 2,000, specifically
+because near-universal coverage would be the WRONG expectation for this
+source, not the right one.
+
+**Frontend integration** -- both new fields render in the Regional Explorer
+profile panel as a visually separate "supplementary" block (never merged into
+the ACS metrics table rows, so a reader never mistakes a PEP estimate for an
+ACS figure or a permit count for a percentile-ranked metric) and in the
+due-diligence report's Economic Context section, reusing the same data rather
+than adding a second display path. Two new SIGNAL_RULES
+(`permits_accelerating`, `permits_slowing`) read `c.building_permits` directly
+rather than through `metricValue()`, since it doesn't share the ACS
+value/change_1y_pct/change_5y_pct shape. Verified live: "Construction activity
+accelerating" fires correctly for a synthetic +18.4% YoY county in the browser,
+with zero JS errors.
+
+## Bug caught by live verification
+First live check of the report generator's new supplementary rows showed
+"++18.4% YoY" -- a double plus sign. `E.fmtPct()` already prepends "+" for
+positive values; the report code added a second one on top. Fixed in
+`js/report.js`. The profile-panel version (`js/economy-view.js`) was correct
+from the start -- it used the `direction()` helper's glyph instead of a manual
+sign, which is the safer pattern and should probably be the one this codebase
+standardizes on for any future YoY display.
+
+## Tests
+71 new offline assertions in `tests/test_economic_data.py` (316 total): regex
+matching against real PEP DATE_DESC formats (including proving the decennial
+Census row does NOT match), an end-to-end `collect_pep_population()` test
+against sample payloads shaped like the real API, `_bps_series_id()` format,
+`collect_permits()` skip/floor/cap behavior via a routed `_get_json` mock keyed
+off the series_id embedded in the URL, and `validate_outputs()` catching a
+negative value or future date in either new field. `tests/fixtures/economy/`
+extended with synthetic (clearly marked) PEP/permits data for two counties and
+a synthetic electricity-price FRED series, so the browser E2E suite could
+exercise the real rendering paths rather than asserting against empty state.
+288/288 unit tests, 316/316 economic assertions, full E2E suite all pass with
+zero JS errors.
+
+## Not verified live here
+Building Permits' ~3,000-request cost was not run against the real API from
+this session -- `.gov`/FRED domains are unreachable from this sandbox the same
+way they were for the earlier Census keyless work. The series ID pattern is
+confirmed real (matched against actual published FRED series in search
+results), and the code is defensive (never crashes on a missing per-county
+series, never publishes a suspiciously small result), but the first live
+workflow run is the actual test of the full ~3,000-county pull.
+
+## Still outstanding
+- FRED_API_KEY and CENSUS_API_KEY are both configured and working as of this
+  session's earlier live runs; Building Permits has not yet run live.
+- The 16 previously-mismatched counties and the 2,273 unresearched counties
+  are unchanged by this session.
+
+---
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Re-researched the 16 counties with mismatched FIPS/name
 
 ## Why this happened

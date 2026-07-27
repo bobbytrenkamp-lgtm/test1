@@ -652,21 +652,46 @@ js/economy-view.js   the four Economy tab sections + Leaflet explorer (window.EC
 js/economy-map.js    economic choropleths for the MAIN Map tab       (window.ECONOMY_MAP)
 css/economy.css
 data/update_economic_data.py            the whole pipeline (stdlib only, no pip install)
-data/economy/series_config.json         18 FRED series, 4 categories — presentation truth
+data/economy/series_config.json         21 FRED series, 5 categories — presentation truth
 data/economy/census_config.json         ACS variable map + label fragments for verification
 data/economy/fred_data.json             generated
-data/economy/census_county.json         generated
+data/economy/census_county.json         generated — also carries population_estimate (PEP)
+                                         and building_permits (BPS via FRED) per county, see below
 data/economy/census_state.json          generated
 data/economy/economic_metadata.json     generated — provenance, warnings, staleness
 data/economy/census_cbp.json            generated, optional
 .github/workflows/update_economic_data.yml
-tests/test_economic_data.py             259 offline assertions
+tests/test_economic_data.py             316 offline assertions
 tests/fixtures/economy/                 SYNTHETIC data for browser tests — never real
 ```
 
 The three JS modules mirror the zoning split (`zoning.js` / `zoning-map.js` /
 `zoning-details.js`): `economy.js` owns data and math, the other two own DOM.
 Load order in index.html is economy.js -> economy-view.js -> economy-map.js.
+
+### Two supplementary per-county fields — read this before touching either
+
+`census_county.json` counties carry two fields that are NOT part of the ACS
+`.metrics` shape `metricValue()`/`comparisons()` expect — reading them through
+those functions returns nothing, by design:
+
+- `population_estimate` — `{value, year, as_of_label}`. Census Population
+  Estimates Program, a current-year point estimate. **Not the same measurement**
+  as the ACS `population` metric (a 5-year rolling average) and never merged into
+  it — shown as its own labelled row in the profile panel and report, always with
+  the word "estimate" and its vintage attached.
+- `building_permits` — `{value, as_of, change_yoy_pct}`. Census Building Permits
+  Survey, reached via FRED's per-county `BPPRIV<FIPS>` series rather than the
+  Census Data API (Census only distributes county-level BPS as an annual flat
+  file). Genuinely new information vs. the existing national `PERMIT` FRED
+  series — this is the only county-level construction-permit trend on the
+  platform. Coverage is expected to be partial (many small counties never
+  reported to BPS) — its absence on a given county is not a bug.
+
+Both are optional and isolated in the pipeline (a failure of either leaves ACS
+data untouched) and both drive their own `SIGNAL_RULES` entries in `economy.js`
+(`permits_accelerating`, `permits_slowing` read `c.building_permits` directly,
+not through `metricValue()`).
 
 ### Data flow
 ```
@@ -690,20 +715,23 @@ window.ECONOMY.load(key)       lazy, memoized, one in-flight promise per file
 ```
 
 ### API secrets
-`FRED_API_KEY` (**required**) and `CENSUS_API_KEY` (**optional**) as **repository
+`FRED_API_KEY` and `CENSUS_API_KEY` — both **required** — as **repository
 secrets**. They are read only from the environment inside the workflow, never
 logged (`_redact()` strips them from any URL that could reach a log line), and
 never written to an output file.
 **No API key may ever appear in JS, HTML, JSON, or a committed file.**
 
-**Why two, and why only one is required.** They are two separate free
-registrations at two different agencies — the Federal Reserve Bank of St. Louis
-(`api.stlouisfed.org`) and the U.S. Census Bureau (`api.census.gov`). They are
-not interchangeable and neither can be billed. FRED rejects keyless requests, so
-its key is mandatory. Census answers unauthenticated requests at ~500/day per IP
-and a full run costs ~13, so the ACS pull **runs keyless** when the secret is
-absent — see `_census_key_param()`, which must omit the parameter entirely,
-because Census treats a blank `key=` as an invalid key rather than as no key.
+**Why two.** They are two separate free registrations at two different
+agencies — the Federal Reserve Bank of St. Louis (`api.stlouisfed.org`) and the
+U.S. Census Bureau (`api.census.gov`). They are not interchangeable and neither
+can be billed. FRED has always rejected keyless requests. Census used to be
+different — it allowed roughly 500 unauthenticated requests/day, comfortably
+above what this pipeline needs — but **as of May 12, 2026, Census requires a
+key for every Data API request** (ACS, the Population Estimates Program, CBP,
+all of it). `_census_key_param()` still omits the `key=` parameter entirely
+when unset rather than sending it empty (Census treats a blank key as invalid,
+not as "no key") — that behavior predates the policy change and is harmless to
+keep, but there is no longer a code path where omitting the key succeeds.
 
 A missing FRED key is a warning, not a failure: FRED is skipped and its
 previously committed data is preserved untouched. A missing Census key is not

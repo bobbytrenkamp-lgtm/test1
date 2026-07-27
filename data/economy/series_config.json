@@ -11,7 +11,8 @@
     { "id": "rates",     "label": "Rates & Credit",         "description": "Policy rate, Treasury yields, the yield curve, mortgage costs, and commercial credit growth. These set the cost of financing data center construction." },
     { "id": "inflation", "label": "Inflation & Growth",      "description": "Price indices and aggregate output. Construction and equipment costs track these." },
     { "id": "labor",     "label": "Labor & Demand",          "description": "Employment, claims, and retail demand. Labor availability constrains large construction projects." },
-    { "id": "housing",   "label": "Housing & Construction",  "description": "Housing starts and permits — a leading indicator of regional construction capacity and workforce in-migration." }
+    { "id": "housing",   "label": "Housing & Construction",  "description": "Housing starts and permits — a leading indicator of regional construction capacity and workforce in-migration." },
+    { "id": "energy",    "label": "Energy & Power Costs",    "description": "Electricity price, utility producer costs, and the natural gas price that dominates the marginal cost of US power generation. Power is typically the largest recurring operating cost of a data center." }
   ],
 
   "series": [
@@ -259,6 +260,45 @@
       "invert_direction": false,
       "change_basis": "yoy",
       "tooltip": "Permits authorised for new private housing. Leads housing starts, so it is a forward-looking construction signal."
+    },
+    {
+      "id": "APU000072610",
+      "label": "Average Price: Electricity per Kilowatt-Hour in U.S. City Average",
+      "short_label": "Electricity Price",
+      "category": "energy",
+      "unit_type": "usd_precise",
+      "decimals": 4,
+      "chart_default": true,
+      "kpi": false,
+      "invert_direction": true,
+      "change_basis": "yoy",
+      "tooltip": "National average retail electricity price per kWh, from BLS's Average Price survey. Power is typically the largest recurring operating cost of a data center, and this national retail figure is the closest FRED equivalent to a power-cost benchmark — actual industrial/wholesale rates vary substantially by utility and region and are not covered by this series."
+    },
+    {
+      "id": "PCU2211102211104",
+      "label": "Producer Price Index by Industry: Electric Power Generation: Utilities",
+      "short_label": "Utility Power PPI",
+      "category": "energy",
+      "unit_type": "index",
+      "decimals": 1,
+      "chart_default": false,
+      "kpi": false,
+      "invert_direction": true,
+      "change_basis": "yoy",
+      "tooltip": "Producer-side price index for electric power generation by utilities (Dec 2003=100). Tracks generation-cost pressure upstream of the retail price consumers and businesses eventually pay."
+    },
+    {
+      "id": "DHHNGSP",
+      "label": "Henry Hub Natural Gas Spot Price",
+      "short_label": "Natural Gas Price",
+      "category": "energy",
+      "unit_type": "usd_precise",
+      "decimals": 2,
+      "chart_default": false,
+      "kpi": false,
+      "invert_direction": true,
+      "change_basis": "period",
+      "tooltip": "Daily spot price, dollars per million BTU, from the EIA. Natural gas is the dominant marginal fuel for US electricity generation, so this is a leading indicator for where retail and industrial power prices are headed, not a lagging one."
     }
   ]
 }
