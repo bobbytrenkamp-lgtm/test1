@@ -1449,20 +1449,30 @@ _BLS_EMPL_FIELD_CANDIDATES = ("annual_avg_emplvl", "avg_annual_emplvl")
 
 
 def discover_bls_vintage(max_probe_back=3):
-    """Find the newest QCEW annual vintage that responds, probing the
-    national total area ("US000") rather than hardcoding a year — QCEW's
-    annual file for a given year is not published until roughly Q3 of the
-    following year, so a hardcoded year breaks predictably every cycle,
-    the same reason ACS's vintage is discovered rather than assumed.
+    """Find the newest QCEW annual vintage that responds AT COUNTY LEVEL,
+    rather than hardcoding a year — QCEW's annual file for a given year is
+    not published until roughly Q3 of the following year, so a hardcoded
+    year breaks predictably every cycle, the same reason ACS's vintage is
+    discovered rather than assumed.
+
+    Probes a real, populous county (Los Angeles County, CA — virtually
+    guaranteed to report in any vintage) rather than the national total
+    area ("US000"). A live run found these can disagree: US000 responded
+    for a vintage where every single sampled county still 404'd, meaning
+    national/state QCEW figures can go out before county-level breakdowns
+    for the same year are finalized. Validating against the actual
+    granularity this module reads is what makes "vintage detected" mean
+    what it says, not just "the year exists at some level of aggregation".
     """
+    _PROBE_COUNTY = "06037"  # Los Angeles County, CA
     start = date.today().year - 1
     for year in range(start, start - max_probe_back - 1, -1):
-        url = BLS_QCEW_AREA_URL.format(year=year, area_fips="US000")
+        url = BLS_QCEW_AREA_URL.format(year=year, area_fips=_PROBE_COUNTY)
         rows, err = _get_csv_rows(url, timeout=60)
         if not err and rows:
             print(f"  BLS QCEW vintage detected: {year}")
             return year
-        print(f"  BLS QCEW {year}: not available ({err or 'empty response'})")
+        print(f"  BLS QCEW {year}: not available at county level ({err or 'empty response'})")
     return None
 
 

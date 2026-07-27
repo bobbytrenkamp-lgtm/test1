@@ -56,7 +56,12 @@ FRED_OBS_RESPONSE = {
 
 ACS_VARIABLES_RESPONSE = {
     "variables": {
-        "B01003_001E": {"label": "Estimate!!Total population", "concept": "TOTAL POPULATION"},
+        # Real label confirmed live 2026-07-27: just "Estimate!!Total", not
+        # "Estimate!!Total population" -- the wrong guess this fixture used
+        # to make, which silently nulled population on every live ACS run
+        # since the feature first shipped (undetected because verify_variables()
+        # fails safe by omitting the metric rather than crashing).
+        "B01003_001E": {"label": "Estimate!!Total", "concept": "TOTAL POPULATION"},
         "B01002_001E": {"label": "Estimate!!Median age --!!Total", "concept": "MEDIAN AGE BY SEX"},
         "B19013_001E": {"label": "Estimate!!Median household income in the past 12 months", "concept": "MEDIAN HOUSEHOLD INCOME"},
         "B19301_001E": {"label": "Estimate!!Per capita income in the past 12 months", "concept": "PER CAPITA INCOME"},

@@ -7,7 +7,7 @@
     "population": {
       "label": "Total population",
       "variables": { "value": "B01003_001E" },
-      "expect_label": { "B01003_001E": ["total population"] },
+      "expect_label": { "B01003_001E": ["total"] },
       "unit_type": "count",
       "decimals": 0,
       "history": true,

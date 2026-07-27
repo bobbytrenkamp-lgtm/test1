@@ -345,10 +345,15 @@ every county) remains the platform's population figure. See
   a short list of candidate column names in order and uses whichever is
   actually present, the same defensive pattern `broadband_candidates` uses in
   `census_config.json` for the same kind of uncertainty.
-- **Vintage discovery**: probes the national total area (`US000`) backwards
-  from last year to find the newest annual file that responds, rather than
-  hardcoding a year — QCEW's annual file for a given year is not published
-  until roughly Q3 of the following year.
+- **Vintage discovery**: probes a real, populous county (Los Angeles County,
+  CA) backwards from last year to find the newest annual file that responds
+  AT COUNTY LEVEL, rather than hardcoding a year or trusting a national
+  aggregate as a proxy. A live run found national and county-level data can
+  disagree: the national total area (`US000`) responded for a vintage where
+  every single sampled county still 404'd, meaning national/state QCEW
+  figures can be published before county-level breakdowns for the same year
+  are finalized — probing the actual granularity this module reads is what
+  makes "vintage detected" trustworthy.
 - **One request PER COUNTY** (~3,000+), the same shape as Building Permits,
   since QCEW's open-data access has no bulk endpoint either — stride-sampled
   and sanity-floored (500 counties) the same way. Own 90-day freshness gate

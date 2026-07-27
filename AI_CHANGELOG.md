@@ -5,6 +5,49 @@
 Date: 2026-07-27
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Two bugs caught by live-testing Phase 1 and Phase 2 before moving on
+
+## Bug 1: `population` has been silently broken since the feature launched
+Live-testing the Phase 1 ACS expansion (as a matter of course, not because
+anything about the expansion itself was suspect) surfaced that `population`
+-- the platform's single most important metric -- has never once
+successfully verified against the real Census API. Checking every prior
+commit's metadata back to the original launch (`e2b0db4`) confirmed this
+predates the current session entirely: `census_config.json`'s
+`expect_label` for `B01003_001E` guessed `["total population"]`, but the
+real live label is just `"Estimate!!Total"` -- the same generic pattern
+every other single-line "Total:" table in this config already uses. Every
+live ACS run since launch has silently omitted `population` from every
+county and state record rather than crash, which is exactly why nobody
+noticed: `verify_variables()` fails safe by design, and the daily workflow's
+7-day freshness gate meant most runs never even re-ran verification to
+re-surface the warning.
+
+Found via a new diagnostic added first, not a second blind guess: extended
+`verify_variables()`'s warning to include the actual label text Census
+returned (or confirmation the variable was entirely absent), then ran the
+pipeline live once more to read the real answer instead of guessing again.
+Fixed the config (`["total"]`) and the offline test fixture that had been
+carrying the same wrong assumption, with a comment explaining why.
+
+## Bug 2: BLS QCEW's vintage discovery validated the wrong granularity
+The same live run's BLS QCEW module found `2025` "available" (probing the
+national total area, `US000`) but then every one of 30 sampled counties
+returned a plain 404. Extensive research (a working NodeJS client's exact
+URL construction, BLS's own aggregation-level docs) confirmed the URL
+pattern, the `a` annual parameter, and the area-code format were all
+correct -- so the mismatch itself was the real signal: national/state QCEW
+figures can be published before county-level breakdowns for the same
+vintage are finalized. `discover_bls_vintage()` was validating "does this
+year exist at all" against the national aggregate, not "does this year
+exist at the granularity this module actually reads." Fixed by probing a
+real, populous county (Los Angeles County, CA) instead of `US000`.
+
+Both fixes deployed and awaiting the next live run to confirm.
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 2 — BLS QCEW county-level average weekly wage
 
 ## Why this happened
