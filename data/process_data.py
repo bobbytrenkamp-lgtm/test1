@@ -42,6 +42,14 @@ def build_county_map(restrictions):
             entry["pipeline_verified"] = r["pipeline_verified"]
         if "last_reviewed" in r:
             entry["last_reviewed"] = r["last_reviewed"]
+        # Provenance fields. These were silently dropped here, so a record could
+        # carry confidence:"low" / source_tier:3 in restrictions_raw.json and the
+        # frontend would receive neither — meaning a low-confidence finding
+        # rendered indistinguishably from a verified one. The whole point of the
+        # fields is that the UI can be honest about how well something is known.
+        for field in ("confidence", "confidence_score", "source_tier", "research_status"):
+            if field in r:
+                entry[field] = r[field]
         counties[fips] = entry
     return counties
 

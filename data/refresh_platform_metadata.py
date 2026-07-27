@@ -74,7 +74,26 @@ def main():
             cov["counties_pro_development"] = pro
             cov["counties_no_known_restrictions"] = levels.get(0, 0)
             cov["counties_with_active_restrictions"] = bans + high + mod + prop
-            cov["counties_not_yet_researched"] = TOTAL_US_COUNTIES - in_db
+
+            # "In the database" is not the same as "researched for policy".
+            # 597 records carry research_status=descriptive_only: they hold a
+            # general description of the county but no policy research was ever
+            # done. Counting them as researched inflated the coverage claim, so
+            # they are reported separately and excluded from the researched
+            # figure. See the 2026-07-27 reclassification sweep.
+            descriptive = sum(1 for c in counties.values()
+                              if c.get("research_status") == "descriptive_only")
+            researched = in_db - descriptive
+            cov["counties_descriptive_only"] = descriptive
+            cov["counties_researched"] = researched
+            cov["counties_researched_pct"] = round(researched / TOTAL_US_COUNTIES * 100, 1)
+            cov["counties_not_yet_researched"] = TOTAL_US_COUNTIES - researched
+            cov["_coverage_note"] = (
+                f"counties_in_database ({in_db}) counts every record. "
+                f"counties_researched ({researched}) excludes {descriptive} records marked "
+                f"research_status=descriptive_only, which hold a county description but no "
+                f"policy research. Use counties_researched for any public coverage claim."
+            )
 
             states = {c.get("state") for c in counties.values() if c.get("state")}
             cov["states_in_database"] = len(states)

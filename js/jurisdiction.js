@@ -356,7 +356,7 @@ window.JURISDICTION = (function () {
             <p class="juris-empty-sub">
               No policy record exists for FIPS ${esc(fips)}. This is not the same as
               &ldquo;no restrictions&rdquo; &mdash; restrictions may exist but have not
-              been reviewed. ${esc(String(window.platformStat("coverage.counties_in_database", 1465)))}
+              been reviewed. ${esc(String(window.researchedCount ? window.researchedCount() : window.platformStat("coverage.counties_researched", 870)))}
               of ${esc(String(window.TOTAL_US_COUNTIES))} US counties are currently in the database.
             </p>
             <p class="juris-empty-sub">

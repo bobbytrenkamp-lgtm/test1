@@ -3457,7 +3457,12 @@ function renderLegend() {
         <div class="legend-swatch" style="background:${themeColors().noData};border:1px solid var(--border);"></div>
         <div>
           <div class="legend-label-main">Not yet researched</div>
-          <div class="legend-label-sub">1,678 counties — no data collected</div>
+          <!-- Read from metadata rather than hardcoded. This said 1,678 while the
+               real figure is 2,273: it counted the 597 descriptive_only records
+               as researched when they carry no policy research at all. -->
+          <div class="legend-label-sub">${(window.platformStat
+              ? window.platformStat("coverage.counties_not_yet_researched", 2273)
+              : 2273).toLocaleString()} counties — no policy data collected</div>
         </div>`;
       legendBody.appendChild(noResEl);
 

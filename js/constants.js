@@ -115,12 +115,32 @@
   /* Total US counties — fixed constant, used for coverage math everywhere. */
   const TOTAL_US_COUNTIES = 3143;
 
-  /* Coverage percentage of researched counties, rounded to whole percent. */
+  /* Coverage percentage of RESEARCHED counties, rounded to whole percent.
+
+     Uses coverage.counties_researched, NOT counties_in_database. Those differ:
+     597 records carry research_status="descriptive_only" — they hold a general
+     description of the county but no policy research was ever done. Counting
+     them as researched inflated this figure from 28% to 47%, so any
+     user-facing "researched" claim must exclude them.
+     Falls back to counties_in_database only for older metadata files that
+     predate the distinction. */
   function coveragePct() {
-    const inDb = platformStat("coverage.counties_in_database", 0);
+    const researched = platformStat("coverage.counties_researched", null);
+    const inDb = researched !== null && researched !== undefined
+      ? researched
+      : platformStat("coverage.counties_in_database", 0);
     const total = platformStat("coverage.total_us_counties", TOTAL_US_COUNTIES);
     if (!inDb || !total) return 0;
     return Math.round(inDb / total * 100);
+  }
+
+  /* Count of counties genuinely researched for policy. Prefer this over
+     counties_in_database anywhere the word "researched" is shown to a user. */
+  function researchedCount() {
+    const r = platformStat("coverage.counties_researched", null);
+    return (r === null || r === undefined)
+      ? platformStat("coverage.counties_in_database", 0)
+      : r;
   }
 
   /* ── Export ─────────────────────────────────────────────────────────────── */
@@ -135,6 +155,7 @@
   window.loadPlatformMeta   = loadPlatformMeta;
   window.platformStat       = platformStat;
   window.coveragePct        = coveragePct;
+  window.researchedCount    = researchedCount;
 
   /* Kick off the metadata fetch immediately so it is warm by first render. */
   loadPlatformMeta();

@@ -864,7 +864,7 @@ function renderHomePage() {
         <span class="home-live-label">Intelligence Platform</span>
       </div>
       <h1 class="home-hero-title">US Data Center &amp; AI<br>Policy Intelligence</h1>
-      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across 1,465+ researched jurisdictions. Policy data manually verified from official government sources.</p>
+      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across ${(window.researchedCount ? window.researchedCount() : 870).toLocaleString()} researched jurisdictions. Policy data manually verified from official government sources.</p>
       <div class="home-search-wrap">
         <div class="home-search-box">
           ${HOME_ICONS.search}
@@ -933,7 +933,7 @@ function renderHomePage() {
         <span class="home-live-label">Intelligence Platform</span>
       </div>
       <h1 class="home-hero-title">US Data Center &amp; AI<br>Policy Intelligence</h1>
-      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across 1,465+ researched jurisdictions. Policy data manually verified from official government sources.</p>
+      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across ${(window.researchedCount ? window.researchedCount() : 870).toLocaleString()} researched jurisdictions. Policy data manually verified from official government sources.</p>
 
       <!-- Search -->
       <div class="home-search-wrap">

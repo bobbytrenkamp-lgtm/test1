@@ -4,6 +4,106 @@ No active bugs.
 
 ---
 
+# Recently Fixed Bugs (2026-07-27 — data integrity sweep)
+
+---
+
+Bug: Counties with active moratoriums labeled "Pro-Development Hub"
+Priority: CRITICAL
+Affected Files: `data/restrictions_raw.json`, `data/map_data.json`
+Root Cause: Historical sweep scripts added counties in bulk at level -1 with
+descriptive prose rather than policy research. Five of the six Kansas counties
+with adopted data center moratoriums were labeled Pro-Development Hub. Harvey
+County KS was described by its BNSF railyard and Mennonite college while the
+commission had adopted a moratorium running through the end of 2028.
+Fix: Seven records corrected to level 4 (Harvey, Geary, Leavenworth, Saline,
+Sedgwick KS; Santa Fe NM; Linn IA) and two added that were missing entirely
+(Lyon KS, Imperial CA). Level 4 count 5 -> 14.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-27
+Status: Fixed
+
+---
+
+Bug: 100% of records labeled "verified" had never been verified
+Priority: CRITICAL
+Affected Files: `data/validate_all.py`
+Root Cause: `confidence_score()` derives its label purely from citation
+properties — domain tier, source count, URL presence, freshness — then called
+anything scoring >=80 "verified". That measures how WELL-CITED a record is, not
+whether anyone confirmed it. All 152 records labeled "verified" carried
+`pipeline_verified: false`.
+Fix: The label is now gated on `pipeline_verified`. Well-cited but unconfirmed
+caps at "high". Falsely-verified records: 152 -> 0.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-27
+Status: Fixed
+
+---
+
+Bug: 16 counties carried the wrong name for their FIPS code
+Priority: CRITICAL
+Affected Files: `data/restrictions_raw.json`
+Root Cause: Records held a valid FIPS with a different county's name, so the map
+colored the correct polygon (it keys on FIPS) while the detail panel, search and
+reports all named a different county — misattributing the policy. FIPS 21117 was
+"Knott County" but is Kenton County.
+Fix: All 16 corrected against `data/county_names.json`. Each flagged in notes
+because the title and description were written about the wrong county and need
+re-researching. Validator criticals: 16 -> 0.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-27
+Status: Fixed (names corrected; 16 descriptions still need re-research)
+
+---
+
+Bug: Coverage claim counted county descriptions as policy research
+Priority: High
+Affected Files: `index.html`, `js/home.js`, `js/analytics.js`, `js/map.js`,
+`js/constants.js`, `data/refresh_platform_metadata.py`
+Root Cause: 597 level -1 records met none of the three criteria in the platform's
+own Pro-Development Hub definition. Counting them as researched inflated the
+headline claim to "1,465+ researched jurisdictions / 47% coverage" when the true
+researched figure was 870 / 28%. The map legend's "1,678 counties not yet
+researched" was hardcoded and understated the real 2,273.
+Fix: Those 597 downgraded to level 0 with `research_status: "descriptive_only"`,
+retaining all original content. Metadata reports `counties_researched` separately
+from `counties_in_database`. Every user-facing surface now reads the honest
+figure; the legend reads from metadata instead of a literal.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-27
+Status: Fixed
+
+---
+
+Bug: process_data.py silently dropped provenance fields
+Priority: Medium
+Affected Files: `data/process_data.py`
+Root Cause: `confidence`, `confidence_score`, `source_tier` and `research_status`
+were not copied from the raw file into `map_data.json`, so a low-confidence
+record arrived at the frontend indistinguishable from a verified one.
+Fix: All four fields now carried through.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-27
+Status: Fixed
+
+---
+
+Bug: A test asserted hardcoded data values rather than behavior
+Priority: Low
+Affected Files: `tests/test_frontend_core.mjs`
+Root Cause: `platformStat counties` asserted a literal 1465 and `coveragePct`
+a literal 47, so the test checked the DATA rather than the accessor and broke on
+any legitimate county addition.
+Fix: Both now read expected values from `platform_metadata.json`, with
+coveragePct compared against `counties_researched_pct` rather than the inflated
+`counties_coverage_pct`.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-27
+Status: Fixed
+
+---
+
 # Recently Fixed Bugs (2026-07-27 — Economic Intelligence feature)
 
 These four were found by driving the new Economy feature in a real browser. All

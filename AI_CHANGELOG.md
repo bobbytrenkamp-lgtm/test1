@@ -5,6 +5,101 @@
 Date: 2026-07-27
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Data integrity sweep — what we count, and whether it is true
+
+## Why this happened
+Asked to sweep for more data on what the platform counts. Before adding, I
+checked what the existing counts mean. The most recent historical sweep script
+added counties like this:
+
+    Caldwell County TX, level -1 (Pro-Development Hub):
+    "officially designated by the Texas Legislature as the 'BBQ Capital of
+     Texas'... the Watermelon Thump festival..."   source: county homepage
+
+That is a travel description labelled as a data center policy finding. Running
+another sweep in that pattern would have added several hundred more of them.
+
+## What the audit found
+Measured all 1,465 records against docs/TERMINOLOGY.md's own definitions:
+
+  level -1 (1,301)  41% no policy language, 65% homepage-only source
+  levels 1-4 (164)  0-8% no policy language  <- genuinely researched
+
+Against the three criteria the Pro-Development Hub definition actually requires
+(verified incentives / fast-track permitting / active infrastructure), 597 of
+1,301 mention NONE. Douglas County NE, Oakland County MI, St. Louis County MO.
+
+## Four real defects, all fixed
+
+1. COUNTIES WITH MORATORIUMS LABELLED PRO-DEVELOPMENT
+   Five of six Kansas counties with adopted moratoriums sat at level -1. Harvey
+   County KS — moratorium through end of 2028 — was described by its railyard
+   and Mennonite college. Corrected 7 records to level 4, added 2 that were
+   missing entirely (Lyon KS, Imperial CA). Level 4: 5 -> 14.
+
+2. "VERIFIED" MEANT "WELL-CITED"
+   validate_all.py derives confidence from citation properties only — tier,
+   count, URLs, freshness — then labelled >=80 "verified". All 152 records it
+   called verified had pipeline_verified:false. 100%. Now gated on
+   pipeline_verified; unconfirmed caps at "high". Falsely verified: 152 -> 0.
+
+3. 16 COUNTIES CARRIED ANOTHER COUNTY'S NAME
+   Right FIPS, wrong name — the map coloured the correct polygon while every
+   text surface named a different county, misattributing the policy. FIPS 21117
+   was "Knott County"; it is Kenton County. All 16 corrected, each flagged
+   because its description was written about the wrong place.
+
+4. COVERAGE COUNTED DESCRIPTIONS AS RESEARCH
+   The 597 unsupported records were downgraded to level 0 with
+   research_status="descriptive_only" — NOT plain level 0, because that means
+   "researched, nothing found" and no research happened. Nothing deleted.
+   Headline corrected: 1,467 "researched" / 47% -> 870 / 28%. Not-researched
+   1,678 -> 2,273. Fixed in the hero (index.html + home.js), analytics hero, and
+   the map legend, which had the figure hardcoded.
+
+## Sourcing honesty — important for the next assistant
+WebSearch works here and is genuinely productive. WebFetch does not: Loudoun,
+Santa Fe County, Harvey County and datacenterbans.com all returned 403 to
+automated retrieval (bot protection, not a paywall), and sandbox curl is blocked
+for every .gov host by proxy policy.
+
+So findings can be LOCATED with real source URLs but the primary source cannot
+be READ. Every record added or corrected here therefore carries
+pipeline_verified:false, confidence medium or low, source_tier set from the
+URL's domain rather than from our verification, and a note saying the county's
+own page was identified but not retrieved. A human with a browser should confirm
+each before any is treated as Tier 1 verified.
+
+I initially told the user I could not research at all, having generalised from
+two blocked API endpoints without trying WebSearch. That was wrong and they were
+right to push back.
+
+## Files
+Added: data/sweep_2026_07_27_moratorium_corrections.py,
+       data/sweep_2026_07_27_downgrade_unsupported_pro.py
+Modified: restrictions_raw.json, map_data.json, platform_metadata.json,
+       process_data.py (carries confidence/source_tier/research_status),
+       validate_all.py (verified gate), refresh_platform_metadata.py
+       (counties_researched vs counties_in_database), constants.js
+       (researchedCount(), coveragePct uses researched), home.js, analytics.js,
+       jurisdiction.js, map.js (legend), index.html,
+       tests/test_frontend_core.mjs
+
+## State of the sweep
+Corrected 7, added 2. Further county-level sweeping is possible but slow: each
+state needs several searches and yields a handful of counties, and nothing can
+be verified at the primary source from here. The 16 mis-named counties still
+need their descriptions re-researched. 2,273 counties remain unresearched.
+
+## Verification
+All unit suites pass. 15/15 browser scenarios, zero JS errors. Validator
+criticals 16 -> 0. Browser-confirmed: hero reads 870, analytics reads 28%.
+
+---
+
+Date: 2026-07-27
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Codify "nothing may require payment" as a fixed project rule
 
 ## Summary
