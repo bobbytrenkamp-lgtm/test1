@@ -524,6 +524,105 @@ def test_metadata_preserves_census_timestamp_on_fred_only_run():
             econ.META_OUT = orig
 
 
+def test_generated_at_does_not_advance_on_a_noop_run():
+    """generated_at means "when data was last generated", not "when the pipeline
+    last ran". A keyless run that fetched nothing must not stamp a fresh
+    timestamp onto a file containing no data — that reads as freshly generated
+    data. Found by running the real workflow with no secrets configured."""
+    with tempfile.TemporaryDirectory() as td:
+        orig = econ.META_OUT
+        try:
+            econ.META_OUT = Path(td) / "m.json"
+            econ.warnings.clear()
+            # Never-populated deployment: prior generated_at is None.
+            meta = econ.write_metadata({"series": {}}, None, None, None,
+                                       None, {}, {"generated_at": None},
+                                       census_ran=False, any_source_ok=False)
+            eq(meta["generated_at"], None,
+               "no-op run must leave generated_at as None, not stamp 'now'")
+            check(meta.get("last_run_at"), "last_run_at records when the run happened")
+
+            # A previously-populated deployment keeps its real timestamp.
+            prev = "2026-07-01T00:00:00+00:00"
+            meta2 = econ.write_metadata({"series": {}}, None, None, None,
+                                        None, {}, {"generated_at": prev},
+                                        census_ran=False, any_source_ok=False)
+            eq(meta2["generated_at"], prev,
+               "no-op run must preserve the prior generated_at, not overwrite it")
+
+            # A run that DID fetch advances it.
+            meta3 = econ.write_metadata({"series": {"DGS10": {"latest_date": "2026-07-24"}}},
+                                        None, None, None, None, {},
+                                        {"generated_at": prev},
+                                        census_ran=False, any_source_ok=True)
+            check(meta3["generated_at"] != prev,
+                  "a run that fetched data must advance generated_at")
+        finally:
+            econ.META_OUT = orig
+
+
+def test_noop_run_does_not_rewrite_metadata():
+    """The workflow runs daily. Without this, every day until the API keys are
+    configured would add a commit reading "0 FRED series, 0 counties, ACS None" —
+    365 junk commits a year burying real changes."""
+    with tempfile.TemporaryDirectory() as td:
+        orig = econ.META_OUT
+        try:
+            econ.META_OUT = Path(td) / "m.json"
+            econ.warnings.clear()
+            first = econ.write_metadata({"series": {}}, None, None, None,
+                                        None, {}, None, census_ran=False,
+                                        any_source_ok=False)
+            eq(econ.META_OUT.exists(), True, "first run writes the file")
+            before = econ.META_OUT.read_text()
+
+            # Identical second run — must not touch the file.
+            econ.warnings.clear()
+            econ.write_metadata({"series": {}}, None, None, None,
+                                None, {}, first, census_ran=False,
+                                any_source_ok=False)
+            eq(econ.META_OUT.read_text(), before,
+               "an unchanged run must not rewrite metadata (would churn a commit daily)")
+
+            # A NEW warning is real news and must still be written.
+            econ.warnings.clear()
+            econ.warn("something new happened")
+            econ.write_metadata({"series": {}}, None, None, None,
+                                None, {}, first, census_ran=False,
+                                any_source_ok=False)
+            check(econ.META_OUT.read_text() != before,
+                  "a changed warning set must still be written")
+        finally:
+            econ.META_OUT = orig
+
+
+def test_metadata_written_without_ascii_escapes():
+    """Warnings contain em-dashes. ensure_ascii would escape them to \\u2014,
+    which is unreadable in a diff — the same fix refresh_platform_metadata.py
+    needed."""
+    with tempfile.TemporaryDirectory() as td:
+        orig = econ.META_OUT
+        try:
+            econ.META_OUT = Path(td) / "m.json"
+            econ.warnings.clear()
+            econ.warn("a warning with an em-dash — right here")
+            econ.write_metadata({"series": {}}, None, None, None,
+                                None, {}, None, census_ran=False, any_source_ok=False)
+            raw = econ.META_OUT.read_text()
+            check("—" in raw, "em-dash written literally")
+            check("\\u2014" not in raw, "em-dash must not be escaped to \\u2014")
+        finally:
+            econ.META_OUT = orig
+
+
+def test_shipped_metadata_is_honest_about_never_having_run():
+    """The committed metadata must not claim data was generated when none was."""
+    m = json.loads((Path(econ.ROOT) / "data/economy/economic_metadata.json").read_text())
+    if m.get("county_count", 0) == 0 and m.get("fred_series_count", 0) == 0:
+        eq(m.get("generated_at"), None,
+           "metadata reports 0 series and 0 counties but claims a generated_at")
+
+
 def test_metadata_flags_stale_series():
     with tempfile.TemporaryDirectory() as td:
         orig = econ.META_OUT
