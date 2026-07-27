@@ -7,7 +7,7 @@
  "cbp_available": true,
  "cbp_year": 2023,
  "census": {
-  "last_successful_update": "2026-07-27T21:53:22+00:00",
+  "last_successful_update": "2026-07-27T22:02:35+00:00",
   "selected_variables": {
    "avg_commute_minutes": {
     "aggregate_minutes": "B08013_001E",
@@ -54,6 +54,9 @@
    "per_capita_income": {
     "value": "B19301_001E"
    },
+   "population": {
+    "value": "B01003_001E"
+   },
    "poverty_rate": {
     "below_poverty": "B17001_002E",
     "total": "B17001_001E"
@@ -76,8 +79,8 @@
  "eia_state_count": 0,
  "fred_series_count": 21,
  "fred_skipped": [],
- "generated_at": "2026-07-27T21:53:22+00:00",
- "last_run_at": "2026-07-27T21:53:22+00:00",
+ "generated_at": "2026-07-27T22:02:35+00:00",
+ "last_run_at": "2026-07-27T22:02:35+00:00",
  "latest_observation_date": "2026-07-27",
  "oldest_history_year": 2019,
  "permits_available": false,
@@ -114,7 +117,6 @@
  "stale": true,
  "state_count": 52,
  "warnings": [
-  "ACS metric 'population': could not verify value=B01003_001E [B01003_001E label='Estimate!!Total' (wanted fragments ['total population'])] in this vintage — metric will be omitted rather than guessed",
   "BLS QCEW wages: only 30 counties returned real data out of 30 checked — module skipped rather than publishing a suspiciously small result — every checked county returned a plain 404, which is unexpected for QCEW (coverage is normally near-universal, unlike Building Permits)"
  ]
 }
