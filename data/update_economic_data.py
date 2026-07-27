@@ -919,7 +919,23 @@ def validate_outputs():
 # ─────────────────────────── metadata ───────────────────────────
 
 def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
-                   acs_vintage, var_problems, prior_meta, census_ran):
+                   acs_vintage, var_problems, prior_meta, census_ran,
+                   any_source_ok=True):
+    """Write economic_metadata.json, or skip when a run changed nothing.
+
+    TWO THINGS THIS GETS RIGHT, both found by running the workflow for real
+    with no API keys configured:
+
+    1. `generated_at` means "when data was last generated", NOT "when the
+       pipeline last ran". A no-op run that fetched nothing must not stamp a
+       fresh timestamp onto a file containing no data — that reads as freshly
+       generated data. The run time is recorded separately as `last_run_at`.
+
+    2. A run that changes nothing writes nothing. The workflow is scheduled
+       daily; without this, every day until the keys are configured would add a
+       commit reading "0 FRED series, 0 counties, ACS None". That is 365 junk
+       commits a year and it buries real changes in the history.
+    """
     fred_series = (fred_payload or {}).get("series", {}) or {}
     latest_obs = None
     for s in fred_series.values():
@@ -945,10 +961,17 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
 
     any_stale = any(s.get("stale") for s in fred_series.values())
 
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    # Only advance generated_at when a source actually produced data. On a no-op
+    # run keep the prior value (None on a never-populated deployment) so the
+    # timestamp never claims data that does not exist.
+    generated_at = now if any_source_ok else prior.get("generated_at")
+
     meta = {
         "_schema":         "economy_metadata_v1",
         "pipeline_version": PIPELINE_VERSION,
-        "generated_at":    datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "generated_at":    generated_at,
+        "last_run_at":     now,
         "source_updated_at": src_updated,
         "latest_observation_date": latest_obs,
         "acs_vintage":     acs_vintage or (county_payload or {}).get("acs_vintage")
@@ -985,7 +1008,10 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
                 "update_frequency": "Annual vintage; checked weekly by the pipeline.",
             },
         ],
-        "warnings": warnings,
+        # Copy, not the live module-level list. Storing the reference made the
+        # returned dict alias mutable module state, so a later warn() silently
+        # mutated a metadata snapshot someone was holding as "the previous run".
+        "warnings": list(warnings),
         "stale":    any_stale,
     }
     if cbp_payload:
@@ -998,8 +1024,22 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
             "update_frequency": "Annual.",
         })
 
+    # Skip the write when nothing but the run clock moved. Compared with
+    # last_run_at excluded on BOTH sides, so a genuine change — new data, a new
+    # warning, a key finally being configured — still writes.
+    if prior:
+        a = {k: v for k, v in meta.items() if k != "last_run_at"}
+        b = {k: v for k, v in prior.items() if k != "last_run_at"}
+        if a == b:
+            print(f"  {_rel(META_OUT)} unchanged — not rewriting "
+                  f"(prevents a daily no-op commit)")
+            return meta
+
     META_OUT.parent.mkdir(parents=True, exist_ok=True)
-    META_OUT.write_text(json.dumps(meta, indent=1, sort_keys=True) + "\n")
+    # ensure_ascii=False so em-dashes in warnings stay readable rather than
+    # being escaped to — — same fix refresh_platform_metadata.py needed.
+    META_OUT.write_text(json.dumps(meta, indent=1, sort_keys=True,
+                                   ensure_ascii=False) + "\n")
     print(f"  wrote {_rel(META_OUT)}")
     return meta
 
@@ -1135,7 +1175,8 @@ def main():
 
     print("\n=== metadata ===")
     write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
-                   acs_vintage, var_problems, prior_meta, census_ran)
+                   acs_vintage, var_problems, prior_meta, census_ran,
+                   any_source_ok=any_source_ok)
 
     print("\n=== validation ===")
     errs = validate_outputs()

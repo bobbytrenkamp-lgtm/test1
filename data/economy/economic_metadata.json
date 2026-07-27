@@ -11,7 +11,8 @@
  "county_count": 0,
  "fred_series_count": 0,
  "fred_skipped": [],
- "generated_at": "2026-07-27T02:30:20+00:00",
+ "generated_at": null,
+ "last_run_at": "2026-07-27T02:30:20+00:00",
  "latest_observation_date": null,
  "oldest_history_year": null,
  "pipeline_version": "1.0.0",
@@ -37,7 +38,7 @@
  "stale": false,
  "state_count": 0,
  "warnings": [
-  "FRED_API_KEY is not set \u2014 skipping FRED. Existing fred_data.json is preserved unchanged.",
-  "CENSUS_API_KEY is not set \u2014 skipping Census. Existing census_*.json are preserved unchanged."
+  "FRED_API_KEY is not set — skipping FRED. Existing fred_data.json is preserved unchanged.",
+  "CENSUS_API_KEY is not set — skipping Census. Existing census_*.json are preserved unchanged."
  ]
 }
