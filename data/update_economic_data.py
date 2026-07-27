@@ -657,18 +657,27 @@ def verify_variables(cfg, vintage_vars):
                 candidates = spec.get("broadband_candidates", [var_id])
 
             picked = None
+            # Diagnostic detail for whichever candidate ends up unmatched, so
+            # a real mismatch is self-explaining in the warning rather than
+            # requiring a guess-and-reship cycle to find out what the live
+            # API actually sent (the same lesson the PEP/BPS investigation
+            # surfaced earlier: a bare "could not verify" with no detail is
+            # not diagnosable from the outside).
+            last_seen = None
             for cand in candidates:
                 info = vintage_vars.get(cand)
                 if not info:
+                    last_seen = f"{cand} not present in this vintage's variables.json"
                     continue
                 label = (info.get("label") or "").lower()
                 fragments = [f.lower() for f in expect.get(cand, expect.get(var_id, []))]
+                last_seen = f"{cand} label={info.get('label')!r} (wanted fragments {fragments!r})"
                 if all(frag in label for frag in fragments):
                     picked = cand
                     break
 
             if picked is None:
-                bad.append(f"{role}={var_id}")
+                bad.append(f"{role}={var_id} [{last_seen}]")
             else:
                 chosen[role] = picked
 
