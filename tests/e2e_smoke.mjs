@@ -480,6 +480,139 @@ await run('Map subsystems (GIS modes, palette, zoning, workspaces)', async (p) =
   console.log('local 4xx/5xx     :', misses.length ? misses.slice(0, 4) + ' <-- BAD' : 'none (good)');
 });
 
+/* 14. Economic Intelligence.
+   Driven against tests/fixtures/economy — clearly-labelled SYNTHETIC data, so
+   the rendering paths are exercised without inventing numbers in data/economy/,
+   which only ever holds real pipeline output.
+
+   The bugs this found on the way in are worth knowing about:
+     - the fixture override initially redirected series_config.json too, which is
+       hand-maintained config that only exists in data/economy/. The KPI strip
+       and every chart silently rendered empty while the rest of the page looked
+       fine.
+     - state topology ids are 2 digits, so padStart(5,'0').slice(0,2) produced
+       "00" for every state and the state choropleth indexed zero records.
+     - the chart <svg>'s viewBox gave it an intrinsic min-content WIDTH, which
+       pushed the trends section to 593px and got clipped on a 390px phone. */
+await run('Economic Intelligence', async (p) => {
+  await p.addInitScript(() => { window.__ECONOMY_FIXTURE_BASE__ = 'tests/fixtures/economy/'; });
+  await p.goto(URL, { waitUntil: 'domcontentloaded' });
+  await p.waitForTimeout(3000);
+
+  /* Home must NOT pull the multi-megabyte county file. */
+  const countyOnHome = await p.evaluate(() =>
+    performance.getEntriesByType('resource').some(r => /census_county/.test(r.name)));
+  console.log('county file on Home    :', countyOnHome ? 'YES <-- PERF REGRESSION' : 'no (correct)');
+  console.log('Home pulse items       :', await p.evaluate(() =>
+    document.querySelectorAll('#home-econ-strip .home-econ-item').length), '(max 4 by design)');
+
+  /* Tab placement, routing, ARIA. */
+  console.log('tab order              :', await p.evaluate(() =>
+    [...document.querySelectorAll('#header-tabs .header-tab[data-tab]')].map(b => b.dataset.tab).join(' > ')));
+  await p.click('#tab-economy');
+  await p.waitForTimeout(4500);
+  console.log('hash                   :', await p.evaluate(() => location.hash));
+  console.log('aria-selected          :', await p.getAttribute('#tab-economy', 'aria-selected'));
+  console.log('heading                :', await p.textContent('.econ-title'));
+
+  /* 1. Pulse   2. Trends */
+  console.log('KPI cards              :', await p.evaluate(() =>
+    document.querySelectorAll('#econ-kpi-strip .econ-kpi').length), '(expect 7)');
+  console.log('category tabs          :', await p.evaluate(() =>
+    document.querySelectorAll('#econ-cat-tabs .econ-cat-tab').length), '(expect 4)');
+  console.log('chart paths            :', await p.evaluate(() =>
+    document.querySelectorAll('#econ-chart-host svg path').length));
+  console.log('chart text summary     :', await p.evaluate(() =>
+    (document.querySelector('#econ-chart-host svg desc')?.textContent || '').slice(0, 60) || 'MISSING'));
+  await p.click('.econ-cat-tab[data-cat="labor"]');
+  await p.waitForTimeout(900);
+  console.log('after category switch  :', await p.evaluate(() =>
+    document.querySelectorAll('#econ-chart-host svg path').length), 'paths');
+
+  /* 3. Explorer — including the state-geography key bug. */
+  const dbg = () => p.evaluate(() => window.ECONOMY_VIEW._debug());
+  console.log('explorer (county)      :', JSON.stringify(await dbg()));
+  await p.selectOption('#econ-geo-select', 'state');
+  await p.waitForTimeout(2500);
+  const st = await dbg();
+  console.log('explorer (state)       :', JSON.stringify(st),
+    st.indexed > 40 ? '' : '<-- STATE KEYS BROKEN');
+  await p.selectOption('#econ-geo-select', 'county');
+  await p.waitForTimeout(2500);
+
+  await p.fill('#econ-search', 'loudoun');
+  await p.waitForTimeout(800);
+  await p.click('#econ-search-results .econ-search-row');
+  await p.waitForTimeout(1500);
+  console.log('profile after search   :', await p.evaluate(() =>
+    document.querySelector('.econ-profile-name')?.textContent || 'NONE'));
+  console.log('profile metric rows    :', await p.evaluate(() =>
+    document.querySelectorAll('.econ-profile-table tbody tr').length));
+  console.log('profile sparklines     :', await p.evaluate(() =>
+    document.querySelectorAll('.econ-profile .econ-spark').length));
+
+  /* 4. Signals must be traceable and non-advisory. */
+  console.log('signal cards           :', await p.evaluate(() =>
+    document.querySelectorAll('#econ-signal-grid .econ-signal').length));
+  /* Normalise whitespace before matching: the copy wraps across source lines,
+     so textContent contains newlines and indentation between the words. */
+  console.log('not-advice disclaimer  :', await p.evaluate(() =>
+    /not\s+investment\s+advice/i.test(
+      (document.getElementById('econ-signals-disclaimer')?.textContent || '').replace(/\s+/g, ' '))));
+
+  /* Map tab: economic layer must not permanently overwrite restriction styles. */
+  await p.click('#tab-map');
+  await p.waitForFunction(() => document.querySelectorAll('#leaflet-map path').length > 100, { timeout: 45000 });
+  await p.waitForTimeout(2500);
+  const baseFill = await p.evaluate(() => countyLayerByFips['51107']?.options.fillColor);
+  await p.evaluate(() => setLayerVisible('econ_income', true, true));
+  await p.waitForTimeout(3000);
+  const econFill = await p.evaluate(() => countyLayerByFips['51107']?.options.fillColor);
+  console.log('econ layer legend      :', await p.evaluate(() => document.querySelector('#legend h3')?.textContent));
+  /* Exclusivity: a second economic layer must clear the first. */
+  await p.evaluate(() => setLayerVisible('econ_broadband', true, true));
+  await p.waitForTimeout(2000);
+  console.log('exclusive layers       :', await p.evaluate(() =>
+    JSON.stringify({ income: layerStateRef.econ_income, broadband: layerStateRef.econ_broadband })));
+  await p.evaluate(() => setLayerVisible('econ_broadband', false, true));
+  await p.waitForTimeout(2000);
+  const restored = await p.evaluate(() => countyLayerByFips['51107']?.options.fillColor);
+  console.log('fill restriction/econ  :', baseFill, '/', econFill);
+  console.log('restored after off     :', restored === baseFill ? 'YES (correct)' : `NO (${restored})`);
+  console.log('legend back to policy  :', await p.evaluate(() => document.querySelector('#legend h3')?.textContent));
+
+  /* County detail + Analytics integration. */
+  await p.evaluate(() => selectCounty('51107'));
+  await p.waitForTimeout(3500);
+  console.log('detail econ cells      :', await p.evaluate(() =>
+    document.querySelectorAll('#detail-economy-section .econ-detail-cell').length));
+  await p.click('#tab-analytics');
+  await p.waitForTimeout(5000);
+  console.log('analytics scatter dots :', await p.evaluate(() =>
+    document.querySelectorAll('#econ-an-scatter .econ-scatter-dot').length));
+  console.log('causation disclaimer   :', await p.evaluate(() =>
+    /Correlation does not establish causation/.test(document.querySelector('.econ-an-note')?.textContent || '')));
+  console.log('ranking rows           :', await p.evaluate(() =>
+    document.querySelectorAll('#econ-an-rank tbody tr').length));
+});
+
+/* 15. Economy with NO generated data — the shipped placeholder state.
+   Must render an explicit "not measured yet" notice and never a zero. */
+await run('Economic Intelligence — awaiting first data run', async (p) => {
+  await p.goto(URL, { waitUntil: 'domcontentloaded' });   // no fixture override
+  await p.waitForTimeout(3000);
+  await p.click('#tab-economy');
+  await p.waitForTimeout(4000);
+  console.log('page still renders     :', await p.evaluate(() => !!document.querySelector('.econ-title')));
+  console.log('awaiting blocks        :', await p.evaluate(() => document.querySelectorAll('.econ-awaiting').length));
+  console.log('no fabricated KPIs     :', await p.evaluate(() =>
+    document.querySelectorAll('#econ-kpi-strip .econ-kpi-value').length) === 0 ? 'correct' : 'HAS VALUES');
+  console.log('distinguishes from zero  :', await p.evaluate(() =>
+    /different from a value of zero/i.test(document.body.textContent.replace(/\s+/g, ' '))));
+  console.log('explains how to fix    :', await p.evaluate(() =>
+    /Update Economic Data/.test(document.body.textContent)));
+});
+
 await run('Auth degradation (unconfigured)', async (p) => {
   await p.goto(URL, { waitUntil: 'domcontentloaded' });
   await p.waitForTimeout(3000);

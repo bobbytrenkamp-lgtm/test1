@@ -1,0 +1,1027 @@
+/* css/economy.css — Economic Intelligence tab.
+ *
+ * Uses the existing theme tokens from css/style.css (--bg, --surface,
+ * --surface-2, --border, --text, --text-muted, --accent, --shadow-*, --dur-*,
+ * --ease-*). No new colour system is introduced: the only additional colours are
+ * the data-encoding ramps for the choropleth and the semantic good/bad change
+ * indicators, which are separate from the accent by design.
+ *
+ * Breakpoints match the rest of the app: 1180 / 1024 / 768 / 480 / 390.
+ */
+
+/* ── Layout shell ──────────────────────────────────────────────────────── */
+
+.econ-wrap {
+  /* .page-view is a COLUMN flex container, so .econ-wrap is a flex item whose
+     width comes from align-items:stretch. In that situation `min-width: 0` does
+     nothing for width — it only relaxes the automatic minimum on the MAIN axis,
+     which is vertical here. A child with a large intrinsic min-width therefore
+     overflows and gets clipped by .page-view's overflow-x:hidden. `max-width:
+     100%` is what actually constrains it; the 1500px cap still applies on wide
+     screens. Inner wide content (tables, chart, tab strip) scrolls in its own
+     container instead. */
+  max-width: min(1500px, 100%);
+  width: 100%;
+  margin: 0 auto;
+  padding: 22px 26px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  min-width: 0;
+}
+/* Sections must be allowed to shrink below their content's intrinsic width. */
+.econ-wrap > * { min-width: 0; max-width: 100%; }
+
+.econ-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.econ-hero-main { min-width: 0; flex: 1 1 420px; }
+.econ-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0 0 6px;
+  text-wrap: balance;
+}
+.econ-sub {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 68ch;
+}
+.econ-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.econ-meta-chip {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 4px 9px;
+  border-radius: 99px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.econ-meta-stale {
+  border-color: #b4530f;
+  color: #f4a261;
+  background: rgba(180, 83, 15, 0.10);
+}
+
+/* ── Sections ──────────────────────────────────────────────────────────── */
+
+.econ-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px 20px;
+  box-shadow: var(--shadow-xs);
+  min-width: 0;
+}
+.econ-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.econ-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0;
+}
+.econ-section-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.econ-source {
+  font-size: 10.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border);
+}
+.econ-empty,
+.econ-search-none {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 20px 4px;
+  text-align: center;
+}
+
+/* ── Awaiting-data state ──────────────────────────────────────────────── */
+/* Deliberately prominent and wordy: "not measured yet" is a different fact
+   from "measured zero", and a small grey dash would blur that distinction. */
+.econ-awaiting {
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  background: var(--surface-2);
+  padding: 18px 20px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  grid-column: 1 / -1;
+}
+.econ-awaiting strong { color: var(--text); display: block; margin-bottom: 6px; font-size: 13px; }
+.econ-awaiting p { margin: 0 0 8px; }
+.econ-awaiting p:last-child { margin-bottom: 0; }
+.econ-awaiting code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+.econ-awaiting-how { opacity: 0.85; }
+
+/* ── 1. KPI strip ─────────────────────────────────────────────────────── */
+
+.econ-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(178px, 1fr));
+  gap: 10px;
+}
+.econ-kpi {
+  position: relative;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 11px 13px 10px;
+  min-width: 0;
+  transition: border-color var(--dur-fast) var(--ease-standard);
+}
+.econ-kpi:hover,
+.econ-kpi:focus-visible { border-color: var(--accent); }
+.econ-kpi:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.econ-kpi-missing { opacity: 0.6; }
+
+.econ-kpi-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  /* Long labels wrap rather than clip — this strip previously drove a
+     clipping bug on the Stocks tab and the same failure mode applies here. */
+  overflow-wrap: anywhere;
+}
+.econ-kpi-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  font-size: 8px;
+  font-weight: 700;
+  flex-shrink: 0;
+  cursor: help;
+}
+.econ-kpi-value {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+.econ-kpi-change {
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 3px;
+  font-variant-numeric: tabular-nums;
+}
+/* Semantic direction colours, separate from --accent. Every use is paired with
+   a ▲/▼ glyph and a signed number so colour is never the only channel. */
+.econ-up-good { color: #29b96b; }
+.econ-up-bad  { color: #e0563f; }
+.econ-flat    { color: var(--text-muted); }
+
+.econ-kpi-sub {
+  font-size: 9.5px;
+  color: var(--text-muted);
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.econ-stale-chip {
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(180, 83, 15, 0.16);
+  color: #f4a261;
+  border: 1px solid rgba(180, 83, 15, 0.4);
+}
+.econ-kpi-src {
+  font-size: 9px;
+  color: var(--text-muted);
+  opacity: 0.72;
+  margin-top: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tooltip: keyboard-reachable via :focus-within, not hover-only. */
+.econ-kpi-tip {
+  position: absolute;
+  left: 8px; right: 8px;
+  bottom: calc(100% + 6px);
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: 7px;
+  padding: 8px 10px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(3px);
+  transition: opacity var(--dur-fast) var(--ease-standard),
+              transform var(--dur-fast) var(--ease-standard),
+              visibility var(--dur-fast);
+  z-index: 6;
+  pointer-events: none;
+}
+.econ-kpi:hover .econ-kpi-tip,
+.econ-kpi:focus-visible .econ-kpi-tip,
+.econ-kpi:focus-within .econ-kpi-tip {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+
+/* ── 2. Trends ────────────────────────────────────────────────────────── */
+
+.econ-range-group { display: flex; gap: 4px; flex-wrap: wrap; }
+.econ-range-btn {
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 11px;
+  min-height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-standard);
+}
+.econ-range-btn:hover { color: var(--text); border-color: var(--accent); }
+.econ-range-btn[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.econ-range-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.econ-cat-tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 10px;
+  overflow-x: auto;
+  /* min-width:0 is required for overflow-x to engage on a flex child */
+  min-width: 0;
+  scrollbar-width: thin;
+}
+.econ-cat-tab {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 14px;
+  min-height: 38px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+.econ-cat-tab:hover { color: var(--text); }
+.econ-cat-tab[aria-selected="true"] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.econ-cat-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.econ-cat-desc {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+  max-width: 82ch;
+}
+
+.econ-chart-host {
+  position: relative;
+  min-height: 180px;
+  min-width: 0;
+}
+.econ-chart { position: relative; width: 100%; min-width: 0; }
+/* max-width is load-bearing, not decoration. An <svg> with a viewBox has an
+   intrinsic aspect ratio, and combined with a fixed height that gives it a
+   min-content WIDTH (height x aspect). That propagated up and made the whole
+   trends section 593px min-content, which overflowed a 390px phone viewport and
+   was clipped by .page-view's overflow-x:hidden. Capping at 100% removes the
+   svg from intrinsic width contribution; the ResizeObserver redraw keeps the
+   viewBox matched to the real width. */
+.econ-chart-svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+}
+.econ-chart-grid line { stroke: var(--border); stroke-width: 0.5; opacity: 0.55; }
+.econ-chart-zero { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.8; }
+.econ-chart-axis {
+  fill: var(--text-muted);
+  font-size: 9.5px;
+  font-variant-numeric: tabular-nums;
+}
+.econ-chart-empty-text { fill: var(--text-muted); font-size: 12px; font-style: italic; }
+.econ-chart-marker { stroke: var(--accent); stroke-width: 1; opacity: 0.55; }
+
+.econ-chart-tip {
+  position: absolute;
+  top: 6px;
+  transform: translateX(-50%);
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: 7px;
+  padding: 7px 10px;
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: var(--text);
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+  z-index: 5;
+  max-width: 240px;
+  white-space: normal;
+}
+.econ-tip-date {
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.econ-tip-row { display: flex; align-items: center; gap: 5px; }
+.econ-tip-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+.econ-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+}
+.econ-legend-item {
+  font: inherit;
+  font-size: 10.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  min-height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  transition: opacity var(--dur-fast);
+}
+.econ-legend-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.econ-legend-off { opacity: 0.42; }
+.econ-legend-off .econ-legend-text { text-decoration: line-through; }
+.econ-legend-swatch { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+
+/* ── 3. Explorer ──────────────────────────────────────────────────────── */
+
+.econ-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.econ-control { display: flex; flex-direction: column; gap: 4px; min-width: 0; position: relative; }
+.econ-control-grow { flex: 1 1 220px; }
+.econ-control-actions { flex-direction: row; gap: 6px; align-items: center; }
+.econ-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.econ-select,
+.econ-input {
+  font: inherit;
+  font-size: 12px;
+  padding: 7px 10px;
+  min-height: 36px;          /* touch target */
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  min-width: 0;
+  max-width: 100%;
+}
+.econ-select:focus-visible,
+.econ-input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.econ-hint { font-size: 9.5px; color: var(--text-muted); opacity: 0.8; }
+
+.econ-btn {
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 7px 13px;
+  min-height: 36px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--dur-fast) var(--ease-standard);
+}
+.econ-btn:hover { border-color: var(--accent); color: var(--accent); }
+.econ-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.econ-btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.econ-btn-primary:hover { filter: brightness(1.1); color: #fff; }
+.econ-btn-ghost { background: none; }
+
+.econ-search-results {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0; right: 0;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  max-height: 260px;
+  overflow-y: auto;
+  z-index: 8;
+}
+.econ-search-row {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  font-size: 12px;
+  padding: 8px 11px;
+  min-height: 36px;
+  border: none;
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+}
+.econ-search-row:hover,
+.econ-search-row:focus-visible { background: var(--surface-2); outline: none; }
+
+.econ-explorer-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 16px;
+  align-items: start;
+}
+.econ-map-col { min-width: 0; }
+.econ-map {
+  height: 460px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--map-bg);
+  /* Confines Leaflet's internal z-index stack, same reason #leaflet-map does */
+  isolation: isolate;
+  overflow: hidden;
+}
+.econ-map-awaiting {
+  height: auto;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+.econ-leaflet-tip {
+  background: var(--bg) !important;
+  border: 1px solid var(--accent) !important;
+  color: var(--text) !important;
+  font-size: 11px !important;
+  border-radius: 6px !important;
+  box-shadow: var(--shadow-md) !important;
+}
+.econ-leaflet-tip::before { display: none !important; }
+.econ-map-tip strong { display: block; margin-bottom: 2px; }
+
+.econ-map-legend {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.econ-legend-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 7px;
+}
+.econ-legend-scale { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.econ-legend-key { display: inline-flex; align-items: center; gap: 5px; }
+.econ-legend-chip {
+  width: 13px; height: 13px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.econ-legend-lbl {
+  font-size: 10px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.econ-legend-foot {
+  font-size: 9.5px;
+  color: var(--text-muted);
+  margin-top: 7px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Profile panel */
+.econ-profile {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 15px;
+  min-width: 0;
+  position: sticky;
+  top: 12px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+.econ-profile-empty {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.6;
+}
+.econ-profile-head { margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.econ-profile-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.econ-profile-state { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+.econ-profile-fips {
+  font-size: 9.5px;
+  color: var(--text-muted);
+  opacity: 0.7;
+  margin-top: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.econ-profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  /* Wide table scrolls inside its own container so the page never scrolls
+     sideways on a narrow viewport. */
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.econ-profile-table thead th {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: right;
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--border);
+}
+.econ-profile-table thead th:first-child { text-align: left; }
+.econ-profile-table tbody th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 10.5px;
+  color: var(--text);
+  padding: 5px 6px;
+  border-bottom: 1px solid var(--border);
+}
+.econ-profile-table td {
+  padding: 5px 6px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.econ-num { text-align: right; font-variant-numeric: tabular-nums; }
+.econ-nodata { color: var(--text-muted); font-style: italic; }
+
+.econ-profile-more { margin-top: 12px; }
+.econ-profile-more > summary {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px 0;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+}
+.econ-profile-more > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.econ-sparks { display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
+.econ-spark-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+.econ-spark-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.econ-spark { flex-shrink: 0; }
+.econ-spark-empty { fill: var(--text-muted); font-size: 8px; font-style: italic; }
+
+.econ-profile-signals { margin: 6px 0 0; padding-left: 16px; }
+.econ-profile-signals li { font-size: 10.5px; line-height: 1.55; margin-bottom: 5px; color: var(--text-muted); }
+.econ-profile-signals strong { color: var(--text); }
+
+.econ-profile-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.econ-profile-source {
+  font-size: 9.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 12px 0 0;
+  padding-top: 9px;
+  border-top: 1px dashed var(--border);
+}
+
+/* ── 4. Signals ───────────────────────────────────────────────────────── */
+
+.econ-signals-intro {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+  max-width: 84ch;
+}
+.econ-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+  gap: 10px;
+}
+.econ-signal {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  border-radius: 8px;
+  padding: 11px 13px;
+  min-width: 0;
+}
+/* Strength is encoded by the left border AND by the scope/title text, so the
+   band is redundant reinforcement rather than the sole signal. */
+.econ-sig-strong   { border-left-color: #29b96b; }
+.econ-sig-moderate { border-left-color: var(--accent); }
+.econ-sig-mixed    { border-left-color: #d9932f; }
+.econ-sig-caution  { border-left-color: #e0563f; }
+.econ-signal-hint  { border-left-color: var(--border); opacity: 0.75; }
+
+.econ-signal-head {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+}
+.econ-signal-scope {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  white-space: nowrap;
+}
+.econ-signal-title { font-size: 12.5px; font-weight: 700; color: var(--text); }
+.econ-signal-text { font-size: 11.5px; line-height: 1.6; color: var(--text-muted); margin: 0; }
+.econ-signal-metric {
+  font-size: 9.5px;
+  color: var(--text-muted);
+  opacity: 0.75;
+  margin-top: 6px;
+}
+.econ-disclaimer {
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 14px 0 0;
+  padding: 11px 13px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+}
+
+/* ── Methodology ──────────────────────────────────────────────────────── */
+
+.econ-method {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0 20px;
+}
+.econ-method > summary {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 15px 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.econ-method > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.econ-method-body { padding-bottom: 20px; font-size: 11.5px; line-height: 1.65; color: var(--text-muted); }
+.econ-method-body h4 {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 16px 0 7px;
+}
+.econ-method-sources, .econ-method-list { margin: 0; padding-left: 18px; }
+.econ-method-sources li, .econ-method-list li { margin-bottom: 8px; }
+.econ-method-sources strong { color: var(--text); }
+.econ-method-freq { font-size: 10px; opacity: 0.8; }
+.econ-method-note { font-size: 10.5px; margin: 8px 0 0; opacity: 0.9; }
+.econ-method-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+.econ-method-body a { color: var(--accent); }
+
+/* ── Screen-reader utility ────────────────────────────────────────────── */
+.econ-sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Home page Economic Pulse module ──────────────────────────────────── */
+/* Deliberately restrained: four indicators and a link, not a second dashboard. */
+.home-econ-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+.home-econ-item {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 11px;
+  min-width: 0;
+}
+.home-econ-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+  overflow-wrap: anywhere;
+}
+.home-econ-value {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+.home-econ-change { font-size: 10px; font-weight: 600; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.home-econ-date { font-size: 8.5px; color: var(--text-muted); margin-top: 3px; }
+.home-econ-note {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin: 9px 0 0;
+  line-height: 1.5;
+}
+
+/* ── County detail / jurisdiction Economy section ─────────────────────── */
+
+.econ-detail-section { margin-top: 4px; }
+.econ-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+  gap: 7px;
+  margin-bottom: 8px;
+}
+.econ-detail-cell {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 7px 9px;
+  min-width: 0;
+}
+.econ-detail-label {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+  overflow-wrap: anywhere;
+}
+.econ-detail-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.econ-detail-cmp { font-size: 9px; color: var(--text-muted); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.econ-detail-src {
+  font-size: 9px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 7px 0 0;
+  opacity: 0.85;
+}
+
+/* ── Analytics Economic Context ───────────────────────────────────────── */
+
+.econ-an-scatter { position: relative; min-height: 300px; min-width: 0; }
+.econ-scatter-svg { display: block; width: 100%; overflow: visible; }
+.econ-scatter-dot { cursor: pointer; transition: r var(--dur-fast); }
+.econ-scatter-dot:hover { stroke: var(--text); stroke-width: 1.4; }
+.econ-an-note {
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+}
+.econ-corr-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 12px 0;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.econ-corr-stat strong { color: var(--text); font-size: 14px; }
+.econ-rank-table-wrap { overflow-x: auto; min-width: 0; }
+.econ-rank-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+.econ-rank-table th {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 6px 9px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.econ-rank-table td {
+  padding: 6px 9px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.econ-rank-table tbody tr { cursor: pointer; }
+.econ-rank-table tbody tr:hover { background: var(--surface-2); }
+.econ-rank-table tbody tr:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+
+@media (max-width: 1180px) {
+  .econ-explorer-body { grid-template-columns: minmax(0, 1fr) 300px; }
+  .econ-map { height: 420px; }
+}
+
+@media (max-width: 1024px) {
+  .econ-wrap { padding: 18px 18px 56px; }
+  .econ-explorer-body { grid-template-columns: minmax(0, 1fr); }
+  .econ-profile { position: static; max-height: none; }
+  .econ-map { height: 380px; }
+}
+
+@media (max-width: 768px) {
+  .econ-wrap { padding: 14px 13px 48px; gap: 18px; }
+  .econ-section { padding: 14px 14px 16px; border-radius: 10px; }
+  .econ-title { font-size: 21px; }
+  .econ-sub { font-size: 12px; }
+  .econ-kpi-strip { grid-template-columns: repeat(auto-fit, minmax(146px, 1fr)); }
+  .econ-kpi-value { font-size: 18px; }
+  .econ-map { height: 320px; }
+  .econ-controls { gap: 9px; }
+  .econ-control { flex: 1 1 140px; }
+  .econ-control-actions { flex: 1 1 100%; }
+  .econ-signal-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .econ-wrap { padding: 12px 10px 44px; }
+  .econ-kpi-strip { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+  .econ-kpi { padding: 9px 10px; }
+  .econ-kpi-value { font-size: 16px; }
+  .econ-map { height: 280px; }
+  .econ-range-btn { padding: 5px 9px; font-size: 10.5px; }
+  .econ-cat-tab { padding: 8px 10px; font-size: 11.5px; }
+  /* Profile becomes a full-width sheet-like block on phones. */
+  .econ-profile { border-radius: 10px; padding: 12px; }
+  .econ-profile-table { font-size: 10.5px; }
+}
+
+@media (max-width: 390px) {
+  .econ-kpi-strip { grid-template-columns: 1fr 1fr; }
+  .econ-title { font-size: 19px; }
+  .econ-map { height: 250px; }
+}
+
+/* 320px — the narrowest supported width. Single column everywhere; nothing may
+   overflow horizontally. */
+@media (max-width: 340px) {
+  .econ-wrap { padding: 10px 8px 40px; }
+  .econ-kpi-strip { grid-template-columns: 1fr; }
+  .econ-detail-grid { grid-template-columns: 1fr 1fr; }
+  .econ-legend-scale { flex-direction: column; gap: 3px; }
+}
+
+/* ── Motion preference ────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .econ-kpi, .econ-kpi-tip, .econ-range-btn, .econ-btn,
+  .econ-cat-tab, .econ-legend-item, .econ-scatter-dot {
+    transition: none !important;
+  }
+}
+
+/* ── Light theme adjustments ──────────────────────────────────────────── */
+html[data-theme="light"] .econ-up-good { color: #16794a; }
+html[data-theme="light"] .econ-up-bad  { color: #b3341f; }
+html[data-theme="light"] .econ-meta-stale { color: #9a4a0c; background: rgba(154, 74, 12, 0.08); }
+html[data-theme="light"] .econ-stale-chip { color: #9a4a0c; background: rgba(154, 74, 12, 0.12); }
+html[data-theme="light"] .econ-sig-strong { border-left-color: #16794a; }
+html[data-theme="light"] .econ-sig-caution { border-left-color: #b3341f; }
+html[data-theme="light"] .econ-sig-mixed { border-left-color: #9a6410; }

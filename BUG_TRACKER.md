@@ -4,6 +4,104 @@ No active bugs.
 
 ---
 
+# Recently Fixed Bugs (2026-07-27 — Economic Intelligence feature)
+
+These four were found by driving the new Economy feature in a real browser. All
+were introduced during this feature's development and fixed before merge; they
+are recorded because each represents a trap that would recur.
+
+---
+
+Bug: Chart SVG forced a 593px minimum width and clipped on mobile
+Priority: High
+Affected Files: `css/economy.css` (`.econ-chart-svg`, `.econ-wrap`)
+Root Cause: An `<svg>` with a `viewBox` has an intrinsic aspect ratio. Combined
+with a fixed height that becomes a min-content **width**, which propagated up and
+made the whole trends section 593px min-content. On a 390px viewport that
+overflowed and was silently clipped by `.page-view { overflow-x: hidden }`.
+Compounding it: `.page-view` is a **column** flex container, so the `min-width: 0`
+already on `.econ-wrap` did nothing — that property only relaxes the automatic
+minimum on the main axis, which is vertical there.
+Fix: `max-width: 100%` on the chart svg (removes it from intrinsic width
+contribution; the ResizeObserver redraw keeps the viewBox matched), plus
+`max-width: min(1500px, 100%)` on `.econ-wrap` and `max-width: 100%` on its
+children as a structural cap.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-27
+Status: Fixed
+
+---
+
+Bug: State choropleth indexed zero regions
+Priority: High
+Affected Files: `js/economy-view.js` (`featureKey`, `style`, `eachFeature`)
+Root Cause: County topology ids are 4–5 digits and pad to 5; **state** ids are
+already 2 digits. Applying `String(feature.id).padStart(5,'0').slice(0,2)`
+uniformly turned `"51"` into `"00051"` then `"00"`, so every state resolved to the
+same non-existent key. The layer rendered 56 features and indexed 0 records, so
+the state view was blank with no error.
+Fix: `featureKey()` normalises per geography — counties pad to 5, states pad to 2.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-27
+Status: Fixed
+
+---
+
+Bug: Explorer map hover and click did nothing
+Priority: High
+Affected Files: `js/economy-view.js` (Leaflet map options)
+Root Cause: The explorer was created with `preferCanvas: true`. Polygons drew
+correctly but pointer hit-testing never registered, so tooltips and county
+selection were dead. `AI_CONTEXT.md` already documents the opposite choice for the
+main county map — "preferCanvas: false to keep SVG rendering (better for
+interaction)" — and the same reasoning applies here.
+Fix: `preferCanvas: false`. The main map already demonstrates ~3,200 SVG county
+paths perform acceptably.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-27
+Status: Fixed
+
+---
+
+Bug: KPI strip and all charts rendered empty under the test fixture
+Priority: Medium
+Affected Files: `js/economy.js` (`_url`, `GENERATED`)
+Root Cause: The `__ECONOMY_FIXTURE_BASE__` test hook redirected **every**
+economy file, including `series_config.json`. That file is hand-maintained
+configuration and exists only in `data/economy/`, so the fetch 404'd and the
+config came back empty. The KPI strip and every chart silently rendered nothing
+while the explorer, signals, and Home pulse all still worked — making it look like
+a chart bug rather than a config-loading bug.
+Fix: Only files the pipeline *generates* may be redirected (`GENERATED` set).
+Configuration always loads from `data/economy/`.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-27
+Status: Fixed
+
+---
+
+# Pre-existing Gap Closed (2026-07-27)
+
+---
+
+Gap: Header tablist had no keyboard arrow navigation
+Priority: Medium (accessibility)
+Affected Files: `js/map.js` (`initNavTabs`)
+Root Cause: `#header-tabs` has carried `role="tablist"` with `role="tab"` children
+for a long time. The ARIA tabs pattern requires Left/Right (and Home/End) to move
+between tabs, with the tablist forming a **single** tab stop. None of that
+existed — all seven tabs were separate tab stops and arrow keys did nothing, so
+the markup promised a keyboard interaction the app did not implement.
+Fix: Roving-tabindex arrow navigation with Home/End, synced to `aria-selected` via
+a MutationObserver so it stays correct when `switchTab()` changes the active tab.
+Only visible tabs participate, so the mobile "More" overflow is skipped. This
+fixes the whole tablist, not only the new Economy tab.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-27
+Status: Fixed
+
+---
+
 # Recently Fixed Bugs (2026-07-25 — Phase 1 accuracy pass)
 
 ---

@@ -148,6 +148,109 @@ Entries in `restrictions_raw.json` track a `lifecycle_stage` field:
 
 ---
 
+## Economic Data (FRED + U.S. Census)
+
+Economic context for the Economy tab, map layers, and county profiles. These are
+**third-party statistical sources**, distinct from the Tier 1–3 policy source model
+above: they are authoritative for their own statistics but say nothing about
+regulation, and are never used to infer a policy record.
+
+### Federal Reserve Economic Data (FRED)
+- **Publisher**: Federal Reserve Bank of St. Louis
+- **Endpoints**: `https://api.stlouisfed.org/fred/series/observations`,
+  `/fred/series` (metadata validation), `/fred/series/release` (originating agency)
+- **Key**: `FRED_API_KEY` repository secret. Server-side only.
+- **Update frequency**: pipeline runs daily; individual series update on their own
+  publication schedules (daily for Treasury yields, monthly for CPI and payrolls,
+  quarterly for GDP).
+- **Output**: `data/economy/fred_data.json`
+- **Series tracked (18)**: configured in `data/economy/series_config.json`, not
+  hardcoded. Rates & Credit (`DFF`, `DGS2`, `DGS10`, `T10Y2Y`, `MORTGAGE30US`,
+  `NFCI`, `BUSLOANS`, `CREACBM027NBOG`), Inflation & Growth (`CPIAUCSL`, `PCEPI`,
+  `GDPC1`, `INDPRO`), Labor & Demand (`UNRATE`, `PAYEMS`, `ICSA`, `RSAFS`),
+  Housing & Construction (`HOUST`, `PERMIT`).
+
+**Attribution note:** FRED *hosts* series produced by other agencies — BLS
+(`CPIAUCSL`, `UNRATE`, `PAYEMS`), BEA (`GDPC1`, `PCEPI`), Census (`HOUST`,
+`PERMIT`, `RSAFS`), Freddie Mac (`MORTGAGE30US`). The pipeline records each
+series' originating release and the UI displays it. Do not present all
+FRED-hosted series as Federal Reserve products.
+
+Every series is validated through the metadata endpoint before its observations
+are requested. A renamed or discontinued series is recorded in
+`economic_metadata.json` under `fred_skipped` and omitted — it never crashes the
+run and never publishes an empty chart.
+
+### U.S. Census Bureau — American Community Survey (ACS) 5-Year Estimates
+- **Publisher**: U.S. Census Bureau
+- **Endpoints**: `https://api.census.gov/data/{year}/acs/acs5`,
+  `.../acs5/variables.json` (per-vintage variable verification)
+- **Key**: `CENSUS_API_KEY` repository secret. Server-side only.
+- **Update frequency**: one new vintage per year. The pipeline checks weekly
+  (skips if refreshed within 7 days) and **auto-discovers** the newest available
+  vintage rather than hardcoding a year.
+- **Output**: `data/economy/census_county.json`, `data/economy/census_state.json`
+- **Join key**: 5-character zero-padded county FIPS (state 2 + county 3), matching
+  every other dataset on this platform.
+- **Metrics**: population and growth (`B01003`), median age (`B01002`), household
+  and per-capita income (`B19013`, `B19301`), labor force (`B23025`), educational
+  attainment (`B15003`), home value and rent (`B25077`, `B25064`), broadband
+  subscription (`B28002`).
+
+**Vintage comparability:** ACS dollar values are expressed in the vintage's own
+inflation-adjusted dollars and are **not** comparable across vintages. The UI
+states this wherever dollar figures appear.
+
+**Variable verification:** ACS variable IDs are reused across vintages but tables
+are occasionally restructured (B28002's broadband line has moved). Before
+requesting data the pipeline loads the vintage's own variables metadata and checks
+that each ID exists *and* that its label matches an expected fragment. A variable
+that cannot be verified causes the metric to be **omitted** and recorded under
+`census.unverified_metrics` — never silently substituted with an unrelated
+variable.
+
+**ACS vs FRED unemployment:** the county unemployment figure is an ACS 5-year
+survey estimate. It is a different measurement on a different schedule from the
+monthly national unemployment rate (`UNRATE`) and the two are labelled separately
+throughout the UI.
+
+### U.S. Census Bureau — County Business Patterns (optional module)
+- **Endpoint**: `https://api.census.gov/data/{year}/cbp`
+- **Output**: `data/economy/census_cbp.json`
+- **Status**: implemented and isolated, but not yet verified against the live API.
+- Tracks establishments, employment, annual payroll, the Information sector, and
+  NAICS 518210 (computing infrastructure, data processing, hosting).
+- **Disclosure suppression** is respected: suppressed cells are recorded as `null`
+  with a `_suppressed` flag, displayed as "Not disclosed", and excluded from
+  rankings and percent-change calculations. They are never coerced to 0.
+- A CBP failure cannot break the Economy page — it is fetched separately and
+  wrapped so an exception is logged and ignored.
+
+### Pipeline and safety
+- **Script**: `data/update_economic_data.py` (Python standard library only)
+- **Workflow**: `.github/workflows/update_economic_data.yml` — daily at 06:20 UTC
+  plus `workflow_dispatch`
+- **Missing values are preserved as missing, never converted to 0.** Zero is a real
+  value for several tracked series, so a fabricated zero would be
+  indistinguishable from data.
+- **A failed run never degrades good data.** `_safe_write()` refuses to replace a
+  populated file with an empty one, or to accept a >20% record-count drop. A
+  missing API key skips that source and preserves its existing output.
+- **Output is validated before commit.** `--check` verifies FIPS format,
+  chronological history, absence of future dates, plausible percentage ranges, and
+  required metadata. The workflow fails rather than committing corrupt data.
+- **No key is ever logged.** `_redact()` strips `api_key`/`key` from any URL that
+  could reach a log line.
+
+### Before the first run
+`data/economy/*.json` ship as structurally-valid placeholders with
+`generated_at: null`. That means *not yet populated* — deliberately distinct from
+"checked and found nothing", the same convention `source_link_health.json` uses.
+Every economic panel shows an explicit "nothing has been measured yet" state
+rather than a zero.
+
+---
+
 ## Priority Coverage
 
 ### Priority States (31)
@@ -165,4 +268,4 @@ AZ, CA, CO, CT, GA, IL, IN, IA, LA, MA, MD, MI, MN, MT, NE, NV, NJ, NY, NC, OH, 
 
 ---
 
-*Last updated: 2026-07-12*
+*Last updated: 2026-07-27*

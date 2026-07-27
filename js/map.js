@@ -376,7 +376,21 @@ const layerState = {
   fema_flood:         false, // roadmap — no data yet
   enterprise_zones:   false, // roadmap — no data yet
   parcels:            false, // parcel-level data (zoom ≥14; pilot: Loudoun County VA)
+  /* Economic choropleths — mutually exclusive, enforced in ECONOMY_MAP.onLayerToggle().
+     Only one may colour counties at a time; stacking opaque economic fills over
+     the restriction layer would make all of them unreadable. */
+  econ_population_growth: false,
+  econ_income:            false,
+  econ_unemployment:      false,
+  econ_workforce:         false,
+  econ_housing_cost:      false,
+  econ_broadband:         false,
 };
+
+/* js/economy-map.js needs to clear sibling economic layers when one is enabled.
+   Exposed rather than reaching into map.js's closure, and named *Ref to make it
+   obvious this is the live object, not a copy. */
+window.layerStateRef = layerState;
 
 let mapData         = {};
 let sampleLayers    = null;
@@ -535,11 +549,24 @@ function getDensityColor(fips) {
 }
 
 function getColor(fips) {
+  // Economic layers participate in the same view-mode switch as density/water/
+  // suitability. Because this is a fall-through rather than a style overwrite,
+  // turning the economic layer off restores restriction colours automatically —
+  // the restriction branch below is simply reached again.
+  if (window.ECONOMY_MAP && window.ECONOMY_MAP.isActive()) {
+    const c = window.ECONOMY_MAP.colorFor(fips);
+    if (c) return c;
+  }
   if (_densityMode) return getDensityColor(fips);
   if (_wsMode)      return getWaterStressColor(fips);
   if (_suitMode)    return getSuitabilityColor(fips);
   const county = mapData[fips];
   return county ? getSeverityColor(county) : themeColors().noData;
+}
+
+/* True when an economic choropleth is driving county colours. */
+function _econModeActive() {
+  return !!(window.ECONOMY_MAP && window.ECONOMY_MAP.isActive());
 }
 
 const RISK_COLORS = {
@@ -605,7 +632,10 @@ function countyStyle(feature) {
 
   const style = {
     fillColor:   getColor(fips),
-    fillOpacity: isSat ? ((hasData || _suitMode || _wsMode || _densityMode) ? 0.70 * zoomFade * countyFillOpacity : 0) : 0.75 * zoomFade * countyFillOpacity,
+    fillOpacity: isSat ? ((hasData || _suitMode || _wsMode || _densityMode
+                            || (_econModeActive() && window.ECONOMY_MAP.hasValue(fips)))
+                          ? 0.70 * zoomFade * countyFillOpacity : 0)
+                       : 0.75 * zoomFade * countyFillOpacity,
     color:       tc.countyBorder,
     weight:      0.35,
   };
@@ -871,6 +901,24 @@ function showTooltip(mouseEvent, fips) {
 
   tooltip.querySelector(".tip-name").textContent  = name;
   tooltip.querySelector(".tip-level").textContent = level;
+
+  /* When an economic layer is driving the fill, show its value too — otherwise
+     the county is coloured by something the tooltip never mentions. The policy
+     level stays on the line above, so policy context is never lost. */
+  let econEl = tooltip.querySelector(".tip-econ");
+  if (_econModeActive()) {
+    const ev = window.ECONOMY_MAP.valueText(fips);
+    if (!econEl) {
+      econEl = document.createElement("div");
+      econEl.className = "tip-econ";
+      tooltip.appendChild(econEl);
+    }
+    econEl.textContent = ev ? `${ev.label}: ${ev.text}` : "";
+    econEl.style.display = "";
+  } else if (econEl) {
+    econEl.style.display = "none";
+  }
+
   tooltip.style.display = "block";
 
   const rect = document.getElementById("map-container").getBoundingClientRect();
@@ -1208,6 +1256,10 @@ function setLayerVisible(id, visible, syncUI = false) {
     if (window.PARCEL) {
       window.PARCEL.onLayerToggle(id, visible, selectedFips);
     }
+  } else if (window.ECONOMY_MAP && window.ECONOMY_MAP.LAYER_METRIC[id]) {
+    // ECONOMY_MAP restyles the county layer and refreshes the legend itself,
+    // because activation is async (the county file is lazy-loaded).
+    window.ECONOMY_MAP.onLayerToggle(id, visible);
   } else {
     const group = leafletLayerGroups[id];
     if (group) {
@@ -3253,7 +3305,44 @@ function renderLegend() {
   legendBody.className = "legend-body";
 
   if (layerState.restrictions) {
-    if (_densityMode) {
+    /* Economic layer takes precedence in the legend for the same reason it does
+       in getColor(): while it is on, it is what the county fills mean. Turning
+       it off falls through to whichever mode was previously active, so the
+       restriction legend returns on its own. */
+    if (_econModeActive()) {
+      const lg = window.ECONOMY_MAP.legend();
+      const h = document.createElement("h3");
+      h.textContent = lg ? lg.title : "Economic Data";
+      legendBody.appendChild(h);
+
+      for (const row of (lg ? lg.rows : [])) {
+        const el = document.createElement("div");
+        el.className = "legend-item";
+        const sw = document.createElement("div");
+        sw.className = "legend-swatch";
+        sw.style.background = row.color;
+        const wrap = document.createElement("div");
+        const lbl = document.createElement("div");
+        lbl.className = "legend-label-main";
+        lbl.textContent = row.label;     // textContent: values are formatted data
+        wrap.appendChild(lbl);
+        el.appendChild(sw);
+        el.appendChild(wrap);
+        legendBody.appendChild(el);
+      }
+
+      const note = document.createElement("div");
+      note.className = "legend-suit-note";
+      note.textContent = lg
+        ? `${lg.source} — ${lg.count.toLocaleString()} counties with a value. Quantile breaks.`
+        : "Economic data unavailable";
+      legendBody.appendChild(note);
+
+      const note2 = document.createElement("div");
+      note2.className = "legend-suit-note";
+      note2.textContent = "Turn the layer off in Layers to restore the policy restriction colours.";
+      legendBody.appendChild(note2);
+    } else if (_densityMode) {
       const h = document.createElement("h3");
       h.textContent = "Infrastructure Density";
       legendBody.appendChild(h);
@@ -5278,12 +5367,134 @@ function setDetailCounty(fips, county) {
     <div id="detail-proximity-section"></div>
     <div id="detail-similar-section"></div>
     <div id="detail-zoning-summary"></div>
+    <div id="detail-economy-section"></div>
     <div id="detail-notes-section"></div>`;
   openMobileSheet();
   _renderProximitySectionForCounty(fips);
   _renderSimilarCounties(fips, county);
   _renderZoningSummaryForCounty(fips);
+  _renderEconomySectionForCounty(fips);
   _renderNotesSection(fips);
+}
+
+/* ── Economy section in the county detail panel ──────────────────────────────
+   Progressive disclosure: a six-cell summary grid is always visible, and the
+   trends and signals live behind <details> so the panel does not become a wall
+   of charts. The county economic file is several megabytes, so it is only
+   fetched when a county is actually opened — never on Home or first paint. */
+function _renderEconomySectionForCounty(fips) {
+  const host = document.getElementById("detail-economy-section");
+  if (!host || !window.ECONOMY) return;
+
+  host.innerHTML = `
+    <div class="policy-divider"></div>
+    <div class="econ-detail-section">
+      <h3 class="detail-section-title">Economic Context</h3>
+      <div class="econ-detail-loading">Loading…</div>
+    </div>`;
+
+  Promise.all([window.ECONOMY.load("county"), window.ECONOMY.load("state")])
+    .then(([cData, sData]) => {
+      // The user may have selected a different county while this was in flight.
+      if (selectedFips !== fips) return;
+
+      if (!window.ECONOMY.hasCounty(cData)) {
+        host.innerHTML = `
+          <div class="policy-divider"></div>
+          <div class="econ-detail-section">
+            <h3 class="detail-section-title">Economic Context</h3>
+            <p class="econ-detail-src">Economic data has not been generated for this deployment yet.
+               A maintainer can populate it by running the Update Economic Data workflow.</p>
+          </div>`;
+        return;
+      }
+
+      const rec = (cData.counties || {})[fips];
+      if (!rec) {
+        host.innerHTML = `
+          <div class="policy-divider"></div>
+          <div class="econ-detail-section">
+            <h3 class="detail-section-title">Economic Context</h3>
+            <p class="econ-detail-src">No ACS record for this county.</p>
+          </div>`;
+        return;
+      }
+
+      const E = window.ECONOMY;
+      const cells = [
+        ["population", "change_5y"],
+        ["median_household_income", "value"],
+        ["unemployment_rate", "value"],
+        ["bachelors_or_higher_pct", "value"],
+        ["median_home_value", "value"],
+        ["broadband_pct", "value"],
+      ].map(([metric, measure]) => {
+        const meta = E.METRICS[metric];
+        const cmp  = E.comparisons(cData, sData, fips, metric, "value");
+        const v    = measure === "value" ? cmp.value : E.metricValue(rec, metric, measure);
+        const text = v === null || v === undefined
+          ? `<span class="econ-nodata">No data</span>`
+          : escHtml(measure === "value" ? E.fmtValue(v, meta.unit, meta.dec) : E.fmtPct(v));
+        const label = measure === "value" ? meta.label : meta.label + " (5-yr)";
+        const cmpText = cmp.us_median !== null && measure === "value"
+          ? `US median ${E.fmtValue(cmp.us_median, meta.unit, meta.dec)}`
+          : "";
+        return `<div class="econ-detail-cell">
+          <div class="econ-detail-label">${escHtml(label)}</div>
+          <div class="econ-detail-value">${text}</div>
+          ${cmpText ? `<div class="econ-detail-cmp">${escHtml(cmpText)}</div>` : ""}
+        </div>`;
+      }).join("");
+
+      const hist = rec.history || {};
+      const sparks = [
+        ["population", "Population"],
+        ["median_household_income", "Median income"],
+        ["unemployment_rate", "Unemployment"],
+      ].map(([k, label]) => `
+        <div class="econ-spark-row">
+          <span class="econ-spark-label">${escHtml(label)}</span>
+          ${E.sparklineSvg(hist[k], { label })}
+        </div>`).join("");
+
+      const signals = E.countySignals(cData, fips);
+      const vintage = cData.acs_vintage;
+
+      host.innerHTML = `
+        <div class="policy-divider"></div>
+        <div class="econ-detail-section">
+          <h3 class="detail-section-title">Economic Context</h3>
+          <div class="econ-detail-grid">${cells}</div>
+
+          <details class="econ-profile-more">
+            <summary>Trends (5 years)</summary>
+            <div class="econ-sparks">${sparks}</div>
+          </details>
+
+          ${signals.length ? `<details class="econ-profile-more">
+            <summary>Infrastructure-relevant signals (${signals.length})</summary>
+            <ul class="econ-profile-signals">
+              ${signals.map(s => `<li class="econ-sig-${escHtml(s.strength)}">
+                <strong>${escHtml(s.title)}:</strong> ${escHtml(s.text)}</li>`).join("")}
+            </ul>
+          </details>` : ""}
+
+          <p class="econ-detail-src">
+            U.S. Census Bureau, American Community Survey ${escHtml(String(vintage))} 5-Year Estimates.
+            Survey estimates with margins of error, not administrative counts.
+            Unemployment here is an ACS estimate, separate from the monthly national rate.
+          </p>
+        </div>`;
+    })
+    .catch(err => {
+      if (selectedFips !== fips) return;
+      host.innerHTML = `
+        <div class="policy-divider"></div>
+        <div class="econ-detail-section">
+          <h3 class="detail-section-title">Economic Context</h3>
+          <p class="econ-detail-src">Economic data could not be loaded (${escHtml(err.message)}).</p>
+        </div>`;
+    });
 }
 
 function setDetailNoRestriction(name, state, fips) {
@@ -6274,6 +6485,7 @@ function switchTab(tab) {
   const homeEl      = document.getElementById("home-view");
   const newsEl      = document.getElementById("news-view");
   const stocksEl    = document.getElementById("stocks-view");
+  const economyEl   = document.getElementById("economy-view");
   const analyticsEl = document.getElementById("analytics-view");
   const pipelineEl  = document.getElementById("pipeline-view");
   const aboutEl     = document.getElementById("about-view");
@@ -6291,7 +6503,7 @@ function switchTab(tab) {
   // map, news, and stocks restore the user's saved collapsed preference.
   // "jurisdiction" is a virtual route with no header tab but renders fullpage.
   const isFullpage = tab === "analytics" || tab === "about" || tab === "home"
-                  || tab === "pipeline" || tab === "jurisdiction";
+                  || tab === "pipeline" || tab === "jurisdiction" || tab === "economy";
   if (isFullpage) appEl.classList.remove("top-hidden");
 
   appEl.classList.toggle("stocks-mode",   tab === "stocks");
@@ -6302,6 +6514,7 @@ function switchTab(tab) {
   newsEl.hidden = true;
   if (homeEl)      homeEl.hidden      = true;
   if (stocksEl)    stocksEl.hidden    = true;
+  if (economyEl)   economyEl.hidden   = true;
   if (analyticsEl) analyticsEl.hidden = true;
   if (pipelineEl)  pipelineEl.hidden  = true;
   if (aboutEl)     aboutEl.hidden     = true;
@@ -6323,6 +6536,14 @@ function switchTab(tab) {
     searchBar.classList.add("news-mode");
     if (typeof initStocksPage === "function") initStocksPage();
     savedHidden();
+  } else if (tab === "economy") {
+    if (economyEl) { economyEl.hidden = false; triggerViewEnter(economyEl); }
+    searchBar.classList.add("news-mode");
+    // renderEconomyPage() is idempotent: it builds the shell once and reuses
+    // existing charts, so returning to this tab does not rebuild them.
+    if (typeof renderEconomyPage === "function") renderEconomyPage();
+    // The explorer's Leaflet map was sized while the view was hidden.
+    if (window.ECONOMY_VIEW) setTimeout(() => window.ECONOMY_VIEW.invalidate(), 180);
   } else if (tab === "analytics") {
     if (analyticsEl) { analyticsEl.hidden = false; triggerViewEnter(analyticsEl); }
     searchBar.classList.add("news-mode");
@@ -6388,6 +6609,47 @@ function initNavTabs() {
   });
   /* Logo / brand click → Home */
   document.getElementById("header-brand")?.addEventListener("click", () => goToTab("home"));
+
+  /* Roving-tabindex arrow navigation.
+     #header-tabs is role="tablist" with role="tab" children, and the ARIA tabs
+     pattern requires Left/Right (plus Home/End) to move between them — the
+     tablist should be ONE tab stop, not seven. This was missing entirely; adding
+     it here fixes the whole tablist rather than only the new Economy tab.
+     Only visible tabs participate, so the mobile "More" overflow is skipped. */
+  const tablist = document.getElementById("header-tabs");
+  if (tablist) {
+    const tabButtons = () => [...tablist.querySelectorAll(".header-tab[data-tab]")]
+      .filter(b => b.offsetParent !== null);
+
+    const syncTabIndex = () => {
+      tabButtons().forEach(b => {
+        b.tabIndex = b.getAttribute("aria-selected") === "true" ? 0 : -1;
+      });
+    };
+    syncTabIndex();
+    // Keep the roving index correct when switchTab() changes aria-selected.
+    new MutationObserver(syncTabIndex).observe(tablist, {
+      subtree: true, attributes: true, attributeFilter: ["aria-selected"],
+    });
+
+    tablist.addEventListener("keydown", (e) => {
+      const btns = tabButtons();
+      const i = btns.indexOf(document.activeElement);
+      if (i === -1) return;
+      let next = null;
+      if (e.key === "ArrowRight") next = btns[(i + 1) % btns.length];
+      else if (e.key === "ArrowLeft") next = btns[(i - 1 + btns.length) % btns.length];
+      else if (e.key === "Home") next = btns[0];
+      else if (e.key === "End") next = btns[btns.length - 1];
+      if (!next) return;
+      e.preventDefault();
+      next.tabIndex = 0;
+      next.focus();
+      // Follow-focus activation, which is the expected behaviour for a tablist
+      // whose panels are already loaded.
+      goToTab(next.dataset.tab);
+    });
+  }
 
   initRouterBinding();
   initMobileNav();

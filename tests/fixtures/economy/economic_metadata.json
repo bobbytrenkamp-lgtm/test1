@@ -1,0 +1,49 @@
+{
+ "_schema": "economy_metadata_v1",
+ "_synthetic": "SYNTHETIC TEST DATA \u2014 invented numbers used only to verify that the Economy UI renders. NOT real economic data. Never copy into data/economy/.",
+ "acs_vintage": 2024,
+ "cbp_available": false,
+ "cbp_year": null,
+ "census": {
+  "last_successful_update": "2026-07-26T06:22:40+00:00",
+  "selected_variables": {
+   "broadband_pct": {
+    "broadband": "B28002_004E",
+    "denominator": "B28002_001E"
+   },
+   "population": {
+    "value": "B01003_001E"
+   }
+  },
+  "unverified_metrics": {}
+ },
+ "county_count": 1465,
+ "fred_series_count": 18,
+ "fred_skipped": [],
+ "generated_at": "2026-07-26T06:22:41+00:00",
+ "latest_observation_date": "2026-07-24",
+ "oldest_history_year": 2019,
+ "pipeline_version": "1.0.0",
+ "source_updated_at": "2026-07-25 15:18:03-05",
+ "sources": [
+  {
+   "id": "fred",
+   "name": "Federal Reserve Economic Data (FRED)",
+   "note": "FRED hosts series produced by several agencies.",
+   "publisher": "Federal Reserve Bank of St. Louis",
+   "update_frequency": "Daily pipeline run.",
+   "url": "https://fred.stlouisfed.org/"
+  },
+  {
+   "id": "acs5",
+   "name": "American Community Survey 5-Year Estimates",
+   "note": "5-year rolling estimates.",
+   "publisher": "U.S. Census Bureau",
+   "update_frequency": "Annual vintage.",
+   "url": "https://www.census.gov/programs-surveys/acs/"
+  }
+ ],
+ "stale": false,
+ "state_count": 51,
+ "warnings": []
+}

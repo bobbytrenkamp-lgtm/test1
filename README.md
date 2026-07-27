@@ -4,6 +4,7 @@ An interactive three-tab web application tracking US data center and AI policy, 
 
 **Tabs:**
 - **Map** — Choropleth map of data center construction restrictions, AI regulations, and computing moratoriums at the US county level
+- **Economy** — Economic Intelligence: Federal Reserve and U.S. Census indicators for infrastructure planning
 - **AI News** — Curated AI industry news feed updated hourly
 - **AI Stocks** — Interactive AI company stock tracker with TradingView charts, 50+ companies, favorites, and market heatmap
 
@@ -188,12 +189,83 @@ All tests run without live internet access using inline sample RSS/Atom bytes.
 | Relevance threshold too high | Lower `relevance_threshold` in `data/news_sources.json` `settings` block (default: 3). |
 | `feedparser` import error | This project intentionally does not use feedparser — it requires `sgmllib` which was removed in Python 3.11. The custom XML parser in `update_ai_news.py` handles RSS 2.0 and Atom 1.0. |
 
+## Economic Intelligence (Economy tab)
+
+Federal Reserve and U.S. Census data, presented as planning context for data
+center and AI infrastructure rather than as a general economics dashboard.
+
+**Four sections**
+
+1. **National Economic Pulse** — seven KPI indicators: federal funds rate,
+   10-year Treasury, yield-curve spread, inflation (YoY), national unemployment,
+   real GDP growth, and commercial real estate loan growth. Each shows its value,
+   change, observation date, source, and an explanatory tooltip.
+2. **National Trends** — interactive time-series charts across Rates & Credit,
+   Inflation & Growth, Labor & Demand, and Housing & Construction, with 1Y / 3Y /
+   5Y / 10Y / Max ranges, hover readouts, and per-series show/hide.
+3. **Regional Economic Explorer** — county or state choropleth with a metric
+   selector (population, income, unemployment, education, housing, broadband),
+   latest-value or 1/5-year change, search, and a profile panel giving US and
+   state comparisons, percentile rank, and sparklines.
+4. **Infrastructure-Relevant Signals** — plain statements about conditions that
+   matter for infrastructure planning (population momentum, skilled workforce,
+   labor tightness, financing cost, credit availability). Each comes from a fixed
+   rule and cites a figure shown on the page.
+
+**Also integrated into** the Map tab (an *Economic Data* layer group with six
+choropleths), county detail and Jurisdiction pages (an Economy section),
+Analytics (an exploratory Economic Context comparison), and Home (a four-indicator
+pulse).
+
+### Setup — required GitHub secrets
+
+Economic data is fetched by GitHub Actions, never by the browser. Add two
+repository secrets under **Settings → Secrets and variables → Actions**:
+
+| Secret | Get one from | Used for |
+|---|---|---|
+| `FRED_API_KEY` | https://fred.stlouisfed.org/docs/api/api_key.html | Federal Reserve series |
+| `CENSUS_API_KEY` | https://api.census.gov/data/key_signup.html | ACS county/state data |
+
+Both are free. Neither key is ever sent to the browser, written to a data file, or
+printed in workflow logs.
+
+### First run
+
+Until the pipeline runs, every economic panel shows an explicit "not yet measured"
+notice — deliberately distinct from showing a zero. To populate it:
+
+**Actions → Update Economic Data → Run workflow**
+
+Optional inputs: `force_census` (refresh Census even if recently updated),
+`fred_only` (skip Census this run), `skip_cbp` (skip the optional Business
+Patterns module). After that it runs daily at 06:20 UTC; Census is only
+re-fetched when its data is more than 7 days old, since ACS publishes annually.
+
+A missing key is a warning, not a failure — that source is skipped and its
+existing data is preserved. The workflow fails only if output validation shows the
+generated data would be corrupt.
+
+### Data notes
+
+- **FRED hosts series from several agencies** (BLS, BEA, Census, Freddie Mac). Each
+  indicator displays its originating release rather than crediting the Federal
+  Reserve for all of them.
+- **ACS figures are 5-year survey estimates**, not administrative counts, and
+  dollar values are vintage-specific and not comparable across vintages.
+- **County unemployment (ACS) is not the national unemployment rate (FRED)** —
+  different measurements on different schedules, labelled separately throughout.
+- **Missing values stay missing.** Nothing is filled with zero, and chart lines
+  break across gaps rather than interpolating through them.
+- Signals describe measured conditions. They are **not** investment advice or
+  evidence that a facility should be built anywhere.
+
 ## Tech Stack
 
 - **Leaflet.js v1.9.4** — Interactive map with native pan, zoom, touch
 - **TopoJSON client** — County boundary rendering from us-atlas
 - **Python 3.11** — Data processing and news aggregation scripts
-- **GitHub Actions** — Daily map data refresh + hourly news feed + Pages deployment
+- **GitHub Actions** — Daily map data refresh + hourly news feed + daily economic data + Pages deployment
 - **GitHub Pages** — Static hosting
 
 > **Note:** The README's earlier tech stack reference to D3.js is historical. The application was migrated to Leaflet; see `AI_CONTEXT.md` for the migration history.

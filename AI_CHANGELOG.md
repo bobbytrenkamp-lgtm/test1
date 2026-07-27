@@ -5,6 +5,162 @@
 Date: 2026-07-26
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Economic Intelligence — FRED + Census feature
+
+## Summary
+Added a complete Economic Intelligence feature: a new top-level **Economy** tab
+between Map and AI News, backed by a Python pipeline that pulls Federal Reserve
+(FRED) and U.S. Census (ACS 5-year) data in GitHub Actions and writes local JSON
+the browser loads. No API key is ever present client-side.
+
+The feature is integrated rather than bolted on: economic choropleths appear as a
+layer group in the existing Map tab, county detail and Jurisdiction pages gain an
+Economy section, Analytics gains an exploratory Economic Context section, and Home
+gains a deliberately restrained four-indicator pulse.
+
+## New files
+
+**Data pipeline**
+- `data/update_economic_data.py` (~1,000 lines) — FRED observations + series
+  metadata validation, Census ACS with vintage auto-discovery and per-vintage
+  variable verification, optional County Business Patterns module
+- `data/economy/series_config.json` — 18 FRED series across 4 categories; the
+  single source of presentation truth for both Python and JS
+- `data/economy/census_config.json` — ACS variable map plus the label fragments
+  used to verify those variables against each vintage
+- `data/economy/{fred_data,census_county,census_state,economic_metadata}.json` —
+  shipped as structurally-valid **placeholders** (see "Placeholder state" below)
+- `.github/workflows/update_economic_data.yml` — daily, `workflow_dispatch`
+
+**Frontend** (mirrors the zoning.js / zoning-map.js / zoning-details.js split)
+- `js/economy.js` — data loading/caching, formatting, classification, SVG charts,
+  comparison stats, deterministic signal rules
+- `js/economy-view.js` — the four Economy tab sections + Leaflet explorer
+- `js/economy-map.js` — economic choropleths for the main Map tab
+- `css/economy.css`
+
+**Tests**
+- `tests/test_economic_data.py` — 259 offline assertions
+- `tests/fixtures/economy/` — clearly-labelled SYNTHETIC data for browser tests
+
+## Modified
+`index.html` (tab, view container, asset tags), `js/router.js` (route),
+`js/map.js` (switchTab, getColor, countyStyle, setLayerVisible, renderLegend,
+showTooltip, county detail Economy section, tablist arrow keys),
+`js/layer-registry.js` (6 economic layers), `js/home.js` (Economic Pulse),
+`js/analytics.js` (Economic Context), `js/jurisdiction.js` (Economy card),
+`css/style.css` (tooltip econ line), `tests/e2e_smoke.mjs` (2 scenarios),
+`tests/run_all.sh`, `tests/test_frontend_core.mjs` (economy route).
+
+## Design decisions worth keeping
+
+**Map integration uses the existing view-mode fall-through, not a style
+overwrite.** `getColor()` in map.js already dispatches on `_densityMode` /
+`_wsMode` / `_suitMode` before falling back to restriction severity. Economic
+layers were added to that same switch. The consequence is that turning an
+economic layer off restores restriction colours *automatically* — the restriction
+branch is simply reached again. Verified: `#dc2626` -> `#3a7cab` -> `#dc2626`
+across three toggle cycles with no drift. Satellite opacity, zoom fade, filter
+dimming, screener highlight and the selected-county outline all keep working
+untouched.
+
+**One economic layer at a time.** `ECONOMY_MAP.onLayerToggle()` clears sibling
+economic layers (and their checkboxes) when one is enabled. Stacking several
+opaque economic fills over the restriction layer would make all of them
+unreadable.
+
+**No red-to-green ramp for magnitude.** Sequential blues encode magnitude;
+the diverging ramp is reserved for signed change, where a zero midpoint is
+genuinely meaningful. A red-green ramp on "population" or "rent" would imply a
+value judgement the data does not carry, and it is the worst case for the most
+common form of colour blindness.
+
+**Signals are rule-based, never generative.** Every statement comes from a fixed
+rule in `SIGNAL_RULES` and cites a figure the UI also displays, so a reader can
+check the claim. They are framed as descriptions of measured conditions, with a
+non-dismissible disclaimer that they are not investment advice or evidence that a
+facility should be built anywhere.
+
+**Correlation is labelled exploratory.** The Analytics scatter reports Pearson r
+but states plainly that correlation does not establish causation, and that only
+the counties present in *both* datasets are plotted, so it is not a national
+sample.
+
+## Placeholder state (important for the next assistant)
+`data/economy/*.json` ship with `generated_at: null` and no records. That means
+**NOT YET POPULATED** — deliberately distinct from "ran and found nothing", the
+same convention `data/source_link_health.json` already uses in this repo.
+
+Every surface renders an explicit awaiting-data notice saying nothing has been
+measured yet, rather than showing a zero or an empty chart. `--check` treats an
+unpopulated placeholder as valid (a fresh checkout must not fail the very
+workflow that populates it) but still fails a file that *claims* to be generated
+and is empty.
+
+No economic figures were invented. The APIs are unreachable from the sandbox
+(proxy returns 403), so browser verification used
+`tests/fixtures/economy/` — synthetic data that lives under `tests/`, carries a
+`_synthetic` marker, and is never served from `data/`.
+
+## Bugs found and fixed during browser verification
+1. **Fixture override redirected `series_config.json`** — which is hand-maintained
+   config that only exists in `data/economy/`. The KPI strip and every chart
+   rendered empty while the rest of the page looked fine. Only *generated* files
+   may be redirected.
+2. **State choropleth indexed zero records** — state topology ids are 2 digits, so
+   `padStart(5,'0').slice(0,2)` produced `"00"` for every state. Now normalised
+   per geography.
+3. **Chart SVG forced 593px min-content width** — a viewBox gives an `<svg>` an
+   intrinsic aspect ratio, which combined with a fixed height becomes a min-content
+   *width*. That propagated up and was clipped on a 390px phone. Fixed with
+   `max-width: 100%` on the svg plus a structural cap on `.econ-wrap`.
+   Note for future work: `.page-view` is a **column** flex container, so
+   `min-width: 0` does nothing for width there — only `max-width` constrains it.
+4. **Explorer hit-testing dead with `preferCanvas: true`** — polygons drew but
+   hover and click never registered. Switched to SVG, matching the documented
+   decision for the main county map.
+
+## Accessibility
+Added roving-tabindex arrow-key navigation to the header tablist. It has had
+`role="tablist"` / `role="tab"` for a long time, which *requires* Left/Right/Home/
+End and a single tab stop, but none of that existed. This fixes the whole tablist,
+not just the new tab.
+
+Charts carry `<desc>` text summaries; direction is never colour-only (every change
+pairs a glyph and a signed number with the colour); all controls are labelled;
+touch targets are >= 28px at every tested width.
+
+## Verification
+- `tests/test_economic_data.py` — **259/259** offline assertions
+- `./tests/run_all.sh` — all suites pass (now includes the economic pipeline and
+  an output-validation gate)
+- `tests/e2e_smoke.mjs` — **15/15** browser scenarios, zero JS errors, no local 4xx
+- Responsive at 1440 / 1024 / 768 / 390 / 320: no horizontal scroll, chart viewBox
+  tracks real width, no clipped text, no undersized touch targets
+- Existing features regression-checked: map, restriction choropleth, AI News,
+  AI Stocks, Analytics, Pipeline, zoning, parcel, mobile nav, auth degradation
+
+## Required GitHub secrets
+`FRED_API_KEY`, `CENSUS_API_KEY`. Both are read only from the environment inside
+the workflow, never logged (URLs are redacted by `_redact()`), and never written
+to any output file. A missing key is a warning, not a failure: that source is
+skipped and its previously committed data is preserved untouched.
+
+## Known limitations
+- Pipeline has not run yet — all economic panels show the awaiting-data state
+  until the workflow is triggered.
+- `census_county.json` will be several megabytes once populated. It is lazy-loaded
+  and never fetched for Home or the KPI strip, but if it becomes a problem the
+  next step is splitting latest-values from history into separate files.
+- County Business Patterns is written and isolated but unverified against the live
+  API.
+- ACS margins of error are not yet surfaced per value.
+
+---
+
+Date: 2026-07-26
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Favicon — extract the header's folded-map mark
 
 ## Summary

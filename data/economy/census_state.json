@@ -1,0 +1,10 @@
+{
+ "_note": "NOT YET POPULATED. This file ships as a structurally-valid placeholder so the frontend has a real shape to load and renders an explicit 'awaiting first data run' state rather than erroring. An empty container here means THE PIPELINE HAS NOT RUN YET \u2014 it is deliberately distinct from 'ran and found nothing'. Populate by running the Update Economic Data workflow (needs FRED_API_KEY / CENSUS_API_KEY). No economic figures are invented here; the platform never ships fabricated data.",
+ "_schema": "economy_census_state_v1",
+ "acs_vintage": null,
+ "generated_at": null,
+ "oldest_history_year": null,
+ "selected_variables": {},
+ "source": "U.S. Census Bureau, American Community Survey 5-Year Estimates",
+ "states": {}
+}

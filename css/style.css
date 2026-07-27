@@ -1877,6 +1877,17 @@ body.is-resizing-floating-panel * {
   font-size: 11.5px;
   letter-spacing: 0.01em;
 }
+/* Shown only while an economic choropleth is the active county fill, so the
+   hover reading matches what the colour actually encodes. */
+#tooltip .tip-econ {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 3px;
+  padding-top: 3px;
+  border-top: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+}
 
 /* ── Loading ── */
 #loading {

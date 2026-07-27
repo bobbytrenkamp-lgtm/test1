@@ -619,6 +619,148 @@ nav sheet rendering off-screen because an ancestor `transform` re-anchors `posit
 has no layout and no real navigation, so it cannot catch either class of bug. Errors from
 unreachable external hosts (TradingView, remote tiles) are filtered so real errors stay visible.
 
+## Economic Intelligence (Economy tab)
+
+### Files
+```
+js/economy.js        core — loading/caching, formatting, classification, SVG charts,
+                     comparison stats, deterministic signal rules   (window.ECONOMY)
+js/economy-view.js   the four Economy tab sections + Leaflet explorer (window.ECONOMY_VIEW)
+js/economy-map.js    economic choropleths for the MAIN Map tab       (window.ECONOMY_MAP)
+css/economy.css
+data/update_economic_data.py            the whole pipeline (stdlib only, no pip install)
+data/economy/series_config.json         18 FRED series, 4 categories — presentation truth
+data/economy/census_config.json         ACS variable map + label fragments for verification
+data/economy/fred_data.json             generated
+data/economy/census_county.json         generated
+data/economy/census_state.json          generated
+data/economy/economic_metadata.json     generated — provenance, warnings, staleness
+data/economy/census_cbp.json            generated, optional
+.github/workflows/update_economic_data.yml
+tests/test_economic_data.py             259 offline assertions
+tests/fixtures/economy/                 SYNTHETIC data for browser tests — never real
+```
+
+The three JS modules mirror the zoning split (`zoning.js` / `zoning-map.js` /
+`zoning-details.js`): `economy.js` owns data and math, the other two own DOM.
+Load order in index.html is economy.js -> economy-view.js -> economy-map.js.
+
+### Data flow
+```
+FRED API + Census ACS API   (GitHub Actions only — keys live in repo secrets)
+        |
+        v
+data/update_economic_data.py   validate series -> parse -> derive -> _safe_write()
+        |
+        v
+data/economy/*.json            committed by the workflow with [skip ci]
+        |
+        v
+window.ECONOMY.load(key)       lazy, memoized, one in-flight promise per file
+        |
+        +-- Economy tab      economy-view.js
+        +-- Map layers       economy-map.js
+        +-- county detail    _renderEconomySectionForCounty()  in map.js
+        +-- jurisdiction     _renderEconomyCard()              in jurisdiction.js
+        +-- Analytics        _fillEconomicContext()            in analytics.js
+        +-- Home             _renderHomeEconomicPulse()        in home.js
+```
+
+### API secrets — required
+`FRED_API_KEY` and `CENSUS_API_KEY` as **repository secrets**. They are read only
+from the environment inside the workflow, never logged (`_redact()` strips them
+from any URL that could reach a log line), and never written to an output file.
+**No API key may ever appear in JS, HTML, JSON, or a committed file.**
+
+A missing key is a warning, not a failure: that source is skipped and its
+previously committed data is preserved untouched.
+
+### Placeholder state — read this before "fixing" empty economic data
+The shipped `data/economy/*.json` have `generated_at: null` and no records. That
+means **NOT YET POPULATED**, deliberately distinct from "ran and found nothing" —
+the same convention `data/source_link_health.json` uses.
+
+Every surface renders an explicit awaiting-data notice stating nothing has been
+measured yet. Do NOT replace these with invented numbers to make the UI look
+populated. Run the workflow instead.
+
+`--check` treats an unpopulated placeholder as valid (a fresh checkout must not
+fail the workflow that populates it) but still fails a file that *claims* to be
+generated and is empty.
+
+### Map integration — why turning the layer off just works
+`getColor()` in map.js dispatches on `_densityMode` / `_wsMode` / `_suitMode`
+before falling back to restriction severity. Economic layers were added to the
+front of that same switch, as a **fall-through, not a style overwrite**. Turning
+an economic layer off therefore restores restriction colours automatically,
+because the restriction branch is simply reached again. Nothing needs restoring
+by hand. Verified `#dc2626 -> #3a7cab -> #dc2626` across three toggle cycles.
+
+Only ONE economic layer may be active: `ECONOMY_MAP.onLayerToggle()` clears its
+siblings (and their checkboxes) via `window.layerStateRef`, which is the live
+`layerState` object exposed for exactly this purpose.
+
+### Data-integrity rules the pipeline enforces
+- Missing stays missing. FRED `"."`, Census jam values (`-666666666` and family),
+  empty strings and nulls all become `None` — **never 0**. Several tracked series
+  legitimately sit near zero (T10Y2Y, NFCI), so a fabricated zero is
+  indistinguishable from real data.
+- `pct_change` / `cagr` / `safe_ratio_pct` return `None` rather than guessing when
+  an endpoint is missing or a denominator is zero. A CAGR through zero or from a
+  negative base is undefined, not zero.
+- Future-dated observations are dropped; history arrays are sorted ascending.
+- `_safe_write()` refuses to replace a populated file with an empty one, or to
+  accept a >20% record-count drop. This is what makes an API outage harmless.
+- ACS variables are verified against **each vintage's own** variables endpoint by
+  label fragment before use. A variable that cannot be verified causes the metric
+  to be omitted and recorded in `economic_metadata.json`, never silently
+  substituted. B28002's broadband line has moved between vintages — hence
+  `broadband_candidates`.
+- CBP disclosure-suppressed cells become `null` plus a `_suppressed` flag, never
+  0, and never enter a ranking or a percent change.
+
+### Presentation rules
+- **No red-to-green ramp for magnitude.** Sequential blues encode magnitude; the
+  diverging ramp is only for signed change, where a zero midpoint is meaningful.
+- Chart lines **break across gaps** rather than interpolating — `segments()` splits
+  a series into contiguous runs of real values.
+- Percentile ranks appear only where >= 20 comparable areas have a value.
+- ACS dollar figures are vintage-specific and labelled as not comparable across
+  vintages.
+- The ACS county unemployment estimate and the FRED national unemployment rate are
+  different measurements on different schedules and are labelled separately
+  everywhere they appear.
+- Signals are rule-based (`SIGNAL_RULES`), never generative, and every statement
+  cites a figure the UI also displays. They are framed as descriptions of measured
+  conditions, not investment advice.
+- FRED **hosts** series produced by BLS, BEA, Census and Freddie Mac. Each series
+  records its originating release via `/fred/series/release`; the UI shows that
+  rather than crediting the Federal Reserve for everything.
+
+### Traps found the hard way (do not re-introduce)
+1. **`.page-view` is a COLUMN flex container.** `min-width: 0` does nothing for
+   width there — it only relaxes the automatic minimum on the main axis, which is
+   vertical. Only `max-width` constrains a wide child. A child with a large
+   intrinsic min-width overflows and gets clipped by `overflow-x: hidden`.
+2. **An `<svg>` with a viewBox has an intrinsic aspect ratio**, so a fixed height
+   gives it a min-content *width*. The trends chart forced the whole section to
+   593px and clipped on a 390px phone. `max-width: 100%` on the svg fixes it.
+3. **`preferCanvas: true` broke hover/click hit-testing** on the explorer
+   choropleth — polygons drew, nothing responded. Use SVG, matching the main map's
+   documented decision.
+4. **State topology ids are 2 digits**, county ids are 4-5. `padStart(5,'0')
+   .slice(0,2)` yields `"00"` for every state. Normalise per geography.
+5. Only *generated* files may be redirected to the test fixture.
+   `series_config.json` is hand-maintained config and exists only in
+   `data/economy/`; redirecting it silently emptied the KPI strip and all charts.
+
+### Performance
+`census_county.json` is the large file and is **never** fetched for Home or the
+KPI strip — Home uses `fred_data.json` plus `census_state.json` only.
+`tests/e2e_smoke.mjs` asserts this. Files are memoized with one in-flight promise
+per file; charts are built once and only re-laid-out on resize; a stale fetch that
+resolves after navigation is discarded via a load token.
+
 ## Platform Metadata (data/platform_metadata.json)
 
 Central source of truth for platform-wide statistics. Loaded by `home.js`, `analytics.js`, and `map.js`. **Do NOT hardcode these numbers in JS** — read from this file.
