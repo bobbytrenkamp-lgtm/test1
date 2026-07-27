@@ -45,14 +45,20 @@
   }
  },
  "county_count": 3222,
- "fred_series_count": 18,
+ "fred_series_count": 21,
  "fred_skipped": [],
- "generated_at": "2026-07-27T16:04:23+00:00",
- "last_run_at": "2026-07-27T16:04:23+00:00",
+ "generated_at": "2026-07-27T20:32:58+00:00",
+ "last_run_at": "2026-07-27T20:32:58+00:00",
  "latest_observation_date": "2026-07-24",
  "oldest_history_year": 2019,
+ "pep_available": false,
+ "pep_county_count": 0,
+ "pep_year": null,
+ "permits_available": false,
+ "permits_county_count": 0,
+ "permits_last_successful_update": null,
  "pipeline_version": "1.0.0",
- "source_updated_at": "2026-07-24 16:03:19-05",
+ "source_updated_at": "2026-07-27 15:16:36-05",
  "sources": [
   {
    "id": "fred",
@@ -82,6 +88,6 @@
  "stale": true,
  "state_count": 52,
  "warnings": [
-  "ACS metric 'population': could not verify value=B01003_001E in this vintage — metric will be omitted rather than guessed"
+  "Building Permits: only 0 counties returned real data out of 50 checked — module skipped rather than publishing a suspiciously small result (this pattern usually means the series ID scheme is wrong, not that most counties lack data)"
  ]
 }
