@@ -2,13 +2,18 @@ name: Update Economic Data
 
 # Builds the Economy tab's local JSON from the FRED and Census APIs.
 #
-# WHY A SINGLE DAILY JOB SERVES TWO CADENCES
+# WHY A SINGLE DAILY JOB SERVES THREE CADENCES
 # FRED series publish daily-to-monthly, so they are refreshed on every run.
 # Census ACS publishes ONE new 5-year vintage per year, so re-downloading
 # ~3,140 counties every day would burn CI minutes for no new data. The script
 # reads census.last_successful_update from economic_metadata.json and skips
-# Census unless it is older than --census-max-age-days (7). That keeps the
-# schedule to one job while giving Census an effectively weekly cadence.
+# Census unless it is older than --census-max-age-days (7). Building Permits
+# (via FRED, one series PER COUNTY — see collect_permits in
+# data/update_economic_data.py) is on its own, longer gate
+# (--permits-max-age-days, 30) for the same reason but a bigger number: BPS
+# publishes annually and a full permits run is ~3,000 individual requests, so
+# it must not repeat on FRED's own daily cadence. All three checks live in one
+# scheduled job rather than three separate workflows.
 #
 # API KEYS
 # Both are FREE registrations at two different agencies, so they are two
@@ -18,15 +23,17 @@ name: Update Economic Data
 # passed only as env vars to the Python step — never echoed, never written to
 # an output file, and any URL reaching a log line is redacted by _redact().
 #   FRED_API_KEY    REQUIRED. https://fred.stlouisfed.org/docs/api/api_key.html
-#   CENSUS_API_KEY  OPTIONAL. https://api.census.gov/data/key_signup.html
+#   CENSUS_API_KEY  REQUIRED. https://api.census.gov/data/key_signup.html
 #
 # MISSING KEY BEHAVIOUR
-# Only FRED actually needs its key — the API rejects keyless requests, so a
-# missing FRED_API_KEY skips FRED with a warning and preserves the previously
-# committed data untouched. Census answers unauthenticated requests at about
-# 500/day per IP and a full run of this pipeline costs ~13, so a missing
-# CENSUS_API_KEY runs keyless instead of skipping. Neither case fails the job;
-# it fails only when output validation says the generated data would be corrupt.
+# Both keys are required in practice, but neither is required by the CODE — a
+# missing key skips that source with a warning and preserves the previously
+# committed data untouched, exactly the same for both. FRED has always
+# rejected keyless requests. Census allowed roughly 500 unauthenticated
+# requests/day until May 12, 2026, when it began requiring a key for every
+# Data API request (this covers ACS, the Population Estimates Program, and
+# CBP). Neither missing key fails the job; it fails only when output
+# validation says the generated data would be corrupt.
 
 on:
   schedule:
@@ -50,6 +57,26 @@ on:
         required: false
         type: boolean
         default: false
+      skip_pep:
+        description: "Skip the optional Population Estimates (PEP) module"
+        required: false
+        type: boolean
+        default: false
+      force_permits:
+        description: "Refresh Building Permits even if recently updated (slow: ~3,000 requests)"
+        required: false
+        type: boolean
+        default: false
+      skip_permits:
+        description: "Skip the optional Building Permits module entirely"
+        required: false
+        type: boolean
+        default: false
+      permits_max_counties:
+        description: "Cap counties checked for Building Permits (leave blank for all — use a small number for a fast manual test)"
+        required: false
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -61,7 +88,11 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    # 45 min covered FRED+ACS+CBP alone. A full Building Permits run adds
+    # roughly one HTTP round-trip per US county (~3,000), which on its own
+    # rare trigger day (see permits_last_successful_update gating) can run
+    # 20-35 min longer than a normal day's job.
+    timeout-minutes: 90
 
     steps:
       - name: Checkout repository
@@ -89,6 +120,12 @@ jobs:
           if [ "${{ inputs.force_census }}" = "true" ]; then ARGS="$ARGS --force-census"; fi
           if [ "${{ inputs.fred_only }}"    = "true" ]; then ARGS="$ARGS --fred-only";    fi
           if [ "${{ inputs.skip_cbp }}"     = "true" ]; then ARGS="$ARGS --skip-cbp";     fi
+          if [ "${{ inputs.skip_pep }}"     = "true" ]; then ARGS="$ARGS --skip-pep";     fi
+          if [ "${{ inputs.force_permits }}" = "true" ]; then ARGS="$ARGS --force-permits"; fi
+          if [ "${{ inputs.skip_permits }}"  = "true" ]; then ARGS="$ARGS --skip-permits";  fi
+          if [ -n "${{ inputs.permits_max_counties }}" ]; then
+            ARGS="$ARGS --permits-max-counties ${{ inputs.permits_max_counties }}"
+          fi
           echo "running with args:$ARGS"
           python data/update_economic_data.py $ARGS
 
@@ -117,10 +154,12 @@ jobs:
           SERIES=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['fred_series_count'])" 2>/dev/null || echo "?")
           COUNTIES=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['county_count'])" 2>/dev/null || echo "?")
           VINTAGE=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['acs_vintage'])" 2>/dev/null || echo "?")
+          PEPN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['pep_county_count'])" 2>/dev/null || echo "0")
+          PERMITSN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['permits_county_count'])" 2>/dev/null || echo "0")
           # [skip ci] prevents a Pages redeploy loop: the frontend fetches these
           # files at runtime with cache:no-store, so a redeploy is not needed for
           # new numbers to appear.
-          git commit -m "chore: refresh economic data — ${SERIES} FRED series, ${COUNTIES} counties, ACS ${VINTAGE} [skip ci]"
+          git commit -m "chore: refresh economic data — ${SERIES} FRED series, ${COUNTIES} counties, ACS ${VINTAGE}, PEP ${PEPN}, permits ${PERMITSN} [skip ci]"
           git push origin HEAD
 
       - name: Summary
@@ -137,6 +176,8 @@ jobs:
           print(f"states           : {m.get('state_count')}")
           print(f"ACS vintage      : {m.get('acs_vintage')}")
           print(f"CBP available    : {m.get('cbp_available')}")
+          print(f"PEP available    : {m.get('pep_available')} (year {m.get('pep_year')}, {m.get('pep_county_count')} counties)")
+          print(f"Permits available: {m.get('permits_available')} ({m.get('permits_county_count')} counties)")
           print(f"stale            : {m.get('stale')}")
           skipped = m.get("fred_skipped") or []
           if skipped:

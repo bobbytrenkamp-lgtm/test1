@@ -74,8 +74,17 @@ window.REPORT = (function () {
             cmp: E.comparisons(county, stateData, padded, key, "value"),
           })).filter(m => m.cmp.value !== null);
           const signals = E.countySignals(county, padded);
-          if (metrics.length || signals.length) {
-            econ = { metrics, signals, vintage: meta && meta.acs_vintage };
+          // Both supplementary, both distinct measurements from anything in
+          // `metrics` above (current-year point estimate vs. ACS 5-year
+          // average; a county permit count with no ACS equivalent) -- kept
+          // as their own fields rather than folded into `metrics` so the
+          // report never implies they're the same kind of figure.
+          const rec = (county.counties || {})[padded];
+          const populationEstimate = rec && rec.population_estimate;
+          const buildingPermits = rec && rec.building_permits;
+          if (metrics.length || signals.length || populationEstimate || buildingPermits) {
+            econ = { metrics, signals, populationEstimate, buildingPermits,
+                     vintage: meta && meta.acs_vintage };
           }
         }
       } catch (_) { /* Economic data is supplementary — never block the report on it. */ }
@@ -142,6 +151,22 @@ window.REPORT = (function () {
            </li>`).join("")}</ul>`
       : "";
 
+    // Both distinct measurements from anything in the metrics table above, so
+    // rendered as their own labelled rows rather than mixed into that table —
+    // a reader should never mistake "current PEP estimate" for "ACS 5-year
+    // population", or a raw permit count for a table metric with a percentile.
+    const pe = econ.populationEstimate;
+    const bp = econ.buildingPermits;
+    const supplementaryHtml = (pe || bp) ? `
+      <table class="kv-table" style="margin-top:8px">
+        <tbody>
+          ${pe ? `<tr><th>Current population estimate</th><td>${_esc(E.fmtValue(pe.value, "count", 0))} <span class="note">(Census PEP, ${_esc(pe.as_of_label || String(pe.year))})</span></td></tr>` : ""}
+          ${bp ? `<tr><th>Building permits issued</th><td>${_esc(E.fmtValue(bp.value, "count", 0))}${
+            bp.change_yoy_pct == null ? "" : ` (${_esc(E.fmtPct(bp.change_yoy_pct))} YoY)`
+          } <span class="note">(Census BPS via FRED, as of ${_esc(E.fmtDate(bp.as_of))})</span></td></tr>` : ""}
+        </tbody>
+      </table>` : "";
+
     return `
       <section class="section">
         <h2 class="section-title">Economic Context</h2>
@@ -149,8 +174,9 @@ window.REPORT = (function () {
           <thead><tr><th>Metric</th><th>Value</th><th>Percentile context</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>
+        ${supplementaryHtml}
         ${signalsHtml}
-        <p class="note" style="margin-top:8px">Source: U.S. Census Bureau ACS 5-Year Estimates${econ.vintage ? ` (${_esc(String(econ.vintage))})` : ""} and Federal Reserve Economic Data (FRED). Percentiles are computed against all US counties with data for that metric (minimum 20-county sample) and are descriptive, not predictive. Not investment advice.</p>
+        <p class="note" style="margin-top:8px">Source: U.S. Census Bureau ACS 5-Year Estimates${econ.vintage ? ` (${_esc(String(econ.vintage))})` : ""}, Population Estimates Program, Building Permits Survey, and Federal Reserve Economic Data (FRED). Percentiles are computed against all US counties with data for that metric (minimum 20-county sample) and are descriptive, not predictive. Not investment advice.</p>
       </section>`;
   }
 

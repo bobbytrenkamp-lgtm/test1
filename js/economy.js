@@ -122,6 +122,11 @@ window.ECONOMY = (function () {
         return _nf(d, d).format(value) + "%";
       case "usd":
         return "$" + _nf(0, 0).format(Math.round(value));
+      case "usd_precise":
+        // For sub-dollar or few-dollar values (electricity $/kWh, natural gas
+        // $/MMBtu) where rounding to whole dollars via "usd" would collapse
+        // a real $0.1723 -> $0.17 price signal down to "$0".
+        return "$" + _nf(d, d).format(value);
       case "billions_usd":
         return "$" + _nf(d, d).format(value) + "B";
       case "millions_usd":
@@ -757,6 +762,37 @@ window.ECONOMY = (function () {
         if (v <= ctx.medians.home_value * 1.5) return null;
         return { strength: "caution",
                  text: `Median home value is ${fmtValue(v, "usd", 0)}, more than 50% above the national county median of ${fmtValue(ctx.medians.home_value, "usd", 0)}. High housing costs can complicate workforce relocation.` };
+      },
+    },
+    /* building_permits lives at the top level of a county record (merged in
+       by the pipeline's collect_permits()), not inside .metrics like the ACS
+       figures above -- it is Census Building Permits Survey data reached
+       through FRED's per-county series, not the Census Data API, and does
+       not carry the same value/change_1y_pct/change_5y_pct shape metricValue()
+       expects. Read directly. Threshold-based rather than compared against a
+       national median: unlike the ACS metrics above, not every county has a
+       permits series at all, so a national median across only the counties
+       that DO report would not mean what a reader assumes it means. */
+    {
+      id: "permits_accelerating",
+      title: "Construction activity accelerating",
+      test: (c) => {
+        const bp = c.building_permits;
+        if (!bp || bp.change_yoy_pct === null || bp.change_yoy_pct === undefined) return null;
+        if (bp.change_yoy_pct <= 15) return null;
+        return { strength: "mixed",
+                 text: `County-issued building permits rose ${fmtPct(bp.change_yoy_pct)} year-over-year (latest: ${fmtValue(bp.value, "count", 0)} units, as of ${fmtDate(bp.as_of)}). More local construction activity can mean more competition for contractors and materials.` };
+      },
+    },
+    {
+      id: "permits_slowing",
+      title: "Construction activity slowing",
+      test: (c) => {
+        const bp = c.building_permits;
+        if (!bp || bp.change_yoy_pct === null || bp.change_yoy_pct === undefined) return null;
+        if (bp.change_yoy_pct >= -15) return null;
+        return { strength: "moderate",
+                 text: `County-issued building permits fell ${fmtPct(bp.change_yoy_pct)} year-over-year (latest: ${fmtValue(bp.value, "count", 0)} units, as of ${fmtDate(bp.as_of)}). Less local construction activity can mean easier access to contractors and materials.` };
       },
     },
   ];

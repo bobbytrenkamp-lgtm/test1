@@ -524,7 +524,7 @@ await run('Economic Intelligence', async (p) => {
   console.log('KPI cards              :', await p.evaluate(() =>
     document.querySelectorAll('#econ-kpi-strip .econ-kpi').length), '(expect 7)');
   console.log('category tabs          :', await p.evaluate(() =>
-    document.querySelectorAll('#econ-cat-tabs .econ-cat-tab').length), '(expect 4)');
+    document.querySelectorAll('#econ-cat-tabs .econ-cat-tab').length), '(expect 5)');
   console.log('chart paths            :', await p.evaluate(() =>
     document.querySelectorAll('#econ-chart-host svg path').length));
   console.log('chart text summary     :', await p.evaluate(() =>

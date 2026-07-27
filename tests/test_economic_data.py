@@ -16,6 +16,7 @@ Run:
     python3 tests/test_economic_data.py          # falls back to a plain runner
 """
 import json
+import re
 import sys
 import tempfile
 from datetime import date, datetime, timedelta, timezone
@@ -370,6 +371,302 @@ def test_cbp_suppressed_excluded_from_change():
     """Suppression must not become an endpoint in a percent change."""
     eq(econ.pct_change(None, 18204), None, "suppressed new value -> no change figure")
     eq(econ.pct_change(18204, None), None, "suppressed baseline -> no change figure")
+
+
+# ─────────────────── Population Estimates Program (PEP) ───────────────────
+
+def test_pep_estimate_regex_matches_annual_estimate_not_census_baseline():
+    """PEP's time series mixes the decennial Census baseline row in with the
+    annual estimate rows. Picking the wrong one would report a stale, years-old
+    number as if it were current -- the regex is what tells them apart, so it
+    has to be right on real DATE_DESC text, not synthetic test strings."""
+    check(econ._PEP_ESTIMATE_RE.search("7/1/2025 population estimate"),
+          "real annual-estimate text must match")
+    check(econ._PEP_ESTIMATE_RE.search("7/1/2024 Population Estimate"),
+          "case-insensitive")
+    check(not econ._PEP_ESTIMATE_RE.search("4/1/2020 Census population"),
+          "the decennial Census baseline row must NOT match -- it is not an estimate")
+    check(not econ._PEP_ESTIMATE_RE.search("Population Estimate Base"),
+          "a base-only description with no date must not match")
+
+
+PEP_PROBE_RESPONSE = [
+    ["NAME", "POP", "DATE_CODE", "DATE_DESC", "state"],
+    ["Alabama", "5024279", "1", "4/1/2020 Census population", "01"],
+    ["Alabama", "5031362", "2", "4/1/2020 population estimates base", "01"],
+    ["Alabama", "5108468", "3", "7/1/2021 population estimate", "01"],
+    ["Alabama", "5157699", "4", "7/1/2022 population estimate", "01"],
+    ["Alabama", "5214364", "5", "7/1/2023 population estimate", "01"],
+    ["Alabama", "5272270", "6", "7/1/2024 population estimate", "01"],
+]
+
+PEP_COUNTY_RESPONSE = [
+    ["NAME", "POP", "state", "county"],
+    ["Autauga County, Alabama", "60342", "01", "001"],
+    ["Baldwin County, Alabama", "246435", "01", "003"],
+]
+
+# collect_pep_population() rejects any result under ~2,000 counties as a
+# suspiciously partial response (see the sanity-floor test below), so the
+# "this should succeed end-to-end" test needs a fixture that actually clears
+# that floor -- padded out programmatically rather than hand-writing 2,000
+# rows, while keeping the two real named counties above for the value checks.
+PEP_COUNTY_RESPONSE_FULL = PEP_COUNTY_RESPONSE + [
+    # State starts at 02 (never 01) and county at 005 (never 001/003) so none
+    # of these 2,100 synthetic rows can collide with the two real Alabama rows
+    # above and silently overwrite the values those assertions check.
+    [f"County {i}", str(1000 + i), f"{(i // 900) + 2:02d}", f"{(i % 900) + 5:03d}"]
+    for i in range(2100)
+]
+
+
+def test_collect_pep_population_picks_highest_year_estimate():
+    """End-to-end against sample payloads shaped like the real API: the probe
+    call picks DATE_CODE=6 (2024, the highest-year row whose DATE_DESC actually
+    says 'population estimate'), not DATE_CODE=1 (2020 Census baseline, which
+    has a higher... no, lower code, but the point stands: code number order and
+    recency are NOT the same thing and this must not assume otherwise)."""
+    real_get_json = econ._get_json
+    calls = []
+
+    def fake_get_json(url, **kwargs):
+        calls.append(url)
+        if len(calls) == 1:
+            return PEP_PROBE_RESPONSE
+        return PEP_COUNTY_RESPONSE_FULL
+
+    econ._get_json = fake_get_json
+    try:
+        out = econ.collect_pep_population(2025, "fakekey")
+    finally:
+        econ._get_json = real_get_json
+
+    check("DATE_CODE=6" in calls[1], f"expected the 2024-estimate code (6) in the "
+          f"second request, got: {calls[1]}")
+    eq(out.get("01001", {}).get("value"), 60342, "Autauga County population parsed")
+    eq(out.get("01001", {}).get("year"), 2024, "year is the selected estimate's year, not the run year")
+    eq(out.get("01003", {}).get("value"), 246435, "Baldwin County population parsed")
+
+
+def test_collect_pep_population_skips_on_missing_columns():
+    """A schema change (renamed/dropped column) must skip cleanly, not crash
+    or silently publish garbage keyed on the wrong index."""
+    real_get_json = econ._get_json
+    econ._get_json = lambda url, **kw: [["NAME", "POP", "state"], ["Alabama", "5000000", "01"]]
+    try:
+        out = econ.collect_pep_population(2025, "fakekey")
+    finally:
+        econ._get_json = real_get_json
+    eq(out, {}, "missing DATE_CODE/DATE_DESC columns -> empty result, not a crash")
+
+
+def test_collect_pep_population_rejects_suspiciously_small_result():
+    """A response with far fewer than ~3,140 counties (~3,000 with current
+    geography) indicates a partial or malformed response, not a small country.
+    This must not publish a suspicious subset silently."""
+    real_get_json = econ._get_json
+    calls = []
+
+    def fake_get_json(url, **kwargs):
+        calls.append(url)
+        if len(calls) == 1:
+            return PEP_PROBE_RESPONSE
+        return PEP_COUNTY_RESPONSE  # only 2 counties
+
+    econ._get_json = fake_get_json
+    try:
+        out = econ.collect_pep_population(2025, "fakekey")
+    finally:
+        econ._get_json = real_get_json
+    eq(out, {}, "2 counties is far below the ~3,140 sanity floor -> rejected, not published")
+
+
+def test_collect_pep_population_no_matching_date_desc_skips():
+    """If nothing in the probe response's DATE_DESC says 'population estimate'
+    (e.g. Census renames the phrasing), this must not guess a DATE_CODE."""
+    real_get_json = econ._get_json
+    econ._get_json = lambda url, **kw: [
+        ["NAME", "POP", "DATE_CODE", "DATE_DESC", "state"],
+        ["Alabama", "5024279", "1", "4/1/2020 Census population", "01"],
+    ]
+    try:
+        out = econ.collect_pep_population(2025, "fakekey")
+    finally:
+        econ._get_json = real_get_json
+    eq(out, {}, "no row matched the estimate pattern -> skip, never guess a code")
+
+
+def test_validate_outputs_flags_bad_population_estimate():
+    """A negative or non-numeric population_estimate.value is exactly the kind
+    of silent corruption validate_outputs() exists to catch before it commits."""
+    with tempfile.TemporaryDirectory() as td:
+        county_path = Path(td) / "census_county.json"
+        payload = {
+            "generated_at": "2026-07-27T00:00:00+00:00",
+            "acs_vintage": 2024,
+            "counties": {
+                "01001": {
+                    "metrics": {},
+                    "history": {},
+                    "population_estimate": {"value": -5, "year": 2024, "as_of_label": "x"},
+                },
+            },
+        }
+        county_path.write_text(json.dumps(payload))
+        real_county_out = econ.COUNTY_OUT
+        real_state_out = econ.STATE_OUT
+        real_fred_out = econ.FRED_OUT
+        econ.COUNTY_OUT = county_path
+        econ.STATE_OUT = Path(td) / "does_not_exist_state.json"
+        econ.FRED_OUT = Path(td) / "does_not_exist_fred.json"
+        try:
+            errs = econ.validate_outputs()
+        finally:
+            econ.COUNTY_OUT = real_county_out
+            econ.STATE_OUT = real_state_out
+            econ.FRED_OUT = real_fred_out
+    check(any("population_estimate" in e for e in errs),
+          f"negative population_estimate.value should have been flagged; got: {errs}")
+
+
+# ────────────────────────── Building Permits (BPS via FRED) ──────────────────────────
+
+def test_bps_series_id_format():
+    """FRED's per-county series ID is BPPRIV + the 5-digit FIPS, verbatim --
+    confirmed against a real published series (BPPRIV048089, Colorado County,
+    TX). Getting this pattern wrong means every single county request 404s."""
+    eq(econ._bps_series_id("01001"), "BPPRIV01001", "state+county FIPS, no separator")
+    eq(econ._bps_series_id("48089"), "BPPRIV48089", "matches the real published series ID")
+
+
+def _fake_fred_obs_json(url, **kwargs):
+    """Route a fake FRED observations response by series_id embedded in the
+    URL, the same way fred_observations() actually builds it -- so this
+    exercises collect_permits() exactly as it calls that real function,
+    without needing to know or duplicate URL-building logic in the test.
+
+    Three groups of series_id, matching the three things a real run sees:
+    the two specific named counties below (with real multi-year data, for the
+    YoY-computation test), a "9xxxx" block that always has one observation
+    (bulk padding so tests can clear the 500-result floor without hand-writing
+    500 rows), and everything else (404 -- most US counties have never
+    reported to BPS, and that must resolve to "skipped", not an error).
+    """
+    m = re.search(r"series_id=([A-Za-z0-9]+)", url)
+    sid = m.group(1) if m else None
+    if sid == "BPPRIV01001":
+        return {"observations": [
+            {"date": "2023-01-01", "value": "412"},
+            {"date": "2024-01-01", "value": "455"},
+        ]}
+    if sid == "BPPRIV01003":
+        return {"observations": [{"date": "2024-01-01", "value": "88"}]}
+    if sid and sid.startswith("BPPRIV9"):
+        return {"observations": [{"date": "2024-01-01", "value": "10"}]}
+    return {"__error__": "HTTP 404"}
+
+
+def test_collect_permits_skips_counties_without_a_series():
+    """A missing per-county series is the expected case for most counties, not
+    a failure -- it must be silently excluded, never crash the whole module."""
+    real_get_json = econ._get_json
+    econ._get_json = _fake_fred_obs_json
+    try:
+        real_padding = [f"9{i:04d}" for i in range(600)]          # -> real data
+        no_series_padding = [f"{i:05d}" for i in range(10000, 10600)]  # -> 404
+        fips_list = ["01001", "01003"] + real_padding + no_series_padding
+        out = econ.collect_permits(fips_list, "fakekey")
+    finally:
+        econ._get_json = real_get_json
+    check("01001" in out and "01003" in out, "the two real series are present")
+    check(all(f not in out for f in no_series_padding),
+          "no-series FIPS must not appear in the result at all")
+    eq(len(out), 2 + len(real_padding), "result is exactly the counties with real data")
+
+
+def test_collect_permits_computes_year_over_year_change():
+    """The whole point of a county-level permits figure is trend, not just a
+    level -- a bare '455 permits' says nothing about direction."""
+    real_get_json = econ._get_json
+    econ._get_json = _fake_fred_obs_json
+    try:
+        real_padding = [f"9{i:04d}" for i in range(600)]
+        out = econ.collect_permits(["01001"] + real_padding, "fakekey")
+    finally:
+        econ._get_json = real_get_json
+    rec = out.get("01001")
+    check(rec is not None, "01001 should be present (has real data)")
+    eq(rec["value"], 455, "latest value is the most recent observation")
+    eq(rec["as_of"], "2024-01-01", "as_of is the latest observation's date")
+    expected_yoy = econ.pct_change(455, 412)
+    eq(rec["change_yoy_pct"], expected_yoy, "YoY computed against the prior year's observation")
+
+
+def test_collect_permits_rejects_suspiciously_small_result():
+    """Real BPS coverage is broad even though not universal; a tiny result
+    means the series ID scheme or the key is wrong, not that almost no county
+    in America has ever issued a building permit."""
+    real_get_json = econ._get_json
+    econ._get_json = _fake_fred_obs_json
+    try:
+        # Only the two real series in the whole list -- 2 results, far under
+        # the 500 floor.
+        out = econ.collect_permits(["01001", "01003"], "fakekey")
+    finally:
+        econ._get_json = real_get_json
+    eq(out, {}, "2 counties is far below the 500-county sanity floor -> rejected")
+
+
+def test_collect_permits_respects_max_counties_cap():
+    """--permits-max-counties bounds a test run; it must actually stop, not
+    just document an intention."""
+    real_get_json = econ._get_json
+    calls = []
+
+    def counting_get_json(url, **kwargs):
+        calls.append(url)
+        return _fake_fred_obs_json(url, **kwargs)
+
+    econ._get_json = counting_get_json
+    try:
+        fips_list = [f"{i:05d}" for i in range(30000, 31000)]
+        econ.collect_permits(fips_list, "fakekey", max_counties=25)
+    finally:
+        econ._get_json = real_get_json
+    eq(len(calls), 25, "must stop at the cap, not check every county in the list")
+
+
+def test_validate_outputs_flags_bad_building_permits():
+    """A negative permits value or a future as_of date is exactly the kind of
+    corruption validate_outputs() exists to catch before it ships."""
+    with tempfile.TemporaryDirectory() as td:
+        county_path = Path(td) / "census_county.json"
+        payload = {
+            "generated_at": "2026-07-27T00:00:00+00:00",
+            "acs_vintage": 2024,
+            "counties": {
+                "01001": {
+                    "metrics": {},
+                    "history": {},
+                    "building_permits": {"value": -3, "as_of": "2024-01-01", "change_yoy_pct": 1.0},
+                },
+            },
+        }
+        county_path.write_text(json.dumps(payload))
+        real_county_out = econ.COUNTY_OUT
+        real_state_out = econ.STATE_OUT
+        real_fred_out = econ.FRED_OUT
+        econ.COUNTY_OUT = county_path
+        econ.STATE_OUT = Path(td) / "does_not_exist_state.json"
+        econ.FRED_OUT = Path(td) / "does_not_exist_fred.json"
+        try:
+            errs = econ.validate_outputs()
+        finally:
+            econ.COUNTY_OUT = real_county_out
+            econ.STATE_OUT = real_state_out
+            econ.FRED_OUT = real_fred_out
+    check(any("building_permits" in e for e in errs),
+          f"negative building_permits.value should have been flagged; got: {errs}")
 
 
 # ────────────────────────── history ordering ──────────────────────────

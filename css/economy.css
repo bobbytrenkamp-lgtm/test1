@@ -660,6 +660,36 @@
 .econ-num { text-align: right; font-variant-numeric: tabular-nums; }
 .econ-nodata { color: var(--text-muted); font-style: italic; }
 
+/* Population Estimates / Building Permits — deliberately NOT rows in
+   .econ-profile-table above: both are different measurements from their ACS
+   counterparts (current-year point estimate vs. 5-year rolling average;
+   county-level permit counts with no ACS equivalent at all), so this reads
+   as clearly separate supplementary context rather than more table rows a
+   reader might average in with the ACS figures. */
+.econ-profile-supplementary {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.econ-profile-supp-row { display: flex; flex-direction: column; gap: 1px; }
+.econ-profile-supp-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.econ-profile-supp-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.econ-profile-supp-note { font-size: 10.5px; color: var(--text-muted); }
+
 .econ-profile-more { margin-top: 12px; }
 .econ-profile-more > summary {
   font-size: 10px;

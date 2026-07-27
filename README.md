@@ -201,16 +201,21 @@ center and AI infrastructure rather than as a general economics dashboard.
    real GDP growth, and commercial real estate loan growth. Each shows its value,
    change, observation date, source, and an explanatory tooltip.
 2. **National Trends** — interactive time-series charts across Rates & Credit,
-   Inflation & Growth, Labor & Demand, and Housing & Construction, with 1Y / 3Y /
-   5Y / 10Y / Max ranges, hover readouts, and per-series show/hide.
+   Inflation & Growth, Labor & Demand, Housing & Construction, and Energy & Power
+   Costs, with 1Y / 3Y / 5Y / 10Y / Max ranges, hover readouts, and per-series
+   show/hide.
 3. **Regional Economic Explorer** — county or state choropleth with a metric
    selector (population, income, unemployment, education, housing, broadband),
    latest-value or 1/5-year change, search, and a profile panel giving US and
-   state comparisons, percentile rank, and sparklines.
+   state comparisons, percentile rank, sparklines, and — where available — a
+   current-year population estimate (Census PEP) and county-level building
+   permit activity (Census BPS via FRED), each clearly labelled as a distinct
+   measurement from the ACS metrics above it.
 4. **Infrastructure-Relevant Signals** — plain statements about conditions that
    matter for infrastructure planning (population momentum, skilled workforce,
-   labor tightness, financing cost, credit availability). Each comes from a fixed
-   rule and cites a figure shown on the page.
+   labor tightness, financing cost, credit availability, construction activity
+   accelerating/slowing). Each comes from a fixed rule and cites a figure shown
+   on the page.
 
 **Also integrated into** the Map tab (an *Economic Data* layer group with six
 choropleths), county detail and Jurisdiction pages (an Economy section),
@@ -224,17 +229,21 @@ Economic data is fetched by GitHub Actions, never by the browser. Add these unde
 
 | Secret | Get one from | Needed? | Used for |
 |---|---|---|---|
-| `FRED_API_KEY` | https://fred.stlouisfed.org/docs/api/api_key.html | **Required** — FRED rejects keyless requests | Federal Reserve series |
-| `CENSUS_API_KEY` | https://api.census.gov/data/key_signup.html | Optional | ACS county/state data |
+| `FRED_API_KEY` | https://fred.stlouisfed.org/docs/api/api_key.html | **Required** — FRED rejects keyless requests | Federal Reserve series, plus county-level Building Permits (Census data, but reached via FRED's per-county series — see Data Sources) |
+| `CENSUS_API_KEY` | https://api.census.gov/data/key_signup.html | **Required** — see below | ACS, Population Estimates (PEP), and CBP data |
 
 They are two secrets because they are two separate free registrations at two
 different agencies — the Federal Reserve Bank of St. Louis and the U.S. Census
 Bureau. Neither is interchangeable with the other, and neither can be billed.
+Note that Building Permits is Census *data* but a FRED *request* — it needs
+`FRED_API_KEY`, not `CENSUS_API_KEY`, despite the name.
 
-`CENSUS_API_KEY` is genuinely optional: Census answers unauthenticated requests
-at roughly 500/day per IP and one full run of this pipeline costs about 13, so
-without the key the ACS pull still runs — it just has less headroom. Adding it
-raises the ceiling and nothing else.
+`CENSUS_API_KEY` used to be genuinely optional — Census allowed roughly
+500 unauthenticated requests/day, comfortably above what this pipeline needs.
+**As of May 12, 2026, Census requires a key for every Data API request**,
+closing that off. Without the key, Census is skipped with a warning and
+existing data is preserved untouched — same graceful-degradation contract as
+every other key in this project, just no longer a path to fresh data.
 
 Neither key is ever sent to the browser, written to a data file, or printed in
 workflow logs.
@@ -247,9 +256,14 @@ notice — deliberately distinct from showing a zero. To populate it:
 **Actions → Update Economic Data → Run workflow**
 
 Optional inputs: `force_census` (refresh Census even if recently updated),
-`fred_only` (skip Census this run), `skip_cbp` (skip the optional Business
-Patterns module). After that it runs daily at 06:20 UTC; Census is only
-re-fetched when its data is more than 7 days old, since ACS publishes annually.
+`fred_only` (skip Census this run), `skip_cbp`/`skip_pep` (skip those optional
+modules), `force_permits`/`skip_permits`/`permits_max_counties` (Building
+Permits has its own 30-day gate and makes ~1 request per county, so a manual
+run defaults to skipping unless forced — `permits_max_counties` bounds a test
+run to a handful of counties instead of the full ~3,000). After that it runs
+daily at 06:20 UTC; Census is only re-fetched when its data is more than 7 days
+old, since ACS publishes annually, and Building Permits only when more than 30
+days old, since BPS publishes annually and costs far more requests per run.
 
 A missing key is a warning, not a failure — that source is skipped and its
 existing data is preserved. The workflow fails only if output validation shows the
@@ -283,7 +297,7 @@ hosting, no npm dependency tree, no build system.
 | Optional key | Service | Cost | Without it |
 |---|---|---|---|
 | `FRED_API_KEY` | Federal Reserve data | Free | Economy tab shows awaiting-data state |
-| `CENSUS_API_KEY` | Census ACS | Free | ACS still runs keyless (~500 req/day cap) |
+| `CENSUS_API_KEY` | Census ACS | Free | ACS/PEP/CBP skipped (Census requires a key for all requests as of May 2026) |
 | `CONGRESS_API_KEY` | Congress.gov | Free | Falls back to rate-limited `DEMO_KEY` |
 | `LEGISCAN_API_KEY` | State bill tracking | Free tier | LegiScan step skipped |
 | `SUPABASE_URL` + `SUPABASE_ANON_KEY` | Optional user accounts | Free tier | Sign-in hidden; everything else works |

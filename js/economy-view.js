@@ -637,6 +637,36 @@
 
     const signals = isCounty ? E().countySignals(cData, key) : [];
 
+    // Both supplementary, county-only, and each a DIFFERENT measurement from
+    // its ACS neighbor in the table above — never merged into that table's
+    // rows, so a reader never mistakes "current PEP estimate" for "ACS 5-year
+    // population" or a permits count for an ACS metric.
+    const pe = isCounty ? rec.population_estimate : null;
+    const bp = isCounty ? rec.building_permits : null;
+    const supplementary = (pe || bp) ? `
+      <div class="econ-profile-supplementary">
+        ${pe ? `<div class="econ-profile-supp-row">
+          <span class="econ-profile-supp-label">Current population estimate</span>
+          <span class="econ-profile-supp-value">${E().escapeText(E().fmtValue(pe.value, "count", 0))}</span>
+          <span class="econ-profile-supp-note">Census PEP, ${E().escapeText(pe.as_of_label || String(pe.year))} — distinct from the ACS 5-year figure above</span>
+        </div>` : ""}
+        ${bp ? (() => {
+          const hasYoy = bp.change_yoy_pct !== null && bp.change_yoy_pct !== undefined;
+          // Rising or falling local permit activity is not unambiguously
+          // "good" or "bad" for a site-selector (see the mixed framing in
+          // SIGNAL_RULES), so this shows plain direction, not a value
+          // judgment — no invert flag, no colour tied to "favorable".
+          const dir = hasYoy ? E().direction(bp.change_yoy_pct, null) : null;
+          return `<div class="econ-profile-supp-row">
+            <span class="econ-profile-supp-label">Building permits issued</span>
+            <span class="econ-profile-supp-value">${E().escapeText(E().fmtValue(bp.value, "count", 0))}${
+              hasYoy ? ` <span class="econ-flat">${dir.glyph} ${E().escapeText(E().fmtPct(bp.change_yoy_pct))} YoY</span>` : ""
+            }</span>
+            <span class="econ-profile-supp-note">Census Building Permits Survey (via FRED), as of ${E().escapeText(E().fmtDate(bp.as_of))}</span>
+          </div>`;
+        })() : ""}
+      </div>` : "";
+
     host.innerHTML = `
       <div class="econ-profile-head">
         <h3 class="econ-profile-name">${E().escapeText(rec.name)}</h3>
@@ -652,6 +682,8 @@
         </tr></thead>
         <tbody>${rows}</tbody>
       </table>
+
+      ${supplementary}
 
       <details class="econ-profile-more" open>
         <summary>Trends</summary>
