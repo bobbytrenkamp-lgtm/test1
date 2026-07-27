@@ -639,16 +639,18 @@
 
     // Supplementary and a DIFFERENT measurement from anything in the table
     // above — never merged into that table's rows, so a reader never mistakes
-    // a permits count or a state electricity price for an ACS metric.
-    // building_permits is county-only (that's the geography BPS reports at).
-    // electricity_price is EIA's own state-level figure: shown directly on a
-    // state profile, and looked up via the county's own state_fips on a
-    // county profile (a county profile does not carry the field itself).
+    // a permits count, a wage figure, or a state electricity price for an ACS
+    // metric. building_permits and avg_weekly_wage are county-only (that's
+    // the geography BPS/QCEW report at). electricity_price is EIA's own
+    // state-level figure: shown directly on a state profile, and looked up
+    // via the county's own state_fips on a county profile (a county profile
+    // does not carry the field itself).
     const bp = isCounty ? rec.building_permits : null;
+    const wg = isCounty ? rec.avg_weekly_wage : null;
     const ep = isCounty
       ? (((sData && sData.states) || {})[rec.state_fips] || {}).electricity_price
       : rec.electricity_price;
-    const supplementary = (bp || ep) ? `
+    const supplementary = (bp || wg || ep) ? `
       <div class="econ-profile-supplementary">
         ${bp ? (() => {
           const hasYoy = bp.change_yoy_pct !== null && bp.change_yoy_pct !== undefined;
@@ -665,6 +667,11 @@
             <span class="econ-profile-supp-note">Census Building Permits Survey (via FRED), as of ${E().escapeText(E().fmtDate(bp.as_of))}</span>
           </div>`;
         })() : ""}
+        ${wg ? `<div class="econ-profile-supp-row">
+          <span class="econ-profile-supp-label">Average weekly wage</span>
+          <span class="econ-profile-supp-value">${E().escapeText(E().fmtValue(wg.value, "usd", 0))}</span>
+          <span class="econ-profile-supp-note">BLS QCEW, all industries and ownership, ${E().escapeText(String(wg.year))} — a direct labor-cost figure, distinct from ACS household income above</span>
+        </div>` : ""}
         ${ep ? `<div class="econ-profile-supp-row">
           <span class="econ-profile-supp-label">${isCounty ? "State industrial electricity price" : "Industrial electricity price"}</span>
           <span class="econ-profile-supp-value">${E().escapeText(E().fmtValue(ep.value, "usd_precise", 2))}/kWh</span>

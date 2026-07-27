@@ -320,6 +320,44 @@ every county) remains the platform's population figure. See
 - An EIA failure cannot break the ACS state data it supplements — isolated the
   same way CBP and Building Permits are.
 
+### U.S. Bureau of Labor Statistics — Quarterly Census of Employment and Wages (optional module)
+- **Publisher**: U.S. Bureau of Labor Statistics (BLS)
+- **Endpoint**: `https://data.bls.gov/cew/data/api/{year}/a/area/{area_fips}.csv`
+  — QCEW's open-data area-slice files, one per county per year, annual
+  average (`a` for the quarter parameter). **No API key or registration
+  required at all** — the only source on this platform, alongside a handful
+  of unauthenticated government pages, that needs neither a key nor payment.
+- **Output**: merged into each county's own record as `avg_weekly_wage` —
+  `{value, employment, year}`, filtered to the `agglvl_code=70` row (county
+  total across all industries and ownership sectors — confirmed against BLS's
+  own aggregation-level code documentation, not guessed). A direct labor-cost
+  figure for the local workforce, genuinely distinct from ACS's
+  household-income metrics (household income aggregates ALL household income
+  sources; this is per-worker pay from covered employment specifically).
+- **CSV, not JSON**: unlike every other source this pipeline reads, QCEW's
+  open-data access has no JSON equivalent. Parsed with Python's standard
+  library `csv` module (`_get_csv_rows()`), keyed by the file's own header
+  row via `csv.DictReader` rather than hardcoded column positions — resilient
+  to BLS reordering columns the same way this pipeline already tolerates
+  payload shape drift elsewhere. The exact wage-column name was not confirmed
+  with full certainty from documentation alone (BLS's annual and quarterly
+  layouts use slightly different naming conventions), so the pipeline tries
+  a short list of candidate column names in order and uses whichever is
+  actually present, the same defensive pattern `broadband_candidates` uses in
+  `census_config.json` for the same kind of uncertainty.
+- **Vintage discovery**: probes the national total area (`US000`) backwards
+  from last year to find the newest annual file that responds, rather than
+  hardcoding a year — QCEW's annual file for a given year is not published
+  until roughly Q3 of the following year.
+- **One request PER COUNTY** (~3,000+), the same shape as Building Permits,
+  since QCEW's open-data access has no bulk endpoint either — stride-sampled
+  and sanity-floored (500 counties) the same way. Own 90-day freshness gate
+  (`--bls-max-age-days`, `bls_last_successful_update`), the longest of any
+  module here, since QCEW's annual file only changes once a year and
+  publishes with a 5-6 month lag.
+- A BLS failure cannot break the ACS county data it supplements — isolated
+  the same way CBP, Building Permits, and EIA are.
+
 ### Pipeline and safety
 - **Script**: `data/update_economic_data.py` (Python standard library only)
 - **Workflow**: `.github/workflows/update_economic_data.yml` — daily at 06:20 UTC
@@ -367,6 +405,7 @@ account.** Re-run the audit with:
 | Google Fonts (Inter) | Typography | Free (SIL OFL) |
 | jsDelivr CDN | Supabase JS client delivery | Free public CDN |
 | USGS `basemap.nationalmap.gov` | Topo basemap option | Free US government service |
+| BLS QCEW open-data CSV (`data.bls.gov/cew`) | County average weekly wage | Free US government service, no key or registration |
 | GitHub Pages + Actions | Hosting and all scheduled jobs | Free with **unlimited** Actions minutes on public repositories |
 
 No `package.json` and no build step, so there is no npm dependency tree to

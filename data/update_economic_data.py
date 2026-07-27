@@ -11,12 +11,13 @@ frontend loads only the generated files.
 OUTPUTS (all under data/economy/)
     fred_data.json        national time series + latest values
     census_county.json    ~3,140 counties, FIPS-keyed. Each county record also
-                           carries an optional supplementary field merged in by
-                           its own module below: building_permits (BPS via
-                           FRED). A Census Population Estimates Program (PEP)
-                           module was tried and retired -- see "RETIRED: PEP"
-                           below -- ACS's own `population` metric (a 5-year
-                           rolling average) is the only population figure now.
+                           carries optional supplementary fields merged in by
+                           their own modules below: building_permits (BPS via
+                           FRED) and avg_weekly_wage (BLS QCEW). A Census
+                           Population Estimates Program (PEP) module was tried
+                           and retired -- see "RETIRED: PEP" below -- ACS's own
+                           `population` metric (a 5-year rolling average) is
+                           the only population figure now.
     census_state.json     52 state-level rows, FIPS-keyed. Also carries an
                            optional supplementary field: electricity_price
                            (EIA state-level industrial retail rate) — see
@@ -54,6 +55,13 @@ Usage:
     --force-eia            run the EIA module even if refreshed recently
     --eia-max-age-days N   refresh EIA only if older than N days (default 30 —
                            EIA state retail-price data updates monthly)
+    --skip-bls              skip the optional BLS QCEW wage module
+    --force-bls             run BLS QCEW even if refreshed recently
+    --bls-max-age-days N    refresh BLS only if older than N days (default 90 —
+                            QCEW is quarterly and lags roughly 5-6 months, so a
+                            more frequent refresh would just repeat ~3,000
+                            requests for the same published data)
+    --bls-max-counties N    cap counties checked, for a bounded test run
     --offline             validate and re-derive from existing files, no network
     --check               validate existing outputs and exit (CI guard)
 
@@ -70,9 +78,12 @@ Environment:
                       https://www.eia.gov/opendata/register.php. Missing key
                       skips the EIA module with a warning; every other source
                       is unaffected.
+    (BLS QCEW needs no key at all — see collect_bls_wages below.)
 All keys are free. None is ever logged, echoed, or written to any output file.
 """
 import argparse
+import csv
+import io
 import json
 import os
 import re
@@ -103,6 +114,7 @@ CENSUS_ACS_URL  = "https://api.census.gov/data/{year}/acs/acs5"
 CENSUS_VARS_URL = "https://api.census.gov/data/{year}/acs/acs5/variables.json"
 CENSUS_CBP_URL  = "https://api.census.gov/data/{year}/cbp"
 EIA_ELECTRICITY_URL = "https://api.eia.gov/v2/electricity/retail-sales/data/"
+BLS_QCEW_AREA_URL   = "https://data.bls.gov/cew/data/api/{year}/a/area/{area_fips}.csv"
 
 UA = "USDataCenterPolicyTracker-EconPipeline/1.0 (+https://bobbytrenkamp-lgtm.github.io/test1/)"
 
@@ -191,6 +203,53 @@ def _get_json(url: str, timeout: int = 45, retries: int = 3):
 
 def _is_err(payload) -> bool:
     return payload is None or (isinstance(payload, dict) and "__error__" in payload)
+
+
+def _get_csv_rows(url: str, timeout: int = 45, retries: int = 3):
+    """GET and parse a CSV response into a list of header-keyed dicts.
+
+    Same retry/redact contract as _get_json, but for BLS QCEW's area-slice
+    files, which are published as CSV with no JSON equivalent (unlike every
+    other source this pipeline reads). Parsed with the standard library's csv
+    module — csv.DictReader keys rows by the file's own header row, so this
+    is resilient to BLS reordering columns, the same way this pipeline
+    already tolerates Census/FRED payload shape drift elsewhere.
+
+    Returns (rows, None) on success or (None, error_string) on failure —
+    the fred_observations()/collect_permits() tuple convention, not the
+    _get_json() sentinel-dict convention, since this always returns a list
+    of rows rather than a single JSON blob.
+    """
+    last = None
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(url, headers={
+                "User-Agent": UA,
+                "Accept": "text/csv",
+            })
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                raw = resp.read().decode("utf-8", "replace")
+            time.sleep(REQUEST_DELAY_S)
+            reader = csv.DictReader(io.StringIO(raw))
+            rows = list(reader)
+            if reader.fieldnames is None:
+                last = f"empty or headerless CSV: {_redact(raw[:200])!r}"
+                break
+            return rows, None
+        except urllib.error.HTTPError as e:
+            body = ""
+            try:
+                body = _redact(e.read().decode("utf-8", "replace")[:200])
+            except Exception:                                # noqa: BLE001
+                pass
+            last = f"HTTP {e.code}" + (f": {body!r}" if body else "")
+            if e.code in (400, 401, 403, 404):
+                break
+        except Exception as e:                              # noqa: BLE001
+            last = type(e).__name__
+        if attempt < retries - 1:
+            time.sleep(1.5 * (attempt + 1))
+    return None, last or "unknown"
 
 
 def _redact(url: str) -> str:
@@ -1138,6 +1197,12 @@ def validate_outputs():
                     errors.append(f"{path.name} {fips} electricity_price.value is not "
                                    f"a positive number: {ep.get('value')!r}")
                     break
+            wg = rec.get("avg_weekly_wage")
+            if wg is not None:
+                if not isinstance(wg.get("value"), (int, float)) or wg.get("value") <= 0:
+                    errors.append(f"{path.name} {fips} avg_weekly_wage.value is not "
+                                   f"a positive number: {wg.get('value')!r}")
+                    break
 
     return errors
 
@@ -1146,7 +1211,7 @@ def validate_outputs():
 
 def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
                    acs_vintage, var_problems, prior_meta, census_ran, permits_ran=False,
-                   eia_ran=False, any_source_ok=True):
+                   eia_ran=False, bls_ran=False, any_source_ok=True):
     """Write economic_metadata.json, or skip when a run changed nothing.
 
     TWO THINGS THIS GETS RIGHT, both found by running the workflow for real
@@ -1196,11 +1261,17 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
     eia_updated = (datetime.now(timezone.utc).isoformat(timespec="seconds")
                    if eia_ran
                    else prior.get("eia_last_successful_update"))
+    # Own timestamp, own cadence (see _bls_is_fresh) — QCEW's annual file only
+    # changes once a year, so this needs the longest gate of any module here.
+    bls_updated = (datetime.now(timezone.utc).isoformat(timespec="seconds")
+                   if bls_ran
+                   else prior.get("bls_last_successful_update"))
 
     any_stale = any(s.get("stale") for s in fred_series.values())
 
     permits_count = sum(1 for c in counties.values() if c.get("building_permits"))
     eia_count = sum(1 for s in states.values() if s.get("electricity_price"))
+    bls_count = sum(1 for c in counties.values() if c.get("avg_weekly_wage"))
 
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     # Only advance generated_at when a source actually produced data. On a no-op
@@ -1231,6 +1302,9 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
         "eia_available":   eia_count > 0,
         "eia_state_count": eia_count,
         "eia_last_successful_update": eia_updated,
+        "bls_available":   bls_count > 0,
+        "bls_county_count": bls_count,
+        "bls_last_successful_update": bls_updated,
         "census": {
             "last_successful_update": census_updated,
             "selected_variables": (county_payload or {}).get("selected_variables")
@@ -1288,6 +1362,15 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
             "note": "State-level average industrial retail electricity price, merged into each state record as electricity_price. Industrial rate is the standard site-selection proxy for a large power buyer such as a data center — actual utility contract rates vary and are not covered by this state average.",
             "update_frequency": "Monthly; refreshed independently of the rest of this pipeline (see eia_last_successful_update).",
         })
+    if bls_count:
+        meta["sources"].append({
+            "id": "bls_qcew",
+            "name": "Quarterly Census of Employment and Wages (QCEW)",
+            "publisher": "U.S. Bureau of Labor Statistics",
+            "url": "https://www.bls.gov/cew/",
+            "note": "County-level average weekly wage across all industries and ownership sectors, merged into each county record as avg_weekly_wage. No API key required. A direct labor-cost figure for the local workforce, distinct from ACS's household-income metrics.",
+            "update_frequency": "Annual file, published with a 5-6 month lag; refreshed independently of the rest of this pipeline (see bls_last_successful_update).",
+        })
 
     # Skip the write when nothing but the run clock moved. Compared with
     # last_run_at excluded on BOTH sides, so a genuine change — new data, a new
@@ -1327,6 +1410,119 @@ def _permits_is_fresh(prior_meta, max_age_days):
     cost needs its own, longer cadence rather than riding on ACS's 7-day gate.
     """
     ts = (prior_meta or {}).get("permits_last_successful_update")
+    if not ts:
+        return False
+    try:
+        when = datetime.fromisoformat(ts)
+    except ValueError:
+        return False
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=timezone.utc)
+    return (datetime.now(timezone.utc) - when) < timedelta(days=max_age_days)
+
+
+# ────────── BLS QCEW average weekly wage (optional, per-county) ──────────
+
+# QCEW aggregation-level code for "county total, all industries, all
+# ownership sectors" — the single row per county-year that answers "what does
+# this county pay on average", not a per-industry breakdown. Confirmed
+# against BLS's own aggregation-level code documentation, not guessed.
+_BLS_COUNTY_TOTAL_AGGLVL = "70"
+
+# The annual-file wage column's exact name was not confirmed with full
+# certainty from documentation alone (BLS's quarterly and annual CSV layouts
+# use slightly different naming conventions in different places), so this
+# tries each candidate in order and uses whichever is actually present —
+# the same defensive pattern census_config.json's broadband_candidates uses
+# for exactly this kind of "which exact field name" uncertainty.
+_BLS_WAGE_FIELD_CANDIDATES = ("annual_avg_wkly_wage", "avg_wkly_wage")
+_BLS_EMPL_FIELD_CANDIDATES = ("annual_avg_emplvl", "avg_annual_emplvl")
+
+
+def discover_bls_vintage(max_probe_back=3):
+    """Find the newest QCEW annual vintage that responds, probing the
+    national total area ("US000") rather than hardcoding a year — QCEW's
+    annual file for a given year is not published until roughly Q3 of the
+    following year, so a hardcoded year breaks predictably every cycle,
+    the same reason ACS's vintage is discovered rather than assumed.
+    """
+    start = date.today().year - 1
+    for year in range(start, start - max_probe_back - 1, -1):
+        url = BLS_QCEW_AREA_URL.format(year=year, area_fips="US000")
+        rows, err = _get_csv_rows(url, timeout=60)
+        if not err and rows:
+            print(f"  BLS QCEW vintage detected: {year}")
+            return year
+        print(f"  BLS QCEW {year}: not available ({err or 'empty response'})")
+    return None
+
+
+def collect_bls_wages(county_fips_list, year, max_counties=None):
+    """County-level average weekly wage, all industries and ownership
+    sectors combined, from BLS's Quarterly Census of Employment and Wages.
+
+    Needs no API key at all — QCEW's open-data area-slice files
+    (data.bls.gov/cew/data/api/{year}/a/area/{area_fips}.csv) are public CSV,
+    unlike every other source this pipeline reads. One request PER COUNTY,
+    same shape as collect_permits (BLS has no bulk per-county JSON/CSV
+    endpoint either), so this reuses the same stride-sampling and sanity-floor
+    conventions rather than inventing new ones.
+
+    Returns { fips: {"value", "employment", "year"} } or {} on any failure.
+    """
+    fips_list = list(county_fips_list)
+    if max_counties is not None and max_counties < len(fips_list):
+        stride = max(1, len(fips_list) // max_counties)
+        fips_list = fips_list[::stride][:max_counties]
+
+    out = {}
+    checked = 0
+    sample_errors = []
+    for fips in fips_list:
+        if max_counties is not None and checked >= max_counties:
+            break
+        checked += 1
+        url = BLS_QCEW_AREA_URL.format(year=year, area_fips=fips)
+        rows, err = _get_csv_rows(url)
+        if err:
+            if len(sample_errors) < 5 and "HTTP 404" not in err:
+                sample_errors.append(f"{fips}: {err}")
+            continue
+        if not rows:
+            continue
+        total_row = next(
+            (r for r in rows if (r.get("agglvl_code") or "").strip() == _BLS_COUNTY_TOTAL_AGGLVL),
+            None)
+        if not total_row:
+            continue
+        wage_field = next((f for f in _BLS_WAGE_FIELD_CANDIDATES if total_row.get(f)), None)
+        if not wage_field:
+            if len(sample_errors) < 5:
+                sample_errors.append(f"{fips}: no known wage column in {sorted(total_row.keys())}")
+            continue
+        wage = parse_number(total_row.get(wage_field))
+        if wage is None:
+            continue
+        empl_field = next((f for f in _BLS_EMPL_FIELD_CANDIDATES if total_row.get(f)), None)
+        employment = parse_number(total_row.get(empl_field)) if empl_field else None
+        out[fips] = {"value": wage, "employment": employment, "year": year}
+
+    if len(out) < 500:
+        detail = f" — sample errors: {sample_errors}" if sample_errors else \
+                 " — every checked county returned a plain 404, which is unexpected for QCEW " \
+                 "(coverage is normally near-universal, unlike Building Permits)"
+        warn(f"BLS QCEW wages: only {len(out)} counties returned real data out of "
+             f"{checked} checked — module skipped rather than publishing a suspiciously "
+             f"small result{detail}")
+        return {}
+    return out
+
+
+def _bls_is_fresh(prior_meta, max_age_days):
+    """Own timestamp, own gate, same shape as _permits_is_fresh: QCEW is
+    quarterly and lags 5-6 months, so a shorter interval would just repeat
+    ~3,000 requests against data that has not changed."""
+    ts = (prior_meta or {}).get("bls_last_successful_update")
     if not ts:
         return False
     try:
@@ -1464,6 +1660,11 @@ def main():
     ap.add_argument("--skip-eia", action="store_true")
     ap.add_argument("--force-eia", action="store_true")
     ap.add_argument("--eia-max-age-days", type=int, default=30)
+    ap.add_argument("--skip-bls", action="store_true")
+    ap.add_argument("--force-bls", action="store_true")
+    ap.add_argument("--bls-max-age-days", type=int, default=90)
+    ap.add_argument("--bls-max-counties", type=int, default=None,
+                     help="cap counties checked, for a bounded test run")
     ap.add_argument("--offline", action="store_true")
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args()
@@ -1501,6 +1702,7 @@ def main():
     census_ran     = False
     permits_ran    = False
     eia_ran        = False
+    bls_ran        = False
     any_source_ok  = False
 
     if args.offline:
@@ -1610,6 +1812,39 @@ def main():
                 warn(f"Building Permits module raised {type(e).__name__} — "
                      f"ignored; the Economy page does not depend on it")
 
+    # ── BLS QCEW average weekly wage (optional, per-county, own cadence) ──
+    # Independent of the Census/ACS branch above: needs no API key at all, and
+    # QCEW's annual file lags 5-6 months and only changes once a year, so it
+    # gets its own 90-day gate rather than any other module's cadence. Runs
+    # against whichever county_payload is authoritative right now, same
+    # pattern as permits above.
+    if county_payload and not args.offline and not args.skip_bls:
+        if not args.force_bls and _bls_is_fresh(prior_meta, args.bls_max_age_days):
+            print(f"\n=== BLS QCEW Wages ===\n  refreshed within "
+                  f"{args.bls_max_age_days} days — skipping (use --force-bls to override)")
+        else:
+            print("\n=== BLS QCEW Average Weekly Wage (optional, per-county) ===")
+            try:
+                bls_year = discover_bls_vintage()
+                bls_by_fips = (collect_bls_wages(
+                    sorted(county_payload.get("counties", {}).keys()), bls_year,
+                    max_counties=args.bls_max_counties) if bls_year else {})
+                if bls_by_fips:
+                    matched = 0
+                    for fips, county_rec in county_payload.get("counties", {}).items():
+                        rec = bls_by_fips.get(fips)
+                        if rec:
+                            county_rec["avg_weekly_wage"] = rec
+                            matched += 1
+                    print(f"  merged BLS wage data into {matched} of "
+                          f"{len(county_payload.get('counties', {}))} counties")
+                    if _safe_write(COUNTY_OUT, county_payload, min_records=2000):
+                        bls_ran = True
+                        any_source_ok = True
+            except Exception as e:                    # noqa: BLE001
+                warn(f"BLS module raised {type(e).__name__} — "
+                     f"ignored; the Economy page does not depend on it")
+
     # ── EIA electricity price (optional, state-level, own cadence) ──
     # Independent of the Census/ACS branch above: needs EIA_API_KEY, not
     # CENSUS_API_KEY, and EIA updates monthly, not annually, so it gets its
@@ -1644,7 +1879,7 @@ def main():
     print("\n=== metadata ===")
     write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
                    acs_vintage, var_problems, prior_meta, census_ran, permits_ran,
-                   eia_ran, any_source_ok=any_source_ok)
+                   eia_ran, bls_ran, any_source_ok=any_source_ok)
 
     print("\n=== validation ===")
     errs = validate_outputs()

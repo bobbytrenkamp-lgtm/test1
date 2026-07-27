@@ -210,7 +210,8 @@ center and AI infrastructure rather than as a general economics dashboard.
    broadband, commute time, poverty rate — 13 ACS metrics total), latest-value
    or 1/5-year change, search, and a profile panel giving US and state
    comparisons, percentile rank, sparklines, and — where available —
-   county-level building permit activity (Census BPS via FRED) and state-level
+   county-level building permit activity (Census BPS via FRED), county-level
+   average weekly wage (BLS QCEW, no API key needed), and state-level
    industrial electricity price (EIA), each clearly labelled as a distinct
    measurement from the ACS metrics above it.
 4. **Infrastructure-Relevant Signals** — plain statements about conditions that
@@ -267,11 +268,15 @@ Permits has its own 30-day gate and makes ~1 request per county, so a manual
 run defaults to skipping unless forced — `permits_max_counties` bounds a test
 run to a handful of counties instead of the full ~3,000),
 `force_eia`/`skip_eia` (EIA electricity price, own 30-day gate, one request
-for all states). After that it runs
+for all states), `force_bls`/`skip_bls`/`bls_max_counties` (BLS QCEW average
+weekly wage, needs no API key, own 90-day gate, ~1 request per county like
+Building Permits). After that it runs
 daily at 06:20 UTC; Census is only re-fetched when its data is more than 7 days
 old, since ACS publishes annually, Building Permits only when more than 30
 days old, since BPS publishes annually and costs far more requests per run,
-and EIA only when more than 30 days old, since it publishes monthly.
+EIA only when more than 30 days old, since it publishes monthly, and BLS
+QCEW only when more than 90 days old, since its annual file publishes with
+a 5-6 month lag.
 
 A missing key is a warning, not a failure — that source is skipped and its
 existing data is preserved. The workflow fails only if output validation shows the

@@ -2,7 +2,7 @@ name: Update Economic Data
 
 # Builds the Economy tab's local JSON from the FRED and Census APIs.
 #
-# WHY A SINGLE DAILY JOB SERVES FOUR CADENCES
+# WHY A SINGLE DAILY JOB SERVES FIVE CADENCES
 # FRED series publish daily-to-monthly, so they are refreshed on every run.
 # Census ACS publishes ONE new 5-year vintage per year, so re-downloading
 # ~3,140 counties every day would burn CI minutes for no new data. The script
@@ -14,10 +14,14 @@ name: Update Economic Data
 # is ~3,000 individual requests, so it must not repeat on FRED's own daily
 # cadence. EIA electricity price (state-level, one request for all states) has
 # its own 30-day gate too (--eia-max-age-days) since EIA updates monthly, not
-# daily or annually — a separate cadence from either of the other two, and a
-# separate timestamp field, even though the interval happens to match
-# permits'. All checks live in one scheduled job rather than separate
-# workflows.
+# daily or annually. BLS QCEW average weekly wage (one request PER COUNTY,
+# same shape as Building Permits) has the longest gate of all
+# (--bls-max-age-days, 90): its annual file publishes with a 5-6 month lag, so
+# there is nothing new to fetch on any shorter interval. Every module has its
+# own timestamp field, even where an interval happens to match another
+# module's, so none can silently ride on a sibling's gate (the bug PEP had
+# against ACS before it was retired). All checks live in one scheduled job
+# rather than separate workflows.
 #
 # A Census Population Estimates Program (PEP) module was tried and retired:
 # a live bounded test showed every vintage year returning a plain HTTP 404 on
@@ -30,21 +34,24 @@ name: Update Economic Data
 # FRED and Census are FREE registrations at two different agencies and both
 # REQUIRED in practice. EIA is a third free registration and OPTIONAL — its
 # module simply does not run without it, the same as any other missing
-# optional key. No key is interchangeable with another and none can be
-# billed. Keys live in repository secrets and are passed only as env vars to
-# the Python step — never echoed, never written to an output file, and any
-# URL reaching a log line is redacted by _redact().
+# optional key. BLS QCEW needs NO key or registration at all (its open-data
+# CSV endpoint is fully public). No key is interchangeable with another and
+# none can be billed. Keys live in repository secrets and are passed only as
+# env vars to the Python step — never echoed, never written to an output
+# file, and any URL reaching a log line is redacted by _redact().
 #   FRED_API_KEY    REQUIRED. https://fred.stlouisfed.org/docs/api/api_key.html
 #   CENSUS_API_KEY  REQUIRED. https://api.census.gov/data/key_signup.html
 #   EIA_API_KEY     OPTIONAL. https://www.eia.gov/opendata/register.php
+#   (BLS QCEW needs no key — https://www.bls.gov/cew/additional-resources/open-data/)
 #
 # MISSING KEY BEHAVIOUR
 # A missing key skips that source with a warning and preserves the previously
-# committed data untouched, the same for all three. FRED has always rejected
-# keyless requests. Census allowed roughly 500 unauthenticated requests/day
-# until May 12, 2026, when it began requiring a key for every Data API
-# request (this covers ACS and CBP). No missing key fails the job; it fails
-# only when output validation says the generated data would be corrupt.
+# committed data untouched, the same for every keyed source. FRED has always
+# rejected keyless requests. Census allowed roughly 500 unauthenticated
+# requests/day until May 12, 2026, when it began requiring a key for every
+# Data API request (this covers ACS and CBP). No missing key fails the job;
+# it fails only when output validation says the generated data would be
+# corrupt.
 
 on:
   schedule:
@@ -93,6 +100,21 @@ on:
         required: false
         type: boolean
         default: false
+      force_bls:
+        description: "Refresh BLS QCEW wages even if recently updated (slow: ~3,000 requests)"
+        required: false
+        type: boolean
+        default: false
+      skip_bls:
+        description: "Skip the optional BLS QCEW wage module entirely"
+        required: false
+        type: boolean
+        default: false
+      bls_max_counties:
+        description: "Cap counties checked for BLS QCEW (leave blank for all — use a small number for a fast manual test)"
+        required: false
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -104,11 +126,13 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    # 45 min covered FRED+ACS+CBP alone. A full Building Permits run adds
-    # roughly one HTTP round-trip per US county (~3,000), which on its own
-    # rare trigger day (see permits_last_successful_update gating) can run
-    # 20-35 min longer than a normal day's job.
-    timeout-minutes: 90
+    # 45 min covered FRED+ACS+CBP alone. A full Building Permits or BLS QCEW
+    # run each add roughly one HTTP round-trip per US county (~3,000), which
+    # on their own rare trigger days (see permits_last_successful_update /
+    # bls_last_successful_update gating) can each run 20-35 min longer than a
+    # normal day's job. Their gates are independent (30 days vs 90 days) so
+    # both landing on the same day is rare, but the timeout allows for it.
+    timeout-minutes: 120
 
     steps:
       - name: Checkout repository
@@ -122,7 +146,7 @@ jobs:
       # The pipeline deliberately uses only the standard library (urllib, json)
       # so there is nothing to install and no dependency to audit.
       - name: Verify no third-party dependency is required
-        run: python -c "import urllib.request, json, argparse; print('stdlib only — no pip install needed')"
+        run: python -c "import urllib.request, json, argparse, csv, io; print('stdlib only — no pip install needed')"
 
       - name: Run economic data tests
         run: python tests/test_economic_data.py
@@ -144,6 +168,11 @@ jobs:
           fi
           if [ "${{ inputs.force_eia }}"    = "true" ]; then ARGS="$ARGS --force-eia";    fi
           if [ "${{ inputs.skip_eia }}"     = "true" ]; then ARGS="$ARGS --skip-eia";     fi
+          if [ "${{ inputs.force_bls }}"    = "true" ]; then ARGS="$ARGS --force-bls";    fi
+          if [ "${{ inputs.skip_bls }}"     = "true" ]; then ARGS="$ARGS --skip-bls";     fi
+          if [ -n "${{ inputs.bls_max_counties }}" ]; then
+            ARGS="$ARGS --bls-max-counties ${{ inputs.bls_max_counties }}"
+          fi
           echo "running with args:$ARGS"
           python data/update_economic_data.py $ARGS
 
@@ -174,10 +203,11 @@ jobs:
           VINTAGE=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['acs_vintage'])" 2>/dev/null || echo "?")
           PERMITSN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['permits_county_count'])" 2>/dev/null || echo "0")
           EIAN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['eia_state_count'])" 2>/dev/null || echo "0")
+          BLSN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['bls_county_count'])" 2>/dev/null || echo "0")
           # [skip ci] prevents a Pages redeploy loop: the frontend fetches these
           # files at runtime with cache:no-store, so a redeploy is not needed for
           # new numbers to appear.
-          git commit -m "chore: refresh economic data — ${SERIES} FRED series, ${COUNTIES} counties, ACS ${VINTAGE}, permits ${PERMITSN}, EIA ${EIAN} [skip ci]"
+          git commit -m "chore: refresh economic data — ${SERIES} FRED series, ${COUNTIES} counties, ACS ${VINTAGE}, permits ${PERMITSN}, EIA ${EIAN}, BLS ${BLSN} [skip ci]"
           git push origin HEAD
 
       - name: Summary
@@ -196,6 +226,7 @@ jobs:
           print(f"CBP available    : {m.get('cbp_available')}")
           print(f"Permits available: {m.get('permits_available')} ({m.get('permits_county_count')} counties)")
           print(f"EIA available    : {m.get('eia_available')} ({m.get('eia_state_count')} states)")
+          print(f"BLS available    : {m.get('bls_available')} ({m.get('bls_county_count')} counties)")
           print(f"stale            : {m.get('stale')}")
           skipped = m.get("fred_skipped") or []
           if skipped:

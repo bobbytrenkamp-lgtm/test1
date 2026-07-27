@@ -5,6 +5,77 @@
 Date: 2026-07-27
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 2 — BLS QCEW county-level average weekly wage
+
+## Why this happened
+Continuing through the phases of the economic intelligence expansion after
+Phase 1 (ACS expansion + EIA electricity) shipped and was live-verified. BLS
+was explicitly on the user's preferred-source list. Chose QCEW's open-data
+CSV access over the general BLS Public Data API specifically because it
+needs **no API key or registration at all** — genuinely free, not just
+free-with-signup — and publishes at county granularity, which the OES/OEWS
+occupation-wage survey does not (OEWS is state/MSA only and has no clean
+JSON/CSV API for area-level data, just downloadable Excel files, so it was
+not pursued this phase).
+
+## New CSV ingestion path — the one exception on this platform
+Every other source this pipeline reads is JSON. QCEW's open-data area-slice
+files (`data.bls.gov/cew/data/api/{year}/a/area/{area_fips}.csv`) have no
+JSON equivalent, so this is the first genuinely new ingestion format:
+`_get_csv_rows()`, built on the same retry/redact contract as `_get_json()`,
+parses via the standard library's `csv` module (`csv.DictReader`, keyed by
+the file's own header row rather than hardcoded column positions — resilient
+to BLS reordering columns). `csv`/`io` added to the stdlib-only import
+allowlist in both `data/update_economic_data.py` and the test that guards it.
+
+## Real research, not guesses, before writing code
+Learning directly from the PEP/BPS investigation earlier the same day
+(getting a table/series ID subtly wrong produces a silent failure, not a
+loud one), every part of the QCEW integration was verified against BLS's own
+documentation before being wired in: the URL pattern (confirmed via real
+example URLs in BLS's own docs, e.g. `.../2024/1/area/26000.csv` for
+Michigan), the `qtr=a` annual-average parameter, and the `agglvl_code=70`
+aggregation-level code for "county total, all industries, all ownership
+sectors" (confirmed against BLS's aggregation-level code documentation, not
+assumed). One genuine remaining uncertainty — whether the annual file's wage
+column is named `annual_avg_wkly_wage` or `avg_wkly_wage` (BLS's annual and
+quarterly layout docs were not fully consistent on this point) — was handled
+defensively with a candidate-list fallback (`_BLS_WAGE_FIELD_CANDIDATES`),
+the same pattern `census_config.json`'s `broadband_candidates` already uses
+for exactly this kind of "which exact field name" uncertainty, rather than
+committing to one guess and finding out live whether it was right.
+
+## Shape
+`collect_bls_wages()` mirrors `collect_permits()` almost exactly: one HTTP
+request per county (QCEW has no bulk per-county endpoint either), stride
+sampling for bounded test runs, a 500-county sanity floor, and diagnostic
+error capture. `discover_bls_vintage()` mirrors `discover_acs_vintage()`/the
+retired PEP module's pattern: probes the national total area (`US000`)
+backwards from last year rather than hardcoding a vintage, since QCEW's
+annual file for a given year is not published until roughly Q3 of the
+following year. Own 90-day freshness gate (`bls_last_successful_update`) —
+the longest of any module in this pipeline, since QCEW's annual file only
+changes once a year and lags 5-6 months; a shorter gate would just repeat
+~3,000 requests against unchanged data.
+
+Merged into `census_county.json` as `avg_weekly_wage` — `{value, employment,
+year}` — surfaced in the county profile panel and the due-diligence report
+alongside (not merged into) the existing `building_permits` and
+`electricity_price` supplementary fields, labelled as a direct labor-cost
+figure distinct from ACS's household-income metrics.
+
+## Testing
+383 offline assertions (up from 366), including `_get_csv_rows()`'s
+header-keyed parsing, `discover_bls_vintage()`'s newest-year selection,
+`collect_bls_wages()`'s county-total-row filtering (rejecting non-70
+aggregation rows), its candidate-column-name fallback, its sanity floor and
+max-counties cap, and `_bls_is_fresh()`. `tests/test_no_paid_dependencies.py`
+extended with a dedicated test confirming no `BLS_API_KEY` was invented for
+a source that is genuinely keyless (43 checks, up from 41).
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Phase 1 of the economic intelligence expansion — ACS variable expansion + EIA electricity price
 
 ## Why this happened

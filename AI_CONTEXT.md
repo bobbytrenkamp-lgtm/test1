@@ -662,7 +662,7 @@ data/economy/census_state.json          generated — also carries electricity_p
 data/economy/economic_metadata.json     generated — provenance, warnings, staleness
 data/economy/census_cbp.json            generated, optional
 .github/workflows/update_economic_data.yml
-tests/test_economic_data.py             366 offline assertions
+tests/test_economic_data.py             383 offline assertions
 tests/fixtures/economy/                 SYNTHETIC data for browser tests — never real
 ```
 
@@ -670,11 +670,11 @@ The three JS modules mirror the zoning split (`zoning.js` / `zoning-map.js` /
 `zoning-details.js`): `economy.js` owns data and math, the other two own DOM.
 Load order in index.html is economy.js -> economy-view.js -> economy-map.js.
 
-### Two supplementary fields — read this before touching either
+### Three supplementary fields — read this before touching any of them
 
-`census_county.json` counties and `census_state.json` states each carry one
-field that is NOT part of the ACS `.metrics` shape `metricValue()`/
-`comparisons()` expect — reading either through those functions returns
+`census_county.json` counties and `census_state.json` states each carry
+fields that are NOT part of the ACS `.metrics` shape `metricValue()`/
+`comparisons()` expect — reading any of them through those functions returns
 nothing, by design:
 
 - `building_permits` (county) — `{value, as_of, change_yoy_pct}`. Census
@@ -686,15 +686,21 @@ nothing, by design:
   this is the only county-level construction-permit trend on the platform.
   Coverage is expected to be partial (many small counties never reported to
   BPS) — its absence on a given county is not a bug.
+- `avg_weekly_wage` (county) — `{value, employment, year}`. BLS QCEW average
+  weekly wage across all industries/ownership, filtered to the
+  `agglvl_code=70` county-total row. The only source on this platform needing
+  neither an API key nor registration. Fetched as CSV (`_get_csv_rows()`,
+  `csv.DictReader` keyed by header name), the one exception to every other
+  source's JSON, since QCEW's open-data access has no JSON equivalent.
 - `electricity_price` (state) — `{value, as_of, sector}`. EIA industrial
   retail electricity price, cents/kWh. State-level only, not county-level —
   a county's profile panel looks it up via that county's own `state_fips`
   and labels it "state average, not this specific county" rather than
   implying county-level precision it does not have.
 
-Both are optional and isolated in the pipeline (a failure leaves ACS data
-untouched). Building Permits also drives its own `SIGNAL_RULES` entries in
-`economy.js` (`permits_accelerating`, `permits_slowing` read
+All three are optional and isolated in the pipeline (a failure leaves ACS
+data untouched). Building Permits also drives its own `SIGNAL_RULES` entries
+in `economy.js` (`permits_accelerating`, `permits_slowing` read
 `c.building_permits` directly, not through `metricValue()`).
 
 A Census Population Estimates Program (PEP) module — a current-year

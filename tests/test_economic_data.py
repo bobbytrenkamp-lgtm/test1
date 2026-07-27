@@ -667,6 +667,184 @@ def test_validate_outputs_flags_bad_building_permits():
           f"negative building_permits.value should have been flagged; got: {errs}")
 
 
+# ────────────────────────── BLS QCEW wages ──────────────────────────
+
+def test_get_csv_rows_parses_header_keyed_dicts():
+    """_get_csv_rows must key rows by the file's own header row (via
+    DictReader), not by hardcoded column positions -- resilient to BLS
+    reordering columns, matching how the rest of this pipeline tolerates
+    payload shape drift elsewhere."""
+    fake_csv = "area_fips,agglvl_code,annual_avg_wkly_wage\n01001,70,812\n"
+    real_urlopen = econ.urllib.request.urlopen
+
+    class _FakeResp:
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+        def read(self): return fake_csv.encode("utf-8")
+
+    econ.urllib.request.urlopen = lambda req, timeout=None: _FakeResp()
+    try:
+        rows, err = econ._get_csv_rows("https://example.invalid/x.csv")
+    finally:
+        econ.urllib.request.urlopen = real_urlopen
+    eq(err, None, "no error on a well-formed CSV")
+    eq(len(rows), 1, "one data row parsed")
+    eq(rows[0]["annual_avg_wkly_wage"], "812", "keyed by header name, not position")
+
+
+def test_discover_bls_vintage_picks_newest_responding_year():
+    real_get_csv = econ._get_csv_rows
+
+    def fake(url, **kwargs):
+        if f"/{date.today().year - 1}/" in url:
+            return [{"agglvl_code": "70"}], None
+        return None, "HTTP 404"
+
+    econ._get_csv_rows = fake
+    try:
+        year = econ.discover_bls_vintage()
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(year, date.today().year - 1, "picks the most recent year that actually responds")
+
+
+def _fake_bls_csv_rows(url, **kwargs):
+    """Route a fake QCEW CSV response by the area FIPS embedded in the URL,
+    the same way _get_csv_rows() actually builds it -- exercises
+    collect_bls_wages() exactly as it calls the real function."""
+    m = re.search(r"/area/([A-Za-z0-9]+)\.csv", url)
+    fips = m.group(1) if m else None
+    if fips == "01001":
+        return [
+            {"agglvl_code": "75", "own_code": "5", "industry_code": "51",
+             "annual_avg_wkly_wage": "9999", "annual_avg_emplvl": "1"},
+            {"agglvl_code": "70", "own_code": "0", "industry_code": "10",
+             "annual_avg_wkly_wage": "812", "annual_avg_emplvl": "18500"},
+        ], None
+    if fips == "01003":
+        # Older-style column name, no "annual_" prefix -- exercises the
+        # candidate-field fallback.
+        return [
+            {"agglvl_code": "70", "own_code": "0", "industry_code": "10",
+             "avg_wkly_wage": "755", "avg_annual_emplvl": "9200"},
+        ], None
+    if fips and fips.startswith("9"):
+        return [
+            {"agglvl_code": "70", "own_code": "0", "industry_code": "10",
+             "annual_avg_wkly_wage": "700", "annual_avg_emplvl": "500"},
+        ], None
+    return None, "HTTP 404"
+
+
+def test_collect_bls_wages_picks_county_total_row():
+    """A response has multiple agglvl_code rows (ownership/industry
+    breakdowns); only the agglvl_code=70 county-total row may be used."""
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = _fake_bls_csv_rows
+    try:
+        real_padding = [f"9{i:04d}" for i in range(600)]
+        out = econ.collect_bls_wages(["01001", "01003"] + real_padding, 2024)
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(out["01001"]["value"], 812.0, "the agglvl_code=70 row's wage, not the 75 row's 9999")
+    eq(out["01001"]["employment"], 18500.0, "employment from the same total row")
+    eq(out["01001"]["year"], 2024, "year recorded")
+
+
+def test_collect_bls_wages_falls_back_to_older_column_name():
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = _fake_bls_csv_rows
+    try:
+        real_padding = [f"9{i:04d}" for i in range(600)]
+        out = econ.collect_bls_wages(["01001", "01003"] + real_padding, 2024)
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(out["01003"]["value"], 755.0, "avg_wkly_wage (no annual_ prefix) used as a fallback")
+    eq(out["01003"]["employment"], 9200.0, "avg_annual_emplvl used as a fallback")
+
+
+def test_collect_bls_wages_skips_counties_without_a_total_row():
+    """A county whose response has no agglvl_code=70 row (or 404s) must be
+    silently excluded, never crash the whole module."""
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = _fake_bls_csv_rows
+    try:
+        real_padding = [f"9{i:04d}" for i in range(600)]
+        no_data_padding = [f"{i:05d}" for i in range(10000, 10600)]
+        out = econ.collect_bls_wages(["01001", "01003"] + real_padding + no_data_padding, 2024)
+    finally:
+        econ._get_csv_rows = real_get_csv
+    check(all(f not in out for f in no_data_padding), "no-data FIPS must not appear at all")
+    eq(len(out), 2 + len(real_padding), "result is exactly the counties with a real total row")
+
+
+def test_collect_bls_wages_rejects_suspiciously_small_result():
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = _fake_bls_csv_rows
+    try:
+        out = econ.collect_bls_wages(["01001", "01003"], 2024)
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(out, {}, "2 counties is far below the 500-county sanity floor -> rejected")
+
+
+def test_collect_bls_wages_respects_max_counties_cap():
+    real_get_csv = econ._get_csv_rows
+    calls = []
+
+    def counting(url, **kwargs):
+        calls.append(url)
+        return _fake_bls_csv_rows(url, **kwargs)
+
+    econ._get_csv_rows = counting
+    try:
+        fips_list = [f"{i:05d}" for i in range(30000, 31000)]
+        econ.collect_bls_wages(fips_list, 2024, max_counties=25)
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(len(calls), 25, "must stop at the cap, not check every county in the list")
+
+
+def test_bls_is_fresh_direct():
+    now = datetime.now(timezone.utc)
+    eq(econ._bls_is_fresh({}, 90), False, "no prior timestamp -> not fresh")
+    eq(econ._bls_is_fresh({"bls_last_successful_update": (now - timedelta(days=10)).isoformat()}, 90),
+       True, "10 days old against a 90-day gate -> fresh")
+    eq(econ._bls_is_fresh({"bls_last_successful_update": (now - timedelta(days=120)).isoformat()}, 90),
+       False, "120 days old against a 90-day gate -> not fresh")
+
+
+def test_validate_outputs_flags_bad_avg_weekly_wage():
+    with tempfile.TemporaryDirectory() as td:
+        county_path = Path(td) / "census_county.json"
+        payload = {
+            "generated_at": "2026-07-27T00:00:00+00:00",
+            "acs_vintage": 2024,
+            "counties": {
+                "01001": {
+                    "metrics": {},
+                    "history": {},
+                    "avg_weekly_wage": {"value": -1, "employment": 100, "year": 2024},
+                },
+            },
+        }
+        county_path.write_text(json.dumps(payload))
+        real_county_out = econ.COUNTY_OUT
+        real_state_out = econ.STATE_OUT
+        real_fred_out = econ.FRED_OUT
+        econ.COUNTY_OUT = county_path
+        econ.STATE_OUT = Path(td) / "does_not_exist_state.json"
+        econ.FRED_OUT = Path(td) / "does_not_exist_fred.json"
+        try:
+            errs = econ.validate_outputs()
+        finally:
+            econ.COUNTY_OUT = real_county_out
+            econ.STATE_OUT = real_state_out
+            econ.FRED_OUT = real_fred_out
+    check(any("avg_weekly_wage" in e for e in errs),
+          f"negative avg_weekly_wage.value should have been flagged; got: {errs}")
+
+
 # ────────────────────────── EIA electricity price ──────────────────────────
 
 def test_load_state_abbr_to_fips_matches_state_regulations():

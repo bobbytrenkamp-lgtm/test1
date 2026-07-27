@@ -174,9 +174,21 @@ def test_economic_pipeline_is_stdlib_only():
     imports = set(re.findall(r"^\s*(?:import|from)\s+([a-zA-Z_][\w.]*)", src, re.M))
     tops = {i.split(".")[0] for i in imports}
     STDLIB = {"argparse", "json", "os", "sys", "time", "urllib", "datetime",
-              "pathlib", "re", "collections", "concurrent", "threading", "random"}
+              "pathlib", "re", "collections", "concurrent", "threading", "random",
+              "csv", "io"}
     extra = tops - STDLIB
     check(not extra, f"economic pipeline gained a non-stdlib import: {extra}")
+
+
+def test_bls_qcew_requires_no_key():
+    """BLS QCEW's open-data CSV endpoint needs no registration or key at
+    all -- verify the pipeline never invents one. A BLS_API_KEY appearing
+    here would mean a future edit started gating a genuinely free, keyless
+    endpoint behind credentials that don't exist for it."""
+    src = (ROOT / "data/update_economic_data.py").read_text()
+    check("BLS_API_KEY" not in src,
+          "BLS_API_KEY referenced -- QCEW's area-slice API needs no key")
+    check("collect_bls_wages" in src, "BLS QCEW module missing entirely")
 
 
 # ── 3. Every API key must be optional ───────────────────────────────────────
