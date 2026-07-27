@@ -2,7 +2,7 @@ name: Update Economic Data
 
 # Builds the Economy tab's local JSON from the FRED and Census APIs.
 #
-# WHY A SINGLE DAILY JOB SERVES THREE CADENCES
+# WHY A SINGLE DAILY JOB SERVES FOUR CADENCES
 # FRED series publish daily-to-monthly, so they are refreshed on every run.
 # Census ACS publishes ONE new 5-year vintage per year, so re-downloading
 # ~3,140 counties every day would burn CI minutes for no new data. The script
@@ -12,7 +12,11 @@ name: Update Economic Data
 # data/update_economic_data.py) is on its own, much longer gate
 # (--permits-max-age-days, 30): BPS publishes annually and a full permits run
 # is ~3,000 individual requests, so it must not repeat on FRED's own daily
-# cadence. Both checks live in one scheduled job rather than separate
+# cadence. EIA electricity price (state-level, one request for all states) has
+# its own 30-day gate too (--eia-max-age-days) since EIA updates monthly, not
+# daily or annually — a separate cadence from either of the other two, and a
+# separate timestamp field, even though the interval happens to match
+# permits'. All checks live in one scheduled job rather than separate
 # workflows.
 #
 # A Census Population Estimates Program (PEP) module was tried and retired:
@@ -23,24 +27,24 @@ name: Update Economic Data
 # 5-year rolling average) remains the platform's population figure.
 #
 # API KEYS
-# Both are FREE registrations at two different agencies, so they are two
-# secrets rather than one: FRED is the Federal Reserve Bank of St. Louis and
-# Census is the U.S. Census Bureau. Neither key is interchangeable with the
-# other and neither can be billed. Keys live in repository secrets and are
-# passed only as env vars to the Python step — never echoed, never written to
-# an output file, and any URL reaching a log line is redacted by _redact().
+# FRED and Census are FREE registrations at two different agencies and both
+# REQUIRED in practice. EIA is a third free registration and OPTIONAL — its
+# module simply does not run without it, the same as any other missing
+# optional key. No key is interchangeable with another and none can be
+# billed. Keys live in repository secrets and are passed only as env vars to
+# the Python step — never echoed, never written to an output file, and any
+# URL reaching a log line is redacted by _redact().
 #   FRED_API_KEY    REQUIRED. https://fred.stlouisfed.org/docs/api/api_key.html
 #   CENSUS_API_KEY  REQUIRED. https://api.census.gov/data/key_signup.html
+#   EIA_API_KEY     OPTIONAL. https://www.eia.gov/opendata/register.php
 #
 # MISSING KEY BEHAVIOUR
-# Both keys are required in practice, but neither is required by the CODE — a
-# missing key skips that source with a warning and preserves the previously
-# committed data untouched, exactly the same for both. FRED has always
-# rejected keyless requests. Census allowed roughly 500 unauthenticated
-# requests/day until May 12, 2026, when it began requiring a key for every
-# Data API request (this covers ACS, the Population Estimates Program, and
-# CBP). Neither missing key fails the job; it fails only when output
-# validation says the generated data would be corrupt.
+# A missing key skips that source with a warning and preserves the previously
+# committed data untouched, the same for all three. FRED has always rejected
+# keyless requests. Census allowed roughly 500 unauthenticated requests/day
+# until May 12, 2026, when it began requiring a key for every Data API
+# request (this covers ACS and CBP). No missing key fails the job; it fails
+# only when output validation says the generated data would be corrupt.
 
 on:
   schedule:
@@ -79,6 +83,16 @@ on:
         required: false
         type: string
         default: ""
+      force_eia:
+        description: "Refresh EIA electricity price even if recently updated"
+        required: false
+        type: boolean
+        default: false
+      skip_eia:
+        description: "Skip the optional EIA electricity price module"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -117,6 +131,7 @@ jobs:
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
         run: |
           ARGS=""
           if [ "${{ inputs.force_census }}" = "true" ]; then ARGS="$ARGS --force-census"; fi
@@ -127,6 +142,8 @@ jobs:
           if [ -n "${{ inputs.permits_max_counties }}" ]; then
             ARGS="$ARGS --permits-max-counties ${{ inputs.permits_max_counties }}"
           fi
+          if [ "${{ inputs.force_eia }}"    = "true" ]; then ARGS="$ARGS --force-eia";    fi
+          if [ "${{ inputs.skip_eia }}"     = "true" ]; then ARGS="$ARGS --skip-eia";     fi
           echo "running with args:$ARGS"
           python data/update_economic_data.py $ARGS
 
@@ -156,10 +173,11 @@ jobs:
           COUNTIES=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['county_count'])" 2>/dev/null || echo "?")
           VINTAGE=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['acs_vintage'])" 2>/dev/null || echo "?")
           PERMITSN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['permits_county_count'])" 2>/dev/null || echo "0")
+          EIAN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['eia_state_count'])" 2>/dev/null || echo "0")
           # [skip ci] prevents a Pages redeploy loop: the frontend fetches these
           # files at runtime with cache:no-store, so a redeploy is not needed for
           # new numbers to appear.
-          git commit -m "chore: refresh economic data — ${SERIES} FRED series, ${COUNTIES} counties, ACS ${VINTAGE}, permits ${PERMITSN} [skip ci]"
+          git commit -m "chore: refresh economic data — ${SERIES} FRED series, ${COUNTIES} counties, ACS ${VINTAGE}, permits ${PERMITSN}, EIA ${EIAN} [skip ci]"
           git push origin HEAD
 
       - name: Summary
@@ -177,6 +195,7 @@ jobs:
           print(f"ACS vintage      : {m.get('acs_vintage')}")
           print(f"CBP available    : {m.get('cbp_available')}")
           print(f"Permits available: {m.get('permits_available')} ({m.get('permits_county_count')} counties)")
+          print(f"EIA available    : {m.get('eia_available')} ({m.get('eia_state_count')} states)")
           print(f"stale            : {m.get('stale')}")
           skipped = m.get("fred_skipped") or []
           if skipped:

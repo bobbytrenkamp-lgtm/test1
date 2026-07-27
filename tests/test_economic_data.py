@@ -73,6 +73,19 @@ ACS_VARIABLES_RESPONSE = {
         "B28002_001E": {"label": "Estimate!!Total:", "concept": "PRESENCE OF INTERNET SUBSCRIPTIONS"},
         "B28002_004E": {"label": "Estimate!!Total:!!With an Internet subscription:!!Broadband of any type",
                         "concept": "PRESENCE OF INTERNET SUBSCRIPTIONS"},
+        "B11001_001E": {"label": "Estimate!!Total:", "concept": "HOUSEHOLD TYPE (INCLUDING LIVING ALONE)"},
+        "B23025_001E": {"label": "Estimate!!Total:", "concept": "EMPLOYMENT STATUS"},
+        "B23025_002E": {"label": "Estimate!!Total:!!In labor force:", "concept": "EMPLOYMENT STATUS"},
+        "B25003_001E": {"label": "Estimate!!Total:", "concept": "TENURE"},
+        "B25003_002E": {"label": "Estimate!!Total:!!Owner occupied", "concept": "TENURE"},
+        "B25002_001E": {"label": "Estimate!!Total:", "concept": "OCCUPANCY STATUS"},
+        "B25002_003E": {"label": "Estimate!!Total:!!Vacant", "concept": "OCCUPANCY STATUS"},
+        "B17001_001E": {"label": "Estimate!!Total:", "concept": "POVERTY STATUS IN THE PAST 12 MONTHS BY SEX BY AGE"},
+        "B17001_002E": {"label": "Estimate!!Total:!!Income in the past 12 months below poverty level:",
+                        "concept": "POVERTY STATUS IN THE PAST 12 MONTHS BY SEX BY AGE"},
+        "B08013_001E": {"label": "Estimate!!Aggregate travel time to work (in minutes)",
+                        "concept": "AGGREGATE TRAVEL TIME TO WORK OF WORKERS BY SEX"},
+        "B08012_001E": {"label": "Estimate!!Total:", "concept": "TRAVEL TIME TO WORK"},
     }
 }
 
@@ -258,6 +271,19 @@ def test_verify_variables_accepts_valid():
     eq(selected["broadband_pct"]["broadband"], "B28002_004E", "picked the any-type broadband line")
 
 
+def test_verify_variables_accepts_new_metrics():
+    """The six metrics added for the ACS expansion (households through
+    avg_commute_minutes) must verify against realistic label text, not just
+    happen to exist in the config -- this is exactly the check that would
+    have caught a wrong table/variable ID before it ever reached a live run."""
+    cfg = json.loads((Path(econ.ROOT) / "data" / "economy" / "census_config.json").read_text())
+    selected, problems = econ.verify_variables(cfg, ACS_VARIABLES_RESPONSE["variables"])
+    for metric in ("households", "labor_force_participation_rate", "homeownership_rate",
+                   "housing_vacancy_rate", "poverty_rate", "avg_commute_minutes"):
+        check(metric in selected, f"{metric} verified against realistic ACS labels")
+        check(metric not in problems, f"{metric} has no verification problems")
+
+
 def test_verify_variables_rejects_label_mismatch():
     """A variable ID that exists but means something else must be REJECTED, not
     silently used. This is the B28002-moved-between-vintages scenario."""
@@ -346,6 +372,71 @@ def test_derive_direct_with_jam_value():
     eq(econ.derive_metric("median_household_income", spec, {"value": "B19013_001E"},
                           {"B19013_001E": "-666666666"}), None,
        "jam value -> None so Loving County is 'No data', not -$666M")
+
+
+def test_derive_avg_commute_minutes():
+    """'average' must divide WITHOUT the *100 that 'ratio' applies -- this is
+    a genuine mean, not a percentage, and safe_ratio_pct's built-in *100 would
+    silently turn a real ~25-minute commute into ~2500 minutes."""
+    cfg = _cfg()
+    spec = cfg["metrics"]["avg_commute_minutes"]
+    chosen = {"aggregate_minutes": "B08013_001E", "commuters": "B08012_001E"}
+    row = {"B08013_001E": "50000", "B08012_001E": "2000"}
+    eq(econ.derive_metric("avg_commute_minutes", spec, chosen, row), 25.0,
+       "50000 minutes / 2000 commuters = 25.0 minutes, not 2500%")
+
+
+def test_derive_avg_commute_minutes_zero_commuters():
+    cfg = _cfg()
+    spec = cfg["metrics"]["avg_commute_minutes"]
+    chosen = {"aggregate_minutes": "B08013_001E", "commuters": "B08012_001E"}
+    eq(econ.derive_metric("avg_commute_minutes", spec, chosen,
+                          {"B08013_001E": "0", "B08012_001E": "0"}), None,
+       "zero commuters -> None, not a ZeroDivisionError")
+
+
+def test_derive_poverty_rate():
+    cfg = _cfg()
+    spec = cfg["metrics"]["poverty_rate"]
+    chosen = {"below_poverty": "B17001_002E", "total": "B17001_001E"}
+    row = {"B17001_002E": "1500", "B17001_001E": "10000"}
+    eq(econ.derive_metric("poverty_rate", spec, chosen, row), 15.0,
+       "1500/10000 = 15.0%")
+
+
+def test_derive_homeownership_rate():
+    cfg = _cfg()
+    spec = cfg["metrics"]["homeownership_rate"]
+    chosen = {"owner_occupied": "B25003_002E", "total_occupied": "B25003_001E"}
+    row = {"B25003_002E": "6500", "B25003_001E": "10000"}
+    eq(econ.derive_metric("homeownership_rate", spec, chosen, row), 65.0,
+       "6500/10000 = 65.0%")
+
+
+def test_derive_housing_vacancy_rate():
+    cfg = _cfg()
+    spec = cfg["metrics"]["housing_vacancy_rate"]
+    chosen = {"vacant": "B25002_003E", "total_units": "B25002_001E"}
+    row = {"B25002_003E": "800", "B25002_001E": "10000"}
+    eq(econ.derive_metric("housing_vacancy_rate", spec, chosen, row), 8.0,
+       "800/10000 = 8.0%")
+
+
+def test_derive_labor_force_participation_rate():
+    cfg = _cfg()
+    spec = cfg["metrics"]["labor_force_participation_rate"]
+    chosen = {"in_labor_force": "B23025_002E", "population_16plus": "B23025_001E"}
+    row = {"B23025_002E": "7200", "B23025_001E": "10000"}
+    eq(econ.derive_metric("labor_force_participation_rate", spec, chosen, row), 72.0,
+       "7200/10000 = 72.0%")
+
+
+def test_derive_households_direct():
+    cfg = _cfg()
+    spec = cfg["metrics"]["households"]
+    eq(econ.derive_metric("households", spec, {"value": "B11001_001E"},
+                          {"B11001_001E": "42000"}), 42000.0,
+       "direct passthrough, same as population")
 
 
 # ────────────────────────── CBP suppression ──────────────────────────
@@ -574,6 +665,165 @@ def test_validate_outputs_flags_bad_building_permits():
             econ.FRED_OUT = real_fred_out
     check(any("building_permits" in e for e in errs),
           f"negative building_permits.value should have been flagged; got: {errs}")
+
+
+# ────────────────────────── EIA electricity price ──────────────────────────
+
+def test_load_state_abbr_to_fips_matches_state_regulations():
+    """Built from the app's own state_regulations.json rather than a second
+    hardcoded 50-state table that could silently drift from it."""
+    mapping = econ.load_state_abbr_to_fips()
+    check(len(mapping) >= 50, f"expected at least 50 state abbreviations, got {len(mapping)}")
+    check(mapping.get("CA") is not None, "California present")
+    eq(mapping.get("CA"), "06", "California FIPS is 06")
+
+
+_EIA_RESPONSE = {
+    "response": {
+        "data": [
+            {"period": "2026-05", "stateid": "CA", "sectorid": "IND", "price": "12.50"},
+            {"period": "2026-04", "stateid": "CA", "sectorid": "IND", "price": "12.10"},
+            {"period": "2026-05", "stateid": "TX", "sectorid": "IND", "price": "6.80"},
+            {"period": "2026-05", "stateid": "US", "sectorid": "IND", "price": "9.00"},
+        ] + [
+            # Padding so the 40-state sanity floor is comfortably cleared in
+            # the "accepts a full response" test without hand-writing 50 rows.
+            {"period": "2026-05", "stateid": abbr, "sectorid": "IND", "price": "8.00"}
+            for abbr in [
+                "AL", "AK", "AZ", "AR", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL",
+                "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO",
+                "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR",
+                "PA", "RI", "SC", "SD", "TN", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+            ]
+        ]
+    }
+}
+
+
+def test_collect_eia_electricity_price_picks_newest_period():
+    """CA has two rows (2026-04 and 2026-05); the newer one must win."""
+    real_get_json = econ._get_json
+    econ._get_json = lambda url, **kw: _EIA_RESPONSE
+    try:
+        out = econ.collect_eia_electricity_price("fakekey")
+    finally:
+        econ._get_json = real_get_json
+    ca_fips = econ.load_state_abbr_to_fips()["CA"]
+    check(ca_fips in out, "California present in result")
+    eq(out[ca_fips]["value"], 12.5, "the newer (2026-05) price wins, not the older 12.10")
+    eq(out[ca_fips]["as_of"], "2026-05", "as_of reflects the newer period")
+    eq(out[ca_fips]["sector"], "IND", "sector recorded")
+
+
+def test_collect_eia_electricity_price_drops_aggregate_rows():
+    """The 'US' aggregate row must not appear under any real state's FIPS --
+    there is no FIPS for it, so the abbr-to-FIPS lookup naturally drops it."""
+    real_get_json = econ._get_json
+    econ._get_json = lambda url, **kw: _EIA_RESPONSE
+    try:
+        out = econ.collect_eia_electricity_price("fakekey")
+    finally:
+        econ._get_json = real_get_json
+    check(all(v["value"] != 9.0 for v in out.values()),
+          "the US aggregate row's price (9.00) must not appear as any state's value")
+
+
+def test_collect_eia_electricity_price_rejects_suspiciously_small_result():
+    """Fewer than 40 states/territories is treated as a broken response."""
+    real_get_json = econ._get_json
+    econ._get_json = lambda url, **kw: {"response": {"data": [
+        {"period": "2026-05", "stateid": "CA", "sectorid": "IND", "price": "12.50"},
+        {"period": "2026-05", "stateid": "TX", "sectorid": "IND", "price": "6.80"},
+    ]}}
+    try:
+        out = econ.collect_eia_electricity_price("fakekey")
+    finally:
+        econ._get_json = real_get_json
+    eq(out, {}, "2 states is far below the 40-state sanity floor -> rejected")
+
+
+def test_collect_eia_electricity_price_handles_fetch_failure():
+    real_get_json = econ._get_json
+    econ._get_json = lambda url, **kw: {"__error__": "HTTP 503"}
+    try:
+        out = econ.collect_eia_electricity_price("fakekey")
+    finally:
+        econ._get_json = real_get_json
+    eq(out, {}, "fetch failure -> empty dict, not a crash")
+
+
+def test_eia_is_fresh_direct():
+    now = datetime.now(timezone.utc)
+    eq(econ._eia_is_fresh({}, 30), False, "no prior timestamp -> not fresh")
+    eq(econ._eia_is_fresh({"eia_last_successful_update": (now - timedelta(days=5)).isoformat()}, 30),
+       True, "5 days old against a 30-day gate -> fresh")
+    eq(econ._eia_is_fresh({"eia_last_successful_update": (now - timedelta(days=45)).isoformat()}, 30),
+       False, "45 days old against a 30-day gate -> not fresh")
+
+
+def test_validate_outputs_flags_bad_electricity_price():
+    with tempfile.TemporaryDirectory() as td:
+        state_path = Path(td) / "census_state.json"
+        payload = {
+            "generated_at": "2026-07-27T00:00:00+00:00",
+            "acs_vintage": 2024,
+            "states": {
+                "06": {
+                    "metrics": {},
+                    "history": {},
+                    "electricity_price": {"value": -5, "as_of": "2026-05", "sector": "IND"},
+                },
+            },
+        }
+        state_path.write_text(json.dumps(payload))
+        real_county_out = econ.COUNTY_OUT
+        real_state_out = econ.STATE_OUT
+        real_fred_out = econ.FRED_OUT
+        econ.COUNTY_OUT = Path(td) / "does_not_exist_county.json"
+        econ.STATE_OUT = state_path
+        econ.FRED_OUT = Path(td) / "does_not_exist_fred.json"
+        try:
+            errs = econ.validate_outputs()
+        finally:
+            econ.COUNTY_OUT = real_county_out
+            econ.STATE_OUT = real_state_out
+            econ.FRED_OUT = real_fred_out
+    check(any("electricity_price" in e for e in errs),
+          f"negative electricity_price.value should have been flagged; got: {errs}")
+
+
+def test_validate_outputs_catches_new_rate_metrics_out_of_range():
+    """Regression guard: the percent-range check used to only recognise
+    '_pct' suffixes and the single hardcoded name 'unemployment_rate', which
+    would have silently let a corrupted poverty_rate/homeownership_rate/etc.
+    (any of the new ACS '_rate' metrics) ship with a value like 250%."""
+    with tempfile.TemporaryDirectory() as td:
+        county_path = Path(td) / "census_county.json"
+        payload = {
+            "generated_at": "2026-07-27T00:00:00+00:00",
+            "acs_vintage": 2024,
+            "counties": {
+                "01001": {
+                    "metrics": {"poverty_rate": {"value": 250.0}},
+                    "history": {},
+                },
+            },
+        }
+        county_path.write_text(json.dumps(payload))
+        real_county_out = econ.COUNTY_OUT
+        real_state_out = econ.STATE_OUT
+        real_fred_out = econ.FRED_OUT
+        econ.COUNTY_OUT = county_path
+        econ.STATE_OUT = Path(td) / "does_not_exist_state.json"
+        econ.FRED_OUT = Path(td) / "does_not_exist_fred.json"
+        try:
+            errs = econ.validate_outputs()
+        finally:
+            econ.COUNTY_OUT = real_county_out
+            econ.STATE_OUT = real_state_out
+            econ.FRED_OUT = real_fred_out
+    check(any("poverty_rate" in e and "outside 0-100" in e for e in errs),
+          f"a 250% poverty_rate should have been flagged; got: {errs}")
 
 
 # ────────────────────────── history ordering ──────────────────────────
@@ -899,13 +1149,18 @@ def test_census_config_wellformed():
     cfg = _cfg()
     for metric, spec in cfg["metrics"].items():
         check(bool(spec.get("label")), f"{metric} has a label")
-        check(spec.get("derive") in ("direct", "ratio", "sum_over_denominator"),
+        check(spec.get("derive") in ("direct", "ratio", "average", "sum_over_denominator"),
               f"{metric} declares a known derive kind")
         if spec["derive"] == "ratio":
             check(spec.get("ratio_numerator") in spec["variables"],
                   f"{metric} numerator role exists in variables")
             check(spec.get("ratio_denominator") in spec["variables"],
                   f"{metric} denominator role exists in variables")
+        if spec["derive"] == "average":
+            check(spec.get("average_numerator") in spec["variables"],
+                  f"{metric} average numerator role exists in variables")
+            check(spec.get("average_denominator") in spec["variables"],
+                  f"{metric} average denominator role exists in variables")
         if spec["derive"] == "sum_over_denominator":
             for part in spec["sum_parts"]:
                 check(part in spec["variables"], f"{metric} sum part '{part}' declared")

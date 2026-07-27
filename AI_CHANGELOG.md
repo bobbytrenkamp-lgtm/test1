@@ -5,6 +5,90 @@
 Date: 2026-07-27
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 1 of the economic intelligence expansion — ACS variable expansion + EIA electricity price
+
+## Why this happened
+Approved as Phase 1 of a larger, explicitly-scoped expansion request after
+pushback on the full original scope: extend the already-built, config-driven
+ACS pipeline with more variables (no new architecture needed — every metric
+is declared in `data/economy/census_config.json` and `derive_metric()` reads
+it generically), and add EIA's state-level industrial electricity price as
+the first genuinely new free federal source since Building Permits.
+
+## ACS expansion: 7 new metrics, verified before shipping
+Added `households`, `labor_force_participation_rate`, `homeownership_rate`,
+`housing_vacancy_rate`, `poverty_rate`, and `avg_commute_minutes` to
+`census_config.json` (bringing the total to 13), each backed by a
+well-documented, standard ACS table (`B11001`, `B23025`, `B25003`, `B25002`,
+`B17001`, `B08013`/`B08012`). Every variable ID and its expected label
+fragment was verified against real ACS label-text conventions via research
+(not guessed) before being wired in, following the lesson from the PEP/BPS
+investigation earlier the same day: getting a table ID subtly wrong produces
+a silent, hard-to-diagnose failure, not a loud one.
+
+`avg_commute_minutes` needed a new `derive` kind: the existing `ratio` kind
+always multiplies by 100 (correct for a percentage, wrong for a genuine
+average like mean commute minutes — using it here would have silently turned
+a real ~25-minute commute into "2500%"). Added `average` alongside
+`direct`/`ratio`/`sum_over_denominator` in `derive_metric()`.
+
+Also fixed a real validation gap surfaced while adding these: `validate_outputs()`'s
+percent-range check only recognized a `_pct` suffix or the single hardcoded
+name `unemployment_rate` — every new `_rate` metric (`poverty_rate`,
+`homeownership_rate`, `housing_vacancy_rate`, `labor_force_participation_rate`)
+would have silently bypassed the 0-100 sanity check. Generalized the suffix
+check to `_pct` or `_rate`.
+
+Deliberately NOT attempted: population density (needs land area, not an ACS
+variable), STEM/industry workforce breakdowns (table `C24030`'s exact variable
+IDs weren't confirmed with enough confidence to ship), new-housing-unit counts
+(the natural variable's label text changes every vintage in a way that would
+break `expect_label` verification), vehicle ownership, veteran population,
+disability status, foreign-born population — all lower-confidence or
+lower-relevance to data-center siting than what shipped, deferred rather than
+guessed at.
+
+## EIA electricity price: first new source since Building Permits
+`collect_eia_electricity_price()` — one HTTP request for ALL states (EIA's v2
+API returns every state as its own row per period when no `stateid` facet is
+set), sorted newest-period-first, industrial sector (`sectorid=IND`, the
+standard site-selection proxy for a large power buyer). Merged into
+`census_state.json` as `electricity_price`. A new `EIA_API_KEY` secret,
+genuinely optional (unlike FRED/Census) — its own execution block, its own
+30-day freshness gate (`_eia_is_fresh`, `eia_last_successful_update`,
+deliberately a separate field from permits' gate even though the interval
+happens to match, learning directly from PEP's original bug of sharing a
+sibling's gate).
+
+State abbreviation to FIPS mapping reuses `data/state_regulations.json`'s
+existing `abbr` field (`load_state_abbr_to_fips()`) rather than hardcoding a
+second 50-state table that could drift from it.
+
+Frontend: county profile panel looks up the price via the county's own
+`state_fips` and labels it "state average, not this specific county" so the
+granularity is never overstated. Same pattern in the due-diligence report
+generator (`js/report.js`).
+
+## Also fixed: a leftover PEP mention from the retirement earlier the same day
+`js/report.js`'s due-diligence report source-attribution line still cited
+"Population Estimates Program" — missed by the retirement's grep sweep
+because that sweep searched for the token `PEP`/`population_estimate`, not
+the prose phrase. Caught while touching the same block for EIA. Updated to
+cite Building Permits Survey and EIA instead.
+
+## Testing
+366 offline assertions (up from 328), including dedicated tests for the new
+`average` derive kind (correct division, zero-denominator guard), each new
+ratio metric's math, `verify_variables()` against realistic label text for
+all 6 new metrics, the EIA collector (newest-period selection, aggregate-row
+exclusion, sanity floor, fetch-failure handling), `_eia_is_fresh`, and the
+`_rate`-suffix validation-gap regression guard. `tests/test_no_paid_dependencies.py`
+extended to cover `EIA_API_KEY` in the same optional-key and
+skip-not-a-failure guards FRED/Census already have (41 checks, up from 36).
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Bounded live test caught two production bugs; PEP retired after the real root cause turned out to be a discontinued Census endpoint
 
 ## Why this happened

@@ -137,6 +137,8 @@ window.ECONOMY = (function () {
         return _nf(0, 0).format(Math.round(value));
       case "years":
         return _nf(d, d).format(value) + " yrs";
+      case "minutes":
+        return _nf(d, d).format(value) + " min";
       case "index":
         return _nf(d, d).format(value);
       default:
@@ -207,13 +209,21 @@ window.ECONOMY = (function () {
     median_home_value:       { label: "Median home value",        unit: "usd",     dec: 0, good: "neutral", scale: "sequential" },
     median_gross_rent:       { label: "Median gross rent",        unit: "usd",     dec: 0, good: "neutral", scale: "sequential" },
     broadband_pct:           { label: "Broadband subscription",   unit: "percent", dec: 1, good: "up",      scale: "sequential" },
+    households:               { label: "Total households",              unit: "count",   dec: 0, good: "up",      scale: "sequential" },
+    labor_force_participation_rate: { label: "Labor force participation", unit: "percent", dec: 1, good: "up",   scale: "sequential" },
+    homeownership_rate:       { label: "Homeownership rate",            unit: "percent", dec: 1, good: "neutral", scale: "sequential" },
+    housing_vacancy_rate:     { label: "Housing vacancy rate",          unit: "percent", dec: 1, good: "down",    scale: "sequential" },
+    poverty_rate:             { label: "Poverty rate",                  unit: "percent", dec: 1, good: "down",    scale: "sequential" },
+    avg_commute_minutes:      { label: "Mean commute time",             unit: "minutes", dec: 1, good: "down",    scale: "sequential" },
   };
 
   /* Metrics offered in the explorer / map selectors, in presentation order. */
   const EXPLORER_METRICS = [
-    "population", "median_household_income", "unemployment_rate",
-    "bachelors_or_higher_pct", "median_home_value", "median_gross_rent",
-    "broadband_pct",
+    "population", "households", "median_household_income", "unemployment_rate",
+    "labor_force_participation_rate", "bachelors_or_higher_pct",
+    "median_home_value", "median_gross_rent", "homeownership_rate",
+    "housing_vacancy_rate", "broadband_pct", "avg_commute_minutes",
+    "poverty_rate",
   ];
 
   /* Which measures each metric supports. change_5y only exists where the
@@ -223,7 +233,7 @@ window.ECONOMY = (function () {
     change_1y: { label: "1-year change", key: "change_1y_pct" },
     change_5y: { label: "5-year change", key: "change_5y_pct" },
   };
-  const HISTORY_METRICS = new Set(["population", "median_household_income", "unemployment_rate"]);
+  const HISTORY_METRICS = new Set(["population", "households", "median_household_income", "unemployment_rate"]);
 
   function metricValue(record, metric, measure) {
     if (!record) return null;

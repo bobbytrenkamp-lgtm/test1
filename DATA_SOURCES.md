@@ -206,10 +206,16 @@ run and never publishes an empty chart.
 - **Output**: `data/economy/census_county.json`, `data/economy/census_state.json`
 - **Join key**: 5-character zero-padded county FIPS (state 2 + county 3), matching
   every other dataset on this platform.
-- **Metrics**: population and growth (`B01003`), median age (`B01002`), household
-  and per-capita income (`B19013`, `B19301`), labor force (`B23025`), educational
-  attainment (`B15003`), home value and rent (`B25077`, `B25064`), broadband
-  subscription (`B28002`).
+- **Metrics**: population and growth (`B01003`), total households (`B11001`),
+  median age (`B01002`), household and per-capita income (`B19013`, `B19301`),
+  labor force participation and unemployment (`B23025`), educational attainment
+  (`B15003`), home value and rent (`B25077`, `B25064`), homeownership (`B25003`),
+  housing vacancy (`B25002`), broadband subscription (`B28002`), poverty rate
+  (`B17001`), and mean commute time (`B08013`/`B08012`). Every metric is
+  config-driven from `data/economy/census_config.json` — adding one is a config
+  change plus a verified variable ID, not a code change (see
+  `derive_metric()` and its `direct`/`ratio`/`average`/`sum_over_denominator`
+  derive kinds).
 
 **Vintage comparability:** ACS dollar values are expressed in the vintage's own
 inflation-adjusted dollars and are **not** comparable across vintages. The UI
@@ -286,6 +292,34 @@ every county) remains the platform's population figure. See
 - A Building Permits failure cannot break the ACS county data it supplements —
   isolated the same way CBP is.
 
+### U.S. Energy Information Administration — Electricity Retail Sales (optional module)
+- **Publisher**: U.S. Energy Information Administration (EIA)
+- **Endpoint**: `https://api.eia.gov/v2/electricity/retail-sales/data/`
+- **Key**: `EIA_API_KEY` repository secret, server-side only — **optional**.
+  Free registration at https://www.eia.gov/opendata/register.php. Missing key
+  skips the module with a warning; every other source is unaffected.
+- **Output**: merged into each state's own record in `data/economy/census_state.json`
+  as `electricity_price` — `{value, as_of, sector}`, cents per kWh, industrial
+  sector (`sectorid=IND`). Industrial rate is the standard site-selection proxy
+  for a large power buyer such as a data center — a real utility contract rate
+  varies by facility and is not covered by this state average. Shown on a
+  county's own profile as "state average, not this specific county" to keep
+  that distinction visible rather than implied.
+- **One request for all states**, not one per state: EIA's v2 API returns every
+  state as its own row per period when no `stateid` facet is set, so a single
+  page (sorted newest-period-first, `length=5000`) covers the whole country —
+  unlike Building Permits, which genuinely has no bulk endpoint on FRED.
+- **Own cadence**: EIA publishes monthly, not daily or annually, so this has
+  its own 30-day freshness gate (`--eia-max-age-days`,
+  `eia_last_successful_update` in the metadata) — a coincidentally identical
+  interval to Building Permits' gate, but a fully independent timestamp field
+  (PEP's retirement was partly caused by a module sharing a sibling's gate
+  instead of having its own).
+- **Sanity floor**: fewer than 40 states/territories returned is treated as a
+  broken response and discarded rather than published as a partial dataset.
+- An EIA failure cannot break the ACS state data it supplements — isolated the
+  same way CBP and Building Permits are.
+
 ### Pipeline and safety
 - **Script**: `data/update_economic_data.py` (Python standard library only)
 - **Workflow**: `.github/workflows/update_economic_data.yml` — daily at 06:20 UTC
@@ -346,6 +380,7 @@ license-audit. Python needs only `requests`, `beautifulsoup4` and
 |---|---|---|---|
 | `FRED_API_KEY` | Federal Reserve Economic Data | Free, unlimited | FRED skipped; existing data preserved. FRED rejects keyless requests. |
 | `CENSUS_API_KEY` | Census ACS / CBP | Free, unlimited | Census skipped; existing data preserved. Census required no key until May 12, 2026; it now requires one for every request, same as FRED. |
+| `EIA_API_KEY` | EIA electricity retail price | Free, registration required | EIA module skipped; existing data preserved. Genuinely optional, unlike FRED/Census — the rest of the Economy tab is unaffected. |
 | `CONGRESS_API_KEY` | Congress.gov | Free via api.data.gov | Falls back to `DEMO_KEY` — works, just rate-limited |
 | `LEGISCAN_API_KEY` | LegiScan state bills | Free tier (30k queries/month) | Logged as `[skip]`, monitor continues |
 | `SUPABASE_URL` / `SUPABASE_ANON_KEY` | Optional accounts | Free tier | Auth button hidden; site fully functional signed-out |

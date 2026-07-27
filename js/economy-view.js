@@ -637,13 +637,20 @@
 
     const signals = isCounty ? E().countySignals(cData, key) : [];
 
-    // Supplementary, county-only, and a DIFFERENT measurement from its ACS
-    // neighbor in the table above — never merged into that table's rows, so
-    // a reader never mistakes a permits count for an ACS metric.
+    // Supplementary and a DIFFERENT measurement from anything in the table
+    // above — never merged into that table's rows, so a reader never mistakes
+    // a permits count or a state electricity price for an ACS metric.
+    // building_permits is county-only (that's the geography BPS reports at).
+    // electricity_price is EIA's own state-level figure: shown directly on a
+    // state profile, and looked up via the county's own state_fips on a
+    // county profile (a county profile does not carry the field itself).
     const bp = isCounty ? rec.building_permits : null;
-    const supplementary = bp ? `
+    const ep = isCounty
+      ? (((sData && sData.states) || {})[rec.state_fips] || {}).electricity_price
+      : rec.electricity_price;
+    const supplementary = (bp || ep) ? `
       <div class="econ-profile-supplementary">
-        ${(() => {
+        ${bp ? (() => {
           const hasYoy = bp.change_yoy_pct !== null && bp.change_yoy_pct !== undefined;
           // Rising or falling local permit activity is not unambiguously
           // "good" or "bad" for a site-selector (see the mixed framing in
@@ -657,7 +664,12 @@
             }</span>
             <span class="econ-profile-supp-note">Census Building Permits Survey (via FRED), as of ${E().escapeText(E().fmtDate(bp.as_of))}</span>
           </div>`;
-        })()}
+        })() : ""}
+        ${ep ? `<div class="econ-profile-supp-row">
+          <span class="econ-profile-supp-label">${isCounty ? "State industrial electricity price" : "Industrial electricity price"}</span>
+          <span class="econ-profile-supp-value">${E().escapeText(E().fmtValue(ep.value, "usd_precise", 2))}/kWh</span>
+          <span class="econ-profile-supp-note">EIA, ${E().escapeText(ep.as_of)}${isCounty ? " — state average, not this specific county" : ""}</span>
+        </div>` : ""}
       </div>` : "";
 
     host.innerHTML = `

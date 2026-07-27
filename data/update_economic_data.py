@@ -17,7 +17,10 @@ OUTPUTS (all under data/economy/)
                            module was tried and retired -- see "RETIRED: PEP"
                            below -- ACS's own `population` metric (a 5-year
                            rolling average) is the only population figure now.
-    census_state.json     52 state-level rows, FIPS-keyed
+    census_state.json     52 state-level rows, FIPS-keyed. Also carries an
+                           optional supplementary field: electricity_price
+                           (EIA state-level industrial retail rate) — see
+                           collect_eia_electricity_price below.
     census_cbp.json       optional County Business Patterns module
     economic_metadata.json  provenance, warnings, staleness, selected variables
 
@@ -47,6 +50,10 @@ Usage:
                               requests, so it must not run on FRED's own daily cadence)
     --permits-max-counties N  cap counties checked, for a bounded test run
     --census-max-age-days N  refresh Census only if older than N days (default 7)
+    --skip-eia             skip the optional EIA electricity price module
+    --force-eia            run the EIA module even if refreshed recently
+    --eia-max-age-days N   refresh EIA only if older than N days (default 30 —
+                           EIA state retail-price data updates monthly)
     --offline             validate and re-derive from existing files, no network
     --check               validate existing outputs and exit (CI guard)
 
@@ -59,7 +66,11 @@ Environment:
                       no keyless path anymore — this covers ACS, CBP, and every
                       other Census Data API dataset this pipeline reads.
                       (https://api.census.gov/data/key_signup.html)
-Both keys are free. Neither is ever logged, echoed, or written to any output file.
+    EIA_API_KEY       OPTIONAL. Free registration at
+                      https://www.eia.gov/opendata/register.php. Missing key
+                      skips the EIA module with a warning; every other source
+                      is unaffected.
+All keys are free. None is ever logged, echoed, or written to any output file.
 """
 import argparse
 import json
@@ -91,6 +102,7 @@ FRED_SERIES_URL = "https://api.stlouisfed.org/fred/series"
 CENSUS_ACS_URL  = "https://api.census.gov/data/{year}/acs/acs5"
 CENSUS_VARS_URL = "https://api.census.gov/data/{year}/acs/acs5/variables.json"
 CENSUS_CBP_URL  = "https://api.census.gov/data/{year}/cbp"
+EIA_ELECTRICITY_URL = "https://api.eia.gov/v2/electricity/retail-sales/data/"
 
 UA = "USDataCenterPolicyTracker-EconPipeline/1.0 (+https://bobbytrenkamp-lgtm.github.io/test1/)"
 
@@ -671,6 +683,15 @@ def derive_metric(metric, spec, chosen_vars, raw_row):
         den = parse_number(raw_row.get(chosen_vars.get(spec["ratio_denominator"])))
         return safe_ratio_pct(num, den, spec.get("decimals", 1))
 
+    if kind == "average":
+        # Like "ratio" but for a genuine average (e.g. mean commute minutes),
+        # not a percentage — safe_ratio_pct's *100 would be wrong here.
+        num = parse_number(raw_row.get(chosen_vars.get(spec["average_numerator"])))
+        den = parse_number(raw_row.get(chosen_vars.get(spec["average_denominator"])))
+        if num is None or den is None or den <= 0:
+            return None
+        return round(num / den, spec.get("decimals", 1))
+
     if kind == "sum_over_denominator":
         total = 0.0
         any_present = False
@@ -1084,7 +1105,7 @@ def validate_outputs():
                 v = m.get("value")
                 if v is None:
                     continue
-                if metric.endswith("_pct") or metric == "unemployment_rate":
+                if metric.endswith("_pct") or metric.endswith("_rate"):
                     if not (0 <= v <= 100):
                         errors.append(f"{path.name} {fips} {metric}: {v} outside 0-100")
                         break
@@ -1111,6 +1132,12 @@ def validate_outputs():
                     errors.append(f"{path.name} {fips} building_permits.as_of "
                                    f"{bp.get('as_of')!r} is not a valid date")
                     break
+            ep = rec.get("electricity_price")
+            if ep is not None:
+                if not isinstance(ep.get("value"), (int, float)) or ep.get("value") <= 0:
+                    errors.append(f"{path.name} {fips} electricity_price.value is not "
+                                   f"a positive number: {ep.get('value')!r}")
+                    break
 
     return errors
 
@@ -1119,7 +1146,7 @@ def validate_outputs():
 
 def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
                    acs_vintage, var_problems, prior_meta, census_ran, permits_ran=False,
-                   any_source_ok=True):
+                   eia_ran=False, any_source_ok=True):
     """Write economic_metadata.json, or skip when a run changed nothing.
 
     TWO THINGS THIS GETS RIGHT, both found by running the workflow for real
@@ -1162,10 +1189,18 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
     permits_updated = (datetime.now(timezone.utc).isoformat(timespec="seconds")
                        if permits_ran
                        else prior.get("permits_last_successful_update"))
+    # Own timestamp, own cadence (see _eia_is_fresh) — same 30-day interval as
+    # permits by coincidence (both happen to update roughly monthly/annually
+    # at this cadence), but a genuinely separate field so the two can never
+    # accidentally share one gate.
+    eia_updated = (datetime.now(timezone.utc).isoformat(timespec="seconds")
+                   if eia_ran
+                   else prior.get("eia_last_successful_update"))
 
     any_stale = any(s.get("stale") for s in fred_series.values())
 
     permits_count = sum(1 for c in counties.values() if c.get("building_permits"))
+    eia_count = sum(1 for s in states.values() if s.get("electricity_price"))
 
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     # Only advance generated_at when a source actually produced data. On a no-op
@@ -1193,6 +1228,9 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
         "permits_available": permits_count > 0,
         "permits_county_count": permits_count,
         "permits_last_successful_update": permits_updated,
+        "eia_available":   eia_count > 0,
+        "eia_state_count": eia_count,
+        "eia_last_successful_update": eia_updated,
         "census": {
             "last_successful_update": census_updated,
             "selected_variables": (county_payload or {}).get("selected_variables")
@@ -1240,6 +1278,15 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
             "url": "https://www.census.gov/construction/bps/",
             "note": "County-level new-private-housing-units-authorized-by-permit, merged into each county record as building_permits. Not every county has ever reported to BPS, so coverage is expected to be partial rather than universal.",
             "update_frequency": "Annual; refreshed independently of the rest of this pipeline (see permits_last_successful_update) because of its per-county request volume.",
+        })
+    if eia_count:
+        meta["sources"].append({
+            "id": "eia",
+            "name": "Electricity Retail Sales (industrial sector)",
+            "publisher": "U.S. Energy Information Administration",
+            "url": "https://www.eia.gov/electricity/data.php",
+            "note": "State-level average industrial retail electricity price, merged into each state record as electricity_price. Industrial rate is the standard site-selection proxy for a large power buyer such as a data center — actual utility contract rates vary and are not covered by this state average.",
+            "update_frequency": "Monthly; refreshed independently of the rest of this pipeline (see eia_last_successful_update).",
         })
 
     # Skip the write when nothing but the run clock moved. Compared with
@@ -1291,6 +1338,106 @@ def _permits_is_fresh(prior_meta, max_age_days):
     return (datetime.now(timezone.utc) - when) < timedelta(days=max_age_days)
 
 
+# ────────────── EIA electricity price (optional, state-level) ──────────────
+
+def load_state_abbr_to_fips():
+    """USPS state abbreviation -> FIPS, read from the app's own data (which
+    already carries `abbr` per state) rather than hardcoding a second copy of
+    the same 50-state table that could drift from it."""
+    try:
+        reg = json.loads((ROOT / "data" / "state_regulations.json").read_text())
+        out = {}
+        for fips, v in (reg.get("states") or {}).items():
+            abbr = (v.get("abbr") or "").strip().upper()
+            if abbr:
+                out[abbr] = fips
+        return out
+    except Exception:                                        # noqa: BLE001
+        return {}
+
+
+def collect_eia_electricity_price(api_key, sector="IND"):
+    """State-level average retail electricity price, most recent published
+    month, for one EIA sector ("IND" industrial by default — data centers are
+    large enough power buyers that industrial rate is the standard site-
+    selection proxy, closer to what a facility would actually pay than the
+    residential/commercial blend).
+
+    One request for ALL states (no stateid facet), sorted newest-period-first,
+    rather than one request per state — EIA's v2 API returns each state as its
+    own row per period, so a single page covers the whole country the same
+    way collect_permits cannot for FRED's per-county series.
+
+    Returns { fips: {"value", "as_of", "sector"} } or {} on any failure.
+    """
+    url = (f"{EIA_ELECTRICITY_URL}?api_key={api_key}&frequency=monthly"
+           f"&data[0]=price&facets[sectorid][]={sector}"
+           f"&sort[0][column]=period&sort[0][direction]=desc&length=5000")
+    payload = _get_json(url, timeout=60)
+    if _is_err(payload):
+        err = payload.get("__error__") if isinstance(payload, dict) else "malformed response"
+        warn(f"EIA electricity price fetch failed ({err}) — module skipped")
+        return {}
+    if not isinstance(payload, dict):
+        warn("EIA electricity price: malformed response (not an object) — module skipped")
+        return {}
+
+    # EIA v2 normally wraps the payload in a "response" object; tolerate a
+    # caller (or a future API revision) that already unwrapped it.
+    inner = payload.get("response", payload)
+    rows = inner.get("data") if isinstance(inner, dict) else None
+    if not rows:
+        warn("EIA electricity price: response missing data rows — module skipped")
+        return {}
+
+    abbr_to_fips = load_state_abbr_to_fips()
+    best = {}  # abbr -> (period, price)
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        abbr = (row.get("stateid") or "").strip().upper()
+        period = row.get("period")
+        price = parse_number(row.get("price"))
+        # EIA also returns aggregate rows (e.g. "US") under stateid — those
+        # are 2+ letters but not real state abbreviations; the FIPS lookup
+        # below silently drops anything that doesn't match one of the 50
+        # states + DC, so this is a light pre-filter, not the real guard.
+        if not abbr or not period or price is None:
+            continue
+        prior = best.get(abbr)
+        if prior is None or str(period) > str(prior[0]):
+            best[abbr] = (period, price)
+
+    out = {}
+    for abbr, (period, price) in best.items():
+        fips = abbr_to_fips.get(abbr)
+        if fips:
+            out[fips] = {"value": price, "as_of": str(period), "sector": sector}
+
+    if len(out) < 40:
+        warn(f"EIA electricity price: only {len(out)} states matched out of "
+             f"{len(best)} returned — module skipped rather than publishing a "
+             f"suspiciously small result (expected ~50)")
+        return {}
+    return out
+
+
+def _eia_is_fresh(prior_meta, max_age_days):
+    """Own timestamp, own gate, same shape as _permits_is_fresh: EIA updates
+    monthly, so this must not ride on ACS's 7-day gate or repeat every day
+    for no new data."""
+    ts = (prior_meta or {}).get("eia_last_successful_update")
+    if not ts:
+        return False
+    try:
+        when = datetime.fromisoformat(ts)
+    except ValueError:
+        return False
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=timezone.utc)
+    return (datetime.now(timezone.utc) - when) < timedelta(days=max_age_days)
+
+
 # ─────────────────────────── main ───────────────────────────
 
 def load_state_names():
@@ -1314,6 +1461,9 @@ def main():
     ap.add_argument("--permits-max-counties", type=int, default=None,
                      help="cap counties checked, for a bounded test run")
     ap.add_argument("--census-max-age-days", type=int, default=7)
+    ap.add_argument("--skip-eia", action="store_true")
+    ap.add_argument("--force-eia", action="store_true")
+    ap.add_argument("--eia-max-age-days", type=int, default=30)
     ap.add_argument("--offline", action="store_true")
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args()
@@ -1335,6 +1485,7 @@ def main():
 
     fred_key   = os.environ.get("FRED_API_KEY", "").strip()
     census_key = os.environ.get("CENSUS_API_KEY", "").strip()
+    eia_key    = os.environ.get("EIA_API_KEY", "").strip()
 
     existing_fred   = _load_existing(FRED_OUT)
     existing_county = _load_existing(COUNTY_OUT)
@@ -1349,6 +1500,7 @@ def main():
     var_problems   = {}
     census_ran     = False
     permits_ran    = False
+    eia_ran        = False
     any_source_ok  = False
 
     if args.offline:
@@ -1458,10 +1610,41 @@ def main():
                 warn(f"Building Permits module raised {type(e).__name__} — "
                      f"ignored; the Economy page does not depend on it")
 
+    # ── EIA electricity price (optional, state-level, own cadence) ──
+    # Independent of the Census/ACS branch above: needs EIA_API_KEY, not
+    # CENSUS_API_KEY, and EIA updates monthly, not annually, so it gets its
+    # own 30-day gate rather than either ACS's 7-day gate or permits' 30-day
+    # one (same number, but a genuinely separate timestamp — sharing one gate
+    # is exactly the bug PEP had against ACS earlier). Runs against whichever
+    # state_payload is authoritative right now, same pattern as permits above.
+    if state_payload and not args.offline and not args.skip_eia and eia_key:
+        if not args.force_eia and _eia_is_fresh(prior_meta, args.eia_max_age_days):
+            print(f"\n=== EIA Electricity Price ===\n  refreshed within "
+                  f"{args.eia_max_age_days} days — skipping (use --force-eia to override)")
+        else:
+            print("\n=== EIA Electricity Price (optional, state-level) ===")
+            try:
+                eia_by_fips = collect_eia_electricity_price(eia_key)
+                if eia_by_fips:
+                    matched = 0
+                    for fips, state_rec in state_payload.get("states", {}).items():
+                        rec = eia_by_fips.get(fips)
+                        if rec:
+                            state_rec["electricity_price"] = rec
+                            matched += 1
+                    print(f"  merged EIA electricity price into {matched} of "
+                          f"{len(state_payload.get('states', {}))} states")
+                    if _safe_write(STATE_OUT, state_payload, min_records=40):
+                        eia_ran = True
+                        any_source_ok = True
+            except Exception as e:                    # noqa: BLE001
+                warn(f"EIA module raised {type(e).__name__} — "
+                     f"ignored; the Economy page does not depend on it")
+
     print("\n=== metadata ===")
     write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
                    acs_vintage, var_problems, prior_meta, census_ran, permits_ran,
-                   any_source_ok=any_source_ok)
+                   eia_ran, any_source_ok=any_source_ok)
 
     print("\n=== validation ===")
     errs = validate_outputs()

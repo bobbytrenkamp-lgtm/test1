@@ -653,15 +653,16 @@ js/economy-map.js    economic choropleths for the MAIN Map tab       (window.ECO
 css/economy.css
 data/update_economic_data.py            the whole pipeline (stdlib only, no pip install)
 data/economy/series_config.json         21 FRED series, 5 categories — presentation truth
-data/economy/census_config.json         ACS variable map + label fragments for verification
+data/economy/census_config.json         13 ACS metrics + label fragments for verification
 data/economy/fred_data.json             generated
 data/economy/census_county.json         generated — also carries building_permits
                                          (BPS via FRED) per county, see below
-data/economy/census_state.json          generated
+data/economy/census_state.json          generated — also carries electricity_price
+                                         (EIA, industrial sector) per state, see below
 data/economy/economic_metadata.json     generated — provenance, warnings, staleness
 data/economy/census_cbp.json            generated, optional
 .github/workflows/update_economic_data.yml
-tests/test_economic_data.py             310 offline assertions
+tests/test_economic_data.py             366 offline assertions
 tests/fixtures/economy/                 SYNTHETIC data for browser tests — never real
 ```
 
@@ -669,26 +670,32 @@ The three JS modules mirror the zoning split (`zoning.js` / `zoning-map.js` /
 `zoning-details.js`): `economy.js` owns data and math, the other two own DOM.
 Load order in index.html is economy.js -> economy-view.js -> economy-map.js.
 
-### A supplementary per-county field — read this before touching it
+### Two supplementary fields — read this before touching either
 
-`census_county.json` counties carry a field that is NOT part of the ACS
-`.metrics` shape `metricValue()`/`comparisons()` expect — reading it through
-those functions returns nothing, by design:
+`census_county.json` counties and `census_state.json` states each carry one
+field that is NOT part of the ACS `.metrics` shape `metricValue()`/
+`comparisons()` expect — reading either through those functions returns
+nothing, by design:
 
-- `building_permits` — `{value, as_of, change_yoy_pct}`. Census Building Permits
-  Survey, reached via FRED's per-county `BPPRIV0<FIPS>` series (a 3-digit
-  zero-padded state code + 3-digit county code, NOT the plain 5-digit FIPS —
-  see `_bps_series_id()`) rather than the Census Data API (Census only
-  distributes county-level BPS as an annual flat
-  file). Genuinely new information vs. the existing national `PERMIT` FRED
-  series — this is the only county-level construction-permit trend on the
-  platform. Coverage is expected to be partial (many small counties never
-  reported to BPS) — its absence on a given county is not a bug.
+- `building_permits` (county) — `{value, as_of, change_yoy_pct}`. Census
+  Building Permits Survey, reached via FRED's per-county `BPPRIV0<FIPS>`
+  series (a 3-digit zero-padded state code + 3-digit county code, NOT the
+  plain 5-digit FIPS — see `_bps_series_id()`) rather than the Census Data API
+  (Census only distributes county-level BPS as an annual flat file).
+  Genuinely new information vs. the existing national `PERMIT` FRED series —
+  this is the only county-level construction-permit trend on the platform.
+  Coverage is expected to be partial (many small counties never reported to
+  BPS) — its absence on a given county is not a bug.
+- `electricity_price` (state) — `{value, as_of, sector}`. EIA industrial
+  retail electricity price, cents/kWh. State-level only, not county-level —
+  a county's profile panel looks it up via that county's own `state_fips`
+  and labels it "state average, not this specific county" rather than
+  implying county-level precision it does not have.
 
-Optional and isolated in the pipeline (a failure leaves ACS data untouched)
-and drives its own `SIGNAL_RULES` entries in `economy.js`
-(`permits_accelerating`, `permits_slowing` read `c.building_permits` directly,
-not through `metricValue()`).
+Both are optional and isolated in the pipeline (a failure leaves ACS data
+untouched). Building Permits also drives its own `SIGNAL_RULES` entries in
+`economy.js` (`permits_accelerating`, `permits_slowing` read
+`c.building_permits` directly, not through `metricValue()`).
 
 A Census Population Estimates Program (PEP) module — a current-year
 `population_estimate` field, merged the same way — was tried and retired.

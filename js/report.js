@@ -74,14 +74,19 @@ window.REPORT = (function () {
             cmp: E.comparisons(county, stateData, padded, key, "value"),
           })).filter(m => m.cmp.value !== null);
           const signals = E.countySignals(county, padded);
-          // Supplementary, a distinct measurement from anything in `metrics`
-          // above (a county permit count with no ACS equivalent) -- kept as
-          // its own field rather than folded into `metrics` so the report
-          // never implies it's the same kind of figure.
+          // Supplementary, distinct measurements from anything in `metrics`
+          // above (a county permit count with no ACS equivalent; a STATE
+          // electricity price, not this specific county's) -- kept as their
+          // own fields rather than folded into `metrics` so the report never
+          // implies they're the same kind of figure.
           const rec = (county.counties || {})[padded];
           const buildingPermits = rec && rec.building_permits;
-          if (metrics.length || signals.length || buildingPermits) {
-            econ = { metrics, signals, buildingPermits,
+          const stateFips = rec && rec.state_fips;
+          const electricityPrice = stateFips &&
+            ((stateData && stateData.states) || {})[stateFips] &&
+            ((stateData.states)[stateFips]).electricity_price;
+          if (metrics.length || signals.length || buildingPermits || electricityPrice) {
+            econ = { metrics, signals, buildingPermits, electricityPrice,
                      vintage: meta && meta.acs_vintage };
           }
         }
@@ -154,12 +159,14 @@ window.REPORT = (function () {
     // a reader should never mistake a raw permit count for a table metric
     // with a percentile.
     const bp = econ.buildingPermits;
-    const supplementaryHtml = bp ? `
+    const ep = econ.electricityPrice;
+    const supplementaryHtml = (bp || ep) ? `
       <table class="kv-table" style="margin-top:8px">
         <tbody>
-          <tr><th>Building permits issued</th><td>${_esc(E.fmtValue(bp.value, "count", 0))}${
+          ${bp ? `<tr><th>Building permits issued</th><td>${_esc(E.fmtValue(bp.value, "count", 0))}${
             bp.change_yoy_pct == null ? "" : ` (${_esc(E.fmtPct(bp.change_yoy_pct))} YoY)`
-          } <span class="note">(Census BPS via FRED, as of ${_esc(E.fmtDate(bp.as_of))})</span></td></tr>
+          } <span class="note">(Census BPS via FRED, as of ${_esc(E.fmtDate(bp.as_of))})</span></td></tr>` : ""}
+          ${ep ? `<tr><th>State industrial electricity price</th><td>${_esc(E.fmtValue(ep.value, "usd_precise", 2))}/kWh <span class="note">(EIA, ${_esc(ep.as_of)} — state average, not this specific county)</span></td></tr>` : ""}
         </tbody>
       </table>` : "";
 
@@ -172,7 +179,7 @@ window.REPORT = (function () {
         </table>
         ${supplementaryHtml}
         ${signalsHtml}
-        <p class="note" style="margin-top:8px">Source: U.S. Census Bureau ACS 5-Year Estimates${econ.vintage ? ` (${_esc(String(econ.vintage))})` : ""}, Population Estimates Program, Building Permits Survey, and Federal Reserve Economic Data (FRED). Percentiles are computed against all US counties with data for that metric (minimum 20-county sample) and are descriptive, not predictive. Not investment advice.</p>
+        <p class="note" style="margin-top:8px">Source: U.S. Census Bureau ACS 5-Year Estimates${econ.vintage ? ` (${_esc(String(econ.vintage))})` : ""}, Building Permits Survey, U.S. Energy Information Administration, and Federal Reserve Economic Data (FRED). Percentiles are computed against all US counties with data for that metric (minimum 20-county sample) and are descriptive, not predictive. Not investment advice.</p>
       </section>`;
   }
 
