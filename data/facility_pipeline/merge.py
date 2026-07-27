@@ -53,7 +53,6 @@ _MERGE_FIELDS: list[str] = [
     "last_verified_date",
     "osm_id",
     "dcm_id",
-    "cloudscene_id",
     "notes",
 ]
 

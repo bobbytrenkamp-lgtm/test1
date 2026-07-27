@@ -2,6 +2,84 @@
 
 ---
 
+Date: 2026-07-27
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Guarantee nothing requires payment
+
+## Summary
+Follow-up to the cost audit. The audit *documented* two soft spots; this removes
+them and adds a test so the guarantee holds without anyone re-reading a doc.
+
+## 1. Deleted the one paid integration entirely
+Previously a disabled stub. Now removed in full — and it had to be all at once,
+because a half-removal would leave `run_facility_pipeline.py` importing a
+deleted module and break the weekly facility workflow:
+- `data/facility_pipeline/adapters/cloudscene.py`
+- its entry in `data/facility_sources.json` (9 -> 8 sources)
+- the adapter import AND registry entry in `data/run_facility_pipeline.py`
+- the dead `cloudscene_id` field from `models.py`, `merge.py`,
+  `facilities_master.json` (3,842 records) and `facilities_candidates.json`
+  (631 records) — verified empty in 100% of them before removing
+- the `CLOUDSCENE_API_KEY` secret reference in `update_facilities.yml`
+
+`data/facilities_version_history/` snapshots keep the empty field. Those are
+immutable archives and were deliberately not rewritten.
+
+Verified all 8 remaining adapters still import, and rebuilt
+`facilities_index.json` (`--check` clean).
+
+## 2. Proved tile providers can never become a payment requirement
+The concern was that CARTO/Esri free-tier terms could change. The answer is not
+to guess at their pricing but to show the app does not depend on them.
+
+**Blocked CARTO, Esri, USGS, TradingView, Google Fonts and jsDelivr all at once
+at the network layer.** Result: 3,291 county polygons render, legend renders,
+county selection works, Analytics and Pipeline render, **zero JS errors**.
+
+Tiles are decoration. Worst case if a provider ever charged is losing background
+imagery — nothing requires payment. Free replacements (USGS National Map,
+OpenStreetMap) are a one-line swap and now documented per call site.
+
+## 3. Added tests/test_no_paid_dependencies.py — 28 checks, 13 tests
+Wired into `tests/run_all.sh`. Enforces:
+- no known paid data service in code or config
+- no npm dependency tree; Python deps on a reviewed free allowlist
+- economic pipeline stays stdlib-only
+- every API key read via `os.environ.get()` + skip path, never `os.environ[...]`
+  (which would make it mandatory)
+- no frontend file reads a key
+- no workflow secret for a removed service
+- tile hosts on a reviewed allowlist
+
+**Verified it catches real regressions, not just passing vacuously:** injecting
+a Mapbox tile layer fails two checks (name match + allowlist), and adding an
+unreviewed paid Python package fails another. Both pass again once reverted.
+
+The guard immediately caught my own explanatory comment in
+`update_facilities.yml` naming the removed service — reworded, since a comment
+is exactly how a paid dependency creeps back.
+
+## Files
+- Added `tests/test_no_paid_dependencies.py`
+- Deleted `data/facility_pipeline/adapters/cloudscene.py`
+- Modified `data/run_facility_pipeline.py`, `data/facility_pipeline/models.py`,
+  `data/facility_pipeline/merge.py`, `data/facility_sources.json`,
+  `data/facilities_master.json`, `data/facilities_candidates.json`,
+  `data/facilities_index.json`, `.github/workflows/update_facilities.yml`,
+  `tests/run_all.sh`, `DATA_SOURCES.md`, `README.md`
+
+## Verification
+All unit suites pass (288/288 parcel, 259/259 economic, 28/28 paid-guard).
+15/15 browser scenarios, zero JS errors. Facility pipeline adapter loading
+verified directly.
+
+## Standing position
+No paid service exists in the codebase. Every API key is optional. Every
+third-party host is optional. A test fails if any of that stops being true.
+
+---
+
 Date: 2026-07-26
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/us-datacenter-restrictions-map-skooi7

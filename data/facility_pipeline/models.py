@@ -44,7 +44,7 @@ COOLING_METHODS = frozenset({
 # Source tier definitions (1 = highest trust)
 SOURCE_TIER_LABELS = {
     1: "company_official",   # Direct company page, press release, or investor filing
-    2: "aggregator",         # Cloudscene, DataCenterMap, industry databases
+    2: "aggregator",         # DataCenterMap and other free industry databases
     3: "osm",                # OpenStreetMap community-tagged features
     4: "discovery",          # EPA permits, planning docs, SEC filings, utility queues
     5: "news",               # News articles — candidate only, never auto-promoted
@@ -143,7 +143,6 @@ class FacilityRecord:
     # ── External IDs (populated by adapters) ──────────────────────────────
     osm_id: str = ""                        # "n{id}", "w{id}", or "r{id}"
     dcm_id: str = ""                        # DataCenterMap listing ID
-    cloudscene_id: str = ""                 # Cloudscene listing slug
 
     # ── Pipeline metadata ─────────────────────────────────────────────────
     created_at: str = field(default_factory=utc_now)
