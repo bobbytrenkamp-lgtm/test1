@@ -79,8 +79,8 @@
  "eia_state_count": 0,
  "fred_series_count": 21,
  "fred_skipped": [],
- "generated_at": "2026-07-27T22:02:35+00:00",
- "last_run_at": "2026-07-27T22:02:35+00:00",
+ "generated_at": "2026-07-27T22:09:10+00:00",
+ "last_run_at": "2026-07-27T22:09:10+00:00",
  "latest_observation_date": "2026-07-27",
  "oldest_history_year": 2019,
  "permits_available": false,
@@ -117,6 +117,6 @@
  "stale": true,
  "state_count": 52,
  "warnings": [
-  "BLS QCEW wages: only 30 counties returned real data out of 30 checked — module skipped rather than publishing a suspiciously small result — every checked county returned a plain 404, which is unexpected for QCEW (coverage is normally near-universal, unlike Building Permits)"
+  "BLS QCEW wages: only 299 counties returned real data out of 300 checked — module skipped rather than publishing a suspiciously small result — every checked county returned a plain 404, which is unexpected for QCEW (coverage is normally near-universal, unlike Building Permits)"
  ]
 }
