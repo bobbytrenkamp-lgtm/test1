@@ -1,22 +1,58 @@
 {
  "_schema": "economy_metadata_v1",
- "acs_vintage": null,
- "cbp_available": false,
- "cbp_year": null,
+ "acs_vintage": 2024,
+ "cbp_available": true,
+ "cbp_year": 2023,
  "census": {
-  "last_successful_update": null,
-  "selected_variables": {},
-  "unverified_metrics": {}
+  "last_successful_update": "2026-07-27T16:04:23+00:00",
+  "selected_variables": {
+   "bachelors_or_higher_pct": {
+    "bachelors": "B15003_022E",
+    "denominator": "B15003_001E",
+    "doctorate": "B15003_025E",
+    "masters": "B15003_023E",
+    "professional": "B15003_024E"
+   },
+   "broadband_pct": {
+    "broadband": "B28002_004E",
+    "denominator": "B28002_001E"
+   },
+   "median_age": {
+    "value": "B01002_001E"
+   },
+   "median_gross_rent": {
+    "value": "B25064_001E"
+   },
+   "median_home_value": {
+    "value": "B25077_001E"
+   },
+   "median_household_income": {
+    "value": "B19013_001E"
+   },
+   "per_capita_income": {
+    "value": "B19301_001E"
+   },
+   "unemployment_rate": {
+    "employed": "B23025_004E",
+    "labor_force": "B23025_003E",
+    "unemployed": "B23025_005E"
+   }
+  },
+  "unverified_metrics": {
+   "population": [
+    "value=B01003_001E"
+   ]
+  }
  },
- "county_count": 0,
- "fred_series_count": 0,
+ "county_count": 3222,
+ "fred_series_count": 18,
  "fred_skipped": [],
- "generated_at": null,
- "last_run_at": "2026-07-27T02:30:20+00:00",
- "latest_observation_date": null,
- "oldest_history_year": null,
+ "generated_at": "2026-07-27T16:04:23+00:00",
+ "last_run_at": "2026-07-27T16:04:23+00:00",
+ "latest_observation_date": "2026-07-24",
+ "oldest_history_year": 2019,
  "pipeline_version": "1.0.0",
- "source_updated_at": null,
+ "source_updated_at": "2026-07-24 16:03:19-05",
  "sources": [
   {
    "id": "fred",
@@ -33,12 +69,19 @@
    "publisher": "U.S. Census Bureau",
    "update_frequency": "Annual vintage; checked weekly by the pipeline.",
    "url": "https://www.census.gov/programs-surveys/acs/"
+  },
+  {
+   "id": "cbp",
+   "name": "County Business Patterns",
+   "note": "Establishment and employment counts. Disclosure-suppressed cells are shown as 'Not disclosed' and excluded from rankings and change calculations.",
+   "publisher": "U.S. Census Bureau",
+   "update_frequency": "Annual.",
+   "url": "https://www.census.gov/programs-surveys/cbp.html"
   }
  ],
- "stale": false,
- "state_count": 0,
+ "stale": true,
+ "state_count": 52,
  "warnings": [
-  "FRED_API_KEY is not set — skipping FRED. Existing fred_data.json is preserved unchanged.",
-  "CENSUS_API_KEY is not set — skipping Census. Existing census_*.json are preserved unchanged."
+  "ACS metric 'population': could not verify value=B01003_001E in this vintage — metric will be omitted rather than guessed"
  ]
 }

@@ -8435,36 +8435,30 @@
       "state": "Kentucky",
       "level": 0,
       "types": [
-        "data_center",
-        "energy"
+        "data_center"
       ],
-      "title": "Knott County KY — Appalachian Coal Heritage, ARC Distressed Designation & KEDFA Incentives",
-      "description": "Knott County (Hindman, KY) is a former coal-producing county in eastern Kentucky served by Kentucky Power (an AEP subsidiary) and East Kentucky Power Cooperative (EKPC). The county holds ARC (Appalachian Regional Commission) Distressed designation, qualifying projects for federal POWER+ Initiative grants and coal severance tax replacement funds. Kentucky KEDFA KBI (Kentucky Business Investment) incentives offer wage assessment credits and reduced payroll tax burdens for qualifying new employers. Federal BEAD broadband grants reach the county seat of Hindman, improving connectivity for digital infrastructure projects.",
-      "effective_date": "2022-01-01",
+      "title": "Kenton County, KY — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "Kenton County (Covington/Independence area, northern Kentucky) has a general zoning ordinance administered by Planning and Development Services of Kenton County, covering standard, residential, commercial, employment and special districts. Kentucky has statewide momentum on this issue — the Kentucky Resources Council published a model data center zoning ordinance in response to growing local concern, and several Kentucky counties and cities have adopted data center-specific rules — but no data center-specific ordinance, moratorium, or proposal for Kenton County itself was found.",
+      "effective_date": null,
       "status": "active",
-      "notes": "ARC Distressed; POWER+ Initiative eligible; KEDFA KBI wage credit; KY Power/EKPC service. [DATA CORRECTION 2026-07-27: this record's county name was 'Knott County' but FIPS 21117 is Kenton County. The name has been corrected; the title and description were written about Knott County and must be re-researched for Kenton County before being relied on.] [RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.]",
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
       "sources": [
         {
-          "label": "Knott County KY — Official Website",
-          "url": "https://www.knottcounty.com/"
+          "label": "Planning and Development Services of Kenton County — Zoning Services",
+          "url": "https://www.pdskc.org/services/community-planning/zoning-services/"
         },
         {
-          "label": "Kentucky Power (AEP) — Eastern Kentucky Service Territory",
-          "url": "https://www.kentuckypower.com/"
-        },
-        {
-          "label": "ARC — Distressed Counties & POWER+ Initiative",
-          "url": "https://www.arc.gov/distressed-communities/"
-        },
-        {
-          "label": "KEDFA — Kentucky Business Investment Program",
-          "url": "https://ced.ky.gov/Incentives/Kentucky_Business_Investment"
+          "label": "Kentucky Resources Council — Model Data Center Zoning Ordinance",
+          "url": "https://kyrc.org/krc-releases-data-center-model-guidance/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-27",
-      "research_status": "descriptive_only"
+      "research_status": "descriptive_only",
+      "source_tier": 2,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "54107",
@@ -33426,29 +33420,27 @@
       "fips": "37099",
       "name": "Jackson County",
       "state": "North Carolina",
-      "level": -1,
+      "level": 0,
       "types": [
-        "data_center",
-        "ai"
+        "data_center"
       ],
-      "title": "Johnston County North Carolina Research Triangle Data Center Spillover Zone",
-      "description": "Johnston County (Smithfield/Clayton, NC) is one of North Carolina's fastest-growing counties, benefiting from Research Triangle Park spillover demand as Wake County land costs rise. The county hosts the North Carolina Global TransPark — an industrial aviation and manufacturing corridor — and significant distribution and light manufacturing operations. Duke Energy Progress serves the county with industrial rates. North Carolina's data center property-tax exemption (G.S. §105-275(45)) applies to qualifying server, storage, and networking equipment. The US-70 and I-95 corridors through Johnston County carry the principal fiber pathways connecting Raleigh-Durham to the Southeast coastal networks.",
-      "effective_date": "2020-01-01",
+      "title": "Jackson County, NC — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "North Carolina has seen more than 30 localities enact temporary data center moratoriums since late 2025, clustered in the western mountain region, the Triangle corridor, and the Charlotte metro. Jackson County sits in the western mountain cluster geographically, but no county-specific moratorium, ordinance, or proposal for Jackson County was found in that coverage.",
+      "effective_date": null,
       "status": "active",
-      "notes": "RTP spillover growth; NC Global TransPark; Duke Energy Progress; G.S. §105-275(45). [DATA CORRECTION 2026-07-27: this record's county name was 'Johnston County' but FIPS 37099 is Jackson County. The name has been corrected; the title and description were written about Johnston County and must be re-researched for Jackson County before being relied on.]",
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
       "sources": [
         {
-          "label": "Johnston County Economic Development",
-          "url": "https://www.johnstonnc.com/economicdevelopment/"
-        },
-        {
-          "label": "North Carolina Data Center Tax Exemption G.S. §105-275",
-          "url": "https://www.ncleg.gov/"
+          "label": "Carolina Public Press — Data center moratorium fever for NC local governments",
+          "url": "https://carolinapublicpress.org/75853/data-centers-moratorium-fever-for-nc-local-governments/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 3,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "37019",
@@ -33482,29 +33474,27 @@
       "fips": "37187",
       "name": "Washington County",
       "state": "North Carolina",
-      "level": -1,
+      "level": 0,
       "types": [
-        "data_center",
-        "ai"
+        "data_center"
       ],
-      "title": "Union County North Carolina Charlotte Metro Data Center Corridor",
-      "description": "Union County (Monroe, NC) is a rapidly growing Charlotte suburban county immediately east of Mecklenburg County, hosting significant distribution, manufacturing, and corporate operations overflow from the Charlotte metro. Duke Energy Carolinas serves the county with access to the Carolinas industrial grid. North Carolina's data center property-tax exemption (G.S. §105-275(45)) applies to qualifying server, storage, and networking equipment. The US-74 fiber corridor through Monroe connects to Charlotte's carrier-dense Coliseum Centre and 121 West Trade Street colocation hub. Lower land and power costs than Mecklenburg County attract medium-scale data center deployments.",
-      "effective_date": "2021-01-01",
+      "title": "Washington County, NC — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "More than 30 North Carolina counties and cities have enacted data center moratoriums, and the state legislature has bills pending to regulate the industry. No moratorium, ordinance, or proposal specific to Washington County was found in state or regional coverage.",
+      "effective_date": null,
       "status": "active",
-      "notes": "Charlotte suburb overflow; Duke Energy Carolinas; US-74 fiber; G.S. §105-275(45). [DATA CORRECTION 2026-07-27: this record's county name was 'Union County' but FIPS 37187 is Washington County. The name has been corrected; the title and description were written about Union County and must be re-researched for Washington County before being relied on.]",
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
       "sources": [
         {
-          "label": "Union County Economic Development",
-          "url": "https://www.unioncountync.gov/economicdevelopment/"
-        },
-        {
-          "label": "North Carolina Data Center Tax Exemption",
-          "url": "https://www.ncleg.gov/"
+          "label": "CBS 17 — North Carolina communities weigh benefits, concerns of data center growth",
+          "url": "https://www.cbs17.com/news/north-carolina-news/north-carolina-communities-weigh-benefits-concerns-of-data-center-growth/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 3,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "05139",
@@ -33538,57 +33528,43 @@
       "fips": "28095",
       "name": "Monroe County",
       "state": "Mississippi",
-      "level": -1,
+      "level": 0,
       "types": [
-        "data_center",
-        "ai"
+        "data_center"
       ],
-      "title": "Marshall County Mississippi Memphis Metro Edge Data Center and TVA Incentive",
-      "description": "Marshall County (Holly Springs, MS) is a rapidly growing Memphis suburban county on the Tennessee state line, benefiting from manufacturing and logistics overflow from the Memphis metro area. The county hosts rust belt industrial redevelopment opportunities and is served by Tennessee Valley Authority (TVA) wholesale power through Marshall County Electric Power Association (MLGW). Mississippi's data center incentive program and county industrial development bonds (Miss. Code §57-1-1 et seq.) support qualifying technology facility investments. Rust College and Mississippi University for Women provide regional education anchors, and US-72 connects to the Memphis fiber gateway.",
-      "effective_date": "2021-01-01",
+      "title": "Monroe County, MS — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "Mississippi offers a state sales-tax exemption for certified data centers (minimum $50M investment, 50 jobs) and larger income/franchise/property tax relief under the Major Economic Impact Act. Some Mississippi cities (Clinton, Madison, Clarksdale) have updated local zoning to address data centers specifically. No county-specific zoning action or incentive filing for Monroe County was found; a separate news item referencing a \"Monroe County tax incentive application\" concerned a trade/storage business, not a data center.",
+      "effective_date": null,
       "status": "active",
-      "notes": "Memphis metro edge; TVA/Marshall County EPA wholesale power; MS industrial bond §57-1-1. [DATA CORRECTION 2026-07-27: this record's county name was 'Marshall County' but FIPS 28095 is Monroe County. The name has been corrected; the title and description were written about Marshall County and must be re-researched for Monroe County before being relied on.]",
-      "sources": [
-        {
-          "label": "Marshall County Economic Development Authority",
-          "url": "https://www.marshallcountyeda.com/"
-        },
-        {
-          "label": "Mississippi Development Authority",
-          "url": "https://www.mississippi.org/"
-        }
-      ],
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
+      "sources": [],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 3,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "28155",
       "name": "Webster County",
       "state": "Mississippi",
-      "level": -1,
+      "level": 0,
       "types": [
-        "data_center",
-        "ai"
+        "data_center"
       ],
-      "title": "Union County Mississippi Toyota Manufacturing and Data Center Incentive",
-      "description": "Union County (New Albany/Blue Springs, MS) hosts Toyota Motor Manufacturing Mississippi (TMMMS) — Toyota's primary U.S. Corolla production facility — which opened in 2011 and employs approximately 2,000 workers. TMMMS drives substantial automotive AI computing demand for production quality, supply chain optimization, and connected vehicle data processing. The county is served by Northeast Mississippi Electric Power Association (NMEPA) operating on TVA wholesale power. Mississippi's data center sales-tax exemption (Miss. Code §27-65-17) applies to qualifying equipment. New Albany's location at the US-72/MS-15 interchange provides fiber connectivity to Memphis and Birmingham technology markets.",
-      "effective_date": "2021-01-01",
+      "title": "Webster County, MS — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "No county-specific data center policy was found for Webster County, Mississippi. Note for future research: nearly all search results for \"Webster County data center\" return Webster County, MISSOURI (which adopted a six-month moratorium covering data centers, solar, wind and battery storage in 2026) — a different county in a different state that happens to share this name. That Missouri record does not apply here and must not be confused with this one.",
+      "effective_date": null,
       "status": "active",
-      "notes": "Toyota TMMMS automotive AI; NMEPA/TVA power; Miss. Code §27-65-17 exemption. [DATA CORRECTION 2026-07-27: this record's county name was 'Union County' but FIPS 28155 is Webster County. The name has been corrected; the title and description were written about Union County and must be re-researched for Webster County before being relied on.]",
-      "sources": [
-        {
-          "label": "Union County Economic Development Foundation",
-          "url": "https://www.unioncountyed.com/"
-        },
-        {
-          "label": "Mississippi Data Center Tax Exemption §27-65-17",
-          "url": "https://www.sos.ms.gov/"
-        }
-      ],
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
+      "sources": [],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 3,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "35028",
@@ -33624,30 +33600,27 @@
       "fips": "35011",
       "name": "De Baca County",
       "state": "New Mexico",
-      "level": -1,
+      "level": 0,
       "types": [
-        "data_center",
-        "energy",
-        "ai"
+        "data_center"
       ],
-      "title": "Curry County New Mexico Cannon AFB Wind Energy and Data Center Corridor",
-      "description": "Curry County (Clovis, NM) hosts Cannon Air Force Base, home to the 27th Special Operations Wing (27th SOW) — Air Force Special Operations Command's premier fixed-wing aviation unit — which operates C-130H, CV-22B, and AC-130 platforms requiring substantial intelligence, surveillance, and reconnaissance (ISR) computing. On the commercial side, Curry County sits in one of New Mexico's premier wind energy production corridors, with multiple large wind farms feeding into Xcel Energy New Mexico's grid. New Mexico's data center equipment sales-tax exemption (NMSA §7-9-54.2) and renewable energy tax credits support qualifying computing investments powered by wind energy.",
-      "effective_date": "2021-01-01",
+      "title": "De Baca County, NM — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "Several New Mexico counties adopted data center moratoriums in 2026 — Socorro County (one year, June 2026), Sierra County (18 months), and Santa Fe County (18 months, 1 MW threshold). No moratorium, ordinance, or proposal specific to De Baca County was found.",
+      "effective_date": null,
       "status": "active",
-      "notes": "Cannon AFB 27th SOW ISR computing; Xcel Energy NM wind corridor; NMSA §7-9-54.2 exemption. [DATA CORRECTION 2026-07-27: this record's county name was 'Curry County' but FIPS 35011 is De Baca County. The name has been corrected; the title and description were written about Curry County and must be re-researched for De Baca County before being relied on.]",
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
       "sources": [
         {
-          "label": "Clovis/Curry County Economic Development Corporation",
-          "url": "https://www.clovisnm.gov/"
-        },
-        {
-          "label": "New Mexico Data Center Tax Exemption NMSA §7-9-54.2",
-          "url": "https://www.nmlegis.gov/"
+          "label": "Source NM — New Mexico county adopts yearlong data center moratorium",
+          "url": "https://sourcenm.com/2026/06/10/new-mexico-county-adopts-yearlong-data-center-moratorium/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 3,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "53037",
@@ -33686,38 +33659,22 @@
       "fips": "53003",
       "name": "Asotin County",
       "state": "Washington",
-      "level": 2,
+      "level": 0,
       "types": [
-        "data_center",
-        "zoning",
-        "energy"
+        "data_center"
       ],
-      "title": "Clark County Washington Data Center Special Use Permit — Portland Metro Capacity",
-      "description": "Clark County (Vancouver, WA) is the Washington State component of the Portland, OR metropolitan area, separated from Oregon only by the Columbia River. Clark Public Utilities serves the county's residential and commercial load, and its transmission system is deeply interconnected with PGE (Portland General Electric) and BPA (Bonneville Power Administration). The county adopted a data center special use permit requirement in 2026 following proposals for large hyperscale campuses near the Port of Vancouver and the I-5/I-205 technology corridor. Washington's data center sales-tax exemption (RCW 82.08.986) has made Clark County attractive versus Oregon's taxable environment, but Clark Public Utilities substation capacity on the south county grid is constrained. Permit conditions require written confirmation of available Clark Public Utilities interconnect capacity, a stormwater management plan under Clark County's Phase I MS4 permit, and a traffic impact analysis for sites near SR-14 and the I-205 corridor.",
-      "effective_date": "2026-03-01",
+      "title": "Asotin County, WA — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "No county-specific data center ordinance, moratorium, or proposal was found for Asotin County. Search results returned only general zoning-map and parcel-data resources, with no data center-specific policy content.",
+      "effective_date": null,
       "status": "active",
-      "notes": "RCW 82.08.986 WA tax exemption drives demand; Clark Public Utilities capacity constraint; BPA interconnect. [DATA CORRECTION 2026-07-27: this record's county name was 'Clark County' but FIPS 53003 is Asotin County. The name has been corrected; the title and description were written about Clark County and must be re-researched for Asotin County before being relied on.]",
-      "sources": [
-        {
-          "label": "Clark County Community Development — Planning Division",
-          "url": "https://clark.wa.gov/community-development/planning"
-        },
-        {
-          "label": "Clark County Board of County Councilors",
-          "url": "https://clark.wa.gov/council"
-        },
-        {
-          "label": "Clark Public Utilities — Electric Service",
-          "url": "https://www.clarkpud.com/"
-        },
-        {
-          "label": "Washington State Data Center Tax Exemption RCW 82.08.986",
-          "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=82.08.986"
-        }
-      ],
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
+      "sources": [],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 3,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "53013",
@@ -33889,34 +33846,27 @@
       "fips": "13125",
       "name": "Glascock County",
       "state": "Georgia",
-      "level": 2,
+      "level": 0,
       "types": [
-        "data_center",
-        "zoning",
-        "water"
+        "data_center"
       ],
-      "title": "Glynn County Georgia Data Center Conditional Use Permit — Golden Isles Corridor",
-      "description": "Glynn County (Brunswick, GA) anchors Georgia's Golden Isles coast and hosts the Port of Brunswick — the nation's leading automobile import/export terminal operated by the Georgia Ports Authority. The county planning commission adopted a conditional use permit requirement for data centers in 2025, driven by concerns about water withdrawal from the Floridan Aquifer system (the sole drinking water source for the county), Georgia Power's limited substation capacity on the Brunswick peninsula, and the character of the Sea Island/Jekyll Island resort corridor. The Brunswick-Golden Isles Airport's instrument-landing systems impose height restrictions on tall industrial structures in the northwestern industrial zone, further constraining siting options. CUP applicants must provide a Georgia Environmental Protection Division water-withdrawal permit or pre-application determination and a Georgia Power service-capacity letter for facilities exceeding 5 MW.",
-      "effective_date": "2025-05-01",
+      "title": "Glascock County, GA — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "Georgia has seen a wave of data center ordinances — one in five Georgia counties has adopted or is drafting one, per Georgia Public Broadcasting's review of municipal codes. Glascock County's 2025 joint comprehensive plan update did not surface any data center-specific provisions, and no ordinance or moratorium specific to Glascock County was found.",
+      "effective_date": null,
       "status": "active",
-      "notes": "Port of Brunswick GPA; Floridan Aquifer sole drinking source; Georgia Power peninsula capacity; airport height limits. [DATA CORRECTION 2026-07-27: this record's county name was 'Glynn County' but FIPS 13125 is Glascock County. The name has been corrected; the title and description were written about Glynn County and must be re-researched for Glascock County before being relied on.]",
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
       "sources": [
         {
-          "label": "Glynn County Planning and Zoning",
-          "url": "https://www.glynncounty.org/148/Planning-Zoning"
-        },
-        {
-          "label": "Glynn County Board of Commissioners",
-          "url": "https://www.glynncounty.org/114/Board-of-Commissioners"
-        },
-        {
-          "label": "Georgia EPD — Water Withdrawal Permitting",
-          "url": "https://epd.georgia.gov/watershed-protection-branch/water-withdrawal-permitting"
+          "label": "Georgia Public Broadcasting — A 'wave' of data center ordinances sweep through GA counties",
+          "url": "https://www.gpb.org/news/2025/10/22/wave-of-data-center-ordinances-sweep-through-ga-counties-how-strict-are-they"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 2,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "13143",
@@ -34137,38 +34087,27 @@
       "fips": "24019",
       "name": "Dorchester County",
       "state": "Maryland",
-      "level": 1,
+      "level": 0,
       "types": [
-        "data_center",
-        "energy",
-        "water"
+        "data_center"
       ],
-      "title": "Calvert County Maryland Data Center Siting Review — Calvert Cliffs Nuclear Plant Buffer",
-      "description": "Calvert County (Prince Frederick, MD) is home to Calvert Cliffs Nuclear Power Plant — two Constellation Energy pressurized-water reactors generating approximately 1,750 MW for PJM — on the western shore of the Chesapeake Bay. The county planning commission initiated a data center siting review in 2025 following an inquiry from an operator seeking to co-locate adjacent to the nuclear plant's transmission interconnect. The NRC Emergency Planning Zone (EPZ) extends 10 miles from Calvert Cliffs, covering most of the county and imposing emergency-planning requirements on any large new occupancy in the zone. Calvert County's Chesapeake Bay Critical Area designation and SMECO service-territory capacity constraints further complicate large facility siting. Review standards require NRC EPZ compatibility documentation and a Maryland Department of the Environment water appropriation permit for any Patuxent River or Bay withdrawal.",
-      "effective_date": "2025-09-01",
-      "status": "proposed",
-      "notes": "Calvert Cliffs NRC EPZ 10-mile zone; Chesapeake Bay Critical Area; SMECO capacity; MDE water appropriation. [DATA CORRECTION 2026-07-27: this record's county name was 'Calvert County' but FIPS 24019 is Dorchester County. The name has been corrected; the title and description were written about Calvert County and must be re-researched for Dorchester County before being relied on.]",
+      "title": "Dorchester County, MD — Council Weighing Whether to Draft Data Center Rules (No Formal Proposal Yet)",
+      "description": "The Dorchester County Council is deciding whether the county needs a data center moratorium, a review task force, or another regulatory framework, ahead of any project actually being proposed there. Council Vice President Mike Detmer said the county wants a framework in place before a developer comes forward rather than reacting afterward. A data center has been proposed in nearby Federalsburg, about two miles from the Dorchester County line, but no application has been filed inside Dorchester County itself. An official recommendation was expected by around August 2026; the county is reportedly looking to Queen Anne's County's 12-month moratorium as a possible model.",
+      "effective_date": null,
+      "status": "active",
+      "notes": "No ordinance has been drafted or proposed as of this review, so this remains level 0 rather than level 1 (Proposed Restrictions) per docs/TERMINOLOGY.md, which requires pending legislation. Re-check after the county's expected August 2026 recommendation. Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
       "sources": [
         {
-          "label": "Calvert County Department of Planning and Zoning",
-          "url": "https://www.calvertcountymd.gov/275/Planning-Zoning"
-        },
-        {
-          "label": "Calvert County Board of County Commissioners",
-          "url": "https://www.calvertcountymd.gov/131/Board-of-County-Commissioners"
-        },
-        {
-          "label": "NRC — Calvert Cliffs Nuclear Power Plant Emergency Planning Zone",
-          "url": "https://www.nrc.gov/info-finder/reactors/cal.html"
-        },
-        {
-          "label": "Constellation Energy — Calvert Cliffs Nuclear Power Plant",
-          "url": "https://www.constellationenergy.com/"
+          "label": "Star Democrat — Dorchester County Council hopes to get ahead on regulating data center proposals",
+          "url": "http://www.stardem.com/news/data_centers/dorchester-county-council-hopes-to-get-ahead-on-regulating-data-center-proposals/article_af7ff49c-f072-4e08-85e9-1cd10bf1ca33.html"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 3,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "34037",
@@ -34235,29 +34174,27 @@
       "fips": "13131",
       "name": "Grady County",
       "state": "Georgia",
-      "level": -1,
+      "level": 0,
       "types": [
-        "data_center",
-        "ai"
+        "data_center"
       ],
-      "title": "Greene County Georgia Lake Oconee Resort Corridor Data Center Incentive",
-      "description": "Greene County (Greensboro, GA) anchors the Lake Oconee resort corridor, home to the Reynolds Plantation and Ritz-Carlton Lodge luxury resort communities along the Georgia Power-operated Lake Oconee reservoir. The county has attracted technology-sector relocations from Atlanta as remote-work dynamics brought high-income knowledge workers to the lake community, creating demand for nearby edge computing and data center capacity. Georgia Power operates the Wallace Dam that creates Lake Oconee, and the county's position on Georgia Power's load-balancing system provides competitive industrial rates. Georgia's data center sales-tax exemption (O.C.G.A. §48-8-3(68)) applies. The Greene County Joint Development Authority participates in Georgia EMC's industrial location program to attract qualifying computing infrastructure.",
-      "effective_date": "2022-01-01",
+      "title": "Grady County, GA — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "Georgia has a broad wave of data center ordinance activity — roughly 34 counties and 23 cities were drafting or had adopted rules as of mid-2026 — but no ordinance, moratorium, or proposal specific to Grady County was found in that coverage.",
+      "effective_date": null,
       "status": "active",
-      "notes": "Lake Oconee Georgia Power reservoir; Reynolds Plantation tech workforce; O.C.G.A. §48-8-3(68); Atlanta remote worker migration. [DATA CORRECTION 2026-07-27: this record's county name was 'Greene County' but FIPS 13131 is Grady County. The name has been corrected; the title and description were written about Greene County and must be re-researched for Grady County before being relied on.]",
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
       "sources": [
         {
-          "label": "Greene County Joint Development Authority",
-          "url": "https://www.greenecountyga.gov/economic-development"
-        },
-        {
-          "label": "Georgia Power — Lake Oconee Wallace Dam",
-          "url": "https://www.georgiapower.com/company/about-us/hydro-operations.html"
+          "label": "Georgia Public Broadcasting — A 'wave' of data center ordinances sweep through GA counties",
+          "url": "https://www.gpb.org/news/2025/10/22/wave-of-data-center-ordinances-sweep-through-ga-counties-how-strict-are-they"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 2,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "13147",
@@ -34475,33 +34412,27 @@
       "fips": "36101",
       "name": "Steuben County",
       "state": "New York",
-      "level": -1,
+      "level": 0,
       "types": [
-        "data_center",
-        "energy"
+        "data_center"
       ],
-      "title": "St. Lawrence County New York Seaway Power and Canadian Border Data Center Incentive",
-      "description": "St. Lawrence County (Canton/Potsdam, NY) borders Canada along the St. Lawrence River and benefits from the St. Lawrence-FDR Power Project — a 912 MW hydroelectric facility operated by the New York Power Authority (NYPA) and Ontario Power Generation jointly. NYPA's low-cost hydropower allocations (St. Lawrence Power) are available to qualifying industrial customers in the county, providing among the lowest industrial electric rates in New York State. National Grid and NYPA serve the county. Clarkson University and SUNY Canton and SUNY Potsdam anchor research computing. The county's Canadian fiber interconnects (via the Seaway International Bridge at Ogdensburg and the Thousand Islands Bridge) provide cross-border connectivity for operators requiring Canadian data residency paths. New York's climate-positive data center incentives under the CLCPA framework apply to qualifying facilities.",
-      "effective_date": "2020-01-01",
+      "title": "Steuben County, NY — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "New York enacted a statewide one-year moratorium on new large-scale (hyperscale) data center permits via the state Department of Environmental Conservation, signed by Governor Hochul, while the state develops siting and benefit standards. That freeze applies to Steuben County as it does to every New York county; no additional, county-specific ordinance or local moratorium for Steuben County itself was found.",
+      "effective_date": null,
       "status": "active",
-      "notes": "NYPA St. Lawrence Power low-cost hydro; Clarkson/SUNY Potsdam/Canton; Canadian fiber bridge; NYPA REPS allocations. [DATA CORRECTION 2026-07-27: this record's county name was 'St. Lawrence County' but FIPS 36101 is Steuben County. The name has been corrected; the title and description were written about St. Lawrence County and must be re-researched for Steuben County before being relied on.]",
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
       "sources": [
         {
-          "label": "St. Lawrence County Industrial Development Agency (SLCIDA)",
-          "url": "https://www.slcida.com/"
-        },
-        {
-          "label": "New York Power Authority — St. Lawrence Hydroelectric Power",
-          "url": "https://www.nypa.gov/power/generation/st-lawrence-fdr-power-project"
-        },
-        {
-          "label": "Clarkson University — St. Lawrence County Research Computing",
-          "url": "https://www.clarkson.edu/"
+          "label": "Governor Kathy Hochul — First Statewide Moratorium on New Hyperscale Data Centers",
+          "url": "https://www.governor.ny.gov/news/first-statewide-moratorium-new-hyperscale-data-centers-launched-governor-kathy-hochul"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 1,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "36111",
@@ -34729,33 +34660,22 @@
       "fips": "41069",
       "name": "Wheeler County",
       "state": "Oregon",
-      "level": -1,
+      "level": 0,
       "types": [
-        "data_center",
-        "ai"
+        "data_center"
       ],
-      "title": "Yamhill County Oregon Wine Country AI and Portland Metro Data Center Incentive",
-      "description": "Yamhill County (McMinnville, OR) is the heart of the Willamette Valley wine country — the nation's most acclaimed Pinot Noir appellation — and hosts Linfield University and the Evergreen International Aviation Museum (the Spruce Goose). The county's agriculture AI demand from precision viticulture — soil sensing, canopy management, harvest prediction — is among the most sophisticated per-acre computing requirements of any agricultural sector. Portland General Electric (PGE) serves the northern part of the county and Pacific Power the southern portion. Oregon's data center equipment exemption and Yamhill County's proximity to the Portland/Hillsboro data center campus (Intel, Google, Facebook) make the county attractive for agricultural AI and edge computing deployments. The county's Newberg and McMinnville urban growth boundaries support industrial development with PGE/Pacific Power access.",
-      "effective_date": "2021-01-01",
+      "title": "Wheeler County, OR — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "Oregon's Data Center Advisory Committee, convened by Governor Kotek, is developing statewide regulatory recommendations, with legislative action expected in the 2027 session; most current development activity is concentrated in the Hillsboro and Umatilla Basin areas. No ordinance, moratorium, or proposal specific to Wheeler County was found.",
+      "effective_date": null,
       "status": "active",
-      "notes": "Willamette Valley precision viticulture AI; PGE/Pacific Power dual service; Portland/Hillsboro DC campus spillover; Linfield Univ. [DATA CORRECTION 2026-07-27: this record's county name was 'Yamhill County' but FIPS 41069 is Wheeler County. The name has been corrected; the title and description were written about Yamhill County and must be re-researched for Wheeler County before being relied on.]",
-      "sources": [
-        {
-          "label": "Yamhill County Economic Development",
-          "url": "https://www.co.yamhill.or.us/planning-development"
-        },
-        {
-          "label": "McMinnville Economic Development Partnership",
-          "url": "https://www.mcminnvilleoregon.gov/economic-development"
-        },
-        {
-          "label": "Portland General Electric — Yamhill County Service",
-          "url": "https://www.portlandgeneral.com/"
-        }
-      ],
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
+      "sources": [],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 3,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "53071",
@@ -36126,37 +36046,27 @@
       "fips": "21115",
       "name": "Johnson County",
       "state": "Kentucky",
-      "level": -1,
+      "level": 0,
       "types": [
-        "data_center",
-        "incentive"
+        "data_center"
       ],
-      "title": "Kenton County KY — Covington/Florence Amazon CVG Hub, LG&E/KU & Kentucky KEDFA Incentives",
-      "description": "Kenton County (Covington/Florence, KY) is the northern Kentucky anchor of the Cincinnati metro and home to Cincinnati/Northern Kentucky International Airport (CVG), Amazon Air Hub's largest North American sort facility. LG&E/KU Energy serves the county from the Florence and Covington 138 kV substations; PJM interconnection provides reliable access to the Midwest's diverse generation portfolio. Kentucky's KEDFA (Kentucky Economic Development Finance Authority) offers Kentucky Business Investment (KBI) incentives — withholding-tax credits of up to 80% for eligible technology-sector employers — under KRS §154.32. Kenton County's Tax Increment Financing (TIF) program and the Northern Kentucky Economic Development Corporation (NKEDC) coordinate site certification for industrial users along I-71/I-75 with available LG&E 138kV service and Zayo/AT&T long-haul fiber.",
-      "effective_date": "2019-01-01",
+      "title": "Johnson County, KY — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "Kentucky has statewide momentum on data center zoning — the Kentucky Resources Council published a model ordinance, and counties including Mason and cities like Bowling Green and Lexington have adopted or drafted local rules — but no ordinance, moratorium, or proposal specific to Johnson County was found.",
+      "effective_date": null,
       "status": "active",
-      "notes": "Amazon Air CVG largest NA hub; LG&E/KU 138kV PJM; KBI KRS §154.32 withholding credit; NKEDC sites. [DATA CORRECTION 2026-07-27: this record's county name was 'Kenton County' but FIPS 21115 is Johnson County. The name has been corrected; the title and description were written about Kenton County and must be re-researched for Johnson County before being relied on.]",
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
       "sources": [
         {
-          "label": "KEDFA — Kentucky Business Investment (KBI) Program (KRS §154.32)",
-          "url": "https://ced.ky.gov/Financial_Incentives/Pages/kkb.aspx"
-        },
-        {
-          "label": "LG&E and KU Energy — Economic Development",
-          "url": "https://lge-ku.com/business/economic-development"
-        },
-        {
-          "label": "Northern Kentucky Economic Development Corporation (NKEDC)",
-          "url": "https://www.nkecdev.org/"
-        },
-        {
-          "label": "Amazon Air Hub — CVG",
-          "url": "https://www.cvgairport.com/business/amazon-air-hub"
+          "label": "Kentucky Lantern — Some Kentucky counties and cities are hitting pause on data centers",
+          "url": "https://kentuckylantern.com/2026/06/08/some-kentucky-counties-and-cities-are-hitting-pause-on-data-centers/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 3,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "21125",
@@ -36164,36 +36074,26 @@
       "state": "Kentucky",
       "level": 0,
       "types": [
-        "data_center",
-        "energy"
+        "data_center"
       ],
-      "title": "Lawrence County KY — Big Sandy Region ARC Incentives & Kentucky Power Territory",
-      "description": "Lawrence County (Louisa, KY) occupies the Big Sandy River valley on the Kentucky–West Virginia border, served by Kentucky Power (AEP). ARC Distressed designation and POWER+ Initiative eligibility provide federal economic development incentives for new industries. Kentucky KEDFA KBI incentives include wage assessment credits up to 100% of withholding tax for up to 15 years. The county's proximity to the Big Sandy coalfield provides existing heavy-electrical infrastructure and skilled technical workforce. No active restrictions on data center development.",
-      "effective_date": "2022-01-01",
+      "title": "Laurel County, KY — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "One industry research report lists Laurel County among a group of Kentucky counties (with Hancock, Mason, Clark, Oldham, Meade, Gallatin, Carroll, Madison, Jackson, Marion, and Hardin) where data center projects are described as \"under consideration\" — that is developer interest, not a county policy, and no zoning action, ordinance, or moratorium for Laurel County was found.",
+      "effective_date": null,
       "status": "active",
-      "notes": "ARC Distressed; KY Power/AEP service; KEDFA KBI and POWER+ eligible; Big Sandy infrastructure. [DATA CORRECTION 2026-07-27: this record's county name was 'Lawrence County' but FIPS 21125 is Laurel County. The name has been corrected; the title and description were written about Lawrence County and must be re-researched for Laurel County before being relied on.] [RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.]",
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
       "sources": [
         {
-          "label": "Lawrence County KY — Official Website",
-          "url": "https://lawrencecountykygov.com/"
-        },
-        {
-          "label": "Kentucky Power (AEP) — Eastern Kentucky",
-          "url": "https://www.kentuckypower.com/"
-        },
-        {
-          "label": "ARC — POWER+ Initiative for Coal Communities",
-          "url": "https://www.arc.gov/power-initiative/"
-        },
-        {
-          "label": "KEDFA — Kentucky Business Investment Program",
-          "url": "https://ced.ky.gov/Incentives/Kentucky_Business_Investment"
+          "label": "EPIC Report No. 2026-001 — Data Centers in Kentucky",
+          "url": "https://caer.uky.edu/sites/default/files/2026-06/epic-report-no-2026-001.pdf"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-27",
-      "research_status": "descriptive_only"
+      "research_status": "descriptive_only",
+      "source_tier": 2,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "48459",
@@ -36238,36 +36138,21 @@
       "state": "Kentucky",
       "level": 0,
       "types": [
-        "data_center",
-        "energy"
+        "data_center"
       ],
-      "title": "Laurel County KY — I-75 Corridor Hub & KEDFA KBI / KEIA Data Center Incentives",
-      "description": "Laurel County (London, KY) sits on the I-75 corridor in southeastern Kentucky, one of the most strategically located counties in the state for logistics-adjacent data center development. The county is served by Duke Energy Kentucky and East Kentucky Power Cooperative (EKPC). Laurel County qualifies for Kentucky KEDFA KBI (Kentucky Business Investment) wage assessment credits and the Kentucky Enterprise Initiative Act (KEIA) sales tax refund on construction materials. The county has a record of manufacturing investment and an affordable industrial land market. No active restrictions on data centers.",
-      "effective_date": "2022-01-01",
+      "title": "LaRue County, KY — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "One industry report notes LaRue County would easily clear the $25M investment threshold Kentucky's incentive programs use, framing it as an attractive location for a regional edge-class facility — that is a market observation, not a county policy, and no zoning action, ordinance, or moratorium for LaRue County was found.",
+      "effective_date": null,
       "status": "active",
-      "notes": "I-75 corridor access; Duke Energy KY/EKPC service; KEDFA KBI (15-yr wage credit) and KEIA eligible. [DATA CORRECTION 2026-07-27: this record's county name was 'Laurel County' but FIPS 21123 is Larue County. The name has been corrected; the title and description were written about Laurel County and must be re-researched for Larue County before being relied on.] [RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.]",
-      "sources": [
-        {
-          "label": "Laurel County KY Economic Development — London KY",
-          "url": "https://www.laurelcountyky.gov/economic-development"
-        },
-        {
-          "label": "Duke Energy Kentucky — Industrial Service Rates",
-          "url": "https://www.duke-energy.com/home/products/kentucky"
-        },
-        {
-          "label": "KEDFA — Kentucky Business Investment Program",
-          "url": "https://ced.ky.gov/Incentives/Kentucky_Business_Investment"
-        },
-        {
-          "label": "Kentucky Enterprise Initiative Act (KEIA) — Cabinet for Economic Development",
-          "url": "https://ced.ky.gov/Incentives/Kentucky_Enterprise_Initiative_Act"
-        }
-      ],
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
+      "sources": [],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-27",
-      "research_status": "descriptive_only"
+      "research_status": "descriptive_only",
+      "source_tier": 3,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "05011",
@@ -37667,34 +37552,27 @@
       "fips": "40053",
       "name": "Grant County",
       "state": "Oklahoma",
-      "level": -1,
+      "level": 0,
       "types": [
-        "data_center",
-        "energy",
-        "tax"
+        "data_center"
       ],
-      "title": "Oklahoma Quality Jobs & Data Center Exemption – Grady County",
-      "description": "Grady County (Chickasha, Tuttle) eligible for Oklahoma Quality Jobs Program and data center ad valorem and sales tax exemptions. OG&E (Oklahoma Gas and Electric) provides industrial transmission south of OKC on I-44 corridor. Oklahoma Department of Commerce FastTrack program available.",
-      "effective_date": "2000-01-01",
+      "title": "Grant County, OK — Reviewed, No County-Specific Data Center Policy Identified",
+      "description": "Oklahoma's SB 1488 places a statewide moratorium on new data centers with an electrical load over 100 MW, in force until November 1, 2029, while the state Corporation Commission studies water, rate and property-value impacts; HB 2992 separately requires large-load users including data centers to cover their share of electricity and infrastructure costs. Both apply statewide, including Grant County. No additional, county-specific ordinance or local moratorium for Grant County itself was found.",
+      "effective_date": null,
       "status": "active",
-      "notes": "Oklahoma City southern suburb corridor. OG&E industrial service with available 138kV capacity on I-44. [DATA CORRECTION 2026-07-27: this record's county name was 'Grady County' but FIPS 40053 is Grant County. The name has been corrected; the title and description were written about Grady County and must be re-researched for Grant County before being relied on.]",
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
       "sources": [
         {
-          "label": "Oklahoma Quality Jobs Program – ODFA",
-          "url": "https://www.oklahomaincentives.org/quality-jobs-program/"
-        },
-        {
-          "label": "68 O.S. §1357.9 – Oklahoma Data Center Sales Tax Exemption",
-          "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=94887"
-        },
-        {
-          "label": "Oklahoma Dept of Commerce – Business Incentives",
-          "url": "https://www.okcommerce.gov/doing-business/business-incentives/"
+          "label": "MultiState — State Data Center Legislation in 2026 Tackles Energy and Tax Issues",
+          "url": "https://www.multistate.us/insider/2026/2/20/state-data-center-legislation-in-2026-tackles-energy-and-tax-issues"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-27",
+      "source_tier": 2,
+      "confidence": "low",
+      "confidence_score": 30
     },
     {
       "fips": "40083",

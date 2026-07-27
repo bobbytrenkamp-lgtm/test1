@@ -452,6 +452,18 @@ def test_url_redaction():
     check("deadbeef" not in outf, "fred key removed")
 
 
+def test_get_json_error_snippets_are_redacted():
+    """_get_json() keeps a body snippet on failure for diagnosability (added
+    after a live Census keyless run failed with a bare 'JSONDecodeError' and
+    nothing else to go on). That snippet must never carry a live key: some
+    APIs echo the request URL back in their own error text."""
+    src = (Path(econ.ROOT) / "data" / "update_economic_data.py").read_text()
+    check("_redact(raw[:200])" in src or "_redact(raw" in src,
+          "JSONDecodeError snippet is not passed through _redact()")
+    check("_redact(e.read()" in src,
+          "HTTPError body snippet is not passed through _redact()")
+
+
 def test_no_api_key_in_source_defaults():
     """No literal key may be committed. Keys come only from the environment."""
     src = (Path(econ.ROOT) / "data" / "update_economic_data.py").read_text()
@@ -460,6 +472,23 @@ def test_no_api_key_in_source_defaults():
     check("CENSUS_API_KEY" in src, "Census key read from environment")
     for bad in ("api_key=abc", "key=live_", "sk-", "AKIA"):
         check(bad not in src, f"no literal secret pattern {bad!r} in source")
+
+
+def test_census_key_param_omitted_when_unset():
+    """Keyless Census must send NO key parameter, not an empty one.
+
+    `&key=` with nothing after it is not "no key" to Census — it is an invalid
+    key, and the request is rejected. So the whole fragment has to vanish.
+    """
+    check(econ._census_key_param("") == "", "empty key must produce no fragment")
+    check(econ._census_key_param(None) == "", "unset key must produce no fragment")
+    check(econ._census_key_param("abc123") == "&key=abc123", "set key is appended")
+    # And the assembled URL must be a valid Census request either way.
+    for key, expect in (("", False), ("abc123", True)):
+        url = f"https://api.census.gov/data/2023/acs/acs5?get=NAME&for=state:*{econ._census_key_param(key)}"
+        check(("key=" in url) is expect, f"key presence wrong for {key!r}")
+        check("key=&" not in url and not url.endswith("key="),
+              f"assembled a blank key= parameter for {key!r}")
 
 
 # ────────────────────────── metadata + freshness ──────────────────────────

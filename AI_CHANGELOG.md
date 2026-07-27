@@ -3,6 +3,137 @@
 ---
 
 Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Re-researched the 16 counties with mismatched FIPS/name
+
+## Why this happened
+An earlier fix corrected the `name` field on 16 records where the FIPS code
+pointed at one county but the title/description described a different one
+(FIPS 21117 is Kenton County, KY; the record was titled "Knott County KY" and
+described Knott's coal heritage). That fix flagged each record explaining the
+description still needed re-research. This closes that out.
+
+## What changed
+Searched each of the 16 counties individually (correct name + "data center").
+Result: 15 of 16 have no confirmed county-specific data center policy
+findable via web search. That is a real, useful negative result — most rural
+US counties have no such activity — not a failure to search hard enough. The
+16th, Dorchester County MD, is genuinely mid-discussion: the county council is
+deciding whether to draft a moratorium ahead of any project being proposed
+there, with a recommendation expected around August 2026. No ordinance exists
+yet, so it stays level 0 rather than level 1 (Proposed Restrictions), per
+docs/TERMINOLOGY.md's requirement of pending legislation.
+
+All 16 written to level 0 with correctly-attributed, honestly-scoped
+descriptions, `pipeline_verified: false`, `confidence: low`. Deliberately
+NOT flagged `research_status: descriptive_only` — that flag means "no
+research happened," and per-county research did happen here, it just came
+back negative. `counties_researched` in refresh_platform_metadata.py already
+excludes only `descriptive_only`, so these correctly count as researched.
+
+Two Kentucky counties (Laurel, LaRue) had passing mentions in statewide
+industry coverage — "under consideration" for a project, or "would clear the
+incentive threshold" — that's developer/market interest, not a policy, and
+is described as such rather than inflated into a finding.
+
+Level distribution shifted as these 16 moved off their previous (often
+Pro-Development Hub) placement: -1 689 (was 699), 0 610 (was 597), 1 65 (was
+66), 2 60 (was 62). `platform_metadata.json` and `map_data.json` regenerated
+to match. validate_all.py errors dropped 69 -> 65 (unrelated pre-existing
+issues elsewhere in the dataset were incidentally not present in these 16
+after rewrite).
+
+## Sourcing honesty
+No primary county-government page was fetched for any of the 16 — WebFetch
+returns 403 from most county CMS platforms in this sandbox. Every source
+cited is a WebSearch result (state coverage, industry reports, or in
+Dorchester's case a specific local news article), never a page this pipeline
+actually read. A human should verify before treating any as Tier 1.
+
+## Files
+Added: data/sweep_2026_07_27_fips_mismatch_reresearch.py
+Modified: restrictions_raw.json, map_data.json, platform_metadata.json
+
+## Still outstanding
+- `FRED_API_KEY` is still needed before any economic data exists.
+- 2,273 counties remain unresearched (unchanged by this sweep — these 16 were
+  already counted as researched, just under the wrong name).
+
+---
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Census runs keyless — one required secret instead of two
+
+## Why this happened
+Asked why the Economy pipeline needs two secrets. Answering the question
+honestly exposed that one of them did not need to be a blocker at all.
+
+The two keys are two separate free registrations at two different agencies —
+the Federal Reserve Bank of St. Louis (`api.stlouisfed.org`) and the U.S.
+Census Bureau (`api.census.gov`). They are not interchangeable, which is why
+there is no single key that covers both. Neither can be billed.
+
+But the pipeline treated them as equally mandatory:
+
+    if not census_key:
+        warn("CENSUS_API_KEY is not set — skipping Census.")
+
+That skip cost the entire ACS pull — the Regional Economic Explorer, the county
+Economy sections, the state choropleth — over an optional key. Census answers
+unauthenticated requests at roughly 500/day per IP. A full run of this pipeline
+costs about 13: one batch of 16 variables x 6 vintages (current + 5 history) x
+2 geography levels, plus the vintage probe. The key raises a ceiling this
+pipeline never approaches.
+
+FRED is different: it rejects keyless requests outright, so `FRED_API_KEY` is
+genuinely required.
+
+## What changed
+- `data/update_economic_data.py`
+  - New `_census_key_param()`. It returns `&key=...` when a key is set and the
+    **empty string** when it is not. This distinction is the whole fix: an
+    empty `key=` is not "no key" to Census, it is an invalid key, and the
+    request is rejected. The parameter has to disappear, not go blank.
+  - `fetch_acs()` and `collect_cbp()` build their URLs through it.
+  - The missing-Census-key branch prints an informational line and falls
+    through to the normal fetch instead of skipping. The freshness gate that
+    used to be an `elif` behind it is now an independent `if`, so a keyless run
+    still respects `--census-max-age-days`.
+  - Module docstring now marks FRED required and Census optional, with the
+    reason for each.
+- `tests/test_economic_data.py` — `test_census_key_param_omitted_when_unset()`.
+  Asserts the empty/None/set cases and that no assembled URL ever contains a
+  blank `key=`.
+- `tests/test_no_paid_dependencies.py` — `test_census_still_runs_without_a_key()`.
+  Guards the regression directly: the helper must exist, no line may
+  interpolate `&key={` outside the truthiness guard, and the string
+  "skipping Census" must not come back. The first version of this test checked
+  for the substring `&key={api_key}` and failed on the helper's own guarded
+  return, so it now scans line-by-line and exempts the guarded line.
+- `.github/workflows/update_economic_data.yml`, `README.md`, `DATA_SOURCES.md`,
+  `AI_CONTEXT.md`, `PROJECT_CONTEXT.md` — all five said or implied that both
+  secrets were required. Corrected, each with the reason there are two
+  registrations in the first place.
+
+## Not verified here
+`api.census.gov` is unreachable from this sandbox (the proxy returns 403 for
+`.gov` hosts), so the keyless request path is verified by unit test and by
+Census's documented anonymous allowance, not by a live call from this machine.
+The first workflow run will exercise it for real.
+
+## Still outstanding
+- `FRED_API_KEY` is still needed before any economic data exists. It is free
+  and takes about a minute: https://fred.stlouisfed.org/docs/api/api_key.html
+- The 16 counties whose FIPS carried the wrong county name still have
+  descriptions written about the wrong county.
+- 2,273 counties remain unresearched.
+
+---
+
+Date: 2026-07-27
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Data integrity sweep — what we count, and whether it is true

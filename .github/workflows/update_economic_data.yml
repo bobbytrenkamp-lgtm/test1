@@ -11,16 +11,22 @@ name: Update Economic Data
 # schedule to one job while giving Census an effectively weekly cadence.
 #
 # API KEYS
-# Both keys live in repository secrets and are passed only as env vars to the
-# Python step. They are never echoed, never written to an output file, and any
-# URL that reaches a log line is redacted by _redact() in the script.
-#   FRED_API_KEY    https://fred.stlouisfed.org/docs/api/api_key.html
-#   CENSUS_API_KEY  https://api.census.gov/data/key_signup.html
+# Both are FREE registrations at two different agencies, so they are two
+# secrets rather than one: FRED is the Federal Reserve Bank of St. Louis and
+# Census is the U.S. Census Bureau. Neither key is interchangeable with the
+# other and neither can be billed. Keys live in repository secrets and are
+# passed only as env vars to the Python step — never echoed, never written to
+# an output file, and any URL reaching a log line is redacted by _redact().
+#   FRED_API_KEY    REQUIRED. https://fred.stlouisfed.org/docs/api/api_key.html
+#   CENSUS_API_KEY  OPTIONAL. https://api.census.gov/data/key_signup.html
 #
 # MISSING KEY BEHAVIOUR
-# A missing key is a warning, not a failure: that source is skipped and its
-# previously committed data is preserved untouched. The job fails only when
-# output validation says the generated data would be corrupt.
+# Only FRED actually needs its key — the API rejects keyless requests, so a
+# missing FRED_API_KEY skips FRED with a warning and preserves the previously
+# committed data untouched. Census answers unauthenticated requests at about
+# 500/day per IP and a full run of this pipeline costs ~13, so a missing
+# CENSUS_API_KEY runs keyless instead of skipping. Neither case fails the job;
+# it fails only when output validation says the generated data would be corrupt.
 
 on:
   schedule:

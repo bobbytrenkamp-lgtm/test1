@@ -39,9 +39,13 @@ Usage:
     --check               validate existing outputs and exit (CI guard)
 
 Environment:
-    FRED_API_KEY      required for FRED   (https://fred.stlouisfed.org/docs/api/api_key.html)
-    CENSUS_API_KEY    required for Census (https://api.census.gov/data/key_signup.html)
-Neither key is ever logged, echoed, or written to any output file.
+    FRED_API_KEY      REQUIRED for FRED — the API rejects keyless requests.
+                      (https://fred.stlouisfed.org/docs/api/api_key.html)
+    CENSUS_API_KEY    OPTIONAL. Census answers unauthenticated requests at about
+                      500/day per IP and a full run costs ~13, so the pipeline
+                      runs keyless when this is unset. Set it only to raise the
+                      ceiling. (https://api.census.gov/data/key_signup.html)
+Both keys are free. Neither is ever logged, echoed, or written to any output file.
 """
 import argparse
 import json
@@ -127,10 +131,28 @@ def _get_json(url: str, timeout: int = 45, retries: int = 3):
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 raw = resp.read().decode("utf-8", "replace")
             time.sleep(REQUEST_DELAY_S)
-            return json.loads(raw)
+            try:
+                return json.loads(raw)
+            except json.JSONDecodeError:
+                # A 200 response that isn't JSON usually means the API sent an
+                # error message as plain text/HTML (a rate-limit notice, a
+                # WAF page) rather than raising an HTTP error status. The
+                # exception type alone ("JSONDecodeError") is not diagnosable
+                # on its own — keep a short snippet of what the body actually
+                # said so the next run's logs explain the failure instead of
+                # just naming it. _redact() first: some APIs echo the request
+                # URL back in their own error text, and that URL may carry
+                # api_key/key — this snippet reaches a public log line.
+                last = f"JSONDecodeError: {_redact(raw[:200])!r}"
+                break
         except urllib.error.HTTPError as e:
             # 400/404 are permanent for this URL — retrying wastes CI minutes.
-            last = f"HTTP {e.code}"
+            body = ""
+            try:
+                body = _redact(e.read().decode("utf-8", "replace")[:200])
+            except Exception:                                # noqa: BLE001
+                pass
+            last = f"HTTP {e.code}" + (f": {body!r}" if body else "")
             if e.code in (400, 401, 403, 404):
                 break
         except Exception as e:                              # noqa: BLE001
@@ -578,6 +600,16 @@ def _chunk_variables(var_ids, limit):
     return [uniq[i:i + limit] for i in range(0, len(uniq), limit)]
 
 
+def _census_key_param(api_key):
+    """Census key query fragment, or empty string when running keyless.
+
+    Census permits unauthenticated requests (roughly 500/day per IP). Appending
+    an empty `key=` is NOT the same as omitting it — Census rejects a blank key
+    outright — so the parameter has to disappear entirely, not go empty.
+    """
+    return f"&key={api_key}" if api_key else ""
+
+
 def fetch_acs(year, geo_clause, var_ids, api_key, limit=50):
     """Fetch ACS variables for a geography, batching to respect the cap.
 
@@ -587,7 +619,7 @@ def fetch_acs(year, geo_clause, var_ids, api_key, limit=50):
     for batch in _chunk_variables(var_ids, limit):
         get_list = ",".join(["NAME"] + batch)
         url = (f"{CENSUS_ACS_URL.format(year=year)}?get={urllib.parse.quote(get_list)}"
-               f"&{geo_clause}&key={api_key}")
+               f"&{geo_clause}{_census_key_param(api_key)}")
         payload = _get_json(url, timeout=120)
         if _is_err(payload) or not isinstance(payload, list) or len(payload) < 2:
             err = payload.get("__error__") if isinstance(payload, dict) else "malformed response"
@@ -781,7 +813,8 @@ def collect_cbp(year, api_key, cfg):
 
     for naics in cbp_cfg.get("naics_of_interest", {}):
         url = (f"{CENSUS_CBP_URL.format(year=year)}?get=NAME,ESTAB,EMP,PAYANN,EMP_F,PAYANN_F"
-               f"&for=county:*&in=state:*&NAICS2017={urllib.parse.quote(naics)}&key={api_key}")
+               f"&for=county:*&in=state:*&NAICS2017={urllib.parse.quote(naics)}"
+               f"{_census_key_param(api_key)}")
         payload = _get_json(url, timeout=120)
         if _is_err(payload) or not isinstance(payload, list) or len(payload) < 2:
             err = payload.get("__error__") if isinstance(payload, dict) else "malformed"
@@ -1135,9 +1168,14 @@ def main():
         if not args.fred_only:
             print("\n=== Census ACS ===")
             if not census_key:
-                warn("CENSUS_API_KEY is not set — skipping Census. "
-                     "Existing census_*.json are preserved unchanged.")
-            elif not args.force_census and _census_is_fresh(prior_meta, args.census_max_age_days):
+                # Not a skip. Census answers unauthenticated requests at roughly
+                # 500/day per IP, and one full run costs ~13 (one batch of 16
+                # variables x 6 vintages x 2 geography levels, plus the vintage
+                # probe). The key only buys headroom this pipeline never uses,
+                # so its absence must not cost the user the entire Economy tab.
+                print("  CENSUS_API_KEY not set — running keyless "
+                      "(Census allows ~500 requests/day; this run needs ~13)")
+            if not args.force_census and _census_is_fresh(prior_meta, args.census_max_age_days):
                 print(f"  Census data refreshed within {args.census_max_age_days} days — skipping "
                       f"(ACS updates annually; use --force-census to override)")
             else:

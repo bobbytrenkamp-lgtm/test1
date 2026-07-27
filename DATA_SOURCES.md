@@ -185,7 +185,13 @@ run and never publishes an empty chart.
 - **Publisher**: U.S. Census Bureau
 - **Endpoints**: `https://api.census.gov/data/{year}/acs/acs5`,
   `.../acs5/variables.json` (per-vintage variable verification)
-- **Key**: `CENSUS_API_KEY` repository secret. Server-side only.
+- **Key**: `CENSUS_API_KEY` repository secret, server-side only — and **optional**.
+  Census answers unauthenticated requests at roughly 500/day per IP; a full run
+  costs about 13 (one batch of 16 variables x 6 vintages x 2 geography levels,
+  plus the vintage probe), so the pipeline runs keyless when the secret is
+  absent. The key only raises a ceiling this pipeline does not reach. Note that
+  an *empty* `key=` is not the same as no key — Census rejects a blank one, so
+  `_census_key_param()` omits the parameter entirely rather than sending it empty.
 - **Update frequency**: one new vintage per year. The pipeline checks weekly
   (skips if refreshed within 7 days) and **auto-discovers** the newest available
   vintage rather than hardcoding a year.
@@ -284,8 +290,8 @@ license-audit. Python needs only `requests`, `beautifulsoup4` and
 
 | Key | Service | Cost | If absent |
 |---|---|---|---|
-| `FRED_API_KEY` | Federal Reserve Economic Data | Free, unlimited | FRED skipped; existing data preserved |
-| `CENSUS_API_KEY` | Census ACS / CBP | Free, 500 calls/day without a key, unlimited with | Census skipped; existing data preserved |
+| `FRED_API_KEY` | Federal Reserve Economic Data | Free, unlimited | FRED skipped; existing data preserved. The only key the pipeline truly needs — FRED rejects keyless requests. |
+| `CENSUS_API_KEY` | Census ACS / CBP | Free, 500 calls/day without a key, unlimited with | **Census still runs, keyless.** A full run costs ~13 calls, so the free anonymous allowance covers it. |
 | `CONGRESS_API_KEY` | Congress.gov | Free via api.data.gov | Falls back to `DEMO_KEY` — works, just rate-limited |
 | `LEGISCAN_API_KEY` | LegiScan state bills | Free tier (30k queries/month) | Logged as `[skip]`, monitor continues |
 | `SUPABASE_URL` / `SUPABASE_ANON_KEY` | Optional accounts | Free tier | Auth button hidden; site fully functional signed-out |
