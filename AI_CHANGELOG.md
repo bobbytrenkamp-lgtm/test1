@@ -5,6 +5,66 @@
 Date: 2026-07-27
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Re-researched the 16 counties with mismatched FIPS/name
+
+## Why this happened
+An earlier fix corrected the `name` field on 16 records where the FIPS code
+pointed at one county but the title/description described a different one
+(FIPS 21117 is Kenton County, KY; the record was titled "Knott County KY" and
+described Knott's coal heritage). That fix flagged each record explaining the
+description still needed re-research. This closes that out.
+
+## What changed
+Searched each of the 16 counties individually (correct name + "data center").
+Result: 15 of 16 have no confirmed county-specific data center policy
+findable via web search. That is a real, useful negative result — most rural
+US counties have no such activity — not a failure to search hard enough. The
+16th, Dorchester County MD, is genuinely mid-discussion: the county council is
+deciding whether to draft a moratorium ahead of any project being proposed
+there, with a recommendation expected around August 2026. No ordinance exists
+yet, so it stays level 0 rather than level 1 (Proposed Restrictions), per
+docs/TERMINOLOGY.md's requirement of pending legislation.
+
+All 16 written to level 0 with correctly-attributed, honestly-scoped
+descriptions, `pipeline_verified: false`, `confidence: low`. Deliberately
+NOT flagged `research_status: descriptive_only` — that flag means "no
+research happened," and per-county research did happen here, it just came
+back negative. `counties_researched` in refresh_platform_metadata.py already
+excludes only `descriptive_only`, so these correctly count as researched.
+
+Two Kentucky counties (Laurel, LaRue) had passing mentions in statewide
+industry coverage — "under consideration" for a project, or "would clear the
+incentive threshold" — that's developer/market interest, not a policy, and
+is described as such rather than inflated into a finding.
+
+Level distribution shifted as these 16 moved off their previous (often
+Pro-Development Hub) placement: -1 689 (was 699), 0 610 (was 597), 1 65 (was
+66), 2 60 (was 62). `platform_metadata.json` and `map_data.json` regenerated
+to match. validate_all.py errors dropped 69 -> 65 (unrelated pre-existing
+issues elsewhere in the dataset were incidentally not present in these 16
+after rewrite).
+
+## Sourcing honesty
+No primary county-government page was fetched for any of the 16 — WebFetch
+returns 403 from most county CMS platforms in this sandbox. Every source
+cited is a WebSearch result (state coverage, industry reports, or in
+Dorchester's case a specific local news article), never a page this pipeline
+actually read. A human should verify before treating any as Tier 1.
+
+## Files
+Added: data/sweep_2026_07_27_fips_mismatch_reresearch.py
+Modified: restrictions_raw.json, map_data.json, platform_metadata.json
+
+## Still outstanding
+- `FRED_API_KEY` is still needed before any economic data exists.
+- 2,273 counties remain unresearched (unchanged by this sweep — these 16 were
+  already counted as researched, just under the wrong name).
+
+---
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Census runs keyless — one required secret instead of two
 
 ## Why this happened
