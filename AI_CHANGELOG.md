@@ -3,6 +3,77 @@
 ---
 
 Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Census runs keyless — one required secret instead of two
+
+## Why this happened
+Asked why the Economy pipeline needs two secrets. Answering the question
+honestly exposed that one of them did not need to be a blocker at all.
+
+The two keys are two separate free registrations at two different agencies —
+the Federal Reserve Bank of St. Louis (`api.stlouisfed.org`) and the U.S.
+Census Bureau (`api.census.gov`). They are not interchangeable, which is why
+there is no single key that covers both. Neither can be billed.
+
+But the pipeline treated them as equally mandatory:
+
+    if not census_key:
+        warn("CENSUS_API_KEY is not set — skipping Census.")
+
+That skip cost the entire ACS pull — the Regional Economic Explorer, the county
+Economy sections, the state choropleth — over an optional key. Census answers
+unauthenticated requests at roughly 500/day per IP. A full run of this pipeline
+costs about 13: one batch of 16 variables x 6 vintages (current + 5 history) x
+2 geography levels, plus the vintage probe. The key raises a ceiling this
+pipeline never approaches.
+
+FRED is different: it rejects keyless requests outright, so `FRED_API_KEY` is
+genuinely required.
+
+## What changed
+- `data/update_economic_data.py`
+  - New `_census_key_param()`. It returns `&key=...` when a key is set and the
+    **empty string** when it is not. This distinction is the whole fix: an
+    empty `key=` is not "no key" to Census, it is an invalid key, and the
+    request is rejected. The parameter has to disappear, not go blank.
+  - `fetch_acs()` and `collect_cbp()` build their URLs through it.
+  - The missing-Census-key branch prints an informational line and falls
+    through to the normal fetch instead of skipping. The freshness gate that
+    used to be an `elif` behind it is now an independent `if`, so a keyless run
+    still respects `--census-max-age-days`.
+  - Module docstring now marks FRED required and Census optional, with the
+    reason for each.
+- `tests/test_economic_data.py` — `test_census_key_param_omitted_when_unset()`.
+  Asserts the empty/None/set cases and that no assembled URL ever contains a
+  blank `key=`.
+- `tests/test_no_paid_dependencies.py` — `test_census_still_runs_without_a_key()`.
+  Guards the regression directly: the helper must exist, no line may
+  interpolate `&key={` outside the truthiness guard, and the string
+  "skipping Census" must not come back. The first version of this test checked
+  for the substring `&key={api_key}` and failed on the helper's own guarded
+  return, so it now scans line-by-line and exempts the guarded line.
+- `.github/workflows/update_economic_data.yml`, `README.md`, `DATA_SOURCES.md`,
+  `AI_CONTEXT.md`, `PROJECT_CONTEXT.md` — all five said or implied that both
+  secrets were required. Corrected, each with the reason there are two
+  registrations in the first place.
+
+## Not verified here
+`api.census.gov` is unreachable from this sandbox (the proxy returns 403 for
+`.gov` hosts), so the keyless request path is verified by unit test and by
+Census's documented anonymous allowance, not by a live call from this machine.
+The first workflow run will exercise it for real.
+
+## Still outstanding
+- `FRED_API_KEY` is still needed before any economic data exists. It is free
+  and takes about a minute: https://fred.stlouisfed.org/docs/api/api_key.html
+- The 16 counties whose FIPS carried the wrong county name still have
+  descriptions written about the wrong county.
+- 2,273 counties remain unresearched.
+
+---
+
+Date: 2026-07-27
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Data integrity sweep — what we count, and whether it is true

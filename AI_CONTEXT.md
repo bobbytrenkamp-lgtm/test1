@@ -689,14 +689,25 @@ window.ECONOMY.load(key)       lazy, memoized, one in-flight promise per file
         +-- Home             _renderHomeEconomicPulse()        in home.js
 ```
 
-### API secrets — required
-`FRED_API_KEY` and `CENSUS_API_KEY` as **repository secrets**. They are read only
-from the environment inside the workflow, never logged (`_redact()` strips them
-from any URL that could reach a log line), and never written to an output file.
+### API secrets
+`FRED_API_KEY` (**required**) and `CENSUS_API_KEY` (**optional**) as **repository
+secrets**. They are read only from the environment inside the workflow, never
+logged (`_redact()` strips them from any URL that could reach a log line), and
+never written to an output file.
 **No API key may ever appear in JS, HTML, JSON, or a committed file.**
 
-A missing key is a warning, not a failure: that source is skipped and its
-previously committed data is preserved untouched.
+**Why two, and why only one is required.** They are two separate free
+registrations at two different agencies — the Federal Reserve Bank of St. Louis
+(`api.stlouisfed.org`) and the U.S. Census Bureau (`api.census.gov`). They are
+not interchangeable and neither can be billed. FRED rejects keyless requests, so
+its key is mandatory. Census answers unauthenticated requests at ~500/day per IP
+and a full run costs ~13, so the ACS pull **runs keyless** when the secret is
+absent — see `_census_key_param()`, which must omit the parameter entirely,
+because Census treats a blank `key=` as an invalid key rather than as no key.
+
+A missing FRED key is a warning, not a failure: FRED is skipped and its
+previously committed data is preserved untouched. A missing Census key is not
+even a skip.
 
 ### Placeholder state — read this before "fixing" empty economic data
 The shipped `data/economy/*.json` have `generated_at: null` and no records. That

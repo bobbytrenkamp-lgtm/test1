@@ -217,18 +217,27 @@ choropleths), county detail and Jurisdiction pages (an Economy section),
 Analytics (an exploratory Economic Context comparison), and Home (a four-indicator
 pulse).
 
-### Setup — required GitHub secrets
+### Setup — GitHub secrets
 
-Economic data is fetched by GitHub Actions, never by the browser. Add two
-repository secrets under **Settings → Secrets and variables → Actions**:
+Economic data is fetched by GitHub Actions, never by the browser. Add these under
+**Settings → Secrets and variables → Actions**:
 
-| Secret | Get one from | Used for |
-|---|---|---|
-| `FRED_API_KEY` | https://fred.stlouisfed.org/docs/api/api_key.html | Federal Reserve series |
-| `CENSUS_API_KEY` | https://api.census.gov/data/key_signup.html | ACS county/state data |
+| Secret | Get one from | Needed? | Used for |
+|---|---|---|---|
+| `FRED_API_KEY` | https://fred.stlouisfed.org/docs/api/api_key.html | **Required** — FRED rejects keyless requests | Federal Reserve series |
+| `CENSUS_API_KEY` | https://api.census.gov/data/key_signup.html | Optional | ACS county/state data |
 
-Both are free. Neither key is ever sent to the browser, written to a data file, or
-printed in workflow logs.
+They are two secrets because they are two separate free registrations at two
+different agencies — the Federal Reserve Bank of St. Louis and the U.S. Census
+Bureau. Neither is interchangeable with the other, and neither can be billed.
+
+`CENSUS_API_KEY` is genuinely optional: Census answers unauthenticated requests
+at roughly 500/day per IP and one full run of this pipeline costs about 13, so
+without the key the ACS pull still runs — it just has less headroom. Adding it
+raises the ceiling and nothing else.
+
+Neither key is ever sent to the browser, written to a data file, or printed in
+workflow logs.
 
 ### First run
 
@@ -274,7 +283,7 @@ hosting, no npm dependency tree, no build system.
 | Optional key | Service | Cost | Without it |
 |---|---|---|---|
 | `FRED_API_KEY` | Federal Reserve data | Free | Economy tab shows awaiting-data state |
-| `CENSUS_API_KEY` | Census ACS | Free | Regional economic data unavailable |
+| `CENSUS_API_KEY` | Census ACS | Free | ACS still runs keyless (~500 req/day cap) |
 | `CONGRESS_API_KEY` | Congress.gov | Free | Falls back to rate-limited `DEMO_KEY` |
 | `LEGISCAN_API_KEY` | State bill tracking | Free tier | LegiScan step skipped |
 | `SUPABASE_URL` + `SUPABASE_ANON_KEY` | Optional user accounts | Free tier | Sign-in hidden; everything else works |

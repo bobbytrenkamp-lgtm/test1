@@ -462,6 +462,23 @@ def test_no_api_key_in_source_defaults():
         check(bad not in src, f"no literal secret pattern {bad!r} in source")
 
 
+def test_census_key_param_omitted_when_unset():
+    """Keyless Census must send NO key parameter, not an empty one.
+
+    `&key=` with nothing after it is not "no key" to Census — it is an invalid
+    key, and the request is rejected. So the whole fragment has to vanish.
+    """
+    check(econ._census_key_param("") == "", "empty key must produce no fragment")
+    check(econ._census_key_param(None) == "", "unset key must produce no fragment")
+    check(econ._census_key_param("abc123") == "&key=abc123", "set key is appended")
+    # And the assembled URL must be a valid Census request either way.
+    for key, expect in (("", False), ("abc123", True)):
+        url = f"https://api.census.gov/data/2023/acs/acs5?get=NAME&for=state:*{econ._census_key_param(key)}"
+        check(("key=" in url) is expect, f"key presence wrong for {key!r}")
+        check("key=&" not in url and not url.endswith("key="),
+              f"assembled a blank key= parameter for {key!r}")
+
+
 # ────────────────────────── metadata + freshness ──────────────────────────
 
 def test_census_freshness_gate():
