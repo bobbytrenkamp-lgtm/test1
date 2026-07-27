@@ -475,6 +475,11 @@ await run('Map subsystems (GIS modes, palette, zoning, workspaces)', async (p) =
   console.log('water from full ds:', /Medium-High/.test(t) ? 'yes (correct)' : '<-- SAMPLE DATA');
   console.log('signals expanded  :', /Organized Political Campaign/.test(t));
   console.log('facility source   :', /Hand-curated/.test(t) ? 'labelled (good)' : '<-- RAW TIER NUMBER');
+  // .section-title has text-transform:uppercase in CSS, and innerText reflects
+  // rendered (visual) text, not source text — so this must be case-insensitive.
+  console.log('econ section      :', /economic context/i.test(t) ? 'present' : '<-- MISSING');
+  console.log('econ has values   :', /Median household income/.test(t) && /\$[\d,]+/.test(t) ? 'yes' : '<-- no metric rows');
+  console.log('econ percentile   :', /percentile/.test(t) ? 'present' : '<-- NO COMPARATIVE CONTEXT');
   await rep.close();
 
   console.log('local 4xx/5xx     :', misses.length ? misses.slice(0, 4) + ' <-- BAD' : 'none (good)');

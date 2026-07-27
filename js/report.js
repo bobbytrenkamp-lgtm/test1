@@ -56,7 +56,32 @@ window.REPORT = (function () {
       try { facilities = await window.PIPELINE.getByFips(fips); } catch (_) {}
     }
 
-    const html = _buildHtml(fips, name, state, countyData, { risk, waterLevel, incentives, facilities });
+    // Economic context: population, income, labor, housing, broadband, each
+    // shown with national/state percentile rank rather than a bare number, so
+    // "median income $58,200" reads as "34th percentile nationally" — the
+    // comparison a site-selection reader actually needs. Loaded lazily here
+    // (not at page load) since census_county.json is several MB; ECONOMY
+    // caches it, so a second report in the same session is instant.
+    let econ = null;
+    if (window.ECONOMY) {
+      try {
+        const E = window.ECONOMY;
+        const { county, state: stateData, meta } = await E.loadRegional();
+        if (E.hasCounty(county)) {
+          const metrics = E.EXPLORER_METRICS.map(key => ({
+            key,
+            def: E.METRICS[key],
+            cmp: E.comparisons(county, stateData, padded, key, "value"),
+          })).filter(m => m.cmp.value !== null);
+          const signals = E.countySignals(county, padded);
+          if (metrics.length || signals.length) {
+            econ = { metrics, signals, vintage: meta && meta.acs_vintage };
+          }
+        }
+      } catch (_) { /* Economic data is supplementary — never block the report on it. */ }
+    }
+
+    const html = _buildHtml(fips, name, state, countyData, { risk, waterLevel, incentives, facilities, econ });
     const blob = new Blob([html], { type: "text/html;charset=utf-8;" });
     const url  = URL.createObjectURL(blob);
     const win  = window.open(url, "_blank", "noopener");
@@ -71,8 +96,66 @@ window.REPORT = (function () {
     setTimeout(() => URL.revokeObjectURL(url), 60000);
   }
 
+  /* Percentile rank as a phrase, not a bare number — "34th percentile" reads
+     ambiguously (of what? better how?) without saying which direction is
+     favorable for the metric in question. */
+  function _percentilePhrase(pct, good) {
+    if (pct === null || pct === undefined) return null;
+    const ord = pct % 10 === 1 && pct !== 11 ? "st"
+      : pct % 10 === 2 && pct !== 12 ? "nd"
+      : pct % 10 === 3 && pct !== 13 ? "rd" : "th";
+    if (good === "neutral") return `${pct}${ord} percentile`;
+    const favorable = good === "up" ? pct >= 50 : pct <= 50;
+    return `${pct}${ord} percentile${favorable ? " (favorable)" : ""}`;
+  }
+
+  function _econSection(econ) {
+    if (!econ) {
+      return `
+        <section class="section">
+          <h2 class="section-title">Economic Context</h2>
+          <p class="empty-note">Economic data has not yet been measured for this county, or the pipeline has not run. This is distinct from a value of zero — no economic claim is being made either way.</p>
+        </section>`;
+    }
+    const E = window.ECONOMY;
+    const rows = econ.metrics.map(({ key, def, cmp }) => {
+      const valueStr = E.fmtValue(cmp.value, def.unit, def.dec);
+      const usPhrase = _percentilePhrase(cmp.percentile, def.good);
+      const stPhrase = _percentilePhrase(cmp.state_percentile, def.good);
+      const context = [
+        usPhrase ? `US: ${usPhrase}` : (cmp.us_median != null ? `US median: ${E.fmtValue(cmp.us_median, def.unit, def.dec)}` : null),
+        stPhrase ? `State: ${stPhrase}` : null,
+      ].filter(Boolean).join(" · ");
+      return `<tr>
+        <th>${_esc(def.label)}</th>
+        <td>${_esc(valueStr)}</td>
+        <td class="note">${_esc(context || "Insufficient peer data for a percentile")}</td>
+      </tr>`;
+    }).join("");
+
+    const signalsHtml = econ.signals.length
+      ? `<h3 class="sub-title">Infrastructure-Relevant Signals (${econ.signals.length})</h3>
+         <ul class="signal-list">${econ.signals.map(s => `
+           <li>
+             <div class="signal-head">${_esc(s.title)}</div>
+             <div class="signal-desc">${_esc(s.text)}</div>
+           </li>`).join("")}</ul>`
+      : "";
+
+    return `
+      <section class="section">
+        <h2 class="section-title">Economic Context</h2>
+        <table class="kv-table" style="width:100%">
+          <thead><tr><th>Metric</th><th>Value</th><th>Percentile context</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+        ${signalsHtml}
+        <p class="note" style="margin-top:8px">Source: U.S. Census Bureau ACS 5-Year Estimates${econ.vintage ? ` (${_esc(String(econ.vintage))})` : ""} and Federal Reserve Economic Data (FRED). Percentiles are computed against all US counties with data for that metric (minimum 20-county sample) and are descriptive, not predictive. Not investment advice.</p>
+      </section>`;
+  }
+
   /* ── Build the full HTML document ── */
-  function _buildHtml(fips, name, state, county, { risk, waterLevel, incentives, facilities }) {
+  function _buildHtml(fips, name, state, county, { risk, waterLevel, incentives, facilities, econ }) {
     const date     = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
     const padded   = String(fips).padStart(5, "0");
     const level    = county ? String(county.level) : "0";
@@ -382,6 +465,8 @@ window.REPORT = (function () {
   </div>
 
   ${policyDetails}
+
+  ${_econSection(econ)}
 
   <section class="section">
     <h2 class="section-title">Site Risk Factors</h2>
