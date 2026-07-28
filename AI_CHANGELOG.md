@@ -5,6 +5,50 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: 3D terrain view, Phase A — real infrastructure, not a demo
+
+Built Phase A of a much larger (47-section) 3D site-design/digital-twin
+request: a working, integrated 2D/3D terrain view, not the whole request in
+one pass. A repository audit came first (per the request's own mandated
+order) and found zero prior 3D/WebGL code, but real integration surface
+worth reusing rather than duplicating — `window.PARCEL`'s coordinator shape,
+`window.PARCEL_FEASIBILITY`'s buildable-envelope math (for later phases),
+`window.LAYER_REGISTRY`'s provenance schema, and — most importantly — the
+existing per-user saved "workspace" object in `js/map.js`, extended with an
+optional `scene3d` field rather than inventing a new "Project" entity.
+
+Shipped: `window.SCENE3D` coordinator (`js/3d/index.js`, mirrors
+`window.PARCEL`'s init/onCountyChanged/onLayerToggle shape); Three.js
+r0.185.1 (MIT) vendored at `vendor/three/`, lazy-loaded as the codebase's
+first ES module only when a visitor actually opens 3D mode, so non-3D
+visitors download zero 3D bytes; real terrain rendering from AWS's free,
+keyless Terrain Tiles (Terrarium PNG encoding — USGS's EPQS API was
+evaluated and rejected, confirmed CORS-blocked for browser use); orbit/pan/
+zoom/tilt navigation via OrbitControls; a WebGL-capability probe that skips
+fetching Three.js entirely on incapable devices, and a per-tile "no data"
+fallback (visually marked, not silently rendered as flat ground) when
+terrain tiles fail to load. `tests/scene3d.test.js` (34 assertions: tile
+math, Terrarium decode, cache/de-dupe/eviction, `scene3d` schema
+migration/backward-compatibility) wired into `tests/run_all.sh`, full suite
+green with no regressions. `tests/test_no_paid_dependencies.py`'s tile-host
+allowlist updated for the new AWS bucket. Documented in
+`docs/3D_SYSTEM_ARCHITECTURE.md`, including the technology-decision
+rationale and a manual browser-verification checklist that was **not**
+completed this session — no working Chromium binary was available in this
+sandbox (broken Playwright browser cache, and `playwright install` is
+off-limits here) — flagged honestly as an open item rather than a
+verified-working claim.
+
+Explicitly out of scope this pass (Phases B–E, per the request's own
+ordering): object/building creation, the data-center campus generator,
+roads/parking/fences/utilities, development templates, presentation mode,
+and export.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: NOAA, EPA, FAA, DOT researched the same way FEMA was — three deferred, none guessed
 
 ## NOAA — deferred

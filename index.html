@@ -44,6 +44,7 @@
   <link rel="stylesheet" href="css/pipeline.css?v=20260726d" />
   <link rel="stylesheet" href="css/jurisdiction.css?v=20260726j" />
   <link rel="stylesheet" href="css/economy.css?v=20260726a" />
+  <link rel="stylesheet" href="css/scene3d.css?v=20260728a" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -300,6 +301,9 @@
         <button class="gis-btn" id="gis-workspace" title="Workspaces — save &amp; restore map state (W)" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
         </button>
+        <button class="gis-btn" id="gis-3d" title="3D terrain view (T)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5"/><path d="M12 12v10"/></svg>
+        </button>
         <button class="gis-btn" id="gis-minimap" title="Toggle overview map" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><rect x="6" y="8" width="8" height="8" rx="1"/></svg>
         </button>
@@ -351,6 +355,25 @@
             <button id="workspace-import-btn" title="Import workspaces from JSON file">Import JSON</button>
             <input id="workspace-import-file" type="file" accept=".json" hidden />
           </div>
+        </div>
+      </div>
+
+      <!-- 3D Terrain View panel -->
+      <div id="scene3d-panel" hidden>
+        <div id="scene3d-header">
+          <span>3D Terrain View</span>
+          <button id="scene3d-close" aria-label="Close 3D view">&times;</button>
+        </div>
+        <div id="scene3d-body">
+          <div id="scene3d-canvas-host"></div>
+          <div id="scene3d-status" hidden role="status" aria-live="polite"></div>
+          <div id="scene3d-controls">
+            <label><input type="checkbox" id="scene3d-terrain-toggle" checked /> Terrain</label>
+            <label>Vertical exaggeration
+              <input type="range" id="scene3d-exaggeration" min="1" max="4" step="0.5" value="1.5" />
+            </label>
+          </div>
+          <p id="scene3d-disclaimer">Conceptual terrain visualization from free, open elevation data (AWS Terrain Tiles) — not surveyed for engineering use.</p>
         </div>
       </div>
 
@@ -969,6 +992,13 @@ window.addEventListener('error', function(e) {
 <script src="js/parcel/panel.js?v=20260721h" defer onload="window._track.ok.push('parcel-panel')" onerror="window._track.fail.push('parcel-panel')"></script>
 <script src="js/parcel/index.js?v=20260721g" defer onload="window._track.ok.push('parcel-index')" onerror="window._track.fail.push('parcel-index')"></script>
 <script src="js/workspace.js?v=20260719a" defer onload="window._track.ok.push('workspace')" onerror="window._track.fail.push('workspace')"></script>
+<!-- 3D terrain view. These stay dependency-free classic scripts; Three.js
+     itself (vendor/three/*) is only lazy-loaded as an ES module by
+     js/3d/index.js the first time a visitor opens 3D mode. -->
+<script src="js/3d/fallback.js?v=20260728a" defer onload="window._track.ok.push('scene3d-fallback')" onerror="window._track.fail.push('scene3d-fallback')"></script>
+<script src="js/3d/terrain-tiles.js?v=20260728a" defer onload="window._track.ok.push('scene3d-terrain-tiles')" onerror="window._track.fail.push('scene3d-terrain-tiles')"></script>
+<script src="js/3d/scene-state.js?v=20260728a" defer onload="window._track.ok.push('scene3d-state')" onerror="window._track.fail.push('scene3d-state')"></script>
+<script src="js/3d/index.js?v=20260728a" defer onload="window._track.ok.push('scene3d-index')" onerror="window._track.fail.push('scene3d-index')"></script>
 <script src="js/results-panel.js?v=20260718a" defer onload="window._track.ok.push('results-panel')" onerror="window._track.fail.push('results-panel')"></script>
 <script src="js/command-palette.js?v=20260720a" defer onload="window._track.ok.push('command-palette')" onerror="window._track.fail.push('command-palette')"></script>
 <script src="js/pipeline.js?v=20260726i" defer onload="window._track.ok.push('pipeline')" onerror="window._track.fail.push('pipeline')"></script>

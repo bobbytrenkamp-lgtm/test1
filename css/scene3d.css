@@ -1,0 +1,113 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   3D Terrain View — css/scene3d.css
+   Works with js/3d/index.js (window.SCENE3D) + js/3d/engine.js.
+   Matches the existing floating-panel convention (#workspace-panel,
+   #bookmarks-panel, #screener-panel): var(--surface) / var(--border) /
+   var(--text) / var(--text-muted) tokens, top:14px; right:54px; z-index:450;
+   border-radius:8px. Widened vs. those panels because this one hosts a
+   WebGL canvas rather than a short list.
+────────────────────────────────────────────────────────────────────────── */
+
+#scene3d-panel {
+  position: absolute;
+  top: 14px;
+  right: 54px;
+  z-index: 450;
+  width: min(480px, calc(100vw - 70px));
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.45);
+  overflow: hidden;
+}
+
+#scene3d-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+#scene3d-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1;
+  padding: 0 2px;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+#scene3d-close:hover { color: var(--text); }
+
+#scene3d-body {
+  display: flex;
+  flex-direction: column;
+}
+
+#scene3d-canvas-host {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: #0c1020;
+  overflow: hidden;
+}
+.scene3d-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none; /* let OrbitControls own touch gestures, not page scroll */
+}
+
+#scene3d-status {
+  padding: 8px 10px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+#scene3d-status[data-kind="error"]   { background: rgba(224, 82, 82, 0.12); color: #e05252; }
+#scene3d-status[data-kind="warning"] { background: rgba(224, 172, 62, 0.12); color: #d9a63c; }
+#scene3d-status[data-kind="loading"] { color: var(--text-muted); }
+
+#scene3d-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 10px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+#scene3d-controls label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+#scene3d-controls input[type="range"] {
+  width: 80px;
+}
+
+#scene3d-disclaimer {
+  margin: 0;
+  padding: 8px 10px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+@media (max-width: 700px) {
+  #scene3d-panel {
+    right: 10px;
+    left: 10px;
+    width: auto;
+  }
+  #scene3d-canvas-host {
+    height: 220px;
+  }
+}

@@ -141,6 +141,7 @@ let locMarker        = null;
 let _ctxLatLng       = null;
 let bookmarksVisible  = false;
 let _wsVisible        = false;
+let _scene3dVisible   = false;
 const WS_LOCAL_KEY    = "dc-workspaces-local-v1";
 const WS_MAX_LOCAL    = 10;
 let compareMode       = false;
@@ -376,6 +377,8 @@ const layerState = {
   fema_flood:         false, // roadmap — no data yet
   enterprise_zones:   false, // roadmap — no data yet
   parcels:            false, // parcel-level data (zoom ≥14; pilot: Loudoun County VA)
+  terrain_3d:         true,  // 3D view's terrain mesh toggle (only affects the 3D panel)
+  contours_slope:     false, // roadmap — no data yet
   /* Economic choropleths — mutually exclusive, enforced in ECONOMY_MAP.onLayerToggle().
      Only one may colour counties at a time; stacking opaque economic fills over
      the restriction layer would make all of them unreadable. */
@@ -793,6 +796,9 @@ async function _initMapFromGeo() {
     _refreshSavedCache();
     // Initialize parcel intelligence module
     window.PARCEL?.init(leafletMap);
+    // Initialize 3D terrain view coordinator (Three.js itself loads lazily
+    // on first activation — this call never fetches 3D bytes)
+    window.SCENE3D?.init(leafletMap);
     if (loadEl) loadEl.style.display = "none";
     // Staggered invalidateSize calls catch iOS Safari layout finalization at
     // different stages: after layers paint, after first user interaction window,
@@ -1013,6 +1019,7 @@ function handleCountyClick(e, fips) {
   if (window.PARCEL) {
     window.PARCEL.onCountyChanged(fips);
   }
+  window.SCENE3D?.onCountyChanged(fips);
 }
 
 /* ── County layer init ── */
@@ -1256,6 +1263,8 @@ function setLayerVisible(id, visible, syncUI = false) {
     if (window.PARCEL) {
       window.PARCEL.onLayerToggle(id, visible, selectedFips);
     }
+  } else if (id === "terrain_3d") {
+    window.SCENE3D?.onLayerToggle(id, visible, selectedFips);
   } else if (window.ECONOMY_MAP && window.ECONOMY_MAP.LAYER_METRIC[id]) {
     // ECONOMY_MAP restyles the county layer and refreshes the legend itself,
     // because activation is async (the county file is lazy-loaded).
@@ -2216,7 +2225,7 @@ function _saveWsList(arr) {
 
 function _captureWorkspaceState(name) {
   const c = leafletMap.getCenter();
-  return {
+  const ws = {
     id:          _generateWsId(),
     name:        name,
     created:     Date.now(),
@@ -2237,6 +2246,11 @@ function _captureWorkspaceState(name) {
     drawPoints:   drawPoints.map(p => [+p.lat.toFixed(6), +p.lng.toFixed(6)]),
     drawAreaUnit: drawAreaUnit,
   };
+  // Only attach scene3d when 3D was actually activated this session, so a
+  // user who never opens 3D mode doesn't get a stub key on every save.
+  const scene3d = window.SCENE3D?.captureState();
+  if (scene3d) ws.scene3d = scene3d;
+  return ws;
 }
 
 function _applyWorkspace(ws) {
@@ -2280,6 +2294,9 @@ function _applyWorkspace(ws) {
   if (ws.selectedFips && mapData[ws.selectedFips]) {
     selectCounty(ws.selectedFips);
   }
+  // A workspace saved before the 3D system existed has no scene3d key —
+  // that must load with no error and must not force 3D mode open or closed.
+  if (ws.scene3d) window.SCENE3D?.applyState(ws.scene3d);
 }
 
 async function renderWorkspaceList() {
@@ -2372,6 +2389,26 @@ function toggleWorkspaces() {
   if (panel) panel.hidden = !_wsVisible;
   if (btn)   { btn.classList.toggle("active", _wsVisible); btn.setAttribute("aria-pressed", String(_wsVisible)); }
   if (_wsVisible) renderWorkspaceList();
+}
+
+/* ── 3D terrain view ── */
+function toggleScene3D() {
+  _scene3dVisible = !_scene3dVisible;
+  const panel = document.getElementById("scene3d-panel");
+  const btn   = document.getElementById("gis-3d");
+  if (panel) panel.hidden = !_scene3dVisible;
+  if (btn)   { btn.classList.toggle("active", _scene3dVisible); btn.setAttribute("aria-pressed", String(_scene3dVisible)); }
+  if (_scene3dVisible) {
+    if (!window.SCENE3D) {
+      showMapToast("3D view isn't available — the module didn't load.");
+      return;
+    }
+    const cap = window.SCENE3D.isAvailable();
+    if (!cap.ok && btn) {
+      btn.title = (window.SCENE3D_FALLBACK && window.SCENE3D_FALLBACK.MESSAGES[cap.reason]) || "3D view isn't available on this device.";
+    }
+    window.SCENE3D.activate();
+  }
 }
 
 /* ── Suitability mode ── */
@@ -2997,6 +3034,7 @@ function initLeafletMap() {
     if ((e.key === "l" || e.key === "L") && !e.ctrlKey && !e.metaKey) window.RESULTS_PANEL?.toggle();
     if ((e.key === "f" || e.key === "F") && !e.ctrlKey && !e.metaKey) toggleFullscreen();
     if ((e.key === "w" || e.key === "W") && !e.ctrlKey && !e.metaKey) toggleWorkspaces();
+    if ((e.key === "t" || e.key === "T") && !e.ctrlKey && !e.metaKey) toggleScene3D();
     if ((e.key === "c" || e.key === "C") && !e.ctrlKey && !e.metaKey) toggleComparePanel();
     if ((e.key === "s" || e.key === "S") && !e.ctrlKey && !e.metaKey) toggleSuitabilityMode();
     if ((e.key === "v" || e.key === "V") && !e.ctrlKey && !e.metaKey) toggleWaterStressMode();
@@ -3007,6 +3045,7 @@ function initLeafletMap() {
     if (e.key === "Escape" && candidatePinMode) toggleCandidatePin();
     if (e.key === "Escape" && radiusMode)       toggleRadius();
     if (e.key === "Escape" && _wsVisible)       toggleWorkspaces();
+    if (e.key === "Escape" && _scene3dVisible)  toggleScene3D();
     if (e.key === "Escape" && compareMode)      toggleComparePanel();
   });
 
@@ -3036,6 +3075,18 @@ function initLeafletMap() {
   document.getElementById("workspace-save-btn")?.addEventListener("click", saveCurrentWorkspace);
   document.getElementById("workspace-name-input")?.addEventListener("keydown", e => {
     if (e.key === "Enter") { e.preventDefault(); saveCurrentWorkspace(); }
+  });
+
+  // 3D terrain view panel wiring
+  document.getElementById("gis-3d")           ?.addEventListener("click", toggleScene3D);
+  document.getElementById("scene3d-close")    ?.addEventListener("click", toggleScene3D);
+  document.getElementById("scene3d-terrain-toggle")?.addEventListener("change", e => {
+    setLayerVisible("terrain_3d", e.target.checked, true);
+  });
+  document.getElementById("scene3d-exaggeration")?.addEventListener("input", e => {
+    const exaggeration = Number(e.target.value) || 1.5;
+    const state = window.SCENE3D?.captureState();
+    if (state) window.SCENE3D.applyState(Object.assign({}, state, { exaggeration }));
   });
   document.getElementById("workspace-export-btn")?.addEventListener("click", exportWorkspacesJSON);
   document.getElementById("workspace-import-btn")?.addEventListener("click", () => {
