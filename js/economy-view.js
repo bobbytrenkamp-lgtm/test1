@@ -639,7 +639,7 @@
         ${E().sparklineSvg(hist[m], { label: E().METRICS[m].label, color: null })}
       </div>`).join("");
 
-    const signals = isCounty ? E().countySignals(cData, key) : [];
+    const signals = isCounty ? E().countySignals(cData, key, sData) : [];
     const readiness = isCounty ? E().readinessScore(cData, sData, key) : null;
 
     // Supplementary and a DIFFERENT measurement from anything in the table
@@ -790,7 +790,7 @@
 
     const nat = E().nationalSignals(data.fred);
     const county = state.selectedFips && state.selectedFips.length === 5
-      ? E().countySignals(data.county, state.selectedFips) : [];
+      ? E().countySignals(data.county, state.selectedFips, data.state) : [];
 
     if (!nat.length && !county.length) {
       host.innerHTML = E().hasFred(data.fred) || E().hasCounty(data.county)

@@ -73,7 +73,7 @@ window.REPORT = (function () {
             def: E.METRICS[key],
             cmp: E.comparisons(county, stateData, padded, key, "value"),
           })).filter(m => m.cmp.value !== null);
-          const signals = E.countySignals(county, padded);
+          const signals = E.countySignals(county, padded, stateData);
           // Supplementary, distinct measurements from anything in `metrics`
           // above (a county permit count and a county wage figure with no ACS
           // equivalent; a STATE electricity price, not this specific

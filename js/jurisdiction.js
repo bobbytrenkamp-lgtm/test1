@@ -504,7 +504,7 @@ window.JURISDICTION = (function () {
           ${E.sparklineSvg(hist[m], { label: E.METRICS[m].label })}
         </div>`).join("");
 
-      const signals = E.countySignals(cData, fips);
+      const signals = E.countySignals(cData, fips, sData);
 
       target.innerHTML = `
         <section class="juris-card">

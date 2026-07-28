@@ -805,6 +805,89 @@ window.ECONOMY = (function () {
                  text: `County-issued building permits fell ${fmtPct(bp.change_yoy_pct)} year-over-year (latest: ${fmtValue(bp.value, "count", 0)} units, as of ${fmtDate(bp.as_of)}). Less local construction activity can mean easier access to contractors and materials.` };
       },
     },
+    {
+      id: "available_workforce",
+      title: "Available workforce",
+      test: (c, ctx) => {
+        const v = metricValue(c, "labor_force_participation_rate", "value");
+        if (v === null || ctx.medians.labor_participation === null) return null;
+        if (v <= ctx.medians.labor_participation) return null;
+        return { strength: "moderate",
+                 text: `${fmtValue(v, "percent", 1)} of the working-age population is in the labor force, above the national county median of ${fmtValue(ctx.medians.labor_participation, "percent", 1)}. A larger share of residents already working or looking for work can mean a deeper pool for construction and operations hiring.` };
+      },
+    },
+    {
+      id: "thin_workforce",
+      title: "Thin workforce participation",
+      test: (c, ctx) => {
+        const v = metricValue(c, "labor_force_participation_rate", "value");
+        if (v === null || ctx.medians.labor_participation === null) return null;
+        if (v >= ctx.medians.labor_participation * 0.85) return null;
+        return { strength: "caution",
+                 text: `Only ${fmtValue(v, "percent", 1)} of the working-age population is in the labor force, well below the national county median of ${fmtValue(ctx.medians.labor_participation, "percent", 1)}. A thinner labor pool can slow construction staffing and long-term operations hiring.` };
+      },
+    },
+    {
+      id: "housing_availability",
+      title: "Housing availability for relocating staff",
+      test: (c, ctx) => {
+        const v = metricValue(c, "housing_vacancy_rate", "value");
+        if (v === null || ctx.medians.housing_vacancy === null) return null;
+        if (v <= ctx.medians.housing_vacancy * 1.25) return null;
+        return { strength: "moderate",
+                 text: `Housing vacancy is ${fmtValue(v, "percent", 1)}, above the national county median of ${fmtValue(ctx.medians.housing_vacancy, "percent", 1)}. More available housing stock can ease relocation for staff brought in during construction and operations ramp-up.` };
+      },
+    },
+    /* avg_weekly_wage (BLS QCEW) and electricity_price (EIA) both live
+       outside .metrics -- see the permits rules above for why -- and
+       electricity is a STATE figure reached through stateRec, not the
+       county record itself. Both are direct operating-cost drivers, unlike
+       most of the ACS-derived signals above, which are workforce/demand
+       context rather than a line item on a pro forma. */
+    {
+      id: "labor_cost_below_median",
+      title: "Below-median labor cost",
+      test: (c, ctx) => {
+        const wg = c.avg_weekly_wage;
+        if (!wg || wg.value === null || wg.value === undefined || ctx.medians.wage === null) return null;
+        if (wg.value >= ctx.medians.wage) return null;
+        return { strength: "moderate",
+                 text: `Average weekly wage is ${fmtValue(wg.value, "usd", 0)} (BLS QCEW, ${wg.year}), below the national county median of ${fmtValue(ctx.medians.wage, "usd", 0)}. Lower prevailing wages reduce operating labor costs, though they can also signal a smaller specialized labor pool.` };
+      },
+    },
+    {
+      id: "labor_cost_above_median",
+      title: "Above-median labor cost",
+      test: (c, ctx) => {
+        const wg = c.avg_weekly_wage;
+        if (!wg || wg.value === null || wg.value === undefined || ctx.medians.wage === null) return null;
+        if (wg.value <= ctx.medians.wage * 1.2) return null;
+        return { strength: "caution",
+                 text: `Average weekly wage is ${fmtValue(wg.value, "usd", 0)} (BLS QCEW, ${wg.year}), well above the national county median of ${fmtValue(ctx.medians.wage, "usd", 0)}. Higher prevailing wages raise operating labor costs.` };
+      },
+    },
+    {
+      id: "electricity_cost_below_median",
+      title: "Below-median electricity cost",
+      test: (c, ctx) => {
+        const ep = ctx.stateRec && ctx.stateRec.electricity_price;
+        if (!ep || ep.value === null || ep.value === undefined || ctx.medians.electricity === null) return null;
+        if (ep.value >= ctx.medians.electricity) return null;
+        return { strength: "strong",
+                 text: `State industrial electricity price is ${fmtValue(ep.value, "usd_precise", 2)}/kWh (EIA, ${ep.as_of}), below the national state median of ${fmtValue(ctx.medians.electricity, "usd_precise", 2)}/kWh. Electricity is typically the largest recurring operating cost for a data center, so this is a direct cost advantage, not just workforce context.` };
+      },
+    },
+    {
+      id: "electricity_cost_above_median",
+      title: "Above-median electricity cost",
+      test: (c, ctx) => {
+        const ep = ctx.stateRec && ctx.stateRec.electricity_price;
+        if (!ep || ep.value === null || ep.value === undefined || ctx.medians.electricity === null) return null;
+        if (ep.value <= ctx.medians.electricity * 1.1) return null;
+        return { strength: "caution",
+                 text: `State industrial electricity price is ${fmtValue(ep.value, "usd_precise", 2)}/kWh (EIA, ${ep.as_of}), above the national state median of ${fmtValue(ctx.medians.electricity, "usd_precise", 2)}/kWh. Electricity is typically the largest recurring operating cost for a data center, so this raises the operating cost baseline directly.` };
+      },
+    },
   ];
 
   /* National signals derived from FRED rather than a county. */
@@ -866,21 +949,29 @@ window.ECONOMY = (function () {
 
   /* Compute the national medians the county rules compare against, once. */
   let _medianCache = null;
-  function nationalMedians(countyData) {
+  function nationalMedians(countyData, stateData) {
     if (_medianCache) return _medianCache;
     const counties = (countyData && countyData.counties) || {};
+    const states   = (stateData && stateData.states) || {};
     const acc = { population_5y: [], income_5y: [], bachelors: [],
-                  broadband: [], unemployment: [], home_value: [] };
+                  broadband: [], unemployment: [], home_value: [],
+                  labor_participation: [], housing_vacancy: [], wage: [], electricity: [] };
+    const push = (arr, v) => { if (v !== null && v !== undefined && isFinite(v)) arr.push(v); };
     for (const f in counties) {
       const c = counties[f];
-      const push = (arr, v) => { if (v !== null && v !== undefined && isFinite(v)) arr.push(v); };
       push(acc.population_5y, metricValue(c, "population", "change_5y"));
       push(acc.income_5y,     metricValue(c, "median_household_income", "change_5y"));
       push(acc.bachelors,     metricValue(c, "bachelors_or_higher_pct", "value"));
       push(acc.broadband,     metricValue(c, "broadband_pct", "value"));
       push(acc.unemployment,  metricValue(c, "unemployment_rate", "value"));
       push(acc.home_value,    metricValue(c, "median_home_value", "value"));
+      push(acc.labor_participation, metricValue(c, "labor_force_participation_rate", "value"));
+      push(acc.housing_vacancy,     metricValue(c, "housing_vacancy_rate", "value"));
+      if (c.avg_weekly_wage) push(acc.wage, c.avg_weekly_wage.value);
     }
+    // Electricity is STATE-level (see _readinessFactorPools for why this
+    // matters): one value per state, not once per county.
+    for (const s in states) push(acc.electricity, states[s].electricity_price && states[s].electricity_price.value);
     _medianCache = {
       population_5y: median(acc.population_5y),
       income_5y:     median(acc.income_5y),
@@ -888,15 +979,20 @@ window.ECONOMY = (function () {
       broadband:     median(acc.broadband),
       unemployment:  median(acc.unemployment),
       home_value:    median(acc.home_value),
+      labor_participation: median(acc.labor_participation),
+      housing_vacancy:     median(acc.housing_vacancy),
+      wage:                median(acc.wage),
+      electricity:         median(acc.electricity),
     };
     return _medianCache;
   }
 
-  function countySignals(countyData, fips) {
+  function countySignals(countyData, fips, stateData) {
     const counties = (countyData && countyData.counties) || {};
     const rec = counties[fips];
     if (!rec) return [];
-    const ctx = { medians: nationalMedians(countyData) };
+    const stateRec = stateData ? ((stateData.states || {})[rec.state_fips]) : null;
+    const ctx = { medians: nationalMedians(countyData, stateData), stateRec };
     const out = [];
     for (const rule of SIGNAL_RULES) {
       let res = null;

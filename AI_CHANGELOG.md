@@ -5,6 +5,45 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Four new signal rules -- labor participation, housing, wage, electricity cost
+
+## Signals never covered the metrics added since the rule table was first written
+`SIGNAL_RULES` (js/economy.js) had 9 rules, none referencing
+`labor_force_participation_rate` or `housing_vacancy_rate` (added in the
+Phase 1 ACS expansion), `avg_weekly_wage` (BLS QCEW, Phase 2), or
+`electricity_price` (EIA, Phase 1) -- four data points this platform already
+collects and displays elsewhere, but that never fed the rule-based insight
+engine. Electricity price in particular is the metric most directly tied to
+this project's own stated test ("how does this affect the attractiveness of
+developing and operating a data center here?") since it is typically a data
+center's largest recurring operating cost line item, yet it had no signal
+at all.
+
+Added: `available_workforce` / `thin_workforce` (labor force participation
+vs. the national county median), `housing_availability` (vacancy rate, for
+staff relocation), `labor_cost_below_median` / `labor_cost_above_median`
+(BLS wage), and `electricity_cost_below_median` /
+`electricity_cost_above_median` (EIA state price). Extended
+`nationalMedians()` with the four new median pools (electricity pooled at
+the state level, same reasoning as `_readinessFactorPools()`'s electricity
+pool) rather than adding a second parallel pool-builder. `countySignals()`
+gained an optional third `stateData` parameter (backward compatible --
+existing 2-argument callers still work, they just cannot fire the
+electricity signals) and all 5 real call sites (economy-view.js x2,
+jurisdiction.js, map.js, report.js) were updated to pass it. 7 new tests in
+`tests/test_economy_core.mjs` (42 total now), plus a caught-in-the-writing
+test bug: an earlier test in the same file had already warmed
+`nationalMedians()`'s cache with a tiny dataset lacking wage/electricity
+data, silently poisoning it to `null` for every later test in the file
+until `_resetCache()` was added -- a live demonstration of exactly the
+kind of stale-cache bug this session already fixed once in the pipeline's
+own metadata handling.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Historical timelines: households' history was silently invisible in three places
 
 ## The same hand-maintained sparkline list was duplicated (and stale) three times

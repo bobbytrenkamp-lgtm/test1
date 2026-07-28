@@ -206,6 +206,47 @@ const CENTER_FIPS = String(CENTER_INDEX + 1).padStart(2, '0') + '001';
   eq(missing, [], 'countySignals returns an empty array for an unknown fips, not an error');
 }
 
+{
+  /* The four newest signal rules (labor participation, housing vacancy,
+     BLS wage, EIA electricity) all compare against a national median, so
+     they need a real pool -- reuse the readiness-score synthetic builder
+     rather than deriving a second one. */
+  // buildSyntheticEconomy sets inverted fields (wage, electricity) to
+  // (n-1-index), so the LAST county (highest index) gets the LOWEST raw
+  // wage/electricity value -- i.e. the best/cheapest one.
+  const { countyData, stateData } = buildSyntheticEconomy(25);
+  const lowFips = '25001';    // index 24 -> inverted value 0 (lowest wage/price)
+  const highFips = '01001';   // index 0 -> inverted value 24 (highest wage/price)
+
+  // nationalMedians() caches for the module's lifetime, and the earlier
+  // Loudoun/Fairfax countySignals test already warmed it (with no wage or
+  // electricity data at all, poisoning both medians to null) -- reset so
+  // this block's dataset is what actually gets measured.
+  E._resetCache();
+  const low = E.countySignals(countyData, lowFips, stateData);
+  const high = E.countySignals(countyData, highFips, stateData);
+
+  check(low.some(s => s.id === 'labor_cost_below_median'),
+        'a county with below-median BLS wage gets the labor_cost_below_median signal');
+  check(high.some(s => s.id === 'labor_cost_above_median'),
+        'a county with well-above-median BLS wage gets the labor_cost_above_median signal');
+  check(low.some(s => s.id === 'electricity_cost_below_median'),
+        'a state with below-median EIA electricity price gets the electricity_cost_below_median signal');
+  check(high.some(s => s.id === 'electricity_cost_above_median'),
+        'a state with well-above-median EIA electricity price gets the electricity_cost_above_median signal');
+
+  check(!low.some(s => s.id === 'labor_cost_above_median' || s.id === 'electricity_cost_above_median'),
+        'the below-median county does not also fire the above-median signals');
+
+  // countySignals(countyData, fips) with no third argument (existing callers
+  // that have not been updated, or a fips with no matching state) must not
+  // throw, and simply cannot fire the electricity signals.
+  const noState = E.countySignals(countyData, lowFips);
+  check(Array.isArray(noState), 'countySignals without stateData still returns an array, not a crash');
+  check(!noState.some(s => s.id.startsWith('electricity_cost')),
+        'electricity signals never fire without stateData to look the price up in');
+}
+
 check(Array.isArray(E.SIGNAL_RULES) && E.SIGNAL_RULES.length > 0,
       'SIGNAL_RULES is a non-empty rule table');
 check(E.SIGNAL_RULES.every(r => typeof r.id === 'string' && typeof r.test === 'function'),

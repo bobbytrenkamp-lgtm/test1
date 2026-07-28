@@ -5463,7 +5463,7 @@ function _renderEconomySectionForCounty(fips) {
           ${E.sparklineSvg(hist[m], { label: E.METRICS[m].label })}
         </div>`).join("");
 
-      const signals = E.countySignals(cData, fips);
+      const signals = E.countySignals(cData, fips, sData);
       const vintage = cData.acs_vintage;
 
       host.innerHTML = `
