@@ -873,8 +873,11 @@ window.ECONOMY = (function () {
         const ep = ctx.stateRec && ctx.stateRec.electricity_price;
         if (!ep || ep.value === null || ep.value === undefined || ctx.medians.electricity === null) return null;
         if (ep.value >= ctx.medians.electricity) return null;
+        // ep.value/ctx.medians.electricity are EIA's native cents-per-kWh —
+        // ranking above is fine unconverted, but display needs /100 or a
+        // realistic 9.2-cent rate reads as an absurd "$9.20/kWh".
         return { strength: "strong",
-                 text: `State industrial electricity price is ${fmtValue(ep.value, "usd_precise", 2)}/kWh (EIA, ${ep.as_of}), below the national state median of ${fmtValue(ctx.medians.electricity, "usd_precise", 2)}/kWh. Electricity is typically the largest recurring operating cost for a data center, so this is a direct cost advantage, not just workforce context.` };
+                 text: `State industrial electricity price is ${fmtValue(ep.value / 100, "usd_precise", 2)}/kWh (EIA, ${ep.as_of}), below the national state median of ${fmtValue(ctx.medians.electricity / 100, "usd_precise", 2)}/kWh. Electricity is typically the largest recurring operating cost for a data center, so this is a direct cost advantage, not just workforce context.` };
       },
     },
     {
@@ -885,7 +888,7 @@ window.ECONOMY = (function () {
         if (!ep || ep.value === null || ep.value === undefined || ctx.medians.electricity === null) return null;
         if (ep.value <= ctx.medians.electricity * 1.1) return null;
         return { strength: "caution",
-                 text: `State industrial electricity price is ${fmtValue(ep.value, "usd_precise", 2)}/kWh (EIA, ${ep.as_of}), above the national state median of ${fmtValue(ctx.medians.electricity, "usd_precise", 2)}/kWh. Electricity is typically the largest recurring operating cost for a data center, so this raises the operating cost baseline directly.` };
+                 text: `State industrial electricity price is ${fmtValue(ep.value / 100, "usd_precise", 2)}/kWh (EIA, ${ep.as_of}), above the national state median of ${fmtValue(ctx.medians.electricity / 100, "usd_precise", 2)}/kWh. Electricity is typically the largest recurring operating cost for a data center, so this raises the operating cost baseline directly.` };
       },
     },
   ];

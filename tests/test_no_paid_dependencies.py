@@ -191,6 +191,15 @@ def test_bls_qcew_requires_no_key():
     check("collect_bls_wages" in src, "BLS QCEW module missing entirely")
 
 
+def test_fema_nri_requires_no_key():
+    """FEMA's National Risk Index static file needs no registration or key
+    at all, same as BLS QCEW -- verify the pipeline never invents one."""
+    src = (ROOT / "data/update_economic_data.py").read_text()
+    check("NRI_API_KEY" not in src and "FEMA_API_KEY" not in src,
+          "an API key referenced for FEMA NRI -- its static file needs none")
+    check("collect_fema_nri" in src, "FEMA NRI module missing entirely")
+
+
 # ── 3. Every API key must be optional ───────────────────────────────────────
 
 def test_api_keys_are_all_optional():

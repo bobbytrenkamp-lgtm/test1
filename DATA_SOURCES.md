@@ -369,6 +369,46 @@ every county) remains the platform's population figure. See
 - A BLS failure cannot break the ACS county data it supplements — isolated
   the same way CBP, Building Permits, and EIA are.
 
+### Federal Emergency Management Agency — National Risk Index (NRI) (optional module)
+- **Publisher**: Federal Emergency Management Agency (FEMA)
+- **Endpoint**: `https://hazards.fema.gov/nri/Content/StaticDocuments/DataDownload/NRI_Table_Counties/NRI_Table_Counties.csv`
+  — a free, public-domain, no-key-required static file covering all
+  ~3,144 US counties across 18 natural hazard types (flood, hurricane,
+  wildfire, earthquake, winter weather, and more), published as a single
+  composite risk score and a plain-language rating.
+- **Confidence caveat, stated plainly**: unlike every other source in this
+  document, this URL and its column names (`STCOFIPS`, `RISK_SCORE`,
+  `RISK_RATNG`) were NOT independently fetched and byte-verified before this
+  module shipped. The session that wrote it had its outbound network access
+  blocked by policy (confirmed as a policy denial, not a transient failure).
+  The URL itself was confirmed against a real, independently-indexed FEMA
+  static file at the same path (a sibling Census-tract shapefile), and the
+  column names come from FEMA's own published documentation and multiple
+  independent secondary sources republishing the same dataset — reasonable
+  grounds to ship, not a guess, but genuinely less certain than this
+  pipeline's other sources. If `nri_available` stays `false` after a
+  `--force-nri` run, the warning text names exactly which candidate column
+  names it tried against the file's real header, which is the first place
+  to look.
+- **Output**: merged into each county's own record as `natural_hazard_risk`
+  — `{score, rating, as_of}`, filtered to counties matching one of a short
+  list of candidate column names (`_NRI_FIPS_FIELD_CANDIDATES`,
+  `_NRI_SCORE_FIELD_CANDIDATES`, `_NRI_RATING_FIELD_CANDIDATES`), the same
+  defensive pattern `broadband_candidates` and BLS's wage-field candidates
+  already use for genuine column-naming uncertainty.
+- **One bulk request for the whole country**, not one per county — like
+  EIA's electricity price, unlike BLS/Building Permits, since FEMA publishes
+  NRI as a single table rather than per-area slices. Own 180-day freshness
+  gate (`--nri-max-age-days`, `nri_last_successful_update`), the longest of
+  any module here, since FEMA republishes NRI only roughly annually.
+- **Deliberately not folded into the Data Center Readiness Score**: natural
+  hazard risk is a different kind of judgment (physical/environmental risk —
+  insurance cost, uptime risk, construction requirements) from that score's
+  nine economic-attractiveness factors, the same reasoning that already
+  keeps the regulatory restriction level separate from it.
+- A FEMA NRI failure cannot break the ACS county data it supplements —
+  isolated the same way CBP, Building Permits, EIA, and BLS are.
+
 ### Data Center Readiness Score — derived, not a data source
 - Not a new data source: a client-side composite score (`js/economy.js`,
   `readinessScore()`) computed in the browser from nine factors already
@@ -390,10 +430,11 @@ every county) remains the platform's population figure. See
   scored on the other eight factors, with a reported completeness
   percentage rather than a silently penalized score.
 - Deliberately excludes the regulatory/zoning restriction level
-  (`map_data.json`): that dataset has different coverage and confidence
-  characteristics and answers a different question (legal risk, not
-  economic attractiveness). The two are shown as separate figures
-  everywhere the score appears, never blended into one hidden number.
+  (`map_data.json`) and FEMA's National Risk Index (`natural_hazard_risk`):
+  both answer a different question (legal risk and physical/environmental
+  risk, respectively) than economic attractiveness. All three are shown as
+  separate figures everywhere they appear, never blended into one hidden
+  number.
 
 ### Pipeline and safety
 - **Script**: `data/update_economic_data.py` (Python standard library only)

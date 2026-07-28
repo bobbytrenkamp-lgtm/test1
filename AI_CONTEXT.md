@@ -673,7 +673,7 @@ The three JS modules mirror the zoning split (`zoning.js` / `zoning-map.js` /
 `zoning-details.js`): `economy.js` owns data and math, the other two own DOM.
 Load order in index.html is economy.js -> economy-view.js -> economy-map.js.
 
-### Three supplementary fields — read this before touching any of them
+### Four supplementary fields — read this before touching any of them
 
 `census_county.json` counties and `census_state.json` states each carry
 fields that are NOT part of the ACS `.metrics` shape `metricValue()`/
@@ -696,15 +696,34 @@ nothing, by design:
   `csv.DictReader` keyed by header name), the one exception to every other
   source's JSON, since QCEW's open-data access has no JSON equivalent.
 - `electricity_price` (state) — `{value, as_of, sector}`. EIA industrial
-  retail electricity price, cents/kWh. State-level only, not county-level —
-  a county's profile panel looks it up via that county's own `state_fips`
-  and labels it "state average, not this specific county" rather than
-  implying county-level precision it does not have.
+  retail electricity price, **cents/kWh — the raw stored unit, not what
+  gets displayed**. Every place that shows it as a dollar figure divides by
+  100 first (`ep.value / 100`), or a realistic 9.2-cent rate renders as an
+  absurd "$9.20/kWh" (100x too high) — a real bug found and fixed in
+  economy-view.js, economy.js's electricity SIGNAL_RULES, and report.js
+  simultaneously; see AI_CHANGELOG.md. Anything that only RANKS the raw
+  value (`readinessScore`'s percentile, the SIGNAL_RULES threshold
+  comparisons themselves) does not need the conversion — cents-to-cents
+  ranking is unaffected by the unit, only display is. State-level only, not
+  county-level — a county's profile panel looks it up via that county's own
+  `state_fips` and labels it "state average, not this specific county"
+  rather than implying county-level precision it does not have.
+- `natural_hazard_risk` (county) — `{score, rating, as_of}`. FEMA National
+  Risk Index composite natural hazard score/rating across 18 hazard types.
+  **Lower confidence than this pipeline's other sources** — its exact CSV
+  column names were not independently fetched and verified before this
+  shipped (network access was blocked in the session that wrote it). See
+  `collect_fema_nri()`'s docstring in `data/update_economic_data.py` and
+  DATA_SOURCES.md for exactly what the first live run needs to confirm.
+  Deliberately excluded from the Readiness Score, same reasoning as the
+  regulatory restriction level: a different kind of judgment
+  (physical/environmental risk) than economic attractiveness.
 
-All three are optional and isolated in the pipeline (a failure leaves ACS
+All four are optional and isolated in the pipeline (a failure leaves ACS
 data untouched). Building Permits also drives its own `SIGNAL_RULES` entries
 in `economy.js` (`permits_accelerating`, `permits_slowing` read
-`c.building_permits` directly, not through `metricValue()`).
+`c.building_permits` directly, not through `metricValue()`); so do average
+weekly wage and electricity price (`labor_cost_*`, `electricity_cost_*`).
 
 A Census Population Estimates Program (PEP) module — a current-year
 `population_estimate` field, merged the same way — was tried and retired.

@@ -247,6 +247,34 @@ const CENTER_FIPS = String(CENTER_INDEX + 1).padStart(2, '0') + '001';
         'electricity signals never fire without stateData to look the price up in');
 }
 
+{
+  /* Regression guard: EIA's electricity_price.value is cents/kWh (a
+     realistic industrial rate reads as "9.23"), but every place that
+     displays it must show a dollar figure divided by 100 -- "$9.23/kWh"
+     would be a real price 100x too high. Uses realistic cents-scale values
+     (unlike the 0-24 synthetic pool above, which never exercises this). */
+  const { countyData, stateData } = buildSyntheticEconomy(25);
+  const cheapFips = '25001';
+  countyData.counties[cheapFips].avg_weekly_wage = { value: 500, year: 2024 };
+  stateData.states[countyData.counties[cheapFips].state_fips].electricity_price =
+    { value: 6.5, as_of: '2026-01' };   // 6.5 cents/kWh, a realistic cheap rate
+  for (const fips in countyData.counties) {
+    if (fips === cheapFips) continue;
+    const sf = countyData.counties[fips].state_fips;
+    stateData.states[sf].electricity_price = { value: 20 + Number(fips), as_of: '2026-01' };
+  }
+  E._resetCache();
+  const signals = E.countySignals(countyData, cheapFips, stateData);
+  const sig = signals.find(s => s.id === 'electricity_cost_below_median');
+  check(!!sig, 'electricity_cost_below_median fires for the realistic-cents scenario');
+  if (sig) {
+    check(sig.text.includes('$0.07') || sig.text.includes('$0.06'),
+          `electricity price text must show a realistic $/kWh (~$0.065), not raw cents; got: "${sig.text}"`);
+    check(!/\$6\.5\d*\/kWh/.test(sig.text),
+          `electricity price text must not display raw cents as if they were dollars; got: "${sig.text}"`);
+  }
+}
+
 check(Array.isArray(E.SIGNAL_RULES) && E.SIGNAL_RULES.length > 0,
       'SIGNAL_RULES is a non-empty rule table');
 check(E.SIGNAL_RULES.every(r => typeof r.id === 'string' && typeof r.test === 'function'),
