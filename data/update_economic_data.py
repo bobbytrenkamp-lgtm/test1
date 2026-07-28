@@ -1318,7 +1318,15 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
             "last_successful_update": census_updated,
             "selected_variables": (county_payload or {}).get("selected_variables")
                                   or (prior.get("census", {}) or {}).get("selected_variables"),
-            "unverified_metrics": var_problems or (prior.get("census", {}) or {}).get("unverified_metrics", {}),
+            # var_problems is None when Census was skipped this cycle (still
+            # fresh) — carry the prior known status forward. But an empty {}
+            # means verify_variables() actually ran and found zero problems,
+            # which must NOT fall back to a prior (possibly stale) problem
+            # list: `{} or prior` would silently resurrect an already-fixed
+            # warning, exactly the population-label bug this pipeline once
+            # shipped with, misreported as still-broken after the real fix.
+            "unverified_metrics": var_problems if var_problems is not None
+                                   else (prior.get("census", {}) or {}).get("unverified_metrics", {}),
         },
         "sources": [
             {
@@ -1732,7 +1740,7 @@ def main():
     state_payload  = existing_state
     cbp_payload    = existing_cbp
     acs_vintage    = (existing_county or {}).get("acs_vintage")
-    var_problems   = {}
+    var_problems   = None   # None = verification did not run this cycle (Census skipped/fresh)
     census_ran     = False
     permits_ran    = False
     eia_ran        = False

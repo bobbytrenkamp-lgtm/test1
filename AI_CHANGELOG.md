@@ -2,6 +2,48 @@
 
 ---
 
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: A metadata-reporting bug found while verifying the population-label fix against a live run
+
+## `unverified_metrics` could resurrect an already-fixed warning
+While pushing this session's batch (the BLS warning-message fix and the
+Data Center Readiness Score), the scheduled workflow had independently run
+and pushed a fresh data refresh. Its `economic_metadata.json` still showed
+`population` as unverified with the OLD wanted fragment (`'total
+population'`) -- even though the config fix (`expect_label` -> `["total"]`)
+had already been live for two commits, and the actual collected population
+value was correct and non-null. The real data was fine; only the
+diagnostic metadata was lying.
+
+Root cause: `write_metadata()` merged this run's verification result with
+`var_problems or prior.unverified_metrics`. `var_problems` defaults to `{}`
+both when Census verification ran this cycle and found nothing wrong, AND
+when Census was skipped entirely because it was still within its freshness
+window -- both are "falsy", so `{} or prior_stuff` always fell through to
+the prior run's stored status. A genuinely clean re-verification could
+never clear a stale warning; it could only ever repeat whatever the last
+run that actually executed verify_variables() had said, however old.
+
+Fixed by making the "did verification run this cycle" distinction
+explicit: `var_problems` now defaults to `None` (verification not
+attempted) rather than `{}`, and the metadata merge checks `is not None`
+instead of truthiness. A real empty-dict result (verified, zero problems)
+now correctly clears any stale prior warning; a `None` (skipped, still
+fresh) still correctly preserves the last known status. Added
+`test_unverified_metrics_cleared_by_a_successful_reverification` covering
+both branches.
+
+This was a diagnostics-only bug -- the actual ACS data being published was
+never affected -- but it's exactly the kind of self-contradicting signal
+that caused the BLS near-miss earlier this session (a warning that sounds
+like failure when the underlying system is actually healthy). Worth
+catching on the same principle: trust the data, but don't let stale
+metadata argue with it.
+
+---
+
 Date: 2026-07-27
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7

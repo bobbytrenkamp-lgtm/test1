@@ -1215,6 +1215,40 @@ def test_metadata_preserves_census_timestamp_on_fred_only_run():
             econ.META_OUT = orig
 
 
+def test_unverified_metrics_cleared_by_a_successful_reverification():
+    """A run that actually re-checks ACS variables and finds zero problems must
+    report zero problems -- not silently resurrect a prior run's stale warning.
+    `var_problems or prior_stuff` looked reasonable but treated "ran and passed"
+    (empty dict, falsy) the same as "did not run this cycle" (also falsy),
+    so a real fix (e.g. the population label bug) kept reporting itself as
+    still broken in metadata even after live data proved it was fixed."""
+    with tempfile.TemporaryDirectory() as td:
+        orig = econ.META_OUT
+        try:
+            econ.META_OUT = Path(td) / "m.json"
+            econ.warnings.clear()
+            prior = {"census": {"last_successful_update": "2026-07-20T00:00:00+00:00",
+                                "unverified_metrics": {"population": ["value=B01003_001E [stale]"]}},
+                     "acs_vintage": 2024}
+
+            # Census actually ran this cycle and verify_variables() found
+            # nothing wrong: var_problems is a real, empty dict.
+            meta = econ.write_metadata({"series": {}}, {"counties": {}}, {"states": {}}, None,
+                                       2024, {}, prior, census_ran=True)
+            eq(meta["census"]["unverified_metrics"], {},
+               "a clean re-verification clears a prior stale warning, not carries it forward")
+
+            # Census was skipped this cycle (still fresh): var_problems is
+            # None because verify_variables() was never called. The prior
+            # known status must be preserved, not wiped to a false "clean".
+            meta2 = econ.write_metadata({"series": {}}, None, None, None,
+                                        None, None, prior, census_ran=False)
+            eq(meta2["census"]["unverified_metrics"], prior["census"]["unverified_metrics"],
+               "a skipped run preserves the last known verification status")
+        finally:
+            econ.META_OUT = orig
+
+
 def test_generated_at_does_not_advance_on_a_noop_run():
     """generated_at means "when data was last generated", not "when the pipeline
     last ran". A keyless run that fetched nothing must not stamp a fresh
