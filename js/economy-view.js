@@ -625,14 +625,18 @@
     }).join("");
 
     const hist = rec.history || {};
-    const sparks = [
-      ["population", "Population"],
-      ["median_household_income", "Median household income"],
-      ["unemployment_rate", "Unemployment rate"],
-    ].map(([k, label]) => `
+    // Derived from HISTORY_METRICS (in EXPLORER_METRICS display order) rather
+    // than a hand-maintained list: households was added to HISTORY_METRICS
+    // (real history data has been in census_county.json since Phase 1) but
+    // this list was never updated to match, so its timeline was silently
+    // invisible even though the data existed. Deriving it means a future
+    // metric marked history:true shows up here automatically.
+    const sparks = E().EXPLORER_METRICS
+      .filter(m => E().HISTORY_METRICS.has(m) && hist[m] && hist[m].length)
+      .map(m => `
       <div class="econ-spark-row">
-        <span class="econ-spark-label">${E().escapeText(label)}</span>
-        ${E().sparklineSvg(hist[k], { label, color: null })}
+        <span class="econ-spark-label">${E().escapeText(E().METRICS[m].label)}</span>
+        ${E().sparklineSvg(hist[m], { label: E().METRICS[m].label, color: null })}
       </div>`).join("");
 
     const signals = isCounty ? E().countySignals(cData, key) : [];

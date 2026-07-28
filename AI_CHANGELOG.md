@@ -5,6 +5,63 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Historical timelines: households' history was silently invisible in three places
+
+## The same hand-maintained sparkline list was duplicated (and stale) three times
+Auditing the "historical timelines" item found `HISTORY_METRICS` in
+`js/economy.js` already lists four metrics (`population`, `households`,
+`median_household_income`, `unemployment_rate`) and `households` history
+data has genuinely existed in `census_county.json` since the Phase 1 ACS
+expansion -- but the three places that render "Trends" sparklines
+(`js/economy-view.js`'s Economy profile panel, `js/jurisdiction.js`'s
+Jurisdiction page, and `js/map.js`'s county detail panel) each hardcoded
+their own 3-item `[key, label]` list that predates `households` being
+added, so its timeline never appeared anywhere despite the data existing.
+
+Replaced all three hardcoded lists with a derivation from
+`HISTORY_METRICS`/`EXPLORER_METRICS`/`METRICS` (filtered to metrics that
+actually have non-empty history data for the record being shown), so a
+future metric marked `history: true` shows up in all three places
+automatically instead of needing the same manual edit three times.
+Browser-verified: "Total households" now renders correctly in the
+Jurisdiction page and the Map county detail panel (the Economy tab's own
+fixture-driven test still correctly omits it, since that synthetic fixture
+was never given household history data -- exactly the intended behavior of
+only showing timelines that truly have data).
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: County comparison tool: found and fixed a dead button, added a second entry point
+
+## The Economy tab's "Add to compare" button never worked
+Auditing the platform for the "county comparison tool expansion" item found
+that the comparison tool itself was already full-featured (radar charts,
+CSV export, a printable report -- `js/compare.js`) but the Economy tab's
+county profile panel could not actually reach it: its click handler called
+`addCountyToCompare()` or `window.COMPARE.addCounty`, neither of which
+exists anywhere in the codebase. The button always silently did nothing.
+The real API is the classic-script global `addToCompare(fips)`, already
+used correctly the same way by `js/home.js` and `js/map.js`.
+
+Fixed the wiring, and while doing so noticed the Jurisdiction Intelligence
+Page had a Watch button but no comparison entry point at all -- every other
+detail surface had one. Added a matching "Add to compare" button there.
+Both now navigate to the Map tab, wait for it to finish initializing, open
+the compare panel if it is not already open, and add the county --
+mirroring the existing "Compare watchlist" bulk action in home.js.
+Extracted the shared navigate/wait/open/add sequence into
+`compare.js`'s `navigateAndAddToCompare(fips)` rather than letting it get
+duplicated a third time. Browser-verified both entry points: the compare
+panel opens with the selected county's real data rendered inside it.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Formal test coverage for economy.js; NOAA/FEMA/EPA/FAA phase blocked on network
 
 ## Phase 5 (NOAA/FEMA/EPA/FAA/DOT) research: blocked, not skipped
