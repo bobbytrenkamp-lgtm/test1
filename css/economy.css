@@ -623,6 +623,19 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* The table below scrolls inside itself rather than the page (see its own
+   comment) -- correct for layout, but the profile panel is a fixed-width
+   sidebar at every screen size (not just mobile), so two of its five
+   columns (state/US median) are off-screen with no visual cue that more
+   content exists sideways regardless of viewport. Always shown, not
+   media-gated to narrow widths, because the underlying cause (table wider
+   than a fixed-width sidebar column) is not viewport-dependent either. */
+.econ-profile-table-hint {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin: -4px 0 6px;
+}
+
 .econ-profile-table {
   width: 100%;
   border-collapse: collapse;

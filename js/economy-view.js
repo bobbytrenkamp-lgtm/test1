@@ -718,6 +718,7 @@
 
       ${readinessHtml}
 
+      <div class="econ-profile-table-hint" aria-hidden="true">Scroll table for state &amp; US medians &rarr;</div>
       <table class="econ-profile-table">
         <caption class="econ-sr-only">Economic metrics with United States and state comparisons</caption>
         <thead><tr>

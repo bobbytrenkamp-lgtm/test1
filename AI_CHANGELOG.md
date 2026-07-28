@@ -5,6 +5,37 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Visual/UX polish: a discoverability gap in the Economy profile table
+
+## The profile table's horizontal scroll had no visual affordance
+Screenshotting this session's own new UI (the readiness score panel) at
+390px surfaced something pre-existing, not something this session
+introduced: `.econ-profile-table` already scrolls correctly inside its own
+container rather than the page (confirmed live: `scrollWidth 462 >
+clientWidth 314` on mobile, page `scrollWidth` not affected) -- but nothing
+told a user that two of its five columns (state median, US median) exist
+off-screen to the right. It looked finished, not scrollable.
+
+Assumed at first this was mobile-only and gated a hint behind
+`max-width: 480px` -- checking desktop before committing showed the same
+table is ALSO clipped at 1280px (`scrollWidth 466 > clientWidth 308`),
+because the profile panel is a fixed ~340px sidebar column at every screen
+size, not a mobile-narrow thing. Removed the media-query gate and made the
+"Scroll table for state & US medians →" hint always visible instead of
+shipping something that fixed the symptom in the one place a screenshot
+happened to be taken.
+
+Deliberately did NOT touch the underlying scroll mechanism or table
+layout -- it already works and already has a test (`no horizontal
+overflow` in `tests/e2e_smoke.mjs`'s Mobile nav section) confirming the
+PAGE never scrolls sideways. This is additive: a small always-visible text
+hint, not a redesign of a component that was not broken.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: FRED integration audit: 2 new series added, needs a live run to confirm
 
 ## Audited the 21-series list for coverage gaps
