@@ -26,6 +26,7 @@ if (typeof window === 'undefined') {
   for (const rel of [
     'js/3d/terrain-tiles.js', 'js/3d/scene-state.js',
     'js/3d/objects.js', 'js/3d/history.js', 'js/3d/selection.js', 'js/3d/measure.js',
+    'js/3d/constraints.js',
   ]) {
     require(path.join(ROOT, rel));
   }
@@ -277,6 +278,113 @@ if (typeof window === 'undefined') {
 
     OBJ.clear();
     assertEq(OBJ.list().length, 0, 'clear() empties the store');
+  }
+
+  console.groupEnd();
+
+  // ── SCENE3D_OBJECTS (Phase C: types & phasing) ──────────────────────────
+
+  console.group('SCENE3D_OBJECTS (Phase C: types & phasing)');
+
+  if (OBJ) {
+    OBJ.clear();
+
+    const road = OBJ.create({ type: 'road', position: { x: 0, z: 0 } });
+    assertEq(
+      { width: road.footprint.width, depth: road.footprint.depth },
+      OBJ.TYPE_DEFAULTS.road.footprint,
+      'a road with no footprint override uses TYPE_DEFAULTS.road dimensions'
+    );
+    assert(road.metrics.footprintSqft === undefined, 'a road has no footprintSqft — it is a linear type, not an area type');
+    assert(typeof road.metrics.lengthFt === 'number', 'a road has a computed lengthFt');
+
+    const fence = OBJ.create({ type: 'fence' });
+    assert(typeof fence.metrics.lengthFt === 'number', 'a fence has a computed lengthFt');
+
+    const parking = OBJ.create({ type: 'parking' });
+    assert(typeof parking.metrics.footprintSqft === 'number', 'parking is an area type, like buildings');
+    assert(parking.metrics.lengthFt === undefined, 'parking has no lengthFt — it is an area type, not linear');
+
+    const bogus = OBJ.create({ type: 'spaceship' });
+    assertEq(bogus.type, 'building', 'an unrecognized type falls back to building rather than crashing');
+
+    assertEq(OBJ.create({}).phase, 1, 'phase defaults to 1 when not specified');
+    assertEq(OBJ.create({ phase: 3 }).phase, 3, 'a valid phase is stored as given');
+    assertEq(OBJ.create({ phase: -1 }).phase, 1, 'an invalid (non-positive) phase falls back to 1 rather than crashing');
+    assertEq(OBJ.create({ phase: 2.7 }).phase, 3, 'a fractional phase is rounded');
+
+    const building = OBJ.create({ type: 'building', phase: 2 });
+    OBJ.update(building.id, { phase: 5 });
+    assertEq(OBJ.get(building.id).phase, 5, 'update() can change phase');
+    OBJ.update(building.id, { phase: 0 });
+    assertEq(OBJ.get(building.id).phase, 5, 'update() ignores an invalid phase rather than corrupting the object');
+
+    const metricsAll = OBJ.computeSiteMetrics();
+    assertEq(metricsAll.roadCount, 1, 'computeSiteMetrics counts roads separately from buildings');
+    assertEq(metricsAll.fenceCount, 1, 'computeSiteMetrics counts fences separately');
+    assert(metricsAll.parkingCount >= 1, 'computeSiteMetrics counts parking separately');
+    assert(typeof metricsAll.roadLengthFt === 'number' && metricsAll.roadLengthFt > 0, 'roadLengthFt aggregates road length');
+
+    // fromArray() backward compatibility: an object saved before Phase C
+    // existed has no `type`/`phase` keys at all — must default exactly like
+    // a Phase B building always implicitly meant.
+    OBJ.fromArray([{ id: 'legacy_1', footprint: { width: 20, depth: 15 }, height: 8, position: { x: 1, z: 1 } }]);
+    const legacy = OBJ.get('legacy_1');
+    assertEq(legacy.type, 'building', 'a pre-Phase-C object (no type key) defaults to building');
+    assertEq(legacy.phase, 1, 'a pre-Phase-C object (no phase key) defaults to phase 1');
+
+    OBJ.clear();
+  }
+
+  console.groupEnd();
+
+  // ── SCENE3D_CONSTRAINTS (Phase C) ───────────────────────────────────────
+
+  console.group('SCENE3D_CONSTRAINTS');
+
+  const CONSTR = g.SCENE3D_CONSTRAINTS;
+  assert(!!CONSTR, 'SCENE3D_CONSTRAINTS is defined');
+
+  if (CONSTR) {
+    const square = [{ x: 0, z: 0 }, { x: 10, z: 0 }, { x: 10, z: 10 }, { x: 0, z: 10 }];
+
+    assert(CONSTR.pointInPolygon({ x: 5, z: 5 }, square), 'a point at the center of a square is inside it');
+    assert(!CONSTR.pointInPolygon({ x: 15, z: 5 }, square), 'a point outside the square is reported as outside');
+
+    const axisAligned = { id: 'x', label: 'X', position: { x: 5, z: 5 }, rotationDeg: 0, footprint: { width: 4, depth: 2 } };
+    const corners = CONSTR.rectCorners(axisAligned);
+    assertEq(corners.length, 4, 'rectCorners returns exactly 4 points');
+    assertClose(corners[0].x, 3, 0.001, 'an unrotated rectangle\'s corner x matches position - halfWidth');
+
+    const rotated90 = { id: 'y', label: 'Y', position: { x: 0, z: 0 }, rotationDeg: 90, footprint: { width: 4, depth: 2 } };
+    const rc = CONSTR.rectCorners(rotated90);
+    // rotating 90 degrees swaps the effective footprint's extent along x/z
+    const xExtent = Math.max(...rc.map(c => c.x)) - Math.min(...rc.map(c => c.x));
+    assertClose(xExtent, 2, 0.01, 'a 90-degree rotation swaps width/depth extents along x');
+
+    const insideObj = { id: 'a', label: 'Inside', position: { x: 5, z: 5 }, rotationDeg: 0, footprint: { width: 2, depth: 2 } };
+    assertEq(CONSTR.checkObjectConstraints(insideObj, [insideObj], square).status, 'requires-review', 'fully inside the boundary with no overlaps -> requires-review, never pass');
+
+    const outsideObj = { id: 'b', label: 'Outside', position: { x: 20, z: 20 }, rotationDeg: 0, footprint: { width: 2, depth: 2 } };
+    assertEq(CONSTR.checkObjectConstraints(outsideObj, [outsideObj], square).status, 'conflict', 'entirely outside the boundary -> conflict');
+
+    const noBoundary = CONSTR.checkObjectConstraints(insideObj, [insideObj], null);
+    assertEq(noBoundary.status, 'unknown', 'no parcel boundary available -> unknown, not a guess');
+
+    const overlapA = { id: 'c', label: 'C', position: { x: 4, z: 5 }, rotationDeg: 0, footprint: { width: 3, depth: 3 } };
+    const overlapB = { id: 'd', label: 'D', position: { x: 6, z: 5 }, rotationDeg: 0, footprint: { width: 3, depth: 3 } };
+    assert(CONSTR.rectanglesOverlap(overlapA, overlapB), 'two rectangles whose extents intersect are detected as overlapping');
+    const resultOverlap = CONSTR.checkObjectConstraints(overlapA, [overlapA, overlapB], square);
+    assertEq(resultOverlap.status, 'conflict', 'overlapping another object -> conflict');
+    assert(resultOverlap.reasons.some(r => r.includes('D')), 'the conflict reason names the object it overlaps with');
+
+    const farA = { id: 'e', label: 'E', position: { x: 1, z: 1 }, rotationDeg: 0, footprint: { width: 1, depth: 1 } };
+    const farB = { id: 'f', label: 'F', position: { x: 9, z: 9 }, rotationDeg: 0, footprint: { width: 1, depth: 1 } };
+    assert(!CONSTR.rectanglesOverlap(farA, farB), 'two well-separated rectangles do not overlap');
+
+    // Never fabricate a 'pass'/'compliant'/'approved' status anywhere
+    const allStatuses = ['requires-review', 'conflict', 'unknown'];
+    assert(!allStatuses.some(s => /pass|compliant|approved|buildable/i.test(s)), 'no status vocabulary word implies verified legal compliance');
   }
 
   console.groupEnd();

@@ -2420,16 +2420,25 @@ function _syncScene3dModeButtons(mode) {
 
 const METERS_TO_FEET_3D = 3.28084;
 
-/* Re-renders the object list + live metrics + undo/redo/delete button state
- * inside the 3D panel. Called after any object create/edit/delete/undo/redo,
- * on selection change, and after activate()/applyState() so a reopened or
- * restored scene shows its objects immediately rather than an empty list. */
+const SCENE3D_CONSTRAINT_LABELS = {
+  conflict: "⚠ Conflict",
+  "requires-review": "Review setbacks",
+  unknown: "No parcel selected",
+};
+
+/* Re-renders the object list + phase filter + setback readout + live
+ * metrics + undo/redo/delete button state inside the 3D panel. Called after
+ * any object create/edit/delete/undo/redo, on selection change, and after
+ * activate()/applyState() so a reopened or restored scene shows its objects
+ * immediately rather than an empty list. */
 function renderScene3dObjectPanel() {
   const listEl = document.getElementById("scene3d-object-list");
   const metricsEl = document.getElementById("scene3d-metrics");
   const undoBtn = document.getElementById("scene3d-undo");
   const redoBtn = document.getElementById("scene3d-redo");
   const delBtn  = document.getElementById("scene3d-delete");
+  const phaseSelect = document.getElementById("scene3d-phase-filter");
+  const setbacksEl = document.getElementById("scene3d-setbacks");
   if (!listEl || !window.SCENE3D) return;
 
   const objects = window.SCENE3D.listObjects();
@@ -2437,20 +2446,36 @@ function renderScene3dObjectPanel() {
   if (!objects.length) {
     const em = document.createElement("div");
     em.className = "scene3d-obj-empty";
-    em.textContent = "No buildings yet — click “+ Building” to add a conceptual volume.";
+    em.textContent = "No objects yet — use the buttons above to add a conceptual building, parking lot, road, or fence.";
     listEl.appendChild(em);
   } else {
     objects.forEach(obj => {
       const row = document.createElement("div");
       row.className = "scene3d-obj-row" + (obj.selected ? " selected" : "");
-      const wFt = Math.round((obj.footprint.width || 0) * METERS_TO_FEET_3D);
-      const dFt = Math.round((obj.footprint.depth || 0) * METERS_TO_FEET_3D);
-      const hFt = Math.round((obj.height || 0) * METERS_TO_FEET_3D);
+
+      const typeLabel = obj.type.charAt(0).toUpperCase() + obj.type.slice(1);
+      let dims;
+      if (obj.type === "road" || obj.type === "fence") {
+        const lenFt = Math.round((obj.footprint.depth || 0) * METERS_TO_FEET_3D);
+        dims = `${lenFt}′ long (approx.)`;
+      } else {
+        const wFt = Math.round((obj.footprint.width || 0) * METERS_TO_FEET_3D);
+        const dFt = Math.round((obj.footprint.depth || 0) * METERS_TO_FEET_3D);
+        const hFt = Math.round((obj.height || 0) * METERS_TO_FEET_3D);
+        dims = `${wFt}′ × ${dFt}′ × ${hFt}′ (approx.)`;
+      }
+      const constraintStatus = (obj.constraint && obj.constraint.status) || "unknown";
+      const constraintLabel = SCENE3D_CONSTRAINT_LABELS[constraintStatus] || "";
+      const constraintTitle = (obj.constraint && obj.constraint.reasons || []).join(" ");
 
       const selectBtn = document.createElement("button");
       selectBtn.type = "button";
       selectBtn.className = "scene3d-obj-select";
-      selectBtn.innerHTML = `${obj.label} <span class="scene3d-obj-dims">${wFt}′ × ${dFt}′ × ${hFt}′ (approx.)</span>`;
+      selectBtn.title = constraintTitle;
+      selectBtn.innerHTML =
+        `<span class="scene3d-obj-label">${obj.label} <span class="scene3d-obj-type">${typeLabel} · Phase ${obj.phase}</span></span>` +
+        `<span class="scene3d-obj-dims">${dims}</span>` +
+        (constraintStatus === "conflict" ? `<span class="scene3d-obj-flag scene3d-obj-flag-conflict">${constraintLabel}</span>` : "");
       selectBtn.addEventListener("click", () => window.SCENE3D.selectObject(obj.id));
 
       const delRowBtn = document.createElement("button");
@@ -2469,17 +2494,39 @@ function renderScene3dObjectPanel() {
     });
   }
 
+  if (phaseSelect) {
+    const phases = window.SCENE3D.listPhases();
+    const currentVal = phaseSelect.value;
+    phaseSelect.innerHTML = `<option value="">All phases</option>` +
+      phases.map(p => `<option value="${p}">Phase ${p}</option>`).join("");
+    if (phases.some(p => String(p) === currentVal)) phaseSelect.value = currentVal;
+  }
+
   if (metricsEl) {
     const m = window.SCENE3D.getMetrics();
-    if (!m || m.buildingCount === 0) {
+    if (!m || (m.buildingCount === 0 && m.parkingCount === 0 && m.roadCount === 0 && m.fenceCount === 0)) {
       metricsEl.innerHTML = "";
     } else {
       const coverage = typeof m.coveragePct === "number" ? `${m.coveragePct}% of site (approx.)` : "site area unavailable";
-      metricsEl.innerHTML =
-        `<span>${m.buildingCount} building${m.buildingCount === 1 ? "" : "s"}</span>` +
-        `<span>${m.totalFootprintSqft.toLocaleString()} sq ft footprint (approx.)</span>` +
-        `<span>${coverage}</span>` +
-        `<span>Max height ${m.maxHeightFt.toLocaleString()} ft (approx.)</span>`;
+      const parts = [];
+      if (m.buildingCount) parts.push(`<span>${m.buildingCount} building${m.buildingCount === 1 ? "" : "s"}, ${m.totalFootprintSqft.toLocaleString()} sq ft footprint (approx.)</span>`);
+      if (m.buildingCount) parts.push(`<span>${coverage}</span>`);
+      if (m.buildingCount) parts.push(`<span>Max height ${m.maxHeightFt.toLocaleString()} ft (approx.)</span>`);
+      if (m.parkingCount) parts.push(`<span>${m.parkingCount} parking area${m.parkingCount === 1 ? "" : "s"}</span>`);
+      if (m.roadCount) parts.push(`<span>${m.roadCount} road segment${m.roadCount === 1 ? "" : "s"}, ${m.roadLengthFt.toLocaleString()} ft total (approx.)</span>`);
+      if (m.fenceCount) parts.push(`<span>${m.fenceCount} fence segment${m.fenceCount === 1 ? "" : "s"}, ${m.fenceLengthFt.toLocaleString()} ft total (approx.)</span>`);
+      metricsEl.innerHTML = parts.join("");
+    }
+
+    if (setbacksEl) {
+      if (m && m.setbacks) {
+        const s = m.setbacks;
+        setbacksEl.hidden = false;
+        setbacksEl.innerHTML = `Zoning setbacks for manual review — front ${s.front ?? "—"}′, side ${s.side ?? "—"}′, rear ${s.rear ?? "—"}′. Not verified against object positions geometrically.`;
+      } else {
+        setbacksEl.hidden = true;
+        setbacksEl.innerHTML = "";
+      }
     }
   }
 
@@ -3167,9 +3214,22 @@ function initLeafletMap() {
     if (state) window.SCENE3D.applyState(Object.assign({}, state, { exaggeration }));
   });
 
-  // 3D object toolbar (Phase B — building volumes, selection, undo/redo)
+  // 3D object toolbar (Phase B/C — building/parking/road/fence, selection, undo/redo)
   document.getElementById("scene3d-add-building")?.addEventListener("click", () => {
-    window.SCENE3D?.createBuilding();
+    window.SCENE3D?.createObject("building");
+  });
+  document.getElementById("scene3d-add-parking")?.addEventListener("click", () => {
+    window.SCENE3D?.createObject("parking");
+  });
+  document.getElementById("scene3d-add-road")?.addEventListener("click", () => {
+    window.SCENE3D?.createObject("road");
+  });
+  document.getElementById("scene3d-add-fence")?.addEventListener("click", () => {
+    window.SCENE3D?.createObject("fence");
+  });
+  document.getElementById("scene3d-phase-filter")?.addEventListener("change", e => {
+    const val = e.target.value;
+    window.SCENE3D?.setPhaseFilter(val === "" ? null : Number(val));
   });
   document.getElementById("scene3d-mode-move")?.addEventListener("click", () => {
     window.SCENE3D?.setTransformMode("translate");

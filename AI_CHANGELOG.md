@@ -5,6 +5,57 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: 3D terrain view, Phase C — site objects, real parcel boundary, honest conflict detection
+
+Continued the digital-twin system into Phase C: parking/road/fence object
+types, construction phasing, real-parcel-boundary containment checking, and
+object-to-object overlap detection — extending Phase B's object system
+rather than building a parallel one.
+
+Roads and fences are modeled as straight segments using the exact same
+{position, rotationDeg, footprint} shape as buildings, specifically so they
+inherit the entire existing transform-gizmo/selection/undo pipeline with
+zero new interaction code; a path is composed of multiple straight segments
+placed end to end rather than a freeform polyline tool — a deliberate scope
+cut, documented as such.
+
+The constraint checker (`js/3d/constraints.js`) is built around one
+non-negotiable honesty boundary: it can verify real parcel-boundary
+containment (point-in-polygon against the parcel's actual GeoJSON geometry,
+projected into the scene) and object-to-object overlap (a proper rotated-
+rectangle SAT test, not just axis-aligned boxes) — both geometrically
+certain. It cannot verify zoning setback-line compliance, because that
+would require an offset/inset polygon of the parcel boundary that nothing
+in this codebase computes, and fabricating an approximate one risked it
+being read as an authoritative setback line. So it never returns
+'pass'/'compliant'/'approved'/'buildable' — only 'conflict' (a real
+boundary or overlap violation), 'requires-review' (everything else, always,
+alongside the raw front/side/rear setback numbers for a person to judge),
+or 'unknown' (no parcel selected). Environmental context overlays (water
+stress, flood zones) were evaluated and explicitly deferred rather than
+integrated shallow — the app's existing 2D layers don't yet have the
+coverage/resolution metadata this feature's honesty standard would require
+for a 3D projection.
+
+tests/scene3d.test.js grew from 89 to 122 assertions (object type/phase
+defaults and backward compatibility, point-in-polygon, rotated-rectangle
+overlap, and — the most load-bearing test in this pass — an explicit
+assertion that no constraint status matches pass/compliant/approved/
+buildable). Full suite green, no regressions.
+docs/3D_SYSTEM_ARCHITECTURE.md's Phase C section and manual-verification
+checklist updated accordingly; the browser-verification checklist remains
+unconfirmed this session for the same reason as Phases A and B (no working
+Chromium binary in this sandbox).
+
+Still out of scope (Phases D-E): the data-center campus generator,
+development templates, alternatives/scenario comparison, sun/shadow,
+preliminary grading, presentation mode, export.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: 3D terrain view, Phase B — building volumes, selection, undo/redo, live metrics
 
 Continued the digital-twin system into Phase B, building on Phase A's

@@ -1,12 +1,12 @@
-# 3D Terrain View — Architecture Reference (Phase A + Phase B)
+# 3D Terrain View — Architecture Reference (Phase A + B + C)
 
-This document covers **Phase A** (integrated 2D/3D terrain foundation) and **Phase B** (object system: building volumes, selection, transform gizmo, undo/redo, live site metrics) of the 3D site-design/digital-twin system. Phases C–E (roads/parking/fences/utilities, setbacks/constraint checking, environmental overlays, the data-center campus generator, development templates, presentation mode, and export) are explicitly out of scope for this pass and are not described here.
+This document covers **Phase A** (integrated 2D/3D terrain foundation), **Phase B** (object system: building volumes, selection, transform gizmo, undo/redo, live site metrics), and **Phase C** (parking/road/fence object types, construction phasing, real-parcel-boundary containment checking, object-overlap conflict detection) of the 3D site-design/digital-twin system. Phase C's environmental overlays were evaluated and explicitly deferred rather than shipped shallow — see that section below. Phases D–E (the data-center campus generator, development templates, alternatives/scenario comparison, sun/shadow, preliminary grading, presentation mode, and export) are out of scope for this pass and are not described here.
 
 ---
 
-## Why Phase A only
+## Why this is built in phases
 
-The full request spans 47 requirement sections — terrain, navigation, building creation, a campus generator, constraint checking, presentation mode, exports, and more. Attempting all of it in one pass would produce exactly what the request itself warns against: "a demo… a collection of disconnected buttons." The request's own implementation order (Phase A → E) is followed here: Phase A ships a real, working, integrated 2D/3D terrain foundation — not stubs — and later phases build on top of it once it is solid.
+The full request spans 47 requirement sections — terrain, navigation, building creation, a campus generator, constraint checking, presentation mode, exports, and more. Attempting all of it in one pass would produce exactly what the request itself warns against: "a demo… a collection of disconnected buttons." The request's own implementation order (Phase A → E) is followed here: each phase ships real, working, integrated functionality — not stubs — and the next phase builds on top of it once it is solid.
 
 A repository audit preceded any code (see git history for this change) and found: zero prior 3D/WebGL code anywhere in the repo (genuinely greenfield for the engine itself), but real integration surface already exists that Phase A reuses rather than duplicates — `window.PARCEL` (`js/parcel/index.js`) as the coordinator pattern to mirror, `window.PARCEL_FEASIBILITY` (`js/parcel/feasibility.js`) as the buildable-envelope data source for later phases' massing, `window.LAYER_REGISTRY` (`js/layer-registry.js`) as the provenance-metadata schema, and — most importantly — the existing per-user saved "workspace" object in `js/map.js` (`_captureWorkspaceState`/`_applyWorkspace`) as the natural home for 3D scene state, avoiding the need for a new "Project" entity.
 
@@ -92,11 +92,16 @@ js/3d/
                        mirrors js/parcel/selection.js's shape.
   measure.js          Classic script, DOM-free (Phase B). Distance/polygon-
                        area math in local scene meters. Node-testable.
+  constraints.js       Classic script, DOM-free (Phase C). Point-in-polygon
+                        parcel-boundary containment + rotated-rectangle
+                        overlap (SAT) — see the Phase C section for the
+                        honesty boundary this module enforces. Node-testable.
   engine.js          ES module. Owns THREE.Scene/Camera/Renderer, the render
                       loop, the object mesh sync, click-to-select raycasting,
-                      and the TransformControls gizmo; orchestrates terrain.js
-                      + camera.js. Registers itself onto window.SCENE3D via
-                      _registerEngine().
+                      the TransformControls gizmo, the real parcel-boundary
+                      line, and constraint-status recomputation; orchestrates
+                      terrain.js + camera.js. Registers itself onto
+                      window.SCENE3D via _registerEngine().
   terrain.js          ES module. Local-tangent-plane lat/lng<->meters
                        projection + THREE terrain mesh building from decoded
                        heightmaps.
@@ -143,7 +148,7 @@ scene3d: {
   camera: { target: { lat, lng }, distance, azimuth, polar },
   terrainEnabled: true,
   exaggeration: 1.5,
-  objects: [ /* Phase B building volumes, see below */ ],
+  objects: [ /* building/parking/road/fence objects, see below */ ],
 }
 ```
 
@@ -182,15 +187,33 @@ While dragging, `objectChange` events live-sync the object store from the mesh e
 
 ---
 
+## Phase C: site objects (parking/road/fence), phasing, real parcel boundary, conflict detection
+
+Phase C extends Phase B's object system rather than building a parallel one — `js/3d/objects.js` gained three new `type`s (`parking`, `road`, `fence`) alongside `building`, all sharing the exact same store, transform gizmo, selection, and undo/redo machinery. A pre-Phase-C save has no `type`/`phase` key on its objects at all; both default to `'building'`/`1`, which is exactly what those objects always implicitly meant, so old saves render identically to before (tested — see `tests/scene3d.test.js`'s "Phase C: types & phasing" group).
+
+**Roads and fences are straight segments, not paths.** Both reuse the same `{position, rotationDeg, footprint:{width, depth}}` parametrization as buildings (`footprint.width` = across, `footprint.depth` = length along the segment) specifically so they get the entire existing transform-gizmo/selection/undo pipeline for free — no new click-to-draw interaction code, no new raycasting-onto-terrain vertex-placement logic. A path is composed of several straight segments placed end to end. Curved or multi-vertex roads are not supported; this is a deliberate scope cut given the size of what a real interactive polyline-drawing tool in a 3D view would add, not an oversight.
+
+**Real parcel boundary**: when a parcel is selected (`window.PARCEL_SELECTION`), `js/3d/engine.js` projects its actual GeoJSON polygon (`Polygon` or the outer ring of a `MultiPolygon`) into the scene's local meters via the same `projectLatLng` used for terrain placement, and renders it as a green `THREE.Line` loop (`_rebuildParcelBoundary()`). This is real, verified geometry — not a fabricated or estimated outline — and it rebuilds whenever the parcel selection changes (`parcel:selected`/`parcel:deselected` document events, the same events `js/parcel/selection.js` already emits) or the scene origin shifts (county change).
+
+**Constraint checking — and its honesty boundary** (`js/3d/constraints.js`): every object mutation triggers `_recomputeConstraints()`, which checks each object against (1) whether all four of its footprint corners fall inside the real parcel boundary polygon (point-in-polygon, ray-casting — the same algorithm `js/parcel/draw-tool.js` already uses, applied to local x/z instead of lat/lng) and (2) whether its footprint overlaps any other object's footprint (a proper Separating Axis Theorem test, so rotated objects are handled correctly, not just axis-aligned bounding boxes). Objects that fail either check turn red in the 3D view and show a "⚠ Conflict" badge with the specific reason in the object panel.
+
+This module **deliberately never returns a `'pass'`, `'compliant'`, `'approved'`, or `'buildable'` status** — the request's own instruction is explicit that these words must never be used unless legally and technically justified, and this module has no way to verify actual zoning setback-line compliance: that would require a true offset (inset) polygon of the parcel boundary by the front/side/rear setback distances, and nothing in this codebase computes that geometry (`PARCEL_FEASIBILITY` reports setback distances as plain numbers, not as inset-polygon coordinates). Rather than fabricate an approximate inset line and risk someone reading it as an authoritative setback boundary, every object that passes the two checks above gets `'requires-review'`, and the raw front/side/rear setback numbers are surfaced as plain text (`#scene3d-setbacks`) for a person to compare manually. `'unknown'` covers the case where no parcel is selected at all, so there's nothing to check against.
+
+**Construction phasing**: objects carry a `phase` number (default 1). `#scene3d-phase-filter` lists every phase currently in use (`SCENE3D.listPhases()`) and, when set, hides every object whose phase doesn't match (`mesh.visible`, not removed from the scene — cheap to toggle, and undo/redo/constraint state stay intact for hidden objects). This is the full scope of "phasing" in this pass: a tag and a visibility filter, not a timeline/scheduling system.
+
+**Environmental context overlays — evaluated, explicitly deferred.** The repository audit found the app already has environmental map layers (water stress, and a registered-but-`noData` FEMA flood zone layer) but nothing that projects that data into the 3D scene, and building that integration honestly (matching each layer's own coverage/resolution/verification-status the way `LAYER_REGISTRY` already requires for the 2D map) is a substantial scope of its own — bringing it in as a shallow, under-verified 3D overlay would violate the same honesty standard the rest of this feature holds to. Deferred to a later pass rather than shipped thin.
+
+---
+
 ## Explicitly out of scope this pass
 
-Roads/parking/fencing/utility modeling, setbacks and real-time constraint-conflict checking, environmental context overlays, construction phasing, the data-center campus generator, development templates, sun/shadow tools, alternatives/scenario comparison, presentation mode, image/data/3D-model export, persistent (IndexedDB) tile/object caching, fly/walk-through navigation, keyboard shortcuts for the object editor (undo/redo/delete are toolbar-button-only in Phase B to avoid colliding with existing global shortcuts), non-rectangular footprint shapes, and reconciling the pre-existing drawing-tool (map-level vs. parcel-level) and compare-tool (three separate systems) fragmentation identified during the repository audit. These are Phases C–E (or, for the last two items, a standing cross-cutting cleanup not tied to any single phase).
+The data-center campus generator, development templates, alternatives/scenario comparison, sun/shadow tools, preliminary grading, presentation mode, image/data/3D-model export, environmental context overlays in the 3D view (see above), persistent (IndexedDB) tile/object caching, fly/walk-through navigation, keyboard shortcuts for the object editor (undo/redo/delete are toolbar-button-only, to avoid colliding with existing global shortcuts), non-rectangular footprint shapes, curved or multi-vertex roads/paths, true setback-inset-polygon geometry (see the Phase C constraint-checking honesty boundary above), objects following terrain contour/grade (they sit at a nominal flat elevation regardless of terrain undulation — true site grading is a later-phase concern), and reconciling the pre-existing drawing-tool (map-level vs. parcel-level) and compare-tool (three separate systems) fragmentation identified during the repository audit. These are Phases D–E (or, for the last two items, a standing cross-cutting cleanup not tied to any single phase).
 
 ---
 
 ## Manual verification checklist
 
-Automated coverage (`tests/scene3d.test.js`, wired into `tests/run_all.sh`) covers tile math, Terrarium decode, cache/de-dupe/eviction behavior, `scene3d` schema v1→v2 migration, the object store (create/update/remove/restore/metrics), the undo/redo command stack, selection events, and distance/area math — all DOM/WebGL-free pure logic (89 assertions total); the full suite (`tests/run_all.sh`) passes with these additions and no regressions. The following need a real browser and were **not** verified during this implementation pass (Phase A or Phase B) — the session had no working Chromium/Chrome binary available (a broken symlink in the expected Playwright cache, and `playwright install` is off-limits per environment policy) — so they remain open items for the first real-browser pass on this feature, not confirmed-working claims:
+Automated coverage (`tests/scene3d.test.js`, wired into `tests/run_all.sh`) covers tile math, Terrarium decode, cache/de-dupe/eviction behavior, `scene3d` schema v1→v2 migration, the object store (create/update/remove/restore/metrics, including the Phase C type/phase additions and pre-Phase-C backward compatibility), the undo/redo command stack, selection events, distance/area math, and the constraints module (point-in-polygon, rotated-rectangle SAT overlap, and the "never returns pass/compliant" status vocabulary) — all DOM/WebGL-free pure logic (122 assertions total); the full suite (`tests/run_all.sh`) passes with these additions and no regressions. The following need a real browser and were **not** verified during this implementation pass (Phase A, B, or C) — the session had no working Chromium/Chrome binary available (a broken symlink in the expected Playwright cache, and `playwright install` is off-limits per environment policy) — so they remain open items for the first real-browser pass on this feature, not confirmed-working claims:
 
 - [ ] CORS smoke test: `fetch()` one known Terrarium tile URL from the deployed GitHub Pages origin's browser console; confirm it resolves rather than a CORS error.
 - [ ] Opening 3D mode on a WebGL-capable device with network access renders a real terrain mesh for the currently-selected county area, and the elevation visually matches known local topology.
@@ -210,3 +233,11 @@ Automated coverage (`tests/scene3d.test.js`, wired into `tests/run_all.sh`) cove
 - [ ] Load a workspace saved under Phase A (schema v1, no `objects` key) — loads with no error and an empty building list, not a crash.
 - [ ] Switch to a different county while buildings exist — objects clear, a status message explains why, and no stale/mis-positioned geometry is left behind.
 - [ ] Orbiting/panning the camera (a drag that starts on empty space or the terrain, not on a building or the gizmo) does not accidentally select or move a building.
+- [ ] Select a parcel with the 2D parcel layer, open 3D — a green outline of the real parcel boundary appears in the correct location relative to the terrain.
+- [ ] Place a building fully inside the parcel boundary, no overlaps — it shows "Review setbacks" (not a green/pass indicator) and the raw setback numbers are visible in the panel.
+- [ ] Drag a building so it extends outside the parcel boundary — it turns red in the 3D view and the object list shows a "⚠ Conflict" badge naming the reason.
+- [ ] Overlap two buildings — both show the conflict badge, each naming the other by label; separate them — the badges clear on the next mutation.
+- [ ] With no parcel selected, create a building — its status is "No parcel selected," not a false pass or false conflict.
+- [ ] Click "+ Parking", "+ Road", "+ Fence" — each creates a visually distinct object (dark flat pad, gray flat ribbon, thin translucent wall) at the correct default dimensions.
+- [ ] Create objects across 2–3 different phase numbers (via the object panel), then use the phase filter dropdown — only the selected phase's objects remain visible; switching back to "All phases" restores them all, and undo/redo/selection state is unaffected by the filter.
+- [ ] Change the selected parcel to a different parcel — the boundary line and every object's constraint status update to reflect the new boundary.

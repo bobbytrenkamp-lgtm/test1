@@ -14,10 +14,17 @@ import { createOrbitCamera } from './camera.js';
 const TT = window.SCENE3D_TERRAIN_TILES;
 const OBJECTS = window.SCENE3D_OBJECTS;
 const SELECTION = window.SCENE3D_SELECTION;
+const CONSTRAINTS = window.SCENE3D_CONSTRAINTS;
 const HISTORY = window.SCENE3D_HISTORY.createHistory();
 
-const BUILDING_COLOR = 0xd9a15c;
-const BUILDING_SELECTED_COLOR = 0x4874e8;
+const TYPE_COLORS = {
+  building: 0xd9a15c,
+  parking:  0x4a4a52,
+  road:     0x6b6b73,
+  fence:    0x8a7a63,
+};
+const SELECTED_COLOR = 0x4874e8;
+const CONFLICT_COLOR = 0xd9534f;
 const METERS_PER_FOOT = 0.3048;
 const SQFT_TO_SQM = 0.092903;
 
@@ -26,6 +33,8 @@ let scene = null;
 let orbitCamera = null;
 let terrainGroup = null;
 let objectsGroup = null;
+let boundaryGroup = null;
+let parcelBoundaryLocal = null;  // array of {x,z} in scene-local meters, or null when no parcel selected
 let transformControls = null;
 let transformHelper = null;
 let animFrame = null;
@@ -39,10 +48,19 @@ let exaggeration = 1.5;
 let terrainVisible = true;
 let terrainStatusCb = null;
 let terrainClearCb = null;
+let activePhaseFilter = null; // null = show all phases; otherwise a phase number
 
-const objectMeshes = new Map();     // objectId -> THREE.Mesh
-const buildingMaterialNormal = () => new THREE.MeshLambertMaterial({ color: BUILDING_COLOR });
-const buildingMaterialSelected = () => new THREE.MeshLambertMaterial({ color: BUILDING_SELECTED_COLOR });
+const objectMeshes = new Map();          // objectId -> THREE.Mesh
+const constraintStatusById = new Map();  // objectId -> { status, reasons }
+
+function _materialFor(obj, selected, constraintStatus) {
+  const color = selected
+    ? SELECTED_COLOR
+    : (constraintStatus === 'conflict' ? CONFLICT_COLOR : (TYPE_COLORS[obj.type] || TYPE_COLORS.building));
+  const opts = { color };
+  if (obj.type === 'fence') { opts.transparent = true; opts.opacity = 0.6; }
+  return new THREE.MeshLambertMaterial(opts);
+}
 
 const raycaster = new THREE.Raycaster();
 const pointerNdc = new THREE.Vector2();
@@ -54,14 +72,77 @@ const tileCache = TT.createTileCache();
 // ── Selection <-> gizmo wiring (module-scope, survives activate/deactivate cycles) ──
 document.addEventListener('scene3d:object-selected', e => _onSelectionChanged(e.detail && e.detail.id));
 document.addEventListener('scene3d:object-deselected', () => _onSelectionChanged(null));
+// A parcel selection change invalidates the real boundary geometry every
+// constraint check depends on — rebuild both whenever it fires.
+document.addEventListener('parcel:selected', () => { _rebuildParcelBoundary(); _recomputeConstraints(); });
+document.addEventListener('parcel:deselected', () => { _rebuildParcelBoundary(); _recomputeConstraints(); });
 
 function _onSelectionChanged(id) {
   objectMeshes.forEach((mesh, meshId) => {
-    mesh.material = meshId === id ? buildingMaterialSelected() : buildingMaterialNormal();
+    const obj = OBJECTS.get(meshId);
+    if (!obj) return;
+    const status = (constraintStatusById.get(meshId) || {}).status;
+    mesh.material = _materialFor(obj, meshId === id, status);
   });
   if (!transformControls) return;
   if (id && objectMeshes.has(id)) transformControls.attach(objectMeshes.get(id));
   else transformControls.detach();
+}
+
+/* Recomputes every object's constraint status (boundary containment +
+ * object-to-object overlap — see js/3d/constraints.js for exactly what this
+ * can and cannot verify) and refreshes mesh materials to reflect it. Cheap
+ * enough to call after every mutation and on every gizmo-drag frame at the
+ * object counts this feature supports. */
+function _recomputeConstraints() {
+  constraintStatusById.clear();
+  const objs = OBJECTS.list();
+  objs.forEach(obj => {
+    constraintStatusById.set(obj.id, CONSTRAINTS.checkObjectConstraints(obj, objs, parcelBoundaryLocal));
+  });
+  const selectedId = SELECTION.getSelected();
+  objs.forEach(obj => {
+    const mesh = objectMeshes.get(obj.id);
+    if (!mesh) return;
+    const status = (constraintStatusById.get(obj.id) || {}).status;
+    mesh.material = _materialFor(obj, obj.id === selectedId, status);
+  });
+}
+
+function _parcelBoundaryPointsFromSelection() {
+  try {
+    if (!window.PARCEL_SELECTION || originLat == null) return null;
+    const sel = window.PARCEL_SELECTION.getSelected();
+    const geom = sel && sel.feature && sel.feature.geometry;
+    if (!geom) return null;
+    let ring = null;
+    if (geom.type === 'Polygon') ring = geom.coordinates[0];
+    else if (geom.type === 'MultiPolygon') ring = geom.coordinates[0] && geom.coordinates[0][0];
+    if (!ring || ring.length < 3) return null;
+    return ring.map(([lng, lat]) => projectLatLng(lat, lng, originLat, originLng));
+  } catch (_) {
+    return null;
+  }
+}
+
+function _rebuildParcelBoundary() {
+  if (!scene) return;
+  if (boundaryGroup) {
+    scene.remove(boundaryGroup);
+    boundaryGroup.traverse(o => { if (o.geometry) o.geometry.dispose(); });
+  }
+  boundaryGroup = null;
+  parcelBoundaryLocal = _parcelBoundaryPointsFromSelection();
+  if (!parcelBoundaryLocal) return;
+
+  const pts = parcelBoundaryLocal.map(p => new THREE.Vector3(p.x, 0.2, p.z));
+  pts.push(pts[0].clone());
+  const geometry = new THREE.BufferGeometry().setFromPoints(pts);
+  const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x2fa84f }));
+  line.name = 'scene3d-parcel-boundary';
+  boundaryGroup = new THREE.Group();
+  boundaryGroup.add(line);
+  scene.add(boundaryGroup);
 }
 
 async function loadPixels(url, signal) {
@@ -150,10 +231,11 @@ function _meshGeometryFor(obj) {
 }
 
 function _createMeshForObject(obj) {
-  const mesh = new THREE.Mesh(_meshGeometryFor(obj), buildingMaterialNormal());
+  const mesh = new THREE.Mesh(_meshGeometryFor(obj), _materialFor(obj, false, null));
   mesh.position.set(obj.position.x, obj.height / 2, obj.position.z);
   mesh.rotation.y = (obj.rotationDeg || 0) * Math.PI / 180;
   mesh.userData.objectId = obj.id;
+  mesh.visible = activePhaseFilter == null || obj.phase === activePhaseFilter;
   objectsGroup.add(mesh);
   objectMeshes.set(obj.id, mesh);
   return mesh;
@@ -178,11 +260,29 @@ function _syncObjectMesh(obj) {
   mesh.geometry = _meshGeometryFor(obj);
   mesh.position.set(obj.position.x, obj.height / 2, obj.position.z);
   mesh.rotation.y = (obj.rotationDeg || 0) * Math.PI / 180;
+  mesh.visible = activePhaseFilter == null || obj.phase === activePhaseFilter;
 }
 
 function _rebuildAllObjectMeshes() {
   objectMeshes.forEach((mesh, id) => _removeObjectMesh(id));
   OBJECTS.list().forEach(obj => _createMeshForObject(obj));
+  _recomputeConstraints();
+}
+
+/* null shows every phase; a number shows only objects with that phase
+ * (construction-phasing preview — buildings/roads/etc. can be tagged with a
+ * phase number and toggled independently to preview a phased buildout). */
+function setPhaseFilter(phase) {
+  activePhaseFilter = typeof phase === 'number' ? phase : null;
+  OBJECTS.list().forEach(obj => {
+    const mesh = objectMeshes.get(obj.id);
+    if (mesh) mesh.visible = activePhaseFilter == null || obj.phase === activePhaseFilter;
+  });
+}
+
+function listPhases() {
+  const phases = new Set(OBJECTS.list().map(o => o.phase || 1));
+  return Array.from(phases).sort((a, b) => a - b);
 }
 
 function _feasibilityEnvelope() {
@@ -197,38 +297,49 @@ function _feasibilityEnvelope() {
   }
 }
 
-function createBuilding(overrides) {
+/* type: 'building' | 'parking' | 'road' | 'fence'. Only 'building' pulls
+ * default dimensions from the parcel's buildable envelope — parking/road/
+ * fence sizing isn't governed by that zoning calculation, so they fall back
+ * to js/3d/objects.js's generic per-type defaults instead. */
+function createObject(type, overrides) {
   if (!scene || !objectsGroup) return null;
-  const envelope = _feasibilityEnvelope();
-  const defaults = { footprint: { shape: 'rectangle', width: 30, depth: 30 }, height: 10 };
-  if (envelope && envelope.footprintSqft > 0) {
-    const side = Math.sqrt(envelope.footprintSqft * SQFT_TO_SQM);
-    defaults.footprint = { shape: 'rectangle', width: Math.round(side), depth: Math.round(side) };
+  overrides = overrides || {};
+  let envelopeDefaults = {};
+  if (type === 'building') {
+    const envelope = _feasibilityEnvelope();
+    if (envelope && envelope.footprintSqft > 0) {
+      const side = Math.sqrt(envelope.footprintSqft * SQFT_TO_SQM);
+      envelopeDefaults.footprint = { shape: 'rectangle', width: Math.round(side), depth: Math.round(side) };
+    }
+    if (envelope && envelope.maxHeight_ft > 0) {
+      envelopeDefaults.height = Math.round(envelope.maxHeight_ft * METERS_PER_FOOT);
+    }
   }
-  if (envelope && envelope.maxHeight_ft > 0) {
-    defaults.height = Math.round(envelope.maxHeight_ft * METERS_PER_FOOT);
-  }
-  const props = Object.assign({}, defaults, overrides || {});
+  const props = Object.assign({ type }, envelopeDefaults, overrides);
   const obj = OBJECTS.create(props);
   _createMeshForObject(obj);
   SELECTION.select(obj.id);
+  _recomputeConstraints();
 
   const snapshot = JSON.parse(JSON.stringify(obj));
   HISTORY.push({
-    label: 'Create building',
+    label: 'Create ' + type,
     undo: () => {
       OBJECTS.remove(snapshot.id);
       _removeObjectMesh(snapshot.id);
       if (SELECTION.getSelected() === snapshot.id) SELECTION.deselect();
+      _recomputeConstraints();
     },
     redo: () => {
       OBJECTS.restore(snapshot);
       _createMeshForObject(OBJECTS.get(snapshot.id));
       SELECTION.select(snapshot.id);
+      _recomputeConstraints();
     },
   });
   return obj;
 }
+function createBuilding(overrides) { return createObject('building', overrides); }
 
 function updateObject(id, patch) {
   const obj = OBJECTS.get(id);
@@ -237,11 +348,12 @@ function updateObject(id, patch) {
   const updated = OBJECTS.update(id, patch);
   if (!updated) return null;
   _syncObjectMesh(updated);
+  _recomputeConstraints();
   const after = JSON.parse(JSON.stringify(updated));
   HISTORY.push({
-    label: 'Edit building',
-    undo: () => { OBJECTS.update(id, before); _syncObjectMesh(OBJECTS.get(id)); },
-    redo: () => { OBJECTS.update(id, after); _syncObjectMesh(OBJECTS.get(id)); },
+    label: 'Edit ' + obj.type,
+    undo: () => { OBJECTS.update(id, before); _syncObjectMesh(OBJECTS.get(id)); _recomputeConstraints(); },
+    redo: () => { OBJECTS.update(id, after); _syncObjectMesh(OBJECTS.get(id)); _recomputeConstraints(); },
   });
   return updated;
 }
@@ -255,34 +367,47 @@ function deleteSelected() {
   OBJECTS.remove(id);
   _removeObjectMesh(id);
   SELECTION.deselect();
+  _recomputeConstraints();
   HISTORY.push({
-    label: 'Delete building',
+    label: 'Delete ' + obj.type,
     undo: () => {
       OBJECTS.restore(snapshot);
       _createMeshForObject(OBJECTS.get(snapshot.id));
       SELECTION.select(snapshot.id);
+      _recomputeConstraints();
     },
     redo: () => {
       OBJECTS.remove(snapshot.id);
       _removeObjectMesh(snapshot.id);
       if (SELECTION.getSelected() === snapshot.id) SELECTION.deselect();
+      _recomputeConstraints();
     },
   });
   return true;
 }
 
-function undo() { return HISTORY.undo(); }
-function redo() { return HISTORY.redo(); }
+function undo() { const ok = HISTORY.undo(); _recomputeConstraints(); return ok; }
+function redo() { const ok = HISTORY.redo(); _recomputeConstraints(); return ok; }
 function historyCounts() { return HISTORY.counts(); }
 
 function getMetrics() {
   const envelope = _feasibilityEnvelope();
-  return OBJECTS.computeSiteMetrics(envelope ? envelope.siteTotalSqft : undefined);
+  const metrics = OBJECTS.computeSiteMetrics(envelope ? envelope.siteTotalSqft : undefined);
+  // Raw setback distances (front/side/rear, feet) from the existing zoning
+  // calculator, surfaced for manual comparison — see js/3d/constraints.js's
+  // header comment for why this module never verifies setback-line
+  // compliance geometrically.
+  metrics.setbacks = (envelope && envelope.setbacks) || null;
+  return metrics;
 }
 
 function listObjects() {
   const selectedId = SELECTION.getSelected();
-  return OBJECTS.list().map(o => Object.assign({ selected: o.id === selectedId }, o));
+  return OBJECTS.list().map(o => Object.assign(
+    { selected: o.id === selectedId },
+    o,
+    { constraint: constraintStatusById.get(o.id) || { status: 'unknown', reasons: [] } }
+  ));
 }
 
 // ── Transform gizmo ──────────────────────────────────────────────────────
@@ -310,9 +435,10 @@ function _onTransformMouseDown() {
 }
 
 function _onTransformObjectChange() {
-  // Live-sync the store from the mesh during drag so the metrics/position
-  // readouts update in real time — no undo entry yet, that happens once on
-  // mouseUp so a single drag is a single undo step, not one per frame.
+  // Live-sync the store from the mesh during drag so the metrics/position/
+  // constraint readouts update in real time — no undo entry yet, that
+  // happens once on mouseUp so a single drag is a single undo step, not one
+  // per frame.
   const id = SELECTION.getSelected();
   const mesh = id && objectMeshes.get(id);
   if (!id || !mesh) return;
@@ -320,6 +446,7 @@ function _onTransformObjectChange() {
     position: { x: mesh.position.x, z: mesh.position.z },
     rotationDeg: (mesh.rotation.y * 180) / Math.PI,
   });
+  _recomputeConstraints();
 }
 
 function _onTransformMouseUp() {
@@ -334,9 +461,9 @@ function _onTransformMouseUp() {
   if (!changed) return;
   const id = snap.id;
   HISTORY.push({
-    label: 'Move building',
-    undo: () => { OBJECTS.update(id, snap); _syncObjectMesh(OBJECTS.get(id)); },
-    redo: () => { OBJECTS.update(id, after); _syncObjectMesh(OBJECTS.get(id)); },
+    label: 'Move ' + obj.type,
+    undo: () => { OBJECTS.update(id, snap); _syncObjectMesh(OBJECTS.get(id)); _recomputeConstraints(); },
+    redo: () => { OBJECTS.update(id, after); _syncObjectMesh(OBJECTS.get(id)); _recomputeConstraints(); },
   });
 }
 
@@ -409,6 +536,7 @@ function _buildScene() {
     resizeObserver.observe(host);
   }
 
+  _rebuildParcelBoundary();
   _rebuildAllObjectMeshes();
   _onSelectionChanged(SELECTION.getSelected());
   _animate();
@@ -478,7 +606,11 @@ function onCountyChanged(fips) {
   if (!center) return;
   originLat = center.lat;
   originLng = center.lng;
-  if (renderer) _rebuildTerrain();
+  if (renderer) {
+    _rebuildTerrain();
+    _rebuildParcelBoundary();
+    _recomputeConstraints();
+  }
 }
 
 function onLayerToggle(layerId, visible) {
@@ -534,7 +666,7 @@ function applyState(normalized) {
 
 window.SCENE3D._registerEngine({
   activate, deactivate, onCountyChanged, onLayerToggle, applyState, getSceneDescriptor,
-  createBuilding, updateObject, deleteSelected, undo, redo, historyCounts, getMetrics, listObjects,
+  createBuilding, createObject, updateObject, deleteSelected, undo, redo, historyCounts, getMetrics, listObjects,
   selectObject: id => SELECTION.select(id), deselectObject: () => SELECTION.deselect(),
-  setTransformMode,
+  setTransformMode, setPhaseFilter, listPhases,
 });

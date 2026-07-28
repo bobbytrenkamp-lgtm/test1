@@ -205,6 +205,15 @@ window.SCENE3D = (function () {
     return obj;
   }
 
+  /* type: 'building' | 'parking' | 'road' | 'fence' (Phase C). */
+  function createObject(type, overrides) {
+    if (!_engine || !_active) return null;
+    let obj = null;
+    try { obj = _engine.createObject(type, overrides); } catch (_) {}
+    _notifyObjectsChanged();
+    return obj;
+  }
+
   function updateObject(id, patch) {
     if (!_engine || !_active) return null;
     let obj = null;
@@ -267,11 +276,24 @@ window.SCENE3D = (function () {
     try { _engine.setTransformMode(mode); } catch (_) {}
   }
 
+  /* Phase C: construction-phasing preview. phase=null shows every phase. */
+  function setPhaseFilter(phase) {
+    if (!_engine || !_active) return;
+    try { _engine.setPhaseFilter(phase); } catch (_) {}
+    _notifyObjectsChanged();
+  }
+
+  function listPhases() {
+    if (!_engine || !_active) return [];
+    try { return _engine.listPhases(); } catch (_) { return []; }
+  }
+
   return {
     init, onCountyChanged, onLayerToggle, isAvailable,
     captureState, applyState, activate, deactivate,
-    createBuilding, updateObject, deleteSelected, undo, redo, historyCounts,
+    createBuilding, createObject, updateObject, deleteSelected, undo, redo, historyCounts,
     getMetrics, listObjects, selectObject, deselectObject, setTransformMode,
+    setPhaseFilter, listPhases,
     _registerEngine,
   };
 })();
