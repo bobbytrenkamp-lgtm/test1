@@ -662,7 +662,10 @@ data/economy/census_state.json          generated — also carries electricity_p
 data/economy/economic_metadata.json     generated — provenance, warnings, staleness
 data/economy/census_cbp.json            generated, optional
 .github/workflows/update_economic_data.yml
-tests/test_economic_data.py             383 offline assertions
+tests/test_economic_data.py             offline assertions for the Python pipeline
+tests/test_economy_core.mjs             Node tests for js/economy.js's DOM-free internals —
+                                         readinessScore, percentileRank/median, countySignals,
+                                         quantileBreaks (see Data Center Readiness Score below)
 tests/fixtures/economy/                 SYNTHETIC data for browser tests — never real
 ```
 
@@ -734,10 +737,15 @@ labelled figure wherever both appear (see `js/report.js`'s
 existing restriction-severity badge), rather than blending two different
 kinds of judgment (economic attractiveness vs. legal risk) into one number.
 
-No JS unit-test file covers `economy.js`'s internals (a pre-existing gap).
-Verified via a standalone Node smoke test loading the real module source
-with `vm.runInContext` and synthetic multi-county data — see
-AI_CHANGELOG.md for what it checks.
+`tests/test_economy_core.mjs` covers `readinessScore()` directly: a
+symmetric 21-county synthetic pool where the center county sits at exactly
+the 50th percentile on every factor (so each factor's contribution is
+hand-verifiable, not just captured-whatever-it-output), plus the
+missing-factor-redistribution path, the invert-direction comparative check,
+the two null-return paths (unknown fips, zero usable factors), and
+`_resetCache()` invalidation. This closed a pre-existing gap — previously
+`economy.js`'s internals had no formal test coverage at all, only a
+throwaway one-off Node smoke test that was run once and discarded.
 
 ### Data flow
 ```

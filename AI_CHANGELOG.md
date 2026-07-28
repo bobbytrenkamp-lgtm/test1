@@ -5,6 +5,52 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Formal test coverage for economy.js; NOAA/FEMA/EPA/FAA phase blocked on network
+
+## Phase 5 (NOAA/FEMA/EPA/FAA/DOT) research: blocked, not skipped
+Attempted to research the next preferred data source for county-level
+natural hazard / environmental risk (FEMA's National Risk Index was the
+leading candidate -- free, public domain, county-level, no API key, current
+version v1.20, confirmed via web search). Could not verify the exact
+download mechanism or field shape: this session's outbound network policy
+is currently denying essentially all external fetches from this sandbox,
+including sites with no plausible reason to be blocked (`example.com`,
+Wikipedia both returned 403 from the egress proxy). This is a policy
+denial, not a transient failure (confirmed via the proxy status endpoint),
+and the project's own established rule from the Phase 3 (FCC Broadband)
+research still applies: do not ship a collector against an unverified
+endpoint contract. Deferred rather than guessed. Worth retrying once
+network access to fema.gov (or an equivalent verifiable source) is
+confirmed available from either this environment or the GitHub Actions
+runner directly.
+
+## Closed a real test-coverage gap: js/economy.js had no unit tests
+`economy.js` had grown a nine-factor weighted scoring function
+(`readinessScore`), percentile/median statistics, and a rule-based signal
+engine with zero formal test coverage -- only a one-off Node smoke test
+that was run once during Phase 4 development and discarded. Added
+`tests/test_economy_core.mjs` (35 assertions, wired into `run_all.sh`),
+requiring the real module source the same way `test_frontend_core.mjs`
+already does for `constants.js`/`router.js`.
+
+The readiness-score tests use a deliberately symmetric synthetic pool (21
+counties, odd length, mirrored values) so the center county lands on
+exactly the 50th percentile on every factor by construction -- letting the
+test assert an exact expected score (50/100, 100% completeness) rather than
+just re-capturing whatever the code happens to output. Also covers: the
+missing-factor-redistribution path (excluding two 10-weight factors that
+were themselves worth exactly 50 must not move the average, only the
+completeness figure -- a regression that silently scored missing data as 0
+would have visibly failed this), both null-return paths (unknown fips, zero
+usable factors), invert-direction correctness (unemployment scores higher
+when it is numerically lower), and that `_resetCache()` actually
+invalidates the percentile-pool cache across datasets.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: A metadata-reporting bug found while verifying the population-label fix against a live run
 
 ## `unverified_metrics` could resurrect an already-fixed warning
