@@ -137,6 +137,9 @@ window.JURISDICTION = (function () {
                   data-juris-watch="${esc(fips)}" type="button">
             ${watched ? "&#9733; Watching" : "&#9734; Watch"}
           </button>
+          <button class="juris-btn" data-juris-compare="${esc(fips)}" type="button">
+            Add to compare
+          </button>
           <a class="juris-btn" href="#${esc(fips)}">View on map</a>
         </div>
       </div>`;
@@ -544,6 +547,16 @@ window.JURISDICTION = (function () {
         window.WATCHLIST.toggle(fips);
         // Re-render so the notes card appears/disappears with watch state.
         render(fips);
+      });
+    });
+
+    /* Reuses the map's existing comparison tool (js/compare.js) — same
+       navigateAndAddToCompare() helper as js/economy-view.js's profile panel. */
+    view.querySelectorAll("[data-juris-compare]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (typeof navigateAndAddToCompare === "function") {
+          navigateAndAddToCompare(btn.dataset.jurisCompare);
+        }
       });
     });
 

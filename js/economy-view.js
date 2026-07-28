@@ -765,20 +765,10 @@
 
     on(document.getElementById("econ-profile-compare"), "click", () => {
       // Reuse the map's existing comparison tool (js/compare.js) rather than
-      // inventing a parallel one. addToCompare() itself is a classic-script
-      // global (see compare.js's header comment) — this previously called
+      // inventing a parallel one. This previously called
       // addCountyToCompare()/window.COMPARE, neither of which exist anywhere
       // in the codebase, so the button silently did nothing.
-      if (window.Router) window.Router.navigate("map", { fips });
-      else if (typeof switchTab === "function") switchTab("map");
-      const addNow = () => {
-        if (typeof toggleComparePanel === "function" && typeof compareMode !== "undefined" && !compareMode) {
-          toggleComparePanel();
-        }
-        if (typeof addToCompare === "function") addToCompare(fips);
-      };
-      if (typeof mapInitPromise !== "undefined" && mapInitPromise) mapInitPromise.then(addNow);
-      else setTimeout(addNow, 350);
+      if (typeof navigateAndAddToCompare === "function") navigateAndAddToCompare(fips);
     });
 
     on(document.getElementById("econ-profile-map"), "click", () => {
