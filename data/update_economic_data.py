@@ -115,6 +115,18 @@ CENSUS_VARS_URL = "https://api.census.gov/data/{year}/acs/acs5/variables.json"
 CENSUS_CBP_URL  = "https://api.census.gov/data/{year}/cbp"
 EIA_ELECTRICITY_URL = "https://api.eia.gov/v2/electricity/retail-sales/data/"
 BLS_QCEW_AREA_URL   = "https://data.bls.gov/cew/data/api/{year}/a/area/{area_fips}.csv"
+# FEMA National Risk Index, county-level table. Free, public domain, no API
+# key or registration of any kind (confirmed via FEMA's own OpenFEMA
+# documentation, which states the whole platform requires no key/subscription).
+# URL confirmed against a real, independently-indexed FEMA static file
+# (NRI_Shapefile_CensusTracts.zip at this same path) rather than guessed --
+# but the exact table filename and column names were NOT independently
+# fetched and verified byte-for-byte before this pipeline shipped (this
+# session's outbound network access was blocked). See collect_fema_nri()'s
+# own docstring and DATA_SOURCES.md for the honest confidence level and what
+# the first live run needs to confirm.
+FEMA_NRI_COUNTIES_URL = ("https://hazards.fema.gov/nri/Content/StaticDocuments/"
+                          "DataDownload/NRI_Table_Counties/NRI_Table_Counties.csv")
 
 UA = "USDataCenterPolicyTracker-EconPipeline/1.0 (+https://bobbytrenkamp-lgtm.github.io/test1/)"
 
@@ -1212,6 +1224,18 @@ def validate_outputs():
                     errors.append(f"{path.name} {fips} avg_weekly_wage.value is not "
                                    f"a positive number: {wg.get('value')!r}")
                     break
+            nhr = rec.get("natural_hazard_risk")
+            if nhr is not None:
+                score = nhr.get("score")
+                if score is not None and (not isinstance(score, (int, float)) or score < 0):
+                    errors.append(f"{path.name} {fips} natural_hazard_risk.score is not "
+                                   f"a non-negative number: {score!r}")
+                    break
+                rating = nhr.get("rating")
+                if rating is not None and not isinstance(rating, str):
+                    errors.append(f"{path.name} {fips} natural_hazard_risk.rating is not "
+                                   f"a string: {rating!r}")
+                    break
 
     return errors
 
@@ -1220,7 +1244,7 @@ def validate_outputs():
 
 def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
                    acs_vintage, var_problems, prior_meta, census_ran, permits_ran=False,
-                   eia_ran=False, bls_ran=False, any_source_ok=True):
+                   eia_ran=False, bls_ran=False, nri_ran=False, any_source_ok=True):
     """Write economic_metadata.json, or skip when a run changed nothing.
 
     TWO THINGS THIS GETS RIGHT, both found by running the workflow for real
@@ -1275,12 +1299,18 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
     bls_updated = (datetime.now(timezone.utc).isoformat(timespec="seconds")
                    if bls_ran
                    else prior.get("bls_last_successful_update"))
+    # Own timestamp, own cadence (see _nri_is_fresh) — FEMA republishes NRI
+    # infrequently, roughly the same rarity as BLS's annual file.
+    nri_updated = (datetime.now(timezone.utc).isoformat(timespec="seconds")
+                   if nri_ran
+                   else prior.get("nri_last_successful_update"))
 
     any_stale = any(s.get("stale") for s in fred_series.values())
 
     permits_count = sum(1 for c in counties.values() if c.get("building_permits"))
     eia_count = sum(1 for s in states.values() if s.get("electricity_price"))
     bls_count = sum(1 for c in counties.values() if c.get("avg_weekly_wage"))
+    nri_count = sum(1 for c in counties.values() if c.get("natural_hazard_risk"))
 
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     # Only advance generated_at when a source actually produced data. On a no-op
@@ -1314,6 +1344,9 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
         "bls_available":   bls_count > 0,
         "bls_county_count": bls_count,
         "bls_last_successful_update": bls_updated,
+        "nri_available":   nri_count > 0,
+        "nri_county_count": nri_count,
+        "nri_last_successful_update": nri_updated,
         "census": {
             "last_successful_update": census_updated,
             "selected_variables": (county_payload or {}).get("selected_variables")
@@ -1387,6 +1420,15 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
             "url": "https://www.bls.gov/cew/",
             "note": "County-level average weekly wage across all industries and ownership sectors, merged into each county record as avg_weekly_wage. No API key required. A direct labor-cost figure for the local workforce, distinct from ACS's household-income metrics.",
             "update_frequency": "Annual file, published with a 5-6 month lag; refreshed independently of the rest of this pipeline (see bls_last_successful_update).",
+        })
+    if nri_count:
+        meta["sources"].append({
+            "id": "fema_nri",
+            "name": "National Risk Index (NRI)",
+            "publisher": "Federal Emergency Management Agency",
+            "url": "https://hazards.fema.gov/nri/",
+            "note": "County-level composite natural hazard risk score and rating across 18 hazard types, merged into each county record as natural_hazard_risk. No API key required. A physical/environmental risk signal, deliberately kept separate from both the Readiness Score (economic attractiveness) and the regulatory restriction level (legal risk) rather than blended into either.",
+            "update_frequency": "Infrequent (roughly annual FEMA releases); refreshed independently of the rest of this pipeline (see nri_last_successful_update).",
         })
 
     # Skip the write when nothing but the run clock moved. Compared with
@@ -1576,6 +1618,110 @@ def _bls_is_fresh(prior_meta, max_age_days):
     return (datetime.now(timezone.utc) - when) < timedelta(days=max_age_days)
 
 
+def _nri_is_fresh(prior_meta, max_age_days):
+    """Own timestamp, own gate. FEMA republishes the National Risk Index
+    infrequently (documented versions are roughly annual), so this defaults
+    to a long interval — same reasoning as _bls_is_fresh, just longer."""
+    ts = (prior_meta or {}).get("nri_last_successful_update")
+    if not ts:
+        return False
+    try:
+        when = datetime.fromisoformat(ts)
+    except ValueError:
+        return False
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=timezone.utc)
+    return (datetime.now(timezone.utc) - when) < timedelta(days=max_age_days)
+
+
+# ────────────── FEMA National Risk Index (optional, county-level) ──────────
+
+# Candidate column names for the fields this module needs. NRI's real CSV
+# header was not independently fetched and confirmed before this shipped
+# (see FEMA_NRI_COUNTIES_URL's comment) -- these are the standard,
+# widely-cited NRI field names from FEMA's own published documentation and
+# multiple independent secondary sources (federal/state open-data portals
+# republishing the same dataset), not a single guess. A short candidate list
+# is the same defensive pattern _BLS_WAGE_FIELD_CANDIDATES already uses for
+# a comparable "documented but not independently byte-verified" situation.
+_NRI_FIPS_FIELD_CANDIDATES  = ("STCOFIPS", "COUNTYFIPS", "FIPS")
+_NRI_SCORE_FIELD_CANDIDATES = ("RISK_SCORE", "RISK_VALUE")
+_NRI_RATING_FIELD_CANDIDATES = ("RISK_RATNG", "RISK_RATING")
+
+
+def collect_fema_nri():
+    """County-level composite natural hazard risk from FEMA's National Risk
+    Index: a free, public-domain, no-key-required dataset covering all
+    ~3,144 US counties across 18 natural hazard types (flood, hurricane,
+    wildfire, earthquake, and more), published as a single composite score
+    and a plain-language rating.
+
+    Relevant to data center siting the same way regulatory restriction level
+    is, but as a DIFFERENT kind of judgment: physical/environmental risk
+    (insurance cost, uptime risk, construction requirements) rather than
+    legal risk or economic attractiveness. For that reason this is merged as
+    its own field (natural_hazard_risk), never blended into the Readiness
+    Score the way that score's own docstring already explains for
+    regulatory restriction level.
+
+    One bulk request for the whole country (like EIA's electricity price),
+    not one per county (like BLS/permits) -- FEMA publishes NRI as a single
+    table covering every county, so there is no equivalent to QCEW's
+    per-area-slice access pattern to work around.
+
+    Returns { fips: {"score", "rating", "as_of"} } or {} on any failure.
+    """
+    rows, err = _get_csv_rows(FEMA_NRI_COUNTIES_URL, timeout=90)
+    if err:
+        warn(f"FEMA National Risk Index fetch failed ({err}) — module skipped")
+        return {}
+    if not rows:
+        warn("FEMA National Risk Index: empty response — module skipped")
+        return {}
+
+    header = set(rows[0].keys())
+    fips_field   = next((f for f in _NRI_FIPS_FIELD_CANDIDATES if f in header), None)
+    score_field  = next((f for f in _NRI_SCORE_FIELD_CANDIDATES if f in header), None)
+    rating_field = next((f for f in _NRI_RATING_FIELD_CANDIDATES if f in header), None)
+    if not fips_field or not (score_field or rating_field):
+        warn(f"FEMA National Risk Index: none of the known column names "
+             f"({_NRI_FIPS_FIELD_CANDIDATES}, {_NRI_SCORE_FIELD_CANDIDATES}, "
+             f"{_NRI_RATING_FIELD_CANDIDATES}) matched this file's actual header "
+             f"({sorted(header)[:20]}...) — module skipped rather than guessing "
+             f"which column is which")
+        return {}
+
+    today = date.today().isoformat()
+    out = {}
+    for row in rows:
+        fips_raw = (row.get(fips_field) or "").strip()
+        if not fips_raw or not fips_raw.isdigit():
+            continue
+        fips = fips_raw.zfill(5)
+        score = parse_number(row.get(score_field)) if score_field else None
+        rating = (row.get(rating_field) or "").strip() if rating_field else None
+        if score is None and not rating:
+            continue
+        entry = {"as_of": today}
+        if score is not None:
+            entry["score"] = score
+        if rating:
+            entry["rating"] = rating
+        out[fips] = entry
+
+    # ~3,144 US counties exist; a large miss rate means the FIPS column was
+    # misidentified (picking a state or tract FIPS field by the same name
+    # would produce far fewer, or far more, unique 5-digit matches) rather
+    # than genuine sparse coverage -- NRI is documented as near-universal.
+    if len(out) < 2500:
+        warn(f"FEMA National Risk Index: only {len(out)} of ~3,144 counties matched "
+             f"using fields {fips_field}/{score_field}/{rating_field} — module "
+             f"skipped rather than publishing a suspiciously small or malformed result")
+        return {}
+
+    return out
+
+
 # ────────────── EIA electricity price (optional, state-level) ──────────────
 
 def load_state_abbr_to_fips():
@@ -1707,6 +1853,9 @@ def main():
     ap.add_argument("--bls-max-age-days", type=int, default=90)
     ap.add_argument("--bls-max-counties", type=int, default=None,
                      help="cap counties checked, for a bounded test run")
+    ap.add_argument("--skip-nri", action="store_true")
+    ap.add_argument("--force-nri", action="store_true")
+    ap.add_argument("--nri-max-age-days", type=int, default=180)
     ap.add_argument("--offline", action="store_true")
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args()
@@ -1745,6 +1894,7 @@ def main():
     permits_ran    = False
     eia_ran        = False
     bls_ran        = False
+    nri_ran        = False
     any_source_ok  = False
 
     if args.offline:
@@ -1887,6 +2037,41 @@ def main():
                 warn(f"BLS module raised {type(e).__name__} — "
                      f"ignored; the Economy page does not depend on it")
 
+    # ── FEMA National Risk Index (optional, county-level, own cadence) ──
+    # Independent of the Census/ACS branch above: needs no API key at all
+    # (like BLS), and FEMA republishes NRI infrequently, so this gets its own
+    # long gate rather than any other module's cadence. Runs against
+    # whichever county_payload is authoritative right now, same pattern as
+    # permits/BLS above. Lower confidence than this pipeline's other
+    # sources — see collect_fema_nri()'s docstring — so a failure here must
+    # never be treated as evidence the overall approach is wrong; the first
+    # live run's outcome (matched count, or the specific warning if it
+    # fails) is the real verification this session's blocked network access
+    # could not do directly.
+    if county_payload and not args.offline and not args.skip_nri:
+        if not args.force_nri and _nri_is_fresh(prior_meta, args.nri_max_age_days):
+            print(f"\n=== FEMA National Risk Index ===\n  refreshed within "
+                  f"{args.nri_max_age_days} days — skipping (use --force-nri to override)")
+        else:
+            print("\n=== FEMA National Risk Index (optional, county-level) ===")
+            try:
+                nri_by_fips = collect_fema_nri()
+                if nri_by_fips:
+                    matched = 0
+                    for fips, county_rec in county_payload.get("counties", {}).items():
+                        rec = nri_by_fips.get(fips)
+                        if rec:
+                            county_rec["natural_hazard_risk"] = rec
+                            matched += 1
+                    print(f"  merged FEMA NRI data into {matched} of "
+                          f"{len(county_payload.get('counties', {}))} counties")
+                    if _safe_write(COUNTY_OUT, county_payload, min_records=2000):
+                        nri_ran = True
+                        any_source_ok = True
+            except Exception as e:                    # noqa: BLE001
+                warn(f"FEMA NRI module raised {type(e).__name__} — "
+                     f"ignored; the Economy page does not depend on it")
+
     # ── EIA electricity price (optional, state-level, own cadence) ──
     # Independent of the Census/ACS branch above: needs EIA_API_KEY, not
     # CENSUS_API_KEY, and EIA updates monthly, not annually, so it gets its
@@ -1921,7 +2106,7 @@ def main():
     print("\n=== metadata ===")
     write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
                    acs_vintage, var_problems, prior_meta, census_ran, permits_ran,
-                   eia_ran, bls_ran, any_source_ok=any_source_ok)
+                   eia_ran, bls_ran, nri_ran, any_source_ok=any_source_ok)
 
     print("\n=== validation ===")
     errs = validate_outputs()

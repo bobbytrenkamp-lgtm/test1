@@ -652,10 +652,23 @@
     // does not carry the field itself).
     const bp = isCounty ? rec.building_permits : null;
     const wg = isCounty ? rec.avg_weekly_wage : null;
+    // ep.value is EIA's native unit, cents per kWh (a realistic industrial
+    // rate reads as "9.23", not "0.0923") — every place that DISPLAYS it as
+    // a dollar figure divides by 100 first, or "$9.23/kWh" (100x too high)
+    // appears. Code that only COMPARES the raw value (readinessScore's
+    // percentile ranking, SIGNAL_RULES' threshold checks) does not need
+    // this, since cents-to-cents ranking is unaffected by the unit — but
+    // SIGNAL_RULES' own generated TEXT still displays it, so it needs the
+    // same /100 conversion economy-view.js and report.js use here.
     const ep = isCounty
       ? (((sData && sData.states) || {})[rec.state_fips] || {}).electricity_price
       : rec.electricity_price;
-    const supplementary = (bp || wg || ep) ? `
+    // County-only, like bp/wg — FEMA's National Risk Index. Deliberately NOT
+    // part of the ACS table above (a different agency, a different kind of
+    // measurement) and NOT part of the Readiness Score (a different kind of
+    // judgment — physical/environmental risk, not economic attractiveness).
+    const nhr = isCounty ? rec.natural_hazard_risk : null;
+    const supplementary = (bp || wg || ep || nhr) ? `
       <div class="econ-profile-supplementary">
         ${bp ? (() => {
           const hasYoy = bp.change_yoy_pct !== null && bp.change_yoy_pct !== undefined;
@@ -679,8 +692,15 @@
         </div>` : ""}
         ${ep ? `<div class="econ-profile-supp-row">
           <span class="econ-profile-supp-label">${isCounty ? "State industrial electricity price" : "Industrial electricity price"}</span>
-          <span class="econ-profile-supp-value">${E().escapeText(E().fmtValue(ep.value, "usd_precise", 2))}/kWh</span>
+          <span class="econ-profile-supp-value">${E().escapeText(E().fmtValue(ep.value / 100, "usd_precise", 2))}/kWh</span>
           <span class="econ-profile-supp-note">EIA, ${E().escapeText(ep.as_of)}${isCounty ? " — state average, not this specific county" : ""}</span>
+        </div>` : ""}
+        ${nhr ? `<div class="econ-profile-supp-row">
+          <span class="econ-profile-supp-label">Natural hazard risk</span>
+          <span class="econ-profile-supp-value">${nhr.rating ? E().escapeText(nhr.rating) : ""}${
+            nhr.rating && nhr.score !== null && nhr.score !== undefined ? " &middot; " : ""
+          }${nhr.score !== null && nhr.score !== undefined ? E().escapeText(E().fmtValue(nhr.score, "index", 1)) : ""}</span>
+          <span class="econ-profile-supp-note">FEMA National Risk Index, ${E().escapeText(nhr.as_of)} — composite score across 18 hazard types (flood, hurricane, wildfire, earthquake, and more); a physical/environmental risk signal, distinct from both the readiness score above and the regulatory restriction level shown on the map</span>
         </div>` : ""}
       </div>` : "";
 

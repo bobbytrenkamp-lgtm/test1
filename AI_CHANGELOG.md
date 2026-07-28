@@ -5,6 +5,83 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: FEMA National Risk Index added under real uncertainty; a real EIA display bug found while wiring it in
+
+## Phase 5, attempted for real this time: FEMA National Risk Index
+The previous entry from today deferred all of NOAA/FEMA/EPA/FAA/DOT because
+this session's network access was blocked for `WebFetch`/`curl`. `WebSearch`
+kept working throughout (it is not routed through the blocked proxy), and a
+deeper search round returned something a first pass missed: a real,
+independently-indexed FEMA static file
+(`hazards.fema.gov/nri/Content/StaticDocuments/DataDownload/NRI_Shapefile_CensusTracts/NRI_Shapefile_CensusTracts.zip`)
+confirming FEMA's actual static-file URL pattern, not a guess. Built
+`NRI_Table_Counties.csv`'s URL from that same confirmed pattern, and the
+column names (`STCOFIPS`, `RISK_SCORE`, `RISK_RATNG`) from FEMA's own
+documentation and multiple independent secondary sources.
+
+This is genuinely less certain than this pipeline's other sources, and says
+so everywhere it appears (code comments, DATA_SOURCES.md, the workflow
+YAML) rather than quietly presenting it as equally solid. The defensive
+pattern is the same one BLS's wage-field uncertainty already established:
+short candidate-column lists, a 2,500-of-~3,144-county sanity floor, and a
+warning that names exactly which candidates it tried against the file's
+real header if nothing matches — so a wrong guess fails as a clean, visible
+skip in `nri_available: false`, never a silent misattribution. Wired all
+the way through: Python collector (`collect_fema_nri()`), metadata/gate
+plumbing (own 180-day cadence, since FEMA republishes infrequently),
+`validate_outputs()`, the workflow's dispatch inputs and summary step, 7
+new pytest assertions, and frontend display (Economy profile panel,
+report.js) as a `natural_hazard_risk` supplementary field — deliberately
+kept out of the Readiness Score, the same reasoning that already keeps
+regulatory restriction level separate from it. The frontend wiring was
+low-risk to include even given the backend uncertainty: every consumer
+already null-checks the field, so a live run that fails to populate it
+degrades to exactly today's behavior (the row simply does not appear),
+never a crash or wrong data.
+
+**What the next live pipeline run needs to confirm**, in order of how bad
+it would be if wrong: (1) the URL resolves at all, (2) the column names
+match, (3) `nri_county_count` lands near ~3,144. Check
+`economic_metadata.json`'s `nri_available`/`nri_county_count` and any
+warning text after the first scheduled or `--force-nri` run.
+
+## A real bug found while wiring FEMA NRI's display: EIA electricity price was reading cents as dollars
+While writing `natural_hazard_risk`'s "Four supplementary fields" doc
+section, re-checked `electricity_price`'s existing description and noticed
+something worth verifying rather than copy-pasting forward: EIA's API
+reports industrial electricity price in **cents per kWh** (confirmed by
+this pipeline's own EIA test fixture, which uses values like `"12.50"` and
+`"6.80"` — unmistakably cents-scale; a realistic industrial rate in DOLLARS
+would be `"0.125"` and `"0.068"`). But every place that DISPLAYS the value
+(`js/economy-view.js`'s profile panel, `js/economy.js`'s two new
+electricity `SIGNAL_RULES` from earlier today, `js/report.js`) formatted it
+with `fmtValue(ep.value, "usd_precise", 2)` — treating the raw cents number
+as if it were already dollars. A realistic 9.2-cent rate would have
+rendered as "$9.20/kWh", a real price 100x too high, everywhere it
+appeared, including in signal text this same session had just written.
+
+Fixed all three display call sites to `ep.value / 100`. Code that only
+RANKS the raw value rather than displaying it (`readinessScore`'s
+percentile calculation, the electricity `SIGNAL_RULES`' own threshold
+comparisons) needed no change — comparing cents-to-cents is unaffected by
+which unit the numbers are labelled, only the number shown to a reader was
+wrong. Added a regression test in `tests/test_economy_core.mjs` using a
+realistic cents-scale value (6.5) and asserting the rendered signal text
+shows "$0.07/kWh", never "$6.5.../kWh" — the exact failure mode this bug
+produced. The underlying stored data was never wrong (cents is EIA's
+correct native unit, and DATA_SOURCES.md already documented it correctly);
+only the display math was.
+
+Real EIA electricity price data has not been successfully collected by any
+live pipeline run yet (`eia_available: false` as of this writing), so this
+bug had not yet been visible in production — caught by re-reading a doc
+section carefully, not by seeing a wrong number on the live site.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Visual/UX polish: a discoverability gap in the Economy profile table
 
 ## The profile table's horizontal scroll had no visual affordance

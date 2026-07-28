@@ -2,7 +2,7 @@ name: Update Economic Data
 
 # Builds the Economy tab's local JSON from the FRED and Census APIs.
 #
-# WHY A SINGLE DAILY JOB SERVES FIVE CADENCES
+# WHY A SINGLE DAILY JOB SERVES SIX CADENCES
 # FRED series publish daily-to-monthly, so they are refreshed on every run.
 # Census ACS publishes ONE new 5-year vintage per year, so re-downloading
 # ~3,140 counties every day would burn CI minutes for no new data. The script
@@ -17,11 +17,21 @@ name: Update Economic Data
 # daily or annually. BLS QCEW average weekly wage (one request PER COUNTY,
 # same shape as Building Permits) has the longest gate of all
 # (--bls-max-age-days, 90): its annual file publishes with a 5-6 month lag, so
-# there is nothing new to fetch on any shorter interval. Every module has its
-# own timestamp field, even where an interval happens to match another
-# module's, so none can silently ride on a sibling's gate (the bug PEP had
-# against ACS before it was retired). All checks live in one scheduled job
-# rather than separate workflows.
+# there is nothing new to fetch on any shorter interval. FEMA's National Risk
+# Index (one bulk request for the whole country, like EIA) has the longest
+# gate of all (--nri-max-age-days, 180): FEMA republishes it infrequently
+# (documented versions are roughly annual). Every module has its own
+# timestamp field, even where an interval happens to match another module's,
+# so none can silently ride on a sibling's gate (the bug PEP had against ACS
+# before it was retired). All checks live in one scheduled job rather than
+# separate workflows.
+#
+# FEMA NRI's confidence level is lower than this workflow's other sources:
+# its exact CSV column names were not independently fetched and confirmed
+# before this module shipped (network access was blocked in the session that
+# wrote it — see AI_CHANGELOG.md and DATA_SOURCES.md). If nri_available stays
+# false after a run with --force-nri, check the warning text first; it names
+# exactly which column names it tried and what the file's real header was.
 #
 # A Census Population Estimates Program (PEP) module was tried and retired:
 # a live bounded test showed every vintage year returning a plain HTTP 404 on
@@ -43,6 +53,7 @@ name: Update Economic Data
 #   CENSUS_API_KEY  REQUIRED. https://api.census.gov/data/key_signup.html
 #   EIA_API_KEY     OPTIONAL. https://www.eia.gov/opendata/register.php
 #   (BLS QCEW needs no key — https://www.bls.gov/cew/additional-resources/open-data/)
+#   (FEMA NRI needs no key either — https://hazards.fema.gov/nri/)
 #
 # MISSING KEY BEHAVIOUR
 # A missing key skips that source with a warning and preserves the previously
@@ -115,6 +126,16 @@ on:
         required: false
         type: string
         default: ""
+      force_nri:
+        description: "Refresh FEMA National Risk Index even if recently updated"
+        required: false
+        type: boolean
+        default: false
+      skip_nri:
+        description: "Skip the optional FEMA National Risk Index module entirely"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -173,6 +194,8 @@ jobs:
           if [ -n "${{ inputs.bls_max_counties }}" ]; then
             ARGS="$ARGS --bls-max-counties ${{ inputs.bls_max_counties }}"
           fi
+          if [ "${{ inputs.force_nri }}"    = "true" ]; then ARGS="$ARGS --force-nri";    fi
+          if [ "${{ inputs.skip_nri }}"     = "true" ]; then ARGS="$ARGS --skip-nri";     fi
           echo "running with args:$ARGS"
           python data/update_economic_data.py $ARGS
 
@@ -204,10 +227,11 @@ jobs:
           PERMITSN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['permits_county_count'])" 2>/dev/null || echo "0")
           EIAN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['eia_state_count'])" 2>/dev/null || echo "0")
           BLSN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['bls_county_count'])" 2>/dev/null || echo "0")
+          NRIN=$(python -c "import json;print(json.load(open('data/economy/economic_metadata.json'))['nri_county_count'])" 2>/dev/null || echo "0")
           # [skip ci] prevents a Pages redeploy loop: the frontend fetches these
           # files at runtime with cache:no-store, so a redeploy is not needed for
           # new numbers to appear.
-          git commit -m "chore: refresh economic data — ${SERIES} FRED series, ${COUNTIES} counties, ACS ${VINTAGE}, permits ${PERMITSN}, EIA ${EIAN}, BLS ${BLSN} [skip ci]"
+          git commit -m "chore: refresh economic data — ${SERIES} FRED series, ${COUNTIES} counties, ACS ${VINTAGE}, permits ${PERMITSN}, EIA ${EIAN}, BLS ${BLSN}, NRI ${NRIN} [skip ci]"
           git push origin HEAD
 
       - name: Summary
@@ -227,6 +251,7 @@ jobs:
           print(f"Permits available: {m.get('permits_available')} ({m.get('permits_county_count')} counties)")
           print(f"EIA available    : {m.get('eia_available')} ({m.get('eia_state_count')} states)")
           print(f"BLS available    : {m.get('bls_available')} ({m.get('bls_county_count')} counties)")
+          print(f"NRI available    : {m.get('nri_available')} ({m.get('nri_county_count')} counties)")
           print(f"stale            : {m.get('stale')}")
           skipped = m.get("fred_skipped") or []
           if skipped:

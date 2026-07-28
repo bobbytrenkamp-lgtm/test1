@@ -875,6 +875,144 @@ def test_validate_outputs_flags_bad_avg_weekly_wage():
           f"negative avg_weekly_wage.value should have been flagged; got: {errs}")
 
 
+# ────────────────────────── FEMA National Risk Index ────────────────────────
+# The exact CSV header was not independently fetched and confirmed before
+# this module shipped (this session's outbound network access was blocked --
+# see DATA_SOURCES.md and AI_CHANGELOG.md). These tests exercise the
+# defensive machinery (candidate-column matching, sanity floor, FIPS
+# zero-padding) against a fixture shaped like FEMA's documented column
+# names; they cannot themselves prove those names are correct against the
+# live file the way a real workflow run will.
+
+def _fake_nri_rows(n=2700, fips_field="STCOFIPS", score_field="RISK_SCORE",
+                    rating_field="RISK_RATNG"):
+    """FIPS start with '9', same convention test_collect_bls_wages' own
+    padding rows use — no real state FIPS prefix reaches 90-99, so these
+    can never collide with a realistic FIPS a test asserts on explicitly."""
+    rows = []
+    for i in range(n):
+        rows.append({
+            fips_field: f"9{i:04d}",
+            score_field: str(round(10 + (i % 90), 2)),
+            rating_field: "Relatively Moderate",
+        })
+    return rows
+
+
+def test_collect_fema_nri_parses_known_columns():
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = lambda url, **kw: (_fake_nri_rows(), None)
+    try:
+        out = econ.collect_fema_nri()
+    finally:
+        econ._get_csv_rows = real_get_csv
+    check(len(out) >= 2500, f"expected most of ~3,144 counties matched, got {len(out)}")
+    rec = out["90042"]
+    eq(rec["rating"], "Relatively Moderate", "rating column parsed")
+    check(isinstance(rec["score"], (int, float)), "score parsed as a number")
+    check(bool(rec["as_of"]), "as_of stamped with a date")
+
+
+def test_collect_fema_nri_zero_pads_short_fips():
+    """A source CSV without leading zeros (e.g. FIPS '1001' for Autauga
+    County, AL) must still key the output the same 5-digit way every other
+    county record in this pipeline does."""
+    real_get_csv = econ._get_csv_rows
+
+    def fake(url, **kw):
+        # 88888 is outside _fake_nri_rows' own 00000-02699 padding range, so
+        # this row cannot collide with (and be silently overwritten by) one
+        # of the padding rows sharing the same FIPS.
+        return [{"STCOFIPS": "1001", "RISK_SCORE": "42.0", "RISK_RATNG": "Relatively Low"}] + \
+               _fake_nri_rows(2700), None
+
+    econ._get_csv_rows = fake
+    try:
+        out = econ.collect_fema_nri()
+    finally:
+        econ._get_csv_rows = real_get_csv
+    check("01001" in out, f"short FIPS '1001' must be zero-padded to '01001'; keys sample: {list(out)[:5]}")
+    eq(out["01001"]["score"], 42.0, "score for the zero-padded record")
+
+
+def test_collect_fema_nri_rejects_unknown_columns():
+    """None of the candidate column names present -> skip cleanly rather
+    than guessing which arbitrary column is the FIPS/score/rating."""
+    econ.warnings.clear()
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = lambda url, **kw: (
+        [{"SOME_OTHER_ID": "00001", "SOME_OTHER_VALUE": "1"}], None)
+    try:
+        out = econ.collect_fema_nri()
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(out, {}, "no known column names matched -> module skipped")
+    check(any("none of the known column names" in w for w in econ.warnings),
+          f"warning should explain why it gave up, not just fail silently; got: {econ.warnings}")
+
+
+def test_collect_fema_nri_rejects_suspiciously_small_result():
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = lambda url, **kw: (_fake_nri_rows(n=50), None)
+    try:
+        out = econ.collect_fema_nri()
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(out, {}, "50 of ~3,144 counties is far below the sanity floor -> rejected")
+
+
+def test_collect_fema_nri_handles_fetch_failure():
+    econ.warnings.clear()
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = lambda url, **kw: (None, "HTTP 404")
+    try:
+        out = econ.collect_fema_nri()
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(out, {}, "fetch failure -> empty result, never a crash")
+    check(any("fetch failed" in w for w in econ.warnings), f"got: {econ.warnings}")
+
+
+def test_nri_is_fresh_direct():
+    now = datetime.now(timezone.utc)
+    eq(econ._nri_is_fresh({}, 180), False, "no prior timestamp -> not fresh")
+    eq(econ._nri_is_fresh({"nri_last_successful_update": (now - timedelta(days=30)).isoformat()}, 180),
+       True, "30 days old against a 180-day gate -> fresh")
+    eq(econ._nri_is_fresh({"nri_last_successful_update": (now - timedelta(days=200)).isoformat()}, 180),
+       False, "200 days old against a 180-day gate -> not fresh")
+
+
+def test_validate_outputs_flags_bad_natural_hazard_risk():
+    with tempfile.TemporaryDirectory() as td:
+        county_path = Path(td) / "census_county.json"
+        payload = {
+            "generated_at": "2026-07-27T00:00:00+00:00",
+            "acs_vintage": 2024,
+            "counties": {
+                "01001": {
+                    "metrics": {},
+                    "history": {},
+                    "natural_hazard_risk": {"score": -5, "rating": "Relatively Moderate", "as_of": "2026-01-01"},
+                },
+            },
+        }
+        county_path.write_text(json.dumps(payload))
+        real_county_out = econ.COUNTY_OUT
+        real_state_out = econ.STATE_OUT
+        real_fred_out = econ.FRED_OUT
+        econ.COUNTY_OUT = county_path
+        econ.STATE_OUT = Path(td) / "does_not_exist_state.json"
+        econ.FRED_OUT = Path(td) / "does_not_exist_fred.json"
+        try:
+            errs = econ.validate_outputs()
+        finally:
+            econ.COUNTY_OUT = real_county_out
+            econ.STATE_OUT = real_state_out
+            econ.FRED_OUT = real_fred_out
+    check(any("natural_hazard_risk" in e for e in errs),
+          f"negative natural_hazard_risk.score should have been flagged; got: {errs}")
+
+
 # ────────────────────────── EIA electricity price ──────────────────────────
 
 def test_load_state_abbr_to_fips_matches_state_regulations():

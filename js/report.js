@@ -83,14 +83,16 @@ window.REPORT = (function () {
           const rec = (county.counties || {})[padded];
           const buildingPermits = rec && rec.building_permits;
           const avgWeeklyWage = rec && rec.avg_weekly_wage;
+          const naturalHazardRisk = rec && rec.natural_hazard_risk;
           const stateFips = rec && rec.state_fips;
           const electricityPrice = stateFips &&
             ((stateData && stateData.states) || {})[stateFips] &&
             ((stateData.states)[stateFips]).electricity_price;
           const readiness = E.readinessScore(county, stateData, padded);
-          if (metrics.length || signals.length || buildingPermits || avgWeeklyWage || electricityPrice || readiness) {
-            econ = { metrics, signals, buildingPermits, avgWeeklyWage, electricityPrice, readiness,
-                     vintage: meta && meta.acs_vintage };
+          if (metrics.length || signals.length || buildingPermits || avgWeeklyWage ||
+              electricityPrice || naturalHazardRisk || readiness) {
+            econ = { metrics, signals, buildingPermits, avgWeeklyWage, electricityPrice,
+                     naturalHazardRisk, readiness, vintage: meta && meta.acs_vintage };
           }
         }
       } catch (_) { /* Economic data is supplementary — never block the report on it. */ }
@@ -164,14 +166,18 @@ window.REPORT = (function () {
     const bp = econ.buildingPermits;
     const wg = econ.avgWeeklyWage;
     const ep = econ.electricityPrice;
-    const supplementaryHtml = (bp || wg || ep) ? `
+    const nhr = econ.naturalHazardRisk;
+    const supplementaryHtml = (bp || wg || ep || nhr) ? `
       <table class="kv-table" style="margin-top:8px">
         <tbody>
           ${bp ? `<tr><th>Building permits issued</th><td>${_esc(E.fmtValue(bp.value, "count", 0))}${
             bp.change_yoy_pct == null ? "" : ` (${_esc(E.fmtPct(bp.change_yoy_pct))} YoY)`
           } <span class="note">(Census BPS via FRED, as of ${_esc(E.fmtDate(bp.as_of))})</span></td></tr>` : ""}
           ${wg ? `<tr><th>Average weekly wage</th><td>${_esc(E.fmtValue(wg.value, "usd", 0))} <span class="note">(BLS QCEW, all industries, ${_esc(String(wg.year))})</span></td></tr>` : ""}
-          ${ep ? `<tr><th>State industrial electricity price</th><td>${_esc(E.fmtValue(ep.value, "usd_precise", 2))}/kWh <span class="note">(EIA, ${_esc(ep.as_of)} — state average, not this specific county)</span></td></tr>` : ""}
+          ${ep ? `<tr><th>State industrial electricity price</th><td>${_esc(E.fmtValue(ep.value / 100, "usd_precise", 2))}/kWh <span class="note">(EIA, ${_esc(ep.as_of)} — state average, not this specific county)</span></td></tr>` : ""}
+          ${nhr ? `<tr><th>Natural hazard risk</th><td>${nhr.rating ? _esc(nhr.rating) : ""}${
+            nhr.rating && nhr.score != null ? " &middot; " : ""
+          }${nhr.score != null ? _esc(E.fmtValue(nhr.score, "index", 1)) : ""} <span class="note">(FEMA National Risk Index, ${_esc(nhr.as_of)} — composite across 18 hazard types; physical/environmental risk, distinct from the readiness score and restriction severity above)</span></td></tr>` : ""}
         </tbody>
       </table>` : "";
 

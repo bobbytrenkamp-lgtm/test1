@@ -213,12 +213,14 @@ center and AI infrastructure rather than as a general economics dashboard.
    (a 0-100 synthesis of nine economic factors as national percentiles,
    weighted and combined client-side — see below), and — where available —
    county-level building permit activity (Census BPS via FRED), county-level
-   average weekly wage (BLS QCEW, no API key needed), and state-level
-   industrial electricity price (EIA), each clearly labelled as a distinct
-   measurement from the ACS metrics above it.
+   average weekly wage (BLS QCEW, no API key needed), state-level
+   industrial electricity price (EIA), and county-level natural hazard risk
+   (FEMA National Risk Index, no API key needed), each clearly labelled as a
+   distinct measurement from the ACS metrics above it.
 4. **Infrastructure-Relevant Signals** — plain statements about conditions that
    matter for infrastructure planning (population momentum, skilled workforce,
-   labor tightness, financing cost, credit availability, construction activity
+   labor tightness, housing availability, labor/electricity cost vs. median,
+   financing cost, credit availability, construction activity
    accelerating/slowing). Each comes from a fixed rule and cites a figure shown
    on the page.
 
@@ -285,13 +287,16 @@ run to a handful of counties instead of the full ~3,000),
 `force_eia`/`skip_eia` (EIA electricity price, own 30-day gate, one request
 for all states), `force_bls`/`skip_bls`/`bls_max_counties` (BLS QCEW average
 weekly wage, needs no API key, own 90-day gate, ~1 request per county like
-Building Permits). After that it runs
+Building Permits), `force_nri`/`skip_nri` (FEMA National Risk Index natural
+hazard risk, needs no API key, own 180-day gate, one bulk request for the
+whole country like EIA). After that it runs
 daily at 06:20 UTC; Census is only re-fetched when its data is more than 7 days
 old, since ACS publishes annually, Building Permits only when more than 30
 days old, since BPS publishes annually and costs far more requests per run,
-EIA only when more than 30 days old, since it publishes monthly, and BLS
+EIA only when more than 30 days old, since it publishes monthly, BLS
 QCEW only when more than 90 days old, since its annual file publishes with
-a 5-6 month lag.
+a 5-6 month lag, and FEMA NRI only when more than 180 days old, since FEMA
+republishes it only roughly annually.
 
 A missing key is a warning, not a failure — that source is skipped and its
 existing data is preserved. The workflow fails only if output validation shows the
