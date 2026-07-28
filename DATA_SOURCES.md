@@ -164,19 +164,25 @@ regulation, and are never used to infer a policy record.
   publication schedules (daily for Treasury yields, monthly for CPI and payrolls,
   quarterly for GDP).
 - **Output**: `data/economy/fred_data.json`
-- **Series tracked (21)**: configured in `data/economy/series_config.json`, not
+- **Series tracked (23)**: configured in `data/economy/series_config.json`, not
   hardcoded. Rates & Credit (`DFF`, `DGS2`, `DGS10`, `T10Y2Y`, `MORTGAGE30US`,
   `NFCI`, `BUSLOANS`, `CREACBM027NBOG`), Inflation & Growth (`CPIAUCSL`, `PCEPI`,
-  `GDPC1`, `INDPRO`), Labor & Demand (`UNRATE`, `PAYEMS`, `ICSA`, `RSAFS`),
-  Housing & Construction (`HOUST`, `PERMIT`), Energy & Power Costs
-  (`APU000072610`, `PCU2211102211104`, `DHHNGSP`). Power is typically a data
-  center's largest recurring operating cost and was previously untracked; the
-  three energy series give a national retail electricity price, a producer-side
-  utility-generation cost index, and the Henry Hub natural gas spot price (the
-  dominant marginal fuel for US electricity generation, so a leading indicator
-  rather than a lagging one). None is promoted to the KPI strip — the 7-KPI
-  National Economic Pulse count is a fixed design decision — but the category's
-  chart is shown by default like every other category.
+  `GDPC1`, `INDPRO`), Labor & Demand (`UNRATE`, `PAYEMS`, `ICSA`, `JTSJOL`,
+  `RSAFS`), Housing & Construction (`HOUST`, `PERMIT`, `CSUSHPINSA`), Energy &
+  Power Costs (`APU000072610`, `PCU2211102211104`, `DHHNGSP`). Power is
+  typically a data center's largest recurring operating cost and was
+  previously untracked; the three energy series give a national retail
+  electricity price, a producer-side utility-generation cost index, and the
+  Henry Hub natural gas spot price (the dominant marginal fuel for US
+  electricity generation, so a leading indicator rather than a lagging one).
+  `JTSJOL` (JOLTS job openings) and `CSUSHPINSA` (Case-Shiller national home
+  price index) were added later: UNRATE/ICSA measure labor SUPPLY while
+  JTSJOL measures labor DEMAND, and HOUST/PERMIT measure construction
+  ACTIVITY while CSUSHPINSA measures home price LEVELS — each fills a gap the
+  existing series in its category could not answer. None of the 23 is
+  promoted to the KPI strip — the 7-KPI National Economic Pulse count is a
+  fixed design decision — but each category's chart is shown by default like
+  every other category.
 
 **Attribution note:** FRED *hosts* series produced by other agencies — BLS
 (`CPIAUCSL`, `UNRATE`, `PAYEMS`), BEA (`GDPC1`, `PCEPI`), Census (`HOUST`,

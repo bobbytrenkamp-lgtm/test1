@@ -5,6 +5,43 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: FRED integration audit: 2 new series added, needs a live run to confirm
+
+## Audited the 21-series list for coverage gaps
+Reviewed `data/economy/series_config.json`'s existing coverage against the
+platform's own stated test ("how does this affect data center
+attractiveness?"). Two genuine gaps, not just more of what is already
+there: nothing measured labor DEMAND (only supply: `UNRATE`, `ICSA`,
+`PAYEMS`), and nothing measured home price LEVELS (only construction
+ACTIVITY: `HOUST`, `PERMIT`). Added `JTSJOL` (JOLTS total job openings) and
+`CSUSHPINSA` (S&P/Case-Shiller US National Home Price Index) to fill those
+two specifically, rather than padding the list with tangentially-relevant
+series (consumer sentiment, oil prices) that were also considered and
+deliberately left out.
+
+**This addition carries more uncertainty than usual and says so plainly.**
+This session's outbound network access was blocked for the FEMA/NOAA
+research earlier today (see the other entry from today), so these two
+series IDs could not be live-verified before committing, unlike this
+project's normal practice. The risk is lower than it would be for, say, a
+Census ACS variable: a FRED series ID is a permanent unique identifier, not
+a fuzzy label match, so a wrong ID fails cleanly (the pipeline's existing
+`fred_series_metadata()` validates every series before fetching
+observations and records real failures to `fred_skipped` rather than
+silently publishing anything) — there is no way for this to reuse an
+existing bug pattern silently mislabeling a different series. But "the ID
+exists" and "the ID is the one I intended" are still two different claims,
+and only the first is checked automatically. The next scheduled pipeline
+run's `fred_data.json` and `economic_metadata.json` (`fred_skipped`) will
+show definitively whether both resolved to real, working series — check
+that before treating this as fully confirmed the way the rest of this
+platform's sources are.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Data sources panel: the existing one had never been updated for the Economic Intelligence pipeline
 
 ## The About page's Data Sources table predated the entire Economy tab

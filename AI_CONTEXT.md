@@ -652,7 +652,7 @@ js/economy-view.js   the four Economy tab sections + Leaflet explorer (window.EC
 js/economy-map.js    economic choropleths for the MAIN Map tab       (window.ECONOMY_MAP)
 css/economy.css
 data/update_economic_data.py            the whole pipeline (stdlib only, no pip install)
-data/economy/series_config.json         21 FRED series, 5 categories — presentation truth
+data/economy/series_config.json         23 FRED series, 5 categories — presentation truth
 data/economy/census_config.json         13 ACS metrics + label fragments for verification
 data/economy/fred_data.json             generated
 data/economy/census_county.json         generated — also carries building_permits
