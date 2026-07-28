@@ -5,6 +5,73 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: 3D terrain view, Phase E — export, report integration, presentation mode, accessibility, performance
+
+Finished the digital-twin system with Phase E, the last phase in the
+original 47-section spec: image/data export, report integration,
+presentation mode, an accessibility pass, and performance quality tiers —
+all extending Phase A-D's existing systems rather than adding new parallel
+ones.
+
+Export (js/3d/engine.js's captureSnapshot()/getReportData(), wired into
+three new buttons in js/map.js) reuses the exact CSV/JSON download pattern
+already used by exportScreenerCSV/exportWorkspacesJSON (quoted CSV with
+BOM, Blob + object URL + temporary anchor) rather than inventing a new
+export mechanism. Report integration extends the existing
+js/parcel/report.js due-diligence report with a new "Conceptual 3D Site
+Plan" section (image, metrics, per-object table) that only appears when a
+scene actually has objects — a null/empty scene3d produces a byte-
+identical report to before Phase E, verified directly in
+tests/scene3d.test.js. The section reuses the same three-value honesty-
+boundary status vocabulary as the in-scene panel (Conflict / Review
+setbacks / No parcel selected) and never renders an Approved/Compliant/
+Pass/Buildable verdict.
+
+Presentation mode hides all editing chrome and expands the canvas to fill
+the panel, with a small overlay bar for stepping through saved viewpoints;
+it lives in a new sibling wrapper around the canvas host specifically
+because engine.js clears that host's innerHTML on every scene rebuild,
+which would otherwise silently delete the bar.
+
+Accessibility: the canvas now has a dynamic aria-label describing live
+object counts, full keyboard camera control (arrow-key orbit/tilt, +/-
+zoom, Home to reframe) for users without a mouse, and respects
+prefers-reduced-motion by disabling camera inertia. Focus-trapping on
+panel open/close was deliberately NOT added — a check across every other
+floating panel in this app (workspace/compare/bookmarks/screener) found
+none of them do it either, so adding it only here would be an isolated
+inconsistency, not a real fix; it's documented as a standing cross-panel
+gap instead.
+
+Performance: the existing low-power/software-renderer detection (already
+built in Phase A for the fallback message) now actually changes what gets
+rendered — disabled shadows, no antialiasing, capped pixel ratio on
+flagged devices — instead of only warning about it. Tablet touch targets
+were widened within the app's one existing responsive breakpoint rather
+than inventing a new touch-specific media query the rest of the codebase
+doesn't otherwise use.
+
+One item was evaluated and deliberately not built: THREE.InstancedMesh
+geometry batching. This app's object counts are realistically in the tens
+per scene, not the thousands, and the existing per-object-mesh
+architecture is load-bearing for Phase B's TransformControls attach-to-
+select and raycasting — instancing would require a materially more complex
+custom picking layer for a performance win this app's scale doesn't need.
+
+tests/scene3d.test.js grew from 165 to 176 assertions (report-section
+backward-compatibility and honesty-boundary coverage). Full suite green,
+no regressions. docs/3D_SYSTEM_ARCHITECTURE.md's Phase E section and
+manual-verification checklist updated; browser verification remains
+unconfirmed this session for the same reason as Phases A-D (no working
+Chromium binary in this sandbox).
+
+All five phases (A-E) of the original spec are now built.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: 3D terrain view, Phase D — campus generator, templates, viewpoints, sun/shadows
 
 Continued the digital-twin system into Phase D: generic development

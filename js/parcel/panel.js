@@ -500,7 +500,13 @@ window.PARCEL_PANEL = (function () {
 
   function _openReport() {
     if (_lastFeature) {
-      window.PARCEL_REPORT?.open(_lastFeature, _lastJurisId);
+      // Optional Phase E addition: if the 3D view is active and has
+      // objects, its getReportData() snapshot/metrics/objects get folded
+      // into the report as a "Conceptual 3D Site Plan" section. Returns
+      // null when 3D was never activated or is empty, in which case the
+      // report renders exactly as it always has.
+      const scene3d = window.SCENE3D?.getReportData?.() || null;
+      window.PARCEL_REPORT?.open(_lastFeature, _lastJurisId, scene3d);
     }
   }
 

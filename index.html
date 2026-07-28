@@ -365,7 +365,15 @@
           <button id="scene3d-close" aria-label="Close 3D view">&times;</button>
         </div>
         <div id="scene3d-body">
-          <div id="scene3d-canvas-host"></div>
+          <div id="scene3d-viewport-wrap">
+            <div id="scene3d-canvas-host"></div>
+            <div id="scene3d-present-bar" hidden>
+              <button id="scene3d-present-prev" type="button" aria-label="Previous viewpoint" title="Previous viewpoint">&lsaquo; Prev</button>
+              <span id="scene3d-present-vp-name"></span>
+              <button id="scene3d-present-next" type="button" aria-label="Next viewpoint" title="Next viewpoint">Next &rsaquo;</button>
+              <button id="scene3d-present-exit" type="button" aria-label="Exit presentation mode" title="Exit presentation mode">&times; Exit</button>
+            </div>
+          </div>
           <div id="scene3d-status" hidden role="status" aria-live="polite"></div>
 
           <div id="scene3d-object-toolbar">
@@ -441,8 +449,17 @@
             <label>Vertical exaggeration
               <input type="range" id="scene3d-exaggeration" min="1" max="4" step="0.5" value="1.5" />
             </label>
+            <button id="scene3d-present" type="button" title="Presentation mode — hide editing tools, fullscreen the view">Present</button>
           </div>
-          <p id="scene3d-disclaimer">Conceptual terrain from free, open elevation data (AWS Terrain Tiles) and generated conceptual site objects — not surveyed, engineered, or approved. All dimensions are approximate. The green outline is the real parcel boundary; a red flag means an object is outside it or overlaps another object. This tool cannot verify zoning setback-line compliance — compare object positions against the setback distances shown against your own judgment. Sun position uses a standard astronomical formula (~0.01&deg; accuracy) for conceptual shadow direction, not survey-grade solar analysis. The campus generator produces an illustrative layout only.</p>
+
+          <div id="scene3d-export-row">
+            <span>Export</span>
+            <button id="scene3d-export-image" type="button">Image (PNG)</button>
+            <button id="scene3d-export-csv" type="button">Objects (CSV)</button>
+            <button id="scene3d-export-json" type="button">Scene (JSON)</button>
+          </div>
+
+          <p id="scene3d-disclaimer">Conceptual terrain from free, open elevation data (AWS Terrain Tiles) and generated conceptual site objects — not surveyed, engineered, or approved. All dimensions are approximate. The green outline is the real parcel boundary; a red flag means an object is outside it or overlaps another object. This tool cannot verify zoning setback-line compliance — compare object positions against the setback distances shown against your own judgment. Sun position uses a standard astronomical formula (~0.01&deg; accuracy) for conceptual shadow direction, not survey-grade solar analysis. The campus generator produces an illustrative layout only. Exported images/CSV/JSON and the "Conceptual 3D Site Plan" section in the parcel report reflect this same conceptual data. Use arrow keys on the 3D view to orbit, +/&minus; to zoom, and Home to reset.</p>
         </div>
       </div>
 

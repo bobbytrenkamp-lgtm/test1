@@ -51,12 +51,17 @@
   overflow-y: auto;
 }
 
-#scene3d-canvas-host {
+#scene3d-viewport-wrap {
   position: relative;
   width: 100%;
   height: 300px;
   background: #0c1020;
   overflow: hidden;
+  flex-shrink: 0;
+}
+#scene3d-canvas-host {
+  width: 100%;
+  height: 100%;
 }
 .scene3d-canvas {
   display: block;
@@ -64,6 +69,63 @@
   height: 100%;
   touch-action: none; /* let OrbitControls own touch gestures, not page scroll */
 }
+.scene3d-canvas:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* ── Phase E: presentation mode ── */
+#scene3d-present-bar {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(12, 16, 32, 0.82);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+}
+#scene3d-present-bar button {
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 5px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  cursor: pointer;
+}
+#scene3d-present-bar button:hover { background: rgba(255,255,255,0.18); }
+
+#scene3d-panel.scene3d-presenting {
+  position: fixed;
+  top: 20px; right: 20px; bottom: 20px; left: 20px;
+  width: auto;
+}
+#scene3d-panel.scene3d-presenting #scene3d-body { max-height: none; height: 100%; }
+#scene3d-panel.scene3d-presenting #scene3d-viewport-wrap { flex: 1; height: auto; }
+#scene3d-panel.scene3d-presenting #scene3d-header,
+#scene3d-panel.scene3d-presenting #scene3d-status,
+#scene3d-panel.scene3d-presenting #scene3d-object-toolbar,
+#scene3d-panel.scene3d-presenting #scene3d-templates-row,
+#scene3d-panel.scene3d-presenting #scene3d-campus,
+#scene3d-panel.scene3d-presenting #scene3d-phase-row,
+#scene3d-panel.scene3d-presenting #scene3d-object-list,
+#scene3d-panel.scene3d-presenting #scene3d-setbacks,
+#scene3d-panel.scene3d-presenting #scene3d-metrics,
+#scene3d-panel.scene3d-presenting #scene3d-viewpoints,
+#scene3d-panel.scene3d-presenting #scene3d-sun-row,
+#scene3d-panel.scene3d-presenting #scene3d-controls,
+#scene3d-panel.scene3d-presenting #scene3d-export-row,
+#scene3d-panel.scene3d-presenting #scene3d-disclaimer {
+  display: none;
+}
+#scene3d-panel.scene3d-presenting #scene3d-present-bar { display: flex; }
 
 #scene3d-status {
   padding: 8px 10px;
@@ -398,6 +460,39 @@
   align-items: center;
   gap: 5px;
 }
+#scene3d-present {
+  margin-left: auto;
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+#scene3d-present:hover { background: var(--surface-2); }
+
+/* ── Phase E: export ── */
+#scene3d-export-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+#scene3d-export-row button {
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+#scene3d-export-row button:hover { background: var(--surface-2); }
 #scene3d-controls input[type="range"] {
   width: 80px;
 }
@@ -416,7 +511,54 @@
     left: 10px;
     width: auto;
   }
-  #scene3d-canvas-host {
+  #scene3d-viewport-wrap {
     height: 220px;
+  }
+  #scene3d-panel.scene3d-presenting {
+    top: 8px; right: 8px; bottom: 8px; left: 8px;
+  }
+  /* Touch targets: this codebase has no existing pointer:coarse/hover:none
+   * convention (checked css/style.css), so widen tap areas for the controls
+   * added in Phases C-E within the existing narrow-viewport breakpoint
+   * rather than inventing a separate touch media query. */
+  #scene3d-object-toolbar button,
+  #scene3d-templates-row button,
+  #scene3d-campus-generate,
+  #scene3d-viewpoint-save,
+  #scene3d-sun-now,
+  #scene3d-present,
+  #scene3d-export-row button,
+  #scene3d-present-bar button {
+    padding: 8px 12px;
+    font-size: 12.5px;
+  }
+  #scene3d-phase-row select,
+  #scene3d-templates-row select {
+    padding: 6px 8px;
+    font-size: 12.5px;
+  }
+  #scene3d-campus-fields {
+    grid-template-columns: 1fr;
+  }
+  #scene3d-campus-fields input {
+    padding: 7px 8px;
+    font-size: 12.5px;
+  }
+  #scene3d-campus-options label,
+  #scene3d-controls label {
+    min-height: 32px;
+  }
+  .scene3d-vp-load {
+    padding: 10px 2px;
+    font-size: 13px;
+  }
+  .scene3d-vp-del {
+    padding: 8px;
+  }
+  #scene3d-export-row {
+    justify-content: stretch;
+  }
+  #scene3d-export-row button {
+    flex: 1 1 auto;
   }
 }

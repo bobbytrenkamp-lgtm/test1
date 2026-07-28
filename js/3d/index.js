@@ -161,6 +161,7 @@ window.SCENE3D = (function () {
       _engine.activate({
         host, map: _map, fips: _selectedFips,
         onStatus: _showStatus, onStatusClear: _hideStatus,
+        lowPower: !!cap.lowPower,
       });
       if (cap.lowPower) {
         _showStatus(window.SCENE3D_FALLBACK.MESSAGES['low-power'], 'warning');
@@ -347,6 +348,20 @@ window.SCENE3D = (function () {
     try { return _engine.deleteViewpoint(id); } catch (_) { return false; }
   }
 
+  /* Phase E: export / report integration. Both return null rather than
+   * throwing when 3D isn't active or the canvas can't be read — callers
+   * (js/map.js, js/parcel/report.js) must treat null as "nothing to show,"
+   * not an error. */
+  function captureSnapshot() {
+    if (!_engine || !_active) return null;
+    try { return _engine.captureSnapshot(); } catch (_) { return null; }
+  }
+
+  function getReportData() {
+    if (!_engine || !_active) return null;
+    try { return _engine.getReportData(); } catch (_) { return null; }
+  }
+
   return {
     init, onCountyChanged, onLayerToggle, isAvailable,
     captureState, applyState, activate, deactivate,
@@ -356,6 +371,7 @@ window.SCENE3D = (function () {
     listTemplates, instantiateTemplate, generateCampus,
     setSunTime, getSunInfo,
     saveViewpoint, listViewpoints, applyViewpoint, deleteViewpoint,
+    captureSnapshot, getReportData,
     _registerEngine,
   };
 })();

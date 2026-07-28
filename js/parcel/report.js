@@ -3,8 +3,14 @@
  * HTML report for a parcel, including feasibility, buildable envelope,
  * valuation, and market context.
  *
- * window.PARCEL_REPORT.open(feature, jurisdictionId) — opens report in new tab
- * window.PARCEL_REPORT.html(feature, jurisdictionId) → HTML string
+ * window.PARCEL_REPORT.open(feature, jurisdictionId, scene3d) — opens report in new tab
+ * window.PARCEL_REPORT.html(feature, jurisdictionId, scene3d) → HTML string
+ *
+ * scene3d (optional, Phase E) is window.SCENE3D.getReportData()'s return
+ * value — {imageDataUrl, metrics, objects} — or null/undefined. When
+ * present and non-empty, a "Conceptual 3D Site Plan" section is added;
+ * when absent, the report renders exactly as it did before Phase E, so a
+ * caller that never touches 3D sees no change at all.
  *
  * The report is entirely self-contained HTML with inline styles so it
  * renders correctly when printed (no external dependencies).
@@ -239,14 +245,109 @@ window.PARCEL_REPORT = (function () {
       flex-wrap: wrap;
       gap: 6px;
     }
+    /* 3D site plan section (Phase E) */
+    .report-3d-image {
+      width: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      background: #0c1020;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .report-3d-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .report-3d-metric {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 11.5px;
+      color: #334155;
+    }
+    .report-3d-metric strong { color: #0f172a; }
+    .report-3d-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+    .report-3d-table th, .report-3d-table td {
+      text-align: left;
+      padding: 5px 8px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .report-3d-table th {
+      color: #64748b;
+      text-transform: uppercase;
+      font-size: 9.5px;
+      letter-spacing: 0.04em;
+    }
+    .report-3d-flag-conflict { color: #b91c1c; font-weight: 700; }
     @media print {
       body { background: #fff; padding: 0; }
       .report-page { box-shadow: none; border-radius: 0; }
     }
   `;
 
+  /* Builds the "Conceptual 3D Site Plan" section from
+   * window.SCENE3D.getReportData()'s shape:
+   * { imageDataUrl, metrics, objects }. Returns '' (no section at all) when
+   * scene3d is falsy — a user who never opens 3D mode sees no change to
+   * their report, and this function never invents a section from nothing. */
+  function scene3dSectionHtml(scene3d) {
+    if (!scene3d || !scene3d.objects || !scene3d.objects.length) return '';
+    const m = scene3d.metrics || {};
+    const M2FT = 3.28084;
+
+    const metricChips = [
+      m.buildingCount ? `<div class="report-3d-metric"><strong>${m.buildingCount}</strong> building${m.buildingCount === 1 ? '' : 's'}, <strong>${(m.totalFootprintSqft || 0).toLocaleString()}</strong> sq ft footprint (approx.)</div>` : '',
+      typeof m.coveragePct === 'number' ? `<div class="report-3d-metric"><strong>${m.coveragePct}%</strong> of site (approx.)</div>` : '',
+      m.buildingCount ? `<div class="report-3d-metric">Max height <strong>${(m.maxHeightFt || 0).toLocaleString()}</strong> ft (approx.)</div>` : '',
+      m.parkingCount ? `<div class="report-3d-metric"><strong>${m.parkingCount}</strong> parking area${m.parkingCount === 1 ? '' : 's'}</div>` : '',
+      m.roadCount ? `<div class="report-3d-metric"><strong>${m.roadCount}</strong> road segment${m.roadCount === 1 ? '' : 's'}, <strong>${(m.roadLengthFt || 0).toLocaleString()}</strong> ft (approx.)</div>` : '',
+      m.fenceCount ? `<div class="report-3d-metric"><strong>${m.fenceCount}</strong> fence segment${m.fenceCount === 1 ? '' : 's'}, <strong>${(m.fenceLengthFt || 0).toLocaleString()}</strong> ft (approx.)</div>` : '',
+      m.substationCount ? `<div class="report-3d-metric"><strong>${m.substationCount}</strong> substation${m.substationCount === 1 ? '' : 's'} (conceptual)</div>` : '',
+    ].filter(Boolean).join('');
+
+    const rows = scene3d.objects.map(o => {
+      const wFt = Math.round((o.footprint?.width || 0) * M2FT);
+      const dFt = Math.round((o.footprint?.depth || 0) * M2FT);
+      const hFt = Math.round((o.height || 0) * M2FT);
+      const dims = (o.type === 'road' || o.type === 'fence') ? `${dFt} ft long` : `${wFt}′ × ${dFt}′ × ${hFt}′`;
+      const status = o.constraint?.status || 'unknown';
+      const statusLabel = status === 'conflict' ? 'Conflict' : status === 'requires-review' ? 'Review setbacks' : 'No parcel selected';
+      const statusCls = status === 'conflict' ? 'report-3d-flag-conflict' : '';
+      return `<tr>
+        <td>${esc(o.label)}</td>
+        <td>${esc(o.type)}</td>
+        <td>${esc(o.phase)}</td>
+        <td>${esc(dims)} (approx.)</td>
+        <td class="${statusCls}">${esc(statusLabel)}</td>
+      </tr>`;
+    }).join('');
+
+    return `<div class="report-section">
+      <div class="report-section-title">Conceptual 3D Site Plan</div>
+      ${scene3d.imageDataUrl ? `<img class="report-3d-image" src="${scene3d.imageDataUrl}" alt="3D view of the conceptual site plan" />` : ''}
+      ${metricChips ? `<div class="report-3d-metrics">${metricChips}</div>` : ''}
+      <table class="report-3d-table">
+        <thead><tr><th>Object</th><th>Type</th><th>Phase</th><th>Dimensions</th><th>Boundary/Overlap Check</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div class="report-disclaimer">
+        ⚠ This site plan is a conceptual visualization generated in this tool, not a surveyed, engineered, or approved design. Dimensions are approximate. "Boundary/Overlap Check" only verifies that an object sits inside the real parcel boundary and does not overlap another object — it does NOT verify zoning setback-line compliance, utility capacity, drainage, geotechnical suitability, or permit eligibility. Confirm all figures with a licensed surveyor, engineer, or the local jurisdiction before relying on them.
+      </div>
+    </div>`;
+  }
+
   /* ── Build HTML report ── */
-  function html(feature, jurisdictionId) {
+  function html(feature, jurisdictionId, scene3d) {
     const props = feature.properties || {};
     const schema = window.PARCEL_SCHEMA;
     const fips   = props.county_fips;
@@ -397,6 +498,8 @@ window.PARCEL_REPORT = (function () {
   <div class="report-body">
     ${feasHtml}
 
+    ${scene3dSectionHtml(scene3d)}
+
     ${identityFields ? `<div class="report-section">
       <div class="report-section-title">Identification</div>
       <div class="report-grid">${identityFields}</div>
@@ -436,8 +539,8 @@ window.PARCEL_REPORT = (function () {
   }
 
   /* Open the report in a new browser tab */
-  function open(feature, jurisdictionId) {
-    const reportHtml = html(feature, jurisdictionId);
+  function open(feature, jurisdictionId, scene3d) {
+    const reportHtml = html(feature, jurisdictionId, scene3d);
     const blob       = new Blob([reportHtml], { type: 'text/html' });
     const url        = URL.createObjectURL(blob);
     const win        = window.open(url, '_blank', 'noopener');
@@ -446,5 +549,5 @@ window.PARCEL_REPORT = (function () {
     }
   }
 
-  return { html, open };
+  return { html, open, scene3dSectionHtml };
 })();

@@ -10,7 +10,12 @@ export function createOrbitCamera(THREE, OrbitControls, canvas, aspect) {
   camera.position.set(0, 900, 900);
 
   const controls = new OrbitControls(camera, canvas);
-  controls.enableDamping = true;
+  // Inertial damping is a motion effect — honor prefers-reduced-motion by
+  // making camera movement stop the instant input stops, same as a user
+  // who has that OS setting expects everywhere else.
+  const reducedMotion = typeof window !== 'undefined' && window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  controls.enableDamping = !reducedMotion;
   controls.dampingFactor = 0.08;
   controls.minDistance = 20;
   controls.maxDistance = 20000;

@@ -2403,6 +2403,7 @@ function toggleScene3D() {
   const btn   = document.getElementById("gis-3d");
   if (panel) panel.hidden = !_scene3dVisible;
   if (btn)   { btn.classList.toggle("active", _scene3dVisible); btn.setAttribute("aria-pressed", String(_scene3dVisible)); }
+  if (!_scene3dVisible && _scene3dPresenting) toggleScene3dPresentationMode(); // don't reopen straight into presentation mode
   if (_scene3dVisible) {
     if (!window.SCENE3D) {
       showMapToast("3D view isn't available — the module didn't load.");
@@ -2472,6 +2473,96 @@ function renderScene3dSunInfo() {
   infoEl.textContent = info.daylight
     ? `☀ ${altitude}° above horizon, ${compass}`
     : `☾ below horizon (night)`;
+}
+
+function exportScene3dImage() {
+  const dataUrl = window.SCENE3D?.captureSnapshot();
+  if (!dataUrl) { showMapToast("Open 3D mode first to export a view."); return; }
+  const a = Object.assign(document.createElement("a"), {
+    href: dataUrl, download: `3d-view-${new Date().toISOString().slice(0, 10)}.png`,
+  });
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  showMapToast("3D view exported as PNG");
+}
+
+function exportScene3dObjectsCSV() {
+  const objects = window.SCENE3D?.listObjects() || [];
+  if (!objects.length) { showMapToast("No 3D objects to export"); return; }
+  const headers = ["Label", "Type", "Phase", "Width (ft, approx.)", "Depth (ft, approx.)", "Height (ft, approx.)", "Rotation (deg)", "Footprint (sq ft, approx.)", "Length (ft, approx.)", "Constraint Status"];
+  const rows = [headers];
+  objects.forEach(o => {
+    const wFt = Math.round((o.footprint.width || 0) * METERS_TO_FEET_3D);
+    const dFt = Math.round((o.footprint.depth || 0) * METERS_TO_FEET_3D);
+    const hFt = Math.round((o.height || 0) * METERS_TO_FEET_3D);
+    rows.push([
+      o.label, o.type, o.phase, wFt, dFt, hFt, Math.round(o.rotationDeg || 0),
+      o.metrics.footprintSqft != null ? o.metrics.footprintSqft : "",
+      o.metrics.lengthFt != null ? o.metrics.lengthFt : "",
+      (o.constraint && o.constraint.status) || "unknown",
+    ]);
+  });
+  const csv  = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), { href: url, download: `3d-site-objects-${new Date().toISOString().slice(0, 10)}.csv` });
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+  showMapToast(`Exported ${objects.length} object${objects.length !== 1 ? "s" : ""}`);
+}
+
+function exportScene3dJSON() {
+  const state = window.SCENE3D?.captureState();
+  if (!state) { showMapToast("Open 3D mode first to export the scene."); return; }
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), { href: url, download: `3d-scene-${new Date().toISOString().slice(0, 10)}.json` });
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+  showMapToast("3D scene exported as JSON");
+}
+
+let _scene3dPresenting = false;
+let _scene3dPresentIndex = 0;
+
+/* Hides every editing control, expands the panel to fill most of the
+ * viewport, and shows a minimal overlay bar for stepping through saved
+ * viewpoints — for showing the current 3D layout to someone without the
+ * toolbar/object-list clutter. Does not use the Fullscreen API (the panel
+ * itself already becomes near-fullscreen via CSS); that keeps this simple
+ * and avoids interacting with the main map's own fullscreen toggle. */
+function toggleScene3dPresentationMode() {
+  _scene3dPresenting = !_scene3dPresenting;
+  const panel = document.getElementById("scene3d-panel");
+  const bar   = document.getElementById("scene3d-present-bar");
+  const btn   = document.getElementById("scene3d-present");
+  if (panel) panel.classList.toggle("scene3d-presenting", _scene3dPresenting);
+  if (bar)   bar.hidden = !_scene3dPresenting;
+  if (btn)   btn.textContent = _scene3dPresenting ? "Exit Present" : "Present";
+  if (_scene3dPresenting) {
+    _scene3dPresentIndex = 0;
+    renderScene3dPresentBar();
+  }
+}
+
+function renderScene3dPresentBar() {
+  const nameEl = document.getElementById("scene3d-present-vp-name");
+  if (!nameEl || !window.SCENE3D) return;
+  const vps = window.SCENE3D.listViewpoints();
+  if (!vps.length) { nameEl.textContent = "No saved viewpoints — orbit freely"; return; }
+  if (_scene3dPresentIndex >= vps.length) _scene3dPresentIndex = 0;
+  nameEl.textContent = `${vps[_scene3dPresentIndex].name} (${_scene3dPresentIndex + 1}/${vps.length})`;
+}
+
+function _scene3dPresentStep(delta) {
+  const vps = window.SCENE3D?.listViewpoints() || [];
+  if (!vps.length) return;
+  _scene3dPresentIndex = (_scene3dPresentIndex + delta + vps.length) % vps.length;
+  window.SCENE3D.applyViewpoint(vps[_scene3dPresentIndex].id);
+  renderScene3dPresentBar();
 }
 
 function _syncScene3dModeButtons(mode) {
@@ -3358,6 +3449,16 @@ function initLeafletMap() {
     window.SCENE3D?.setSunTime(null);
     renderScene3dSunInfo();
   });
+
+  // 3D export (Phase E)
+  document.getElementById("scene3d-export-image")?.addEventListener("click", exportScene3dImage);
+  document.getElementById("scene3d-export-csv")  ?.addEventListener("click", exportScene3dObjectsCSV);
+  document.getElementById("scene3d-export-json") ?.addEventListener("click", exportScene3dJSON);
+  document.getElementById("scene3d-present")     ?.addEventListener("click", toggleScene3dPresentationMode);
+  document.getElementById("scene3d-present-prev")?.addEventListener("click", () => _scene3dPresentStep(-1));
+  document.getElementById("scene3d-present-next")?.addEventListener("click", () => _scene3dPresentStep(1));
+  document.getElementById("scene3d-present-exit")?.addEventListener("click", toggleScene3dPresentationMode);
+
   document.getElementById("workspace-export-btn")?.addEventListener("click", exportWorkspacesJSON);
   document.getElementById("workspace-import-btn")?.addEventListener("click", () => {
     document.getElementById("workspace-import-file")?.click();

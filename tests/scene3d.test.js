@@ -27,6 +27,7 @@ if (typeof window === 'undefined') {
     'js/3d/terrain-tiles.js', 'js/3d/scene-state.js',
     'js/3d/objects.js', 'js/3d/history.js', 'js/3d/selection.js', 'js/3d/measure.js',
     'js/3d/constraints.js', 'js/3d/sun.js', 'js/3d/templates.js', 'js/3d/campus-generator.js',
+    'js/parcel/report.js',
   ]) {
     require(path.join(ROOT, rel));
   }
@@ -611,6 +612,42 @@ if (typeof window === 'undefined') {
     assertEq(noFenceResult.fences.length, 0, 'includeFence:false produces no fence segments');
     assertEq(noFenceResult.roads.length, 0, 'includeAccessRoad:false produces no road stub');
     assertEq(noFenceResult.substations.length, 0, 'includeSubstation:false produces no substation');
+  }
+
+  console.groupEnd();
+
+  // ── SCENE3D_REPORT (Phase E: report-system integration) ──────────────────
+
+  console.group('SCENE3D_REPORT');
+
+  const REPORT = g.window.PARCEL_REPORT;
+  assert(!!REPORT, 'window.PARCEL_REPORT is defined');
+
+  if (REPORT) {
+    assertEq(REPORT.scene3dSectionHtml(null), '', 'null scene3d produces no section — full backward compatibility for callers that never touch 3D');
+    assertEq(REPORT.scene3dSectionHtml(undefined), '', 'undefined scene3d produces no section');
+    assertEq(
+      REPORT.scene3dSectionHtml({ imageDataUrl: 'data:image/png;base64,x', metrics: {}, objects: [] }),
+      '',
+      'a scene3d with zero objects produces no section, even with an image present'
+    );
+
+    const sample = {
+      imageDataUrl: 'data:image/png;base64,ABC123',
+      metrics: { buildingCount: 1, totalFootprintSqft: 40000, coveragePct: 22, maxHeightFt: 40, parkingCount: 1 },
+      objects: [
+        { label: 'Data Hall 1', type: 'building', phase: 1, footprint: { width: 60, depth: 100 }, height: 12, constraint: { status: 'conflict' } },
+        { label: 'Parking A', type: 'parking', phase: 1, footprint: { width: 30, depth: 40 }, height: 0, constraint: { status: 'requires-review' } },
+      ],
+    };
+    const sectionHtml = REPORT.scene3dSectionHtml(sample);
+    assert(sectionHtml.includes('Conceptual 3D Site Plan'), 'a populated scene3d renders the "Conceptual 3D Site Plan" section title');
+    assert(sectionHtml.includes('data:image/png;base64,ABC123'), 'the section embeds the captured snapshot image');
+    assert(sectionHtml.includes('report-3d-flag-conflict'), 'a conflict-status object gets the conflict CSS flag class');
+    assert(sectionHtml.includes('Data Hall 1') && sectionHtml.includes('Parking A'), 'the section lists every placed object by label');
+    assert(sectionHtml.includes('does NOT verify zoning setback-line compliance'), 'the section repeats the honesty-boundary disclaimer, not just a generic caption');
+    assert(sectionHtml.includes('>Conflict<') && sectionHtml.includes('Review setbacks'), 'per-object status renders as Conflict / Review setbacks, not a compliance verdict');
+    assert(!/>Approved<|>Compliant<|>Pass<|>Buildable</.test(sectionHtml), 'the rendered status column never uses Approved/Compliant/Pass/Buildable as a status word');
   }
 
   console.groupEnd();

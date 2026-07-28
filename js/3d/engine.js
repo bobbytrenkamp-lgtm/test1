@@ -50,6 +50,7 @@ let terrainVisible = true;
 let terrainStatusCb = null;
 let terrainClearCb = null;
 let activePhaseFilter = null; // null = show all phases; otherwise a phase number
+let lowPowerMode = false; // from js/3d/fallback.js's software-renderer detection — see _buildScene()'s quality-tier settings
 let sunLight = null;
 let sunDateISO = null;   // null = "use current real time," not persisted as a frozen moment
 let viewpoints = [];      // [{id, name, camera:{target:{lat,lng}, distance, azimuth, polar}}]
@@ -111,6 +112,7 @@ function _recomputeConstraints() {
     const status = (constraintStatusById.get(obj.id) || {}).status;
     mesh.material = _materialFor(obj, obj.id === selectedId, status);
   });
+  _updateCanvasAriaLabel();
 }
 
 function _parcelBoundaryPointsFromSelection() {
@@ -416,6 +418,40 @@ function listObjects() {
   ));
 }
 
+// ── Export / report integration — Phase E ───────────────────────────────────
+
+/* PNG data URL of the current view, for the "Export Image" button and for
+ * embedding into the parcel report. Renders one fresh frame immediately
+ * before reading the canvas — the WebGLRenderer's drawing buffer is not
+ * guaranteed to still hold the last animate()-loop frame by the time this
+ * is called from a click handler, since `preserveDrawingBuffer` is left at
+ * its default (false) for performance; rendering synchronously right
+ * before toDataURL() sidesteps that without paying the cost every frame. */
+function captureSnapshot() {
+  if (!renderer || !scene || !orbitCamera) return null;
+  try {
+    renderer.render(scene, orbitCamera.camera);
+    return renderer.domElement.toDataURL('image/png');
+  } catch (_) {
+    return null; // e.g. a cross-origin-tainted canvas — should never happen here (everything is same-origin/local), but never throw into the caller
+  }
+}
+
+/* Bundles everything the parcel report needs to render a "Conceptual Site
+ * Plan" section: a snapshot image, the live metrics, and the object list.
+ * Returns null when there's nothing meaningful to report (3D never
+ * activated, or activated but empty) — the report only adds the section
+ * when this is non-null, so a user who never touches 3D sees no change to
+ * their report. */
+function getReportData() {
+  if (!scene || !OBJECTS.list().length) return null;
+  return {
+    imageDataUrl: captureSnapshot(),
+    metrics: getMetrics(),
+    objects: listObjects(),
+  };
+}
+
 // ── Batch creation (templates, campus generator) — Phase D ─────────────────
 
 /* Creates every spec in one go and pushes ONE combined undo/redo command,
@@ -629,8 +665,13 @@ function _buildScene() {
 
   const ambient = new THREE.AmbientLight(0xffffff, 0.6);
   sunLight = new THREE.DirectionalLight(0xffffff, 1.0);
-  sunLight.castShadow = true;
-  sunLight.shadow.mapSize.set(1024, 1024);
+  // Shadow mapping is one of the more GPU-expensive things this scene does
+  // — skip it entirely on devices fallback.js already flagged as running a
+  // software renderer, rather than turning it on and letting the frame
+  // rate collapse.
+  sunLight.castShadow = !lowPowerMode;
+  const shadowMapSize = lowPowerMode ? 512 : 1024;
+  sunLight.shadow.mapSize.set(shadowMapSize, shadowMapSize);
   sunLight.shadow.camera.near = 10;
   sunLight.shadow.camera.far = 4000;
   sunLight.shadow.camera.left = -700;
@@ -645,12 +686,22 @@ function _buildScene() {
 
   const canvas = document.createElement('canvas');
   canvas.className = 'scene3d-canvas';
+  // The canvas has no text content of its own — make it a reachable,
+  // described control rather than an invisible-to-assistive-tech surface.
+  // aria-label is kept current by _updateCanvasAriaLabel(), called after
+  // every terrain/object mutation.
+  canvas.tabIndex = 0;
+  canvas.setAttribute('role', 'img');
+  canvas.setAttribute('aria-label', '3D terrain view. Use arrow keys to orbit, plus and minus to zoom, Home to reset the view.');
   host.innerHTML = '';
   host.appendChild(canvas);
 
-  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  renderer.shadowMap.enabled = true;
+  // Quality tier: a device fallback.js already identified as running a
+  // software renderer gets antialiasing off and pixel ratio capped at 1 —
+  // both real, measurable GPU-cost reductions, not placebo settings.
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: !lowPowerMode, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(lowPowerMode ? 1 : Math.min(window.devicePixelRatio || 1, 2));
+  renderer.shadowMap.enabled = !lowPowerMode;
 
   const { w, h } = _size();
   orbitCamera = createOrbitCamera(THREE, OrbitControls, canvas, w / Math.max(h, 1));
@@ -667,6 +718,7 @@ function _buildScene() {
 
   canvas.addEventListener('pointerdown', _onCanvasPointerDown);
   canvas.addEventListener('pointerup', _onCanvasPointerUp);
+  canvas.addEventListener('keydown', _onCanvasKeyDown);
 
   if (typeof ResizeObserver !== 'undefined') {
     resizeObserver = new ResizeObserver(_resize);
@@ -677,7 +729,54 @@ function _buildScene() {
   _rebuildAllObjectMeshes();
   _onSelectionChanged(SELECTION.getSelected());
   _applySunPosition();
+  _updateCanvasAriaLabel();
   _animate();
+}
+
+/* Keyboard-only alternative to mouse-drag orbit/zoom, so the 3D view is
+ * usable without a pointer. Object selection itself doesn't need a canvas-
+ * specific keyboard path — every object list row in the panel is already a
+ * real, tabbable <button> (see js/map.js's renderScene3dObjectPanel), which
+ * is a complete keyboard equivalent to clicking an object in the canvas. */
+function _onCanvasKeyDown(e) {
+  if (!orbitCamera) return;
+  const stepDeg = e.shiftKey ? 15 : 5;
+  if (e.key === 'Home') {
+    orbitCamera.frame(400);
+    e.preventDefault();
+    return;
+  }
+  const state = orbitCamera.getState();
+  let handled = true;
+  if (e.key === 'ArrowLeft') state.azimuthDeg -= stepDeg;
+  else if (e.key === 'ArrowRight') state.azimuthDeg += stepDeg;
+  else if (e.key === 'ArrowUp') state.polarDeg = Math.max(5, state.polarDeg - stepDeg);
+  else if (e.key === 'ArrowDown') state.polarDeg = Math.min(89, state.polarDeg + stepDeg);
+  else if (e.key === '+' || e.key === '=') state.distance = Math.max(20, state.distance * 0.85);
+  else if (e.key === '-' || e.key === '_') state.distance = Math.min(20000, state.distance / 0.85);
+  else handled = false;
+  if (!handled) return;
+  e.preventDefault();
+  orbitCamera.setState({
+    distance: state.distance, azimuthDeg: state.azimuthDeg, polarDeg: state.polarDeg, target: state.target,
+  });
+}
+
+/* Keeps the canvas's aria-label describing the current scene rather than a
+ * static "3D view" — a screen-reader user gets the same headline numbers a
+ * sighted user reads off the metrics panel. */
+function _updateCanvasAriaLabel() {
+  if (!renderer) return;
+  const canvas = renderer.domElement;
+  const m = getMetrics();
+  const parts = [];
+  if (m.buildingCount) parts.push(`${m.buildingCount} building${m.buildingCount === 1 ? '' : 's'}`);
+  if (m.parkingCount) parts.push(`${m.parkingCount} parking area${m.parkingCount === 1 ? '' : 's'}`);
+  if (m.roadCount) parts.push(`${m.roadCount} road segment${m.roadCount === 1 ? '' : 's'}`);
+  if (m.fenceCount) parts.push(`${m.fenceCount} fence segment${m.fenceCount === 1 ? '' : 's'}`);
+  if (m.substationCount) parts.push(`${m.substationCount} substation${m.substationCount === 1 ? '' : 's'}`);
+  const summary = parts.length ? `Currently showing ${parts.join(', ')}.` : 'No site objects placed yet.';
+  canvas.setAttribute('aria-label', `3D terrain view. ${summary} Use arrow keys to orbit, plus and minus to zoom, Home to reset the view.`);
 }
 
 function _teardownScene() {
@@ -709,6 +808,7 @@ function activate(opts) {
   currentFips = opts.fips || null;
   terrainStatusCb = opts.onStatus || null;
   terrainClearCb = opts.onStatusClear || null;
+  lowPowerMode = !!opts.lowPower;
 
   if (!host) throw new Error('scene3d-canvas-host missing');
 
@@ -819,4 +919,5 @@ window.SCENE3D._registerEngine({
   listTemplates, instantiateTemplate, generateCampus,
   setSunTime, getSunInfo,
   saveViewpoint, listViewpoints, applyViewpoint, deleteViewpoint,
+  captureSnapshot, getReportData,
 });
