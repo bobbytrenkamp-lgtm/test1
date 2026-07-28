@@ -40,9 +40,19 @@ window.PARCEL = (function () {
     if (!visible) {
       window.PARCEL_SELECTION?.deselect();
       window.PARCEL_PANEL?.close();
-    } else if (visible && fips && !window.PARCEL_REGISTRY?.has(fips)) {
+    } else if (!fips) {
+      _noDataToast(null);
+    } else if (!window.PARCEL_REGISTRY?.has(fips)) {
       _noDataToast(fips);
     }
+  }
+
+  /* True once the parcels layer is on AND the selected county actually has
+   * real parcel coverage — the signal map.js uses to stop washing that
+   * county in the restrictions/suitability choropleth fill so satellite
+   * imagery and parcel boundaries stay legible underneath. */
+  function isActiveWithData() {
+    return !!(_layerActive && _currentFips && window.PARCEL_REGISTRY?.has(_currentFips));
   }
 
   /* Called by map.js handleCountyClick when the user selects a county.
@@ -96,12 +106,24 @@ window.PARCEL = (function () {
     } catch (_) {}
   }
 
+  /* fips === null means "no county selected yet"; a real (uncovered) fips
+   * means the selected county just isn't in the pilot. Both cases render
+   * an identically-empty parcel layer, so both need an explanation —
+   * silence here is exactly what reads as "the toggle doesn't work." */
   function _noDataToast(fips) {
+    const coverage = (window.PARCEL_REGISTRY?.all() || []).map(j => j.name).join(', ');
+    const msg = fips
+      ? `No parcel data for this county. Parcel Layer currently covers: ${coverage || 'a small VA/MD pilot set'}.`
+      : `Select a county first — Parcel Layer covers: ${coverage || 'a small VA/MD pilot set'}.`;
+    if (window.showMapToast) {
+      window.showMapToast(msg, 6000);
+    }
+    // Keep the low-key persistent pill too, for anyone who missed the toast.
     const el = document.getElementById('parcel-layer-status');
     if (el) {
       el.hidden    = false;
       el.className = 'parcel-layer-status parcel-status-hint';
-      el.textContent = `No parcel data available for FIPS ${fips}`;
+      el.textContent = fips ? `No parcel data available for FIPS ${fips}` : 'Select a county with parcel coverage';
     }
   }
 
@@ -111,5 +133,5 @@ window.PARCEL = (function () {
     window.PARCEL_PANEL?.refresh();
   });
 
-  return { init, onLayerToggle, onCountyChanged, search, focusParcel };
+  return { init, onLayerToggle, onCountyChanged, search, focusParcel, isActiveWithData };
 })();

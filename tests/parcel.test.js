@@ -512,6 +512,32 @@ if (typeof window === 'undefined') {
     console.groupEnd();
   }
 
+  // ── PARCEL.isActiveWithData (parcel-view county-fill declutter) ──────────
+
+  if (typeof window !== 'undefined' && window.PARCEL) {
+    console.group('PARCEL.isActiveWithData');
+
+    window.PARCEL.onLayerToggle('parcels', false, null);
+    assert(window.PARCEL.isActiveWithData() === false, 'layer off -> false, regardless of county');
+
+    window.PARCEL.onLayerToggle('parcels', true, null);
+    assert(window.PARCEL.isActiveWithData() === false, 'layer on but no county selected -> false');
+
+    window.PARCEL.onLayerToggle('parcels', true, '17999'); // not in the pilot registry
+    assert(window.PARCEL.isActiveWithData() === false, 'layer on, county with no parcel coverage -> false');
+
+    window.PARCEL.onLayerToggle('parcels', true, '51107'); // Loudoun County, VA — in the pilot registry
+    assert(window.PARCEL.isActiveWithData() === true, 'layer on, county WITH parcel coverage -> true');
+
+    window.PARCEL.onLayerToggle('parcels', false, '51107');
+    assert(window.PARCEL.isActiveWithData() === false, 'turning the layer back off -> false even for a covered county');
+
+    // Reset to a clean state so this doesn't bleed into whatever test runs next.
+    window.PARCEL.onLayerToggle('parcels', false, null);
+
+    console.groupEnd();
+  }
+
   console.groupEnd();
 
   // ── Summary ──────────────────────────────────────────────────────────────

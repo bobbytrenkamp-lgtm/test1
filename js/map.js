@@ -52,6 +52,13 @@ function themeColors() {
 }
 
 function selectedCountyStyle() {
+  // Parcel view: the county-level choropleth fill has nothing to add once
+  // you're looking at individual parcels, and at high opacity it washes out
+  // both the satellite basemap and the parcel boundaries drawn on top of it.
+  // Drop back to an outline-only highlight so parcel geometry stays legible.
+  if (window.PARCEL?.isActiveWithData?.()) {
+    return { color: themeColors().selectedOutline, weight: 2.5, fillOpacity: 0.04 };
+  }
   return { color: themeColors().selectedOutline, weight: 2.5, fillOpacity: 0.92 };
 }
 
@@ -1000,6 +1007,19 @@ function handleCountyClick(e, fips) {
   selectedFips = fips;
   setLocationHash(fips);
   clearHoveredCounty();
+
+  /* Notify zoning/parcel/3D modules BEFORE styling the selected county —
+   * selectedCountyStyle() reads parcel-view state (window.PARCEL.isActiveWithData()),
+   * which window.PARCEL.onCountyChanged() below is what updates for the newly
+   * clicked county. Styling first would read the previous county's stale state. */
+  if (layerState.zoning_districts && window.ZONING_MAP) {
+    window.ZONING_MAP.onCountySelected(fips);
+  }
+  if (window.PARCEL) {
+    window.PARCEL.onCountyChanged(fips);
+  }
+  window.SCENE3D?.onCountyChanged(fips);
+
   e.target.setStyle(selectedCountyStyle());
   e.target.bringToFront();
 
@@ -1010,16 +1030,6 @@ function handleCountyClick(e, fips) {
     const stAbbr = STATE_FIPS[fips.slice(0, 2)] || "";
     setDetailNoRestriction(null, stAbbr, fips);
   }
-
-  /* Notify zoning module if the zoning layer is active */
-  if (layerState.zoning_districts && window.ZONING_MAP) {
-    window.ZONING_MAP.onCountySelected(fips);
-  }
-  /* Notify parcel module — switches connector to new jurisdiction if parcels are active */
-  if (window.PARCEL) {
-    window.PARCEL.onCountyChanged(fips);
-  }
-  window.SCENE3D?.onCountyChanged(fips);
 }
 
 /* ── County layer init ── */
@@ -1262,6 +1272,13 @@ function setLayerVisible(id, visible, syncUI = false) {
   } else if (id === "parcels") {
     if (window.PARCEL) {
       window.PARCEL.onLayerToggle(id, visible, selectedFips);
+    }
+    // Re-apply the selected county's style immediately — selectedCountyStyle()
+    // now reads parcel-view state, so toggling this checkbox changes how that
+    // county is drawn (heavy choropleth fill vs. outline-only) without
+    // requiring the user to re-click the county.
+    if (selectedFips && countyLayerByFips[selectedFips]) {
+      countyLayerByFips[selectedFips].setStyle(selectedCountyStyle());
     }
   } else if (id === "terrain_3d") {
     window.SCENE3D?.onLayerToggle(id, visible, selectedFips);
