@@ -764,9 +764,21 @@
     if (w && window.WATCHLIST && window.WATCHLIST.has(fips)) w.textContent = "In watchlist ✓";
 
     on(document.getElementById("econ-profile-compare"), "click", () => {
-      // Reuse the existing comparison workflow rather than inventing a parallel one.
-      if (typeof addCountyToCompare === "function") addCountyToCompare(fips);
-      else if (window.COMPARE && window.COMPARE.addCounty) window.COMPARE.addCounty(fips);
+      // Reuse the map's existing comparison tool (js/compare.js) rather than
+      // inventing a parallel one. addToCompare() itself is a classic-script
+      // global (see compare.js's header comment) — this previously called
+      // addCountyToCompare()/window.COMPARE, neither of which exist anywhere
+      // in the codebase, so the button silently did nothing.
+      if (window.Router) window.Router.navigate("map", { fips });
+      else if (typeof switchTab === "function") switchTab("map");
+      const addNow = () => {
+        if (typeof toggleComparePanel === "function" && typeof compareMode !== "undefined" && !compareMode) {
+          toggleComparePanel();
+        }
+        if (typeof addToCompare === "function") addToCompare(fips);
+      };
+      if (typeof mapInitPromise !== "undefined" && mapInitPromise) mapInitPromise.then(addNow);
+      else setTimeout(addNow, 350);
     });
 
     on(document.getElementById("econ-profile-map"), "click", () => {
