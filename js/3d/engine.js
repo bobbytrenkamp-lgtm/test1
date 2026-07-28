@@ -1,0 +1,923 @@
+/* js/3d/engine.js  (ES module — the only file that imports Three.js)
+ * Lazy-loaded by js/3d/index.js on first SCENE3D.activate(). Owns the
+ * THREE.Scene/Camera/Renderer, the terrain mesh, the Phase B object system
+ * (building volumes, selection, transform gizmo, undo/redo), and the render
+ * loop. Registers itself back onto window.SCENE3D via _registerEngine() so
+ * the always-loaded coordinator can call into it without importing THREE.
+ */
+import * as THREE from '../../vendor/three/three.module.js';
+import { OrbitControls } from '../../vendor/three/OrbitControls.js';
+import { TransformControls } from '../../vendor/three/TransformControls.js';
+import { buildTerrainMesh, projectLatLng, unprojectXZ } from './terrain.js';
+import { createOrbitCamera } from './camera.js';
+
+const TT = window.SCENE3D_TERRAIN_TILES;
+const OBJECTS = window.SCENE3D_OBJECTS;
+const SELECTION = window.SCENE3D_SELECTION;
+const CONSTRAINTS = window.SCENE3D_CONSTRAINTS;
+const HISTORY = window.SCENE3D_HISTORY.createHistory();
+
+const TYPE_COLORS = {
+  building:   0xd9a15c,
+  parking:    0x4a4a52,
+  road:       0x6b6b73,
+  fence:      0x8a7a63,
+  substation: 0xc7913f,
+};
+const SELECTED_COLOR = 0x4874e8;
+const CONFLICT_COLOR = 0xd9534f;
+const METERS_PER_FOOT = 0.3048;
+const SQFT_TO_SQM = 0.092903;
+
+let renderer = null;
+let scene = null;
+let orbitCamera = null;
+let terrainGroup = null;
+let objectsGroup = null;
+let boundaryGroup = null;
+let parcelBoundaryLocal = null;  // array of {x,z} in scene-local meters, or null when no parcel selected
+let transformControls = null;
+let transformHelper = null;
+let animFrame = null;
+let resizeObserver = null;
+let host = null;
+let map = null;
+let originLat = null;
+let originLng = null;
+let currentFips = null;
+let exaggeration = 1.5;
+let terrainVisible = true;
+let terrainStatusCb = null;
+let terrainClearCb = null;
+let activePhaseFilter = null; // null = show all phases; otherwise a phase number
+let lowPowerMode = false; // from js/3d/fallback.js's software-renderer detection — see _buildScene()'s quality-tier settings
+let sunLight = null;
+let sunDateISO = null;   // null = "use current real time," not persisted as a frozen moment
+let viewpoints = [];      // [{id, name, camera:{target:{lat,lng}, distance, azimuth, polar}}]
+
+const objectMeshes = new Map();          // objectId -> THREE.Mesh
+const constraintStatusById = new Map();  // objectId -> { status, reasons }
+
+function _materialFor(obj, selected, constraintStatus) {
+  const color = selected
+    ? SELECTED_COLOR
+    : (constraintStatus === 'conflict' ? CONFLICT_COLOR : (TYPE_COLORS[obj.type] || TYPE_COLORS.building));
+  const opts = { color };
+  if (obj.type === 'fence') { opts.transparent = true; opts.opacity = 0.6; }
+  return new THREE.MeshLambertMaterial(opts);
+}
+
+const raycaster = new THREE.Raycaster();
+const pointerNdc = new THREE.Vector2();
+let pointerDownScreen = null;
+let transformDragSnapshot = null; // { id, position, rotationDeg } captured on mouseDown
+
+const tileCache = TT.createTileCache();
+
+// ── Selection <-> gizmo wiring (module-scope, survives activate/deactivate cycles) ──
+document.addEventListener('scene3d:object-selected', e => _onSelectionChanged(e.detail && e.detail.id));
+document.addEventListener('scene3d:object-deselected', () => _onSelectionChanged(null));
+// A parcel selection change invalidates the real boundary geometry every
+// constraint check depends on — rebuild both whenever it fires.
+document.addEventListener('parcel:selected', () => { _rebuildParcelBoundary(); _recomputeConstraints(); });
+document.addEventListener('parcel:deselected', () => { _rebuildParcelBoundary(); _recomputeConstraints(); });
+
+function _onSelectionChanged(id) {
+  objectMeshes.forEach((mesh, meshId) => {
+    const obj = OBJECTS.get(meshId);
+    if (!obj) return;
+    const status = (constraintStatusById.get(meshId) || {}).status;
+    mesh.material = _materialFor(obj, meshId === id, status);
+  });
+  if (!transformControls) return;
+  if (id && objectMeshes.has(id)) transformControls.attach(objectMeshes.get(id));
+  else transformControls.detach();
+}
+
+/* Recomputes every object's constraint status (boundary containment +
+ * object-to-object overlap — see js/3d/constraints.js for exactly what this
+ * can and cannot verify) and refreshes mesh materials to reflect it. Cheap
+ * enough to call after every mutation and on every gizmo-drag frame at the
+ * object counts this feature supports. */
+function _recomputeConstraints() {
+  constraintStatusById.clear();
+  const objs = OBJECTS.list();
+  objs.forEach(obj => {
+    constraintStatusById.set(obj.id, CONSTRAINTS.checkObjectConstraints(obj, objs, parcelBoundaryLocal));
+  });
+  const selectedId = SELECTION.getSelected();
+  objs.forEach(obj => {
+    const mesh = objectMeshes.get(obj.id);
+    if (!mesh) return;
+    const status = (constraintStatusById.get(obj.id) || {}).status;
+    mesh.material = _materialFor(obj, obj.id === selectedId, status);
+  });
+  _updateCanvasAriaLabel();
+}
+
+function _parcelBoundaryPointsFromSelection() {
+  try {
+    if (!window.PARCEL_SELECTION || originLat == null) return null;
+    const sel = window.PARCEL_SELECTION.getSelected();
+    const geom = sel && sel.feature && sel.feature.geometry;
+    if (!geom) return null;
+    let ring = null;
+    if (geom.type === 'Polygon') ring = geom.coordinates[0];
+    else if (geom.type === 'MultiPolygon') ring = geom.coordinates[0] && geom.coordinates[0][0];
+    if (!ring || ring.length < 3) return null;
+    return ring.map(([lng, lat]) => projectLatLng(lat, lng, originLat, originLng));
+  } catch (_) {
+    return null;
+  }
+}
+
+function _rebuildParcelBoundary() {
+  if (!scene) return;
+  if (boundaryGroup) {
+    scene.remove(boundaryGroup);
+    boundaryGroup.traverse(o => { if (o.geometry) o.geometry.dispose(); });
+  }
+  boundaryGroup = null;
+  parcelBoundaryLocal = _parcelBoundaryPointsFromSelection();
+  if (!parcelBoundaryLocal) return;
+
+  const pts = parcelBoundaryLocal.map(p => new THREE.Vector3(p.x, 0.2, p.z));
+  pts.push(pts[0].clone());
+  const geometry = new THREE.BufferGeometry().setFromPoints(pts);
+  const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x2fa84f }));
+  line.name = 'scene3d-parcel-boundary';
+  boundaryGroup = new THREE.Group();
+  boundaryGroup.add(line);
+  scene.add(boundaryGroup);
+}
+
+async function loadPixels(url, signal) {
+  const res = await fetch(url, { signal, mode: 'cors' });
+  if (!res.ok) throw new Error('tile-fetch-failed:' + res.status);
+  const blob = await res.blob();
+  const bitmap = await createImageBitmap(blob);
+  const canvas = document.createElement('canvas');
+  canvas.width = bitmap.width;
+  canvas.height = bitmap.height;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(bitmap, 0, 0);
+  return ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+}
+
+function _size() {
+  const w = (host && host.clientWidth) || 300;
+  const h = (host && host.clientHeight) || 300;
+  return { w, h };
+}
+
+function _resize() {
+  if (!renderer || !orbitCamera) return;
+  const { w, h } = _size();
+  renderer.setSize(w, h, false);
+  orbitCamera.setAspect(w / Math.max(h, 1));
+}
+
+function _animate() {
+  animFrame = requestAnimationFrame(_animate);
+  if (!renderer || !scene || !orbitCamera) return;
+  orbitCamera.controls.update();
+  renderer.render(scene, orbitCamera.camera);
+}
+
+// ── Terrain ──────────────────────────────────────────────────────────────
+
+async function _rebuildTerrain() {
+  if (!scene || originLat == null || originLng == null) return;
+  if (terrainGroup) {
+    scene.remove(terrainGroup);
+    terrainGroup.traverse(obj => { if (obj.geometry) obj.geometry.dispose(); });
+  }
+  if (terrainStatusCb) terrainStatusCb('Loading terrain…', 'loading');
+  try {
+    const result = await buildTerrainMesh(THREE, {
+      originLat, originLng, tileTiles: TT, cache: tileCache, loadPixels, exaggeration,
+    });
+    terrainGroup = result.group;
+    terrainGroup.visible = terrainVisible;
+    scene.add(terrainGroup);
+
+    if (result.loadedCount === 0) {
+      if (terrainStatusCb) {
+        terrainStatusCb(
+          (window.SCENE3D_FALLBACK && window.SCENE3D_FALLBACK.MESSAGES['terrain-failed']) ||
+            "Terrain data couldn't be loaded for this area.",
+          'error'
+        );
+      }
+    } else if (result.failedCount > 0) {
+      if (terrainStatusCb) {
+        terrainStatusCb(`Terrain loaded for ${result.loadedCount} of ${result.totalCount} tiles — hatched patches mean no data.`, 'warning');
+      }
+    } else if (terrainClearCb) {
+      terrainClearCb();
+    }
+  } catch (e) {
+    if (terrainStatusCb) {
+      terrainStatusCb(
+        (window.SCENE3D_FALLBACK && window.SCENE3D_FALLBACK.MESSAGES['terrain-failed']) ||
+          "Terrain data couldn't be loaded for this area.",
+        'error'
+      );
+    }
+  }
+}
+
+// ── Object system (Phase B) ─────────────────────────────────────────────
+
+function _meshGeometryFor(obj) {
+  const w = Math.max(1, obj.footprint.width || 30);
+  const d = Math.max(1, obj.footprint.depth || 30);
+  const h = Math.max(1, obj.height || 10);
+  return new THREE.BoxGeometry(w, h, d);
+}
+
+function _createMeshForObject(obj) {
+  const mesh = new THREE.Mesh(_meshGeometryFor(obj), _materialFor(obj, false, null));
+  mesh.position.set(obj.position.x, obj.height / 2, obj.position.z);
+  mesh.rotation.y = (obj.rotationDeg || 0) * Math.PI / 180;
+  mesh.userData.objectId = obj.id;
+  mesh.visible = activePhaseFilter == null || obj.phase === activePhaseFilter;
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  objectsGroup.add(mesh);
+  objectMeshes.set(obj.id, mesh);
+  return mesh;
+}
+
+function _removeObjectMesh(id) {
+  const mesh = objectMeshes.get(id);
+  if (!mesh) return;
+  objectsGroup.remove(mesh);
+  mesh.geometry.dispose();
+  mesh.material.dispose();
+  objectMeshes.delete(id);
+}
+
+/* Full geometry/position/rotation resync after a footprint/height/position/
+ * rotation edit from the object panel (as opposed to a live gizmo drag,
+ * which mutates the mesh directly — see _onTransformObjectChange). */
+function _syncObjectMesh(obj) {
+  const mesh = objectMeshes.get(obj.id);
+  if (!mesh) return;
+  mesh.geometry.dispose();
+  mesh.geometry = _meshGeometryFor(obj);
+  mesh.position.set(obj.position.x, obj.height / 2, obj.position.z);
+  mesh.rotation.y = (obj.rotationDeg || 0) * Math.PI / 180;
+  mesh.visible = activePhaseFilter == null || obj.phase === activePhaseFilter;
+}
+
+function _rebuildAllObjectMeshes() {
+  objectMeshes.forEach((mesh, id) => _removeObjectMesh(id));
+  OBJECTS.list().forEach(obj => _createMeshForObject(obj));
+  _recomputeConstraints();
+}
+
+/* null shows every phase; a number shows only objects with that phase
+ * (construction-phasing preview — buildings/roads/etc. can be tagged with a
+ * phase number and toggled independently to preview a phased buildout). */
+function setPhaseFilter(phase) {
+  activePhaseFilter = typeof phase === 'number' ? phase : null;
+  OBJECTS.list().forEach(obj => {
+    const mesh = objectMeshes.get(obj.id);
+    if (mesh) mesh.visible = activePhaseFilter == null || obj.phase === activePhaseFilter;
+  });
+}
+
+function listPhases() {
+  const phases = new Set(OBJECTS.list().map(o => o.phase || 1));
+  return Array.from(phases).sort((a, b) => a - b);
+}
+
+function _feasibilityEnvelope() {
+  try {
+    if (!window.PARCEL_SELECTION || !window.PARCEL_FEASIBILITY) return null;
+    const sel = window.PARCEL_SELECTION.getSelected();
+    if (!sel || !sel.feature) return null;
+    const result = window.PARCEL_FEASIBILITY.assess(sel.feature.properties, currentFips);
+    return (result && result.envelope) || null;
+  } catch (_) {
+    return null;
+  }
+}
+
+/* type: 'building' | 'parking' | 'road' | 'fence'. Only 'building' pulls
+ * default dimensions from the parcel's buildable envelope — parking/road/
+ * fence sizing isn't governed by that zoning calculation, so they fall back
+ * to js/3d/objects.js's generic per-type defaults instead. */
+function createObject(type, overrides) {
+  if (!scene || !objectsGroup) return null;
+  overrides = overrides || {};
+  let envelopeDefaults = {};
+  if (type === 'building') {
+    const envelope = _feasibilityEnvelope();
+    if (envelope && envelope.footprintSqft > 0) {
+      const side = Math.sqrt(envelope.footprintSqft * SQFT_TO_SQM);
+      envelopeDefaults.footprint = { shape: 'rectangle', width: Math.round(side), depth: Math.round(side) };
+    }
+    if (envelope && envelope.maxHeight_ft > 0) {
+      envelopeDefaults.height = Math.round(envelope.maxHeight_ft * METERS_PER_FOOT);
+    }
+  }
+  const props = Object.assign({ type }, envelopeDefaults, overrides);
+  const obj = OBJECTS.create(props);
+  _createMeshForObject(obj);
+  SELECTION.select(obj.id);
+  _recomputeConstraints();
+
+  const snapshot = JSON.parse(JSON.stringify(obj));
+  HISTORY.push({
+    label: 'Create ' + type,
+    undo: () => {
+      OBJECTS.remove(snapshot.id);
+      _removeObjectMesh(snapshot.id);
+      if (SELECTION.getSelected() === snapshot.id) SELECTION.deselect();
+      _recomputeConstraints();
+    },
+    redo: () => {
+      OBJECTS.restore(snapshot);
+      _createMeshForObject(OBJECTS.get(snapshot.id));
+      SELECTION.select(snapshot.id);
+      _recomputeConstraints();
+    },
+  });
+  return obj;
+}
+function createBuilding(overrides) { return createObject('building', overrides); }
+
+function updateObject(id, patch) {
+  const obj = OBJECTS.get(id);
+  if (!obj) return null;
+  const before = JSON.parse(JSON.stringify(obj));
+  const updated = OBJECTS.update(id, patch);
+  if (!updated) return null;
+  _syncObjectMesh(updated);
+  _recomputeConstraints();
+  const after = JSON.parse(JSON.stringify(updated));
+  HISTORY.push({
+    label: 'Edit ' + obj.type,
+    undo: () => { OBJECTS.update(id, before); _syncObjectMesh(OBJECTS.get(id)); _recomputeConstraints(); },
+    redo: () => { OBJECTS.update(id, after); _syncObjectMesh(OBJECTS.get(id)); _recomputeConstraints(); },
+  });
+  return updated;
+}
+
+function deleteSelected() {
+  const id = SELECTION.getSelected();
+  if (!id) return false;
+  const obj = OBJECTS.get(id);
+  if (!obj) return false;
+  const snapshot = JSON.parse(JSON.stringify(obj));
+  OBJECTS.remove(id);
+  _removeObjectMesh(id);
+  SELECTION.deselect();
+  _recomputeConstraints();
+  HISTORY.push({
+    label: 'Delete ' + obj.type,
+    undo: () => {
+      OBJECTS.restore(snapshot);
+      _createMeshForObject(OBJECTS.get(snapshot.id));
+      SELECTION.select(snapshot.id);
+      _recomputeConstraints();
+    },
+    redo: () => {
+      OBJECTS.remove(snapshot.id);
+      _removeObjectMesh(snapshot.id);
+      if (SELECTION.getSelected() === snapshot.id) SELECTION.deselect();
+      _recomputeConstraints();
+    },
+  });
+  return true;
+}
+
+function undo() { const ok = HISTORY.undo(); _recomputeConstraints(); return ok; }
+function redo() { const ok = HISTORY.redo(); _recomputeConstraints(); return ok; }
+function historyCounts() { return HISTORY.counts(); }
+
+function getMetrics() {
+  const envelope = _feasibilityEnvelope();
+  const metrics = OBJECTS.computeSiteMetrics(envelope ? envelope.siteTotalSqft : undefined);
+  // Raw setback distances (front/side/rear, feet) from the existing zoning
+  // calculator, surfaced for manual comparison — see js/3d/constraints.js's
+  // header comment for why this module never verifies setback-line
+  // compliance geometrically.
+  metrics.setbacks = (envelope && envelope.setbacks) || null;
+  return metrics;
+}
+
+function listObjects() {
+  const selectedId = SELECTION.getSelected();
+  return OBJECTS.list().map(o => Object.assign(
+    { selected: o.id === selectedId },
+    o,
+    { constraint: constraintStatusById.get(o.id) || { status: 'unknown', reasons: [] } }
+  ));
+}
+
+// ── Export / report integration — Phase E ───────────────────────────────────
+
+/* PNG data URL of the current view, for the "Export Image" button and for
+ * embedding into the parcel report. Renders one fresh frame immediately
+ * before reading the canvas — the WebGLRenderer's drawing buffer is not
+ * guaranteed to still hold the last animate()-loop frame by the time this
+ * is called from a click handler, since `preserveDrawingBuffer` is left at
+ * its default (false) for performance; rendering synchronously right
+ * before toDataURL() sidesteps that without paying the cost every frame. */
+function captureSnapshot() {
+  if (!renderer || !scene || !orbitCamera) return null;
+  try {
+    renderer.render(scene, orbitCamera.camera);
+    return renderer.domElement.toDataURL('image/png');
+  } catch (_) {
+    return null; // e.g. a cross-origin-tainted canvas — should never happen here (everything is same-origin/local), but never throw into the caller
+  }
+}
+
+/* Bundles everything the parcel report needs to render a "Conceptual Site
+ * Plan" section: a snapshot image, the live metrics, and the object list.
+ * Returns null when there's nothing meaningful to report (3D never
+ * activated, or activated but empty) — the report only adds the section
+ * when this is non-null, so a user who never touches 3D sees no change to
+ * their report. */
+function getReportData() {
+  if (!scene || !OBJECTS.list().length) return null;
+  return {
+    imageDataUrl: captureSnapshot(),
+    metrics: getMetrics(),
+    objects: listObjects(),
+  };
+}
+
+// ── Batch creation (templates, campus generator) — Phase D ─────────────────
+
+/* Creates every spec in one go and pushes ONE combined undo/redo command,
+ * so placing a whole template or a generated campus layout is a single
+ * undo step, not one per object. Returns the created objects (full
+ * snapshots, post-creation). */
+function _createBatch(specs, label) {
+  if (!scene || !objectsGroup || !specs || !specs.length) return [];
+  const created = specs.map(spec => JSON.parse(JSON.stringify(OBJECTS.create(spec))));
+  created.forEach(o => _createMeshForObject(o));
+  _recomputeConstraints();
+  HISTORY.push({
+    label,
+    undo: () => {
+      created.forEach(o => { OBJECTS.remove(o.id); _removeObjectMesh(o.id); });
+      SELECTION.deselect();
+      _recomputeConstraints();
+    },
+    redo: () => {
+      created.forEach(o => { OBJECTS.restore(o); _createMeshForObject(OBJECTS.get(o.id)); });
+      _recomputeConstraints();
+    },
+  });
+  return created;
+}
+
+function listTemplates() {
+  return (window.SCENE3D_TEMPLATES && window.SCENE3D_TEMPLATES.list()) || [];
+}
+
+function instantiateTemplate(templateId) {
+  const TEMPLATES = window.SCENE3D_TEMPLATES;
+  if (!TEMPLATES) return [];
+  const specs = TEMPLATES.instantiate(templateId, { x: 0, z: 0 });
+  if (!specs) return [];
+  SELECTION.deselect();
+  return _createBatch(specs, 'Add template');
+}
+
+/* Requires a real parcel boundary — the generator itself refuses and
+ * returns an explanatory warning if none is selected, matching
+ * js/3d/campus-generator.js's own contract. */
+function generateCampus(opts) {
+  const GEN = window.SCENE3D_CAMPUS_GENERATOR;
+  if (!GEN) return { halls: [], substations: [], fences: [], roads: [], warnings: ['Campus generator module not loaded.'], disclaimer: '' };
+  const result = GEN.generate(Object.assign({}, opts, { boundary: parcelBoundaryLocal }));
+  const allSpecs = [].concat(result.halls, result.substations, result.fences, result.roads);
+  SELECTION.deselect();
+  const created = _createBatch(allSpecs, 'Generate campus layout');
+  return Object.assign({}, result, { createdCount: created.length });
+}
+
+// ── Sun / shadows — Phase D ─────────────────────────────────────────────────
+
+function _applySunPosition() {
+  if (!sunLight || originLat == null) return null;
+  const SUN = window.SCENE3D_SUN;
+  if (!SUN) return null;
+  const date = sunDateISO ? new Date(sunDateISO) : new Date();
+  const pos = SUN.solarPosition(date, originLat, originLng);
+  const dir = SUN.directionToSun(pos.altitudeDeg, pos.azimuthDeg);
+  const DIST = 1500;
+  // Keep a small minimum height even below the horizon so the light never
+  // sits exactly at/under the ground plane (which produces degenerate
+  // shadow geometry) — intensity carries the actual day/night distinction.
+  sunLight.position.set(dir.x * DIST, Math.max(dir.y, 0.05) * DIST, dir.z * DIST);
+  const daylight = pos.altitudeDeg > 0;
+  sunLight.intensity = daylight ? 1.0 : 0.05;
+  return { altitudeDeg: pos.altitudeDeg, azimuthDeg: pos.azimuthDeg, daylight };
+}
+
+/* dateISO: an ISO datetime string, or null/undefined to track "now." */
+function setSunTime(dateISO) {
+  sunDateISO = dateISO || null;
+  return _applySunPosition();
+}
+
+function getSunInfo() {
+  if (originLat == null) return null;
+  const info = _applySunPosition();
+  if (!info) return null;
+  return Object.assign({ dateISO: sunDateISO }, info);
+}
+
+// ── Saved viewpoints — Phase D ───────────────────────────────────────────────
+
+function saveViewpoint(name) {
+  if (!orbitCamera || originLat == null) return null;
+  const camState = orbitCamera.getState();
+  const targetLatLng = unprojectXZ(camState.target.x, camState.target.z, originLat, originLng);
+  const vp = {
+    id: 'vp_' + Math.random().toString(36).slice(2, 10),
+    name: name || ('Viewpoint ' + (viewpoints.length + 1)),
+    camera: {
+      target: { lat: targetLatLng.lat, lng: targetLatLng.lng },
+      distance: camState.distance, azimuth: camState.azimuthDeg, polar: camState.polarDeg,
+    },
+  };
+  viewpoints.push(vp);
+  return vp;
+}
+
+function listViewpoints() {
+  return viewpoints.slice();
+}
+
+function applyViewpoint(id) {
+  const vp = viewpoints.find(v => v.id === id);
+  if (!vp || !orbitCamera || originLat == null) return false;
+  const targetXZ = projectLatLng(vp.camera.target.lat, vp.camera.target.lng, originLat, originLng);
+  orbitCamera.setState({
+    distance: vp.camera.distance, azimuthDeg: vp.camera.azimuth, polarDeg: vp.camera.polar,
+    target: { x: targetXZ.x, y: 0, z: targetXZ.z },
+  });
+  return true;
+}
+
+function deleteViewpoint(id) {
+  const before = viewpoints.length;
+  viewpoints = viewpoints.filter(v => v.id !== id);
+  return viewpoints.length !== before;
+}
+
+// ── Transform gizmo ──────────────────────────────────────────────────────
+
+function _applyGizmoAxisRestrictions() {
+  if (!transformControls) return;
+  if (transformControls.mode === 'translate') {
+    transformControls.showX = true; transformControls.showY = false; transformControls.showZ = true;
+  } else if (transformControls.mode === 'rotate') {
+    transformControls.showX = false; transformControls.showY = true; transformControls.showZ = false;
+  }
+}
+
+function setTransformMode(mode) {
+  if (!transformControls || (mode !== 'translate' && mode !== 'rotate')) return;
+  transformControls.setMode(mode);
+  _applyGizmoAxisRestrictions();
+}
+
+function _onTransformMouseDown() {
+  if (orbitCamera) orbitCamera.controls.enabled = false;
+  const id = SELECTION.getSelected();
+  const obj = id && OBJECTS.get(id);
+  transformDragSnapshot = obj ? { id, position: Object.assign({}, obj.position), rotationDeg: obj.rotationDeg } : null;
+}
+
+function _onTransformObjectChange() {
+  // Live-sync the store from the mesh during drag so the metrics/position/
+  // constraint readouts update in real time — no undo entry yet, that
+  // happens once on mouseUp so a single drag is a single undo step, not one
+  // per frame.
+  const id = SELECTION.getSelected();
+  const mesh = id && objectMeshes.get(id);
+  if (!id || !mesh) return;
+  OBJECTS.update(id, {
+    position: { x: mesh.position.x, z: mesh.position.z },
+    rotationDeg: (mesh.rotation.y * 180) / Math.PI,
+  });
+  _recomputeConstraints();
+}
+
+function _onTransformMouseUp() {
+  if (orbitCamera) orbitCamera.controls.enabled = true;
+  const snap = transformDragSnapshot;
+  transformDragSnapshot = null;
+  if (!snap) return;
+  const obj = OBJECTS.get(snap.id);
+  if (!obj) return;
+  const after = { position: Object.assign({}, obj.position), rotationDeg: obj.rotationDeg };
+  const changed = after.position.x !== snap.position.x || after.position.z !== snap.position.z || after.rotationDeg !== snap.rotationDeg;
+  if (!changed) return;
+  const id = snap.id;
+  HISTORY.push({
+    label: 'Move ' + obj.type,
+    undo: () => { OBJECTS.update(id, snap); _syncObjectMesh(OBJECTS.get(id)); _recomputeConstraints(); },
+    redo: () => { OBJECTS.update(id, after); _syncObjectMesh(OBJECTS.get(id)); _recomputeConstraints(); },
+  });
+}
+
+// ── Click-to-select raycasting ───────────────────────────────────────────
+
+function _onCanvasPointerDown(e) {
+  pointerDownScreen = { x: e.clientX, y: e.clientY };
+}
+
+function _onCanvasPointerUp(e) {
+  if (!pointerDownScreen || (transformControls && transformControls.dragging)) { pointerDownScreen = null; return; }
+  const dx = e.clientX - pointerDownScreen.x;
+  const dy = e.clientY - pointerDownScreen.y;
+  pointerDownScreen = null;
+  if (Math.sqrt(dx * dx + dy * dy) > 6) return; // treat as an orbit/pan drag, not a click
+
+  const rect = renderer.domElement.getBoundingClientRect();
+  pointerNdc.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  pointerNdc.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+  raycaster.setFromCamera(pointerNdc, orbitCamera.camera);
+  const hits = raycaster.intersectObjects(objectsGroup.children, false);
+  if (hits.length && hits[0].object.userData.objectId) {
+    SELECTION.select(hits[0].object.userData.objectId);
+  } else {
+    SELECTION.deselect();
+  }
+}
+
+// ── Scene lifecycle ──────────────────────────────────────────────────────
+
+function _buildScene() {
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xbfd4e8);
+
+  const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+  sunLight = new THREE.DirectionalLight(0xffffff, 1.0);
+  // Shadow mapping is one of the more GPU-expensive things this scene does
+  // — skip it entirely on devices fallback.js already flagged as running a
+  // software renderer, rather than turning it on and letting the frame
+  // rate collapse.
+  sunLight.castShadow = !lowPowerMode;
+  const shadowMapSize = lowPowerMode ? 512 : 1024;
+  sunLight.shadow.mapSize.set(shadowMapSize, shadowMapSize);
+  sunLight.shadow.camera.near = 10;
+  sunLight.shadow.camera.far = 4000;
+  sunLight.shadow.camera.left = -700;
+  sunLight.shadow.camera.right = 700;
+  sunLight.shadow.camera.top = 700;
+  sunLight.shadow.camera.bottom = -700;
+  scene.add(ambient, sunLight);
+
+  objectsGroup = new THREE.Group();
+  objectsGroup.name = 'scene3d-objects';
+  scene.add(objectsGroup);
+
+  const canvas = document.createElement('canvas');
+  canvas.className = 'scene3d-canvas';
+  // The canvas has no text content of its own — make it a reachable,
+  // described control rather than an invisible-to-assistive-tech surface.
+  // aria-label is kept current by _updateCanvasAriaLabel(), called after
+  // every terrain/object mutation.
+  canvas.tabIndex = 0;
+  canvas.setAttribute('role', 'img');
+  canvas.setAttribute('aria-label', '3D terrain view. Use arrow keys to orbit, plus and minus to zoom, Home to reset the view.');
+  host.innerHTML = '';
+  host.appendChild(canvas);
+
+  // Quality tier: a device fallback.js already identified as running a
+  // software renderer gets antialiasing off and pixel ratio capped at 1 —
+  // both real, measurable GPU-cost reductions, not placebo settings.
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: !lowPowerMode, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(lowPowerMode ? 1 : Math.min(window.devicePixelRatio || 1, 2));
+  renderer.shadowMap.enabled = !lowPowerMode;
+
+  const { w, h } = _size();
+  orbitCamera = createOrbitCamera(THREE, OrbitControls, canvas, w / Math.max(h, 1));
+  renderer.setSize(w, h, false);
+
+  transformControls = new TransformControls(orbitCamera.camera, canvas);
+  transformControls.setMode('translate');
+  transformHelper = transformControls.getHelper();
+  scene.add(transformHelper);
+  transformControls.addEventListener('mouseDown', _onTransformMouseDown);
+  transformControls.addEventListener('objectChange', _onTransformObjectChange);
+  transformControls.addEventListener('mouseUp', _onTransformMouseUp);
+  _applyGizmoAxisRestrictions();
+
+  canvas.addEventListener('pointerdown', _onCanvasPointerDown);
+  canvas.addEventListener('pointerup', _onCanvasPointerUp);
+  canvas.addEventListener('keydown', _onCanvasKeyDown);
+
+  if (typeof ResizeObserver !== 'undefined') {
+    resizeObserver = new ResizeObserver(_resize);
+    resizeObserver.observe(host);
+  }
+
+  _rebuildParcelBoundary();
+  _rebuildAllObjectMeshes();
+  _onSelectionChanged(SELECTION.getSelected());
+  _applySunPosition();
+  _updateCanvasAriaLabel();
+  _animate();
+}
+
+/* Keyboard-only alternative to mouse-drag orbit/zoom, so the 3D view is
+ * usable without a pointer. Object selection itself doesn't need a canvas-
+ * specific keyboard path — every object list row in the panel is already a
+ * real, tabbable <button> (see js/map.js's renderScene3dObjectPanel), which
+ * is a complete keyboard equivalent to clicking an object in the canvas. */
+function _onCanvasKeyDown(e) {
+  if (!orbitCamera) return;
+  const stepDeg = e.shiftKey ? 15 : 5;
+  if (e.key === 'Home') {
+    orbitCamera.frame(400);
+    e.preventDefault();
+    return;
+  }
+  const state = orbitCamera.getState();
+  let handled = true;
+  if (e.key === 'ArrowLeft') state.azimuthDeg -= stepDeg;
+  else if (e.key === 'ArrowRight') state.azimuthDeg += stepDeg;
+  else if (e.key === 'ArrowUp') state.polarDeg = Math.max(5, state.polarDeg - stepDeg);
+  else if (e.key === 'ArrowDown') state.polarDeg = Math.min(89, state.polarDeg + stepDeg);
+  else if (e.key === '+' || e.key === '=') state.distance = Math.max(20, state.distance * 0.85);
+  else if (e.key === '-' || e.key === '_') state.distance = Math.min(20000, state.distance / 0.85);
+  else handled = false;
+  if (!handled) return;
+  e.preventDefault();
+  orbitCamera.setState({
+    distance: state.distance, azimuthDeg: state.azimuthDeg, polarDeg: state.polarDeg, target: state.target,
+  });
+}
+
+/* Keeps the canvas's aria-label describing the current scene rather than a
+ * static "3D view" — a screen-reader user gets the same headline numbers a
+ * sighted user reads off the metrics panel. */
+function _updateCanvasAriaLabel() {
+  if (!renderer) return;
+  const canvas = renderer.domElement;
+  const m = getMetrics();
+  const parts = [];
+  if (m.buildingCount) parts.push(`${m.buildingCount} building${m.buildingCount === 1 ? '' : 's'}`);
+  if (m.parkingCount) parts.push(`${m.parkingCount} parking area${m.parkingCount === 1 ? '' : 's'}`);
+  if (m.roadCount) parts.push(`${m.roadCount} road segment${m.roadCount === 1 ? '' : 's'}`);
+  if (m.fenceCount) parts.push(`${m.fenceCount} fence segment${m.fenceCount === 1 ? '' : 's'}`);
+  if (m.substationCount) parts.push(`${m.substationCount} substation${m.substationCount === 1 ? '' : 's'}`);
+  const summary = parts.length ? `Currently showing ${parts.join(', ')}.` : 'No site objects placed yet.';
+  canvas.setAttribute('aria-label', `3D terrain view. ${summary} Use arrow keys to orbit, plus and minus to zoom, Home to reset the view.`);
+}
+
+function _teardownScene() {
+  if (animFrame != null) cancelAnimationFrame(animFrame);
+  animFrame = null;
+  if (resizeObserver) { try { resizeObserver.disconnect(); } catch (_) {} }
+  resizeObserver = null;
+  if (transformControls) { try { transformControls.dispose(); } catch (_) {} }
+  transformControls = null;
+  transformHelper = null;
+  if (orbitCamera) { try { orbitCamera.dispose(); } catch (_) {} }
+  orbitCamera = null;
+  objectMeshes.forEach((mesh, id) => _removeObjectMesh(id));
+  if (terrainGroup) {
+    terrainGroup.traverse(obj => { if (obj.geometry) obj.geometry.dispose(); });
+  }
+  terrainGroup = null;
+  objectsGroup = null;
+  sunLight = null;
+  if (renderer) { try { renderer.dispose(); } catch (_) {} }
+  renderer = null;
+  scene = null;
+  if (host) host.innerHTML = '';
+}
+
+function activate(opts) {
+  host = opts.host;
+  map = opts.map;
+  currentFips = opts.fips || null;
+  terrainStatusCb = opts.onStatus || null;
+  terrainClearCb = opts.onStatusClear || null;
+  lowPowerMode = !!opts.lowPower;
+
+  if (!host) throw new Error('scene3d-canvas-host missing');
+
+  const center = map && typeof map.getCenter === 'function' ? map.getCenter() : null;
+  originLat = center ? center.lat : 39.5;
+  originLng = center ? center.lng : -98.35;
+
+  if (!renderer) _buildScene();
+  else _resize();
+
+  _rebuildTerrain();
+}
+
+function deactivate() {
+  _teardownScene();
+}
+
+function onCountyChanged(fips) {
+  fips = fips || null;
+  if (fips === currentFips) return;
+  // Object positions are meaningful only relative to the current origin —
+  // switching sites without clearing would silently "teleport" buildings
+  // onto a different county's geography. Clear rather than mislead.
+  if (OBJECTS.list().length && terrainStatusCb) {
+    terrainStatusCb('Switched site — 3D objects from the previous site were cleared.', 'warning');
+  }
+  OBJECTS.clear();
+  SELECTION.deselect();
+  HISTORY.clear();
+  viewpoints = []; // saved views were framed relative to the previous site
+  if (objectsGroup) objectMeshes.forEach((mesh, id) => _removeObjectMesh(id));
+
+  currentFips = fips;
+  const center = map && typeof map.getCenter === 'function' ? map.getCenter() : null;
+  if (!center) return;
+  originLat = center.lat;
+  originLng = center.lng;
+  if (renderer) {
+    _rebuildTerrain();
+    _rebuildParcelBoundary();
+    _recomputeConstraints();
+    _applySunPosition();
+  }
+}
+
+function onLayerToggle(layerId, visible) {
+  if (layerId !== 'terrain_3d') return;
+  terrainVisible = !!visible;
+  if (terrainGroup) terrainGroup.visible = terrainVisible;
+}
+
+function getSceneDescriptor() {
+  if (!orbitCamera || originLat == null) return null;
+  const camState = orbitCamera.getState();
+  const targetLatLng = unprojectXZ(camState.target.x, camState.target.z, originLat, originLng);
+  return {
+    active: true,
+    camera: {
+      target: { lat: targetLatLng.lat, lng: targetLatLng.lng },
+      distance: camState.distance,
+      azimuth: camState.azimuthDeg,
+      polar: camState.polarDeg,
+    },
+    terrainEnabled: terrainVisible,
+    exaggeration,
+    objects: OBJECTS.toArray(),
+    viewpoints: JSON.parse(JSON.stringify(viewpoints)),
+    sun: sunDateISO ? { dateISO: sunDateISO } : null,
+  };
+}
+
+function applyState(normalized) {
+  if (!normalized) return;
+  exaggeration = typeof normalized.exaggeration === 'number' ? normalized.exaggeration : exaggeration;
+  terrainVisible = normalized.terrainEnabled !== false;
+  if (terrainGroup) terrainGroup.visible = terrainVisible;
+
+  OBJECTS.fromArray(normalized.objects || []);
+  SELECTION.deselect();
+  HISTORY.clear();
+  if (objectsGroup) _rebuildAllObjectMeshes();
+
+  viewpoints = Array.isArray(normalized.viewpoints) ? normalized.viewpoints.slice() : [];
+  sunDateISO = (normalized.sun && normalized.sun.dateISO) || null;
+  if (sunLight) _applySunPosition();
+
+  if (!orbitCamera) return;
+  const cam = normalized.camera || {};
+  let targetXZ = { x: 0, z: 0 };
+  if (cam.target && typeof cam.target.lat === 'number' && typeof cam.target.lng === 'number' && originLat != null) {
+    targetXZ = projectLatLng(cam.target.lat, cam.target.lng, originLat, originLng);
+  }
+  orbitCamera.setState({
+    distance: cam.distance, azimuthDeg: cam.azimuth, polarDeg: cam.polar,
+    target: { x: targetXZ.x, y: 0, z: targetXZ.z },
+  });
+
+  // Exaggeration affects mesh vertex Y, so it needs a rebuild to take effect
+  // (cheap relative to the network fetch since tiles are cache-hit).
+  if (renderer) _rebuildTerrain();
+}
+
+window.SCENE3D._registerEngine({
+  activate, deactivate, onCountyChanged, onLayerToggle, applyState, getSceneDescriptor,
+  createBuilding, createObject, updateObject, deleteSelected, undo, redo, historyCounts, getMetrics, listObjects,
+  selectObject: id => SELECTION.select(id), deselectObject: () => SELECTION.deselect(),
+  setTransformMode, setPhaseFilter, listPhases,
+  listTemplates, instantiateTemplate, generateCampus,
+  setSunTime, getSunInfo,
+  saveViewpoint, listViewpoints, applyViewpoint, deleteViewpoint,
+  captureSnapshot, getReportData,
+});

@@ -110,6 +110,11 @@ vendor/
   leaflet.css               — Leaflet v1.9.4 CSS
   topojson-client.min.js    — topojson-client v3
   counties-10m.json         — us-atlas county+state topology (823KB)
+  three/                    — Three.js r0.185.1 (MIT), ES modules, lazy-loaded
+                               only when a visitor opens 3D mode — see
+                               docs/3D_SYSTEM_ARCHITECTURE.md
+js/3d/                      — 3D terrain view (window.SCENE3D); see
+                               docs/3D_SYSTEM_ARCHITECTURE.md
 ```
 
 ### Government-Source Data Pipeline

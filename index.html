@@ -44,6 +44,7 @@
   <link rel="stylesheet" href="css/pipeline.css?v=20260726d" />
   <link rel="stylesheet" href="css/jurisdiction.css?v=20260726j" />
   <link rel="stylesheet" href="css/economy.css?v=20260726a" />
+  <link rel="stylesheet" href="css/scene3d.css?v=20260728a" />
   <!-- Runs before paint to apply saved theme and prevent flash -->
   <script>
     (function(){
@@ -300,6 +301,9 @@
         <button class="gis-btn" id="gis-workspace" title="Workspaces — save &amp; restore map state (W)" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
         </button>
+        <button class="gis-btn" id="gis-3d" title="3D terrain view (T)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5"/><path d="M12 12v10"/></svg>
+        </button>
         <button class="gis-btn" id="gis-minimap" title="Toggle overview map" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><rect x="6" y="8" width="8" height="8" rx="1"/></svg>
         </button>
@@ -351,6 +355,111 @@
             <button id="workspace-import-btn" title="Import workspaces from JSON file">Import JSON</button>
             <input id="workspace-import-file" type="file" accept=".json" hidden />
           </div>
+        </div>
+      </div>
+
+      <!-- 3D Terrain View panel -->
+      <div id="scene3d-panel" hidden>
+        <div id="scene3d-header">
+          <span>3D Terrain View</span>
+          <button id="scene3d-close" aria-label="Close 3D view">&times;</button>
+        </div>
+        <div id="scene3d-body">
+          <div id="scene3d-viewport-wrap">
+            <div id="scene3d-canvas-host"></div>
+            <div id="scene3d-present-bar" hidden>
+              <button id="scene3d-present-prev" type="button" aria-label="Previous viewpoint" title="Previous viewpoint">&lsaquo; Prev</button>
+              <span id="scene3d-present-vp-name"></span>
+              <button id="scene3d-present-next" type="button" aria-label="Next viewpoint" title="Next viewpoint">Next &rsaquo;</button>
+              <button id="scene3d-present-exit" type="button" aria-label="Exit presentation mode" title="Exit presentation mode">&times; Exit</button>
+            </div>
+          </div>
+          <div id="scene3d-status" hidden role="status" aria-live="polite"></div>
+
+          <div id="scene3d-object-toolbar">
+            <button id="scene3d-add-building" type="button" title="Add a conceptual building volume">+ Building</button>
+            <button id="scene3d-add-parking" type="button" title="Add a conceptual parking lot area">+ Parking</button>
+            <button id="scene3d-add-road" type="button" title="Add a conceptual straight road segment">+ Road</button>
+            <button id="scene3d-add-fence" type="button" title="Add a conceptual fence line">+ Fence</button>
+            <span class="scene3d-toolbar-sep" role="separator" aria-hidden="true"></span>
+            <button id="scene3d-mode-move" type="button" class="scene3d-mode-btn active" title="Move selected object (X/Z only)" aria-pressed="true">Move</button>
+            <button id="scene3d-mode-rotate" type="button" class="scene3d-mode-btn" title="Rotate selected object (yaw only)" aria-pressed="false">Rotate</button>
+            <span class="scene3d-toolbar-sep" role="separator" aria-hidden="true"></span>
+            <button id="scene3d-undo" type="button" title="Undo" disabled>Undo</button>
+            <button id="scene3d-redo" type="button" title="Redo" disabled>Redo</button>
+            <button id="scene3d-delete" type="button" title="Delete selected object" disabled>Delete</button>
+          </div>
+
+          <div id="scene3d-templates-row">
+            <label for="scene3d-template-select">Starter layout</label>
+            <select id="scene3d-template-select"></select>
+            <button id="scene3d-template-add" type="button">Add</button>
+          </div>
+
+          <details id="scene3d-campus">
+            <summary>Data Center Campus Generator</summary>
+            <p class="scene3d-campus-note">Generates a conceptual grid of data halls that fit inside the real parcel boundary. Does not claim engineering feasibility, utility capacity, or permit compliance — everything generated stays fully editable. Requires a selected parcel.</p>
+            <div id="scene3d-campus-fields">
+              <label>Hall width (m) <input type="number" id="scene3d-campus-hall-width" value="60" min="10" step="5" /></label>
+              <label>Hall depth (m) <input type="number" id="scene3d-campus-hall-depth" value="90" min="10" step="5" /></label>
+              <label>Hall height (m) <input type="number" id="scene3d-campus-hall-height" value="12" min="3" step="1" /></label>
+              <label>Spacing (m) <input type="number" id="scene3d-campus-spacing" value="15" min="0" step="1" /></label>
+              <label>Edge margin (m) <input type="number" id="scene3d-campus-margin" value="10" min="0" step="1" /></label>
+              <label>Max halls <input type="number" id="scene3d-campus-count" value="4" min="1" step="1" /></label>
+            </div>
+            <div id="scene3d-campus-options">
+              <label><input type="checkbox" id="scene3d-campus-substation" checked /> Substation</label>
+              <label><input type="checkbox" id="scene3d-campus-fence" checked /> Perimeter fence</label>
+              <label><input type="checkbox" id="scene3d-campus-road" checked /> Access road</label>
+            </div>
+            <button id="scene3d-campus-generate" type="button">Generate Campus Layout</button>
+            <div id="scene3d-campus-result" hidden></div>
+          </details>
+
+          <div id="scene3d-phase-row">
+            <label for="scene3d-phase-filter">Phase preview</label>
+            <select id="scene3d-phase-filter">
+              <option value="">All phases</option>
+            </select>
+          </div>
+
+          <div id="scene3d-object-list" aria-label="3D objects in scene"></div>
+
+          <div id="scene3d-setbacks" aria-label="Zoning setback distances, for manual review" hidden></div>
+
+          <div id="scene3d-metrics" aria-label="Live site metrics"></div>
+
+          <div id="scene3d-viewpoints">
+            <div id="scene3d-viewpoints-header">
+              <span>Saved Viewpoints</span>
+              <button id="scene3d-viewpoint-save" type="button">+ Save current view</button>
+            </div>
+            <div id="scene3d-viewpoints-list"></div>
+          </div>
+
+          <div id="scene3d-sun-row">
+            <label for="scene3d-sun-datetime">Sun position</label>
+            <input type="datetime-local" id="scene3d-sun-datetime" />
+            <button id="scene3d-sun-now" type="button" title="Use the current date/time">Now</button>
+            <span id="scene3d-sun-info"></span>
+          </div>
+
+          <div id="scene3d-controls">
+            <label><input type="checkbox" id="scene3d-terrain-toggle" checked /> Terrain</label>
+            <label>Vertical exaggeration
+              <input type="range" id="scene3d-exaggeration" min="1" max="4" step="0.5" value="1.5" />
+            </label>
+            <button id="scene3d-present" type="button" title="Presentation mode — hide editing tools, fullscreen the view">Present</button>
+          </div>
+
+          <div id="scene3d-export-row">
+            <span>Export</span>
+            <button id="scene3d-export-image" type="button">Image (PNG)</button>
+            <button id="scene3d-export-csv" type="button">Objects (CSV)</button>
+            <button id="scene3d-export-json" type="button">Scene (JSON)</button>
+          </div>
+
+          <p id="scene3d-disclaimer">Conceptual terrain from free, open elevation data (AWS Terrain Tiles) and generated conceptual site objects — not surveyed, engineered, or approved. All dimensions are approximate. The green outline is the real parcel boundary; a red flag means an object is outside it or overlaps another object. This tool cannot verify zoning setback-line compliance — compare object positions against the setback distances shown against your own judgment. Sun position uses a standard astronomical formula (~0.01&deg; accuracy) for conceptual shadow direction, not survey-grade solar analysis. The campus generator produces an illustrative layout only. Exported images/CSV/JSON and the "Conceptual 3D Site Plan" section in the parcel report reflect this same conceptual data. Use arrow keys on the 3D view to orbit, +/&minus; to zoom, and Home to reset.</p>
         </div>
       </div>
 
@@ -969,6 +1078,21 @@ window.addEventListener('error', function(e) {
 <script src="js/parcel/panel.js?v=20260721h" defer onload="window._track.ok.push('parcel-panel')" onerror="window._track.fail.push('parcel-panel')"></script>
 <script src="js/parcel/index.js?v=20260721g" defer onload="window._track.ok.push('parcel-index')" onerror="window._track.fail.push('parcel-index')"></script>
 <script src="js/workspace.js?v=20260719a" defer onload="window._track.ok.push('workspace')" onerror="window._track.fail.push('workspace')"></script>
+<!-- 3D terrain view. These stay dependency-free classic scripts; Three.js
+     itself (vendor/three/*) is only lazy-loaded as an ES module by
+     js/3d/index.js the first time a visitor opens 3D mode. -->
+<script src="js/3d/fallback.js?v=20260728a" defer onload="window._track.ok.push('scene3d-fallback')" onerror="window._track.fail.push('scene3d-fallback')"></script>
+<script src="js/3d/terrain-tiles.js?v=20260728a" defer onload="window._track.ok.push('scene3d-terrain-tiles')" onerror="window._track.fail.push('scene3d-terrain-tiles')"></script>
+<script src="js/3d/scene-state.js?v=20260728a" defer onload="window._track.ok.push('scene3d-state')" onerror="window._track.fail.push('scene3d-state')"></script>
+<script src="js/3d/objects.js?v=20260728a" defer onload="window._track.ok.push('scene3d-objects')" onerror="window._track.fail.push('scene3d-objects')"></script>
+<script src="js/3d/history.js?v=20260728a" defer onload="window._track.ok.push('scene3d-history')" onerror="window._track.fail.push('scene3d-history')"></script>
+<script src="js/3d/selection.js?v=20260728a" defer onload="window._track.ok.push('scene3d-selection')" onerror="window._track.fail.push('scene3d-selection')"></script>
+<script src="js/3d/measure.js?v=20260728a" defer onload="window._track.ok.push('scene3d-measure')" onerror="window._track.fail.push('scene3d-measure')"></script>
+<script src="js/3d/constraints.js?v=20260728a" defer onload="window._track.ok.push('scene3d-constraints')" onerror="window._track.fail.push('scene3d-constraints')"></script>
+<script src="js/3d/sun.js?v=20260728a" defer onload="window._track.ok.push('scene3d-sun')" onerror="window._track.fail.push('scene3d-sun')"></script>
+<script src="js/3d/templates.js?v=20260728a" defer onload="window._track.ok.push('scene3d-templates')" onerror="window._track.fail.push('scene3d-templates')"></script>
+<script src="js/3d/campus-generator.js?v=20260728a" defer onload="window._track.ok.push('scene3d-campus-generator')" onerror="window._track.fail.push('scene3d-campus-generator')"></script>
+<script src="js/3d/index.js?v=20260728a" defer onload="window._track.ok.push('scene3d-index')" onerror="window._track.fail.push('scene3d-index')"></script>
 <script src="js/results-panel.js?v=20260718a" defer onload="window._track.ok.push('results-panel')" onerror="window._track.fail.push('results-panel')"></script>
 <script src="js/command-palette.js?v=20260720a" defer onload="window._track.ok.push('command-palette')" onerror="window._track.fail.push('command-palette')"></script>
 <script src="js/pipeline.js?v=20260726i" defer onload="window._track.ok.push('pipeline')" onerror="window._track.fail.push('pipeline')"></script>

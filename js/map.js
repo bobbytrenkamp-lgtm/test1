@@ -141,6 +141,7 @@ let locMarker        = null;
 let _ctxLatLng       = null;
 let bookmarksVisible  = false;
 let _wsVisible        = false;
+let _scene3dVisible   = false;
 const WS_LOCAL_KEY    = "dc-workspaces-local-v1";
 const WS_MAX_LOCAL    = 10;
 let compareMode       = false;
@@ -376,6 +377,8 @@ const layerState = {
   fema_flood:         false, // roadmap — no data yet
   enterprise_zones:   false, // roadmap — no data yet
   parcels:            false, // parcel-level data (zoom ≥14; pilot: Loudoun County VA)
+  terrain_3d:         true,  // 3D view's terrain mesh toggle (only affects the 3D panel)
+  contours_slope:     false, // roadmap — no data yet
   /* Economic choropleths — mutually exclusive, enforced in ECONOMY_MAP.onLayerToggle().
      Only one may colour counties at a time; stacking opaque economic fills over
      the restriction layer would make all of them unreadable. */
@@ -793,6 +796,9 @@ async function _initMapFromGeo() {
     _refreshSavedCache();
     // Initialize parcel intelligence module
     window.PARCEL?.init(leafletMap);
+    // Initialize 3D terrain view coordinator (Three.js itself loads lazily
+    // on first activation — this call never fetches 3D bytes)
+    window.SCENE3D?.init(leafletMap);
     if (loadEl) loadEl.style.display = "none";
     // Staggered invalidateSize calls catch iOS Safari layout finalization at
     // different stages: after layers paint, after first user interaction window,
@@ -1013,6 +1019,7 @@ function handleCountyClick(e, fips) {
   if (window.PARCEL) {
     window.PARCEL.onCountyChanged(fips);
   }
+  window.SCENE3D?.onCountyChanged(fips);
 }
 
 /* ── County layer init ── */
@@ -1256,6 +1263,8 @@ function setLayerVisible(id, visible, syncUI = false) {
     if (window.PARCEL) {
       window.PARCEL.onLayerToggle(id, visible, selectedFips);
     }
+  } else if (id === "terrain_3d") {
+    window.SCENE3D?.onLayerToggle(id, visible, selectedFips);
   } else if (window.ECONOMY_MAP && window.ECONOMY_MAP.LAYER_METRIC[id]) {
     // ECONOMY_MAP restyles the county layer and refreshes the legend itself,
     // because activation is async (the county file is lazy-loaded).
@@ -2216,7 +2225,7 @@ function _saveWsList(arr) {
 
 function _captureWorkspaceState(name) {
   const c = leafletMap.getCenter();
-  return {
+  const ws = {
     id:          _generateWsId(),
     name:        name,
     created:     Date.now(),
@@ -2237,6 +2246,11 @@ function _captureWorkspaceState(name) {
     drawPoints:   drawPoints.map(p => [+p.lat.toFixed(6), +p.lng.toFixed(6)]),
     drawAreaUnit: drawAreaUnit,
   };
+  // Only attach scene3d when 3D was actually activated this session, so a
+  // user who never opens 3D mode doesn't get a stub key on every save.
+  const scene3d = window.SCENE3D?.captureState();
+  if (scene3d) ws.scene3d = scene3d;
+  return ws;
 }
 
 function _applyWorkspace(ws) {
@@ -2279,6 +2293,14 @@ function _applyWorkspace(ws) {
   }
   if (ws.selectedFips && mapData[ws.selectedFips]) {
     selectCounty(ws.selectedFips);
+  }
+  // A workspace saved before the 3D system existed has no scene3d key —
+  // that must load with no error and must not force 3D mode open or closed.
+  if (ws.scene3d) {
+    window.SCENE3D?.applyState(ws.scene3d);
+    renderScene3dObjectPanel();
+    renderScene3dViewpoints();
+    renderScene3dSunInfo();
   }
 }
 
@@ -2372,6 +2394,300 @@ function toggleWorkspaces() {
   if (panel) panel.hidden = !_wsVisible;
   if (btn)   { btn.classList.toggle("active", _wsVisible); btn.setAttribute("aria-pressed", String(_wsVisible)); }
   if (_wsVisible) renderWorkspaceList();
+}
+
+/* ── 3D terrain view ── */
+function toggleScene3D() {
+  _scene3dVisible = !_scene3dVisible;
+  const panel = document.getElementById("scene3d-panel");
+  const btn   = document.getElementById("gis-3d");
+  if (panel) panel.hidden = !_scene3dVisible;
+  if (btn)   { btn.classList.toggle("active", _scene3dVisible); btn.setAttribute("aria-pressed", String(_scene3dVisible)); }
+  if (!_scene3dVisible && _scene3dPresenting) toggleScene3dPresentationMode(); // don't reopen straight into presentation mode
+  if (_scene3dVisible) {
+    if (!window.SCENE3D) {
+      showMapToast("3D view isn't available — the module didn't load.");
+      return;
+    }
+    const cap = window.SCENE3D.isAvailable();
+    if (!cap.ok && btn) {
+      btn.title = (window.SCENE3D_FALLBACK && window.SCENE3D_FALLBACK.MESSAGES[cap.reason]) || "3D view isn't available on this device.";
+    }
+    window.SCENE3D.activate().then(() => {
+      renderScene3dObjectPanel();
+      renderScene3dViewpoints();
+      populateScene3dTemplates();
+      renderScene3dSunInfo();
+    });
+  }
+}
+
+function populateScene3dTemplates() {
+  const select = document.getElementById("scene3d-template-select");
+  if (!select || !window.SCENE3D || select.dataset.populated) return;
+  const templates = window.SCENE3D.listTemplates();
+  select.innerHTML = templates.map(t => `<option value="${t.id}" title="${t.description}">${t.label}</option>`).join("");
+  select.dataset.populated = "1";
+}
+
+function renderScene3dViewpoints() {
+  const listEl = document.getElementById("scene3d-viewpoints-list");
+  if (!listEl || !window.SCENE3D) return;
+  const viewpoints = window.SCENE3D.listViewpoints();
+  listEl.innerHTML = "";
+  if (!viewpoints.length) {
+    const em = document.createElement("div");
+    em.className = "scene3d-vp-empty";
+    em.textContent = "No saved viewpoints yet.";
+    listEl.appendChild(em);
+    return;
+  }
+  viewpoints.forEach(vp => {
+    const row = document.createElement("div");
+    row.className = "scene3d-vp-row";
+    const loadBtn = document.createElement("button");
+    loadBtn.type = "button";
+    loadBtn.className = "scene3d-vp-load";
+    loadBtn.textContent = vp.name;
+    loadBtn.title = vp.name;
+    loadBtn.addEventListener("click", () => window.SCENE3D.applyViewpoint(vp.id));
+    const delBtn = document.createElement("button");
+    delBtn.type = "button";
+    delBtn.className = "scene3d-vp-del";
+    delBtn.setAttribute("aria-label", `Delete viewpoint ${vp.name}`);
+    delBtn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+    delBtn.addEventListener("click", () => { window.SCENE3D.deleteViewpoint(vp.id); renderScene3dViewpoints(); });
+    row.appendChild(loadBtn);
+    row.appendChild(delBtn);
+    listEl.appendChild(row);
+  });
+}
+
+function renderScene3dSunInfo() {
+  const infoEl = document.getElementById("scene3d-sun-info");
+  if (!infoEl || !window.SCENE3D) return;
+  const info = window.SCENE3D.getSunInfo();
+  if (!info) { infoEl.textContent = ""; return; }
+  const altitude = Math.round(info.altitudeDeg);
+  const compass = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"][Math.round(info.azimuthDeg / 45) % 8];
+  infoEl.textContent = info.daylight
+    ? `☀ ${altitude}° above horizon, ${compass}`
+    : `☾ below horizon (night)`;
+}
+
+function exportScene3dImage() {
+  const dataUrl = window.SCENE3D?.captureSnapshot();
+  if (!dataUrl) { showMapToast("Open 3D mode first to export a view."); return; }
+  const a = Object.assign(document.createElement("a"), {
+    href: dataUrl, download: `3d-view-${new Date().toISOString().slice(0, 10)}.png`,
+  });
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  showMapToast("3D view exported as PNG");
+}
+
+function exportScene3dObjectsCSV() {
+  const objects = window.SCENE3D?.listObjects() || [];
+  if (!objects.length) { showMapToast("No 3D objects to export"); return; }
+  const headers = ["Label", "Type", "Phase", "Width (ft, approx.)", "Depth (ft, approx.)", "Height (ft, approx.)", "Rotation (deg)", "Footprint (sq ft, approx.)", "Length (ft, approx.)", "Constraint Status"];
+  const rows = [headers];
+  objects.forEach(o => {
+    const wFt = Math.round((o.footprint.width || 0) * METERS_TO_FEET_3D);
+    const dFt = Math.round((o.footprint.depth || 0) * METERS_TO_FEET_3D);
+    const hFt = Math.round((o.height || 0) * METERS_TO_FEET_3D);
+    rows.push([
+      o.label, o.type, o.phase, wFt, dFt, hFt, Math.round(o.rotationDeg || 0),
+      o.metrics.footprintSqft != null ? o.metrics.footprintSqft : "",
+      o.metrics.lengthFt != null ? o.metrics.lengthFt : "",
+      (o.constraint && o.constraint.status) || "unknown",
+    ]);
+  });
+  const csv  = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), { href: url, download: `3d-site-objects-${new Date().toISOString().slice(0, 10)}.csv` });
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+  showMapToast(`Exported ${objects.length} object${objects.length !== 1 ? "s" : ""}`);
+}
+
+function exportScene3dJSON() {
+  const state = window.SCENE3D?.captureState();
+  if (!state) { showMapToast("Open 3D mode first to export the scene."); return; }
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), { href: url, download: `3d-scene-${new Date().toISOString().slice(0, 10)}.json` });
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+  showMapToast("3D scene exported as JSON");
+}
+
+let _scene3dPresenting = false;
+let _scene3dPresentIndex = 0;
+
+/* Hides every editing control, expands the panel to fill most of the
+ * viewport, and shows a minimal overlay bar for stepping through saved
+ * viewpoints — for showing the current 3D layout to someone without the
+ * toolbar/object-list clutter. Does not use the Fullscreen API (the panel
+ * itself already becomes near-fullscreen via CSS); that keeps this simple
+ * and avoids interacting with the main map's own fullscreen toggle. */
+function toggleScene3dPresentationMode() {
+  _scene3dPresenting = !_scene3dPresenting;
+  const panel = document.getElementById("scene3d-panel");
+  const bar   = document.getElementById("scene3d-present-bar");
+  const btn   = document.getElementById("scene3d-present");
+  if (panel) panel.classList.toggle("scene3d-presenting", _scene3dPresenting);
+  if (bar)   bar.hidden = !_scene3dPresenting;
+  if (btn)   btn.textContent = _scene3dPresenting ? "Exit Present" : "Present";
+  if (_scene3dPresenting) {
+    _scene3dPresentIndex = 0;
+    renderScene3dPresentBar();
+  }
+}
+
+function renderScene3dPresentBar() {
+  const nameEl = document.getElementById("scene3d-present-vp-name");
+  if (!nameEl || !window.SCENE3D) return;
+  const vps = window.SCENE3D.listViewpoints();
+  if (!vps.length) { nameEl.textContent = "No saved viewpoints — orbit freely"; return; }
+  if (_scene3dPresentIndex >= vps.length) _scene3dPresentIndex = 0;
+  nameEl.textContent = `${vps[_scene3dPresentIndex].name} (${_scene3dPresentIndex + 1}/${vps.length})`;
+}
+
+function _scene3dPresentStep(delta) {
+  const vps = window.SCENE3D?.listViewpoints() || [];
+  if (!vps.length) return;
+  _scene3dPresentIndex = (_scene3dPresentIndex + delta + vps.length) % vps.length;
+  window.SCENE3D.applyViewpoint(vps[_scene3dPresentIndex].id);
+  renderScene3dPresentBar();
+}
+
+function _syncScene3dModeButtons(mode) {
+  const moveBtn   = document.getElementById("scene3d-mode-move");
+  const rotateBtn = document.getElementById("scene3d-mode-rotate");
+  if (moveBtn)   { moveBtn.classList.toggle("active", mode === "translate"); moveBtn.setAttribute("aria-pressed", String(mode === "translate")); }
+  if (rotateBtn) { rotateBtn.classList.toggle("active", mode === "rotate"); rotateBtn.setAttribute("aria-pressed", String(mode === "rotate")); }
+}
+
+const METERS_TO_FEET_3D = 3.28084;
+
+const SCENE3D_CONSTRAINT_LABELS = {
+  conflict: "⚠ Conflict",
+  "requires-review": "Review setbacks",
+  unknown: "No parcel selected",
+};
+
+/* Re-renders the object list + phase filter + setback readout + live
+ * metrics + undo/redo/delete button state inside the 3D panel. Called after
+ * any object create/edit/delete/undo/redo, on selection change, and after
+ * activate()/applyState() so a reopened or restored scene shows its objects
+ * immediately rather than an empty list. */
+function renderScene3dObjectPanel() {
+  const listEl = document.getElementById("scene3d-object-list");
+  const metricsEl = document.getElementById("scene3d-metrics");
+  const undoBtn = document.getElementById("scene3d-undo");
+  const redoBtn = document.getElementById("scene3d-redo");
+  const delBtn  = document.getElementById("scene3d-delete");
+  const phaseSelect = document.getElementById("scene3d-phase-filter");
+  const setbacksEl = document.getElementById("scene3d-setbacks");
+  if (!listEl || !window.SCENE3D) return;
+
+  const objects = window.SCENE3D.listObjects();
+  listEl.innerHTML = "";
+  if (!objects.length) {
+    const em = document.createElement("div");
+    em.className = "scene3d-obj-empty";
+    em.textContent = "No objects yet — use the buttons above to add a conceptual building, parking lot, road, or fence.";
+    listEl.appendChild(em);
+  } else {
+    objects.forEach(obj => {
+      const row = document.createElement("div");
+      row.className = "scene3d-obj-row" + (obj.selected ? " selected" : "");
+
+      const typeLabel = obj.type.charAt(0).toUpperCase() + obj.type.slice(1);
+      let dims;
+      if (obj.type === "road" || obj.type === "fence") {
+        const lenFt = Math.round((obj.footprint.depth || 0) * METERS_TO_FEET_3D);
+        dims = `${lenFt}′ long (approx.)`;
+      } else {
+        const wFt = Math.round((obj.footprint.width || 0) * METERS_TO_FEET_3D);
+        const dFt = Math.round((obj.footprint.depth || 0) * METERS_TO_FEET_3D);
+        const hFt = Math.round((obj.height || 0) * METERS_TO_FEET_3D);
+        dims = `${wFt}′ × ${dFt}′ × ${hFt}′ (approx.)`;
+      }
+      const constraintStatus = (obj.constraint && obj.constraint.status) || "unknown";
+      const constraintLabel = SCENE3D_CONSTRAINT_LABELS[constraintStatus] || "";
+      const constraintTitle = (obj.constraint && obj.constraint.reasons || []).join(" ");
+
+      const selectBtn = document.createElement("button");
+      selectBtn.type = "button";
+      selectBtn.className = "scene3d-obj-select";
+      selectBtn.title = constraintTitle;
+      selectBtn.innerHTML =
+        `<span class="scene3d-obj-label">${obj.label} <span class="scene3d-obj-type">${typeLabel} · Phase ${obj.phase}</span></span>` +
+        `<span class="scene3d-obj-dims">${dims}</span>` +
+        (constraintStatus === "conflict" ? `<span class="scene3d-obj-flag scene3d-obj-flag-conflict">${constraintLabel}</span>` : "");
+      selectBtn.addEventListener("click", () => window.SCENE3D.selectObject(obj.id));
+
+      const delRowBtn = document.createElement("button");
+      delRowBtn.type = "button";
+      delRowBtn.className = "scene3d-obj-del";
+      delRowBtn.setAttribute("aria-label", `Delete ${obj.label}`);
+      delRowBtn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+      delRowBtn.addEventListener("click", () => {
+        window.SCENE3D.selectObject(obj.id);
+        window.SCENE3D.deleteSelected();
+      });
+
+      row.appendChild(selectBtn);
+      row.appendChild(delRowBtn);
+      listEl.appendChild(row);
+    });
+  }
+
+  if (phaseSelect) {
+    const phases = window.SCENE3D.listPhases();
+    const currentVal = phaseSelect.value;
+    phaseSelect.innerHTML = `<option value="">All phases</option>` +
+      phases.map(p => `<option value="${p}">Phase ${p}</option>`).join("");
+    if (phases.some(p => String(p) === currentVal)) phaseSelect.value = currentVal;
+  }
+
+  if (metricsEl) {
+    const m = window.SCENE3D.getMetrics();
+    if (!m || (m.buildingCount === 0 && m.parkingCount === 0 && m.roadCount === 0 && m.fenceCount === 0)) {
+      metricsEl.innerHTML = "";
+    } else {
+      const coverage = typeof m.coveragePct === "number" ? `${m.coveragePct}% of site (approx.)` : "site area unavailable";
+      const parts = [];
+      if (m.buildingCount) parts.push(`<span>${m.buildingCount} building${m.buildingCount === 1 ? "" : "s"}, ${m.totalFootprintSqft.toLocaleString()} sq ft footprint (approx.)</span>`);
+      if (m.buildingCount) parts.push(`<span>${coverage}</span>`);
+      if (m.buildingCount) parts.push(`<span>Max height ${m.maxHeightFt.toLocaleString()} ft (approx.)</span>`);
+      if (m.parkingCount) parts.push(`<span>${m.parkingCount} parking area${m.parkingCount === 1 ? "" : "s"}</span>`);
+      if (m.roadCount) parts.push(`<span>${m.roadCount} road segment${m.roadCount === 1 ? "" : "s"}, ${m.roadLengthFt.toLocaleString()} ft total (approx.)</span>`);
+      if (m.fenceCount) parts.push(`<span>${m.fenceCount} fence segment${m.fenceCount === 1 ? "" : "s"}, ${m.fenceLengthFt.toLocaleString()} ft total (approx.)</span>`);
+      metricsEl.innerHTML = parts.join("");
+    }
+
+    if (setbacksEl) {
+      if (m && m.setbacks) {
+        const s = m.setbacks;
+        setbacksEl.hidden = false;
+        setbacksEl.innerHTML = `Zoning setbacks for manual review — front ${s.front ?? "—"}′, side ${s.side ?? "—"}′, rear ${s.rear ?? "—"}′. Not verified against object positions geometrically.`;
+      } else {
+        setbacksEl.hidden = true;
+        setbacksEl.innerHTML = "";
+      }
+    }
+  }
+
+  const counts = window.SCENE3D.historyCounts();
+  if (undoBtn) undoBtn.disabled = !counts.undo;
+  if (redoBtn) redoBtn.disabled = !counts.redo;
+  if (delBtn)  delBtn.disabled = !objects.some(o => o.selected);
 }
 
 /* ── Suitability mode ── */
@@ -2997,6 +3313,7 @@ function initLeafletMap() {
     if ((e.key === "l" || e.key === "L") && !e.ctrlKey && !e.metaKey) window.RESULTS_PANEL?.toggle();
     if ((e.key === "f" || e.key === "F") && !e.ctrlKey && !e.metaKey) toggleFullscreen();
     if ((e.key === "w" || e.key === "W") && !e.ctrlKey && !e.metaKey) toggleWorkspaces();
+    if ((e.key === "t" || e.key === "T") && !e.ctrlKey && !e.metaKey) toggleScene3D();
     if ((e.key === "c" || e.key === "C") && !e.ctrlKey && !e.metaKey) toggleComparePanel();
     if ((e.key === "s" || e.key === "S") && !e.ctrlKey && !e.metaKey) toggleSuitabilityMode();
     if ((e.key === "v" || e.key === "V") && !e.ctrlKey && !e.metaKey) toggleWaterStressMode();
@@ -3007,6 +3324,7 @@ function initLeafletMap() {
     if (e.key === "Escape" && candidatePinMode) toggleCandidatePin();
     if (e.key === "Escape" && radiusMode)       toggleRadius();
     if (e.key === "Escape" && _wsVisible)       toggleWorkspaces();
+    if (e.key === "Escape" && _scene3dVisible)  toggleScene3D();
     if (e.key === "Escape" && compareMode)      toggleComparePanel();
   });
 
@@ -3037,6 +3355,110 @@ function initLeafletMap() {
   document.getElementById("workspace-name-input")?.addEventListener("keydown", e => {
     if (e.key === "Enter") { e.preventDefault(); saveCurrentWorkspace(); }
   });
+
+  // 3D terrain view panel wiring
+  document.getElementById("gis-3d")           ?.addEventListener("click", toggleScene3D);
+  document.getElementById("scene3d-close")    ?.addEventListener("click", toggleScene3D);
+  document.getElementById("scene3d-terrain-toggle")?.addEventListener("change", e => {
+    setLayerVisible("terrain_3d", e.target.checked, true);
+  });
+  document.getElementById("scene3d-exaggeration")?.addEventListener("input", e => {
+    const exaggeration = Number(e.target.value) || 1.5;
+    const state = window.SCENE3D?.captureState();
+    if (state) window.SCENE3D.applyState(Object.assign({}, state, { exaggeration }));
+  });
+
+  // 3D object toolbar (Phase B/C — building/parking/road/fence, selection, undo/redo)
+  document.getElementById("scene3d-add-building")?.addEventListener("click", () => {
+    window.SCENE3D?.createObject("building");
+  });
+  document.getElementById("scene3d-add-parking")?.addEventListener("click", () => {
+    window.SCENE3D?.createObject("parking");
+  });
+  document.getElementById("scene3d-add-road")?.addEventListener("click", () => {
+    window.SCENE3D?.createObject("road");
+  });
+  document.getElementById("scene3d-add-fence")?.addEventListener("click", () => {
+    window.SCENE3D?.createObject("fence");
+  });
+  document.getElementById("scene3d-phase-filter")?.addEventListener("change", e => {
+    const val = e.target.value;
+    window.SCENE3D?.setPhaseFilter(val === "" ? null : Number(val));
+  });
+  document.getElementById("scene3d-mode-move")?.addEventListener("click", () => {
+    window.SCENE3D?.setTransformMode("translate");
+    _syncScene3dModeButtons("translate");
+  });
+  document.getElementById("scene3d-mode-rotate")?.addEventListener("click", () => {
+    window.SCENE3D?.setTransformMode("rotate");
+    _syncScene3dModeButtons("rotate");
+  });
+  document.getElementById("scene3d-undo")?.addEventListener("click", () => window.SCENE3D?.undo());
+  document.getElementById("scene3d-redo")?.addEventListener("click", () => window.SCENE3D?.redo());
+  document.getElementById("scene3d-delete")?.addEventListener("click", () => window.SCENE3D?.deleteSelected());
+  ["scene3d:objects-changed", "scene3d:object-selected", "scene3d:object-deselected"].forEach(evt => {
+    document.addEventListener(evt, renderScene3dObjectPanel);
+  });
+
+  // 3D templates + campus generator (Phase D)
+  document.getElementById("scene3d-template-add")?.addEventListener("click", () => {
+    const select = document.getElementById("scene3d-template-select");
+    if (select && select.value) window.SCENE3D?.instantiateTemplate(select.value);
+  });
+  document.getElementById("scene3d-campus-generate")?.addEventListener("click", () => {
+    const num = id => Number(document.getElementById(id)?.value) || 0;
+    const checked = id => !!document.getElementById(id)?.checked;
+    const result = window.SCENE3D?.generateCampus({
+      hallWidth: num("scene3d-campus-hall-width"),
+      hallDepth: num("scene3d-campus-hall-depth"),
+      hallHeight: num("scene3d-campus-hall-height"),
+      spacing: num("scene3d-campus-spacing"),
+      marginM: num("scene3d-campus-margin"),
+      targetHallCount: num("scene3d-campus-count"),
+      includeSubstation: checked("scene3d-campus-substation"),
+      includeFence: checked("scene3d-campus-fence"),
+      includeAccessRoad: checked("scene3d-campus-road"),
+    });
+    const resultEl = document.getElementById("scene3d-campus-result");
+    if (resultEl && result) {
+      resultEl.hidden = false;
+      const lines = [];
+      if (result.createdCount) lines.push(`Generated ${result.halls.length} data hall(s), ${result.substations.length} substation(s), ${result.fences.length} fence segment(s), ${result.roads.length} road stub(s).`);
+      (result.warnings || []).forEach(w => lines.push("⚠ " + w));
+      if (result.disclaimer) lines.push(result.disclaimer);
+      resultEl.innerHTML = lines.map(l => `<div>${l}</div>`).join("");
+    }
+  });
+
+  // 3D saved viewpoints (Phase D)
+  document.getElementById("scene3d-viewpoint-save")?.addEventListener("click", () => {
+    window.SCENE3D?.saveViewpoint();
+    renderScene3dViewpoints();
+  });
+
+  // 3D sun position (Phase D)
+  document.getElementById("scene3d-sun-datetime")?.addEventListener("change", e => {
+    const val = e.target.value; // "YYYY-MM-DDTHH:mm", interpreted as local time by the browser
+    if (!val) return;
+    const date = new Date(val);
+    if (!isNaN(date)) { window.SCENE3D?.setSunTime(date.toISOString()); renderScene3dSunInfo(); }
+  });
+  document.getElementById("scene3d-sun-now")?.addEventListener("click", () => {
+    const input = document.getElementById("scene3d-sun-datetime");
+    if (input) input.value = "";
+    window.SCENE3D?.setSunTime(null);
+    renderScene3dSunInfo();
+  });
+
+  // 3D export (Phase E)
+  document.getElementById("scene3d-export-image")?.addEventListener("click", exportScene3dImage);
+  document.getElementById("scene3d-export-csv")  ?.addEventListener("click", exportScene3dObjectsCSV);
+  document.getElementById("scene3d-export-json") ?.addEventListener("click", exportScene3dJSON);
+  document.getElementById("scene3d-present")     ?.addEventListener("click", toggleScene3dPresentationMode);
+  document.getElementById("scene3d-present-prev")?.addEventListener("click", () => _scene3dPresentStep(-1));
+  document.getElementById("scene3d-present-next")?.addEventListener("click", () => _scene3dPresentStep(1));
+  document.getElementById("scene3d-present-exit")?.addEventListener("click", toggleScene3dPresentationMode);
+
   document.getElementById("workspace-export-btn")?.addEventListener("click", exportWorkspacesJSON);
   document.getElementById("workspace-import-btn")?.addEventListener("click", () => {
     document.getElementById("workspace-import-file")?.click();

@@ -306,6 +306,9 @@ def test_tile_providers_on_allowlist():
         "server.arcgisonline.com",      # Esri — free for light use, attribution
         "basemap.nationalmap.gov",      # USGS — US federal, public domain
         "tile.openstreetmap.org",       # OSM — free under the tile usage policy
+        "s3.amazonaws.com",             # AWS Open Data "Terrain Tiles" — free,
+                                         # keyless elevation tiles for the 3D
+                                         # view; registry.opendata.aws/terrain-tiles/
     }
     found = set()
     for p, rel in _scannable():

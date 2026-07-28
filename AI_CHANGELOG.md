@@ -5,6 +5,269 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: 3D terrain view, Phase E — export, report integration, presentation mode, accessibility, performance
+
+Finished the digital-twin system with Phase E, the last phase in the
+original 47-section spec: image/data export, report integration,
+presentation mode, an accessibility pass, and performance quality tiers —
+all extending Phase A-D's existing systems rather than adding new parallel
+ones.
+
+Export (js/3d/engine.js's captureSnapshot()/getReportData(), wired into
+three new buttons in js/map.js) reuses the exact CSV/JSON download pattern
+already used by exportScreenerCSV/exportWorkspacesJSON (quoted CSV with
+BOM, Blob + object URL + temporary anchor) rather than inventing a new
+export mechanism. Report integration extends the existing
+js/parcel/report.js due-diligence report with a new "Conceptual 3D Site
+Plan" section (image, metrics, per-object table) that only appears when a
+scene actually has objects — a null/empty scene3d produces a byte-
+identical report to before Phase E, verified directly in
+tests/scene3d.test.js. The section reuses the same three-value honesty-
+boundary status vocabulary as the in-scene panel (Conflict / Review
+setbacks / No parcel selected) and never renders an Approved/Compliant/
+Pass/Buildable verdict.
+
+Presentation mode hides all editing chrome and expands the canvas to fill
+the panel, with a small overlay bar for stepping through saved viewpoints;
+it lives in a new sibling wrapper around the canvas host specifically
+because engine.js clears that host's innerHTML on every scene rebuild,
+which would otherwise silently delete the bar.
+
+Accessibility: the canvas now has a dynamic aria-label describing live
+object counts, full keyboard camera control (arrow-key orbit/tilt, +/-
+zoom, Home to reframe) for users without a mouse, and respects
+prefers-reduced-motion by disabling camera inertia. Focus-trapping on
+panel open/close was deliberately NOT added — a check across every other
+floating panel in this app (workspace/compare/bookmarks/screener) found
+none of them do it either, so adding it only here would be an isolated
+inconsistency, not a real fix; it's documented as a standing cross-panel
+gap instead.
+
+Performance: the existing low-power/software-renderer detection (already
+built in Phase A for the fallback message) now actually changes what gets
+rendered — disabled shadows, no antialiasing, capped pixel ratio on
+flagged devices — instead of only warning about it. Tablet touch targets
+were widened within the app's one existing responsive breakpoint rather
+than inventing a new touch-specific media query the rest of the codebase
+doesn't otherwise use.
+
+One item was evaluated and deliberately not built: THREE.InstancedMesh
+geometry batching. This app's object counts are realistically in the tens
+per scene, not the thousands, and the existing per-object-mesh
+architecture is load-bearing for Phase B's TransformControls attach-to-
+select and raycasting — instancing would require a materially more complex
+custom picking layer for a performance win this app's scale doesn't need.
+
+tests/scene3d.test.js grew from 165 to 176 assertions (report-section
+backward-compatibility and honesty-boundary coverage). Full suite green,
+no regressions. docs/3D_SYSTEM_ARCHITECTURE.md's Phase E section and
+manual-verification checklist updated; browser verification remains
+unconfirmed this session for the same reason as Phases A-D (no working
+Chromium binary in this sandbox).
+
+All five phases (A-E) of the original spec are now built.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: 3D terrain view, Phase D — campus generator, templates, viewpoints, sun/shadows
+
+Continued the digital-twin system into Phase D: generic development
+templates, the flagship data-center campus generator, saved camera
+viewpoints, and real sun-position-driven shadows — all built on Phase A-C's
+terrain/object/constraint foundation rather than new parallel systems.
+
+The campus generator (js/3d/campus-generator.js) is the closest match yet
+to the original request's own language: acreage/spacing inputs generate a
+grid of conceptual data halls, filtered through the exact same real-
+parcel-boundary and rotated-rectangle-overlap checks Phase C's conflict
+detection already uses, so nothing is ever placed outside the actual
+parcel or on top of another object. A perimeter fence is built from the
+boundary's own edges (not invented geometry), and every result carries an
+explicit "does not claim engineering feasibility, utility capacity, or
+permit compliance" disclaimer plus any warnings (e.g. "only 3 of 5 halls
+fit") rather than silently under-delivering. Templates and campus layouts
+both batch-create as one undo step via a new `_createBatch()` helper.
+
+Sun position (js/3d/sun.js) implements NOAA's simplified solar equations,
+verified against known solstice/equinox altitude values (e.g. 40N summer-
+solstice noon altitude within 1 degree of the theoretical 90-(40-23.44));
+js/3d/engine.js drives a real THREE.DirectionalLight + shadow mapping from
+it, explicitly labeled ~0.01-degree conceptual accuracy, not survey-grade
+solar analysis. Saved viewpoints store camera state by lat/lng (not scene-
+local coordinates) so they survive a reload even though the scene's local
+origin is rebuilt from scratch each session.
+
+Two Phase D items were evaluated and deliberately NOT built, each written
+up rather than shipped shallow: preliminary cut/fill grading (this
+feature's terrain resolution — a 3x3 grid of AWS tiles subsampled every 8
+pixels, effectively >100m between samples — cannot support even a
+conceptual estimate without implying false precision, and the original
+request itself says not to calculate cut/fill when data is inadequate);
+and alternatives/scenario comparison (the repository audit already found
+three non-unified compare systems in this codebase, and adding a fourth
+without first reconciling that fragmentation risks making it worse).
+
+scene3d schema bumped to v3 (adds `viewpoints` and `sun`), with a tested
+v1/v2 -> v3 migration. tests/scene3d.test.js grew from 122 to 165
+assertions (substation type, solar position against physical reference
+values, template instantiation, and campus-generator boundary/overlap/
+edge-case coverage). Full suite green, no regressions.
+docs/3D_SYSTEM_ARCHITECTURE.md's Phase D section and manual-verification
+checklist updated; browser verification remains unconfirmed this session
+for the same reason as Phases A-C (no working Chromium binary here).
+
+Phase E (presentation mode, report integration, export, mobile/
+accessibility/performance tuning) remains the only unbuilt phase.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: 3D terrain view, Phase C — site objects, real parcel boundary, honest conflict detection
+
+Continued the digital-twin system into Phase C: parking/road/fence object
+types, construction phasing, real-parcel-boundary containment checking, and
+object-to-object overlap detection — extending Phase B's object system
+rather than building a parallel one.
+
+Roads and fences are modeled as straight segments using the exact same
+{position, rotationDeg, footprint} shape as buildings, specifically so they
+inherit the entire existing transform-gizmo/selection/undo pipeline with
+zero new interaction code; a path is composed of multiple straight segments
+placed end to end rather than a freeform polyline tool — a deliberate scope
+cut, documented as such.
+
+The constraint checker (`js/3d/constraints.js`) is built around one
+non-negotiable honesty boundary: it can verify real parcel-boundary
+containment (point-in-polygon against the parcel's actual GeoJSON geometry,
+projected into the scene) and object-to-object overlap (a proper rotated-
+rectangle SAT test, not just axis-aligned boxes) — both geometrically
+certain. It cannot verify zoning setback-line compliance, because that
+would require an offset/inset polygon of the parcel boundary that nothing
+in this codebase computes, and fabricating an approximate one risked it
+being read as an authoritative setback line. So it never returns
+'pass'/'compliant'/'approved'/'buildable' — only 'conflict' (a real
+boundary or overlap violation), 'requires-review' (everything else, always,
+alongside the raw front/side/rear setback numbers for a person to judge),
+or 'unknown' (no parcel selected). Environmental context overlays (water
+stress, flood zones) were evaluated and explicitly deferred rather than
+integrated shallow — the app's existing 2D layers don't yet have the
+coverage/resolution metadata this feature's honesty standard would require
+for a 3D projection.
+
+tests/scene3d.test.js grew from 89 to 122 assertions (object type/phase
+defaults and backward compatibility, point-in-polygon, rotated-rectangle
+overlap, and — the most load-bearing test in this pass — an explicit
+assertion that no constraint status matches pass/compliant/approved/
+buildable). Full suite green, no regressions.
+docs/3D_SYSTEM_ARCHITECTURE.md's Phase C section and manual-verification
+checklist updated accordingly; the browser-verification checklist remains
+unconfirmed this session for the same reason as Phases A and B (no working
+Chromium binary in this sandbox).
+
+Still out of scope (Phases D-E): the data-center campus generator,
+development templates, alternatives/scenario comparison, sun/shadow,
+preliminary grading, presentation mode, export.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: 3D terrain view, Phase B — building volumes, selection, undo/redo, live metrics
+
+Continued the digital-twin system into Phase B, building on Phase A's
+terrain foundation rather than starting a separate system. Vendored a
+second Three.js addon, `TransformControls.js` (MIT, same one-line bare-
+import patch as `OrbitControls.js`), restricted in the UI to two modes only
+("Move" — X/Z axes, no vertical drift — and "Rotate" — yaw only, no tilt);
+"Scale" was cut deliberately since a literal 3D scale on a box is ambiguous
+about what it's actually resizing, and precise footprint/height edits
+belong in the object panel instead.
+
+Shipped: `js/3d/objects.js` (building-volume store — footprint/height/
+position/rotation, aggregate site metrics, always labeled `'approximate'`
+since these are generated conceptual volumes, never surveyed or engineered);
+`js/3d/history.js` (generic undo/redo command stack); `js/3d/selection.js`
+(mirrors `js/parcel/selection.js`'s single-selection + CustomEvent shape).
+Building creation seeds its default size from `PARCEL_FEASIBILITY`'s
+buildable envelope when a parcel is selected, reusing the existing setback/
+coverage calculator instead of re-deriving it. Click-to-select raycasting,
+gizmo drag-to-move/rotate, and a live metrics dashboard (building count,
+footprint sqft, coverage % of the parcel, max height) all wired into the 3D
+panel. `scene3d`'s saved-workspace schema bumped to v2 (adds an `objects`
+array) with a tested migration path: a v1 save (Phase A, before `objects`
+existed) loads with an empty building list, never a fabricated one.
+Switching counties clears the object store on purpose — building positions
+are scene-local coordinates relative to the current site, and silently
+carrying them into a different county's geography would misrepresent where
+they are.
+
+`tests/scene3d.test.js` grew from 34 to 89 assertions (object CRUD, undo/
+redo stack behavior including capacity eviction and redo-stack invalidation,
+selection events, distance/area math, and the v1→v2 schema migration); full
+suite green, no regressions. `docs/3D_SYSTEM_ARCHITECTURE.md` extended with
+the Phase B design section and additional manual-verification checklist
+items — still unconfirmed in a real browser this session for the same
+reason as Phase A (no working Chromium binary in this sandbox).
+
+Still out of scope (Phases C–E): roads/parking/fences/utilities, setbacks
+and constraint-conflict checking, environmental overlays, the campus
+generator, templates, presentation mode, export.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: 3D terrain view, Phase A — real infrastructure, not a demo
+
+Built Phase A of a much larger (47-section) 3D site-design/digital-twin
+request: a working, integrated 2D/3D terrain view, not the whole request in
+one pass. A repository audit came first (per the request's own mandated
+order) and found zero prior 3D/WebGL code, but real integration surface
+worth reusing rather than duplicating — `window.PARCEL`'s coordinator shape,
+`window.PARCEL_FEASIBILITY`'s buildable-envelope math (for later phases),
+`window.LAYER_REGISTRY`'s provenance schema, and — most importantly — the
+existing per-user saved "workspace" object in `js/map.js`, extended with an
+optional `scene3d` field rather than inventing a new "Project" entity.
+
+Shipped: `window.SCENE3D` coordinator (`js/3d/index.js`, mirrors
+`window.PARCEL`'s init/onCountyChanged/onLayerToggle shape); Three.js
+r0.185.1 (MIT) vendored at `vendor/three/`, lazy-loaded as the codebase's
+first ES module only when a visitor actually opens 3D mode, so non-3D
+visitors download zero 3D bytes; real terrain rendering from AWS's free,
+keyless Terrain Tiles (Terrarium PNG encoding — USGS's EPQS API was
+evaluated and rejected, confirmed CORS-blocked for browser use); orbit/pan/
+zoom/tilt navigation via OrbitControls; a WebGL-capability probe that skips
+fetching Three.js entirely on incapable devices, and a per-tile "no data"
+fallback (visually marked, not silently rendered as flat ground) when
+terrain tiles fail to load. `tests/scene3d.test.js` (34 assertions: tile
+math, Terrarium decode, cache/de-dupe/eviction, `scene3d` schema
+migration/backward-compatibility) wired into `tests/run_all.sh`, full suite
+green with no regressions. `tests/test_no_paid_dependencies.py`'s tile-host
+allowlist updated for the new AWS bucket. Documented in
+`docs/3D_SYSTEM_ARCHITECTURE.md`, including the technology-decision
+rationale and a manual browser-verification checklist that was **not**
+completed this session — no working Chromium binary was available in this
+sandbox (broken Playwright browser cache, and `playwright install` is
+off-limits here) — flagged honestly as an open item rather than a
+verified-working claim.
+
+Explicitly out of scope this pass (Phases B–E, per the request's own
+ordering): object/building creation, the data-center campus generator,
+roads/parking/fences/utilities, development templates, presentation mode,
+and export.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: NOAA, EPA, FAA, DOT researched the same way FEMA was — three deferred, none guessed
 
 ## NOAA — deferred
