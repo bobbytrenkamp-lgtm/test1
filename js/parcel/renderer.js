@@ -23,6 +23,7 @@ window.PARCEL_RENDERER = (function () {
   let _abortCtrl     = null;
   let _hoveredLyr    = null;
   let _selectedLyr   = null;
+  let _lastToastKey  = null;    // dedupes _setStatus toasts across repeated debounced fetches
 
   /* ── Parcel styles ── */
 
@@ -187,11 +188,28 @@ window.PARCEL_RENDERER = (function () {
 
   function _setStatus(msg, type) {
     const el = document.getElementById('parcel-layer-status');
-    if (!el) return;
-    if (!msg || !_active) { el.hidden = true; return; }
-    el.hidden    = false;
-    el.className = `parcel-layer-status parcel-status-${type || 'hint'}`;
-    el.textContent = msg;
+    if (el) {
+      if (!msg || !_active) { el.hidden = true; }
+      else {
+        el.hidden    = false;
+        el.className = `parcel-layer-status parcel-status-${type || 'hint'}`;
+        el.textContent = msg;
+      }
+    }
+
+    // The pill above is easy to miss (small, low-contrast, no icon), and
+    // the "zoom in to see parcels" hint is exactly the message a user needs
+    // to actually read the first time they hit it — otherwise turning the
+    // layer on at a county-wide zoom looks like it silently does nothing.
+    // Toast once per distinct message, not on every debounced re-fetch
+    // while the user keeps panning/zooming below the threshold.
+    if (msg && _active && window.showMapToast) {
+      const key = `${type || 'hint'}:${msg}`;
+      if (key !== _lastToastKey) {
+        _lastToastKey = key;
+        window.showMapToast(msg, type === 'error' || type === 'hint' ? 5000 : 2500);
+      }
+    }
   }
 
   /* ── Connector factory ── */
@@ -222,6 +240,7 @@ window.PARCEL_RENDERER = (function () {
   function setActive(fips, active) {
     _fips   = fips  || null;
     _active = !!active;
+    _lastToastKey = null; // fresh activation/jurisdiction change always gets at least one toast
 
     const config = fips ? window.PARCEL_REGISTRY?.get(fips) : null;
 
