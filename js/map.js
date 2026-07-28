@@ -2296,7 +2296,7 @@ function _applyWorkspace(ws) {
   }
   // A workspace saved before the 3D system existed has no scene3d key —
   // that must load with no error and must not force 3D mode open or closed.
-  if (ws.scene3d) window.SCENE3D?.applyState(ws.scene3d);
+  if (ws.scene3d) { window.SCENE3D?.applyState(ws.scene3d); renderScene3dObjectPanel(); }
 }
 
 async function renderWorkspaceList() {
@@ -2407,8 +2407,86 @@ function toggleScene3D() {
     if (!cap.ok && btn) {
       btn.title = (window.SCENE3D_FALLBACK && window.SCENE3D_FALLBACK.MESSAGES[cap.reason]) || "3D view isn't available on this device.";
     }
-    window.SCENE3D.activate();
+    window.SCENE3D.activate().then(() => renderScene3dObjectPanel());
   }
+}
+
+function _syncScene3dModeButtons(mode) {
+  const moveBtn   = document.getElementById("scene3d-mode-move");
+  const rotateBtn = document.getElementById("scene3d-mode-rotate");
+  if (moveBtn)   { moveBtn.classList.toggle("active", mode === "translate"); moveBtn.setAttribute("aria-pressed", String(mode === "translate")); }
+  if (rotateBtn) { rotateBtn.classList.toggle("active", mode === "rotate"); rotateBtn.setAttribute("aria-pressed", String(mode === "rotate")); }
+}
+
+const METERS_TO_FEET_3D = 3.28084;
+
+/* Re-renders the object list + live metrics + undo/redo/delete button state
+ * inside the 3D panel. Called after any object create/edit/delete/undo/redo,
+ * on selection change, and after activate()/applyState() so a reopened or
+ * restored scene shows its objects immediately rather than an empty list. */
+function renderScene3dObjectPanel() {
+  const listEl = document.getElementById("scene3d-object-list");
+  const metricsEl = document.getElementById("scene3d-metrics");
+  const undoBtn = document.getElementById("scene3d-undo");
+  const redoBtn = document.getElementById("scene3d-redo");
+  const delBtn  = document.getElementById("scene3d-delete");
+  if (!listEl || !window.SCENE3D) return;
+
+  const objects = window.SCENE3D.listObjects();
+  listEl.innerHTML = "";
+  if (!objects.length) {
+    const em = document.createElement("div");
+    em.className = "scene3d-obj-empty";
+    em.textContent = "No buildings yet — click “+ Building” to add a conceptual volume.";
+    listEl.appendChild(em);
+  } else {
+    objects.forEach(obj => {
+      const row = document.createElement("div");
+      row.className = "scene3d-obj-row" + (obj.selected ? " selected" : "");
+      const wFt = Math.round((obj.footprint.width || 0) * METERS_TO_FEET_3D);
+      const dFt = Math.round((obj.footprint.depth || 0) * METERS_TO_FEET_3D);
+      const hFt = Math.round((obj.height || 0) * METERS_TO_FEET_3D);
+
+      const selectBtn = document.createElement("button");
+      selectBtn.type = "button";
+      selectBtn.className = "scene3d-obj-select";
+      selectBtn.innerHTML = `${obj.label} <span class="scene3d-obj-dims">${wFt}′ × ${dFt}′ × ${hFt}′ (approx.)</span>`;
+      selectBtn.addEventListener("click", () => window.SCENE3D.selectObject(obj.id));
+
+      const delRowBtn = document.createElement("button");
+      delRowBtn.type = "button";
+      delRowBtn.className = "scene3d-obj-del";
+      delRowBtn.setAttribute("aria-label", `Delete ${obj.label}`);
+      delRowBtn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+      delRowBtn.addEventListener("click", () => {
+        window.SCENE3D.selectObject(obj.id);
+        window.SCENE3D.deleteSelected();
+      });
+
+      row.appendChild(selectBtn);
+      row.appendChild(delRowBtn);
+      listEl.appendChild(row);
+    });
+  }
+
+  if (metricsEl) {
+    const m = window.SCENE3D.getMetrics();
+    if (!m || m.buildingCount === 0) {
+      metricsEl.innerHTML = "";
+    } else {
+      const coverage = typeof m.coveragePct === "number" ? `${m.coveragePct}% of site (approx.)` : "site area unavailable";
+      metricsEl.innerHTML =
+        `<span>${m.buildingCount} building${m.buildingCount === 1 ? "" : "s"}</span>` +
+        `<span>${m.totalFootprintSqft.toLocaleString()} sq ft footprint (approx.)</span>` +
+        `<span>${coverage}</span>` +
+        `<span>Max height ${m.maxHeightFt.toLocaleString()} ft (approx.)</span>`;
+    }
+  }
+
+  const counts = window.SCENE3D.historyCounts();
+  if (undoBtn) undoBtn.disabled = !counts.undo;
+  if (redoBtn) redoBtn.disabled = !counts.redo;
+  if (delBtn)  delBtn.disabled = !objects.some(o => o.selected);
 }
 
 /* ── Suitability mode ── */
@@ -3087,6 +3165,25 @@ function initLeafletMap() {
     const exaggeration = Number(e.target.value) || 1.5;
     const state = window.SCENE3D?.captureState();
     if (state) window.SCENE3D.applyState(Object.assign({}, state, { exaggeration }));
+  });
+
+  // 3D object toolbar (Phase B — building volumes, selection, undo/redo)
+  document.getElementById("scene3d-add-building")?.addEventListener("click", () => {
+    window.SCENE3D?.createBuilding();
+  });
+  document.getElementById("scene3d-mode-move")?.addEventListener("click", () => {
+    window.SCENE3D?.setTransformMode("translate");
+    _syncScene3dModeButtons("translate");
+  });
+  document.getElementById("scene3d-mode-rotate")?.addEventListener("click", () => {
+    window.SCENE3D?.setTransformMode("rotate");
+    _syncScene3dModeButtons("rotate");
+  });
+  document.getElementById("scene3d-undo")?.addEventListener("click", () => window.SCENE3D?.undo());
+  document.getElementById("scene3d-redo")?.addEventListener("click", () => window.SCENE3D?.redo());
+  document.getElementById("scene3d-delete")?.addEventListener("click", () => window.SCENE3D?.deleteSelected());
+  ["scene3d:objects-changed", "scene3d:object-selected", "scene3d:object-deselected"].forEach(evt => {
+    document.addEventListener(evt, renderScene3dObjectPanel);
   });
   document.getElementById("workspace-export-btn")?.addEventListener("click", exportWorkspacesJSON);
   document.getElementById("workspace-import-btn")?.addEventListener("click", () => {

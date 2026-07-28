@@ -1,6 +1,6 @@
-# 3D Terrain View — Architecture Reference (Phase A)
+# 3D Terrain View — Architecture Reference (Phase A + Phase B)
 
-This document covers **Phase A** of the 3D site-design/digital-twin system: the technology decision, integration architecture, and manual verification checklist. Phases B–E (object/building creation, the data-center campus generator, roads/parking/fences/utilities, development templates, presentation mode, and export) are explicitly out of scope for this pass and are not described here.
+This document covers **Phase A** (integrated 2D/3D terrain foundation) and **Phase B** (object system: building volumes, selection, transform gizmo, undo/redo, live site metrics) of the 3D site-design/digital-twin system. Phases C–E (roads/parking/fences/utilities, setbacks/constraint checking, environmental overlays, the data-center campus generator, development templates, presentation mode, and export) are explicitly out of scope for this pass and are not described here.
 
 ---
 
@@ -65,24 +65,38 @@ USGS's official EPQS elevation API was evaluated and rejected: confirmed CORS-bl
 
 ```
 vendor/three/
-  three.module.js     Three.js core (minified), MIT
-  three.core.min.js   Three.js core dependency of the module build above
-  OrbitControls.js     Three.js examples/jsm addon, MIT (one-line import patch, see above)
+  three.module.js       Three.js core (minified), MIT
+  three.core.min.js     Three.js core dependency of the module build above
+  OrbitControls.js       Three.js examples/jsm addon, MIT (one-line import patch, see above)
+  TransformControls.js   Three.js examples/jsm addon, MIT (same one-line import patch)
   LICENSE
 
 js/3d/
   index.js          Classic script. window.SCENE3D coordinator — mirrors
-                     window.PARCEL's shape (init/onCountyChanged/onLayerToggle).
+                     window.PARCEL's shape (init/onCountyChanged/onLayerToggle),
+                     plus Phase B passthroughs (createBuilding/undo/redo/etc.).
                      No THREE import; lazy-loads engine.js on first activate().
   fallback.js        Classic script. WebGL capability probe + low-power
                       (software renderer) heuristic. Runs before any THREE code.
   terrain-tiles.js    Classic script, DOM-free. Tile math, Terrarium decode,
                        in-memory cache with de-dupe/eviction. Node-testable.
-  scene-state.js      Classic script, DOM-free. scene3d schema
+  scene-state.js      Classic script, DOM-free. scene3d schema (v2)
                        capture/migrate/apply. Node-testable.
+  objects.js          Classic script, DOM-free (Phase B). Building-volume
+                       object store: create/update/remove/list/restore,
+                       aggregate site metrics. Node-testable.
+  history.js          Classic script, DOM-free (Phase B). Generic undo/redo
+                       command stack. Node-testable.
+  selection.js        Classic script (Phase B). Single-object selection state
+                       + scene3d:object-selected/-deselected CustomEvents,
+                       mirrors js/parcel/selection.js's shape.
+  measure.js          Classic script, DOM-free (Phase B). Distance/polygon-
+                       area math in local scene meters. Node-testable.
   engine.js          ES module. Owns THREE.Scene/Camera/Renderer, the render
-                      loop, and orchestrates terrain.js + camera.js. Registers
-                      itself onto window.SCENE3D via _registerEngine().
+                      loop, the object mesh sync, click-to-select raycasting,
+                      and the TransformControls gizmo; orchestrates terrain.js
+                      + camera.js. Registers itself onto window.SCENE3D via
+                      _registerEngine().
   terrain.js          ES module. Local-tangent-plane lat/lng<->meters
                        projection + THREE terrain mesh building from decoded
                        heightmaps.
@@ -124,15 +138,16 @@ Extends the **existing** per-user save/load system (localStorage, with optional 
 
 ```js
 scene3d: {
-  schemaVersion: 1,
+  schemaVersion: 2,
   active: false,
   camera: { target: { lat, lng }, distance, azimuth, polar },
   terrainEnabled: true,
   exaggeration: 1.5,
+  objects: [ /* Phase B building volumes, see below */ ],
 }
 ```
 
-`_captureWorkspaceState` only attaches this field when `SCENE3D.captureState()` returns non-null (the user actually opened 3D mode that session) — a user who never touches 3D gets no `scene3d` key on their saves, same as before this change. `_applyWorkspace` does `if (ws.scene3d) window.SCENE3D?.applyState(ws.scene3d)` with no `else` branch: a workspace saved before Phase A shipped has no `scene3d` key, loads with no error, and does not force 3D mode open or closed. `js/3d/scene-state.js`'s `migrateScene3dState()` backfills partial/older-shaped objects from defaults rather than rejecting them, so future schema bumps stay backward compatible.
+`_captureWorkspaceState` only attaches this field when `SCENE3D.captureState()` returns non-null (the user actually opened 3D mode that session) — a user who never touches 3D gets no `scene3d` key on their saves, same as before this change. `_applyWorkspace` does `if (ws.scene3d) window.SCENE3D?.applyState(ws.scene3d)` with no `else` branch: a workspace saved before Phase A shipped has no `scene3d` key, loads with no error, and does not force 3D mode open or closed. `js/3d/scene-state.js`'s `migrateScene3dState()` backfills partial/older-shaped objects from defaults rather than rejecting them, so future schema bumps stay backward compatible — a v1 save (Phase A, before `objects` existed) migrates to v2 with an empty `objects` array, never a fabricated building.
 
 ### Fallback behavior
 
@@ -142,15 +157,40 @@ Per-tile terrain fetch failures (network, CORS, 404) are caught individually in 
 
 ---
 
+## Phase B: object system (building volumes, selection, transform gizmo, undo/redo, live metrics)
+
+Phase B adds a real (not stubbed) conceptual building-volume editor on top of Phase A's terrain view, reusing Phase A's infrastructure rather than starting a second system: the same `window.SCENE3D` coordinator, the same `scene3d` saved-workspace field (extended with an `objects` array, schema v2), the same fail-safe `_engine && _active` guard pattern for every new coordinator method.
+
+**Object model** (`js/3d/objects.js`): each building is `{ id, type:'building', label, footprint:{shape:'rectangle', width, depth}, height, position:{x,z}, rotationDeg, metrics:{footprintSqft, footprintStatus} }`, all dimensions in local scene meters. `footprintStatus` is always `'approximate'` — there is no code path in Phase B that could justify `'exact'` for a generated conceptual volume, and the UI never claims otherwise (object list rows and the metrics readout both append "(approx.)"). `computeSiteMetrics(siteTotalSqft)` aggregates footprint/height/coverage across every building; `coveragePct` is *omitted*, not zeroed, when the site's total area is unavailable (no parcel selected) — the same "exclude missing factor, never fabricate a zero" convention used elsewhere in this codebase (e.g. `PARCEL_FEASIBILITY.assess()`'s weight redistribution).
+
+**Building creation**: `SCENE3D.createBuilding()` seeds a default footprint/height from `window.PARCEL_FEASIBILITY.assess(...).envelope` when a parcel is selected (reusing the existing buildable-envelope calculator rather than re-deriving setback/coverage logic), falling back to a generic 30m×30m×10m box when no parcel context is available. Either way the result is placed at the scene origin and immediately selected so the user can drag it into position.
+
+**Selection** (`js/3d/selection.js`): a single-selection singleton mirroring `js/parcel/selection.js`'s shape (`select`/`deselect`/`getSelected`/`isSelected`, `scene3d:object-selected`/`-deselected` CustomEvents on `document`). `js/3d/engine.js` subscribes to these events at module scope to keep the TransformControls gizmo attached to whatever is selected and to recolor the selected mesh — the same event-driven decoupling the parcel system already uses between its selection state and its renderer.
+
+**Transform gizmo**: `vendor/three/TransformControls.js` (same MIT license, same one-line `from 'three'` → `from './three.module.js'` import patch as `OrbitControls.js`). Deliberately restricted to two modes, exposed as "Move" / "Rotate" toolbar buttons — no "Scale" mode:
+- Translate: only the X and Z axis handles are shown (`showY = false`) — buildings move across the ground plane, they don't float up through it via an accidental Y-axis drag.
+- Rotate: only the Y axis handle is shown (`showX = false; showZ = false`) — a building can face a different direction (yaw); tilting it (pitch/roll) has no real-world meaning for a ground-sitting structure.
+- Scale was cut from Phase B's UI entirely: a literal non-uniform 3D scale on a box is ambiguous (does it change the footprint, the height, or distort the box?) — precise footprint/height edits belong in the object panel's fields instead, where "40m wide" is unambiguous. This is a deliberate scope cut, not an oversight.
+
+While dragging, `objectChange` events live-sync the object store from the mesh every frame (so the metrics panel updates in real time) without pushing an undo entry per frame; a single undo/redo command is pushed once on `mouseUp`, comparing the pre-drag snapshot to the final position/rotation.
+
+**Undo/redo** (`js/3d/history.js`): a generic `{ undo, redo, label }` command stack, capped at 50 entries, with the standard "a new push clears the redo stack" rule. Every mutating operation (create, delete, edit, move/rotate) pushes exactly one command. Create/delete commands capture a full JSON snapshot of the object and use `OBJECTS.restore(snapshot)` (not `OBJECTS.create()`) on undo/redo so the object's original id is preserved rather than minting a new one each time.
+
+**Switching sites clears objects, on purpose**: building positions are stored in scene-local meters relative to the current origin (the map's center at the time 3D was activated/the county last changed). If the user switches counties, those coordinates would silently point at a different, unrelated piece of geography. `SCENE3D.onCountyChanged` clears the object store, selection, and undo history when the fips actually changes, and shows a status message explaining why — the alternative (silently keeping stale positions, or silently re-projecting them onto the new site) would both be a form of fabricating site data.
+
+**Live site metrics dashboard**: `#scene3d-metrics` renders building count, total footprint (sqft), coverage % of the parcel (when available), and max height (ft) — recomputed and re-rendered after every object mutation via a `scene3d:objects-changed` CustomEvent dispatched by the coordinator (plus the selection events, since the delete button's enabled state depends on selection too).
+
+---
+
 ## Explicitly out of scope this pass
 
-Object/building creation and editing, the data-center campus generator, roads/parking/fencing/utility modeling, development templates, presentation mode, image/data/3D-model export, persistent (IndexedDB) tile caching, fly/walk-through navigation, and reconciling the pre-existing drawing-tool (map-level vs. parcel-level) and compare-tool (three separate systems) fragmentation identified during the repository audit. These are Phases B–E.
+Roads/parking/fencing/utility modeling, setbacks and real-time constraint-conflict checking, environmental context overlays, construction phasing, the data-center campus generator, development templates, sun/shadow tools, alternatives/scenario comparison, presentation mode, image/data/3D-model export, persistent (IndexedDB) tile/object caching, fly/walk-through navigation, keyboard shortcuts for the object editor (undo/redo/delete are toolbar-button-only in Phase B to avoid colliding with existing global shortcuts), non-rectangular footprint shapes, and reconciling the pre-existing drawing-tool (map-level vs. parcel-level) and compare-tool (three separate systems) fragmentation identified during the repository audit. These are Phases C–E (or, for the last two items, a standing cross-cutting cleanup not tied to any single phase).
 
 ---
 
 ## Manual verification checklist
 
-Automated coverage (`tests/scene3d.test.js`, wired into `tests/run_all.sh`) covers tile math, Terrarium decode, cache/de-dupe/eviction behavior, and `scene3d` schema migration — all DOM/WebGL-free pure logic; the full suite (`tests/run_all.sh`) passes with these additions and no regressions. The following need a real browser and were **not** verified during this Phase A implementation pass — the session had no working Chromium/Chrome binary available (a broken symlink in the expected Playwright cache, and `playwright install` is off-limits per environment policy) — so they remain open items for the first real-browser pass on this feature, not confirmed-working claims:
+Automated coverage (`tests/scene3d.test.js`, wired into `tests/run_all.sh`) covers tile math, Terrarium decode, cache/de-dupe/eviction behavior, `scene3d` schema v1→v2 migration, the object store (create/update/remove/restore/metrics), the undo/redo command stack, selection events, and distance/area math — all DOM/WebGL-free pure logic (89 assertions total); the full suite (`tests/run_all.sh`) passes with these additions and no regressions. The following need a real browser and were **not** verified during this implementation pass (Phase A or Phase B) — the session had no working Chromium/Chrome binary available (a broken symlink in the expected Playwright cache, and `playwright install` is off-limits per environment policy) — so they remain open items for the first real-browser pass on this feature, not confirmed-working claims:
 
 - [ ] CORS smoke test: `fetch()` one known Terrarium tile URL from the deployed GitHub Pages origin's browser console; confirm it resolves rather than a CORS error.
 - [ ] Opening 3D mode on a WebGL-capable device with network access renders a real terrain mesh for the currently-selected county area, and the elevation visually matches known local topology.
@@ -161,3 +201,12 @@ Automated coverage (`tests/scene3d.test.js`, wired into `tests/run_all.sh`) cove
 - [ ] Disable WebGL in the browser (e.g. `chrome://flags` software rendering, or a fresh profile with hardware acceleration off) — confirm the documented fallback message appears and zero `vendor/three/*` requests fire.
 - [ ] Force a terrain-fetch failure (block `s3.amazonaws.com` in devtools) — confirm the honest fallback message appears instead of unmarked flat ground.
 - [ ] `tests/run_all.sh` passes clean, including the updated `test_no_paid_dependencies.py` tile-host allowlist.
+- [ ] Click "+ Building" — a box appears, is auto-selected, and the Move gizmo attaches to it with only X/Z handles visible (no Y arrow).
+- [ ] Drag the Move gizmo — the building follows on the ground plane only (never moves vertically); the metrics panel's footprint/coverage numbers update live during the drag.
+- [ ] Switch to Rotate mode — only the Y-axis (yaw) ring is visible; X/Z tilt rings are hidden.
+- [ ] Click a building on the canvas (not via the object list) — it becomes selected (gizmo attaches, row highlights in the object list, Delete button enables); click empty space — it deselects.
+- [ ] Create 2–3 buildings, move/rotate one, delete another; Undo three times restores the prior states in order; Redo replays them; the object list and metrics panel stay in sync at every step.
+- [ ] Save a workspace with buildings placed, reload, load it back — buildings reappear at the same positions/sizes.
+- [ ] Load a workspace saved under Phase A (schema v1, no `objects` key) — loads with no error and an empty building list, not a crash.
+- [ ] Switch to a different county while buildings exist — objects clear, a status message explains why, and no stale/mis-positioned geometry is left behind.
+- [ ] Orbiting/panning the camera (a drag that starts on empty space or the terrain, not on a building or the gizmo) does not accidentally select or move a building.

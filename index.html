@@ -367,13 +367,29 @@
         <div id="scene3d-body">
           <div id="scene3d-canvas-host"></div>
           <div id="scene3d-status" hidden role="status" aria-live="polite"></div>
+
+          <div id="scene3d-object-toolbar">
+            <button id="scene3d-add-building" type="button" title="Add a conceptual building volume">+ Building</button>
+            <span class="scene3d-toolbar-sep" role="separator" aria-hidden="true"></span>
+            <button id="scene3d-mode-move" type="button" class="scene3d-mode-btn active" title="Move selected building (X/Z only)" aria-pressed="true">Move</button>
+            <button id="scene3d-mode-rotate" type="button" class="scene3d-mode-btn" title="Rotate selected building" aria-pressed="false">Rotate</button>
+            <span class="scene3d-toolbar-sep" role="separator" aria-hidden="true"></span>
+            <button id="scene3d-undo" type="button" title="Undo (Ctrl+Z)" disabled>Undo</button>
+            <button id="scene3d-redo" type="button" title="Redo (Ctrl+Shift+Z)" disabled>Redo</button>
+            <button id="scene3d-delete" type="button" title="Delete selected building" disabled>Delete</button>
+          </div>
+
+          <div id="scene3d-object-list" aria-label="3D objects in scene"></div>
+
+          <div id="scene3d-metrics" aria-label="Live site metrics"></div>
+
           <div id="scene3d-controls">
             <label><input type="checkbox" id="scene3d-terrain-toggle" checked /> Terrain</label>
             <label>Vertical exaggeration
               <input type="range" id="scene3d-exaggeration" min="1" max="4" step="0.5" value="1.5" />
             </label>
           </div>
-          <p id="scene3d-disclaimer">Conceptual terrain visualization from free, open elevation data (AWS Terrain Tiles) — not surveyed for engineering use.</p>
+          <p id="scene3d-disclaimer">Conceptual terrain from free, open elevation data (AWS Terrain Tiles) and generated conceptual building volumes — not surveyed, engineered, or approved. All dimensions are approximate.</p>
         </div>
       </div>
 
@@ -998,6 +1014,10 @@ window.addEventListener('error', function(e) {
 <script src="js/3d/fallback.js?v=20260728a" defer onload="window._track.ok.push('scene3d-fallback')" onerror="window._track.fail.push('scene3d-fallback')"></script>
 <script src="js/3d/terrain-tiles.js?v=20260728a" defer onload="window._track.ok.push('scene3d-terrain-tiles')" onerror="window._track.fail.push('scene3d-terrain-tiles')"></script>
 <script src="js/3d/scene-state.js?v=20260728a" defer onload="window._track.ok.push('scene3d-state')" onerror="window._track.fail.push('scene3d-state')"></script>
+<script src="js/3d/objects.js?v=20260728a" defer onload="window._track.ok.push('scene3d-objects')" onerror="window._track.fail.push('scene3d-objects')"></script>
+<script src="js/3d/history.js?v=20260728a" defer onload="window._track.ok.push('scene3d-history')" onerror="window._track.fail.push('scene3d-history')"></script>
+<script src="js/3d/selection.js?v=20260728a" defer onload="window._track.ok.push('scene3d-selection')" onerror="window._track.fail.push('scene3d-selection')"></script>
+<script src="js/3d/measure.js?v=20260728a" defer onload="window._track.ok.push('scene3d-measure')" onerror="window._track.fail.push('scene3d-measure')"></script>
 <script src="js/3d/index.js?v=20260728a" defer onload="window._track.ok.push('scene3d-index')" onerror="window._track.fail.push('scene3d-index')"></script>
 <script src="js/results-panel.js?v=20260718a" defer onload="window._track.ok.push('results-panel')" onerror="window._track.fail.push('results-panel')"></script>
 <script src="js/command-palette.js?v=20260720a" defer onload="window._track.ok.push('command-palette')" onerror="window._track.fail.push('command-palette')"></script>

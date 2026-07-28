@@ -10,7 +10,10 @@
 window.SCENE3D_STATE = (function () {
   'use strict';
 
-  const CURRENT_SCHEMA_VERSION = 1;
+  // v1 -> v2: added `objects` (Phase B building volumes). A v1 save has no
+  // `objects` key at all — that must migrate to an empty array, never throw,
+  // never invent placeholder buildings.
+  const CURRENT_SCHEMA_VERSION = 2;
 
   const DEFAULTS = Object.freeze({
     schemaVersion: CURRENT_SCHEMA_VERSION,
@@ -23,6 +26,7 @@ window.SCENE3D_STATE = (function () {
     }),
     terrainEnabled: true,
     exaggeration: 1.5,   // vertical exaggeration multiplier
+    objects: Object.freeze([]),  // Phase B building volumes, see js/3d/objects.js
   });
 
   function _cloneCamera(cam) {
@@ -39,6 +43,14 @@ window.SCENE3D_STATE = (function () {
     };
   }
 
+  /* Light structural normalization only — filters out non-object entries so
+   * a corrupted save can't crash js/3d/objects.js's fromArray(); full field
+   * validation/defaulting of each object happens there, not here. */
+  function _cloneObjects(objects) {
+    if (!Array.isArray(objects)) return [];
+    return objects.filter(o => o && typeof o === 'object').map(o => JSON.parse(JSON.stringify(o)));
+  }
+
   /* raw -> normalized current-schema object, or null if raw is null/undefined
    * (meaning "this workspace has no opinion about 3D" — the pre-Phase-A case).
    * Never throws; a malformed/partial object is backfilled from defaults
@@ -47,25 +59,19 @@ window.SCENE3D_STATE = (function () {
     if (raw == null || typeof raw !== 'object') return null;
     const version = typeof raw.schemaVersion === 'number' ? raw.schemaVersion : 0;
 
-    if (version > CURRENT_SCHEMA_VERSION) {
-      // From a future schema version this build doesn't know about yet —
-      // drop unknown fields rather than fail, keep it loadable.
-      return {
-        schemaVersion: CURRENT_SCHEMA_VERSION,
-        active: !!raw.active,
-        camera: _cloneCamera(raw.camera),
-        terrainEnabled: raw.terrainEnabled !== false,
-        exaggeration: typeof raw.exaggeration === 'number' ? raw.exaggeration : DEFAULTS.exaggeration,
-      };
-    }
-
-    // version 0 (unversioned/partial) or current version — same backfill path.
+    // Every branch (older/unversioned, current, and future-unknown versions)
+    // shares one backfill path: known fields normalized, unknown fields
+    // dropped, missing fields defaulted. A v1 save simply has no `objects`
+    // key, which _cloneObjects already turns into [] — that is the only
+    // "migration" v1 -> v2 actually requires.
+    void version;
     return {
       schemaVersion: CURRENT_SCHEMA_VERSION,
       active: !!raw.active,
       camera: _cloneCamera(raw.camera),
       terrainEnabled: raw.terrainEnabled !== false,
       exaggeration: typeof raw.exaggeration === 'number' ? raw.exaggeration : DEFAULTS.exaggeration,
+      objects: _cloneObjects(raw.objects),
     };
   }
 

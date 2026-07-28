@@ -1,18 +1,32 @@
 /* tests/scene3d.test.js
- * Phase A 3D terrain view unit tests. No external test framework — run with
- * `node tests/scene3d.test.js`. Follows tests/parcel.test.js's dual-mode
- * bootstrap pattern: js/3d/terrain-tiles.js and js/3d/scene-state.js have no
- * DOM/THREE dependency, so they load directly under a minimal window shim.
- * js/3d/index.js, engine.js, and camera.js touch the DOM/canvas/WebGL and
- * are excluded here — they need real-browser e2e coverage instead (see
- * docs/3D_SYSTEM_ARCHITECTURE.md's manual verification checklist).
+ * 3D terrain view unit tests (Phase A + Phase B). No external test framework
+ * — run with `node tests/scene3d.test.js`. Follows tests/parcel.test.js's
+ * dual-mode bootstrap pattern: the modules below have no DOM/THREE
+ * dependency beyond CustomEvent/document.dispatchEvent (shimmed here exactly
+ * like tests/parcel.test.js does), so they load directly under a minimal
+ * window shim. js/3d/index.js, engine.js, terrain.js, and camera.js touch
+ * the real DOM/canvas/WebGL/Three.js and are excluded here — they need
+ * real-browser e2e coverage instead (see docs/3D_SYSTEM_ARCHITECTURE.md's
+ * manual verification checklist).
  */
 
 if (typeof window === 'undefined') {
   const path = require('path');
   const ROOT = path.join(__dirname, '..');
   global.window = global;
-  for (const rel of ['js/3d/terrain-tiles.js', 'js/3d/scene-state.js']) {
+  global.CustomEvent = class CustomEvent {
+    constructor(type, opts) { this.type = type; this.detail = (opts || {}).detail; }
+  };
+  global.document = {
+    _listeners: {},
+    dispatchEvent(ev) { (this._listeners[ev.type] || []).forEach(fn => fn(ev)); return true; },
+    addEventListener(type, fn) { (this._listeners[type] = this._listeners[type] || []).push(fn); },
+    getElementById: () => null,
+  };
+  for (const rel of [
+    'js/3d/terrain-tiles.js', 'js/3d/scene-state.js',
+    'js/3d/objects.js', 'js/3d/history.js', 'js/3d/selection.js', 'js/3d/measure.js',
+  ]) {
     require(path.join(ROOT, rel));
   }
 }
@@ -164,7 +178,7 @@ if (typeof window === 'undefined') {
       exaggeration: 2,
     });
     assert(!!captured, 'capturing a live source returns an object');
-    assertEq(captured.schemaVersion, 1, 'captured object stamps current schema version');
+    assertEq(captured.schemaVersion, SS.CURRENT_SCHEMA_VERSION, 'captured object stamps current schema version');
     assertEq(captured.camera.target, { lat: 38.9, lng: -77.0 }, 'captured camera target round-trips');
     assertEq(captured.terrainEnabled, false, 'captured terrainEnabled round-trips');
 
@@ -192,6 +206,179 @@ if (typeof window === 'undefined') {
     // applyScene3dStateOrDefault always returns something usable
     const forApply = SS.applyScene3dStateOrDefault(null);
     assert(!!forApply && !!forApply.camera, 'applyScene3dStateOrDefault(null) returns a usable default object');
+
+    // Phase B backward compatibility: a workspace saved under schema v1
+    // (before the `objects` field existed) must migrate to v2 with an empty
+    // objects array, not throw and not invent placeholder buildings.
+    const v1Save = {
+      schemaVersion: 1, active: true,
+      camera: { target: { lat: 38.9, lng: -77.0 }, distance: 800, azimuth: 20, polar: 40 },
+      terrainEnabled: true, exaggeration: 2,
+    };
+    const migratedV1 = SS.migrateScene3dState(v1Save);
+    assertEq(migratedV1.schemaVersion, 2, 'a v1 save migrates to the current schema version (2)');
+    assertEq(migratedV1.objects, [], 'a v1 save (no objects key) migrates to an empty objects array');
+    assertEq(migratedV1.camera.target, { lat: 38.9, lng: -77.0 }, 'a v1 save keeps its camera target through migration');
+
+    // A corrupted/non-array `objects` field degrades to [] rather than throwing
+    const corrupted = SS.migrateScene3dState({ schemaVersion: 2, objects: 'not-an-array' });
+    assertEq(corrupted.objects, [], 'a non-array objects field is coerced to [] rather than throwing');
+  }
+
+  console.groupEnd();
+
+  // ── SCENE3D_OBJECTS (Phase B) ───────────────────────────────────────────
+
+  console.group('SCENE3D_OBJECTS');
+
+  const OBJ = g.SCENE3D_OBJECTS;
+  assert(!!OBJ, 'SCENE3D_OBJECTS is defined');
+
+  if (OBJ) {
+    OBJ.clear();
+    const b1 = OBJ.create({ label: 'B1', footprint: { width: 30, depth: 20 }, height: 15, position: { x: 5, z: 5 } });
+    assert(!!b1.id, 'create() assigns an id');
+    assertEq(b1.footprint, { shape: 'rectangle', width: 30, depth: 20 }, 'create() stores the given footprint');
+    assertEq(b1.metrics.footprintStatus, 'approximate', 'a created building is always labeled approximate, never exact');
+    assertClose(b1.metrics.footprintSqft, 30 * 20 * 10.7639, 1, 'footprintSqft is computed from width*depth in m^2 -> sqft');
+
+    const updated = OBJ.update(b1.id, { height: 25, footprint: { width: 40 } });
+    assertEq(updated.height, 25, 'update() applies a height patch');
+    assertEq(updated.footprint, { shape: 'rectangle', width: 40, depth: 20 }, 'update() merges footprint one level deep (depth untouched)');
+    assertClose(updated.metrics.footprintSqft, 40 * 20 * 10.7639, 1, 'metrics recompute after update()');
+
+    assertEq(OBJ.update('nonexistent-id', { height: 1 }), null, 'update() on an unknown id returns null rather than throwing');
+
+    const b2 = OBJ.create({ label: 'B2', footprint: { width: 10, depth: 10 }, height: 5 });
+    assertEq(OBJ.list().length, 2, 'list() returns every created object');
+
+    const metrics = OBJ.computeSiteMetrics(100000);
+    assertEq(metrics.buildingCount, 2, 'computeSiteMetrics counts all building-type objects');
+    assert(typeof metrics.coveragePct === 'number', 'coveragePct is computed when siteTotalSqft is provided');
+
+    const metricsNoSite = OBJ.computeSiteMetrics();
+    assertEq(metricsNoSite.coveragePct, undefined, 'coveragePct is omitted (not zero) when site area is unavailable');
+
+    assert(OBJ.remove(b2.id), 'remove() returns true for an existing id');
+    assert(!OBJ.remove(b2.id), 'remove() returns false on a second call for the same id');
+    assertEq(OBJ.list().length, 1, 'list() reflects the removal');
+
+    // restore() reinstates an object with its original id (used by undo/redo)
+    const snapshot = JSON.parse(JSON.stringify(b1));
+    OBJ.remove(b1.id);
+    const restored = OBJ.restore(snapshot);
+    assertEq(restored.id, b1.id, 'restore() reinstates the object under its original id, not a freshly minted one');
+
+    // fromArray() replaces the whole store and recomputes metrics rather
+    // than trusting stored values
+    OBJ.fromArray([{ id: 'ext_1', label: 'Imported', footprint: { width: 20, depth: 20 }, height: 8, position: { x: 0, z: 0 } }]);
+    assertEq(OBJ.list().length, 1, 'fromArray() replaces the entire store');
+    assertClose(OBJ.get('ext_1').metrics.footprintSqft, 20 * 20 * 10.7639, 1, 'fromArray() recomputes metrics rather than trusting stored values');
+
+    OBJ.clear();
+    assertEq(OBJ.list().length, 0, 'clear() empties the store');
+  }
+
+  console.groupEnd();
+
+  // ── SCENE3D_HISTORY (Phase B) ───────────────────────────────────────────
+
+  console.group('SCENE3D_HISTORY');
+
+  const HISTMOD = g.SCENE3D_HISTORY;
+  assert(!!HISTMOD, 'SCENE3D_HISTORY is defined');
+
+  if (HISTMOD) {
+    const h = HISTMOD.createHistory(3);
+    assert(!h.canUndo() && !h.canRedo(), 'a fresh history stack has nothing to undo or redo');
+
+    let value = 0;
+    h.push({ undo: () => { value = 0; }, redo: () => { value = 1; }, label: 'set to 1' });
+    value = 1;
+    assert(h.canUndo(), 'canUndo() is true after a push');
+    assert(!h.canRedo(), 'canRedo() is false until something has been undone');
+
+    assert(h.undo(), 'undo() returns true when there is something to undo');
+    assertEq(value, 0, 'undo() invokes the command\'s undo function');
+    assert(h.canRedo(), 'canRedo() is true after an undo');
+
+    assert(h.redo(), 'redo() returns true when there is something to redo');
+    assertEq(value, 1, 'redo() invokes the command\'s redo function');
+
+    h.clear();
+    assert(!h.undo(), 'undo() on an empty stack returns false rather than throwing');
+    assert(!h.redo(), 'redo() on an empty stack returns false rather than throwing');
+
+    // A new push after an undo clears the redo stack (standard undo/redo rule)
+    h.clear();
+    h.push({ undo: () => {}, redo: () => {}, label: 'a' });
+    h.undo();
+    assert(h.canRedo(), 'redo available right after undo');
+    h.push({ undo: () => {}, redo: () => {}, label: 'b' });
+    assert(!h.canRedo(), 'pushing a new command clears the redo stack');
+
+    // Capacity eviction
+    const h2 = HISTMOD.createHistory(2);
+    h2.push({ undo: () => {}, redo: () => {}, label: '1' });
+    h2.push({ undo: () => {}, redo: () => {}, label: '2' });
+    h2.push({ undo: () => {}, redo: () => {}, label: '3' });
+    assertEq(h2.counts().undo, 2, 'undo stack is capped at maxSize, oldest entry evicted');
+
+    let threwOnBadPush = false;
+    try { h.push({ label: 'no functions' }); } catch (e) { threwOnBadPush = true; }
+    assert(threwOnBadPush, 'pushing a command without undo/redo functions throws (a programmer error, not a runtime data issue)');
+  }
+
+  console.groupEnd();
+
+  // ── SCENE3D_SELECTION (Phase B) ─────────────────────────────────────────
+
+  console.group('SCENE3D_SELECTION');
+
+  const SEL = g.SCENE3D_SELECTION;
+  assert(!!SEL, 'SCENE3D_SELECTION is defined');
+
+  if (SEL) {
+    SEL.deselect();
+    assertEq(SEL.getSelected(), null, 'nothing selected initially');
+
+    let selectedEventId = null;
+    document.addEventListener('scene3d:object-selected', e => { selectedEventId = e.detail.id; });
+    SEL.select('obj_42');
+    assertEq(SEL.getSelected(), 'obj_42', 'select() updates getSelected()');
+    assertEq(selectedEventId, 'obj_42', 'select() emits scene3d:object-selected with the id');
+    assert(SEL.isSelected('obj_42'), 'isSelected() true for the selected id');
+    assert(!SEL.isSelected('obj_99'), 'isSelected() false for a different id');
+
+    let deselectedFired = false;
+    document.addEventListener('scene3d:object-deselected', () => { deselectedFired = true; });
+    SEL.deselect();
+    assertEq(SEL.getSelected(), null, 'deselect() clears the selection');
+    assert(deselectedFired, 'deselect() emits scene3d:object-deselected');
+
+    SEL.select(null);
+    assertEq(SEL.getSelected(), null, 'select(null) behaves like deselect()');
+  }
+
+  console.groupEnd();
+
+  // ── SCENE3D_MEASURE (Phase B) ───────────────────────────────────────────
+
+  console.group('SCENE3D_MEASURE');
+
+  const MEAS = g.SCENE3D_MEASURE;
+  assert(!!MEAS, 'SCENE3D_MEASURE is defined');
+
+  if (MEAS) {
+    assertEq(MEAS.distance({ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: 4 }), 5, '3-4-5 right triangle distance is exact');
+    assertEq(MEAS.distance({ x: 1, z: 1 }, { x: 1, z: 1 }), 0, 'distance between identical points is 0');
+
+    const square = [{ x: 0, z: 0 }, { x: 10, z: 0 }, { x: 10, z: 10 }, { x: 0, z: 10 }];
+    assertEq(MEAS.polygonAreaXZ(square), 100, 'a 10x10 square has area 100 (shoelace formula)');
+    assertEq(MEAS.polygonAreaXZ([{ x: 0, z: 0 }, { x: 1, z: 0 }]), 0, 'fewer than 3 points yields area 0, not an error');
+
+    assertClose(MEAS.metersToFeet(1), 3.28084, 0.001, 'metersToFeet conversion factor');
+    assertClose(MEAS.sqMetersToSqFeet(1), 10.7639, 0.001, 'sqMetersToSqFeet conversion factor');
   }
 
   console.groupEnd();

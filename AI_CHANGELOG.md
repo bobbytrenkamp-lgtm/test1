@@ -5,6 +5,52 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: 3D terrain view, Phase B — building volumes, selection, undo/redo, live metrics
+
+Continued the digital-twin system into Phase B, building on Phase A's
+terrain foundation rather than starting a separate system. Vendored a
+second Three.js addon, `TransformControls.js` (MIT, same one-line bare-
+import patch as `OrbitControls.js`), restricted in the UI to two modes only
+("Move" — X/Z axes, no vertical drift — and "Rotate" — yaw only, no tilt);
+"Scale" was cut deliberately since a literal 3D scale on a box is ambiguous
+about what it's actually resizing, and precise footprint/height edits
+belong in the object panel instead.
+
+Shipped: `js/3d/objects.js` (building-volume store — footprint/height/
+position/rotation, aggregate site metrics, always labeled `'approximate'`
+since these are generated conceptual volumes, never surveyed or engineered);
+`js/3d/history.js` (generic undo/redo command stack); `js/3d/selection.js`
+(mirrors `js/parcel/selection.js`'s single-selection + CustomEvent shape).
+Building creation seeds its default size from `PARCEL_FEASIBILITY`'s
+buildable envelope when a parcel is selected, reusing the existing setback/
+coverage calculator instead of re-deriving it. Click-to-select raycasting,
+gizmo drag-to-move/rotate, and a live metrics dashboard (building count,
+footprint sqft, coverage % of the parcel, max height) all wired into the 3D
+panel. `scene3d`'s saved-workspace schema bumped to v2 (adds an `objects`
+array) with a tested migration path: a v1 save (Phase A, before `objects`
+existed) loads with an empty building list, never a fabricated one.
+Switching counties clears the object store on purpose — building positions
+are scene-local coordinates relative to the current site, and silently
+carrying them into a different county's geography would misrepresent where
+they are.
+
+`tests/scene3d.test.js` grew from 34 to 89 assertions (object CRUD, undo/
+redo stack behavior including capacity eviction and redo-stack invalidation,
+selection events, distance/area math, and the v1→v2 schema migration); full
+suite green, no regressions. `docs/3D_SYSTEM_ARCHITECTURE.md` extended with
+the Phase B design section and additional manual-verification checklist
+items — still unconfirmed in a real browser this session for the same
+reason as Phase A (no working Chromium binary in this sandbox).
+
+Still out of scope (Phases C–E): roads/parking/fences/utilities, setbacks
+and constraint-conflict checking, environmental overlays, the campus
+generator, templates, presentation mode, export.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: 3D terrain view, Phase A — real infrastructure, not a demo
 
 Built Phase A of a much larger (47-section) 3D site-design/digital-twin

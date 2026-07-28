@@ -188,9 +188,90 @@ window.SCENE3D = (function () {
     }
   }
 
+  function _notifyObjectsChanged() {
+    try { document.dispatchEvent(new CustomEvent('scene3d:objects-changed', { detail: {} })); } catch (_) {}
+  }
+
+  /* Phase B: object system (building volumes), selection, undo/redo, and
+   * live site metrics. Every method here is guarded the same way as the
+   * Phase A methods above — a missing/inactive engine is always a safe
+   * no-op, never a thrown error, so UI code never needs its own try/catch
+   * around these calls. */
+  function createBuilding(overrides) {
+    if (!_engine || !_active) return null;
+    let obj = null;
+    try { obj = _engine.createBuilding(overrides); } catch (_) {}
+    _notifyObjectsChanged();
+    return obj;
+  }
+
+  function updateObject(id, patch) {
+    if (!_engine || !_active) return null;
+    let obj = null;
+    try { obj = _engine.updateObject(id, patch); } catch (_) {}
+    _notifyObjectsChanged();
+    return obj;
+  }
+
+  function deleteSelected() {
+    if (!_engine || !_active) return false;
+    let ok = false;
+    try { ok = _engine.deleteSelected(); } catch (_) {}
+    _notifyObjectsChanged();
+    return ok;
+  }
+
+  function undo() {
+    if (!_engine || !_active) return false;
+    let ok = false;
+    try { ok = _engine.undo(); } catch (_) {}
+    _notifyObjectsChanged();
+    return ok;
+  }
+
+  function redo() {
+    if (!_engine || !_active) return false;
+    let ok = false;
+    try { ok = _engine.redo(); } catch (_) {}
+    _notifyObjectsChanged();
+    return ok;
+  }
+
+  function historyCounts() {
+    if (!_engine || !_active) return { undo: 0, redo: 0 };
+    try { return _engine.historyCounts(); } catch (_) { return { undo: 0, redo: 0 }; }
+  }
+
+  function getMetrics() {
+    if (!_engine || !_active) return null;
+    try { return _engine.getMetrics(); } catch (_) { return null; }
+  }
+
+  function listObjects() {
+    if (!_engine || !_active) return [];
+    try { return _engine.listObjects(); } catch (_) { return []; }
+  }
+
+  function selectObject(id) {
+    if (!_engine || !_active) return;
+    try { _engine.selectObject(id); } catch (_) {}
+  }
+
+  function deselectObject() {
+    if (!_engine || !_active) return;
+    try { _engine.deselectObject(); } catch (_) {}
+  }
+
+  function setTransformMode(mode) {
+    if (!_engine || !_active) return;
+    try { _engine.setTransformMode(mode); } catch (_) {}
+  }
+
   return {
     init, onCountyChanged, onLayerToggle, isAvailable,
     captureState, applyState, activate, deactivate,
+    createBuilding, updateObject, deleteSelected, undo, redo, historyCounts,
+    getMetrics, listObjects, selectObject, deselectObject, setTransformMode,
     _registerEngine,
   };
 })();
