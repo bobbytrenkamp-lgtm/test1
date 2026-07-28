@@ -5,6 +5,38 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Data sources panel: the existing one had never been updated for the Economic Intelligence pipeline
+
+## The About page's Data Sources table predated the entire Economy tab
+The static `sources-table` in `js/analytics.js`'s About page had 8
+hand-written rows, none of them Census ACS, FRED, EIA electricity price, or
+BLS QCEW -- despite the Economy tab being one of the platform's largest
+features. Its one EIA row described a capability ("data center electricity
+demand, power infrastructure") that was never actually built; the real EIA
+integration (state industrial electricity retail price) went live without
+this table ever being updated to reflect it, so a reader consulting the
+platform's own "what feeds this" page would not learn the Economy tab's
+real sources exist at all.
+
+Fixed the static table (removed the inaccurate row, added FRED, ACS,
+Building Permits, EIA, and BLS QCEW with real descriptions/cadences), and
+added a second, LIVE panel below it (`renderEconomicSourcesPanel()`) that
+reads `economic_metadata.json` through the same cached `window.ECONOMY.load()`
+every other economy surface uses -- so it costs nothing extra -- and shows
+each of the four pipeline sources' actual availability, last successful
+update, and coverage count, plus the `sources` array's own
+publisher/URL/attribution text the pipeline already generates. This is
+deliberately live rather than a second hand-written table: "not yet
+available" here means the module genuinely has not produced data, not that
+someone forgot to update a description. Browser-verified: Census ACS
+correctly shows available (3,222 counties) while Permits/EIA/BLS correctly
+show "not yet available" (matching their real current pipeline state).
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Four new signal rules -- labor participation, housing, wage, electricity cost
 
 ## Signals never covered the metrics added since the rule table was first written

@@ -4073,6 +4073,16 @@ html[data-theme="light"] {
 .sources-table .src-name { font-weight: 600; color: var(--text); }
 .sources-table a { color: var(--accent); text-decoration: none; }
 .sources-table a:hover { text-decoration: underline; }
+.econ-src-status { font-size: var(--text-sm); font-weight: 600; white-space: nowrap; }
+.econ-src-status-ok  { color: #29b96b; }
+.econ-src-status-off { color: var(--text-muted); font-weight: 400; }
+.econ-src-attrs { margin-top: 16px; display: grid; gap: 10px; }
+.econ-src-attr { font-size: var(--text-xs); color: var(--text-muted); line-height: 1.5; }
+.econ-src-attr-name { font-weight: 600; color: var(--text); }
+.econ-src-attr-pub { font-weight: 400; color: var(--text-muted); }
+.econ-src-attr-note { margin-top: 2px; }
+.econ-src-attr a { color: var(--accent); text-decoration: none; word-break: break-all; }
+.econ-src-attr a:hover { text-decoration: underline; }
 .src-freq {
   font-size: var(--text-2xs);
   font-weight: 700;

@@ -1990,7 +1990,7 @@ function renderAboutPage() {
 
     <div class="page-section">
       <div class="page-section-title">Data Sources</div>
-      <div class="about-card" style="margin-bottom:0">
+      <div class="about-card" style="margin-bottom:18px">
         <table class="sources-table">
           <thead>
             <tr>
@@ -2003,14 +2003,19 @@ function renderAboutPage() {
             <tr><td><span class="src-name">State legislature databases</span></td><td class="callout-body">Statutory law, pending bills, regulatory filings</td><td><span class="src-freq">Quarterly</span></td></tr>
             <tr><td><span class="src-name">County council records</span></td><td class="callout-body">Zoning decisions, moratoriums, resolutions</td><td><span class="src-freq">As needed</span></td></tr>
             <tr><td><span class="src-name">FERC / State PUCs</span></td><td class="callout-body">Power interconnection, utility territory data</td><td><span class="src-freq">Quarterly</span></td></tr>
-            <tr><td><span class="src-name">EIA (Energy Information Administration)</span></td><td class="callout-body">Data center electricity demand, power infrastructure</td><td><span class="src-freq">Quarterly</span></td></tr>
             <tr><td><span class="src-name">Google News RSS</span></td><td class="callout-body">AI industry news, policy announcements</td><td><span class="src-freq">Hourly</span></td></tr>
             <tr><td><span class="src-name">TradingView</span></td><td class="callout-body">AI company stock data (delayed 15 min, not investment advice)</td><td><span class="src-freq">Delayed 15 min</span></td></tr>
             <tr><td><span class="src-name">US Census TIGER/Line</span></td><td class="callout-body">County boundary geometry for choropleth map</td><td><span class="src-freq">Annual</span></td></tr>
             <tr><td><span class="src-name">Water utility reports</span></td><td class="callout-body">Water availability stress indices by county</td><td><span class="src-freq">Annual</span></td></tr>
+            <tr><td><span class="src-name">Federal Reserve Economic Data (FRED)</span></td><td class="callout-body">National economic indicators — rates, credit, inflation, housing starts, energy prices</td><td><span class="src-freq">Daily pipeline run</span></td></tr>
+            <tr><td><span class="src-name">US Census Bureau (ACS 5-Year Estimates)</span></td><td class="callout-body">County/state demographics, income, housing, labor force, broadband — 13 metrics</td><td><span class="src-freq">Annual vintage</span></td></tr>
+            <tr><td><span class="src-name">US Census Bureau (Building Permits Survey)</span></td><td class="callout-body">County-level residential construction activity, via FRED's per-county series</td><td><span class="src-freq">Monthly (30-day gate)</span></td></tr>
+            <tr><td><span class="src-name">US Energy Information Administration (EIA)</span></td><td class="callout-body">State industrial electricity retail price — the standard site-selection proxy for a large power buyer</td><td><span class="src-freq">Monthly (30-day gate)</span></td></tr>
+            <tr><td><span class="src-name">US Bureau of Labor Statistics (QCEW)</span></td><td class="callout-body">County average weekly wage, covered employment — needs no API key</td><td><span class="src-freq">Annual (90-day gate)</span></td></tr>
           </tbody>
         </table>
       </div>
+      <div id="about-economic-sources"></div>
     </div>
 
     <div class="page-section">
@@ -2167,6 +2172,84 @@ function renderAboutPage() {
 
   renderPageFooter('about-footer-target');
   renderDataQualityPanel();
+  renderEconomicSourcesPanel();
+}
+
+/* ── Economic Intelligence sources panel ─────────────────────────────────
+   The static Data Sources table above is honest about frequency but cannot
+   say whether a source actually ran, when, or how much it covers -- that
+   only exists as live pipeline output. Reads economic_metadata.json (via
+   window.ECONOMY, the same cached fetch every other economy surface uses,
+   so this costs nothing extra) and renders each source's real availability,
+   last successful update, and coverage count, plus the sources array the
+   pipeline already writes (publisher, URL, update cadence, attribution
+   note) rather than re-describing them by hand a second time. Scoped to
+   the Economic Intelligence pipeline specifically -- the policy/GIS sources
+   above have no equivalent machine-readable provenance to read yet. */
+function renderEconomicSourcesPanel() {
+  const host = document.getElementById('about-economic-sources');
+  if (!host || !window.ECONOMY) return;
+  const E = window.ECONOMY;
+
+  E.load('meta').then(meta => {
+    if (!meta || !meta.generated_at) {
+      host.innerHTML = `<div class="about-card" style="margin-bottom:0">
+        <p style="font-size:12.5px;color:var(--text-muted);margin:0">
+          Economic Intelligence pipeline status is unavailable until the first
+          data run completes.</p></div>`;
+      return;
+    }
+
+    const fmtWhen = (iso) => iso ? new Date(iso).toLocaleDateString('en-US',
+      { year: 'numeric', month: 'short', day: 'numeric' }) : 'never';
+
+    const row = (name, available, when, coverage) => `
+      <tr>
+        <td><span class="src-name">${escHtml(name)}</span></td>
+        <td><span class="econ-src-status econ-src-status-${available ? 'ok' : 'off'}">
+          ${available ? '● available' : '○ not yet available'}</span></td>
+        <td>${escHtml(fmtWhen(when))}</td>
+        <td>${coverage != null ? escHtml(coverage.toLocaleString()) : '—'}</td>
+      </tr>`;
+
+    const rows = [
+      row('US Census ACS (demographics)', !!meta.census && !!meta.census.last_successful_update,
+          meta.census && meta.census.last_successful_update, meta.county_count),
+      row('Building Permits Survey', meta.permits_available,
+          meta.permits_last_successful_update, meta.permits_county_count),
+      row('EIA electricity price', meta.eia_available,
+          meta.eia_last_successful_update, meta.eia_state_count),
+      row('BLS QCEW average wage', meta.bls_available,
+          meta.bls_last_successful_update, meta.bls_county_count),
+    ].join('');
+
+    const attribution = Array.isArray(meta.sources) ? meta.sources.map(s => `
+      <div class="econ-src-attr">
+        <div class="econ-src-attr-name">${escHtml(s.name || s.id)}${s.publisher ? ` <span class="econ-src-attr-pub">— ${escHtml(s.publisher)}</span>` : ''}</div>
+        ${s.note ? `<div class="econ-src-attr-note">${escHtml(s.note)}</div>` : ''}
+        ${s.url ? `<a href="${escHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escHtml(s.url)}</a>` : ''}
+      </div>`).join('') : '';
+
+    host.innerHTML = `
+      <div class="about-card" style="margin-bottom:0">
+        <div class="about-card-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Economic Intelligence — live pipeline status
+        </div>
+        <p class="dq-lead">
+          These four sources feed the Economy tab. Unlike the table above, this
+          is read live from <code>data/economy/economic_metadata.json</code>,
+          not hand-maintained prose — so "not yet available" here means the
+          module genuinely has not produced usable data yet, not that this page
+          forgot to mention it.
+        </p>
+        <table class="sources-table">
+          <thead><tr><th style="width:220px">Source</th><th>Status</th><th>Last updated</th><th>Coverage</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+        ${attribution ? `<div class="econ-src-attrs">${attribution}</div>` : ''}
+      </div>`;
+  });
 }
 
 /* ── Data quality & coverage panel (Phase 5 — commercial readiness) ─────────
