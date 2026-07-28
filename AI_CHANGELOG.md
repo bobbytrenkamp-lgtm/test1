@@ -5,6 +5,85 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: NOAA, EPA, FAA, DOT researched the same way FEMA was — three deferred, none guessed
+
+## NOAA — deferred
+Best candidate: NOAA's nClimDiv (Climate Divisional Database), which
+genuinely publishes STATE-level heating/cooling degree days — directly
+relevant to data center cooling costs, and clearly differentiated from
+FEMA NRI's hazard-risk focus. Base access point confirmed
+(`www1.ncdc.noaa.gov/pub/data/cirs/climdiv/`), but two things kept this
+below FEMA NRI's confidence bar: (1) the files are **fixed-width text**
+(`climdiv-tmpcst-v1.0.0-YYYYMMDD.txt` style), not CSV or JSON — this
+pipeline's `_get_csv_rows()` cannot parse it, and no exact current filename
+for the specific cooling/heating-degree-days variant (vs. temperature,
+precipitation, etc.) was confirmed; (2) a second candidate (NOAA's
+Billion-Dollar Weather and Climate Disasters) turned out to have been
+**discontinued by NOAA itself in May 2025**, now maintained by a
+non-government third party (Climate Central) — exactly the kind of
+provenance risk this project's own sourcing rules exist to catch. An
+EIA-hosted alternative (STEO's weather API, same `api.eia.gov/v2/` base
+this pipeline already uses) was also checked, but its degree-days data is
+Census-division level (9 regions) at best and the exact series ID was not
+confirmed either.
+
+## EPA — deferred
+Best candidate: eGRID (Emissions & Generation Resource Integrated
+Database), state/subregion-level power-grid emissions intensity —
+genuinely relevant to hyperscaler sustainability/renewable-sourcing
+decisions and clearly differentiated from anything already on this
+platform. A real, search-indexed direct download URL was confirmed
+(`epa.gov/system/files/documents/2025-06/egrid2023_data_rev2.xlsx`) — but
+**it is an XLSX workbook**. EPA's own materials mention CSV exports exist
+only through an interactive "EZ Search" tool, not a stable static file.
+This is a hard architectural blocker, not a confidence problem: this
+pipeline has no XLSX parser and is contractually stdlib-only (enforced by
+`test_economic_pipeline_is_stdlib_only`); adding a third-party library
+like `openpyxl` would break that guarantee, and hand-rolling a raw
+zip+XML XLSX reader from scratch for one data source is a large, fragile
+undertaking disproportionate to the value of one field.
+
+## FAA — deferred
+No official FAA endpoint was found with FEMA-NRI-level confidence — the
+closest free, well-documented option (OurAirports' nightly CSV dump) is a
+reputable third-party aggregator, not a direct government source, putting
+it in a different category from this session's other additions. More
+fundamentally: airport location/enplanement data is a weak fit for this
+platform's own test ("how does this affect data center attractiveness?")
+compared to what is already tracked — the more genuinely relevant FAA
+angle (Part 77 obstruction surfaces / height restrictions near airports)
+is complex polygon geospatial data, not a simple per-county scalar, and
+was not pursued for that reason on top of the sourcing uncertainty.
+
+## US DOT — deferred
+The National Transportation Atlas Database (NTAD) is real, free, and
+genuinely BTS-official, but it is a general-purpose transportation
+geospatial database (highway/rail/port networks, freight commodity flows)
+served through ArcGIS Hub / GeoServices/WMS/WFS — the same kind of
+GIS-hub access pattern this project's own standing instructions already
+push back on ("avoid turning the site into a generic GIS viewer"). Nothing
+found reduces naturally to one simple per-county scalar metric the way
+population, wages, hazard risk, or electricity price already do; the
+closest such thing (Freight Analysis Framework commodity flow) is a
+multi-dimensional mode x commodity x origin x destination dataset, not a
+lightweight county-level summary.
+
+## What would change this
+All four remain genuinely researchable, not permanently closed — see each
+section above for the exact missing piece: NOAA needs either a confirmed
+CSV/JSON degree-days source or a fixed-width parser and a confirmed exact
+filename; EPA needs a stable non-XLSX eGRID export or a decision to accept
+adding a parsing dependency; FAA needs a clearer single-metric angle
+that is actually differentiated and data-center-relevant; DOT needs a
+simple scalar buried somewhere in NTAD that this round's research did not
+surface. Nothing here was guessed at and shipped -- consistent with how
+FEMA NRI was only built once a real, verifiable URL pattern was found.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: FEMA National Risk Index added under real uncertainty; a real EIA display bug found while wiring it in
 
 ## Phase 5, attempted for real this time: FEMA National Risk Index
