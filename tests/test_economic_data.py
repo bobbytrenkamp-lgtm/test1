@@ -56,7 +56,12 @@ FRED_OBS_RESPONSE = {
 
 ACS_VARIABLES_RESPONSE = {
     "variables": {
-        "B01003_001E": {"label": "Estimate!!Total population", "concept": "TOTAL POPULATION"},
+        # Real label confirmed live 2026-07-27: just "Estimate!!Total", not
+        # "Estimate!!Total population" -- the wrong guess this fixture used
+        # to make, which silently nulled population on every live ACS run
+        # since the feature first shipped (undetected because verify_variables()
+        # fails safe by omitting the metric rather than crashing).
+        "B01003_001E": {"label": "Estimate!!Total", "concept": "TOTAL POPULATION"},
         "B01002_001E": {"label": "Estimate!!Median age --!!Total", "concept": "MEDIAN AGE BY SEX"},
         "B19013_001E": {"label": "Estimate!!Median household income in the past 12 months", "concept": "MEDIAN HOUSEHOLD INCOME"},
         "B19301_001E": {"label": "Estimate!!Per capita income in the past 12 months", "concept": "PER CAPITA INCOME"},
@@ -73,6 +78,19 @@ ACS_VARIABLES_RESPONSE = {
         "B28002_001E": {"label": "Estimate!!Total:", "concept": "PRESENCE OF INTERNET SUBSCRIPTIONS"},
         "B28002_004E": {"label": "Estimate!!Total:!!With an Internet subscription:!!Broadband of any type",
                         "concept": "PRESENCE OF INTERNET SUBSCRIPTIONS"},
+        "B11001_001E": {"label": "Estimate!!Total:", "concept": "HOUSEHOLD TYPE (INCLUDING LIVING ALONE)"},
+        "B23025_001E": {"label": "Estimate!!Total:", "concept": "EMPLOYMENT STATUS"},
+        "B23025_002E": {"label": "Estimate!!Total:!!In labor force:", "concept": "EMPLOYMENT STATUS"},
+        "B25003_001E": {"label": "Estimate!!Total:", "concept": "TENURE"},
+        "B25003_002E": {"label": "Estimate!!Total:!!Owner occupied", "concept": "TENURE"},
+        "B25002_001E": {"label": "Estimate!!Total:", "concept": "OCCUPANCY STATUS"},
+        "B25002_003E": {"label": "Estimate!!Total:!!Vacant", "concept": "OCCUPANCY STATUS"},
+        "B17001_001E": {"label": "Estimate!!Total:", "concept": "POVERTY STATUS IN THE PAST 12 MONTHS BY SEX BY AGE"},
+        "B17001_002E": {"label": "Estimate!!Total:!!Income in the past 12 months below poverty level:",
+                        "concept": "POVERTY STATUS IN THE PAST 12 MONTHS BY SEX BY AGE"},
+        "B08013_001E": {"label": "Estimate!!Aggregate travel time to work (in minutes)",
+                        "concept": "AGGREGATE TRAVEL TIME TO WORK OF WORKERS BY SEX"},
+        "B08012_001E": {"label": "Estimate!!Total:", "concept": "TRAVEL TIME TO WORK"},
     }
 }
 
@@ -258,6 +276,19 @@ def test_verify_variables_accepts_valid():
     eq(selected["broadband_pct"]["broadband"], "B28002_004E", "picked the any-type broadband line")
 
 
+def test_verify_variables_accepts_new_metrics():
+    """The six metrics added for the ACS expansion (households through
+    avg_commute_minutes) must verify against realistic label text, not just
+    happen to exist in the config -- this is exactly the check that would
+    have caught a wrong table/variable ID before it ever reached a live run."""
+    cfg = json.loads((Path(econ.ROOT) / "data" / "economy" / "census_config.json").read_text())
+    selected, problems = econ.verify_variables(cfg, ACS_VARIABLES_RESPONSE["variables"])
+    for metric in ("households", "labor_force_participation_rate", "homeownership_rate",
+                   "housing_vacancy_rate", "poverty_rate", "avg_commute_minutes"):
+        check(metric in selected, f"{metric} verified against realistic ACS labels")
+        check(metric not in problems, f"{metric} has no verification problems")
+
+
 def test_verify_variables_rejects_label_mismatch():
     """A variable ID that exists but means something else must be REJECTED, not
     silently used. This is the B28002-moved-between-vintages scenario."""
@@ -348,6 +379,71 @@ def test_derive_direct_with_jam_value():
        "jam value -> None so Loving County is 'No data', not -$666M")
 
 
+def test_derive_avg_commute_minutes():
+    """'average' must divide WITHOUT the *100 that 'ratio' applies -- this is
+    a genuine mean, not a percentage, and safe_ratio_pct's built-in *100 would
+    silently turn a real ~25-minute commute into ~2500 minutes."""
+    cfg = _cfg()
+    spec = cfg["metrics"]["avg_commute_minutes"]
+    chosen = {"aggregate_minutes": "B08013_001E", "commuters": "B08012_001E"}
+    row = {"B08013_001E": "50000", "B08012_001E": "2000"}
+    eq(econ.derive_metric("avg_commute_minutes", spec, chosen, row), 25.0,
+       "50000 minutes / 2000 commuters = 25.0 minutes, not 2500%")
+
+
+def test_derive_avg_commute_minutes_zero_commuters():
+    cfg = _cfg()
+    spec = cfg["metrics"]["avg_commute_minutes"]
+    chosen = {"aggregate_minutes": "B08013_001E", "commuters": "B08012_001E"}
+    eq(econ.derive_metric("avg_commute_minutes", spec, chosen,
+                          {"B08013_001E": "0", "B08012_001E": "0"}), None,
+       "zero commuters -> None, not a ZeroDivisionError")
+
+
+def test_derive_poverty_rate():
+    cfg = _cfg()
+    spec = cfg["metrics"]["poverty_rate"]
+    chosen = {"below_poverty": "B17001_002E", "total": "B17001_001E"}
+    row = {"B17001_002E": "1500", "B17001_001E": "10000"}
+    eq(econ.derive_metric("poverty_rate", spec, chosen, row), 15.0,
+       "1500/10000 = 15.0%")
+
+
+def test_derive_homeownership_rate():
+    cfg = _cfg()
+    spec = cfg["metrics"]["homeownership_rate"]
+    chosen = {"owner_occupied": "B25003_002E", "total_occupied": "B25003_001E"}
+    row = {"B25003_002E": "6500", "B25003_001E": "10000"}
+    eq(econ.derive_metric("homeownership_rate", spec, chosen, row), 65.0,
+       "6500/10000 = 65.0%")
+
+
+def test_derive_housing_vacancy_rate():
+    cfg = _cfg()
+    spec = cfg["metrics"]["housing_vacancy_rate"]
+    chosen = {"vacant": "B25002_003E", "total_units": "B25002_001E"}
+    row = {"B25002_003E": "800", "B25002_001E": "10000"}
+    eq(econ.derive_metric("housing_vacancy_rate", spec, chosen, row), 8.0,
+       "800/10000 = 8.0%")
+
+
+def test_derive_labor_force_participation_rate():
+    cfg = _cfg()
+    spec = cfg["metrics"]["labor_force_participation_rate"]
+    chosen = {"in_labor_force": "B23025_002E", "population_16plus": "B23025_001E"}
+    row = {"B23025_002E": "7200", "B23025_001E": "10000"}
+    eq(econ.derive_metric("labor_force_participation_rate", spec, chosen, row), 72.0,
+       "7200/10000 = 72.0%")
+
+
+def test_derive_households_direct():
+    cfg = _cfg()
+    spec = cfg["metrics"]["households"]
+    eq(econ.derive_metric("households", spec, {"value": "B11001_001E"},
+                          {"B11001_001E": "42000"}), 42000.0,
+       "direct passthrough, same as population")
+
+
 # ────────────────────────── CBP suppression ──────────────────────────
 
 def test_cbp_suppression_flags_recognised():
@@ -373,210 +469,20 @@ def test_cbp_suppressed_excluded_from_change():
     eq(econ.pct_change(18204, None), None, "suppressed baseline -> no change figure")
 
 
-# ─────────────────── Population Estimates Program (PEP) ───────────────────
-
-def test_pep_estimate_regex_matches_annual_estimate_not_census_baseline():
-    """PEP's time series mixes the decennial Census baseline row in with the
-    annual estimate rows. Picking the wrong one would report a stale, years-old
-    number as if it were current -- the regex is what tells them apart, so it
-    has to be right on real DATE_DESC text, not synthetic test strings."""
-    check(econ._PEP_ESTIMATE_RE.search("7/1/2025 population estimate"),
-          "real annual-estimate text must match")
-    check(econ._PEP_ESTIMATE_RE.search("7/1/2024 Population Estimate"),
-          "case-insensitive")
-    check(not econ._PEP_ESTIMATE_RE.search("4/1/2020 Census population"),
-          "the decennial Census baseline row must NOT match -- it is not an estimate")
-    check(not econ._PEP_ESTIMATE_RE.search("Population Estimate Base"),
-          "a base-only description with no date must not match")
-
-
-PEP_PROBE_RESPONSE = [
-    ["NAME", "POP", "DATE_CODE", "DATE_DESC", "state"],
-    ["Alabama", "5024279", "1", "4/1/2020 Census population", "01"],
-    ["Alabama", "5031362", "2", "4/1/2020 population estimates base", "01"],
-    ["Alabama", "5108468", "3", "7/1/2021 population estimate", "01"],
-    ["Alabama", "5157699", "4", "7/1/2022 population estimate", "01"],
-    ["Alabama", "5214364", "5", "7/1/2023 population estimate", "01"],
-    ["Alabama", "5272270", "6", "7/1/2024 population estimate", "01"],
-]
-
-PEP_COUNTY_RESPONSE = [
-    ["NAME", "POP", "state", "county"],
-    ["Autauga County, Alabama", "60342", "01", "001"],
-    ["Baldwin County, Alabama", "246435", "01", "003"],
-]
-
-# collect_pep_population() rejects any result under ~2,000 counties as a
-# suspiciously partial response (see the sanity-floor test below), so the
-# "this should succeed end-to-end" test needs a fixture that actually clears
-# that floor -- padded out programmatically rather than hand-writing 2,000
-# rows, while keeping the two real named counties above for the value checks.
-PEP_COUNTY_RESPONSE_FULL = PEP_COUNTY_RESPONSE + [
-    # State starts at 02 (never 01) and county at 005 (never 001/003) so none
-    # of these 2,100 synthetic rows can collide with the two real Alabama rows
-    # above and silently overwrite the values those assertions check.
-    [f"County {i}", str(1000 + i), f"{(i // 900) + 2:02d}", f"{(i % 900) + 5:03d}"]
-    for i in range(2100)
-]
-
-
-def test_collect_pep_population_picks_highest_year_estimate():
-    """End-to-end against sample payloads shaped like the real API: the probe
-    call picks DATE_CODE=6 (2024, the highest-year row whose DATE_DESC actually
-    says 'population estimate'), not DATE_CODE=1 (2020 Census baseline, which
-    has a higher... no, lower code, but the point stands: code number order and
-    recency are NOT the same thing and this must not assume otherwise)."""
-    real_get_json = econ._get_json
-    calls = []
-
-    def fake_get_json(url, **kwargs):
-        calls.append(url)
-        if len(calls) == 1:
-            return PEP_PROBE_RESPONSE
-        return PEP_COUNTY_RESPONSE_FULL
-
-    econ._get_json = fake_get_json
-    try:
-        out = econ.collect_pep_population(2025, "fakekey")
-    finally:
-        econ._get_json = real_get_json
-
-    check("DATE_CODE=6" in calls[1], f"expected the 2024-estimate code (6) in the "
-          f"second request, got: {calls[1]}")
-    eq(out.get("01001", {}).get("value"), 60342, "Autauga County population parsed")
-    eq(out.get("01001", {}).get("year"), 2024, "year is the selected estimate's year, not the run year")
-    eq(out.get("01003", {}).get("value"), 246435, "Baldwin County population parsed")
-
-
-def test_collect_pep_population_skips_on_missing_columns():
-    """A schema change (renamed/dropped column) must skip cleanly, not crash
-    or silently publish garbage keyed on the wrong index."""
-    real_get_json = econ._get_json
-    econ._get_json = lambda url, **kw: [["NAME", "POP", "state"], ["Alabama", "5000000", "01"]]
-    try:
-        out = econ.collect_pep_population(2025, "fakekey")
-    finally:
-        econ._get_json = real_get_json
-    eq(out, {}, "missing DATE_CODE/DATE_DESC columns -> empty result, not a crash")
-
-
-def test_collect_pep_population_rejects_suspiciously_small_result():
-    """A response with far fewer than ~3,140 counties (~3,000 with current
-    geography) indicates a partial or malformed response, not a small country.
-    This must not publish a suspicious subset silently."""
-    real_get_json = econ._get_json
-    calls = []
-
-    def fake_get_json(url, **kwargs):
-        calls.append(url)
-        if len(calls) == 1:
-            return PEP_PROBE_RESPONSE
-        return PEP_COUNTY_RESPONSE  # only 2 counties
-
-    econ._get_json = fake_get_json
-    try:
-        out = econ.collect_pep_population(2025, "fakekey")
-    finally:
-        econ._get_json = real_get_json
-    eq(out, {}, "2 counties is far below the ~3,140 sanity floor -> rejected, not published")
-
-
-def test_collect_pep_population_no_matching_date_desc_skips():
-    """If nothing in the probe response's DATE_DESC says 'population estimate'
-    (e.g. Census renames the phrasing), this must not guess a DATE_CODE."""
-    real_get_json = econ._get_json
-    econ._get_json = lambda url, **kw: [
-        ["NAME", "POP", "DATE_CODE", "DATE_DESC", "state"],
-        ["Alabama", "5024279", "1", "4/1/2020 Census population", "01"],
-    ]
-    try:
-        out = econ.collect_pep_population(2025, "fakekey")
-    finally:
-        econ._get_json = real_get_json
-    eq(out, {}, "no row matched the estimate pattern -> skip, never guess a code")
-
-
-def test_pep_is_fresh_direct():
-    """Same contract as _census_is_fresh/_permits_is_fresh: no timestamp ->
-    not fresh, recent timestamp -> fresh, old timestamp -> not fresh."""
-    now = datetime.now(timezone.utc)
-    eq(econ._pep_is_fresh({}, 7), False, "no prior timestamp -> not fresh")
-    eq(econ._pep_is_fresh({"pep_last_successful_update": (now - timedelta(days=1)).isoformat()}, 7),
-       True, "1 day old against a 7-day gate -> fresh")
-    eq(econ._pep_is_fresh({"pep_last_successful_update": (now - timedelta(days=10)).isoformat()}, 7),
-       False, "10 days old against a 7-day gate -> not fresh")
-
-
-def test_pep_has_its_own_freshness_gate_independent_of_acs():
-    """Regression guard for a real bug: PEP used to be nested inside the
-    ACS-refresh branch, sharing ACS's OUTCOME rather than having its own gate.
-    On any day ACS was already fresh (the common case -- gated to 7 days),
-    PEP silently never ran at all. The first live run after this module
-    shipped confirmed it: a valid CENSUS_API_KEY, and PEP still returned 0
-    counties, because it never got a turn. This checks the properties that
-    make the fix real, by source inspection since main()'s control flow
-    isn't a directly-testable function:
-      1. pep_last_successful_update exists as its own metadata field
-         (not riding on census.last_successful_update).
-      2. _pep_is_fresh() reads that field, not the census one.
-      3. The PEP execution guard checks census_key directly rather than
-         living inside the `if not census_key: ... elif ... else:` chain
-         built for the ACS branch (a literal `census_key` condition on the
-         PEP guard line means it is NOT nested inside that chain, since a
-         nested block wouldn't need to re-check a condition its enclosing
-         branch already guarantees).
-    """
-    src = (Path(econ.ROOT) / "data" / "update_economic_data.py").read_text()
-    check('"pep_last_successful_update"' in src,
-          "no independent pep_last_successful_update metadata field")
-    check("prior.get(\"pep_last_successful_update\")" in src,
-          "_pep_is_fresh's backing value must come from pep's own field, not census's")
-    check("not args.skip_pep and census_key:" in src,
-          "PEP's execution guard must independently check census_key, proving it runs "
-          "as its own top-level block rather than inheriting the ACS branch's key check")
-
-
-def test_validate_outputs_flags_bad_population_estimate():
-    """A negative or non-numeric population_estimate.value is exactly the kind
-    of silent corruption validate_outputs() exists to catch before it commits."""
-    with tempfile.TemporaryDirectory() as td:
-        county_path = Path(td) / "census_county.json"
-        payload = {
-            "generated_at": "2026-07-27T00:00:00+00:00",
-            "acs_vintage": 2024,
-            "counties": {
-                "01001": {
-                    "metrics": {},
-                    "history": {},
-                    "population_estimate": {"value": -5, "year": 2024, "as_of_label": "x"},
-                },
-            },
-        }
-        county_path.write_text(json.dumps(payload))
-        real_county_out = econ.COUNTY_OUT
-        real_state_out = econ.STATE_OUT
-        real_fred_out = econ.FRED_OUT
-        econ.COUNTY_OUT = county_path
-        econ.STATE_OUT = Path(td) / "does_not_exist_state.json"
-        econ.FRED_OUT = Path(td) / "does_not_exist_fred.json"
-        try:
-            errs = econ.validate_outputs()
-        finally:
-            econ.COUNTY_OUT = real_county_out
-            econ.STATE_OUT = real_state_out
-            econ.FRED_OUT = real_fred_out
-    check(any("population_estimate" in e for e in errs),
-          f"negative population_estimate.value should have been flagged; got: {errs}")
-
-
 # ────────────────────────── Building Permits (BPS via FRED) ──────────────────────────
 
 def test_bps_series_id_format():
-    """FRED's per-county series ID is BPPRIV + the 5-digit FIPS, verbatim --
-    confirmed against a real published series (BPPRIV048089, Colorado County,
-    TX). Getting this pattern wrong means every single county request 404s."""
-    eq(econ._bps_series_id("01001"), "BPPRIV01001", "state+county FIPS, no separator")
-    eq(econ._bps_series_id("48089"), "BPPRIV48089", "matches the real published series ID")
+    """FRED's per-county series ID is BPPRIV + a 3-digit zero-padded state
+    code + the 3-digit county code (6 digits total), NOT the plain 5-digit
+    FIPS -- confirmed against real published series: BPPRIV048089 (Colorado
+    County, TX, FIPS 48089), BPPRIV044007 (Providence County, RI, FIPS
+    44007), BPPRIV012011 (Broward County, FL, FIPS 12011). A live run using
+    the un-padded 5-digit form returned HTTP 400 'series does not exist' for
+    every county checked, which is what caught this."""
+    eq(econ._bps_series_id("48089"), "BPPRIV048089", "matches the real published series ID")
+    eq(econ._bps_series_id("44007"), "BPPRIV044007", "two-digit state FIPS gets one more leading zero")
+    eq(econ._bps_series_id("12011"), "BPPRIV012011", "matches the real published series ID")
+    eq(econ._bps_series_id("01001"), "BPPRIV001001", "single-digit-looking state FIPS still gets padded to 3 digits")
 
 
 def _fake_fred_obs_json(url, **kwargs):
@@ -594,14 +500,19 @@ def _fake_fred_obs_json(url, **kwargs):
     """
     m = re.search(r"series_id=([A-Za-z0-9]+)", url)
     sid = m.group(1) if m else None
-    if sid == "BPPRIV01001":
+    # Recover the underlying FIPS from the real series-ID transform (BPPRIV +
+    # a leading "0" + the 5-digit FIPS) so this routes on FIPS, not on a
+    # hardcoded series-ID string that would silently stop matching anything
+    # if _bps_series_id's format ever changes again.
+    fips = sid[len("BPPRIV0"):] if sid and sid.startswith("BPPRIV0") else None
+    if fips == "01001":
         return {"observations": [
             {"date": "2023-01-01", "value": "412"},
             {"date": "2024-01-01", "value": "455"},
         ]}
-    if sid == "BPPRIV01003":
+    if fips == "01003":
         return {"observations": [{"date": "2024-01-01", "value": "88"}]}
-    if sid and sid.startswith("BPPRIV9"):
+    if fips and fips.startswith("9"):
         return {"observations": [{"date": "2024-01-01", "value": "10"}]}
     return {"__error__": "HTTP 404"}
 
@@ -759,6 +670,368 @@ def test_validate_outputs_flags_bad_building_permits():
             econ.FRED_OUT = real_fred_out
     check(any("building_permits" in e for e in errs),
           f"negative building_permits.value should have been flagged; got: {errs}")
+
+
+# ────────────────────────── BLS QCEW wages ──────────────────────────
+
+def test_get_csv_rows_parses_header_keyed_dicts():
+    """_get_csv_rows must key rows by the file's own header row (via
+    DictReader), not by hardcoded column positions -- resilient to BLS
+    reordering columns, matching how the rest of this pipeline tolerates
+    payload shape drift elsewhere."""
+    fake_csv = "area_fips,agglvl_code,annual_avg_wkly_wage\n01001,70,812\n"
+    real_urlopen = econ.urllib.request.urlopen
+
+    class _FakeResp:
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+        def read(self): return fake_csv.encode("utf-8")
+
+    econ.urllib.request.urlopen = lambda req, timeout=None: _FakeResp()
+    try:
+        rows, err = econ._get_csv_rows("https://example.invalid/x.csv")
+    finally:
+        econ.urllib.request.urlopen = real_urlopen
+    eq(err, None, "no error on a well-formed CSV")
+    eq(len(rows), 1, "one data row parsed")
+    eq(rows[0]["annual_avg_wkly_wage"], "812", "keyed by header name, not position")
+
+
+def test_discover_bls_vintage_picks_newest_responding_year():
+    real_get_csv = econ._get_csv_rows
+
+    def fake(url, **kwargs):
+        if f"/{date.today().year - 1}/" in url:
+            return [{"agglvl_code": "70"}], None
+        return None, "HTTP 404"
+
+    econ._get_csv_rows = fake
+    try:
+        year = econ.discover_bls_vintage()
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(year, date.today().year - 1, "picks the most recent year that actually responds")
+
+
+def _fake_bls_csv_rows(url, **kwargs):
+    """Route a fake QCEW CSV response by the area FIPS embedded in the URL,
+    the same way _get_csv_rows() actually builds it -- exercises
+    collect_bls_wages() exactly as it calls the real function."""
+    m = re.search(r"/area/([A-Za-z0-9]+)\.csv", url)
+    fips = m.group(1) if m else None
+    if fips == "01001":
+        return [
+            {"agglvl_code": "75", "own_code": "5", "industry_code": "51",
+             "annual_avg_wkly_wage": "9999", "annual_avg_emplvl": "1"},
+            {"agglvl_code": "70", "own_code": "0", "industry_code": "10",
+             "annual_avg_wkly_wage": "812", "annual_avg_emplvl": "18500"},
+        ], None
+    if fips == "01003":
+        # Older-style column name, no "annual_" prefix -- exercises the
+        # candidate-field fallback.
+        return [
+            {"agglvl_code": "70", "own_code": "0", "industry_code": "10",
+             "avg_wkly_wage": "755", "avg_annual_emplvl": "9200"},
+        ], None
+    if fips and fips.startswith("9"):
+        return [
+            {"agglvl_code": "70", "own_code": "0", "industry_code": "10",
+             "annual_avg_wkly_wage": "700", "annual_avg_emplvl": "500"},
+        ], None
+    return None, "HTTP 404"
+
+
+def test_collect_bls_wages_picks_county_total_row():
+    """A response has multiple agglvl_code rows (ownership/industry
+    breakdowns); only the agglvl_code=70 county-total row may be used."""
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = _fake_bls_csv_rows
+    try:
+        real_padding = [f"9{i:04d}" for i in range(600)]
+        out = econ.collect_bls_wages(["01001", "01003"] + real_padding, 2024)
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(out["01001"]["value"], 812.0, "the agglvl_code=70 row's wage, not the 75 row's 9999")
+    eq(out["01001"]["employment"], 18500.0, "employment from the same total row")
+    eq(out["01001"]["year"], 2024, "year recorded")
+
+
+def test_collect_bls_wages_falls_back_to_older_column_name():
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = _fake_bls_csv_rows
+    try:
+        real_padding = [f"9{i:04d}" for i in range(600)]
+        out = econ.collect_bls_wages(["01001", "01003"] + real_padding, 2024)
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(out["01003"]["value"], 755.0, "avg_wkly_wage (no annual_ prefix) used as a fallback")
+    eq(out["01003"]["employment"], 9200.0, "avg_annual_emplvl used as a fallback")
+
+
+def test_collect_bls_wages_skips_counties_without_a_total_row():
+    """A county whose response has no agglvl_code=70 row (or 404s) must be
+    silently excluded, never crash the whole module."""
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = _fake_bls_csv_rows
+    try:
+        real_padding = [f"9{i:04d}" for i in range(600)]
+        no_data_padding = [f"{i:05d}" for i in range(10000, 10600)]
+        out = econ.collect_bls_wages(["01001", "01003"] + real_padding + no_data_padding, 2024)
+    finally:
+        econ._get_csv_rows = real_get_csv
+    check(all(f not in out for f in no_data_padding), "no-data FIPS must not appear at all")
+    eq(len(out), 2 + len(real_padding), "result is exactly the counties with a real total row")
+
+
+def test_collect_bls_wages_rejects_suspiciously_small_result():
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = _fake_bls_csv_rows
+    try:
+        out = econ.collect_bls_wages(["01001", "01003"], 2024)
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(out, {}, "2 counties is far below the 500-county sanity floor -> rejected")
+
+
+def test_collect_bls_wages_high_hit_rate_below_floor_is_not_reported_as_all_404():
+    """Regression guard for a real bug found live: a bounded test run with a
+    HIGH hit rate (e.g. 299/300 real counties -- QCEW coverage is normally
+    near-universal) still gets rejected by the 500-county floor, which is
+    correct. But the warning used to unconditionally claim 'every checked
+    county returned a plain 404' whenever there were no non-404 errors to
+    report, which is simply false when most/all counties actually
+    succeeded -- this looked exactly like 'BLS is fundamentally broken'
+    from the log alone and nearly caused a working module to be retired."""
+    econ.warnings.clear()
+    real_get_csv = econ._get_csv_rows
+    econ._get_csv_rows = _fake_bls_csv_rows
+    try:
+        real_padding = [f"9{i:04d}" for i in range(300)]  # all succeed
+        out = econ.collect_bls_wages(real_padding, 2024)
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(out, {}, "300 is still below the 500-county floor -> rejected")
+    joined = " ".join(econ.warnings)
+    check("every checked county returned a plain 404" not in joined,
+          f"must not falsely claim every county 404'd when nearly all succeeded; got: {joined}")
+    check("300/300" in joined or "a normal hit rate" in joined,
+          f"warning should say this was a normal hit rate at too small a sample, not an error; got: {joined}")
+
+
+def test_collect_bls_wages_respects_max_counties_cap():
+    real_get_csv = econ._get_csv_rows
+    calls = []
+
+    def counting(url, **kwargs):
+        calls.append(url)
+        return _fake_bls_csv_rows(url, **kwargs)
+
+    econ._get_csv_rows = counting
+    try:
+        fips_list = [f"{i:05d}" for i in range(30000, 31000)]
+        econ.collect_bls_wages(fips_list, 2024, max_counties=25)
+    finally:
+        econ._get_csv_rows = real_get_csv
+    eq(len(calls), 25, "must stop at the cap, not check every county in the list")
+
+
+def test_bls_is_fresh_direct():
+    now = datetime.now(timezone.utc)
+    eq(econ._bls_is_fresh({}, 90), False, "no prior timestamp -> not fresh")
+    eq(econ._bls_is_fresh({"bls_last_successful_update": (now - timedelta(days=10)).isoformat()}, 90),
+       True, "10 days old against a 90-day gate -> fresh")
+    eq(econ._bls_is_fresh({"bls_last_successful_update": (now - timedelta(days=120)).isoformat()}, 90),
+       False, "120 days old against a 90-day gate -> not fresh")
+
+
+def test_validate_outputs_flags_bad_avg_weekly_wage():
+    with tempfile.TemporaryDirectory() as td:
+        county_path = Path(td) / "census_county.json"
+        payload = {
+            "generated_at": "2026-07-27T00:00:00+00:00",
+            "acs_vintage": 2024,
+            "counties": {
+                "01001": {
+                    "metrics": {},
+                    "history": {},
+                    "avg_weekly_wage": {"value": -1, "employment": 100, "year": 2024},
+                },
+            },
+        }
+        county_path.write_text(json.dumps(payload))
+        real_county_out = econ.COUNTY_OUT
+        real_state_out = econ.STATE_OUT
+        real_fred_out = econ.FRED_OUT
+        econ.COUNTY_OUT = county_path
+        econ.STATE_OUT = Path(td) / "does_not_exist_state.json"
+        econ.FRED_OUT = Path(td) / "does_not_exist_fred.json"
+        try:
+            errs = econ.validate_outputs()
+        finally:
+            econ.COUNTY_OUT = real_county_out
+            econ.STATE_OUT = real_state_out
+            econ.FRED_OUT = real_fred_out
+    check(any("avg_weekly_wage" in e for e in errs),
+          f"negative avg_weekly_wage.value should have been flagged; got: {errs}")
+
+
+# ────────────────────────── EIA electricity price ──────────────────────────
+
+def test_load_state_abbr_to_fips_matches_state_regulations():
+    """Built from the app's own state_regulations.json rather than a second
+    hardcoded 50-state table that could silently drift from it."""
+    mapping = econ.load_state_abbr_to_fips()
+    check(len(mapping) >= 50, f"expected at least 50 state abbreviations, got {len(mapping)}")
+    check(mapping.get("CA") is not None, "California present")
+    eq(mapping.get("CA"), "06", "California FIPS is 06")
+
+
+_EIA_RESPONSE = {
+    "response": {
+        "data": [
+            {"period": "2026-05", "stateid": "CA", "sectorid": "IND", "price": "12.50"},
+            {"period": "2026-04", "stateid": "CA", "sectorid": "IND", "price": "12.10"},
+            {"period": "2026-05", "stateid": "TX", "sectorid": "IND", "price": "6.80"},
+            {"period": "2026-05", "stateid": "US", "sectorid": "IND", "price": "9.00"},
+        ] + [
+            # Padding so the 40-state sanity floor is comfortably cleared in
+            # the "accepts a full response" test without hand-writing 50 rows.
+            {"period": "2026-05", "stateid": abbr, "sectorid": "IND", "price": "8.00"}
+            for abbr in [
+                "AL", "AK", "AZ", "AR", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL",
+                "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO",
+                "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR",
+                "PA", "RI", "SC", "SD", "TN", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+            ]
+        ]
+    }
+}
+
+
+def test_collect_eia_electricity_price_picks_newest_period():
+    """CA has two rows (2026-04 and 2026-05); the newer one must win."""
+    real_get_json = econ._get_json
+    econ._get_json = lambda url, **kw: _EIA_RESPONSE
+    try:
+        out = econ.collect_eia_electricity_price("fakekey")
+    finally:
+        econ._get_json = real_get_json
+    ca_fips = econ.load_state_abbr_to_fips()["CA"]
+    check(ca_fips in out, "California present in result")
+    eq(out[ca_fips]["value"], 12.5, "the newer (2026-05) price wins, not the older 12.10")
+    eq(out[ca_fips]["as_of"], "2026-05", "as_of reflects the newer period")
+    eq(out[ca_fips]["sector"], "IND", "sector recorded")
+
+
+def test_collect_eia_electricity_price_drops_aggregate_rows():
+    """The 'US' aggregate row must not appear under any real state's FIPS --
+    there is no FIPS for it, so the abbr-to-FIPS lookup naturally drops it."""
+    real_get_json = econ._get_json
+    econ._get_json = lambda url, **kw: _EIA_RESPONSE
+    try:
+        out = econ.collect_eia_electricity_price("fakekey")
+    finally:
+        econ._get_json = real_get_json
+    check(all(v["value"] != 9.0 for v in out.values()),
+          "the US aggregate row's price (9.00) must not appear as any state's value")
+
+
+def test_collect_eia_electricity_price_rejects_suspiciously_small_result():
+    """Fewer than 40 states/territories is treated as a broken response."""
+    real_get_json = econ._get_json
+    econ._get_json = lambda url, **kw: {"response": {"data": [
+        {"period": "2026-05", "stateid": "CA", "sectorid": "IND", "price": "12.50"},
+        {"period": "2026-05", "stateid": "TX", "sectorid": "IND", "price": "6.80"},
+    ]}}
+    try:
+        out = econ.collect_eia_electricity_price("fakekey")
+    finally:
+        econ._get_json = real_get_json
+    eq(out, {}, "2 states is far below the 40-state sanity floor -> rejected")
+
+
+def test_collect_eia_electricity_price_handles_fetch_failure():
+    real_get_json = econ._get_json
+    econ._get_json = lambda url, **kw: {"__error__": "HTTP 503"}
+    try:
+        out = econ.collect_eia_electricity_price("fakekey")
+    finally:
+        econ._get_json = real_get_json
+    eq(out, {}, "fetch failure -> empty dict, not a crash")
+
+
+def test_eia_is_fresh_direct():
+    now = datetime.now(timezone.utc)
+    eq(econ._eia_is_fresh({}, 30), False, "no prior timestamp -> not fresh")
+    eq(econ._eia_is_fresh({"eia_last_successful_update": (now - timedelta(days=5)).isoformat()}, 30),
+       True, "5 days old against a 30-day gate -> fresh")
+    eq(econ._eia_is_fresh({"eia_last_successful_update": (now - timedelta(days=45)).isoformat()}, 30),
+       False, "45 days old against a 30-day gate -> not fresh")
+
+
+def test_validate_outputs_flags_bad_electricity_price():
+    with tempfile.TemporaryDirectory() as td:
+        state_path = Path(td) / "census_state.json"
+        payload = {
+            "generated_at": "2026-07-27T00:00:00+00:00",
+            "acs_vintage": 2024,
+            "states": {
+                "06": {
+                    "metrics": {},
+                    "history": {},
+                    "electricity_price": {"value": -5, "as_of": "2026-05", "sector": "IND"},
+                },
+            },
+        }
+        state_path.write_text(json.dumps(payload))
+        real_county_out = econ.COUNTY_OUT
+        real_state_out = econ.STATE_OUT
+        real_fred_out = econ.FRED_OUT
+        econ.COUNTY_OUT = Path(td) / "does_not_exist_county.json"
+        econ.STATE_OUT = state_path
+        econ.FRED_OUT = Path(td) / "does_not_exist_fred.json"
+        try:
+            errs = econ.validate_outputs()
+        finally:
+            econ.COUNTY_OUT = real_county_out
+            econ.STATE_OUT = real_state_out
+            econ.FRED_OUT = real_fred_out
+    check(any("electricity_price" in e for e in errs),
+          f"negative electricity_price.value should have been flagged; got: {errs}")
+
+
+def test_validate_outputs_catches_new_rate_metrics_out_of_range():
+    """Regression guard: the percent-range check used to only recognise
+    '_pct' suffixes and the single hardcoded name 'unemployment_rate', which
+    would have silently let a corrupted poverty_rate/homeownership_rate/etc.
+    (any of the new ACS '_rate' metrics) ship with a value like 250%."""
+    with tempfile.TemporaryDirectory() as td:
+        county_path = Path(td) / "census_county.json"
+        payload = {
+            "generated_at": "2026-07-27T00:00:00+00:00",
+            "acs_vintage": 2024,
+            "counties": {
+                "01001": {
+                    "metrics": {"poverty_rate": {"value": 250.0}},
+                    "history": {},
+                },
+            },
+        }
+        county_path.write_text(json.dumps(payload))
+        real_county_out = econ.COUNTY_OUT
+        real_state_out = econ.STATE_OUT
+        real_fred_out = econ.FRED_OUT
+        econ.COUNTY_OUT = county_path
+        econ.STATE_OUT = Path(td) / "does_not_exist_state.json"
+        econ.FRED_OUT = Path(td) / "does_not_exist_fred.json"
+        try:
+            errs = econ.validate_outputs()
+        finally:
+            econ.COUNTY_OUT = real_county_out
+            econ.STATE_OUT = real_state_out
+            econ.FRED_OUT = real_fred_out
+    check(any("poverty_rate" in e and "outside 0-100" in e for e in errs),
+          f"a 250% poverty_rate should have been flagged; got: {errs}")
 
 
 # ────────────────────────── history ordering ──────────────────────────
@@ -942,6 +1215,40 @@ def test_metadata_preserves_census_timestamp_on_fred_only_run():
             econ.META_OUT = orig
 
 
+def test_unverified_metrics_cleared_by_a_successful_reverification():
+    """A run that actually re-checks ACS variables and finds zero problems must
+    report zero problems -- not silently resurrect a prior run's stale warning.
+    `var_problems or prior_stuff` looked reasonable but treated "ran and passed"
+    (empty dict, falsy) the same as "did not run this cycle" (also falsy),
+    so a real fix (e.g. the population label bug) kept reporting itself as
+    still broken in metadata even after live data proved it was fixed."""
+    with tempfile.TemporaryDirectory() as td:
+        orig = econ.META_OUT
+        try:
+            econ.META_OUT = Path(td) / "m.json"
+            econ.warnings.clear()
+            prior = {"census": {"last_successful_update": "2026-07-20T00:00:00+00:00",
+                                "unverified_metrics": {"population": ["value=B01003_001E [stale]"]}},
+                     "acs_vintage": 2024}
+
+            # Census actually ran this cycle and verify_variables() found
+            # nothing wrong: var_problems is a real, empty dict.
+            meta = econ.write_metadata({"series": {}}, {"counties": {}}, {"states": {}}, None,
+                                       2024, {}, prior, census_ran=True)
+            eq(meta["census"]["unverified_metrics"], {},
+               "a clean re-verification clears a prior stale warning, not carries it forward")
+
+            # Census was skipped this cycle (still fresh): var_problems is
+            # None because verify_variables() was never called. The prior
+            # known status must be preserved, not wiped to a false "clean".
+            meta2 = econ.write_metadata({"series": {}}, None, None, None,
+                                        None, None, prior, census_ran=False)
+            eq(meta2["census"]["unverified_metrics"], prior["census"]["unverified_metrics"],
+               "a skipped run preserves the last known verification status")
+        finally:
+            econ.META_OUT = orig
+
+
 def test_generated_at_does_not_advance_on_a_noop_run():
     """generated_at means "when data was last generated", not "when the pipeline
     last ran". A keyless run that fetched nothing must not stamp a fresh
@@ -1084,13 +1391,18 @@ def test_census_config_wellformed():
     cfg = _cfg()
     for metric, spec in cfg["metrics"].items():
         check(bool(spec.get("label")), f"{metric} has a label")
-        check(spec.get("derive") in ("direct", "ratio", "sum_over_denominator"),
+        check(spec.get("derive") in ("direct", "ratio", "average", "sum_over_denominator"),
               f"{metric} declares a known derive kind")
         if spec["derive"] == "ratio":
             check(spec.get("ratio_numerator") in spec["variables"],
                   f"{metric} numerator role exists in variables")
             check(spec.get("ratio_denominator") in spec["variables"],
                   f"{metric} denominator role exists in variables")
+        if spec["derive"] == "average":
+            check(spec.get("average_numerator") in spec["variables"],
+                  f"{metric} average numerator role exists in variables")
+            check(spec.get("average_denominator") in spec["variables"],
+                  f"{metric} average denominator role exists in variables")
         if spec["derive"] == "sum_over_denominator":
             for part in spec["sum_parts"]:
                 check(part in spec["variables"], f"{metric} sum part '{part}' declared")

@@ -73,17 +73,23 @@ window.REPORT = (function () {
             def: E.METRICS[key],
             cmp: E.comparisons(county, stateData, padded, key, "value"),
           })).filter(m => m.cmp.value !== null);
-          const signals = E.countySignals(county, padded);
-          // Both supplementary, both distinct measurements from anything in
-          // `metrics` above (current-year point estimate vs. ACS 5-year
-          // average; a county permit count with no ACS equivalent) -- kept
-          // as their own fields rather than folded into `metrics` so the
-          // report never implies they're the same kind of figure.
+          const signals = E.countySignals(county, padded, stateData);
+          // Supplementary, distinct measurements from anything in `metrics`
+          // above (a county permit count and a county wage figure with no ACS
+          // equivalent; a STATE electricity price, not this specific
+          // county's) -- kept as their own fields rather than folded into
+          // `metrics` so the report never implies they're the same kind of
+          // figure.
           const rec = (county.counties || {})[padded];
-          const populationEstimate = rec && rec.population_estimate;
           const buildingPermits = rec && rec.building_permits;
-          if (metrics.length || signals.length || populationEstimate || buildingPermits) {
-            econ = { metrics, signals, populationEstimate, buildingPermits,
+          const avgWeeklyWage = rec && rec.avg_weekly_wage;
+          const stateFips = rec && rec.state_fips;
+          const electricityPrice = stateFips &&
+            ((stateData && stateData.states) || {})[stateFips] &&
+            ((stateData.states)[stateFips]).electricity_price;
+          const readiness = E.readinessScore(county, stateData, padded);
+          if (metrics.length || signals.length || buildingPermits || avgWeeklyWage || electricityPrice || readiness) {
+            econ = { metrics, signals, buildingPermits, avgWeeklyWage, electricityPrice, readiness,
                      vintage: meta && meta.acs_vintage };
           }
         }
@@ -151,32 +157,55 @@ window.REPORT = (function () {
            </li>`).join("")}</ul>`
       : "";
 
-    // Both distinct measurements from anything in the metrics table above, so
-    // rendered as their own labelled rows rather than mixed into that table —
-    // a reader should never mistake "current PEP estimate" for "ACS 5-year
-    // population", or a raw permit count for a table metric with a percentile.
-    const pe = econ.populationEstimate;
+    // A distinct measurement from anything in the metrics table above, so
+    // rendered as its own labelled row rather than mixed into that table —
+    // a reader should never mistake a raw permit count for a table metric
+    // with a percentile.
     const bp = econ.buildingPermits;
-    const supplementaryHtml = (pe || bp) ? `
+    const wg = econ.avgWeeklyWage;
+    const ep = econ.electricityPrice;
+    const supplementaryHtml = (bp || wg || ep) ? `
       <table class="kv-table" style="margin-top:8px">
         <tbody>
-          ${pe ? `<tr><th>Current population estimate</th><td>${_esc(E.fmtValue(pe.value, "count", 0))} <span class="note">(Census PEP, ${_esc(pe.as_of_label || String(pe.year))})</span></td></tr>` : ""}
           ${bp ? `<tr><th>Building permits issued</th><td>${_esc(E.fmtValue(bp.value, "count", 0))}${
             bp.change_yoy_pct == null ? "" : ` (${_esc(E.fmtPct(bp.change_yoy_pct))} YoY)`
           } <span class="note">(Census BPS via FRED, as of ${_esc(E.fmtDate(bp.as_of))})</span></td></tr>` : ""}
+          ${wg ? `<tr><th>Average weekly wage</th><td>${_esc(E.fmtValue(wg.value, "usd", 0))} <span class="note">(BLS QCEW, all industries, ${_esc(String(wg.year))})</span></td></tr>` : ""}
+          ${ep ? `<tr><th>State industrial electricity price</th><td>${_esc(E.fmtValue(ep.value, "usd_precise", 2))}/kWh <span class="note">(EIA, ${_esc(ep.as_of)} — state average, not this specific county)</span></td></tr>` : ""}
         </tbody>
       </table>` : "";
+
+    // A single synthesis of the economic factors above, expressed as this
+    // county's national percentile on each -- deliberately NOT blended with
+    // the restriction-level severity badge shown elsewhere in this report,
+    // which is a separate kind of judgment (legal/regulatory risk, not
+    // economic attractiveness) from a different dataset with different
+    // coverage and confidence characteristics.
+    const rd = econ.readiness;
+    const readinessColors = { excellent: "#16794a", strong: "#16794a", moderate: "#9a6410",
+                               "below average": "#b3341f", weak: "#b3341f" };
+    const readinessHtml = rd ? `
+      <div style="display:flex; align-items:center; gap:14px; margin:8px 0 12px; padding:10px 12px; border:1px solid #d8dce6; border-radius:8px;">
+        <div style="font-size:26px; font-weight:800; color:${readinessColors[rd.grade.toLowerCase()] || "#111"};">${rd.score}<span style="font-size:12px; font-weight:600; color:#6b7280;">/100</span></div>
+        <div>
+          <div style="font-size:12px; font-weight:700; color:${readinessColors[rd.grade.toLowerCase()] || "#111"};">${_esc(rd.grade)} economic readiness</div>
+          <div class="note">Synthesizes ${rd.breakdown.length} economic factors as national percentiles${
+            rd.completeness < 100 ? ` (${rd.completeness}% of the full weighting had data)` : ""
+          }. Excludes zoning/regulatory restriction level, shown separately above.</div>
+        </div>
+      </div>` : "";
 
     return `
       <section class="section">
         <h2 class="section-title">Economic Context</h2>
+        ${readinessHtml}
         <table class="kv-table" style="width:100%">
           <thead><tr><th>Metric</th><th>Value</th><th>Percentile context</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>
         ${supplementaryHtml}
         ${signalsHtml}
-        <p class="note" style="margin-top:8px">Source: U.S. Census Bureau ACS 5-Year Estimates${econ.vintage ? ` (${_esc(String(econ.vintage))})` : ""}, Population Estimates Program, Building Permits Survey, and Federal Reserve Economic Data (FRED). Percentiles are computed against all US counties with data for that metric (minimum 20-county sample) and are descriptive, not predictive. Not investment advice.</p>
+        <p class="note" style="margin-top:8px">Source: U.S. Census Bureau ACS 5-Year Estimates${econ.vintage ? ` (${_esc(String(econ.vintage))})` : ""}, Building Permits Survey, U.S. Bureau of Labor Statistics QCEW, U.S. Energy Information Administration, and Federal Reserve Economic Data (FRED). Percentiles are computed against all US counties with data for that metric (minimum 20-county sample) and are descriptive, not predictive. Not investment advice.</p>
       </section>`;
   }
 

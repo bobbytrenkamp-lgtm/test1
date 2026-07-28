@@ -7,7 +7,7 @@
     "population": {
       "label": "Total population",
       "variables": { "value": "B01003_001E" },
-      "expect_label": { "B01003_001E": ["total population"] },
+      "expect_label": { "B01003_001E": ["total"] },
       "unit_type": "count",
       "decimals": 0,
       "history": true,
@@ -140,6 +140,112 @@
       "sum_parts": ["broadband"],
       "ratio_denominator": "denominator",
       "good_direction": "up",
+      "scale": "sequential"
+    },
+    "households": {
+      "label": "Total households",
+      "variables": { "value": "B11001_001E" },
+      "expect_label": { "B11001_001E": ["total"] },
+      "unit_type": "count",
+      "decimals": 0,
+      "history": true,
+      "derive": "direct",
+      "good_direction": "up",
+      "scale": "sequential"
+    },
+    "labor_force_participation_rate": {
+      "label": "Labor force participation rate",
+      "variables": {
+        "in_labor_force": "B23025_002E",
+        "population_16plus": "B23025_001E"
+      },
+      "expect_label": {
+        "B23025_002E": ["in labor force"],
+        "B23025_001E": ["total"]
+      },
+      "unit_type": "percent",
+      "decimals": 1,
+      "history": false,
+      "derive": "ratio",
+      "ratio_numerator": "in_labor_force",
+      "ratio_denominator": "population_16plus",
+      "good_direction": "up",
+      "scale": "sequential"
+    },
+    "homeownership_rate": {
+      "label": "Homeownership rate",
+      "variables": {
+        "owner_occupied": "B25003_002E",
+        "total_occupied": "B25003_001E"
+      },
+      "expect_label": {
+        "B25003_002E": ["owner occupied"],
+        "B25003_001E": ["total"]
+      },
+      "unit_type": "percent",
+      "decimals": 1,
+      "history": false,
+      "derive": "ratio",
+      "ratio_numerator": "owner_occupied",
+      "ratio_denominator": "total_occupied",
+      "good_direction": "neutral",
+      "scale": "sequential"
+    },
+    "housing_vacancy_rate": {
+      "label": "Housing vacancy rate",
+      "variables": {
+        "vacant": "B25002_003E",
+        "total_units": "B25002_001E"
+      },
+      "expect_label": {
+        "B25002_003E": ["vacant"],
+        "B25002_001E": ["total"]
+      },
+      "unit_type": "percent",
+      "decimals": 1,
+      "history": false,
+      "derive": "ratio",
+      "ratio_numerator": "vacant",
+      "ratio_denominator": "total_units",
+      "good_direction": "down",
+      "scale": "sequential"
+    },
+    "poverty_rate": {
+      "label": "Poverty rate",
+      "variables": {
+        "below_poverty": "B17001_002E",
+        "total": "B17001_001E"
+      },
+      "expect_label": {
+        "B17001_002E": ["below poverty level"],
+        "B17001_001E": ["total"]
+      },
+      "unit_type": "percent",
+      "decimals": 1,
+      "history": false,
+      "derive": "ratio",
+      "ratio_numerator": "below_poverty",
+      "ratio_denominator": "total",
+      "good_direction": "down",
+      "scale": "sequential"
+    },
+    "avg_commute_minutes": {
+      "label": "Mean travel time to work",
+      "variables": {
+        "aggregate_minutes": "B08013_001E",
+        "commuters": "B08012_001E"
+      },
+      "expect_label": {
+        "B08013_001E": ["aggregate travel time"],
+        "B08012_001E": ["total"]
+      },
+      "unit_type": "minutes",
+      "decimals": 1,
+      "history": false,
+      "derive": "average",
+      "average_numerator": "aggregate_minutes",
+      "average_denominator": "commuters",
+      "good_direction": "down",
       "scale": "sequential"
     }
   },

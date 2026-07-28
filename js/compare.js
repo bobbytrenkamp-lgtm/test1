@@ -306,6 +306,22 @@ function addToCompare(fips) {
   if (county) showMapToast(`Added: ${county.name}`);
 }
 
+/* Entry point for pages other than the Map tab (Economy profile panel,
+   Jurisdiction hero actions): switch to Map, wait for it to finish
+   initializing, open the compare panel if it is not already open, then add.
+   Centralized here so every "Add to compare" button off the Map tab shares
+   one implementation instead of re-deriving the same wait/open/add sequence. */
+function navigateAndAddToCompare(fips) {
+  if (window.Router) window.Router.navigate("map", { fips });
+  else if (typeof switchTab === "function") switchTab("map");
+  const addNow = () => {
+    if (!compareMode) toggleComparePanel();
+    addToCompare(fips);
+  };
+  if (mapInitPromise) mapInitPromise.then(addNow);
+  else setTimeout(addNow, 350);
+}
+
 function addFacilityToCompare(facility) {
   if (!facility) return;
   const id = facility.facility_id || facility.id || facility.name;

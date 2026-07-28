@@ -205,17 +205,35 @@ center and AI infrastructure rather than as a general economics dashboard.
    Costs, with 1Y / 3Y / 5Y / 10Y / Max ranges, hover readouts, and per-series
    show/hide.
 3. **Regional Economic Explorer** — county or state choropleth with a metric
-   selector (population, income, unemployment, education, housing, broadband),
-   latest-value or 1/5-year change, search, and a profile panel giving US and
-   state comparisons, percentile rank, sparklines, and — where available — a
-   current-year population estimate (Census PEP) and county-level building
-   permit activity (Census BPS via FRED), each clearly labelled as a distinct
+   selector (population, households, income, labor force participation,
+   unemployment, education, home value, rent, homeownership, housing vacancy,
+   broadband, commute time, poverty rate — 13 ACS metrics total), latest-value
+   or 1/5-year change, search, and a profile panel giving US and state
+   comparisons, percentile rank, sparklines, a **Data Center Readiness Score**
+   (a 0-100 synthesis of nine economic factors as national percentiles,
+   weighted and combined client-side — see below), and — where available —
+   county-level building permit activity (Census BPS via FRED), county-level
+   average weekly wage (BLS QCEW, no API key needed), and state-level
+   industrial electricity price (EIA), each clearly labelled as a distinct
    measurement from the ACS metrics above it.
 4. **Infrastructure-Relevant Signals** — plain statements about conditions that
    matter for infrastructure planning (population momentum, skilled workforce,
    labor tightness, financing cost, credit availability, construction activity
    accelerating/slowing). Each comes from a fixed rule and cites a figure shown
    on the page.
+
+**Data Center Readiness Score** — computed entirely in the browser from data
+already on the page, no new API or pipeline step. Combines population growth,
+education, unemployment, labor force participation, broadband, building
+permits, wages, electricity price, and housing vacancy, each as this county's
+national percentile, weighted (heaviest: population growth 20%, education
+15%) and summed. A county missing an optional field (permits/wages/electricity
+all have partial coverage by design) has that factor's weight redistributed
+across what's available rather than scored as zero — the score reports a
+completeness percentage so this is never silent. Deliberately excludes
+zoning/regulatory restriction level, which is a separate dataset and stays
+its own clearly labelled figure (shown alongside, not blended in) wherever
+both appear, e.g. the due-diligence report.
 
 **Also integrated into** the Map tab (an *Economic Data* layer group with six
 choropleths), county detail and Jurisdiction pages (an Economy section),
@@ -230,13 +248,16 @@ Economic data is fetched by GitHub Actions, never by the browser. Add these unde
 | Secret | Get one from | Needed? | Used for |
 |---|---|---|---|
 | `FRED_API_KEY` | https://fred.stlouisfed.org/docs/api/api_key.html | **Required** — FRED rejects keyless requests | Federal Reserve series, plus county-level Building Permits (Census data, but reached via FRED's per-county series — see Data Sources) |
-| `CENSUS_API_KEY` | https://api.census.gov/data/key_signup.html | **Required** — see below | ACS, Population Estimates (PEP), and CBP data |
+| `CENSUS_API_KEY` | https://api.census.gov/data/key_signup.html | **Required** — see below | ACS and CBP data |
+| `EIA_API_KEY` | https://www.eia.gov/opendata/register.php | Optional | State-level industrial electricity price |
 
-They are two secrets because they are two separate free registrations at two
-different agencies — the Federal Reserve Bank of St. Louis and the U.S. Census
-Bureau. Neither is interchangeable with the other, and neither can be billed.
-Note that Building Permits is Census *data* but a FRED *request* — it needs
-`FRED_API_KEY`, not `CENSUS_API_KEY`, despite the name.
+They are separate free registrations at three different agencies — the Federal
+Reserve Bank of St. Louis, the U.S. Census Bureau, and the U.S. Energy
+Information Administration. None is interchangeable with another, and none can
+be billed. Note that Building Permits is Census *data* but a FRED *request* —
+it needs `FRED_API_KEY`, not `CENSUS_API_KEY`, despite the name. Unlike FRED
+and Census, EIA is genuinely optional — its module simply does not run
+without a key, and every other source is unaffected.
 
 `CENSUS_API_KEY` used to be genuinely optional — Census allowed roughly
 500 unauthenticated requests/day, comfortably above what this pipeline needs.
@@ -245,7 +266,7 @@ closing that off. Without the key, Census is skipped with a warning and
 existing data is preserved untouched — same graceful-degradation contract as
 every other key in this project, just no longer a path to fresh data.
 
-Neither key is ever sent to the browser, written to a data file, or printed in
+No key is ever sent to the browser, written to a data file, or printed in
 workflow logs.
 
 ### First run
@@ -256,14 +277,21 @@ notice — deliberately distinct from showing a zero. To populate it:
 **Actions → Update Economic Data → Run workflow**
 
 Optional inputs: `force_census` (refresh Census even if recently updated),
-`fred_only` (skip Census this run), `skip_cbp`/`skip_pep` (skip those optional
-modules), `force_permits`/`skip_permits`/`permits_max_counties` (Building
+`fred_only` (skip Census this run), `skip_cbp` (skip that optional
+module), `force_permits`/`skip_permits`/`permits_max_counties` (Building
 Permits has its own 30-day gate and makes ~1 request per county, so a manual
 run defaults to skipping unless forced — `permits_max_counties` bounds a test
-run to a handful of counties instead of the full ~3,000). After that it runs
+run to a handful of counties instead of the full ~3,000),
+`force_eia`/`skip_eia` (EIA electricity price, own 30-day gate, one request
+for all states), `force_bls`/`skip_bls`/`bls_max_counties` (BLS QCEW average
+weekly wage, needs no API key, own 90-day gate, ~1 request per county like
+Building Permits). After that it runs
 daily at 06:20 UTC; Census is only re-fetched when its data is more than 7 days
-old, since ACS publishes annually, and Building Permits only when more than 30
-days old, since BPS publishes annually and costs far more requests per run.
+old, since ACS publishes annually, Building Permits only when more than 30
+days old, since BPS publishes annually and costs far more requests per run,
+EIA only when more than 30 days old, since it publishes monthly, and BLS
+QCEW only when more than 90 days old, since its annual file publishes with
+a 5-6 month lag.
 
 A missing key is a warning, not a failure — that source is skipped and its
 existing data is preserved. The workflow fails only if output validation shows the
@@ -297,7 +325,8 @@ hosting, no npm dependency tree, no build system.
 | Optional key | Service | Cost | Without it |
 |---|---|---|---|
 | `FRED_API_KEY` | Federal Reserve data | Free | Economy tab shows awaiting-data state |
-| `CENSUS_API_KEY` | Census ACS | Free | ACS/PEP/CBP skipped (Census requires a key for all requests as of May 2026) |
+| `CENSUS_API_KEY` | Census ACS | Free | ACS/CBP skipped (Census requires a key for all requests as of May 2026) |
+| `EIA_API_KEY` | EIA electricity price | Free | State electricity price module skipped |
 | `CONGRESS_API_KEY` | Congress.gov | Free | Falls back to rate-limited `DEMO_KEY` |
 | `LEGISCAN_API_KEY` | State bill tracking | Free tier | LegiScan step skipped |
 | `SUPABASE_URL` + `SUPABASE_ANON_KEY` | Optional user accounts | Free tier | Sign-in hidden; everything else works |

@@ -652,16 +652,20 @@ js/economy-view.js   the four Economy tab sections + Leaflet explorer (window.EC
 js/economy-map.js    economic choropleths for the MAIN Map tab       (window.ECONOMY_MAP)
 css/economy.css
 data/update_economic_data.py            the whole pipeline (stdlib only, no pip install)
-data/economy/series_config.json         21 FRED series, 5 categories — presentation truth
-data/economy/census_config.json         ACS variable map + label fragments for verification
+data/economy/series_config.json         23 FRED series, 5 categories — presentation truth
+data/economy/census_config.json         13 ACS metrics + label fragments for verification
 data/economy/fred_data.json             generated
-data/economy/census_county.json         generated — also carries population_estimate (PEP)
-                                         and building_permits (BPS via FRED) per county, see below
-data/economy/census_state.json          generated
+data/economy/census_county.json         generated — also carries building_permits
+                                         (BPS via FRED) per county, see below
+data/economy/census_state.json          generated — also carries electricity_price
+                                         (EIA, industrial sector) per state, see below
 data/economy/economic_metadata.json     generated — provenance, warnings, staleness
 data/economy/census_cbp.json            generated, optional
 .github/workflows/update_economic_data.yml
-tests/test_economic_data.py             316 offline assertions
+tests/test_economic_data.py             offline assertions for the Python pipeline
+tests/test_economy_core.mjs             Node tests for js/economy.js's DOM-free internals —
+                                         readinessScore, percentileRank/median, countySignals,
+                                         quantileBreaks (see Data Center Readiness Score below)
 tests/fixtures/economy/                 SYNTHETIC data for browser tests — never real
 ```
 
@@ -669,29 +673,79 @@ The three JS modules mirror the zoning split (`zoning.js` / `zoning-map.js` /
 `zoning-details.js`): `economy.js` owns data and math, the other two own DOM.
 Load order in index.html is economy.js -> economy-view.js -> economy-map.js.
 
-### Two supplementary per-county fields — read this before touching either
+### Three supplementary fields — read this before touching any of them
 
-`census_county.json` counties carry two fields that are NOT part of the ACS
-`.metrics` shape `metricValue()`/`comparisons()` expect — reading them through
-those functions returns nothing, by design:
+`census_county.json` counties and `census_state.json` states each carry
+fields that are NOT part of the ACS `.metrics` shape `metricValue()`/
+`comparisons()` expect — reading any of them through those functions returns
+nothing, by design:
 
-- `population_estimate` — `{value, year, as_of_label}`. Census Population
-  Estimates Program, a current-year point estimate. **Not the same measurement**
-  as the ACS `population` metric (a 5-year rolling average) and never merged into
-  it — shown as its own labelled row in the profile panel and report, always with
-  the word "estimate" and its vintage attached.
-- `building_permits` — `{value, as_of, change_yoy_pct}`. Census Building Permits
-  Survey, reached via FRED's per-county `BPPRIV<FIPS>` series rather than the
-  Census Data API (Census only distributes county-level BPS as an annual flat
-  file). Genuinely new information vs. the existing national `PERMIT` FRED
-  series — this is the only county-level construction-permit trend on the
-  platform. Coverage is expected to be partial (many small counties never
-  reported to BPS) — its absence on a given county is not a bug.
+- `building_permits` (county) — `{value, as_of, change_yoy_pct}`. Census
+  Building Permits Survey, reached via FRED's per-county `BPPRIV0<FIPS>`
+  series (a 3-digit zero-padded state code + 3-digit county code, NOT the
+  plain 5-digit FIPS — see `_bps_series_id()`) rather than the Census Data API
+  (Census only distributes county-level BPS as an annual flat file).
+  Genuinely new information vs. the existing national `PERMIT` FRED series —
+  this is the only county-level construction-permit trend on the platform.
+  Coverage is expected to be partial (many small counties never reported to
+  BPS) — its absence on a given county is not a bug.
+- `avg_weekly_wage` (county) — `{value, employment, year}`. BLS QCEW average
+  weekly wage across all industries/ownership, filtered to the
+  `agglvl_code=70` county-total row. The only source on this platform needing
+  neither an API key nor registration. Fetched as CSV (`_get_csv_rows()`,
+  `csv.DictReader` keyed by header name), the one exception to every other
+  source's JSON, since QCEW's open-data access has no JSON equivalent.
+- `electricity_price` (state) — `{value, as_of, sector}`. EIA industrial
+  retail electricity price, cents/kWh. State-level only, not county-level —
+  a county's profile panel looks it up via that county's own `state_fips`
+  and labels it "state average, not this specific county" rather than
+  implying county-level precision it does not have.
 
-Both are optional and isolated in the pipeline (a failure of either leaves ACS
-data untouched) and both drive their own `SIGNAL_RULES` entries in `economy.js`
-(`permits_accelerating`, `permits_slowing` read `c.building_permits` directly,
-not through `metricValue()`).
+All three are optional and isolated in the pipeline (a failure leaves ACS
+data untouched). Building Permits also drives its own `SIGNAL_RULES` entries
+in `economy.js` (`permits_accelerating`, `permits_slowing` read
+`c.building_permits` directly, not through `metricValue()`).
+
+A Census Population Estimates Program (PEP) module — a current-year
+`population_estimate` field, merged the same way — was tried and retired.
+A live bounded test showed every vintage year returning a plain HTTP 404 on
+Census's Data API: not an auth problem, but Census having discontinued that
+endpoint for current-year total population (vintage 2022+). See
+AI_CHANGELOG.md for the investigation. If you see `population_estimate`
+referenced in old commits or PRs, it no longer exists — ACS's own
+`population` metric (a 5-year rolling average) is the platform's population
+figure.
+
+### Data Center Readiness Score — computed client-side, not a data field
+`economy.js`'s `readinessScore(countyData, stateData, fips)` is a synthesis,
+not a stored field — nothing in `census_county.json`/`census_state.json`
+carries it, and there is no pipeline change to make one. It combines nine
+already-loaded economic factors, each expressed as this county's national
+percentile (via `percentileRank()`/a factor-specific pool, not raw values),
+weighted, with graceful degradation: a county missing an optional field
+(building permits, BLS wage, EIA price) has that factor excluded and its
+weight redistributed across whatever factors remain, never a fabricated 0.
+See `READINESS_FACTORS` for the weights and `_readinessFactorPools()` for
+how each factor's percentile pool is built — electricity is collected once
+per STATE (52 values), not once per county, so a state with many counties
+cannot skew that one pool.
+
+Deliberately excludes regulatory/zoning restriction level (`map_data.json`,
+a separate dataset with different coverage/confidence) — that stays its own
+labelled figure wherever both appear (see `js/report.js`'s
+"Data Center Readiness Score" section, rendered separately from the
+existing restriction-severity badge), rather than blending two different
+kinds of judgment (economic attractiveness vs. legal risk) into one number.
+
+`tests/test_economy_core.mjs` covers `readinessScore()` directly: a
+symmetric 21-county synthetic pool where the center county sits at exactly
+the 50th percentile on every factor (so each factor's contribution is
+hand-verifiable, not just captured-whatever-it-output), plus the
+missing-factor-redistribution path, the invert-direction comparative check,
+the two null-return paths (unknown fips, zero usable factors), and
+`_resetCache()` invalidation. This closed a pre-existing gap — previously
+`economy.js`'s internals had no formal test coverage at all, only a
+throwaway one-off Node smoke test that was run once and discarded.
 
 ### Data flow
 ```
@@ -727,8 +781,8 @@ U.S. Census Bureau (`api.census.gov`). They are not interchangeable and neither
 can be billed. FRED has always rejected keyless requests. Census used to be
 different — it allowed roughly 500 unauthenticated requests/day, comfortably
 above what this pipeline needs — but **as of May 12, 2026, Census requires a
-key for every Data API request** (ACS, the Population Estimates Program, CBP,
-all of it). `_census_key_param()` still omits the `key=` parameter entirely
+key for every Data API request** (ACS, CBP, all of it). `_census_key_param()`
+still omits the `key=` parameter entirely
 when unset rather than sending it empty (Census treats a blank key as invalid,
 not as "no key") — that behavior predates the policy change and is harmless to
 keep, but there is no longer a code path where omitting the key succeeds.

@@ -164,19 +164,25 @@ regulation, and are never used to infer a policy record.
   publication schedules (daily for Treasury yields, monthly for CPI and payrolls,
   quarterly for GDP).
 - **Output**: `data/economy/fred_data.json`
-- **Series tracked (21)**: configured in `data/economy/series_config.json`, not
+- **Series tracked (23)**: configured in `data/economy/series_config.json`, not
   hardcoded. Rates & Credit (`DFF`, `DGS2`, `DGS10`, `T10Y2Y`, `MORTGAGE30US`,
   `NFCI`, `BUSLOANS`, `CREACBM027NBOG`), Inflation & Growth (`CPIAUCSL`, `PCEPI`,
-  `GDPC1`, `INDPRO`), Labor & Demand (`UNRATE`, `PAYEMS`, `ICSA`, `RSAFS`),
-  Housing & Construction (`HOUST`, `PERMIT`), Energy & Power Costs
-  (`APU000072610`, `PCU2211102211104`, `DHHNGSP`). Power is typically a data
-  center's largest recurring operating cost and was previously untracked; the
-  three energy series give a national retail electricity price, a producer-side
-  utility-generation cost index, and the Henry Hub natural gas spot price (the
-  dominant marginal fuel for US electricity generation, so a leading indicator
-  rather than a lagging one). None is promoted to the KPI strip — the 7-KPI
-  National Economic Pulse count is a fixed design decision — but the category's
-  chart is shown by default like every other category.
+  `GDPC1`, `INDPRO`), Labor & Demand (`UNRATE`, `PAYEMS`, `ICSA`, `JTSJOL`,
+  `RSAFS`), Housing & Construction (`HOUST`, `PERMIT`, `CSUSHPINSA`), Energy &
+  Power Costs (`APU000072610`, `PCU2211102211104`, `DHHNGSP`). Power is
+  typically a data center's largest recurring operating cost and was
+  previously untracked; the three energy series give a national retail
+  electricity price, a producer-side utility-generation cost index, and the
+  Henry Hub natural gas spot price (the dominant marginal fuel for US
+  electricity generation, so a leading indicator rather than a lagging one).
+  `JTSJOL` (JOLTS job openings) and `CSUSHPINSA` (Case-Shiller national home
+  price index) were added later: UNRATE/ICSA measure labor SUPPLY while
+  JTSJOL measures labor DEMAND, and HOUST/PERMIT measure construction
+  ACTIVITY while CSUSHPINSA measures home price LEVELS — each fills a gap the
+  existing series in its category could not answer. None of the 23 is
+  promoted to the KPI strip — the 7-KPI National Economic Pulse count is a
+  fixed design decision — but each category's chart is shown by default like
+  every other category.
 
 **Attribution note:** FRED *hosts* series produced by other agencies — BLS
 (`CPIAUCSL`, `UNRATE`, `PAYEMS`), BEA (`GDPC1`, `PCEPI`), Census (`HOUST`,
@@ -196,7 +202,7 @@ run and never publishes an empty chart.
 - **Key**: `CENSUS_API_KEY` repository secret, server-side only — **required**.
   Census allowed roughly 500 unauthenticated requests/day until May 12, 2026,
   when it began requiring a key for every Data API request. Without the key,
-  Census (ACS, PEP, CBP) is skipped with a warning and existing data is
+  Census (ACS, CBP) is skipped with a warning and existing data is
   preserved — the pipeline never crashes, it just does not refresh. Note that
   an *empty* `key=` is not the same as no key — Census rejects a blank one, so
   `_census_key_param()` omits the parameter entirely rather than sending it empty.
@@ -206,10 +212,16 @@ run and never publishes an empty chart.
 - **Output**: `data/economy/census_county.json`, `data/economy/census_state.json`
 - **Join key**: 5-character zero-padded county FIPS (state 2 + county 3), matching
   every other dataset on this platform.
-- **Metrics**: population and growth (`B01003`), median age (`B01002`), household
-  and per-capita income (`B19013`, `B19301`), labor force (`B23025`), educational
-  attainment (`B15003`), home value and rent (`B25077`, `B25064`), broadband
-  subscription (`B28002`).
+- **Metrics**: population and growth (`B01003`), total households (`B11001`),
+  median age (`B01002`), household and per-capita income (`B19013`, `B19301`),
+  labor force participation and unemployment (`B23025`), educational attainment
+  (`B15003`), home value and rent (`B25077`, `B25064`), homeownership (`B25003`),
+  housing vacancy (`B25002`), broadband subscription (`B28002`), poverty rate
+  (`B17001`), and mean commute time (`B08013`/`B08012`). Every metric is
+  config-driven from `data/economy/census_config.json` — adding one is a config
+  change plus a verified variable ID, not a code change (see
+  `derive_metric()` and its `direct`/`ratio`/`average`/`sum_over_denominator`
+  derive kinds).
 
 **Vintage comparability:** ACS dollar values are expressed in the vintage's own
 inflation-adjusted dollars and are **not** comparable across vintages. The UI
@@ -240,28 +252,29 @@ throughout the UI.
 - A CBP failure cannot break the Economy page — it is fetched separately and
   wrapped so an exception is logged and ignored.
 
-### U.S. Census Bureau — Population Estimates Program (PEP, optional module)
-- **Endpoint**: `https://api.census.gov/data/{year}/pep/population`
-- **Output**: merged into each county's own record in `data/economy/census_county.json`
-  as `population_estimate` — **not** a separate file, and **not** the same field as
-  the ACS `population` metric. ACS `population` is a 5-year rolling survey average;
-  `population_estimate` is a current-year point estimate, published on its own
-  annual cadence. The UI never mixes the two into one number.
-- **Vintage selection**: PEP's response for a given year is a time series — every
-  published `DATE_CODE` comes back in one call, including the decennial Census
-  baseline row, not just the latest annual estimate. The pipeline probes a single
-  geography first, reads the real `DATE_DESC` text Census returns (e.g. "7/1/2025
-  population estimate"), and picks the highest-year row whose description actually
-  says "population estimate" — never a hardcoded `DATE_CODE` number, and never the
-  Census baseline row, which is a fixed point, not a current estimate.
-- **Sanity floor**: fewer than 2,000 counties returned is treated as a broken
-  response and discarded rather than published as a partial dataset.
-- A PEP failure cannot break the ACS county data it supplements — isolated the
-  same way CBP is.
+### U.S. Census Bureau — Population Estimates Program (PEP) — RETIRED
+A module merging a current-year `population_estimate` field (distinct from the
+ACS `population` 5-year rolling average) into each county was built and
+shipped, then retired. A live bounded test showed every vintage year
+(2023-2026) returning a plain HTTP 404 on `/data/{year}/pep/population` —
+sending the required API key made no difference, ruling out an auth problem.
+Research confirmed why: Census discontinued this endpoint from the Data API
+for current-year total population starting with vintage 2022 — even
+`tidycensus` (the standard R client for this data) had to switch to
+downloading Census's flat CSV files instead of the API for exactly this
+reason, for exactly these years. Rebuilding it properly would mean either a
+new CSV-parsing ingestion path or a FIPS-to-FRED-series lookup (FRED does
+have per-county population series, but the IDs are truncated county-name
+abbreviations, not derivable from FIPS the way `BPPRIV<FIPS>` is). Retired
+instead: ACS's own `population` metric (a 5-year rolling average, already on
+every county) remains the platform's population figure. See
+`AI_CHANGELOG.md` for the full investigation.
 
 ### Building Permits Survey (BPS, optional module, via FRED)
-- **Endpoint**: FRED's per-county series, `BPPRIV<5-digit FIPS>`
-  (e.g. `BPPRIV048089` for Colorado County, TX) — **not** the Census Data API.
+- **Endpoint**: FRED's per-county series, `BPPRIV` + a 3-digit zero-padded
+  state code + the 3-digit county code (6 digits total — one more leading
+  zero than the plain 5-digit FIPS)
+  (e.g. `BPPRIV048089` for Colorado County, TX, FIPS 48089) — **not** the Census Data API.
   Census distributes county-level BPS only as an annual flat file, not a JSON API;
   FRED already hosts the same data one series per county, so this stays on the
   same HTTP+JSON code path as every other FRED series in this pipeline instead of
@@ -283,7 +296,104 @@ throughout the UI.
   total failure — wrong series ID pattern, rejected key — without demanding
   near-universal coverage the source itself does not have.
 - A Building Permits failure cannot break the ACS county data it supplements —
-  isolated the same way CBP and PEP are.
+  isolated the same way CBP is.
+
+### U.S. Energy Information Administration — Electricity Retail Sales (optional module)
+- **Publisher**: U.S. Energy Information Administration (EIA)
+- **Endpoint**: `https://api.eia.gov/v2/electricity/retail-sales/data/`
+- **Key**: `EIA_API_KEY` repository secret, server-side only — **optional**.
+  Free registration at https://www.eia.gov/opendata/register.php. Missing key
+  skips the module with a warning; every other source is unaffected.
+- **Output**: merged into each state's own record in `data/economy/census_state.json`
+  as `electricity_price` — `{value, as_of, sector}`, cents per kWh, industrial
+  sector (`sectorid=IND`). Industrial rate is the standard site-selection proxy
+  for a large power buyer such as a data center — a real utility contract rate
+  varies by facility and is not covered by this state average. Shown on a
+  county's own profile as "state average, not this specific county" to keep
+  that distinction visible rather than implied.
+- **One request for all states**, not one per state: EIA's v2 API returns every
+  state as its own row per period when no `stateid` facet is set, so a single
+  page (sorted newest-period-first, `length=5000`) covers the whole country —
+  unlike Building Permits, which genuinely has no bulk endpoint on FRED.
+- **Own cadence**: EIA publishes monthly, not daily or annually, so this has
+  its own 30-day freshness gate (`--eia-max-age-days`,
+  `eia_last_successful_update` in the metadata) — a coincidentally identical
+  interval to Building Permits' gate, but a fully independent timestamp field
+  (PEP's retirement was partly caused by a module sharing a sibling's gate
+  instead of having its own).
+- **Sanity floor**: fewer than 40 states/territories returned is treated as a
+  broken response and discarded rather than published as a partial dataset.
+- An EIA failure cannot break the ACS state data it supplements — isolated the
+  same way CBP and Building Permits are.
+
+### U.S. Bureau of Labor Statistics — Quarterly Census of Employment and Wages (optional module)
+- **Publisher**: U.S. Bureau of Labor Statistics (BLS)
+- **Endpoint**: `https://data.bls.gov/cew/data/api/{year}/a/area/{area_fips}.csv`
+  — QCEW's open-data area-slice files, one per county per year, annual
+  average (`a` for the quarter parameter). **No API key or registration
+  required at all** — the only source on this platform, alongside a handful
+  of unauthenticated government pages, that needs neither a key nor payment.
+- **Output**: merged into each county's own record as `avg_weekly_wage` —
+  `{value, employment, year}`, filtered to the `agglvl_code=70` row (county
+  total across all industries and ownership sectors — confirmed against BLS's
+  own aggregation-level code documentation, not guessed). A direct labor-cost
+  figure for the local workforce, genuinely distinct from ACS's
+  household-income metrics (household income aggregates ALL household income
+  sources; this is per-worker pay from covered employment specifically).
+- **CSV, not JSON**: unlike every other source this pipeline reads, QCEW's
+  open-data access has no JSON equivalent. Parsed with Python's standard
+  library `csv` module (`_get_csv_rows()`), keyed by the file's own header
+  row via `csv.DictReader` rather than hardcoded column positions — resilient
+  to BLS reordering columns the same way this pipeline already tolerates
+  payload shape drift elsewhere. The exact wage-column name was not confirmed
+  with full certainty from documentation alone (BLS's annual and quarterly
+  layouts use slightly different naming conventions), so the pipeline tries
+  a short list of candidate column names in order and uses whichever is
+  actually present, the same defensive pattern `broadband_candidates` uses in
+  `census_config.json` for the same kind of uncertainty.
+- **Vintage discovery**: probes a real, populous county (Los Angeles County,
+  CA) backwards from last year to find the newest annual file that responds
+  AT COUNTY LEVEL, rather than hardcoding a year or trusting a national
+  aggregate as a proxy. A live run found national and county-level data can
+  disagree: the national total area (`US000`) responded for a vintage where
+  every single sampled county still 404'd, meaning national/state QCEW
+  figures can be published before county-level breakdowns for the same year
+  are finalized — probing the actual granularity this module reads is what
+  makes "vintage detected" trustworthy.
+- **One request PER COUNTY** (~3,000+), the same shape as Building Permits,
+  since QCEW's open-data access has no bulk endpoint either — stride-sampled
+  and sanity-floored (500 counties) the same way. Own 90-day freshness gate
+  (`--bls-max-age-days`, `bls_last_successful_update`), the longest of any
+  module here, since QCEW's annual file only changes once a year and
+  publishes with a 5-6 month lag.
+- A BLS failure cannot break the ACS county data it supplements — isolated
+  the same way CBP, Building Permits, and EIA are.
+
+### Data Center Readiness Score — derived, not a data source
+- Not a new data source: a client-side composite score (`js/economy.js`,
+  `readinessScore()`) computed in the browser from nine factors already
+  published by the sources above — population growth, unemployment,
+  bachelor's degree attainment, labor force participation, broadband
+  subscription, housing vacancy, building permits YoY change, average weekly
+  wage, and state electricity price. No new HTTP request, no new pipeline
+  output field, nothing to fetch, cache, or go stale independently of its
+  inputs.
+- Each factor is expressed as this county's percentile rank against every
+  other county nationally (state-level for electricity price), not a raw
+  value, so factors with very different units and scales combine on the same
+  0-100 footing. "Lower is better" factors (unemployment, housing vacancy,
+  wage, electricity price — all cost/risk signals) are inverted before
+  weighting.
+- Missing factors are excluded rather than treated as zero, and the
+  remaining weights are redistributed proportionally — a county missing
+  BLS wage data (a smaller sample than population/ACS coverage) is still
+  scored on the other eight factors, with a reported completeness
+  percentage rather than a silently penalized score.
+- Deliberately excludes the regulatory/zoning restriction level
+  (`map_data.json`): that dataset has different coverage and confidence
+  characteristics and answers a different question (legal risk, not
+  economic attractiveness). The two are shown as separate figures
+  everywhere the score appears, never blended into one hidden number.
 
 ### Pipeline and safety
 - **Script**: `data/update_economic_data.py` (Python standard library only)
@@ -332,6 +442,7 @@ account.** Re-run the audit with:
 | Google Fonts (Inter) | Typography | Free (SIL OFL) |
 | jsDelivr CDN | Supabase JS client delivery | Free public CDN |
 | USGS `basemap.nationalmap.gov` | Topo basemap option | Free US government service |
+| BLS QCEW open-data CSV (`data.bls.gov/cew`) | County average weekly wage | Free US government service, no key or registration |
 | GitHub Pages + Actions | Hosting and all scheduled jobs | Free with **unlimited** Actions minutes on public repositories |
 
 No `package.json` and no build step, so there is no npm dependency tree to
@@ -344,7 +455,8 @@ license-audit. Python needs only `requests`, `beautifulsoup4` and
 | Key | Service | Cost | If absent |
 |---|---|---|---|
 | `FRED_API_KEY` | Federal Reserve Economic Data | Free, unlimited | FRED skipped; existing data preserved. FRED rejects keyless requests. |
-| `CENSUS_API_KEY` | Census ACS / PEP / CBP | Free, unlimited | Census skipped; existing data preserved. Census required no key until May 12, 2026; it now requires one for every request, same as FRED. |
+| `CENSUS_API_KEY` | Census ACS / CBP | Free, unlimited | Census skipped; existing data preserved. Census required no key until May 12, 2026; it now requires one for every request, same as FRED. |
+| `EIA_API_KEY` | EIA electricity retail price | Free, registration required | EIA module skipped; existing data preserved. Genuinely optional, unlike FRED/Census — the rest of the Economy tab is unaffected. |
 | `CONGRESS_API_KEY` | Congress.gov | Free via api.data.gov | Falls back to `DEMO_KEY` — works, just rate-limited |
 | `LEGISCAN_API_KEY` | LegiScan state bills | Free tier (30k queries/month) | Logged as `[skip]`, monitor continues |
 | `SUPABASE_URL` / `SUPABASE_ANON_KEY` | Optional accounts | Free tier | Auth button hidden; site fully functional signed-out |

@@ -5452,17 +5452,18 @@ function _renderEconomySectionForCounty(fips) {
       }).join("");
 
       const hist = rec.history || {};
-      const sparks = [
-        ["population", "Population"],
-        ["median_household_income", "Median income"],
-        ["unemployment_rate", "Unemployment"],
-      ].map(([k, label]) => `
+      // Derived from HISTORY_METRICS, not a hand-maintained list — see
+      // js/economy-view.js's identical fix for why (households silently
+      // never appeared here despite the pipeline collecting its history).
+      const sparks = E.EXPLORER_METRICS
+        .filter(m => E.HISTORY_METRICS.has(m) && hist[m] && hist[m].length)
+        .map(m => `
         <div class="econ-spark-row">
-          <span class="econ-spark-label">${escHtml(label)}</span>
-          ${E.sparklineSvg(hist[k], { label })}
+          <span class="econ-spark-label">${escHtml(E.METRICS[m].label)}</span>
+          ${E.sparklineSvg(hist[m], { label: E.METRICS[m].label })}
         </div>`).join("");
 
-      const signals = E.countySignals(cData, fips);
+      const signals = E.countySignals(cData, fips, sData);
       const vintage = cData.acs_vintage;
 
       host.innerHTML = `

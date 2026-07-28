@@ -490,7 +490,8 @@ if (window.WATCHLIST && typeof window.WATCHLIST.onChange === "function") {
    PERFORMANCE: reads only fred_data.json and census_state.json. It must NEVER
    fetch data/economy/census_county.json — that file carries per-county history
    for ~3,140 counties and would undo the critical-path work documented in
-   AI_CONTEXT.md. tests/test_economic_frontend.mjs asserts this. */
+   AI_CONTEXT.md. tests/e2e_smoke.mjs's "Economic Intelligence" section
+   asserts this (checks performance.getEntriesByType('resource') on Home). */
 function _renderHomeEconomicPulse(view) {
   const strip = view.querySelector("#home-econ-strip");
   const note  = view.querySelector("#home-econ-note");

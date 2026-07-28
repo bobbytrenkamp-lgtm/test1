@@ -137,6 +137,9 @@ window.JURISDICTION = (function () {
                   data-juris-watch="${esc(fips)}" type="button">
             ${watched ? "&#9733; Watching" : "&#9734; Watch"}
           </button>
+          <button class="juris-btn" data-juris-compare="${esc(fips)}" type="button">
+            Add to compare
+          </button>
           <a class="juris-btn" href="#${esc(fips)}">View on map</a>
         </div>
       </div>`;
@@ -490,17 +493,18 @@ window.JURISDICTION = (function () {
       }).join("");
 
       const hist = rec.history || {};
-      const sparks = [
-        ["population", "Population"],
-        ["median_household_income", "Median income"],
-        ["unemployment_rate", "Unemployment"],
-      ].map(([k, label]) => `
+      // Derived from HISTORY_METRICS, not a hand-maintained list — see
+      // js/economy-view.js's identical fix for why (households silently
+      // never appeared here despite the pipeline collecting its history).
+      const sparks = E.EXPLORER_METRICS
+        .filter(m => E.HISTORY_METRICS.has(m) && hist[m] && hist[m].length)
+        .map(m => `
         <div class="econ-spark-row">
-          <span class="econ-spark-label">${esc(label)}</span>
-          ${E.sparklineSvg(hist[k], { label })}
+          <span class="econ-spark-label">${esc(E.METRICS[m].label)}</span>
+          ${E.sparklineSvg(hist[m], { label: E.METRICS[m].label })}
         </div>`).join("");
 
-      const signals = E.countySignals(cData, fips);
+      const signals = E.countySignals(cData, fips, sData);
 
       target.innerHTML = `
         <section class="juris-card">
@@ -544,6 +548,16 @@ window.JURISDICTION = (function () {
         window.WATCHLIST.toggle(fips);
         // Re-render so the notes card appears/disappears with watch state.
         render(fips);
+      });
+    });
+
+    /* Reuses the map's existing comparison tool (js/compare.js) — same
+       navigateAndAddToCompare() helper as js/economy-view.js's profile panel. */
+    view.querySelectorAll("[data-juris-compare]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (typeof navigateAndAddToCompare === "function") {
+          navigateAndAddToCompare(btn.dataset.jurisCompare);
+        }
       });
     });
 

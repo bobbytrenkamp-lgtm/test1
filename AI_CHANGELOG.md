@@ -2,6 +2,667 @@
 
 ---
 
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Visual/UX polish: a discoverability gap in the Economy profile table
+
+## The profile table's horizontal scroll had no visual affordance
+Screenshotting this session's own new UI (the readiness score panel) at
+390px surfaced something pre-existing, not something this session
+introduced: `.econ-profile-table` already scrolls correctly inside its own
+container rather than the page (confirmed live: `scrollWidth 462 >
+clientWidth 314` on mobile, page `scrollWidth` not affected) -- but nothing
+told a user that two of its five columns (state median, US median) exist
+off-screen to the right. It looked finished, not scrollable.
+
+Assumed at first this was mobile-only and gated a hint behind
+`max-width: 480px` -- checking desktop before committing showed the same
+table is ALSO clipped at 1280px (`scrollWidth 466 > clientWidth 308`),
+because the profile panel is a fixed ~340px sidebar column at every screen
+size, not a mobile-narrow thing. Removed the media-query gate and made the
+"Scroll table for state & US medians →" hint always visible instead of
+shipping something that fixed the symptom in the one place a screenshot
+happened to be taken.
+
+Deliberately did NOT touch the underlying scroll mechanism or table
+layout -- it already works and already has a test (`no horizontal
+overflow` in `tests/e2e_smoke.mjs`'s Mobile nav section) confirming the
+PAGE never scrolls sideways. This is additive: a small always-visible text
+hint, not a redesign of a component that was not broken.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: FRED integration audit: 2 new series added, needs a live run to confirm
+
+## Audited the 21-series list for coverage gaps
+Reviewed `data/economy/series_config.json`'s existing coverage against the
+platform's own stated test ("how does this affect data center
+attractiveness?"). Two genuine gaps, not just more of what is already
+there: nothing measured labor DEMAND (only supply: `UNRATE`, `ICSA`,
+`PAYEMS`), and nothing measured home price LEVELS (only construction
+ACTIVITY: `HOUST`, `PERMIT`). Added `JTSJOL` (JOLTS total job openings) and
+`CSUSHPINSA` (S&P/Case-Shiller US National Home Price Index) to fill those
+two specifically, rather than padding the list with tangentially-relevant
+series (consumer sentiment, oil prices) that were also considered and
+deliberately left out.
+
+**This addition carries more uncertainty than usual and says so plainly.**
+This session's outbound network access was blocked for the FEMA/NOAA
+research earlier today (see the other entry from today), so these two
+series IDs could not be live-verified before committing, unlike this
+project's normal practice. The risk is lower than it would be for, say, a
+Census ACS variable: a FRED series ID is a permanent unique identifier, not
+a fuzzy label match, so a wrong ID fails cleanly (the pipeline's existing
+`fred_series_metadata()` validates every series before fetching
+observations and records real failures to `fred_skipped` rather than
+silently publishing anything) — there is no way for this to reuse an
+existing bug pattern silently mislabeling a different series. But "the ID
+exists" and "the ID is the one I intended" are still two different claims,
+and only the first is checked automatically. The next scheduled pipeline
+run's `fred_data.json` and `economic_metadata.json` (`fred_skipped`) will
+show definitively whether both resolved to real, working series — check
+that before treating this as fully confirmed the way the rest of this
+platform's sources are.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Data sources panel: the existing one had never been updated for the Economic Intelligence pipeline
+
+## The About page's Data Sources table predated the entire Economy tab
+The static `sources-table` in `js/analytics.js`'s About page had 8
+hand-written rows, none of them Census ACS, FRED, EIA electricity price, or
+BLS QCEW -- despite the Economy tab being one of the platform's largest
+features. Its one EIA row described a capability ("data center electricity
+demand, power infrastructure") that was never actually built; the real EIA
+integration (state industrial electricity retail price) went live without
+this table ever being updated to reflect it, so a reader consulting the
+platform's own "what feeds this" page would not learn the Economy tab's
+real sources exist at all.
+
+Fixed the static table (removed the inaccurate row, added FRED, ACS,
+Building Permits, EIA, and BLS QCEW with real descriptions/cadences), and
+added a second, LIVE panel below it (`renderEconomicSourcesPanel()`) that
+reads `economic_metadata.json` through the same cached `window.ECONOMY.load()`
+every other economy surface uses -- so it costs nothing extra -- and shows
+each of the four pipeline sources' actual availability, last successful
+update, and coverage count, plus the `sources` array's own
+publisher/URL/attribution text the pipeline already generates. This is
+deliberately live rather than a second hand-written table: "not yet
+available" here means the module genuinely has not produced data, not that
+someone forgot to update a description. Browser-verified: Census ACS
+correctly shows available (3,222 counties) while Permits/EIA/BLS correctly
+show "not yet available" (matching their real current pipeline state).
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Four new signal rules -- labor participation, housing, wage, electricity cost
+
+## Signals never covered the metrics added since the rule table was first written
+`SIGNAL_RULES` (js/economy.js) had 9 rules, none referencing
+`labor_force_participation_rate` or `housing_vacancy_rate` (added in the
+Phase 1 ACS expansion), `avg_weekly_wage` (BLS QCEW, Phase 2), or
+`electricity_price` (EIA, Phase 1) -- four data points this platform already
+collects and displays elsewhere, but that never fed the rule-based insight
+engine. Electricity price in particular is the metric most directly tied to
+this project's own stated test ("how does this affect the attractiveness of
+developing and operating a data center here?") since it is typically a data
+center's largest recurring operating cost line item, yet it had no signal
+at all.
+
+Added: `available_workforce` / `thin_workforce` (labor force participation
+vs. the national county median), `housing_availability` (vacancy rate, for
+staff relocation), `labor_cost_below_median` / `labor_cost_above_median`
+(BLS wage), and `electricity_cost_below_median` /
+`electricity_cost_above_median` (EIA state price). Extended
+`nationalMedians()` with the four new median pools (electricity pooled at
+the state level, same reasoning as `_readinessFactorPools()`'s electricity
+pool) rather than adding a second parallel pool-builder. `countySignals()`
+gained an optional third `stateData` parameter (backward compatible --
+existing 2-argument callers still work, they just cannot fire the
+electricity signals) and all 5 real call sites (economy-view.js x2,
+jurisdiction.js, map.js, report.js) were updated to pass it. 7 new tests in
+`tests/test_economy_core.mjs` (42 total now), plus a caught-in-the-writing
+test bug: an earlier test in the same file had already warmed
+`nationalMedians()`'s cache with a tiny dataset lacking wage/electricity
+data, silently poisoning it to `null` for every later test in the file
+until `_resetCache()` was added -- a live demonstration of exactly the
+kind of stale-cache bug this session already fixed once in the pipeline's
+own metadata handling.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Historical timelines: households' history was silently invisible in three places
+
+## The same hand-maintained sparkline list was duplicated (and stale) three times
+Auditing the "historical timelines" item found `HISTORY_METRICS` in
+`js/economy.js` already lists four metrics (`population`, `households`,
+`median_household_income`, `unemployment_rate`) and `households` history
+data has genuinely existed in `census_county.json` since the Phase 1 ACS
+expansion -- but the three places that render "Trends" sparklines
+(`js/economy-view.js`'s Economy profile panel, `js/jurisdiction.js`'s
+Jurisdiction page, and `js/map.js`'s county detail panel) each hardcoded
+their own 3-item `[key, label]` list that predates `households` being
+added, so its timeline never appeared anywhere despite the data existing.
+
+Replaced all three hardcoded lists with a derivation from
+`HISTORY_METRICS`/`EXPLORER_METRICS`/`METRICS` (filtered to metrics that
+actually have non-empty history data for the record being shown), so a
+future metric marked `history: true` shows up in all three places
+automatically instead of needing the same manual edit three times.
+Browser-verified: "Total households" now renders correctly in the
+Jurisdiction page and the Map county detail panel (the Economy tab's own
+fixture-driven test still correctly omits it, since that synthetic fixture
+was never given household history data -- exactly the intended behavior of
+only showing timelines that truly have data).
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: County comparison tool: found and fixed a dead button, added a second entry point
+
+## The Economy tab's "Add to compare" button never worked
+Auditing the platform for the "county comparison tool expansion" item found
+that the comparison tool itself was already full-featured (radar charts,
+CSV export, a printable report -- `js/compare.js`) but the Economy tab's
+county profile panel could not actually reach it: its click handler called
+`addCountyToCompare()` or `window.COMPARE.addCounty`, neither of which
+exists anywhere in the codebase. The button always silently did nothing.
+The real API is the classic-script global `addToCompare(fips)`, already
+used correctly the same way by `js/home.js` and `js/map.js`.
+
+Fixed the wiring, and while doing so noticed the Jurisdiction Intelligence
+Page had a Watch button but no comparison entry point at all -- every other
+detail surface had one. Added a matching "Add to compare" button there.
+Both now navigate to the Map tab, wait for it to finish initializing, open
+the compare panel if it is not already open, and add the county --
+mirroring the existing "Compare watchlist" bulk action in home.js.
+Extracted the shared navigate/wait/open/add sequence into
+`compare.js`'s `navigateAndAddToCompare(fips)` rather than letting it get
+duplicated a third time. Browser-verified both entry points: the compare
+panel opens with the selected county's real data rendered inside it.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Formal test coverage for economy.js; NOAA/FEMA/EPA/FAA phase blocked on network
+
+## Phase 5 (NOAA/FEMA/EPA/FAA/DOT) research: blocked, not skipped
+Attempted to research the next preferred data source for county-level
+natural hazard / environmental risk (FEMA's National Risk Index was the
+leading candidate -- free, public domain, county-level, no API key, current
+version v1.20, confirmed via web search). Could not verify the exact
+download mechanism or field shape: this session's outbound network policy
+is currently denying essentially all external fetches from this sandbox,
+including sites with no plausible reason to be blocked (`example.com`,
+Wikipedia both returned 403 from the egress proxy). This is a policy
+denial, not a transient failure (confirmed via the proxy status endpoint),
+and the project's own established rule from the Phase 3 (FCC Broadband)
+research still applies: do not ship a collector against an unverified
+endpoint contract. Deferred rather than guessed. Worth retrying once
+network access to fema.gov (or an equivalent verifiable source) is
+confirmed available from either this environment or the GitHub Actions
+runner directly.
+
+## Closed a real test-coverage gap: js/economy.js had no unit tests
+`economy.js` had grown a nine-factor weighted scoring function
+(`readinessScore`), percentile/median statistics, and a rule-based signal
+engine with zero formal test coverage -- only a one-off Node smoke test
+that was run once during Phase 4 development and discarded. Added
+`tests/test_economy_core.mjs` (35 assertions, wired into `run_all.sh`),
+requiring the real module source the same way `test_frontend_core.mjs`
+already does for `constants.js`/`router.js`.
+
+The readiness-score tests use a deliberately symmetric synthetic pool (21
+counties, odd length, mirrored values) so the center county lands on
+exactly the 50th percentile on every factor by construction -- letting the
+test assert an exact expected score (50/100, 100% completeness) rather than
+just re-capturing whatever the code happens to output. Also covers: the
+missing-factor-redistribution path (excluding two 10-weight factors that
+were themselves worth exactly 50 must not move the average, only the
+completeness figure -- a regression that silently scored missing data as 0
+would have visibly failed this), both null-return paths (unknown fips, zero
+usable factors), invert-direction correctness (unemployment scores higher
+when it is numerically lower), and that `_resetCache()` actually
+invalidates the percentile-pool cache across datasets.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: A metadata-reporting bug found while verifying the population-label fix against a live run
+
+## `unverified_metrics` could resurrect an already-fixed warning
+While pushing this session's batch (the BLS warning-message fix and the
+Data Center Readiness Score), the scheduled workflow had independently run
+and pushed a fresh data refresh. Its `economic_metadata.json` still showed
+`population` as unverified with the OLD wanted fragment (`'total
+population'`) -- even though the config fix (`expect_label` -> `["total"]`)
+had already been live for two commits, and the actual collected population
+value was correct and non-null. The real data was fine; only the
+diagnostic metadata was lying.
+
+Root cause: `write_metadata()` merged this run's verification result with
+`var_problems or prior.unverified_metrics`. `var_problems` defaults to `{}`
+both when Census verification ran this cycle and found nothing wrong, AND
+when Census was skipped entirely because it was still within its freshness
+window -- both are "falsy", so `{} or prior_stuff` always fell through to
+the prior run's stored status. A genuinely clean re-verification could
+never clear a stale warning; it could only ever repeat whatever the last
+run that actually executed verify_variables() had said, however old.
+
+Fixed by making the "did verification run this cycle" distinction
+explicit: `var_problems` now defaults to `None` (verification not
+attempted) rather than `{}`, and the metadata merge checks `is not None`
+instead of truthiness. A real empty-dict result (verified, zero problems)
+now correctly clears any stale prior warning; a `None` (skipped, still
+fresh) still correctly preserves the last known status. Added
+`test_unverified_metrics_cleared_by_a_successful_reverification` covering
+both branches.
+
+This was a diagnostics-only bug -- the actual ACS data being published was
+never affected -- but it's exactly the kind of self-contradicting signal
+that caused the BLS near-miss earlier this session (a warning that sounds
+like failure when the underlying system is actually healthy). Worth
+catching on the same principle: trust the data, but don't let stale
+metadata argue with it.
+
+---
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: BLS was never broken -- a misleading warning message was; plus Phase 4 (Data Center Readiness Score)
+
+## Correction: BLS QCEW works fine, a log message was lying
+The previous entry left BLS QCEW's per-county access as an open question,
+with a 300-county live test queued to determine whether a 30-county 100%
+failure was bad luck or a real problem. That test came back with **299 of
+300 counties returning real data** -- a 99.7% hit rate, essentially perfect
+QCEW coverage. Re-reading the EARLIER 30-county result closely (not just its
+prose summary) found the same pattern was already there and had been
+misread: `collect_bls_wages()`'s warning message unconditionally claimed
+"every checked county returned a plain 404" whenever there were no *non-404*
+errors to report -- which is also exactly what happens when every county
+*succeeds*, since a success produces no error of any kind. The message
+never distinguished "0 successes, all 404" from "many/all successes, just
+fewer than the 500-county floor requires" (the ordinary, expected outcome
+of any bounded test run smaller than 500). Both the 30-county and
+(re-examined) 300-county results were the latter case the whole time.
+
+This was close to causing a real mistake: the plan on the table was to
+retire a fully working, near-key-free, near-universal-coverage data source
+because its own diagnostic output said something false. Fixed the message
+to report the actual hit rate and explicitly say "a normal hit rate at too
+small a sample" when most/all counties succeed, reserving the "every county
+404'd" language for when that is actually true (`len(out) == 0`). Added a
+regression test asserting the old false claim cannot appear when the hit
+rate is high. The earlier `discover_bls_vintage()` fix (probing a real
+county instead of the national total `US000`) is still a genuine
+improvement and was kept -- it just was not the fix for this particular
+symptom, since the symptom was never real.
+
+## Phase 4: Data Center Readiness Score
+A single 0-100 synthesis of the economic factors already collected,
+computed entirely client-side in `js/economy.js` (`readinessScore()`) --
+no new data source, no pipeline change. Each factor is expressed as the
+county's NATIONAL PERCENTILE on that measure (a raw wage or price means
+nothing on its own; a percentile does), weighted, and combined:
+
+population growth 5yr (20%), bachelor's degree or higher (15%),
+unemployment rate (10%, inverted), labor force participation (10%),
+broadband subscription (10%), building permits YoY (10%), average weekly
+wage (10%, inverted), state electricity price (10%, inverted), housing
+vacancy rate (5%, inverted).
+
+Deliberately named "economic readiness", not just "readiness": excludes
+zoning/regulatory restriction level, which lives in a separate dataset
+(`map_data.json`) with different coverage and confidence characteristics
+and stays its own clearly labelled figure (the report already shows it
+prominently) rather than being blended into one number that would hide
+which kind of judgment -- economic attractiveness vs. legal risk -- is
+driving it.
+
+Every factor degrades gracefully: a county missing an optional field
+(building permits, BLS wage, and EIA electricity price all have partial
+coverage by design) has that factor excluded and its weight redistributed
+proportionally across whatever factors ARE available -- the score never
+substitutes a fabricated 0 for missing data, and reports a `completeness`
+percentage so a reader can see how much of the full weighting had real data
+behind it. Surfaced in both the Economy tab's county profile panel
+(`js/economy-view.js`) and the due-diligence report (`js/report.js`), with
+a "what's driving this score" breakdown showing every factor's own
+percentile and weight.
+
+## Phase 3: FCC Broadband Data -- researched, deferred
+Explicitly on the preferred-source list, but the official BDC public data
+API requires a full account registration plus manually-generated API
+token (heavier than any other source's simple key signup), and repeated
+research could not confirm a lightweight, county-level summary endpoint
+with enough confidence to build against -- the alternative (raw per-location
+availability files) is tens of millions of rows nationally, well beyond
+this pipeline's stdlib-only, CI-minute-conscious design. Rather than guess
+at an unconfirmed endpoint a third time in one session, this was deferred
+rather than attempted. Nothing was built or shipped for this phase.
+
+## Testing
+economy.js's `readinessScore()` has no existing JS unit-test harness to
+extend (no `tests/*.mjs` file currently covers economy.js's internals at
+all -- a pre-existing gap, not something this session introduced or chose
+to leave in scope to fix generally). Verified instead with a standalone
+Node smoke test (loading the real module source via `vm.runInContext` with
+a stub `window`, feeding synthetic multi-county data): confirms a
+high-performing county scores well above a low-performing one, missing
+optional fields reduce `completeness` without crashing or zeroing the
+score, an unknown FIPS and an all-missing-data county both return `null`
+rather than a fabricated score, and the breakdown is sorted by weight.
+386 Python offline assertions (up from 383) for the BLS warning-message fix.
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Two bugs caught by live-testing Phase 1 and Phase 2 before moving on
+
+## Bug 1: `population` has been silently broken since the feature launched
+Live-testing the Phase 1 ACS expansion (as a matter of course, not because
+anything about the expansion itself was suspect) surfaced that `population`
+-- the platform's single most important metric -- has never once
+successfully verified against the real Census API. Checking every prior
+commit's metadata back to the original launch (`e2b0db4`) confirmed this
+predates the current session entirely: `census_config.json`'s
+`expect_label` for `B01003_001E` guessed `["total population"]`, but the
+real live label is just `"Estimate!!Total"` -- the same generic pattern
+every other single-line "Total:" table in this config already uses. Every
+live ACS run since launch has silently omitted `population` from every
+county and state record rather than crash, which is exactly why nobody
+noticed: `verify_variables()` fails safe by design, and the daily workflow's
+7-day freshness gate meant most runs never even re-ran verification to
+re-surface the warning.
+
+Found via a new diagnostic added first, not a second blind guess: extended
+`verify_variables()`'s warning to include the actual label text Census
+returned (or confirmation the variable was entirely absent), then ran the
+pipeline live once more to read the real answer instead of guessing again.
+Fixed the config (`["total"]`) and the offline test fixture that had been
+carrying the same wrong assumption, with a comment explaining why.
+
+## Bug 2: BLS QCEW's vintage discovery validated the wrong granularity
+The same live run's BLS QCEW module found `2025` "available" (probing the
+national total area, `US000`) but then every one of 30 sampled counties
+returned a plain 404. Extensive research (a working NodeJS client's exact
+URL construction, BLS's own aggregation-level docs) confirmed the URL
+pattern, the `a` annual parameter, and the area-code format were all
+correct -- so the mismatch itself was the real signal: national/state QCEW
+figures can be published before county-level breakdowns for the same
+vintage are finalized. `discover_bls_vintage()` was validating "does this
+year exist at all" against the national aggregate, not "does this year
+exist at the granularity this module actually reads." Fixed by probing a
+real, populous county (Los Angeles County, CA) instead of `US000`.
+
+Both fixes deployed and awaiting the next live run to confirm.
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 2 — BLS QCEW county-level average weekly wage
+
+## Why this happened
+Continuing through the phases of the economic intelligence expansion after
+Phase 1 (ACS expansion + EIA electricity) shipped and was live-verified. BLS
+was explicitly on the user's preferred-source list. Chose QCEW's open-data
+CSV access over the general BLS Public Data API specifically because it
+needs **no API key or registration at all** — genuinely free, not just
+free-with-signup — and publishes at county granularity, which the OES/OEWS
+occupation-wage survey does not (OEWS is state/MSA only and has no clean
+JSON/CSV API for area-level data, just downloadable Excel files, so it was
+not pursued this phase).
+
+## New CSV ingestion path — the one exception on this platform
+Every other source this pipeline reads is JSON. QCEW's open-data area-slice
+files (`data.bls.gov/cew/data/api/{year}/a/area/{area_fips}.csv`) have no
+JSON equivalent, so this is the first genuinely new ingestion format:
+`_get_csv_rows()`, built on the same retry/redact contract as `_get_json()`,
+parses via the standard library's `csv` module (`csv.DictReader`, keyed by
+the file's own header row rather than hardcoded column positions — resilient
+to BLS reordering columns). `csv`/`io` added to the stdlib-only import
+allowlist in both `data/update_economic_data.py` and the test that guards it.
+
+## Real research, not guesses, before writing code
+Learning directly from the PEP/BPS investigation earlier the same day
+(getting a table/series ID subtly wrong produces a silent failure, not a
+loud one), every part of the QCEW integration was verified against BLS's own
+documentation before being wired in: the URL pattern (confirmed via real
+example URLs in BLS's own docs, e.g. `.../2024/1/area/26000.csv` for
+Michigan), the `qtr=a` annual-average parameter, and the `agglvl_code=70`
+aggregation-level code for "county total, all industries, all ownership
+sectors" (confirmed against BLS's aggregation-level code documentation, not
+assumed). One genuine remaining uncertainty — whether the annual file's wage
+column is named `annual_avg_wkly_wage` or `avg_wkly_wage` (BLS's annual and
+quarterly layout docs were not fully consistent on this point) — was handled
+defensively with a candidate-list fallback (`_BLS_WAGE_FIELD_CANDIDATES`),
+the same pattern `census_config.json`'s `broadband_candidates` already uses
+for exactly this kind of "which exact field name" uncertainty, rather than
+committing to one guess and finding out live whether it was right.
+
+## Shape
+`collect_bls_wages()` mirrors `collect_permits()` almost exactly: one HTTP
+request per county (QCEW has no bulk per-county endpoint either), stride
+sampling for bounded test runs, a 500-county sanity floor, and diagnostic
+error capture. `discover_bls_vintage()` mirrors `discover_acs_vintage()`/the
+retired PEP module's pattern: probes the national total area (`US000`)
+backwards from last year rather than hardcoding a vintage, since QCEW's
+annual file for a given year is not published until roughly Q3 of the
+following year. Own 90-day freshness gate (`bls_last_successful_update`) —
+the longest of any module in this pipeline, since QCEW's annual file only
+changes once a year and lags 5-6 months; a shorter gate would just repeat
+~3,000 requests against unchanged data.
+
+Merged into `census_county.json` as `avg_weekly_wage` — `{value, employment,
+year}` — surfaced in the county profile panel and the due-diligence report
+alongside (not merged into) the existing `building_permits` and
+`electricity_price` supplementary fields, labelled as a direct labor-cost
+figure distinct from ACS's household-income metrics.
+
+## Testing
+383 offline assertions (up from 366), including `_get_csv_rows()`'s
+header-keyed parsing, `discover_bls_vintage()`'s newest-year selection,
+`collect_bls_wages()`'s county-total-row filtering (rejecting non-70
+aggregation rows), its candidate-column-name fallback, its sanity floor and
+max-counties cap, and `_bls_is_fresh()`. `tests/test_no_paid_dependencies.py`
+extended with a dedicated test confirming no `BLS_API_KEY` was invented for
+a source that is genuinely keyless (43 checks, up from 41).
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Phase 1 of the economic intelligence expansion — ACS variable expansion + EIA electricity price
+
+## Why this happened
+Approved as Phase 1 of a larger, explicitly-scoped expansion request after
+pushback on the full original scope: extend the already-built, config-driven
+ACS pipeline with more variables (no new architecture needed — every metric
+is declared in `data/economy/census_config.json` and `derive_metric()` reads
+it generically), and add EIA's state-level industrial electricity price as
+the first genuinely new free federal source since Building Permits.
+
+## ACS expansion: 7 new metrics, verified before shipping
+Added `households`, `labor_force_participation_rate`, `homeownership_rate`,
+`housing_vacancy_rate`, `poverty_rate`, and `avg_commute_minutes` to
+`census_config.json` (bringing the total to 13), each backed by a
+well-documented, standard ACS table (`B11001`, `B23025`, `B25003`, `B25002`,
+`B17001`, `B08013`/`B08012`). Every variable ID and its expected label
+fragment was verified against real ACS label-text conventions via research
+(not guessed) before being wired in, following the lesson from the PEP/BPS
+investigation earlier the same day: getting a table ID subtly wrong produces
+a silent, hard-to-diagnose failure, not a loud one.
+
+`avg_commute_minutes` needed a new `derive` kind: the existing `ratio` kind
+always multiplies by 100 (correct for a percentage, wrong for a genuine
+average like mean commute minutes — using it here would have silently turned
+a real ~25-minute commute into "2500%"). Added `average` alongside
+`direct`/`ratio`/`sum_over_denominator` in `derive_metric()`.
+
+Also fixed a real validation gap surfaced while adding these: `validate_outputs()`'s
+percent-range check only recognized a `_pct` suffix or the single hardcoded
+name `unemployment_rate` — every new `_rate` metric (`poverty_rate`,
+`homeownership_rate`, `housing_vacancy_rate`, `labor_force_participation_rate`)
+would have silently bypassed the 0-100 sanity check. Generalized the suffix
+check to `_pct` or `_rate`.
+
+Deliberately NOT attempted: population density (needs land area, not an ACS
+variable), STEM/industry workforce breakdowns (table `C24030`'s exact variable
+IDs weren't confirmed with enough confidence to ship), new-housing-unit counts
+(the natural variable's label text changes every vintage in a way that would
+break `expect_label` verification), vehicle ownership, veteran population,
+disability status, foreign-born population — all lower-confidence or
+lower-relevance to data-center siting than what shipped, deferred rather than
+guessed at.
+
+## EIA electricity price: first new source since Building Permits
+`collect_eia_electricity_price()` — one HTTP request for ALL states (EIA's v2
+API returns every state as its own row per period when no `stateid` facet is
+set), sorted newest-period-first, industrial sector (`sectorid=IND`, the
+standard site-selection proxy for a large power buyer). Merged into
+`census_state.json` as `electricity_price`. A new `EIA_API_KEY` secret,
+genuinely optional (unlike FRED/Census) — its own execution block, its own
+30-day freshness gate (`_eia_is_fresh`, `eia_last_successful_update`,
+deliberately a separate field from permits' gate even though the interval
+happens to match, learning directly from PEP's original bug of sharing a
+sibling's gate).
+
+State abbreviation to FIPS mapping reuses `data/state_regulations.json`'s
+existing `abbr` field (`load_state_abbr_to_fips()`) rather than hardcoding a
+second 50-state table that could drift from it.
+
+Frontend: county profile panel looks up the price via the county's own
+`state_fips` and labels it "state average, not this specific county" so the
+granularity is never overstated. Same pattern in the due-diligence report
+generator (`js/report.js`).
+
+## Also fixed: a leftover PEP mention from the retirement earlier the same day
+`js/report.js`'s due-diligence report source-attribution line still cited
+"Population Estimates Program" — missed by the retirement's grep sweep
+because that sweep searched for the token `PEP`/`population_estimate`, not
+the prose phrase. Caught while touching the same block for EIA. Updated to
+cite Building Permits Survey and EIA instead.
+
+## Testing
+366 offline assertions (up from 328), including dedicated tests for the new
+`average` derive kind (correct division, zero-denominator guard), each new
+ratio metric's math, `verify_variables()` against realistic label text for
+all 6 new metrics, the EIA collector (newest-period selection, aggregate-row
+exclusion, sanity floor, fetch-failure handling), `_eia_is_fresh`, and the
+`_rate`-suffix validation-gap regression guard. `tests/test_no_paid_dependencies.py`
+extended to cover `EIA_API_KEY` in the same optional-key and
+skip-not-a-failure guards FRED/Census already have (41 checks, up from 36).
+
+Date: 2026-07-27
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Bounded live test caught two production bugs; PEP retired after the real root cause turned out to be a discontinued Census endpoint
+
+## Why this happened
+The PEP and Building Permits modules shipped earlier the same day were verified
+offline (fixtures) and via a first bounded live test, but that first live test's
+Building Permits sample happened to land entirely in Alabama with plain 404s --
+indistinguishable from "this sample has genuinely low BPS coverage." A second
+bounded live test (`--force-pep --force-permits --permits-max-counties 50`,
+stride-sampled across the full county list) surfaced two real bugs instead:
+PEP reported `PEP available: False` for every probed year back to 2023, and
+Building Permits returned `HTTP 400 "Bad Request. The series does not exist."`
+for all 5 diverse sampled counties (01001, 01129, 05033, 06011, 08021) -- a
+much stronger negative signal than plain 404s, and worth investigating rather
+than accepting as "sparse coverage."
+
+## Bug 1: Building Permits series ID was missing a digit
+`_bps_series_id()` built `BPPRIV<5-digit-FIPS>` (e.g. `BPPRIV01001`), but
+verified against real published FRED series (`BPPRIV048089` Colorado County TX,
+`BPPRIV044007` Providence County RI, `BPPRIV012011` Broward County FL), the
+real pattern is `BPPRIV` + a **3-digit** zero-padded state code + the 3-digit
+county code -- 6 digits total, not 5. Every county's own FRED series ID was
+subtly wrong (missing exactly one leading zero on the state portion), which is
+why every request came back "the series does not exist" rather than a plain
+404: the series legitimately doesn't exist *under that malformed ID*. Fixed by
+changing the transform to `f"BPPRIV0{fips}"` (prepending a single zero, since
+standard FIPS state codes are already 2 digits). Notably, the function's own
+docstring already cited the correct 6-digit example (`BPPRIV048089`) while the
+code beneath it implemented the wrong 5-digit pattern -- the fix was verified
+against three independently-confirmed real series IDs, not just the one in the
+docstring, before shipping.
+
+## Bug 2: PEP's vintage probe never sent the required API key
+`discover_pep_vintage()` (and, found by the same inspection, `discover_acs_vintage()`)
+probed Census's `variables.json` metadata endpoint without appending the
+API key at all -- the `api_key` parameter existed on `discover_acs_vintage()`
+but was silently unused in its body. Since Census now requires a key for
+every Data API request (see the May 12, 2026 policy correction below), every
+probed vintage year failed identically, which looked exactly like "no vintage
+published yet" until the underlying error was surfaced. Fixed by appending
+`?key=<key>` to both probes' URLs (their base URLs carry no query string yet,
+so `?key=` rather than `_census_key_param()`'s `&key=` fragment), passing
+`census_key` through at the `discover_pep_vintage()` call site, and printing
+the actual `__error__` detail next to "not available" so a real outage is no
+longer indistinguishable from an unpublished vintage. ACS's vintage discovery
+had been succeeding in production without ever using the key it was passed --
+which held up in practice for reasons this fix does not depend on, but is
+tightened for consistency and future-proofing rather than left as an
+unexplained inconsistency between two structurally identical functions.
+
+## PEP retired: the key fix wasn't enough, because the endpoint is gone
+A follow-up bounded live test with the key fix deployed still showed
+`PEP available: False` for every year 2023-2026 -- but now with real
+diagnostic detail: a plain `HTTP 404` ("Not Found", Tomcat's default error
+page) from `/data/{year}/pep/population/variables.json`, unchanged whether
+the key was attached or not. That ruled out auth entirely and pointed at the
+URL itself being wrong. Research confirmed it: Census discontinued the Data
+API for PEP's current-year total population starting with vintage 2022 --
+`tidycensus` (the standard R client for this exact dataset) documents having
+to switch from the API to downloading Census's flat CSV files for precisely
+these years, for precisely this reason. `pep/components` (a related
+components-of-change dataset) may still be reachable, but `pep/population`
+--the dataset this module was built against -- is not, and there is no
+FIPS-derivable substitute on FRED either: FRED does carry per-county
+population series, but their IDs are truncated county-name abbreviations
+with a disambiguating digit (e.g. `IDKOOT0POP` for Kootenai County, ID), not
+a formula like `BPPRIV<FIPS>`.
+
+Given the choice between building a new CSV-parsing ingestion path (the
+original design explicitly avoided this for a single module) or a
+FRED-series-search-based FIPS lookup (untested at scale, no guarantee of
+full coverage), the module was retired rather than rebuilt: `discover_pep_vintage()`,
+`collect_pep_population()`, `_pep_is_fresh()`, the `population_estimate`
+county field, its `write_metadata()` fields (`pep_available`, `pep_year`,
+`pep_county_count`, `pep_last_successful_update`), its CLI flags
+(`--skip-pep`, `--force-pep`, `--pep-max-age-days`), its workflow_dispatch
+inputs, its frontend rendering in `js/economy-view.js` and `js/report.js`,
+and its 12 offline tests were all removed. ACS's own `population` metric (a
+5-year rolling average, already on every county) remains the platform's
+population figure -- it was never replaced or degraded, only the
+supplementary current-year figure is gone. The already-committed
+`economic_metadata.json`'s dead `pep_*` fields (`pep_available: false`,
+`pep_year: null`, `pep_county_count: 0`, `pep_last_successful_update: null`)
+were also removed by hand rather than left to age out, since they no longer
+correspond to anything the code writes.
+
+---
+
 Date: 2026-07-27
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7

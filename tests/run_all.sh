@@ -30,6 +30,7 @@ run "economic data pipeline"      python3 tests/test_economic_data.py
 run "economic output validation"  python3 data/update_economic_data.py --check
 run "no paid dependencies"        python3 tests/test_no_paid_dependencies.py
 run "frontend core (constants + router)" node tests/test_frontend_core.mjs
+run "economy core (readiness score, signals, stats)" node tests/test_economy_core.mjs
 run "jurisdiction page (DOM)"     node tests/test_jurisdiction.mjs
 run "watchlist (migration + alerts)" node tests/test_watchlist.mjs
 run "data loading (critical/deferred)" node tests/test_data_loading.mjs

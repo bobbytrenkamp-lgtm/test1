@@ -625,31 +625,38 @@
     }).join("");
 
     const hist = rec.history || {};
-    const sparks = [
-      ["population", "Population"],
-      ["median_household_income", "Median household income"],
-      ["unemployment_rate", "Unemployment rate"],
-    ].map(([k, label]) => `
+    // Derived from HISTORY_METRICS (in EXPLORER_METRICS display order) rather
+    // than a hand-maintained list: households was added to HISTORY_METRICS
+    // (real history data has been in census_county.json since Phase 1) but
+    // this list was never updated to match, so its timeline was silently
+    // invisible even though the data existed. Deriving it means a future
+    // metric marked history:true shows up here automatically.
+    const sparks = E().EXPLORER_METRICS
+      .filter(m => E().HISTORY_METRICS.has(m) && hist[m] && hist[m].length)
+      .map(m => `
       <div class="econ-spark-row">
-        <span class="econ-spark-label">${E().escapeText(label)}</span>
-        ${E().sparklineSvg(hist[k], { label, color: null })}
+        <span class="econ-spark-label">${E().escapeText(E().METRICS[m].label)}</span>
+        ${E().sparklineSvg(hist[m], { label: E().METRICS[m].label, color: null })}
       </div>`).join("");
 
-    const signals = isCounty ? E().countySignals(cData, key) : [];
+    const signals = isCounty ? E().countySignals(cData, key, sData) : [];
+    const readiness = isCounty ? E().readinessScore(cData, sData, key) : null;
 
-    // Both supplementary, county-only, and each a DIFFERENT measurement from
-    // its ACS neighbor in the table above — never merged into that table's
-    // rows, so a reader never mistakes "current PEP estimate" for "ACS 5-year
-    // population" or a permits count for an ACS metric.
-    const pe = isCounty ? rec.population_estimate : null;
+    // Supplementary and a DIFFERENT measurement from anything in the table
+    // above — never merged into that table's rows, so a reader never mistakes
+    // a permits count, a wage figure, or a state electricity price for an ACS
+    // metric. building_permits and avg_weekly_wage are county-only (that's
+    // the geography BPS/QCEW report at). electricity_price is EIA's own
+    // state-level figure: shown directly on a state profile, and looked up
+    // via the county's own state_fips on a county profile (a county profile
+    // does not carry the field itself).
     const bp = isCounty ? rec.building_permits : null;
-    const supplementary = (pe || bp) ? `
+    const wg = isCounty ? rec.avg_weekly_wage : null;
+    const ep = isCounty
+      ? (((sData && sData.states) || {})[rec.state_fips] || {}).electricity_price
+      : rec.electricity_price;
+    const supplementary = (bp || wg || ep) ? `
       <div class="econ-profile-supplementary">
-        ${pe ? `<div class="econ-profile-supp-row">
-          <span class="econ-profile-supp-label">Current population estimate</span>
-          <span class="econ-profile-supp-value">${E().escapeText(E().fmtValue(pe.value, "count", 0))}</span>
-          <span class="econ-profile-supp-note">Census PEP, ${E().escapeText(pe.as_of_label || String(pe.year))} — distinct from the ACS 5-year figure above</span>
-        </div>` : ""}
         ${bp ? (() => {
           const hasYoy = bp.change_yoy_pct !== null && bp.change_yoy_pct !== undefined;
           // Rising or falling local permit activity is not unambiguously
@@ -665,7 +672,42 @@
             <span class="econ-profile-supp-note">Census Building Permits Survey (via FRED), as of ${E().escapeText(E().fmtDate(bp.as_of))}</span>
           </div>`;
         })() : ""}
+        ${wg ? `<div class="econ-profile-supp-row">
+          <span class="econ-profile-supp-label">Average weekly wage</span>
+          <span class="econ-profile-supp-value">${E().escapeText(E().fmtValue(wg.value, "usd", 0))}</span>
+          <span class="econ-profile-supp-note">BLS QCEW, all industries and ownership, ${E().escapeText(String(wg.year))} — a direct labor-cost figure, distinct from ACS household income above</span>
+        </div>` : ""}
+        ${ep ? `<div class="econ-profile-supp-row">
+          <span class="econ-profile-supp-label">${isCounty ? "State industrial electricity price" : "Industrial electricity price"}</span>
+          <span class="econ-profile-supp-value">${E().escapeText(E().fmtValue(ep.value, "usd_precise", 2))}/kWh</span>
+          <span class="econ-profile-supp-note">EIA, ${E().escapeText(ep.as_of)}${isCounty ? " — state average, not this specific county" : ""}</span>
+        </div>` : ""}
       </div>` : "";
+
+    const readinessHtml = readiness ? (() => {
+      const slug = readiness.grade.toLowerCase().replace(/\s+/g, "-");
+      const rows = readiness.breakdown.map(f => `
+        <li class="econ-readiness-factor">
+          <span class="econ-readiness-factor-label">${E().escapeText(f.label)}</span>
+          <span class="econ-readiness-factor-bar"><span style="width:${f.score}%"></span></span>
+          <span class="econ-readiness-factor-pct">${f.score}</span>
+        </li>`).join("");
+      return `
+      <div class="econ-readiness econ-readiness-${slug}">
+        <div class="econ-readiness-headline">
+          <div class="econ-readiness-score">${readiness.score}<span class="econ-readiness-max">/100</span></div>
+          <div class="econ-readiness-meta">
+            <div class="econ-readiness-grade">${E().escapeText(readiness.grade)} economic readiness</div>
+            <div class="econ-readiness-note">Synthesizes ${readiness.breakdown.length} economic factors as national percentiles${
+              readiness.completeness < 100 ? ` (${readiness.completeness}% of the full weighting had data — the rest was excluded, not guessed)` : ""
+            }. Does not include zoning or regulatory restriction level, shown separately.</div>
+          </div>
+        </div>
+        <details class="econ-profile-more"><summary>What's driving this score</summary>
+          <ul class="econ-readiness-breakdown">${rows}</ul>
+        </details>
+      </div>`;
+    })() : "";
 
     host.innerHTML = `
       <div class="econ-profile-head">
@@ -674,6 +716,9 @@
         <div class="econ-profile-fips">FIPS ${E().escapeText(key)}</div>
       </div>
 
+      ${readinessHtml}
+
+      <div class="econ-profile-table-hint" aria-hidden="true">Scroll table for state &amp; US medians &rarr;</div>
       <table class="econ-profile-table">
         <caption class="econ-sr-only">Economic metrics with United States and state comparisons</caption>
         <thead><tr>
@@ -724,9 +769,11 @@
     if (w && window.WATCHLIST && window.WATCHLIST.has(fips)) w.textContent = "In watchlist ✓";
 
     on(document.getElementById("econ-profile-compare"), "click", () => {
-      // Reuse the existing comparison workflow rather than inventing a parallel one.
-      if (typeof addCountyToCompare === "function") addCountyToCompare(fips);
-      else if (window.COMPARE && window.COMPARE.addCounty) window.COMPARE.addCounty(fips);
+      // Reuse the map's existing comparison tool (js/compare.js) rather than
+      // inventing a parallel one. This previously called
+      // addCountyToCompare()/window.COMPARE, neither of which exist anywhere
+      // in the codebase, so the button silently did nothing.
+      if (typeof navigateAndAddToCompare === "function") navigateAndAddToCompare(fips);
     });
 
     on(document.getElementById("econ-profile-map"), "click", () => {
@@ -744,7 +791,7 @@
 
     const nat = E().nationalSignals(data.fred);
     const county = state.selectedFips && state.selectedFips.length === 5
-      ? E().countySignals(data.county, state.selectedFips) : [];
+      ? E().countySignals(data.county, state.selectedFips, data.state) : [];
 
     if (!nat.length && !county.length) {
       host.innerHTML = E().hasFred(data.fred) || E().hasCounty(data.county)

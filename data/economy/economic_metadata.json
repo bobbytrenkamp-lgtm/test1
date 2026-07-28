@@ -1,11 +1,18 @@
 {
  "_schema": "economy_metadata_v1",
  "acs_vintage": 2024,
+ "bls_available": false,
+ "bls_county_count": 0,
+ "bls_last_successful_update": null,
  "cbp_available": true,
  "cbp_year": 2023,
  "census": {
-  "last_successful_update": "2026-07-27T16:04:23+00:00",
+  "last_successful_update": "2026-07-27T22:02:35+00:00",
   "selected_variables": {
+   "avg_commute_minutes": {
+    "aggregate_minutes": "B08013_001E",
+    "commuters": "B08012_001E"
+   },
    "bachelors_or_higher_pct": {
     "bachelors": "B15003_022E",
     "denominator": "B15003_001E",
@@ -16,6 +23,21 @@
    "broadband_pct": {
     "broadband": "B28002_004E",
     "denominator": "B28002_001E"
+   },
+   "homeownership_rate": {
+    "owner_occupied": "B25003_002E",
+    "total_occupied": "B25003_001E"
+   },
+   "households": {
+    "value": "B11001_001E"
+   },
+   "housing_vacancy_rate": {
+    "total_units": "B25002_001E",
+    "vacant": "B25002_003E"
+   },
+   "labor_force_participation_rate": {
+    "in_labor_force": "B23025_002E",
+    "population_16plus": "B23025_001E"
    },
    "median_age": {
     "value": "B01002_001E"
@@ -32,6 +54,13 @@
    "per_capita_income": {
     "value": "B19301_001E"
    },
+   "population": {
+    "value": "B01003_001E"
+   },
+   "poverty_rate": {
+    "below_poverty": "B17001_002E",
+    "total": "B17001_001E"
+   },
    "unemployment_rate": {
     "employed": "B23025_004E",
     "labor_force": "B23025_003E",
@@ -40,26 +69,25 @@
   },
   "unverified_metrics": {
    "population": [
-    "value=B01003_001E"
+    "value=B01003_001E [B01003_001E label='Estimate!!Total' (wanted fragments ['total population'])]"
    ]
   }
  },
  "county_count": 3222,
+ "eia_available": false,
+ "eia_last_successful_update": null,
+ "eia_state_count": 0,
  "fred_series_count": 21,
  "fred_skipped": [],
- "generated_at": "2026-07-27T20:43:05+00:00",
- "last_run_at": "2026-07-27T20:43:05+00:00",
- "latest_observation_date": "2026-07-24",
+ "generated_at": "2026-07-27T22:09:10+00:00",
+ "last_run_at": "2026-07-27T22:09:10+00:00",
+ "latest_observation_date": "2026-07-27",
  "oldest_history_year": 2019,
- "pep_available": false,
- "pep_county_count": 0,
- "pep_last_successful_update": null,
- "pep_year": null,
  "permits_available": false,
  "permits_county_count": 0,
  "permits_last_successful_update": null,
  "pipeline_version": "1.0.0",
- "source_updated_at": "2026-07-27 15:16:36-05",
+ "source_updated_at": "2026-07-27 16:03:18-05",
  "sources": [
   {
    "id": "fred",
@@ -89,6 +117,6 @@
  "stale": true,
  "state_count": 52,
  "warnings": [
-  "Building Permits: only 0 counties returned real data out of 50 checked — module skipped rather than publishing a suspiciously small result — sample non-404 errors: ['BPPRIV01001: observations request failed (HTTP 400: \\'{\"error_code\":400,\"error_message\":\"Bad Request.  The series does not exist.\"}\\')', 'BPPRIV01129: observations request failed (HTTP 400: \\'{\"error_code\":400,\"error_message\":\"Bad Request.  The series does not exist.\"}\\')', 'BPPRIV05033: observations request failed (HTTP 400: \\'{\"error_code\":400,\"error_message\":\"Bad Request.  The series does not exist.\"}\\')', 'BPPRIV06011: observations request failed (HTTP 400: \\'{\"error_code\":400,\"error_message\":\"Bad Request.  The series does not exist.\"}\\')', 'BPPRIV08021: observations request failed (HTTP 400: \\'{\"error_code\":400,\"error_message\":\"Bad Request.  The series does not exist.\"}\\')']"
+  "BLS QCEW wages: only 299 counties returned real data out of 300 checked — module skipped rather than publishing a suspiciously small result — every checked county returned a plain 404, which is unexpected for QCEW (coverage is normally near-universal, unlike Building Permits)"
  ]
 }

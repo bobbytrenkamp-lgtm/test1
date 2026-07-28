@@ -223,6 +223,19 @@
       "tooltip": "Weekly new filings for unemployment insurance. The most timely widely-available labor market indicator."
     },
     {
+      "id": "JTSJOL",
+      "label": "Job Openings: Total Nonfarm",
+      "short_label": "Job Openings",
+      "category": "labor",
+      "unit_type": "thousands",
+      "decimals": 0,
+      "chart_default": false,
+      "kpi": false,
+      "invert_direction": true,
+      "change_basis": "yoy",
+      "tooltip": "Total US job openings (BLS JOLTS survey). UNRATE and ICSA measure labor SUPPLY; this measures labor DEMAND — a rising count alongside low unemployment signals a tighter, more competitive hiring market for construction and operations staff."
+    },
+    {
       "id": "RSAFS",
       "label": "Advance Retail Sales, Retail and Food Services",
       "short_label": "Retail Sales",
@@ -260,6 +273,19 @@
       "invert_direction": false,
       "change_basis": "yoy",
       "tooltip": "Permits authorised for new private housing. Leads housing starts, so it is a forward-looking construction signal."
+    },
+    {
+      "id": "CSUSHPINSA",
+      "label": "S&P/Case-Shiller U.S. National Home Price Index",
+      "short_label": "Home Price Index",
+      "category": "housing",
+      "unit_type": "index",
+      "decimals": 1,
+      "chart_default": false,
+      "kpi": false,
+      "invert_direction": true,
+      "change_basis": "yoy",
+      "tooltip": "National home price index. HOUST/PERMIT measure construction ACTIVITY; this measures price LEVELS — rising home prices raise the cost of relocating or housing a workforce near a new facility, distinct from how much new supply is being built."
     },
     {
       "id": "APU000072610",

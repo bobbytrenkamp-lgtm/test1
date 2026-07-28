@@ -623,6 +623,19 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* The table below scrolls inside itself rather than the page (see its own
+   comment) -- correct for layout, but the profile panel is a fixed-width
+   sidebar at every screen size (not just mobile), so two of its five
+   columns (state/US median) are off-screen with no visual cue that more
+   content exists sideways regardless of viewport. Always shown, not
+   media-gated to narrow widths, because the underlying cause (table wider
+   than a fixed-width sidebar column) is not viewport-dependent either. */
+.econ-profile-table-hint {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin: -4px 0 6px;
+}
+
 .econ-profile-table {
   width: 100%;
   border-collapse: collapse;
@@ -660,11 +673,9 @@
 .econ-num { text-align: right; font-variant-numeric: tabular-nums; }
 .econ-nodata { color: var(--text-muted); font-style: italic; }
 
-/* Population Estimates / Building Permits — deliberately NOT rows in
-   .econ-profile-table above: both are different measurements from their ACS
-   counterparts (current-year point estimate vs. 5-year rolling average;
-   county-level permit counts with no ACS equivalent at all), so this reads
-   as clearly separate supplementary context rather than more table rows a
+/* Building Permits — deliberately NOT a row in .econ-profile-table above:
+   county-level permit counts have no ACS equivalent at all, so this reads as
+   clearly separate supplementary context rather than another table row a
    reader might average in with the ACS figures. */
 .econ-profile-supplementary {
   margin-top: 10px;
@@ -689,6 +700,52 @@
   font-variant-numeric: tabular-nums;
 }
 .econ-profile-supp-note { font-size: 10.5px; color: var(--text-muted); }
+
+/* ── Data Center Readiness Score ──────────────────────────────────────── */
+.econ-readiness {
+  margin: 10px 0 14px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-2, var(--surface));
+}
+.econ-readiness-headline { display: flex; align-items: center; gap: 14px; }
+.econ-readiness-score {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--readiness-color, var(--text));
+  flex-shrink: 0;
+}
+.econ-readiness-max { font-size: 14px; font-weight: 600; color: var(--text-muted); }
+.econ-readiness-grade {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--readiness-color, var(--text));
+}
+.econ-readiness-note { font-size: 10.5px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+.econ-readiness-excellent, .econ-readiness-strong { --readiness-color: #29b96b; }
+.econ-readiness-moderate                          { --readiness-color: #d9932f; }
+.econ-readiness-below-average, .econ-readiness-weak { --readiness-color: #e0563f; }
+.econ-readiness-breakdown { display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
+.econ-readiness-factor {
+  display: grid;
+  grid-template-columns: 1fr 80px 26px;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+.econ-readiness-factor-label { color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.econ-readiness-factor-bar {
+  display: block;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--border);
+  overflow: hidden;
+}
+.econ-readiness-factor-bar > span { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+.econ-readiness-factor-pct { text-align: right; font-variant-numeric: tabular-nums; color: var(--text-muted); }
 
 .econ-profile-more { margin-top: 12px; }
 .econ-profile-more > summary {

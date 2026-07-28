@@ -174,9 +174,21 @@ def test_economic_pipeline_is_stdlib_only():
     imports = set(re.findall(r"^\s*(?:import|from)\s+([a-zA-Z_][\w.]*)", src, re.M))
     tops = {i.split(".")[0] for i in imports}
     STDLIB = {"argparse", "json", "os", "sys", "time", "urllib", "datetime",
-              "pathlib", "re", "collections", "concurrent", "threading", "random"}
+              "pathlib", "re", "collections", "concurrent", "threading", "random",
+              "csv", "io"}
     extra = tops - STDLIB
     check(not extra, f"economic pipeline gained a non-stdlib import: {extra}")
+
+
+def test_bls_qcew_requires_no_key():
+    """BLS QCEW's open-data CSV endpoint needs no registration or key at
+    all -- verify the pipeline never invents one. A BLS_API_KEY appearing
+    here would mean a future edit started gating a genuinely free, keyless
+    endpoint behind credentials that don't exist for it."""
+    src = (ROOT / "data/update_economic_data.py").read_text()
+    check("BLS_API_KEY" not in src,
+          "BLS_API_KEY referenced -- QCEW's area-slice API needs no key")
+    check("collect_bls_wages" in src, "BLS QCEW module missing entirely")
 
 
 # ── 3. Every API key must be optional ───────────────────────────────────────
@@ -187,7 +199,7 @@ def test_api_keys_are_all_optional():
     The pattern that satisfies this is os.environ.get(KEY, default) plus an
     explicit skip path. os.environ[KEY] would raise and make the key mandatory.
     """
-    KEYS = ["FRED_API_KEY", "CENSUS_API_KEY", "LEGISCAN_API_KEY", "CONGRESS_API_KEY"]
+    KEYS = ["FRED_API_KEY", "CENSUS_API_KEY", "LEGISCAN_API_KEY", "CONGRESS_API_KEY", "EIA_API_KEY"]
     for key in KEYS:
         for p, rel in _scannable():
             if p.suffix != ".py":
@@ -235,6 +247,18 @@ def test_census_key_is_required_and_degrades_gracefully():
           "the policy-change date should be documented, not just 'requires a key'")
 
 
+def test_eia_key_missing_is_a_skip_not_a_failure():
+    """EIA is optional, unlike FRED/Census -- a missing EIA_API_KEY must still
+    leave every other source untouched, not just avoid crashing the whole run."""
+    src = (ROOT / "data/update_economic_data.py").read_text()
+    check("EIA_API_KEY" in src, "no reference to the optional EIA key at all")
+    check('os.environ.get("EIA_API_KEY"' in src,
+          "EIA key must be read with .get(), not os.environ[...] (which would be mandatory)")
+    check("and eia_key:" in src,
+          "the EIA module's execution guard must condition on the key being present, "
+          "so a missing key is a skip rather than an attempted request with an empty key")
+
+
 def test_no_key_required_for_the_site_itself():
     """A visitor must never need any credential. The frontend may NAME a secret
     in maintainer-facing copy, but must not read one."""
@@ -242,7 +266,7 @@ def test_no_key_required_for_the_site_itself():
         if p.suffix != ".js":
             continue
         text = p.read_text(errors="replace")
-        for key in ("FRED_API_KEY", "CENSUS_API_KEY", "LEGISCAN_API_KEY"):
+        for key in ("FRED_API_KEY", "CENSUS_API_KEY", "LEGISCAN_API_KEY", "EIA_API_KEY"):
             if key in text:
                 # Allowed only inside a quoted <code> hint to a maintainer.
                 ok = f"<code>{key}</code>" in text
