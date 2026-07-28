@@ -4288,23 +4288,31 @@ function renderFilterPanel() {
       row.appendChild(toggleSwitch);
 
       if (!def.noData) {
-        const handleToggle = () => {
-          const newState = !checkbox.checked;
+        const applyToggle = newState => {
           checkbox.checked = newState;
           setLayerVisible(def.id, newState);
         };
-        // iOS Safari doesn't forward label taps to wrapped inputs when
-        // -webkit-user-select:none is set on the label. Use touchend directly.
+        // A click/tap that lands directly on the switch (it's a real,
+        // fully-opaque-to-hit-testing <input> covering the whole toggle-switch
+        // area) is handled by the browser's own native checkbox activation —
+        // no custom logic needed, and nothing here can race or cancel it out.
+        checkbox.addEventListener("change", () => applyToggle(checkbox.checked));
+        // Tapping the row OUTSIDE the switch itself (name text, badge, source
+        // line) relies on label->control forwarding, which iOS Safari doesn't
+        // reliably do when -webkit-user-select:none is set on the label — so
+        // handle that case manually. Guarded to e.target !== checkbox so a
+        // direct hit on the switch is never double-handled by both this and
+        // the native 'change' listener above.
         row.addEventListener("touchend", e => {
-          handleToggle();
-          e.preventDefault(); // suppress the synthetic click that would double-fire
+          if (e.target === checkbox) return;
+          applyToggle(!checkbox.checked);
+          e.preventDefault();
         }, { passive: false });
-        // Desktop: e.preventDefault() stops the browser's native label→input
-        // click-forwarding, which would otherwise fire handleToggle twice.
         row.addEventListener("click", e => {
+          if (e.target === checkbox) return;
           if (e.defaultPrevented) return;
           e.preventDefault();
-          handleToggle();
+          applyToggle(!checkbox.checked);
         });
       }
 
