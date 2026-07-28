@@ -47,6 +47,8 @@
 #scene3d-body {
   display: flex;
   flex-direction: column;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
 }
 
 #scene3d-canvas-host {
@@ -121,6 +123,171 @@
   border-radius: 4px;
   padding: 2px 6px;
 }
+
+/* ── Phase D: templates + campus generator ── */
+#scene3d-templates-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+#scene3d-templates-row select {
+  flex: 1;
+  min-width: 0;
+  font-size: 11px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+#scene3d-templates-row button,
+#scene3d-campus-generate,
+#scene3d-viewpoint-save,
+#scene3d-sun-now {
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-standard);
+}
+#scene3d-templates-row button:hover,
+#scene3d-campus-generate:hover,
+#scene3d-viewpoint-save:hover,
+#scene3d-sun-now:hover { background: var(--surface-2); }
+
+#scene3d-campus {
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+#scene3d-campus summary {
+  padding: 7px 10px;
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 600;
+  user-select: none;
+}
+.scene3d-campus-note {
+  margin: 0;
+  padding: 0 10px 8px;
+  line-height: 1.5;
+}
+#scene3d-campus-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 10px;
+  padding: 0 10px 8px;
+}
+#scene3d-campus-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+#scene3d-campus-fields input {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 11px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 6px;
+}
+#scene3d-campus-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  padding: 0 10px 8px;
+}
+#scene3d-campus-options label { display: flex; align-items: center; gap: 5px; }
+#scene3d-campus-generate { margin: 0 10px 10px; }
+#scene3d-campus-result {
+  margin: 0 10px 10px;
+  padding: 7px 8px;
+  border-radius: 5px;
+  background: var(--surface-2);
+  line-height: 1.5;
+}
+#scene3d-campus-result[hidden] { display: none; }
+
+/* ── Phase D: saved viewpoints ── */
+#scene3d-viewpoints { border-bottom: 1px solid var(--border); }
+#scene3d-viewpoints-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+}
+#scene3d-viewpoints-list { max-height: 90px; overflow-y: auto; }
+.scene3d-vp-empty {
+  padding: 0 10px 8px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+.scene3d-vp-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+}
+.scene3d-vp-row:hover { background: var(--surface-2); }
+.scene3d-vp-load {
+  flex: 1;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 5px 2px;
+  font-family: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.scene3d-vp-del {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 3px 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.scene3d-vp-del:hover { color: var(--text); background: var(--border); }
+
+/* ── Phase D: sun position ── */
+#scene3d-sun-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 7px 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+#scene3d-sun-row input[type="datetime-local"] {
+  font-size: 11px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+#scene3d-sun-info { white-space: nowrap; }
 
 /* ── Phase B: object list ── */
 #scene3d-object-list {

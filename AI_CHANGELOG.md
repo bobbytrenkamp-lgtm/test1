@@ -5,6 +5,61 @@
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: 3D terrain view, Phase D — campus generator, templates, viewpoints, sun/shadows
+
+Continued the digital-twin system into Phase D: generic development
+templates, the flagship data-center campus generator, saved camera
+viewpoints, and real sun-position-driven shadows — all built on Phase A-C's
+terrain/object/constraint foundation rather than new parallel systems.
+
+The campus generator (js/3d/campus-generator.js) is the closest match yet
+to the original request's own language: acreage/spacing inputs generate a
+grid of conceptual data halls, filtered through the exact same real-
+parcel-boundary and rotated-rectangle-overlap checks Phase C's conflict
+detection already uses, so nothing is ever placed outside the actual
+parcel or on top of another object. A perimeter fence is built from the
+boundary's own edges (not invented geometry), and every result carries an
+explicit "does not claim engineering feasibility, utility capacity, or
+permit compliance" disclaimer plus any warnings (e.g. "only 3 of 5 halls
+fit") rather than silently under-delivering. Templates and campus layouts
+both batch-create as one undo step via a new `_createBatch()` helper.
+
+Sun position (js/3d/sun.js) implements NOAA's simplified solar equations,
+verified against known solstice/equinox altitude values (e.g. 40N summer-
+solstice noon altitude within 1 degree of the theoretical 90-(40-23.44));
+js/3d/engine.js drives a real THREE.DirectionalLight + shadow mapping from
+it, explicitly labeled ~0.01-degree conceptual accuracy, not survey-grade
+solar analysis. Saved viewpoints store camera state by lat/lng (not scene-
+local coordinates) so they survive a reload even though the scene's local
+origin is rebuilt from scratch each session.
+
+Two Phase D items were evaluated and deliberately NOT built, each written
+up rather than shipped shallow: preliminary cut/fill grading (this
+feature's terrain resolution — a 3x3 grid of AWS tiles subsampled every 8
+pixels, effectively >100m between samples — cannot support even a
+conceptual estimate without implying false precision, and the original
+request itself says not to calculate cut/fill when data is inadequate);
+and alternatives/scenario comparison (the repository audit already found
+three non-unified compare systems in this codebase, and adding a fourth
+without first reconciling that fragmentation risks making it worse).
+
+scene3d schema bumped to v3 (adds `viewpoints` and `sun`), with a tested
+v1/v2 -> v3 migration. tests/scene3d.test.js grew from 122 to 165
+assertions (substation type, solar position against physical reference
+values, template instantiation, and campus-generator boundary/overlap/
+edge-case coverage). Full suite green, no regressions.
+docs/3D_SYSTEM_ARCHITECTURE.md's Phase D section and manual-verification
+checklist updated; browser verification remains unconfirmed this session
+for the same reason as Phases A-C (no working Chromium binary here).
+
+Phase E (presentation mode, report integration, export, mobile/
+accessibility/performance tuning) remains the only unbuilt phase.
+
+---
+
+Date: 2026-07-28
+AI Assistant: Claude Code
+Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: 3D terrain view, Phase C — site objects, real parcel boundary, honest conflict detection
 
 Continued the digital-twin system into Phase C: parking/road/fence object

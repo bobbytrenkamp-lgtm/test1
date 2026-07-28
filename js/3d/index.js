@@ -288,12 +288,74 @@ window.SCENE3D = (function () {
     try { return _engine.listPhases(); } catch (_) { return []; }
   }
 
+  /* Phase D: generic development templates and the data-center campus
+   * generator. listTemplates() is available with no engine required (it's
+   * just a static list for UI display) — but instantiating needs an active
+   * scene, same guard as everything else. */
+  function listTemplates() {
+    return (window.SCENE3D_TEMPLATES && window.SCENE3D_TEMPLATES.list()) || [];
+  }
+
+  function instantiateTemplate(templateId) {
+    if (!_engine || !_active) return [];
+    let created = [];
+    try { created = _engine.instantiateTemplate(templateId); } catch (_) {}
+    _notifyObjectsChanged();
+    return created;
+  }
+
+  /* Requires a parcel to be selected — the engine/generator refuse and
+   * return an explanatory warning rather than throwing when none is. */
+  function generateCampus(opts) {
+    if (!_engine || !_active) return { halls: [], substations: [], fences: [], roads: [], warnings: ['3D view is not active.'], disclaimer: '' };
+    let result = null;
+    try { result = _engine.generateCampus(opts); } catch (_) {}
+    _notifyObjectsChanged();
+    return result || { halls: [], substations: [], fences: [], roads: [], warnings: ['Campus generation failed.'], disclaimer: '' };
+  }
+
+  /* Phase D: sun position / shadows. dateISO=null tracks "now." */
+  function setSunTime(dateISO) {
+    if (!_engine || !_active) return null;
+    try { return _engine.setSunTime(dateISO); } catch (_) { return null; }
+  }
+
+  function getSunInfo() {
+    if (!_engine || !_active) return null;
+    try { return _engine.getSunInfo(); } catch (_) { return null; }
+  }
+
+  /* Phase D: saved viewpoints — session-only until captureState() persists
+   * them into the workspace's scene3d.viewpoints field. */
+  function saveViewpoint(name) {
+    if (!_engine || !_active) return null;
+    try { return _engine.saveViewpoint(name); } catch (_) { return null; }
+  }
+
+  function listViewpoints() {
+    if (!_engine || !_active) return [];
+    try { return _engine.listViewpoints(); } catch (_) { return []; }
+  }
+
+  function applyViewpoint(id) {
+    if (!_engine || !_active) return false;
+    try { return _engine.applyViewpoint(id); } catch (_) { return false; }
+  }
+
+  function deleteViewpoint(id) {
+    if (!_engine || !_active) return false;
+    try { return _engine.deleteViewpoint(id); } catch (_) { return false; }
+  }
+
   return {
     init, onCountyChanged, onLayerToggle, isAvailable,
     captureState, applyState, activate, deactivate,
     createBuilding, createObject, updateObject, deleteSelected, undo, redo, historyCounts,
     getMetrics, listObjects, selectObject, deselectObject, setTransformMode,
     setPhaseFilter, listPhases,
+    listTemplates, instantiateTemplate, generateCampus,
+    setSunTime, getSunInfo,
+    saveViewpoint, listViewpoints, applyViewpoint, deleteViewpoint,
     _registerEngine,
   };
 })();

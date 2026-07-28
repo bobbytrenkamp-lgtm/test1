@@ -24,14 +24,16 @@ window.SCENE3D_OBJECTS = (function () {
   const SQM_TO_SQFT = 10.7639;
   const METERS_TO_FEET = 3.28084;
 
-  const AREA_TYPES = new Set(['building', 'parking']);
+  const AREA_TYPES = new Set(['building', 'parking', 'substation']);
   const LINEAR_TYPES = new Set(['road', 'fence']);
+  const VALID_TYPES = ['building', 'parking', 'road', 'fence', 'substation'];
 
   const TYPE_DEFAULTS = {
-    building: { label: 'Building', footprint: { width: 30, depth: 30 }, height: 10 },
-    parking:  { label: 'Parking Lot', footprint: { width: 40, depth: 25 }, height: 0.05 },
-    road:     { label: 'Road Segment', footprint: { width: 7, depth: 30 }, height: 0.05 },
-    fence:    { label: 'Fence Line', footprint: { width: 0.15, depth: 30 }, height: 2 },
+    building:   { label: 'Building', footprint: { width: 30, depth: 30 }, height: 10 },
+    parking:    { label: 'Parking Lot', footprint: { width: 40, depth: 25 }, height: 0.05 },
+    road:       { label: 'Road Segment', footprint: { width: 7, depth: 30 }, height: 0.05 },
+    fence:      { label: 'Fence Line', footprint: { width: 0.15, depth: 30 }, height: 2 },
+    substation: { label: 'Substation (conceptual)', footprint: { width: 20, depth: 20 }, height: 4 },
   };
 
   let _objects = [];   // ordered array, insertion order = list() order
@@ -63,7 +65,7 @@ window.SCENE3D_OBJECTS = (function () {
   /* props: { type, label, phase, footprint:{shape,width,depth}, height, position:{x,z}, rotationDeg } */
   function create(props) {
     props = props || {};
-    const type = ['building', 'parking', 'road', 'fence'].includes(props.type) ? props.type : 'building';
+    const type = VALID_TYPES.includes(props.type) ? props.type : 'building';
     const defaults = _typeDefaults(type);
     const obj = {
       id: 'obj_' + (_nextSeq++),
@@ -126,7 +128,7 @@ window.SCENE3D_OBJECTS = (function () {
   }
 
   function _normalizeRaw(raw) {
-    const type = ['building', 'parking', 'road', 'fence'].includes(raw.type) ? raw.type : 'building';
+    const type = VALID_TYPES.includes(raw.type) ? raw.type : 'building';
     const defaults = _typeDefaults(type);
     return _withMetrics({
       id: raw.id || ('obj_' + (_nextSeq++)),
@@ -178,24 +180,27 @@ window.SCENE3D_OBJECTS = (function () {
    * meaning ("building coverage of the site") — totalSiteFootprintSqft adds
    * parking so a caller wanting overall impervious-ish footprint has it too. */
   function computeSiteMetrics(siteTotalSqft) {
-    const buildings = _objects.filter(o => o.type === 'building');
-    const parking   = _objects.filter(o => o.type === 'parking');
-    const roads     = _objects.filter(o => o.type === 'road');
-    const fences    = _objects.filter(o => o.type === 'fence');
+    const buildings   = _objects.filter(o => o.type === 'building');
+    const parking     = _objects.filter(o => o.type === 'parking');
+    const roads       = _objects.filter(o => o.type === 'road');
+    const fences      = _objects.filter(o => o.type === 'fence');
+    const substations = _objects.filter(o => o.type === 'substation');
 
-    const buildingFootprintSqft = buildings.reduce((s, o) => s + (o.metrics.footprintSqft || 0), 0);
-    const parkingFootprintSqft  = parking.reduce((s, o) => s + (o.metrics.footprintSqft || 0), 0);
-    const roadLengthFt          = roads.reduce((s, o) => s + (o.metrics.lengthFt || 0), 0);
-    const fenceLengthFt         = fences.reduce((s, o) => s + (o.metrics.lengthFt || 0), 0);
-    const maxHeight             = buildings.reduce((max, o) => Math.max(max, o.height || 0), 0);
+    const buildingFootprintSqft   = buildings.reduce((s, o) => s + (o.metrics.footprintSqft || 0), 0);
+    const parkingFootprintSqft    = parking.reduce((s, o) => s + (o.metrics.footprintSqft || 0), 0);
+    const substationFootprintSqft = substations.reduce((s, o) => s + (o.metrics.footprintSqft || 0), 0);
+    const roadLengthFt            = roads.reduce((s, o) => s + (o.metrics.lengthFt || 0), 0);
+    const fenceLengthFt           = fences.reduce((s, o) => s + (o.metrics.lengthFt || 0), 0);
+    const maxHeight                = buildings.reduce((max, o) => Math.max(max, o.height || 0), 0);
 
     const out = {
       buildingCount: buildings.length,
       parkingCount: parking.length,
       roadCount: roads.length,
       fenceCount: fences.length,
+      substationCount: substations.length,
       totalFootprintSqft: buildingFootprintSqft,
-      totalSiteFootprintSqft: buildingFootprintSqft + parkingFootprintSqft,
+      totalSiteFootprintSqft: buildingFootprintSqft + parkingFootprintSqft + substationFootprintSqft,
       roadLengthFt,
       fenceLengthFt,
       maxHeightFt: Math.round(maxHeight * METERS_TO_FEET),

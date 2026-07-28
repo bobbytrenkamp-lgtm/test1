@@ -1,6 +1,6 @@
-# 3D Terrain View — Architecture Reference (Phase A + B + C)
+# 3D Terrain View — Architecture Reference (Phase A + B + C + D)
 
-This document covers **Phase A** (integrated 2D/3D terrain foundation), **Phase B** (object system: building volumes, selection, transform gizmo, undo/redo, live site metrics), and **Phase C** (parking/road/fence object types, construction phasing, real-parcel-boundary containment checking, object-overlap conflict detection) of the 3D site-design/digital-twin system. Phase C's environmental overlays were evaluated and explicitly deferred rather than shipped shallow — see that section below. Phases D–E (the data-center campus generator, development templates, alternatives/scenario comparison, sun/shadow, preliminary grading, presentation mode, and export) are out of scope for this pass and are not described here.
+This document covers **Phase A** (integrated 2D/3D terrain foundation), **Phase B** (object system: building volumes, selection, transform gizmo, undo/redo, live site metrics), **Phase C** (parking/road/fence object types, construction phasing, real-parcel-boundary containment checking, object-overlap conflict detection), and **Phase D** (generic development templates, the data-center campus generator, saved viewpoints, sun position and shadows) of the 3D site-design/digital-twin system. Two Phase D items — preliminary grading and alternatives/scenario comparison — were evaluated and explicitly deferred rather than shipped shallow; see that section below. Phase E (presentation mode, report integration, image/data export, mobile/accessibility/performance tuning) is out of scope for this pass and not described here.
 
 ---
 
@@ -96,10 +96,26 @@ js/3d/
                         parcel-boundary containment + rotated-rectangle
                         overlap (SAT) — see the Phase C section for the
                         honesty boundary this module enforces. Node-testable.
+  sun.js               Classic script, DOM-free (Phase D). NOAA simplified
+                        solar-position algorithm (altitude/azimuth from
+                        lat/lng/date/time) + a direction-vector helper.
+                        Node-testable against known solstice/equinox values.
+  templates.js         Classic script, DOM-free (Phase D). A small library
+                        of generic (non-data-center-specific) starter
+                        layouts, returned as object-creation specs — never
+                        creates objects itself. Node-testable.
+  campus-generator.js  Classic script, DOM-free (Phase D). The data-center
+                        campus layout generator — grid-places data halls
+                        inside the real parcel boundary, plus an optional
+                        substation/perimeter fence/access road. Depends on
+                        constraints.js (point-in-polygon, rectangle
+                        overlap). Node-testable.
   engine.js          ES module. Owns THREE.Scene/Camera/Renderer, the render
                       loop, the object mesh sync, click-to-select raycasting,
                       the TransformControls gizmo, the real parcel-boundary
-                      line, and constraint-status recomputation; orchestrates
+                      line, constraint-status recomputation, sun/shadow
+                      positioning, saved viewpoints, and batch object
+                      creation (templates/campus generator); orchestrates
                       terrain.js + camera.js. Registers itself onto
                       window.SCENE3D via _registerEngine().
   terrain.js          ES module. Local-tangent-plane lat/lng<->meters
@@ -143,16 +159,18 @@ Extends the **existing** per-user save/load system (localStorage, with optional 
 
 ```js
 scene3d: {
-  schemaVersion: 2,
+  schemaVersion: 3,
   active: false,
   camera: { target: { lat, lng }, distance, azimuth, polar },
   terrainEnabled: true,
   exaggeration: 1.5,
-  objects: [ /* building/parking/road/fence objects, see below */ ],
+  objects: [ /* building/parking/road/fence/substation objects, see below */ ],
+  viewpoints: [ /* { id, name, camera } — Phase D saved views */ ],
+  sun: null,  // { dateISO } or null = "track current real time"
 }
 ```
 
-`_captureWorkspaceState` only attaches this field when `SCENE3D.captureState()` returns non-null (the user actually opened 3D mode that session) — a user who never touches 3D gets no `scene3d` key on their saves, same as before this change. `_applyWorkspace` does `if (ws.scene3d) window.SCENE3D?.applyState(ws.scene3d)` with no `else` branch: a workspace saved before Phase A shipped has no `scene3d` key, loads with no error, and does not force 3D mode open or closed. `js/3d/scene-state.js`'s `migrateScene3dState()` backfills partial/older-shaped objects from defaults rather than rejecting them, so future schema bumps stay backward compatible — a v1 save (Phase A, before `objects` existed) migrates to v2 with an empty `objects` array, never a fabricated building.
+`_captureWorkspaceState` only attaches this field when `SCENE3D.captureState()` returns non-null (the user actually opened 3D mode that session) — a user who never touches 3D gets no `scene3d` key on their saves, same as before this change. `_applyWorkspace` does `if (ws.scene3d) window.SCENE3D?.applyState(ws.scene3d)` with no `else` branch: a workspace saved before Phase A shipped has no `scene3d` key, loads with no error, and does not force 3D mode open or closed. `js/3d/scene-state.js`'s `migrateScene3dState()` backfills partial/older-shaped objects from defaults rather than rejecting them, so future schema bumps stay backward compatible — a v1 save (Phase A, before `objects` existed) migrates straight to v3 with empty `objects`/`viewpoints` arrays and `sun: null`, never a fabricated building or viewpoint; a v2 save (Phase B/C, before `viewpoints`/`sun` existed) migrates the same way for just those two fields.
 
 ### Fallback behavior
 
@@ -205,15 +223,37 @@ This module **deliberately never returns a `'pass'`, `'compliant'`, `'approved'`
 
 ---
 
+## Phase D: templates, campus generator, saved viewpoints, sun/shadows
+
+**Generic development templates** (`js/3d/templates.js`): a small static library (currently 3: single building + parking, office park, warehouse + yard) of illustrative starting layouts — explicitly generic, not data-center-specific (the data-center-specific generator is separate, below). Each template is a list of relative object specs; `instantiate(id, originOffset)` resolves them to absolute positions but never creates anything itself — `js/3d/engine.js`'s `instantiateTemplate()` does the actual creation via one `_createBatch()` call, so placing a whole template is a single undo step, not one per object.
+
+**Data-center campus generator** (`js/3d/campus-generator.js`) — the flagship Phase D feature, and the one place in this codebase that most directly matches the request's own "acreage/power/spacing inputs; generates conceptual data halls/substations; must respect the selected parcel boundary; never claim engineering feasibility" language:
+- Requires a real parcel boundary; with none selected it returns zero halls and an explanatory warning rather than guessing at a location.
+- Walks a grid across the parcel's bounding box (hall size + spacing determine the step), and for each candidate position checks — using the exact same `js/3d/constraints.js` functions Phase C's conflict detection already uses — that all four corners fall inside the real boundary polygon and that it doesn't overlap an already-placed hall. Only fully-fitting, non-overlapping candidates are kept.
+- Optionally adds one substation placeholder (placed adjacent to the last hall, itself boundary/overlap-checked), a perimeter fence built from the parcel boundary's own edges (one straight fence segment per edge, skipped with a warning above 12 vertices rather than generating dozens of tiny segments for a complex real shape), and one access-road stub from the longest boundary edge toward the parcel's centroid.
+- Every result carries a `disclaimer` string ("does not claim engineering feasibility, utility capacity, drainage, geotechnical suitability, or permit compliance — every generated object remains fully editable") and a `warnings` array (e.g. "only 3 of the requested 5 halls fit") that `js/map.js` renders verbatim in `#scene3d-campus-result` — the generator never silently under-delivers.
+- The `marginM` parameter (default 10m, how far generated halls are kept from the parcel edge) is explicitly a **generator placement parameter**, not a legal setback — same honesty boundary as Phase C's constraint checker, restated here because it's easy to conflate the two.
+- Generated halls, substations, fences, and roads are created via the same `_createBatch()` one-undo-step path as templates, and are immediately editable/deletable/movable like anything else in the object system.
+
+**Saved viewpoints**: named camera positions (`js/3d/engine.js`'s `saveViewpoint`/`listViewpoints`/`applyViewpoint`/`deleteViewpoint`), stored as `{id, name, camera:{target:{lat,lng}, distance, azimuth, polar}}` — using lat/lng (not scene-local x/z) for the target specifically so a viewpoint's meaning survives a page reload even though the scene's local coordinate origin is rebuilt from scratch each session. Persisted via the `scene3d.viewpoints` schema-v3 field; cleared on a county change for the same reason Phase B clears objects (a viewpoint framed for one site has no clear meaning pointed at an unrelated one).
+
+**Sun position and shadows** (`js/3d/sun.js`): implements NOAA's simplified solar-position equations (declination, equation of time, hour angle → altitude/azimuth), verified against known solstice/equinox reference values in `tests/scene3d.test.js` (e.g. summer-solstice solar-noon altitude at 40°N within 1° of the theoretical `90-(40-23.44)`). `js/3d/engine.js` converts altitude/azimuth into a direction vector matching the scene's axes (x=east, y=up, z=south, matching `js/3d/terrain.js`'s projection) and repositions the single `THREE.DirectionalLight` accordingly; below-horizon altitude drops the light's intensity to near-zero rather than removing it (avoids degenerate shadow-camera geometry at grazing angles). Shadow mapping is enabled on the renderer, with terrain and every object mesh set to both cast and receive shadows. The date/time control (`#scene3d-sun-datetime` + a "Now" button) is explicitly documented in the UI disclaimer as ~0.01° astronomical accuracy for **conceptual shadow direction**, not survey-grade solar/shading analysis.
+
+**Two Phase D items evaluated and explicitly deferred, not shipped shallow:**
+- **Preliminary grading (cut/fill estimates).** The request itself instructs: "Do not calculate cut/fill when elevation data is inadequate." Phase A's terrain is a 3×3 grid of AWS tiles at zoom 12, subsampled every 8 pixels — effectively >100m between elevation samples at building scale. That resolution cannot support even a conceptual cut/fill estimate without the number implying more precision than the underlying data has. Rather than compute a misleadingly precise-looking figure, this is deferred until a finer-resolution terrain source is available — the request's own instruction is followed by *not* building the feature, not by building a low-quality version of it.
+- **Alternatives/scenario comparison.** The repository audit (Phase A) already found three non-unified compare systems in this codebase (county/facility compare, the parcel compare tray, parcel comparables-suggestions) with no shared abstraction. Adding a fourth — multiple parallel named object-layouts with a comparison UI — without first reconciling that fragmentation, or at minimum designing deliberately around it, risks making the problem worse rather than better. Deferred to a dedicated pass rather than added carelessly inside Phase D's time budget.
+
+---
+
 ## Explicitly out of scope this pass
 
-The data-center campus generator, development templates, alternatives/scenario comparison, sun/shadow tools, preliminary grading, presentation mode, image/data/3D-model export, environmental context overlays in the 3D view (see above), persistent (IndexedDB) tile/object caching, fly/walk-through navigation, keyboard shortcuts for the object editor (undo/redo/delete are toolbar-button-only, to avoid colliding with existing global shortcuts), non-rectangular footprint shapes, curved or multi-vertex roads/paths, true setback-inset-polygon geometry (see the Phase C constraint-checking honesty boundary above), objects following terrain contour/grade (they sit at a nominal flat elevation regardless of terrain undulation — true site grading is a later-phase concern), and reconciling the pre-existing drawing-tool (map-level vs. parcel-level) and compare-tool (three separate systems) fragmentation identified during the repository audit. These are Phases D–E (or, for the last two items, a standing cross-cutting cleanup not tied to any single phase).
+Presentation mode, report integration, image/data/3D-model export, mobile/tablet optimization and accessibility passes, performance tuning (LOD/culling/instancing/Web Workers) — all Phase E. Also still out of scope: preliminary grading and alternatives/scenario comparison (evaluated and explicitly deferred, see above), environmental context overlays in the 3D view (evaluated and deferred, see the Phase C section), persistent (IndexedDB) tile/object caching, fly/walk-through navigation, keyboard shortcuts for the object editor (undo/redo/delete are toolbar-button-only, to avoid colliding with existing global shortcuts), non-rectangular footprint shapes, curved or multi-vertex roads/paths, true setback-inset-polygon geometry (see the Phase C constraint-checking honesty boundary), objects following terrain contour/grade (they sit at a nominal flat elevation regardless of terrain undulation), viewpoint renaming (save/jump/delete only), and reconciling the pre-existing drawing-tool (map-level vs. parcel-level) and compare-tool fragmentation identified during the repository audit — a standing cross-cutting cleanup not tied to any single phase.
 
 ---
 
 ## Manual verification checklist
 
-Automated coverage (`tests/scene3d.test.js`, wired into `tests/run_all.sh`) covers tile math, Terrarium decode, cache/de-dupe/eviction behavior, `scene3d` schema v1→v2 migration, the object store (create/update/remove/restore/metrics, including the Phase C type/phase additions and pre-Phase-C backward compatibility), the undo/redo command stack, selection events, distance/area math, and the constraints module (point-in-polygon, rotated-rectangle SAT overlap, and the "never returns pass/compliant" status vocabulary) — all DOM/WebGL-free pure logic (122 assertions total); the full suite (`tests/run_all.sh`) passes with these additions and no regressions. The following need a real browser and were **not** verified during this implementation pass (Phase A, B, or C) — the session had no working Chromium/Chrome binary available (a broken symlink in the expected Playwright cache, and `playwright install` is off-limits per environment policy) — so they remain open items for the first real-browser pass on this feature, not confirmed-working claims:
+Automated coverage (`tests/scene3d.test.js`, wired into `tests/run_all.sh`) covers tile math, Terrarium decode, cache/de-dupe/eviction behavior, `scene3d` schema v1→v3 migration, the object store (create/update/remove/restore/metrics, including Phase C's type/phase additions, Phase D's substation type, and backward compatibility at every schema step), the undo/redo command stack, selection events, distance/area math, the constraints module (point-in-polygon, rotated-rectangle SAT overlap, and the "never returns pass/compliant" status vocabulary), solar position (verified against known solstice/equinox reference values), development templates, and the campus generator (boundary containment, non-overlap, edge cases for too-small parcels and disabled options) — all DOM/WebGL-free pure logic (165 assertions total); the full suite (`tests/run_all.sh`) passes with these additions and no regressions. The following need a real browser and were **not** verified during this implementation pass (Phase A, B, C, or D) — the session had no working Chromium/Chrome binary available (a broken symlink in the expected Playwright cache, and `playwright install` is off-limits per environment policy) — so they remain open items for the first real-browser pass on this feature, not confirmed-working claims:
 
 - [ ] CORS smoke test: `fetch()` one known Terrarium tile URL from the deployed GitHub Pages origin's browser console; confirm it resolves rather than a CORS error.
 - [ ] Opening 3D mode on a WebGL-capable device with network access renders a real terrain mesh for the currently-selected county area, and the elevation visually matches known local topology.
@@ -241,3 +281,11 @@ Automated coverage (`tests/scene3d.test.js`, wired into `tests/run_all.sh`) cove
 - [ ] Click "+ Parking", "+ Road", "+ Fence" — each creates a visually distinct object (dark flat pad, gray flat ribbon, thin translucent wall) at the correct default dimensions.
 - [ ] Create objects across 2–3 different phase numbers (via the object panel), then use the phase filter dropdown — only the selected phase's objects remain visible; switching back to "All phases" restores them all, and undo/redo/selection state is unaffected by the filter.
 - [ ] Change the selected parcel to a different parcel — the boundary line and every object's constraint status update to reflect the new boundary.
+- [ ] Pick a template from the dropdown, click "Add" — all of that template's objects appear at once, and a single Undo removes all of them together (not one at a time).
+- [ ] With a parcel selected, open the Campus Generator, set a hall size/spacing/count, click "Generate Campus Layout" — data halls appear only inside the real parcel boundary, plus a substation, perimeter fence segments tracing the boundary edges, and one access-road stub; the result panel shows the disclaimer and any warnings (e.g. "only N of M halls fit"); a single Undo removes the entire generated batch.
+- [ ] Run the Campus Generator with no parcel selected — it refuses with a clear message instead of generating anything at an arbitrary location.
+- [ ] Save a camera view as a named viewpoint, move the camera elsewhere, click the viewpoint in the list — the camera returns to the saved position; delete it — it's removed from the list.
+- [ ] Save a workspace with viewpoints and a custom sun date/time, reload, load the workspace — viewpoints and the sun position both restore correctly.
+- [ ] Load a workspace saved before Phase D shipped (schema v2, no `viewpoints`/`sun` keys) — loads with no error, empty viewpoint list, sun defaults to "now."
+- [ ] Change the sun date/time control across sunrise/midday/sunset/midnight — shadows visibly rotate and lengthen/shorten across the day, and the scene dims (but doesn't go fully black) at night; the info readout matches (e.g. "☀ 42° above horizon, SE" vs. "☾ below horizon (night)").
+- [ ] Switch counties while viewpoints exist — the viewpoint list clears, consistent with how objects already clear on a site switch.

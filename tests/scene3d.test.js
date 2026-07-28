@@ -26,7 +26,7 @@ if (typeof window === 'undefined') {
   for (const rel of [
     'js/3d/terrain-tiles.js', 'js/3d/scene-state.js',
     'js/3d/objects.js', 'js/3d/history.js', 'js/3d/selection.js', 'js/3d/measure.js',
-    'js/3d/constraints.js',
+    'js/3d/constraints.js', 'js/3d/sun.js', 'js/3d/templates.js', 'js/3d/campus-generator.js',
   ]) {
     require(path.join(ROOT, rel));
   }
@@ -217,8 +217,10 @@ if (typeof window === 'undefined') {
       terrainEnabled: true, exaggeration: 2,
     };
     const migratedV1 = SS.migrateScene3dState(v1Save);
-    assertEq(migratedV1.schemaVersion, 2, 'a v1 save migrates to the current schema version (2)');
+    assertEq(migratedV1.schemaVersion, SS.CURRENT_SCHEMA_VERSION, 'a v1 save migrates to the current schema version');
     assertEq(migratedV1.objects, [], 'a v1 save (no objects key) migrates to an empty objects array');
+    assertEq(migratedV1.viewpoints, [], 'a v1 save (no viewpoints key) migrates to an empty viewpoints array');
+    assertEq(migratedV1.sun, null, 'a v1 save (no sun key) migrates to sun: null');
     assertEq(migratedV1.camera.target, { lat: 38.9, lng: -77.0 }, 'a v1 save keeps its camera target through migration');
 
     // A corrupted/non-array `objects` field degrades to [] rather than throwing
@@ -487,6 +489,128 @@ if (typeof window === 'undefined') {
 
     assertClose(MEAS.metersToFeet(1), 3.28084, 0.001, 'metersToFeet conversion factor');
     assertClose(MEAS.sqMetersToSqFeet(1), 10.7639, 0.001, 'sqMetersToSqFeet conversion factor');
+  }
+
+  console.groupEnd();
+
+  // ── SCENE3D_OBJECTS (Phase D: substation type) ──────────────────────────
+
+  console.group('SCENE3D_OBJECTS (Phase D: substation)');
+
+  if (OBJ) {
+    OBJ.clear();
+    const sub = OBJ.create({ type: 'substation' });
+    assertEq(sub.footprint, { shape: 'rectangle', width: 20, depth: 20 }, 'a substation with no override uses TYPE_DEFAULTS.substation dimensions');
+    assert(typeof sub.metrics.footprintSqft === 'number', 'a substation is an area type, like buildings/parking');
+    const m = OBJ.computeSiteMetrics(10000);
+    assertEq(m.substationCount, 1, 'computeSiteMetrics counts substations separately');
+    assert(m.totalSiteFootprintSqft >= sub.metrics.footprintSqft, 'substation footprint contributes to totalSiteFootprintSqft');
+    OBJ.clear();
+  }
+
+  console.groupEnd();
+
+  // ── SCENE3D_SUN (Phase D) ────────────────────────────────────────────────
+
+  console.group('SCENE3D_SUN');
+
+  const SUN = g.SCENE3D_SUN;
+  assert(!!SUN, 'SCENE3D_SUN is defined');
+
+  if (SUN) {
+    const summerNoon = SUN.solarPosition(new Date('2026-06-21T12:00:00Z'), 40, 0);
+    assertClose(summerNoon.altitudeDeg, 73.45, 1, 'summer solstice solar-noon altitude at 40N matches 90-(40-23.44)');
+    assertClose(summerNoon.azimuthDeg, 180, 5, 'summer solstice solar-noon azimuth at 40N is roughly due south');
+
+    const winterNoon = SUN.solarPosition(new Date('2026-12-21T12:00:00Z'), 40, 0);
+    assertClose(winterNoon.altitudeDeg, 26.56, 1, 'winter solstice solar-noon altitude at 40N matches 90-(40+23.44)');
+    assert(winterNoon.altitudeDeg < summerNoon.altitudeDeg, 'the sun is lower at winter noon than summer noon at a northern latitude');
+
+    const midnight = SUN.solarPosition(new Date('2026-06-21T00:00:00Z'), 40, 0);
+    assert(midnight.altitudeDeg < 0, 'solar altitude is negative (below horizon) at midnight near the summer solstice');
+
+    const eqNoon = SUN.solarPosition(new Date('2026-03-20T12:00:00Z'), 0, 0);
+    assert(eqNoon.altitudeDeg > 80, 'the sun is nearly overhead at the equator on the equinox at solar noon');
+
+    // direction vector sanity: matches js/3d/terrain.js's axes (x=east, y=up, z=south)
+    const south45 = SUN.directionToSun(45, 180);
+    assertClose(south45.x, 0, 0.001, 'due-south sun has ~zero east/west component');
+    assertClose(south45.z, Math.cos(45 * Math.PI / 180), 0.001, 'due-south sun has a positive z (south) component');
+    assert(south45.y > 0, 'a positive-altitude sun has a positive (up) y component');
+
+    const east0 = SUN.directionToSun(0, 90);
+    assertClose(east0.x, 1, 0.001, 'due-east sun on the horizon has x ~= 1 (full east component)');
+    assertClose(east0.y, 0, 0.001, 'a sun exactly on the horizon has ~zero altitude (y) component');
+  }
+
+  console.groupEnd();
+
+  // ── SCENE3D_TEMPLATES (Phase D) ──────────────────────────────────────────
+
+  console.group('SCENE3D_TEMPLATES');
+
+  const TEMPL = g.SCENE3D_TEMPLATES;
+  assert(!!TEMPL, 'SCENE3D_TEMPLATES is defined');
+
+  if (TEMPL) {
+    const list = TEMPL.list();
+    assert(Array.isArray(list) && list.length >= 3, 'at least 3 generic templates are available');
+    assert(list.every(t => t.id && t.label && t.description), 'every template has an id, label, and description');
+
+    const specs = TEMPL.instantiate(list[0].id, { x: 100, z: 200 });
+    assert(Array.isArray(specs) && specs.length > 0, 'instantiate() returns a non-empty array of object specs');
+    assert(specs.every(s => ['building', 'parking', 'road', 'fence', 'substation'].includes(s.type)), 'every spec has a valid object type');
+    assert(specs.every(s => typeof s.position.x === 'number' && typeof s.position.z === 'number'), 'every spec has a resolved absolute position');
+    assert(specs[0].position.x >= 100 - 200 && specs[0].position.x <= 100 + 200, 'instantiated positions are offset from the given origin, not absolute zero');
+
+    assertEq(TEMPL.instantiate('does-not-exist'), null, 'instantiating an unknown template id returns null rather than throwing');
+    assertEq(TEMPL.get('does-not-exist'), null, 'getting an unknown template id returns null');
+  }
+
+  console.groupEnd();
+
+  // ── SCENE3D_CAMPUS_GENERATOR (Phase D) ───────────────────────────────────
+
+  console.group('SCENE3D_CAMPUS_GENERATOR');
+
+  const CAMPUS = g.SCENE3D_CAMPUS_GENERATOR;
+  assert(!!CAMPUS, 'SCENE3D_CAMPUS_GENERATOR is defined');
+
+  if (CAMPUS && CONSTR) {
+    const noBoundaryResult = CAMPUS.generate({});
+    assertEq(noBoundaryResult.halls.length, 0, 'no boundary -> zero halls generated');
+    assert(noBoundaryResult.warnings.length > 0, 'no boundary -> an explanatory warning, not a silent empty result');
+    assert(!/pass|compliant|approved|feasib/i.test(noBoundaryResult.disclaimer) || /does not claim/i.test(noBoundaryResult.disclaimer), 'the disclaimer does not claim feasibility');
+
+    const squareBoundary = [{ x: 0, z: 0 }, { x: 300, z: 0 }, { x: 300, z: 300 }, { x: 0, z: 300 }];
+    const result = CAMPUS.generate({ boundary: squareBoundary, hallWidth: 60, hallDepth: 90, spacing: 15, marginM: 10, targetHallCount: 4 });
+    assertEq(result.halls.length, 4, 'requesting 4 halls on a large enough square parcel places all 4');
+    assert(result.halls.every(h => {
+      const corners = CONSTR.rectCorners(h);
+      return corners.every(c => CONSTR.pointInPolygon(c, squareBoundary));
+    }), 'every generated hall fits entirely inside the parcel boundary');
+    // no two halls overlap
+    let anyOverlap = false;
+    for (let i = 0; i < result.halls.length; i++) {
+      for (let j = i + 1; j < result.halls.length; j++) {
+        if (CONSTR.rectanglesOverlap(result.halls[i], result.halls[j])) anyOverlap = true;
+      }
+    }
+    assert(!anyOverlap, 'no two generated halls overlap each other');
+    assertEq(result.fences.length, 4, 'a 4-sided parcel gets 4 perimeter fence segments, one per edge');
+    assertEq(result.roads.length, 1, 'exactly one access road stub is generated');
+    assert(result.substations.length <= 1, 'at most one substation is generated');
+    assert(/does not claim/i.test(result.disclaimer), 'the result always carries a does-not-claim-feasibility disclaimer');
+
+    const tinyBoundary = [{ x: 0, z: 0 }, { x: 5, z: 0 }, { x: 5, z: 5 }, { x: 0, z: 5 }];
+    const tinyResult = CAMPUS.generate({ boundary: tinyBoundary, hallWidth: 60, hallDepth: 90 });
+    assertEq(tinyResult.halls.length, 0, 'a parcel too small for the requested hall size places zero halls');
+    assert(tinyResult.warnings.length > 0, 'a too-small parcel produces an explanatory warning rather than a silent empty result');
+
+    const noFenceResult = CAMPUS.generate({ boundary: squareBoundary, includeFence: false, includeAccessRoad: false, includeSubstation: false, targetHallCount: 1 });
+    assertEq(noFenceResult.fences.length, 0, 'includeFence:false produces no fence segments');
+    assertEq(noFenceResult.roads.length, 0, 'includeAccessRoad:false produces no road stub');
+    assertEq(noFenceResult.substations.length, 0, 'includeSubstation:false produces no substation');
   }
 
   console.groupEnd();

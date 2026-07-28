@@ -95,6 +95,8 @@ export async function buildTerrainMesh(THREE, opts) {
       const mesh = new THREE.Mesh(geometry, okMaterial);
       mesh.position.set(cx, 0, cz);
       mesh.userData.tileStatus = 'ok';
+      mesh.receiveShadow = true;
+      mesh.castShadow = true;
       group.add(mesh);
     } else {
       failedCount++;

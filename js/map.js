@@ -2296,7 +2296,12 @@ function _applyWorkspace(ws) {
   }
   // A workspace saved before the 3D system existed has no scene3d key —
   // that must load with no error and must not force 3D mode open or closed.
-  if (ws.scene3d) { window.SCENE3D?.applyState(ws.scene3d); renderScene3dObjectPanel(); }
+  if (ws.scene3d) {
+    window.SCENE3D?.applyState(ws.scene3d);
+    renderScene3dObjectPanel();
+    renderScene3dViewpoints();
+    renderScene3dSunInfo();
+  }
 }
 
 async function renderWorkspaceList() {
@@ -2407,8 +2412,66 @@ function toggleScene3D() {
     if (!cap.ok && btn) {
       btn.title = (window.SCENE3D_FALLBACK && window.SCENE3D_FALLBACK.MESSAGES[cap.reason]) || "3D view isn't available on this device.";
     }
-    window.SCENE3D.activate().then(() => renderScene3dObjectPanel());
+    window.SCENE3D.activate().then(() => {
+      renderScene3dObjectPanel();
+      renderScene3dViewpoints();
+      populateScene3dTemplates();
+      renderScene3dSunInfo();
+    });
   }
+}
+
+function populateScene3dTemplates() {
+  const select = document.getElementById("scene3d-template-select");
+  if (!select || !window.SCENE3D || select.dataset.populated) return;
+  const templates = window.SCENE3D.listTemplates();
+  select.innerHTML = templates.map(t => `<option value="${t.id}" title="${t.description}">${t.label}</option>`).join("");
+  select.dataset.populated = "1";
+}
+
+function renderScene3dViewpoints() {
+  const listEl = document.getElementById("scene3d-viewpoints-list");
+  if (!listEl || !window.SCENE3D) return;
+  const viewpoints = window.SCENE3D.listViewpoints();
+  listEl.innerHTML = "";
+  if (!viewpoints.length) {
+    const em = document.createElement("div");
+    em.className = "scene3d-vp-empty";
+    em.textContent = "No saved viewpoints yet.";
+    listEl.appendChild(em);
+    return;
+  }
+  viewpoints.forEach(vp => {
+    const row = document.createElement("div");
+    row.className = "scene3d-vp-row";
+    const loadBtn = document.createElement("button");
+    loadBtn.type = "button";
+    loadBtn.className = "scene3d-vp-load";
+    loadBtn.textContent = vp.name;
+    loadBtn.title = vp.name;
+    loadBtn.addEventListener("click", () => window.SCENE3D.applyViewpoint(vp.id));
+    const delBtn = document.createElement("button");
+    delBtn.type = "button";
+    delBtn.className = "scene3d-vp-del";
+    delBtn.setAttribute("aria-label", `Delete viewpoint ${vp.name}`);
+    delBtn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+    delBtn.addEventListener("click", () => { window.SCENE3D.deleteViewpoint(vp.id); renderScene3dViewpoints(); });
+    row.appendChild(loadBtn);
+    row.appendChild(delBtn);
+    listEl.appendChild(row);
+  });
+}
+
+function renderScene3dSunInfo() {
+  const infoEl = document.getElementById("scene3d-sun-info");
+  if (!infoEl || !window.SCENE3D) return;
+  const info = window.SCENE3D.getSunInfo();
+  if (!info) { infoEl.textContent = ""; return; }
+  const altitude = Math.round(info.altitudeDeg);
+  const compass = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"][Math.round(info.azimuthDeg / 45) % 8];
+  infoEl.textContent = info.daylight
+    ? `☀ ${altitude}° above horizon, ${compass}`
+    : `☾ below horizon (night)`;
 }
 
 function _syncScene3dModeButtons(mode) {
@@ -3244,6 +3307,56 @@ function initLeafletMap() {
   document.getElementById("scene3d-delete")?.addEventListener("click", () => window.SCENE3D?.deleteSelected());
   ["scene3d:objects-changed", "scene3d:object-selected", "scene3d:object-deselected"].forEach(evt => {
     document.addEventListener(evt, renderScene3dObjectPanel);
+  });
+
+  // 3D templates + campus generator (Phase D)
+  document.getElementById("scene3d-template-add")?.addEventListener("click", () => {
+    const select = document.getElementById("scene3d-template-select");
+    if (select && select.value) window.SCENE3D?.instantiateTemplate(select.value);
+  });
+  document.getElementById("scene3d-campus-generate")?.addEventListener("click", () => {
+    const num = id => Number(document.getElementById(id)?.value) || 0;
+    const checked = id => !!document.getElementById(id)?.checked;
+    const result = window.SCENE3D?.generateCampus({
+      hallWidth: num("scene3d-campus-hall-width"),
+      hallDepth: num("scene3d-campus-hall-depth"),
+      hallHeight: num("scene3d-campus-hall-height"),
+      spacing: num("scene3d-campus-spacing"),
+      marginM: num("scene3d-campus-margin"),
+      targetHallCount: num("scene3d-campus-count"),
+      includeSubstation: checked("scene3d-campus-substation"),
+      includeFence: checked("scene3d-campus-fence"),
+      includeAccessRoad: checked("scene3d-campus-road"),
+    });
+    const resultEl = document.getElementById("scene3d-campus-result");
+    if (resultEl && result) {
+      resultEl.hidden = false;
+      const lines = [];
+      if (result.createdCount) lines.push(`Generated ${result.halls.length} data hall(s), ${result.substations.length} substation(s), ${result.fences.length} fence segment(s), ${result.roads.length} road stub(s).`);
+      (result.warnings || []).forEach(w => lines.push("⚠ " + w));
+      if (result.disclaimer) lines.push(result.disclaimer);
+      resultEl.innerHTML = lines.map(l => `<div>${l}</div>`).join("");
+    }
+  });
+
+  // 3D saved viewpoints (Phase D)
+  document.getElementById("scene3d-viewpoint-save")?.addEventListener("click", () => {
+    window.SCENE3D?.saveViewpoint();
+    renderScene3dViewpoints();
+  });
+
+  // 3D sun position (Phase D)
+  document.getElementById("scene3d-sun-datetime")?.addEventListener("change", e => {
+    const val = e.target.value; // "YYYY-MM-DDTHH:mm", interpreted as local time by the browser
+    if (!val) return;
+    const date = new Date(val);
+    if (!isNaN(date)) { window.SCENE3D?.setSunTime(date.toISOString()); renderScene3dSunInfo(); }
+  });
+  document.getElementById("scene3d-sun-now")?.addEventListener("click", () => {
+    const input = document.getElementById("scene3d-sun-datetime");
+    if (input) input.value = "";
+    window.SCENE3D?.setSunTime(null);
+    renderScene3dSunInfo();
   });
   document.getElementById("workspace-export-btn")?.addEventListener("click", exportWorkspacesJSON);
   document.getElementById("workspace-import-btn")?.addEventListener("click", () => {

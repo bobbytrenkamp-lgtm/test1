@@ -18,10 +18,11 @@ const CONSTRAINTS = window.SCENE3D_CONSTRAINTS;
 const HISTORY = window.SCENE3D_HISTORY.createHistory();
 
 const TYPE_COLORS = {
-  building: 0xd9a15c,
-  parking:  0x4a4a52,
-  road:     0x6b6b73,
-  fence:    0x8a7a63,
+  building:   0xd9a15c,
+  parking:    0x4a4a52,
+  road:       0x6b6b73,
+  fence:      0x8a7a63,
+  substation: 0xc7913f,
 };
 const SELECTED_COLOR = 0x4874e8;
 const CONFLICT_COLOR = 0xd9534f;
@@ -49,6 +50,9 @@ let terrainVisible = true;
 let terrainStatusCb = null;
 let terrainClearCb = null;
 let activePhaseFilter = null; // null = show all phases; otherwise a phase number
+let sunLight = null;
+let sunDateISO = null;   // null = "use current real time," not persisted as a frozen moment
+let viewpoints = [];      // [{id, name, camera:{target:{lat,lng}, distance, azimuth, polar}}]
 
 const objectMeshes = new Map();          // objectId -> THREE.Mesh
 const constraintStatusById = new Map();  // objectId -> { status, reasons }
@@ -236,6 +240,8 @@ function _createMeshForObject(obj) {
   mesh.rotation.y = (obj.rotationDeg || 0) * Math.PI / 180;
   mesh.userData.objectId = obj.id;
   mesh.visible = activePhaseFilter == null || obj.phase === activePhaseFilter;
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
   objectsGroup.add(mesh);
   objectMeshes.set(obj.id, mesh);
   return mesh;
@@ -410,6 +416,129 @@ function listObjects() {
   ));
 }
 
+// ── Batch creation (templates, campus generator) — Phase D ─────────────────
+
+/* Creates every spec in one go and pushes ONE combined undo/redo command,
+ * so placing a whole template or a generated campus layout is a single
+ * undo step, not one per object. Returns the created objects (full
+ * snapshots, post-creation). */
+function _createBatch(specs, label) {
+  if (!scene || !objectsGroup || !specs || !specs.length) return [];
+  const created = specs.map(spec => JSON.parse(JSON.stringify(OBJECTS.create(spec))));
+  created.forEach(o => _createMeshForObject(o));
+  _recomputeConstraints();
+  HISTORY.push({
+    label,
+    undo: () => {
+      created.forEach(o => { OBJECTS.remove(o.id); _removeObjectMesh(o.id); });
+      SELECTION.deselect();
+      _recomputeConstraints();
+    },
+    redo: () => {
+      created.forEach(o => { OBJECTS.restore(o); _createMeshForObject(OBJECTS.get(o.id)); });
+      _recomputeConstraints();
+    },
+  });
+  return created;
+}
+
+function listTemplates() {
+  return (window.SCENE3D_TEMPLATES && window.SCENE3D_TEMPLATES.list()) || [];
+}
+
+function instantiateTemplate(templateId) {
+  const TEMPLATES = window.SCENE3D_TEMPLATES;
+  if (!TEMPLATES) return [];
+  const specs = TEMPLATES.instantiate(templateId, { x: 0, z: 0 });
+  if (!specs) return [];
+  SELECTION.deselect();
+  return _createBatch(specs, 'Add template');
+}
+
+/* Requires a real parcel boundary — the generator itself refuses and
+ * returns an explanatory warning if none is selected, matching
+ * js/3d/campus-generator.js's own contract. */
+function generateCampus(opts) {
+  const GEN = window.SCENE3D_CAMPUS_GENERATOR;
+  if (!GEN) return { halls: [], substations: [], fences: [], roads: [], warnings: ['Campus generator module not loaded.'], disclaimer: '' };
+  const result = GEN.generate(Object.assign({}, opts, { boundary: parcelBoundaryLocal }));
+  const allSpecs = [].concat(result.halls, result.substations, result.fences, result.roads);
+  SELECTION.deselect();
+  const created = _createBatch(allSpecs, 'Generate campus layout');
+  return Object.assign({}, result, { createdCount: created.length });
+}
+
+// ── Sun / shadows — Phase D ─────────────────────────────────────────────────
+
+function _applySunPosition() {
+  if (!sunLight || originLat == null) return null;
+  const SUN = window.SCENE3D_SUN;
+  if (!SUN) return null;
+  const date = sunDateISO ? new Date(sunDateISO) : new Date();
+  const pos = SUN.solarPosition(date, originLat, originLng);
+  const dir = SUN.directionToSun(pos.altitudeDeg, pos.azimuthDeg);
+  const DIST = 1500;
+  // Keep a small minimum height even below the horizon so the light never
+  // sits exactly at/under the ground plane (which produces degenerate
+  // shadow geometry) — intensity carries the actual day/night distinction.
+  sunLight.position.set(dir.x * DIST, Math.max(dir.y, 0.05) * DIST, dir.z * DIST);
+  const daylight = pos.altitudeDeg > 0;
+  sunLight.intensity = daylight ? 1.0 : 0.05;
+  return { altitudeDeg: pos.altitudeDeg, azimuthDeg: pos.azimuthDeg, daylight };
+}
+
+/* dateISO: an ISO datetime string, or null/undefined to track "now." */
+function setSunTime(dateISO) {
+  sunDateISO = dateISO || null;
+  return _applySunPosition();
+}
+
+function getSunInfo() {
+  if (originLat == null) return null;
+  const info = _applySunPosition();
+  if (!info) return null;
+  return Object.assign({ dateISO: sunDateISO }, info);
+}
+
+// ── Saved viewpoints — Phase D ───────────────────────────────────────────────
+
+function saveViewpoint(name) {
+  if (!orbitCamera || originLat == null) return null;
+  const camState = orbitCamera.getState();
+  const targetLatLng = unprojectXZ(camState.target.x, camState.target.z, originLat, originLng);
+  const vp = {
+    id: 'vp_' + Math.random().toString(36).slice(2, 10),
+    name: name || ('Viewpoint ' + (viewpoints.length + 1)),
+    camera: {
+      target: { lat: targetLatLng.lat, lng: targetLatLng.lng },
+      distance: camState.distance, azimuth: camState.azimuthDeg, polar: camState.polarDeg,
+    },
+  };
+  viewpoints.push(vp);
+  return vp;
+}
+
+function listViewpoints() {
+  return viewpoints.slice();
+}
+
+function applyViewpoint(id) {
+  const vp = viewpoints.find(v => v.id === id);
+  if (!vp || !orbitCamera || originLat == null) return false;
+  const targetXZ = projectLatLng(vp.camera.target.lat, vp.camera.target.lng, originLat, originLng);
+  orbitCamera.setState({
+    distance: vp.camera.distance, azimuthDeg: vp.camera.azimuth, polarDeg: vp.camera.polar,
+    target: { x: targetXZ.x, y: 0, z: targetXZ.z },
+  });
+  return true;
+}
+
+function deleteViewpoint(id) {
+  const before = viewpoints.length;
+  viewpoints = viewpoints.filter(v => v.id !== id);
+  return viewpoints.length !== before;
+}
+
 // ── Transform gizmo ──────────────────────────────────────────────────────
 
 function _applyGizmoAxisRestrictions() {
@@ -499,9 +628,16 @@ function _buildScene() {
   scene.background = new THREE.Color(0xbfd4e8);
 
   const ambient = new THREE.AmbientLight(0xffffff, 0.6);
-  const sun = new THREE.DirectionalLight(0xffffff, 1.0);
-  sun.position.set(600, 900, 400);
-  scene.add(ambient, sun);
+  sunLight = new THREE.DirectionalLight(0xffffff, 1.0);
+  sunLight.castShadow = true;
+  sunLight.shadow.mapSize.set(1024, 1024);
+  sunLight.shadow.camera.near = 10;
+  sunLight.shadow.camera.far = 4000;
+  sunLight.shadow.camera.left = -700;
+  sunLight.shadow.camera.right = 700;
+  sunLight.shadow.camera.top = 700;
+  sunLight.shadow.camera.bottom = -700;
+  scene.add(ambient, sunLight);
 
   objectsGroup = new THREE.Group();
   objectsGroup.name = 'scene3d-objects';
@@ -514,6 +650,7 @@ function _buildScene() {
 
   renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.shadowMap.enabled = true;
 
   const { w, h } = _size();
   orbitCamera = createOrbitCamera(THREE, OrbitControls, canvas, w / Math.max(h, 1));
@@ -539,6 +676,7 @@ function _buildScene() {
   _rebuildParcelBoundary();
   _rebuildAllObjectMeshes();
   _onSelectionChanged(SELECTION.getSelected());
+  _applySunPosition();
   _animate();
 }
 
@@ -558,6 +696,7 @@ function _teardownScene() {
   }
   terrainGroup = null;
   objectsGroup = null;
+  sunLight = null;
   if (renderer) { try { renderer.dispose(); } catch (_) {} }
   renderer = null;
   scene = null;
@@ -599,6 +738,7 @@ function onCountyChanged(fips) {
   OBJECTS.clear();
   SELECTION.deselect();
   HISTORY.clear();
+  viewpoints = []; // saved views were framed relative to the previous site
   if (objectsGroup) objectMeshes.forEach((mesh, id) => _removeObjectMesh(id));
 
   currentFips = fips;
@@ -610,6 +750,7 @@ function onCountyChanged(fips) {
     _rebuildTerrain();
     _rebuildParcelBoundary();
     _recomputeConstraints();
+    _applySunPosition();
   }
 }
 
@@ -634,6 +775,8 @@ function getSceneDescriptor() {
     terrainEnabled: terrainVisible,
     exaggeration,
     objects: OBJECTS.toArray(),
+    viewpoints: JSON.parse(JSON.stringify(viewpoints)),
+    sun: sunDateISO ? { dateISO: sunDateISO } : null,
   };
 }
 
@@ -647,6 +790,10 @@ function applyState(normalized) {
   SELECTION.deselect();
   HISTORY.clear();
   if (objectsGroup) _rebuildAllObjectMeshes();
+
+  viewpoints = Array.isArray(normalized.viewpoints) ? normalized.viewpoints.slice() : [];
+  sunDateISO = (normalized.sun && normalized.sun.dateISO) || null;
+  if (sunLight) _applySunPosition();
 
   if (!orbitCamera) return;
   const cam = normalized.camera || {};
@@ -669,4 +816,7 @@ window.SCENE3D._registerEngine({
   createBuilding, createObject, updateObject, deleteSelected, undo, redo, historyCounts, getMetrics, listObjects,
   selectObject: id => SELECTION.select(id), deselectObject: () => SELECTION.deselect(),
   setTransformMode, setPhaseFilter, listPhases,
+  listTemplates, instantiateTemplate, generateCampus,
+  setSunTime, getSunInfo,
+  saveViewpoint, listViewpoints, applyViewpoint, deleteViewpoint,
 });

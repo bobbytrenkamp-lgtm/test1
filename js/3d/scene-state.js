@@ -10,10 +10,12 @@
 window.SCENE3D_STATE = (function () {
   'use strict';
 
-  // v1 -> v2: added `objects` (Phase B building volumes). A v1 save has no
-  // `objects` key at all — that must migrate to an empty array, never throw,
-  // never invent placeholder buildings.
-  const CURRENT_SCHEMA_VERSION = 2;
+  // v1 -> v2: added `objects` (Phase B building volumes).
+  // v2 -> v3: added `viewpoints` (Phase D saved camera views) and `sun`
+  // (Phase D date/time used to position the sun for shadows). A save from
+  // an older schema has none of these keys — they migrate to an empty
+  // array / null respectively, never throw, never invent placeholder data.
+  const CURRENT_SCHEMA_VERSION = 3;
 
   const DEFAULTS = Object.freeze({
     schemaVersion: CURRENT_SCHEMA_VERSION,
@@ -26,7 +28,9 @@ window.SCENE3D_STATE = (function () {
     }),
     terrainEnabled: true,
     exaggeration: 1.5,   // vertical exaggeration multiplier
-    objects: Object.freeze([]),  // Phase B building volumes, see js/3d/objects.js
+    objects: Object.freeze([]),      // building/parking/road/fence/substation objects, see js/3d/objects.js
+    viewpoints: Object.freeze([]),   // named saved camera views, see js/3d/engine.js
+    sun: null,                       // { dateISO } or null = use "now" — see js/3d/sun.js
   });
 
   function _cloneCamera(cam) {
@@ -51,6 +55,22 @@ window.SCENE3D_STATE = (function () {
     return objects.filter(o => o && typeof o === 'object').map(o => JSON.parse(JSON.stringify(o)));
   }
 
+  function _cloneViewpoints(viewpoints) {
+    if (!Array.isArray(viewpoints)) return [];
+    return viewpoints
+      .filter(v => v && typeof v === 'object' && typeof v.name === 'string')
+      .map(v => ({
+        id: typeof v.id === 'string' ? v.id : ('vp_' + Math.random().toString(36).slice(2, 10)),
+        name: v.name,
+        camera: _cloneCamera(v.camera),
+      }));
+  }
+
+  function _cloneSun(sun) {
+    if (!sun || typeof sun !== 'object' || typeof sun.dateISO !== 'string') return null;
+    return { dateISO: sun.dateISO };
+  }
+
   /* raw -> normalized current-schema object, or null if raw is null/undefined
    * (meaning "this workspace has no opinion about 3D" — the pre-Phase-A case).
    * Never throws; a malformed/partial object is backfilled from defaults
@@ -61,9 +81,10 @@ window.SCENE3D_STATE = (function () {
 
     // Every branch (older/unversioned, current, and future-unknown versions)
     // shares one backfill path: known fields normalized, unknown fields
-    // dropped, missing fields defaulted. A v1 save simply has no `objects`
-    // key, which _cloneObjects already turns into [] — that is the only
-    // "migration" v1 -> v2 actually requires.
+    // dropped, missing fields defaulted. A v1 save has no `objects` key,
+    // which _cloneObjects turns into []; a v1/v2 save has no `viewpoints`/
+    // `sun` keys, which _cloneViewpoints/_cloneSun turn into []/null — that
+    // is the entirety of what migrating through v2 and v3 requires.
     void version;
     return {
       schemaVersion: CURRENT_SCHEMA_VERSION,
@@ -72,6 +93,8 @@ window.SCENE3D_STATE = (function () {
       terrainEnabled: raw.terrainEnabled !== false,
       exaggeration: typeof raw.exaggeration === 'number' ? raw.exaggeration : DEFAULTS.exaggeration,
       objects: _cloneObjects(raw.objects),
+      viewpoints: _cloneViewpoints(raw.viewpoints),
+      sun: _cloneSun(raw.sun),
     };
   }
 
