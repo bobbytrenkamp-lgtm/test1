@@ -127,8 +127,15 @@ def check_url(url, timeout):
         except Exception as e:                      # noqa: BLE001 - network is messy
             if method == "HEAD":
                 continue
+            # type(e).__name__ alone (e.g. "URLError") throws away the actual
+            # reason (DNS failure vs TLS cert error vs connection refused vs
+            # timeout) — str(e) carries that detail, same as
+            # data/policy_pipeline/fetch.py already does. Without it, a run
+            # against this file's ~2000 URLs leaves roughly half the failures
+            # completely undiagnosable after the fact — confirmed by
+            # inspecting a real run's output during a 2026-07-29 audit.
             return {"ok": False, "status": None, "final_url": None,
-                    "error": type(e).__name__}
+                    "error": f"{type(e).__name__}: {e}" if str(e) else type(e).__name__}
 
     return {"ok": False, "status": None, "final_url": None, "error": "unreachable"}
 
@@ -225,7 +232,7 @@ def main():
                 res = fut.result()
             except Exception as e:                   # noqa: BLE001
                 res = {"ok": False, "status": None, "final_url": None,
-                       "error": type(e).__name__}
+                       "error": f"{type(e).__name__}: {e}" if str(e) else type(e).__name__}
 
             prev = urls.get(url, {})
             rec = {
