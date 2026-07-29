@@ -77,7 +77,13 @@ jobs:
             data/policy_review_queue.json \
             data/restrictions_raw.json
           git commit -m "chore: update policy pipeline data $(date -u +%Y-%m-%d) [skip ci]"
-          git push origin main
+          for attempt in 1 2 3 4 5; do
+            if git push origin main; then break; fi
+            if [ "$attempt" = 5 ]; then echo "::error::Push failed after 5 attempts."; exit 1; fi
+            echo "Push rejected (attempt ${attempt}), rebasing and retrying..."
+            git fetch origin main && git rebase origin/main
+            sleep $((attempt * 5))
+          done
 
       - name: Report source health
         run: |

@@ -232,7 +232,28 @@ jobs:
           # files at runtime with cache:no-store, so a redeploy is not needed for
           # new numbers to appear.
           git commit -m "chore: refresh economic data — ${SERIES} FRED series, ${COUNTIES} counties, ACS ${VINTAGE}, permits ${PERMITSN}, EIA ${EIAN}, BLS ${BLSN}, NRI ${NRIN} [skip ci]"
-          git push origin HEAD
+
+          # The fetch step above can run for over an hour, which is easily long
+          # enough for another scheduled workflow (e.g. the hourly AI news
+          # update) to land a commit on main first. A plain push then fails
+          # with "fetch first" and this successful, hard-won fetch is silently
+          # thrown away — confirmed happening in practice (2026-07-28 run: BLS
+          # data for 3221 counties was fetched, then lost to exactly this race).
+          # Rebase onto whatever landed and retry a few times before giving up.
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD; then
+              echo "Pushed on attempt ${attempt}."
+              break
+            fi
+            if [ "$attempt" = 5 ]; then
+              echo "::error::Push failed after 5 attempts — economic data fetched but not committed."
+              exit 1
+            fi
+            echo "Push rejected (attempt ${attempt}), rebasing onto latest main and retrying..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $((attempt * 5))
+          done
 
       - name: Summary
         if: always()
