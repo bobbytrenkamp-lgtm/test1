@@ -249,26 +249,29 @@
       "fips": "08059",
       "name": "Jefferson County",
       "state": "Colorado",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center",
         "energy"
       ],
-      "title": "Denver Metro Data Center Environmental Review",
-      "description": "Jefferson County (Lakewood/Golden, Denver metro) has proposed enhanced environmental review requirements for large data center developments, driven by Colorado's Artificial Intelligence Act (SB 24-205, 2024) and broader community concerns about energy use and emissions from large computing facilities in the Denver metropolitan area.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Jefferson County (Denver Metro) — Data Center Moratorium (2026)",
+      "description": "The Board of Commissioners voted 2026-05-19 to impose a 10-month moratorium on new data center development/rezoning applications, in effect through March 2027. It excludes parcels already zoned for data centers via Planned Development that are 1,500+ ft from any dwelling. This followed the state legislature's failure to pass data center regulation in its 2026 session.",
+      "effective_date": "2026-05-19",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described this as 'proposed' in 2024; the moratorium was actually enacted 2026-05-19.",
       "sources": [
         {
-          "label": "Colorado SB 24-205 — AI Act (2024)",
-          "url": "https://leg.colorado.gov/bills/sb24-205"
+          "label": "Denver7 — Jefferson County imposes temporary moratorium on new data centers",
+          "url": "https://www.denver7.com/news/front-range/jefferson-county-imposes-temporary-moratorium-on-development-of-new-data-centers"
         },
-        "Jefferson County CO data center review requirements (2024)"
+        {
+          "label": "Jeffco.us — official newsflash",
+          "url": "https://www.jeffco.us/m/newsflash/Home/Detail/2596"
+        }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "09003",
@@ -518,25 +521,24 @@
         "data_center",
         "energy"
       ],
-      "title": "Proposed Data Center Regulations",
-      "description": "McLean County (Bloomington-Normal) has proposed energy impact requirements for large-scale data center developments following interest from operators attracted to central Illinois's power grid and fiber connectivity. Community discussions focus on grid impacts and employment trade-offs.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "McLean County — Data Center Zoning Standards (2026)",
+      "description": "The County Board approved a package of 13 data center zoning standards in June 2026 (noise limits, landscaping screens, water/battery-capacity rules, decommissioning plans, impact disclosure requirements), following a Zoning Board of Appeals recommendation. This is a resolved regulatory action, not a moratorium or open-ended study.",
+      "effective_date": "2026-06-01",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described this as 'proposed' in 2024; the standards were actually adopted June 2026.",
       "sources": [
         {
-          "label": "McLean County IL Board — Data Center Energy Impact Study",
-          "url": "https://www.mcleancountyil.gov/"
+          "label": "WGLT — McLean County Board approves restrictive data center zoning requirements",
+          "url": "https://www.wglt.org/local-news/2026-06-11/mclean-county-board-approves-restrictive-data-center-zoning-requirements"
         },
         {
-          "label": "Illinois General Assembly — HB 3680 Data Center Tax Incentives",
-          "url": "https://www.ilga.gov/legislation/BillStatus.asp?DocNum=3680&GAID=17&DocTypeID=HB&SessionID=112"
-        },
-        "McLean County IL proposed data center energy impact requirements (2024)"
+          "label": "25 News Now — McLean County imposes strict regulations on data centers",
+          "url": "https://www.25newsnow.com/2026/06/16/mclean-county-imposes-strict-regulations-data-centers/"
+        }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "18057",
@@ -586,29 +588,28 @@
       "fips": "19061",
       "name": "Dubuque County",
       "state": "Iowa",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center"
       ],
-      "title": "Proposed Data Center Growth Management",
-      "description": "Dubuque County has discussed data center growth management requirements as data center developers have shown interest in the area. Despite Iowa's statewide pro-data-center tax exemptions, some Dubuque County communities have sought to review the impacts of large facilities on local infrastructure.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Dubuque County — Data Center Moratorium (2026)",
+      "description": "The Board of Supervisors approved a 12-month moratorium on new data center development applications at a special meeting in May 2026, following a Planning & Zoning Commission recommendation. Staff is now drafting permanent zoning standards (water, grid, noise, setbacks) with public meetings running through October 2026.",
+      "effective_date": "2026-05-01",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described this as 'proposed' in 2024; the moratorium was actually enacted May 2026.",
       "sources": [
         {
-          "label": "Dubuque County IA Board of Supervisors — Large Industrial Development Review",
-          "url": "https://www.dubuquecountyiowa.gov/290/Board-of-Supervisors"
+          "label": "KCRG — Dubuque County passes 12-month moratorium on data centers",
+          "url": "https://www.kcrg.com/2026/05/26/dubuque-county-passes-12-month-moratorium-data-centers/"
         },
         {
-          "label": "Iowa Economic Development Authority — Data Center Requirements",
-          "url": "https://www.iowaeconomicdevelopment.com/"
-        },
-        "Dubuque County IA data center development discussions (2024)"
+          "label": "KCRG — Dubuque County commission recommends data center moratorium",
+          "url": "https://www.kcrg.com/2026/05/20/dubuque-county-commission-recommends-data-center-moratorium/"
+        }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "19113",
@@ -784,26 +785,29 @@
       "fips": "26077",
       "name": "Kalamazoo County",
       "state": "Michigan",
-      "level": 3,
+      "level": 2,
       "types": [
         "data_center",
         "energy"
       ],
-      "title": "Proposed Moratorium — Data Center Development Restrictions",
-      "description": "Kalamazoo County has considered and partially implemented restrictions on new large-scale data center development following community opposition to proposed facilities. Concerns focus on energy demand on the Consumers Energy grid, water use, and land use impacts in agricultural and residential areas.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Kalamazoo County — Township-Level Data Center Moratoriums (Not County-Wide)",
+      "description": "No county-wide (Board of Commissioners) data center ordinance exists. Instead, several townships within Kalamazoo County have adopted their own temporary moratoriums: Kalamazoo Township (Ordinance No. 647), Oshtemo Township, Pavilion Township, the City of Portage, and Texas Township. The City of Kalamazoo itself is still researching a moratorium, with a commission vote expected August 2026.",
+      "effective_date": "2026-01-01",
+      "status": "active",
+      "notes": "2026-07-29 correction: reframed from an implied county-wide moratorium to the actual patchwork of township-level moratoriums; no Kalamazoo County Board of Commissioners ordinance was found. effective_date is a month-precision approximation across several township actions of varying dates.",
       "sources": [
-        "Kalamazoo County MI proposed data center restrictions (2024)",
         {
-          "label": "Data Center Bans tracker",
-          "url": "https://datacenterbans.com/"
+          "label": "Public Media Network — Kalamazoo Township Board adopts moratoriums on battery storage, data center facilities",
+          "url": "https://publicmedianet.org/news/community/kalamazoo-township-board-adopts-moratoriums-on-battery-storage-data-center-facilities/"
+        },
+        {
+          "label": "WWMT — Texas Township moratorium on data centers",
+          "url": "https://wwmt.com/news/local/texas-township-moratorium-data-center-centers-stop-pause-prevent-development-michigan-kalamazoo-county-board-vote-ai-wwmt"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "26161",
@@ -814,25 +818,24 @@
         "data_center",
         "ai"
       ],
-      "title": "Ann Arbor Data Center Review Requirements",
-      "description": "Washtenaw County (Ann Arbor, University of Michigan) has proposed oversight requirements for large data center developments including environmental impact review. Ann Arbor's progressive city council has also considered AI governance policies for government systems, aligned with ongoing Michigan state-level AI discussions.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Washtenaw County — Saline, Pittsfield Township & YCUA Data Center Pauses",
+      "description": "No evidence exists that Ann Arbor city council or Washtenaw County adopted (or is actively voting on) data center review requirements. Real 2025-2026 activity in the county is at other jurisdictions: Saline (1-year moratorium), Pittsfield Township (moratorium adopted November 2025, renewed May 2026), and the Ypsilanti Community Utilities Authority (12-month pause on new water/sewer commitments for data centers).",
+      "effective_date": "2025-11-01",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record's 'Ann Arbor Data Center Review Requirements' framing could not be corroborated — no Ann Arbor-specific action was found. Replaced with the real municipal-level actions elsewhere in the county.",
       "sources": [
         {
-          "label": "Washtenaw County MI Board of Commissioners — Data Center Review (2024)",
-          "url": "https://www.washtenaw.org/gov/boc/"
+          "label": "Bridge Michigan — At least 19 Michigan towns pause data centers; no one knows if it'll work",
+          "url": "https://bridgemi.com/michigan-environment-watch/at-least-19-michigan-towns-pause-data-centers-no-one-knows-if-itll-work/"
         },
         {
-          "label": "Michigan Public Service Commission — Energy Load Management",
-          "url": "https://www.michigan.gov/mpsc"
-        },
-        "Washtenaw County MI data center review requirements (2024)"
+          "label": "The Sun Times News — Pittsfield weighs rules for data centers before proposals arrive",
+          "url": "https://thesuntimesnews.com/pittsfield-weighs-rules-for-data-centers-before-proposals-arrive/"
+        }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "27053",
@@ -864,30 +867,29 @@
       "fips": "30029",
       "name": "Flathead County",
       "state": "Montana",
-      "level": 2,
+      "level": 0,
       "types": [
         "data_center",
         "crypto"
       ],
-      "title": "Proposed High-Intensity Computing Restrictions",
-      "description": "Flathead County has proposed and discussed restrictions on cryptocurrency mining and high-intensity computing facilities following community concerns about noise and energy impact.",
-      "effective_date": "2019-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Flathead County — No Confirmed Restriction; State Law Preempts Local Action",
+      "description": "No evidence corroborates a 2019 Flathead County proposal on cryptocurrency mining or high-intensity computing; searches for this instead surface Missoula County, which actually enacted 2019 interim crypto-mining zoning restrictions (100% renewable power requirement, industrial-district siting). Flathead County's own materials state the county lacks authority to adopt a noise ordinance under Montana law. Separately and more importantly, Montana's SB 178 'Right to Mine' law (signed 2023-05-02, MCA 76-2-1003) explicitly strips local governments of the power to use zoning to restrict digital-asset mining statewide — so even a real 2019 Flathead proposal would have been preempted since 2023. Current 2026 Montana county activity on data centers is happening in Missoula County (interim 1-year moratorium, July 2026) and via a Yellowstone County citizen ballot initiative, not Flathead.",
+      "effective_date": "2023-05-02",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record's 2019 Flathead County claim could not be corroborated and appears misattributed (the real 2019 action was Missoula County's). Downgraded to level 0; even if a local rule existed, Montana's SB 178 (2023) would preempt it for crypto-mining specifically. effective_date reflects SB 178's signing, the actually-operative legal fact for this county today.",
       "sources": [
         {
-          "label": "Flathead County Commissioners — Large Data Center Permit Review (2019)",
-          "url": "https://flathead.mt.gov/commissioners/"
+          "label": "Daily Montanan — Counties take different approaches to data center regulation",
+          "url": "https://dailymontanan.com/2026/07/10/counties-take-different-approaches-to-data-center-regulation/"
         },
         {
-          "label": "Montana Legislature — Data Center Regulation Discussion",
-          "url": "https://leg.mt.gov/"
-        },
-        "Flathead County Commissioner discussions, 2019"
+          "label": "Montana SB 178 (2023) — full text (PDF)",
+          "url": "https://archive.legmt.gov/bills/2023/billpdf/SB0178.pdf"
+        }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "30053",
@@ -1272,61 +1274,74 @@
         "data_center",
         "energy"
       ],
-      "title": "Proposed Data Center Review Requirements",
-      "description": "Durham County (Durham, Duke University Research Triangle) has proposed restrictions and enhanced review processes for large-scale data center development amid rapid growth interest in the Research Triangle. Community concerns focus on grid capacity, noise, and water use.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Durham — City Moratorium Enacted; County Action Pending",
+      "description": "The City of Durham Council unanimously passed a data center/crypto-mining moratorium (effective ~2026-05-04), later extended to 12 months (through ~May 2027). Durham County Commissioners separately amended the UDO in June 2026 to make county-level moratoriums easier to adopt and were slated to vote on a formal county-wide moratorium at their 2026-07-13 meeting; the outcome of that vote could not be confirmed as of this review.",
+      "effective_date": "2026-05-04",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described a vague county-wide 'review requirement proposed' in 2024. The confirmed current fact is a City of Durham moratorium; a county-wide vote was scheduled for 2026-07-13 but its outcome is unconfirmed — re-verify and upgrade to county-wide level 3 if it passed.",
       "sources": [
-        "Durham County NC proposed data center review requirements (2024)"
+        {
+          "label": "IndyWeek — Durham passes data center ban",
+          "url": "https://indyweek.com/news/durham-passes-data-center-ban/"
+        },
+        {
+          "label": "WRAL — Durham County approves rule change making future moratoriums easier",
+          "url": "https://www.wral.com/news/local/durham-county-approves-rule-change-future-development-moratoriums-easier-june-2026/"
+        }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "37073",
       "name": "Gates County",
       "state": "North Carolina",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center"
       ],
-      "title": "Proposed Data Center Restrictions",
-      "description": "Gates County NC has proposed zoning restrictions on large-scale data center developments as part of the broader wave of North Carolina county-level responses to rapid data center growth pressures in the state.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Gates County — Data Center Moratorium (First in NC's 2025-26 Wave)",
+      "description": "The Board of Commissioners unanimously adopted a one-year moratorium ordinance on data center development approvals in December 2025 — the first North Carolina jurisdiction to do so in the ongoing 2025-2026 wave of county-level data center restrictions.",
+      "effective_date": "2025-12-01",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described this as merely 'proposed' in 2024; the moratorium was actually enacted in December 2025.",
       "sources": [
-        "Gates County NC proposed data center zoning restrictions (2024)",
         {
-          "label": "NC data center moratorium coverage",
-          "url": "https://www.datacenterdynamics.com/en/news/north-carolina-counties-pass-data-center-moratoriums/"
+          "label": "Gates County Index — Is a data center in Gates County's future?",
+          "url": "https://www.gatescountyindex.com/news/is-a-data-center-in-gates-countys-future-c8f66c53"
+        },
+        {
+          "label": "Albemarle Observer — Concerns rise as Gates County halts data center approvals",
+          "url": "https://albemarleobserver.news/2025/12/20/concerns-rise-as-gates-county-halts-data-center-approvals/"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "37115",
       "name": "Madison County",
       "state": "North Carolina",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center"
       ],
-      "title": "Proposed Data Center Restrictions",
-      "description": "Madison County (Marshall) has proposed restrictions on large-scale data centers as part of the broader wave of western and rural NC counties seeking to limit high-power computing developments.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Madison County — Data Center Moratorium (2026)",
+      "description": "The Board of Commissioners unanimously approved a one-year moratorium on 'data processing facilities' (crypto mining and hyperscale data centers) at its 2026-06-13 meeting, to allow time to draft siting standards.",
+      "effective_date": "2026-06-13",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described this as 'proposed' in 2024; the moratorium was actually enacted 2026-06-13.",
       "sources": [
-        "Madison County NC proposed data center restrictions (2024)"
+        {
+          "label": "Yahoo News — Madison County imposes 1-year moratorium",
+          "url": "https://news.yahoo.com/madison-county-imposes-1-moratorium-090939100.html"
+        }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "37119",
@@ -1443,21 +1458,28 @@
       "fips": "37173",
       "name": "Swain County",
       "state": "North Carolina",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center"
       ],
-      "title": "Proposed Data Center Restrictions",
-      "description": "Swain County (Bryson City, Great Smoky Mountains gateway) has proposed restrictions on large-scale data center development, citing grid constraints and incompatibility with rural and tourism land use.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Swain County — Data Center Moratorium (2026)",
+      "description": "Commissioners unanimously passed a 12-month data center moratorium on 2026-04-21, after a packed public hearing (140 attendees, 34 speakers). Two ad hoc citizen committees were formed to guide follow-on siting standards.",
+      "effective_date": "2026-04-21",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described this as 'proposed' in 2024; the moratorium was actually enacted 2026-04-21.",
       "sources": [
-        "Swain County NC proposed data center restrictions (2024)"
+        {
+          "label": "BPR/NPR — Swain County unanimously passes data center moratorium",
+          "url": "https://www.bpr.org/climate-environment/2026-04-22/swain-county-unanimously-passes-data-center-moratorium"
+        },
+        {
+          "label": "Smoky Mountain News — Swain public hearing brings moratorium support, data center opposition",
+          "url": "https://smokymountainnews.com/news/item/41144-swain-public-hearing-brings-moratorium-support-data-center-opposition"
+        }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "37183",
@@ -1491,21 +1513,28 @@
       "fips": "37189",
       "name": "Watauga County",
       "state": "North Carolina",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center"
       ],
-      "title": "Proposed Data Center Restrictions",
-      "description": "Watauga County (Boone, Appalachian State University area) has proposed restrictions on large-scale data center development citing incompatibility with the mountain tourism economy and limited grid capacity in the region.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Watauga County — Data Center Moratorium (2026)",
+      "description": "Both the Town of Boone (unanimous 5-0, March 2026) and the Watauga County Board of Commissioners (unanimous, 2026-04-21) passed one-year data center moratoriums.",
+      "effective_date": "2026-04-21",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described this as 'proposed' in 2024; the county moratorium was actually enacted 2026-04-21, following Boone's town-level moratorium in March 2026.",
       "sources": [
-        "Watauga County NC proposed data center restrictions (2024)"
+        {
+          "label": "WUNC — Boone approves data center development moratorium",
+          "url": "https://www.wunc.org/2026-03-23/boone-approves-data-center-development-moratorium"
+        },
+        {
+          "label": "Watauga Democrat — County commissioners pass a one-year data center moratorium",
+          "url": "https://www.wataugademocrat.com/news/county-commissioners-pass-a-one-year-data-center-moratorium-for-watauga-county/article_012ca886-b088-4aee-8321-6b0f851fcdca.html"
+        }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "39049",
@@ -1782,30 +1811,29 @@
       "fips": "47037",
       "name": "Davidson County",
       "state": "Tennessee",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center",
         "energy"
       ],
-      "title": "Nashville Data Center Growth Controls",
-      "description": "Davidson County (Nashville) has proposed regulations on large-scale data centers following rapid growth in applications, strained TVA grid capacity, and community concerns. Nashville's rapid tech sector growth has accelerated data center demand while also raising opposition from community groups focused on land use.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Davidson County (Nashville) — Data Center Zoning Regulations + Moratorium",
+      "description": "Metro Council gave final approval on 2026-07-21 to new data center zoning regulations: large data centers are limited to heavy-industrial zones, require a Board of Zoning Appeals special exception plus public hearing, and must maintain buffer zones around schools/hospitals/zoos. Council also imposed a moratorium on new data center permits until 2026-12-01. The push followed opposition to proposed facilities near the Nashville Zoo and Fisk University.",
+      "effective_date": "2026-07-21",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described this as 'proposed' in 2024; the regulations and moratorium were actually enacted 2026-07-21.",
       "sources": [
         {
-          "label": "Davidson County (Nashville) Metro Council — AI Data Center Policy Discussion",
-          "url": "https://council.nashville.gov/"
+          "label": "Nashville Banner — Nashville data center regulations, moratorium",
+          "url": "https://nashvillebanner.com/2026/07/21/nashville-data-center-regulations-moratorium/"
         },
         {
-          "label": "Nashville Business Journal: Data center regulations debate",
-          "url": "https://www.bizjournals.com/nashville/"
-        },
-        "Davidson County TN Metro Nashville proposed data center regulations (2024)"
+          "label": "WSMV — Metro Council passes first data center regulations in Nashville",
+          "url": "https://www.wsmv.com/2026/07/22/metro-council-passes-first-data-center-regulations-nashville-heres-what-changes/"
+        }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "47065",
@@ -1840,24 +1868,30 @@
       "fips": "47031",
       "name": "Coffee County",
       "state": "Tennessee",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center",
         "crypto",
         "energy"
       ],
-      "title": "Proposed Moratorium — High-Intensity Computing Restrictions",
-      "description": "Coffee County (Manchester) is among the Tennessee counties considering moratoriums on large data centers and cryptocurrency mining following the xAI Colossus controversy and statewide TVA capacity concerns in 2024.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Coffee County — Data Center Moratorium (2026)",
+      "description": "The County Commission unanimously approved a 12-month data center moratorium on 2026-06-09 (the Planning Commission had recommended it in May, doubling the Mayor's original 6-month ask). Within a month the Commission also amended zoning to bar data centers from the Agricultural district.",
+      "effective_date": "2026-06-09",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described this as 'proposed' in 2024; the moratorium was actually enacted 2026-06-09.",
       "sources": [
-        "Coffee County TN proposed data center restrictions (2024)",
-        "Tennessee county data center moratorium wave, 2024"
+        {
+          "label": "Thunder Radio — Coffee County Commission approves 12-month data center moratorium",
+          "url": "https://thunder1320.com/coffee-county-commission-approves-12-month-data-center-moratorium/"
+        },
+        {
+          "label": "NewsChannel5 — Coffee County bans new data centers for one year",
+          "url": "https://www.newschannel5.com/news/state/tennessee/coffee-county/coffee-county-bans-new-data-centers-for-one-year"
+        }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "47157",
@@ -2349,29 +2383,28 @@
       "fips": "55071",
       "name": "Manitowoc County",
       "state": "Wisconsin",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center"
       ],
-      "title": "Proposed Data Center Restrictions",
-      "description": "Manitowoc County has considered restrictions on large-scale data center developments following community concerns about land use, limited employment generation, and energy demands on We Energies' grid.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "",
+      "title": "Manitowoc County — Data Center Moratorium (2026)",
+      "description": "The County Board voted unanimously on 2026-04-28 to approve an 18-month moratorium (amended up from an originally proposed 12 months) on accepting applications for or issuing permits related to data center siting, prompted by requests from the towns of Two Creeks, Two Rivers, and Mishicot after a developer approached local landowners.",
+      "effective_date": "2026-04-28",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described this as 'proposed' in 2024; the moratorium was actually enacted 2026-04-28.",
       "sources": [
         {
-          "label": "Manitowoc County WI Board of Supervisors — Data Center Proposal Review",
-          "url": "https://www.co.manitowoc.wi.us/departments/county_board/"
+          "label": "WPR — Manitowoc County Board approves 18-month data center moratorium",
+          "url": "https://www.wpr.org/news/manitowoc-county-board-approves-18-month-data-center-moratorium"
         },
         {
-          "label": "Herald Times Reporter: Manitowoc County data center discussions",
-          "url": "https://www.htrnews.com/"
-        },
-        "Manitowoc County WI proposed data center zoning restrictions (2024)"
+          "label": "WTAQ — Manitowoc County Board votes unanimously for 18-month moratorium",
+          "url": "https://wtaq.com/2026/04/29/manitowoc-county-board-votes-unanimously-to-impose-18-month-moratorium-on-data-centers/"
+        }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "55101",
@@ -3163,7 +3196,7 @@
           "url": "https://www.fox5atlanta.com/news/henry-county-weighs-new-rules-data-centers-after-public-hearing"
         }
       ],
-      "lifecycle_stage": "effective",
+      "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-29"
     },
@@ -4276,24 +4309,28 @@
         "data_center",
         "energy"
       ],
-      "title": "Data Center Siting Review — Portland Metro Energy Concerns",
-      "description": "Cumberland County, home to Portland, Maine's largest city, has seen growing data center interest driven by cold climate free-cooling advantages and proximity to Atlantic subsea cable landing sites. The Portland City Council adopted a resolution in 2024 directing the Planning Board to study large-scale data center siting impacts on the Unitil/CMP electric grid and local property tax base. Maine's renewable portfolio standard (35% by 2025, 80% by 2030) makes the region attractive for operators committed to clean-energy targets, but grid capacity constraints on CMP's transmission system have slowed permitting for large industrial electric loads.",
-      "effective_date": "2024-01-01",
-      "status": "proposed",
-      "notes": "Portland Planning Board study ongoing; no binding moratorium in effect.",
+      "title": "Cumberland County — Municipal Data Center Moratorium Wave (2026)",
+      "description": "Following Governor Mills' April 2026 veto of a statewide data center freeze, several Cumberland County municipalities passed their own moratoriums individually: Westbrook (180-day, approved 2026-06-01), Scarborough (approved 2026-06-03), and Brunswick (passed 2026-06-01), with Gorham proposing one on 2026-05-29. Portland and South Portland have notably not acted, making them holdouts among Cumberland County municipalities.",
+      "effective_date": "2026-06-01",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record claimed a 2024 Portland City Council resolution directing a Planning Board study — that claim could not be corroborated. Replaced with the real, confirmed municipal moratorium wave across the county.",
       "sources": [
         {
-          "label": "Portland ME — Planning and Urban Development",
-          "url": "https://www.portlandmaine.gov/175/Planning-Urban-Development"
+          "label": "Press Herald — Westbrook City Council approves 180-day data center moratorium",
+          "url": "https://www.pressherald.com/2026/06/01/westbrook-city-council-approves-180-day-data-center-moratorium/"
         },
         {
-          "label": "Maine PUC — Transmission Interconnection",
-          "url": "https://www.maine.gov/mpuc/"
+          "label": "Press Herald — Scarborough Town Council imposes data center moratorium",
+          "url": "https://www.pressherald.com/2026/06/03/scarborough-town-council-imposes-data-center-moratorium/"
+        },
+        {
+          "label": "Press Herald — Maine towns are passing moratoriums on data centers; why hasn't South Portland?",
+          "url": "https://www.pressherald.com/2026/06/29/maine-towns-are-passing-moratoriums-on-data-centers-why-hasnt-south-portland/"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "36059",
@@ -4415,24 +4452,24 @@
         "data_center",
         "energy"
       ],
-      "title": "Data Center Siting Overlay Study — Montgomery County",
-      "description": "Montgomery County, Pennsylvania's second most populous county, has seen proposals for large data center campuses in its western townships. The county Planning Commission initiated a Data Center Siting Overlay Study in 2023 after receiving applications for facilities totaling over 300 MW. Concerns include substation load impacts on the PECO/PPL transmission grid, emergency generator diesel fuel storage, and stormwater runoff from large impervious surfaces. The study recommends conditional zoning approval requiring power supply impact agreements with the local distribution utility.",
-      "effective_date": "2023-09-01",
+      "title": "Montgomery County PA — Non-Binding Data Center Ordinance Guide",
+      "description": "Pennsylvania counties do not hold zoning authority — municipalities do. Montgomery County's Planning Commission (jointly with Chester County) published a non-binding 'Data Center Ordinance Guide' (latest version dated April 2026) that individual townships (Upper Merion, Montgomery Township, Towamencin) are using to draft their own local ordinances. No county-level ordinance exists or is expected, since the county lacks the authority to adopt one.",
+      "effective_date": "2026-04-01",
       "status": "proposed",
-      "notes": "Overlay study recommendations pending formal ordinance adoption.",
+      "notes": "2026-07-29 update: confirmed this remains a non-binding guide, not a county ordinance — PA counties lack zoning authority. Re-verify against specific township ordinances (Upper Merion, Montgomery Township, Towamencin) for the operative rule in any given area.",
       "sources": [
         {
-          "label": "Montgomery County Planning Commission",
-          "url": "https://www.montcopa.org/1007/Planning-Commission"
+          "label": "Montgomery County PA — Data Center Ordinance Guide",
+          "url": "https://www.montgomerycountypa.gov/departments/planning-commission/publications/data-center-ordinance-guide"
         },
         {
-          "label": "PECO — Large Customer Transmission",
-          "url": "https://www.peco.com/"
+          "label": "montco.today — Upper Merion residents fear it's too late",
+          "url": "https://montco.today/2026/06/upper-merion-data-center-proposals/"
         }
       ],
       "lifecycle_stage": "proposed",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "49011",
@@ -5156,7 +5193,7 @@
       "fips": "36103",
       "name": "Suffolk County",
       "state": "New York",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -5164,7 +5201,7 @@
       "description": "Suffolk County hosts Long Island's eastern data center corridor anchored by Connectiv and DataGryd facilities in Melville and Hauppauge. The Hauppauge Industrial Park, one of the largest industrial parks in the Northeast, provides industrial zoning compatible with data center operations. PSEG Long Island's reliable grid and proximity to trans-Atlantic fiber cable landing stations support low-latency transatlantic connectivity. The county's financial services and healthcare IT workloads from Broadridge Financial Solutions (headquartered in Lake Success, Nassau) extend into Suffolk. New York's Empire State Digital program applies.",
       "effective_date": "2015-01-01",
       "status": "active",
-      "notes": "Hauppauge Industrial Park has zoning pre-approved for large industrial electrical loads.",
+      "notes": "Hauppauge Industrial Park has zoning pre-approved for large industrial electrical loads. 2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation.",
       "sources": [
         {
           "label": "Suffolk County IDA — Industrial Development",
@@ -5177,7 +5214,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "36119",
@@ -10485,7 +10522,7 @@
       "fips": "06099",
       "name": "Stanislaus County",
       "state": "California",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center",
         "energy"
@@ -10494,7 +10531,7 @@
       "description": "Stanislaus County (Modesto, CA) offers competitive advantages for data center development: lower land and energy costs than Bay Area markets, access to PG&E's transmission grid, and proximity to Highway 99 fiber backbone routes. The Modesto Irrigation District serves portions of the county with hydroelectric-sourced power, supporting renewable-energy commitments increasingly required by hyperscale operators. Agricultural technology and food-processing AI workloads are a growing demand driver.",
       "effective_date": "2021-06-01",
       "status": "active",
-      "notes": "PG&E and Modesto Irrigation District utilities; Hwy 99 fiber corridor.",
+      "notes": "PG&E and Modesto Irrigation District utilities; Hwy 99 fiber corridor. 2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation.",
       "sources": [
         {
           "label": "Stanislaus County Economic Development",
@@ -10507,7 +10544,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "36065",
@@ -11626,7 +11663,7 @@
       "fips": "06031",
       "name": "Kings County",
       "state": "California",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center",
         "energy"
@@ -11635,7 +11672,7 @@
       "description": "Kings County (Hanford/Lemoore, CA) hosts Naval Air Station Lemoore, the Navy's largest tactical jet air station and a major carrier air wing computing installation. The county is served by PG&E with access to the San Joaquin Valley power corridor. Agricultural data demand from dairy and field crops drives precision farming AI workloads, and the county's Central Valley location offers lower land costs than Bay Area data center markets with I-5 and CA-99 fiber-corridor access.",
       "effective_date": "2021-01-01",
       "status": "active",
-      "notes": "NAS Lemoore Navy computing; PG&E; Central Valley ag AI demand; I-5 fiber corridor.",
+      "notes": "NAS Lemoore Navy computing; PG&E; Central Valley ag AI demand; I-5 fiber corridor. 2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation.",
       "sources": [
         {
           "label": "Kings County Economic Development",
@@ -11648,7 +11685,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "09015",
@@ -14147,7 +14184,7 @@
       "fips": "17093",
       "name": "Kendall County",
       "state": "Illinois",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -14167,7 +14204,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "37069",
@@ -14282,7 +14320,7 @@
       "fips": "39127",
       "name": "Perry County",
       "state": "Ohio",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center",
         "energy"
@@ -14303,7 +14341,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "39073",
@@ -15051,7 +15090,7 @@
       "fips": "42063",
       "name": "Indiana County",
       "state": "Pennsylvania",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -15071,7 +15110,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "24009",
@@ -15273,7 +15313,7 @@
       "fips": "29099",
       "name": "Jefferson County",
       "state": "Missouri",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -15293,7 +15333,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "29027",
@@ -16337,7 +16378,7 @@
       "fips": "27137",
       "name": "St. Louis County",
       "state": "Minnesota",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center",
         "energy"
@@ -16362,7 +16403,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "27013",
@@ -16562,7 +16604,7 @@
       "fips": "17161",
       "name": "Rock Island County",
       "state": "Illinois",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -16582,7 +16624,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "17111",
@@ -16614,7 +16657,7 @@
       "fips": "17091",
       "name": "Kankakee County",
       "state": "Illinois",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -16634,7 +16677,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "17099",
@@ -18161,7 +18205,7 @@
       "fips": "48061",
       "name": "Cameron County",
       "state": "Texas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -18181,7 +18225,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "48309",
@@ -18241,7 +18286,7 @@
       "fips": "18005",
       "name": "Bartholomew County",
       "state": "Indiana",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -18261,13 +18306,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "18067",
       "name": "Howard County",
       "state": "Indiana",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -18287,7 +18333,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "18035",
@@ -18511,7 +18558,7 @@
       "fips": "22005",
       "name": "Ascension Parish",
       "state": "Louisiana",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -18531,13 +18578,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "22063",
       "name": "Livingston Parish",
       "state": "Louisiana",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -18557,7 +18605,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "22061",
@@ -18669,7 +18718,7 @@
       "fips": "24015",
       "name": "Cecil County",
       "state": "Maryland",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -18689,7 +18738,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "16065",
@@ -18723,7 +18773,7 @@
       "fips": "40119",
       "name": "Payne County",
       "state": "Oklahoma",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -18743,7 +18793,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "40017",
@@ -18831,7 +18882,7 @@
       "fips": "31019",
       "name": "Buffalo County",
       "state": "Nebraska",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -18851,7 +18902,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "38089",
@@ -18967,7 +19019,7 @@
       "fips": "31111",
       "name": "Lincoln County",
       "state": "Nebraska",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -18987,13 +19039,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "38105",
       "name": "Williams County",
       "state": "North Dakota",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -19013,13 +19066,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "30093",
       "name": "Silver Bow County",
       "state": "Montana",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -19039,7 +19093,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "16005",
@@ -19177,7 +19232,7 @@
       "fips": "31053",
       "name": "Dodge County",
       "state": "Nebraska",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -19197,7 +19252,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "31119",
@@ -19530,7 +19586,7 @@
       "fips": "54049",
       "name": "Marion County",
       "state": "West Virginia",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -19550,7 +19606,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "54079",
@@ -19608,7 +19665,7 @@
       "fips": "21029",
       "name": "Bullitt County",
       "state": "Kentucky",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -19628,7 +19685,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "21199",
@@ -19822,7 +19880,7 @@
       "fips": "17119",
       "name": "Madison County",
       "state": "Illinois",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -19842,13 +19900,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "31047",
       "name": "Dawson County",
       "state": "Nebraska",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -19868,7 +19927,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "31001",
@@ -20127,7 +20187,7 @@
       "fips": "19045",
       "name": "Clinton County",
       "state": "Iowa",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -20147,7 +20207,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "46093",
@@ -20237,7 +20298,7 @@
       "fips": "05145",
       "name": "White County",
       "state": "Arkansas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -20257,7 +20318,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "28149",
@@ -20341,7 +20403,7 @@
       "fips": "19111",
       "name": "Lee County",
       "state": "Iowa",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -20357,7 +20419,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "19125",
@@ -20431,7 +20494,7 @@
       "fips": "20057",
       "name": "Ford County",
       "state": "Kansas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -20447,7 +20510,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "20113",
@@ -20635,7 +20699,7 @@
       "fips": "05085",
       "name": "Lonoke County",
       "state": "Arkansas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -20651,7 +20715,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "30083",
@@ -20795,7 +20860,7 @@
       "fips": "54029",
       "name": "Hancock County",
       "state": "West Virginia",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -20811,7 +20876,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "54025",
@@ -20841,7 +20907,7 @@
       "fips": "54045",
       "name": "Logan County",
       "state": "West Virginia",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -20857,7 +20923,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "29023",
@@ -20887,7 +20954,7 @@
       "fips": "29143",
       "name": "New Madrid County",
       "state": "Missouri",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -20903,7 +20970,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "21035",
@@ -20931,7 +20999,7 @@
       "fips": "21177",
       "name": "Muhlenberg County",
       "state": "Kentucky",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -20947,7 +21015,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "21205",
@@ -21095,7 +21164,7 @@
       "fips": "38003",
       "name": "Barnes County",
       "state": "North Dakota",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -21111,7 +21180,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "48005",
@@ -21325,7 +21395,7 @@
       "fips": "35043",
       "name": "Sandoval County",
       "state": "New Mexico",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -21341,7 +21411,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "35031",
@@ -21579,7 +21650,7 @@
       "fips": "31037",
       "name": "Colfax County",
       "state": "Nebraska",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -21595,7 +21666,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "19085",
@@ -21671,7 +21743,7 @@
       "fips": "29225",
       "name": "Webster County",
       "state": "Missouri",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -21687,7 +21759,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "20125",
@@ -21765,7 +21838,7 @@
       "fips": "20059",
       "name": "Franklin County",
       "state": "Kansas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -21781,13 +21854,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "17063",
       "name": "Grundy County",
       "state": "Illinois",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -21803,7 +21877,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "17183",
@@ -21877,7 +21952,7 @@
       "fips": "05093",
       "name": "Mississippi County",
       "state": "Arkansas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -21893,7 +21968,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "08077",
@@ -22267,7 +22343,7 @@
       "fips": "31025",
       "name": "Cass County",
       "state": "Nebraska",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -22283,7 +22359,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "16069",
@@ -22359,7 +22436,7 @@
       "fips": "26075",
       "name": "Jackson County",
       "state": "Michigan",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -22375,7 +22452,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "47119",
@@ -22449,7 +22527,7 @@
       "fips": "13073",
       "name": "Columbia County",
       "state": "Georgia",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -22465,13 +22543,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "13033",
       "name": "Burke County",
       "state": "Georgia",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -22487,7 +22566,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "13115",
@@ -22845,7 +22925,7 @@
       "fips": "48291",
       "name": "Liberty County",
       "state": "Texas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -22861,7 +22941,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "27007",
@@ -23129,7 +23210,7 @@
       "fips": "05033",
       "name": "Crawford County",
       "state": "Arkansas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -23145,7 +23226,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "21013",
@@ -23269,7 +23351,7 @@
       "fips": "29007",
       "name": "Audrain County",
       "state": "Missouri",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -23285,13 +23367,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "20027",
       "name": "Clay County",
       "state": "Kansas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -23307,7 +23390,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "20021",
@@ -23359,7 +23443,7 @@
       "fips": "19005",
       "name": "Allamakee County",
       "state": "Iowa",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -23375,7 +23459,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "19007",
@@ -23429,7 +23514,7 @@
       "fips": "48395",
       "name": "Robertson County",
       "state": "Texas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -23445,7 +23530,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "30035",
@@ -23687,7 +23773,7 @@
       "fips": "31151",
       "name": "Saline County",
       "state": "Nebraska",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -23703,13 +23789,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "31169",
       "name": "Thayer County",
       "state": "Nebraska",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -23725,7 +23812,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "19171",
@@ -23941,7 +24029,7 @@
       "fips": "05029",
       "name": "Conway County",
       "state": "Arkansas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -23957,7 +24045,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "46037",
@@ -24031,7 +24120,7 @@
       "fips": "48133",
       "name": "Eastland County",
       "state": "Texas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -24047,7 +24136,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "48301",
@@ -24101,7 +24191,7 @@
       "fips": "26109",
       "name": "Menominee County",
       "state": "Michigan",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -24117,7 +24207,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "26043",
@@ -24291,7 +24382,7 @@
       "fips": "31059",
       "name": "Fillmore County",
       "state": "Nebraska",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -24307,7 +24398,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "31181",
@@ -24407,7 +24499,7 @@
       "fips": "18169",
       "name": "Wabash County",
       "state": "Indiana",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -24423,7 +24515,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "18075",
@@ -24451,7 +24544,7 @@
       "fips": "18073",
       "name": "Jasper County",
       "state": "Indiana",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -24467,7 +24560,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "38025",
@@ -24521,7 +24615,7 @@
       "fips": "38029",
       "name": "Emmons County",
       "state": "North Dakota",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -24537,7 +24631,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "08117",
@@ -24565,7 +24660,7 @@
       "fips": "08045",
       "name": "Garfield County",
       "state": "Colorado",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -24581,7 +24676,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "08097",
@@ -24631,7 +24727,7 @@
       "fips": "55051",
       "name": "Iron County",
       "state": "Wisconsin",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -24647,7 +24743,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "55053",
@@ -24701,7 +24798,7 @@
       "fips": "21183",
       "name": "Ohio County",
       "state": "Kentucky",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -24717,7 +24814,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "21091",
@@ -24791,7 +24889,7 @@
       "fips": "19009",
       "name": "Audubon County",
       "state": "Iowa",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -24807,7 +24905,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "19023",
@@ -25067,7 +25166,7 @@
       "fips": "17117",
       "name": "Macoupin County",
       "state": "Illinois",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -25083,7 +25182,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "48465",
@@ -25255,7 +25355,7 @@
       "fips": "05049",
       "name": "Fulton County",
       "state": "Arkansas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -25271,7 +25371,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "05073",
@@ -25325,7 +25426,7 @@
       "fips": "30009",
       "name": "Carbon County",
       "state": "Montana",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -25341,7 +25442,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "28113",
@@ -25511,7 +25613,7 @@
       "fips": "29013",
       "name": "Bates County",
       "state": "Missouri",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -25527,7 +25629,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "29149",
@@ -25675,7 +25778,7 @@
       "fips": "51005",
       "name": "Alleghany County",
       "state": "Virginia",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -25691,13 +25794,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "51197",
       "name": "Wythe County",
       "state": "Virginia",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -25713,7 +25817,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "31125",
@@ -25815,7 +25920,7 @@
       "fips": "46101",
       "name": "Moody County",
       "state": "South Dakota",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -25831,13 +25936,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "46057",
       "name": "Hamlin County",
       "state": "South Dakota",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -25853,7 +25959,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "21195",
@@ -26187,7 +26294,7 @@
       "fips": "26071",
       "name": "Iron County",
       "state": "Michigan",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26203,7 +26310,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "45037",
@@ -26329,7 +26437,7 @@
       "fips": "40003",
       "name": "Alfalfa County",
       "state": "Oklahoma",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26345,7 +26453,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "40029",
@@ -26375,7 +26484,7 @@
       "fips": "40049",
       "name": "Garvin County",
       "state": "Oklahoma",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26391,7 +26500,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "40055",
@@ -26421,7 +26531,7 @@
       "fips": "49013",
       "name": "Duchesne County",
       "state": "Utah",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26437,13 +26547,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "49027",
       "name": "Millard County",
       "state": "Utah",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26459,7 +26570,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "49031",
@@ -26511,7 +26623,7 @@
       "fips": "27075",
       "name": "Lake County",
       "state": "Minnesota",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26527,13 +26639,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "27033",
       "name": "Cottonwood County",
       "state": "Minnesota",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26549,13 +26662,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "48185",
       "name": "Grimes County",
       "state": "Texas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26571,13 +26685,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "48217",
       "name": "Hill County",
       "state": "Texas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26593,7 +26708,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "51169",
@@ -26767,7 +26883,7 @@
       "fips": "31147",
       "name": "Richardson County",
       "state": "Nebraska",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26783,13 +26899,14 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "48011",
       "name": "Armstrong County",
       "state": "Texas",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26805,7 +26922,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "48131",
@@ -26859,7 +26977,7 @@
       "fips": "55001",
       "name": "Adams County",
       "state": "Wisconsin",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26875,7 +26993,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "55003",
@@ -26929,7 +27048,7 @@
       "fips": "28069",
       "name": "Kemper County",
       "state": "Mississippi",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -26945,7 +27064,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "28025",
@@ -27955,7 +28075,7 @@
       "fips": "18007",
       "name": "Benton County",
       "state": "Indiana",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -27971,7 +28091,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "18041",
@@ -28475,7 +28596,7 @@
       "fips": "19131",
       "name": "Mitchell County",
       "state": "Iowa",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -28491,7 +28612,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "47067",
@@ -28977,7 +29099,7 @@
       "fips": "51023",
       "name": "Botetourt County",
       "state": "Virginia",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -28993,7 +29115,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "51027",
@@ -29239,7 +29362,7 @@
       "fips": "21043",
       "name": "Carter County",
       "state": "Kentucky",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -29255,7 +29378,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "26003",
@@ -29429,7 +29553,7 @@
       "fips": "13009",
       "name": "Baldwin County",
       "state": "Georgia",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -29445,7 +29569,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "13025",
@@ -29523,7 +29648,7 @@
       "fips": "22027",
       "name": "Claiborne Parish",
       "state": "Louisiana",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -29539,7 +29664,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "42021",
@@ -29593,7 +29719,7 @@
       "fips": "42005",
       "name": "Armstrong County",
       "state": "Pennsylvania",
-      "level": -1,
+      "level": 0,
       "types": [
         "data_center"
       ],
@@ -29609,7 +29735,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-17",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29",
+      "notes": "2026-07-29 correction: previously labeled level -1 (Pro-Development Hub), which asserts an actual favorable policy/incentive stance. The description contains only general market/siting commentary (power infrastructure, geography, fiber proximity) with no enacted incentive program, tax structure, or expedited-permitting policy — nothing here actually substantiates a pro-development claim. Downgraded to level 0 (No Known Restrictions), which is what the evidence supports. If a real incentive program exists for this county, re-verify and restore level -1 with a citation."
     },
     {
       "fips": "42023",
@@ -33159,24 +33286,24 @@
         "data_center",
         "water"
       ],
-      "title": "Kosciusko County Indiana Data Center Special-Use Moratorium Study",
-      "description": "Kosciusko County (Warsaw, IN) — the 'Orthopedic Capital of the World' for its dense medical-device manufacturing cluster (Zimmer Biomet, DePuy Synthes, Biomet) — has initiated a special-use permit review for large data center proposals following community concerns about water draw on the Tippecanoe River watershed and electrical capacity from AEP Indiana Michigan Power. The county board of commissioners authorized a moratorium study in early 2026 covering facilities exceeding 10 MW load, directing the Area Plan Commission to develop specific data center zoning standards. Medical device manufacturers and the county's precision manufacturing base require reliable power and water, creating conflict with data center scale requirements.",
-      "effective_date": "2026-01-01",
-      "status": "proposed",
-      "notes": "Orthopedic manufacturing cluster power/water competition; AEP IMP service; Tippecanoe watershed.",
+      "title": "Kosciusko County — Prologis Data Center Rezoning Denied (2025)",
+      "description": "Kosciusko County Commissioners unanimously (3-0) rejected a Prologis data-center rezoning for 554 acres near Leesburg in April 2025, following an 8-0 Area Plan Commission recommendation to deny, citing farmland-preservation language in the comprehensive plan. No formal county-wide moratorium or ordinance was adopted — this was a project-specific denial.",
+      "effective_date": "2025-04-01",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described a 'moratorium study authorized in early 2026 covering facilities >10 MW' that could not be confirmed. The real, confirmed event is the April 2025 Prologis rezoning denial.",
       "sources": [
         {
-          "label": "Kosciusko County Area Plan Commission",
-          "url": "https://www.kcapc.org/"
+          "label": "WANE 15 — Commissioners reject rezoning plan for Kosciusko County data center",
+          "url": "https://www.wane.com/top-stories/commissioners-reject-rezoning-plan-for-kosciusko-county-data-center/"
         },
         {
-          "label": "Kosciusko County Board of Commissioners",
-          "url": "https://www.kcgov.com/"
+          "label": "DCD — Prologis data center proposal in Kosciusko County, Indiana denied",
+          "url": "https://www.datacenterdynamics.com/en/news/prologis-data-center-proposal-in-kosciusko-county-indiana-denied/"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "18053",
@@ -33254,7 +33381,7 @@
           "url": "https://alamancenews.com/commissioners-to-begin-discussing-data-centers-possible-moratorium/"
         }
       ],
-      "lifecycle_stage": "effective",
+      "lifecycle_stage": "proposed",
       "pipeline_verified": false,
       "last_reviewed": "2026-07-29"
     },
@@ -33262,29 +33389,29 @@
       "fips": "37145",
       "name": "Person County",
       "state": "North Carolina",
-      "level": 2,
+      "level": -1,
       "types": [
         "data_center",
         "energy"
       ],
-      "title": "Person County North Carolina Data Center Siting Study and Duke Progress Review",
-      "description": "Person County (Roxboro, NC) borders Orange County to the south — the epicenter of North Carolina's 2024-2026 data center moratorium wave — and shares Duke Energy Progress transmission infrastructure. The Roxboro area hosts Cliffs of the Neuse hydroelectric resources and the retired Roxboro Steam Electric Plant site (formerly a coal plant, now a redevelopment opportunity). The county planning board opened a formal data center siting study in 2026 in response to inbound inquiries from hyperscale operators seeking alternatives to moratoria in neighboring counties. The study addresses water cooling withdrawal from the Hyco Reservoir and substation capacity on the Duke Energy Progress high-voltage network.",
-      "effective_date": "2026-01-01",
-      "status": "proposed",
-      "notes": "Adjacent Orange County moratorium; Duke Energy Progress; Hyco Reservoir water concern.",
+      "title": "Person County — Microsoft Mega Park Approved (Permissive, Not Restrictive)",
+      "description": "Person County has no restrictive data center siting study — the previous record's premise was backwards. The county actively welcomed and approved Microsoft's 1,385-acre 'Mega Park' data center campus (Microsoft purchased the site for ~$26.85M in 2024, with pre-approved zoning and permits already secured); Microsoft began permitting in early 2026. Person County is repeatedly cited by NC press as one of the few counties in the state NOT pursuing a data center moratorium, in contrast to neighboring Orange, Chatham, and Durham counties.",
+      "effective_date": "2026-02-01",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record's central claim (a restrictive 'siting study') could not be corroborated and appears fabricated, in the same pattern as an earlier Page County VA finding in this audit. Replaced with the real, opposite-direction facts: the county approved a major Microsoft campus.",
       "sources": [
         {
-          "label": "Person County Planning Department",
-          "url": "https://www.personcountync.gov/153/Planning"
+          "label": "The Assembly NC — Person County, Microsoft, and data center nondisclosure agreements",
+          "url": "https://www.theassemblync.com/news/business/person-county-microsoft-data-center-nondisclosure-agreements/"
         },
         {
-          "label": "Duke Energy Progress — Carolinas Grid",
-          "url": "https://www.duke-energy.com/"
+          "label": "WRAL — Microsoft Person County Woodsdale data center permit",
+          "url": "https://www.wral.com/news/local/microsoft-person-county-woodsdale-data-center-permit-february-2026/"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "37033",
@@ -33319,7 +33446,7 @@
       "fips": "55021",
       "name": "Columbia County",
       "state": "Wisconsin",
-      "level": 2,
+      "level": 0,
       "types": [
         "data_center",
         "energy"
@@ -33327,8 +33454,8 @@
       "title": "Columbia County Wisconsin Data Center Moratorium Study — Alliant Energy Capacity",
       "description": "Columbia County (Portage, WI) initiated a data center moratorium study in 2025, joining neighboring Dane County (Madison) which had enacted its own data center restrictions. The county's location on the Wisconsin River and proximity to the Portage hydroelectric dam raises water-use concerns. Alliant Energy (Interstate Power and Light) serves the county but faces transmission constraints on the northern Dane County / Columbia County interconnect. The county board directed its zoning committee to develop data-center-specific conditional use permit standards addressing backup generator emissions, noise, water withdrawal, and substation capacity confirmation requirements.",
       "effective_date": "2025-11-01",
-      "status": "proposed",
-      "notes": "Adjacent Dane County restrictions; Alliant Energy capacity; Wisconsin River water concern.",
+      "status": "active",
+      "notes": "2026-07-29 audit: extensive searching (news, WisPolitics/Dane County coverage, Columbia County Planning & Zoning Committee minutes, Alliant Energy project pages) found no independent confirmation of a county-initiated 'data center moratorium study' or zoning-committee directive as described. Unlike Manitowoc/Dubuque/Jefferson/McLean (all independently confirmed elsewhere in this audit), no local news outlet names Columbia County among counties that adopted or are actively studying restrictions. Downgraded to level 0 pending direct confirmation with Columbia County Planning & Zoning.",
       "sources": [
         {
           "label": "Columbia County Wisconsin Planning and Zoning",
@@ -33339,9 +33466,9 @@
           "url": "https://www.co.columbia.wi.us/County-Board"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "13199",
@@ -33719,7 +33846,7 @@
       "fips": "53013",
       "name": "Columbia County",
       "state": "Washington",
-      "level": 1,
+      "level": 0,
       "types": [
         "data_center",
         "zoning"
@@ -33727,8 +33854,8 @@
       "title": "Columbia County Washington Data Center Siting Review — Rural Character Protection",
       "description": "Columbia County (Dayton, WA) is one of Washington State's smallest and most rural counties, situated in the Blue Mountains foothills of southeastern Washington along the Snake and Tucannon river drainages. Pacific Power (PacifiCorp) serves the county, but distribution infrastructure was built for agricultural and small-town loads. The county planning commission initiated a data center siting review in 2025 after receiving an inquiry from a regional colocation operator considering the county's low land costs and proximity to I-12 fiber. Commission standards require applicants to document available utility capacity with a Pacific Power service-availability letter, an agricultural impact statement (the county is 95%+ farmland), and compliance with Columbia County's scenic corridor overlay along SR-12.",
       "effective_date": "2025-06-01",
-      "status": "proposed",
-      "notes": "Rural agricultural county; Pacific Power limited capacity; scenic SR-12 overlay; ag impact statement required.",
+      "status": "active",
+      "notes": "2026-07-29 audit: extensive searching found zero evidence of any data center siting review, planning-commission action, or Pacific Power capacity requirement in Columbia County, WA (Dayton) — direct searches of columbiaco.com, the local Dayton Chronicle, and news aggregators found nothing. All genuine 'Columbia County data center' coverage found is about Columbia County, GEORGIA (Augusta metro, where Google and others are building a major data center park) — an entirely different county that happens to share the name. The record's specific details (95% farmland, SR-12 scenic overlay, Pacific Power) read as plausible-sounding fabricated color. Downgraded to level 0 pending direct confirmation with Columbia County, WA government.",
       "sources": [
         {
           "label": "Columbia County Planning Department — Dayton WA",
@@ -33743,15 +33870,15 @@
           "url": "https://www.pacificpower.net/"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "53065",
       "name": "Stevens County",
       "state": "Washington",
-      "level": 1,
+      "level": 0,
       "types": [
         "data_center",
         "energy",
@@ -33760,8 +33887,8 @@
       "title": "Stevens County Washington Data Center Siting Standards — Spokane River Basin",
       "description": "Stevens County (Colville, WA) occupies northeastern Washington's Colville Valley and Spokane River headwaters region. Avista Utilities serves the county's commercial and industrial load from the Spokane River hydroelectric system (Nine Mile, Long Lake, Little Falls dams), with limited export transmission capacity. The county planning commission adopted baseline data center siting standards in 2025 requiring pre-application utility coordination with Avista, a Spokane River water-intake impact statement for evaporative cooling systems, and a Columbia Salish Tribes (Colville Confederated Tribes) cultural resource review for sites near tribal reservation boundaries. The county's large-lot agricultural and timberland zoning districts currently prohibit data centers as primary uses without a conditional use permit.",
       "effective_date": "2025-08-01",
-      "status": "proposed",
-      "notes": "Avista Utilities hydro system; Spokane River water; Colville Tribes cultural review; CUP in ag/timber zones.",
+      "status": "active",
+      "notes": "2026-07-29 audit: no Stevens County planning-commission action, ordinance, or 'baseline siting standards' adopted in 2025 was found anywhere (county site, local paper Statesman-Examiner, targeted search). There is genuine June 2026 news that Avista signed a non-binding MOU for a large (125-500 MW) data-center load somewhere in its Washington service territory, but the location is explicitly undisclosed in that reporting, not confirmed as Stevens County. The record's Colville Tribes cultural-review and conditional-use-in-ag/timber-zone claims have no source. Downgraded to level 0 pending direct confirmation with Stevens County government.",
       "sources": [
         {
           "label": "Stevens County Planning Department — Colville WA",
@@ -33776,15 +33903,15 @@
           "url": "https://www.colvilletribes.com/"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "41033",
       "name": "Josephine County",
       "state": "Oregon",
-      "level": 1,
+      "level": 0,
       "types": [
         "data_center",
         "water"
@@ -33792,8 +33919,8 @@
       "title": "Josephine County Oregon Data Center Siting Review — Rogue River Watershed",
       "description": "Josephine County (Grants Pass, OR) sits in the Rogue River basin of southwestern Oregon, where the Rogue River carries federal Wild and Scenic River designation through the county's eastern section. Pacific Power (PacifiCorp) serves the county from its Oregon West transmission system. The county planning division opened a data center siting review in 2025 following the Hood River County permanent ban and Wasco County's restrictions, preemptively developing standards for facilities over 1 MW. Requirements include an Oregon Water Resources Department water-right availability determination for cooling systems drawing from the Rogue River or its tributaries, a Pacific Power capacity confirmation, and compliance with Josephine County's rural residential and wildlife-habitat overlay zones in the Applegate and Illinois Valley subwatersheds.",
       "effective_date": "2025-10-01",
-      "status": "proposed",
-      "notes": "Rogue River Wild & Scenic designation; OWRD water availability; Pacific Power; preemptive >1 MW review.",
+      "status": "active",
+      "notes": "2026-07-29 audit: no news source, county agenda item, or planning-commission record of any data center siting review exists for Josephine County — searches of josephinecounty.gov and Grants Pass local papers turned up nothing about OWRD water-right reviews, Pacific Power capacity confirmations, or Applegate/Illinois Valley overlay standards tied to data centers. Downgraded to level 0 pending direct confirmation with Josephine County government.",
       "sources": [
         {
           "label": "Josephine County Planning Department",
@@ -33808,15 +33935,15 @@
           "url": "https://www.pacificpower.net/"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "41035",
       "name": "Klamath County",
       "state": "Oregon",
-      "level": 2,
+      "level": 0,
       "types": [
         "data_center",
         "water",
@@ -33825,8 +33952,8 @@
       "title": "Klamath County Oregon Data Center Moratorium Study — Klamath Basin Water Crisis",
       "description": "Klamath County (Klamath Falls, OR) is at the center of the long-running Klamath Basin water crisis — a conflict among irrigators, tribal nations (Klamath Tribes, Yurok, Karuk, Hoopa Valley), and endangered coho salmon that has consumed decades of federal litigation. The county board of commissioners approved a moratorium study in 2025 covering new data center applications that would require more than 500 acre-feet of annual water withdrawal, citing the ongoing federal Klamath Compact renegotiation and Upper Klamath Lake water-right adjudication. Pacific Power/PacifiCorp serves the county but the Klamath River dam removal project (completed 2024) has changed hydropower availability on PacifiCorp's Oregon system. The Oregon Department of Environmental Quality's Klamath Basin water quality plan further restricts new thermal discharge permits.",
       "effective_date": "2025-11-01",
-      "status": "proposed",
-      "notes": "Klamath Basin water crisis; tribal water rights adjudication; PacifiCorp dam removal; ODEQ thermal discharge.",
+      "status": "active",
+      "notes": "2026-07-29 audit: no board-of-commissioners agenda item, news article, or DEQ record ties a data center moratorium to Klamath County. The only 'data center'-adjacent real project found is the unrelated Klamath Falls Energy Center (a natural-gas/thermal power-plant site-certificate application filed with the Oregon Dept. of Energy, Dec 2025) — a power generation facility, not a data center or moratorium. No evidence of a 500-acre-foot water-withdrawal threshold or tribal water-rights linkage as described. Downgraded to level 0 pending direct confirmation with Klamath County government.",
       "sources": [
         {
           "label": "Klamath County Board of Commissioners",
@@ -33845,9 +33972,9 @@
           "url": "https://klamathtribes.org/water-rights/"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "41063",
@@ -33911,35 +34038,35 @@
       "fips": "13143",
       "name": "Haralson County",
       "state": "Georgia",
-      "level": 1,
+      "level": -1,
       "types": [
         "data_center",
         "zoning"
       ],
-      "title": "Haralson County Georgia Data Center Siting Standards — Adjacent Carroll Moratorium",
-      "description": "Haralson County (Buchanan, GA) is a rural piedmont county immediately west of Carroll County, which enacted an active data center moratorium in 2024. As Carroll County moratorium displaced inbound inquiries to adjacent jurisdictions, Haralson County's planning staff began fielding applications and adopted baseline siting standards in 2025. Georgia Power (Southern Company) serves the county on a relatively lightly loaded distribution network originally designed for small manufacturing and residential customers. The siting standards require a Georgia Power pre-application capacity meeting for any facility exceeding 1 MW, documentation of water source and expected evaporative cooling volume, and a noise-impact study for facilities near the county's several residential communities in the Tallapoosa River valley.",
-      "effective_date": "2025-08-01",
-      "status": "proposed",
-      "notes": "Adjacent Carroll County moratorium; Georgia Power limited rural capacity; Tallapoosa River valley communities.",
+      "title": "Haralson County — Technology Park Overlay District (Pro-Development)",
+      "description": "Haralson County has no data-center-restrictive siting standards — the previous record's premise was backwards. The Board of Commissioners and City of Tallapoosa instead pursued a pro-data-center Technology Park Overlay District (TPOD), annexing roughly 600 acres in October 2025 and about 1,000 more acres in 2026 into Tallapoosa specifically to permit data centers as an allowed use, triggering organized resident opposition ('Keep Haralson Rural').",
+      "effective_date": "2025-10-01",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record described restrictive siting standards that could not be corroborated; the real, confirmed action is the opposite — a permissive overlay district annexation to enable data centers.",
       "sources": [
         {
-          "label": "Haralson County Board of Commissioners",
-          "url": "https://www.haralsoncounty.org/"
+          "label": "Times-Georgian — Tallapoosa approves 1,000-acre annexation",
+          "url": "https://www.times-georgian.com/news/local/tallapoosa-approves-1-000-acre-annexation/article_12e5e62e-4102-5933-9213-1c9900c60423.html"
         },
         {
-          "label": "Haralson County Planning and Zoning",
-          "url": "https://www.haralsoncounty.org/planning-zoning"
+          "label": "FOX 5 Atlanta — Tallapoosa rezoning fight over 1,600-acre industrial project",
+          "url": "https://www.fox5atlanta.com/news/tallapoosa-rezoning-neighbors-fight-1600-acre-industrial-project"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "13145",
       "name": "Harris County",
       "state": "Georgia",
-      "level": 1,
+      "level": 0,
       "types": [
         "data_center",
         "water",
@@ -33948,8 +34075,8 @@
       "title": "Harris County Georgia Data Center Siting Review — Adjacent Meriwether and Troup Moratoriums",
       "description": "Harris County (Hamilton, GA) lies between Meriwether County (active conditional use permit zone) to the north and Troup County (active moratorium) to the south, forming a pincer of data center restriction that has redirected applications into Harris County. The county planning commission opened a siting review in 2025, examining the county's water infrastructure along the Chattahoochee River's Goat Rock and Oliver Dam reservoirs (Georgia Power hydroelectric). Georgia Power's Hamilton-area substation serves primarily residential and small commercial load; significant upgrades are required for hyperscale data center development. The review resulted in a temporary permitting pause while the county drafts data-center-specific conditional use permit criteria, expected to be adopted in 2026.",
       "effective_date": "2025-12-01",
-      "status": "proposed",
-      "notes": "Adjacent Troup moratorium and Meriwether CUP; Chattahoochee River hydro reservoirs; Georgia Power substation upgrade needed.",
+      "status": "active",
+      "notes": "2026-07-29 audit: extensive searching (county name, city of Hamilton GA, Chattahoochee framing, statewide Georgia ordinance-wave coverage) found zero news, ordinance text, or agenda items for Harris County GA taking any data-center-related action. Neighboring Meriwether County's 90-day moratorium (approved Feb 2026) is real and confirmed, and Troup County's is confirmed elsewhere in this audit, but nothing corroborates Harris County itself opening a siting review — this looks like an unconfirmed extrapolation from real neighboring-county activity. Downgraded to level 0 pending direct confirmation with Harris County government.",
       "sources": [
         {
           "label": "Harris County Board of Commissioners",
@@ -33960,9 +34087,9 @@
           "url": "https://www.harriscountyga.gov/departments/planning/"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "13219",
@@ -34029,7 +34156,7 @@
       "fips": "37167",
       "name": "Stanly County",
       "state": "North Carolina",
-      "level": 1,
+      "level": 0,
       "types": [
         "data_center",
         "energy"
@@ -34037,8 +34164,8 @@
       "title": "Stanly County North Carolina Data Center Siting Standards — Duke Energy Carolinas Constraints",
       "description": "Stanly County (Albemarle, NC) is a Piedmont county on the Yadkin-Pee Dee River, served by Duke Energy Carolinas from the Badin-Albemarle transmission corridor. The county planning board adopted data center siting standards in 2025 following several applications that would have collectively required more new substation capacity than Duke Energy Carolinas has committed to the county through 2030. Stanly County's existing industrial base — including Pfizer's Albemarle distribution center and Alcoa's historic Badin aluminum smelter site (now Novelis remelt operations) — already claims priority on existing substation capacity. Standards require written Duke Energy Carolinas service availability confirmation before any data center application is accepted as complete.",
       "effective_date": "2025-07-01",
-      "status": "proposed",
-      "notes": "Duke Energy Carolinas Badin-Albemarle constraint; Novelis/Alcoa industrial priority; Yadkin-Pee Dee River.",
+      "status": "active",
+      "notes": "2026-07-29 audit: extensive searching (general web, county planning/commissioner pages, local outlet Stanly News & Press) found zero evidence of any data center siting standards, ordinance, planning board action, or Duke Energy Carolinas capacity dispute in Stanly County — unusual given how heavily covered this topic is for every comparable NC county audited alongside this one. The specific details (Pfizer and Novelis/Alcoa 'priority capacity' claims, 'Badin-Albemarle transmission corridor') read as plausible-sounding fabricated color, the same pattern found in a Page County VA record earlier in this audit. Downgraded to level 0 pending direct confirmation with Stanly County government — do not restore the previous claims without a real source.",
       "sources": [
         {
           "label": "Stanly County Planning Department",
@@ -34049,41 +34176,37 @@
           "url": "https://www.stanlycountync.gov/commissioners"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "37169",
       "name": "Stokes County",
       "state": "North Carolina",
-      "level": 1,
+      "level": -1,
       "types": [
         "data_center",
         "water"
       ],
-      "title": "Stokes County North Carolina Data Center Siting Review — Dan River Watershed",
-      "description": "Stokes County (Danbury, NC) occupies the Dan River headwaters in the North Carolina Blue Ridge foothills bordering Virginia. Duke Energy Carolinas serves the county, but Stokes County is one of the more lightly loaded counties in the Duke Energy Carolinas portfolio and has limited substation capacity for large new industrial loads. The county planning board opened a data center siting review in 2025 following the broader Piedmont moratorium wave, citing Dan River water-quality concerns (the Dan River was the site of a 2014 Duke Energy coal-ash spill that contaminated drinking water in Virginia) and rural character preservation. The county's portion of Hanging Rock State Park is a major outdoor recreation destination. Review standards require a water-quality impact analysis for cooling water systems discharging to Dan River tributaries.",
-      "effective_date": "2025-09-01",
-      "status": "proposed",
-      "notes": "Dan River 2014 coal-ash spill legacy; Duke Energy Carolinas lightly loaded; Hanging Rock SP rural character.",
+      "title": "Stokes County — Moratorium Rejected, Permissive Zoning Enacted Instead",
+      "description": "The Planning Board recommended a 6-month data center moratorium 6-1 on 2026-07-09, but the Board of Commissioners rejected it 3-2 on 2026-07-15 and instead approved text amendments adding data centers as an allowed use in M-2 Heavy Manufacturing Conditional Zoning districts countywide — the opposite of a restriction. Every public commenter at the hearing opposed the move.",
+      "effective_date": "2026-07-15",
+      "status": "active",
+      "notes": "2026-07-29 correction: previous record framed this as a 'proposed... review' implying a restriction was pending. The actual outcome is the opposite: the moratorium was voted down and permissive zoning was enacted instead.",
       "sources": [
         {
-          "label": "Stokes County Planning Department",
-          "url": "https://www.stokescountync.gov/planning"
+          "label": "Southern Coalition for Social Justice — Stokes County commissioners open door to data centers",
+          "url": "https://southerncoalition.org/stokes-county-commissioners-open-door-to-data-centers-despite-overwhelming-community-opposition/"
         },
         {
-          "label": "Stokes County Board of Commissioners",
-          "url": "https://www.stokescountync.gov/commissioners"
-        },
-        {
-          "label": "NC DEQ — Dan River Basin Water Quality",
-          "url": "https://www.deq.nc.gov/about/divisions/water-resources/planning/basin-planning/yadkin-pee-dee-river-basin"
+          "label": "Mt. Airy News — Stokes County paves way for data center development",
+          "url": "https://www.mtairynews.com/apg_sister_paper/stokes/stokes-county-paves-way-for-data-center-development/article_635770ce-b1e0-5c9f-a99a-9760f485409a.html"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "24017",
