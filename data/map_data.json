@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T15:08:35.102485+00:00",
+  "generated_at": "2026-07-29T02:09:04.463523+00:00",
   "source_last_updated": "2026-07-18",
   "stats": {
     "total_counties_tracked": 1467,
@@ -2258,25 +2258,25 @@
         "data_center"
       ],
       "title": "Data Center Overlay Zone Restrictions",
-      "description": "Loudoun County ('Data Center Alley') adopted new zoning rules restricting data center development in rural/western areas and imposing strict density and setback requirements in all zones.",
-      "effective_date": "2023-03-15",
+      "description": "Loudoun County ('Data Center Alley') restricts data center development in rural/western areas and imposes density and setback requirements in all zones (2019\u20132023 rulemaking). A further, more consequential change took effect 2025-03-18 (Phase 1 of the county's Data Center Standards & Locations initiative): data centers, previously allowed by-right, now require Special Exception (SPEX) approval in the Industrial Park (IP), General Industry (GI), and Mineral Resources-Heavy Industry (MR-HI) districts. A Phase 2 process (initiated 2025-09-16) is underway through mid-2026 and may change this further.",
+      "effective_date": "2025-03-18",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: this record was dated to the 2023 rulemaking and missed the much more significant 2025-03-18 by-right-to-Special-Exception change \u2014 found while auditing source links and re-checking Loudoun's current zoning status. Both sources cited the same dead URL (loudoun.gov/5008/Data-Center-Policy, no longer live); replaced with the confirmed-current hub page. Re-verify before Phase 2 concludes (targeted mid-2026), since it may supersede this description.",
       "sources": [
         {
-          "label": "Loudoun County Zoning Ordinance Amendment ZOAM-2019-0004",
-          "url": "https://www.loudoun.gov/5008/Data-Center-Policy"
+          "label": "Loudoun County Data Center Standards & Locations \u2014 Official Page",
+          "url": "https://www.loudoun.gov/5990/Data-Center-Standards-Locations"
         },
         {
-          "label": "Loudoun County Data Center Policy \u2014 Official Page",
-          "url": "https://www.loudoun.gov/5008/Data-Center-Policy"
+          "label": "Loudoun County Zoning Ordinance \u00a7 4.06.02 Data Centers",
+          "url": "https://online.encodeplus.com/regs/loudouncounty-va-zo/doc-viewer.aspx?secid=859"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 75,
+      "confidence_score": 81,
       "source_tier": 1
     },
     "51153": {
@@ -50918,7 +50918,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-27T15:08:35.435498+00:00",
+    "last_computed": "2026-07-29T02:09:44.546702+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",
