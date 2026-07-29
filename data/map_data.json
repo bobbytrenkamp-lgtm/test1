@@ -1180,9 +1180,9 @@
       "lifecycle_stage": "expired",
       "pipeline_verified": false,
       "last_reviewed": null,
-      "confidence": "low",
-      "confidence_score": 39,
-      "source_tier": 3
+      "confidence": "high",
+      "confidence_score": 65,
+      "source_tier": 1
     },
     "36047": {
       "name": "Kings County",
@@ -50918,7 +50918,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-29T02:25:12.599330+00:00",
+    "last_computed": "2026-07-29T03:18:11.869550+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",
