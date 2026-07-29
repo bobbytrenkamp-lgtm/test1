@@ -3,7 +3,10 @@ name: Check Source Link Health
 # The site claims policy records are "verified from primary government sources"
 # and links out to them. A validation run found roughly two in five of those
 # citations unreachable. This checks them on a rolling basis and records a
-# Wayback fallback so a moved page still has a readable citation.
+# Wayback fallback so a moved page still has a readable citation, plus (for
+# dead links on sites with an XML sitemap) a best-effort "may have moved to"
+# suggestion based on path-keyword overlap — see check_source_links.py's
+# module docstring for how that heuristic works.
 #
 # Runs weekly, in slices, so no host is hammered and the whole corpus is
 # revisited roughly monthly. Never modifies map_data.json — link health is

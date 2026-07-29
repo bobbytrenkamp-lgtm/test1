@@ -173,6 +173,8 @@ window.JURISDICTION = (function () {
                 const h = linkStatus(s.url);
                 const dead = h && h.ok === false;
                 const archive = dead && h.archive && h.archive.url ? h.archive.url : null;
+                const suggested = dead && h.suggested_replacement && h.suggested_replacement.url
+                  ? h.suggested_replacement.url : null;
                 return `
                 <li class="${dead ? "juris-src-dead" : ""}">
                   <a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer"
@@ -181,6 +183,8 @@ window.JURISDICTION = (function () {
                   </a>
                   ${dead ? `<span class="juris-src-flag" title="Checked ${esc((h.checked_at || "").slice(0, 10))}">link not responding</span>` : ""}
                   ${archive ? ` <a class="juris-src-archive" href="${esc(archive)}" target="_blank" rel="noopener noreferrer">archived copy</a>` : ""}
+                  ${suggested ? ` <span class="juris-src-suggested" title="Unconfirmed guess based on the site's own sitemap — not verified">may have moved to
+                    <a href="${esc(suggested)}" target="_blank" rel="noopener noreferrer">this page</a></span>` : ""}
                 </li>`;
               }).join("")}
             </ul>
