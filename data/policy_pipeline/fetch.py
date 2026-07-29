@@ -39,6 +39,17 @@ def _robots_allowed(url: str) -> bool:
         return True  # If we can't read robots.txt, assume allowed
 
 
+def _add_standard_headers(req: urllib.request.Request) -> None:
+    """Headers a real browser always sends and many government WAFs use as a
+    bot-vs-browser signal. check_source_links.py already sends an Accept
+    header for the same reason (see its 52% unreachable rate vs this
+    pipeline's 54% before this fix) — this brings fetch.py in line with it
+    rather than leaving two different request shapes in the same codebase."""
+    req.add_header("User-Agent", USER_AGENT)
+    req.add_header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+    req.add_header("Accept-Language", "en-US,en;q=0.9")
+
+
 def fetch_url(url: str, *, check_robots: bool = True, timeout: int = TIMEOUT) -> tuple[int, str]:
     """Fetch url and return (http_status, body_text).
 
@@ -54,7 +65,7 @@ def fetch_url(url: str, *, check_robots: bool = True, timeout: int = TIMEOUT) ->
             time.sleep(delay)
         try:
             req = urllib.request.Request(url)
-            req.add_header("User-Agent", USER_AGENT)
+            _add_standard_headers(req)
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 body = resp.read().decode("utf-8", errors="replace")
                 return resp.status, body
@@ -81,7 +92,7 @@ def check_url_reachable(url: str, timeout: int = TIMEOUT) -> tuple[bool, Optiona
     """Check if a URL is reachable. Returns (reachable, status, error, response_ms)."""
     start = time.monotonic()
     req = urllib.request.Request(url, method="HEAD")
-    req.add_header("User-Agent", USER_AGENT)
+    _add_standard_headers(req)
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             ms = int((time.monotonic() - start) * 1000)
@@ -90,7 +101,7 @@ def check_url_reachable(url: str, timeout: int = TIMEOUT) -> tuple[bool, Optiona
         if e.code in (405, 403):
             # Retry with GET
             req2 = urllib.request.Request(url, method="GET")
-            req2.add_header("User-Agent", USER_AGENT)
+            _add_standard_headers(req2)
             try:
                 with urllib.request.urlopen(req2, timeout=timeout) as resp2:
                     ms = int((time.monotonic() - start) * 1000)
