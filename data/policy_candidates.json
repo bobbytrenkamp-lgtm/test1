@@ -1,9 +1,9 @@
 {
   "meta": {
     "description": "Policy signals discovered by the pipeline awaiting human review. Do NOT copy entries here directly to restrictions_raw.json without verification.",
-    "last_updated": "2026-07-13T10:18:18.569290+00:00",
-    "total": 15,
-    "pending": 15
+    "last_updated": "2026-07-29T09:35:12.182538+00:00",
+    "total": 28,
+    "pending": 28
   },
   "candidates": [
     {
@@ -327,6 +327,291 @@
       "confidence": 0.45,
       "evidence": "\u2026ocess Learn More Learn More View Newsletters Learn More Learn More View Press Releases Learn More Learn More Watch County Board Meetings Learn More Learn More Learn About the Legislative Process Learn More &nbsp; Featured Links Advisory Committee on Data Centers Criminal Justice Council Youth Governance Program Equity Plan County Budget &nbsp;Process View County Board Newsletters Copyright &copy; 2026 County of Dane. All rights reserved. This site is protected by reCAPTCHA and the Google Privac",
       "existing_fips_match": "55025",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "ca-alameda-planning-65701642ac24",
+      "source_id": "ca-alameda-planning",
+      "discovered_at": "2026-07-29T09:33:48.897869+00:00",
+      "jurisdiction_name": "Alameda County",
+      "state": "California",
+      "state_abbr": "CA",
+      "fips": "06001",
+      "title": "General / Specific Plans - Directions - Planning - Community Development Agency - Alameda County",
+      "description": "\u2026hy Homes Neighborhood Preservation &amp; &nbsp;Sustainability --> Planning Successor Agency Surplus Property Authority Contact the Agency Albert Lopez Planning Director Planning Home Location / Directions Contact Us GENERAL PLAN, SPECIFIC PLANS, AND ORDINANCES General/Specific Plans Accessory Dwelling Units Airport Land Use Compatibility &nbsp;Plans Historic Preservation Williamson Act Program Zoning Ordinance --> ZONING Zoning Viewer Public Access Map (PAM) Zoning Viewer Public Access Map (PAM",
+      "signal_url": "https://www.acgov.org/cda/planning/generalplans/",
+      "lifecycle_stage": "effective",
+      "policy_types": [
+        "data_center",
+        "ai"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026hy Homes Neighborhood Preservation &amp; &nbsp;Sustainability --> Planning Successor Agency Surplus Property Authority Contact the Agency Albert Lopez Planning Director Planning Home Location / Directions Contact Us GENERAL PLAN, SPECIFIC PLANS, AND ORDINANCES General/Specific Plans Accessory Dwelling Units Airport Land Use Compatibility &nbsp;Plans Historic Preservation Williamson Act Program Zoning Ordinance --> ZONING Zoning Viewer Public Access Map (PAM) Zoning Viewer Public Access Map (PAM",
+      "existing_fips_match": "06001",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "ca-la-planning-24667250a83b",
+      "source_id": "ca-la-planning",
+      "discovered_at": "2026-07-29T09:33:49.887596+00:00",
+      "jurisdiction_name": "Los Angeles County",
+      "state": "California",
+      "state_abbr": "CA",
+      "fips": "06037",
+      "title": "General Plan - LA County Planning",
+      "description": "\u2026alignwide .alignwide,.ast-no-sidebar .entry-content .wp-block-column .alignfull,.ast-no-sidebar .entry-content .wp-block-column .alignwide{width: 100%;margin-left: auto;margin-right: auto;}.wp-block-gallery,.blocks-gallery-grid {margin: 0;}.wp-block-separator {max-width: 100px;}.wp-block-separator.is-style-wide,.wp-block-separator.is-style-dots {max-width: none;}.entry-content .has-2-columns .wp-block-column:first-child {padding-right: 10px;}.entry-content .has-2-columns .wp-block-column:last-c",
+      "signal_url": "https://planning.lacounty.gov/long-range-planning/general-plan/",
+      "lifecycle_stage": "failed",
+      "policy_types": [
+        "data_center",
+        "ai",
+        "energy"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026alignwide .alignwide,.ast-no-sidebar .entry-content .wp-block-column .alignfull,.ast-no-sidebar .entry-content .wp-block-column .alignwide{width: 100%;margin-left: auto;margin-right: auto;}.wp-block-gallery,.blocks-gallery-grid {margin: 0;}.wp-block-separator {max-width: 100px;}.wp-block-separator.is-style-wide,.wp-block-separator.is-style-dots {max-width: none;}.entry-content .has-2-columns .wp-block-column:first-child {padding-right: 10px;}.entry-content .has-2-columns .wp-block-column:last-c",
+      "existing_fips_match": "06037",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "co-denver-cpd-1cfc5b55072b",
+      "source_id": "co-denver-cpd",
+      "discovered_at": "2026-07-29T09:33:52.206202+00:00",
+      "jurisdiction_name": "Denver",
+      "state": "Colorado",
+      "state_abbr": "CO",
+      "fips": "08031",
+      "title": "Community Planning and Development - City and County of Denver",
+      "description": "\u2026imingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var n=\"\"==\"true\"?1:0,t=\"\",a=\"vgcqeaixezxqo2tjzd7q-f-385ce27cd-clientnsv4-s.akamaihd.net\",i=\"false\"==\"true\"?2:1,o={\"ak.v\":\"41\",\"ak.cp\":\"1680969\",\"ak.ai\":parseInt(\"1075935\",10),\"ak.ol\":\"0\",\"ak.cr\":18,\"ak.ipv\":4,\"ak.proto\":\"http/1.1\",\"ak.rid\":\"2e26c66e\",\"ak.r\":51140,\"ak.a2\":n,\"ak.m\":\"dscb\",\"ak.n\":\"essl\",\"ak.cport\":39840,\"ak.gh\":\"23.38.164.16\",\"ak.quicv\":\"\",\"ak.tlsv\":\"tls1.3\",\"ak.0rtt\":\"\",\"ak.0rtt.",
+      "signal_url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Community-Planning-and-Development",
+      "lifecycle_stage": "failed",
+      "policy_types": [
+        "ai",
+        "energy"
+      ],
+      "confidence": 0.833,
+      "evidence": "\u2026imingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var n=\"\"==\"true\"?1:0,t=\"\",a=\"vgcqeaixezxqo2tjzd7q-f-385ce27cd-clientnsv4-s.akamaihd.net\",i=\"false\"==\"true\"?2:1,o={\"ak.v\":\"41\",\"ak.cp\":\"1680969\",\"ak.ai\":parseInt(\"1075935\",10),\"ak.ol\":\"0\",\"ak.cr\":18,\"ak.ipv\":4,\"ak.proto\":\"http/1.1\",\"ak.rid\":\"2e26c66e\",\"ak.r\":51140,\"ak.a2\":n,\"ak.m\":\"dscb\",\"ak.n\":\"essl\",\"ak.cport\":39840,\"ak.gh\":\"23.38.164.16\",\"ak.quicv\":\"\",\"ak.tlsv\":\"tls1.3\",\"ak.0rtt\":\"\",\"ak.0rtt.",
+      "existing_fips_match": "08031",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "ga-dekalb-commissioners-dfce64200adc",
+      "source_id": "ga-dekalb-commissioners",
+      "discovered_at": "2026-07-29T09:33:53.539983+00:00",
+      "jurisdiction_name": "DeKalb County",
+      "state": "Georgia",
+      "state_abbr": "GA",
+      "fips": "13089",
+      "title": "Board of Commissioners | DeKalb County, GA",
+      "description": "\u2026er Services Police Department Recycling Transportation Water Services &amp; Billing Transparency Annual Financial Reports Budget Charter Review Ethics Lobbyist Municipal Codes Office of Independent Internal Audit Submit Open Records Request Title VI Zoning Codes Business Bid Opportunities Building Permits &amp; Inspection Business &amp; Alcohol License Chamber of Commerce Decide DeKalb Development Authority Film &amp; TV Permits Food Safety Requirements &amp; Inspections Grow a Business Purchas",
+      "signal_url": "https://dekalbcountyga.gov/government/board-of-commissioners",
+      "lifecycle_stage": "effective",
+      "policy_types": [
+        "water"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026er Services Police Department Recycling Transportation Water Services &amp; Billing Transparency Annual Financial Reports Budget Charter Review Ethics Lobbyist Municipal Codes Office of Independent Internal Audit Submit Open Records Request Title VI Zoning Codes Business Bid Opportunities Building Permits &amp; Inspection Business &amp; Alcohol License Chamber of Commerce Decide DeKalb Development Authority Film &amp; TV Permits Food Safety Requirements &amp; Inspections Grow a Business Purchas",
+      "existing_fips_match": "13089",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "ca-cpuc-ee5a79aa3ae9",
+      "source_id": "ca-cpuc",
+      "discovered_at": "2026-07-29T09:33:56.258236+00:00",
+      "jurisdiction_name": "California Public Utilities Commission",
+      "state": "California",
+      "state_abbr": "CA",
+      "fips": null,
+      "title": "CPUC Streamlines Electric Grid Connections for High-Energy Users Like Data Centers and EV Chargers",
+      "description": "CPUC Streamlines Electric Grid Connections for High-Energy Users Like Data Centers and EV Chargers window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-LM6T7RGC27'); Skip to Main Content CA.gov Share via Facebook Share via Twitter Share via\u2026",
+      "signal_url": "https://www.cpuc.ca.gov/news-and-updates/all-news/cpuc-streamlines-electric-grid-connections-for-high-energy-users-like-data-centers-and-ev-chargers",
+      "lifecycle_stage": "enacted",
+      "policy_types": [
+        "data_center",
+        "ai",
+        "energy",
+        "water"
+      ],
+      "confidence": 0.7,
+      "evidence": "CPUC Streamlines Electric Grid Connections for High-Energy Users Like Data Centers and EV Chargers window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-LM6T7RGC27'); Skip to Main Content CA.gov Share via Facebook Share via Twitter Share via\u2026",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "mn-hennepin-council-774537f17472",
+      "source_id": "mn-hennepin-council",
+      "discovered_at": "2026-07-29T09:33:56.827349+00:00",
+      "jurisdiction_name": "Hennepin County",
+      "state": "Minnesota",
+      "state_abbr": "MN",
+      "fips": "27053",
+      "title": "Legislative Support &amp; Operations - City of Minneapolis",
+      "description": "\u2026vents Child With Lead Poisoning Lead-safe Housing Information Testing for Lead in Soil Asthma Bed Bugs Radon Weatherize Your Home Property Maintenance Homelessness Prevention &amp; Response Property Values &amp; Taxes Market Value Homestead Property Tax Exemption Property Tax Statements Buying &amp; Selling Preservation &amp; Landmarks Utility Billing Start Restart or Shut off Utility Service Ways to Pay Your Utility Bill Rates &amp; Fees Sample Utility Bill Water Meters Types of Water Meters W",
+      "signal_url": "https://www.minneapolismn.gov/government/departments/clerk/legislative/",
+      "lifecycle_stage": "effective",
+      "policy_types": [
+        "water"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026vents Child With Lead Poisoning Lead-safe Housing Information Testing for Lead in Soil Asthma Bed Bugs Radon Weatherize Your Home Property Maintenance Homelessness Prevention &amp; Response Property Values &amp; Taxes Market Value Homestead Property Tax Exemption Property Tax Statements Buying &amp; Selling Preservation &amp; Landmarks Utility Billing Start Restart or Shut off Utility Service Ways to Pay Your Utility Bill Rates &amp; Fees Sample Utility Bill Water Meters Types of Water Meters W",
+      "existing_fips_match": "27053",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "nv-goed-datacenter-fb596850a06d",
+      "source_id": "nv-goed-datacenter",
+      "discovered_at": "2026-07-29T09:34:00.248620+00:00",
+      "jurisdiction_name": "Nevada Governor's Office of Economic Development",
+      "state": "Nevada",
+      "state_abbr": "NV",
+      "fips": null,
+      "title": "Incentives | Governor&#039;s Office of Economic Development",
+      "description": "\u2026s out as a beacon for innovation, growth, and opportunity. We invite you to explore, thrive and elevate your business here in the Silver State! DOCUMENTS 2026 &#8211; GOED Board Meeting Calendar Tax Abatement Overview Standard Tax Abatement Overview Data Center Abatement Overview Aviation Abatement Overview $1 Billion Investment Overview $3.5 Billion Investment Overview ADDITIONAL RESOURCES Regional Development Authorities Upjohn Institue Standard Abatements The State/GOED provides Standard Tax",
+      "signal_url": "https://goed.nv.gov/incentives/",
+      "lifecycle_stage": "expired",
+      "policy_types": [
+        "data_center",
+        "energy"
+      ],
+      "confidence": 1.0,
+      "evidence": "\u2026s out as a beacon for innovation, growth, and opportunity. We invite you to explore, thrive and elevate your business here in the Silver State! DOCUMENTS 2026 &#8211; GOED Board Meeting Calendar Tax Abatement Overview Standard Tax Abatement Overview Data Center Abatement Overview Aviation Abatement Overview $1 Billion Investment Overview $3.5 Billion Investment Overview ADDITIONAL RESOURCES Regional Development Authorities Upjohn Institue Standard Abatements The State/GOED provides Standard Tax",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "nc-mecklenburg-commissioners-934315200356",
+      "source_id": "nc-mecklenburg-commissioners",
+      "discovered_at": "2026-07-29T09:34:03.193108+00:00",
+      "jurisdiction_name": "Mecklenburg County",
+      "state": "North Carolina",
+      "state_abbr": "NC",
+      "fips": "37119",
+      "title": "Mecklenburg Board of County Commissioners | Board of County Commissioners",
+      "description": "\u2026.js');js.setAttribute('data-gt-orig-url', '/');js.setAttribute('data-gt-orig-domain', 'bocc.mecknc.gov');document.body.appendChild(js);})(); Search SITE MENU Site navigation Board of County Commissioners Clerk to the Board Committees Advisory Boards Ordinances Code of Ethics Past and Present Commissioners Contact Office Address Business Office Charlotte-Mecklenburg Government Center 600 E. 4th St. Charlotte, NC 28202 Business Hours Mon-Fri 8 a.m. - 5 p.m. Board of County Commissioners The BOCC ",
+      "signal_url": "https://bocc.mecknc.gov/",
+      "lifecycle_stage": "enacted",
+      "policy_types": [
+        "data_center",
+        "energy"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026.js');js.setAttribute('data-gt-orig-url', '/');js.setAttribute('data-gt-orig-domain', 'bocc.mecknc.gov');document.body.appendChild(js);})(); Search SITE MENU Site navigation Board of County Commissioners Clerk to the Board Committees Advisory Boards Ordinances Code of Ethics Past and Present Commissioners Contact Office Address Business Office Charlotte-Mecklenburg Government Center 600 E. 4th St. Charlotte, NC 28202 Business Hours Mon-Fri 8 a.m. - 5 p.m. Board of County Commissioners The BOCC ",
+      "existing_fips_match": "37119",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "nc-durham-commissioners-8677d8f1c693",
+      "source_id": "nc-durham-commissioners",
+      "discovered_at": "2026-07-29T09:34:03.527234+00:00",
+      "jurisdiction_name": "Durham County",
+      "state": "North Carolina",
+      "state_abbr": "NC",
+      "fips": "37063",
+      "title": "Durham County | Board of Commissioners",
+      "description": "\u2026sub_domain\", \"languages\":[\"en\",\"es\",\"zh-CN\",\"zh-TW\",\"tl\",\"fr\",\"de\",\"ht\",\"ja\",\"so\",\"th\",\"vi\",\"yo\"] ,\"wrapper_selector\":\".gtranslate_wrapper\",\"switcher_horizontal_position\":\"inline\"} NWS.CommonScripts.ModuleManager.OnWindowLoad(function(){ NWS.Display.Banner.init({ /* bannerContainerSelector: Required target container for insertLocation property, ignored for modal and animate as they insert before closing body */ bannerContainerSelector: \"#headerArea\" /* insertLocation: Required indication of how",
+      "signal_url": "https://dconc.gov/Board-of-Commissioners",
+      "lifecycle_stage": "effective",
+      "policy_types": [
+        "data_center",
+        "energy"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026sub_domain\", \"languages\":[\"en\",\"es\",\"zh-CN\",\"zh-TW\",\"tl\",\"fr\",\"de\",\"ht\",\"ja\",\"so\",\"th\",\"vi\",\"yo\"] ,\"wrapper_selector\":\".gtranslate_wrapper\",\"switcher_horizontal_position\":\"inline\"} NWS.CommonScripts.ModuleManager.OnWindowLoad(function(){ NWS.Display.Banner.init({ /* bannerContainerSelector: Required target container for insertLocation property, ignored for modal and animate as they insert before closing body */ bannerContainerSelector: \"#headerArea\" /* insertLocation: Required indication of how",
+      "existing_fips_match": "37063",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "sc-dor-datacenter-1988026cd112",
+      "source_id": "sc-dor-datacenter",
+      "discovered_at": "2026-07-29T09:34:13.810129+00:00",
+      "jurisdiction_name": "South Carolina Department of Revenue",
+      "state": "South Carolina",
+      "state_abbr": "SC",
+      "fips": null,
+      "title": "Sales Tax Exemptions | South Carolina Department of Revenue",
+      "description": "\u2026bles_hero_button_background_color: #ffeb94; --menu_text_desktop_1: ; --menu_text_mobile_1: ; --menu_text_desktop_2: ; --menu_text_mobile_2: ; --menu_text_desktop_3: ; --menu_text_mobile_3: ; --variables_accordion_link_color_rgb: 31, 89, 153; } Sales Tax Exemptions | South Carolina Department of Revenue document.body.className += ' js-loading '; Skip to main content Top Nav Agency Listing Online Services Menu Search Terms Main navigation File &amp; Pay Open File &amp; Pay MyDORWAY Help Individua",
+      "signal_url": "https://dor.sc.gov/sales-use-tax-index/sales-tax-exemptions",
+      "lifecycle_stage": "failed",
+      "policy_types": [
+        "energy"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026bles_hero_button_background_color: #ffeb94; --menu_text_desktop_1: ; --menu_text_mobile_1: ; --menu_text_desktop_2: ; --menu_text_mobile_2: ; --menu_text_desktop_3: ; --menu_text_mobile_3: ; --variables_accordion_link_color_rgb: 31, 89, 153; } Sales Tax Exemptions | South Carolina Department of Revenue document.body.className += ' js-loading '; Skip to main content Top Nav Agency Listing Online Services Menu Search Terms Main navigation File &amp; Pay Open File &amp; Pay MyDORWAY Help Individua",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "va-fairfax-plan-ade313312b3f",
+      "source_id": "va-fairfax-plan",
+      "discovered_at": "2026-07-29T09:34:32.852456+00:00",
+      "jurisdiction_name": "Fairfax County",
+      "state": "Virginia",
+      "state_abbr": "VA",
+      "fips": "51059",
+      "title": "Data Centers \u2013 Adopted Zoning Ordinance Amendment | Planning Development",
+      "description": "\u2026ate());gtag(\"set\", \"developer_id.dMDhkMT\", true);gtag(\"config\", \"G-5L77LYNKG7\", {\"groups\":\"default\",\"page_placeholder\":\"PLACEHOLDER_page_location\"});gtag(\"config\", \"G-P0M7YK9ZWG\", {\"groups\":\"default\",\"page_placeholder\":\"PLACEHOLDER_page_location\"}); Data Centers \u2013 Adopted Zoning Ordinance Amendment | Planning Development {\"path\":{\"baseUrl\":\"\\/planning-development\\/\",\"pathPrefix\":\"\",\"currentPath\":\"node\\/895\",\"currentPathIsAdmin\":false,\"isFront\":false,\"currentLanguage\":\"en\",\"currentQuery\":{\"data-",
+      "signal_url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
+      "lifecycle_stage": "effective",
+      "policy_types": [
+        "data_center",
+        "energy"
+      ],
+      "confidence": 1.0,
+      "evidence": "\u2026ate());gtag(\"set\", \"developer_id.dMDhkMT\", true);gtag(\"config\", \"G-5L77LYNKG7\", {\"groups\":\"default\",\"page_placeholder\":\"PLACEHOLDER_page_location\"});gtag(\"config\", \"G-P0M7YK9ZWG\", {\"groups\":\"default\",\"page_placeholder\":\"PLACEHOLDER_page_location\"}); Data Centers \u2013 Adopted Zoning Ordinance Amendment | Planning Development {\"path\":{\"baseUrl\":\"\\/planning-development\\/\",\"pathPrefix\":\"\",\"currentPath\":\"node\\/895\",\"currentPathIsAdmin\":false,\"isFront\":false,\"currentLanguage\":\"en\",\"currentQuery\":{\"data-",
+      "existing_fips_match": "51059",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "wa-grant-pud-98f999e5cdc2",
+      "source_id": "wa-grant-pud",
+      "discovered_at": "2026-07-29T09:34:35.162415+00:00",
+      "jurisdiction_name": "Grant County PUD",
+      "state": "Washington",
+      "state_abbr": "WA",
+      "fips": "53025",
+      "title": "Grant PUD - Powering our way of life",
+      "description": "\u2026more about some of the key items. We practice stewardship, conservation and sustainability every day. Learn More The Wanapum If we know where we come from, we\u2019re more likely to know where we\u2019re going. That\u2019s why Grant PUD has worked with the Wanapum band for more than 60 years to protect, preserve, and perpetuate the natural and cultural resources of the Priest Rapids Project. Through decades of collaboration and communication we\u2019ve developed a mutual understanding of the past\u2014and a shared comm",
+      "signal_url": "https://www.grantpud.org/",
+      "lifecycle_stage": "proposed",
+      "policy_types": [
+        "energy",
+        "water"
+      ],
+      "confidence": 0.367,
+      "evidence": "\u2026more about some of the key items. We practice stewardship, conservation and sustainability every day. Learn More The Wanapum If we know where we come from, we\u2019re more likely to know where we\u2019re going. That\u2019s why Grant PUD has worked with the Wanapum band for more than 60 years to protect, preserve, and perpetuate the natural and cultural resources of the Priest Rapids Project. Through decades of collaboration and communication we\u2019ve developed a mutual understanding of the past\u2014and a shared comm",
+      "existing_fips_match": "53025",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "wa-legislature-e2219ddf0a88",
+      "source_id": "wa-legislature",
+      "discovered_at": "2026-07-29T09:34:34.477447+00:00",
+      "jurisdiction_name": "Washington State Legislature",
+      "state": "Washington",
+      "state_abbr": "WA",
+      "fips": null,
+      "title": "Washington State Legislature",
+      "description": "\u2026about the bill, including its text, sponsors, and full history. Also, access committee meeting materials, summaries, and any amendments proposed on the floor. Search by bill or initiative number Search bills by Bill Initiative Number The value &#x27;data center&#x27; is not valid. Biennium 2025-2026 2023-2024 2021-2022 2019-2020 2017-2018 2015-2016 2013-2014 2011-2012 2009-2010 2007-2008 2005-2006 2003-2004 2001-2002 1999-2000 1997-1998 1995-1996 1993-1994 1991-1992 $(document).ready(function (",
+      "signal_url": "https://app.leg.wa.gov/billsummary?BillNumber=data+center&Year=2025",
+      "lifecycle_stage": "proposed",
+      "policy_types": [
+        "data_center"
+      ],
+      "confidence": 0.325,
+      "evidence": "\u2026about the bill, including its text, sponsors, and full history. Also, access committee meeting materials, summaries, and any amendments proposed on the floor. Search by bill or initiative number Search bills by Bill Initiative Number The value &#x27;data center&#x27; is not valid. Biennium 2025-2026 2023-2024 2021-2022 2019-2020 2017-2018 2015-2016 2013-2014 2011-2012 2009-2010 2007-2008 2005-2006 2003-2004 2001-2002 1999-2000 1997-1998 1995-1996 1993-1994 1991-1992 $(document).ready(function (",
+      "existing_fips_match": null,
       "review_status": "pending",
       "reviewer_notes": ""
     }

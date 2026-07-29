@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "Log of detected changes in monitored government sources. Used to track what the pipeline has found and acted on.",
-    "last_updated": "2026-07-13T10:18:18.569921+00:00"
+    "last_updated": "2026-07-29T09:35:12.183542+00:00"
   },
   "entries": [
     {
@@ -137,6 +137,123 @@
       "change_type": "new_document",
       "url": "https://board.countyofdane.com/",
       "summary": "New candidate: Home Page (Dane County)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0000",
+      "source_id": "ca-alameda-planning",
+      "detected_at": "2026-07-29T09:33:48.897869+00:00",
+      "change_type": "new_document",
+      "url": "https://www.acgov.org/cda/planning/generalplans/",
+      "summary": "New candidate: General / Specific Plans - Directions - Planning - Community Development Agency - Alameda County (Alameda County)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0001",
+      "source_id": "ca-la-planning",
+      "detected_at": "2026-07-29T09:33:49.887596+00:00",
+      "change_type": "new_document",
+      "url": "https://planning.lacounty.gov/long-range-planning/general-plan/",
+      "summary": "New candidate: General Plan - LA County Planning (Los Angeles County)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0002",
+      "source_id": "co-denver-cpd",
+      "detected_at": "2026-07-29T09:33:52.206202+00:00",
+      "change_type": "new_document",
+      "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Community-Planning-and-Development",
+      "summary": "New candidate: Community Planning and Development - City and County of Denver (Denver)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0003",
+      "source_id": "ga-dekalb-commissioners",
+      "detected_at": "2026-07-29T09:33:53.539983+00:00",
+      "change_type": "new_document",
+      "url": "https://dekalbcountyga.gov/government/board-of-commissioners",
+      "summary": "New candidate: Board of Commissioners | DeKalb County, GA (DeKalb County)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0004",
+      "source_id": "ca-cpuc",
+      "detected_at": "2026-07-29T09:33:56.258236+00:00",
+      "change_type": "new_document",
+      "url": "https://www.cpuc.ca.gov/news-and-updates/all-news/cpuc-streamlines-electric-grid-connections-for-high-energy-users-like-data-centers-and-ev-chargers",
+      "summary": "New candidate: CPUC Streamlines Electric Grid Connections for High-Energy Users Like Data Centers and EV Chargers (California Public Utilities Commission)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0005",
+      "source_id": "mn-hennepin-council",
+      "detected_at": "2026-07-29T09:33:56.827349+00:00",
+      "change_type": "new_document",
+      "url": "https://www.minneapolismn.gov/government/departments/clerk/legislative/",
+      "summary": "New candidate: Legislative Support &amp; Operations - City of Minneapolis (Hennepin County)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0006",
+      "source_id": "nv-goed-datacenter",
+      "detected_at": "2026-07-29T09:34:00.248620+00:00",
+      "change_type": "new_document",
+      "url": "https://goed.nv.gov/incentives/",
+      "summary": "New candidate: Incentives | Governor&#039;s Office of Economic Development (Nevada Governor's Office of Economic Development)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0007",
+      "source_id": "nc-mecklenburg-commissioners",
+      "detected_at": "2026-07-29T09:34:03.193108+00:00",
+      "change_type": "new_document",
+      "url": "https://bocc.mecknc.gov/",
+      "summary": "New candidate: Mecklenburg Board of County Commissioners | Board of County Commissioners (Mecklenburg County)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0008",
+      "source_id": "nc-durham-commissioners",
+      "detected_at": "2026-07-29T09:34:03.527234+00:00",
+      "change_type": "new_document",
+      "url": "https://dconc.gov/Board-of-Commissioners",
+      "summary": "New candidate: Durham County | Board of Commissioners (Durham County)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0009",
+      "source_id": "sc-dor-datacenter",
+      "detected_at": "2026-07-29T09:34:13.810129+00:00",
+      "change_type": "new_document",
+      "url": "https://dor.sc.gov/sales-use-tax-index/sales-tax-exemptions",
+      "summary": "New candidate: Sales Tax Exemptions | South Carolina Department of Revenue (South Carolina Department of Revenue)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0010",
+      "source_id": "va-fairfax-plan",
+      "detected_at": "2026-07-29T09:34:32.852456+00:00",
+      "change_type": "new_document",
+      "url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
+      "summary": "New candidate: Data Centers \u2013 Adopted Zoning Ordinance Amendment | Planning Development (Fairfax County)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0011",
+      "source_id": "wa-grant-pud",
+      "detected_at": "2026-07-29T09:34:35.162415+00:00",
+      "change_type": "new_document",
+      "url": "https://www.grantpud.org/",
+      "summary": "New candidate: Grant PUD - Powering our way of life (Grant County PUD)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260729T093512-0012",
+      "source_id": "wa-legislature",
+      "detected_at": "2026-07-29T09:34:34.477447+00:00",
+      "change_type": "new_document",
+      "url": "https://app.leg.wa.gov/billsummary?BillNumber=data+center&Year=2025",
+      "summary": "New candidate: Washington State Legislature (Washington State Legislature)",
       "acted_on": false
     }
   ]
