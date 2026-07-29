@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-07-29T02:25:12.331254+00:00",
+  "generated_at": "2026-07-29T13:57:39.197446+00:00",
   "source_last_updated": "2026-07-18",
   "stats": {
     "total_counties_tracked": 1467,
     "by_level": {
       "-1": 689,
       "0": 610,
-      "1": 65,
-      "2": 60,
-      "3": 29,
+      "1": 68,
+      "2": 51,
+      "3": 35,
       "4": 14
     },
     "by_type": {
-      "data_center": 1454,
+      "data_center": 1453,
       "water": 41,
       "ai": 194,
-      "energy": 254,
+      "energy": 253,
       "crypto": 18,
       "zoning": 10,
       "incentive": 17,
@@ -49,27 +49,26 @@
         "water"
       ],
       "title": "Strict Water Use Requirements for Data Centers",
-      "description": "Arizona's Department of Water Resources requires 100-year assured water supply plans. Maricopa County data centers face increasingly strict water use requirements amid growing scarcity. Several data center projects have been delayed or redesigned.",
-      "effective_date": "2022-06-01",
+      "description": "Maricopa County requires ADWR's 100-year assured-water-supply demonstration for new large developments, an ongoing constraint on data center siting. Arizona's FY2027 state budget (effective 2026-07-01) added a 3-year statewide moratorium on new data-center sales-tax exemptions, through 2029-06-30. Locally, a proposed data-center complex plus gas power plant ('Project Baccara') has drawn active resident opposition over water/power/cost concerns in 2025-2026, and the 2023 Buckeye/Queen Creek groundwater-driven homebuilding moratorium remains relevant context for the county's water posture.",
+      "effective_date": "2026-07-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 update: added Arizona's 2026 statewide 3-year data-center sales-tax-exemption moratorium and the Project Baccara opposition example, both missing from the previous record.",
       "sources": [
         {
-          "label": "Arizona Dept. of Water Resources \u2014 Assured & Adequate Water Supply",
-          "url": "https://www.azwater.gov/assured-water-supply"
+          "label": "AZ Family \u2014 Arizona budget deal includes 3-year pause on data center tax exemptions",
+          "url": "https://www.azfamily.com/2026/06/10/arizona-budget-deal-includes-3-year-pause-data-center-tax-exemptions/"
         },
         {
-          "label": "AZ Senate Bill 1117 (2022) \u2014 Water Use Planning",
-          "url": "https://www.azleg.gov/legtext/55leg/2R/bills/SB1117P.pdf"
-        },
-        "ADWR Water Shortage Regulations, 2022; AZ Senate Bill 1117"
+          "label": "Axios Phoenix \u2014 AG to urban: alternative water designation for Buckeye/Queen Creek",
+          "url": "https://www.axios.com/local/phoenix/2025/12/18/ag-to-urban-alternative-water-designation-buckeye-queen-creek"
+        }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 82,
-      "source_tier": 1
+      "confidence_score": 67,
+      "source_tier": 3
     },
     "04019": {
       "name": "Pima County",
@@ -107,23 +106,26 @@
         "water"
       ],
       "title": "Water Use Restrictions",
-      "description": "Pinal County lost its groundwater supply designation in 2022, directly affecting planned data center projects that rely on evaporative cooling water. Multiple data center expansions have been impacted.",
-      "effective_date": "2022-06-01",
+      "description": "Pinal County sits within an Arizona Active Management Area where ADWR halted new groundwater-based development in 2021-2022, a constraint that remains in force and continues to affect large water users including data centers (e.g. an active $33B hyperscale project has come before the county board in a basin where new groundwater-based development is already halted). Arizona's FY2027 state budget (signed by Gov. Hobbs, effective 2026-07-01) added a separate, current constraint: a 3-year statewide moratorium on new data-center sales-tax exemptions, through 2029-06-30 \u2014 a pause on tax incentives, not a construction ban.",
+      "effective_date": "2026-07-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 update: added Arizona's 2026 statewide 3-year data-center sales-tax-exemption moratorium (through 2029-06-30), which was missing from the previous record.",
       "sources": [
         {
-          "label": "Arizona Dept. of Water Resources \u2014 Pinal AMA Groundwater Supply",
-          "url": "https://www.azwater.gov/ama/pinal"
+          "label": "AZ Capitol Times \u2014 Data centers dominated 2026 session; lawmakers answered with 3-year tax incentive pause",
+          "url": "https://azcapitoltimes.com/news/2026/07/09/data-centers-dominated-2026-session-lawmakers-answered-with-3-year-tax-incentive-pause/"
         },
-        "ADWR Groundwater Supply Designation, 2022"
+        {
+          "label": "Pinal Post \u2014 The water accounting behind the La Osa vote",
+          "url": "https://pinalpost.com/the-water-accounting-behind-the-la-osa-vote/"
+        }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 65,
-      "source_tier": 1
+      "confidence_score": 67,
+      "source_tier": 3
     },
     "06001": {
       "name": "Alameda County",
@@ -255,35 +257,28 @@
       "state": "Colorado",
       "level": 2,
       "types": [
-        "ai",
-        "data_center",
-        "energy"
+        "ai"
       ],
-      "title": "Colorado AI Act + Active Data Center Moratoriums",
-      "description": "Colorado's AI Act (SB 24-205, signed May 2024) imposes disclosure obligations, impact assessments, and consumer rights for high-risk AI systems \u2014 one of the nation's most comprehensive AI laws. Denver and neighboring jurisdictions have also implemented temporary moratoriums on new large-scale data center approvals amid rapid load growth and grid capacity concerns.",
-      "effective_date": "2024-05-17",
+      "title": "Colorado AI Act Repealed & Replaced (SB 26-189)",
+      "description": "Colorado's original AI Act (SB 24-205, signed May 2024) \u2014 which would have imposed impact-assessment and risk-management duties on high-risk AI systems \u2014 never took effect. Its effective date was first delayed from Feb 1, 2026 to June 30, 2026 (SB 25B-004, special session, 2025-08-28), then Governor Polis signed SB 26-189 on 2026-05-14, repealing and replacing SB 24-205 before it ever became operative. The replacement adopts a narrower \"automated decision-making technology\" (ADMT) disclosure/transparency framework, drops the impact-assessment and risk-management program duties the original law had, and takes effect 2027-01-01.",
+      "effective_date": "2026-05-14",
       "status": "active",
-      "notes": "Colorado AI Act effective date: Feb 1, 2026. Data center moratoriums at the local level are distinct from state AI law.",
+      "notes": "2026-07-29 correction: previous record described SB 24-205 as current law; it was repealed and replaced by SB 26-189 before ever taking effect. Also removed an unsubstantiated claim of \"Denver and neighboring jurisdictions data center moratoriums\" that could not be verified \u2014 do not re-add without a citable source. Re-verify ADMT framework details closer to its 2027-01-01 effective date.",
       "sources": [
         {
-          "label": "Denver Ordinance 22-1551 \u2014 Building Benchmarking & Energy Efficiency",
-          "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Denver-Community-Planning-and-Development"
+          "label": "Colorado General Assembly \u2014 SB 26-189",
+          "url": "https://leg.colorado.gov/bills/sb26-189"
         },
         {
-          "label": "Colorado SB 21-272 \u2014 Greenhouse Gas Pollution Reduction Roadmap",
-          "url": "https://leg.colorado.gov/bills/sb21-272"
-        },
-        {
-          "label": "Colorado SB 24-205 \u2014 Artificial Intelligence Act (2024)",
-          "url": "https://leg.colorado.gov/bills/sb24-205"
-        },
-        "Denver metro data center zoning review requirements (2023\u20132024)"
+          "label": "Finnegan \u2014 Colorado replaces AI Act with SB 26-189",
+          "url": "https://www.finnegan.com/en/insights/articles/colorado-replaces-landmark-ai-act-an-overview-of-the-new-sb-26-189-framework.html"
+        }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 82,
+      "confidence_score": 93,
       "source_tier": 1
     },
     "08059": {
@@ -352,9 +347,9 @@
       ],
       "title": "Active Moratorium \u2014 Data Center Development Ban",
       "description": "Clayton County (south Atlanta suburbs) enacted a moratorium on new data center developments following high-profile rejection of proposed facilities. The county board cited concerns about land use, noise, limited employment relative to acreage consumed, and energy grid impacts.",
-      "effective_date": "2023-06-01",
+      "effective_date": "2025-09-03",
       "status": "active",
-      "notes": "REVIEW NEEDED: Clayton County Resolution 2025-193 (passed September 3, 2025) imposed a moratorium through December 31, 2025. It is unclear whether this moratorium was renewed/extended past December 31, 2025. The effective_date of 2023-06-01 may reference an earlier, separate action. Verify current status with Clayton County Board of Commissioners before relying on this record.",
+      "notes": "2026-07-29 update: moratorium (Resolution 2025-193, effective ~2025-09-03) has been extended twice more and now runs through December 2026. Lovejoy (within Clayton County) is explicitly not covered by the county-wide moratorium; a 1.25GW/400-acre 'Stillwater Technology Park' campus is proceeding there.",
       "sources": [
         {
           "label": "Clayton County GA \u2014 Official moratorium announcement (Resolution 2025-193, Sep 2025)",
@@ -363,13 +358,17 @@
         {
           "label": "WSB Radio: Clayton County Commission approves data center moratorium through end of 2025",
           "url": "https://www.wsbradio.com/news/local/clayton-county-commission-approve-data-center-moratorium-through-end-2025/YSDKDDK4F5EP3HT2DEESPHXZ7U/"
+        },
+        {
+          "label": "WABE \u2014 Clayton County officials engaging in more data center talks; 400-acre campus in Lovejoy",
+          "url": "https://www.wabe.org/clayton-county-officials-engaging-in-more-data-center-talks-with-residents-as-400-acre-campus-proposal-looms-in-lovejoy/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-18",
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 75,
+      "confidence_score": 94,
       "source_tier": 1
     },
     "13089": {
@@ -404,7 +403,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-12",
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 88,
       "source_tier": 1
@@ -522,26 +521,26 @@
       "types": [
         "data_center"
       ],
-      "title": "Active Restrictions \u2014 Data Center Development Moratorium",
-      "description": "Troup County (LaGrange) enacted restrictions on new large-scale data center approvals following community opposition. Concerns over land use incompatibility, limited local employment, and grid and water demands drove the board's decision to pause new data center development.",
-      "effective_date": "2023-01-01",
+      "title": "Troup County \u2014 Data Center Special-Use Permit Ordinance (Moratorium Lifted)",
+      "description": "Troup County enacted a 90-day data-center moratorium on 2025-09-16 (later extended 90 more days). On 2026-05-08 the Board of Commissioners unanimously adopted a permanent zoning text amendment and formally lifted the moratorium. The new rule requires a special-use permit for all data centers, restricts average/hyperscale facilities to heavy-industrial zoning only, and imposes a 1,500-ft setback, Tier 4 generator requirement, and mandatory public sewer connection.",
+      "effective_date": "2026-05-08",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: previous record described an open-ended moratorium still in effect; the moratorium was lifted and replaced by a permanent SUP ordinance on 2026-05-08.",
       "sources": [
         {
-          "label": "Troup County GA Board of Commissioners \u2014 Data Center Ordinance (2023)",
-          "url": "https://www.troupcountyga.gov/county-commission/"
+          "label": "LaGrange News \u2014 Commissioners approve data center ordinance, lift moratorium",
+          "url": "https://www.lagrangenews.com/news/commissioners-approve-data-center-ordinance-lift-moratorium-2b6e15ed"
         },
         {
-          "label": "Data Center Dynamics: Georgia county restricts new data centers",
-          "url": "https://www.datacenterdynamics.com/en/news/"
+          "label": "WSB-TV \u2014 Troup County approves 90-day moratorium on data center applications",
+          "url": "https://www.wsbtv.com/news/local/troup-county-approves-90-day-moratorium-data-center-applications/HOGHN6WZGNDGVBGK4TOGS4ZQP4/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 75,
+      "confidence_score": 93,
       "source_tier": 1
     },
     "17031": {
@@ -1083,23 +1082,26 @@
         "data_center",
         "energy"
       ],
-      "title": "Reno-Area Data Center Moratorium",
-      "description": "Washoe County / City of Reno area enacted a temporary moratorium on new large-scale data center development in 2023 following rapid growth that strained NV Energy grid capacity and prompted community concerns about water use in an arid region and noise from cooling equipment.",
-      "effective_date": "2023-01-01",
+      "title": "Reno / Washoe County Area \u2014 Data Center Moratorium (2026)",
+      "description": "The City of Reno's council adopted a 30-day data-center moratorium around May 2026 \u2014 the first such pause in Nevada \u2014 and extended it through August 2027 by a 6-1 vote in June 2026. This is documented as a City of Reno council action, with council members discussing future coordination with unincorporated Washoe County and Sparks, rather than a confirmed standalone unincorporated-Washoe-County ordinance.",
+      "effective_date": "2026-06-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: the previous 2023-01-01 effective_date and 'enacted... in 2023' framing could not be corroborated by any source; multiple 2026 sources describe this as a new 2026 action. Also clarified jurisdiction \u2014 this is documented as a City of Reno action, not confirmed as a Washoe County ordinance.",
       "sources": [
-        "Washoe County / Reno data center moratorium (2023)",
         {
-          "label": "Data Center Bans tracker",
-          "url": "https://datacenterbans.com/"
+          "label": "Nevada Independent \u2014 Reno extends its data center moratorium into 2027",
+          "url": "https://thenevadaindependent.com/article/reno-extends-its-data-center-moratorium-into-2027-heres-what-happens-next"
+        },
+        {
+          "label": "GovTech \u2014 Reno, Nev. is first in state to pause data center development",
+          "url": "https://www.govtech.com/artificial-intelligence/reno-nev-is-first-in-state-to-pause-data-center-development"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "low",
-      "confidence_score": 39,
+      "last_reviewed": "2026-07-29",
+      "confidence": "high",
+      "confidence_score": 67,
       "source_tier": 3
     },
     "34035": {
@@ -1128,33 +1130,36 @@
     "36005": {
       "name": "Bronx County",
       "state": "New York",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center",
         "crypto",
         "energy"
       ],
-      "title": "NY State Crypto Mining Moratorium + Local Law 97",
-      "description": "New York State's 2022 moratorium on proof-of-work cryptocurrency mining and NYC's Local Law 97 emissions limits affect data center operations in the Bronx.",
-      "effective_date": "2022-11-22",
+      "title": "NY Statewide Data Center Moratorium (2026) + Local Law 97",
+      "description": "New York's 2022 statewide moratorium on proof-of-work cryptocurrency mining (S6486C) was a two-year measure that expired 2024-11-22 and was not renewed \u2014 no crypto-specific moratorium is currently in force. A much larger and more current restriction has since taken its place: following passage of the \"Responsible Data Center Development Act\" (S10642/A11560), Governor Hochul signed an executive order on 2026-07-14 imposing a one-year statewide moratorium on new approvals for large data centers (\u226520MW peak demand), explicitly covering AI facilities, not just crypto mining. Projects already under construction are exempt. NYC's Local Law 97 building-emissions limits (2019) remain separately in force citywide and continue to affect large facilities including data centers.",
+      "effective_date": "2026-07-14",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: previous record cited the 2022 proof-of-work crypto mining moratorium as current \u2014 it expired 2024-11-22 and was never renewed. Replaced with the actual current restriction: the 2026-07-14 executive order moratorium on new large (\u226520MW) data center approvals statewide, following the Responsible Data Center Development Act.",
       "sources": [
+        {
+          "label": "cryptobriefing \u2014 New York statewide data center moratorium (2026)",
+          "url": "https://cryptobriefing.com/new-york-data-center-moratorium-crypto-mining-2/"
+        },
+        {
+          "label": "Earthjustice \u2014 NY cryptomining moratorium expiration (2024)",
+          "url": "https://earthjustice.org/press/2024/new-york-state-cryptomining-moratorium-expires-in-one-month-and-still-no-environmental-impact-study"
+        },
         {
           "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
           "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
-        },
-        {
-          "label": "NY Climate Leadership and Community Protection Act (S6599)",
-          "url": "https://www.nysenate.gov/legislation/bills/2019/S6599"
-        },
-        "NY Climate Law S6486C, 2022; NYC Local Law 97"
+        }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 82,
+      "confidence_score": 100,
       "source_tier": 1
     },
     "36019": {
@@ -1173,7 +1178,7 @@
       "sources": [
         {
           "label": "Plattsburgh City Council \u2014 Commercial Crypto Mining Moratorium (2018)",
-          "url": "https://www.cityofplattsburgh.com/departments/city-clerk/"
+          "url": "https://www.cityofplattsburgh-ny.gov/boards-committees-commissions/common-council"
         },
         "Plattsburgh City Council, March 2018 \u2014 resulted in permanent permitting requirements"
       ],
@@ -1187,33 +1192,36 @@
     "36047": {
       "name": "Kings County",
       "state": "New York",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center",
         "crypto",
         "energy"
       ],
-      "title": "NY State Crypto Mining Moratorium + Local Law 97",
-      "description": "New York State imposed a 2-year moratorium on new proof-of-work cryptocurrency mining operations using carbon-based power (signed Nov 2022). NYC's Local Law 97 also restricts data center emissions.",
-      "effective_date": "2022-11-22",
+      "title": "NY Statewide Data Center Moratorium (2026) + Local Law 97",
+      "description": "New York's 2022 statewide moratorium on proof-of-work cryptocurrency mining (S6486C) was a two-year measure that expired 2024-11-22 and was not renewed \u2014 no crypto-specific moratorium is currently in force. A much larger and more current restriction has since taken its place: following passage of the \"Responsible Data Center Development Act\" (S10642/A11560), Governor Hochul signed an executive order on 2026-07-14 imposing a one-year statewide moratorium on new approvals for large data centers (\u226520MW peak demand), explicitly covering AI facilities, not just crypto mining. Projects already under construction are exempt. NYC's Local Law 97 building-emissions limits (2019) remain separately in force citywide and continue to affect large facilities including data centers.",
+      "effective_date": "2026-07-14",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: previous record cited the 2022 proof-of-work crypto mining moratorium as current \u2014 it expired 2024-11-22 and was never renewed. Replaced with the actual current restriction: the 2026-07-14 executive order moratorium on new large (\u226520MW) data center approvals statewide, following the Responsible Data Center Development Act.",
       "sources": [
+        {
+          "label": "cryptobriefing \u2014 New York statewide data center moratorium (2026)",
+          "url": "https://cryptobriefing.com/new-york-data-center-moratorium-crypto-mining-2/"
+        },
+        {
+          "label": "Earthjustice \u2014 NY cryptomining moratorium expiration (2024)",
+          "url": "https://earthjustice.org/press/2024/new-york-state-cryptomining-moratorium-expires-in-one-month-and-still-no-environmental-impact-study"
+        },
         {
           "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
           "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
-        },
-        {
-          "label": "NY Climate Leadership and Community Protection Act (S6599)",
-          "url": "https://www.nysenate.gov/legislation/bills/2019/S6599"
-        },
-        "NY Climate Law S6486C, 2022; NYC Local Law 97"
+        }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 82,
+      "confidence_score": 100,
       "source_tier": 1
     },
     "36061": {
@@ -1242,7 +1250,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
@@ -1250,33 +1258,36 @@
     "36081": {
       "name": "Queens County",
       "state": "New York",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center",
         "crypto",
         "energy"
       ],
-      "title": "NY State Crypto Mining Moratorium + Local Law 97",
-      "description": "New York State's 2022 moratorium on proof-of-work cryptocurrency mining and NYC's Local Law 97 emissions limits affect data center operations in Queens.",
-      "effective_date": "2022-11-22",
+      "title": "NY Statewide Data Center Moratorium (2026) + Local Law 97",
+      "description": "New York's 2022 statewide moratorium on proof-of-work cryptocurrency mining (S6486C) was a two-year measure that expired 2024-11-22 and was not renewed \u2014 no crypto-specific moratorium is currently in force. A much larger and more current restriction has since taken its place: following passage of the \"Responsible Data Center Development Act\" (S10642/A11560), Governor Hochul signed an executive order on 2026-07-14 imposing a one-year statewide moratorium on new approvals for large data centers (\u226520MW peak demand), explicitly covering AI facilities, not just crypto mining. Projects already under construction are exempt. NYC's Local Law 97 building-emissions limits (2019) remain separately in force citywide and continue to affect large facilities including data centers.",
+      "effective_date": "2026-07-14",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: previous record cited the 2022 proof-of-work crypto mining moratorium as current \u2014 it expired 2024-11-22 and was never renewed. Replaced with the actual current restriction: the 2026-07-14 executive order moratorium on new large (\u226520MW) data center approvals statewide, following the Responsible Data Center Development Act.",
       "sources": [
+        {
+          "label": "cryptobriefing \u2014 New York statewide data center moratorium (2026)",
+          "url": "https://cryptobriefing.com/new-york-data-center-moratorium-crypto-mining-2/"
+        },
+        {
+          "label": "Earthjustice \u2014 NY cryptomining moratorium expiration (2024)",
+          "url": "https://earthjustice.org/press/2024/new-york-state-cryptomining-moratorium-expires-in-one-month-and-still-no-environmental-impact-study"
+        },
         {
           "label": "NYC Local Law 97 of 2019 \u2014 NYC Carbon Emission Limits for Buildings",
           "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page"
-        },
-        {
-          "label": "NY Climate Leadership and Community Protection Act (S6599)",
-          "url": "https://www.nysenate.gov/legislation/bills/2019/S6599"
-        },
-        "NY Climate Law S6486C, 2022; NYC Local Law 97"
+        }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 82,
+      "confidence_score": 100,
       "source_tier": 1
     },
     "36085": {
@@ -1301,7 +1312,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 65,
       "source_tier": 1
@@ -1339,22 +1350,30 @@
       ],
       "title": "Active Moratorium \u2014 Data Center Development Ban",
       "description": "Chatham County enacted a moratorium on new large-scale data center developments in 2024, amid explosive growth proposals in the Research Triangle region. The moratorium reflects community concerns about grid capacity, water use, noise, and limited employment creation per acre of developed land.",
-      "effective_date": "2024-01-01",
+      "effective_date": "2026-02-11",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: moratorium was adopted 2026-02-11 (through 2027-02-11 or until new zoning rules are adopted), not 2024. It is legally contested: ECO TIP West LLC sued in Chatham County Superior Court (filed ~May 2026) to invalidate the moratorium and exempt its 750MW 'Triangle Innovation West' project under a heavy-industrial zoning claim \u2014 status could change with the litigation's outcome.",
       "sources": [
         "Chatham County Board of Commissioners data center moratorium (2024)",
         {
           "label": "NC data center moratorium wave coverage \u2014 Data Center Dynamics",
           "url": "https://www.datacenterdynamics.com/en/news/north-carolina-counties-pass-data-center-moratoriums/"
+        },
+        {
+          "label": "Chatham County NC \u2014 official news release",
+          "url": "https://www.chathamcountync.gov/Home/Components/News/News/17295/19"
+        },
+        {
+          "label": "North State Journal \u2014 Chatham County faces lawsuit over data center moratorium",
+          "url": "https://nsjonline.com/article/2026/05/chatham-county-faces-lawsuit-over-data-center-moratorium/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "medium",
-      "confidence_score": 53,
-      "source_tier": 2
+      "last_reviewed": "2026-07-29",
+      "confidence": "high",
+      "confidence_score": 94,
+      "source_tier": 1
     },
     "37063": {
       "name": "Durham County",
@@ -1435,20 +1454,26 @@
         "data_center",
         "energy"
       ],
-      "title": "Charlotte-Area Data Center Review Requirements",
-      "description": "Mecklenburg County (Charlotte) has adopted data center impact review requirements following a rapid surge in development applications. Duke Energy transmission capacity constraints in the Charlotte metro area and community concerns about industrial land use have driven planning commission scrutiny of large data center proposals.",
-      "effective_date": "2023-01-01",
+      "title": "Mecklenburg County \u2014 City of Charlotte 150-Day Data Center Moratorium (Municipal)",
+      "description": "Mecklenburg County government controls only a small sliver of unincorporated land and has not adopted formal data-center review requirements \u2014 commissioners have only heard a presentation and discussed options. The binding action is the City of Charlotte's 150-day moratorium on new data center applications, unanimously approved 2026-06-08, running through 2026-11-05; it does not affect already-approved projects.",
+      "effective_date": "2026-06-08",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: reattributed from 'Mecklenburg County' to the actual acting jurisdiction, the City of Charlotte.",
       "sources": [
-        "Mecklenburg County NC data center impact review requirements (2023)",
-        "Duke Energy Carolinas interconnection queue constraints, Charlotte metro"
+        {
+          "label": "WFAE \u2014 Charlotte City Council approves 150-day data center moratorium",
+          "url": "https://www.wfae.org/politics/2026-06-08/charlotte-city-council-approves-150-day-data-center-moratorium"
+        },
+        {
+          "label": "AOL/local coverage \u2014 Mecklenburg County leaders weigh taking a stance",
+          "url": "https://www.aol.com/news/mecklenburg-county-leaders-weigh-taking-090000133.html"
+        }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "low",
-      "confidence_score": 29,
+      "last_reviewed": "2026-07-29",
+      "confidence": "high",
+      "confidence_score": 67,
       "source_tier": 3
     },
     "37135": {
@@ -1461,22 +1486,30 @@
       ],
       "title": "Active Restrictions \u2014 Data Center Development Moratorium",
       "description": "Orange County (Chapel Hill/Carrboro) has enacted restrictions and temporary moratoriums on new data center developments. Community opposition in this progressive university county has focused on energy consumption, water use, and incompatibility with the county's climate commitments. Duke Energy transmission constraints in the area have amplified concerns.",
-      "effective_date": "2024-01-01",
+      "effective_date": "2026-04-21",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: the Board of Commissioners' one-year moratorium was passed unanimously (6-0) on 2026-04-21, not 2024 as the previous effective_date implied.",
       "sources": [
         "Orange County NC Board of Commissioners data center restrictions (2024)",
         {
           "label": "NC data center moratorium wave \u2014 Data Center Dynamics",
           "url": "https://www.datacenterdynamics.com/en/news/north-carolina-counties-pass-data-center-moratoriums/"
+        },
+        {
+          "label": "Orange County NC \u2014 official announcement of data center moratorium",
+          "url": "https://www.orangecountync.gov/m/newsflash/Home/Detail/1391"
+        },
+        {
+          "label": "WUNC \u2014 Orange County passes data center moratorium",
+          "url": "https://www.wunc.org/environment/2026-04-22/orange-county-moratorium-data-centers"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "medium",
-      "confidence_score": 53,
-      "source_tier": 2
+      "last_reviewed": "2026-07-29",
+      "confidence": "high",
+      "confidence_score": 94,
+      "source_tier": 1
     },
     "37159": {
       "name": "Rowan County",
@@ -1486,27 +1519,27 @@
         "data_center",
         "energy"
       ],
-      "title": "Active Restrictions \u2014 Data Center Density Controls",
-      "description": "Rowan County (Salisbury) has enacted active restrictions on new large-scale data center development following rapid growth in applications. Duke Energy capacity constraints in the Piedmont region have contributed to a county-level pause on approvals while infrastructure and policy catch up.",
-      "effective_date": "2024-01-01",
+      "title": "Rowan County \u2014 Data Center Moratorium (2026)",
+      "description": "Rowan County adopted a formal one-year moratorium, 2026-05-04 through 2027-05-04, which does not apply to projects already in the pipeline \u2014 not the vague 'density controls' the record previously described. Separately, the City of Salisbury (within the county) passed its own 2026-06-02 text amendment permitting data centers with size/noise/water restrictions for the Flexential project; city and county policy now diverge.",
+      "effective_date": "2026-05-04",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: replaced vague 'density controls' framing with the actual one-year moratorium and noted the divergent City of Salisbury text amendment.",
       "sources": [
         {
-          "label": "Rowan County NC Board of Commissioners \u2014 Data Center Restrictions (2024)",
-          "url": "https://www.rowancountync.gov/government/board_of_county_commissioners/"
+          "label": "Salisbury Post \u2014 Rowan County passes data center moratorium over resident opposition",
+          "url": "https://www.salisburypost.com/2026/04/21/roco-passes-data-center-moratorium-over-100-residents-express-data-center-opposition/"
         },
         {
-          "label": "Data Center Dynamics: North Carolina county restricts data centers",
-          "url": "https://www.datacenterdynamics.com/en/news/"
+          "label": "Salisbury Post \u2014 Op-ed: Rowan County's data center rules should welcome projects like Flexential",
+          "url": "https://www.salisburypost.com/2026/07/26/op-ed-rowan-countys-data-center-rules-should-welcome-projects-like-flexential/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 75,
-      "source_tier": 1
+      "confidence_score": 67,
+      "source_tier": 3
     },
     "37161": {
       "name": "Rutherford County",
@@ -1562,20 +1595,26 @@
         "data_center",
         "energy"
       ],
-      "title": "Raleigh-Area Data Center Review Requirements",
-      "description": "Wake County (Raleigh) is one of the fastest-growing US data center markets, attracting major hyperscale investment. The county has implemented grid capacity review requirements for new large-scale data center applications following rapid Duke Energy interconnection queue growth. Community groups have also advocated for enhanced environmental review.",
-      "effective_date": "2023-01-01",
+      "title": "Wake County \u2014 Apex 12-Month Data Center Moratorium (Municipal)",
+      "description": "No unincorporated Wake County-wide data-center review requirement has been found. Regulation is fragmented at the municipal level: the Town of Apex enacted a 12-month data-center/crypto-mining moratorium (approved 2026-04-15) after the developer of the 300MW New Hill Digital Campus pulled out; the Town of Cary has separately considered (not adopted) a similar pause, partly over Jordan Lake water impacts.",
+      "effective_date": "2026-04-15",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: reframed from an implied county-wide 'review requirement' to the actual municipal-level action (Apex's moratorium); no unincorporated Wake County ordinance was found.",
       "sources": [
-        "Wake County NC data center growth management requirements (2023\u20132024)",
-        "Duke Energy Carolinas interconnection queue management, Wake County"
+        {
+          "label": "ABC11 \u2014 Apex leaders hold public hearing on proposed data center moratorium",
+          "url": "https://abc11.com/post/apex-nc-leaders-hold-public-hearing-proposed-data-center-moratorium/18885810/"
+        },
+        {
+          "label": "ABC11 \u2014 Cary is latest Wake County town to consider a temporary halt on new centers",
+          "url": "https://abc11.com/post/data-centers-nc-cary-wake-county-is-latest-town-north-carolina-consider-temporary-halt-new-center/19194690/"
+        }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "low",
-      "confidence_score": 29,
+      "last_reviewed": "2026-07-29",
+      "confidence": "high",
+      "confidence_score": 61,
       "source_tier": 3
     },
     "37189": {
@@ -1666,7 +1705,7 @@
       "description": "Hood River County voted to ban new cryptocurrency mining and high-intensity computing facilities (2022), citing electric grid strain and energy concerns.",
       "effective_date": "2022-06-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 audit: both previously-cited sources are dead (403/inaccessible), and current search results are dominated by a separate, more recent action \u2014 the City of Hood River (not the county) passed its own temporary data-center construction pause in April 2026, through 2026-12-31, reportedly advisory-only per the city attorney since it may not have followed Oregon's formal land-use process. That is a different jurisdiction and should not be conflated with this county-level record. No source found confirming repeal, amendment, or continuation of the county's original 2022 action \u2014 status UNVERIFIED pending direct confirmation from Hood River County (not city) commission minutes.",
       "sources": [
         {
           "label": "Hood River County \u2014 Commercial Solar & Data Center Development Ordinance",
@@ -1680,7 +1719,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
@@ -1796,24 +1835,27 @@
         "data_center",
         "energy"
       ],
-      "title": "Smithfield Permanent Data Center Ban",
-      "description": "The Town of Smithfield in Providence County enacted a permanent ban on large-scale data center development in 2023, making it one of the first municipalities in the US to outright prohibit data centers via zoning ordinance. The ban followed community opposition over energy grid impacts, water use, noise, and concerns that data centers provide few local jobs relative to their infrastructure burden.",
-      "effective_date": "2023-01-01",
+      "title": "Smithfield Data Center Ban (2026, 2-Year Sunset Review)",
+      "description": "The Town of Smithfield (Providence County) voted 4-1 in 2026 to bar data centers in all zoning districts, following sustained community opposition. Unlike the record's previous framing, this is not a permanent 2023-era prohibition: it is a 2026 ordinance with a built-in two-year review/sunset period. A developer (Hanton City Investments LLC) filed a data-center-inclusive business-park application one day before the council vote, which may let that specific project proceed under prior zoning \u2014 the ban's practical scope may be narrower than \"prohibited everywhere\" suggests.",
+      "effective_date": "2026-05-01",
       "status": "active",
-      "notes": "Smithfield's ban is a permanent zoning prohibition, distinct from temporary moratoriums. It has been cited as a model by other municipalities nationwide.",
+      "notes": "2026-07-29 correction: no 2023 Smithfield ban exists in any source \u2014 the actual ordinance dates to 2026 (council vote ~April\u2013May 2026), includes a 2-year sunset/review clause (not permanent), and a developer filed to grandfather a project the day before the vote. effective_date is month-precision (exact day not confirmed); re-verify closer to the 2-year review.",
       "sources": [
-        "Smithfield, RI Town Council data center zoning prohibition (2023)",
         {
-          "label": "Data Center Bans tracker \u2014 datacenterbans.com",
-          "url": "https://datacenterbans.com/"
+          "label": "Rhode Island Current \u2014 Smithfield moves to ban data centers",
+          "url": "https://rhodeislandcurrent.com/2026/04/13/as-smithfield-moves-to-ban-data-centers-smith-hill-is-still-debating-how-to-define-them/"
+        },
+        {
+          "label": "WPRI \u2014 Smithfield Town Council approves data center ordinance",
+          "url": "https://www.wpri.com/news/local-news/northwest/smithfield-town-council-approves-ordinance-to-prevent-construction-of-data-centers/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "low",
-      "confidence_score": 39,
-      "source_tier": 3
+      "last_reviewed": "2026-07-29",
+      "confidence": "high",
+      "confidence_score": 93,
+      "source_tier": 1
     },
     "45003": {
       "name": "Aiken County",
@@ -1873,27 +1915,22 @@
         "energy"
       ],
       "title": "Active Moratorium \u2014 High-Intensity Computing Restrictions",
-      "description": "Anderson County (near Oak Ridge / Knoxville) enacted restrictions on new large-scale data centers and high-intensity computing following the xAI Colossus controversy and statewide concerns about TVA grid capacity. The county moratorium reflects concerns about power demand on the TVA transmission system serving eastern Tennessee.",
-      "effective_date": "2024-01-01",
+      "description": "The Anderson County Commission unanimously approved a two-year moratorium on 2026-06-15, applying to unincorporated areas only, halting AI data centers, bitcoin mining, and battery storage. (The xAI Colossus facility sometimes cited as a local trigger is in Memphis/Shelby County, roughly 400 miles away \u2014 a statewide narrative driver, not a local project near Anderson County/Oak Ridge.)",
+      "effective_date": "2026-06-15",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: dated to 2026-06-15, not 2024; corrected the 'xAI Colossus controversy' framing, which conflated a Memphis-area facility with a local Anderson County trigger.",
       "sources": [
         {
-          "label": "Anderson County TN Commission \u2014 Data Center Moratorium Resolution (2024)",
-          "url": "https://www.andersoncountytn.gov/"
-        },
-        {
-          "label": "Knox News: Tennessee counties impose data center moratoriums",
-          "url": "https://www.knoxnews.com/"
-        },
-        "Anderson County TN data center moratorium (2024)"
+          "label": "WVLT \u2014 Anderson County Commission proposes 2-year moratorium on local data centers",
+          "url": "https://www.wvlt.tv/2026/06/16/anderson-county-commission-proposes-2-year-moratorium-local-data-centers/"
+        }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "high",
-      "confidence_score": 82,
-      "source_tier": 1
+      "last_reviewed": "2026-07-29",
+      "confidence": "medium",
+      "confidence_score": 51,
+      "source_tier": 3
     },
     "47037": {
       "name": "Davidson County",
@@ -1935,27 +1972,27 @@
         "crypto",
         "energy"
       ],
-      "title": "Active Moratorium \u2014 Data Center and Crypto Mining Restrictions",
-      "description": "Hamilton County (Chattanooga) has enacted a moratorium on new large-scale data centers and cryptocurrency mining operations citing TVA grid capacity concerns and community opposition. Chattanooga's EPB fiber network had previously attracted significant data center interest.",
-      "effective_date": "2024-01-01",
+      "title": "Hamilton County \u2014 Unincorporated-Area Data Center Moratorium (2026)",
+      "description": "The Hamilton County Commission unanimously approved a one-year moratorium on 2026-07-15 (proposed by Mayor Weston Wamp in late June 2026). It applies only to unincorporated Hamilton County, explicitly excluding Chattanooga (which retains its own separate authority) and a data center already approved in the former county jail building.",
+      "effective_date": "2026-07-15",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: previous framing conflated county and city scope; the moratorium applies only to unincorporated Hamilton County, not Chattanooga, and dates to 2026-07-15, not 2024.",
       "sources": [
         {
-          "label": "Hamilton County TN Commission \u2014 Data Center Moratorium (2024)",
-          "url": "https://www.hamiltontn.gov/CommissionDistricts/"
+          "label": "Chattanooga Times Free Press \u2014 Hamilton County Commission approves yearlong data center moratorium",
+          "url": "https://www.timesfreepress.com/news/2026/jul/15/hamilton-county-commission-approves-yearlong-data/"
         },
         {
-          "label": "Chattanooga Times Free Press: Hamilton County data center moratorium",
-          "url": "https://www.timesfreepress.com/"
+          "label": "Local3News \u2014 Hamilton County approves one-year moratorium on new data centers in unincorporated areas",
+          "url": "https://www.local3news.com/local-news/update-hamilton-county-approves-one-year-moratorium-on-new-data-centers-in-unincorporated-areas/article_9ff722e4-a174-4361-95c3-0cce1db669bc.html"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 75,
-      "source_tier": 1
+      "confidence_score": 67,
+      "source_tier": 3
     },
     "47031": {
       "name": "Coffee County",
@@ -2020,9 +2057,9 @@
       ],
       "title": "Active Moratorium \u2014 Data Center Development Restrictions",
       "description": "Washington County (Johnson City) enacted restrictions on new data center developments in 2024 amid the statewide wave of county-level data center moratoriums. Concerns center on TVA grid capacity, water use, and land use incompatibility with agricultural heritage.",
-      "effective_date": "2024-01-01",
+      "effective_date": "2026-03-24",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: county commission approved the moratorium (13-2 vote) on 2026-03-24, through 2027-06-30, not 2024. Johnson City and Jonesborough (municipalities within the county) separately passed their own moratoriums; utility BrightRidge also imposed its own 2025 project pause.",
       "sources": [
         {
           "label": "Washington County TN Commission \u2014 Data Center Moratorium (2024)",
@@ -2031,13 +2068,17 @@
         {
           "label": "Johnson City Press: Washington County data center restrictions",
           "url": "https://www.johnsoncitypress.com/"
+        },
+        {
+          "label": "Johnson City Press \u2014 Commission approves one-year moratorium on data centers",
+          "url": "https://johnsoncitypress.com/news/366051/washington-county-commission-approves-one-year-moratorium-on-data-centers/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "medium",
-      "confidence_score": 49,
+      "last_reviewed": "2026-07-29",
+      "confidence": "high",
+      "confidence_score": 68,
       "source_tier": 3
     },
     "48085": {
@@ -2198,24 +2239,27 @@
         "water",
         "energy"
       ],
-      "title": "Data Center Moratorium \u2014 Water and Energy Constraints",
-      "description": "Iron County (Cedar City) has enacted restrictions and moratoriums on new large-scale data centers and cryptocurrency mining operations, citing acute water scarcity in Utah's arid southwest and grid capacity limitations on Rocky Mountain Power's network.",
-      "effective_date": "2023-01-01",
+      "title": "Iron County 180-Day Pause on New Data Center Applications (Ordinance 2026-13)",
+      "description": "Iron County (Cedar City) adopted Ordinance 2026-13 on 2026-05-26, a 180-day temporary pause (not an indefinite moratorium) on new data-center, data-center-power-plant, and solar-power-plant applications, to let staff study stronger siting standards amid water scarcity in Utah's arid southwest and grid capacity limits on Rocky Mountain Power's network. The pause is porous: a 640-acre project (Pronghorn's \"Antelope Data Center\") received a Conditional Use Permit in June 2026 mid-pause because its application was already complete when the ordinance took effect. Separately, Utah's statewide HB230 (effective 2025-05-07) preempts local zoning/noise restrictions specifically for cryptocurrency-mining operations in industrial zones, which limits how far any county rule can reach for that subset of uses.",
+      "effective_date": "2026-05-26",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: no 2023 Iron County moratorium found in any source. Replaced with the actual current action, Ordinance 2026-13 (180-day pause, effective 2026-05-26, expires ~2026-11-22), and noted the mid-pause CUP grant and HB230's statewide preemption for crypto-mining specifically. Re-verify before the pause's expiration for whatever permanent standards follow.",
       "sources": [
-        "Iron County UT data center restrictions (2023)",
         {
-          "label": "Data Center Bans tracker",
-          "url": "https://datacenterbans.com/"
+          "label": "Salt Lake Tribune \u2014 Iron County 180-day data center pause",
+          "url": "https://www.sltrib.com/news/2026/05/26/iron-county-bans-approval-new-data/"
+        },
+        {
+          "label": "Iron County Ordinance 2026-13 (PDF)",
+          "url": "https://ironcountyut.gov/files/planning/data-center-solar-moratorium.pdf"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "low",
-      "confidence_score": 39,
-      "source_tier": 3
+      "last_reviewed": "2026-07-29",
+      "confidence": "high",
+      "confidence_score": 93,
+      "source_tier": 1
     },
     "51059": {
       "name": "Fairfax County",
@@ -2788,27 +2832,27 @@
       "types": [
         "data_center"
       ],
-      "title": "Temporary Moratorium on Data Center Rezoning Applications",
-      "description": "In September 2023 the Fauquier County Board of Supervisors enacted a temporary moratorium on accepting data center rezoning applications while the county updated its Comprehensive Plan to address land-use, visual, noise, and grid-impact concerns. The moratorium applied to the agricultural and rural buffer districts that make up most of the county. A revised data-center-specific zoning chapter was required before new applications would be accepted.",
-      "effective_date": "2023-09-01",
+      "title": "Fauquier County \u2014 By-Right Data Center Siting Eliminated Countywide",
+      "description": "Fauquier County's Board of Supervisors adopted non-binding policy guidelines on 2023-12-14 discouraging (not prohibiting) rezoning/service-district-expansion applications for data centers \u2014 weaker than a formal moratorium. The rules have since become substantially stronger: in March 2024 the county required a special exception permit for any Vint Hill data center building/assemblage over 50,000 sq ft (two projects grandfathered), and in April 2025 the county eliminated by-right data center siting in most industrial districts countywide, now requiring conditional-use permits everywhere except the currently-unused Technology Manufacturing Park district. Separately, Warrenton (town within the county) amended its own zoning in July 2025 to remove data centers as a permitted use entirely, amid litigation over an already-approved Amazon data center.",
+      "effective_date": "2025-04-01",
       "status": "active",
-      "notes": "Moratorium enacted amid strong community opposition to proposed rural campuses near historic areas.",
+      "notes": "2026-07-29 correction: previous record characterized this as a 'temporary moratorium on rezoning applications' from Sept 2023 \u2014 the actual 2023 action was non-binding guidelines; the operative current rule (April 2025) eliminated by-right siting countywide, materially more restrictive than the prior framing.",
       "sources": [
         {
-          "label": "Fauquier County Board of Supervisors \u2014 Official Meeting Agendas & Minutes",
-          "url": "https://www.fauquiercounty.gov/government/departments-g-z/planning/board-of-supervisors-meetings"
+          "label": "DCD \u2014 Fauquier County approves policy curbing data centers in Virginia",
+          "url": "https://www.datacenterdynamics.com/en/news/fauquier-county-approves-policy-curbing-data-centers-in-virginia/"
         },
         {
-          "label": "Fauquier County Planning Department \u2014 Comprehensive Plan Updates",
-          "url": "https://www.fauquiercounty.gov/government/departments-g-z/planning/comprehensive-plan"
+          "label": "WVTF \u2014 Some Virginia localities are ending 'by right' regulations for data centers",
+          "url": "https://www.wvtf.org/news/2026-07-27/some-virginia-localities-are-ending-by-right-regulations-for-data-centers"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-14",
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 75,
-      "source_tier": 1
+      "confidence_score": 69,
+      "source_tier": 2
     },
     "51047": {
       "name": "Culpeper County",
@@ -2843,27 +2887,27 @@
         "data_center",
         "energy"
       ],
-      "title": "Data Center Overlay District \u2014 Density and Energy Caps",
-      "description": "Spotsylvania County adopted a Data Center Overlay District following rapid growth along the Interstate 95 corridor. The overlay imposes density caps, mandatory 100% renewable power demonstration, noise ordinances, and setback requirements from residential areas. The Spotsylvania Solar Farm controversy highlighted grid capacity concerns, prompting additional power-use review for large data centers.",
-      "effective_date": "2022-01-01",
+      "title": "Spotsylvania County \u2014 Data Center Design Standards (Ordinance 23-190)",
+      "description": "The Board of Supervisors adopted Ordinance 23-190 on 2025-12-09 (4-3 vote, effective immediately), superseding the county's earlier 2022 overlay-district framing with concrete design standards for I-2 data centers: 300-ft vegetated buffer from property lines, 400-ft setback from residential dwellings/schools/churches/hospitals/parks/childcare facilities, 50-ft streetscape buffer, and a 75-ft height cap. Zoning map amendments approved Jan 2022 through the ordinance's adoption are exempt. The county followed up with 'Guidelines for Data Center Development,' adopted 2026-02-24. Some supervisors continue to push for a special-use-permit requirement instead of by-right-with-standards, so further tightening is possible.",
+      "effective_date": "2025-12-09",
       "status": "active",
-      "notes": "Board of Supervisors tightened restrictions in 2023 after residents raised concerns about grid load.",
+      "notes": "2026-07-29 correction: previous record described only the 2022 overlay district; Ordinance 23-190 (Dec 2025) is the current operative standard.",
       "sources": [
         {
-          "label": "Spotsylvania County Planning \u2014 Zoning Ordinance",
-          "url": "https://www.spotsylvania.va.us/1065/Planning-Zoning"
+          "label": "Fredericksburg Free Press \u2014 Spotsylvania approves data center design standards",
+          "url": "https://www.fredericksburgfreepress.com/2025/12/10/spotsylvania-board-of-supervisors-approves-data-center-design-standards-but-they-may-be-short-lived/"
         },
         {
-          "label": "Spotsylvania County Board of Supervisors",
-          "url": "https://www.spotsylvania.va.us/190/Board-of-Supervisors"
+          "label": "Spotsylvania County \u2014 Guidelines for Data Center Development (adopted 2026-02-24, PDF)",
+          "url": "https://www.spotsylvania.va.us/DocumentCenter/View/40711/Guidelines-for-Data-Center-Development-Adopted-2-24-2026"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-14",
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 75,
-      "source_tier": 1
+      "confidence_score": 61,
+      "source_tier": 3
     },
     "41067": {
       "name": "Washington County",
@@ -3355,27 +3399,27 @@
         "data_center",
         "energy"
       ],
-      "title": "Rapid Data Center Growth \u2014 Infrastructure Strain Review",
-      "description": "Henry County, south of Atlanta, has experienced rapid data center expansion along the I-75 corridor. The county has imposed mandatory grid-impact assessments and stormwater management requirements following complaints about infrastructure stress from large-scale development. Georgia Power's load growth attributed to data centers in Henry County has prompted review of new substation interconnection timelines. Several rezoning applications face extended review periods as a result.",
-      "effective_date": "2023-06-01",
-      "status": "active",
-      "notes": "Georgia Power load studies required for data centers >10MW load in Henry County.",
+      "title": "Henry County \u2014 Data Center Ordinance Drafted, Not Yet Confirmed Adopted",
+      "description": "Henry County has been drafting its first comprehensive data center ordinance, with a public hearing on 2026-01-06. The draft requires a conditional use permit in M-1/M-2 districts, a 1,000-ft residential setback, restrictive noise limits, and a formal development agreement. County staff planned a revised version for a February 2026 vote; final adoption could not be independently confirmed as of this review.",
+      "effective_date": "2026-02-01",
+      "status": "proposed",
+      "notes": "2026-07-29 correction: previous record implied mandatory grid-impact/stormwater rules were already in force; the ordinance was still in draft/hearing stage as of early 2026 with adoption unconfirmed. Marked status=proposed until adoption is confirmed; re-verify.",
       "sources": [
         {
-          "label": "Henry County Development Authority",
-          "url": "https://www.henrycountyda.com"
+          "label": "11Alive \u2014 Board of Commissioners hears proposed ordinances for data centers",
+          "url": "https://www.11alive.com/article/news/community/board-of-commissioners-discuss-proposed-data-center-ordinances/85-e8dafca2-ad5a-474d-b4a1-1f4afca32095"
         },
         {
-          "label": "Henry County Planning & Zoning",
-          "url": "https://www.henrycountyga.gov/departments/planning-zoning"
+          "label": "FOX5 Atlanta \u2014 Henry County weighs new rules for data centers",
+          "url": "https://www.fox5atlanta.com/news/henry-county-weighs-new-rules-data-centers-after-public-hearing"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-14",
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 75,
-      "source_tier": 1
+      "confidence_score": 61,
+      "source_tier": 3
     },
     "37109": {
       "name": "Lincoln County",
@@ -3822,26 +3866,26 @@
         "data_center",
         "water"
       ],
-      "title": "Data Center Moratorium Enacted \u2014 Luray Caverns Proximity Concerns",
-      "description": "Page County, Virginia enacted a moratorium on new data center development in 2023 following a proposed Google data center near the nationally significant Luray Caverns. Residents and preservationists raised concerns about groundwater impacts on the caves, noise, power infrastructure, and visual character of the historic Shenandoah Valley landscape. The moratorium halted all new data center permit applications pending a comprehensive use-policy study.",
-      "effective_date": "2023-06-01",
+      "title": "Page County \u2014 No Data Center Use Defined in Zoning; Overlay Ordinance Pending",
+      "description": "Page County has no adopted data center ordinance: 'data center' is neither defined nor listed as a use in the zoning code, so zoning staff will not accept data center applications \u2014 an effective bar by omission, not a formal enacted moratorium. The county is in the middle of a broader Zoning & Subdivision Ordinance Update, within which staff are drafting a data center overlay that would allow siting only in select pre-identified areas near transmission/water infrastructure, while otherwise preserving rural character. That overlay is still in draft, not adopted.",
+      "effective_date": "2026-07-29",
       "status": "active",
-      "notes": "Moratorium enacted pending comprehensive plan amendment; Google withdrew its application.",
+      "notes": "2026-07-29 correction: previous record's central claim \u2014 a 'proposed Google data center near Luray Caverns' and a 'moratorium enacted in 2023' \u2014 could not be corroborated in any search and appears to have been fabricated. Replaced with the actual, confirmed current status (bar by omission; overlay ordinance in draft). effective_date reflects the date of this correction, not a real enactment event, since no such event exists for a bar-by-omission \u2014 re-verify once the ordinance update process concludes.",
       "sources": [
         {
-          "label": "Page County Board of Supervisors \u2014 Data Center Moratorium",
-          "url": "https://www.pagecounty.virginia.gov/"
+          "label": "Page County \u2014 Zoning & Subdivision Ordinance Update",
+          "url": "https://www.pagecounty.virginia.gov/354/Zoning-Subdivision-Ordinance-Update"
         },
         {
-          "label": "Shenandoah Valley News \u2014 Page County Data Center Moratorium",
-          "url": "https://www.nvdaily.com/"
+          "label": "Shen Valley Times \u2014 Luray officials clarify position on data centers",
+          "url": "https://www.shenvalleytimes.com/p/luray-officials-clarify-position"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 75,
+      "confidence_score": 93,
       "source_tier": 1
     },
     "51157": {
@@ -3852,57 +3896,57 @@
         "data_center",
         "water"
       ],
-      "title": "Data Centers Effectively Prohibited \u2014 Comprehensive Plan Amendment",
-      "description": "Rappahannock County, Virginia amended its Comprehensive Plan and zoning ordinances to effectively prohibit large-scale data centers from locating in the county. The county, which is rural and borders Shenandoah National Park, cited concerns about noise, light pollution, groundwater use, power transmission lines, and incompatibility with the agricultural and scenic character of the county. No data center permit applications are accepted.",
-      "effective_date": "2023-11-01",
+      "title": "Rappahannock County \u2014 Data Centers Excluded via Undefined-Use Zoning (Contested)",
+      "description": "Rappahannock County has no explicit ordinance or Comprehensive Plan amendment naming and prohibiting data centers. Instead, officials rely on the absence of 'data center' as a listed permitted or special use anywhere in the zoning ordinance to reject applications \u2014 a prohibition by omission, not a settled rule. This approach is legally contested: an attorney has argued it may not survive a court challenge under Virginia precedent, and over 200 residents petitioned the county in 2025-2026 to adopt explicit zoning language defining and formally barring 'data center' and 'high-energy-use facility' uses. The Planning Commission has not acted on that petition; in February 2026 it moved forward instead on a related but distinct amendment requiring special-exception review for new electrical substations.",
+      "effective_date": "2026-02-01",
       "status": "active",
-      "notes": "Comprehensive Plan explicitly designates data centers as incompatible with county land-use goals.",
+      "notes": "2026-07-29 correction: previous record described a settled 'Comprehensive Plan Amendment' \u2014 no such amendment naming data centers exists; the actual mechanism is interpretive exclusion via an undefined use, which carries real legal risk of being overturned. Re-verify if the pending resident petition results in an explicit ordinance or if a legal challenge is filed.",
       "sources": [
         {
-          "label": "Rappahannock County \u2014 Comprehensive Plan Update",
-          "url": "https://www.rappahannockcountyva.gov/"
+          "label": "Rappahannock News \u2014 Petition seeks regs to block data centers in Rappahannock County",
+          "url": "https://www.rappnews.com/land-use/petition-seeks-regs-to-block-data-centers-in-rappahannock-county-95b08758"
         },
         {
-          "label": "Rappahannock News \u2014 Data Center Ordinance",
-          "url": "https://www.rappnews.com/"
+          "label": "Rappahannock News \u2014 Planning Commission backs new rules for electrical substations",
+          "url": "https://www.rappnews.com/news/article_713f7a37-fe35-4bd6-bc8f-8a28fc8edbeb-18855c4d"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 75,
-      "source_tier": 1
+      "confidence_score": 61,
+      "source_tier": 3
     },
     "51171": {
       "name": "Shenandoah County",
       "state": "Virginia",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center",
         "water"
       ],
-      "title": "Data Center Restrictions Under Study \u2014 Shenandoah Valley Growth Pressure",
-      "description": "Shenandoah County has experienced growing pressure from data center developers seeking to locate near the data center corridor. The county board has directed staff to study zoning amendments to limit or control data center siting following significant public opposition. Residents have raised concerns about power transmission infrastructure, water use from the aquifer, and impacts on the valley's scenic and agricultural character.",
-      "effective_date": "2023-01-01",
+      "title": "Shenandoah County \u2014 Data Center Special-Use Permit Ordinance Adopted",
+      "description": "The Board of Supervisors voted 6-0 in June 2026 to adopt the county's first data center ordinance (following a 6-1 Planning Commission recommendation), over resident calls for an outright ban. It strikes by-right 'data processing' language from the two industrial districts and makes data centers a special-use-permit use, with standards on water use, noise, setbacks, environmental impact, and public input. Further work sessions were planned to refine the standards.",
+      "effective_date": "2026-06-01",
       "status": "active",
-      "notes": "Restrictions under study; no formal moratorium enacted as of 2024.",
+      "notes": "2026-07-29 correction: previous record described restrictions as merely 'under study'; the county has since enacted a special-use-permit requirement.",
       "sources": [
         {
-          "label": "Shenandoah County Board of Supervisors \u2014 Land Use Study",
-          "url": "https://www.shenandoahcountyva.us/"
+          "label": "WHSV \u2014 Shenandoah County moves forward with data center ordinance",
+          "url": "https://www.whsv.com/2026/06/24/shenandoah-county-moves-forward-with-data-center-ordinance/"
         },
         {
-          "label": "Northern Virginia Daily \u2014 Shenandoah Data Center Concerns",
-          "url": "https://www.nvdaily.com/"
+          "label": "Winchester Star \u2014 Shenandoah County supervisors pass data center rules over calls for a ban",
+          "url": "https://www.winchesterstar.com/winchester_star/shenandoah-county-supervisors-pass-data-center-rules-over-calls-for-a-ban/article_8aed473a-3992-50d3-8a4d-d1f01996bacb.html"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "medium",
-      "confidence_score": 49,
-      "source_tier": 3
+      "last_reviewed": "2026-07-29",
+      "confidence": "high",
+      "confidence_score": 93,
+      "source_tier": 1
     },
     "08001": {
       "name": "Adams County",
@@ -12861,32 +12905,32 @@
     "48367": {
       "name": "Parker County",
       "state": "Texas",
-      "level": 2,
+      "level": 1,
       "types": [
         "crypto",
         "energy"
       ],
-      "title": "ERCOT Grid Stress \u2014 Parker County Cryptocurrency Mining Load",
-      "description": "Parker County (Weatherford TX area) has attracted cryptocurrency mining operations due to low West Texas wind energy costs on ERCOT's Western zone. However, the PUCT and ERCOT have implemented demand response requirements (16 TAC \u00a725.505) requiring large industrial loads including crypto miners to curtail during grid emergencies. The county experienced significant demand growth from mining operations that strained local distribution infrastructure.",
-      "effective_date": "2022-06-01",
+      "title": "Parker County \u2014 No Zoning Authority Over Data Centers; SB6 State Rules Apply",
+      "description": "Parker County's current data-center story (Weatherford's Black Mountain project, ~2,000+ acres, TCEQ-approved natural-gas backup turbines in April 2025) is large-scale AI infrastructure, not the cryptocurrency-mining load the record previously described. On 2026-06-09, county commissioners held a special meeting and unanimously expressed a desire to prohibit data centers, but acknowledged Texas counties have no zoning authority to actually stop them \u2014 there is no enacted county ordinance or ban. The operative regulatory constraint at the state level is Texas SB6 (effective 2025-06-20), which overhauled large-load interconnection rules statewide.",
+      "effective_date": "2025-06-20",
       "status": "active",
-      "notes": "ERCOT's interruptible load programs require crypto miners to register as Large Flexible Loads (LFL) and curtail within 10 minutes of ERCOT dispatch during grid emergencies. Parker County substations have required upgrades to accommodate mining load growth; Oncor serves the county.",
+      "notes": "2026-07-29 correction: previous record framed this as county-level cryptocurrency-mining grid stress with an implied restriction; in fact the county has no zoning authority and has enacted nothing \u2014 downgraded to reflect that commissioners' opposition has no legal force, while the real large-load constraint is SB6 at the state level.",
       "sources": [
         {
-          "label": "PUCT 16 TAC \u00a725.505 Large Flexible Load Requirements",
-          "url": "https://texreg.sos.state.tx.us/public/readtac$ext.TacPage?sl=R&app=9&p_dir=&p_rloc=&p_tloc=&p_ploc=&pg=1&p_tac=&ti=16&pt=2&ch=25&rl=505"
+          "label": "Fort Worth Report (via Yahoo) \u2014 Developer behind $10B Fort Worth-area project",
+          "url": "https://www.yahoo.com/news/articles/developer-behind-10b-fort-worth-160718192.html"
         },
         {
-          "label": "ERCOT Large Flexible Load Registration",
-          "url": "https://www.ercot.com/services/programs/load/lfl"
+          "label": "Community News \u2014 Commissioners address data center concerns",
+          "url": "https://www.community-news.com/stories/commissioners-address-data-center-concerns,170764"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": true,
-      "last_reviewed": "2026-07-16",
-      "confidence": "high",
-      "confidence_score": 75,
-      "source_tier": 1
+      "last_reviewed": "2026-07-29",
+      "confidence": "medium",
+      "confidence_score": 55,
+      "source_tier": 3
     },
     "06045": {
       "name": "Mendocino County",
@@ -12956,27 +13000,27 @@
         "crypto",
         "energy"
       ],
-      "title": "ERCOT West Solar and Crypto Mining Load \u2014 Reeves County",
-      "description": "Reeves County (Pecos area) in West Texas has become a focal point for cryptocurrency mining operations attracted by massive solar and wind generation capacity in ERCOT's West zone. The county's sparse population and abundant renewable resources drew large mining operations, but PUCT's Large Flexible Load (LFL) program (16 TAC \u00a725.505) requires miners to register and curtail within 10 minutes during grid emergencies. Transmission congestion on the ERCOT West-to-Hub path routinely produces negative LMP pricing that mining operators exploit.",
-      "effective_date": "2022-06-01",
+      "title": "Reeves County \u2014 ERCOT Large-Load Interconnection Rules (SB6)",
+      "description": "Reeves County (Pecos) hosts large, real crypto/AI computing facilities (Genesis Digital's Tarbush, US Bitcoin Corp, Core Scientific, IONIC Digital Cedarvale at 234MW) and a planned 2,500MW Microsoft hyperscale data center. The controlling regulatory framework is now Texas Senate Bill 6 (effective 2025-06-20), which overhauled statewide large-load (\u226575MW) interconnection rules, with PUCT finalizing a new rule (16 TAC \u00a725.194, draft published March 2026) \u2014 this supersedes the prior 2022-era 16 TAC \u00a725.505 framing. This is fundamentally a state/ERCOT-level policy applied here, not a county-specific ordinance.",
+      "effective_date": "2025-06-20",
       "status": "active",
-      "notes": "Reeves County hosts multiple gigawatts of solar under development; crypto mining facilities have co-located with solar projects to consume daytime oversupply. ERCOT's 2023 summer grid emergency curtailed West Texas mining loads multiple times. AEP Texas Central serves the county.",
+      "notes": "2026-07-29 correction: updated citation from the outdated 16 TAC \u00a725.505 framing to SB6/16 TAC \u00a725.194, and broadened description beyond pure crypto mining to reflect the shift toward hyperscale AI campuses in the county.",
       "sources": [
         {
-          "label": "PUCT 16 TAC \u00a725.505 Large Flexible Load Requirements",
-          "url": "https://texreg.sos.state.tx.us/public/readtac$ext.TacPage?sl=R&app=9&p_dir=&p_rloc=&p_tloc=&p_ploc=&pg=1&p_tac=&ti=16&pt=2&ch=25&rl=505"
+          "label": "Balch & Bingham \u2014 Texas SB6 overhauls rules for large loads",
+          "url": "https://www.balch.com/insights/publications/2025/06/texas-sb-6-overhauls-rules-for-large"
         },
         {
-          "label": "ERCOT West Zone Congestion and Renewable Generation Reports",
-          "url": "https://www.ercot.com/gridinfo/generation"
+          "label": "Foley & Lardner \u2014 PUCT proposed large-load interconnection rules",
+          "url": "https://www.foley.com/p/102mokd/public-utility-commission-of-texas-issues-proposed-rules-for-large-load-interconn/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": true,
-      "last_reviewed": "2026-07-16",
-      "confidence": "high",
-      "confidence_score": 75,
-      "source_tier": 1
+      "last_reviewed": "2026-07-29",
+      "confidence": "medium",
+      "confidence_score": 55,
+      "source_tier": 3
     },
     "48037": {
       "name": "Bowie County",
@@ -14246,31 +14290,31 @@
     "13045": {
       "name": "Carroll County",
       "state": "Georgia",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center"
       ],
-      "title": "Data Center Zoning Restrictions \u2014 Carroll County Special-Use Permit Process",
-      "description": "Carroll County (Carrollton) has enacted zoning text amendments requiring special-use permits for large-scale data center developments, with detailed conditions on noise, landscaping, setbacks, and compatibility with surrounding uses. The county board has expressed concern about the limited local employment generated by data centers relative to the acreage and infrastructure consumed. Several data center proposals have faced significant community opposition. Carroll County is on the western edge of Atlanta's expanding data center market.",
-      "effective_date": "2023-06-01",
+      "title": "Carroll County \u2014 Data Center Moratorium (2026)",
+      "description": "Carroll County adopted a 100-day data-center moratorium on 2026-03-03, citing the need for staff time to determine how data centers may impact the county's zoning and ordinances \u2014 implying no data-center-specific regime existed before 2026. The moratorium was extended another 100 days in early June 2026 (running to roughly September 2026). A new ordinance was targeted for around end of July 2026; final passage could not be independently confirmed as of this review.",
+      "effective_date": "2026-03-03",
       "status": "active",
-      "notes": "Special-use permit required. Level 2 reflects meaningful public process with documented board skepticism beyond a routine permit review.",
+      "notes": "2026-07-29 correction: previous record described a mature, already-enacted SUP zoning regime dated 2023-06-01 \u2014 Carroll County's data-center-specific action only began with the 2026-03-03 moratorium. Re-verify once the pending ordinance passes.",
       "sources": [
         {
-          "label": "Carroll County Board of Commissioners",
-          "url": "https://www.carrollcountyga.com/228/Planning-Zoning"
+          "label": "Gradick Communications \u2014 Carroll County Board approves 100-day moratorium",
+          "url": "https://gradickcommunications.com/carroll-county-board-of-commissioners-approve-100-day-moratorium-on-data-centers-battery-energy-storage-systems/"
         },
         {
-          "label": "Georgia Department of Revenue \u2014 Data Center Tax Exemptions",
-          "url": "https://dor.georgia.gov/data-center-exemptions"
+          "label": "Times-Georgian \u2014 Data center moratorium extended",
+          "url": "https://www.times-georgian.com/news/local/data-center-moratorium-extended/article_a7d31b38-3e6a-59d0-8da4-6ac3a17a167c.html"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-16",
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 75,
-      "source_tier": 1
+      "confidence_score": 61,
+      "source_tier": 3
     },
     "13113": {
       "name": "Fayette County",
@@ -14839,7 +14883,7 @@
       "description": "Clarke County (Berryville) is located adjacent to Loudoun and Frederick counties in the Northern Virginia data center expansion corridor, approximately 65 miles west of Washington DC. As data center development pressure has moved outward from Loudoun and Prince William counties, Clarke County has enacted special-use permit requirements for large-scale computing facilities with emphasis on preserving the county's rural agricultural character and scenic viewsheds. The county has a comprehensive plan emphasizing conservation, and the board of supervisors has expressed skepticism about energy-intensive development incompatible with the county's land-use vision.",
       "effective_date": "2023-01-01",
       "status": "active",
-      "notes": "Special-use permit required with strong rural preservation emphasis. Level 2 reflects documented county resistance to data center development beyond routine permitting.",
+      "notes": "2026-07-29 audit: could not independently corroborate this record's core claim (an enacted special-use-permit requirement for large-scale computing facilities) via web search \u2014 only Clarke County's general Chapter 200 zoning framework and 2022 comprehensive plan were confirmed, with no data-center-specific provision found. Treat the SUP claim as UNVERIFIED pending direct contact with Clarke County zoning (zoning administrator, 540-955-5131) or a pull of the actual ordinance text. Not changed pending that confirmation, to avoid replacing one unverified claim with another.",
       "sources": [
         {
           "label": "Clarke County Virginia Planning & Zoning",
@@ -14852,7 +14896,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-16",
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -14918,31 +14962,31 @@
     "51187": {
       "name": "Warren County",
       "state": "Virginia",
-      "level": 2,
+      "level": 3,
       "types": [
         "data_center"
       ],
-      "title": "Warren County \u2014 Front Royal Data Center Expansion Pressure and Siting Restrictions",
-      "description": "Warren County (Front Royal) is located at the northern end of the Shenandoah Valley, adjacent to Fauquier County (which has enacted level-3 restrictions) and approximately 70 miles west of Washington DC. Data center operators have evaluated Warren County sites as the Northern Virginia market becomes increasingly constrained. The board of supervisors has discussed enhanced data center siting requirements, citing concerns about grid capacity (Warren Electric Cooperative), rural character, and the limited employment generated relative to infrastructure demands. The county has enacted or is enacting special-use permit standards with meaningful conditions.",
-      "effective_date": "2023-06-01",
+      "title": "Warren County \u2014 No Data Center Use Defined in Zoning; ZTA Pending",
+      "description": "Warren County has not enacted any data center zoning provision \u2014 'data center' is not currently a defined or permitted use (by-right or CUP) anywhere in the county code, which functions as a de facto bar. An enabling zoning text amendment (adding a 'data center' definition and requiring a CUP in the Industrial district, tied to a specific Rushmark/Rockland Road proposal) has been pending: the Planning Commission recommended denial, and the Board of Supervisors pulled it from the consent agenda for further discussion at its 2026-07-21 meeting without a final vote. Separately, Front Royal (the town within the county) voted 6-0 in June 2026 to pursue an outright prohibition of data centers in all town zoning districts plus a moratorium on applications \u2014 a town-level, not county-level, action.",
+      "effective_date": "2026-07-21",
       "status": "active",
-      "notes": "Enhanced special-use permit review in place or being established. Level 2 reflects active board concern and documented public discussion.",
+      "notes": "2026-07-29 correction: previous record implied standards had been enacted ('has enacted or is enacting... standards', effective 2023-06-01) \u2014 nothing is actually enacted; the current status is an unresolved ZTA plus a de facto bar from the absence of a defined use. Re-verify once the Board of Supervisors takes a final vote.",
       "sources": [
         {
-          "label": "Warren County Virginia \u2014 Community Development",
-          "url": "https://www.warrencountyva.gov/departments/community_development"
+          "label": "Royal Examiner \u2014 Moving data center regulations and permitting forward",
+          "url": "https://royalexaminer.com/moving-data-center-regulations-and-permitting-forward-a-dominant-topic-of-conversation-for-countys-elected-officials/"
         },
         {
-          "label": "Virginia DHCD \u2014 Data Center Incentive Package",
-          "url": "https://www.dhcd.virginia.gov/"
+          "label": "nvdaily \u2014 Warren County planners recommend supervisors deny data center rules",
+          "url": "https://www.nvdaily.com/nvdaily/warren-county-planners-recommend-supervisors-deny-data-center-rules/article_19a2068d-cd31-528b-8dd2-4fca310c57c9.html"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-16",
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 75,
-      "source_tier": 1
+      "confidence_score": 67,
+      "source_tier": 3
     },
     "51085": {
       "name": "Hanover County",
@@ -36092,31 +36136,27 @@
     "37001": {
       "name": "Alamance County",
       "state": "North Carolina",
-      "level": 2,
+      "level": 1,
       "types": [
         "data_center",
         "zoning"
       ],
-      "title": "Alamance County North Carolina Data Center Special-Use Permit Requirement",
-      "description": "Alamance County (Burlington, NC) adopted a data center special-use permit requirement in 2025 amid growing concern about large facilities proposed along the I-40/I-85 technology corridor. The county is adjacent to Orange and Chatham counties \u2014 both with active data center moratoriums \u2014 and shares Duke Energy Carolinas transmission constraints. The Burlington/Graham metro area experienced rapid industrial growth following announcements from Wolfspeed (silicon carbide chips) and other advanced manufacturers, creating electrical capacity competition. The special-use permit process requires public hearings, traffic impact analysis, and written confirmation from Duke Energy Carolinas of available substation capacity before permit issuance.",
-      "effective_date": "2025-06-01",
-      "status": "active",
-      "notes": "Adjacent Orange/Chatham moratoriums; Wolfspeed SiC chip competition; Duke Energy Carolinas.",
+      "title": "Alamance County \u2014 Data Center Ordinance Under Consideration (Not Yet Enacted)",
+      "description": "Alamance County has not adopted a data center special-use-permit ordinance; the county has no existing data centers, and commissioners only began formal discussion 2026-07-20, with a public hearing scheduled for 2026-08-17.",
+      "effective_date": "2026-08-17",
+      "status": "proposed",
+      "notes": "2026-07-29 correction: previous record claimed an SUP requirement was already adopted in 2025 \u2014 no evidence supports that; the county only began considering an ordinance in July 2026. Marked status=proposed with the scheduled public hearing date; re-verify after 2026-08-17.",
       "sources": [
         {
-          "label": "Alamance County Planning and Development",
-          "url": "https://www.alamance-nc.com/planningdevelopment/"
-        },
-        {
-          "label": "Alamance County Board of Commissioners",
-          "url": "https://www.alamance-nc.com/commissioners/"
+          "label": "alamancenews.com \u2014 Commissioners to begin discussing data centers, possible moratorium",
+          "url": "https://alamancenews.com/commissioners-to-begin-discussing-data-centers-possible-moratorium/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "medium",
-      "confidence_score": 55,
+      "confidence_score": 51,
       "source_tier": 3
     },
     "37145": {
@@ -36867,7 +36907,7 @@
       "description": "Oconee County (Watkinsville, GA) is one of Georgia's fastest-growing counties as a southern suburb of Athens-Clarke County (home to the University of Georgia). The county adopted a data center conditional use permit requirement in 2024 following applications from operators seeking proximity to UGA's research network and Athens fiber infrastructure while avoiding Clarke County's higher regulatory burden. Georgia Power serves Oconee County from Athens-area substations that are heavily loaded from residential growth. CUP conditions require a Georgia Power written capacity letter, a Oconee County water authority pre-application meeting for facilities using more than 50,000 gallons per day from the Calls Creek or North Oconee River surface water systems, and a traffic impact analysis for sites on SR-15 or US-78.",
       "effective_date": "2024-10-01",
       "status": "active",
-      "notes": "UGA Athens suburb growth; Georgia Power heavily loaded from residential; Calls Creek / N. Oconee River water; CUP.",
+      "notes": "2026-07-29 audit: could not corroborate this record's core claim (a 2024-adopted data-center CUP requirement) or its specific details (Georgia Power capacity letter, Calls Creek/North Oconee River 50,000-gpd threshold, SR-15/US-78 traffic study) via web search. Comprehensive, actively-maintained 2025-2026 roundups of Georgia's county-by-county data-center ordinance wave do not list Oconee County among them, and no Oconee County GA local coverage surfaced. Treat as UNVERIFIED pending direct confirmation against Oconee County's UDO text and BOC minutes \u2014 not changed to avoid replacing one unverified claim with another.",
       "sources": [
         {
           "label": "Oconee County Planning Department",
@@ -36884,7 +36924,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 62,
       "source_tier": 3
@@ -36986,41 +37026,33 @@
     "24017": {
       "name": "Charles County",
       "state": "Maryland",
-      "level": 2,
+      "level": 1,
       "types": [
         "data_center",
         "zoning",
         "energy"
       ],
-      "title": "Charles County Maryland Data Center Conditional Use Permit \u2014 Southern Maryland Corridor",
-      "description": "Charles County (La Plata, MD) anchors Maryland's Southern Maryland technology corridor, bordered by the Potomac River and Mattawoman Creek. The county's Indian Head Naval Surface Warfare Center \u2014 one of the Navy's principal ordnance and explosive research facilities \u2014 drives significant defense computing demand. Southern Maryland Electric Cooperative (SMECO) and Pepco Holdings serve the county, but transmission capacity from PJM's southern Maryland import paths is constrained, particularly following the planned retirement of the Morgantown Power Plant. Charles County adopted a data center conditional use permit requirement in 2025, citing Mattawoman Creek tributary impervious-surface limits under the Maryland Stormwater Management Act, limited SMECO substation availability, and the county's designation as a Critical Area under the Chesapeake Bay Critical Area Act for parcels within 1,000 feet of the tidal Potomac and its tributaries.",
-      "effective_date": "2025-06-01",
+      "title": "Charles County MD Data Center Zoning Amendment (ZTA #25-187) Terminated",
+      "description": "Charles County (La Plata, MD) proposed a data center conditional use permit requirement (Zoning Text Amendment #25-187, introduced October 2025, citing Mattawoman Creek impervious-surface limits, SMECO substation constraints, and Chesapeake Bay Critical Area rules for parcels near the tidal Potomac). It was never adopted: the Planning Commission recommended denial twice, and on 2026-07-21 the Board of County Commissioners reached consensus to terminate ZTA #25-187 outright following sustained community opposition. Charles County currently has no adopted data-center-specific permitting requirement; the county plans to restart the process via a task force with outside experts. Standard county zoning and permitting still apply to any large industrial development, but no data-center-specific barrier is currently in effect.",
+      "effective_date": "2026-07-21",
       "status": "active",
-      "notes": "Indian Head NSWC defense computing; SMECO/Pepco PJM import constraint; Chesapeake Bay Critical Area; CUP.",
+      "notes": "2026-07-29 correction: previous record stated the CUP requirement was \"adopted...in 2025\" \u2014 it was only ever proposed (ZTA #25-187) and was terminated by the Board of County Commissioners on 2026-07-21 after two Planning Commission denial recommendations. No county-specific data center restriction is currently in effect; re-verify once the planned task force produces a new proposal.",
       "sources": [
         {
-          "label": "Charles County Department of Planning and Growth Management",
-          "url": "https://www.charlescountymd.gov/services/planning-and-growth-management"
+          "label": "The BayNet \u2014 Planning Commission recommends denial of data center zoning amendment",
+          "url": "https://thebaynet.com/after-hours-of-testimony-and-no-data-centers-chants-charles-county-planning-commission-recommends-denial-of-data-center-zoning-amendment/"
         },
         {
-          "label": "Charles County Board of County Commissioners",
-          "url": "https://www.charlescountymd.gov/government/board-of-commissioners"
-        },
-        {
-          "label": "Southern Maryland Electric Cooperative (SMECO)",
-          "url": "https://www.smeco.coop/"
-        },
-        {
-          "label": "Maryland Chesapeake Bay Critical Area Commission",
-          "url": "https://www.mde.state.md.us/programs/water/chesapeakebay/Pages/criticalarea.aspx"
+          "label": "Southern Maryland Chronicle \u2014 Commissioners pull data center plan, weigh task force",
+          "url": "https://southernmarylandchronicle.com/2026/07/24/commissioners-pull-data-center-plan-weigh-task-force/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 88,
-      "source_tier": 1
+      "confidence_score": 67,
+      "source_tier": 3
     },
     "24019": {
       "name": "Dorchester County",
@@ -37726,34 +37758,26 @@
         "energy"
       ],
       "title": "Lackawanna County PA \u2014 PPL Electric CUP & Lackawanna River 401 Water Quality Certification",
-      "description": "Lackawanna County (Scranton, PA) is served primarily by PPL Electric Utilities, whose Northeastern Pennsylvania transmission zone faces growing capacity constraints as legacy coal-plant retirements outpace renewable interconnections. The county's primary water source, the Lackawanna River, is a Pennsylvania Department of Environmental Protection (PA DEP) Cold Water Fishery (CWF) stream; data center thermal discharge or consumptive withdrawals exceeding 1.0 MGD require a Section 401 Water Quality Certification under the Clean Water Act and a Susquehanna River Basin Commission (SRBC) consumptive-use approval. Lackawanna County's zoning ordinance requires a Conditional Use Permit (CUP) for data centers exceeding 5 MW, with PA DEP air-quality review (Title V or minor source) for on-site emergency diesel generators. Coal-ash legacy contamination in the Lackawanna River corridor triggers additional environmental review under Pennsylvania's Act 2 land-recycling program for any brownfield data-center development in the former anthracite mining belt.",
+      "description": "Pennsylvania zoning authority in this area is exercised at the municipal/borough level, not the county \u2014 no county-wide conditional-use-permit requirement administered by Lackawanna County itself could be confirmed. Active 2026 regulatory activity is happening individually in Archbald, Jessup, Dickson City, Clifton Township, and Moosic (reclassifying data centers as conditional uses, contested ordinances, and litigation), amid large proposed projects (1,600MW Wildcat Ridge, 600MW Jessup campus) and a PPL Electric transmission buildout driven by this demand.",
       "effective_date": "2024-01-01",
       "status": "active",
-      "notes": "PPL Electric transmission zone NE-PA; SRBC consumptive-use threshold; Act 2 brownfield.",
+      "notes": "2026-07-29 correction: the previous record's specific claims (a 5MW county threshold, a UDO \u00a78.4 25,000 sq ft SUP trigger, a specific 401 water-quality certification) could not be confirmed and appear to be mis-scoped \u2014 PA data-center zoning here is municipal, not county-level. Rewritten to describe the actual municipal patchwork; re-verify against specific borough ordinances if citing a specific rule.",
       "sources": [
         {
-          "label": "PPL Electric Utilities \u2014 Interconnection & Grid Capacity",
-          "url": "https://www.pplelectric.com/for-my-business/large-business/interconnection"
+          "label": "WVIA \u2014 PPL Electric Utilities confirms data centers spurred transmission project in Lackawanna County",
+          "url": "https://www.wvia.org/news/local/2026-04-22/ppl-electric-utilities-confirms-data-centers-spurred-transmission-project-in-lackawanna-county"
         },
         {
-          "label": "PA DEP \u2014 Section 401 Water Quality Certification",
-          "url": "https://www.dep.pa.gov/Business/Water/CleanWater/WaterQuality/StreamRedesignation/Pages/401WQC.aspx"
-        },
-        {
-          "label": "SRBC \u2014 Consumptive Use Approvals",
-          "url": "https://www.srbc.net/permitting/consumptive-use/index.html"
-        },
-        {
-          "label": "Lackawanna County \u2014 Unified Development Code",
-          "url": "https://www.lackawannacounty.org/planning-and-zoning/"
+          "label": "Resilience.org \u2014 The data center showdown in Lackawanna County",
+          "url": "https://www.resilience.org/stories/2026-06-16/the-data-center-showdown-in-lackawanna-county/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "high",
-      "confidence_score": 82,
-      "source_tier": 1
+      "last_reviewed": "2026-07-29",
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
     },
     "39159": {
       "name": "Union County",
@@ -37799,34 +37823,22 @@
         "water"
       ],
       "title": "Marquette County MI \u2014 Upper Peninsula Power Single-Feed Constraint & Lake Superior Water",
-      "description": "Marquette County is the largest county in Michigan's Upper Peninsula and home to Northern Michigan University (NMU). Electrical service in the UP is provided by the Upper Peninsula Power Company (UPPCO), a MISO market participant whose single 138 kV AC transmission tie to the Lower Peninsula limits the region's ability to import power during peak demand. UPPCO's 2024 integrated resource plan filed with the Michigan Public Service Commission (MPSC \u2014 Case U-21376) identifies the Marquette County grid as capacity-constrained with no additional large-load hosting capacity before 2027 without a substation upgrade. Data centers may draw cooling water from Lake Superior, but Michigan DEQ Part 301 (NREPA) permits and a U.S. Army Corps Section 404 permit are required for any intake structure within the Great Lakes shoreline. Marquette County Zoning Ordinance Section 23.4 requires a special-use permit and traffic study for data centers exceeding 10,000 sq ft.",
+      "description": "Data centers and crypto mining are a live community concern across Michigan's Upper Peninsula, including Marquette County (community meetings reported January 2026), driven by real single-feed power constraints (UPPCO service territory) and Lake Superior water considerations. The record's more specific claims (a UPPCO/MPSC Case U-21376 capacity docket, Part 301/Section 404 permitting specifics, and a County Zoning \u00a723.4 10,000 sq ft special-use-permit threshold) could not be confirmed or refuted via available search and should be treated as unverified pending direct confirmation against the county zoning office and MPSC docket.",
       "effective_date": "2024-01-01",
       "status": "active",
-      "notes": "UPPCO MPSC U-21376 no capacity before 2027; Lake Superior NREPA Part 301 + USACE 404.",
+      "notes": "2026-07-29 audit: general concern is documented, but specific citations (docket number, code sections) are UNVERIFIED \u2014 flagged rather than removed, since no source contradicts them either; recommend direct verification.",
       "sources": [
         {
-          "label": "UPPCO / Michigan PSC \u2014 Case U-21376",
-          "url": "https://mi-psc.force.com/sfc/servlet.shepherd/document/download/069t000000BFfqxAAD"
-        },
-        {
-          "label": "Michigan PSC \u2014 UPPCO Electric Cases",
-          "url": "https://mi-psc.force.com/"
-        },
-        {
-          "label": "Michigan DEQ \u2014 Part 301 Great Lakes/Inland Waters Permits",
-          "url": "https://www.michigan.gov/egle/about/organization/water-resources/inland-lakes-and-streams"
-        },
-        {
-          "label": "Marquette County \u2014 Planning & Zoning",
-          "url": "https://www.co.marquette.mi.us/departments/planning_and_zoning/"
+          "label": "Upper Michigan's Source \u2014 Data centers a point of contention in the UP",
+          "url": "https://www.uppermichiganssource.com/2026/01/19/data-centers-point-contention-up/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "high",
-      "confidence_score": 82,
-      "source_tier": 1
+      "last_reviewed": "2026-07-29",
+      "confidence": "low",
+      "confidence_score": 33,
+      "source_tier": 3
     },
     "26147": {
       "name": "St. Clair County",
@@ -37983,34 +37995,26 @@
         "environmental"
       ],
       "title": "Burnet County TX \u2014 LCRA Highland Lakes Water Authority, Balcones Canyonlands & PEC Rural Capacity",
-      "description": "Burnet County (Marble Falls, TX) anchors the Texas Hill Country on the Highland Lakes chain (Lake Buchanan, Inks Lake, Lake LBJ, Lake Marble Falls) operated by the Lower Colorado River Authority (LCRA). LCRA's 2025 Water Management Plan (TCEQ Agreed Order No. 2025-0312) restricts new interruptible water service for industrial users above 500 acre-feet per year during drought conditions; the Highland Lakes have been under Stage 2 water restrictions repeatedly since 2022. The Balcones Canyonlands Preserve (BCP) and Edwards Aquifer Contributing Zone cover large portions of the county, creating U.S. Fish and Wildlife Service Section 7 consultation requirements for any project affecting golden-cheeked warbler or black-capped vireo habitat. Pedernales Electric Cooperative serves rural Burnet County on 69 kV feeders with limited large-load hosting capacity; the county requires a Special Use Permit for data centers under Burnet County Development Code Article 12.",
+      "description": "Burnet County (Highland Lakes) sits in LCRA's water-management area, the Balcones Canyonlands Preserve/USFWS habitat zone, and Pedernales Electric Cooperative's rural service territory \u2014 all real, ongoing constraints on large water/power users. As of March 2026, combined Highland Lakes storage had recovered to roughly 84% ('Normal' condition) and LCRA had returned to Stage 1 of its drought response, not the repeated Stage 2 restrictions the record previously implied. No Burnet County-specific data-center special-use-permit ordinance for 2025-2026 could be confirmed; Texas counties generally lack zoning authority outside narrow statutory exceptions (lakes/reservoirs, military bases, airports), which Burnet's Highland Lakes location may qualify for, but this is not independently confirmed.",
       "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "LCRA Stage 2 drought restrictions; BCP USFWS \u00a77 consultation; PEC 69kV limited; CUP Article 12.",
+      "notes": "2026-07-29 correction: drought-severity framing was stale (LCRA is at Stage 1, not repeated Stage 2, as of March 2026); the previously-cited 'TCEQ Agreed Order No. 2025-0312' and 'Development Code Article 12' could not be located in any TCEQ/LCRA/county source and may be inaccurate \u2014 removed pending confirmation.",
       "sources": [
         {
-          "label": "LCRA \u2014 Highland Lakes Water Management Plan",
-          "url": "https://www.lcra.org/water/water-management/"
+          "label": "LCRA \u2014 Water supply operations / drought status",
+          "url": "https://www.lcra.org/water/water-supply-planning/water-supply-operations/"
         },
         {
-          "label": "USFWS \u2014 Balcones Canyonlands Conservation Plan",
-          "url": "https://www.fws.gov/project/balcones-canyonlands-conservation-plan"
-        },
-        {
-          "label": "Pedernales Electric Cooperative \u2014 Economic Development",
-          "url": "https://www.pec.coop/business/economic-development/"
-        },
-        {
-          "label": "Burnet County \u2014 Planning & Development Code",
-          "url": "https://www.burnetcountytexas.org/departments/planning/"
+          "label": "LCRA \u2014 LCRA returns to Stage 1 of its drought response as lake levels increase",
+          "url": "https://www.lcra.org/news/news-releases/lcra-returns-to-stage-1-of-its-drought-response-as-lake-levels-increase/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
-      "confidence": "high",
-      "confidence_score": 82,
-      "source_tier": 1
+      "last_reviewed": "2026-07-29",
+      "confidence": "medium",
+      "confidence_score": 49,
+      "source_tier": 3
     },
     "48203": {
       "name": "Harrison County",
@@ -38137,33 +38141,25 @@
         "environmental"
       ],
       "title": "Haywood County NC \u2014 French Broad River Watershed, Blue Ridge Parkway Viewshed & Duke Energy CUP",
-      "description": "Haywood County (Waynesville, NC) sits in the headwaters of the French Broad River, a Wild & Scenic-eligible waterway; data centers discharging thermal or treated wastewater to French Broad tributaries require a NC DEQDEQ 401 Water Quality Certification and an NPDES individual permit. The Blue Ridge Parkway corridor creates National Park Service viewshed protection under 36 C.F.R. \u00a711.4, limiting building heights and light pollution within 1 mile of the Parkway boundary. Duke Energy Progress serves the county from the Waynesville Substation on a 115 kV single-feed circuit with no contingency path during N-1 fault; hosting capacity for new large loads is approximately 5 MW before triggering a network upgrade study under NCUC Docket E-7, Sub 1142. Haywood County's Unified Development Ordinance Section 8.4 requires a Special Use Permit and a traffic-impact analysis for data centers exceeding 25,000 sq ft.",
-      "effective_date": "2023-01-01",
+      "description": "Haywood County's actual governing instrument is Chapter 160, the 'High Impact Development Ordinance,' amended 2023-11-06, which imposes limits on water use, energy demand, and site impacts for data centers/crypto mining. The record's more specific claims (French Broad River 401 water-quality certification, National Park Service 36 CFR \u00a711.4 viewshed review, a 115kV single-feed 5MW threshold, and a UDO \u00a78.4 25,000 sq ft special-use-permit trigger) could not be independently verified and should be treated as unconfirmed detail pending direct ordinance review. Nearby towns within the county (Clyde, Canton, Waynesville) have separately enacted their own 2026 moratoriums/bans, distinct from the county's Chapter 160 ordinance.",
+      "effective_date": "2023-11-06",
       "status": "active",
-      "notes": "French Broad 401 WQC; NPS Parkway viewshed 36 CFR \u00a711.4; Duke single-feed 115kV 5MW limit; SUP.",
+      "notes": "2026-07-29 update: replaced generic NC DEQ/NPS/Duke citations with the real Chapter 160 ordinance; flagged the record's specific numeric claims as unverified.",
       "sources": [
         {
-          "label": "NC DEQ \u2014 401 Water Quality Certifications",
-          "url": "https://deq.nc.gov/about/divisions/water-resources/water-quality-certifications"
+          "label": "Haywood County \u2014 Chapter 160, High Impact Development Ordinance (PDF)",
+          "url": "https://www.haywoodcountync.gov/DocumentCenter/View/5761/Chapter-160--High-Impact-Development-Ordinance-"
         },
         {
-          "label": "National Park Service \u2014 Blue Ridge Parkway Protection Zone",
-          "url": "https://www.nps.gov/blri/"
-        },
-        {
-          "label": "Duke Energy Progress \u2014 NC Large Load Interconnection",
-          "url": "https://www.duke-energy.com/business/economic-development"
-        },
-        {
-          "label": "Haywood County \u2014 Unified Development Ordinance",
-          "url": "https://www.haywoodcountync.gov/planning"
+          "label": "Smoky Mountain News \u2014 Clyde enacts moratorium as broader data center fight builds",
+          "url": "https://smokymountainnews.com/news/item/41209-clyde-enacts-moratorium-as-broader-data-center-fight-builds"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 82,
+      "confidence_score": 75,
       "source_tier": 1
     },
     "37137": {
@@ -50918,7 +50914,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-29T03:18:11.869550+00:00",
+    "last_computed": "2026-07-29T13:58:07.427014+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

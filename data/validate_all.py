@@ -37,7 +37,8 @@ FIPS_REF_PATH  = os.path.join(DATA_DIR, "county_names.json")
 # ---------------------------------------------------------------------------
 
 VALID_LEVELS   = {-1, 0, 1, 2, 3, 4}
-VALID_TYPES    = {"data_center", "ai", "crypto", "energy", "water"}
+VALID_TYPES    = {"data_center", "ai", "crypto", "energy", "water",
+                   "zoning", "incentive", "tax", "land_use", "environmental"}
 VALID_STATUSES = {"active", "proposed", "expired"}
 VALID_LIFECYCLE_STAGES = {
     "discovered", "proposed", "enacted", "effective", "expired", "repealed", "failed"
