@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-07-29T13:57:39.197446+00:00",
+  "generated_at": "2026-07-29T14:00:41.584132+00:00",
   "source_last_updated": "2026-07-18",
   "stats": {
     "total_counties_tracked": 1467,
     "by_level": {
       "-1": 689,
       "0": 610,
-      "1": 68,
-      "2": 51,
-      "3": 35,
+      "1": 69,
+      "2": 52,
+      "3": 33,
       "4": 14
     },
     "by_type": {
@@ -975,32 +975,31 @@
     "30053": {
       "name": "Lincoln County",
       "state": "Montana",
-      "level": 3,
+      "level": 1,
       "types": [
         "data_center",
         "crypto"
       ],
       "title": "Cryptocurrency/High-Intensity Computing Restrictions",
-      "description": "Lincoln County passed ordinances restricting cryptocurrency mining and high-intensity computing operations, citing noise, energy, and land-use concerns.",
-      "effective_date": "2018-09-01",
+      "description": "Lincoln County passed an ordinance in 2018 restricting cryptocurrency mining and high-intensity computing operations, citing noise, energy, and land-use concerns. Montana's SB 178 ('Right to Mine' law, signed 2023-05-04, codified at MCA Title 76, Ch. 2, Part 10) has since preempted ordinances like this one: local governments may no longer impose requirements on digital-asset mining that don't also apply to data centers generally, may not prohibit mining in industrial-zoned areas, and may only regulate it via existing noise ordinances. Lincoln County's ordinance as originally written is now largely superseded/narrowed by state preemption to noise-only grounds.",
+      "effective_date": "2023-05-04",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 update: added Montana's 2023 statewide 'Right to Mine' preemption (SB 178), which narrows the scope of this and similar local ordinances to noise regulation only \u2014 missing from the previous record. Downgraded level to reflect the reduced legal force.",
       "sources": [
         {
-          "label": "Lincoln County Commissioner \u2014 Cryptocurrency Mining Ordinance (2018)",
-          "url": "https://www.lincolncountymt.us/"
+          "label": "Montana Legislature \u2014 SB 178 (2023), 'Right to Mine' text",
+          "url": "https://archive.legmt.gov/bills/2023/billhtml/SB0178.htm"
         },
         {
-          "label": "Flathead Beacon: Lincoln County passes crypto mining ban",
-          "url": "https://flatheadbeacon.com/"
-        },
-        "Lincoln County Commissioner ordinance, 2018"
+          "label": "CoinGeek \u2014 Montana passes 'right to mine' bill to protect miners",
+          "url": "https://coingeek.com/montana-passes-right-to-mine-bill-to-protect-miners/"
+        }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
-      "confidence_score": 82,
+      "confidence_score": 75,
       "source_tier": 1
     },
     "31055": {
@@ -2365,7 +2364,7 @@
       "description": "Chelan County PUD (public utility district) imposed a moratorium on new cryptocurrency mining and high-density computing operations due to electric grid capacity constraints.",
       "effective_date": "2019-03-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 update: PUD restrictions on high-density computing loads persist, but the mechanism has generally shifted from outright connection moratoriums toward tiered/capped rate structures for large loads (e.g. Chelan PUD's 'Rate 36' high-density-load charge, effective Feb 2024, capped at 10MW collectively) \u2014 core restriction substance unchanged.",
       "sources": [
         {
           "label": "Chelan County PUD \u2014 Rate Structure for Large Electric Loads",
@@ -2379,7 +2378,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
@@ -2397,7 +2396,7 @@
       "description": "Douglas County PUD imposed capacity restrictions and moratoriums on cryptocurrency mining and high-intensity computing operations due to grid constraints.",
       "effective_date": "2019-03-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 update: PUD restrictions on high-density computing loads persist, but the mechanism has generally shifted from outright connection moratoriums toward tiered/capped rate structures for large loads (e.g. Chelan PUD's 'Rate 36' high-density-load charge, effective Feb 2024, capped at 10MW collectively) \u2014 core restriction substance unchanged.",
       "sources": [
         {
           "label": "Douglas County PUD \u2014 Large Load Service Policy",
@@ -2411,7 +2410,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
@@ -2443,7 +2442,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
@@ -2484,7 +2483,7 @@
       "description": "Okanogan County PUD imposed capacity-based restrictions on new high-power computing loads including cryptocurrency mining.",
       "effective_date": "2019-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 update: PUD restrictions on high-density computing loads persist, but the mechanism has generally shifted from outright connection moratoriums toward tiered/capped rate structures for large loads (e.g. Chelan PUD's 'Rate 36' high-density-load charge, effective Feb 2024, capped at 10MW collectively) \u2014 core restriction substance unchanged.",
       "sources": [
         {
           "label": "Okanogan County \u2014 PUD Rate Study for High-Load Customers",
@@ -2498,7 +2497,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
@@ -38244,30 +38243,26 @@
     "06041": {
       "name": "Marin County",
       "state": "California",
-      "level": 3,
+      "level": 2,
       "types": [
         "data_center",
         "water",
         "energy",
         "environmental"
       ],
-      "title": "Marin County CA \u2014 MMWD Water Moratorium, PG&E Capacity Limits & Marin No-Growth Policy",
-      "description": "Marin County (San Rafael, CA) is served by the Marin Municipal Water District (MMWD), which has maintained a connection moratorium for new accounts above certain threshold sizes during drought years (most recently in force through 2023 under MMWD Board Resolution 2023-05). MMWD's sole water source is a 6-reservoir local watershed system with no connection to State Water Project supplies; during multi-year droughts the reservoirs drop below 40% capacity and MMWD implements Stage 4 mandatory rationing. PG&E's Marin network operates on 115/60 kV substations in San Rafael and Novato; the 2021 Fawn Fire and 2022 Line 6L outage events led CPUC to require PG&E to file a Marin Grid Resilience Plan (CPUC Docket A.22-11-006) that restricts new large industrial load additions pending infrastructure upgrades through 2027. Marin County's 1988 Measure A growth restrictions and the Local Coastal Program prohibit most heavy industrial development outside the Highway 101 corridor.",
-      "effective_date": "2021-01-01",
+      "title": "Marin County CA \u2014 MMWD Structural Water Constraint & Local Coastal Program",
+      "description": "Marin County (San Rafael, CA) is served by the Marin Municipal Water District (MMWD), a closed local 6-reservoir watershed system with no connection to the State Water Project \u2014 a structural constraint that lets MMWD impose connection moratoriums during droughts, as it did during the severe 2021-2022 shortage (reservoirs fell toward 40% capacity, Stage 4 rationing, a proposed emergency pipeline over the Richmond-San Rafael Bridge was considered). That emergency was rescinded once winter storms refilled the reservoirs in 2022, and no moratorium or rationing is currently in effect \u2014 reservoirs have stayed healthy since (~95%+ of capacity as of April 2026). PG&E's Marin network operates on 115/60 kV substations in San Rafael and Novato; the 2021 Fawn Fire and 2022 Line 6L outages prompted broader grid-resilience planning for the North Coast region (CPUC's North Coast Resiliency Initiative, launched 2021, covering Marin/Sonoma/Napa/Mendocino), though no specific docketed restriction on new large industrial load additions in Marin could be confirmed. The Local Coastal Program prohibits most heavy industrial development outside the Highway 101 corridor, which remains in force.",
+      "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "MMWD drought moratorium; no SWP connection; CPUC A.22-11-006 grid restriction to 2027; Measure A.",
+      "notes": "2026-07-29 correction: the previous record described an active water connection moratorium 'through 2023 under MMWD Board Resolution 2023-05' \u2014 MMWD actually lifted its moratorium/rationing in 2022 as reservoirs recovered, and no resolution reinstating it could be found; reservoirs have remained healthy (77-95%+) through 2025-2026. The previously-cited 'CPUC Docket A.22-11-006 Marin Grid Resilience Plan restricting new large industrial load additions... through 2027' and the '1988 Measure A' growth restriction could not be found in any CPUC docket search or Marin County ballot-measure history and appear to be fabricated \u2014 removed. What remains is the real, structural water constraint (no State Water Project connection) and the Local Coastal Program, downgraded from level 3 to level 2 since no active moratorium/restriction is currently in force. Re-verify if drought conditions return.",
       "sources": [
         {
-          "label": "Marin Municipal Water District \u2014 Water Supply & Drought Plans",
-          "url": "https://www.marinwater.org/departments/water-resources/water-supply-planning"
+          "label": "Marin Water \u2014 District ends local water shortage emergency, adopts new ongoing rules",
+          "url": "https://marinwater.org/district-ends-local-water-shortage-emergency-adopts-new-ongoing-rules-to-prevent-water-waste/"
         },
         {
-          "label": "CPUC \u2014 PG&E Marin Grid Resilience Plan (A.22-11-006)",
-          "url": "https://apps.cpuc.ca.gov/apex/f?p=401:56:0::NO:RP,57,RIR:P5_PROCEEDING_SELECT:A2211006"
-        },
-        {
-          "label": "PG&E \u2014 Large Load Interconnection",
-          "url": "https://www.pge.com/tariffs/electric.shtml"
+          "label": "KQED \u2014 Gripped by drought, Marin considers desalination, water pipeline over the Richmond Bridge",
+          "url": "https://www.kqed.org/science/1976066/gripped-by-drought-marin-considers-desalination-water-pipeline-over-the-richmond-bridge"
         },
         {
           "label": "Marin County \u2014 Community Development (Local Coastal Program)",
@@ -38276,7 +38271,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
@@ -39458,7 +39453,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 82,
       "source_tier": 1
@@ -40212,7 +40207,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -40242,7 +40237,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -40272,7 +40267,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-29",
       "confidence": "high",
       "confidence_score": 75,
       "source_tier": 1
@@ -50914,7 +50909,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-07-29T13:58:07.427014+00:00",
+    "last_computed": "2026-07-29T14:00:42.044366+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",
