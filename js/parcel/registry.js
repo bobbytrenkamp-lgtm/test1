@@ -110,8 +110,8 @@ window.PARCEL_REGISTRY = (function () {
 
       attribution: {
         name:    'Loudoun County GIS (LOGIS)',
-        url:     'https://logis.loudoun.gov/arcgis/rest/services/',
-        portal:  'https://data-loudoungis.opendata.arcgis.com/',
+        url:     'https://logis.loudoun.gov/gis/rest/services/',
+        portal:  'https://geohub-loudoungis.opendata.arcgis.com/',
         license: 'Public government data. Verify terms before commercial redistribution.',
         note:    'Ashburn/Sterling "Data Center Alley" — largest data center market globally by power capacity.',
       },
