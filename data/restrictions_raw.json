@@ -2048,28 +2048,24 @@
       "types": [
         "data_center"
       ],
-      "title": "Comprehensive Plan Restrictions \u2014 Data Center Growth Controls",
-      "description": "Fairfax County's 2022 Comprehensive Plan amendments impose significant data center restrictions: mandatory utility infrastructure capacity demonstrations, community impact mitigation plans, and firm limits on data center development in residential transition areas. A 2023 county board vote imposed further density caps amid community pressure over visual blight, noise, and grid strain.",
-      "effective_date": "2022-06-01",
+      "title": "Zoning Ordinance Amendment \u2014 Data Center Design & Siting Standards",
+      "description": "Fairfax County's Board of Supervisors adopted a Zoning Ordinance Amendment in September 2024 (following a May 2023 direction to study data center impacts) imposing concrete siting and design standards: a minimum 200-foot setback from residential districts, a 1-mile buffer from Metrorail stations for by-right siting, mandatory noise studies, and design/screening requirements (enclosure of HVAC units, generators, and other equipment). The amendment applies prospectively, not retroactively to existing facilities. As of the county's 2025 Policy Plan update (its first comprehensive update in roughly 30 years), staff-recommended additional environmental guardrails were narrowed at the Board's direction \u2014 the policy is still actively evolving; re-verify before citing specifics.",
+      "effective_date": "2024-09-01",
       "status": "active",
-      "notes": "County supervisors voted in 2023 to restrict new data center approvals in certain western Fairfax districts.",
+      "notes": "2026-07-29 correction: this record previously described only 2022-2023 Comprehensive Plan-level language ('firm limits', 'density caps') without the concrete, citable September 2024 Zoning Ordinance Amendment standards (200ft setback, 1-mile Metro buffer, noise studies) that are the county's actual current binding rule. Source URLs were also dead (fairfaxcounty.gov/planning-development/comprehensive-plan \u2192 404).",
       "sources": [
         {
-          "label": "Fairfax County Comprehensive Plan \u2014 Data Center Density Policies",
-          "url": "https://www.fairfaxcounty.gov/planning-development/comprehensive-plan"
+          "label": "Fairfax County \u2014 Data Centers: Adopted Zoning Ordinance Amendment",
+          "url": "https://www.fairfaxcounty.gov/planning-development/data-centers"
         },
         {
-          "label": "Fairfax County Board of Supervisors \u2014 Zoning Amendments 2023",
-          "url": "https://www.fairfaxcounty.gov/boardofsupervisors/"
-        },
-        {
-          "label": "Fairfax County Comprehensive Plan Amendment ZOAM 2022",
-          "url": "https://www.fairfaxcounty.gov/planning-development/comprehensive-plan"
+          "label": "McGuireWoods \u2014 Fairfax County, Virginia, Releases Updated Data Center Recommendations",
+          "url": "https://www.mcguirewoods.com/client-resources/alerts/2024/1/fairfax-county-virginia-releases-updated-data-center-recommendations/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "51107",
@@ -2106,24 +2102,28 @@
       "types": [
         "data_center"
       ],
-      "title": "Digital Gateway Area Restrictions",
-      "description": "Prince William County passed restrictions limiting data center density in the Digital Gateway area following sustained community opposition over environmental and land-use impacts.",
-      "effective_date": "2022-06-01",
+      "title": "PW Digital Gateway Rezoning Voided \u2014 Megacampus Project Terminated",
+      "description": "The ~2,100-acre 'PW Digital Gateway' rezoning near Manassas National Battlefield Park (approved by the Board of Supervisors in December 2023, which would have enabled what was billed as the world's largest data center campus, ~22M sq ft) was declared void ab initio by Prince William Circuit Court in August 2025 \u2014 not on environmental grounds, but because the county failed to meet Virginia Code \u00a7 15.2-2204(A)'s public-notice requirements (advertisements not published 6+ days apart; ordinance text not available for public review when the ads ran). The Virginia Court of Appeals unanimously affirmed the voiding on 2026-03-31. The county and co-developer Compass withdrew from further litigation in April 2026; the last remaining developer, QTS, filed a final appeal to the Virginia Supreme Court in May 2026 and then withdrew it on 2026-07-02, ending the project entirely. This was a procedural (notice-defect) invalidation of one specific rezoning, not a new data-center-restrictive ordinance \u2014 the rest of Prince William's data center zoning (it remains one of Virginia's largest DC markets) is unaffected.",
+      "effective_date": "2026-07-02",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-29 correction: this record previously described a 2022 'density restriction' framing that predates and misrepresents this whole episode \u2014 the county actually approved a major rezoning to ENABLE this project in Dec 2023, which was then struck down by courts over a notice-publication technicality, not a policy choice to restrict development. Both prior source URLs were also dead. Re-verify if QTS or another developer attempts to re-file with corrected public notice.",
       "sources": [
         {
-          "label": "Prince William County \u2014 Digital Gateway & Data Center Zoning Policy",
-          "url": "https://www.pwcva.gov/department/planning-office/digital-gateway"
+          "label": "WTOP \u2014 Digital Gateway data center project dies after final developer withdraws appeal (2026-07-02)",
+          "url": "https://wtop.com/prince-william-county/2026/07/digital-gateway-data-center-project-dies-after-final-developer-withdraws-appeal/"
         },
         {
-          "label": "Prince William County Board of Supervisors Resolution (2021)",
-          "url": "https://www.pwcva.gov/department/board-of-county-supervisors"
+          "label": "Virginia Lawyers Weekly \u2014 Prince William County data center rezoning is void ab initio (2026-04-22)",
+          "url": "https://valawyersweekly.com/2026/04/22/prince-william-county-data-center-rezoning-void/"
+        },
+        {
+          "label": "Prince William County \u2014 PW Digital Gateway (official page)",
+          "url": "https://www.pwcva.gov/department/planning-office/pw-digital-gateway"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-29"
     },
     {
       "fips": "53007",
