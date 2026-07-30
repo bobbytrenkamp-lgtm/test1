@@ -101,7 +101,7 @@ def test_no_paid_service_references():
     hits = []
     for p, rel in _scannable():
         try:
-            text = p.read_text(errors="replace").lower()
+            text = p.read_text(encoding="utf-8", errors="replace").lower()
         except Exception:                                    # noqa: BLE001
             continue
         for needle, why in PAID_SERVICES.items():
@@ -118,19 +118,19 @@ def test_cloudscene_fully_removed():
     check(not (ROOT / "data/facility_pipeline/adapters/cloudscene.py").exists(),
           "cloudscene adapter file still present")
 
-    sources = json.loads((ROOT / "data/facility_sources.json").read_text())
+    sources = json.loads((ROOT / "data/facility_sources.json").read_text(encoding="utf-8"))
     srcs = sources.get("sources", sources) if isinstance(sources, dict) else sources
     ids = [s.get("id") for s in srcs]
     check("cloudscene" not in ids, "cloudscene still in facility_sources.json")
 
-    runner = (ROOT / "data/run_facility_pipeline.py").read_text()
+    runner = (ROOT / "data/run_facility_pipeline.py").read_text(encoding="utf-8")
     check("cloudscene" not in runner.lower(),
           "run_facility_pipeline.py still references cloudscene (would ImportError)")
 
 
 def test_facility_sources_all_free():
     """Every remaining facility source must be free and unauthenticated."""
-    sources = json.loads((ROOT / "data/facility_sources.json").read_text())
+    sources = json.loads((ROOT / "data/facility_sources.json").read_text(encoding="utf-8"))
     srcs = sources.get("sources", sources) if isinstance(sources, dict) else sources
     paid = [s.get("id") for s in srcs
             if s.get("requires_auth") and s.get("active")]
@@ -155,9 +155,13 @@ def test_python_requirements_are_free():
     # Known-free, permissively licensed packages this project may use.
     ALLOWED = {"requests", "beautifulsoup4", "python-dateutil", "pytest",
                "lxml", "urllib3", "certifi", "charset-normalizer", "idna",
-               "soupsieve", "six", "jsdom"}
+               "soupsieve", "six", "jsdom",
+               # openpyxl: BSD-licensed, no paid tier, no network calls — used
+               # by facility_pipeline/adapters/ferc_queue.py to read FERC's
+               # published XLSX interconnection queue file.
+               "openpyxl"}
     unknown = []
-    for line in req.read_text().splitlines():
+    for line in req.read_text(encoding="utf-8").splitlines():
         line = line.split("#")[0].strip()
         if not line:
             continue
@@ -170,7 +174,7 @@ def test_python_requirements_are_free():
 
 def test_economic_pipeline_is_stdlib_only():
     """The newest pipeline must not have quietly added a dependency."""
-    src = (ROOT / "data/update_economic_data.py").read_text()
+    src = (ROOT / "data/update_economic_data.py").read_text(encoding="utf-8")
     imports = set(re.findall(r"^\s*(?:import|from)\s+([a-zA-Z_][\w.]*)", src, re.M))
     tops = {i.split(".")[0] for i in imports}
     STDLIB = {"argparse", "json", "os", "sys", "time", "urllib", "datetime",
@@ -185,7 +189,7 @@ def test_bls_qcew_requires_no_key():
     all -- verify the pipeline never invents one. A BLS_API_KEY appearing
     here would mean a future edit started gating a genuinely free, keyless
     endpoint behind credentials that don't exist for it."""
-    src = (ROOT / "data/update_economic_data.py").read_text()
+    src = (ROOT / "data/update_economic_data.py").read_text(encoding="utf-8")
     check("BLS_API_KEY" not in src,
           "BLS_API_KEY referenced -- QCEW's area-slice API needs no key")
     check("collect_bls_wages" in src, "BLS QCEW module missing entirely")
@@ -194,7 +198,7 @@ def test_bls_qcew_requires_no_key():
 def test_fema_nri_requires_no_key():
     """FEMA's National Risk Index static file needs no registration or key
     at all, same as BLS QCEW -- verify the pipeline never invents one."""
-    src = (ROOT / "data/update_economic_data.py").read_text()
+    src = (ROOT / "data/update_economic_data.py").read_text(encoding="utf-8")
     check("NRI_API_KEY" not in src and "FEMA_API_KEY" not in src,
           "an API key referenced for FEMA NRI -- its static file needs none")
     check("collect_fema_nri" in src, "FEMA NRI module missing entirely")
@@ -213,7 +217,7 @@ def test_api_keys_are_all_optional():
         for p, rel in _scannable():
             if p.suffix != ".py":
                 continue
-            text = p.read_text(errors="replace")
+            text = p.read_text(encoding="utf-8", errors="replace")
             if key not in text:
                 continue
             # Hard-required access would look like os.environ["KEY"]
@@ -224,7 +228,7 @@ def test_api_keys_are_all_optional():
 
 def test_missing_key_is_a_skip_not_a_failure():
     """The economic pipeline must exit 0 with no keys set, preserving data."""
-    src = (ROOT / "data/update_economic_data.py").read_text()
+    src = (ROOT / "data/update_economic_data.py").read_text(encoding="utf-8")
     check("FRED_API_KEY is not set" in src,
           "no explicit warning path for a missing FRED key")
     check("CENSUS_API_KEY is not set" in src,
@@ -245,7 +249,7 @@ def test_census_key_is_required_and_degrades_gracefully():
     changed to match; the underlying "never crash, never require a key to
     avoid a hard failure" rule has not.
     """
-    src = (ROOT / "data/update_economic_data.py").read_text()
+    src = (ROOT / "data/update_economic_data.py").read_text(encoding="utf-8")
     check("_census_key_param" in src,
           "no helper that omits the Census key parameter when it is unset "
           "(still correct even though a key is now required in practice: "
@@ -259,7 +263,7 @@ def test_census_key_is_required_and_degrades_gracefully():
 def test_eia_key_missing_is_a_skip_not_a_failure():
     """EIA is optional, unlike FRED/Census -- a missing EIA_API_KEY must still
     leave every other source untouched, not just avoid crashing the whole run."""
-    src = (ROOT / "data/update_economic_data.py").read_text()
+    src = (ROOT / "data/update_economic_data.py").read_text(encoding="utf-8")
     check("EIA_API_KEY" in src, "no reference to the optional EIA key at all")
     check('os.environ.get("EIA_API_KEY"' in src,
           "EIA key must be read with .get(), not os.environ[...] (which would be mandatory)")
@@ -274,7 +278,7 @@ def test_no_key_required_for_the_site_itself():
     for p, rel in _scannable():
         if p.suffix != ".js":
             continue
-        text = p.read_text(errors="replace")
+        text = p.read_text(encoding="utf-8", errors="replace")
         for key in ("FRED_API_KEY", "CENSUS_API_KEY", "LEGISCAN_API_KEY", "EIA_API_KEY"):
             if key in text:
                 # Allowed only inside a quoted <code> hint to a maintainer.
@@ -289,7 +293,7 @@ def test_no_orphaned_workflow_secrets():
     if not wf_dir.exists():
         return
     for wf in wf_dir.glob("*.yml"):
-        text = wf.read_text()
+        text = wf.read_text(encoding="utf-8")
         for secret in re.findall(r"secrets\.([A-Z0-9_]+)", text):
             check(secret != "CLOUDSCENE_API_KEY",
                   f"{wf.name}: references removed paid service secret {secret}")
@@ -314,7 +318,7 @@ def test_tile_providers_on_allowlist():
     for p, rel in _scannable():
         if p.suffix != ".js":
             continue
-        for host in re.findall(r"https://(?:\{s\}\.)?([a-z0-9.-]+)/[^\"']*\{z\}", p.read_text(errors="replace")):
+        for host in re.findall(r"https://(?:\{s\}\.)?([a-z0-9.-]+)/[^\"']*\{z\}", p.read_text(encoding="utf-8", errors="replace")):
             found.add(host)
     unexpected = found - ALLOWED_TILE_HOSTS
     check(not unexpected,
@@ -325,7 +329,7 @@ def test_tile_independence_documented():
     """Tiles are decoration, not function. If a provider ever demanded payment
     the map must still work — that is what keeps a free-tier service from
     becoming a payment requirement."""
-    ctx = (ROOT / "AI_CONTEXT.md").read_text()
+    ctx = (ROOT / "AI_CONTEXT.md").read_text(encoding="utf-8")
     check("air-gapped" in ctx or "no background tiles" in ctx,
           "AI_CONTEXT.md no longer documents that the map renders without tiles")
 
@@ -333,9 +337,9 @@ def test_tile_independence_documented():
 # ── 6. The audit itself must stay in the docs ───────────────────────────────
 
 def test_cost_audit_documented():
-    ds = (ROOT / "DATA_SOURCES.md").read_text()
+    ds = (ROOT / "DATA_SOURCES.md").read_text(encoding="utf-8")
     check("Cost & Licensing Audit" in ds, "DATA_SOURCES.md lost the Cost & Licensing Audit")
-    rd = (ROOT / "README.md").read_text()
+    rd = (ROOT / "README.md").read_text(encoding="utf-8")
     check("## Cost" in rd, "README.md lost its Cost section")
 
 
@@ -346,7 +350,7 @@ def test_fixed_rule_is_stated_in_governance_docs():
     exempted by whoever it inconveniences. A stated rule with no test rots.
     Both must exist, in the two files every assistant is required to read.
     """
-    pc = (ROOT / "PROJECT_CONTEXT.md").read_text()
+    pc = (ROOT / "PROJECT_CONTEXT.md").read_text(encoding="utf-8")
     check("Nothing May Require Payment" in pc,
           "PROJECT_CONTEXT.md lost the fixed no-payment rule")
     check("complete and fixed rule" in pc.lower(),
@@ -354,14 +358,14 @@ def test_fixed_rule_is_stated_in_governance_docs():
     check("test_no_paid_dependencies" in pc,
           "PROJECT_CONTEXT.md no longer points at the enforcing test")
 
-    ac = (ROOT / "AI_CONTEXT.md").read_text()
+    ac = (ROOT / "AI_CONTEXT.md").read_text(encoding="utf-8")
     check("NOTHING MAY REQUIRE PAYMENT" in ac,
           "AI_CONTEXT.md lost the fixed no-payment rule from its mandatory workflow")
 
 
 def test_this_guard_is_wired_into_the_suite():
     """An enforcing test that nobody runs enforces nothing."""
-    sh = (ROOT / "tests/run_all.sh").read_text()
+    sh = (ROOT / "tests/run_all.sh").read_text(encoding="utf-8")
     check("test_no_paid_dependencies.py" in sh,
           "this guard was removed from tests/run_all.sh — it no longer runs")
 

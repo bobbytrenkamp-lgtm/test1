@@ -249,9 +249,9 @@ jobs:
               echo "::error::Push failed after 5 attempts — economic data fetched but not committed."
               exit 1
             fi
-            echo "Push rejected (attempt ${attempt}), rebasing onto latest main and retrying..."
-            git fetch origin main
-            git rebase origin/main
+            echo "Push rejected (attempt ${attempt}), rebasing onto latest ${GITHUB_REF_NAME} and retrying..."
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
             sleep $((attempt * 5))
           done
 

@@ -17,6 +17,18 @@ The result is written to data/source_link_health.json and read by the frontend
 (js/jurisdiction.js), which warns before sending a reader to a known-dead link
 and offers the archived copy instead.
 
+Government sites don't just go offline, they also reorganise: a CMS
+migration or site redesign moves a page to a new path with no redirect,
+which is indistinguishable from "gone" to a plain HTTP check. For a dead
+URL, this script also makes a best-effort attempt to find where the page
+went by pulling the domain's XML sitemap (if it has one — many gov sites
+do) and looking for a same-domain page whose path shares keywords with the
+dead one (see find_replacement_candidate()). This is a heuristic suggestion
+for a human to confirm, surfaced in the frontend as "may have moved to" —
+it is never written back into restrictions_raw.json automatically, since
+citations there must stay human-curated and this method can and will guess
+wrong sometimes.
+
 IMPORTANT: this never modifies map_data.json or restrictions_raw.json. Link
 health is derived, separate, and disposable; the citations themselves are
 human-curated and stay authoritative.
@@ -32,16 +44,19 @@ Usage:
     --workers N        concurrent requests (default 8)
     --timeout N        per-request timeout in seconds (default 15)
     --no-archive       skip Wayback lookups
+    --no-suggest       skip sitemap-based "may have moved to" lookups
     --report-only      print the current summary without making requests
 """
 import argparse
 import json
 import random
+import re
 import sys
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
@@ -155,6 +170,134 @@ def wayback(url, timeout):
     return None
 
 
+# ---------------------------------------------------------------------------
+# "May have moved to" — sitemap-based replacement suggestion for dead links.
+# ---------------------------------------------------------------------------
+
+_SITEMAP_PATHS = ("/sitemap.xml", "/sitemap_index.xml")
+_SITEMAP_TAG_RE = re.compile(r"\{[^}]*\}")   # strips the XML namespace off a tag name
+_SITEMAP_FETCH_CAP = 2_000_000               # bytes; some gov sitemaps are huge
+_SITEMAP_URL_CAP = 3000                      # stop collecting <loc> entries past this
+_SITEMAP_CHILD_CAP = 5                       # child sitemaps to follow from an index
+
+_STOPWORDS = {
+    "www", "com", "gov", "org", "net", "html", "htm", "aspx", "asp", "php",
+    "index", "home", "page", "pages", "view", "viewer", "docid", "default",
+    "content", "public", "portal", "site", "sites", "department", "departments",
+}
+
+_sitemap_cache = {}
+_sitemap_lock = Lock()
+
+
+def _tokenize_path(url):
+    """Lowercase keyword tokens from a URL's path + query, for keyword-overlap
+    matching against sitemap entries. Splits on any non-letter run, so
+    'PW-Digital-Gateway.aspx?id=42' -> {'digital', 'gateway'} ('pw' and 'id'
+    are too short, 'aspx' is filtered as boilerplate)."""
+    parsed = urllib.parse.urlparse(url)
+    raw = (parsed.path + " " + parsed.query).lower()
+    parts = re.split(r"[^a-z]+", raw)
+    return {p for p in parts if len(p) >= 4 and p not in _STOPWORDS}
+
+
+def _parse_sitemap_xml(xml_bytes):
+    """Return (kind, urls) for a sitemap.xml payload: kind is 'urlset' (a
+    page listing) or 'sitemapindex' (a listing of other sitemaps), or
+    (None, []) if the payload isn't parseable XML."""
+    try:
+        root = ET.fromstring(xml_bytes)
+    except ET.ParseError:
+        return None, []
+    kind = _SITEMAP_TAG_RE.sub("", root.tag)
+    locs = [(el.text or "").strip() for el in root.iter()
+            if _SITEMAP_TAG_RE.sub("", el.tag) == "loc" and (el.text or "").strip()]
+    return kind, locs
+
+
+def _fetch_sitemap_urls(domain, timeout):
+    """Best-effort list of page URLs from a domain's sitemap(s). Most gov
+    sites don't have one at a standard path, or the fetch fails for some
+    other reason — that's not an error, it just means no suggestions are
+    available for that domain this run."""
+    for path in _SITEMAP_PATHS:
+        try:
+            _throttle(domain)
+            with _request(f"https://{domain}{path}", "GET", timeout) as resp:
+                body = resp.read(_SITEMAP_FETCH_CAP)
+        except Exception:                            # noqa: BLE001
+            continue
+
+        kind, locs = _parse_sitemap_xml(body)
+        if kind == "urlset" and locs:
+            return locs[:_SITEMAP_URL_CAP]
+
+        if kind == "sitemapindex" and locs:
+            urls = []
+            for child in locs[:_SITEMAP_CHILD_CAP]:
+                try:
+                    _throttle(domain)
+                    with _request(child, "GET", timeout) as resp:
+                        cbody = resp.read(_SITEMAP_FETCH_CAP)
+                except Exception:                    # noqa: BLE001
+                    continue
+                urls.extend(_parse_sitemap_xml(cbody)[1])
+                if len(urls) >= _SITEMAP_URL_CAP:
+                    break
+            if urls:
+                return urls[:_SITEMAP_URL_CAP]
+
+    return []
+
+
+def best_sitemap_match(dead_url, candidate_urls):
+    """Pure scoring logic, separated out so it's testable without network:
+    of candidate_urls, which (if any) shares enough path keywords with
+    dead_url to be worth suggesting as its likely new location? Requires at
+    least 2 shared keywords (or the single keyword available, for very short
+    paths) so a generic term like a county name alone can't match everything
+    on that county's own site."""
+    dead_tokens = _tokenize_path(dead_url)
+    if not dead_tokens:
+        return None
+
+    min_overlap = 2 if len(dead_tokens) >= 2 else 1
+    best_url, best_score = None, 0
+    for cand in candidate_urls:
+        if cand == dead_url:
+            continue
+        score = len(dead_tokens & _tokenize_path(cand))
+        if score > best_score:
+            best_url, best_score = cand, score
+
+    if best_url and best_score >= min_overlap:
+        return {"url": best_url, "score": best_score, "found_via": "sitemap"}
+    return None
+
+
+def find_replacement_candidate(dead_url, timeout):
+    """For a confirmed-dead URL, suggest a same-domain page that may be its
+    replacement. Heuristic and best-effort: a human should confirm before
+    ever citing it as fact, which is why this is surfaced as a suggestion in
+    source_link_health.json / the frontend rather than written into
+    restrictions_raw.json directly."""
+    domain = urllib.parse.urlparse(dead_url).netloc
+    if not domain:
+        return None
+
+    with _sitemap_lock:
+        cached = domain in _sitemap_cache
+        urls = _sitemap_cache.get(domain)
+    if not cached:
+        urls = _fetch_sitemap_urls(domain, timeout)
+        with _sitemap_lock:
+            _sitemap_cache[domain] = urls
+
+    if not urls:
+        return None
+    return best_sitemap_match(dead_url, urls)
+
+
 def load_health():
     if HEALTH.exists():
         try:
@@ -170,6 +313,7 @@ def summarise(health, by_url, textual_only):
     ok = [r for r in checked if r.get("ok")]
     dead = [r for r in checked if not r.get("ok")]
     archived = [r for r in dead if r.get("archive")]
+    suggested = [r for r in dead if r.get("suggested_replacement")]
     return {
         "total_citation_urls": len(by_url),
         "checked": len(checked),
@@ -177,6 +321,7 @@ def summarise(health, by_url, textual_only):
         "unreachable": len(dead),
         "unreachable_pct": round(len(dead) / len(checked) * 100, 1) if checked else 0,
         "unreachable_with_archive": len(archived),
+        "unreachable_with_suggested_replacement": len(suggested),
         "counties_with_textual_only_citations": len(textual_only),
     }
 
@@ -188,6 +333,8 @@ def main():
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--timeout", type=int, default=15)
     ap.add_argument("--no-archive", action="store_true")
+    ap.add_argument("--no-suggest", action="store_true",
+                     help="skip sitemap-based \"may have moved to\" lookups")
     ap.add_argument("--report-only", action="store_true")
     args = ap.parse_args()
 
@@ -251,6 +398,17 @@ def main():
                 snap = wayback(url, args.timeout)
                 if snap:
                     rec["archive"] = snap
+            # Re-attempt on every dead check, not just once: the domain's
+            # sitemap is cached in-run so this is cheap, and unlike an
+            # archive snapshot (which only gets better with time), a live
+            # replacement page found today is more useful than one guessed
+            # at weeks ago.
+            if not res["ok"] and not args.no_suggest:
+                suggestion = find_replacement_candidate(url, args.timeout)
+                if suggestion:
+                    rec["suggested_replacement"] = suggestion
+                else:
+                    rec.pop("suggested_replacement", None)
             urls[url] = rec
 
             done += 1
@@ -287,7 +445,8 @@ def main():
     print(f"\nwrote {HEALTH.relative_to(ROOT)}")
     print(f"  reachable   : {s['reachable']}")
     print(f"  unreachable : {s['unreachable']} ({s['unreachable_pct']}%)"
-          f" — {s['unreachable_with_archive']} have an archived copy")
+          f" — {s['unreachable_with_archive']} have an archived copy,"
+          f" {s['unreachable_with_suggested_replacement']} have a suggested replacement")
     print(f"  citations with no URL at all: {s['counties_with_textual_only_citations']} counties")
     status = Counter(r.get("status") for r in urls.values())
     print("  status codes:", dict(sorted(status.items(), key=lambda kv: -kv[1])[:6]))

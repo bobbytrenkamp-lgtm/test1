@@ -37,7 +37,8 @@ FIPS_REF_PATH  = os.path.join(DATA_DIR, "county_names.json")
 # ---------------------------------------------------------------------------
 
 VALID_LEVELS   = {-1, 0, 1, 2, 3, 4}
-VALID_TYPES    = {"data_center", "ai", "crypto", "energy", "water"}
+VALID_TYPES    = {"data_center", "ai", "crypto", "energy", "water",
+                   "zoning", "incentive", "tax", "land_use", "environmental"}
 VALID_STATUSES = {"active", "proposed", "expired"}
 VALID_LIFECYCLE_STAGES = {
     "discovered", "proposed", "enacted", "effective", "expired", "repealed", "failed"
@@ -453,7 +454,15 @@ def validate_freshness(restrictions):
         status = r.get("status", "")
         level  = r.get("level")
         eff    = r.get("effective_date", "")
-        age    = days_since(eff) if eff else None
+        # A record's effective_date reflects when the underlying policy took
+        # effect, which can legitimately be decades old (e.g. a 1979 growth-
+        # control statute) without the record itself being stale. last_reviewed
+        # reflects when someone last confirmed the record still matches
+        # reality, which is what "needs re-verification" should actually track
+        # — prefer it, and only fall back to effective_date for records that
+        # have never been reviewed at all.
+        reviewed = r.get("last_reviewed", "")
+        age = days_since(reviewed) if reviewed else (days_since(eff) if eff else None)
 
         if age is None:
             issues.append(Issue("info", "freshness", label,

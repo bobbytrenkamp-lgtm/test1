@@ -1,6 +1,103 @@
 # Active Bugs
 
-No active bugs.
+No active bugs. (One pre-existing, non-blocking test finding is tracked
+below rather than in Active Bugs, since it needs a governance decision, not
+a code fix — see "no-paid-dependency guard flags cloudscene in historical
+snapshots".)
+
+---
+
+# Recently Fixed Bugs (2026-07-30 — Windows test-suite portability)
+
+---
+
+Bug: facilities index freshness check crashes or silently misreports on Windows
+Priority: MEDIUM
+Affected Files: `data/build_facilities_index.py`
+Root Cause: Three separate file reads in this script relied on Windows'
+default locale encoding (cp1252) instead of UTF-8. `load_master()`'s
+`open(MASTER)` silently mangled non-ASCII county names (e.g. "Doña Ana
+County, NM") when read on Windows, making the `--check` freshness
+comparison report the committed `facilities_index.json` as stale even
+though it was correct and current the whole time.
+`fields_referenced_in_js()`'s two `read_text()` calls crashed outright with
+`UnicodeDecodeError` reading `js/pipeline.js`/`js/jurisdiction.js` (which
+contain em-dashes). This had never surfaced before because every prior
+session ran on Linux/Mac, where the default encoding is already UTF-8.
+Fix: Added explicit `encoding="utf-8"` to all four reads/writes in this
+file (`load_master`, both `fields_referenced_in_js` reads, the `--check`
+comparison read, and the `write_text` call — the last one was coincidentally
+harmless before since cp1252<->UTF-8 mojibake happens to round-trip
+losslessly for this file's specific bytes, which is not guaranteed for all
+future data).
+Fixed By: Claude Companion
+Date Fixed: 2026-07-30
+Status: Fixed
+
+---
+
+Bug: no-paid-dependency guard crashes on Windows (4 of its own checks)
+Priority: MEDIUM
+Affected Files: `tests/test_no_paid_dependencies.py`
+Root Cause: ~17 `read_text()` calls across this file had no explicit
+encoding, so on Windows they read under cp1252 instead of UTF-8. Four
+checks (`test_cost_audit_documented`, `test_fixed_rule_is_stated_in_governance_docs`,
+`test_no_orphaned_workflow_secrets`, `test_tile_independence_documented`)
+crashed with `UnicodeDecodeError` reading docs containing em-dashes. A
+fifth check (the Census-key skip-path assertion in
+`test_census_key_is_required_and_degrades_gracefully`) failed silently
+(not a crash) because the em-dash in its expected string literal never
+matched the mojibake produced by decoding the real source file under
+cp1252.
+Fix: Added explicit `encoding="utf-8"` to all `read_text()` calls in this
+file (kept `errors="replace"` where it already existed, now combined with
+the correct encoding).
+Fixed By: Claude Companion
+Date Fixed: 2026-07-30
+Status: Fixed
+
+---
+
+Bug: data-loading test crashes on Windows with a doubled drive letter
+Priority: MEDIUM
+Affected Files: `tests/test_data_loading.mjs`
+Root Cause: `ROOT` was built via `new URL('../', import.meta.url).pathname`.
+On Windows, a `file://` URL's `.pathname` keeps the WHATWG leading slash
+(e.g. `/C:/Users/bobby/repos/test1/`), which is not a valid native Windows
+path. Node's internal path resolution (inside `readFileSync`) then
+resolves that leading `/` against the current drive, doubling the drive
+letter into `C:\C:\Users\bobby\repos\test1\js\map.js` and crashing with
+ENOENT. Never surfaced before because this suite had never run on Windows.
+Fix: Replaced the manual `.pathname` construction with Node's
+`fileURLToPath()`, which correctly converts a file URL to a native path on
+every platform.
+Fixed By: Claude Companion
+Date Fixed: 2026-07-30
+Status: Fixed
+
+---
+
+Finding (not fixed, needs a decision): no-paid-dependency guard flags
+cloudscene in historical snapshots
+Priority: LOW
+Affected Files: `tests/test_no_paid_dependencies.py`,
+`data/facilities_version_history/2026-07-12T*.json` (8 files)
+Root Cause: The guard scans every tracked file for paid-service names,
+including `data/facilities_version_history/`, which stores dated,
+point-in-time audit snapshots. Eight snapshots from 2026-07-12/13 (before
+the Cloudscene integration was removed on 2026-07-27) legitimately contain
+the string `cloudscene`, since that's what the pipeline actually used at
+that point in time. It's unclear whether the guard is meant to flag
+historical audit trails forever (defensible: guarantees no paid service
+ever reappears, even by copy-pasting an old snapshot) or whether historical
+snapshots should be exempted (also defensible: they're a record of the
+past, not a live dependency). Confirmed this already fails identically on
+`main` — not introduced by any recent branch. Left unresolved rather than
+guessed at, since loosening or reinterpreting the paid-dependency guard is
+a governance call, not a code-correctness fix.
+Fixed By: (unresolved — flagged for Bobby)
+Date Fixed: n/a
+Status: Open (non-blocking; same behavior on main)
 
 ---
 

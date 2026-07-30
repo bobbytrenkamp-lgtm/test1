@@ -495,6 +495,17 @@ The shipped file has an empty `urls` map, which means NOT CHECKED YET — delibe
 from "checked and healthy". `js/jurisdiction.js` renders citations unannotated when a URL has no
 record; absence of data is never presented as a problem.
 
+**"May have moved to" suggestions.** County/gov sites don't just go offline, they reorganise —
+a CMS migration moves a page with no redirect, which reads as "gone" to a plain HTTP check. For
+each dead URL, the script also fetches the domain's XML sitemap (if it has one) and looks for a
+same-domain page whose path shares keywords with the dead one
+(`find_replacement_candidate`/`best_sitemap_match`/`_tokenize_path`). A match is stored as
+`suggested_replacement` on that URL's health record and rendered in `js/jurisdiction.js` next to
+the archived-copy link, clearly labeled as an unconfirmed guess. This is a heuristic for a human
+to check, never written back into `restrictions_raw.json` automatically — citations there stay
+human-curated. `--no-suggest` skips it. Pure logic (tokenizing, scoring, sitemap XML parsing) is
+tested offline in `tests/test_check_source_links.py`; the network fetch itself only runs in CI.
+
 ## Facilities: index vs master
 
 The browser loads `data/facilities_index.json` (1.9 MB), NOT `facilities_master.json` (5.5 MB).

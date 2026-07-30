@@ -68,6 +68,7 @@ const linkHealth = {
     [DEAD_URL]: {
       ok: false, status: 404, checked_at: '2026-07-20T00:00:00+00:00',
       archive: { url: 'https://web.archive.org/web/2023/example', timestamp: '20230101' },
+      suggested_replacement: { url: 'https://example.gov/ordinance-2026', score: 3, found_via: 'sitemap' },
     },
     [LIVE_URL]: { ok: true, status: 200, checked_at: '2026-07-20T00:00:00+00:00' },
   },
@@ -152,6 +153,8 @@ ok('flags exactly the dead citation', view.querySelectorAll('.juris-src-dead').l
 ok('shows a not-responding badge', view.querySelectorAll('.juris-src-flag').length === 1);
 ok('offers the archived copy',
    !!view.querySelector('.juris-src-archive[href*="web.archive.org"]'));
+ok('offers the suggested replacement',
+   !!view.querySelector('.juris-src-suggested a[href="https://example.gov/ordinance-2026"]'));
 ok('reachable citation is left unflagged',
    view.querySelectorAll('.juris-sources li:not(.juris-src-dead)').length >= 1);
 ok('dead citation still links to the original',

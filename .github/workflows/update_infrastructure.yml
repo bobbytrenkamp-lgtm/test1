@@ -53,7 +53,7 @@ jobs:
               if git push origin HEAD; then break; fi
               if [ "$attempt" = 5 ]; then echo "::error::Push failed after 5 attempts."; exit 1; fi
               echo "Push rejected (attempt ${attempt}), rebasing and retrying..."
-              git fetch origin main && git rebase origin/main
+              git fetch origin "${GITHUB_REF_NAME}" && git rebase "origin/${GITHUB_REF_NAME}"
               sleep $((attempt * 5))
             done
           fi

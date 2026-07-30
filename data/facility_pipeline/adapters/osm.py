@@ -12,7 +12,18 @@ from ..models import FacilityRecord, FacilitySource
 from ..normalize import normalize_record_fields, normalize_state
 from . import BaseAdapter
 
-OVERPASS_URL = "https://overpass-api.de/api/interpreter"
+# overpass-api.de is the primary public instance, but it's a shared, free
+# resource that's frequently overloaded and known to reject automated/cloud
+# CI traffic with 406/429 regardless of headers sent. A confirmed 2026-07-30
+# CI run still got 406 even after adding a descriptive User-Agent (below) —
+# the fix for that alone wasn't sufficient. Overpass API's own docs list
+# multiple independently-run mirrors for exactly this reason; falling back
+# to one is the standard mitigation, not a workaround specific to this repo.
+OVERPASS_URLS = (
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter",
+)
+OVERPASS_URL = OVERPASS_URLS[0]  # kept for backwards-compat callers/tests
 
 # QL query: all US features tagged as data centers
 _QUERY = """
@@ -104,13 +115,37 @@ class OSMAdapter(BaseAdapter):
         except ImportError:
             raise RuntimeError("requests is required: pip install requests")
 
-        resp = requests.post(
-            OVERPASS_URL,
-            data={"data": _QUERY},
-            timeout=150,
-            headers={"Accept": "application/json", "Accept-Encoding": "gzip, deflate"},
-        )
-        resp.raise_for_status()
+        headers = {
+            "Accept": "application/json",
+            "Accept-Encoding": "gzip, deflate",
+            # Overpass API's usage policy asks clients to identify
+            # themselves; the default "python-requests/x.y" UA (this adapter
+            # had no explicit header at all) gets a 406 from overpass-api.de
+            # — confirmed via a real CI run's traceback (2026-07-26). Every
+            # other adapter in this pipeline already sets a descriptive UA.
+            "User-Agent": (
+                "Mozilla/5.0 (compatible; US-AI-Infrastructure-Map/1.0; "
+                "research/datacenter-map)"
+            ),
+        }
+
+        resp = None
+        last_error: Exception | None = None
+        for i, url in enumerate(OVERPASS_URLS):
+            try:
+                resp = requests.post(url, data={"data": _QUERY}, timeout=150, headers=headers)
+                resp.raise_for_status()
+                last_error = None
+                break
+            except Exception as e:                   # noqa: BLE001
+                last_error = e
+                resp = None
+                if i < len(OVERPASS_URLS) - 1:
+                    print(f"  [osm] {url} failed ({type(e).__name__}: {e}), "
+                          f"trying next mirror")
+        if resp is None:
+            raise last_error
+
         data = resp.json()
 
         for element in data.get("elements", []):

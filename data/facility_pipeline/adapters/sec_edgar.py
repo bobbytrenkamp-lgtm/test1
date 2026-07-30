@@ -142,25 +142,42 @@ def _infer_operator(filer_name: str) -> str:
     return filer_name
 
 
+def _first(entity: dict, *keys: str) -> str:
+    """Return the first non-empty value found under any of these key names,
+    unwrapping a one-element list/tuple if that's what's stored. EDGAR's
+    full-text search API schema was never confirmed against a live response
+    (no outbound access to efts.sec.gov from the environment this adapter
+    was written in) — this hedges against the several plausible field-name
+    conventions (e.g. 'entity_name' vs 'display_names', 'accession_no' vs
+    'adsh') instead of silently discarding every hit if only one guess was
+    coded and it happened to be wrong, which is what was happening before:
+    this adapter had fetched 0 records on every run since it was added."""
+    for key in keys:
+        val = entity.get(key)
+        if isinstance(val, (list, tuple)):
+            val = val[0] if val else None
+        if val:
+            return str(val)
+    return ""
+
+
 def _filing_to_record(hit: dict, source_id: str) -> FacilityRecord | None:
     """Convert one EDGAR search hit to a FacilityRecord."""
     entity = hit.get("_source", {})
-    file_date = entity.get("file_date", "")
-    filer_name = entity.get("entity_name", "")
-    form_type = entity.get("form_type", "")
-    accession = entity.get("accession_no", "").replace("-", "")
+    file_date = _first(entity, "file_date", "filed_at", "date_filed")
+    filer_name = _first(entity, "entity_name", "display_names", "filer_name")
+    form_type = _first(entity, "form_type", "file_type", "root_forms")
+    accession = _first(entity, "accession_no", "adsh", "accession_number").replace("-", "")
 
     # Build the filing URL
-    cik = entity.get("entity_id", "")
+    cik = _first(entity, "entity_id", "ciks", "cik").lstrip("0")
     filing_url = (
         f"{EDGAR_BASE_URL}/Archives/edgar/data/{cik}/{accession}-index.htm"
         if cik and accession
         else ""
     )
 
-    # Use the snippet for text extraction
-    snippet = entity.get("file_date", "") + " " + entity.get("period_of_report", "")
-    display_text = entity.get("period_of_report", "")
+    display_text = _first(entity, "period_of_report", "period_ending")
 
     operator = _infer_operator(filer_name)
     state_full, state_abbr = _extract_state(filer_name + " " + display_text)
@@ -224,9 +241,12 @@ class SECEdgarAdapter(BaseAdapter):
             "dateRange": "custom",
             "startdt": since[:10] if since else "2020-01-01",
             "enddt": "9999-12-31",
-            "_source": "entity_name,file_date,form_type,accession_no,entity_id,period_of_report",
-            "hits.hits.total.value": 1,
         }
+        # "_source"/"hits.hits.total.value" were never real EDGAR full-text
+        # search API parameters — EDGAR ignores unknown query params rather
+        # than erroring, so this wasn't the cause of the 0-results pattern,
+        # but it was dead weight suggesting a field-selection mechanism that
+        # doesn't exist here; removed rather than left as misleading.
         qs = "&".join(f"{k}={session.utils.quote(str(v))}" for k, v in params.items())
         url = f"{EDGAR_SEARCH_URL}?{qs}"
 
@@ -234,8 +254,21 @@ class SECEdgarAdapter(BaseAdapter):
             time.sleep(0.15)  # ~6 req/s, well within EDGAR fair-use
             r = session.get(url, timeout=30)
             r.raise_for_status()
-            return r.json().get("hits", {}).get("hits", [])
-        except Exception:
+            payload = r.json()
+            hits = payload.get("hits", {}).get("hits", [])
+            if not hits:
+                print(f"  [sec_edgar] 0 hits for query {query!r} "
+                      f"(response top-level keys: {list(payload.keys())})")
+            return hits
+        except Exception as e:                       # noqa: BLE001
+            # This used to swallow every failure with no trace — CI history
+            # shows this adapter has returned exactly 0 records on every run
+            # since it was added, including the initial unbounded backfill,
+            # which a genuinely-empty search result would not explain for a
+            # query this broad. Print so the actual status code / exception
+            # is visible on the next real run instead of reading as "no new
+            # filings," which is what a silent 0 looks identical to.
+            print(f"  [sec_edgar] search failed for query {query!r}: {type(e).__name__}: {e}")
             return []
 
     def fetch(self, since: str | None = None) -> Iterator[FacilityRecord]:

@@ -15,8 +15,9 @@
    Run: node tests/test_data_loading.mjs
 */
 import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = new URL('../', import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL('../', import.meta.url));
 const src = readFileSync(ROOT + 'js/map.js', 'utf8');
 
 let pass = 0, fail = 0;

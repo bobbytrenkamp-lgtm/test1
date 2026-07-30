@@ -8,6 +8,13 @@ requests>=2.28.0
 beautifulsoup4>=4.11.0
 python-dateutil>=2.8.2
 
+# Facility pipeline FERC interconnection queue adapter (facility_pipeline/adapters/ferc_queue.py)
+# parses the FERC XLSX queue file. Missing from this file meant update_facilities.yml
+# had been failing to fetch this source on every run (ModuleNotFoundError, confirmed
+# via a real CI run's traceback, 2026-07-26) while still exiting 0 overall since the
+# pipeline catches per-source errors — a silent gap, not a visible failure.
+openpyxl>=3.1.0
+
 # Legislative monitor (monitor_legislation.py)
 # legiscan (optional — install separately if LEGISCAN_API_KEY is set)
 
