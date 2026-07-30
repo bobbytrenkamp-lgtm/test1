@@ -1,9 +1,9 @@
 {
   "meta": {
     "description": "Policy signals discovered by the pipeline awaiting human review. Do NOT copy entries here directly to restrictions_raw.json without verification.",
-    "last_updated": "2026-07-29T09:35:12.182538+00:00",
-    "total": 28,
-    "pending": 28
+    "last_updated": "2026-07-30T09:27:11.552018+00:00",
+    "total": 29,
+    "pending": 29
   },
   "candidates": [
     {
@@ -611,6 +611,28 @@
       ],
       "confidence": 0.325,
       "evidence": "\u2026about the bill, including its text, sponsors, and full history. Also, access committee meeting materials, summaries, and any amendments proposed on the floor. Search by bill or initiative number Search bills by Bill Initiative Number The value &#x27;data center&#x27; is not valid. Biennium 2025-2026 2023-2024 2021-2022 2019-2020 2017-2018 2015-2016 2013-2014 2011-2012 2009-2010 2007-2008 2005-2006 2003-2004 2001-2002 1999-2000 1997-1998 1995-1996 1993-1994 1991-1992 $(document).ready(function (",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "ma-legislature-a1665284cc4a",
+      "source_id": "ma-legislature",
+      "discovered_at": "2026-07-30T09:26:32.447155+00:00",
+      "jurisdiction_name": "Massachusetts General Court",
+      "state": "Massachusetts",
+      "state_abbr": "MA",
+      "fips": null,
+      "title": "The 194th General Court of the Commonwealth of Massachusetts",
+      "description": "\u2026ed-off shotguns; possession of large capacity weapon or large capacity feeding device; punishment MGL c.123 \u00a716 Hospitalization of persons incompetent to stand trial or not guilty by reason of mental illness; examination period; commitment; hearing; restrictions; dismissal of criminal charges Most Popular Bills Popular Bills Followed Bill No. Title S.2655&nbsp; An Act making appropriations for the fiscal year 2025 to provide for supplementing certain existing appropriations and for certain othe",
+      "signal_url": "https://malegislature.gov/",
+      "lifecycle_stage": "proposed",
+      "policy_types": [
+        "ai",
+        "data_center"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026ed-off shotguns; possession of large capacity weapon or large capacity feeding device; punishment MGL c.123 \u00a716 Hospitalization of persons incompetent to stand trial or not guilty by reason of mental illness; examination period; commitment; hearing; restrictions; dismissal of criminal charges Most Popular Bills Popular Bills Followed Bill No. Title S.2655&nbsp; An Act making appropriations for the fiscal year 2025 to provide for supplementing certain existing appropriations and for certain othe",
       "existing_fips_match": null,
       "review_status": "pending",
       "reviewer_notes": ""
