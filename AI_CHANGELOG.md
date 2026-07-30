@@ -2,6 +2,69 @@
 
 ---
 
+Date: 2026-07-30
+AI Assistant: Claude Companion (Claude Code, joining as a second engineer alongside the primary Claude Code sessions on this repo)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Windows test-suite portability fixes + verification before merge to main
+
+Continued the facility-pipeline hardening already in progress on this branch
+(broken adapter audit, workflow git-target fix, 429 backoff / OSM mirror
+fallback, all committed earlier today). Task was to verify the branch has no
+errors before opening a PR and merging to main/production. Neither Python nor
+Node.js had ever been installed on this machine, so installed Python 3.11.9
+and Node.js 24.18.0 (LTS) via winget and ran the full offline suite
+(tests/run_all.sh) for what appears to be the first time on native Windows —
+every prior session ran on Linux/Mac, where these bugs are invisible because
+those platforms default to UTF-8.
+
+Found and fixed 4 previously-undiscovered Windows-only bugs, all in the same
+family (code assuming the platform's default text encoding is UTF-8, which is
+false on Windows):
+
+- data/build_facilities_index.py: load_master()'s open(MASTER) had no
+  encoding, so on Windows it read facilities_master.json under cp1252 —
+  silently mangling non-ASCII county names (e.g. "Doña Ana County, NM")
+  and making the --check freshness comparison fail even though the
+  committed facilities_index.json was correct and up to date the whole
+  time. fields_referenced_in_js()'s two read_text() calls crashed outright
+  (UnicodeDecodeError) reading js/pipeline.js and js/jurisdiction.js, which
+  contain em-dashes. Also hardened the --check comparison's read and the
+  write_text() call to explicit UTF-8 — the write path happened to be
+  harmless today only because cp1252<->UTF-8 mojibake is coincidentally
+  reversible for the specific bytes in this file; that would not hold for
+  all possible future data.
+- tests/test_no_paid_dependencies.py: ~17 read_text() calls had no
+  encoding, causing 4 hard crashes and one silent false-negative (the
+  Census-key skip-path check failed to match an em-dash in the expected
+  message string under cp1252).
+- tests/test_data_loading.mjs: ROOT was built from
+  `new URL('../', import.meta.url).pathname`. On Windows this keeps the
+  WHATWG leading slash (`/C:/Users/...`), which is not a valid native path;
+  Node's internal path resolution then doubles it into `C:\C:\Users\...`,
+  crashing with ENOENT. Switched to `fileURLToPath()`.
+
+Verified none of this was caused by the branch's own facility-pipeline work:
+ran the identical checks against origin/main on the same machine and got
+bit-for-bit identical failures before the fix. After the fix, the full suite
+is clean except one pre-existing, unrelated finding — see BUG_TRACKER.md
+("no-paid-dependency guard flags cloudscene in historical snapshots") — left
+alone since resolving it means making a call on the project's paid-dependency
+governance rule, not something to decide unilaterally.
+
+Did not sweep the same missing-encoding pattern across the ~15 other
+data/*.py scripts that share it (check_source_links.py,
+export_facilities_to_layers.py, fetch_infrastructure.py,
+monitor_legislation.py, refresh_platform_metadata.py, the
+sweep_2026_07_*.py scripts, etc.) — pre-existing, unrelated to this
+branch, and a much larger change than this task called for. Left as a
+flagged follow-up rather than fixed opportunistically.
+
+No data files changed. data/facilities_index.json was regenerated once
+during investigation and confirmed byte-identical to the previously
+committed version via `git diff` — nothing was lost or altered.
+
+---
+
 Date: 2026-07-28
 AI Assistant: Claude Code
 Branch: claude/us-datacenter-restrictions-map-skooi7

@@ -50,14 +50,14 @@ UI_FIELDS = [
 
 
 def load_master():
-    with open(MASTER) as f:
+    with open(MASTER, encoding="utf-8") as f:
         return json.load(f)
 
 
 def fields_referenced_in_js(master_keys):
     """Re-derive which record fields the JS actually touches, so the curated
     list above cannot silently fall behind the templates."""
-    src = "".join(p.read_text() for p in JS_SOURCES if p.exists())
+    src = "".join(p.read_text(encoding="utf-8") for p in JS_SOURCES if p.exists())
     # Facility records are bound to d / f / r in the render paths.
     found = set()
     for var in ("d", "f", "r"):
@@ -111,13 +111,13 @@ def main():
         if not INDEX.exists():
             print("FAIL: facilities_index.json is missing — run this script")
             return 1
-        if INDEX.read_text() != payload:
+        if INDEX.read_text(encoding="utf-8") != payload:
             print("FAIL: facilities_index.json is stale — run this script")
             return 1
         print(f"facilities_index.json is up to date ({len(index)} records)")
         return 0
 
-    INDEX.write_text(payload)
+    INDEX.write_text(payload, encoding="utf-8")
 
     master_bytes = MASTER.stat().st_size
     index_bytes = INDEX.stat().st_size
