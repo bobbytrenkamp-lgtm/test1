@@ -175,7 +175,13 @@ def _fetch_ferc_master(session) -> list[dict]:
             if any(v is not None for v in row):
                 rows.append(dict(zip(headers, row)))
         return rows
-    except Exception:
+    except Exception as e:                          # noqa: BLE001
+        # Visible rather than silent: the openpyxl import failure that used
+        # to hit this same function was completely invisible until CI logs
+        # were audited directly — a future FERC URL change or XLSX format
+        # change would otherwise degrade to the same "0 records, no error"
+        # shape with no way to tell it apart from a genuinely empty queue.
+        print(f"  [ferc_queue] fetch/parse failed: {type(e).__name__}: {e}")
         return []
 
 
