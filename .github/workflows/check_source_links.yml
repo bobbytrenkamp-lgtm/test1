@@ -71,11 +71,18 @@ jobs:
           else
             TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
             git commit -m "chore: refresh source link health [${TIMESTAMP}] [skip ci]"
+            # Rebase against whatever branch this run actually checked out —
+            # this workflow supports workflow_dispatch against any ref, not
+            # just main, so hardcoding "main" here rebases onto unrelated
+            # history and corrupts the retry the moment this runs against a
+            # feature branch with its own concurrent commits (found via a
+            # real failure: 2026-07-29 run on a feature branch hit dozens of
+            # add/add conflicts against main and aborted).
             for attempt in 1 2 3 4 5; do
-              if git push origin HEAD; then break; fi
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then break; fi
               if [ "$attempt" = 5 ]; then echo "::error::Push failed after 5 attempts."; exit 1; fi
               echo "Push rejected (attempt ${attempt}), rebasing and retrying..."
-              git fetch origin main && git rebase origin/main
+              git fetch origin "${GITHUB_REF_NAME}" && git rebase "origin/${GITHUB_REF_NAME}"
               sleep $((attempt * 5))
             done
           fi
