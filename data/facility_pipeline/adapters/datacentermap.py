@@ -19,8 +19,16 @@ from . import BaseAdapter
 BASE_URL = "https://www.datacentermap.com"
 US_INDEX_URL = f"{BASE_URL}/usa/"
 
-# Rate limit: 1 request per 2 seconds (well within polite crawl limits)
+# Rate limit: 1 request per 2 seconds (well within polite crawl limits).
+# A real 2026-07-30 CI run showed every single request getting HTTP 429
+# despite this delay (confirmed via the logging added below — previously
+# this was invisible, silently swallowed as "0 new records"). Retrying a
+# 429 with backoff is the correct response regardless of root cause; if the
+# site is rate-limiting per request rather than by pace, or blocking the
+# shared CI IP range outright, the retries will exhaust and log that too,
+# rather than going silent again.
 _REQUEST_DELAY = 2.0
+_MAX_429_RETRIES = 3
 
 _STATE_SLUGS: list[str] = [
     "alabama", "alaska", "arizona", "arkansas", "california", "colorado",
@@ -37,22 +45,35 @@ _STATE_SLUGS: list[str] = [
 
 
 def _get(session, url: str) -> "requests.Response | None":
-    try:
-        time.sleep(_REQUEST_DELAY)
-        r = session.get(url, timeout=30)
-        r.raise_for_status()
-        return r
-    except Exception as e:                          # noqa: BLE001
-        # This used to swallow the exception with no trace at all, which is
-        # indistinguishable from "the state page legitimately has nothing
-        # new" — confirmed via CI run history that this adapter has fetched
-        # exactly 0 records on every run since it was added, including the
-        # very first unbounded backfill, which a genuine empty result set
-        # would not explain. Print (not raise) since a single dead page out
-        # of ~50 state pages + per-facility pages is expected and shouldn't
-        # abort the whole crawl — but it must be visible, not silent.
-        print(f"  [datacentermap] request failed for {url}: {type(e).__name__}: {e}")
-        return None
+    for attempt in range(1, _MAX_429_RETRIES + 2):    # + the initial try
+        try:
+            time.sleep(_REQUEST_DELAY)
+            r = session.get(url, timeout=30)
+            if r.status_code == 429:
+                retry_after = r.headers.get("Retry-After")
+                wait = float(retry_after) if retry_after and retry_after.isdigit() else 5.0 * attempt
+                if attempt <= _MAX_429_RETRIES:
+                    print(f"  [datacentermap] 429 for {url}, retrying in {wait:.0f}s "
+                          f"(attempt {attempt}/{_MAX_429_RETRIES})")
+                    time.sleep(wait)
+                    continue
+            r.raise_for_status()
+            return r
+        except Exception as e:                       # noqa: BLE001
+            # This used to swallow the exception with no trace at all, which
+            # is indistinguishable from "the state page legitimately has
+            # nothing new" — confirmed via CI run history that this adapter
+            # had fetched exactly 0 records on every run since it was added,
+            # including the very first unbounded backfill, which a genuine
+            # empty result set would not explain. The real cause, once
+            # visible: every request was getting HTTP 429. Print (not raise)
+            # since a single dead page out of ~50 state pages + per-facility
+            # pages is expected and shouldn't abort the whole crawl — but it
+            # must be visible, not silent.
+            print(f"  [datacentermap] request failed for {url}: {type(e).__name__}: {e}")
+            return None
+    print(f"  [datacentermap] gave up on {url} after {_MAX_429_RETRIES} retries (still 429)")
+    return None
 
 
 def _parse_facility_page(html: str, url: str, source_id: str) -> FacilityRecord | None:
