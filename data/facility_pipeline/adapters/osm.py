@@ -108,7 +108,21 @@ class OSMAdapter(BaseAdapter):
             OVERPASS_URL,
             data={"data": _QUERY},
             timeout=150,
-            headers={"Accept": "application/json", "Accept-Encoding": "gzip, deflate"},
+            headers={
+                "Accept": "application/json",
+                "Accept-Encoding": "gzip, deflate",
+                # Overpass API's usage policy asks clients to identify
+                # themselves; the default "python-requests/x.y" UA (this
+                # adapter had no explicit header at all) gets a 406 from
+                # overpass-api.de — confirmed via a real CI run's traceback
+                # (2026-07-26). Every other adapter in this pipeline already
+                # sets a descriptive UA; this one had been silently failing
+                # on every run since it was added.
+                "User-Agent": (
+                    "Mozilla/5.0 (compatible; US-AI-Infrastructure-Map/1.0; "
+                    "research/datacenter-map)"
+                ),
+            },
         )
         resp.raise_for_status()
         data = resp.json()

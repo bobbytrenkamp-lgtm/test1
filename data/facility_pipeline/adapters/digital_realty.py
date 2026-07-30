@@ -32,7 +32,12 @@ def _get(session, url: str):
         r = session.get(url, timeout=30)
         r.raise_for_status()
         return r
-    except Exception:
+    except Exception as e:                          # noqa: BLE001
+        # Visible rather than silent: this adapter currently works (confirmed
+        # via CI run history), but a silently-swallowed failure here would
+        # look identical to "no new listings" the same way it did for the
+        # datacentermap and sec_edgar adapters until that was fixed.
+        print(f"  [digital_realty] request failed for {url}: {type(e).__name__}: {e}")
         return None
 
 

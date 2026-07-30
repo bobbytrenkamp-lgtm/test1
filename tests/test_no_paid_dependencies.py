@@ -155,7 +155,11 @@ def test_python_requirements_are_free():
     # Known-free, permissively licensed packages this project may use.
     ALLOWED = {"requests", "beautifulsoup4", "python-dateutil", "pytest",
                "lxml", "urllib3", "certifi", "charset-normalizer", "idna",
-               "soupsieve", "six", "jsdom"}
+               "soupsieve", "six", "jsdom",
+               # openpyxl: BSD-licensed, no paid tier, no network calls — used
+               # by facility_pipeline/adapters/ferc_queue.py to read FERC's
+               # published XLSX interconnection queue file.
+               "openpyxl"}
     unknown = []
     for line in req.read_text().splitlines():
         line = line.split("#")[0].strip()

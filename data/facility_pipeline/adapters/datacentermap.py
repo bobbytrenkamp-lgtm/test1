@@ -42,7 +42,16 @@ def _get(session, url: str) -> "requests.Response | None":
         r = session.get(url, timeout=30)
         r.raise_for_status()
         return r
-    except Exception:
+    except Exception as e:                          # noqa: BLE001
+        # This used to swallow the exception with no trace at all, which is
+        # indistinguishable from "the state page legitimately has nothing
+        # new" — confirmed via CI run history that this adapter has fetched
+        # exactly 0 records on every run since it was added, including the
+        # very first unbounded backfill, which a genuine empty result set
+        # would not explain. Print (not raise) since a single dead page out
+        # of ~50 state pages + per-facility pages is expected and shouldn't
+        # abort the whole crawl — but it must be visible, not silent.
+        print(f"  [datacentermap] request failed for {url}: {type(e).__name__}: {e}")
         return None
 
 
@@ -127,6 +136,14 @@ def _discover_listing_urls(session, state_slug: str) -> list[str]:
             full = href if href.startswith("http") else BASE_URL + href
             if full not in links:
                 links.append(full)
+    if not links:
+        # The request succeeded (status 2xx) but nothing matched the
+        # /datacenters/ link pattern — either this state page genuinely
+        # lists none, or the site's markup changed and the selector no
+        # longer matches anything. Print so a systemic pattern (every
+        # state, every run) is visible rather than reading as normal.
+        print(f"  [datacentermap] no /datacenters/ links found on {url} "
+              f"(page fetched OK, len={len(resp.text)})")
     return links
 
 
