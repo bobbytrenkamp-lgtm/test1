@@ -79,7 +79,7 @@ def normalize_geometry_for_jurisdiction(jurisdiction_id: str, dry_run: bool = Fa
         return None
 
     print(f"  Loading geometry: {geom_path}")
-    with open(geom_path) as f:
+    with open(geom_path, encoding="utf-8") as f:
         raw_geojson = json.load(f)
 
     # Load structured data

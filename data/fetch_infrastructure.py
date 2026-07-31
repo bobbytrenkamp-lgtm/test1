@@ -360,7 +360,7 @@ def fetch_water_stress() -> dict[str, float]:
 # ── Update sample_layers.json ─────────────────────────────────────────────────
 
 def update_layers(layers_path: str, updates: dict[str, Any]) -> None:
-    with open(layers_path) as f:
+    with open(layers_path, encoding="utf-8") as f:
         data = json.load(f)
 
     for key, value in updates.items():
@@ -371,7 +371,7 @@ def update_layers(layers_path: str, updates: dict[str, Any]) -> None:
 
     data["_last_updated"] = __import__("datetime").datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    with open(layers_path, "w") as f:
+    with open(layers_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
     log.info("Wrote %s", layers_path)
 

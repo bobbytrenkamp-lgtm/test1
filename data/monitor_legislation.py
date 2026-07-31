@@ -135,7 +135,7 @@ def http_get(url, params=None, retries=2):
 
 def load_seen():
     try:
-        with open(SEEN_PATH) as f:
+        with open(SEEN_PATH, encoding="utf-8") as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return {"seen_ids": [], "last_run": None}
@@ -143,14 +143,14 @@ def load_seen():
 
 def save_seen(seen):
     seen["last_run"] = datetime.now(timezone.utc).isoformat()
-    with open(SEEN_PATH, "w") as f:
+    with open(SEEN_PATH, "w", encoding="utf-8") as f:
         json.dump(seen, f, indent=2)
 
 
 def load_tracked_states():
     """Return set of 2-letter state abbreviations from restrictions_raw.json."""
     try:
-        with open(RAW_PATH) as f:
+        with open(RAW_PATH, encoding="utf-8") as f:
             raw = json.load(f)
         abbrs = set()
         for r in raw.get("restrictions", []):
@@ -211,7 +211,7 @@ def score_item(title, description, state, tracked_states):
 def guess_affected_counties(state_abbr, title_desc):
     """Return list of FIPS codes in the tracked state that might be affected."""
     try:
-        with open(RAW_PATH) as f:
+        with open(RAW_PATH, encoding="utf-8") as f:
             raw = json.load(f)
         text = title_desc.lower()
         matches = []
@@ -409,7 +409,7 @@ def run_monitoring():
         "new_flagged": len(flagged),
         "items": flagged,
     }
-    with open(REPORT_PATH, "w") as f:
+    with open(REPORT_PATH, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2)
 
     return flagged

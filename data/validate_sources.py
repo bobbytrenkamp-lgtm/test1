@@ -46,7 +46,7 @@ def collect_all_urls():
 
     # map_data.json — county sources
     try:
-        with open(MAP_DATA_PATH) as f:
+        with open(MAP_DATA_PATH, encoding="utf-8") as f:
             md = json.load(f)
         for fips, county in md.get("counties", {}).items():
             ctx = f"map_data.json / {fips} ({county['name']})"
@@ -57,7 +57,7 @@ def collect_all_urls():
 
     # sample_layers.json — facility sources
     try:
-        with open(SAMPLE_LAYERS_PATH) as f:
+        with open(SAMPLE_LAYERS_PATH, encoding="utf-8") as f:
             sl = json.load(f)
         for category in ("data_centers", "ai_campuses", "power_infrastructure"):
             for item in sl.get(category, []):
@@ -69,7 +69,7 @@ def collect_all_urls():
 
     # state_regulations.json — state sources
     try:
-        with open(STATE_REGS_PATH) as f:
+        with open(STATE_REGS_PATH, encoding="utf-8") as f:
             sr = json.load(f)
         for fips2, state in sr.get("states", {}).items():
             ctx = f"state_regulations.json / {fips2} ({state.get('name', '?')})"
@@ -141,7 +141,7 @@ def run_validation():
 def write_report_to_map_data(results):
     """Embed the validation report in map_data.json so the frontend can expose it."""
     try:
-        with open(MAP_DATA_PATH) as f:
+        with open(MAP_DATA_PATH, encoding="utf-8") as f:
             md = json.load(f)
     except Exception:
         md = {}
@@ -156,7 +156,7 @@ def write_report_to_map_data(results):
         "warning_urls": results["warning"],
     }
 
-    with open(MAP_DATA_PATH, "w") as f:
+    with open(MAP_DATA_PATH, "w", encoding="utf-8") as f:
         json.dump(md, f, indent=2)
 
     print(f"\nValidation report written to map_data.json")

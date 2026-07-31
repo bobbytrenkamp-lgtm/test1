@@ -25,7 +25,7 @@ def warn(msg): WARNINGS.append(msg)
 
 def validate_json():
     try:
-        data = json.loads(JSON_PATH.read_text())
+        data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
     except (FileNotFoundError, json.JSONDecodeError) as e:
         err(f"Cannot parse {JSON_PATH}: {e}")
         return None
@@ -88,7 +88,7 @@ def cross_check_js(json_companies):
         warn(f"Cannot find {JS_PATH} for cross-check")
         return
 
-    js_src = JS_PATH.read_text()
+    js_src = JS_PATH.read_text(encoding="utf-8")
     json_tickers = {c["ticker"] for c in json_companies if "ticker" in c}
 
     for ticker in sorted(json_tickers):
