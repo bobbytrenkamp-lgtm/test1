@@ -84,13 +84,24 @@ window.PARCEL = (function () {
     if (!config) return null;
 
     const conn = new window.ArcGISParcelConnector(config);
-    const addrField = config.fieldMap.address || 'SITE_ADDR';
-    const pinField  = config.fieldMap.pin      || 'PIN';
 
-    const safe = query.replace(/'/g, "''");
-    const where = `UPPER(${addrField}) LIKE UPPER('%${safe}%') OR UPPER(${pinField}) LIKE UPPER('%${safe}%')`;
+    /* Build the WHERE from fields this service actually has. The previous
+       version fell back to hardcoded 'SITE_ADDR'/'PIN' when a mapping was
+       absent, which sends the server an unknown column and gets the whole
+       query rejected — so a missing address field broke PIN search too, even
+       though the PIN field was fine. Three of the five registry services are
+       boundary layers with no address column at all, so that is the common
+       case, not an edge case. Quote the identifier because joined layers
+       expose table-qualified names (GISPROD.VECTOR.Parcels.GPIN). */
+    const safe   = query.replace(/'/g, "''");
+    const clause = f => `UPPER("${f}") LIKE UPPER('%${safe}%')`;
+    const fields = ['address', 'pin', 'parcel_id']
+      .map(k => config.fieldMap[k])
+      .filter(f => f && f !== '__computed__');
 
-    return conn.searchByQuery(where, null);
+    if (!fields.length) return null;   // nothing searchable on this source
+
+    return conn.searchByQuery([...new Set(fields)].map(clause).join(' OR '), null);
   }
 
   /* Zoom the map to a parcel's bounds and select it.

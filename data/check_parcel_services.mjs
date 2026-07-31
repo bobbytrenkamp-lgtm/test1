@@ -116,15 +116,46 @@ for (const j of jurisdictions) {
   const mapped = Object.entries(j.fieldMap || {}).filter(([, v]) => v && v !== '__computed__');
   const missing = mapped.filter(([, v]) => !have.has(String(v).toUpperCase()));
 
+  /* notProvidedBySource records attributes this service genuinely does not
+     carry, so they are deliberately absent from fieldMap rather than mapped
+     to a guess. Verify the claim rather than trusting it: if the county
+     later publishes one, say so, because that is a free upgrade nobody would
+     otherwise notice. Matching is by suffix as well as exact name so a
+     joined layer's table-qualified fields (GISPROD.VECTOR.CAMADATA.OWNER_CUR)
+     still register. */
+  const declaredAbsent = j.notProvidedBySource || [];
+  const nowAvailable = declaredAbsent.filter(key => {
+    const k = key.toUpperCase();
+    return c.fields.some(f => {
+      const F = f.toUpperCase();
+      return F === k || F.endsWith('.' + k);
+    });
+  });
+
   console.log(`   STATUS: LIVE — layer "${c.name}", ${c.fields.length} fields`);
   if (missing.length) {
     console.log(`   FIELD MAP: ${mapped.length - missing.length}/${mapped.length} resolve; ${missing.length} missing:`);
     for (const [k, v] of missing) console.log(`     - ${k} -> "${v}" not present`);
+    /* Print what the layer ACTUALLY exposes. Without this the report says a
+       mapping is wrong but not what to replace it with, and the only way to
+       repair the fieldMap is to guess — which is precisely how these entries
+       became wrong in the first place. */
+    console.log(`   ACTUAL FIELDS (${c.fields.length}): ${c.fields.join(', ')}`);
     console.log(`   (shapes will draw; those attributes render blank in the panel)`);
     summary.push(`LIVE  ${j.fips} ${j.name} — ${missing.length}/${mapped.length} fieldMap entries missing`);
   } else {
     console.log(`   FIELD MAP: all ${mapped.length} entries resolve`);
-    summary.push(`LIVE  ${j.fips} ${j.name} — OK`);
+    summary.push(`LIVE  ${j.fips} ${j.name} — OK` +
+      (declaredAbsent.length ? ` (${declaredAbsent.length} attributes not carried by this source)` : ''));
+  }
+  if (declaredAbsent.length) {
+    console.log(`   NOT PROVIDED BY SOURCE: ${declaredAbsent.length} attribute(s) declared absent` +
+      (nowAvailable.length ? '' : ' — confirmed absent'));
+  }
+  if (nowAvailable.length) {
+    /* Not an error: the data got better. Worth shouting about, because it
+       means a real attribute is sitting unused behind a stale exclusion. */
+    console.log(`   NOW AVAILABLE: ${nowAvailable.join(', ')} <-- service has gained these; map them and drop from notProvidedBySource`);
   }
   console.log('');
 }
