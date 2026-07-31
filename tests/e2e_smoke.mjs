@@ -80,9 +80,30 @@ async function run(name, fn) {
      under identical noise. Matched on the exact string rather than by
      filtering TradingView wholesale, so a real failure originating in the
      widget integration still surfaces. */
+  /* Third-party throw, filtered by ORIGIN rather than by message.
+
+     TradingView's embed bundle throws "Cannot read properties of null
+     (reading 'querySelector')" from its own _replaceScript when the widget
+     container is re-rendered while its async script is still in flight — it
+     goes looking for its own <script> element's parent and finds it
+     detached. The AI Stocks scenario reloads at three viewports, so it hits
+     this every time. createTVWidget already guards OUR callbacks with
+     _tvRenderId; there is no reach into their bundle to guard theirs.
+
+     Matching the message alone would also swallow a real null-dereference of
+     ours that happens to read the same, so this requires the stack to be
+     wholly inside s3.tradingview.com with no frame from the page's own
+     origin. An error that passes through our code still fails the run. */
+  const ORIGIN = new globalThis.URL(URL).origin;
+  const thirdPartyOnly = e =>
+    /pageerror:/.test(e) &&
+    /s3\.tradingview\.com/.test(e) &&
+    !e.includes(ORIGIN);
+
   const real = errs.filter(e =>
     !/favicon/.test(e) &&
     !/Cannot listen to the event from the provided iframe, contentWindow is not available/.test(e) &&
+    !thirdPartyOnly(e) &&
     !/net::ERR_(TUNNEL_CONNECTION_FAILED|CONNECTION_RESET|NAME_NOT_RESOLVED|CONNECTION_CLOSED|ABORTED|FAILED)/.test(e));
   console.log('JS ERRORS:', real.length ? real.slice(0, 4) : 'none');
   if (real.length || threw) {
