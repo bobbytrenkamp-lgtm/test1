@@ -1,0 +1,79 @@
+name: Check Parcel Services
+
+# js/parcel/registry.js states plainly that none of its serviceUrl values has
+# ever been fetch-confirmed — they were plausible-looking guesses, later
+# re-derived from web search by a pass that also could not make outbound
+# requests. One (Montgomery County MD) had already proven to be a completely
+# invalid service ID. A dead service is close to invisible in the UI: the map
+# just shows a generic "Parcel data unavailable — service error" toast.
+#
+# This runs the probe that registry.js names as its own top follow-up, on a
+# runner that actually has internet. Read-only: it fetches each service's
+# ?f=json layer definition and reports. It never writes to the repo.
+#
+# Monthly, because these are third-party county/state GIS endpoints that
+# change on their own schedule, plus on demand and whenever the registry or
+# the probe itself is edited.
+
+on:
+  schedule:
+    - cron: "23 5 1 * *"        # 1st of the month, 05:23 UTC
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'js/parcel/registry.js'
+      - 'data/check_parcel_services.mjs'
+      - '.github/workflows/check_parcel_services.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-parcel-services-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # Exit codes: 0 = all live, 1 = at least one genuinely dead,
+      # 2 = could not run (every probe failed identically -> no network).
+      # 2 must not be reported as "all URLs dead" — see the script's guard.
+      - name: Probe parcel services
+        id: probe
+        run: |
+          set +e
+          node data/check_parcel_services.mjs | tee /tmp/parcel_probe.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Report
+        run: |
+          code="${{ steps.probe.outputs.exit_code }}"
+          {
+            echo "## Parcel service probe"
+            echo ""
+            echo '```'
+            sed -n '/══ SUMMARY ══/,$p' /tmp/parcel_probe.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$code" = "2" ]; then
+            echo "::warning::Probe could not run (no outbound network on this runner). No conclusion drawn about URL health."
+            exit 0
+          fi
+          if [ "$code" != "0" ]; then
+            echo "::error::At least one parcel service is unreachable or returned an error. That county silently shows no parcels in the UI."
+            exit 1
+          fi
+          echo "All parcel services returned a valid layer definition."
