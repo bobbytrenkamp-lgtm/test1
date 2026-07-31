@@ -78,7 +78,7 @@ _host_lock = Lock()
 
 def collect_urls():
     """Every citation URL in map_data.json, mapped to the counties citing it."""
-    with open(MAP_DATA) as f:
+    with open(MAP_DATA, encoding="utf-8") as f:
         counties = json.load(f)["counties"]
 
     by_url: dict[str, list[str]] = defaultdict(list)
@@ -301,7 +301,7 @@ def find_replacement_candidate(dead_url, timeout):
 def load_health():
     if HEALTH.exists():
         try:
-            return json.loads(HEALTH.read_text())
+            return json.loads(HEALTH.read_text(encoding="utf-8"))
         except Exception:                            # noqa: BLE001
             print("warning: existing health file unreadable, starting fresh")
     return {"_schema": "source_link_health_v1", "checked_at": None, "urls": {}}
@@ -439,7 +439,7 @@ def main():
     health["summary"] = summarise(health, by_url, textual_only)
     health["counties_with_textual_only_citations"] = sorted(textual_only)
 
-    HEALTH.write_text(json.dumps(health, indent=1, sort_keys=True) + "\n")
+    HEALTH.write_text(json.dumps(health, indent=1, sort_keys=True) + "\n", encoding="utf-8")
 
     s = health["summary"]
     print(f"\nwrote {HEALTH.relative_to(ROOT)}")

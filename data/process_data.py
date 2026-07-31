@@ -15,7 +15,7 @@ OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "map_data.json")
 
 
 def load_raw_data():
-    with open(RAW_DATA_PATH, "r") as f:
+    with open(RAW_DATA_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -76,7 +76,7 @@ def compute_stats(counties, meta):
 
 def load_existing_output():
     if os.path.exists(OUTPUT_PATH):
-        with open(OUTPUT_PATH, "r") as f:
+        with open(OUTPUT_PATH, "r", encoding="utf-8") as f:
             return json.load(f)
     return None
 
@@ -106,7 +106,7 @@ def main():
     if prev_validation:
         output["validation_report"] = prev_validation
 
-    with open(OUTPUT_PATH, "w") as f:
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2)
 
     print(f"Written map_data.json with {len(counties)} counties.")

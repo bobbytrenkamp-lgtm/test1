@@ -346,7 +346,7 @@ def _load_existing(path: Path):
     if not path.exists():
         return None
     try:
-        return json.loads(path.read_text())
+        return json.loads(path.read_text(encoding="utf-8"))
     except Exception:                                        # noqa: BLE001
         warn(f"{path.name} exists but is unreadable — treating as absent")
         return None
@@ -390,7 +390,7 @@ def _safe_write(path: Path, payload, *, min_records: int = 1) -> bool:
             return False
 
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=1, sort_keys=True) + "\n")
+    path.write_text(json.dumps(payload, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     print(f"  wrote {_rel(path)}  ({new_n} records)")
     return True
 
@@ -1446,7 +1446,7 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
     # ensure_ascii=False so em-dashes in warnings stay readable rather than
     # being escaped to — — same fix refresh_platform_metadata.py needed.
     META_OUT.write_text(json.dumps(meta, indent=1, sort_keys=True,
-                                   ensure_ascii=False) + "\n")
+                                   ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"  wrote {_rel(META_OUT)}")
     return meta
 
@@ -1729,7 +1729,7 @@ def load_state_abbr_to_fips():
     already carries `abbr` per state) rather than hardcoding a second copy of
     the same 50-state table that could drift from it."""
     try:
-        reg = json.loads((ROOT / "data" / "state_regulations.json").read_text())
+        reg = json.loads((ROOT / "data" / "state_regulations.json").read_text(encoding="utf-8"))
         out = {}
         for fips, v in (reg.get("states") or {}).items():
             abbr = (v.get("abbr") or "").strip().upper()
@@ -1827,7 +1827,7 @@ def _eia_is_fresh(prior_meta, max_age_days):
 def load_state_names():
     """State FIPS -> name, read from the app's own data so the two never drift."""
     try:
-        reg = json.loads((ROOT / "data" / "state_regulations.json").read_text())
+        reg = json.loads((ROOT / "data" / "state_regulations.json").read_text(encoding="utf-8"))
         return {k: (v.get("name") or "") for k, v in (reg.get("states") or {}).items()}
     except Exception:                                        # noqa: BLE001
         return {}
@@ -1870,8 +1870,8 @@ def main():
         print("economic data validation passed")
         return 0
 
-    series_cfg = json.loads(SERIES_CONFIG.read_text())
-    census_cfg = json.loads(CENSUS_CONFIG.read_text())
+    series_cfg = json.loads(SERIES_CONFIG.read_text(encoding="utf-8"))
+    census_cfg = json.loads(CENSUS_CONFIG.read_text(encoding="utf-8"))
     prior_meta = _load_existing(META_OUT)
     state_names = load_state_names()
 

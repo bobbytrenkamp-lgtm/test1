@@ -145,7 +145,7 @@ def validate_geometry(jurisdiction_id: str) -> list[dict]:
         ))
         return issues
 
-    with open(geom_path) as f:
+    with open(geom_path, encoding="utf-8") as f:
         geojson = json.load(f)
 
     features = geojson.get("features", [])
@@ -247,7 +247,7 @@ def main():
     report = run_validation(args.jurisdiction)
 
     if args.output:
-        with open(args.output, "w") as f:
+        with open(args.output, "w", encoding="utf-8") as f:
             json.dump(report, f, indent=2)
         print(f"  Report written to: {args.output}")
 

@@ -18,6 +18,10 @@ env/
 .pytest_cache/
 .cache/
 
+# Node (jsdom/Playwright are dev-only test tools, never a runtime dependency —
+# see tests/e2e_smoke.mjs and AI_CONTEXT.md's Testing section for setup)
+node_modules/
+
 # OS
 .DS_Store
 Thumbs.db

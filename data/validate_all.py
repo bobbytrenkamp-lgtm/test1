@@ -128,7 +128,7 @@ class Issue:
 
 def load_json(path, label):
     try:
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             return json.load(f)
     except FileNotFoundError:
         print(f"[WARN] {label} not found at {path}", file=sys.stderr)
@@ -586,7 +586,7 @@ def validate_state_regulations(state_data):
 
 def write_confidence_to_map_data(confidence_results):
     try:
-        with open(MAP_DATA_PATH) as f:
+        with open(MAP_DATA_PATH, encoding="utf-8") as f:
             md = json.load(f)
     except Exception:
         print("[WARN] Could not load map_data.json to write confidence scores", file=sys.stderr)
@@ -616,7 +616,7 @@ def write_confidence_to_map_data(confidence_results):
         },
     }
 
-    with open(MAP_DATA_PATH, "w") as f:
+    with open(MAP_DATA_PATH, "w", encoding="utf-8") as f:
         json.dump(md, f, indent=2)
 
     print(f"Confidence scores written for {updated} counties in map_data.json")

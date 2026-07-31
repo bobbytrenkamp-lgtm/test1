@@ -36,7 +36,7 @@ TOTAL_US_COUNTIES = 3143
 
 
 def load(path):
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -146,7 +146,7 @@ def main():
     # file does not churn on every workflow run.
     meta["_generated_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    with open(META, "w") as f:
+    with open(META, "w", encoding="utf-8") as f:
         json.dump(meta, f, indent=2, ensure_ascii=False)
         f.write("\n")
 

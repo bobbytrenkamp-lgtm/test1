@@ -17,7 +17,7 @@ COUNTY_NAMES_PATH = os.path.join(DATA_DIR, "county_names.json")
 # Load FIPS → (county_name, state_abbr) lookup once at import time
 _FIPS_LOOKUP: dict[str, tuple[str, str]] = {}
 try:
-    _raw = json.load(open(COUNTY_NAMES_PATH))
+    _raw = json.load(open(COUNTY_NAMES_PATH, encoding="utf-8"))
     for fips, info in _raw.get("counties", {}).items():
         _FIPS_LOOKUP[fips.zfill(5)] = (info.get("name", ""), info.get("state", ""))
 except Exception:

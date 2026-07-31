@@ -23,12 +23,31 @@
      python3 -m http.server 8099 &
      NODE_PATH=/tmp/node_modules node tests/e2e_smoke.mjs
 
-   Override the defaults with CHROME_PATH and BASE_URL if your paths differ.
+   Override the defaults with CHROME_PATH, BASE_URL, and PLAYWRIGHT_MODULE if
+   your paths differ (see .github/workflows/test.yml for the CI setup, which
+   installs into /tmp/node_modules and downloads Chrome for Testing the same
+   way described above).
+
+   EXIT CODE — process.exitCode is 1 if any scenario threw or logged a real
+   JS error (pageerror or console.error, filtered for known sandbox-network
+   noise), otherwise 0. That only catches hard errors: most lines this
+   script prints are facts for a human to read, not assertions, so a green
+   exit code does not mean nothing regressed — read the log for anything
+   marked "<--" too.
 */
-import { chromium } from '/tmp/node_modules/playwright/index.mjs';
+const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || '/tmp/node_modules/playwright/index.mjs');
 const EXE = process.env.CHROME_PATH || '/tmp/chs/chrome-headless-shell-linux64/chrome-headless-shell';
 const URL = (process.env.BASE_URL || 'http://localhost:8099') + '/index.html';
 const b = await chromium.launch({ executablePath: EXE, args: ['--no-sandbox'] });
+
+/* This suite is a log dump read by a human, not an assertion library — most
+   lines above just print a fact for a reviewer to eyeball. The one thing
+   that generalizes across all scenarios is "did this page throw or log a
+   real JS error," so that's what gates the process exit code: enough for CI
+   to catch a hard regression without pretending to grade every printed
+   line. failedScenarios collects names for the summary at the end. */
+let anyFailures = false;
+const failedScenarios = [];
 
 async function run(name, fn) {
   const ctx = await b.newContext();
@@ -41,7 +60,8 @@ async function run(name, fn) {
     if (u.includes('/data/')) reqs.push(u.split('/data/')[1].split('?')[0]);
   });
   console.log(`\n===== ${name} =====`);
-  try { await fn(p, reqs, errs); } catch (e) { console.log('THREW:', e.message.split('\n')[0]); }
+  let threw = null;
+  try { await fn(p, reqs, errs); } catch (e) { threw = e.message.split('\n')[0]; console.log('THREW:', threw); }
   /* Ignore failures to reach external hosts. TradingView widgets and remote
      tiles are blocked by the sandbox proxy; those are environment noise, not
      application errors, and they would otherwise mask real ones. */
@@ -49,6 +69,10 @@ async function run(name, fn) {
     !/favicon/.test(e) &&
     !/net::ERR_(TUNNEL_CONNECTION_FAILED|CONNECTION_RESET|NAME_NOT_RESOLVED|CONNECTION_CLOSED|ABORTED|FAILED)/.test(e));
   console.log('JS ERRORS:', real.length ? real.slice(0, 4) : 'none');
+  if (real.length || threw) {
+    anyFailures = true;
+    failedScenarios.push(name + (threw ? ' (threw)' : ` (${real.length} JS error(s))`));
+  }
   await ctx.close();
 }
 
@@ -663,3 +687,18 @@ await run('Auth degradation (unconfigured)', async (p) => {
 });
 
 await b.close();
+
+console.log(`\n===== SUMMARY =====`);
+if (anyFailures) {
+  console.log(`FAILED — ${failedScenarios.length} scenario(s) threw or logged a real JS error:`);
+  for (const s of failedScenarios) console.log('  -', s);
+  console.log('\nThis only catches hard JS errors, not the printed facts above each');
+  console.log('scenario — read the full log for anything marked <-- or a mismatch');
+  console.log('against what the comment above that scenario says it should show.');
+  process.exitCode = 1;
+} else {
+  console.log('No hard JS errors across any scenario.');
+  console.log('This does NOT mean nothing regressed — read the log above for anything');
+  console.log('marked <-- or any printed fact that looks wrong; only a thrown error or');
+  console.log('a real console.error fails the exit code.');
+}

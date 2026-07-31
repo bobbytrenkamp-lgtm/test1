@@ -1,0 +1,74 @@
+name: Test Suite
+
+# There was previously no repo-wide test gate: update_economic_data.yml and
+# update_facilities.yml each run one narrow test file as a sanity check on
+# their own pipeline, but nothing ran the full offline suite (176+ JS tests,
+# every Python validator, the no-paid-dependency guard) or the E2E browser
+# suite on an ordinary push or PR. That gap is how unrelated regressions
+# could land unnoticed. This workflow is the general gate.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-suite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python test dependencies
+        run: pip install pytest
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Node test dependencies (jsdom + Playwright package)
+        # Only the `playwright` npm package, not its browser binaries — those
+        # come from actions/setup-node's own cache-free install below via a
+        # pinned Chrome for Testing build, matching tests/e2e_smoke.mjs's
+        # documented local setup exactly so CI and a human get the same path.
+        run: npm install --no-save --prefix /tmp/node_modules jsdom playwright
+
+      - name: Download Chrome for Testing (headless shell)
+        run: |
+          curl -o /tmp/chs.zip \
+            "https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.54/linux64/chrome-headless-shell-linux64.zip"
+          unzip -q /tmp/chs.zip -d /tmp/chs
+          chmod +x /tmp/chs/chrome-headless-shell-linux64/chrome-headless-shell
+
+      - name: Serve the repo for the E2E suite
+        run: |
+          python3 -m http.server 8099 &
+          for i in $(seq 1 20); do
+            curl -sSf http://localhost:8099/index.html -o /dev/null && exit 0
+            sleep 0.5
+          done
+          echo "server never came up" >&2
+          exit 1
+
+      - name: Run full test suite (including E2E)
+        env:
+          NODE_PATH: /tmp/node_modules
+          E2E: "1"
+          PLAYWRIGHT_MODULE: /tmp/node_modules/playwright/index.mjs
+          CHROME_PATH: /tmp/chs/chrome-headless-shell-linux64/chrome-headless-shell
+          BASE_URL: http://localhost:8099
+        run: ./tests/run_all.sh
