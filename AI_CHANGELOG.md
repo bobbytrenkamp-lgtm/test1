@@ -8,6 +8,64 @@ oldest entries there the same way rather than letting it grow unbounded.
 ---
 
 Date: 2026-07-31
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/past-conversation-recall-gcihz4
+Session: Parcel view legibility — county hover chrome obscuring parcels
+
+Reported symptom: "I can't see the parcel layer because I'm hovering over the
+county, so it's blocking."
+
+Investigated before changing anything, and the first plausible explanation was
+wrong in an instructive way. The obvious suspect was the hover fill
+(handleCountyMouseover hardcoded fillOpacity: 0.88) — but handleCountyMouseover
+only restyles when `fips !== selectedFips`, and PARCEL._currentFips always
+tracks selectedFips (it is set from handleCountyClick -> onCountyChanged, or
+from the layer toggle passing the current selection). So the county actually
+showing parcels never received the hover fill at all, and "fix the fill" would
+have shipped a plausible-looking change that did not address the report.
+
+The real obstruction is the county TOOLTIP — a cursor-following box (name,
+policy level, optional economic value, up to ~240px wide) positioned at
+cursor +14/-44, i.e. directly on top of the parcels being inspected. It also
+flickers: parcel polygons live on their own pane (parcelPane, z-index 450)
+above the county overlay pane (~400) and capture the pointer, so the county
+layer only receives mouseover in the gaps BETWEEN parcels — every road and lot
+line toggles the box back on. The parcel layer already supplies its own
+per-parcel tooltip (address / PIN) for whatever is actually under the pointer,
+so the county box is redundant as well as obstructive there.
+
+Fixed both, scoped deliberately:
+- Suppressed the county tooltip in parcel view for the county whose parcels are
+  on screen. Hovering a NEIGHBOURING county still shows its tooltip — there are
+  no parcels there to obscure and the label is still informative.
+- Added hoverCountyStyle(), mirroring the parcel-view branch selectedCountyStyle()
+  already had. This one is defensive rather than the reported fix: parcels render
+  above the county fill but are themselves only ~0.15 opaque, so an 0.88 fill
+  underneath still washes them out — being on top is not sufficient. Keeps the
+  orange outline so hover feedback survives; drops only the fill.
+
+Verified in a real browser (Chromium via Playwright), not by reasoning: 9 checks
+covering the layer-off baseline, both obstructions gone in parcel view, the
+neighbour tooltip preserved, and clean restoration after toggling the layer back
+off — a sticky suppressed tooltip would be a worse bug than the original. 0 JS
+errors. Kept as scenario 13b in tests/e2e_smoke.mjs so it runs in CI going
+forward; jsdom cannot catch this class (no layout, no panes, no real pointer
+events), which is why it survived this long.
+
+Files Changed:
+- `js/map.js` (hoverCountyStyle, handleCountyMouseover)
+- `tests/e2e_smoke.mjs` (new scenario 13b)
+- `BUG_TRACKER.md`, `AI_CHANGELOG.md`
+
+Next Recommended Actions:
+- The parcel pane sets `pointerEvents: 'auto'`, which is what makes the county
+  fire mouseover only between parcels. If more county-level hover chrome is
+  added later, check it against parcel view too — this is now the second piece
+  to need that treatment after selectedCountyStyle().
+
+---
+
+Date: 2026-07-31
 AI Assistant: Claude Code
 Branch: claude/past-conversation-recall-gcihz4
 Session: Project-health cleanup pass (docs, dead code, encoding, CI gate)
