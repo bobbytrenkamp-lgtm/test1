@@ -509,6 +509,87 @@ await run('Map subsystems (GIS modes, palette, zoning, workspaces)', async (p) =
   console.log('local 4xx/5xx     :', misses.length ? misses.slice(0, 4) + ' <-- BAD' : 'none (good)');
 });
 
+/* 13b. Parcel view must stay readable while the pointer is over it.
+
+   Reported symptom: "I can't see the parcel layer because I'm hovering over
+   the county, so it's blocking." Two distinct obstructions, both county-level
+   chrome drawn for a county the user has already drilled past:
+
+     - the county tooltip, a cursor-following box sitting directly on top of the
+       parcels. It also flickers, because parcel polygons own a higher pane and
+       capture the pointer, so the county only sees mouseover in the gaps
+       BETWEEN parcels — every road and lot line toggles the box back on.
+     - the hover fill. Parcels render above the county fill but are only ~0.15
+       opaque themselves, so an 0.88-opaque fill underneath still washes them
+       out. (selectedCountyStyle() already fixed this for the SELECTED county;
+       hoverCountyStyle() is the same reasoning for the hovered one.)
+
+   Both must revert cleanly when the layer goes back off — a sticky suppressed
+   tooltip would be a worse bug than the one being fixed. */
+await run('Parcel view: county chrome must not obscure parcels', async (p) => {
+  const LOUDOUN = '51107';   // in the parcel pilot registry
+  const NEIGHBOR = '51059';  // Fairfax — no parcel coverage
+  await p.setViewportSize({ width: 1600, height: 1000 });
+  await p.goto(URL, { waitUntil: 'domcontentloaded' });
+  await p.waitForTimeout(2500);
+  await p.click('#tab-map');
+  await p.waitForFunction(() => document.querySelectorAll('#leaflet-map path').length > 100, { timeout: 45000 });
+  await p.waitForTimeout(2000);
+
+  /* Fire through Leaflet's own event path — a synthetic DOM event would not
+     reach the layer's handler, and a real mouse move cannot be aimed at a
+     specific county reliably across viewports. */
+  const hover = (f) => p.evaluate((x) => {
+    const lyr = countyLayerByFips[x];
+    if (!lyr) return false;
+    lyr.fire('mouseover', { target: lyr, originalEvent: { clientX: 800, clientY: 500 } });
+    return true;
+  }, f);
+  const tipShown = () => p.evaluate(() =>
+    getComputedStyle(document.getElementById('tooltip')).display !== 'none');
+  const fillOf = (f) => p.evaluate((x) => countyLayerByFips[x]?.options.fillOpacity, f);
+
+  await p.evaluate((f) => selectCounty(f), LOUDOUN);
+  await p.waitForTimeout(1500);
+  await hover(LOUDOUN);
+  const tipBefore = await tipShown();
+  await hover(NEIGHBOR);
+  await p.waitForTimeout(200);
+  const fillBefore = await fillOf(NEIGHBOR);
+  console.log('parcels OFF  tooltip/fill :', tipBefore, '/', fillBefore,
+    (tipBefore === true && fillBefore === 0.88) ? '(baseline correct)' : '<-- BASELINE CHANGED');
+
+  await p.evaluate(() => setLayerVisible('parcels', true, true));
+  await p.waitForTimeout(2500);
+  console.log('isActiveWithData          :', await p.evaluate(() => window.PARCEL.isActiveWithData()));
+
+  await hover(LOUDOUN);
+  await p.waitForTimeout(300);
+  const tipOnParcelCounty = await tipShown();
+  console.log('tooltip over parcel county:', tipOnParcelCounty,
+    tipOnParcelCounty === false ? '(suppressed — correct)' : '<-- TOOLTIP COVERS PARCELS');
+
+  await hover(NEIGHBOR);
+  await p.waitForTimeout(300);
+  const tipOnNeighbor = await tipShown();
+  const fillOnNeighbor = await fillOf(NEIGHBOR);
+  console.log('neighbour tooltip kept    :', tipOnNeighbor,
+    tipOnNeighbor === true ? '(still informative — correct)' : '<-- OVER-SUPPRESSED');
+  console.log('neighbour fill decluttered:', fillOnNeighbor,
+    fillOnNeighbor === 0.04 ? '(correct)' : '<-- WASHES OUT PARCELS');
+
+  await p.evaluate(() => setLayerVisible('parcels', false, true));
+  await p.waitForTimeout(1500);
+  await hover(LOUDOUN);
+  await p.waitForTimeout(300);
+  const tipRestored = await tipShown();
+  await hover(NEIGHBOR);
+  await p.waitForTimeout(300);
+  const fillRestored = await fillOf(NEIGHBOR);
+  console.log('restored after toggle off :', tipRestored, '/', fillRestored,
+    (tipRestored === true && fillRestored === 0.88) ? '(correct)' : '<-- STICKY PARCEL-VIEW STATE');
+});
+
 /* 14. Economic Intelligence.
    Driven against tests/fixtures/economy — clearly-labelled SYNTHETIC data, so
    the rendering paths are exercised without inventing numbers in data/economy/,

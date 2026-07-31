@@ -7,6 +7,47 @@ snapshots".)
 
 ---
 
+# Recently Fixed Bugs (2026-07-31 — parcel view legibility)
+
+---
+
+Bug: County hover chrome obscures the parcel layer
+Priority: High
+Affected Files: `js/map.js` (`hoverCountyStyle`, `handleCountyMouseover`),
+`tests/e2e_smoke.mjs`
+Root Cause: Two separate pieces of county-level chrome were drawn on top of a
+county the user had already drilled past into parcel view.
+(1) The county tooltip — a cursor-following box positioned at cursor +14/-44 —
+sits directly over the parcels being inspected. It also flickers constantly:
+parcel polygons live on their own pane (`parcelPane`, z-index 450) above the
+county overlay pane (~400) and capture the pointer, so the county layer only
+receives `mouseover` in the gaps BETWEEN parcels — every road and lot line
+toggles the box back on.
+(2) `handleCountyMouseover` hardcoded `fillOpacity: 0.88`. Parcels render
+*above* the county fill but their own fill is only ~0.15 opaque, so a 0.88
+county fill underneath still washes them out — being on top is not enough.
+`selectedCountyStyle()` had already been given exactly this treatment for the
+SELECTED county (fillOpacity 0.04 in parcel view); the hover path was missed,
+so it kept the washout for every county the pointer crossed.
+Fix: Added `hoverCountyStyle()` mirroring `selectedCountyStyle()`'s existing
+parcel-view branch (keeps the orange outline for hover feedback, drops only
+the fill), and suppressed the county tooltip in parcel view for the county
+whose parcels are on screen. Deliberately scoped: hovering a NEIGHBOURING
+county still shows its tooltip, since there are no parcels there to obscure
+and the label is still informative.
+Testing Performed: Verified in a real browser (Chromium via Playwright) — 9
+checks covering baseline-with-layer-off, both obstructions removed in parcel
+view, neighbour tooltip preserved, and clean restoration after toggling the
+layer back off (a sticky suppressed tooltip would be worse than the original
+bug). 0 JS errors. Added as scenario 13b in `tests/e2e_smoke.mjs`, which now
+runs in CI via `.github/workflows/test.yml`. jsdom cannot catch this class —
+it has no layout, no panes, and no real pointer events.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-31
+Status: Fixed
+
+---
+
 # Recently Fixed Bugs (2026-07-30 — Windows test-suite portability)
 
 ---
