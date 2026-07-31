@@ -120,6 +120,11 @@ for (const j of jurisdictions) {
   if (missing.length) {
     console.log(`   FIELD MAP: ${mapped.length - missing.length}/${mapped.length} resolve; ${missing.length} missing:`);
     for (const [k, v] of missing) console.log(`     - ${k} -> "${v}" not present`);
+    /* Print what the layer ACTUALLY exposes. Without this the report says a
+       mapping is wrong but not what to replace it with, and the only way to
+       repair the fieldMap is to guess — which is precisely how these entries
+       became wrong in the first place. */
+    console.log(`   ACTUAL FIELDS (${c.fields.length}): ${c.fields.join(', ')}`);
     console.log(`   (shapes will draw; those attributes render blank in the panel)`);
     summary.push(`LIVE  ${j.fips} ${j.name} — ${missing.length}/${mapped.length} fieldMap entries missing`);
   } else {
