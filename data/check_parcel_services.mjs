@@ -28,9 +28,15 @@
  * boundary services (geometry, but no owner/address/zoning). Comparing
  * fieldMap against the layer's real field list catches that class too.
  *
- * Exit codes: 0 = every service returned a valid layer definition.
- *             1 = at least one service is unreachable or returned an error.
- *             2 = could not run at all (registry failed to load).
+ * Exit codes: 0 = no NEW failures (live services, plus any already recorded
+ *                 in registry.js as knownUnavailable).
+ *             1 = a service failed that is not already known-dead.
+ *             2 = could not run at all (registry failed to load, or every
+ *                 probe failed identically = this runner has no network).
+ *
+ * A service already recorded as down does not fail the run. An alert that
+ * fires monthly on the same known fact stops being read, and the next real
+ * breakage then looks exactly like the noise.
  * Network is required, so this cannot run in a sandbox — it is meant for CI
  * or a developer machine. See .github/workflows/check_parcel_services.yml.
  */
@@ -95,6 +101,8 @@ console.log(`Probing ${jurisdictions.length} parcel services (timeout ${TIMEOUT_
 
 let bad = 0;
 const summary = [];
+const recovered = [];
+const deadReasons = [];   // raw failure reasons, for the broken-network guard
 
 for (const j of jurisdictions) {
   const res = await probe(j.serviceUrl);
@@ -102,11 +110,31 @@ for (const j of jurisdictions) {
   console.log(`── ${j.name}  [FIPS ${j.fips}]`);
   console.log(`   ${j.serviceUrl}`);
 
+  /* A service already recorded as down must not keep failing the run. An
+     alert that fires every month on the same known fact stops being read,
+     and the next genuinely NEW breakage arrives looking identical to the
+     noise. Known outages are reported and pass; anything not on the list
+     fails. Recovery is reported too, so the marker gets removed rather than
+     quietly outliving the outage it describes. */
+  const known = j.knownUnavailable;
+
   if (!c.ok) {
-    bad++;
-    console.log(`   STATUS: DEAD — ${c.why}\n`);
-    summary.push(`DEAD  ${j.fips} ${j.name} — ${c.why}`);
+    if (known) {
+      console.log(`   STATUS: DEAD — ${c.why}  (KNOWN since ${known.since}, not a new failure)\n`);
+      summary.push(`DEAD* ${j.fips} ${j.name} — ${c.why} (known since ${known.since})`);
+      deadReasons.push(c.why);
+    } else {
+      bad++;
+      console.log(`   STATUS: DEAD — ${c.why}\n`);
+      summary.push(`DEAD  ${j.fips} ${j.name} — ${c.why}`);
+      deadReasons.push(c.why);
+    }
     continue;
+  }
+
+  if (known) {
+    recovered.push(`${j.fips} ${j.name} (was ${known.status} since ${known.since})`);
+    console.log(`   RECOVERED — was marked knownUnavailable since ${known.since}; remove that block from registry.js`);
   }
 
   /* Live. Now check the fieldMap actually lines up with reality — a live
@@ -170,8 +198,8 @@ console.log(`\n${jurisdictions.length - bad}/${jurisdictions.length} services re
    policy) than that five independent county GIS services died simultaneously.
    Reporting that as "all parcel data is dead" would send someone re-deriving
    five perfectly good URLs. Exit 2 (cannot run) rather than 1 (real failure). */
-if (bad === jurisdictions.length && jurisdictions.length > 1) {
-  const reasons = new Set(summary.map(s => s.replace(/^DEAD\s+\d+\s+[^—]+—\s*/, '')));
+if (deadReasons.length === jurisdictions.length && jurisdictions.length > 1) {
+  const reasons = new Set(deadReasons);
   if (reasons.size === 1) {
     console.log(`\nEVERY probe failed identically ("${[...reasons][0]}").`);
     console.log('That is a broken-network signature, not five dead services — this');
@@ -179,6 +207,11 @@ if (bad === jurisdictions.length && jurisdictions.length > 1) {
     console.log('COULD-NOT-RUN rather than reporting every URL dead.');
     process.exit(2);
   }
+}
+
+if (recovered.length) {
+  console.log('\nRECOVERED — remove the knownUnavailable block for:');
+  for (const r of recovered) console.log('  ' + r);
 }
 
 if (bad) {
