@@ -11,6 +11,36 @@ No active work in progress as of 2026-07-31.
 ## Recently Completed Work (continued)
 
 - Date: 2026-07-31
+- Agent: Claude Code (claude-opus-5)
+- Task: Parcel data integrity + CI test gate. PRs #202, #203, #204, #205, all
+  merged to `main`. Started from a user report that the parcel layer was
+  hidden behind county chrome; fixing that made the layer legible, which
+  revealed Montgomery County had no parcel data at all, which led to the rest.
+- Shipped: county tooltip/fill no longer obscure parcels; parcel pane z-index
+  un-tied from labelsPane; all three Virginia fieldMaps rebuilt from the
+  services' real schemas (previously 16/18, 17/22 and 18/18 broken); parcel
+  search no longer rejects whole queries over one unknown column; new
+  `data/check_parcel_services.mjs` probe + monthly workflow; new
+  `.github/workflows/test.yml` running the full suite plus E2E on push/PR.
+- Verified, not assumed: every field name came from each service's own
+  `?f=json` output, confirmed by re-running the probe after the change. E2E
+  scenario failures went 15 -> 1 -> 0 across three diagnostic cycles. Both
+  workflows confirmed green on `main`.
+- Two mistakes worth knowing about, both recorded in AI_CONTEXT.md and
+  BUG_TRACKER.md: (1) the first CI gate printed "ALL PASS — 176/176" while
+  jsdom was missing and its suites silently skipped — a hollow green build;
+  (2) a TradingView error was misdiagnosed as an application bug until stack
+  capture proved every frame was in their bundle. Both came from acting before
+  reading the evidence, which is the same root cause as the bad fieldMaps.
+- Files changed: `js/parcel/registry.js`, `js/parcel/index.js`,
+  `js/parcel/renderer.js`, `js/map.js`, `data/check_parcel_services.mjs` (new),
+  `.github/workflows/{test,check_parcel_services}.yml` (new),
+  `tests/e2e_smoke.mjs`, `.gitignore`, and the four AI memory files.
+- Related systems: parcel intelligence, CI, E2E harness.
+- Deliberately NOT done: Maryland's dead URL was not replaced, and no
+  zoning/assessment/sales mappings were invented. See Open Handoffs.
+
+- Date: 2026-07-31
 - Agent: Claude Code
 - Task: Project-health cleanup pass (doc hygiene, dead code, encoding
   bugs, CI test gate) following an open-ended "how can this be improved"
@@ -93,6 +123,44 @@ No active work in progress as of 2026-07-31.
 - Remaining concerns: see "Open Handoffs" below.
 
 ## Open Handoffs
+
+- Item: Maryland parcel endpoint returning 503 (Howard 24027 + Montgomery 24031).
+- Current status: Open, external. Both counties share ONE statewide endpoint
+  (`geodata.md.gov` MD_ParcelBoundaries), so they fail and recover together.
+  Both entries carry a `knownUnavailable` block, so the monthly probe reports
+  them as DEAD* and passes — anything NEWLY dead still fails the job.
+- Why it was not fixed: a few minutes of HTTP 503 cannot distinguish a retired
+  service from an extended outage. Replacing the URL would mean swapping a
+  known-bad guess for an unverified one, which is precisely how the Virginia
+  fieldMaps became wrong in the first place.
+- Recommended next action: re-probe (Actions -> Check Parcel Services -> Run
+  workflow). If still dead, re-derive from Maryland's GIS portal, confirm with
+  the probe, then update `js/parcel/registry.js` and delete the
+  `knownUnavailable` block. The probe reports RECOVERED if it comes back on
+  its own.
+- Relevant files: `js/parcel/registry.js`, `data/check_parcel_services.mjs`.
+
+- Item: Panel wording for attributes a parcel source does not publish.
+- Current status: Open, needs a product/voice decision, not research.
+  `notProvidedBySource` now records these per jurisdiction (15 for Fairfax, 17
+  Loudoun, 9 Prince William), but `panel.js` still simply omits empty rows —
+  indistinguishable from a bug to anyone looking at the panel.
+- Recommended next action: render those specific keys explicitly. Suggested
+  wording "Not published by this source" rather than "Unknown": the latter
+  claims we looked and could not determine it, when we know exactly why it is
+  missing. This distinction is the same one the project already draws between
+  "not yet researched" and "no known restrictions", and between the economy
+  placeholders and zero.
+- Relevant files: `js/parcel/panel.js`, `js/parcel/registry.js`.
+
+- Item: Zoning / assessed value / sales data for the Virginia parcel counties.
+- Current status: Not available from any of the three live services — this is
+  a data-architecture limit, not a missing mapping. Do not add fieldMap
+  entries for these; they will resolve to nothing.
+- Recommended next action: joining a county's separate CAMA/tax service is a
+  connector redesign (the model is currently one service per jurisdiction).
+  Scope it deliberately rather than bolting it on.
+- Relevant files: `js/parcel/connector-arcgis.js`, `js/parcel/registry.js`.
 
 - Item: `no-paid-dependency guard flags cloudscene in historical snapshots`
   (see BUG_TRACKER.md "Finding (not fixed, needs a decision)").

@@ -10,6 +10,97 @@ oldest entries there the same way rather than letting it grow unbounded.
 Date: 2026-07-31
 AI Assistant: Claude Code (claude-opus-5)
 Branch: claude/past-conversation-recall-gcihz4
+Session: Parcel data integrity + CI test gate (PRs #203, #204, #205)
+
+Continuation of the parcel-view session below. Fixing the visual obstruction
+made the parcel layer legible, which immediately exposed that Montgomery
+County had no parcel data at all — and pulling that thread found considerably
+more.
+
+WHAT WAS ACTUALLY WRONG (all verified, none guessed):
+
+- Both Maryland counties are DOWN. They share one statewide endpoint
+  (geodata.md.gov MD_ParcelBoundaries), returning 503 on every probe. Left in
+  place with a knownUnavailable marker rather than replaced: minutes of 503
+  cannot distinguish a retired service from an outage.
+- All three Virginia fieldMaps were almost entirely fictional — 16/18 broken
+  for Fairfax, 17/22 Loudoun, 18/18 Prince William. registry.js's own header
+  had admitted the URLs were guesses; nobody had checked the field names. The
+  connector passes unmapped fields through harmlessly and panel.js omits empty
+  rows, so parcels drew perfectly and the panel just quietly showed less.
+  Prince William's layer is a two-table JOIN and ArcGIS qualifies every field
+  with its owning table, so bare "GPIN" matched nothing on the only source of
+  the three that carries owner and land-use data.
+- Parcel search built its WHERE clause from hardcoded SITE_ADDR/PIN fallbacks.
+  An unknown column makes ArcGIS reject the ENTIRE query, so a missing address
+  field broke PIN search too — and three of five services have no address
+  column, so that was the normal case.
+- The parcel pane sat at z-index 450, exactly tying map.js's labelsPane. Tied
+  panes order by DOM insertion alone.
+
+TOOLING ADDED
+data/check_parcel_services.mjs probes every serviceUrl's ?f=json, reports
+LIVE/DEAD, diffs fieldMap against the real schema, and prints ACTUAL FIELDS so
+the next repair is copied rather than invented. It also verifies
+notProvidedBySource claims and reports NOW AVAILABLE if a county starts
+publishing something previously absent. Written in JS so it loads the real
+registry instead of duplicating URLs. Borrows check_source_links.py's safety
+property: all-probes-failed-identically exits 2 (no network) instead of
+declaring five services dead.
+
+CI GATE — AND A GREEN BUILD THAT WAS LYING
+There was no repo-wide test gate at all; two data workflows each ran one narrow
+test file. Added .github/workflows/test.yml running the full suite plus E2E on
+push/PR. The first version installed deps with `npm install --prefix
+/tmp/node_modules`, but npm treats --prefix as the project ROOT and creates
+node_modules beneath it. Playwright died loudly — jsdom died silently, since
+its suites skip when absent, so CI printed "ALL PASS — 176/176" while testing
+materially less than claimed. Fixed the path and added a step that hard-fails
+if a test dependency does not resolve.
+
+MISDIAGNOSIS WORTH RECORDING
+With CI working, E2E surfaced "Cannot read properties of null (reading
+'querySelector')" in AI Stocks. I called it a genuine app bug and was about to
+go looking in stocks.js. Adding stack capture showed every frame inside
+s3.tradingview.com — their _replaceScript, thrown when a viewport change
+re-renders a widget container mid-load. Zero frames in our source. These are
+invisible in a network-restricted sandbox because the widgets never load there,
+so "passes locally" proved nothing. Filtered by ORIGIN, not message text, so a
+real null-dereference of ours reading identically still fails. E2E failure
+count across the cycles: 15 scenarios -> 1 -> 0.
+
+The general lesson, and it is the same one that produced the bad fieldMaps:
+read the evidence before assuming a cause. One CI cycle spent getting a stack
+trace was cheaper than the wrong fix.
+
+Files Changed:
+- `js/parcel/registry.js` (fieldMaps, notProvidedBySource, knownUnavailable,
+  header rewritten with fetch-confirmed results)
+- `js/parcel/index.js` (search WHERE clause), `js/parcel/renderer.js` (PANE_Z)
+- `data/check_parcel_services.mjs` (new),
+  `.github/workflows/check_parcel_services.yml` (new)
+- `.github/workflows/test.yml` (new), `tests/e2e_smoke.mjs` (stack capture,
+  origin-based third-party filter, scenario 13b)
+- `.gitignore`, `AI_CONTEXT.md`, `BUG_TRACKER.md`, `AI_TEAM_STATUS.md`
+
+Next Recommended Actions:
+- Re-probe Maryland (Actions -> Check Parcel Services -> Run workflow). If
+  still 503, re-derive from Maryland's GIS portal and CONFIRM WITH THE PROBE
+  before committing. Do not guess a replacement URL.
+- Decide the panel wording for notProvidedBySource attributes. Currently those
+  rows are simply omitted, which is indistinguishable from a bug. Suggested
+  "Not published by this source" over "Unknown" — the latter claims we looked
+  and could not determine it, when in fact we know exactly why it is missing.
+- Zoning/assessment/sales data exists in NONE of the three VA services. Adding
+  it needs separate CAMA/tax services joined in, which the current
+  one-service-per-jurisdiction connector cannot do. That is a connector
+  redesign, not a registry edit.
+
+---
+
+Date: 2026-07-31
+AI Assistant: Claude Code (claude-opus-5)
+Branch: claude/past-conversation-recall-gcihz4
 Session: Parcel view legibility — county hover chrome obscuring parcels
 
 Reported symptom: "I can't see the parcel layer because I'm hovering over the

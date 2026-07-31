@@ -445,6 +445,61 @@ That dependency predates the split. Check for cross-file callers before moving a
 Remaining large blocks still in map.js, in rough size order: Advanced Filters Panel (~350),
 Map init (~412), Nav Tabs (~300), Legend (~287), Search (~276), Detail sheet swipe (~270).
 
+## Parcel intelligence — service health and field mapping
+
+`js/parcel/registry.js` holds one entry per county with parcel coverage (5 as of 2026-07-31:
+Loudoun / Fairfax / Prince William VA, Howard / Montgomery MD). Two conventions live there that
+are easy to get wrong, and a checker that enforces both.
+
+### `data/check_parcel_services.mjs` — run this before trusting anything in the registry
+
+Fetches each `serviceUrl + '?f=json'` and reports LIVE/DEAD plus whether the `fieldMap` matches the
+layer's real field list. Runs monthly and on PRs touching the registry
+(`.github/workflows/check_parcel_services.yml`); needs real network, so it exits **2** (could-not-run)
+rather than 1 when every probe fails identically — five county GIS services do not die simultaneously,
+that signature means the runner has no egress. Written in JS, not Python like the rest of `data/`,
+specifically so it loads the real registry instead of duplicating the URLs.
+
+**Every serviceUrl in that file was once an unverified guess.** The header there says so. The first
+real run (2026-07-31) found the Maryland endpoint dead and **all three Virginia fieldMaps almost
+entirely fictional** — 16/18 broken for Fairfax, 17/22 Loudoun, 18/18 Prince William. Parcels drew
+fine and every attribute row came back empty, which reads as a rendering bug rather than a mapping
+one. If you are tempted to add or "correct" a field name from intuition: that is exactly how those
+values got there. Run the probe and copy from `ACTUAL FIELDS`.
+
+### `notProvidedBySource` — absent attributes are recorded, not mapped to a guess
+
+A service that genuinely lacks an attribute gets that key listed in `notProvidedBySource` instead of
+pointed at an invented column. Fairfax and Loudoun are pure boundary layers (geometry, IDs, plat
+metadata) with no owner/address/zoning/assessment data at all; those need separate CAMA/tax services
+joined in, which the one-service-per-jurisdiction connector cannot do. The probe **verifies the
+claim** against the live schema and reports `NOW AVAILABLE` if a county starts publishing one, so a
+stale exclusion cannot quietly hide real data.
+
+### Fully-qualified field names are not a mistake — do not "tidy" them
+
+Prince William's layer is a **join** of two tables, and ArcGIS prefixes every field in a joined layer
+with its owning table. The attribute really is `GISPROD.VECTOR.Parcels.GPIN`; a request for plain
+`GPIN` matches nothing. That single detail is why all 18 of its mappings resolved to zero on the
+richest of the three sources.
+
+### `knownUnavailable` — a known outage must not fail the job forever
+
+Both Maryland counties share one statewide endpoint (`geodata.md.gov` MD_ParcelBoundaries) that has
+returned 503 since 2026-07-31, so they fail and recover together. They carry a `knownUnavailable`
+block: the probe reports them `DEAD*` and **passes**, while anything not on that list still fails.
+An alert that fires monthly on the same known fact stops being read, and the next genuinely new
+breakage then arrives looking exactly like the noise. Recovery is detected and reported so the
+marker gets removed rather than outliving the outage. **The URL was deliberately left in place** —
+a few minutes of 503 cannot distinguish a retired endpoint from an extended outage, and replacing it
+would mean swapping a known-bad guess for an unknown one.
+
+### Parcel search builds its WHERE clause from fields that exist
+`PARCEL.search()` previously fell back to hardcoded `SITE_ADDR`/`PIN` when a mapping was absent. An
+unknown column makes ArcGIS reject the **entire** query, so a missing address field broke PIN search
+too — and three of the five services have no address column, making that the common case rather than
+an edge one. It now builds only from mapped fields and quotes identifiers so table-qualified names work.
+
 ## Citation link health
 
 `data/check_source_links.py` checks all 1,990 citation URLs and records reachability plus a
@@ -604,9 +659,26 @@ operators all come from data files and are untrusted.
 `./tests/run_all.sh` runs the offline suites (200 tests). jsdom-dependent tests skip cleanly if
 jsdom is absent; `NODE_PATH=/tmp/node_modules ./tests/run_all.sh` if installed outside the repo.
 
+### CI runs all of this automatically — `.github/workflows/test.yml`
+
+Added 2026-07-31. Before that there was **no repo-wide test gate at all**: `update_economic_data.yml`
+and `update_facilities.yml` each ran one narrow test file as a sanity check on their own pipeline,
+and nothing ran the full suite on an ordinary push or PR. The workflow now runs `run_all.sh` with
+`E2E=1` on every push to `main` and every pull request.
+
+**A skipped suite must never look like a passing one.** The first version of this workflow ran
+`npm install --prefix /tmp/node_modules`, but npm treats `--prefix` as the *project root* and
+creates `node_modules` underneath it, so everything landed in `/tmp/node_modules/node_modules/`.
+Playwright failed to resolve and E2E died — but jsdom failed to resolve too, and the jsdom suites
+are written to skip when it is absent, so CI printed `ALL PASS — 176/176` while silently testing
+far less than advertised. Install into `/tmp` (packages land in `/tmp/node_modules`, matching the
+`NODE_PATH` convention above), and note the **"Verify test dependencies actually resolve"** step
+that hard-fails if either is missing. Do not remove it; a green badge over a hollow run is worse
+than a red one.
+
 ### End-to-end browser suite — run after touching routing, data loading, or header/nav layout
 
-`tests/e2e_smoke.mjs` is opt-in because it needs a served copy of the repo plus a Chrome binary:
+`tests/e2e_smoke.mjs` runs in CI, and can be run locally against a served copy plus a Chrome binary:
 
     python3 -m http.server 8099 &
     E2E=1 NODE_PATH=/tmp/node_modules ./tests/run_all.sh
@@ -619,8 +691,27 @@ Testing on `storage.googleapis.com` IS reachable — the exact curl is in the he
 **Why it matters:** this suite found six real bugs the jsdom tests could not, including deep
 links silently failing on cold load (`hashchange` never fires for the initial URL) and the mobile
 nav sheet rendering off-screen because an ancestor `transform` re-anchors `position: fixed`. jsdom
-has no layout and no real navigation, so it cannot catch either class of bug. Errors from
-unreachable external hosts (TradingView, remote tiles) are filtered so real errors stay visible.
+has no layout and no real navigation, so it cannot catch either class of bug.
+
+**Error filtering — the rule is "not our code", not "not a real error".** Errors from unreachable
+external hosts (TradingView, remote tiles) are filtered so real errors stay visible. Two additions
+made when this first ran on a machine with *working* internet, where the opposite problem appears:
+
+1. `Cannot listen to the event from the provided iframe, contentWindow is not available` —
+   TradingView's embed script logs this on every page load that renders a widget. Matched on the
+   exact string, not by muting TradingView wholesale.
+2. TradingView's own `_replaceScript` throws `Cannot read properties of null (reading
+   'querySelector')` when a viewport change re-renders a widget container while its async script
+   is still in flight. `createTVWidget` already guards *our* callbacks with `_tvRenderId`; there is
+   no reach into their bundle to guard theirs. Filtered by **origin**: the stack must be wholly
+   within `s3.tradingview.com` with no frame from the page's own origin, so a real
+   null-dereference of ours that reads identically still fails the run.
+
+That second one was initially misdiagnosed as an application bug and nearly sent someone editing
+`stocks.js` for a bug that was never there. `pageerror` now records the top stack frames precisely
+so the next person does not have to guess — **read the stack before assuming an error is yours.**
+These failures are also invisible in a network-restricted sandbox, so "it passes locally" proves
+nothing about them.
 
 ## Economic Intelligence (Economy tab)
 
