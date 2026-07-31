@@ -6,19 +6,29 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 
 ## Active Work
 
-### Claude Code
+No active work in progress as of 2026-07-31.
+
+## Recently Completed Work (continued)
+
+- Date: 2026-07-31
+- Agent: Claude Code
 - Task: Project-health cleanup pass (doc hygiene, dead code, encoding
   bugs, CI test gate) following an open-ended "how can this be improved"
   review of the whole project, not scoped to any single feature.
 - Branch: `claude/past-conversation-recall-gcihz4`
-- Started: 2026-07-31
-- Current status: Code changes complete and verified via the full offline
-  suite (`tests/run_all.sh`, 176/176 JS + all Python suites). Live-validating
-  the new `.github/workflows/test.yml` CI gate by actually running
-  `tests/e2e_smoke.mjs` against the pre-installed Chromium before treating
-  the workflow as done, rather than wiring it in unverified — in progress at
-  commit time. See `AI_CHANGELOG.md` for full detail and this file's "Open
-  Handoffs" for anything the E2E run turns up if it isn't clean.
+- Current status: Complete. Full offline suite passes
+  (`tests/run_all.sh`, 176/176 JS + all Python suites). The new
+  `.github/workflows/test.yml` CI gate was live-validated, not just wired in
+  on paper: actually ran `tests/e2e_smoke.mjs` against the pre-installed
+  Chromium (same tool versions the workflow uses) end to end — all 16
+  scenarios, 0 hard JS errors. One log line looked suspicious at first
+  (`Economic Intelligence — awaiting first data run` reported `HAS VALUES`
+  where the code comments say it should show a placeholder) but checking
+  `data/economy/*.json` directly confirmed the economy pipeline has
+  genuinely already run on this branch (real `generated_at` timestamps,
+  thousands of records) — that scenario's own "unpopulated" precondition
+  doesn't hold here, so showing real values instead of a placeholder is
+  correct, not a bug.
 - Files changed: `AI_CONTEXT.md`, `AI_CHANGELOG.md`, `AI_CHANGELOG_ARCHIVE.md`
   (new), `PROJECT_CONTEXT.md`, `.gitignore`, `tests/e2e_smoke.mjs`,
   `.github/workflows/test.yml` (new), 20 `data/*.py` pipeline scripts

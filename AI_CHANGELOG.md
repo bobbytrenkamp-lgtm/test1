@@ -103,9 +103,16 @@ out of scope for a cleanup pass. Everything else was fixed:
    live against the pre-installed Chromium (PLAYWRIGHT_BROWSERS_PATH=
    /opt/pw-browsers) and a local http.server, to confirm the new exit-code
    logic and the workflow's env vars actually work end-to-end rather than
-   trusting the design on paper. See AI_TEAM_STATUS.md for the result once
-   that run completes — it was still in progress, several scenarios clean,
-   at the time this entry was written.
+   trusting the design on paper. Result: all 16 scenarios ran, 0 hard JS
+   errors, confirming both the exit-code fix and the workflow's tool
+   versions/env vars are correct. One line looked suspicious on first read
+   — "Economic Intelligence — awaiting first data run" printed `HAS VALUES`
+   where the code comments say a placeholder should render — but checking
+   `data/economy/*.json` directly showed the economy pipeline has already
+   run on this branch for real (populated `generated_at` timestamps,
+   thousands of records), so that scenario's own "nothing populated yet"
+   precondition doesn't hold here; showing real values is correct given
+   real data exists, not a bug.
 
 Files Changed:
 - `AI_CONTEXT.md`, `AI_CHANGELOG.md`, `AI_CHANGELOG_ARCHIVE.md` (new),
