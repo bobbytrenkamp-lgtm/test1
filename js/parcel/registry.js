@@ -318,6 +318,21 @@ window.PARCEL_REGISTRY = (function () {
       fips:        '24031',
       connector:   'arcgis',
       serviceUrl:  'https://geodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/0',
+
+      /* Maryland's statewide parcel endpoint has returned HTTP 503 on every
+         probe since 2026-07-31. Recorded so the checker can tell an ALREADY
+         KNOWN outage apart from a NEWLY broken service: without this, the
+         monthly run fails forever on the same known fact and the alert stops
+         meaning anything, which is how a genuinely new breakage gets ignored.
+         Delete this block the moment the endpoint recovers — the probe
+         reports RECOVERED when it does. Both MD counties share this one URL,
+         so they fail and recover together. */
+      knownUnavailable: {
+        since:  '2026-07-31',
+        status: 503,
+        note:   'Statewide MD_ParcelBoundaries endpoint returning 503. Not yet distinguishable from a long outage vs. a retired service; re-probe before replacing the URL.',
+      },
+
       minZoom:     14,
       maxFeatures: 500,
 
@@ -377,6 +392,21 @@ window.PARCEL_REGISTRY = (function () {
       fips:        '24027',
       connector:   'arcgis',
       serviceUrl:  'https://geodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/0',
+
+      /* Maryland's statewide parcel endpoint has returned HTTP 503 on every
+         probe since 2026-07-31. Recorded so the checker can tell an ALREADY
+         KNOWN outage apart from a NEWLY broken service: without this, the
+         monthly run fails forever on the same known fact and the alert stops
+         meaning anything, which is how a genuinely new breakage gets ignored.
+         Delete this block the moment the endpoint recovers — the probe
+         reports RECOVERED when it does. Both MD counties share this one URL,
+         so they fail and recover together. */
+      knownUnavailable: {
+        since:  '2026-07-31',
+        status: 503,
+        note:   'Statewide MD_ParcelBoundaries endpoint returning 503. Not yet distinguishable from a long outage vs. a retired service; re-probe before replacing the URL.',
+      },
+
       minZoom:     14,
       maxFeatures: 500,
 

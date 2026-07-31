@@ -72,8 +72,19 @@ jobs:
             echo "::warning::Probe could not run (no outbound network on this runner). No conclusion drawn about URL health."
             exit 0
           fi
+          # Exit 1 means a service failed that is NOT already recorded as
+          # knownUnavailable in registry.js. Services already known to be down
+          # report as DEAD* and pass, deliberately: a job that fails every
+          # month on the same known outage trains everyone to ignore it, and
+          # the next genuinely new breakage then arrives looking like noise.
           if [ "$code" != "0" ]; then
-            echo "::error::At least one parcel service is unreachable or returned an error. That county silently shows no parcels in the UI."
+            echo "::error::A parcel service failed that is not already known-dead. That county silently shows no parcels in the UI."
             exit 1
           fi
-          echo "All parcel services returned a valid layer definition."
+          if grep -q '^  DEAD\*' /tmp/parcel_probe.txt; then
+            echo "::warning::$(grep -c '^  DEAD\*' /tmp/parcel_probe.txt) service(s) still down from a previously recorded outage — see summary."
+          fi
+          if grep -q 'RECOVERED' /tmp/parcel_probe.txt; then
+            echo "::warning::A service marked knownUnavailable has recovered — remove that block from js/parcel/registry.js."
+          fi
+          echo "No new parcel-service failures."
