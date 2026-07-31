@@ -2,6 +2,70 @@
 
 ---
 
+Date: 2026-07-31
+AI Assistant: Claude Code
+Branch: claude/past-conversation-recall-gcihz4
+Session: Branch-state reconciliation (skooi7 "merged but not merged" cleanup)
+
+Bobby flagged AI_TEAM_STATUS.md's claim that the skooi7 branch's PR #200 was
+"opened and merged to main" as inconsistent with GitHub showing the PR as
+closed-not-merged and the branch as 13 commits ahead of main with no open PR.
+
+Investigated before touching anything. The claim was directionally true but
+mechanically wrong: PR #200's diff was applied to main via a direct push
+(commit 1ce316a, "Facility pipeline reliability fixes + Windows test-suite
+portability (#200)") rather than through GitHub's merge button, which is why
+GitHub never flipped the PR to "merged." The branch then kept receiving its
+own independent bot-generated data commits (source_health.json, facility
+index, economy pipeline output, ai_news.json) after that point, so it looked
+like 13 commits of stranded real work. It wasn't: diffing file *contents*
+(not commit history) between main and the branch tip showed only 8
+auto-generated data files differed, and every one of main's copies carried a
+strictly later generated/last-run timestamp than the branch's — main had
+already re-run each of those pipelines on its own schedule and superseded
+the branch's snapshots. No unique code or data existed on the branch. Ran
+the full tests/run_all.sh suite against the branch first (176/176 JS tests
++ all Python suites, pytest reinstalled since this sandbox didn't have it)
+to confirm it was healthy before deciding what to do with it.
+
+Two similarly stale branches were also found: feature/automated-ai-news and
+fix/news-skip-ci, both from 2026-07-11, ~380 files / 7.7M lines behind main.
+Their one idea (removing [skip ci] from the hourly news commit) was
+deliberately superseded later — main intentionally keeps [skip ci] on news
+commits since ai_news.json is fetched with cache: "no-store" and needs no
+Pages redeploy to show new articles (AI_CONTEXT.md Session 6). Nothing
+salvageable on either.
+
+Actions taken:
+- Force-pushed claude/us-datacenter-restrictions-map-skooi7 to main's
+  current tip (git push --force-with-lease, guarded against a race with the
+  branch's last-known SHA), so it stops looking perpetually ahead.
+- Attempted to delete feature/automated-ai-news and fix/news-skip-ci via
+  `git push origin --delete`. Both were rejected with HTTP 403 through the
+  environment's git proxy — a force-push moments earlier succeeded from the
+  same session, so this is specific to ref deletion, not a general push
+  block. Per this environment's own guidance, proxy 403s are policy denials
+  to be reported rather than retried or routed around. The GitHub MCP
+  server has no branch-deletion tool either. Left both branches in place;
+  see AI_TEAM_STATUS.md "Open Handoffs" for the manual deletion steps.
+- Corrected AI_TEAM_STATUS.md's "Active Work" section (removed the
+  inaccurate "PR opened and merged" phrasing, moved the entry to "Recently
+  Completed," and documented the actual merge mechanism above).
+
+Files Changed:
+- `AI_TEAM_STATUS.md`
+- `AI_CHANGELOG.md`
+
+Next Recommended Actions:
+- Delete feature/automated-ai-news and fix/news-skip-ci from the GitHub UI
+  or via an authenticated `gh api -X DELETE` call.
+- When closing a PR by pushing its diff directly to main instead of using
+  GitHub's merge button, consider also deleting or resetting the source
+  branch at the same time — that's what let this drift happen in the first
+  place.
+
+---
+
 Date: 2026-07-30
 AI Assistant: Claude Companion (Claude Code, joining as a second engineer alongside the primary Claude Code sessions on this repo)
 Branch: claude/us-datacenter-restrictions-map-skooi7
