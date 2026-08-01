@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "Log of detected changes in monitored government sources. Used to track what the pipeline has found and acted on.",
-    "last_updated": "2026-07-30T09:27:11.553008+00:00"
+    "last_updated": "2026-08-01T09:02:33.253681+00:00"
   },
   "entries": [
     {
@@ -263,6 +263,15 @@
       "change_type": "new_document",
       "url": "https://malegislature.gov/",
       "summary": "New candidate: The 194th General Court of the Commonwealth of Massachusetts (Massachusetts General Court)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260801T090233-0000",
+      "source_id": "sc-dor-datacenter",
+      "detected_at": "2026-08-01T09:02:14.690465+00:00",
+      "change_type": "new_document",
+      "url": "https://dor.sc.gov/sales-use-tax-index/sales-tax-exemptions",
+      "summary": "New candidate: Sales Tax Exemptions | SCDOR (South Carolina Department of Revenue)",
       "acted_on": false
     }
   ]
