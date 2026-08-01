@@ -31,6 +31,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      # Deliberately pinned to main regardless of how this run was
+      # triggered (including workflow_dispatch against a feature
+      # branch) — this is a production data bot, not a per-branch CI
+      # check, and must always compute from and push back to main so
+      # a manual dispatch from a stale/experimental branch can never
+      # commit that branch's state onto production data. The commit
+      # step below pushes to main to match, on purpose — don't
+      # "fix" one without the other.
         with:
           ref: main
 
@@ -74,10 +82,10 @@ jobs:
           else
             git commit -m "chore: update legislative monitoring state [skip ci]"
             for attempt in 1 2 3 4 5; do
-              if git push origin "HEAD:${GITHUB_REF_NAME}"; then break; fi
+              if git push origin HEAD:main; then break; fi
               if [ "$attempt" = 5 ]; then echo "::error::Push failed after 5 attempts."; exit 1; fi
               echo "Push rejected (attempt ${attempt}), rebasing and retrying..."
-              git fetch origin "${GITHUB_REF_NAME}" && git rebase "origin/${GITHUB_REF_NAME}"
+              git fetch origin main && git rebase origin/main
               sleep $((attempt * 5))
             done
           fi
