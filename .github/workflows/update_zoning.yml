@@ -82,11 +82,25 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add \
-            data/zoning/normalized/ \
-            data/zoning/geometry/ \
-            data/zoning/jurisdictions/ \
-            data/zoning/validation/
+          # `git add` on a path that doesn't exist at all (not even as an
+          # empty dir) fails the whole command with "pathspec did not match
+          # any files" — confirmed happening on every run because no county
+          # has ever produced real ArcGIS geometry, so data/zoning/geometry/
+          # has never existed. Bundled into one git-add call under bash -e,
+          # that one missing path aborted the step before it could add the
+          # directories that DID have real, legitimate updates (e.g.
+          # Loudoun's normalized/jurisdictions/validation output), so
+          # nothing ever got committed on any run. Only add paths that
+          # currently exist.
+          ZONING_PATHS=""
+          for d in data/zoning/normalized data/zoning/geometry data/zoning/jurisdictions data/zoning/validation; do
+            [ -d "$d" ] && ZONING_PATHS="$ZONING_PATHS $d/"
+          done
+          if [ -z "$ZONING_PATHS" ]; then
+            echo "No zoning output directories exist — nothing to add"
+          else
+            git add $ZONING_PATHS
+          fi
           if git diff --cached --quiet; then
             echo "No zoning data changes to commit"
           else

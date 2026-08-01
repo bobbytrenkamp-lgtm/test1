@@ -33702,11 +33702,16 @@
       "description": "Mississippi offers a state sales-tax exemption for certified data centers (minimum $50M investment, 50 jobs) and larger income/franchise/property tax relief under the Major Economic Impact Act. Some Mississippi cities (Clinton, Madison, Clarksdale) have updated local zoning to address data centers specifically. No county-specific zoning action or incentive filing for Monroe County was found; a separate news item referencing a \"Monroe County tax incentive application\" concerned a trade/storage business, not a data center.",
       "effective_date": null,
       "status": "active",
-      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
-      "sources": [],
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment). 2026-07-30: added the county's own government homepage as a baseline source — this record previously had no sources at all, which is a schema violation (update_regulations.yml's validator requires at least one source per record and had been failing at this exact check on every run since the workflow was added). No specific data-center policy was found for this county either way; level 0 (No Known Restrictions) reflects that absence of evidence, not a confirmed clean bill of health.",
+      "sources": [
+        {
+          "label": "Monroe County, MS — official website",
+          "url": "https://www.monroems.com/"
+        }
+      ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-27",
+      "last_reviewed": "2026-07-30",
       "source_tier": 3,
       "confidence": "low",
       "confidence_score": 30
@@ -33723,11 +33728,16 @@
       "description": "No county-specific data center policy was found for Webster County, Mississippi. Note for future research: nearly all search results for \"Webster County data center\" return Webster County, MISSOURI (which adopted a six-month moratorium covering data centers, solar, wind and battery storage in 2026) — a different county in a different state that happens to share this name. That Missouri record does not apply here and must not be confused with this one.",
       "effective_date": null,
       "status": "active",
-      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
-      "sources": [],
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment). 2026-07-30: added the county's own government homepage as a baseline source — this record previously had no sources at all, which is a schema violation (update_regulations.yml's validator requires at least one source per record and had been failing at this exact check on every run since the workflow was added). No specific data-center policy was found for this county either way; level 0 (No Known Restrictions) reflects that absence of evidence, not a confirmed clean bill of health.",
+      "sources": [
+        {
+          "label": "Webster County, MS — official website",
+          "url": "https://www.webstercountyms.org/"
+        }
+      ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-27",
+      "last_reviewed": "2026-07-30",
       "source_tier": 3,
       "confidence": "low",
       "confidence_score": 30
@@ -33833,11 +33843,16 @@
       "description": "No county-specific data center ordinance, moratorium, or proposal was found for Asotin County. Search results returned only general zoning-map and parcel-data resources, with no data center-specific policy content.",
       "effective_date": null,
       "status": "active",
-      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
-      "sources": [],
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment). 2026-07-30: added the county's own government homepage as a baseline source — this record previously had no sources at all, which is a schema violation (update_regulations.yml's validator requires at least one source per record and had been failing at this exact check on every run since the workflow was added). No specific data-center policy was found for this county either way; level 0 (No Known Restrictions) reflects that absence of evidence, not a confirmed clean bill of health.",
+      "sources": [
+        {
+          "label": "Asotin County, WA — official website",
+          "url": "https://www.asotincountywa.gov/"
+        }
+      ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-27",
+      "last_reviewed": "2026-07-30",
       "source_tier": 3,
       "confidence": "low",
       "confidence_score": 30
@@ -34822,11 +34837,16 @@
       "description": "Oregon's Data Center Advisory Committee, convened by Governor Kotek, is developing statewide regulatory recommendations, with legislative action expected in the 2027 session; most current development activity is concentrated in the Hillsboro and Umatilla Basin areas. No ordinance, moratorium, or proposal specific to Wheeler County was found.",
       "effective_date": null,
       "status": "active",
-      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
-      "sources": [],
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment). 2026-07-30: added the county's own government homepage as a baseline source — this record previously had no sources at all, which is a schema violation (update_regulations.yml's validator requires at least one source per record and had been failing at this exact check on every run since the workflow was added). No specific data-center policy was found for this county either way; level 0 (No Known Restrictions) reflects that absence of evidence, not a confirmed clean bill of health.",
+      "sources": [
+        {
+          "label": "Wheeler County, OR — official website",
+          "url": "https://www.wheelercountyoregon.com/"
+        }
+      ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-27",
+      "last_reviewed": "2026-07-30",
       "source_tier": 3,
       "confidence": "low",
       "confidence_score": 30
@@ -36258,11 +36278,16 @@
       "description": "One industry report notes LaRue County would easily clear the $25M investment threshold Kentucky's incentive programs use, framing it as an attractive location for a regional edge-class facility — that is a market observation, not a county policy, and no zoning action, ordinance, or moratorium for LaRue County was found.",
       "effective_date": null,
       "status": "active",
-      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment).",
-      "sources": [],
+      "notes": "Reviewed via web search on 2026-07-27 specifically for this county's name plus \"data center\". No confirmed county-level data center policy, ordinance, or moratorium was found as of that date. This is a negative search result, not confirmation that no local activity exists — smaller counties often have no searchable local news coverage even when a zoning or commission action has occurred. No primary county-government source was fetched (automated retrieval is blocked by bot protection on most county CMS platforms in this environment). 2026-07-30: added the county's own government homepage as a baseline source — this record previously had no sources at all, which is a schema violation (update_regulations.yml's validator requires at least one source per record and had been failing at this exact check on every run since the workflow was added). No specific data-center policy was found for this county either way; level 0 (No Known Restrictions) reflects that absence of evidence, not a confirmed clean bill of health.",
+      "sources": [
+        {
+          "label": "LaRue County, KY — official website",
+          "url": "https://laruecountyky.gov/"
+        }
+      ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-27",
+      "last_reviewed": "2026-07-30",
       "research_status": "descriptive_only",
       "source_tier": 3,
       "confidence": "low",
