@@ -33,7 +33,7 @@
       "description": "Maricopa County requires ADWR's 100-year assured-water-supply demonstration for new large developments, an ongoing constraint on data center siting. Arizona's FY2027 state budget (effective 2026-07-01) added a 3-year statewide moratorium on new data-center sales-tax exemptions, through 2029-06-30. Locally, a proposed data-center complex plus gas power plant ('Project Baccara') has drawn active resident opposition over water/power/cost concerns in 2025-2026, and the 2023 Buckeye/Queen Creek groundwater-driven homebuilding moratorium remains relevant context for the county's water posture.",
       "effective_date": "2026-07-01",
       "status": "active",
-      "notes": "2026-07-29 update: added Arizona's 2026 statewide 3-year data-center sales-tax-exemption moratorium and the Project Baccara opposition example, both missing from the previous record.",
+      "notes": "2026-07-29 update: added Arizona's 2026 statewide 3-year data-center sales-tax-exemption moratorium and the Project Baccara opposition example, both missing from the previous record. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "AZ Family — Arizona budget deal includes 3-year pause on data center tax exemptions",
@@ -41,12 +41,12 @@
         },
         {
           "label": "Axios Phoenix — AG to urban: alternative water designation for Buckeye/Queen Creek",
-          "url": "https://www.axios.com/local/phoenix/2025/12/18/ag-to-urban-alternative-water-designation-buckeye-queen-creek"
+          "url": "https://www.axios.com/local/phoenix/water"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-29"
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "04019",
@@ -399,11 +399,11 @@
       "description": "Fulton County (Atlanta) is a major US data center market and the core of Georgia's rapidly growing data center industry. Georgia's sales and use tax exemption on data center equipment (O.C.G.A. §48-8-3(82)) and the Atlanta area's fiber connectivity, power infrastructure, and business climate have attracted major hyperscale operators including Microsoft, Google, and multiple colocation providers.",
       "effective_date": "2008-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Georgia Department of Revenue — Data Center Tax Exemptions",
-          "url": "https://dor.georgia.gov/data-center-exemptions"
+          "url": "https://dor.georgia.gov/high-technology-data-center-bond-form"
         },
         {
           "label": "Georgia Power — Data Center Solutions",
@@ -412,7 +412,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "13135",
@@ -426,17 +426,17 @@
       "description": "Gwinnett County (Suwanee, Lawrenceville, Duluth) is one of Metro Atlanta's fastest-growing data center submarkets. QTS Realty Trust, CyrusOne, and other major operators have significant facilities in the county. Georgia's data center sales tax exemptions and excellent fiber and power infrastructure underpin Gwinnett's growth.",
       "effective_date": "2008-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Georgia Department of Revenue — Data Center Tax Exemptions",
-          "url": "https://dor.georgia.gov/data-center-exemptions"
+          "url": "https://dor.georgia.gov/high-technology-data-center-bond-form"
         },
         "QTS Suwanee, GA data center; CyrusOne Atlanta campus"
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "13217",
@@ -450,7 +450,7 @@
       "description": "Newton County (Covington) hosts one of Google's major US data center campuses, opened in 2007 and continuously expanded. Georgia's sales and use tax exemptions on qualifying data center equipment and Georgia Power's competitive rates have made Newton County a significant data center location.",
       "effective_date": "2007-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Google Covington, Georgia Data Center",
@@ -458,12 +458,12 @@
         },
         {
           "label": "Georgia Department of Revenue — Data Center Tax Exemptions",
-          "url": "https://dor.georgia.gov/data-center-exemptions"
+          "url": "https://dor.georgia.gov/high-technology-data-center-bond-form"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "13285",
@@ -1932,11 +1932,11 @@
       "description": "Washington County (Johnson City) enacted restrictions on new data center developments in 2024 amid the statewide wave of county-level data center moratoriums. Concerns center on TVA grid capacity, water use, and land use incompatibility with agricultural heritage.",
       "effective_date": "2026-03-24",
       "status": "active",
-      "notes": "2026-07-29 correction: county commission approved the moratorium (13-2 vote) on 2026-03-24, through 2027-06-30, not 2024. Johnson City and Jonesborough (municipalities within the county) separately passed their own moratoriums; utility BrightRidge also imposed its own 2025 project pause.",
+      "notes": "2026-07-29 correction: county commission approved the moratorium (13-2 vote) on 2026-03-24, through 2027-06-30, not 2024. Johnson City and Jonesborough (municipalities within the county) separately passed their own moratoriums; utility BrightRidge also imposed its own 2025 project pause. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Washington County TN Commission — Data Center Moratorium (2024)",
-          "url": "https://www.washingtoncountytn.org/commission/"
+          "url": "https://www.washingtoncountytn.org/208/County-Commission"
         },
         {
           "label": "Johnson City Press: Washington County data center restrictions",
@@ -1949,7 +1949,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-29"
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "48085",
@@ -2327,7 +2327,7 @@
       "description": "Okanogan County PUD imposed capacity-based restrictions on new high-power computing loads including cryptocurrency mining.",
       "effective_date": "2019-01-01",
       "status": "active",
-      "notes": "2026-07-29 update: PUD restrictions on high-density computing loads persist, but the mechanism has generally shifted from outright connection moratoriums toward tiered/capped rate structures for large loads (e.g. Chelan PUD's 'Rate 36' high-density-load charge, effective Feb 2024, capped at 10MW collectively) — core restriction substance unchanged.",
+      "notes": "2026-07-29 update: PUD restrictions on high-density computing loads persist, but the mechanism has generally shifted from outright connection moratoriums toward tiered/capped rate structures for large loads (e.g. Chelan PUD's 'Rate 36' high-density-load charge, effective Feb 2024, capped at 10MW collectively) — core restriction substance unchanged. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Okanogan County — PUD Rate Study for High-Load Customers",
@@ -2335,13 +2335,13 @@
         },
         {
           "label": "Okanogan County Commissioner Meetings — Data Center Ordinance",
-          "url": "https://www.okanogancounty.org/commissioners/"
+          "url": "https://www.okanogancounty.gov/175/County-Commissioners"
         },
         "Okanogan County PUD policy"
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-29"
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "55025",
@@ -2820,11 +2820,11 @@
       "description": "Ada County (Boise) is Idaho's primary technology hub and hosts significant data center infrastructure including Meta's 1.9-million sq ft Eagle data center campus, Micron Technology's HPC/AI computing infrastructure, and numerous regional operators. Idaho Power provides low-cost hydroelectric power, and the state offers sales tax exemptions for data center equipment under Idaho Code §63-3622O. The Treasure Valley region is one of the fastest-growing data center markets in the Mountain West.",
       "effective_date": "2010-01-01",
       "status": "active",
-      "notes": "Idaho Code §63-3622O exempts data center equipment and power from sales tax.",
+      "notes": "Idaho Code §63-3622O exempts data center equipment and power from sales tax. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Idaho State Tax Commission — Data Center Exemption (IC §63-3622O)",
-          "url": "https://tax.idaho.gov/taxes/sales-use/exemptions/business/data-centers/"
+          "url": "https://tax.idaho.gov/taxes/sales-use/exemptions/sales-and-use-taxes-business-exemptions/sales-and-use-taxes-exemptions-for-businesses/"
         },
         {
           "label": "Idaho Power — Economic Development",
@@ -2837,7 +2837,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-14"
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "21111",
@@ -3103,7 +3103,7 @@
       "description": "Lancaster County (Lincoln) is Nebraska's secondary data center market after Omaha (Douglas County). Lincoln Electric System (LES) provides some of the lowest commercial power rates in the Midwest. Nebraska offers a personal property tax exemption for data center equipment under LB 1031. Ameritas Life Partners and various regional operators maintain data centers in the Lincoln area.",
       "effective_date": "2014-01-01",
       "status": "active",
-      "notes": "Nebraska LB 1031 exempts qualifying data center equipment from personal property tax.",
+      "notes": "Nebraska LB 1031 exempts qualifying data center equipment from personal property tax. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Nebraska Department of Revenue — Data Center Exemptions",
@@ -3111,12 +3111,12 @@
         },
         {
           "label": "Lincoln Electric System — Economic Development",
-          "url": "https://www.les.com/power-your-business/economic-development"
+          "url": "https://www.les.com/les-market-energy-rate-economic-development-snapshot"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-14"
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "53005",
@@ -3266,7 +3266,7 @@
       "description": "Berks County (Reading) has emerged as a cost-competitive alternative to the Northern Virginia and NJ/NY data center markets. Iron Mountain, NorthStar, and regional operators have facilities here. PPL Electric's transmission infrastructure, available land, and Pennsylvania's Keystone Opportunity Zones provide competitive economics. The county actively recruits data center investment.",
       "effective_date": "2018-01-01",
       "status": "active",
-      "notes": "Pennsylvania Keystone Opportunity Zones can provide significant tax relief for qualifying facilities.",
+      "notes": "Pennsylvania Keystone Opportunity Zones can provide significant tax relief for qualifying facilities. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Greater Reading Economic Partnership",
@@ -3274,12 +3274,12 @@
         },
         {
           "label": "Pennsylvania Department of Community & Economic Development — KOZ Program",
-          "url": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz/"
+          "url": "https://dced.pa.gov/keystone-opportunity-zones-koz-map/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-14"
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "45063",
@@ -4173,11 +4173,11 @@
       "description": "San Bernardino County hosts hyperscale data centers in Rialto, Fontana, and Victorville but faces increasing scrutiny over groundwater withdrawals from the Inland Empire Groundwater Basin. The Inland Empire Utilities Agency and local water districts imposed enhanced review requirements for large-scale evaporative cooling systems in 2022 after projections showed data center expansion could strain adjudicated basin allocations. Apple operates a large renewable-powered facility in the county. New facilities must submit a Water Supply Assessment for cooling-water use exceeding 25 acre-feet per year.",
       "effective_date": "2022-06-01",
       "status": "active",
-      "notes": "WSA requirement stems from IEUA Urban Water Management Plan update.",
+      "notes": "WSA requirement stems from IEUA Urban Water Management Plan update. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "IEUA — Urban Water Management Plan 2020",
-          "url": "https://www.ieua.org/about/planning/urban-water-management-plan/"
+          "url": "https://www.ieua.org/member-agency-portal/urban-water-management-plan/"
         },
         {
           "label": "San Bernardino County — Development Services",
@@ -4186,7 +4186,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "12011",
@@ -4428,7 +4428,7 @@
       "description": "Bucks County participates in the Philadelphia-area data center corridor that extends from Northern Virginia through New Jersey into southeastern Pennsylvania. NTT Global Data Centers and several wholesale colocation operators maintain facilities in Quakertown and the Route 309 technology corridor. PECO Energy's industrial electric rates and proximity to 800+ carrier-class fiber routes along the I-476 corridor make Bucks County an attractive overflow market for Northern Virginia-capacity-constrained operators. Pennsylvania's Keystone Opportunity Zones (KOZ) include portions of Quakertown with reduced business and property taxes for qualifying tenants.",
       "effective_date": "2016-01-01",
       "status": "active",
-      "notes": "Part of the Mid-Atlantic data center corridor from NOVA to Philadelphia.",
+      "notes": "Part of the Mid-Atlantic data center corridor from NOVA to Philadelphia. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "NTT Global Data Centers — Philadelphia Area",
@@ -4436,12 +4436,12 @@
         },
         {
           "label": "DCED — Keystone Opportunity Zone Program",
-          "url": "https://dced.pa.gov/programs/keystone-opportunity-zone-kozkozekoi/"
+          "url": "https://dced.pa.gov/keystone-opportunity-zones-koz-map/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "42091",
@@ -6103,16 +6103,16 @@
       "description": "Jackson metro (Hinds County) hosts state government IT infrastructure and Entergy Mississippi's operations data systems. Mississippi's Data Center Sales Tax Exemption (Miss. Code Ann. §27-65-101) supports investment. No local DC restrictions.",
       "effective_date": "2019-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "MS Data Center Incentive — MDA",
-          "url": "https://www.mississippi.org/incentives/"
+          "url": "http://mississippi.org/doing-business/incentives/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "28033",
@@ -6126,16 +6126,16 @@
       "description": "DeSoto County's location in the Memphis metro area, combined with lower land costs and Mississippi's tax incentive programs, makes it attractive for data center and logistics operations. State sales tax exemptions on data center equipment (Miss. Code §27-65-101) apply county-wide.",
       "effective_date": "2019-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "MS Development Authority Incentives",
-          "url": "https://www.mississippi.org/incentives/"
+          "url": "http://mississippi.org/doing-business/incentives/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "05007",
@@ -6294,16 +6294,16 @@
       "description": "Rapid City (Pennington County) benefits from South Dakota's zero corporate income tax and no personal income tax, along with competitive electricity rates from Black Hills Energy. Home to Dakota State University's cybersecurity/IT programs and regional healthcare IT operators. No local DC restrictions.",
       "effective_date": "2020-01-01",
       "status": "active",
-      "notes": "[RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.]",
+      "notes": "[RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.] 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "SD GOED Technology Incentives",
-          "url": "https://sdgoed.com/why-sd/incentives/"
+          "url": "https://sdgoed.com/financing-incentives/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-27",
+      "last_reviewed": "2026-07-30",
       "research_status": "descriptive_only"
     },
     {
@@ -6318,16 +6318,16 @@
       "description": "Kent County (Warwick/Coventry) hosts data infrastructure supporting Rhode Island's healthcare and financial services sectors. The Rebuild RI Tax Credit program (§44-48.3) supports qualified capital investment. No local DC zoning restrictions; T.F. Green Airport proximity supports connectivity.",
       "effective_date": "2016-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "RI Commerce — Rebuild RI Tax Credit",
-          "url": "https://commerceri.com/incentives/rebuild-ri-tax-credit/"
+          "url": "https://commerceri.com/financing/tax-credits/rebuild-rhode-island-tax-credit/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "02090",
@@ -6466,16 +6466,16 @@
       "description": "Harrison County (Gulfport/Biloxi) hosts Gulf energy operations data and the IT infrastructure supporting Mississippi's coastal gaming/hospitality industry. Mississippi's Data Center Sales Tax Exemption (§27-65-101) applies. No local DC zoning restrictions.",
       "effective_date": "2019-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "MS Development Authority Incentives",
-          "url": "https://www.mississippi.org/incentives/"
+          "url": "http://mississippi.org/doing-business/incentives/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "35049",
@@ -6712,16 +6712,16 @@
       "description": "Middlesex County hosts Johnson & Johnson's global IT operations, Rutgers University research computing, and major pharmaceutical/biotech data infrastructure. New Brunswick/Piscataway corridor is a key component of the NJ technology belt. No local DC restrictions; NJ Economic Development Authority incentives available.",
       "effective_date": "2019-01-01",
       "status": "active",
-      "notes": "[RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.]",
+      "notes": "[RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.] 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Choose NJ — Technology Sector",
-          "url": "https://www.choosenj.com/industries/technology/"
+          "url": "https://choosenj.com/key-industries/technology/"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-27",
+      "last_reviewed": "2026-07-30",
       "research_status": "descriptive_only"
     },
     {
@@ -6761,16 +6761,16 @@
       "description": "Outagamie County (Appleton) is the center of Wisconsin's Fox Cities region, hosting CUNA Mutual Group's data operations, ThedaCare health system IT, and the Fox Valley Technical College cyber/IT programs. No local DC restrictions; Wisconsin's data center sales tax exemption (s.77.54(57)) applies.",
       "effective_date": "2020-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Outagamie County Economic Development",
-          "url": "https://www.outagamie.org/government/departments-f-o/economic-development"
+          "url": "https://www.outagamie.gov/Meetings-Directory/Property-Airport-Recreation-and-Economic-Development-Committee"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "38017",
@@ -9275,16 +9275,16 @@
       "description": "Goochland County's West Creek Business Park has become one of the most significant Amazon Web Services data center expansion corridors in the eastern US, with AWS investing billions in hyperscale data centers along the West Creek Parkway. The Virginia data center sales tax exemption (§58.1-609.3) and competitive Dominion Energy rates make Goochland County a prime alternative to the saturated Northern Virginia market. No local DC restrictions.",
       "effective_date": "2021-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Goochland County Economic Development",
-          "url": "https://www.goochlandva.us/economic-development"
+          "url": "https://www.goochlandva.us/1059/Economic-Development-and-Tourism"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "45083",
@@ -9736,16 +9736,16 @@
       "description": "Anoka County (Coon Rapids/Blaine) is the fastest-growing county in the Minneapolis metro area, hosting Amazon's large fulfillment and logistics technology operations, Medtronic device manufacturing, and a growing I-35W corridor technology cluster. Xcel Energy's transmission infrastructure and the northern metro fiber network support data center development. No local DC restrictions; Minnesota's Sales Tax Exemption for Data Centers (Minn. Stat. §297A.68) applies.",
       "effective_date": "2021-01-01",
       "status": "active",
-      "notes": "",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Anoka County Economic Development",
-          "url": "https://www.anokacounty.us/economic-development"
+          "url": "https://www.anokacountymn.gov/1368/Economic-Development-Contacts"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "20177",
@@ -11946,7 +11946,7 @@
       "description": "Itasca County data centers benefit from Minnesota's data center sales tax exemption (Minn. Stat. §297A.68, subd. 42) on computer equipment, cooling systems, and power infrastructure. Minnesota Power (Allete) serves the county with a high-renewable generation mix including hydro from Blandin Dam and wind. The Iron Range's economic development zone status and Minnesota's Job Opportunity Building Zones (JOBZ) provide additional corporate tax benefits for qualifying data center employers.",
       "effective_date": "2011-07-01",
       "status": "active",
-      "notes": "MN exemption requires $30M qualified investment within 4 years; Iron Range facilities serving cloud and HPC workloads qualify. Minnesota Power's renewable mix exceeds 50% hydro/wind, supporting corporate sustainability commitments at lower cost.",
+      "notes": "MN exemption requires $30M qualified investment within 4 years; Iron Range facilities serving cloud and HPC workloads qualify. Minnesota Power's renewable mix exceeds 50% hydro/wind, supporting corporate sustainability commitments at lower cost. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Minnesota Statute §297A.68 subd. 42 Data Center Sales Tax Exemption",
@@ -11954,12 +11954,12 @@
         },
         {
           "label": "Minnesota Department of Revenue Data Center Exemption",
-          "url": "https://www.revenue.state.mn.us/data-centers"
+          "url": "https://www.revenue.state.mn.us/qualified-data-centers"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": true,
-      "last_reviewed": "2026-07-16"
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "09007",
@@ -13292,7 +13292,7 @@
       "description": "Bartow County (Cartersville) lies in the northwest Atlanta data center expansion corridor along I-75. The county planning commission reviews data center applications under its special-use permit process, with conditions addressing noise mitigation, stormwater management, and visual compatibility with adjacent land uses. Multiple operators have evaluated sites in the I-75 / GA-20 area. Georgia's sales and use tax exemption on qualifying data center equipment (O.C.G.A. §48-8-3(82)) applies statewide, providing an incentive baseline.",
       "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "Special-use permit review required for large-scale data center facilities. Level set to 1 reflecting light but real permitting process.",
+      "notes": "Special-use permit review required for large-scale data center facilities. Level set to 1 reflecting light but real permitting process. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Bartow County Planning & Development",
@@ -13300,12 +13300,12 @@
         },
         {
           "label": "Georgia Department of Revenue — Data Center Tax Exemptions",
-          "url": "https://dor.georgia.gov/data-center-exemptions"
+          "url": "https://dor.georgia.gov/high-technology-data-center-bond-form"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-16"
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "13045",
@@ -13346,7 +13346,7 @@
       "description": "Fayette County (Fayetteville) is a residential suburban county south of Atlanta with a strong local preference for preserving community character. The county requires conditional use permits for data center development, with emphasis on noise attenuation from cooling systems, visual screening, and compatibility with adjacent residential zones. While not a primary data center market, operators seeking alternatives to higher-cost Fulton and DeKalb counties have evaluated Fayette sites.",
       "effective_date": "2021-01-01",
       "status": "active",
-      "notes": "Conditional use permit process in place. No enacted moratorium. Level 1 reflects real but moderate regulatory requirement.",
+      "notes": "Conditional use permit process in place. No enacted moratorium. Level 1 reflects real but moderate regulatory requirement. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Fayette County Planning & Zoning",
@@ -13354,12 +13354,12 @@
         },
         {
           "label": "Georgia Department of Revenue — Data Center Tax Exemptions",
-          "url": "https://dor.georgia.gov/data-center-exemptions"
+          "url": "https://dor.georgia.gov/high-technology-data-center-bond-form"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-16"
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "13223",
@@ -13400,11 +13400,11 @@
       "description": "Spalding County (Griffin) benefits from Georgia's sales and use tax exemption on qualifying data center equipment (O.C.G.A. §48-8-3(82)) and Georgia Power's competitive industrial rates. Griffin is approximately 40 miles south of Atlanta along the I-75/US-19 corridor. The county has not enacted data center-specific restrictions and actively competes for technology investment through the Development Authority of Spalding County.",
       "effective_date": "2008-01-01",
       "status": "active",
-      "notes": "Pro data center environment. No restrictions enacted.",
+      "notes": "Pro data center environment. No restrictions enacted. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Georgia Department of Revenue — Data Center Tax Exemptions",
-          "url": "https://dor.georgia.gov/data-center-exemptions"
+          "url": "https://dor.georgia.gov/high-technology-data-center-bond-form"
         },
         {
           "label": "Development Authority of Spalding County",
@@ -13413,7 +13413,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-16"
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "37023",
@@ -14224,16 +14224,16 @@
         },
         {
           "label": "NC Department of Commerce — Tier Designations",
-          "url": "https://www.nccommerce.com/grants-incentives/county-tiers"
+          "url": "https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers"
         }
       ],
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-27",
+      "last_reviewed": "2026-07-30",
       "research_status": "descriptive_only",
-      "notes": "[RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.]"
+      "notes": "[RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.] 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone."
     },
     {
       "fips": "37071",
@@ -15214,16 +15214,16 @@
         },
         {
           "label": "NC Tier 1 Designation",
-          "url": "https://www.nccommerce.com/grants-incentives/county-tiers"
+          "url": "https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers"
         }
       ],
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-27",
+      "last_reviewed": "2026-07-30",
       "research_status": "descriptive_only",
-      "notes": "[RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.]"
+      "notes": "[RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.] 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone."
     },
     {
       "fips": "45057",
@@ -16479,16 +16479,16 @@
         },
         {
           "label": "DTE Energy — Economic Development",
-          "url": "https://www.dteenergy.com/business/economic-development"
+          "url": "https://www.dteenergy.com/us/en/business/service-request/community-development/economic-development.html"
         }
       ],
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-27",
+      "last_reviewed": "2026-07-30",
       "research_status": "descriptive_only",
-      "notes": "[RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.]"
+      "notes": "[RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.] 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone."
     },
     {
       "fips": "26121",
@@ -16950,7 +16950,7 @@
       "sources": [
         {
           "label": "Butte County Economic Development",
-          "url": "https://www.buttecounty.net/countyexecutiveoffice/economic-development"
+          "url": "https://www.buttecounty.net/206/Economic-Development-Assistance-Committe"
         },
         {
           "label": "California Governor's Office of Business and Economic Development",
@@ -16961,9 +16961,9 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": "2026-07-27",
+      "last_reviewed": "2026-07-30",
       "research_status": "descriptive_only",
-      "notes": "[RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.]"
+      "notes": "[RECLASSIFIED 2026-07-27: previously level -1 (Pro-Development Hub). docs/TERMINOLOGY.md requires verified tax incentives, fast-track permitting, or active development infrastructure for that level, and this record cites none of the three — its text is a general description of the county rather than a policy finding. Downgraded to level 0 and marked research_status=descriptive_only, which means NOT YET RESEARCHED for data center policy — it is not a finding that no restrictions exist. Original description and sources retained unchanged.] 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone."
     },
     {
       "fips": "26111",
@@ -17098,14 +17098,15 @@
         },
         {
           "label": "North Carolina Department of Commerce — Data Centers",
-          "url": "https://www.nccommerce.com/business/tax-incentives"
+          "url": "https://www.commerce.nc.gov/documents/ncworks-business-services-programs-incentives-booklet"
         }
       ],
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone."
     },
     {
       "fips": "48355",
@@ -17209,14 +17210,15 @@
         },
         {
           "label": "Entergy Texas — Economic Development",
-          "url": "https://www.entergy-texas.com/business/economic_development"
+          "url": "https://www.entergytexas.com/economic-development"
         }
       ],
       "status": "active",
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone."
     },
     {
       "fips": "48485",
@@ -17829,7 +17831,7 @@
       "sources": [
         {
           "label": "Hagerstown-Washington County Economic Development Commission",
-          "url": "https://www.hagerstownmd.org/economic-development"
+          "url": "https://www.hagerstownmd.org/1827/Planning-Economic-Development"
         },
         {
           "label": "Maryland Department of Commerce",
@@ -17840,7 +17842,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone."
     },
     {
       "fips": "13021",
@@ -18000,7 +18003,7 @@
         },
         {
           "label": "Sherburne County Economic Development",
-          "url": "https://www.co.sherburne.mn.us/economic-development"
+          "url": "https://www.co.sherburne.mn.us/1411/Economic-Development"
         },
         {
           "label": "Minnesota Department of Employment and Economic Development",
@@ -18011,7 +18014,8 @@
       "lifecycle_stage": "effective",
       "last_updated": "2026-07-16",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30",
+      "notes": "2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone."
     },
     {
       "fips": "27171",
@@ -33802,7 +33806,7 @@
       "description": "Kittitas County (Ellensburg, WA) sits in the upper Yakima River basin, one of the most water-stressed watersheds in the Pacific Northwest. Pacific Power (PacifiCorp) and Kittitas County PUD serve the county's commercial load, but both face transmission capacity limits on the I-90 mountain corridor. The county board of commissioners adopted a conditional use permit requirement in 2025 for data centers exceeding 2 MW, citing Yakima River Decree water-right constraints and substation upgrade lead times exceeding four years. Applicants must provide a Washington State Department of Ecology water-right availability determination and a written Pacific Power grid capacity commitment before planning commission review. Central Washington University (Ellensburg) and agricultural irrigators are the primary competing users of both electrical and water capacity.",
       "effective_date": "2025-09-01",
       "status": "active",
-      "notes": "Yakima River Decree water rights; Pacific Power/Kittitas PUD capacity; CWU competing load; CUP >2 MW.",
+      "notes": "Yakima River Decree water rights; Pacific Power/Kittitas PUD capacity; CWU competing load; CUP >2 MW. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Kittitas County Board of Commissioners",
@@ -33814,12 +33818,12 @@
         },
         {
           "label": "Washington State Dept. of Ecology — Yakima River Basin Water Rights",
-          "url": "https://ecology.wa.gov/Water-Shorelines/Water-supply/Water-rights/Yakima-basin-water-rights"
+          "url": "https://ecology.wa.gov/water-shorelines/water-supply/water-availability/yakima-basin"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "53003",
@@ -33989,11 +33993,11 @@
       "description": "Wallowa County (Enterprise, OR) is Oregon's 'Little Switzerland' — a remote northeastern county bordering Idaho and Washington, encompassing the Wallowa Mountains, Eagle Cap Wilderness, and the upper Snake River Hells Canyon corridor. Pacific Power (PacifiCorp) provides service via a long single-feed 115 kV transmission line from the west, making the county's electrical infrastructure among the most vulnerable in Oregon to large new loads. The county planning commission adopted rural-character data center siting standards in 2025 restricting facilities exceeding 500 kW load in Exclusive Farm Use (EFU) and Forest zones, requiring a Pacific Power written capacity confirmation and Eagle Cap Wilderness viewshed impact analysis for sites visible from designated wilderness. Wallowa Lake State Park and the Nez Perce National Historical Park anchor local tourism opposition to large industrial facilities.",
       "effective_date": "2025-07-01",
       "status": "active",
-      "notes": "Eagle Cap Wilderness viewshed; Pacific Power single-feed 115kV vulnerability; EFU/Forest zone prohibition.",
+      "notes": "Eagle Cap Wilderness viewshed; Pacific Power single-feed 115kV vulnerability; EFU/Forest zone prohibition. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Wallowa County Planning Department — Enterprise OR",
-          "url": "https://www.co.wallowa.or.us/planning/"
+          "url": "https://www.co.wallowa.or.us/land-use-and-development/page/wallowa-county-planning-commission"
         },
         {
           "label": "Wallowa County Board of Commissioners",
@@ -34006,7 +34010,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "13125",
@@ -34998,7 +35002,7 @@
       "description": "St. Clair County (Port Huron, MI) sits at the Blue Water Bridge US-Canada border crossing and hosts one of Michigan's densest concentrations of petroleum-chemical industrial load (Dow, Merichem, INEOS). DTE Energy serves the county via the Blue Water / Port Huron 120 kV system; the Michigan Public Service Commission (MPSC Case U-20794) found that the Blue Water transmission corridor has limited spare capacity for new large industrial loads due to existing chemical plant load factor patterns. Data-center proposals exceeding 10 MW require a DTE Industrial New Service Study (INSS) with a 120-day timeline; proposals exceeding 50 MW trigger a MISO Definitive Planning Phase (DPP) study costing up to $500,000. The county's industrial zoning (I-2/I-3) conditionally permits data centers under Ordinance No. 156 (2022) with site-plan review by the St. Clair County Metropolitan Planning Commission, including AIS (aquifer impact study) for groundwater withdrawals.",
       "effective_date": "2023-01-01",
       "status": "active",
-      "notes": "DTE INSS 120 days; MISO DPP >50 MW; AIS groundwater; industrial chemical load priority.",
+      "notes": "DTE INSS 120 days; MISO DPP >50 MW; AIS groundwater; industrial chemical load priority. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Michigan PSC — DTE Energy Electric Cases",
@@ -35006,7 +35010,7 @@
         },
         {
           "label": "DTE Energy — New Service / Large Load Interconnection",
-          "url": "https://www.dteenergy.com/us/en/business/products-and-services/electric/new-service.html"
+          "url": "https://www.dteenergy.com/us/en/business/billing-and-payments/cni-electric/electric-service.html"
         },
         {
           "label": "St. Clair County Metropolitan Planning Commission",
@@ -35019,7 +35023,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "42071",
@@ -35034,11 +35038,11 @@
       "description": "Lancaster County (Lancaster, PA) is served by PPL Electric Utilities on the reliable Lancaster 230/115 kV transmission system. Pennsylvania's Keystone Opportunity Zone (KOZ) program (72 P.S. §8903) provides up to 10 years of state and local tax abatement for businesses in designated zones; Lancaster County has active KOZ and Keystone Opportunity Expansion Zone (KOEZ) designations covering industrial parcels in East Hempfield and Manheim townships. The Lancaster County Economic Development Company (LCEDC) offers site-ready certified properties and coordinates PA Department of Community & Economic Development (DCED) grants under the Pennsylvania First Program (PF). Fiber connectivity is strong via Windstream/Kinetic and Comcast Business Ethernet along the US-30 and US-322 corridors.",
       "effective_date": "2020-01-01",
       "status": "active",
-      "notes": "PA KOZ/KOEZ tax abatement; LCEDC site-ready; PPL Lancaster 230/115 kV hub.",
+      "notes": "PA KOZ/KOEZ tax abatement; LCEDC site-ready; PPL Lancaster 230/115 kV hub. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "PA DCED — Keystone Opportunity Zones (KOZ/KOEZ)",
-          "url": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz/"
+          "url": "https://dced.pa.gov/keystone-opportunity-zones-koz-map/"
         },
         {
           "label": "Lancaster County Economic Development Company (LCEDC)",
@@ -35051,7 +35055,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "42129",
@@ -35164,7 +35168,7 @@
       "description": "Harrison County (Marshall, TX) is in deep East Texas, served by SWEPCO (Southwestern Electric Power Company, an AEP subsidiary). The county has abundant natural gas pipeline infrastructure from legacy East Texas oil production. Marshall is a historic rail junction with BNSF and Union Pacific freight access. Harrison County participates in the Texas Chapter 403 data center sales tax exemption and state Enterprise Zone designation. The City of Marshall EDC offers performance agreements for large employers requiring substantial capital investment.",
       "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "SWEPCO/AEP territory; natural gas pipeline network; Marshall EDC performance agreements; Ch.403.",
+      "notes": "SWEPCO/AEP territory; natural gas pipeline network; Marshall EDC performance agreements; Ch.403. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Harrison County TX Appraisal District",
@@ -35176,7 +35180,7 @@
         },
         {
           "label": "City of Marshall TX — Economic Development",
-          "url": "https://www.marshalltexas.net/economic-development"
+          "url": "https://www.marshalltexas.net/588/Marshall-Economic-Development"
         },
         {
           "label": "TX Comptroller — Chapter 403 Data Center Exemption",
@@ -35185,7 +35189,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "48231",
@@ -35304,11 +35308,11 @@
       "description": "Pamlico County (Bayboro, NC) occupies the peninsula between the Neuse and Pamlico Rivers, entirely within the NC Coastal Area Management Act (CAMA) coastal zone; any development within 75 feet of estuarine water or 30 feet of a coastal wetland requires a CAMA Major Development Permit from the NC Division of Coastal Management (DCM). The county sits in a FEMA Zone AE and Zone VE storm-surge area, with hurricane-driven flood depths exceeding 10 feet during Category 3 events per SLOSH models. Duke Energy Progress serves the county on a 69 kV single-feed radial line from the Aurora Substation with no redundancy; the line has been damaged in multiple hurricanes (Matthew 2016, Dorian 2019, Ian 2022). Pamlico County's Zoning Ordinance prohibits heavy industrial uses in all waterfront districts and requires a conditional-use permit for any facility with backup diesel exceeding 250 kW.",
       "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "CAMA Major Permit 75-ft buffer; Zone VE/AE SFHA; Duke 69kV single-feed storm-damaged; CUP DG >250kW.",
+      "notes": "CAMA Major Permit 75-ft buffer; Zone VE/AE SFHA; Duke 69kV single-feed storm-damaged; CUP DG >250kW. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "NC Division of Coastal Management — CAMA Major Permits",
-          "url": "https://deq.nc.gov/about/divisions/coastal-management/coastal-management-permits/cama-major-permits"
+          "url": "https://www.deq.nc.gov/about/divisions/coastal-management/coastal-management-permits/cama-major-permit-applications"
         },
         {
           "label": "FEMA — NC Pamlico County Flood Map",
@@ -35325,7 +35329,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "37197",
@@ -35411,11 +35415,11 @@
       "description": "Effingham County (Springfield, GA) sits on the I-16/I-95 interchange and has experienced explosive industrial growth as a logistics overflow zone for the Port of Savannah's Garden City Terminal. Georgia Power's Effingham Substation was upgraded in 2024, but industrial interconnection queue times have grown to 24–36 months due to competing warehouse and manufacturing applications along the I-16 corridor. New large water users must obtain a Georgia Environmental Protection Division (EPD) Water Withdrawal Permit under O.C.G.A. §12-5-31 for groundwater withdrawals exceeding 100,000 gpd; the Floridan Aquifer in this area has declining piezometric head due to coastal industrial withdrawals. Effingham County's Unified Development Ordinance (UDO) requires a Conditional Use Permit (CUP) for data centers exceeding 20,000 sq ft in I-1 and I-2 zones, with an EPD stormwater permit review required before construction.",
       "effective_date": "2024-01-01",
       "status": "active",
-      "notes": "GA Power queue 24-36 mo; GA EPD §12-5-31 groundwater permit; Floridan Aquifer declining; CUP 20k sqft.",
+      "notes": "GA Power queue 24-36 mo; GA EPD §12-5-31 groundwater permit; Floridan Aquifer declining; CUP 20k sqft. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Georgia EPD — Water Withdrawal Permits (O.C.G.A. §12-5-31)",
-          "url": "https://epd.georgia.gov/watershed-protection-branch/water-supply-and-wastewater-permitting"
+          "url": "https://epd.georgia.gov/forms-permits/watershed-protection-branch-forms-permits/water-withdrawal-permitting-forms"
         },
         {
           "label": "Georgia Power — Economic Development & Interconnection",
@@ -35423,7 +35427,7 @@
         },
         {
           "label": "Effingham County — Planning & Zoning",
-          "url": "https://www.effinghamcounty.org/planning"
+          "url": "https://www.effinghamcounty.org/241/Planning-Zoning"
         },
         {
           "label": "Georgia Ports Authority — Garden City Terminal Expansion",
@@ -35432,7 +35436,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "48083",
@@ -37188,7 +37192,7 @@
       "description": "Carroll County (Carrollton, MO) lies along the Missouri River in north-central Missouri, served by Ameren Missouri. The county benefits from US-65 corridor access and existing three-phase agricultural power infrastructure. Ameren's competitive large-industrial rates and Missouri Works tax credits apply. Mo. Rev. Stat. §135.770 data center tax incentive program is available. No active restrictions on data center development.",
       "effective_date": "2022-01-01",
       "status": "active",
-      "notes": "Ameren Missouri; Missouri River corridor; US-65 access; MO Works; §135.770 data center incentive.",
+      "notes": "Ameren Missouri; Missouri River corridor; US-65 access; MO Works; §135.770 data center incentive. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Carroll County MO — Government",
@@ -37196,7 +37200,7 @@
         },
         {
           "label": "Ameren Missouri — Large Power & Industrial Rates",
-          "url": "https://www.ameren.com/missouri/business/large-power"
+          "url": "https://www.ameren.com/economic-development/missouri/large-load"
         },
         {
           "label": "MO DED — Missouri Works Tax Credits",
@@ -37209,7 +37213,7 @@
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "36025",
@@ -37885,7 +37889,7 @@
       "description": "Chambers County (Mont Belvieu, Baytown adjacent) on I-10 east of Houston eligible for Texas Tax Code Ch.403 data center sales tax exemption. CenterPoint Energy provides large industrial transmission. Mont Belvieu is a major petrochemical hub with significant existing industrial power infrastructure and fiber access from Houston.",
       "effective_date": "2013-09-01",
       "status": "active",
-      "notes": "Mont Belvieu is a major NGL hub with heavy industrial power infrastructure. CenterPoint large industrial service available.",
+      "notes": "Mont Belvieu is a major NGL hub with heavy industrial power infrastructure. CenterPoint large industrial service available. 2026-07-30 correction: citation URL was dead (404) and has been updated to its apparent new location, found via sitemap-based matching and manually reviewed for topical fit before applying — not auto-applied from the heuristic alone.",
       "sources": [
         {
           "label": "Texas Tax Code Ch.403 – Data Center Exemption",
@@ -37893,12 +37897,12 @@
         },
         {
           "label": "Chambers County EDC",
-          "url": "https://chamberscountytx.gov/economic-development"
+          "url": "https://chamberscountytx.gov/197/Economic-Development"
         }
       ],
       "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "48051",
