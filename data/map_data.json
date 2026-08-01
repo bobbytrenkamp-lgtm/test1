@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-08-01T22:21:39.641414+00:00",
+  "generated_at": "2026-08-01T23:09:56.715911+00:00",
   "source_last_updated": "2026-07-18",
   "stats": {
     "total_counties_tracked": 1467,
     "by_level": {
       "-1": 599,
-      "0": 711,
+      "0": 712,
       "1": 62,
-      "2": 40,
+      "2": 39,
       "3": 41,
       "4": 14
     },
@@ -36142,7 +36142,7 @@
     "18093": {
       "name": "Lawrence County",
       "state": "Indiana",
-      "level": 2,
+      "level": 0,
       "types": [
         "data_center",
         "water"
@@ -36150,23 +36150,19 @@
       "title": "Lawrence County Indiana Data Center Siting Restrictions Study",
       "description": "Lawrence County (Bedford, IN) sits in the Indiana limestone corridor \u2014 the country's premier oolitic limestone quarrying region (Indiana Limestone, Victor Oolite) \u2014 and hosts Duke Energy Indiana's service territory. The county council initiated a data center siting restrictions study in 2026 following proposals for large facilities near active quarry operations. Community concerns include groundwater drawdown affecting limestone karst aquifers, heavy truck traffic conflicts with quarry operations, and grid capacity. The study requires applicants to provide hydrogeological assessments and AEP/Duke capacity letters before planning commission approval.",
       "effective_date": "2026-02-01",
-      "status": "proposed",
-      "notes": "Indiana Limestone corridor karst aquifer concern; Duke Energy Indiana; quarry traffic conflict.",
+      "status": "active",
+      "notes": "2026-07-30 audit: extensive searching (Lawrence County IN news, county plan commission, Indiana University Environmental Resilience Institute's statewide tracker of 11 IN counties with data center ordinances) found zero evidence of any data center siting study, ordinance, or council action in Lawrence County, IN. The limestone/karst-aquifer/quarry-traffic detail is real background about the county but the specific policy claim could not be corroborated \u2014 same pattern as several other fabricated records found earlier in this audit. Downgraded to level 0 pending direct confirmation with Lawrence County government.",
       "sources": [
         {
           "label": "Lawrence County Indiana Plan Commission",
           "url": "https://www.lawrencecounty.in.gov/"
-        },
-        {
-          "label": "Duke Energy Indiana \u2014 Service Territory Maps",
-          "url": "https://www.duke-energy.com/"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null,
+      "last_reviewed": "2026-07-30",
       "confidence": "high",
-      "confidence_score": 87,
+      "confidence_score": 71,
       "source_tier": 1
     },
     "37001": {
@@ -50942,7 +50938,7 @@
     ]
   },
   "confidence_metadata": {
-    "last_computed": "2026-08-01T22:21:40.220317+00:00",
+    "last_computed": "2026-08-01T23:09:56.936047+00:00",
     "scoring_weights": {
       "source_tier": "40% (Tier1=gov/official, Tier2=industry, Tier3=news)",
       "source_count": "20% (capped at 3 sources)",

@@ -33341,7 +33341,7 @@
       "fips": "18093",
       "name": "Lawrence County",
       "state": "Indiana",
-      "level": 2,
+      "level": 0,
       "types": [
         "data_center",
         "water"
@@ -33349,21 +33349,17 @@
       "title": "Lawrence County Indiana Data Center Siting Restrictions Study",
       "description": "Lawrence County (Bedford, IN) sits in the Indiana limestone corridor — the country's premier oolitic limestone quarrying region (Indiana Limestone, Victor Oolite) — and hosts Duke Energy Indiana's service territory. The county council initiated a data center siting restrictions study in 2026 following proposals for large facilities near active quarry operations. Community concerns include groundwater drawdown affecting limestone karst aquifers, heavy truck traffic conflicts with quarry operations, and grid capacity. The study requires applicants to provide hydrogeological assessments and AEP/Duke capacity letters before planning commission approval.",
       "effective_date": "2026-02-01",
-      "status": "proposed",
-      "notes": "Indiana Limestone corridor karst aquifer concern; Duke Energy Indiana; quarry traffic conflict.",
+      "status": "active",
+      "notes": "2026-07-30 audit: extensive searching (Lawrence County IN news, county plan commission, Indiana University Environmental Resilience Institute's statewide tracker of 11 IN counties with data center ordinances) found zero evidence of any data center siting study, ordinance, or council action in Lawrence County, IN. The limestone/karst-aquifer/quarry-traffic detail is real background about the county but the specific policy claim could not be corroborated — same pattern as several other fabricated records found earlier in this audit. Downgraded to level 0 pending direct confirmation with Lawrence County government.",
       "sources": [
         {
           "label": "Lawrence County Indiana Plan Commission",
           "url": "https://www.lawrencecounty.in.gov/"
-        },
-        {
-          "label": "Duke Energy Indiana — Service Territory Maps",
-          "url": "https://www.duke-energy.com/"
         }
       ],
-      "lifecycle_stage": "proposed",
+      "lifecycle_stage": "effective",
       "pipeline_verified": false,
-      "last_reviewed": null
+      "last_reviewed": "2026-07-30"
     },
     {
       "fips": "37001",
