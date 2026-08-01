@@ -77,8 +77,8 @@ Status: Fixed
 
 ---
 
-Finding (not fixed, needs a decision): no-paid-dependency guard flags
-cloudscene in historical snapshots
+Finding (ratified): no-paid-dependency guard flags cloudscene in
+historical snapshots
 Priority: LOW
 Affected Files: `tests/test_no_paid_dependencies.py`,
 `data/facilities_version_history/2026-07-12T*.json` (8 files)
@@ -87,17 +87,21 @@ including `data/facilities_version_history/`, which stores dated,
 point-in-time audit snapshots. Eight snapshots from 2026-07-12/13 (before
 the Cloudscene integration was removed on 2026-07-27) legitimately contain
 the string `cloudscene`, since that's what the pipeline actually used at
-that point in time. It's unclear whether the guard is meant to flag
-historical audit trails forever (defensible: guarantees no paid service
-ever reappears, even by copy-pasting an old snapshot) or whether historical
-snapshots should be exempted (also defensible: they're a record of the
-past, not a live dependency). Confirmed this already fails identically on
-`main` — not introduced by any recent branch. Left unresolved rather than
-guessed at, since loosening or reinterpreting the paid-dependency guard is
-a governance call, not a code-correctness fix.
-Fixed By: (unresolved — flagged for Bobby)
-Date Fixed: n/a
-Status: Open (non-blocking; same behavior on main)
+that point in time.
+Decision: Historical snapshots are exempted (already implemented via
+`PATH_EXEMPT` in `tests/test_no_paid_dependencies.py`, ratified 2026-07-30
+by Bobby). Rationale: these files are write-once archives, never re-read
+as config or executed, so scanning them protects nothing — a real
+reintroduction of a paid service would appear first in a live source
+(an adapter, `facility_sources.json`, `requirements.txt`, a workflow),
+all of which remain fully scanned. Leaving 8 permanent false positives in
+place would only train reviewers to expect and ignore "cloudscene" hits
+from this check, which is worse for actually catching a real
+reintroduction than a scoped, documented exemption. Comment in
+`tests/test_no_paid_dependencies.py` spells out the reasoning in full.
+Fixed By: Claude Companion (implementation), ratified by Bobby 2026-07-30
+Date Fixed: 2026-07-30
+Status: Resolved
 
 ---
 

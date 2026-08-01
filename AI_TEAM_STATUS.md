@@ -44,21 +44,27 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   server + Chromium; treated as optional per the project's own convention).
 - Remaining concerns: see "Open Handoffs" below.
 
-## Open Handoffs
+- Date: 2026-07-30
+- Agent: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+- Task: Ratified the cloudscene-in-historical-snapshots handoff left by
+  Claude Companion above. Recommended keeping the existing `PATH_EXEMPT`
+  exemption for `data/facilities_version_history/` — those files are
+  write-once archives, never re-read as config or executed, so scanning
+  them protects nothing; a real reintroduction of a paid service would
+  still be caught in the live source it's actually defined in (an
+  adapter, `facility_sources.json`, `requirements.txt`, a workflow).
+  Bobby confirmed. Expanded the `PATH_EXEMPT` comment in
+  `tests/test_no_paid_dependencies.py` to spell out that reasoning, and
+  updated `BUG_TRACKER.md`'s entry from "Open" to "Resolved".
+- Commit(s): see branch history for
+  `claude/us-datacenter-restrictions-map-skooi7`, dated 2026-07-30.
+- Files changed: `tests/test_no_paid_dependencies.py`, `BUG_TRACKER.md`,
+  this file.
+- Tests performed: `python3 -m pytest tests/test_no_paid_dependencies.py -q`
+  and full `tests/run_all.sh`.
+- Remaining concerns: none — this handoff is closed.
 
-- Item: `no-paid-dependency guard flags cloudscene in historical snapshots`
-  (see BUG_TRACKER.md "Finding (not fixed, needs a decision)").
-- Current status: Open, non-blocking, pre-existing on `main`.
-- Recommended next action: Bobby decides whether
-  `data/facilities_version_history/` should be exempted from the
-  paid-dependency scan (it's archived audit history, not live config) or
-  whether flagging it forever is the intended, stricter behavior. Whoever
-  implements the decision should update
-  `tests/test_no_paid_dependencies.py` accordingly and close this entry.
-- Relevant files: `tests/test_no_paid_dependencies.py`,
-  `data/facilities_version_history/2026-07-12T*.json` (8 files).
-- Relevant commits: n/a (pre-existing, not tied to a specific introducing
-  commit).
+## Open Handoffs
 
 - Item: Same missing-`encoding="utf-8"` pattern exists in ~15 other
   `data/*.py` scripts (`check_source_links.py`,

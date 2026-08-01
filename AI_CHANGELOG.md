@@ -3,6 +3,46 @@
 ---
 
 Date: 2026-07-30
+AI Assistant: Claude Code (session continuing claude/us-datacenter-restrictions-map-skooi7)
+Branch: claude/us-datacenter-restrictions-map-skooi7
+Session: Ratified the cloudscene/historical-snapshots governance handoff
+
+Claude Companion's Windows-verification pass (entry below) left one item
+flagged as an open decision for Bobby rather than resolving it unilaterally:
+tests/test_no_paid_dependencies.py's paid-service guard was flagging the
+string "cloudscene" in 8 data/facilities_version_history/2026-07-12T*.json
+snapshots — legitimate historical fact (that's what the pipeline used before
+the integration was removed 2026-07-27), not a live dependency. A PATH_EXEMPT
+entry for that directory was already added to get the suite passing, but
+BUG_TRACKER.md and AI_TEAM_STATUS.md both still described it as open pending
+a decision.
+
+Recommended keeping the exemption: these files are write-once archives, never
+re-read as config and never executed, so scanning them protects nothing. A
+real reintroduction of a paid service would still be caught in full — it
+would first appear in a live source (an adapter file, facility_sources.json,
+requirements.txt, a workflow), all of which stay fully scanned; a new
+snapshot inheriting the string could only be generated after the guard had
+already failed on the source it came from. Leaving 8 permanent false
+positives in place would instead just train reviewers to expect and ignore
+"cloudscene" hits from this specific check, which is worse for catching a
+genuine future reintroduction than a scoped, documented exemption. Bobby
+confirmed.
+
+Changes: expanded the PATH_EXEMPT comment in
+tests/test_no_paid_dependencies.py to state that reasoning explicitly rather
+than just asserting the exemption; updated BUG_TRACKER.md's entry from
+"Open (non-blocking)" to "Resolved"; closed the corresponding item out of
+AI_TEAM_STATUS.md's Open Handoffs and logged the resolution under Recently
+Completed Work. No test behavior changed — the exemption was already live;
+this made the decision behind it durable and legible instead of an
+unexplained fait accompli.
+
+tests/test_no_paid_dependencies.py and full tests/run_all.sh both pass.
+
+---
+
+Date: 2026-07-30
 AI Assistant: Claude Companion (Claude Code, joining as a second engineer alongside the primary Claude Code sessions on this repo)
 Branch: claude/us-datacenter-restrictions-map-skooi7
 Session: Windows test-suite portability fixes + verification before merge to main
