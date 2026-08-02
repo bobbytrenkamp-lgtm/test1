@@ -123,7 +123,7 @@ window.JURISDICTION = (function () {
           <h1 class="juris-title">${esc(county.name)}</h1>
           <div class="juris-sub">${esc(county.state)} &middot; FIPS ${esc(fips)}</div>
           <div class="juris-badges">
-            <span class="juris-sev" style="background:${sevCol}1a;color:${sevCol};border-color:${sevCol}55;">
+            <span class="juris-sev" data-sev="${esc(sevKey)}" style="background:${sevCol}1a;border-color:${sevCol}55;">
               ${esc(sevLbl)}
             </span>
             ${county.lifecycle_stage

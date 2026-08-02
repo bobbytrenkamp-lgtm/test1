@@ -126,6 +126,12 @@
     </div>
   </header>
 
+  <!-- Dashboard/search chrome — shown alongside the Map and News tabs'
+       own <main> content (two landmarks on screen at once), so this is a
+       "region" landmark rather than a second <main> (only one main
+       landmark is allowed to be visible at a time). Hidden entirely on
+       fullpage/stocks-mode tabs via the CSS rule below. -->
+  <section id="dashboard-search-main" aria-label="Dashboard and search">
   <!-- Dashboard scope selector -->
   <div id="dashboard-scope-bar" hidden></div>
 
@@ -168,9 +174,11 @@
            role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false" aria-haspopup="listbox" />
     <div id="search-results" role="listbox" aria-label="Search suggestions"></div>
   </div>
+  </section>
 
   <!-- Home / Command Center — visible by default so no loading screen shows
        if JS is slow or blocked. Inline skeleton is replaced by JS once ready. -->
+  <main>
   <div id="home-view" class="page-view" tabindex="-1" role="tabpanel" aria-labelledby="tab-home">
     <div class="home-wrap">
       <section class="home-hero">
@@ -198,8 +206,10 @@
       </div>
     </div>
   </div>
+  </main>
 
   <!-- Main — hidden by default; shown when user navigates to Map tab -->
+  <main>
   <div id="main" hidden role="tabpanel" aria-labelledby="tab-map">
 
   <!-- Map area row: map + detail panel + zoning panel -->
@@ -602,7 +612,7 @@
     </div>
 
     <!-- Detail Panel -->
-    <aside id="detail-panel">
+    <aside id="detail-panel" aria-label="County details">
       <div id="detail-panel-handle"></div>
       <div id="detail-header">
         <button id="detail-panel-close" aria-label="Close panel">&times;</button>
@@ -674,17 +684,19 @@
   </div>
 
   </div><!-- /main -->
+  </main>
 
   <!-- Page views -->
-  <div id="stocks-view" hidden role="tabpanel" aria-labelledby="tab-stocks"></div>
-  <div id="economy-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-economy"></div>
-  <div id="analytics-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-analytics"></div>
-  <div id="pipeline-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-pipeline"></div>
+  <main><div id="stocks-view" hidden role="tabpanel" aria-labelledby="tab-stocks"></div></main>
+  <main><div id="economy-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-economy"></div></main>
+  <main><div id="analytics-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-analytics"></div></main>
+  <main><div id="pipeline-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-pipeline"></div></main>
 
   <!-- Jurisdiction Intelligence Page — virtual route #jurisdiction?fips=XXXXX (no header tab) -->
   <div id="jurisdiction-view" class="page-view" hidden role="region" aria-label="Jurisdiction detail"></div>
-  <div id="about-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-about"></div>
+  <main><div id="about-view" class="page-view" hidden role="tabpanel" aria-labelledby="tab-about"></div></main>
 
+  <main>
   <div id="news-view" hidden role="tabpanel" aria-labelledby="tab-news">
     <div id="news-toolbar">
       <input id="news-search" type="text" placeholder="Search articles, publishers, topics…" autocomplete="off" />
@@ -693,7 +705,7 @@
         <span>Filters</span>
         <svg class="news-filters-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <select id="news-cat-filter">
+      <select id="news-cat-filter" aria-label="Filter by category">
         <option value="">All Categories</option>
         <option value="AI Industry">AI Industry</option>
         <option value="AI Research">AI Research</option>
@@ -710,10 +722,10 @@
         <option value="Jobs &amp; Society">Jobs &amp; Society</option>
         <option value="Other AI News">Other AI News</option>
       </select>
-      <select id="news-state-filter">
+      <select id="news-state-filter" aria-label="Filter by state">
         <option value="">All States</option>
       </select>
-      <select id="news-source-filter">
+      <select id="news-source-filter" aria-label="Filter by publisher">
         <option value="">All Publishers</option>
       </select>
       <button id="news-clear-filters" type="button" hidden>Clear filters</button>
@@ -727,6 +739,7 @@
     </div>
     <div id="news-error" hidden>News feed temporarily unavailable. Articles will reload on the next hourly update.</div>
   </div>
+  </main>
 
 </div><!-- /app -->
 
@@ -735,7 +748,7 @@
      nested inside overflow:hidden or position:fixed ancestors. -->
 <div id="filter-panel-backdrop"></div>
 <div id="adv-filter-backdrop"></div>
-<aside id="adv-filter-panel">
+<aside id="adv-filter-panel" aria-label="Advanced filters">
   <div id="adv-filter-header">
     <h3>Advanced Filters</h3>
     <button id="adv-filter-clear" class="adv-clear-btn" hidden>Clear all</button>
@@ -750,7 +763,7 @@
     <!-- State section -->
     <div class="adv-section">
       <div class="adv-section-label">State</div>
-      <select id="adv-state-select" class="adv-select">
+      <select id="adv-state-select" class="adv-select" aria-label="Filter by state">
         <option value="">All States</option>
       </select>
     </div>
@@ -777,7 +790,7 @@
     <!-- Water Stress Max section -->
     <div class="adv-section">
       <div class="adv-section-label">Max Water Stress</div>
-      <select id="adv-ws-max" class="adv-select">
+      <select id="adv-ws-max" class="adv-select" aria-label="Filter by max water stress">
         <option value="">Any level</option>
         <option value="0">≤ Low (0)</option>
         <option value="1">≤ Low-Medium (1)</option>
@@ -787,7 +800,7 @@
     <!-- Min Suitability Grade section -->
     <div class="adv-section">
       <div class="adv-section-label">Min Suitability Grade</div>
-      <select id="adv-suit-min" class="adv-select">
+      <select id="adv-suit-min" class="adv-select" aria-label="Filter by minimum suitability grade">
         <option value="">Any grade</option>
         <option value="45">C or better (≥ C)</option>
         <option value="65">B or better (≥ B)</option>

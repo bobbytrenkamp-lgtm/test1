@@ -6,9 +6,62 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 
 ## Active Work
 
-No active work in progress as of 2026-07-31.
+No active work in progress as of 2026-08-02.
 
 ## Recently Completed Work (continued)
+
+- Date: 2026-08-02
+- Agent: Claude Code
+- Task: Site-wide WCAG 2 AA accessibility audit (axe-core, `wcag2a`/
+  `wcag2aa`/`best-practice` tags) across every page. Not scoped to a bug
+  report — a systematic sweep following the standing "keep improving,
+  institutional quality" instruction.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: a `<main>` landmark now wraps every page view (previously the
+  app had none, so axe's `region` rule failed almost everywhere); the
+  missing `@media (prefers-color-scheme: light)` mirror block was added
+  to `economy.css`/`parcel.css`/`pipeline.css` (root cause of 46 of
+  Pipeline's `color-contrast` violations — OS-preference light-mode
+  users, not just users who explicitly toggle the theme, were getting
+  unreadable dark-theme colors); theme-aware CSS custom properties
+  replaced hardcoded severity/status colors reused verbatim across both
+  themes (`--color-danger`/`--color-info`, `.juris-sev`'s inline
+  severity color, `.ds-badge`'s five status colors); 18 unlabeled
+  `<select>` elements got `aria-label`s; heading levels that jumped from
+  `h1` straight to `h3` (Map/Stocks/Pipeline/Analytics) were fixed by
+  promoting each page's first real heading to `h2`. Full writeup with
+  root causes in `BUG_TRACKER.md`.
+- Verified, not assumed: every fix re-confirmed via a fresh axe-core
+  scan after the change, not just reasoning about the CSS. The `<main>`
+  wrapper work in particular needed three iterations before it was
+  right — the first attempt (`display:contents` alone) still exposed
+  every *inactive* tab's empty `<main>` as a second simultaneous
+  landmark, and a nesting mistake while restructuring the Map tab's
+  wrapper briefly put `<main>` inside `<main>`. Both were caught by
+  re-running the scan rather than assuming the fix worked, and are
+  recorded in `AI_CONTEXT.md`. Confirmed page layout is pixel-for-pixel
+  unaffected on every tab (dimensions checked directly), confirmed
+  theme colors actually swap at runtime (not just correct on paper), and
+  ran the full `E2E=1` browser smoke suite (zero JS errors) plus
+  `tests/run_all.sh` (176/176) before pushing.
+- Files changed: `index.html`, `css/style.css`, `css/jurisdiction.css`,
+  `css/economy.css`, `css/parcel.css`, `css/pipeline.css`,
+  `css/stocks.css`, `js/map.js`, `js/pipeline.js`, `js/analytics.js`,
+  `js/home.js`, `js/jurisdiction.js`, `js/stocks.js`,
+  `js/economy-view.js`, `tests/e2e_smoke.mjs`.
+- Related systems: every page's DOM landmark structure, theming
+  (dark/light), Pipeline's badge coloring, the E2E smoke suite's
+  Economy-tab legend diagnostic (one selector updated to match the new
+  heading level).
+- Deliberately NOT done: Pipeline's two remaining `color-contrast`
+  nodes (`#pl-view-table`/`#pipeline-export-btn`, 4.25:1) were left as
+  `--accent` is a brand color used site-wide — a bigger design call than
+  the rest of this pass. The News tab's pre-existing, unrelated
+  accessibility issues (`aria-allowed-role`, `aria-prohibited-attr`,
+  `color-contrast`, `nested-interactive` — never previously audited,
+  not caused by this change) were found but are out of scope for this
+  PR; confirmed this pass did not regress or touch them. See Open
+  Handoffs.
 
 - Date: 2026-07-31
 - Agent: Claude Code (claude-opus-5)
@@ -344,6 +397,31 @@ No active work in progress as of 2026-07-31.
 - Relevant files: see grep for `open(` / `read_text(` without `encoding=`
   under `data/`.
 - Relevant commits: n/a.
+
+- Item: News tab has its own unrelated, pre-existing WCAG accessibility
+  issues, found while auditing every other tab but not yet fixed.
+- Current status: Open, not fixed — the News tab was never in the
+  original set of pages this pass audited; it was only checked
+  afterward, specifically to confirm the new `<main>`-landmark work did
+  not regress it (it did not — no landmark/region violations there).
+  That check surfaced a separate, larger batch of pre-existing
+  violations axe-core flags on `#tab-news`: `aria-allowed-role` (69
+  nodes), `aria-prohibited-attr` (1 node, `.news-status-dot`),
+  `color-contrast` (7 nodes, category tag chips), and
+  `nested-interactive` (28 nodes — interactive elements inside other
+  interactive elements, e.g. `.news-section-featured[role="button"]`
+  containing further focusable children).
+- Why it was not fixed: `nested-interactive` in particular is a DOM
+  restructuring, not a CSS/attribute tweak like the rest of this pass —
+  it needs a deliberate look at the news-card markup, not a
+  drive-by fix bundled into an unrelated PR.
+- Recommended next action: run the same axe-core sweep this pass used
+  (`runOnly: { type: 'tag', values: ['wcag2a','wcag2aa','best-practice'] }`)
+  against `#tab-news` specifically, then fix each category the same way
+  this pass did — verify via re-scan after each change, not by
+  reasoning alone.
+- Relevant files: `js/news.js` (or wherever the News tab's card markup
+  lives — not yet located).
 
 - Item: Delete two dead branches — `feature/automated-ai-news` and
   `fix/news-skip-ci`.

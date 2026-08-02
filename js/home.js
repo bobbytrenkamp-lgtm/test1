@@ -1073,7 +1073,7 @@ function renderHomePage() {
       <h2 class="home-section-title">Browse by State</h2>
       <button class="home-col-link" onclick="switchTab('map')" type="button">Open map ${HOME_ICONS.arrow}</button>
     </div>
-    <div class="home-state-chips" role="list" aria-label="States">
+    <div class="home-state-chips" role="group" aria-label="States">
       ${(typeof STATE_NAMES !== "undefined" ? Object.entries(STATE_NAMES) : []).sort((a,b)=>a[1].localeCompare(b[1])).map(([abbr, name]) => {
         // Count restricted counties in this state
         let restrictCount = 0;
@@ -1088,7 +1088,7 @@ function renderHomePage() {
         }
         const hasPolicies = restrictCount > 0;
         return `<button class="home-state-chip${hasPolicies ? " home-state-chip-active" : ""}"
-          role="listitem" data-abbr="${escHtml(abbr)}" type="button"
+          data-abbr="${escHtml(abbr)}" type="button"
           title="${escHtml(name)}${hasPolicies ? ` — ${restrictCount} restricted county${restrictCount === 1 ? "" : "s"}` : ""}">
           ${escHtml(abbr)}
           ${hasPolicies ? `<span class="home-state-chip-dot" aria-hidden="true"></span>` : ""}

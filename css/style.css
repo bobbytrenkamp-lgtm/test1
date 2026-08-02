@@ -45,7 +45,14 @@
   --surface-2: #111628;
   --border: #192040;
   --text: #dde0ee;
-  --text-muted: #6470a0;
+  /* Was #6470a0 — an automated accessibility audit (axe-core) found this
+     failed WCAG AA (3.93:1 against --surface, needs 4.5:1 for normal-size
+     text) on dozens of elements site-wide, since --text-muted is the
+     default "secondary text" color used in 371 places. Lightened while
+     keeping the same hue; verified >=4.5:1 against --bg, --surface, and
+     --surface-2 (the three backgrounds --text-muted content actually
+     appears against), not just the one axe happened to sample. */
+  --text-muted: #7382b5;
   --accent: #4874e8;
   --level-0: #111828;
   --level-1: #3d2b1f;
@@ -190,6 +197,29 @@ html, body {
   inset: 0;
   display: flex;
   flex-direction: column;
+}
+/* Page views are each wrapped in a <main> landmark for a11y (axe-core
+   "region" rule — flex-layout children need to be direct flex items of
+   #app, so the wrapper must not generate its own box). Only one view's
+   [hidden] toggles at a time; the wrapper must hide in lockstep or every
+   inactive <main> still registers as an empty landmark. */
+#app > main,
+#app > #dashboard-search-main {
+  display: contents;
+}
+/* The Map wrapper has extra siblings (dashboard/search chrome) ahead of its
+   [role=tabpanel] child, each with their own independent [hidden] toggle —
+   match on the tabpanel specifically, not "any hidden child", or a
+   collapsed dashboard-scope-bar would wrongly hide the whole active tab. */
+#app > main:has(> [role="tabpanel"][hidden]) {
+  display: none;
+}
+/* #dashboard-search-main has no [role=tabpanel] child of its own to key off
+   (it wraps the dashboard/search chrome, not a tabpanel) — it must instead
+   disappear as a landmark on every tab where that chrome renders empty. */
+#app.fullpage-mode #dashboard-search-main,
+#app.stocks-mode #dashboard-search-main {
+  display: none;
 }
 
 /* ── Header ── */
@@ -2028,12 +2058,39 @@ body.is-resizing-floating-panel * {
   border: 1px solid transparent;
   line-height: 1.6;
 }
-.ds-verified    { color: #4ade80; background: rgba(74,222,128,0.10); border-color: rgba(74,222,128,0.28); }
-.ds-partial     { color: #60a5fa; background: rgba(96,165,250,0.10); border-color: rgba(96,165,250,0.28); }
-.ds-estimated   { color: #fbbf24; background: rgba(251,191,36,0.10); border-color: rgba(251,191,36,0.28); }
-.ds-sample      { color: #f97316; background: rgba(249,115,22,0.10); border-color: rgba(249,115,22,0.28); }
+/* Theme-aware text colors — the rgba() backgrounds below stay on the raw
+   hex tint in both themes, but the plain hex text color only clears WCAG
+   AA (4.5:1) against a dark background; axe-core measured e.g. .ds-partial
+   at 2.33:1 on its light-theme badge background. */
+:root {
+  --ds-verified:  #4ade80;
+  --ds-partial:   #60a5fa;
+  --ds-estimated: #fbbf24;
+  --ds-sample:    #f97316;
+  --ds-stale:     #ef4444;
+}
+html[data-theme="light"] {
+  --ds-verified:  #0a6c37;
+  --ds-partial:   #1d5fc4;
+  --ds-estimated: #7a5807;
+  --ds-sample:    #a3410a;
+  --ds-stale:     #b91c1c;
+}
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) {
+    --ds-verified:  #0a6c37;
+    --ds-partial:   #1d5fc4;
+    --ds-estimated: #7a5807;
+    --ds-sample:    #a3410a;
+    --ds-stale:     #b91c1c;
+  }
+}
+.ds-verified    { color: var(--ds-verified);  background: rgba(74,222,128,0.10);  border-color: rgba(74,222,128,0.28); }
+.ds-partial     { color: var(--ds-partial);   background: rgba(96,165,250,0.10);  border-color: rgba(96,165,250,0.28); }
+.ds-estimated   { color: var(--ds-estimated); background: rgba(251,191,36,0.10);  border-color: rgba(251,191,36,0.28); }
+.ds-sample      { color: var(--ds-sample);    background: rgba(249,115,22,0.10);  border-color: rgba(249,115,22,0.28); }
 .ds-unavailable { color: var(--text-muted); background: var(--surface-2); border-color: var(--border); }
-.ds-stale       { color: #dc2626; background: rgba(220,38,38,0.10); border-color: rgba(220,38,38,0.28); }
+.ds-stale       { color: var(--ds-stale);     background: rgba(220,38,38,0.10);   border-color: rgba(220,38,38,0.28); }
 
 /* ── Layer panel search ── */
 .layer-search-wrap {
@@ -3494,8 +3551,11 @@ html[data-theme="light"] {
   --shadow-lg: 0 6px 28px rgba(0,0,0,0.14);
   --color-success: #16a34a; --color-success-dim: rgba(22,163,74,0.10);
   --color-warning: #d97706; --color-warning-dim: rgba(217,119,6,0.10);
-  --color-danger:  #dc2626; --color-danger-dim:  rgba(220,38,38,0.10);
-  --color-info:    #2563eb; --color-info-dim:    rgba(37,99,235,0.10);
+  /* Was #dc2626/#2563eb — axe-core measured .status-badge.danger/.info at
+     4.13:1 and 4.48:1 against their own -dim backgrounds, both just under
+     the 4.5:1 WCAG AA minimum for normal text. Darkened slightly. */
+  --color-danger:  #c81f1f; --color-danger-dim:  rgba(220,38,38,0.10);
+  --color-info:    #1f56d6; --color-info-dim:    rgba(37,99,235,0.10);
   --color-purple:  #7c3aed; --color-purple-dim:  rgba(124,58,237,0.10);
 }
 @media (prefers-color-scheme: light) {
@@ -3506,8 +3566,8 @@ html[data-theme="light"] {
     --shadow-lg: 0 6px 28px rgba(0,0,0,0.14);
     --color-success: #16a34a; --color-success-dim: rgba(22,163,74,0.10);
     --color-warning: #d97706; --color-warning-dim: rgba(217,119,6,0.10);
-    --color-danger:  #dc2626; --color-danger-dim:  rgba(220,38,38,0.10);
-    --color-info:    #2563eb; --color-info-dim:    rgba(37,99,235,0.10);
+    --color-danger:  #c81f1f; --color-danger-dim:  rgba(220,38,38,0.10);
+    --color-info:    #1f56d6; --color-info-dim:    rgba(37,99,235,0.10);
     --color-purple:  #7c3aed; --color-purple-dim:  rgba(124,58,237,0.10);
   }
 }
@@ -6828,10 +6888,12 @@ kbd {
   line-height: 1;
 }
 
-/* Not-configured state — muted indicator */
-#auth-btn.not-configured {
-  opacity: 0.65;
-}
+/* Not-configured state used to dim the whole button (icon + label) via
+   opacity, which blends the label text toward the header background and
+   drops it below WCAG AA contrast (axe-core: 2.82:1, needs 4.5:1) — found
+   during a site-wide accessibility audit. The button already communicates
+   its state honestly on click (the "Accounts unavailable" modal), so it
+   doesn't need a second, contrast-breaking visual signal on top. */
 
 /* ── Command Palette ── */
 #cmd-palette {

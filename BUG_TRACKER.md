@@ -7,6 +7,111 @@ replacement".
 
 ---
 
+Bug: Site-wide WCAG 2 AA accessibility audit — color-contrast, missing
+landmarks, missing form labels, and heading-order failures across every
+page
+Priority: High
+Affected Files: `index.html`, `css/style.css`, `css/jurisdiction.css`,
+`css/economy.css`, `css/parcel.css`, `css/pipeline.css`, `css/stocks.css`,
+`js/map.js`, `js/pipeline.js`, `js/analytics.js`, `js/home.js`,
+`js/jurisdiction.js`, `js/stocks.js`, `js/economy-view.js`
+Root Cause: A full axe-core (WCAG 2 A/AA + best-practice) sweep of every
+page surfaced several independent, previously-undiscovered classes of
+issue:
+  1. **Missing `<main>` landmark entirely.** The whole app had zero
+     landmark regions wrapping page content — every page failed axe's
+     `region` rule for most of its content.
+  2. **Missing `@media (prefers-color-scheme: light)` mirror.** This
+     codebase's dark theme is the `:root` default; light theme requires
+     two parallel blocks — `html[data-theme="light"]` (explicit toggle)
+     AND `@media (prefers-color-scheme: light) { html:not([data-theme=
+     "dark"]) {...} }` (OS-preference light, the common case). Several
+     files only had the first block, so OS-preference light-mode users
+     — the majority of light-mode visitors — got unreadable dark-theme
+     colors: `economy.css`, `parcel.css`, `pipeline.css` (46 of
+     Pipeline's 46 color-contrast violations traced to this one gap).
+  3. **Hardcoded severity/status colors reused verbatim across themes**
+     without a dark/light-specific variant: `--color-danger`/
+     `--color-info` (site-wide badges), `js/constants.js`'s
+     `SEVERITY_COLORS` (used inline by `.juris-sev` on the Jurisdiction
+     page — same red also failed 3.92:1 in dark theme, invisible to the
+     axe scan which defaults to light color-scheme in this sandbox but
+     confirmed independently via computed luminance), and `.ds-badge`'s
+     five status colors (`.ds-verified/partial/estimated/sample/stale`).
+  4. **`opacity` on an ancestor blends toward the page background**,
+     silently reducing effective text contrast below the raw CSS `color`
+     value: `#auth-btn.not-configured { opacity: 0.65 }` dropped
+     `.auth-btn-label` to 2.82:1.
+  5. **18 `<select>` elements with no accessible name** (`select-name`,
+     critical) across every filter bar site-wide.
+  6. **`role="listitem"` on a `<button>`** (Home page's 50 state chips)
+     — not an ARIA-allowed role for `button`; the container's `role=
+     "list"` was changed to `role="group"` instead, since these are
+     interactive filter controls, not list content.
+  7. Assorted moderate/minor items: duplicate unlabeled landmark roles
+     (`landmark-unique`), a second page-level `<header>` inside the
+     Economy view creating a duplicate banner landmark
+     (`landmark-no-duplicate-banner`), heading levels jumping from `h1`
+     straight to `h3` on Map/Stocks/Pipeline/Analytics (`heading-order`
+     — several pages had *no* semantic heading of their own at all), a
+     scrollable list with no keyboard access (`.cap-states-list`), and
+     an empty `<th>` with only an `aria-label` (axe's `empty-table-
+     header` requires visible text, not just an accessible name).
+Fix:
+  - Wrapped every page view (`#home-view`, the Map view, `#economy-view`,
+    `#pipeline-view`, `#analytics-view`, `#stocks-view`, `#about-view`,
+    `#news-view`) in its own `<main>` landmark. Since these are direct
+    flex children of `#app` (`display:flex; flex-direction:column`) and
+    rely on `flex:1` to fill the remaining height, the wrapper uses
+    `display:contents` so it never generates its own box — and is hidden
+    in lockstep with its `[role=tabpanel]` child via `#app > main:has(>
+    [role="tabpanel"][hidden]) { display: none; }`, so an inactive tab's
+    empty `<main>` never registers as a second simultaneous landmark.
+    The dashboard/search toolbar (visible alongside the Map *and* News
+    tabs — two landmarks on screen together) is a `<section aria-label=
+    "Dashboard and search">` instead of a second `<main>`, since only
+    one `main` landmark may be exposed at a time by convention; it's
+    explicitly hidden on fullpage/stocks-mode tabs via CSS.
+  - Added the missing `@media (prefers-color-scheme: light)` mirror
+    block to `economy.css`, `parcel.css`, and `pipeline.css`.
+  - Introduced theme-aware CSS custom properties (`--ds-*` in
+    `style.css`, `--juris-sev-*` in `jurisdiction.css`, `--pl-status-*`/
+    `--pl-type-*` in `pipeline.css`) computed for ≥4.5:1 contrast in
+    *both* themes via the WCAG relative-luminance formula, replacing
+    hardcoded hex reused verbatim across themes. `--color-danger`
+    lightened `#dc2626`→`#c81f1f`/`#ef4444`; `--color-info` similarly.
+  - Removed the `.auth-btn-label`-blending opacity rule.
+  - Added `aria-label`s to all 18 unlabeled selects.
+  - Added `role="region" aria-labelledby`/`tabindex="0"` to
+    `.cap-states-list`; changed the empty `<th>` to hold a `.sr-only`
+    text span instead of only an `aria-label`.
+  - Promoted the first heading in each page's content to `h2` (Map
+    legend's mode-dependent title, Stocks' "US Market Heatmap", and two
+    previously-`<div>` `.page-hero-title` elements on Analytics/About
+    that are now real `<h2>`s — CSS was already keyed off the class, not
+    the tag, so this is purely a semantic upgrade); gave Pipeline (which
+    had no heading of its own at all) a `.sr-only` `<h2>`.
+Testing Performed: Verified via repeated axe-core (`wcag2a`, `wcag2aa`,
+`best-practice`) re-scans of Home, Map, Economy, Pipeline, Jurisdiction
+detail, AI Stocks, Analytics, and News — every `color-contrast`,
+`select-name`, `landmark-*`, `region`, `heading-order`,
+`scrollable-region-focusable`, and `empty-table-header` violation is now
+resolved except two Pipeline nodes (`#pl-view-table`/`#pipeline-export-
+btn`) at 4.25:1, deliberately left — `--accent` is a brand color used in
+hundreds of places site-wide, a materially bigger design decision than
+the rest of this pass. Confirmed theme colors actually swap at runtime
+(dark `#ef4444` / light `#b91c1c` for `.juris-sev`). Confirmed page
+layout dimensions are unaffected by the new `<main>` wrappers on every
+tab (`display:contents` verified transparent to Flexbox sizing). Full
+`tests/run_all.sh` 176/176 passing; full `E2E=1` browser smoke suite
+passing with zero JS errors across every scenario, including the
+Economy-tab legend-title diagnostic (updated from a stale `#legend h3`
+selector to `#legend h2` to match the new heading level).
+Fixed By: Claude Code
+Date: 2026-08-02
+
+---
+
 Bug: `validate_sources.py` could silently destroy all 1,467 county records
 in `map_data.json`
 Priority: CRITICAL

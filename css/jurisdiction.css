@@ -60,6 +60,46 @@
   color: var(--text-muted);
   border-color: var(--border);
 }
+
+/* Severity badge text color — theme-aware overrides of js/constants.js'
+   SEVERITY_COLORS. The raw hex values there are tuned for map swatches/dots
+   on a variety of backgrounds and fail WCAG AA (4.5:1) as plain text on the
+   badge's ~10%-opacity tint in one theme or the other (e.g. "high" #dc2626
+   measured 3.76:1 on the light badge background). Background/border-color
+   stay on the original inline hex from constants.js; only the text color is
+   swapped per theme here. */
+:root {
+  --juris-sev-pro: #4ade80;
+  --juris-sev-none: #16a34a;
+  --juris-sev-proposed: #eab308;
+  --juris-sev-moderate: #f97316;
+  --juris-sev-high: #ef4444;
+  --juris-sev-ban: #e35d5d;
+}
+html[data-theme="light"] {
+  --juris-sev-pro: #0b6e3f;
+  --juris-sev-none: #14532d;
+  --juris-sev-proposed: #8a5a06;
+  --juris-sev-moderate: #a3410a;
+  --juris-sev-high: #b91c1c;
+  --juris-sev-ban: #7f1d1d;
+}
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) {
+    --juris-sev-pro: #0b6e3f;
+    --juris-sev-none: #14532d;
+    --juris-sev-proposed: #8a5a06;
+    --juris-sev-moderate: #a3410a;
+    --juris-sev-high: #b91c1c;
+    --juris-sev-ban: #7f1d1d;
+  }
+}
+.juris-sev[data-sev="pro"]      { color: var(--juris-sev-pro); }
+.juris-sev[data-sev="none"]     { color: var(--juris-sev-none); }
+.juris-sev[data-sev="proposed"] { color: var(--juris-sev-proposed); }
+.juris-sev[data-sev="moderate"] { color: var(--juris-sev-moderate); }
+.juris-sev[data-sev="high"]     { color: var(--juris-sev-high); }
+.juris-sev[data-sev="ban"]      { color: var(--juris-sev-ban); }
 .juris-chip {
   display: inline-block;
   padding: 3px 9px;

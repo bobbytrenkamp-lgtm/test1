@@ -1,6 +1,61 @@
 /* ── Data Center Project Pipeline — styles ── */
 /* Loaded when the Pipeline tab is first shown */
 
+/* Status/type badge colors. Dark-theme values are the bright, saturated
+   colors this file always used; light-theme values are separate, darker
+   variants — the bright ones fail WCAG AA against a light background
+   (axe-core measured .pl-status-operational at 1.62:1, needing 4.5:1; the
+   type badges were as low as 1.82:1). Defined once here (rather than
+   inline hex per rule) so js/pipeline.js's _typeBadge() can reference the
+   same tokens via var() instead of hardcoding a color that's only correct
+   for one theme. */
+:root {
+  --pl-status-operational:    #34d399;
+  --pl-status-construction:   #f59e0b;
+  --pl-status-planned:        #60a5fa;
+  --pl-status-decommissioned: #9ca3af;
+  --pl-status-unknown:        #9ca3af;
+  --pl-type-hyperscale:  #4874e8;
+  --pl-type-colocation:  #a78bfa;
+  --pl-type-enterprise:  #34d399;
+  --pl-type-edge:        #f59e0b;
+  --pl-type-ai-campus:   #60a5fa;
+  --pl-type-other:       #9ca3af;
+  --pl-badge-opacity: 0.75;
+}
+html[data-theme="light"] {
+  --pl-status-operational:    #0e7a4f;
+  --pl-status-construction:   #a35709;
+  --pl-status-planned:        #1d4fc4;
+  --pl-status-decommissioned: #525a72;
+  --pl-status-unknown:        #525a72;
+  --pl-type-hyperscale:  #1d4fc4;
+  --pl-type-colocation:  #6b2fc9;
+  --pl-type-enterprise:  #0e7a4f;
+  --pl-type-edge:        #a35709;
+  --pl-type-ai-campus:   #1a5fb0;
+  --pl-type-other:       #525a72;
+  /* The colors above are only accessible at full opacity — see the
+     contrast computation in BUG_TRACKER.md's pipeline-badge entry. */
+  --pl-badge-opacity: 1;
+}
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) {
+    --pl-status-operational:    #0e7a4f;
+    --pl-status-construction:   #a35709;
+    --pl-status-planned:        #1d4fc4;
+    --pl-status-decommissioned: #525a72;
+    --pl-status-unknown:        #525a72;
+    --pl-type-hyperscale:  #1d4fc4;
+    --pl-type-colocation:  #6b2fc9;
+    --pl-type-enterprise:  #0e7a4f;
+    --pl-type-edge:        #a35709;
+    --pl-type-ai-campus:   #1a5fb0;
+    --pl-type-other:       #525a72;
+    --pl-badge-opacity: 1;
+  }
+}
+
 #pipeline-view {
   display: flex;
   flex-direction: column;
@@ -194,18 +249,23 @@
   border-radius: 50%;
   flex-shrink: 0;
 }
-.pl-status-operational  { background: rgba(52,211,153,0.12); color: #34d399; }
-.pl-status-operational .pl-status-dot  { background: #34d399; }
-.pl-status-construction { background: rgba(251,191,36,0.12); color: #f59e0b; }
-.pl-status-construction .pl-status-dot { background: #f59e0b; }
-.pl-status-planned      { background: rgba(96,165,250,0.12); color: #60a5fa; }
-.pl-status-planned .pl-status-dot      { background: #60a5fa; }
-.pl-status-decommissioned { background: rgba(156,163,175,0.12); color: #9ca3af; }
-.pl-status-decommissioned .pl-status-dot { background: #9ca3af; }
-.pl-status-unknown      { background: rgba(156,163,175,0.08); color: #9ca3af; }
-.pl-status-unknown .pl-status-dot      { background: #9ca3af; }
+.pl-status-operational  { background: rgba(52,211,153,0.12); color: var(--pl-status-operational); }
+.pl-status-operational .pl-status-dot  { background: var(--pl-status-operational); }
+.pl-status-construction { background: rgba(251,191,36,0.12); color: var(--pl-status-construction); }
+.pl-status-construction .pl-status-dot { background: var(--pl-status-construction); }
+.pl-status-planned      { background: rgba(96,165,250,0.12); color: var(--pl-status-planned); }
+.pl-status-planned .pl-status-dot      { background: var(--pl-status-planned); }
+.pl-status-decommissioned { background: rgba(156,163,175,0.12); color: var(--pl-status-decommissioned); }
+.pl-status-decommissioned .pl-status-dot { background: var(--pl-status-decommissioned); }
+.pl-status-unknown      { background: rgba(156,163,175,0.08); color: var(--pl-status-unknown); }
+.pl-status-unknown .pl-status-dot      { background: var(--pl-status-unknown); }
 
-/* ── Type badges ── */
+/* ── Type badges ──
+   opacity is a --pl-badge-opacity token, not a fixed 0.75: at full
+   opacity the dark-theme colors above are already bright/saturated
+   enough to read fine dimmed, but the light-theme colors are deliberately
+   just-dark-enough to hit 4.5:1 and can't afford to be dimmed further —
+   see the color tokens' own comment. */
 .pl-type-badge {
   display: inline-block;
   padding: 1px 6px;
@@ -215,7 +275,7 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   border: 1px solid currentColor;
-  opacity: 0.75;
+  opacity: var(--pl-badge-opacity);
   white-space: nowrap;
 }
 
@@ -441,11 +501,23 @@
 .pl-compare-link:hover { background: #4874e8; color: #fff; }
 
 /* ── Light theme overrides ── */
+/* Also mirrored under prefers-color-scheme below — [data-theme="light"]
+   only matches after an explicit in-app toggle, so an OS-light user who
+   never touched the toggle would otherwise get dark-theme backgrounds
+   here. Same gap an axe-core audit found in economy.css; see that file's
+   comment for the full explanation. */
 html[data-theme="light"] #pipeline-table thead th { background: #f4f6fb; }
 html[data-theme="light"] #pipeline-table tbody tr.selected { background: rgba(72,116,232,0.08); }
 html[data-theme="light"] .pl-select,
 html[data-theme="light"] #pipeline-search { background: #fff; }
 html[data-theme="light"] #pipeline-detail { background: #f8f9fc; }
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) #pipeline-table thead th { background: #f4f6fb; }
+  html:not([data-theme="dark"]) #pipeline-table tbody tr.selected { background: rgba(72,116,232,0.08); }
+  html:not([data-theme="dark"]) .pl-select,
+  html:not([data-theme="dark"]) #pipeline-search { background: #fff; }
+  html:not([data-theme="dark"]) #pipeline-detail { background: #f8f9fc; }
+}
 
 /* ── Responsive ── */
 @media (max-width: 700px) {

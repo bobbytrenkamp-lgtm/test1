@@ -387,7 +387,7 @@ function buildStocksUI() {
     <div id="stocks-tape" class="tv-widget-wrap stocks-tape"></div>
 
     <div id="stocks-workspace">
-      <main id="stocks-main">
+      <div id="stocks-main">
         <div id="stocks-selected">
           <div id="stocks-selected-header">
             <div id="stocks-selected-title">
@@ -428,9 +428,9 @@ function buildStocksUI() {
           <button class="stocks-detail-tab"         data-tab="news"         role="tab" aria-selected="false">News</button>
         </div>
         <div id="stocks-detail-body" class="tv-widget-wrap"></div>
-      </main>
+      </div>
 
-      <aside id="stocks-sidebar">
+      <aside id="stocks-sidebar" aria-label="Stock browser">
         <div id="stocks-sidebar-toggle-bar">
           <button id="stocks-browser-btn" aria-expanded="false" aria-controls="stocks-sidebar-body">
             <span id="stocks-browser-btn-label">Browse Companies (${AI_COMPANIES.length})</span>
@@ -473,7 +473,7 @@ function buildStocksUI() {
     <div class="stocks-section" id="stocks-heatmap-section">
       <div class="stocks-section-header">
         <div>
-          <h3>US Market Heatmap</h3>
+          <h2>US Market Heatmap</h2>
           <p class="stocks-section-sub">S&amp;P 500 by sector and market cap</p>
         </div>
       </div>
