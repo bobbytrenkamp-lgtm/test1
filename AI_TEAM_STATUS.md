@@ -6,17 +6,70 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 
 ## Active Work
 
-- Date: 2026-08-02
-- Agent: Claude Code
-- Task: Fixing two bugs found in the same codebase survey as the
-  monitor_legislation fix below: a race condition in `js/economy-map.js`
-  (rapid economic-layer toggling can desync the map from its own
-  checkbox UI) and a listener/memory leak in `js/economy-view.js`
-  (`selectRegion()`/`renderProfile()` never calls `_teardown()`,
-  contradicting the file's own documented render-lifecycle invariant).
-  In progress — not yet committed as of this writing.
+No active work in progress as of 2026-08-02.
 
 ## Recently Completed Work (continued)
+
+- Date: 2026-08-02
+- Agent: Claude Code
+- Task: Fixed two bugs found in the same codebase survey as the
+  monitor_legislation fix below: a race condition in `js/economy-map.js`
+  (rapid economic-layer toggling could desync the map from its own
+  checkbox UI) and a listener/memory leak in `js/economy-view.js`
+  (`selectRegion()`/`renderProfile()` never called `_teardown()`,
+  contradicting the file's own documented render-lifecycle invariant).
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped:
+  - `economy-map.js`'s `activate()` used a single `_loading` boolean as
+    a mutex. Toggling layer A, then layer B before A's fetch resolved,
+    made B's `activate()` call return `false` immediately (mutex still
+    held) — indistinguishable from a genuine failure — while A's
+    original promise later resolved and won anyway, leaving the map
+    showing A's data with *neither* checkbox checked (B's toggle
+    rolled back as "failed"; A's own checkbox had already been
+    unchecked by B's "turn off other economic layers" exclusivity
+    logic before A's promise resolved). Replaced the boolean mutex with
+    a monotonic `_requestGen` counter: every toggle bumps it, and each
+    in-flight `activate()` call compares its captured generation against
+    the current one when its promise resolves — a stale/superseded
+    request now returns `null` and is silently discarded (no checkbox
+    rollback, no restyle), rather than being treated as a failure.
+  - `economy-view.js`: every click in the Regional Explorer calls
+    `selectRegion()` → `renderProfile()`, which replaces `#econ-profile`'s
+    `innerHTML` (detaching its buttons) and rewires fresh listeners via
+    `wireProfileActions()` — but nothing tore down the *previous*
+    selection's listeners, so their closures (holding references to
+    now-detached nodes) accumulated unboundedly in the module-level
+    `_cleanups` array for the life of the page view. Fixed with a
+    separately-scoped `_profileCleanups`/`onProfile()`/`_teardownProfile()`
+    trio (mirroring the existing `_cleanups`/`on()`/`_teardown()`
+    pattern) so the profile panel's own listeners are torn down before
+    every re-render, without touching the still-live listeners other
+    sections (KPI strip, trends, signals, search) registered through
+    the shared `_cleanups`. Also caught and fixed two more call sites
+    that bypass `renderProfile()` entirely (the geo-toggle and
+    metric-clear handlers, which reset `#econ-profile`'s content
+    directly) — both would have leaked through the same gap and needed
+    their own `_teardownProfile()` call.
+- Verified, not assumed: reviewed the diff in full before accepting it,
+  then independently reproduced both bugs' *fixed* behavior live rather
+  than trusting the diff alone. Race condition: throttled the county
+  data fetch via Playwright route interception, rapidly toggled two
+  layers within the resulting race window, and confirmed the final
+  state is self-consistent (whichever layer ended up active matches
+  its checkbox and `layerStateRef`) — plus confirmed ordinary
+  single-toggle on/off still works normally. Memory leak: called
+  `selectRegion()` 8 times in a row via the exposed
+  `window.ECONOMY_VIEW.selectRegion()`/`_debug()` API and confirmed
+  `profileListenerCount` stays flat at 3 across all 8 calls (would have
+  grown to 24 before the fix), then specifically checked for a stale-
+  closure symptom — selected county A, then county B, then clicked the
+  watchlist button once, and confirmed only B (the current selection)
+  got watchlisted, not A. Full `tests/run_all.sh` 176/176 passing.
+- Files changed: `js/economy-map.js`, `js/economy-view.js`,
+  `BUG_TRACKER.md`, this file.
+- Related systems: the Economy tab's map-layer toggle UI and Regional
+  Explorer profile panel. No other page's code touched.
 
 - Date: 2026-08-02
 - Agent: Claude Code
