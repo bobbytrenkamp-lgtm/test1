@@ -12,6 +12,29 @@ No active work in progress as of 2026-08-02.
 
 - Date: 2026-08-02
 - Agent: Claude Code
+- Task: Fixed `tests/run_all.sh` reporting "All suites passed" when
+  jsdom-dependent suites were actually silently skipped — the same
+  hollow-pass bug class fixed once already (2026-07-31) in the CI
+  workflow's dependency step, found while surveying the codebase for
+  the next round of work after the accessibility PR (#216) merged.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: `run()` now checks each suite's output for a `SKIP` marker in
+  addition to its exit code, and the final summary explicitly lists any
+  skipped suites and states "This is NOT a full pass" instead of
+  claiming an unqualified pass. Exit code unchanged.
+- Verified, not assumed: reproduced the bug directly (ran the script in
+  this sandbox, which has no jsdom, and got the old false "All suites
+  passed"), then confirmed the fix in both states — jsdom absent (new
+  summary correctly lists the 3 skipped suites) and jsdom present via a
+  throwaway `npm install --prefix` (summary reverts to plain "All
+  suites passed" and the 3 suites actually run and pass) — plus
+  confirmed a deliberately-failing command is still caught.
+- Files changed: `tests/run_all.sh`, `BUG_TRACKER.md`, this file.
+- Related systems: local dev test workflow (does not affect CI, which
+  already installs jsdom as of the 2026-07-31 fix).
+
+- Date: 2026-08-02
+- Agent: Claude Code
 - Task: Site-wide WCAG 2 AA accessibility audit (axe-core, `wcag2a`/
   `wcag2aa`/`best-practice` tags) across every page. Not scoped to a bug
   report — a systematic sweep following the standing "keep improving,

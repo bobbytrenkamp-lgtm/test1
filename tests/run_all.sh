@@ -12,14 +12,25 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 
 status=0
+skipped=0
+skipped_names=()
 run() {
   echo ""
   echo "=== $1 ==="
+  local name="$1"
   shift
-  if "$@"; then :; else
+  local tmp
+  tmp="$(mktemp)"
+  "$@" 2>&1 | tee "$tmp"
+  local rc="${PIPESTATUS[0]}"
+  if [ "$rc" -ne 0 ]; then
     echo "  ^ FAILED"
     status=1
+  elif grep -q "^SKIP" "$tmp"; then
+    skipped=$((skipped + 1))
+    skipped_names+=("$name")
   fi
+  rm -f "$tmp"
 }
 
 run "facilities index freshness" python3 data/build_facilities_index.py --check
@@ -54,7 +65,13 @@ fi
 
 echo ""
 if [ "$status" -eq 0 ]; then
-  echo "All suites passed."
+  if [ "$skipped" -gt 0 ]; then
+    echo "All RUN suites passed, but $skipped suite(s) were SKIPPED, not run:"
+    for n in "${skipped_names[@]}"; do echo "  - $n"; done
+    echo "This is NOT a full pass. Run \`npm i jsdom\` and re-run to actually cover them."
+  else
+    echo "All suites passed."
+  fi
 else
   echo "One or more suites FAILED."
 fi
