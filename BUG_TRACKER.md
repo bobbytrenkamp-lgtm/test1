@@ -7,6 +7,65 @@ replacement".
 
 ---
 
+Bug: no-paid-dependency guard tripped by an OSM contributor's own
+basemap-attribution tag, not a live dependency
+Priority: LOW
+Affected Files: `data/facility_pipeline/adapters/osm.py`,
+`data/facilities_candidates.json`
+Root Cause: `osm.py` dumped an OSM element's first 5 raw tags verbatim
+into the `notes` field for provenance. OSM's own tagging convention
+includes a `source` tag citing which basemap/imagery a contributor used
+to trace the building (e.g. a well-known imagery provider's name) — that's
+provenance for the OSM *edit*, not a fact about the facility, and it's
+been running through this project's paid-service guard (`tests/
+test_no_paid_dependencies.py`) as scanned data ever since. One record
+("Walmart Colorado Data Center") happened to cite an imagery provider
+whose name is on the guard's watch list, tripping a hard test failure —
+this project has no dependency on that provider at all; it's inert
+third-party attribution text. This is a structural, *recurring* risk
+class, not a one-time archive artifact like the earlier cloudscene
+historical-snapshot finding: every future `osm.py` run can pull in a new
+OSM element whose `source` tag happens to name a different provider on
+the watch list.
+Fix: Root-caused rather than exempted at the test level (which would have
+weakened the guard rather than fixed the actual leak). `osm.py` now
+excludes `source`/`source:*` tags before selecting the 5 tags it keeps —
+this data was never useful for a policy tracker's purposes anyway (it
+says nothing about the facility, only which basemap a volunteer traced
+from years earlier). The one already-committed record was corrected the
+same way. Deliberately did NOT add a `PATH_EXEMPT`/`DOC_EXEMPT` entry:
+`facilities_candidates.json` stays fully scanned, so a genuine future paid
+dependency landing in that same file — not just OSM tag passthrough — is
+still caught.
+Fixed By: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+Date Fixed: 2026-08-02
+Status: Fixed
+
+---
+
+Bug: `fetch_zoning.py`'s ArcGIS pagination couldn't distinguish a broken
+endpoint from a legitimately empty result
+Priority: LOW
+Affected Files: `data/zoning/scripts/fetch_zoning.py`
+Root Cause: Same class of bug already found and fixed twice in
+`fetch_infrastructure.py` this session (see the HIFLD entries above):
+`fetch_arcgis_featureserver()` read `data.get("features", [])` straight
+off an ArcGIS response without checking for the `{"error": {...}}` body
+ArcGIS returns with HTTP 200 on a bad query. `validate_geometry_response()`
+downstream already refuses to write zero-feature output either way, so no
+bad data could reach disk — but an operator reading the log had no way to
+tell "this jurisdiction genuinely has zero matching zoning records" from
+"the service URL or field name is wrong," which is exactly the ambiguity
+that let the HIFLD substation/power-plant endpoints silently rot until
+this session's browser-bug-fix pass happened to surface them.
+Fix: Added the same explicit `"error" in data` check and message logging
+already used in `fetch_infrastructure.py`'s `_arcgis_paginate()`.
+Fixed By: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+Date Fixed: 2026-08-02
+Status: Fixed
+
+---
+
 Open (external, tracked not fixed): HIFLD Power_Plants and EPA water
 stress endpoints are broken, no verified replacement found
 Priority: MEDIUM

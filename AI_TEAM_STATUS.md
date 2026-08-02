@@ -76,6 +76,38 @@ No active work in progress as of 2026-07-31.
 
 - Date: 2026-08-02
 - Agent: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+- Task: Continued "institutional quality" pass. Live-browser-tested the
+  compare tool, keyboard shortcuts modal, 3D terrain view toggle, and
+  workspace save/reload persistence — all four work correctly (two initial
+  "bugs" turned out to be wrong assumptions in my own test scripts, not app
+  defects, corrected before concluding). Then swept for the same class of
+  issue already found twice this session: (1) `data/zoning/scripts/
+  fetch_zoning.py`'s ArcGIS pagination never checked for the
+  `{"error":...}` response-body gotcha, so a broken zoning endpoint would
+  have been indistinguishable from a legitimately empty result in the logs
+  — added the same check already used in `fetch_infrastructure.py`.
+  (2) The no-paid-dependency test suite failed on a genuinely new hit:
+  `data/facility_pipeline/adapters/osm.py` passes through an OSM
+  contributor's own basemap-attribution tag verbatim into a `notes` field,
+  and one record happened to cite a provider on the paid-service watch
+  list — inert third-party metadata, not a live dependency, but a
+  *recurring* risk (unlike the earlier cloudscene historical-snapshot
+  finding, which was a one-time archive artifact). Root-caused rather than
+  test-exempted: the adapter now excludes `source`/`source:*` tags before
+  building `notes`, so the data file itself stays fully scanned for any
+  genuine future paid-dependency leak.
+- Files changed: `data/zoning/scripts/fetch_zoning.py`,
+  `data/facility_pipeline/adapters/osm.py`,
+  `data/facilities_candidates.json` (one record corrected),
+  `BUG_TRACKER.md`, this file.
+- Tests performed: `tests/run_all.sh` 176/176 (was failing on the
+  no-paid-dependency check before this fix — confirmed the failure was
+  new, not pre-existing, by checking it wasn't present before this
+  session's edits). Playwright exploration against real Chromium for the
+  four features listed above, zero JS errors.
+
+- Date: 2026-08-02
+- Agent: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
 - Task: Bobby asked to keep going toward "institutional quality." Followed up
   on an open item from earlier in this session: `fetch_infrastructure.py`'s
   substation and power-plant queries were silently returning 0 records on
