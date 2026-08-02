@@ -7,6 +7,45 @@ replacement".
 
 ---
 
+Bug: Parcel panel silently omitted attributes a source doesn't publish,
+indistinguishable from a rendering bug
+Priority: Low
+Affected Files: `js/parcel/panel.js`, `css/parcel.css`
+Root Cause: `_fmtFieldRow()`, shared by the Details/Zoning/Valuation
+tabs, returned an empty string for any field with no value — whether
+the parcel genuinely has no value for a field the source *does* carry,
+or the source *never* carries that field type at all for any parcel
+(`registry.js`'s `notProvidedBySource`, added 2026-07-31 alongside the
+fieldMap corrections, already recorded exactly which fields fall into
+the latter category per jurisdiction — three of five jurisdictions have
+16-22 fields in this state). Nothing surfaced that distinction to a
+user looking at the panel; a section with only not-provided fields just
+disappeared entirely. This was an open, previously-identified handoff
+(logged 2026-07-31 in `AI_TEAM_STATUS.md`, not yet actioned).
+Fix: `_fmtFieldRow()` now takes the parcel's FIPS and, when a field has
+no value, checks whether it's listed in that jurisdiction's
+`notProvidedBySource` — if so, renders "Not published by this source"
+(new `.pp-field-na` style: muted, italic) instead of nothing. The
+Zoning tab's zoning-code badge — which had no fallback at all when
+absent — separately gained the same treatment ("Zoning code not
+published by this source"), since it's the single most visually
+prominent instance of the gap.
+Testing Performed: `panel.js` is deliberately excluded from the unit
+suite (touches the live document); this sandbox also cannot reach the
+real ArcGIS parcel services. Called `window.PARCEL_PANEL.show()`
+directly in a live browser with a synthetic feature shaped like a real
+Loudoun County parcel (only fields its actual `fieldMap` provides
+present, all 17 `notProvidedBySource` fields genuinely absent) and
+confirmed all 17 correctly render the new message across all three
+tabs, the zoning-code badge fallback specifically works, and separately
+confirmed genuinely-provided fields (parcel ID, area, subdivision)
+still render their real values, unaffected by the change.
+`tests/run_all.sh` 176/176 passing.
+Fixed By: Claude Code
+Date: 2026-08-02
+
+---
+
 Bug: `javascript:`/`data:` URIs in scraped/API data could execute on
 click — `href` attributes were HTML-escaped but not scheme-validated
 Priority: Medium

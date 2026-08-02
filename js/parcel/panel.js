@@ -34,15 +34,29 @@ window.PARCEL_PANEL = (function () {
     </div>`;
   }
 
-  function _fmtFieldRow(fieldId, rawValue) {
+  function _fmtFieldRow(fieldId, rawValue, fips) {
     const field = window.PARCEL_SCHEMA?.FIELD_MAP[fieldId];
     if (!field) return '';
     const displayed = window.PARCEL_SCHEMA.format(fieldId, rawValue);
-    if (!displayed || displayed === '—') return '';
-    return `<div class="pp-field">
-      <span class="pp-field-label">${esc(field.label)}</span>
-      <span class="pp-field-value">${esc(displayed)}</span>
-    </div>`;
+    if (displayed && displayed !== '—') {
+      return `<div class="pp-field">
+        <span class="pp-field-label">${esc(field.label)}</span>
+        <span class="pp-field-value">${esc(displayed)}</span>
+      </div>`;
+    }
+    // Distinguish "this source never publishes this field" (registry.js's
+    // notProvidedBySource — real, documented gap) from "this source has the
+    // field but it's empty for this parcel" (silently omitted, as before).
+    // Conflating the two reads as a rendering bug to anyone looking at the
+    // panel; only the former gets an explicit row.
+    const notProvided = fips && window.PARCEL_REGISTRY?.get(fips)?.notProvidedBySource;
+    if (notProvided && notProvided.includes(fieldId)) {
+      return `<div class="pp-field">
+        <span class="pp-field-label">${esc(field.label)}</span>
+        <span class="pp-field-value pp-field-na">Not published by this source</span>
+      </div>`;
+    }
+    return '';
   }
 
   /* ── Tab: Details ── */
@@ -53,7 +67,7 @@ window.PARCEL_PANEL = (function () {
     let html = '';
     for (const grp of schema.GROUPS) {
       const fields = schema.FIELDS.filter(f => f.group === grp.id);
-      const rows   = fields.map(f => _fmtFieldRow(f.id, props[f.id])).filter(Boolean).join('');
+      const rows   = fields.map(f => _fmtFieldRow(f.id, props[f.id], props.county_fips)).filter(Boolean).join('');
       if (!rows) continue;
       html += `<div class="pp-group">
         <div class="pp-group-label">${esc(grp.label)}</div>
@@ -81,9 +95,11 @@ window.PARCEL_PANEL = (function () {
     let zoningFields = '';
     if (code) {
       zoningFields += `<div class="pp-zoning-badge">${esc(code)}${desc ? ` — ${esc(desc)}` : ''}</div>`;
+    } else if (window.PARCEL_REGISTRY?.get(fips)?.notProvidedBySource?.includes('zoning_code')) {
+      zoningFields += `<div class="pp-muted pp-field-na">Zoning code not published by this source</div>`;
     }
-    zoningFields += _fmtFieldRow('land_use_code', props.land_use_code);
-    zoningFields += _fmtFieldRow('land_use_desc', props.land_use_desc);
+    zoningFields += _fmtFieldRow('land_use_code', props.land_use_code, fips);
+    zoningFields += _fmtFieldRow('land_use_desc', props.land_use_desc, fips);
     zoningFields += _fieldRow('Overlay Districts', props.overlay_districts);
 
     if (zoningFields) {
@@ -241,16 +257,17 @@ window.PARCEL_PANEL = (function () {
 
   /* ── Tab: Valuation ── */
   function _tabValuation(props) {
+    const fips = props.county_fips;
     const rows = [
-      _fmtFieldRow('assessed_value',    props.assessed_value),
-      _fmtFieldRow('land_value',        props.land_value),
-      _fmtFieldRow('improvement_value', props.improvement_value),
-      _fmtFieldRow('tax_year',          props.tax_year),
-      _fmtFieldRow('tax_amount',        props.tax_amount),
-      _fmtFieldRow('last_sale_date',    props.last_sale_date),
-      _fmtFieldRow('last_sale_price',   props.last_sale_price),
-      _fmtFieldRow('deed_book',         props.deed_book),
-      _fmtFieldRow('deed_page',         props.deed_page),
+      _fmtFieldRow('assessed_value',    props.assessed_value,    fips),
+      _fmtFieldRow('land_value',        props.land_value,        fips),
+      _fmtFieldRow('improvement_value', props.improvement_value, fips),
+      _fmtFieldRow('tax_year',          props.tax_year,          fips),
+      _fmtFieldRow('tax_amount',        props.tax_amount,        fips),
+      _fmtFieldRow('last_sale_date',    props.last_sale_date,    fips),
+      _fmtFieldRow('last_sale_price',   props.last_sale_price,   fips),
+      _fmtFieldRow('deed_book',         props.deed_book,         fips),
+      _fmtFieldRow('deed_page',         props.deed_page,         fips),
     ].filter(Boolean).join('');
 
     if (!rows) return '<p class="pp-empty">Valuation data not available for this parcel.</p>';
