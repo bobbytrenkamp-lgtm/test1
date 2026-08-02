@@ -4,10 +4,26 @@ endpoints fetch_infrastructure.py currently calls, which return
 {"error": {"message": "Invalid URL"}} in production (confirmed via CI run
 30723020119, 2026-07-31). This sandbox's outbound proxy blocks arcgis.com
 entirely, so this can only be diagnosed from a real-internet environment —
-run via `workflow_dispatch` on .github/workflows/update_infrastructure.yml
-(temporarily invoking this instead of the real fetch) or directly in an
-Actions job. Not part of the normal pipeline; delete once the real fix
-lands in fetch_infrastructure.py.
+run via `workflow_dispatch` on .github/workflows/_diagnose_hifld.yml on a
+GitHub Actions runner. Not part of the normal pipeline; delete once the
+real fix lands in fetch_infrastructure.py.
+
+Prior rounds (see PRs #208-#210) established:
+  - substations: dead at the original org, but a real mirror exists at
+    services.arcgis.com/G4S1dGvn7PIgYd6Y/.../HIFLD_electric_power_substations
+    — schema differs from the original (MAX_VOLT/MIN_VOLT instead of a
+    combined VOLTAGE string; COUNTYFIPS instead of COUNTY_FIPS).
+  - transmission: the URL was never the problem — the real code's WHERE
+    clause references COUNTRY, a column that plain doesn't exist on this
+    layer's schema (confirmed via `fields:` on a 1=1 query).
+  - Power_Plants / EPA water stress: no live replacement found after
+    searching both HIFLD orgs' service listings and two DCAT catalog
+    guesses. Not guessing a URL without verification (see the Maryland
+    parcel decision in BUG_TRACKER.md for why).
+
+This final round verifies the exact WHERE clauses the real code needs to
+use, since the real code's existing clauses were never checked against
+these services' actual data (STATUS values, etc.).
 
 Usage: python3 data/diagnose_hifld_endpoints.py
 """
@@ -18,131 +34,46 @@ import requests
 SESSION = requests.Session()
 SESSION.headers.update({"User-Agent": "USDataCenterPolicyTracker/1.0 (diagnostic; github.com/bobbytrenkamp-lgtm/test1)"})
 
-# maps.nccs.nasa.gov dropped: "Network is unreachable" from the Actions
-# runner itself (errno 101), not a sandbox proxy artifact — genuinely dead
-# from here, so not worth re-probing.
-CANDIDATES = {
-    "substations": [
-        "https://services.arcgis.com/G4S1dGvn7PIgYd6Y/ArcGIS/rest/services/HIFLD_electric_power_substations/FeatureServer/0/query",
-    ],
-    "transmission": [
-        "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query",
-    ],
-}
-
-# Also probe the bare FeatureServer root (not /query) to enumerate real layer
-# ids/names when a guess above is wrong but the service itself is alive.
-ROOTS_TO_ENUMERATE = [
-    "https://services.arcgis.com/G4S1dGvn7PIgYd6Y/ArcGIS/rest/services/HIFLD_electric_power_substations/FeatureServer",
-]
-
-# The original org (Hp6G80Pky0om7QvQ) is still alive — its transmission-lines
-# service resolved with a real ArcGIS error ("Invalid query parameters", not
-# "Invalid URL"), unlike substations/power_plants which say "Invalid URL".
-# List everything currently published under it to find the real names.
-ORG_SERVICE_LISTS = [
-    "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services",
-    "https://services.arcgis.com/G4S1dGvn7PIgYd6Y/ArcGIS/rest/services",
-]
+SUBSTATIONS_URL = "https://services.arcgis.com/G4S1dGvn7PIgYd6Y/ArcGIS/rest/services/HIFLD_electric_power_substations/FeatureServer/0/query"
+TRANSMISSION_URL = "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query"
 
 
-def probe_query(url, where="1=1"):
+def probe(label, url, where, out_fields):
     try:
         r = SESSION.get(url, params={
-            "where": where, "outFields": "*", "returnGeometry": "false",
-            "resultRecordCount": 3, "f": "json",
+            "where": where, "outFields": out_fields, "returnGeometry": "false",
+            "resultRecordCount": 5, "f": "json",
         }, timeout=30)
-        status = r.status_code
-        try:
-            data = r.json()
-        except Exception:
-            return status, f"non-JSON body ({len(r.content)} bytes)", None
-        if "error" in data:
-            return status, f"ArcGIS error: {data['error'].get('message', data['error'])}", None
-        feats = data.get("features", [])
-        fields = list(feats[0]["attributes"].keys()) if feats else []
-        return status, f"OK — {len(feats)} sample feature(s)", fields
-    except Exception as exc:
-        return None, f"request failed: {exc}", None
-
-
-def list_services(root_url):
-    try:
-        r = SESSION.get(root_url, params={"f": "json"}, timeout=30)
-        data = r.json()
-        if "error" in data:
-            return f"ArcGIS error: {data['error'].get('message', data['error'])}"
-        services = data.get("services", [])
-        return "; ".join(f"{s.get('name')} ({s.get('type')})" for s in services) or "(no services listed)"
-    except Exception as exc:
-        return f"request failed: {exc}"
-
-
-def probe_root(url):
-    try:
-        r = SESSION.get(url, params={"f": "json"}, timeout=30)
-        data = r.json()
-        if "error" in data:
-            return f"ArcGIS error: {data['error'].get('message', data['error'])}"
-        layers = data.get("layers", [])
-        return "; ".join(f"{l.get('id')}={l.get('name')}" for l in layers) or "(no layers listed)"
-    except Exception as exc:
-        return f"request failed: {exc}"
-
-
-def search_dcat_catalog(catalog_url, keywords):
-    """DCAT catalogs are machine-readable government-data feeds (built for
-    data.gov harvesting), so they may not hit the same bot-blocking as the
-    Hub's human-facing pages. Each dataset lists its real distribution
-    (download/service) URLs — search titles for our keywords."""
-    try:
-        r = SESSION.get(catalog_url, timeout=30)
         data = r.json()
     except Exception as exc:
-        return [f"request/parse failed: {exc}"]
-    datasets = data.get("dataset", [])
-    hits = []
-    for kw in keywords:
-        for ds in datasets:
-            title = (ds.get("title") or "")
-            if kw.lower() not in title.lower():
-                continue
-            urls = [d.get("accessURL") or d.get("downloadURL")
-                    for d in ds.get("distribution", []) if d.get("accessURL") or d.get("downloadURL")]
-            hits.append(f"{title!r}: {urls}")
-    return hits or [f"({len(datasets)} datasets in catalog, none matched {keywords})"]
-
-
-DCAT_CATALOGS = {
-    "https://hifld-geoplatform.hub.arcgis.com/api/feed/dcat-us/1.1.json": ["power plant"],
-    "https://www.epa.gov/waterdata/catalog/rest/dcat-us/1.1.json": ["water stress", "watershed", "EnviroAtlas"],
-}
+        print(f"  [{label}] request failed: {exc}")
+        return
+    if "error" in data:
+        err = data["error"]
+        print(f"  [{label}] ArcGIS error: {err.get('message', err)}")
+        return
+    feats = data.get("features", [])
+    print(f"  [{label}] OK — {len(feats)} feature(s) for WHERE {where!r}")
+    for f in feats[:3]:
+        print(f"      {f.get('attributes')}")
 
 
 def main():
-    for label, urls in CANDIDATES.items():
-        print(f"\n=== {label} ===")
-        for url in urls:
-            status, msg, fields = probe_query(url)
-            print(f"  [{status}] {url}\n      {msg}")
-            if fields:
-                print(f"      fields: {fields}")
+    print("=== substations: real WHERE clause against the new service ===")
+    probe("substations", SUBSTATIONS_URL,
+          "STATUS = 'IN SERVICE' AND COUNTRY = 'US' AND LONGITUDE IS NOT NULL AND LATITUDE IS NOT NULL",
+          "ID,NAME,TYPE,MAX_VOLT,MIN_VOLT,COUNTY,STATE,COUNTYFIPS,LONGITUDE,LATITUDE,STATUS,COUNTRY")
 
-    print("\n=== layer enumeration (root FeatureServer, no /N) ===")
-    for url in ROOTS_TO_ENUMERATE:
-        print(f"  {url}")
-        print(f"      {probe_root(url)}")
+    print("\n=== substations: STATUS value distribution (unfiltered sample) ===")
+    probe("substations-status-sample", SUBSTATIONS_URL, "1=1", "STATUS,COUNTRY")
 
-    print("\n=== org service listing (what's actually published now) ===")
-    for url in ORG_SERVICE_LISTS:
-        print(f"  {url}")
-        print(f"      {list_services(url)}")
+    print("\n=== transmission: COUNTRY removed from WHERE clause ===")
+    probe("transmission", TRANSMISSION_URL,
+          "STATUS = 'IN SERVICE'",
+          "ID,OWNER,VOLTAGE,TYPE,SUB_1,SUB_2,STATUS")
 
-    print("\n=== DCAT catalog search (power plants, EPA water) ===")
-    for url, keywords in DCAT_CATALOGS.items():
-        print(f"  {url}  keywords={keywords}")
-        for hit in search_dcat_catalog(url, keywords):
-            print(f"      {hit}")
+    print("\n=== transmission: STATUS value distribution (unfiltered sample) ===")
+    probe("transmission-status-sample", TRANSMISSION_URL, "1=1", "STATUS")
 
     return 0
 
