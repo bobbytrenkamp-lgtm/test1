@@ -7,6 +7,84 @@ replacement".
 
 ---
 
+Bug: `monitor_legislation.yml` could misreport a monitor script crash as
+"new legislation flagged" (or as a clean "no new items" run)
+Priority: Medium
+Affected Files: `data/monitor_legislation.py`,
+`.github/workflows/monitor_legislation.yml`
+Root Cause: `main()` called `run_monitoring()` with no exception
+handling, then `sys.exit(main())`. `main()` deliberately returns `1` to
+mean "new items found" (line ~505, pre-fix) — but an *uncaught*
+exception in `run_monitoring()` (a real crash: a network error, a
+malformed API response, anything not already caught internally) would
+also propagate out of `sys.exit(main())` and exit with Python's own
+default code of `1` for an unhandled exception — the identical code
+used for the deliberate "found something" signal. The workflow's "Print
+summary" step only ever checked `exit_code == '1'` and would print
+"⚠️ New legislation flagged" for a genuine crash. Because the "Run
+legislative monitor" step has `continue-on-error: true` (needed so the
+workflow can inspect that exit code at all), the job itself still showed
+green. In practice the issue-creation step is guarded on a non-empty
+parsed issue body, so a crash wouldn't have filed a *false* legislation
+digest — but it also filed *no* crash report, so a broken monitor could
+silently stop actually checking for legislation for weeks with the
+workflow reporting a plausible-looking, misleading "flagged" or "no new
+items" status the whole time. Found while surveying the codebase for
+the next round of work after the accessibility PRs (#216/#217/#218)
+merged; same root cause (and same fix shape: give a crash a genuinely
+distinct signal) as `validate_sources.py`'s already-fixed
+silently-destructive read failure.
+Fix: `main()` now wraps the `run_monitoring()` call in `try`/`except`;
+on an uncaught exception it prints the traceback plus a
+`__MONITOR_CRASHED__` marker and returns `2`, a code distinct from both
+`0` (no new items) and `1` (new items found) — documented in the
+module's own exit-codes docstring. The workflow's "Print summary" step
+now handles `exit_code == '2'` explicitly (prints a `❌` crash message
+and fails the step, so the job now genuinely shows red on a real crash
+instead of green), and a new "Open issue if the monitor crashed" step
+files (or comments on an existing) GitHub issue tagged with the
+already-defined-but-previously-unused `data-validation` label — mirroring
+the equivalent pattern already used correctly in `update_data.yml` for
+its own validator-failure case, which does distinguish step failure
+from a data signal (this was the sibling workflow that got this right
+the first time).
+Testing Performed: Directly exercised all three `main()` outcomes by
+monkeypatching `run_monitoring()` — a raised exception returns `2` (with
+traceback and marker printed), an empty list returns `0`, and a
+populated list returns `1` with the issue-body markers intact and
+unaffected by the new `try`/`except`. Validated the workflow YAML parses.
+`tests/run_all.sh` 176/176 passing (unaffected — no existing test
+exercises this script directly).
+Fixed By: Claude Code
+Date: 2026-08-02
+
+---
+
+Bug: Dead `ISO_QUEUE_URLS` dict in `ferc_queue.py` implied a per-ISO
+fallback that was never wired up
+Priority: Low
+Affected Files: `data/facility_pipeline/adapters/ferc_queue.py`
+Root Cause: A 7-entry dict of per-ISO (PJM/MISO/CAISO/SPP/NYISO/ISO-NE/
+ERCOT) interconnection-queue URLs was defined at module scope but never
+referenced anywhere else in the file or the rest of the codebase (`fetch()`
+only ever calls the single FERC aggregate URL via `FERC_QUEUE_URL`) — a
+future maintainer reading the code could reasonably believe a
+per-ISO-direct fallback existed for when the FERC master file breaks, when
+none does. Found during the same codebase survey as the monitor_legislation
+fix above.
+Fix: Removed the dead dict. The same information already exists as
+plain-text URLs in the file's own module docstring (the "Each ISO/RTO
+publishes its own queue... individual ISOs also publish directly" section),
+so nothing was lost — just removed unused, unverified code that implied a
+capability the adapter doesn't actually have.
+Testing Performed: Confirmed via repo-wide grep that `ISO_QUEUE_URLS` had
+zero other references before removing it; confirmed the file still parses
+and `FERC_QUEUE_URL`'s two call sites are unaffected.
+Fixed By: Claude Code
+Date: 2026-08-02
+
+---
+
 Bug: News tab (`#tab-news`) had its own pre-existing WCAG accessibility
 violations — `aria-allowed-role`, `aria-prohibited-attr`,
 `color-contrast`, and `nested-interactive` — never covered by the

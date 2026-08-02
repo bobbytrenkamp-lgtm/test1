@@ -110,6 +110,52 @@ jobs:
               }
             }
 
+      - name: Open issue if the monitor crashed
+        if: steps.monitor.outputs.exit_code == '2'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const output = fs.readFileSync('/tmp/monitor_output.txt', 'utf8');
+            const tail = output.split('\n').slice(-40).join('\n');
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `[Legislation Monitor] Monitor script crashed — needs attention`;
+            const body =
+              `The legislative monitor (\`data/monitor_legislation.py\`) crashed during ` +
+              `the ${today} run instead of completing its check. No legislation was ` +
+              `monitored this run — this is not a "no new items found" result, it is ` +
+              `a broken run that needs fixing.\n\n` +
+              `### Last output\n\n\`\`\`\n${tail}\n\`\`\`\n\n` +
+              `See the [workflow run logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) ` +
+              `for the full traceback.`;
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'data-validation',
+              per_page: 5,
+            });
+            const dupe = existing.data.find(i => i.title.startsWith('[Legislation Monitor] Monitor script crashed'));
+            if (dupe) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: dupe.number,
+                body: `_Crashed again on ${today}:_\n\n${body}`,
+              });
+              console.log(`Updated existing crash issue #${dupe.number}`);
+            } else {
+              const created = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['legislation-monitor', 'data-validation'],
+              });
+              console.log(`Created crash issue #${created.data.number}: ${created.data.html_url}`);
+            }
+
       - name: Create or update GitHub Issue for flagged legislation
         if: steps.monitor.outputs.exit_code == '1'
         uses: actions/github-script@v7
@@ -164,6 +210,9 @@ jobs:
           EXIT="${{ steps.monitor.outputs.exit_code }}"
           if [ "$EXIT" = "1" ]; then
             echo "⚠️  New legislation flagged — see GitHub Issues for the review digest."
+          elif [ "$EXIT" = "2" ]; then
+            echo "❌  Monitor script crashed — no legislation was checked this run. See GitHub Issues."
+            exit 1
           else
             echo "✓  No new relevant legislation found."
           fi

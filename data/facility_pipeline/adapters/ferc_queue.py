@@ -41,17 +41,6 @@ FERC_QUEUE_URL = (
     "https://www.ferc.gov/media/3423/download"
 )
 
-# Per-ISO active queue download URLs (updated periodically by each ISO)
-ISO_QUEUE_URLS: dict[str, str] = {
-    "PJM": "https://www.pjm.com/-/media/planning/interconnection-projects/active-projects/ai-queues.ashx",
-    "MISO": "https://www.misoenergy.org/planning/interconnection/disis/",
-    "CAISO": "https://www.caiso.com/Documents/GeneratorInterconnectionandInterconnectionRelatedAgreementsReport.xlsx",
-    "SPP": "https://www.spp.org/documents/49169/SPP_GI_Queue.xlsx",
-    "NYISO": "https://www.nyiso.com/documents/20142/1407078/New-York-ISO-Active-Interconnection-Queue.xlsx",
-    "ISO-NE": "https://www.iso-ne.com/system-planning/interconnection-service/interconnection-request-queue/current-request-queue",
-    "ERCOT": "https://mis.ercot.com/misapp/GetReports.do?reportTypeId=15933",
-}
-
 # MW threshold for candidate data center projects
 _MIN_MW = 50
 
