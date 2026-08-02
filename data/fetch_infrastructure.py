@@ -47,6 +47,16 @@ HIFLD_BASE = "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services
 # without verification (see the Maryland parcel decision in
 # BUG_TRACKER.md for why that's a real, previously-hit failure mode).
 SUBSTATION_URL  = "https://services.arcgis.com/G4S1dGvn7PIgYd6Y/ArcGIS/rest/services/HIFLD_electric_power_substations/FeatureServer/0/query"
+# CONFIRMED COVERAGE CAVEAT (live run, 2026-08-02): this mirror returned
+# only 55 raw US records nationwide (25 after the >=69kV filter). The real
+# HIFLD substations dataset has tens of thousands of records — this is a
+# small subset, not the full national layer, despite matching the expected
+# field schema exactly. It's genuinely correct data (no fabrication, no
+# errors) and strictly better than the 0 records this returned before, but
+# it is not equivalent coverage to what existed before the original service
+# died. Flagged in BUG_TRACKER.md; a full-coverage replacement still needs
+# to be found by a human with real search access.
+#
 # Transmission's URL was never the problem — confirmed alive the whole
 # time. The WHERE clause below used to reference COUNTRY, a column this
 # layer's schema doesn't have at all (unlike substations' schema, which
@@ -181,6 +191,13 @@ def fetch_substations() -> list[dict]:
             "lat":         round(float(lat), 5),
         })
     log.info("Substations: %d records (>= 69 kV)", len(out))
+    if len(out) < 500:
+        # Real HIFLD coverage is tens of thousands of substations nationwide.
+        # A low count here doesn't mean an error (the ArcGIS response was
+        # valid, no "error" key) — it means SUBSTATION_URL's current source
+        # is a subset, not the full national layer. See its definition above.
+        log.warning("Substation count (%d) looks like partial coverage, not "
+                    "a fetch failure — see SUBSTATION_URL's comment.", len(out))
     return out
 
 

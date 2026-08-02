@@ -76,10 +76,25 @@ GitHub Actions runner (not this sandbox, which cannot reach arcgis.com at
 all) confirmed real feature data returned for both fixed endpoints with
 the exact WHERE clauses and field names now in the code. `tests/run_all.sh`
 176/176 passing (this module has no offline test coverage — the bug and
-fix are both about live network behavior).
+fix are both about live network behavior). Verified in production, not
+just the diagnostic: dispatched `update_infrastructure.yml` on `main`
+after merging — real commit landed (`9a238c7`, +45,937 lines), log showed
+`Transmission lines: 1892 records (>= 115 kV)` (full, expected-scale
+coverage) and `Substations: 25 records (>= 69 kV)`.
+Known Limitation (found during that same verification, not before):
+substations' replacement mirror returned only 55 raw US records
+nationwide before filtering — real HIFLD substation coverage is tens of
+thousands. This mirror is a subset, not the full national layer, despite
+matching the expected field schema exactly and returning genuinely valid
+(non-error, non-fabricated) data. Strictly better than the 0 records this
+returned before, but not equivalent to the coverage that existed before
+the original service died. `fetch_substations()` now logs a warning when
+the count looks partial so this doesn't read as a clean success in future
+logs. A full-coverage replacement still needs a human to find by hand.
 Fixed By: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
 Date Fixed: 2026-08-02
-Status: Fixed (substations, transmission) / Open (power plants, EPA water — see above)
+Status: Fixed, with a known coverage limitation (substations) / Fixed, full
+coverage confirmed (transmission) / Open (power plants, EPA water — see above)
 
 ---
 
