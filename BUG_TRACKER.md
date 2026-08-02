@@ -7,6 +7,81 @@ replacement".
 
 ---
 
+Bug: Rapid economic-layer toggling could desync the Map tab from its
+own checkbox UI
+Priority: Medium
+Affected Files: `js/economy-map.js`
+Root Cause: `activate(layerId)` used a single module-level `_loading`
+boolean as a mutex: `if (_loading) return Promise.resolve(false);`.
+Sequence: user checks layer A → `activate('A')` sets `_loading = true`
+and starts an async county-data fetch. Before it resolves, user checks
+layer B → the "exclusive" logic unchecks A's checkbox in the DOM (A is
+being turned off in favor of B), then `activate('B')` returns `false`
+immediately because `_loading` is still true — indistinguishable from a
+genuine failure, so B's checkbox gets rolled back too. A's *original*
+promise then resolves, sets `_activeLayer = 'A'`, and restyles the map
+— leaving the map rendering layer A's data while *neither* checkbox is
+checked. A superseded request and a failed request were the same signal.
+Fix: Replaced the boolean mutex with a monotonic `_requestGen` counter,
+bumped on every toggle (either direction). Each in-flight `activate()`
+call captures the counter at call time and compares it against the
+current value when its promise resolves: a match means it's still the
+authoritative request (proceed normally); a mismatch means a newer
+toggle has already superseded it, so it now returns `null` and its
+caller discards the result silently — no checkbox rollback, no restyle
+— instead of treating a superseded request as a failed one.
+Testing Performed: Reproduced live with Playwright — throttled the
+county data fetch via route interception (600ms delay), rapidly
+toggled two layers within that window, and confirmed the resulting
+state is self-consistent (the active layer, its checkbox, and
+`layerStateRef` all agree) after the fix, where the pre-fix logic would
+have left it inconsistent. Confirmed ordinary single-toggle on/off
+still works correctly (no regression). `tests/run_all.sh` 176/176
+passing.
+Fixed By: Claude Code
+Date: 2026-08-02
+
+---
+
+Bug: Economy tab's Regional Explorer leaked a click listener set on
+every county/state selection
+Priority: Medium
+Affected Files: `js/economy-view.js`
+Root Cause: The file's own header docstring states "any listeners a
+render pass added are torn down by `_teardown()` before the next" — but
+`selectRegion()` → `renderProfile()` (called on every Explorer map
+click) replaces `#econ-profile`'s `innerHTML` (detaching its buttons)
+and calls `wireProfileActions()`, which adds 1-3 fresh click listeners
+via the shared `on()` helper, without ever calling `_teardown()` first.
+Each selection's listener closures (referencing now-detached DOM nodes)
+accumulated unboundedly in the module-level `_cleanups` array for the
+life of the Economy page view — a real, growing memory leak during
+normal interactive use, not a one-time cost.
+Fix: A `_teardown()` call inside `renderProfile()` wasn't viable — it
+would also tear down still-live listeners belonging to other sections
+of the page (KPI strip, trends, signals, search), which share the same
+`_cleanups` array, breaking their interactivity. Added a separately-
+scoped `_profileCleanups`/`onProfile()`/`_teardownProfile()` trio
+mirroring the existing pattern, torn down at the start of every
+`renderProfile()` call before it rewires anything. Also found and fixed
+two more call sites (the geo-toggle and metric-clear handlers) that
+reset `#econ-profile`'s content directly, bypassing `renderProfile()`
+entirely — both needed their own `_teardownProfile()` call for the same
+reason.
+Testing Performed: Reproduced live — called the exposed
+`window.ECONOMY_VIEW.selectRegion()` 8 times in a row and confirmed via
+the module's own `_debug()` diagnostic that `profileListenerCount`
+stays flat at 3 across all 8 calls (would have grown to 24 pre-fix).
+Specifically checked for a stale-closure symptom (the more visible
+failure mode this bug could plausibly also cause): selected county A,
+then county B, clicked the watchlist button once, and confirmed only B
+— the current selection — got watchlisted, not a stale reference to A.
+`tests/run_all.sh` 176/176 passing.
+Fixed By: Claude Code
+Date: 2026-08-02
+
+---
+
 Bug: `monitor_legislation.yml` could misreport a monitor script crash as
 "new legislation flagged" (or as a clean "no new items" run)
 Priority: Medium

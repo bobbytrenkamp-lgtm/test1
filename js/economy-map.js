@@ -35,7 +35,18 @@ window.ECONOMY_MAP = (function () {
   let _activeLayer = null;     // layer id, or null
   let _classifier  = null;
   let _records     = null;     // fips -> county record
-  let _loading     = false;
+
+  /* Monotonic request-generation counter. Every onLayerToggle() call (either
+     direction) bumps this before doing anything async. An in-flight
+     activate() captures the counter's value at call time and, once its
+     fetch/classify work resolves, compares against the *current* value: if
+     another toggle has happened meanwhile it is stale/superseded and must be
+     discarded silently — it must NOT roll back a checkbox or restyle the map,
+     because a newer request already owns the UI. This replaces a single
+     `_loading` boolean mutex that used to make a superseded request look
+     identical to a genuinely *failed* one, which is how two layers could end
+     up unchecked while a third (superseded) layer silently won the map. */
+  let _requestGen  = 0;
 
   function isActive()      { return !!_activeLayer; }
   function activeLayerId() { return _activeLayer; }
@@ -91,15 +102,20 @@ window.ECONOMY_MAP = (function () {
 
   let _vintage = null;
 
-  /* Build the classifier for a layer. Async because the county file is lazy. */
+  /* Build the classifier for a layer. Async because the county file is lazy.
+     Returns a Promise<true|false|null>: true = activated, false = a genuine
+     failure (no data / fetch error — caller should roll the checkbox back),
+     null = this request was superseded by a newer toggle before it resolved
+     (caller must leave the UI alone; a later request already handled it).
+     Callers must bump _requestGen *before* calling activate() so the value
+     captured here reflects "this is the request in flight as of my call". */
   function activate(layerId) {
     const spec = LAYER_METRIC[layerId];
     if (!spec) return Promise.resolve(false);
-    if (_loading) return Promise.resolve(false);
-    _loading = true;
+    const myGen = _requestGen;
 
     return window.ECONOMY.load("county").then(payload => {
-      _loading = false;
+      if (myGen !== _requestGen) return null; // superseded — discard silently
       if (!window.ECONOMY.hasCounty(payload)) {
         // Not populated yet. Say so rather than drawing an empty grey map that
         // would look like "no economic activity anywhere".
@@ -116,7 +132,7 @@ window.ECONOMY_MAP = (function () {
       _activeLayer = layerId;
       return true;
     }).catch(err => {
-      _loading = false;
+      if (myGen !== _requestGen) return null; // superseded — discard silently
       console.warn("ECONOMY_MAP activate failed:", err);
       if (typeof showMapToast === "function") {
         showMapToast("Economic data could not be loaded", 3500);
@@ -138,6 +154,12 @@ window.ECONOMY_MAP = (function () {
   function onLayerToggle(layerId, enabled) {
     if (!LAYER_METRIC[layerId]) return;
 
+    /* Every toggle — on or off — supersedes whatever activate() request may
+       still be in flight from a previous toggle. Bumping here (rather than
+       only inside activate()) also invalidates an in-flight request when the
+       user unchecks its own layer before the fetch resolves. */
+    _requestGen++;
+
     if (!enabled) {
       if (_activeLayer === layerId) {
         deactivate();
@@ -157,6 +179,11 @@ window.ECONOMY_MAP = (function () {
     }
 
     activate(layerId).then(ok => {
+      if (ok === null) {
+        // Superseded by a later toggle — that request already owns the
+        // checkbox/map state. Rolling anything back here would stomp on it.
+        return;
+      }
       if (!ok) {
         // Roll the toggle back so the UI does not claim an active layer that
         // is not drawing anything.

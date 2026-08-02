@@ -36,6 +36,14 @@
 
   const _charts = {};          // category -> chart handle (built once)
   let _cleanups = [];          // listener teardowns for the current render
+  let _profileCleanups = [];   // listener teardowns for the #econ-profile panel
+                                // only. Scoped separately from _cleanups
+                                // because the profile panel is rebuilt on every
+                                // region selection (far more often than a full
+                                // page render), and tearing down through the
+                                // shared _cleanups/_teardown() would also rip
+                                // out still-live listeners belonging to the KPI
+                                // strip, trends, signals, and search sections.
   let _explorerMap = null;     // Leaflet map for section 3
   let _explorerLayer = null;
   let _explorerByFips = {};
@@ -68,6 +76,20 @@
   function _teardown() {
     _cleanups.forEach(fn => { try { fn(); } catch (_) {} });
     _cleanups = [];
+  }
+
+  /* Same shape as on()/_teardown() above, scoped to #econ-profile's own
+     buttons. renderProfile() calls _teardownProfile() before rewiring, so a
+     new selection's listeners never stack on top of the previous selection's
+     (now-detached) ones. */
+  function onProfile(el, ev, fn, opts) {
+    if (!el) return;
+    el.addEventListener(ev, fn, opts);
+    _profileCleanups.push(() => el.removeEventListener(ev, fn, opts));
+  }
+  function _teardownProfile() {
+    _profileCleanups.forEach(fn => { try { fn(); } catch (_) {} });
+    _profileCleanups = [];
   }
 
   /* ── Range windows for the trend charts ── */
@@ -589,6 +611,11 @@
   function renderProfile() {
     const host = document.getElementById("econ-profile");
     if (!host) return;
+    // Every call replaces #econ-profile's content (directly below, or via the
+    // early-return branches), which detaches whatever the previous call
+    // wired up. Tear those listeners down before anything else so they never
+    // accumulate across selections — see _profileCleanups above.
+    _teardownProfile();
     const cData = _lastData && _lastData.county;
     const sData = _lastData && _lastData.state;
     const key = state.selectedFips;
@@ -781,14 +808,14 @@
 
   function wireProfileActions(fips) {
     const w = document.getElementById("econ-profile-watch");
-    on(w, "click", () => {
+    onProfile(w, "click", () => {
       if (!window.WATCHLIST) return;
       window.WATCHLIST.toggle(fips);
       w.textContent = window.WATCHLIST.has(fips) ? "In watchlist ✓" : "Add to watchlist";
     });
     if (w && window.WATCHLIST && window.WATCHLIST.has(fips)) w.textContent = "In watchlist ✓";
 
-    on(document.getElementById("econ-profile-compare"), "click", () => {
+    onProfile(document.getElementById("econ-profile-compare"), "click", () => {
       // Reuse the map's existing comparison tool (js/compare.js) rather than
       // inventing a parallel one. This previously called
       // addCountyToCompare()/window.COMPARE, neither of which exist anywhere
@@ -796,7 +823,7 @@
       if (typeof navigateAndAddToCompare === "function") navigateAndAddToCompare(fips);
     });
 
-    on(document.getElementById("econ-profile-map"), "click", () => {
+    onProfile(document.getElementById("econ-profile-map"), "click", () => {
       if (window.Router) window.Router.navigate("map", { fips });
       else if (typeof switchTab === "function") switchTab("map");
       if (typeof selectCounty === "function") setTimeout(() => selectCounty(fips), 350);
@@ -976,6 +1003,9 @@
       if (_explorerMap) { _explorerMap.remove(); _explorerMap = null; _explorerLayer = null; }
       _explorerByFips = {};
       renderExplorer(_lastData);
+      // Bypasses renderProfile(), so its own teardown never runs for this
+      // replacement — tear down here for the same reason renderProfile() does.
+      _teardownProfile();
       const p = document.getElementById("econ-profile");
       if (p) p.innerHTML = `<div class="econ-profile-empty"><p>Select an area on the map to see its economic profile.</p></div>`;
     });
@@ -988,6 +1018,9 @@
       if (_explorerLayer) _explorerLayer.setStyle({ fillOpacity: 0, weight: 0.2 });
       const l = document.getElementById("econ-map-legend");
       if (l) l.innerHTML = `<div class="econ-legend-foot">Economic layer cleared. Change the metric to redraw it.</div>`;
+      // Bypasses renderProfile(), so its own teardown never runs for this
+      // replacement — tear down here for the same reason renderProfile() does.
+      _teardownProfile();
       const p = document.getElementById("econ-profile");
       if (p) p.innerHTML = `<div class="econ-profile-empty"><p>Economic layer cleared.</p></div>`;
     });
@@ -1117,10 +1150,12 @@
         indexed: Object.keys(_explorerByFips).length,
         size: _explorerMap ? _explorerMap.getSize() : null,
         metric: state.metric, measure: state.measure, geo: state.geo,
+        profileListenerCount: _profileCleanups.length,
       };
     },
     destroy() {
       _teardown();
+      _teardownProfile();
       if (_charts.handle) { _charts.handle.destroy(); delete _charts.handle; delete _charts._key; }
       if (_explorerMap) { _explorerMap.remove(); _explorerMap = null; _explorerLayer = null; }
     },
