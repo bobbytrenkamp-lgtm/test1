@@ -12,6 +12,67 @@ No active work in progress as of 2026-08-02.
 
 - Date: 2026-08-02
 - Agent: Claude Code
+- Task: Fixed the News tab's own pre-existing WCAG accessibility
+  violations (`aria-allowed-role`, `aria-prohibited-attr`,
+  `color-contrast`, `nested-interactive`) — the open handoff logged
+  below by the site-wide accessibility pass (#216), which never covered
+  `#tab-news`.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped:
+  - Every clickable news card (`.news-lead`, `.news-row`,
+    `.news-dev-item`, `.news-wire-item`, `.news-mi-item`, the section
+    "featured" block) no longer has `role="button"`+`tabindex` bolted
+    onto its `<article>`/`<section>`/`<div>` container. Instead each
+    card's headline is a real `<button>` (new `_makeHeadlineBtn()` in
+    `js/news.js`) — natively keyboard-operable, no manual keydown code
+    needed — and the container keeps only a plain "click anywhere on
+    the card" mouse listener (new `_wireCardClick()`), no role/tabindex.
+    This fixed both `aria-allowed-role` (69 nodes — `<article>`/
+    `<section>` don't allow `role="button"` in the ARIA-in-HTML spec)
+    and `nested-interactive` (27 nodes — the cards' real nested
+    `.news-location-link` buttons were focusable descendants of another
+    focusable, role="button" element).
+  - `.news-status-dot` (the "auto-updated" indicator) now gets
+    `aria-hidden="true"` instead of an invalid, redundant `aria-label`
+    on a bare `<span>` (`aria-prohibited-attr`, 1 node) — the adjacent
+    "Auto-updated hourly" text already conveys the same thing visibly.
+  - All 14 category-tag chip colors (`.cat-data-centers`, etc. in
+    `css/style.css`) re-tuned for contrast: 1 (Legal & Copyright)
+    needed a dark-theme fix, and — checking all 14, not just the ones
+    that happened to be in that day's live feed — every one of them
+    failed in light theme (as low as 1.41:1), since these colors had no
+    light-theme override at all. Added one, in both the
+    `html[data-theme="light"]` block and the `@media
+    (prefers-color-scheme: light) { html:not([data-theme="dark"])
+    {...} }` block — the same dual-block pattern already found missing
+    in `economy.css`/`parcel.css`/`pipeline.css` during the site-wide
+    pass. Colors computed via the WCAG relative-luminance formula
+    against each chip's actual axe-computed blended background (its
+    rgba tint over the real `--surface`), same hue, darkened/lightened
+    until ≥4.5:1, then verified in-browser.
+- Verified, not assumed: local `python3 -m http.server 8099` +
+  Playwright (Chromium) + axe-core loop scanning `#tab-news`
+  specifically (`wcag2a`/`wcag2aa`/`best-practice`), same method the
+  handoff asked for. Before: `aria-allowed-role` (69),
+  `aria-prohibited-attr` (1), `color-contrast` (6), `nested-interactive`
+  (27). Fixed one violation class at a time, re-scanning after each —
+  all four cleared to zero, confirmed again with one final full sweep.
+  Separately swept all 14 category colors (not just whichever were live
+  that day) against both themes programmatically — all pass. Confirmed
+  click/keyboard behavior didn't regress: card-whitespace click, Tab +
+  Enter on the headline button, and the nested location-link button
+  (still filters the map, still doesn't also open the article detail)
+  all work correctly. Full `tests/run_all.sh` 176/176 passing; `E2E=1`
+  browser smoke suite passing.
+- Files changed: `js/news.js`, `css/style.css`, `BUG_TRACKER.md`,
+  `AI_TEAM_STATUS.md`.
+- Related systems: none outside the News tab — the headline-button
+  restructuring only touches `js/news.js`'s card-builder functions and
+  the CSS handles matching classes; no other page's markup pattern was
+  touched.
+
+- Date: 2026-08-02
+- Agent: Claude Code
 - Task: Fixed `tests/run_all.sh` reporting "All suites passed" when
   jsdom-dependent suites were actually silently skipped — the same
   hollow-pass bug class fixed once already (2026-07-31) in the CI
@@ -421,30 +482,10 @@ No active work in progress as of 2026-08-02.
   under `data/`.
 - Relevant commits: n/a.
 
-- Item: News tab has its own unrelated, pre-existing WCAG accessibility
-  issues, found while auditing every other tab but not yet fixed.
-- Current status: Open, not fixed — the News tab was never in the
-  original set of pages this pass audited; it was only checked
-  afterward, specifically to confirm the new `<main>`-landmark work did
-  not regress it (it did not — no landmark/region violations there).
-  That check surfaced a separate, larger batch of pre-existing
-  violations axe-core flags on `#tab-news`: `aria-allowed-role` (69
-  nodes), `aria-prohibited-attr` (1 node, `.news-status-dot`),
-  `color-contrast` (7 nodes, category tag chips), and
-  `nested-interactive` (28 nodes — interactive elements inside other
-  interactive elements, e.g. `.news-section-featured[role="button"]`
-  containing further focusable children).
-- Why it was not fixed: `nested-interactive` in particular is a DOM
-  restructuring, not a CSS/attribute tweak like the rest of this pass —
-  it needs a deliberate look at the news-card markup, not a
-  drive-by fix bundled into an unrelated PR.
-- Recommended next action: run the same axe-core sweep this pass used
-  (`runOnly: { type: 'tag', values: ['wcag2a','wcag2aa','best-practice'] }`)
-  against `#tab-news` specifically, then fix each category the same way
-  this pass did — verify via re-scan after each change, not by
-  reasoning alone.
-- Relevant files: `js/news.js` (or wherever the News tab's card markup
-  lives — not yet located).
+  (The "News tab has its own unrelated, pre-existing WCAG accessibility
+  issues" item that used to be tracked here was resolved 2026-08-02 —
+  see this file's Recently Completed Work log and BUG_TRACKER.md's News
+  tab entry. Not re-listed as an open handoff.)
 
 - Item: Delete two dead branches — `feature/automated-ai-news` and
   `fix/news-skip-ci`.

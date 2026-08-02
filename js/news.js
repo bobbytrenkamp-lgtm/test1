@@ -357,6 +357,46 @@ function _wireArtClick(el, art) {
   el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
 }
 
+/* ── Card click wiring (headline-button pattern) ──────────────────────
+   _wireArtClick above puts role="button"+tabindex directly on the card's
+   container element. That's fine for a plain <div> with no other
+   interactive content (e.g. _buildDevelopingStrip), but it broke two
+   axe-core rules everywhere the container is an <article>/<section>
+   (role="button" isn't in the allowed-roles list for those — aria-
+   allowed-role) or contains the location-filter button built by
+   _makeLocLink (a focusable element nested inside another focusable,
+   role=button element — nested-interactive).
+
+   The fix: the container stays a plain, non-interactive element (no
+   role, no tabindex) and only offers a "click anywhere on the card"
+   mouse convenience. The real, keyboard-operable control is a genuine
+   <button> wrapping just the headline text, built by _makeHeadlineBtn.
+   Because it's a native <button>, Enter/Space activation is automatic —
+   no manual keydown handling needed. The location-filter button (when
+   present) ends up a sibling descendant of the container instead of a
+   descendant of another interactive element, which is what resolves
+   nested-interactive. See BUG_TRACKER.md for the axe-core findings this
+   fixes. */
+function _makeHeadlineBtn(className, art) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = `news-headline-btn ${className}`;
+  btn.textContent = _cleanTitle(art.title, art.source);
+  btn.setAttribute("aria-label", `Read: ${_cleanTitle(art.title, art.source)}`);
+  btn.addEventListener("click", e => {
+    e.stopPropagation();
+    openArticleDetail(art, btn);
+  });
+  return btn;
+}
+
+function _wireCardClick(container, art, headlineBtn) {
+  container.addEventListener("click", e => {
+    if (e.target.closest(".news-location-link, .news-headline-btn")) return;
+    openArticleDetail(art, headlineBtn);
+  });
+}
+
 function _makeLocLink(art) {
   if (!art.location?.state) return null;
   const btn = document.createElement("button");
@@ -405,7 +445,6 @@ function _buildLeadStory(art) {
   const wrap = document.createElement("section");
   wrap.className = "news-lead";
   wrap.setAttribute("aria-label", "Lead story");
-  _wireArtClick(wrap, art);
 
   const catRow = document.createElement("div");
   catRow.className = "news-lead-cat-row";
@@ -415,9 +454,11 @@ function _buildLeadStory(art) {
   wrap.appendChild(catRow);
 
   const h2 = document.createElement("h2");
-  h2.className = "news-lead-headline";
-  h2.textContent = _cleanTitle(art.title, art.source);
+  h2.className = "news-lead-heading";
+  const headlineBtn = _makeHeadlineBtn("news-lead-headline", art);
+  h2.appendChild(headlineBtn);
   wrap.appendChild(h2);
+  _wireCardClick(wrap, art, headlineBtn);
 
   const summ = art.why_it_matters || art.summary || art.description || "";
   const summIsDupe = summ.trim().toLowerCase() === (art.title || "").trim().toLowerCase()
@@ -488,7 +529,6 @@ function _getDevelopingStory(sorted) {
 function _buildDevItem(art) {
   const item = document.createElement("article");
   item.className = "news-dev-item";
-  _wireArtClick(item, art);
 
   const catEl = document.createElement("div");
   catEl.className = "news-dev-cat";
@@ -496,9 +536,7 @@ function _buildDevItem(art) {
   catEl.appendChild(_catTag(art.category));
   item.appendChild(catEl);
 
-  const hl = document.createElement("div");
-  hl.className = "news-dev-headline";
-  hl.textContent = _cleanTitle(art.title, art.source);
+  const hl = _makeHeadlineBtn("news-dev-headline", art);
   item.appendChild(hl);
 
   const meta = document.createElement("div");
@@ -513,6 +551,7 @@ function _buildDevItem(art) {
   const loc = _makeLocLink(art);
   if (loc) { meta.appendChild(_sep()); meta.appendChild(loc); }
   item.appendChild(meta);
+  _wireCardClick(item, art, hl);
   return item;
 }
 
@@ -532,7 +571,6 @@ function _buildTopDev(arts) {
 function _buildWireItem(art) {
   const item = document.createElement("article");
   item.className = "news-wire-item";
-  _wireArtClick(item, art);
 
   const d = art.published_at && !_isFutureDate(art.published_at) ? new Date(art.published_at) : null;
   const timeEl = document.createElement("time");
@@ -545,9 +583,7 @@ function _buildWireItem(art) {
 
   const body = document.createElement("div");
   body.className = "news-wire-body";
-  const hl = document.createElement("div");
-  hl.className = "news-wire-headline";
-  hl.textContent = _cleanTitle(art.title, art.source);
+  const hl = _makeHeadlineBtn("news-wire-headline", art);
   body.appendChild(hl);
   const metaEl = document.createElement("div");
   metaEl.className = "news-wire-meta";
@@ -555,6 +591,7 @@ function _buildWireItem(art) {
   metaEl.textContent = mArr.join(" · ");
   body.appendChild(metaEl);
   item.appendChild(body);
+  _wireCardClick(item, art, hl);
   return item;
 }
 
@@ -582,7 +619,6 @@ function _buildMostImportant(arts) {
   arts.slice(0, 5).forEach((art, i) => {
     const item = document.createElement("article");
     item.className = "news-mi-item";
-    _wireArtClick(item, art);
 
     const rank = document.createElement("div");
     rank.className = "news-mi-rank";
@@ -592,15 +628,14 @@ function _buildMostImportant(arts) {
 
     const body = document.createElement("div");
     body.className = "news-mi-body";
-    const hl = document.createElement("div");
-    hl.className = "news-mi-headline";
-    hl.textContent = _cleanTitle(art.title, art.source);
+    const hl = _makeHeadlineBtn("news-mi-headline", art);
     body.appendChild(hl);
     const meta = document.createElement("div");
     meta.className = "news-mi-meta";
     meta.textContent = [art.source, art.location?.state].filter(Boolean).join(" · ");
     body.appendChild(meta);
     item.appendChild(body);
+    _wireCardClick(item, art, hl);
     wrap.appendChild(item);
   });
   return wrap;
@@ -610,15 +645,12 @@ function _buildMostImportant(arts) {
 function _buildArticleRow(art) {
   const row = document.createElement("article");
   row.className = "news-row";
-  _wireArtClick(row, art);
 
   row.appendChild(_catDot(art.category));
 
   const body = document.createElement("div");
   body.className = "news-row-body";
-  const hl = document.createElement("div");
-  hl.className = "news-row-headline";
-  hl.textContent = _cleanTitle(art.title, art.source);
+  const hl = _makeHeadlineBtn("news-row-headline", art);
   body.appendChild(hl);
   const meta = document.createElement("div");
   meta.className = "news-row-meta-inline";
@@ -633,6 +665,7 @@ function _buildArticleRow(art) {
   timeEl.className = "news-row-time";
   timeEl.textContent = _isFutureDate(art.published_at) ? "Scheduled" : _fmtRelTime(art.published_at);
   row.appendChild(timeEl);
+  _wireCardClick(row, art, hl);
   return row;
 }
 
@@ -652,7 +685,6 @@ function _buildSectionBlock(label, arts, sectionId, viewAllCat) {
   // Featured first article
   const feat = document.createElement("div");
   feat.className = "news-section-featured";
-  _wireArtClick(feat, arts[0]);
 
   const featCatRow = document.createElement("div");
   featCatRow.className = "news-section-feat-cat";
@@ -662,9 +694,11 @@ function _buildSectionBlock(label, arts, sectionId, viewAllCat) {
   feat.appendChild(featCatRow);
 
   const featHl = document.createElement("h3");
-  featHl.className = "news-section-featured-headline";
-  featHl.textContent = _cleanTitle(arts[0].title, arts[0].source);
+  featHl.className = "news-section-featured-heading";
+  const featBtn = _makeHeadlineBtn("news-section-featured-headline", arts[0]);
+  featHl.appendChild(featBtn);
   feat.appendChild(featHl);
+  _wireCardClick(feat, arts[0], featBtn);
 
   const rawSumm = arts[0].why_it_matters || arts[0].summary || arts[0].description || "";
   if (rawSumm && rawSumm.trim() !== (arts[0].title || "").trim()) {
@@ -837,9 +871,14 @@ function renderNewsStatusBar(newsData) {
   const row = document.createElement("div");
   row.className = "news-status-row";
 
+  // Purely decorative: the adjacent freqEl below already renders "Auto-updated
+  // hourly" as visible, AT-readable text, and a plain <span> (implicit role
+  // "generic") isn't a valid aria-label target — axe-core's aria-prohibited-attr
+  // flagged the label as redundant AND invalid. Hide the dot from the a11y tree
+  // instead of relabeling it.
   const dot = document.createElement("span");
   dot.className = "news-status-dot";
-  dot.setAttribute("aria-label", "Auto-updated hourly");
+  dot.setAttribute("aria-hidden", "true");
 
   const countEl = document.createElement("span");
   countEl.id = "news-status-count";
