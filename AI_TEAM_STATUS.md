@@ -12,6 +12,50 @@ No active work in progress as of 2026-08-02.
 
 - Date: 2026-08-02
 - Agent: Claude Code
+- Task: Picked up two already-scoped items straight from Open Handoffs
+  below rather than running a fourth research survey: the parcel panel's
+  wording for attributes a source doesn't publish, and verifying whether
+  the `data/*.py` missing-`encoding="utf-8"` handoff was still real.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: `js/parcel/panel.js`'s `_fmtFieldRow()` (used by the Details,
+  Zoning, and Valuation tabs alike) previously just omitted a row
+  whenever a field's value was empty — indistinguishable to a user from
+  a bug, whether the parcel genuinely has no value or the source never
+  publishes that field type at all (`registry.js`'s `notProvidedBySource`
+  already recorded the distinction, but nothing surfaced it). Now checks
+  the current parcel's jurisdiction (via `props.county_fips` →
+  `PARCEL_REGISTRY.get()`) and, for a field explicitly listed as not
+  provided, renders "Not published by this source" instead of nothing.
+  Also fixed the Zoning tab's zoning-code badge specifically, which had
+  no fallback at all when absent — it now shows "Zoning code not
+  published by this source" rather than the badge silently vanishing,
+  the single most visually prominent instance of this gap. New
+  `.pp-field-na` style (muted, italic) added to `parcel.css`.
+- Verified, not assumed: since `panel.js` is deliberately excluded from
+  the unit suite (touches the live document/Leaflet), and this sandbox
+  cannot reach the real ArcGIS parcel services to select a live parcel,
+  called `window.PARCEL_PANEL.show()` directly in a live browser with a
+  synthetic feature shaped exactly like Loudoun County's real props
+  (only the fields its real `fieldMap` actually provides present; all
+  17 of its `notProvidedBySource` fields genuinely absent). Confirmed
+  all 17 render "Not published by this source" across Details/Zoning/
+  Valuation, confirmed the zoning-code badge fallback specifically, and
+  separately confirmed genuinely-provided fields (parcel ID, area,
+  subdivision) still render their real values unaffected. Full
+  `tests/run_all.sh` 176/176 passing.
+- Also: re-checked the `encoding="utf-8"` handoff below with a script
+  scanning every `open()`/`read_text()`/`write_text()` call under
+  `data/` recursively (the original handoff only appears to have
+  checked the top level) — it's already fully resolved, zero calls
+  missing `encoding=`. Removed the stale handoff entry; see the note
+  left in its place for detail.
+- Files changed: `js/parcel/panel.js`, `css/parcel.css`,
+  `BUG_TRACKER.md`, this file.
+- Related systems: the parcel intelligence panel (all three data tabs),
+  every jurisdiction currently in the registry.
+
+- Date: 2026-08-02
+- Agent: Claude Code
 - Task: Fixed two bugs found in a third codebase survey after PRs
   #216-#220 merged: a `javascript:`/`data:` URI scheme-validation gap
   across six `href` render sites, and three unguarded theme-change
@@ -633,20 +677,16 @@ No active work in progress as of 2026-08-02.
   Work log and BUG_TRACKER.md's "Finding (ratified)" entry. Not re-listed
   as an open handoff.)
 
-- Item: Same missing-`encoding="utf-8"` pattern exists in ~15 other
-  `data/*.py` scripts (`check_source_links.py`,
-  `export_facilities_to_layers.py`, `fetch_infrastructure.py`,
-  `monitor_legislation.py`, `refresh_platform_metadata.py`, the
-  `sweep_2026_07_*.py` scripts, and others).
-- Current status: Not fixed — out of scope for this task, harmless on the
-  project's actual Linux/Mac-based CI and dev environments, only surfaces
-  if someone runs these scripts natively on Windows.
-- Recommended next action: A dedicated, separate cleanup pass across
-  `data/*.py` adding explicit UTF-8 encoding to every file read/write,
-  rather than folding it into an unrelated feature branch.
-- Relevant files: see grep for `open(` / `read_text(` without `encoding=`
-  under `data/`.
-- Relevant commits: n/a.
+  (The "same missing-`encoding=\"utf-8\"` pattern exists in ~15 other
+  `data/*.py` scripts" item that used to be tracked here is resolved —
+  verified 2026-08-02 with a full script over every `open()`/`read_text()`/
+  `write_text()` call under `data/` (recursively, not just the top level):
+  zero calls are missing `encoding=` (excluding the handful of correct
+  binary-mode `"rb"`/`"wb"` opens, which don't take one). Every file this
+  item originally named already has it. Unclear exactly which prior fix
+  closed this out — likely an incidental side effect of other work rather
+  than a dedicated pass — but the gap doesn't exist anymore, so it's not
+  re-listed as an open handoff.)
 
   (The "News tab has its own unrelated, pre-existing WCAG accessibility
   issues" item that used to be tracked here was resolved 2026-08-02 —

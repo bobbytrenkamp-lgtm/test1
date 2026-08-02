@@ -170,6 +170,14 @@
   margin-top: 4px;
 }
 
+/* A field this source genuinely never publishes, distinct from a field the
+   source carries but happens to be empty for this specific parcel — see
+   registry.js's notProvidedBySource. */
+.pp-field-na {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
 /* ── Zoning tab ── */
 .pp-zoning-badge {
   display: inline-block;
