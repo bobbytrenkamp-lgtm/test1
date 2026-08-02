@@ -35,19 +35,20 @@ window.PIPELINE = (function () {
     const view = document.getElementById("pipeline-view");
     if (!view) return;
     view.innerHTML = `
+      <h2 class="sr-only">Data Center Project Pipeline</h2>
       <div id="pipeline-toolbar">
         <input id="pipeline-search" type="text" placeholder="Search name, city, operator, county…" autocomplete="off" />
-        <select id="pl-filter-status" class="pl-select">
+        <select id="pl-filter-status" class="pl-select" aria-label="Filter by status">
           <option value="">All Status</option>
           <option value="operational">Operational</option>
           <option value="construction">Under Construction</option>
           <option value="planned">Planned</option>
           <option value="decommissioned">Decommissioned</option>
         </select>
-        <select id="pl-filter-state" class="pl-select">
+        <select id="pl-filter-state" class="pl-select" aria-label="Filter by state">
           <option value="">All States</option>
         </select>
-        <select id="pl-filter-type" class="pl-select">
+        <select id="pl-filter-type" class="pl-select" aria-label="Filter by facility type">
           <option value="">All Types</option>
           <option value="hyperscale">Hyperscale</option>
           <option value="colocation">Colocation</option>
@@ -55,7 +56,7 @@ window.PIPELINE = (function () {
           <option value="edge">Edge</option>
           <option value="ai_campus">AI Campus</option>
         </select>
-        <select id="pl-filter-mw" class="pl-select">
+        <select id="pl-filter-mw" class="pl-select" aria-label="Filter by capacity">
           <option value="">Any Capacity</option>
           <option value="1">1+ MW</option>
           <option value="50">50+ MW</option>
@@ -380,10 +381,15 @@ window.PIPELINE = (function () {
   function _typeBadge(d) {
     const label = _typeLabel(d);
     if (label === "—") return `<span style="opacity:0.4">—</span>`;
+    // var() references, not hardcoded hex: the previous fixed colors were
+    // only accessible against a dark background (axe-core measured as low
+    // as 1.82:1 against the light theme's actual light background). The
+    // tokens themselves are theme-aware — see css/pipeline.css.
     const color = {
-      Hyperscale: "#4874e8", Colocation: "#a78bfa", Enterprise: "#34d399",
-      Edge: "#f59e0b", "AI Campus": "#60a5fa",
-    }[label] || "#9ca3af";
+      Hyperscale: "var(--pl-type-hyperscale)", Colocation: "var(--pl-type-colocation)",
+      Enterprise: "var(--pl-type-enterprise)", Edge: "var(--pl-type-edge)",
+      "AI Campus": "var(--pl-type-ai-campus)",
+    }[label] || "var(--pl-type-other)";
     return `<span class="pl-type-badge" style="color:${color}">${_esc(label)}</span>`;
   }
 

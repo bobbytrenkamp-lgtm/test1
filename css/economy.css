@@ -1105,6 +1105,16 @@
 }
 
 /* ── Light theme adjustments ──────────────────────────────────────────── */
+/* [data-theme="light"] only matches after a user explicitly toggles the
+   in-app theme switcher. Someone whose OS preference is already light —
+   almost certainly the common case for light-mode users, since they never
+   had a reason to touch the toggle — renders through the
+   prefers-color-scheme media query below instead (see css/style.css's own
+   --text-muted etc. for the established dual-block pattern this was
+   missing). Without it, these 7 rules never applied for that whole
+   audience: .econ-up-good rendered its dark-theme green (#29b96b, 2.16:1
+   against a light background — an axe-core accessibility audit caught
+   this) instead of the light-theme-appropriate #16794a. */
 html[data-theme="light"] .econ-up-good { color: #16794a; }
 html[data-theme="light"] .econ-up-bad  { color: #b3341f; }
 html[data-theme="light"] .econ-meta-stale { color: #9a4a0c; background: rgba(154, 74, 12, 0.08); }
@@ -1112,3 +1122,13 @@ html[data-theme="light"] .econ-stale-chip { color: #9a4a0c; background: rgba(154
 html[data-theme="light"] .econ-sig-strong { border-left-color: #16794a; }
 html[data-theme="light"] .econ-sig-caution { border-left-color: #b3341f; }
 html[data-theme="light"] .econ-sig-mixed { border-left-color: #9a6410; }
+
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) .econ-up-good { color: #16794a; }
+  html:not([data-theme="dark"]) .econ-up-bad  { color: #b3341f; }
+  html:not([data-theme="dark"]) .econ-meta-stale { color: #9a4a0c; background: rgba(154, 74, 12, 0.08); }
+  html:not([data-theme="dark"]) .econ-stale-chip { color: #9a4a0c; background: rgba(154, 74, 12, 0.12); }
+  html:not([data-theme="dark"]) .econ-sig-strong { border-left-color: #16794a; }
+  html:not([data-theme="dark"]) .econ-sig-caution { border-left-color: #b3341f; }
+  html:not([data-theme="dark"]) .econ-sig-mixed { border-left-color: #9a6410; }
+}

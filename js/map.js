@@ -3777,7 +3777,7 @@ function renderLegend() {
        restriction legend returns on its own. */
     if (_econModeActive()) {
       const lg = window.ECONOMY_MAP.legend();
-      const h = document.createElement("h3");
+      const h = document.createElement("h2");
       h.textContent = lg ? lg.title : "Economic Data";
       legendBody.appendChild(h);
 
@@ -3809,7 +3809,7 @@ function renderLegend() {
       note2.textContent = "Turn the layer off in Layers to restore the policy restriction colours.";
       legendBody.appendChild(note2);
     } else if (_densityMode) {
-      const h = document.createElement("h3");
+      const h = document.createElement("h2");
       h.textContent = "Infrastructure Density";
       legendBody.appendChild(h);
 
@@ -3836,7 +3836,7 @@ function renderLegend() {
       note.textContent = "Source: Data Centers + AI Campus locations (~3,300 facilities)";
       legendBody.appendChild(note);
     } else if (_wsMode) {
-      const h = document.createElement("h3");
+      const h = document.createElement("h2");
       h.textContent = "Water Stress Level";
       legendBody.appendChild(h);
 
@@ -3864,7 +3864,7 @@ function renderLegend() {
       note.textContent = "Source: WRI Aqueduct · USGS Water Use · EPA drought data (approx.)";
       legendBody.appendChild(note);
     } else if (_suitMode) {
-      const h = document.createElement("h3");
+      const h = document.createElement("h2");
       h.textContent = "Suitability Score";
       legendBody.appendChild(h);
 
@@ -3892,7 +3892,7 @@ function renderLegend() {
       note.textContent = "Factors: Regulatory 50% · Political 30% · Scope 20%";
       legendBody.appendChild(note);
     } else {
-      const h = document.createElement("h3");
+      const h = document.createElement("h2");
       h.textContent = "Restriction Severity";
       legendBody.appendChild(h);
 

@@ -729,7 +729,7 @@ await run('Economic Intelligence', async (p) => {
   await p.evaluate(() => setLayerVisible('econ_income', true, true));
   await p.waitForTimeout(3000);
   const econFill = await p.evaluate(() => countyLayerByFips['51107']?.options.fillColor);
-  console.log('econ layer legend      :', await p.evaluate(() => document.querySelector('#legend h3')?.textContent));
+  console.log('econ layer legend      :', await p.evaluate(() => document.querySelector('#legend h2')?.textContent));
   /* Exclusivity: a second economic layer must clear the first. */
   await p.evaluate(() => setLayerVisible('econ_broadband', true, true));
   await p.waitForTimeout(2000);
@@ -740,7 +740,7 @@ await run('Economic Intelligence', async (p) => {
   const restored = await p.evaluate(() => countyLayerByFips['51107']?.options.fillColor);
   console.log('fill restriction/econ  :', baseFill, '/', econFill);
   console.log('restored after off     :', restored === baseFill ? 'YES (correct)' : `NO (${restored})`);
-  console.log('legend back to policy  :', await p.evaluate(() => document.querySelector('#legend h3')?.textContent));
+  console.log('legend back to policy  :', await p.evaluate(() => document.querySelector('#legend h2')?.textContent));
 
   /* County detail + Analytics integration. */
   await p.evaluate(() => selectCounty('51107'));

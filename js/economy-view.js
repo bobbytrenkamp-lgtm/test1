@@ -80,14 +80,14 @@
   function shell() {
     return `
 <div class="econ-wrap">
-  <header class="econ-hero">
+  <div class="econ-hero">
     <div class="econ-hero-main">
       <h1 class="econ-title">Economic Intelligence</h1>
       <p class="econ-sub">Federal Reserve, Census, labor, population, housing, and regional growth
         indicators for data center and AI infrastructure planning.</p>
     </div>
     <div class="econ-hero-meta" id="econ-hero-meta"></div>
-  </header>
+  </div>
 
   <section class="econ-section" id="econ-pulse-section" aria-labelledby="econ-pulse-h">
     <div class="econ-section-head">

@@ -216,7 +216,7 @@ function renderAnalyticsPage() {
   /* ── Render ── */
   el.innerHTML = `
     <div class="page-hero">
-      <div class="page-hero-title">Policy <span>Analytics</span></div>
+      <h2 class="page-hero-title">Policy <span>Analytics</span></h2>
       <!-- researchedCount() excludes the 597 descriptive_only records, which hold a
            county description but no policy research. totalCounties (every record)
            would overstate this from 28% to 47%. -->
@@ -358,7 +358,7 @@ function renderAnalyticsPage() {
               <th class="pmon-th">Type</th>
               <th class="pmon-th">Proposed Level</th>
               <th class="pmon-th pmon-th-date">Proposed Date</th>
-              <th class="pmon-th pmon-th-watch" aria-label="Watch"></th>
+              <th class="pmon-th pmon-th-watch"><span class="sr-only">Watch</span></th>
             </tr>
           </thead>
           <tbody>
@@ -1924,7 +1924,7 @@ function renderAboutPage() {
 
   el.innerHTML = `
     <div class="page-hero">
-      <div class="page-hero-title">About the <span>Platform</span></div>
+      <h2 class="page-hero-title">About the <span>Platform</span></h2>
       <div class="page-hero-sub">The US Data Center &amp; AI Policy Tracker is an open-source intelligence platform that monitors state and county-level regulations affecting artificial intelligence deployment and data center infrastructure across all 50 US states.</div>
     </div>
 
@@ -2600,8 +2600,8 @@ async function _fillCapacityIntelligence() {
       <span><span class="cap-dot" style="background:#60a5fa"></span>Planned ${plPct}%</span>
     </div>
 
-    <div class="cap-states-title">Top States by Known Capacity</div>
-    <div class="cap-states-list">${stateRows}</div>
+    <div class="cap-states-title" id="cap-states-title">Top States by Known Capacity</div>
+    <div class="cap-states-list" tabindex="0" role="region" aria-labelledby="cap-states-title">${stateRows}</div>
     <p class="cap-note">Known capacity only — many facilities do not publicly disclose MW figures. Total tracked: ${escHtml(String(facilities.length))} facilities, aggregated from public sources via automated pipeline and not independently verified.</p>
   `;
 }
@@ -2722,11 +2722,11 @@ async function _renderStateScorecard() {
     return `
       <div class="sr-toolbar">
         <input class="sr-search" id="sr-search" type="search" placeholder="Search state or policy text…" value="${escHtml(_search)}" />
-        <select class="sr-sel" id="sr-type-sel">
+        <select class="sr-sel" id="sr-type-sel" aria-label="Filter by policy type">
           <option value="all">All Policy Types</option>
           ${typeOpts}
         </select>
-        <select class="sr-sel" id="sr-level-sel">
+        <select class="sr-sel" id="sr-level-sel" aria-label="Filter by restriction level">
           <option value="all">All Levels</option>
           ${levelOpts}
         </select>
@@ -2897,11 +2897,11 @@ async function _renderPoliticalRisk() {
     return `
       <div class="pr-toolbar">
         <input class="pr-search" id="pr-search" type="search" placeholder="Search county, state, or description…" value="${escHtml(_search)}" />
-        <select class="pr-sel" id="pr-state-sel">
+        <select class="pr-sel" id="pr-state-sel" aria-label="Filter by state">
           <option value="All States">All States</option>
           ${stateOpts}
         </select>
-        <select class="pr-sel" id="pr-sig-sel">
+        <select class="pr-sel" id="pr-sig-sel" aria-label="Filter by signal type">
           <option value="all">All Signal Types</option>
           ${sigOpts}
         </select>
@@ -3100,7 +3100,7 @@ function _renderCountyRankings() {
       <div class="rnk-grade-btns" role="group" aria-label="Filter by grade">
         ${["All","A","B","C","D","F"].map(g => `<button class="rnk-grade-btn${g === "All" ? " active" : ""}" data-grade="${g}">${g === "All" ? "All grades" : "Grade " + g}</button>`).join("")}
       </div>
-      <select id="rnk-state-sel" class="rnk-state-sel">
+      <select id="rnk-state-sel" class="rnk-state-sel" aria-label="Filter by state">
         ${states.map(s => `<option>${escHtml(s)}</option>`).join("")}
       </select>
       <span id="rnk-count" class="rnk-count">${ranked.length} counties</span>
@@ -3610,14 +3610,14 @@ async function _fillIncentiveExplorer() {
   container.innerHTML = `
     <div class="inc-toolbar">
       <input id="inc-search" class="inc-search" type="text" placeholder="Search programs…" autocomplete="off" />
-      <select id="inc-state-sel" class="inc-state-sel">
+      <select id="inc-state-sel" class="inc-state-sel" aria-label="Filter by state">
         ${states.map(s => `<option>${escHtml(s)}</option>`).join("")}
       </select>
-      <select id="inc-type-sel" class="inc-type-sel">
+      <select id="inc-type-sel" class="inc-type-sel" aria-label="Filter by incentive type">
         <option>All Types</option>
         ${Object.keys(typeBuckets).map(t => `<option>${escHtml(t)}</option>`).join("")}
       </select>
-      <select id="inc-tier-sel" class="inc-tier-sel">
+      <select id="inc-tier-sel" class="inc-tier-sel" aria-label="Filter by tier">
         ${TIER_LABELS.map(t => `<option>${escHtml(t.label)}</option>`).join("")}
       </select>
       <span id="inc-count" class="inc-count">${programs.length} programs</span>
