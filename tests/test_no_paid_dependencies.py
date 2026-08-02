@@ -55,6 +55,18 @@ DOC_EXEMPT = {
     "AI_CHANGELOG.md", "AI_CONTEXT.md", "DATA_SOURCES.md", "README.md",
     "BUG_TRACKER.md", "PROJECT_CONTEXT.md",
 }
+# data/facilities_version_history/ holds dated, write-once snapshots of past
+# facility_pipeline runs — pure archive, never re-read as config and never
+# executed. Eight snapshots from 2026-07-12/13 legitimately mention
+# "cloudscene" because that's what the pipeline used at the time, before its
+# removal on 2026-07-27; scanning them serves no protective purpose and just
+# trains reviewers to expect (and tune out) a permanent false positive. This
+# exemption does NOT weaken the guard against a real reintroduction: any
+# paid service coming back for real would first appear in a live source —
+# an adapter file, facility_sources.json, requirements.txt, a workflow — all
+# of which stay fully scanned. A new snapshot inheriting that string from a
+# live reintroduction would only ever get generated after the guard had
+# already failed on the source it came from. Ratified 2026-07-30 (Bobby).
 PATH_EXEMPT = ("data/facilities_version_history/", "tests/test_no_paid_dependencies.py",
                ".git/", "node_modules/", "vendor/")
 

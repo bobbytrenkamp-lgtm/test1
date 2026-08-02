@@ -38,7 +38,19 @@ SUBSTATION_URL  = f"{HIFLD_BASE}/Electric_Substations/FeatureServer/0/query"
 TRANSMISSION_URL= f"{HIFLD_BASE}/Electric_Power_Transmission_Lines/FeatureServer/0/query"
 POWER_PLANT_URL = f"{HIFLD_BASE}/Power_Plants/FeatureServer/0/query"
 
-# ── FCC National Broadband Map (public API, no auth) ──────────────────────
+# ── FCC National Broadband Map ──────────────────────────────────────────────
+# NOT actually no-auth despite this file's original header claiming so: every
+# request to this endpoint gets HTTP 405 (Method Not Allowed), confirmed via
+# real CI logs (2026-07-30, all 51 state queries failed identically, ~6 of
+# the job's ~6.5 minutes burned on retries). The FCC's own current API spec
+# (bdc-public-data-api-spec.pdf, fcc.gov/BroadbandData) states the Broadband
+# Data Collection public data API requires a registered API token — this
+# was a free-registration requirement added after this adapter was written,
+# not a bug fixable by changing the request itself. Needs an FCC_BDC_API_KEY
+# (or whatever the actual token env var should be called) registered at
+# https://broadbandmap.fcc.gov/ and added as a repo secret, mirroring how
+# EIA_API_KEY already works for update_economic_data.yml — same category of
+# blocker, not something fixable in code alone.
 FCC_COUNTY_URL  = "https://broadbandmap.fcc.gov/api/public/map/listCountyAvailability"
 
 # ── EPA WATERS (ArcGIS, public) ─────────────────────────────────────────────
@@ -78,6 +90,20 @@ def _arcgis_paginate(url: str, where: str, out_fields: str, max_per_page: int = 
             "returnGeometry":  "true",
         })
         if not data:
+            break
+        if "error" in data:
+            # ArcGIS Feature Services routinely return HTTP 200 with an
+            # {"error": {...}} body for a bad query (unknown field, a
+            # renamed/retired layer, a malformed `where` clause) —
+            # raise_for_status() never sees this, since the HTTP layer
+            # succeeded. Reading .get("features", []) off an error object
+            # silently returns an empty list indistinguishable from a
+            # genuinely empty result set, which is exactly what happened
+            # here: every HIFLD layer returned 0 records with no error
+            # printed anywhere in CI logs. Surface it instead of guessing.
+            err = data["error"]
+            log.warning("ArcGIS query error from %s: %s", url,
+                        err.get("message", err) if isinstance(err, dict) else err)
             break
         features = data.get("features", [])
         records.extend(features)
@@ -262,12 +288,26 @@ def fetch_fiber_coverage() -> dict[str, float]:
     state_fips = [f"{i:02d}" for i in range(1, 57)
                   if i not in (3, 7, 14, 43, 52)]  # skips unassigned FIPS
 
-    for sfips in state_fips:
+    for i, sfips in enumerate(state_fips):
+        # A 405 (or any HTTP-level failure) here means the endpoint itself
+        # rejected the request shape — see the FCC_COUNTY_URL comment above,
+        # this now requires a registered API token this adapter doesn't
+        # send. Retrying with backoff can't fix that, and confirmed via CI
+        # logs that hammering all 51 states with 3 retries each burned ~6 of
+        # the job's ~6.5 minutes for a guaranteed 0-result outcome. Probe
+        # once with no retries on the first state; if it fails, stop rather
+        # than repeating the same failure 50 more times.
         data = _get(FCC_COUNTY_URL, {
             "state_fips": sfips,
             "f":          "json",
-        })
+        }, retries=1 if i == 0 else 3)
         if not data:
+            if i == 0:
+                log.warning("FCC broadband API unreachable on first probe — "
+                            "stopping rather than repeating this 50 more times. "
+                            "See FCC_COUNTY_URL's comment: this endpoint now "
+                            "requires a registered API token.")
+                return result
             log.debug("No FCC data for state %s", sfips)
             continue
         # Expected structure: list of county records with availability stats
@@ -314,6 +354,10 @@ def fetch_water_stress() -> dict[str, float]:
         "f":           "json",
         "resultRecordCount": 5000,
     })
+    if data and "error" in data:
+        err = data["error"]
+        log.warning("EPA EnviroAtlas query error: %s",
+                    err.get("message", err) if isinstance(err, dict) else err)
     if data and data.get("features"):
         for feat in data["features"]:
             a = feat.get("attributes", {})
@@ -337,6 +381,10 @@ def fetch_water_stress() -> dict[str, float]:
         "f":           "json",
         "resultRecordCount": 5000,
     })
+    if data and "error" in data:
+        err = data["error"]
+        log.warning("WRI Aqueduct query error: %s",
+                    err.get("message", err) if isinstance(err, dict) else err)
     if data and data.get("features"):
         # Map WRI label to numeric score: Low=1, Low-Medium=2, Medium-High=3, High=4, Extremely High=5
         label_map = {"Low": 1.0, "Low-Medium": 2.0, "Medium-High": 3.0, "High": 4.0, "Extremely High": 5.0}

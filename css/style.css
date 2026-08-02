@@ -4392,29 +4392,36 @@ html[data-theme="light"] {
 .header-tab { flex-shrink: 0; flex: none; }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   MOBILE NAVIGATION — "More" overflow pattern
-   Below 700px only 4 primary tabs stay in the bar; the rest move into a
-   bottom sheet behind the More button. Horizontal scrolling was hiding tabs
-   off-screen where users never found them.
+   NAV OVERFLOW — "More" pattern
+   Only 4 primary tabs stay in the bar when the strip doesn't fit; the rest
+   move into a bottom sheet behind the More button. Horizontal scrolling was
+   hiding tabs off-screen where users never found them.
+
+   Gated on #header-tabs.tabs-overflow (toggled by updateNavOverflow() in
+   map.js from a real scrollWidth/clientWidth measurement) rather than a
+   fixed max-width breakpoint. A fixed 700px breakpoint left a dead zone at
+   common laptop widths (1200-1366px, confirmed via tests/e2e_smoke.mjs):
+   the 8-tab strip doesn't fit there either, but #header-tabs hides its
+   scrollbar (below), so the overflowing tabs were reachable only by an
+   undiscoverable horizontal drag. Measuring actual overflow catches that
+   range too, while still collapsing on phones where it's also needed.
    ══════════════════════════════════════════════════════════════════════════ */
 
 .header-tab-more { display: none; }
 
-@media (max-width: 700px) {
-  /* Secondary tabs are represented in the sheet instead of the bar. */
-  #header-tabs .header-tab[data-mobile-secondary="1"] { display: none; }
+/* Secondary tabs are represented in the sheet instead of the bar. */
+#header-tabs.tabs-overflow .header-tab[data-mobile-secondary="1"] { display: none; }
 
-  .header-tab-more { display: flex; }
-  /* Keep More highlighted while one of its tabs is the active view. */
-  .header-tab-more.has-active {
-    background: rgba(72,116,232,0.18);
-    color: var(--accent);
-  }
-
-  /* With only 5 chips left there is no overflow, so drop the scroll. */
-  #header-tabs { overflow-x: visible; }
-  #header-tabs .header-tab { flex: 1; min-width: 0; }
+#header-tabs.tabs-overflow .header-tab-more { display: flex; }
+/* Keep More highlighted while one of its tabs is the active view. */
+.header-tab-more.has-active {
+  background: rgba(72,116,232,0.18);
+  color: var(--accent);
 }
+
+/* With only 5 chips left there is no overflow, so drop the scroll. */
+#header-tabs.tabs-overflow { overflow-x: visible; }
+#header-tabs.tabs-overflow .header-tab { flex: 1; min-width: 0; }
 
 #mobile-nav-backdrop {
   position: fixed;
@@ -11248,15 +11255,25 @@ html.is-light-theme .map-mode-chip.active {
 
 /* ══════════════════════════════════════════════════════════════════════════
    HEADER FIT — narrower desktops
-   Seven tabs (754px) plus the brand (238px) and the right-hand controls
-   (404px) do not fit under ~1500px. The "DATA UPDATED" badge is 181px of that
-   and duplicates the freshness line already shown on the Home page, so it is
-   the first thing to drop; that alone lets every tab fit down to 1200px. Below
-   1200px the tabs also tighten before the strip falls back to scrolling.
+   The brand, right-hand controls, and the tab strip don't all fit under
+   ~1500px. The "DATA UPDATED" badge duplicates the freshness line already
+   shown on the Home page, so it's the first thing to drop.
+
+   This block's threshold for tightening tab padding used to be tied to a
+   specific tab count ("seven tabs fit down to 1200px") — confirmed via
+   tests/e2e_smoke.mjs to have gone stale silently when an eighth tab (AI
+   Stocks) was added later: tabs were being clipped at 1366/1280/1200px
+   with no visible scrollbar and no "More" button (that only appears below
+   700px), so the overflow tabs were unreachable. Widened to start
+   tightening earlier (1400px) so it isn't re-derived from today's tab
+   count; #header-tabs.tabs-overflow (map.js: updateNavOverflow) is a
+   dynamic fallback below this in case the strip still doesn't fit — from a
+   9th tab, a longer label, browser zoom, or anything else this static
+   breakpoint doesn't anticipate.
    ══════════════════════════════════════════════════════════════════════════ */
 @media (min-width: 701px) and (max-width: 1500px) {
   #last-updated { display: none; }
 }
-@media (min-width: 701px) and (max-width: 1200px) {
+@media (min-width: 701px) and (max-width: 1400px) {
   .header-tab { padding: 0 11px; }
 }

@@ -74,6 +74,42 @@ No active work in progress as of 2026-07-31.
 
 ## Recently Completed Work
 
+- Date: 2026-08-02
+- Agent: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+- Task: Bobby asked for "a complete bug fix — access any web problems and fix
+  them," i.e. actual browser/UI testing rather than data-pipeline/CI work.
+  Ran `tests/e2e_smoke.mjs` against a real headless Chromium (pre-installed
+  at `/opt/pw-browsers/chromium`) and a local server, iterating until all 15
+  scenarios passed clean. Found and fixed two real bugs: (1) header nav tabs
+  became unreachable with no visual affordance at common laptop widths
+  (1200-1366px) because the "More" overflow pattern only engaged below
+  700px — root-caused to a prior session's padding fix having been tuned
+  for seven tabs before an eighth ("AI Stocks") was added; fixed the stale
+  breakpoint and added a dynamic overflow-detection fallback so this class
+  of bug can't silently recur. (2) The "Counties Researched" stat was
+  overcounting by 597 (showing 1,467 instead of 870) in four places (Home
+  KPI + freshness bar, Analytics KPI card, map legend, About page data
+  quality panel) because they'd never adopted the `researchedCount()` fix
+  from the 2026-07-27 reclassification sweep — most visibly on the About
+  page, where "1,467 researched" and "2,273 not yet researched" sat next to
+  each other without summing to 3,143. Also re-ran
+  `data/refresh_platform_metadata.py`, which had itself drifted stale.
+  See BUG_TRACKER.md for full root-cause writeups on both.
+- Commit(s): see branch history for
+  `claude/us-datacenter-restrictions-map-skooi7`, dated 2026-08-02.
+- Files changed: `css/style.css`, `js/map.js`, `js/home.js`,
+  `js/analytics.js`, `index.html` (cache-busting version bumps),
+  `data/platform_metadata.json`, `tests/e2e_smoke.mjs`, `BUG_TRACKER.md`,
+  this file.
+- Tests performed: full `tests/run_all.sh` (176/176), `tests/e2e_smoke.mjs`
+  end-to-end against real Chromium — 5 full runs while iterating, final run
+  clean with zero JS errors and zero thrown assertions across all 15
+  scenarios.
+- Remaining concerns: none for this pass. Broader data-pipeline reliability
+  work (EIA/FCC/LegiScan API keys, HIFLD ArcGIS endpoint drift) from earlier
+  in this session remains open and requires Bobby to register free API keys
+  — not fixable in code.
+
 - Date: 2026-07-31
 - Agent: Claude Code
 - Task: Reconciled `claude/us-datacenter-restrictions-map-skooi7` with its
@@ -122,6 +158,26 @@ No active work in progress as of 2026-07-31.
   server + Chromium; treated as optional per the project's own convention).
 - Remaining concerns: see "Open Handoffs" below.
 
+- Date: 2026-07-30
+- Agent: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+- Task: Ratified the cloudscene-in-historical-snapshots handoff left by
+  Claude Companion above. Recommended keeping the existing `PATH_EXEMPT`
+  exemption for `data/facilities_version_history/` — those files are
+  write-once archives, never re-read as config or executed, so scanning
+  them protects nothing; a real reintroduction of a paid service would
+  still be caught in the live source it's actually defined in (an
+  adapter, `facility_sources.json`, `requirements.txt`, a workflow).
+  Bobby confirmed. Expanded the `PATH_EXEMPT` comment in
+  `tests/test_no_paid_dependencies.py` to spell out that reasoning, and
+  updated `BUG_TRACKER.md`'s entry from "Open" to "Resolved".
+- Commit(s): see branch history for
+  `claude/us-datacenter-restrictions-map-skooi7`, dated 2026-07-30.
+- Files changed: `tests/test_no_paid_dependencies.py`, `BUG_TRACKER.md`,
+  this file.
+- Tests performed: `python3 -m pytest tests/test_no_paid_dependencies.py -q`
+  and full `tests/run_all.sh`.
+- Remaining concerns: none — this handoff is closed.
+
 ## Open Handoffs
 
 - Item: Maryland parcel endpoint returning 503 (Howard 24027 + Montgomery 24031).
@@ -162,19 +218,11 @@ No active work in progress as of 2026-07-31.
   Scope it deliberately rather than bolting it on.
 - Relevant files: `js/parcel/connector-arcgis.js`, `js/parcel/registry.js`.
 
-- Item: `no-paid-dependency guard flags cloudscene in historical snapshots`
-  (see BUG_TRACKER.md "Finding (not fixed, needs a decision)").
-- Current status: Open, non-blocking, pre-existing on `main`.
-- Recommended next action: Bobby decides whether
-  `data/facilities_version_history/` should be exempted from the
-  paid-dependency scan (it's archived audit history, not live config) or
-  whether flagging it forever is the intended, stricter behavior. Whoever
-  implements the decision should update
-  `tests/test_no_paid_dependencies.py` accordingly and close this entry.
-- Relevant files: `tests/test_no_paid_dependencies.py`,
-  `data/facilities_version_history/2026-07-12T*.json` (8 files).
-- Relevant commits: n/a (pre-existing, not tied to a specific introducing
-  commit).
+  (The "no-paid-dependency guard flags cloudscene in historical snapshots"
+  item that used to be tracked here was resolved 2026-07-30 — see the
+  2026-07-30 cloudscene entry further down this file's Recently Completed
+  Work log and BUG_TRACKER.md's "Finding (ratified)" entry. Not re-listed
+  as an open handoff.)
 
 - Item: Same missing-`encoding="utf-8"` pattern exists in ~15 other
   `data/*.py` scripts (`check_source_links.py`,
