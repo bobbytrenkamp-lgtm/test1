@@ -34,8 +34,27 @@ LAYERS_PATH = os.path.join(DATA_DIR, "sample_layers.json")
 
 # ── HIFLD ArcGIS REST endpoints (public, no auth) ──────────────────────────
 HIFLD_BASE = "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services"
-SUBSTATION_URL  = f"{HIFLD_BASE}/Electric_Substations/FeatureServer/0/query"
+# Electric_Substations and Power_Plants under this org both went away (HTTP
+# 200 with {"error":{"message":"Invalid URL"}} — confirmed via CI run
+# 30723020119, 2026-07-31). Diagnosed from a real-internet GitHub Actions
+# runner (this sandbox's proxy blocks arcgis.com entirely) across PRs
+# #208-#212: a live mirror of substations exists under a different HIFLD
+# org, with a schema that differs from the original (MAX_VOLT/MIN_VOLT
+# instead of one VOLTAGE string; COUNTYFIPS instead of COUNTY_FIPS;
+# COUNTRY='USA' not 'US') — see fetch_substations() below. No live
+# Power_Plants replacement was found after searching both HIFLD orgs'
+# service listings and two DCAT catalog guesses; not guessing a URL
+# without verification (see the Maryland parcel decision in
+# BUG_TRACKER.md for why that's a real, previously-hit failure mode).
+SUBSTATION_URL  = "https://services.arcgis.com/G4S1dGvn7PIgYd6Y/ArcGIS/rest/services/HIFLD_electric_power_substations/FeatureServer/0/query"
+# Transmission's URL was never the problem — confirmed alive the whole
+# time. The WHERE clause below used to reference COUNTRY, a column this
+# layer's schema doesn't have at all (unlike substations' schema, which
+# does), so every query failed with "Invalid query parameters" — a
+# different, more specific ArcGIS error than "Invalid URL", which is what
+# gave this away.
 TRANSMISSION_URL= f"{HIFLD_BASE}/Electric_Power_Transmission_Lines/FeatureServer/0/query"
+# Still broken, no verified replacement — see fetch_power_plants().
 POWER_PLANT_URL = f"{HIFLD_BASE}/Power_Plants/FeatureServer/0/query"
 
 # ── FCC National Broadband Map ──────────────────────────────────────────────
@@ -123,13 +142,15 @@ def fetch_substations() -> list[dict]:
     Returns list of simplified point dicts for sample_layers.json.
     """
     log.info("Fetching HIFLD substations (>= 69 kV)…")
-    # HIFLD VOLTAGE field is a string like '69', '115', '138', '230', '345', '500', '765'
-    # Filter to >= 69 kV (anything that can feed a major data center load)
+    # This mirror's schema carries MAX_VOLT as its own numeric field (not a
+    # combined "115;230"-style VOLTAGE string like the original dead layer
+    # used), and COUNTRY is the 3-letter 'USA', not 'US' — both confirmed
+    # against live sample data, not assumed from the old schema.
     where = ("STATUS = 'IN SERVICE' AND "
-             "COUNTRY = 'US' AND "
+             "COUNTRY = 'USA' AND "
              "LONGITUDE IS NOT NULL AND LATITUDE IS NOT NULL")
     raw = _arcgis_paginate(SUBSTATION_URL, where,
-                           "ID,NAME,TYPE,VOLTAGE,COUNTY,STATE,STATE_FIPS,COUNTY_FIPS,LONGITUDE,LATITUDE")
+                           "ID,NAME,TYPE,MAX_VOLT,COUNTY,STATE,COUNTYFIPS,LONGITUDE,LATITUDE")
     if not raw:
         log.warning("No substation data returned.")
         return []
@@ -138,22 +159,17 @@ def fetch_substations() -> list[dict]:
     for feat in raw:
         a = feat.get("attributes", {})
         geom = feat.get("geometry", {})
-        voltage_str = str(a.get("VOLTAGE", "") or "")
-        # Parse max voltage (field may contain semicolons for multi-voltage: "115;230")
-        voltages = []
-        for part in voltage_str.replace(";", ",").split(","):
-            try:
-                voltages.append(float(part.strip()))
-            except ValueError:
-                pass
-        max_v = max(voltages) if voltages else 0
+        try:
+            max_v = float(a.get("MAX_VOLT") or 0)
+        except (TypeError, ValueError):
+            max_v = 0
         if max_v < 69:
             continue  # skip low-voltage distribution substations
         lon = geom.get("x") or a.get("LONGITUDE")
         lat = geom.get("y") or a.get("LATITUDE")
         if not lon or not lat:
             continue
-        county_fips = str(a.get("COUNTY_FIPS") or "").zfill(5)
+        county_fips = str(a.get("COUNTYFIPS") or "").zfill(5)
         out.append({
             "id":          f"sub-{a.get('ID','')}",
             "name":        (a.get("NAME") or "Unknown Substation").title(),
@@ -176,8 +192,11 @@ def fetch_transmission_lines() -> list[dict]:
     Returns simplified polyline dicts (sampled path points).
     """
     log.info("Fetching HIFLD transmission lines (>= 115 kV)…")
-    # HIFLD VOLTAGE field similar to substations
-    where = "STATUS = 'IN SERVICE' AND COUNTRY = 'US'"
+    # This layer's schema has no COUNTRY column at all — every query
+    # including one was rejected outright with "Cannot perform query.
+    # Invalid query parameters." (confirmed against live data; the URL
+    # itself was never broken).
+    where = "STATUS = 'IN SERVICE'"
     data = _get(TRANSMISSION_URL, {
         "where":             where,
         "outFields":         "ID,OWNER,VOLTAGE,TYPE,SUB_1,SUB_2",
@@ -189,6 +208,15 @@ def fetch_transmission_lines() -> list[dict]:
     })
     if not data:
         log.warning("No transmission data returned.")
+        return []
+    if "error" in data:
+        # Same HTTP-200-with-error-body gotcha handled in _arcgis_paginate,
+        # but this fetcher calls _get() directly rather than going through
+        # that helper — needed here too, or a bad query silently reads back
+        # as "0 records" instead of a diagnosable error.
+        err = data["error"]
+        log.warning("ArcGIS query error from %s: %s", TRANSMISSION_URL,
+                    err.get("message", err) if isinstance(err, dict) else err)
         return []
 
     out = []
@@ -224,6 +252,17 @@ def fetch_transmission_lines() -> list[dict]:
 
 
 # ── Power plants ─────────────────────────────────────────────────────────────
+# STILL BROKEN, unlike substations/transmission above: POWER_PLANT_URL returns
+# {"error":{"message":"Invalid URL"}} and no live replacement was found after
+# searching both HIFLD orgs' service listings (services1.arcgis.com/
+# Hp6G80Pky0om7QvQ and services.arcgis.com/G4S1dGvn7PIgYd6Y — the latter is
+# where the working substations mirror lives, but it has no Power_Plants-
+# named layer) and two DCAT catalog guesses (both came back empty/non-JSON).
+# _arcgis_paginate's error-visibility fix means this now fails loudly (see
+# BUG_TRACKER.md) rather than silently reading back as "0 records" — but it
+# does still fail. Needs someone to actually find the current URL by hand
+# (e.g. via hifld-geoplatform.hub.arcgis.com's search UI, which returned a
+# 403 to every automated fetch attempted here) rather than guessing one.
 
 def fetch_power_plants() -> list[dict]:
     """
