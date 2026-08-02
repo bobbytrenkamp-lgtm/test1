@@ -11,7 +11,6 @@ lands in fetch_infrastructure.py.
 
 Usage: python3 data/diagnose_hifld_endpoints.py
 """
-import json
 import sys
 
 import requests
@@ -91,6 +90,35 @@ def probe_root(url):
         return f"request failed: {exc}"
 
 
+def search_dcat_catalog(catalog_url, keywords):
+    """DCAT catalogs are machine-readable government-data feeds (built for
+    data.gov harvesting), so they may not hit the same bot-blocking as the
+    Hub's human-facing pages. Each dataset lists its real distribution
+    (download/service) URLs — search titles for our keywords."""
+    try:
+        r = SESSION.get(catalog_url, timeout=30)
+        data = r.json()
+    except Exception as exc:
+        return [f"request/parse failed: {exc}"]
+    datasets = data.get("dataset", [])
+    hits = []
+    for kw in keywords:
+        for ds in datasets:
+            title = (ds.get("title") or "")
+            if kw.lower() not in title.lower():
+                continue
+            urls = [d.get("accessURL") or d.get("downloadURL")
+                    for d in ds.get("distribution", []) if d.get("accessURL") or d.get("downloadURL")]
+            hits.append(f"{title!r}: {urls}")
+    return hits or [f"({len(datasets)} datasets in catalog, none matched {keywords})"]
+
+
+DCAT_CATALOGS = {
+    "https://hifld-geoplatform.hub.arcgis.com/api/feed/dcat-us/1.1.json": ["power plant"],
+    "https://www.epa.gov/waterdata/catalog/rest/dcat-us/1.1.json": ["water stress", "watershed", "EnviroAtlas"],
+}
+
+
 def main():
     for label, urls in CANDIDATES.items():
         print(f"\n=== {label} ===")
@@ -109,6 +137,12 @@ def main():
     for url in ORG_SERVICE_LISTS:
         print(f"  {url}")
         print(f"      {list_services(url)}")
+
+    print("\n=== DCAT catalog search (power plants, EPA water) ===")
+    for url, keywords in DCAT_CATALOGS.items():
+        print(f"  {url}  keywords={keywords}")
+        for hit in search_dcat_catalog(url, keywords):
+            print(f"      {hit}")
 
     return 0
 
