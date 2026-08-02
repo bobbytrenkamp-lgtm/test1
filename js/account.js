@@ -447,14 +447,14 @@
     // Delegate to map.js's applyTheme if exposed, otherwise handle ourselves
     if (typeof window._applyTheme === 'function') {
       window._applyTheme(val);
-      localStorage.setItem('theme', val);
+      try { localStorage.setItem('theme', val); } catch {}
     } else {
       var el = document.documentElement;
       var light = val === 'light' || (val === 'system' && window.matchMedia('(prefers-color-scheme: light)').matches);
       if (val === 'system') el.removeAttribute('data-theme');
       else el.setAttribute('data-theme', val);
       el.classList.toggle('is-light-theme', light);
-      localStorage.setItem('theme', val);
+      try { localStorage.setItem('theme', val); } catch {}
     }
     if (window.AUTH) {
       window.AUTH.setPreference('theme', val);

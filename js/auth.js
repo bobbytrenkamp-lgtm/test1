@@ -109,7 +109,7 @@
 
   async function setPreference(key, value) {
     const str = typeof value === 'string' ? value : JSON.stringify(value);
-    localStorage.setItem(key, str);
+    try { localStorage.setItem(key, str); } catch {}
 
     if (_state === 'signedIn' && _client && _user) {
       try {

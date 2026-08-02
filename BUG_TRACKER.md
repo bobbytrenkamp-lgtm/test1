@@ -7,6 +7,82 @@ replacement".
 
 ---
 
+Bug: `javascript:`/`data:` URIs in scraped/API data could execute on
+click — `href` attributes were HTML-escaped but not scheme-validated
+Priority: Medium
+Affected Files: `js/constants.js` (new `safeHref()`), `js/report.js`,
+`js/jurisdiction.js`, `js/stocks.js`
+Root Cause: Every file's local `esc()`/`escHtml()`/`_esc()` helper only
+HTML-encodes `& < > "` — none of them block a `javascript:` or `data:`
+URI, because those are syntactically valid attribute *values*, just a
+dangerous *scheme*. Six `href="${esc(url)}"` render sites across
+`report.js` (source citations, signal source URLs), `jurisdiction.js`
+(policy sources, archived-copy links, suggested-replacement links,
+related-news article links), and `stocks.js` (related-news article
+links) took `url` straight from automated scraper/RSS-adapter output
+(`ai_news.json`, `restrictions_raw.json` source fields) with no scheme
+check — a `"javascript:..."` value making it into that pipeline data
+would execute on click. Not currently exploited (no known bad data in
+the feeds today), but a real, repeated defense-in-depth gap. One site
+(`news.js`'s article-detail link, set via `.href =` not string
+interpolation) already had the right idea with `art.url.startsWith
+("http")`, which is why it wasn't in the list below.
+Fix: Added a single `safeHref(url)` to `js/constants.js` (the file this
+codebase already uses to de-duplicate site-wide helpers, per its own
+header docstring) — returns the URL unchanged if it matches
+`/^https?:\/\//i`, else the safe no-op `"#"`. Applied at all six sites,
+composed with each file's existing `esc()`/`escHtml()` call rather than
+replacing it (both are needed: one blocks the scheme, the other blocks
+attribute-breakout characters).
+Testing Performed: Exercised `safeHref()` directly in-browser against
+valid `http`/`https` URLs (pass through unchanged, case-insensitively),
+`javascript:`/`data:` URIs (both become `"#"`), and edge cases (empty
+string, `undefined`, leading/trailing whitespace, a bare relative path
+— all become `"#"`). Loaded the Jurisdiction detail page live and
+confirmed every rendered source/archive/news-link `href` is still a
+real, correct `http(s)` URL (including Google News RSS redirect links),
+unaffected by the new guard. `tests/run_all.sh` 176/176 passing.
+Fixed By: Claude Code
+Date: 2026-08-02
+
+---
+
+Bug: Theme-change `localStorage` writes were unguarded — could throw
+uncaught (breaking the theme toggle) or reject an unhandled promise
+Priority: Medium
+Affected Files: `js/map.js`, `js/account.js`, `js/auth.js`
+Root Cause: Three `localStorage.setItem('theme', ...)` call sites (the
+header theme-toggle button in `map.js`, and both branches of
+`applyThemeValue()` in `account.js`) had no try/catch, unlike every
+other `localStorage` write site in the codebase (`workspace.js`,
+`stocks.js`, `results-panel.js` all already wrap theirs). In Safari
+private browsing or a quota-exceeded environment, `setItem` throws
+`QuotaExceededError`/`SecurityError`. In `map.js` the throw happened
+*before* `applyTheme(next)` — so the visible theme never actually
+changed and the toggle button appeared to silently do nothing on
+click. Separately, `js/auth.js`'s `setPreference()` (an `async`
+function, called via `window.AUTH.setPreference('theme', val)` with no
+`await`/`.catch()` anywhere it's used) had the identical unguarded
+`localStorage.setItem` — a throw there rejects the returned promise
+with nothing to catch it, logging a browser-level unhandled-rejection
+error on every theme change in a restrictive storage environment.
+Fix: Wrapped all four call sites in `try { ... } catch {}`, matching
+the established pattern already used everywhere else in this codebase
+for best-effort persistence (if it fails, the app keeps working
+in-memory for the session rather than throwing). Also wrapped the
+paired `localStorage.getItem('theme')` read in the header toggle
+button for the same reason (`getItem` can throw in the same
+environments, and every other `getItem` call site in the codebase is
+already guarded).
+Testing Performed: Confirmed the header theme-toggle button still
+correctly cycles the theme in normal operation (clicked it live,
+verified `data-theme` actually changes). `tests/run_all.sh` 176/176
+passing.
+Fixed By: Claude Code
+Date: 2026-08-02
+
+---
+
 Bug: Rapid economic-layer toggling could desync the Map tab from its
 own checkbox UI
 Priority: Medium
