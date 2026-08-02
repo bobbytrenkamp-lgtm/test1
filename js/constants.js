@@ -143,6 +143,17 @@
       : r;
   }
 
+  /* Scheme-validate a URL before it goes into an href attribute. Many pages
+     render href="${esc(url)}" straight from automated scraper/RSS-adapter
+     output (news articles, policy sources, signal citations) — escHtml()
+     encodes &<>" but does not stop a "javascript:" URI from executing on
+     click. Use this everywhere a data-driven URL becomes an href; "#" is a
+     safe no-op fallback for anything that isn't a plain http(s) link. */
+  function safeHref(url) {
+    const s = String(url || "").trim();
+    return /^https?:\/\//i.test(s) ? s : "#";
+  }
+
   /* ── Export ─────────────────────────────────────────────────────────────── */
   window.SEVERITY_LABELS    = SEVERITY_LABELS;
   window.SEVERITY_SHORT     = SEVERITY_SHORT;
@@ -151,6 +162,7 @@
   window.LEVEL_SHORT        = LEVEL_SHORT;
   window.LEVEL_TO_SEVERITY  = LEVEL_TO_SEVERITY;
   window.TOTAL_US_COUNTIES  = TOTAL_US_COUNTIES;
+  window.safeHref           = safeHref;
   window.PLATFORM_META      = PLATFORM_META;
   window.loadPlatformMeta   = loadPlatformMeta;
   window.platformStat       = platformStat;

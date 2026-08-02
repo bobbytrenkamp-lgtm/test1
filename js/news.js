@@ -461,8 +461,6 @@ function _buildLeadStory(art) {
   _wireCardClick(wrap, art, headlineBtn);
 
   const summ = art.why_it_matters || art.summary || art.description || "";
-  const summIsDupe = summ.trim().toLowerCase() === (art.title || "").trim().toLowerCase()
-    || summ.trim() === (art.description || "").trim() && summ.trim() === art.title?.trim();
   if (summ && summ.trim() !== (art.title || "").trim()) {
     const p = document.createElement("p");
     p.className = "news-lead-summary";

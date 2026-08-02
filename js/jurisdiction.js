@@ -177,14 +177,14 @@ window.JURISDICTION = (function () {
                   ? h.suggested_replacement.url : null;
                 return `
                 <li class="${dead ? "juris-src-dead" : ""}">
-                  <a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer"
+                  <a href="${esc(window.safeHref(s.url))}" target="_blank" rel="noopener noreferrer"
                      ${dead ? `title="This link did not respond when last checked${h.status ? ` (HTTP ${esc(String(h.status))})` : ""}"` : ""}>
                     ${esc(s.label || s.url)}
                   </a>
                   ${dead ? `<span class="juris-src-flag" title="Checked ${esc((h.checked_at || "").slice(0, 10))}">link not responding</span>` : ""}
-                  ${archive ? ` <a class="juris-src-archive" href="${esc(archive)}" target="_blank" rel="noopener noreferrer">archived copy</a>` : ""}
+                  ${archive ? ` <a class="juris-src-archive" href="${esc(window.safeHref(archive))}" target="_blank" rel="noopener noreferrer">archived copy</a>` : ""}
                   ${suggested ? ` <span class="juris-src-suggested" title="Unconfirmed guess based on the site's own sitemap — not verified">may have moved to
-                    <a href="${esc(suggested)}" target="_blank" rel="noopener noreferrer">this page</a></span>` : ""}
+                    <a href="${esc(window.safeHref(suggested))}" target="_blank" rel="noopener noreferrer">this page</a></span>` : ""}
                 </li>`;
               }).join("")}
             </ul>
@@ -262,7 +262,7 @@ window.JURISDICTION = (function () {
 
     const item = (a) => `
       <li class="juris-news-item">
-        <a href="${esc(a.url || a.source_url || "#")}" target="_blank" rel="noopener noreferrer">
+        <a href="${esc(window.safeHref(a.url || a.source_url))}" target="_blank" rel="noopener noreferrer">
           ${esc(a.title || "Untitled")}
         </a>
         <div class="juris-news-meta">

@@ -818,7 +818,7 @@ function renderNewsTab(container, ticker) {
   const list = document.createElement('div');
   list.className = 'stocks-news-local-list';
   list.innerHTML = local.map(a => `
-    <a href="${escHtml(a.url)}" target="_blank" rel="noopener noreferrer" class="stocks-news-item">
+    <a href="${escHtml(safeHref(a.url))}" target="_blank" rel="noopener noreferrer" class="stocks-news-item">
       <div class="stocks-news-cat">${escHtml(a.category || '')}</div>
       <div class="stocks-news-title">${escHtml(a.title || '')}</div>
       <div class="stocks-news-meta">

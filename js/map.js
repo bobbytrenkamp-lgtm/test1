@@ -7378,9 +7378,10 @@ function initThemeToggle() {
   window._applyTheme = applyTheme;
 
   btn.addEventListener('click', () => {
-    const cur = localStorage.getItem('theme') || 'system';
+    let cur = 'system';
+    try { cur = localStorage.getItem('theme') || 'system'; } catch {}
     const next = THEMES[(THEMES.indexOf(cur) + 1) % THEMES.length];
-    localStorage.setItem('theme', next);
+    try { localStorage.setItem('theme', next); } catch {}
     applyTheme(next);
     // Brief spin animation (skip if user prefers reduced motion)
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

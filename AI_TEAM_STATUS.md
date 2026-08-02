@@ -12,6 +12,63 @@ No active work in progress as of 2026-08-02.
 
 - Date: 2026-08-02
 - Agent: Claude Code
+- Task: Fixed two bugs found in a third codebase survey after PRs
+  #216-#220 merged: a `javascript:`/`data:` URI scheme-validation gap
+  across six `href` render sites, and three unguarded theme-change
+  `localStorage.setItem` calls that could throw uncaught or leave an
+  unhandled promise rejection. Also removed one small piece of dead
+  code found in the same pass.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped:
+  - Every file's local `esc()`/`escHtml()` helper HTML-encodes `& < >
+    "` but none of them block a dangerous URL *scheme* — six
+    `href="${esc(url)}"` sites in `report.js` (source citations, signal
+    source URLs), `jurisdiction.js` (policy sources, archived-copy
+    links, suggested-replacement links, related-news links), and
+    `stocks.js` (related-news links) rendered `href` straight from
+    automated scraper/RSS-adapter data with no scheme check. Added a
+    single `safeHref(url)` to `js/constants.js` — this codebase's
+    established home for de-duplicating site-wide helpers — that
+    passes through real `http(s)` URLs and reduces anything else
+    (`javascript:`, `data:`, empty, malformed) to a safe `"#"`. Applied
+    at all six sites, composed with (not replacing) each file's
+    existing escaping call.
+  - Three `localStorage.setItem('theme', ...)` call sites (the header
+    theme-toggle button in `map.js`, both branches of
+    `applyThemeValue()` in `account.js`, and `auth.js`'s
+    `setPreference()`) had no try/catch, unlike every other
+    `localStorage` write site in the codebase. In a quota-exceeded or
+    Safari-private-browsing environment, `setItem` throws — in
+    `map.js` this happened *before* the theme actually changed, so the
+    toggle button would silently do nothing on click; in `auth.js`'s
+    `async setPreference()` (called with no `await`/`.catch()`
+    anywhere) it would instead surface as an unhandled promise
+    rejection on every theme change. Wrapped all four call sites (plus
+    the paired `getItem` read) in `try {} catch {}`, matching the
+    pattern already used everywhere else in this codebase for
+    best-effort persistence.
+  - Removed an unused `summIsDupe` computation in `js/news.js`
+    (`_renderLeadCard` — computed but never referenced; the actual
+    gating condition a few lines below is a different, simpler check).
+- Verified, not assumed: exercised `safeHref()` directly in-browser
+  against real URLs, dangerous schemes, and edge cases (empty,
+  `undefined`, whitespace-padded, relative paths) — all resolved
+  correctly. Loaded the Jurisdiction detail page live and confirmed
+  every rendered source/archive/news `href` is still a real, correct
+  URL (including Google News RSS redirect links), unaffected by the
+  new guard. Clicked the header theme-toggle button live and confirmed
+  it still correctly changes `data-theme`. Full `tests/run_all.sh`
+  176/176 passing.
+- Files changed: `js/constants.js`, `js/report.js`, `js/jurisdiction.js`,
+  `js/stocks.js`, `js/map.js`, `js/account.js`, `js/auth.js`,
+  `js/news.js`, `BUG_TRACKER.md`, this file.
+- Related systems: every page that renders scraper/API-sourced links
+  (Jurisdiction detail, county reports, AI Stocks news panel); the
+  site-wide theme toggle (header button and the Account panel's theme
+  selector).
+
+- Date: 2026-08-02
+- Agent: Claude Code
 - Task: Fixed two bugs found in the same codebase survey as the
   monitor_legislation fix below: a race condition in `js/economy-map.js`
   (rapid economic-layer toggling could desync the map from its own

@@ -295,7 +295,7 @@ window.REPORT = (function () {
           ${sources.length
             ? `<ol class="source-list">${sources.map(s => `<li>${
                 s.url
-                  ? `<a href="${_esc(s.url)}" class="source-link" target="_blank" rel="noopener noreferrer">${_esc(s.label || s.url)}</a>
+                  ? `<a href="${_esc(window.safeHref(s.url))}" class="source-link" target="_blank" rel="noopener noreferrer">${_esc(s.label || s.url)}</a>
                      <div class="source-url">${_esc(s.url)}</div>`
                   : _esc(s.label)
               }</li>`).join("")}</ol>`
@@ -588,7 +588,7 @@ window.REPORT = (function () {
     return `<li>
       <div class="signal-head">${_esc(title)}${when ? `<span class="signal-date">${_esc(when)}</span>` : ""}</div>
       ${sig.description ? `<div class="signal-desc">${_esc(sig.description)}</div>` : ""}
-      ${sig.source_url ? `<div class="signal-src"><a href="${_esc(sig.source_url)}" class="source-link" target="_blank" rel="noopener noreferrer">${_esc(sig.source_url)}</a></div>` : ""}
+      ${sig.source_url ? `<div class="signal-src"><a href="${_esc(window.safeHref(sig.source_url))}" class="source-link" target="_blank" rel="noopener noreferrer">${_esc(sig.source_url)}</a></div>` : ""}
     </li>`;
   }
 
