@@ -143,8 +143,19 @@ def write_report_to_map_data(results):
     try:
         with open(MAP_DATA_PATH, encoding="utf-8") as f:
             md = json.load(f)
-    except Exception:
-        md = {}
+    except Exception as e:
+        # This file holds all 1,467 county records — the entire production
+        # dataset. Silently falling back to an empty dict here and then
+        # writing it below (as this used to do) would overwrite map_data.json
+        # with nothing but a validation_report, destroying every record, on
+        # nothing more than a transient read glitch. update_data.yml calls
+        # this and unconditionally commits the result straight to main, so
+        # this failure mode was one bad read away from wiping the dataset in
+        # production. Abort instead — a validation report that never got
+        # embedded is recoverable next run; a destroyed map_data.json is not.
+        print(f"ERROR: could not read {MAP_DATA_PATH}, refusing to write "
+              f"(would destroy all county records): {e}", file=sys.stderr)
+        raise
 
     md["validation_report"] = {
         "last_run": datetime.now(timezone.utc).isoformat(),

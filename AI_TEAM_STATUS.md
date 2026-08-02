@@ -76,6 +76,41 @@ No active work in progress as of 2026-07-31.
 
 - Date: 2026-08-02
 - Agent: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+- Task: Live-browser-tested the site screener and polygon draw/measure
+  tool (both work correctly, zero errors) — six features now confirmed
+  working this session (compare tool, keyboard shortcuts, 3D view,
+  workspace persistence, site screener, draw tool). Then audited all of
+  `data/*.py` for bare `except Exception:`/`except:` blocks, the same
+  silent-failure pattern already fixed twice this session in HIFLD/zoning
+  ArcGIS fetchers. Found something categorically worse than either of
+  those: `validate_sources.py`'s `write_report_to_map_data()` silently
+  fell back to an empty dict on *any* read failure of `map_data.json` —
+  the entire 1,467-county production dataset — and then unconditionally
+  wrote that empty dict back to the same file a few lines later.
+  `update_data.yml` calls this and commits `map_data.json` straight to
+  `main` with no review. A single transient read glitch was one bad run
+  away from destroying the whole dataset. Fixed by raising instead of
+  silently substituting — verified the calling workflow step already has
+  `continue-on-error: true`, so this doesn't break the deploy, it just
+  stops the destructive write. Also fixed two lower-severity silent
+  swallows in `monitor_legislation.py` (dropped bill-scoring bonuses with
+  no log line explaining why).
+- Files changed: `data/validate_sources.py`, `data/monitor_legislation.py`,
+  `BUG_TRACKER.md`, this file.
+- Tests performed: `tests/run_all.sh` 176/176. Directly exercised the fixed
+  function with a nonexistent `MAP_DATA_PATH` and confirmed it now raises
+  and writes nothing, where it previously would have silently written a
+  near-empty file. Playwright exploration of the two new features, zero JS
+  errors.
+- Note for whoever reads this next: the same audit found several other
+  bare-except blocks in facility_pipeline scraper adapters
+  (`digital_realty.py`, `equinix.py`, `hyperscale_press.py`) that silently
+  skip malformed scraped items inside a loop. Left as-is — worst case is
+  missing supplementary detail on a best-effort scrape, not data loss —
+  but worth a closer look if facility data quality ever looks off.
+
+- Date: 2026-08-02
+- Agent: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
 - Task: Continued "institutional quality" pass. Live-browser-tested the
   compare tool, keyboard shortcuts modal, 3D terrain view toggle, and
   workspace save/reload persistence — all four work correctly (two initial

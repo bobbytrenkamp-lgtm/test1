@@ -7,6 +7,66 @@ replacement".
 
 ---
 
+Bug: `validate_sources.py` could silently destroy all 1,467 county records
+in `map_data.json`
+Priority: CRITICAL
+Affected Files: `data/validate_sources.py`
+Root Cause: `write_report_to_map_data()` read `map_data.json`, and on
+*any* exception during that read (malformed JSON, transient I/O error,
+concurrent-write race — genuinely anything, the `except` had no type
+filter) silently fell back to `md = {}` and continued running. The
+function then unconditionally writes `md` back to `map_data.json` a few
+lines later — meaning a single bad read would overwrite the entire
+production dataset (every county's policy research) with nothing but a
+validation report. `.github/workflows/update_data.yml` calls this
+function and then unconditionally commits `data/map_data.json` straight
+to `main` with no diff review, no size/record-count sanity check, and
+`[skip ci]` on the commit message. Found while auditing the codebase for
+the same silent-exception-swallowing pattern already fixed twice this
+session in the HIFLD/zoning ArcGIS fetchers — this one was categorically
+worse: those failed by returning nothing, this one would have actively
+destroyed existing good data.
+Fix: On a read failure, log the error and `raise` instead of silently
+substituting an empty dict — refuses to write anything at all rather
+than write something destructive. Verified: the workflow step that calls
+this already has `continue-on-error: true` (its own comment: "report,
+don't fail the deploy"), so aborting here doesn't break the deploy
+pipeline — it just means the validation report doesn't get embedded on a
+run where the read genuinely failed, which is fully recoverable next run,
+unlike a destroyed `map_data.json`.
+Testing Performed: Pointed `MAP_DATA_PATH` at a nonexistent file and
+confirmed the function now raises and creates nothing, where it
+previously would have silently written a near-empty file. `tests/
+run_all.sh` 176/176 passing.
+Fixed By: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+Date Fixed: 2026-08-02
+Status: Fixed
+
+---
+
+Bug: `monitor_legislation.py` silently dropped bill-scoring bonuses on a
+file-read failure
+Priority: MEDIUM
+Affected Files: `data/monitor_legislation.py`
+Root Cause: `load_tracked_states()` and `guess_affected_counties()` both
+read `restrictions_raw.json` and silently returned an empty
+set/list on any exception, with no logging. A real failure to read that
+file wouldn't look broken — the legislative-monitoring pipeline would
+still run and still surface bills — it would just quietly drop every
+bill's "tracked state" relevance bonus (worth +2 of the score threshold)
+and every bill's affected-county annotations, with nothing in the run log
+to explain why some bills that should have surfaced didn't. Found in the
+same audit as the `validate_sources.py` bug above.
+Fix: Added `print(..., file=sys.stderr)` warnings on the exception path,
+matching the `[warn]`-prefixed logging convention already used elsewhere
+in this same file. Fallback behavior (empty set/list) is unchanged — this
+is a visibility fix, not a behavior change.
+Fixed By: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+Date Fixed: 2026-08-02
+Status: Fixed
+
+---
+
 Bug: no-paid-dependency guard tripped by an OSM contributor's own
 basemap-attribution tag, not a live dependency
 Priority: LOW

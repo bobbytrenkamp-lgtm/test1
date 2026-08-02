@@ -159,7 +159,15 @@ def load_tracked_states():
             if abbr:
                 abbrs.add(abbr)
         return abbrs
-    except Exception:
+    except Exception as e:
+        # Silently returning an empty set here doesn't look broken — the
+        # pipeline still runs and still finds bills — it just quietly drops
+        # every bill's "tracked state" scoring bonus, which can push
+        # otherwise-relevant bills below the relevance threshold with
+        # nothing in the logs to explain why. Same failure class as the
+        # HIFLD/zoning ArcGIS gaps fixed elsewhere this session: a real
+        # error reading a real file, made to look like "no tracked states."
+        print(f"  [warn] Could not load tracked states from {RAW_PATH}: {e}", file=sys.stderr)
         return set()
 
 
@@ -220,7 +228,8 @@ def guess_affected_counties(state_abbr, title_desc):
                 if r["name"].lower().replace(" county", "") in text:
                     matches.append(f"{r['fips']} ({r['name']})")
         return matches
-    except Exception:
+    except Exception as e:
+        print(f"  [warn] Could not match affected counties from {RAW_PATH}: {e}", file=sys.stderr)
         return []
 
 
