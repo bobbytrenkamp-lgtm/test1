@@ -1,0 +1,95 @@
+name: Test Suite
+
+# There was previously no repo-wide test gate: update_economic_data.yml and
+# update_facilities.yml each run one narrow test file as a sanity check on
+# their own pipeline, but nothing ran the full offline suite (176+ JS tests,
+# every Python validator, the no-paid-dependency guard) or the E2E browser
+# suite on an ordinary push or PR. That gap is how unrelated regressions
+# could land unnoticed. This workflow is the general gate.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-suite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python test dependencies
+        run: pip install pytest
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Node test dependencies (jsdom + Playwright package)
+        # Only the `playwright` npm package, not its browser binaries — those
+        # come from the pinned Chrome for Testing download below, matching
+        # tests/e2e_smoke.mjs's documented local setup so CI and a human get
+        # the same path.
+        #
+        # --prefix is the PROJECT ROOT, not the modules directory: npm creates
+        # <prefix>/node_modules. Passing /tmp/node_modules here installed into
+        # /tmp/node_modules/node_modules and nothing resolved. Install into
+        # /tmp so packages land in /tmp/node_modules, which is the layout the
+        # repo's docs and NODE_PATH convention already assume.
+        run: npm install --no-save --prefix /tmp jsdom playwright
+
+      # The previous version of this step failed silently in the worst way:
+      # Playwright was unresolvable so E2E died, and jsdom was unresolvable so
+      # every jsdom-backed suite SKIPPED — the run still printed "176/176
+      # passed" while quietly testing less than advertised. A missing test
+      # dependency must be a loud failure, never a smaller test run.
+      - name: Verify test dependencies actually resolve
+        env:
+          NODE_PATH: /tmp/node_modules
+        run: |
+          node -e "require.resolve('jsdom')" \
+            || { echo "::error::jsdom did not resolve — jsdom suites would silently skip"; exit 1; }
+          test -f /tmp/node_modules/playwright/index.mjs \
+            || { echo "::error::playwright/index.mjs missing — E2E suite cannot run"; exit 1; }
+          echo "jsdom and playwright both resolve."
+
+      - name: Download Chrome for Testing (headless shell)
+        run: |
+          curl -o /tmp/chs.zip \
+            "https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.54/linux64/chrome-headless-shell-linux64.zip"
+          unzip -q /tmp/chs.zip -d /tmp/chs
+          chmod +x /tmp/chs/chrome-headless-shell-linux64/chrome-headless-shell
+
+      - name: Serve the repo for the E2E suite
+        run: |
+          python3 -m http.server 8099 &
+          for i in $(seq 1 20); do
+            curl -sSf http://localhost:8099/index.html -o /dev/null && exit 0
+            sleep 0.5
+          done
+          echo "server never came up" >&2
+          exit 1
+
+      - name: Run full test suite (including E2E)
+        env:
+          NODE_PATH: /tmp/node_modules
+          E2E: "1"
+          PLAYWRIGHT_MODULE: /tmp/node_modules/playwright/index.mjs
+          CHROME_PATH: /tmp/chs/chrome-headless-shell-linux64/chrome-headless-shell
+          BASE_URL: http://localhost:8099
+        run: ./tests/run_all.sh

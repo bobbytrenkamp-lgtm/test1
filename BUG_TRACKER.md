@@ -73,6 +73,167 @@ Status: Fixed
 
 ---
 
+# Recently Fixed Bugs (2026-07-31 — parcel data integrity + CI gate)
+
+---
+
+Bug: All three Virginia parcel fieldMaps pointed at attributes that do not exist
+Priority: HIGH
+Affected Files: `js/parcel/registry.js`, `data/check_parcel_services.mjs` (new)
+Root Cause: The `fieldMap` values were never checked against the live services —
+`registry.js`'s own header admitted they were plausible-looking guesses. The
+first real probe found 16/18 broken for Fairfax, 17/22 for Loudoun, and 18/18
+for Prince William. Because the connector passes unmapped fields through
+harmlessly and `panel.js` omits empty rows, parcels drew perfectly and the
+detail panel simply showed less than it should — presenting as a rendering
+bug rather than a mapping one. Prince William was the extreme case: its layer
+is a JOIN of two tables and ArcGIS qualifies every field with its owning table
+(`GISPROD.VECTOR.Parcels.GPIN`), so every bare name matched nothing on the only
+one of the three sources that actually carries owner and land-use data.
+Fix: All three rebuilt from each service's own `?f=json` field list. Attributes
+a service genuinely does not carry are recorded in `notProvidedBySource` rather
+than mapped to an invented column, and the probe verifies that list against the
+live schema so a stale exclusion cannot hide data that later appears.
+Testing Performed: Probe re-run against the live services — all three now
+resolve every mapping, every `notProvidedBySource` entry confirmed absent.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-31
+Status: Fixed
+
+---
+
+Bug: One unknown column made parcel search reject the entire query
+Priority: MEDIUM
+Affected Files: `js/parcel/index.js` (`search`)
+Root Cause: The WHERE clause fell back to hardcoded `SITE_ADDR`/`PIN` whenever a
+mapping was absent. ArcGIS rejects the whole query on an unknown column, so a
+missing address field also broke PIN search even though the PIN field was fine.
+Three of the five registry services are boundary layers with no address column,
+so this was the normal case, not an edge case.
+Fix: Build the clause only from fields the service actually maps, and quote
+identifiers so table-qualified names (joined layers) work.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-31
+Status: Fixed
+
+---
+
+Bug: Parcel pane and basemap labels pane tied at the same z-index
+Priority: MEDIUM
+Affected Files: `js/parcel/renderer.js` (`PANE_Z`)
+Root Cause: The parcel pane used z-index 450 — exactly `map.js`'s `labelsPane`
+(the Carto street-label overlay used by satellite/hybrid, `js/map.js:3066`).
+Two panes at the same z-index order by DOM insertion alone, so whether parcels
+painted above or below a full-viewport label tile layer depended on the order
+the layers happened to be created in.
+Fix: 440 — clear of county polygons (400), deliberately below labels (450) so
+street names stay legible on top, which is the useful order when locating a
+parcel by address. Verified in-browser: overlay 400 → parcel 440 → labels 450
+→ marker 600 → tooltip 650, no ties.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-31
+Status: Fixed
+
+---
+
+Bug: CI test gate reported "176/176 passed" while silently skipping suites
+Priority: HIGH
+Affected Files: `.github/workflows/test.yml`
+Root Cause: `npm install --no-save --prefix /tmp/node_modules jsdom playwright`
+installed into `/tmp/node_modules/node_modules/` — npm treats `--prefix` as the
+project root and creates `node_modules` beneath it. Playwright failed to
+resolve, which killed E2E loudly; but jsdom failed to resolve too, and the
+jsdom-backed suites are deliberately written to SKIP when it is absent. The run
+therefore printed a full green `ALL PASS — 176/176` while testing materially
+less than it claimed. A gate added specifically to catch regressions was hollow
+and looked healthy doing it.
+Fix: Install into `/tmp` so packages land in `/tmp/node_modules` (the layout
+`NODE_PATH` already assumes), plus a new "Verify test dependencies actually
+resolve" step that hard-fails when either is missing. A missing test dependency
+must be a loud failure, never a smaller test run.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-31
+Status: Fixed
+
+---
+
+Not-a-bug (recorded so it is not "fixed" again): TradingView errors in E2E
+Affected Files: `tests/e2e_smoke.mjs`
+Detail: With CI dependencies working, the E2E suite ran properly for the first
+time and surfaced two TradingView failures that a network-restricted sandbox
+can never reproduce, because the widgets there never load at all. One is a
+console warning its embed script logs on every widget render. The other is
+`Cannot read properties of null (reading 'querySelector')` thrown by
+TradingView's own `_replaceScript` when a viewport change re-renders a widget
+container mid-load — **initially misdiagnosed as an application bug**, until
+stack capture showed every frame inside `s3.tradingview.com` with none in our
+source. `createTVWidget` already guards our callbacks via `_tvRenderId`; their
+bundle is out of reach. Filtered by ORIGIN rather than message text, so a real
+null-dereference of ours reading identically still fails the run. `pageerror`
+now records stack frames — read the stack before assuming an error is yours.
+Status: Working as intended (no code change in this app)
+
+---
+
+Open (external, tracked not fixed): Maryland parcel endpoint returning 503
+Priority: MEDIUM
+Affected Files: `js/parcel/registry.js` (24027, 24031)
+Detail: Howard and Montgomery MD share one statewide endpoint
+(`geodata.md.gov` MD_ParcelBoundaries) which has returned HTTP 503 on every
+probe since 2026-07-31, so both counties show "Parcel data unavailable —
+service error". Both entries carry a `knownUnavailable` block so the monthly
+probe reports them without failing; anything newly dead still fails, and
+recovery is reported so the marker gets removed. The URL was deliberately NOT
+replaced — minutes of 503 cannot distinguish a retired service from an outage,
+and guessing a replacement is what produced the fieldMap defects above.
+Recommended next action: re-probe in a few days
+(`Check Parcel Services` → Run workflow). If still dead, re-derive from
+Maryland's GIS portal and confirm with the probe before committing.
+Status: Open (external dependency; not blocking)
+
+---
+
+# Recently Fixed Bugs (2026-07-31 — parcel view legibility)
+
+---
+
+Bug: County hover chrome obscures the parcel layer
+Priority: High
+Affected Files: `js/map.js` (`hoverCountyStyle`, `handleCountyMouseover`),
+`tests/e2e_smoke.mjs`
+Root Cause: Two separate pieces of county-level chrome were drawn on top of a
+county the user had already drilled past into parcel view.
+(1) The county tooltip — a cursor-following box positioned at cursor +14/-44 —
+sits directly over the parcels being inspected. It also flickers constantly:
+parcel polygons live on their own pane (`parcelPane`, z-index 450) above the
+county overlay pane (~400) and capture the pointer, so the county layer only
+receives `mouseover` in the gaps BETWEEN parcels — every road and lot line
+toggles the box back on.
+(2) `handleCountyMouseover` hardcoded `fillOpacity: 0.88`. Parcels render
+*above* the county fill but their own fill is only ~0.15 opaque, so a 0.88
+county fill underneath still washes them out — being on top is not enough.
+`selectedCountyStyle()` had already been given exactly this treatment for the
+SELECTED county (fillOpacity 0.04 in parcel view); the hover path was missed,
+so it kept the washout for every county the pointer crossed.
+Fix: Added `hoverCountyStyle()` mirroring `selectedCountyStyle()`'s existing
+parcel-view branch (keeps the orange outline for hover feedback, drops only
+the fill), and suppressed the county tooltip in parcel view for the county
+whose parcels are on screen. Deliberately scoped: hovering a NEIGHBOURING
+county still shows its tooltip, since there are no parcels there to obscure
+and the label is still informative.
+Testing Performed: Verified in a real browser (Chromium via Playwright) — 9
+checks covering baseline-with-layer-off, both obstructions removed in parcel
+view, neighbour tooltip preserved, and clean restoration after toggling the
+layer back off (a sticky suppressed tooltip would be worse than the original
+bug). 0 JS errors. Added as scenario 13b in `tests/e2e_smoke.mjs`, which now
+runs in CI via `.github/workflows/test.yml`. jsdom cannot catch this class —
+it has no layout, no panes, and no real pointer events.
+Fixed By: Claude Code (claude-opus-5)
+Date Fixed: 2026-07-31
+Status: Fixed
+
+---
+
 # Recently Fixed Bugs (2026-07-30 — Windows test-suite portability)
 
 ---

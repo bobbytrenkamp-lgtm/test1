@@ -128,7 +128,7 @@ def load_jurisdiction_config(jurisdiction_id: str) -> dict:
 
 def load_source_registry() -> dict:
     if SOURCES_FILE.exists():
-        with open(SOURCES_FILE) as f:
+        with open(SOURCES_FILE, encoding="utf-8") as f:
             return json.load(f)
     return {}
 
@@ -137,14 +137,14 @@ def load_jurisdiction_file(jurisdiction_id: str, filename: str) -> dict:
     path = JURISDICTIONS_DIR / jurisdiction_id / filename
     if not path.exists():
         return {}
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         return json.load(f)
 
 
 def write_normalized(jurisdiction_id: str, data: dict) -> Path:
     NORMALIZED_DIR.mkdir(parents=True, exist_ok=True)
     out_path = NORMALIZED_DIR / f"{jurisdiction_id}.json"
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
     return out_path
 
@@ -152,6 +152,6 @@ def write_normalized(jurisdiction_id: str, data: dict) -> Path:
 def write_geometry(jurisdiction_id: str, geojson: dict) -> Path:
     GEOMETRY_DIR.mkdir(parents=True, exist_ok=True)
     out_path = GEOMETRY_DIR / f"{jurisdiction_id}.geojson"
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(geojson, f)
     return out_path

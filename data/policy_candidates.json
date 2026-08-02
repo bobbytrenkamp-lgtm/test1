@@ -1,9 +1,9 @@
 {
   "meta": {
     "description": "Policy signals discovered by the pipeline awaiting human review. Do NOT copy entries here directly to restrictions_raw.json without verification.",
-    "last_updated": "2026-07-30T09:27:11.552018+00:00",
-    "total": 29,
-    "pending": 29
+    "last_updated": "2026-08-01T09:02:33.252693+00:00",
+    "total": 30,
+    "pending": 30
   },
   "candidates": [
     {
@@ -633,6 +633,27 @@
       ],
       "confidence": 0.5,
       "evidence": "\u2026ed-off shotguns; possession of large capacity weapon or large capacity feeding device; punishment MGL c.123 \u00a716 Hospitalization of persons incompetent to stand trial or not guilty by reason of mental illness; examination period; commitment; hearing; restrictions; dismissal of criminal charges Most Popular Bills Popular Bills Followed Bill No. Title S.2655&nbsp; An Act making appropriations for the fiscal year 2025 to provide for supplementing certain existing appropriations and for certain othe",
+      "existing_fips_match": null,
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "sc-dor-datacenter-96f87409eee0",
+      "source_id": "sc-dor-datacenter",
+      "discovered_at": "2026-08-01T09:02:14.690465+00:00",
+      "jurisdiction_name": "South Carolina Department of Revenue",
+      "state": "South Carolina",
+      "state_abbr": "SC",
+      "fips": null,
+      "title": "Sales Tax Exemptions | SCDOR",
+      "description": "\u2026bles_hero_button_background_color: #ffeb94; --menu_text_desktop_1: ; --menu_text_mobile_1: ; --menu_text_desktop_2: ; --menu_text_mobile_2: ; --menu_text_desktop_3: ; --menu_text_mobile_3: ; --variables_accordion_link_color_rgb: 31, 89, 153; } Sales Tax Exemptions | SCDOR document.body.className += ' js-loading '; Skip to main content Top Nav Agency Listing Online Services Cybersecurity Tips Menu Search Terms Main navigation File &amp; Pay Open File &amp; Pay MyDORWAY Help Individual Income Tax",
+      "signal_url": "https://dor.sc.gov/sales-use-tax-index/sales-tax-exemptions",
+      "lifecycle_stage": "failed",
+      "policy_types": [
+        "energy"
+      ],
+      "confidence": 0.5,
+      "evidence": "\u2026bles_hero_button_background_color: #ffeb94; --menu_text_desktop_1: ; --menu_text_mobile_1: ; --menu_text_desktop_2: ; --menu_text_mobile_2: ; --menu_text_desktop_3: ; --menu_text_mobile_3: ; --variables_accordion_link_color_rgb: 31, 89, 153; } Sales Tax Exemptions | SCDOR document.body.className += ' js-loading '; Skip to main content Top Nav Agency Listing Online Services Cybersecurity Tips Menu Search Terms Main navigation File &amp; Pay Open File &amp; Pay MyDORWAY Help Individual Income Tax",
       "existing_fips_match": null,
       "review_status": "pending",
       "reviewer_notes": ""

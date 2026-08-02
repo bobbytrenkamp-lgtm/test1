@@ -30,7 +30,7 @@ def warn(msg):
 
 
 def load(path):
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -93,12 +93,24 @@ if MAP_DATA_PATH.exists():
         actual_prop = level_counts.get(1, 0)
         actual_pro  = level_counts.get(-1, 0)
 
+        # research_status=descriptive_only records hold a county description but
+        # no policy research was ever done — counting them as "researched" is the
+        # exact overstatement (1,467 vs the true 870) that refresh_platform_metadata.py
+        # excludes and js/constants.js's researchedCount() exists to prevent on the
+        # frontend. This validator must use the same excluding definition, not
+        # actual_in_db, wherever the word "researched" appears below.
+        actual_descriptive = sum(1 for v in counties.values()
+                                  if v.get("research_status") == "descriptive_only")
+        actual_researched = actual_in_db - actual_descriptive
+
         for field, actual, label in [
             ("counties_with_bans",                actual_bans, "level 4 (ban)"),
             ("counties_with_high_restrictions",   actual_high, "level 3 (high)"),
             ("counties_with_moderate_restrictions", actual_mod, "level 2 (moderate)"),
             ("counties_with_proposed_restrictions", actual_prop, "level 1 (proposed)"),
             ("counties_pro_development",           actual_pro, "level -1 (pro)"),
+            ("counties_descriptive_only",          actual_descriptive, "research_status=descriptive_only"),
+            ("counties_researched",                actual_researched, "in_database minus descriptive_only"),
         ]:
             meta_val = cov.get(field, 0)
             if meta_val != actual:
@@ -111,16 +123,31 @@ if MAP_DATA_PATH.exists():
                  f"computed={actual_active}")
 
         total_us = cov.get("total_us_counties", 3143)
-        actual_unresearched = total_us - actual_in_db
+        # Not "total_us - actual_in_db": this field is defined against the
+        # researched count (see above), not raw in-database. Using in_db here
+        # under-reports "not yet researched" by exactly the 597 descriptive_only
+        # records — this validator disagreeing with refresh_platform_metadata.py's
+        # own formula is what makes a *correct* metadata file look stale.
+        actual_unresearched = total_us - actual_researched
         meta_unresearched   = cov.get("counties_not_yet_researched", 0)
         if meta_unresearched != actual_unresearched:
             warn(f"counties_not_yet_researched: metadata={meta_unresearched}, "
-                 f"computed={actual_unresearched} ({total_us} - {actual_in_db})")
+                 f"computed={actual_unresearched} ({total_us} - {actual_researched})")
 
+        # counties_coverage_pct is deliberately the raw in-database share (see
+        # refresh_platform_metadata.py); counties_researched_pct below is the
+        # researched-only figure. Different fields, different denominators —
+        # both are checked, neither is "the" coverage number on its own.
         actual_pct = round(actual_in_db / total_us * 100, 1)
         meta_pct   = cov.get("counties_coverage_pct", 0)
         if abs(meta_pct - actual_pct) > 0.2:
             warn(f"counties_coverage_pct: metadata={meta_pct}, computed={actual_pct}")
+
+        actual_researched_pct = round(actual_researched / total_us * 100, 1)
+        meta_researched_pct   = cov.get("counties_researched_pct", 0)
+        if abs(meta_researched_pct - actual_researched_pct) > 0.2:
+            warn(f"counties_researched_pct: metadata={meta_researched_pct}, "
+                 f"computed={actual_researched_pct}")
     else:
         warn("map_data.json counties is not a dict -- skipping county cross-check")
 else:

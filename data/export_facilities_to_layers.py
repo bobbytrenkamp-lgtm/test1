@@ -60,10 +60,10 @@ def _to_layer_record(r: dict) -> dict:
 
 
 def main() -> None:
-    with open(MASTER_PATH) as f:
+    with open(MASTER_PATH, encoding="utf-8") as f:
         master = json.load(f)
 
-    with open(LAYERS_PATH) as f:
+    with open(LAYERS_PATH, encoding="utf-8") as f:
         layers = json.load(f)
 
     data_centers = []
@@ -86,7 +86,7 @@ def main() -> None:
     layers["ai_campuses"] = ai_campuses
     layers["_facilities_exported_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    with open(LAYERS_PATH, "w") as f:
+    with open(LAYERS_PATH, "w", encoding="utf-8") as f:
         json.dump(layers, f, indent=2, ensure_ascii=False)
 
     print(f"Exported {len(data_centers)} data centers + {len(ai_campuses)} AI campuses → {LAYERS_PATH}")

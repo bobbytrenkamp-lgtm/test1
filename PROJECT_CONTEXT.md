@@ -132,7 +132,7 @@ Full audit and reasoning: the **Cost & Licensing Audit** in `DATA_SOURCES.md`.
 These files existed before the current documentation-preservation pass and must be treated as project history:
 
 - `AI_CONTEXT.md`: Detailed AI handoff notes, architecture, feature history, design decisions, known limitations, and session log. This is the richest historical record and must be preserved.
-- `AI_CHANGELOG.md`: Shared AI session log introduced for cross-assistant collaboration. New AI work should append entries rather than replacing prior entries.
+- `AI_CHANGELOG.md`: Shared AI session log introduced for cross-assistant collaboration. New AI work should append entries rather than replacing prior entries. Entries before 2026-07-18 live in `AI_CHANGELOG_ARCHIVE.md`, moved there 2026-07-31 to keep the live file under the ~256KB size a single read can load; move the oldest entries there again whenever this file approaches that size, rather than letting it grow unbounded.
 - `BUG_TRACKER.md`: Shared active/fixed/regression bug tracker. Existing "Do Not Reintroduce" items should be preserved unless they are intentionally superseded with explanation.
 - `PROJECT_CONTEXT.md`: Permanent source of truth for project direction, requirements, and assistant rules.
 - `README.md`: Public-facing project README. Some implementation details in this file may lag behind `AI_CONTEXT.md`; when conflicts exist, mark outdated sections clearly instead of deleting useful history.

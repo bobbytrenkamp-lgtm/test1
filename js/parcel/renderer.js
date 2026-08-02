@@ -11,7 +11,16 @@ window.PARCEL_RENDERER = (function () {
 
   const DEBOUNCE_MS = 350;
   const PANE_NAME   = 'parcelPane';
-  const PANE_Z      = 450; // above county fills (~400) but below tooltips (600)
+  /* Above county fills (overlayPane, 400) and below tooltips (650) — but the
+     specific value matters more than that range suggests. This was 450, which
+     is exactly the z-index map.js gives "labelsPane" (the Carto street-label
+     overlay used by the satellite/hybrid basemaps). Two panes tied at the same
+     z-index are ordered by DOM insertion alone, so which one painted on top
+     depended on the order the layers happened to be created in — parcels could
+     silently end up under a full-viewport label tile layer. 440 keeps parcels
+     clear of county polygons while leaving street labels legible on top, which
+     is the useful order when you are locating a parcel by address. */
+  const PANE_Z      = 440;
 
   let _map           = null;
   let _layer         = null;    // current L.geoJSON layer

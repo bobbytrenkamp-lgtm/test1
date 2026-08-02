@@ -62,6 +62,20 @@ function selectedCountyStyle() {
   return { color: themeColors().selectedOutline, weight: 2.5, fillOpacity: 0.92 };
 }
 
+/* Transient hover highlight. Same parcel-view reasoning as selectedCountyStyle():
+   parcels render on their own pane ABOVE the county fill, but their own fill is
+   only ~0.15 opaque, so an 0.88-opaque county fill underneath still washes them
+   out — the parcels are on top and still unreadable. Hovering is the common case
+   while panning around a parcel map, so without this the layer looks broken
+   whenever the pointer is anywhere over the county. Keep the orange outline for
+   hover feedback; drop only the fill. */
+function hoverCountyStyle() {
+  if (window.PARCEL?.isActiveWithData?.()) {
+    return { color: "#f97316", weight: 2, fillOpacity: 0.04 };
+  }
+  return { color: "#f97316", weight: 2, fillOpacity: 0.88 };
+}
+
 /* LEVEL_LABELS is defined in js/constants.js and exposed on window. Aliased here
    so existing bare references keep working. */
 const LEVEL_LABELS = window.LEVEL_LABELS;
@@ -967,8 +981,21 @@ function handleCountyMouseover(e, fips) {
 
   hoveredCountyLayer = e.target;
   if (fips !== selectedFips) {
-    e.target.setStyle({ color: "#f97316", weight: 2, fillOpacity: 0.88 });
+    e.target.setStyle(hoverCountyStyle());
     e.target.bringToFront();
+  }
+
+  /* Parcel view: the county tooltip is a cursor-following box drawn directly
+     over the parcels being inspected, and the parcel layer already supplies a
+     richer per-parcel tooltip (address / PIN) for the thing actually under the
+     pointer. It also flickers constantly here, because parcel polygons sit on
+     their own higher pane and capture the pointer, so the county only receives
+     mouseover in the gaps *between* parcels — every road and lot line toggles
+     the box back on. Suppress it for the county whose parcels are on screen;
+     hovering a neighbouring county still explains what you are pointing at. */
+  if (window.PARCEL?.isActiveWithData?.() && fips === selectedFips) {
+    tooltip.style.display = "none";
+    return;
   }
   showTooltip(e.originalEvent, fips);
 }

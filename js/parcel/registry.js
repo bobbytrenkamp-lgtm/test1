@@ -16,7 +16,33 @@
  * To add a new jurisdiction, copy the Loudoun County block and update the values.
  * See docs/PARCEL_ADD_JURISDICTION.md for a step-by-step guide.
  *
- * SERVICE URL RE-VERIFICATION PASS (2026-07):
+ * FETCH-CONFIRMED 2026-07-31 — supersedes the caveats below.
+ *   data/check_parcel_services.mjs finally ran the check this header had been
+ *   asking for, on a runner with real network access. Results:
+ *
+ *     Loudoun VA / Fairfax VA / Prince William VA — LIVE, valid layers.
+ *     Howard MD / Montgomery MD                   — HTTP 503, no data.
+ *
+ *   The two Maryland counties share ONE serviceUrl (Maryland's statewide
+ *   MD_ParcelBoundaries layer), so that single endpoint failing takes out
+ *   both. 503 reproduced across three runs a few minutes apart; that is not
+ *   long enough to distinguish a retired endpoint from an extended outage,
+ *   so the URL is left in place pending a re-probe rather than replaced with
+ *   another guess. Until it returns, both MD counties show the generic
+ *   "Parcel data unavailable — service error" toast.
+ *
+ *   Every fieldMap below was ALSO checked against its layer's real field
+ *   list, and they were almost entirely wrong — 16/18 broken for Fairfax,
+ *   17/22 for Loudoun, 18/18 for Prince William. Parcels drew correctly and
+ *   every attribute row came back empty, which reads as a rendering bug
+ *   rather than a mapping one. All three are now corrected from the
+ *   services' own schemas, and attributes a service genuinely does not carry
+ *   are recorded in `notProvidedBySource` instead of being mapped to an
+ *   invented column name. The probe verifies that list too, so if a county
+ *   starts publishing one of them it gets reported rather than sitting
+ *   unused behind a stale exclusion.
+ *
+ * SERVICE URL RE-VERIFICATION PASS (2026-07) — superseded, kept for history:
  *   Every serviceUrl below was originally written without ever being fetched —
  *   each one was a plausible-looking guess. One (Montgomery County MD) turned
  *   out to be a fully invalid org/service ID, confirmed dead by a live browser
@@ -80,31 +106,34 @@ window.PARCEL_REGISTRY = (function () {
 
       /* canonical field id → source attribute name.
        * '__computed__' means the value is derived by the connector, not from properties. */
+      /* Verified against the live layer 2026-07-31 by
+         data/check_parcel_services.mjs — every name below came from the
+         service's own ?f=json field list, not from inference. */
       fieldMap: {
         parcel_id:           'PA_MCPI',
         pin:                 'PA_MCPI',
-        address:             'SITE_ADDR',
-        owner:               'OWNER_NAME',
-        owner_mailing:       'MAIL_ADDR',
-        zoning_code:         'ZONING',
-        land_use_code:       'USE_CODE',
-        land_use_desc:       'USE_DESC',
-        area_sqft:           'SHAPE_Area',
-        area_acres:          'PA_GIS_ACRE',
-        building_count:      'BLDG_COUNT',
-        year_built:          'YEAR_BUILT',
-        gross_floor_area:    'GFA_SQFT',
-        assessed_value:      'TOTAL_VALUE',
-        land_value:          'LAND_VALUE',
-        improvement_value:   'IMP_VALUE',
-        tax_year:            'TAX_YEAR',
-        last_sale_date:      'LAST_SALE_DT',
-        last_sale_price:     'LAST_SALE_PR',
-        deed_book:           'DEED_BOOK',
-        deed_page:           'DEED_PAGE',
+        area_sqft:           'PA_LEGAL_SQFT',
+        area_acres:          'PA_LEGAL_ACRE',
         subdivision:         'PA_SUBD_NAME',
         county_fips:         '__computed__',
       },
+
+      /* This service is a parcel BOUNDARY layer: geometry plus plat and
+         subdivision metadata, nothing else. The keys below were previously
+         mapped to invented attribute names (SITE_ADDR, OWNER_NAME, ZONING,
+         TOTAL_VALUE, …) that the layer does not expose — 17 of 22 mappings
+         resolved to nothing, so the panel rendered blank rows with no
+         indication why. They are listed here rather than silently dropped so
+         the gap stays visible, and so nobody "restores" them by guessing
+         again. Populating them needs Loudoun's separate CAMA/assessment
+         service joined in, which this one-service-per-jurisdiction connector
+         cannot currently do. */
+      notProvidedBySource: [
+        'address', 'owner', 'owner_mailing', 'zoning_code', 'land_use_code',
+        'land_use_desc', 'building_count', 'year_built', 'gross_floor_area',
+        'assessed_value', 'land_value', 'improvement_value', 'tax_year',
+        'last_sale_date', 'last_sale_price', 'deed_book', 'deed_page',
+      ],
 
       outFields: null, // null = request all fields ('*')
 
@@ -113,7 +142,7 @@ window.PARCEL_REGISTRY = (function () {
         url:     'https://logis.loudoun.gov/gis/rest/services/',
         portal:  'https://geohub-loudoungis.opendata.arcgis.com/',
         license: 'Public government data. Verify terms before commercial redistribution.',
-        note:    'Ashburn/Sterling "Data Center Alley" — largest data center market globally by power capacity.',
+        note:    'Ashburn/Sterling "Data Center Alley" — largest data center market globally by power capacity. Boundary layer only: no owner, address, zoning, or assessment attributes.',
       },
     },
 
@@ -147,27 +176,42 @@ window.PARCEL_REGISTRY = (function () {
       minZoom:     14,
       maxFeatures: 500,
 
+      /* Verified against the live layer 2026-07-31 by
+         data/check_parcel_services.mjs.
+
+         THE FULLY-QUALIFIED NAMES ARE NOT A MISTAKE — DO NOT "TIDY" THEM.
+         This layer is a join of two source tables (Parcels + CAMADATA), and
+         ArcGIS prefixes every field in a joined layer with its owning table.
+         The attribute really is "GISPROD.VECTOR.Parcels.GPIN"; a request for
+         plain "GPIN" matches nothing. That is why all 18 previous mappings
+         resolved to zero — the bare names were right in spirit and wrong in
+         fact, so the layer drew perfectly and every panel row came back
+         empty. This is also the richest of the three Virginia sources: it is
+         the only one carrying owner and land-use data. */
       fieldMap: {
-        parcel_id:           'OBJECTID',
-        pin:                 'GPIN',
-        address:             'SITE_ADDRESS',
-        owner:               'OWNER',
-        zoning_code:         'ZONING_CODE',
-        land_use_code:       'LAND_USE',
-        land_use_desc:       'LAND_USE_DESC',
-        area_sqft:           'SHAPE_Area',
-        area_acres:          'ACREAGE',
-        assessed_value:      'TOTAL_ASSD',
-        land_value:          'LAND_ASSD',
-        improvement_value:   'IMPRV_ASSD',
-        tax_year:            'TAX_YEAR',
-        last_sale_date:      'SALE_DATE',
-        last_sale_price:     'SALE_PRICE',
-        deed_book:           'DEED_BOOK',
-        deed_page:           'DEED_PAGE',
-        subdivision:         'SUBDIV',
+        parcel_id:           'GISPROD.VECTOR.Parcels.OBJECTID',
+        pin:                 'GISPROD.VECTOR.Parcels.GPIN',
+        owner:               'GISPROD.VECTOR.CAMADATA.OWNER_CUR',
+        land_use_code:       'GISPROD.VECTOR.CAMADATA.USECODE',
+        gross_floor_area:    'GISPROD.VECTOR.CAMADATA.SQFTABV',
+        area_acres:          'GISPROD.VECTOR.Parcels.DEED_ACREAGE',
+        deed_book:           'GISPROD.VECTOR.Parcels.DEED_BOOK',
+        deed_page:           'GISPROD.VECTOR.Parcels.DEED_PAGE',
+        subdivision:         'GISPROD.VECTOR.Parcels.SUBDIV_NAME',
         county_fips:         '__computed__',
       },
+
+      /* Absent from this service. `address` is listed because the layer holds
+         only street COMPONENTS (ST_NO / ST_NAME / ST_TYPE) with no assembled
+         address field, and CAMADATA.ADDRESS2/ADDRESS3 are owner mailing
+         lines, not the site address — mapping either one would put the wrong
+         value under an "Address" label. Assembling components is a connector
+         change, not a registry one. */
+      notProvidedBySource: [
+        'address', 'zoning_code', 'land_use_desc', 'assessed_value',
+        'land_value', 'improvement_value', 'tax_year', 'last_sale_date',
+        'last_sale_price',
+      ],
 
       outFields: null,
 
@@ -176,7 +220,7 @@ window.PARCEL_REGISTRY = (function () {
         url:     'https://www.pwcgov.org/government/dept/it/Pages/GIS.aspx',
         portal:  'https://gis.pwcgov.org/',
         license: 'Public government data. Verify terms before commercial redistribution.',
-        note:    'Manassas/Gainesville corridor — second-largest VA data center market.',
+        note:    'Manassas/Gainesville corridor — second-largest VA data center market. Parcels joined to CAMA data: carries owner and land-use code, but no zoning or assessed values.',
       },
     },
 
@@ -210,27 +254,28 @@ window.PARCEL_REGISTRY = (function () {
       minZoom:     14,
       maxFeatures: 500,
 
+      /* Verified against the live layer 2026-07-31 by
+         data/check_parcel_services.mjs. Note Shape__Area's DOUBLE underscore
+         — that is the real attribute name; the previous 'SHAPE_Area' (single,
+         different casing) matched nothing. This is the thinnest of the three
+         Virginia sources: 8 fields, all geometry and identifiers. */
       fieldMap: {
-        parcel_id:           'OBJECTID',
+        parcel_id:           'PARCEL_KEY',
         pin:                 'PIN',
-        address:             'SITE_ADDRESS',
-        owner:               'OWNER_NAME',
-        zoning_code:         'ZONING',
-        land_use_code:       'LAND_USE',
-        land_use_desc:       'LAND_USE_DESC',
-        area_sqft:           'SHAPE_Area',
-        area_acres:          'AREA_ACRES',
-        building_count:      'BLDG_COUNT',
-        year_built:          'YEAR_BUILT',
-        assessed_value:      'TOTAL_VALUE',
-        land_value:          'LAND_VALUE',
-        improvement_value:   'IMP_VALUE',
-        tax_year:            'TAX_YEAR',
-        last_sale_date:      'SALE_DATE',
-        last_sale_price:     'SALE_PRICE',
-        subdivision:         'SUBDIV_NAME',
+        area_sqft:           'Shape__Area',
         county_fips:         '__computed__',
       },
+
+      /* Absent from this service — it is a pure boundary layer. The previous
+         mappings for these were invented attribute names; 16 of 18 resolved
+         to nothing. Fairfax does publish assessment and sales data, but from
+         separate Tax Administration services that would have to be joined. */
+      notProvidedBySource: [
+        'address', 'owner', 'zoning_code', 'land_use_code', 'land_use_desc',
+        'area_acres', 'building_count', 'year_built', 'assessed_value',
+        'land_value', 'improvement_value', 'tax_year', 'last_sale_date',
+        'last_sale_price', 'subdivision',
+      ],
 
       outFields: null,
 
@@ -239,7 +284,7 @@ window.PARCEL_REGISTRY = (function () {
         url:     'https://www.fairfaxcounty.gov/gis/',
         portal:  'https://opendata.fairfaxcounty.gov/',
         license: 'Public government data. Verify terms before commercial redistribution.',
-        note:    'Reston/Tysons corridor — major Fairfax data center submarket.',
+        note:    'Reston/Tysons corridor — major Fairfax data center submarket. Boundary layer only: 8 fields, no owner, address, zoning, or assessment attributes.',
       },
     },
 
@@ -273,6 +318,21 @@ window.PARCEL_REGISTRY = (function () {
       fips:        '24031',
       connector:   'arcgis',
       serviceUrl:  'https://geodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/0',
+
+      /* Maryland's statewide parcel endpoint has returned HTTP 503 on every
+         probe since 2026-07-31. Recorded so the checker can tell an ALREADY
+         KNOWN outage apart from a NEWLY broken service: without this, the
+         monthly run fails forever on the same known fact and the alert stops
+         meaning anything, which is how a genuinely new breakage gets ignored.
+         Delete this block the moment the endpoint recovers — the probe
+         reports RECOVERED when it does. Both MD counties share this one URL,
+         so they fail and recover together. */
+      knownUnavailable: {
+        since:  '2026-07-31',
+        status: 503,
+        note:   'Statewide MD_ParcelBoundaries endpoint returning 503. Not yet distinguishable from a long outage vs. a retired service; re-probe before replacing the URL.',
+      },
+
       minZoom:     14,
       maxFeatures: 500,
 
@@ -332,6 +392,21 @@ window.PARCEL_REGISTRY = (function () {
       fips:        '24027',
       connector:   'arcgis',
       serviceUrl:  'https://geodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/0',
+
+      /* Maryland's statewide parcel endpoint has returned HTTP 503 on every
+         probe since 2026-07-31. Recorded so the checker can tell an ALREADY
+         KNOWN outage apart from a NEWLY broken service: without this, the
+         monthly run fails forever on the same known fact and the alert stops
+         meaning anything, which is how a genuinely new breakage gets ignored.
+         Delete this block the moment the endpoint recovers — the probe
+         reports RECOVERED when it does. Both MD counties share this one URL,
+         so they fail and recover together. */
+      knownUnavailable: {
+        since:  '2026-07-31',
+        status: 503,
+        note:   'Statewide MD_ParcelBoundaries endpoint returning 503. Not yet distinguishable from a long outage vs. a retired service; re-probe before replacing the URL.',
+      },
+
       minZoom:     14,
       maxFeatures: 500,
 

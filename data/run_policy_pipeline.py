@@ -159,7 +159,7 @@ def migrate_lifecycle_fields() -> None:
     if raw is None:
         return
     updated = migrate_restrictions_file(raw)
-    with open(RAW_PATH, "w") as f:
+    with open(RAW_PATH, "w", encoding="utf-8") as f:
         json.dump(updated, f, indent=2)
     print("Lifecycle fields migrated in restrictions_raw.json")
 

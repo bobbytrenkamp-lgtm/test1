@@ -23,9 +23,19 @@
      python3 -m http.server 8099 &
      NODE_PATH=/tmp/node_modules node tests/e2e_smoke.mjs
 
-   Override the defaults with CHROME_PATH and BASE_URL if your paths differ.
+   Override the defaults with CHROME_PATH, BASE_URL, and PLAYWRIGHT_MODULE if
+   your paths differ (see .github/workflows/test.yml for the CI setup, which
+   installs into /tmp/node_modules and downloads Chrome for Testing the same
+   way described above).
+
+   EXIT CODE — process.exitCode is 1 if any scenario threw or logged a real
+   JS error (pageerror or console.error, filtered for known sandbox-network
+   noise), otherwise 0. That only catches hard errors: most lines this
+   script prints are facts for a human to read, not assertions, so a green
+   exit code does not mean nothing regressed — read the log for anything
+   marked "<--" too.
 */
-import { chromium } from '/tmp/node_modules/playwright/index.mjs';
+const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || '/tmp/node_modules/playwright/index.mjs');
 const EXE = process.env.CHROME_PATH || '/tmp/chs/chrome-headless-shell-linux64/chrome-headless-shell';
 const URL = (process.env.BASE_URL || 'http://localhost:8099') + '/index.html';
 const b = await chromium.launch({ executablePath: EXE, args: ['--no-sandbox'] });
@@ -44,25 +54,76 @@ async function clickTab(p, tab) {
   await p.click(`.mobile-nav-item[data-tab="${tab}"]`);
 }
 
+/* This suite is a log dump read by a human, not an assertion library — most
+   lines above just print a fact for a reviewer to eyeball. The one thing
+   that generalizes across all scenarios is "did this page throw or log a
+   real JS error," so that's what gates the process exit code: enough for CI
+   to catch a hard regression without pretending to grade every printed
+   line. failedScenarios collects names for the summary at the end. */
+let anyFailures = false;
+const failedScenarios = [];
+
 async function run(name, fn) {
   const ctx = await b.newContext();
   const p = await ctx.newPage();
   const errs = [], reqs = [];
-  p.on('pageerror', e => errs.push('pageerror: ' + e.message));
+  /* Include the stack. A bare "Cannot read properties of null" names neither
+     the file nor the line, and these only reproduce where third-party widgets
+     actually load — so a developer on a network-restricted machine cannot
+     reproduce it locally and has nothing but the message to go on. */
+  p.on('pageerror', e => errs.push('pageerror: ' + e.message +
+    (e.stack ? '\n      ' + e.stack.split('\n').slice(1, 4).map(s => s.trim()).join('\n      ') : '')));
   p.on('console', m => { if (m.type() === 'error') errs.push('console: ' + m.text().slice(0, 160)); });
   p.on('request', r => {
     const u = r.url();
     if (u.includes('/data/')) reqs.push(u.split('/data/')[1].split('?')[0]);
   });
   console.log(`\n===== ${name} =====`);
-  try { await fn(p, reqs, errs); } catch (e) { console.log('THREW:', e.message.split('\n')[0]); }
+  let threw = null;
+  try { await fn(p, reqs, errs); } catch (e) { threw = e.message.split('\n')[0]; console.log('THREW:', threw); }
   /* Ignore failures to reach external hosts. TradingView widgets and remote
      tiles are blocked by the sandbox proxy; those are environment noise, not
-     application errors, and they would otherwise mask real ones. */
+     application errors, and they would otherwise mask real ones.
+
+     The contentWindow line is the mirror image of that, and only shows up
+     where the network ISN'T blocked: TradingView's own embed script logs it
+     from inside its iframe when it attaches listeners, on every page load
+     that renders a widget. It is emitted by third-party code we do not
+     control, says nothing about this app, and appears once per page load —
+     so on a machine with real internet it would bury every genuine error
+     under identical noise. Matched on the exact string rather than by
+     filtering TradingView wholesale, so a real failure originating in the
+     widget integration still surfaces. */
+  /* Third-party throw, filtered by ORIGIN rather than by message.
+
+     TradingView's embed bundle throws "Cannot read properties of null
+     (reading 'querySelector')" from its own _replaceScript when the widget
+     container is re-rendered while its async script is still in flight — it
+     goes looking for its own <script> element's parent and finds it
+     detached. The AI Stocks scenario reloads at three viewports, so it hits
+     this every time. createTVWidget already guards OUR callbacks with
+     _tvRenderId; there is no reach into their bundle to guard theirs.
+
+     Matching the message alone would also swallow a real null-dereference of
+     ours that happens to read the same, so this requires the stack to be
+     wholly inside s3.tradingview.com with no frame from the page's own
+     origin. An error that passes through our code still fails the run. */
+  const ORIGIN = new globalThis.URL(URL).origin;
+  const thirdPartyOnly = e =>
+    /pageerror:/.test(e) &&
+    /s3\.tradingview\.com/.test(e) &&
+    !e.includes(ORIGIN);
+
   const real = errs.filter(e =>
     !/favicon/.test(e) &&
+    !/Cannot listen to the event from the provided iframe, contentWindow is not available/.test(e) &&
+    !thirdPartyOnly(e) &&
     !/net::ERR_(TUNNEL_CONNECTION_FAILED|CONNECTION_RESET|NAME_NOT_RESOLVED|CONNECTION_CLOSED|ABORTED|FAILED)/.test(e));
   console.log('JS ERRORS:', real.length ? real.slice(0, 4) : 'none');
+  if (real.length || threw) {
+    anyFailures = true;
+    failedScenarios.push(name + (threw ? ' (threw)' : ` (${real.length} JS error(s))`));
+  }
   await ctx.close();
 }
 
@@ -499,6 +560,87 @@ await run('Map subsystems (GIS modes, palette, zoning, workspaces)', async (p) =
   console.log('local 4xx/5xx     :', misses.length ? misses.slice(0, 4) + ' <-- BAD' : 'none (good)');
 });
 
+/* 13b. Parcel view must stay readable while the pointer is over it.
+
+   Reported symptom: "I can't see the parcel layer because I'm hovering over
+   the county, so it's blocking." Two distinct obstructions, both county-level
+   chrome drawn for a county the user has already drilled past:
+
+     - the county tooltip, a cursor-following box sitting directly on top of the
+       parcels. It also flickers, because parcel polygons own a higher pane and
+       capture the pointer, so the county only sees mouseover in the gaps
+       BETWEEN parcels — every road and lot line toggles the box back on.
+     - the hover fill. Parcels render above the county fill but are only ~0.15
+       opaque themselves, so an 0.88-opaque fill underneath still washes them
+       out. (selectedCountyStyle() already fixed this for the SELECTED county;
+       hoverCountyStyle() is the same reasoning for the hovered one.)
+
+   Both must revert cleanly when the layer goes back off — a sticky suppressed
+   tooltip would be a worse bug than the one being fixed. */
+await run('Parcel view: county chrome must not obscure parcels', async (p) => {
+  const LOUDOUN = '51107';   // in the parcel pilot registry
+  const NEIGHBOR = '51059';  // Fairfax — no parcel coverage
+  await p.setViewportSize({ width: 1600, height: 1000 });
+  await p.goto(URL, { waitUntil: 'domcontentloaded' });
+  await p.waitForTimeout(2500);
+  await p.click('#tab-map');
+  await p.waitForFunction(() => document.querySelectorAll('#leaflet-map path').length > 100, { timeout: 45000 });
+  await p.waitForTimeout(2000);
+
+  /* Fire through Leaflet's own event path — a synthetic DOM event would not
+     reach the layer's handler, and a real mouse move cannot be aimed at a
+     specific county reliably across viewports. */
+  const hover = (f) => p.evaluate((x) => {
+    const lyr = countyLayerByFips[x];
+    if (!lyr) return false;
+    lyr.fire('mouseover', { target: lyr, originalEvent: { clientX: 800, clientY: 500 } });
+    return true;
+  }, f);
+  const tipShown = () => p.evaluate(() =>
+    getComputedStyle(document.getElementById('tooltip')).display !== 'none');
+  const fillOf = (f) => p.evaluate((x) => countyLayerByFips[x]?.options.fillOpacity, f);
+
+  await p.evaluate((f) => selectCounty(f), LOUDOUN);
+  await p.waitForTimeout(1500);
+  await hover(LOUDOUN);
+  const tipBefore = await tipShown();
+  await hover(NEIGHBOR);
+  await p.waitForTimeout(200);
+  const fillBefore = await fillOf(NEIGHBOR);
+  console.log('parcels OFF  tooltip/fill :', tipBefore, '/', fillBefore,
+    (tipBefore === true && fillBefore === 0.88) ? '(baseline correct)' : '<-- BASELINE CHANGED');
+
+  await p.evaluate(() => setLayerVisible('parcels', true, true));
+  await p.waitForTimeout(2500);
+  console.log('isActiveWithData          :', await p.evaluate(() => window.PARCEL.isActiveWithData()));
+
+  await hover(LOUDOUN);
+  await p.waitForTimeout(300);
+  const tipOnParcelCounty = await tipShown();
+  console.log('tooltip over parcel county:', tipOnParcelCounty,
+    tipOnParcelCounty === false ? '(suppressed — correct)' : '<-- TOOLTIP COVERS PARCELS');
+
+  await hover(NEIGHBOR);
+  await p.waitForTimeout(300);
+  const tipOnNeighbor = await tipShown();
+  const fillOnNeighbor = await fillOf(NEIGHBOR);
+  console.log('neighbour tooltip kept    :', tipOnNeighbor,
+    tipOnNeighbor === true ? '(still informative — correct)' : '<-- OVER-SUPPRESSED');
+  console.log('neighbour fill decluttered:', fillOnNeighbor,
+    fillOnNeighbor === 0.04 ? '(correct)' : '<-- WASHES OUT PARCELS');
+
+  await p.evaluate(() => setLayerVisible('parcels', false, true));
+  await p.waitForTimeout(1500);
+  await hover(LOUDOUN);
+  await p.waitForTimeout(300);
+  const tipRestored = await tipShown();
+  await hover(NEIGHBOR);
+  await p.waitForTimeout(300);
+  const fillRestored = await fillOf(NEIGHBOR);
+  console.log('restored after toggle off :', tipRestored, '/', fillRestored,
+    (tipRestored === true && fillRestored === 0.88) ? '(correct)' : '<-- STICKY PARCEL-VIEW STATE');
+});
+
 /* 14. Economic Intelligence.
    Driven against tests/fixtures/economy — clearly-labelled SYNTHETIC data, so
    the rendering paths are exercised without inventing numbers in data/economy/,
@@ -677,3 +819,18 @@ await run('Auth degradation (unconfigured)', async (p) => {
 });
 
 await b.close();
+
+console.log(`\n===== SUMMARY =====`);
+if (anyFailures) {
+  console.log(`FAILED — ${failedScenarios.length} scenario(s) threw or logged a real JS error:`);
+  for (const s of failedScenarios) console.log('  -', s);
+  console.log('\nThis only catches hard JS errors, not the printed facts above each');
+  console.log('scenario — read the full log for anything marked <-- or a mismatch');
+  console.log('against what the comment above that scenario says it should show.');
+  process.exitCode = 1;
+} else {
+  console.log('No hard JS errors across any scenario.');
+  console.log('This does NOT mean nothing regressed — read the log above for anything');
+  console.log('marked <-- or any printed fact that looks wrong; only a thrown error or');
+  console.log('a real console.error fails the exit code.');
+}
