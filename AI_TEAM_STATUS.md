@@ -649,19 +649,6 @@ No active work in progress as of 2026-08-02.
   its own.
 - Relevant files: `js/parcel/registry.js`, `data/check_parcel_services.mjs`.
 
-- Item: Panel wording for attributes a parcel source does not publish.
-- Current status: Open, needs a product/voice decision, not research.
-  `notProvidedBySource` now records these per jurisdiction (15 for Fairfax, 17
-  Loudoun, 9 Prince William), but `panel.js` still simply omits empty rows —
-  indistinguishable from a bug to anyone looking at the panel.
-- Recommended next action: render those specific keys explicitly. Suggested
-  wording "Not published by this source" rather than "Unknown": the latter
-  claims we looked and could not determine it, when we know exactly why it is
-  missing. This distinction is the same one the project already draws between
-  "not yet researched" and "no known restrictions", and between the economy
-  placeholders and zero.
-- Relevant files: `js/parcel/panel.js`, `js/parcel/registry.js`.
-
 - Item: Zoning / assessed value / sales data for the Virginia parcel counties.
 - Current status: Not available from any of the three live services — this is
   a data-architecture limit, not a missing mapping. Do not add fieldMap
@@ -676,6 +663,12 @@ No active work in progress as of 2026-08-02.
   2026-07-30 cloudscene entry further down this file's Recently Completed
   Work log and BUG_TRACKER.md's "Finding (ratified)" entry. Not re-listed
   as an open handoff.)
+
+  (The "panel wording for attributes a parcel source does not publish"
+  item that used to be tracked here was resolved 2026-08-02, using
+  exactly the wording this entry recommended ("Not published by this
+  source") — see this file's Recently Completed Work log and
+  BUG_TRACKER.md's parcel panel entry. Not re-listed as an open handoff.)
 
   (The "same missing-`encoding=\"utf-8\"` pattern exists in ~15 other
   `data/*.py` scripts" item that used to be tracked here is resolved —
