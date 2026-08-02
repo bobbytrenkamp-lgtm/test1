@@ -30,6 +30,20 @@ const EXE = process.env.CHROME_PATH || '/tmp/chs/chrome-headless-shell-linux64/c
 const URL = (process.env.BASE_URL || 'http://localhost:8099') + '/index.html';
 const b = await chromium.launch({ executablePath: EXE, args: ['--no-sandbox'] });
 
+/* Click a header tab, whether or not it currently fits in the visible strip.
+   #header-tabs collapses secondary tabs behind the "More" sheet once the
+   real content doesn't fit (see css/style.css NAV OVERFLOW + map.js
+   updateNavOverflow) — that can now happen at plain desktop widths, not
+   just phone widths, so a bare `p.click('#tab-x')` is no longer safe for
+   scenarios that vary the viewport. */
+async function clickTab(p, tab) {
+  const sel = `#tab-${tab}`;
+  if (await p.isVisible(sel)) { await p.click(sel); return; }
+  await p.click('#header-tab-more');
+  await p.waitForSelector('#mobile-nav-sheet.is-open', { timeout: 5000 });
+  await p.click(`.mobile-nav-item[data-tab="${tab}"]`);
+}
+
 async function run(name, fn) {
   const ctx = await b.newContext();
   const p = await ctx.newPage();
@@ -133,7 +147,7 @@ await run('Watchlist + change alert', async (p) => {
 await run('Pipeline windowing + a11y', async (p) => {
   await p.goto(URL, { waitUntil: 'domcontentloaded' });
   await p.waitForTimeout(2500);
-  await p.click('#tab-pipeline');
+  await clickTab(p, 'pipeline');
   await p.waitForSelector('#pipeline-table tbody tr', { timeout: 40000 });
   await p.waitForTimeout(1200);
   const first = await p.$$eval('#pipeline-tbody tr', n => n.length);
@@ -204,7 +218,7 @@ await run('Header fit across widths', async (p) => {
 await run('Pipeline map view', async (p) => {
   await p.goto(URL, { waitUntil: 'domcontentloaded' });
   await p.waitForTimeout(2500);
-  await p.click('#tab-pipeline');
+  await clickTab(p, 'pipeline');
   await p.waitForSelector('#pipeline-table tbody tr', { timeout: 45000 });
 
   await p.click('#pl-view-map');
@@ -245,7 +259,7 @@ await run('AI Stocks layout', async (p) => {
     await p.setViewportSize({ width: w, height: h });
     await p.goto(URL, { waitUntil: 'domcontentloaded' });
     await p.waitForTimeout(2200);
-    await p.click('#tab-stocks');
+    await clickTab(p, 'stocks');
     await p.waitForTimeout(4500);
 
     const r = await p.evaluate(() => {
@@ -514,7 +528,7 @@ await run('Economic Intelligence', async (p) => {
   /* Tab placement, routing, ARIA. */
   console.log('tab order              :', await p.evaluate(() =>
     [...document.querySelectorAll('#header-tabs .header-tab[data-tab]')].map(b => b.dataset.tab).join(' > ')));
-  await p.click('#tab-economy');
+  await clickTab(p, 'economy');
   await p.waitForTimeout(4500);
   console.log('hash                   :', await p.evaluate(() => location.hash));
   console.log('aria-selected          :', await p.getAttribute('#tab-economy', 'aria-selected'));
@@ -606,7 +620,7 @@ await run('Economic Intelligence', async (p) => {
 await run('Economic Intelligence — awaiting first data run', async (p) => {
   await p.goto(URL, { waitUntil: 'domcontentloaded' });   // no fixture override
   await p.waitForTimeout(3000);
-  await p.click('#tab-economy');
+  await clickTab(p, 'economy');
   await p.waitForTimeout(4000);
   console.log('page still renders     :', await p.evaluate(() => !!document.querySelector('.econ-title')));
   console.log('awaiting blocks        :', await p.evaluate(() => document.querySelectorAll('.econ-awaiting').length));

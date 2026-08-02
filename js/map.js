@@ -3908,7 +3908,9 @@ function renderLegend() {
       const coverNote = document.createElement("div");
       coverNote.className = "legend-suit-note";
       coverNote.style.cssText = "margin-top:4px;";
-      coverNote.textContent = `${Object.keys(mapData).length.toLocaleString()} of 3,143 US counties researched`;
+      // Same distinction as the "Not yet researched" note above: descriptive_only
+      // records aren't researched, so this can't be Object.keys(mapData).length.
+      coverNote.textContent = `${(window.researchedCount ? window.researchedCount() : Object.keys(mapData).length).toLocaleString()} of 3,143 US counties researched`;
       legendBody.appendChild(coverNote);
     }
 
@@ -7126,6 +7128,28 @@ function initMobileNav() {
 
   secondary.forEach(b => b.setAttribute("data-mobile-secondary", "1"));
   moreBtn.hidden = false;
+
+  /* Collapse to the More pattern whenever the strip actually overflows its
+     available width, not just below a fixed phone-width breakpoint. A fixed
+     700px breakpoint left common laptop widths (1200-1366px) in a dead
+     zone: 8 tabs don't fit there either, but #header-tabs hides its own
+     scrollbar, so the overflowing tabs were reachable only by an
+     undiscoverable horizontal drag. Measure for real instead. */
+  function updateNavOverflow() {
+    const wasOverflowing = tabsNav.classList.contains("tabs-overflow");
+    if (wasOverflowing) tabsNav.classList.remove("tabs-overflow");
+    const overflowing = tabsNav.scrollWidth > tabsNav.clientWidth + 1;
+    tabsNav.classList.toggle("tabs-overflow", overflowing);
+  }
+  updateNavOverflow();
+  // Inter loads with font-display:swap; the swap can change tab widths enough
+  // to flip the overflow verdict after the initial (fallback-font) measurement.
+  document.fonts?.ready?.then(updateNavOverflow).catch(() => {});
+  let _navOverflowTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(_navOverflowTimer);
+    _navOverflowTimer = setTimeout(updateNavOverflow, 150);
+  });
 
   /* #header carries a transform, which makes it the containing block for any
      position:fixed descendant — the sheet was anchoring to the header instead

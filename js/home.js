@@ -397,7 +397,11 @@ function buildKPIs() {
     if (d && (!dataDate || d > dataDate)) dataDate = d;
   }
   return {
-    total: counties.length, bans, high, moderate, states: stSet.size,
+    // Not counties.length: 597 records are research_status=descriptive_only
+    // (a general description, no policy research ever done) and must not be
+    // counted in a "researched" claim — see js/constants.js researchedCount().
+    total: window.researchedCount ? window.researchedCount() : counties.length,
+    bans, high, moderate, states: stSet.size,
     dcExisting: _dcStats ? _dcStats.existing : null,
     dcProposed: _dcStats ? _dcStats.proposed : null,
     dataDate,

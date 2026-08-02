@@ -7,6 +7,72 @@ snapshots".)
 
 ---
 
+# Recently Fixed Bugs (2026-08-01/02 — live-app browser bugs)
+
+---
+
+Bug: header nav tabs became unreachable at common laptop widths (1200-1366px)
+Priority: HIGH
+Affected Files: `css/style.css`, `js/map.js`, `tests/e2e_smoke.mjs`
+Root Cause: The "More" overflow pattern (a bottom sheet mirroring tabs that
+don't fit in the header bar) only activated below a hardcoded 700px
+breakpoint. Above that, `#header-tabs` hides its own scrollbar
+(`scrollbar-width:none`), so when the strip didn't fit — which it hadn't,
+at 1200/1280/1366px, since an eighth tab ("AI Stocks") was added after a
+prior session's own padding-tightening fix was tuned for seven tabs — the
+overflowing tabs (e.g. About, Pipeline) were reachable only by an
+undiscoverable horizontal drag, with zero visual indication more tabs
+existed. Confirmed via `tests/e2e_smoke.mjs`'s "Header fit across widths"
+scenario, which had been reporting the clipping all along without anyone
+reading past "no overlap."
+Fix: Two layers. (1) Root cause: widened the existing tab-padding/badge-hide
+tightening from a 1200px to a 1400px breakpoint so all 8 tabs fit normally
+at common desktop/laptop widths again, instead of re-deriving a hardcoded
+pixel threshold from today's tab count (the exact thing that went stale
+last time). (2) Safety net: the "More" collapse now also triggers from a
+real `scrollWidth > clientWidth` measurement (`updateNavOverflow()` in
+map.js, re-run on resize and on webfont swap) rather than only the fixed
+700px breakpoint, so a 9th tab, a longer label, or browser zoom degrades
+gracefully into the same tested, accessible overflow sheet instead of
+silently clipping again. Updated `tests/e2e_smoke.mjs` with a `clickTab()`
+helper so scenarios that vary viewport width keep working whether a tab is
+in the visible strip or behind "More".
+Fixed By: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+Date Fixed: 2026-08-02
+Status: Fixed
+
+---
+
+Bug: "Counties Researched" stats overcounted by including descriptive-only records
+Priority: HIGH
+Affected Files: `js/home.js`, `js/analytics.js`, `js/map.js`
+Root Cause: The 2026-07-27 reclassification sweep introduced
+`research_status=descriptive_only` for 597 counties that hold a general
+description but no actual policy research, and added `researchedCount()` /
+`coveragePct()` in `js/constants.js` specifically so no user-facing
+"researched" claim would count them. Several call sites predating (or
+written alongside, in one case) that fix never adopted it and kept using
+the raw in-database count instead: the Home page's headline "Counties
+Researched" KPI card and freshness-bar sentence (showing 1,467 instead of
+870 — a 69% overstatement), the same KPI card on the Analytics page (whose
+own hero subtitle two lines above it *did* use the fix — an internal
+inconsistency on one screen), the map legend's coverage note, and the
+About page's "Data Quality" panel, where it was especially visible: that
+panel showed "1,467 Counties researched" and "2,273 Not yet researched" on
+the same screen, which don't sum to 3,143 and directly contradicted the
+correctly-computed "28% Coverage" cell right next to them.
+Fix: Switched all of the above to `window.researchedCount()` (with the
+existing in-database count as a fallback for older metadata files, matching
+the pattern already used correctly elsewhere). Also ran
+`data/refresh_platform_metadata.py`, which was itself stale (its own output
+had drifted from `map_data.json`) so `validate_platform_metadata.py` now
+reports 0 warnings instead of 3.
+Fixed By: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+Date Fixed: 2026-08-02
+Status: Fixed
+
+---
+
 # Recently Fixed Bugs (2026-07-30 — Windows test-suite portability)
 
 ---

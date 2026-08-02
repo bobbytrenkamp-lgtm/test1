@@ -239,7 +239,7 @@ function renderAnalyticsPage() {
         <div class="analytics-kpi-card">
           <div class="analytics-kpi-card-icon" style="background:rgba(245,158,11,0.12);color:#f59e0b">${analyticsIcon('county')}</div>
           <div class="analytics-kpi-label">Counties Researched</div>
-          <div class="analytics-kpi-value">${totalCounties}</div>
+          <div class="analytics-kpi-value">${(window.researchedCount ? window.researchedCount() : totalCounties).toLocaleString()}</div>
           <div class="analytics-kpi-meta">with known policy data</div>
         </div>
         <div class="analytics-kpi-card">
@@ -2269,7 +2269,11 @@ function renderDataQualityPanel() {
       return;
     }
 
-    const inDb    = stat('coverage.counties_in_database', 0);
+    // Not counties_in_database: 597 records are research_status=descriptive_only
+    // (a description, no policy research) and must not count as "researched" —
+    // this cell used to disagree with the "Not yet researched" cell right next
+    // to it (1,467 + 2,273 = 3,740, not 3,143) because of exactly this mixup.
+    const inDb    = window.researchedCount ? window.researchedCount() : stat('coverage.counties_in_database', 0);
     const total   = stat('coverage.total_us_counties', 3143);
     const unres   = stat('coverage.counties_not_yet_researched', 0);
     const pct     = typeof window.coveragePct === 'function' ? window.coveragePct() : 0;
