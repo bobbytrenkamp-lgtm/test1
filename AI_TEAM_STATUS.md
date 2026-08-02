@@ -6,9 +6,65 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 
 ## Active Work
 
-No active work in progress as of 2026-08-02.
+- Date: 2026-08-02
+- Agent: Claude Code
+- Task: Fixing two bugs found in the same codebase survey as the
+  monitor_legislation fix below: a race condition in `js/economy-map.js`
+  (rapid economic-layer toggling can desync the map from its own
+  checkbox UI) and a listener/memory leak in `js/economy-view.js`
+  (`selectRegion()`/`renderProfile()` never calls `_teardown()`,
+  contradicting the file's own documented render-lifecycle invariant).
+  In progress — not yet committed as of this writing.
 
 ## Recently Completed Work (continued)
+
+- Date: 2026-08-02
+- Agent: Claude Code
+- Task: Fixed a truthfulness bug in `monitor_legislation.yml`/
+  `monitor_legislation.py` (a monitor-script crash could be misreported
+  as "new legislation flagged" or a clean "no new items" run) and
+  removed a dead, unwired-up `ISO_QUEUE_URLS` dict in `ferc_queue.py`.
+  Found while surveying the codebase for the next round of work after
+  the accessibility PRs (#216/#217/#218) merged.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: `main()` in `monitor_legislation.py` now wraps its call to
+  `run_monitoring()` in `try`/`except` — an uncaught exception returns
+  `2`, distinct from `0` (no new items) and `1` (new items found),
+  where previously it would have fallen through to Python's own default
+  exit code of `1` for an unhandled exception, identical to the
+  deliberate "found something" signal. The workflow's "Print summary"
+  step now treats `2` as a real failure (fails the step so the job
+  shows red, instead of continuing to show green under
+  `continue-on-error`), and a new step files/updates a GitHub issue
+  tagged `data-validation` — a label that was already defined in this
+  workflow but never actually used anywhere in it — mirroring the
+  pattern `update_data.yml` already used correctly for its own
+  validator-failure case. `ISO_QUEUE_URLS` (7 per-ISO URLs, zero
+  references anywhere) removed from `ferc_queue.py`; the same
+  information already exists as prose in the file's docstring.
+- Verified, not assumed: monkeypatched `run_monitoring()` to exercise
+  all three `main()` outcomes directly (crash → `2` with traceback +
+  marker printed; empty list → `0`; populated list → `1` with the
+  issue-body markers intact) rather than just reading the code and
+  assuming it was right. Validated the workflow YAML still parses.
+  Confirmed `ISO_QUEUE_URLS` had zero references anywhere in the repo
+  before removing it. Full `tests/run_all.sh` 176/176 passing
+  (unaffected — no existing test exercises `monitor_legislation.py`
+  directly).
+- Files changed: `data/monitor_legislation.py`,
+  `.github/workflows/monitor_legislation.yml`,
+  `data/facility_pipeline/adapters/ferc_queue.py`, `BUG_TRACKER.md`,
+  this file.
+- Related systems: the legislative-monitoring GitHub Action (runs Mon/
+  Thu 08:00 UTC), the FERC interconnection-queue facility adapter (Tier
+  4 discovery source).
+- Deliberately NOT done: did not try to actually make the monitor more
+  robust against the underlying failure modes that could crash it (bad
+  API responses, network errors) — this fix is specifically about the
+  workflow/exit-code signal being honest when a crash *does* happen, not
+  about preventing every possible crash. `data/monitor_legislation.py`'s
+  individual fetch functions already have their own error handling from
+  an earlier pass this session.
 
 - Date: 2026-08-02
 - Agent: Claude Code

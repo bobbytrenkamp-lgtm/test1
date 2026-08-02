@@ -19,6 +19,10 @@ on the same legislation every run.
 Exit codes:
   0 — no new items flagged (or no sources available)
   1 — new items found that need human review
+  2 — the monitor itself crashed (distinct from 1 on purpose: the calling
+      workflow's continue-on-error step reads this code to decide whether to
+      file a review issue, and a crash must never be read as "items found" —
+      see main()).
 """
 
 import json
@@ -481,7 +485,20 @@ def main():
     print("  US Datacenter Restrictions Map — Legislative Monitor")
     print("=" * 64)
 
-    flagged = run_monitoring()
+    try:
+        flagged = run_monitoring()
+    except Exception as exc:
+        # An uncaught exception here would otherwise propagate out of
+        # sys.exit(main()) and exit 1 by Python's own default — the exact
+        # same code used below for "new items found". The calling workflow's
+        # continue-on-error step reads that code to decide whether to file a
+        # review issue, so a crash must be distinguishable or it silently
+        # reports "new legislation flagged" (or, worse, is misread as a real
+        # finding) instead of the truth: the monitor did not run at all.
+        import traceback
+        traceback.print_exc()
+        print(f"\n__MONITOR_CRASHED__: {exc}")
+        return 2
 
     print(f"\n{'='*64}")
     print(f"  New items flagged: {len(flagged)}")
