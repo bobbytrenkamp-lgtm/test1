@@ -3182,9 +3182,14 @@ html[data-theme="light"] {
 .cat-energy-environment   { background: rgba(16,185,129,0.15);  color: #10b981; }
 .cat-chips-infrastructure { background: rgba(236,72,153,0.15);  color: #f472b6; }
 .cat-business-investment  { background: rgba(234,179,8,0.15);   color: #eab308; }
-.cat-legal-copyright      { background: rgba(220,38,38,0.15);   color: #dc2626; }
+.cat-legal-copyright      { background: rgba(220,38,38,0.15);   color: #e24e4e; }
 .cat-jobs-society         { background: rgba(6,182,212,0.15);   color: #22d3ee; }
 .cat-other-ai-news        { background: rgba(107,114,128,0.15); color: #9ca3af; }
+/* cat-legal-copyright text is brightened from the source #dc2626 to #e24e4e:
+   against this chip's actual rendered (dark-theme) background of #270d12,
+   the original only reached 3.77:1 — an axe-core color-contrast violation.
+   #e24e4e clears 4.5:1 with margin. The other 13 categories already pass
+   in dark theme; only light theme needs the full override block below. */
 
 /* ── News card — category left-border accent (editorial) ── */
 .news-card[data-catcls="cat-ai-industry"]          { border-left: 3px solid #a78bfa; }
@@ -7664,6 +7669,45 @@ html[data-theme="light"] .news-pub-title { border-bottom-color: rgba(0,0,0,0.07)
   min-width: 0;
 }
 
+/* ── News card headline buttons ──────────────────────────────────────
+   Every news card's clickable headline is a real <button> (see
+   js/news.js's _makeHeadlineBtn) rather than a plain div/span/heading
+   with a manually-managed role="button" on the whole card. This reset
+   strips native button chrome so it still looks like the plain text
+   headline it replaces; each card's own *-headline class (below) then
+   layers on the actual typography. Native <button> semantics also mean
+   Enter/Space activation and focus styling come for free — no keydown
+   shim needed. */
+.news-headline-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.news-headline-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Heading wrapper elements (h2/h3) around a .news-headline-btn — the
+   heading tag itself carries no visual styling (that lives on the
+   button inside it), just a margin reset so it doesn't add the
+   browser's default heading margin on top of the button's own. */
+.news-lead-heading,
+.news-section-featured-heading {
+  margin: 0;
+}
+
 /* ── Lead story ── */
 .news-lead {
   padding: 22px 0 20px;
@@ -8010,6 +8054,50 @@ html[data-theme="light"] .news-pub-title { border-bottom-color: rgba(0,0,0,0.07)
 html[data-theme="light"] .news-developing-strip { background: rgba(239,68,68,0.04); }
 @media (prefers-color-scheme: light) {
   .news-developing-strip { background: rgba(239,68,68,0.04); }
+}
+
+/* Category tag text colors, re-tuned for light theme. The dark-theme
+   colors above are tinted against near-black chip backgrounds; against
+   the much paler chip backgrounds light theme actually renders (each
+   chip's rgba background blended over the light --surface), every one of
+   the 14 categories fell below 4.5:1 (axe-core color-contrast, as low as
+   1.41:1 for Federal Policy) — this was found auditing the News tab,
+   which the site-wide WCAG pass had not covered. Same hue per category,
+   darkened until each clears 4.5:1 (verified via axe-core) against its
+   own actual blended background, not the dark-theme background. Needs
+   both the html[data-theme="light"] block (explicit in-app toggle) AND
+   the prefers-color-scheme block below (OS-level light preference,
+   default state before any toggle) — see css/economy.css's
+   ".econ-up-good" for the established reason both are required. */
+html[data-theme="light"] .cat-ai-industry          { color: #6a3af7; }
+html[data-theme="light"] .cat-ai-research          { color: #197453; }
+html[data-theme="light"] .cat-ai-products          { color: #065eca; }
+html[data-theme="light"] .cat-ai-safety            { color: #c40a0a; }
+html[data-theme="light"] .cat-federal-policy       { color: #866102; }
+html[data-theme="light"] .cat-state-local-policy   { color: #a74704; }
+html[data-theme="light"] .cat-international-policy { color: #3648f4; }
+html[data-theme="light"] .cat-data-centers         { color: #1659de; }
+html[data-theme="light"] .cat-energy-environment   { color: #0a7350; }
+html[data-theme="light"] .cat-chips-infrastructure { color: #bc0f69; }
+html[data-theme="light"] .cat-business-investment  { color: #806204; }
+html[data-theme="light"] .cat-legal-copyright      { color: #b71d1d; }
+html[data-theme="light"] .cat-jobs-society         { color: #0a6d7d; }
+html[data-theme="light"] .cat-other-ai-news        { color: #5a626f; }
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) .cat-ai-industry          { color: #6a3af7; }
+  html:not([data-theme="dark"]) .cat-ai-research          { color: #197453; }
+  html:not([data-theme="dark"]) .cat-ai-products          { color: #065eca; }
+  html:not([data-theme="dark"]) .cat-ai-safety            { color: #c40a0a; }
+  html:not([data-theme="dark"]) .cat-federal-policy       { color: #866102; }
+  html:not([data-theme="dark"]) .cat-state-local-policy   { color: #a74704; }
+  html:not([data-theme="dark"]) .cat-international-policy { color: #3648f4; }
+  html:not([data-theme="dark"]) .cat-data-centers         { color: #1659de; }
+  html:not([data-theme="dark"]) .cat-energy-environment   { color: #0a7350; }
+  html:not([data-theme="dark"]) .cat-chips-infrastructure { color: #bc0f69; }
+  html:not([data-theme="dark"]) .cat-business-investment  { color: #806204; }
+  html:not([data-theme="dark"]) .cat-legal-copyright      { color: #b71d1d; }
+  html:not([data-theme="dark"]) .cat-jobs-society         { color: #0a6d7d; }
+  html:not([data-theme="dark"]) .cat-other-ai-news        { color: #5a626f; }
 }
 
 /* ── Responsive breakpoints ── */

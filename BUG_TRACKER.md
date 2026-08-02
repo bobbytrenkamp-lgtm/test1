@@ -7,6 +7,104 @@ replacement".
 
 ---
 
+Bug: News tab (`#tab-news`) had its own pre-existing WCAG accessibility
+violations — `aria-allowed-role`, `aria-prohibited-attr`,
+`color-contrast`, and `nested-interactive` — never covered by the
+site-wide audit
+Priority: High
+Affected Files: `js/news.js`, `css/style.css`
+Root Cause: The News tab was out of scope for the site-wide WCAG pass
+(2026-08-02, see below) and was only spot-checked afterward to confirm
+the new `<main>`-landmark work didn't regress it (it didn't). That
+check surfaced four separate, pre-existing defects specific to the News
+tab's editorial card layout:
+  1. **`aria-allowed-role` (69 nodes).** Every clickable news card
+     (`.news-lead`, `.news-row`, `.news-dev-item`, `.news-wire-item`,
+     `.news-mi-item`) was an `<article>` or `<section>` with
+     `role="button"` bolted on via `_wireArtClick()`. `<article>` and
+     `<section>` (with an accessible name) both carry implicit
+     landmark/structural roles that don't permit `button` in the
+     ARIA-in-HTML allowed-roles table — a `<div>` would have been fine,
+     but these weren't divs.
+  2. **`nested-interactive` (27 nodes).** The same role="button" cards
+     often also contained a real, separately-clickable
+     `.news-location-link` `<button>` (built by `_makeLocLink()`, e.g.
+     "State — County" that filters the map) — a focusable control
+     nested inside another focusable, role="button" element. Screen
+     readers can't reliably operate nested interactive controls.
+  3. **`aria-prohibited-attr` (1 node).** `.news-status-dot` (the small
+     "auto-updated" indicator dot) was a plain `<span>` with an
+     `aria-label` — a span with no explicit role isn't a valid
+     aria-label target, and the label was redundant anyway: the
+     adjacent "Auto-updated hourly" text already says the same thing
+     visibly and to assistive tech.
+  4. **`color-contrast` (6-7 nodes reported, all 14 categories
+     actually affected).** The 14 category-tag chip colors
+     (`.cat-data-centers`, `.cat-legal-copyright`, etc.) are flat hex
+     values with no light-theme override. Checking all 14 (not just
+     whichever happened to be in the live news feed that day) against
+     their actual axe-computed blended backgrounds: 1 category
+     (Legal & Copyright, 3.77:1) failed in dark theme, and all 14
+     failed in light theme (as low as 1.41:1 for Federal Policy) — the
+     same "no light-theme override on a hardcoded color" defect already
+     found and fixed in `economy.css`/`parcel.css`/`pipeline.css`
+     earlier this session, just not caught here since News wasn't in
+     that pass's scope.
+Fix:
+  - Replaced the role="button"-on-the-whole-card pattern with a
+    headline-button pattern: each card's headline (`.news-lead-headline`,
+    `.news-row-headline`, etc.) is now a real `<button>` (built by the
+    new `_makeHeadlineBtn()`), natively keyboard-operable with no manual
+    role/tabindex/keydown shim needed. The card container
+    (`<article>`/`<section>`/`<div>`) keeps a plain "click anywhere on
+    the card" mouse-convenience listener (`_wireCardClick()`) but no
+    longer carries role or tabindex, so it no longer presents as
+    interactive to assistive tech — which is what resolves both
+    `aria-allowed-role` (the container's implicit role is no longer
+    overridden with an invalid one) and `nested-interactive` (the
+    location-filter button is now a sibling descendant of a
+    non-interactive container, not nested inside another focusable
+    element). `.news-headline-btn` in `css/style.css` resets native
+    button chrome so the buttons still look like plain headline text.
+    `_buildDevelopingStrip()`'s `.news-developing-strip` was left on the
+    old `_wireArtClick()` pattern — it's a plain `<div>` with no nested
+    interactive children, so it was never actually in violation.
+  - `.news-status-dot` now gets `aria-hidden="true"` instead of an
+    `aria-label`, since the information is already conveyed by the
+    adjacent visible "Auto-updated hourly" text.
+  - Brightened `.cat-legal-copyright`'s dark-theme text color
+    (`#dc2626`→`#e24e4e`, 3.77:1→4.71:1 against its actual blended
+    background). Added a full light-theme override block for all 14
+    category colors (darkened per-category, same hue, via the WCAG
+    relative-luminance formula, verified ≥4.5:1 against each category's
+    real axe-computed blended background) — in both the
+    `html[data-theme="light"]` block (explicit in-app toggle) and the
+    `@media (prefers-color-scheme: light) { html:not([data-theme=
+    "dark"]) {...} }` block (OS-level light preference, the more common
+    case for light-mode users who never touched the toggle) — the same
+    dual-block requirement already documented in the site-wide WCAG
+    bug entry below.
+Testing Performed: Set up a local `python3 -m http.server 8099` +
+Playwright (Chromium) + axe-core (`wcag2a`/`wcag2aa`/`best-practice`)
+loop against `#tab-news`. Before: `aria-allowed-role` (69),
+`aria-prohibited-attr` (1), `color-contrast` (6), `nested-interactive`
+(27). After each fix, re-scanned — all four violation classes cleared
+to zero, confirmed by re-running the full sweep once more at the end.
+Programmatically swept all 14 category colors (not just the ones
+present in that day's live feed) against both dark and light theme
+with axe-core directly — all 14 pass in both themes. Verified click/
+keyboard behavior didn't regress: mouse click on card whitespace opens
+the article detail panel; Tab-to-headline-button + Enter opens it;
+clicking the nested location-link button filters the map by state
+*without* opening the article detail (its own `stopPropagation()` still
+works correctly now that it's a sibling, not a nested, control); the
+lead story's headline button opens correctly. Full `tests/run_all.sh`
+176/176 passing. `E2E=1` browser smoke suite passing.
+Fixed By: Claude Code
+Date: 2026-08-02
+
+---
+
 Bug: `tests/run_all.sh` reports "All suites passed" even when suites were
 silently skipped, not run
 Priority: Medium
