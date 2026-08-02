@@ -7,6 +7,40 @@ replacement".
 
 ---
 
+Bug: `tests/run_all.sh` reports "All suites passed" even when suites were
+silently skipped, not run
+Priority: Medium
+Affected Files: `tests/run_all.sh`
+Root Cause: The same "hollow pass" bug class already fixed once this
+project (2026-07-31, CI workflow silently missing jsdom) existed one
+level lower, in the test runner itself. `test_jurisdiction.mjs`,
+`test_watchlist.mjs`, and `test_pipeline.mjs` each `process.exit(0)`
+with a `SKIP jsdom not installed` message when jsdom isn't available —
+a deliberate, documented opt-in design (see the script's own header
+comment). But `run_all.sh`'s `run()` helper only checked the exit code:
+a `SKIP` and a real `PASS` both exit 0, so a run with jsdom missing
+still printed the unqualified "All suites passed." at the end.
+Reproduced directly: running `bash tests/run_all.sh` in an environment
+without jsdom printed exactly that, with 3 suites silently skipped.
+Fix: `run()` now tees each suite's output to a temp file (preserving
+live streaming) and checks for a leading `SKIP` line in addition to the
+exit code. The final summary distinguishes three states: full pass,
+pass-with-skips (lists which suites were skipped and how to enable
+them — explicitly labeled "This is NOT a full pass"), and failure.
+Exit code is unchanged (0 for skips, since they're a legitimate opt-in,
+not a failure) — only the printed claim is now truthful.
+Testing Performed: Verified all three states directly: (1) without
+jsdom, the new "NOT a full pass" summary lists the 3 skipped suites by
+name; (2) with jsdom installed via a throwaway `npm install --prefix`,
+all 3 suites actually execute and pass, and the summary reverts to the
+plain "All suites passed."; (3) a deliberately-failing command is still
+caught and reported as FAILED, confirming the tee/PIPESTATUS change
+didn't weaken failure detection.
+Fixed By: Claude Code
+Date: 2026-08-02
+
+---
+
 Bug: Site-wide WCAG 2 AA accessibility audit — color-contrast, missing
 landmarks, missing form labels, and heading-order failures across every
 page
