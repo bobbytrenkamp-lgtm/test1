@@ -1,9 +1,85 @@
 # Active Bugs
 
-No active bugs. (One pre-existing, non-blocking test finding is tracked
-below rather than in Active Bugs, since it needs a governance decision, not
-a code fix — see "no-paid-dependency guard flags cloudscene in historical
-snapshots".)
+No active bugs. Two open, external, tracked-not-fixed items (see below):
+"no-paid-dependency guard flags cloudscene in historical snapshots" and
+"HIFLD Power_Plants/EPA water stress endpoints have no verified
+replacement".
+
+---
+
+Open (external, tracked not fixed): HIFLD Power_Plants and EPA water
+stress endpoints are broken, no verified replacement found
+Priority: MEDIUM
+Affected Files: `data/fetch_infrastructure.py`
+Detail: `POWER_PLANT_URL` (HIFLD) returns
+`{"error":{"message":"Invalid URL"}}`; `EPA_WATERS_URL` returns
+`{"error":{"message":"Service Supplemental/USACensus2010/MapServer not
+found"}}`. Both endpoints are genuinely gone, not misconfigured — unlike
+the substations/transmission fix above, no live replacement could be
+found: searched both HIFLD ArcGIS orgs' full service listings by name
+(power/plant/energy keywords), tried two DCAT catalog feed URLs (one
+returned 0 datasets, the other a non-JSON response), and every human-
+facing HIFLD/EPA search page returned HTTP 403 to automated fetches.
+Deliberately not guessing a replacement URL without verification — see
+the Virginia parcel fieldMap defects (2026-07-31 entry below) for what
+that produces. `fetch_power_plants()`/`fetch_water_stress()` already fail
+loudly (via the ArcGIS error-visibility fix) rather than silently reading
+back as "0 records", so this is a visible, diagnosable failure, not a
+silent one.
+Recommended next action: a human needs to find the current URL by hand
+(e.g. via hifld-geoplatform.hub.arcgis.com's search UI or EPA's
+EnviroAtlas portal directly) rather than guessing. `water_stress` does
+have a WRI Aqueduct fallback in the code, but that endpoint was not
+re-verified in this pass either (out of scope — only the two endpoints
+flagged by name in this session's original bug report were investigated).
+Status: Open (external; not blocking — the app already degrades honestly
+when these layers are empty)
+
+---
+
+# Recently Fixed Bugs (2026-08-02 — HIFLD substation/transmission endpoints)
+
+---
+
+Bug: HIFLD substation and power-plant infrastructure layers silently
+fetched 0 records on every run
+Priority: HIGH
+Affected Files: `data/fetch_infrastructure.py`
+Root Cause: Two independent problems, previously only made *visible* (not
+fixed) by an earlier session's `_arcgis_paginate` error-logging fix.
+(1) `SUBSTATION_URL`'s original service (`Electric_Substations` under org
+`Hp6G80Pky0om7QvQ`) is genuinely gone — HTTP 200 with `{"error":
+{"message":"Invalid URL"}}`. (2) `TRANSMISSION_URL`'s service was never
+broken, but its WHERE clause referenced `COUNTRY`, a column that plain
+does not exist on that layer's schema — every query failed with "Cannot
+perform query. Invalid query parameters." This sandbox's outbound proxy
+blocks arcgis.com entirely (confirmed: `curl` gets a 403 CONNECT-tunnel
+failure, WebFetch gets 403 from ArcGIS itself), so diagnosis required a
+real-internet environment: a throwaway `workflow_dispatch` workflow
+dispatched against a GitHub Actions runner, iterated across 4 rounds
+(PRs #208-#211) to search HIFLD's ArcGIS orgs, verify field names, and
+confirm actual data values rather than assumed ones.
+Fix: (1) Substations now point at a live mirror under a different HIFLD
+org (`services.arcgis.com/G4S1dGvn7PIgYd6Y/.../HIFLD_electric_power_
+substations`), whose schema genuinely differs from the original —
+`MAX_VOLT`/`MIN_VOLT` numeric fields instead of one combined `VOLTAGE`
+string, `COUNTYFIPS` instead of `COUNTY_FIPS`, and `COUNTRY='USA'` (three
+letters) instead of `'US'` — all confirmed against live sample data, not
+assumed from the old schema. (2) Transmission's WHERE clause dropped the
+nonexistent `COUNTRY` condition. (3) `fetch_transmission_lines()` also
+gained the same ArcGIS-error-visibility check `_arcgis_paginate` already
+had — it calls `_get()` directly, so it had never gotten that earlier fix.
+Power_Plants and EPA water stress remain broken with no verified
+replacement — see the Active Bugs entry above.
+Testing Performed: Diagnostic probes run against live services from a
+GitHub Actions runner (not this sandbox, which cannot reach arcgis.com at
+all) confirmed real feature data returned for both fixed endpoints with
+the exact WHERE clauses and field names now in the code. `tests/run_all.sh`
+176/176 passing (this module has no offline test coverage — the bug and
+fix are both about live network behavior).
+Fixed By: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+Date Fixed: 2026-08-02
+Status: Fixed (substations, transmission) / Open (power plants, EPA water — see above)
 
 ---
 

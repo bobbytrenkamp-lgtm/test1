@@ -76,6 +76,45 @@ No active work in progress as of 2026-07-31.
 
 - Date: 2026-08-02
 - Agent: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
+- Task: Bobby asked to keep going toward "institutional quality." Followed up
+  on an open item from earlier in this session: `fetch_infrastructure.py`'s
+  substation and power-plant queries were silently returning 0 records on
+  every run (visible as ArcGIS "Invalid URL" errors after an earlier fix in
+  this same session made that failure loggable instead of silent, but not
+  yet diagnosed). This sandbox's proxy blocks arcgis.com entirely, so
+  diagnosis needed a real-internet environment — used a throwaway
+  `workflow_dispatch` diagnostic workflow dispatched against GitHub Actions
+  (PRs #208-#211, deleted once the real fix landed) to search HIFLD's ArcGIS
+  orgs and verify actual field names/values rather than guessing.
+- Findings: substations' original service is genuinely gone, but a live
+  mirror exists under a different HIFLD org with a different schema
+  (MAX_VOLT/MIN_VOLT instead of a combined VOLTAGE string, COUNTYFIPS
+  instead of COUNTY_FIPS, COUNTRY='USA' not 'US'). Transmission's URL was
+  never broken — its WHERE clause referenced a COUNTRY column that layer's
+  schema doesn't have, which is why it failed with a different ArcGIS error
+  ("Invalid query parameters") than substations/power-plants did ("Invalid
+  URL"). Power_Plants and EPA water stress have no verified live
+  replacement after a genuine search (both HIFLD orgs' full service
+  listings, two DCAT catalog guesses, several 403s from human-facing search
+  pages) — left open rather than guessed, per the project's own established
+  rule from the Virginia parcel fieldMap incident.
+- Files changed: `data/fetch_infrastructure.py`, `BUG_TRACKER.md`, this
+  file. (Diagnostic-only files `data/diagnose_hifld_endpoints.py` and
+  `.github/workflows/_diagnose_hifld.yml` were added and then deleted in
+  this same pass, per their own stated intent.)
+- Tests performed: `tests/run_all.sh` (176/176 — this module has no offline
+  coverage, live network behavior only). The actual fix was verified via
+  the diagnostic workflow's real Actions-runner probes returning genuine
+  feature data with the exact WHERE clauses and field names now in the
+  code, before writing the real fix.
+- Remaining concerns: Power_Plants and EPA water stress are still broken
+  (see BUG_TRACKER.md's Active Bugs). Recommend re-running
+  `update_infrastructure.yml` after this merges to confirm substations and
+  transmission now populate `sample_layers.json` for real, since CI is the
+  only environment that can reach these services at all.
+
+- Date: 2026-08-02
+- Agent: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
 - Task: Bobby asked for "a complete bug fix — access any web problems and fix
   them," i.e. actual browser/UI testing rather than data-pipeline/CI work.
   Ran `tests/e2e_smoke.mjs` against a real headless Chromium (pre-installed
