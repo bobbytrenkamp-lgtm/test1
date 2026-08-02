@@ -97,7 +97,15 @@ def _tags_to_record(element: dict, source_id: str) -> FacilityRecord:
     else:
         r.facility_type = "unknown"
 
-    r.notes = f"osm_tags:{','.join(f'{k}={v}' for k, v in list(tags.items())[:5])}"
+    # Excludes source*/source:* tags: OSM's own convention for citing which
+    # basemap/imagery provider a contributor traced the building from. That's
+    # provenance for the OSM edit itself, not a fact about the facility, and
+    # one such provider's name happened to match this project's own
+    # paid-service guard by coincidence — a genuinely live dependency would
+    # appear in adapter code or a workflow secret, not in a passthrough of a
+    # third party's own tags (see BUG_TRACKER.md's OSM notes entry).
+    notable_tags = [(k, v) for k, v in tags.items() if not k.startswith("source")]
+    r.notes = f"osm_tags:{','.join(f'{k}={v}' for k, v in notable_tags[:5])}"
 
     normalize_record_fields(r)
     return r

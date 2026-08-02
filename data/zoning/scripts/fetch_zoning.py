@@ -75,6 +75,22 @@ def fetch_arcgis_featureserver(base_url: str, layer_id: int = 0,
             print(f"  Error fetching page at offset {offset}: {e}")
             break
 
+        if "error" in data:
+            # ArcGIS Feature Services routinely return HTTP 200 with an
+            # {"error": {...}} body for a bad query (unknown field, a
+            # renamed/retired layer, a malformed request) — the HTTP layer
+            # succeeds, so this is otherwise indistinguishable from a
+            # legitimately empty result. validate_geometry_response() below
+            # already refuses to write zero-feature output either way, but
+            # without this the operator has no way to tell "nothing here"
+            # from "the URL is broken" (see BUG_TRACKER.md's HIFLD
+            # substation/power-plant entry for what this exact gap produced
+            # when left unfixed).
+            err = data["error"]
+            print(f"  ArcGIS query error at offset {offset}: "
+                  f"{err.get('message', err) if isinstance(err, dict) else err}")
+            break
+
         features = data.get("features", [])
         all_features.extend(features)
         print(f"  ...{len(all_features)} features fetched")
