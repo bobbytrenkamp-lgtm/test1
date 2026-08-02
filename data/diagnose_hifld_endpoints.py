@@ -19,40 +19,38 @@ import requests
 SESSION = requests.Session()
 SESSION.headers.update({"User-Agent": "USDataCenterPolicyTracker/1.0 (diagnostic; github.com/bobbytrenkamp-lgtm/test1)"})
 
+# maps.nccs.nasa.gov dropped: "Network is unreachable" from the Actions
+# runner itself (errno 101), not a sandbox proxy artifact — genuinely dead
+# from here, so not worth re-probing.
 CANDIDATES = {
     "substations": [
-        "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Substations/FeatureServer/0/query",
         "https://services.arcgis.com/G4S1dGvn7PIgYd6Y/ArcGIS/rest/services/HIFLD_electric_power_substations/FeatureServer/0/query",
-        "https://services5.arcgis.com/caWDr9qv9f34KIAZ/arcgis/rest/services/ElectricSubstations/FeatureServer/0/query",
-        "https://maps.nccs.nasa.gov/mapping/rest/services/hifld_open/energy/FeatureServer/0/query",
     ],
     "transmission": [
         "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query",
-        "https://maps.nccs.nasa.gov/mapping/rest/services/hifld_open/energy/FeatureServer/1/query",
-        "https://maps.nccs.nasa.gov/mapping/rest/services/hifld_open/energy/FeatureServer/2/query",
-    ],
-    "power_plants": [
-        "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Power_Plants/FeatureServer/0/query",
-        "https://maps.nccs.nasa.gov/mapping/rest/services/hifld_open/energy/FeatureServer/3/query",
-        "https://maps.nccs.nasa.gov/mapping/rest/services/hifld_open/energy/FeatureServer/4/query",
-    ],
-    "epa_water": [
-        "https://enviroatlas.epa.gov/arcgis/rest/services/Supplemental/USACensus2010/MapServer/6/query",
     ],
 }
 
 # Also probe the bare FeatureServer root (not /query) to enumerate real layer
 # ids/names when a guess above is wrong but the service itself is alive.
 ROOTS_TO_ENUMERATE = [
-    "https://maps.nccs.nasa.gov/mapping/rest/services/hifld_open/energy/FeatureServer",
     "https://services.arcgis.com/G4S1dGvn7PIgYd6Y/ArcGIS/rest/services/HIFLD_electric_power_substations/FeatureServer",
 ]
 
+# The original org (Hp6G80Pky0om7QvQ) is still alive — its transmission-lines
+# service resolved with a real ArcGIS error ("Invalid query parameters", not
+# "Invalid URL"), unlike substations/power_plants which say "Invalid URL".
+# List everything currently published under it to find the real names.
+ORG_SERVICE_LISTS = [
+    "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services",
+    "https://services.arcgis.com/G4S1dGvn7PIgYd6Y/ArcGIS/rest/services",
+]
 
-def probe_query(url):
+
+def probe_query(url, where="1=1"):
     try:
         r = SESSION.get(url, params={
-            "where": "STATE = 'VA'", "outFields": "*", "returnGeometry": "false",
+            "where": where, "outFields": "*", "returnGeometry": "false",
             "resultRecordCount": 3, "f": "json",
         }, timeout=30)
         status = r.status_code
@@ -67,6 +65,18 @@ def probe_query(url):
         return status, f"OK — {len(feats)} sample feature(s)", fields
     except Exception as exc:
         return None, f"request failed: {exc}", None
+
+
+def list_services(root_url):
+    try:
+        r = SESSION.get(root_url, params={"f": "json"}, timeout=30)
+        data = r.json()
+        if "error" in data:
+            return f"ArcGIS error: {data['error'].get('message', data['error'])}"
+        services = data.get("services", [])
+        return "; ".join(f"{s.get('name')} ({s.get('type')})" for s in services) or "(no services listed)"
+    except Exception as exc:
+        return f"request failed: {exc}"
 
 
 def probe_root(url):
@@ -94,6 +104,11 @@ def main():
     for url in ROOTS_TO_ENUMERATE:
         print(f"  {url}")
         print(f"      {probe_root(url)}")
+
+    print("\n=== org service listing (what's actually published now) ===")
+    for url in ORG_SERVICE_LISTS:
+        print(f"  {url}")
+        print(f"      {list_services(url)}")
 
     return 0
 
