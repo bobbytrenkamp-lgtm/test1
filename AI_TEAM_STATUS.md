@@ -6,9 +6,67 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 
 ## Active Work
 
-No active work in progress as of 2026-08-03.
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Ongoing, user-requested incremental expansion of parcel data
+  coverage beyond the initial 5-county pilot, prioritized by actual
+  facility count in `facilities_index.json`. Fixed the 2 already-broken
+  counties first (see below), then added the next 3 highest-priority
+  counties that verified cleanly. Two items still open: Santa Clara
+  County CA (#4 by facility count, 108) timed out on its first probe
+  and needs a retry with its candidate service before it can be added;
+  Cook County IL (#1, 130 facilities) is deliberately not being added —
+  see Open Handoffs below, it needs a licensing decision, not more
+  research. Continuing to work down the priority list.
 
 ## Recently Completed Work (continued)
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added 3 new counties to the parcel registry — Maricopa AZ,
+  Dallas TX, and Fulton GA — the next-highest-priority markets by
+  facility count after fixing the Maryland outage (see below), skipping
+  Cook County IL for the licensing reason noted in Open Handoffs.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: `js/parcel/registry.js` now covers 8 jurisdictions (up from
+  5). Each new entry followed the same fetch-confirm-before-wiring
+  process as the Maryland fix: verified live via a temporary diagnostic
+  dispatched on a GitHub Actions runner (this sandbox can't reach
+  `arcgis.com`/county GIS domains directly), built the fieldMap against
+  the service's real field list rather than a guess, and declared every
+  canonical field with no real backing field via `notProvidedBySource`
+  (verified programmatically that every jurisdiction's fieldMap +
+  notProvidedBySource together account for all 30 canonical schema
+  fields with zero gaps and zero overlaps). Maricopa County's service
+  turned out unusually rich — 57 fields including a real owner-name
+  field (several jurisdictions in this registry redact it) and full
+  valuation/sale/deed data. Dallas County's available service (the
+  Dallas Central Appraisal District's own service 404'd; used the City
+  of Dallas's basemap layer instead) is much thinner — no zoning,
+  valuation, or sale-history fields at all, honestly reflected via 21
+  `notProvidedBySource` entries rather than padded out with guesses.
+  Also fixed a hardcoded "5 counties" claim on the About page's roadmap
+  section (now reads the registry's actual count, so it can't go stale
+  again as more counties are added).
+- Verified, not assumed: independently re-checked each candidate
+  county's licensing terms before wiring anything up (this is what
+  caught the Cook County restriction). For the 3 added, ran the
+  project's own field-coverage validation script (all fieldMap +
+  notProvidedBySource entries are valid canonical IDs, zero missing,
+  zero overlapping) — this caught one real gap (Fulton's `land_use_desc`
+  was accidentally left unaccounted for) before it shipped. Then
+  verified live in a browser: called `window.PARCEL_PANEL.show()` with
+  synthetic features for all 3 new counties and confirmed populated
+  fields render their real values while every `notProvidedBySource`
+  field correctly shows "Not published by this source" — not just that
+  the code looks right. `tests/run_all.sh` 176/176 and
+  `tests/parcel.test.js` 293/293 passing.
+- Files changed: `js/parcel/registry.js`, `js/analytics.js`, this file.
+- Related systems: the parcel intelligence panel and map layer for the
+  3 new counties; the About page's platform roadmap section.
+- Deliberately NOT done: did not add Santa Clara County CA (its
+  candidate service timed out on the first probe) or Cook County IL
+  (licensing) — see Open Handoffs and Active Work above.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -782,21 +840,48 @@ No active work in progress as of 2026-08-03.
 
 ## Open Handoffs
 
-- Item: Maryland parcel endpoint returning 503 (Howard 24027 + Montgomery 24031).
-- Current status: Open, external. Both counties share ONE statewide endpoint
-  (`geodata.md.gov` MD_ParcelBoundaries), so they fail and recover together.
-  Both entries carry a `knownUnavailable` block, so the monthly probe reports
-  them as DEAD* and passes — anything NEWLY dead still fails the job.
-- Why it was not fixed: a few minutes of HTTP 503 cannot distinguish a retired
-  service from an extended outage. Replacing the URL would mean swapping a
-  known-bad guess for an unverified one, which is precisely how the Virginia
-  fieldMaps became wrong in the first place.
-- Recommended next action: re-probe (Actions -> Check Parcel Services -> Run
-  workflow). If still dead, re-derive from Maryland's GIS portal, confirm with
-  the probe, then update `js/parcel/registry.js` and delete the
-  `knownUnavailable` block. The probe reports RECOVERED if it comes back on
-  its own.
-- Relevant files: `js/parcel/registry.js`, `data/check_parcel_services.mjs`.
+- Item: Cook County, Illinois parcel data — #1 target by facility count
+  (130 in `facilities_index.json`, the single highest of any county
+  outside the current registry) but deliberately not added.
+- Current status: Open, needs a licensing/business decision, not more
+  research. Both the raw GIS service (`gis.cookcountyil.gov`) and the
+  official Cook County Open Data Portal copy of the same parcel dataset
+  explicitly state the data "may not be redistributed or made available
+  over a network without explicit permission from the Cook County
+  Department of Office Technology," and require the Cook County Board
+  of Commissioners be cited in any product built from it. This is
+  materially stricter than the standard "Public government data. Verify
+  terms before commercial redistribution." note on every other
+  jurisdiction currently in the registry — this app publicly serves
+  parcel data to end users over the web, which is exactly what that
+  clause restricts.
+- Why it was not fixed: this isn't a technical gap (a live, well-formed
+  ArcGIS service exists) — it's a permission the project doesn't have.
+  Wiring it up anyway would mean guessing that either the restriction
+  doesn't really apply or won't be enforced, neither of which is this
+  agent's call to make.
+- Recommended next action: someone with authority to request it should
+  contact Cook County's Department of Office Technology for explicit
+  redistribution permission. If granted, add `13031` following the same
+  fetch-confirm-before-wiring process as every other jurisdiction here.
+  If not, this item should be closed as won't-fix rather than left open
+  indefinitely.
+- Relevant files: `js/parcel/registry.js`.
+
+- Item: Santa Clara County, California parcel data — #4 target by
+  facility count (108), candidate service not yet verified.
+- Current status: Open. The candidate service (`webgis.sccgov.org/gis/
+  rest/services/opendata/SCCGISHUBFeatureService/MapServer`) timed out
+  (10s+) on its only probe so far, run alongside the Maricopa/Dallas/
+  Fulton batch that did succeed — inconclusive, not confirmed dead.
+- Recommended next action: retry the probe (this sandbox can't reach
+  the service directly; needs a GitHub Actions runner dispatch like the
+  ones used for Maryland and the Maricopa/Dallas/Fulton batch). If it's
+  genuinely slow rather than actually down, a longer timeout may be all
+  that's needed; if it stays unreachable, look for an alternate hosted
+  version via Santa Clara's ArcGIS Hub site (`gisdata-sccplanning.hub.
+  arcgis.com`) the way Maryland's alternate hostname was found.
+- Relevant files: `js/parcel/registry.js`.
 
 - Item: Zoning / assessed value / sales data for the Virginia parcel counties.
 - Current status: Not available from any of the three live services — this is
@@ -818,6 +903,12 @@ No active work in progress as of 2026-08-03.
   exactly the wording this entry recommended ("Not published by this
   source") — see this file's Recently Completed Work log and
   BUG_TRACKER.md's parcel panel entry. Not re-listed as an open handoff.)
+
+  (The "Maryland parcel endpoint returning 503" item that used to be
+  tracked here was resolved 2026-08-03 — it had migrated to a different
+  hostname, not just an extended outage; see this file's Recently
+  Completed Work log and BUG_TRACKER.md's Maryland entry. Not re-listed
+  as an open handoff.)
 
   (The "same missing-`encoding=\"utf-8\"` pattern exists in ~15 other
   `data/*.py` scripts" item that used to be tracked here is resolved —
