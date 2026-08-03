@@ -7,6 +7,43 @@ replacement".
 
 ---
 
+Bug: `update_economic_data.py`'s county records stored a 3-digit
+county-only code in their `county_fips` field, not the full 5-digit FIPS
+Priority: Low
+Affected Files: `data/update_economic_data.py`
+Root Cause: `build_census_geography()` builds the correct 5-digit FIPS
+(`fips = st + co`, validated with `len(fips) != 5` a few lines later)
+and correctly uses it as the dict key (`records[fips] = rec`) — but the
+record's own `county_fips` field was set to `co`, the bare 3-digit
+county-only component, not `fips`. Every other file in this codebase
+that carries a `county_fips` field (`map_data.json`, `facilities_index
+.json`) uses the full 5-digit form as the join key, so a stored 3-digit
+value here would silently fail to match against `mapData[county_fips]`-
+style lookups if anything ever consumed this field directly. Found in a
+4th codebase survey (performance + data-pipeline correctness), which
+otherwise came back clean — confirmed via grep that no current JS
+consumer reads `.county_fips` off an economy/census county record (they
+all index by the record's dict key instead, which was already correct),
+so this has zero live impact today, but it's still a real correctness
+bug in generated data worth fixing before something does start reading
+it and gets silently wrong matches.
+Fix: One-line change — store `fips` (the validated 5-digit value)
+instead of `co` (the 3-digit component).
+Testing Performed: Confirmed `fips`'s construction and validation a few
+lines above the fix. `python3 data/update_economic_data.py --check`
+passes. Confirmed via repo-wide grep that no JS file currently reads
+`.county_fips` from an economy/census county record (only from
+unrelated facility/campus/parcel records that happen to share the same
+field name), so this is a correctness fix with no behavior change to
+verify beyond the script's own validation passing. `tests/run_all.sh`
+176/176 passing. The already-committed `data/economy/census_county.json`
+will pick up the corrected field on its next scheduled regeneration by
+the Update Economic Data workflow — not hand-edited here.
+Fixed By: Claude Code
+Date: 2026-08-02
+
+---
+
 Bug: Parcel panel silently omitted attributes a source doesn't publish,
 indistinguishable from a rendering bug
 Priority: Low

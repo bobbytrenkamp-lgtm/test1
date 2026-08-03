@@ -903,7 +903,7 @@ def build_census_geography(level, year, cfg, selected, api_key, state_names):
             "metrics":    metrics,
         }
         if co is not None:
-            rec["county_fips"] = co
+            rec["county_fips"] = fips
         if history:
             rec["history"] = history
         records[fips] = rec

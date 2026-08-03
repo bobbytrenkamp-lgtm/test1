@@ -12,6 +12,57 @@ No active work in progress as of 2026-08-02.
 
 - Date: 2026-08-02
 - Agent: Claude Code
+- Task: A 4th codebase survey, this time specifically targeting
+  performance (main-thread blocking, redundant DOM work against the
+  app's largest datasets — ~3,143 counties, ~4,300+ facilities) and
+  data-pipeline computational correctness (aggregation, timezone,
+  filtering) — two angles an earlier survey asked about but didn't
+  substantively cover. Unlike the first three survey rounds, this one
+  came back essentially clean, which is itself useful signal: no O(n²)
+  DOM-query-in-loop patterns, no un-cleared polling loops outside the
+  already-fixed economy-view.js, `map.js`'s county layers already use a
+  single `L.geoJSON` with in-place `setStyle()` rather than recreating
+  layers, and Python-side rounding/timezone handling checked out
+  correct everywhere examined.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: one real, if low-impact, correctness bug the survey did
+  find — `update_economic_data.py`'s county records stored a 3-digit
+  county-only code in their `county_fips` field instead of the full
+  5-digit FIPS every other file in the codebase uses as a join key.
+  Confirmed via grep that no current JS consumer reads this specific
+  field (records are correctly indexed by their dict key instead), so
+  it's dead code today, not a live bug — but worth fixing before
+  something starts reading it and gets silently wrong matches. One-line
+  fix: store the already-validated 5-digit `fips` instead of its bare
+  3-digit `co` component.
+- Verified, not assumed: independently re-checked the agent's "likely
+  dead code" claim myself with a direct grep of `economy.js`/
+  `economy-view.js`/`economy-map.js` before treating it as confirmed,
+  rather than taking the survey's word for it. Confirmed the fix's
+  `fips` variable is the same validated 5-digit value already used as
+  the dict key a few lines below. `python3 data/update_economic_data.py
+  --check` passes; `tests/run_all.sh` 176/176 passing.
+- Also evaluated and deliberately did NOT act on: a debounce
+  inconsistency the same survey flagged (`pipeline.js`'s facility
+  search and `analytics.js`'s ranking search re-filter on every
+  keystroke while `map.js`'s layer search debounces) — real
+  inconsistency, but both un-debounced call sites are already windowed/
+  paginated, so the actual per-keystroke cost is a cheap array scan,
+  not a full re-render. Not worth a PR on its own; noted here in case a
+  future pass wants to normalize it for consistency's sake.
+- Files changed: `data/update_economic_data.py`, `BUG_TRACKER.md`, this
+  file.
+- Related systems: the Update Economic Data GitHub Action and its
+  output (`data/economy/census_county.json`, `census_state.json`).
+- Deliberately NOT done: this is a good natural checkpoint for the
+  survey-and-fix loop that's been running this session (PRs #216-223,
+  8 merged) — four consecutive rounds have now been run, and this last
+  one found nothing else worth shipping. Not launching a 5th round
+  automatically; the remaining Open Handoffs below are genuinely
+  external/blocked, not further-surveyable.
+
+- Date: 2026-08-02
+- Agent: Claude Code
 - Task: Picked up two already-scoped items straight from Open Handoffs
   below rather than running a fourth research survey: the parcel panel's
   wording for attributes a source doesn't publish, and verifying whether
