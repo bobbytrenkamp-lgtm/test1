@@ -1803,6 +1803,90 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ───────────────────────────────────────────────────────────────────
+     * Wake County, North Carolina (Raleigh) — found on round 1: the
+     * county's own open-data DCAT catalog listed a "Parcels" dataset
+     * ("maintained by the Wake County GIS Property Mapping Team") whose
+     * ArcGIS GeoServices REST distribution URL exactly matched a direct
+     * guess at the county's own maps.wake.gov ArcGIS Server, confirmed
+     * live with 60 fields and Polygon geometry — the richest source
+     * found this session (20 of 30 canonical fields mapped). Wake
+     * County uses two parallel parcel identifier schemes: PIN_NUM
+     * (the primary Property Identification Number) mapped to
+     * parcel_id, and REID (Real Estate ID, a secondary identifier) to
+     * pin. address maps to the source's own pre-combined SITE_ADDRESS
+     * field rather than the split STNUM/STPRE/STNAME/STYPE/STSUF/STMISC
+     * component fields. owner_mailing left unmapped: ADDR1/ADDR2/ADDR3
+     * are pre-formatted mailing-address lines with no single combined
+     * field, consistent with not concatenating multi-line source data
+     * ourselves. No zoning field exists (only TYPE_AND_USE/
+     * TYPE_USE_DECODE land-use classification, mapped to land_use_code/
+     * land_use_desc). area_sqft mapped to CALC_AREA: distinct from the
+     * separately-present DEED_ACRES (mapped to area_acres) and from the
+     * native SHAPE.AREA geometry field, its naming strongly implies a
+     * GIS-calculated area in square feet rather than acres. Valuation
+     * fields map to TOTAL_VALUE_ASSD/LAND_VAL/BLDG_VAL, the current
+     * assessed values; no tax_year or tax_amount field exists (billing
+     * data lives outside this GIS layer). gross_floor_area mapped to
+     * HEATEDAREA (heated building area — the closest available building
+     * size metric; may undercount unheated space like garages).
+     * deed_book/deed_page map field-for-field (DEED_BOOK/DEED_PAGE) —
+     * the first county in this registry to provide them as two
+     * genuinely separate fields rather than one combined string.
+     * legal_desc mapped to PROPDESC (Property Description). No
+     * subdivision or census_tract field exists.
+     * ─────────────────────────────────────────────────────────────────── */
+    '37183': {
+      id:          'nc-wake-county',
+      name:        'Wake County, North Carolina',
+      state:       'NC',
+      fips:        '37183',
+      connector:   'arcgis',
+      serviceUrl:  'https://maps.wake.gov/arcgis/rest/services/Property/Parcels/MapServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'PIN_NUM',
+        pin:                'REID',
+        address:            'SITE_ADDRESS',
+        owner:              'OWNER',
+        land_use_code:      'TYPE_AND_USE',
+        land_use_desc:      'TYPE_USE_DECODE',
+        area_sqft:          'CALC_AREA',
+        area_acres:         'DEED_ACRES',
+        building_count:     'TOTSTRUCTS',
+        year_built:         'YEAR_BUILT',
+        gross_floor_area:   'HEATEDAREA',
+        assessed_value:     'TOTAL_VALUE_ASSD',
+        land_value:         'LAND_VAL',
+        improvement_value:  'BLDG_VAL',
+        last_sale_date:     'SALE_DATE',
+        last_sale_price:    'TOTSALPRICE',
+        deed_book:          'DEED_BOOK',
+        deed_page:          'DEED_PAGE',
+        legal_desc:         'PROPDESC',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'overlay_districts',
+        'lot_depth_ft', 'lot_width_ft', 'tax_year', 'tax_amount',
+        'subdivision', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Wake County GIS Property Mapping',
+        url:     'https://www.wake.gov/departments-government/tax-administration',
+        portal:  'https://data-wake.opendata.arcgis.com/datasets/Wake::parcels-1',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Raleigh metro — North Carolina data center market.',
+      },
+    },
+
   };
 
   function get(fips) {
