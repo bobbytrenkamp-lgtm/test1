@@ -1,15 +1,15 @@
-// Temporary diagnostic, round 2: Washington County OR (Hillsboro/
+// Temporary diagnostic, round 3: Washington County OR (Hillsboro/
 // Portland metro) parcel service.
 //
-// Round 1's guessed county-hosted URLs all failed (wrong domains). A
-// web search found that Oregon Metro (the Portland tri-county regional
-// government covering Multnomah, Washington, and Clackamas) publishes
-// a standardized "Taxlots (Public)" dataset compiled from each
-// county assessor's own records, via its RLIS Discovery ArcGIS Hub
-// portal (rlisdiscovery.oregonmetro.gov, ArcGIS org namespace
-// "drcMetro"), item id 9d3c396ffad44649bc7451465aa300f0. This round
-// queries that item's own metadata via the ArcGIS sharing API to find
-// its real hosted FeatureServer URL, then probes that URL directly.
+// Round 2 resolved the "Taxlots (Public) - Download" item, but it
+// turned out to be a static Shapefile download item (type: Shapefile),
+// not a live queryable ArcGIS REST service -- it has no `url` field.
+// The RLIS Discovery site itself mentioned "the original feature
+// layers" exist separately for viewing in ArcGIS Online. This round
+// checks the RLIS Discovery site's own DCAT catalog directly (ArcGIS
+// Hub sites expose this same feed pattern even on a custom domain,
+// not just *.opendata.arcgis.com) to find the real Feature Layer
+// distribution URL.
 //
 // Deleted once Washington County OR is either added or documented as
 // unavailable.
@@ -32,9 +32,18 @@ async function fetchText(url, label) {
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
-      if (body.url) console.log('Item service url:', body.url);
-      if (body.title) console.log('Item title:', body.title);
-      if (body.type) console.log('Item type:', body.type);
+      if (Array.isArray(body.dataset)) {
+        const matches = body.dataset.filter(d =>
+          /taxlot|parcel/i.test(d.title || '') || /taxlot|parcel/i.test(d.description || '')
+        );
+        console.log(`DCAT datasets matching "taxlot"/"parcel": ${matches.length}`);
+        for (const d of matches) {
+          console.log(`\n--- ${d.title} ---`);
+          console.log('description:', (d.description || '').slice(0, 300));
+          const dist = (d.distribution || []).map(x => `${x.format}: ${x.accessURL || x.downloadURL}`);
+          console.log('distribution:', dist.join(' | '));
+        }
+      }
       if (body.fields) {
         console.log('Field count:', body.fields.length);
         console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
@@ -42,8 +51,6 @@ async function fetchText(url, label) {
       if (body.name) console.log('Layer name:', body.name);
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
       if (body.description) console.log('description:', body.description.slice(0, 500));
-      if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
-      if (body.layers) console.log('Layers:', body.layers.map(l => `${l.id}:${l.name}`).join(', '));
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -59,14 +66,9 @@ async function fetchText(url, label) {
   }
 }
 
-const item = await fetchText(
-  'https://www.arcgis.com/sharing/rest/content/items/9d3c396ffad44649bc7451465aa300f0?f=json',
-  'Metro RLIS Discovery Taxlots (Public) - item metadata'
+await fetchText(
+  'https://rlisdiscovery.oregonmetro.gov/api/feed/dcat-us/1.1.json',
+  'RLIS Discovery own DCAT catalog (custom domain)'
 );
-
-if (item.ok && item.body && item.body.url) {
-  await fetchText(`${item.body.url}?f=json`, 'Resolved service URL - layer root');
-  await fetchText(`${item.body.url}/0?f=json`, 'Resolved service URL - layer 0');
-}
 
 console.log('\nDone.');
