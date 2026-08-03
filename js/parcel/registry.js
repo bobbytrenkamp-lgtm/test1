@@ -1714,6 +1714,95 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ───────────────────────────────────────────────────────────────────
+     * Cuyahoga County, Ohio (Cleveland) — found via the county's own
+     * open-data DCAT catalog (dataset "Parcel Fabric Taxparcels"), which
+     * pointed directly at this ArcGIS GeoServices REST layer served under
+     * a "CCFO" (Cuyahoga County Fiscal Officer) service folder on the
+     * county's own gis.cuyahogacounty.gov domain — the county's own
+     * authoritative tax-parcel source, Polygon geometry, 142 fields.
+     * One of the richest sources found this session. parcel_id and
+     * zoning_code map field-for-field. address maps to the source's own
+     * pre-combined par_addr_all field (not concatenated by us). owner
+     * maps to parcel_owner (second_owner exists but is not part of the
+     * canonical schema). Land use has four parallel LUC systems (tax,
+     * ext, abt, tif); tax_luc/tax_luc_description chosen as the primary
+     * current tax land-use classification. area_sqft mapped to
+     * parcel_lot_size (integer, distinct from parcel_acreage). Valuation
+     * fields map to the current tax-roll assessed values (not the
+     * certified/prior-year variants, of which there are several).
+     * last_sale_date/price map to last_transfer_date/last_sales_amount.
+     * owner_mailing left unmapped: the source splits it into five
+     * separate component fields (mail_name, mail_addr_street,
+     * mail_unit_no, mail_city, mail_state, mail_zip) with no combined
+     * field, consistent with the established practice of not
+     * concatenating multi-component source fields ourselves. deed_book
+     * and deed_page also left unmapped: the source provides both as one
+     * already-combined book_page string, which cannot be cleanly split
+     * into the two separate canonical fields without fabricating a
+     * split. building_count, year_built, and gross_floor_area left
+     * unmapped: the source splits building stats into parallel
+     * residential (res_bldg_count, total_res_liv_area, min/max_res_age)
+     * and commercial (com_bldg_count, total_com_use_area, min/max_com_age)
+     * variants with no unified total or single year-built field — mapping
+     * only the residential half would misrepresent commercial parcels.
+     * No subdivision, overlay_districts, lot_depth_ft/lot_width_ft
+     * (only a combined total_legal_front frontage figure), or
+     * census_tract fields exist. No description or copyrightText was
+     * returned by the service; treated as an official county government
+     * platform (own domain, own Fiscal Officer's data) rather than a
+     * red flag.
+     * ─────────────────────────────────────────────────────────────────── */
+    '39035': {
+      id:          'oh-cuyahoga-county',
+      name:        'Cuyahoga County, Ohio',
+      state:       'OH',
+      fips:        '39035',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis.cuyahogacounty.gov/server/rest/services/CCFO/Parcel_Fabric_Taxparcels/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'parcel_id',
+        pin:                'parcelpin',
+        address:            'par_addr_all',
+        owner:              'parcel_owner',
+        zoning_code:        'zoning_code',
+        zoning_desc:        'zoning_use',
+        land_use_code:      'tax_luc',
+        land_use_desc:      'tax_luc_description',
+        area_sqft:          'parcel_lot_size',
+        area_acres:         'parcel_acreage',
+        assessed_value:     'tax_assessed_total',
+        land_value:         'tax_assessed_land',
+        improvement_value:  'tax_assessed_improvement',
+        tax_year:           'cur_tax_year',
+        tax_amount:         'net_tax_total',
+        last_sale_date:     'last_transfer_date',
+        last_sale_price:    'last_sales_amount',
+        legal_desc:         'legal_description',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'overlay_districts', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'year_built', 'gross_floor_area', 'deed_book',
+        'deed_page', 'subdivision', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Cuyahoga County Fiscal Officer',
+        url:     'https://fiscalofficer.cuyahogacounty.gov/',
+        portal:  'https://data-cuyahogacounty.opendata.arcgis.com/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Cleveland metro — Ohio data center market.',
+      },
+    },
+
   };
 
   function get(fips) {
