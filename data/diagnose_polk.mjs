@@ -1,14 +1,12 @@
-// Temporary diagnostic, round 3: Polk County IA (Des Moines) parcel
-// service -- checking for a richer companion layer/table.
+// Temporary diagnostic, round 4: Polk County IA (Des Moines) parcel
+// service -- probing the richer companion tables found in round 3.
 //
-// Round 2 confirmed the "Cadastral Parcels" layer (FeatureServer/1) is
-// real, live, Polygon geometry -- but very thin: only 8 fields
-// (Parcel_Number, Alternate_Parcel, HouseNo, plus IDs/geometry
-// metadata), no owner or assessed-value data. This round lists the
-// FeatureServer's full layer/table catalog to check for a richer
-// companion (e.g. an Assessor/CAMA table joinable by Parcel_Number),
-// the same pattern used for Sacramento County CA's separate Assessor
-// Parcel Viewer.
+// Round 3 listed the full FeatureServer catalog: alongside the thin
+// "Cadastral Parcels" boundary layer (id 1), the service also exposes
+// four non-spatial tables likely joinable by parcel number: "Parcel"
+// (2), "Situs Address" (3), "Value" (4), "Owners Mail" (5) -- a
+// standard normalized CAMA schema. This round probes each table's
+// real field schema directly.
 //
 // Deleted once Polk County is either added or documented as
 // unavailable.
@@ -31,20 +29,14 @@ async function fetchText(url, label) {
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
-      if (body.layers) {
-        console.log('Layers:', body.layers.map(l => `${l.id}:${l.name}(${l.type||'?'}, geom=${l.geometryType||'n/a'})`).join(', '));
-      }
-      if (body.tables) {
-        console.log('Tables:', body.tables.map(t => `${t.id}:${t.name}`).join(', '));
-      }
       if (body.fields) {
         console.log('Field count:', body.fields.length);
         console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
       }
-      if (body.name) console.log('Layer name:', body.name);
+      if (body.name) console.log('Name:', body.name);
+      if (body.type) console.log('Type:', body.type);
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
-      if (body.description) console.log('description:', body.description.slice(0, 500));
-      if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
+      if (body.description) console.log('description:', body.description.slice(0, 300));
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -60,9 +52,11 @@ async function fetchText(url, label) {
   }
 }
 
-await fetchText(
-  'https://gis4.polkcountyiowa.gov/server/rest/services/Public/Polk_County_Parcels/FeatureServer?f=json',
-  'Polk_County_Parcels FeatureServer - full layer/table catalog'
-);
+const base = 'https://gis4.polkcountyiowa.gov/server/rest/services/Public/Polk_County_Parcels/FeatureServer';
+
+await fetchText(`${base}/2?f=json`, 'Table 2: Parcel');
+await fetchText(`${base}/3?f=json`, 'Table 3: Situs Address');
+await fetchText(`${base}/4?f=json`, 'Table 4: Value');
+await fetchText(`${base}/5?f=json`, 'Table 5: Owners Mail');
 
 console.log('\nDone.');
