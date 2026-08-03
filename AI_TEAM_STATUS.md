@@ -72,13 +72,30 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   'geojson' connector is unproven and architecturally risky for a
   ~200k-parcel city; see Open Handoffs below for the full trail. Closed
   pending a human decision, same pattern as Santa Clara/Hennepin/Denver/
-  Clark. The next candidates below San Francisco CA (39) in the
-  facility-count priority list — Mecklenburg County NC/Charlotte (39),
-  Salt Lake County UT (37), Multnomah County OR/Portland (36), Davidson
-  County TN/Nashville (34), Jackson County MO/Kansas City (34),
-  Philadelphia PA (32), Sacramento County CA (30), Cuyahoga County
-  OH/Cleveland (29), Wake County NC/Raleigh (28), Polk County IA/Des
-  Moines (27) — have not yet been investigated.
+  Clark. Mecklenburg County NC/Charlotte (39 facilities) was
+  investigated next over two probe rounds and confirmed unavailable in
+  its current form — round 1 found Charlotte's own GIS host
+  (gis.charlottenc.gov) has a real, live parcel layer
+  (CountyData/Parcels/MapServer/0) but it's boundary/legal-reference
+  only (13 fields: map book/page/block, lot number, PIN, parcel type,
+  condo flag, legal-description-source flag — no owner/address/value).
+  Round 2 targeted Mecklenburg County's own POLARIS GIS platform
+  (polaris3g.mecklenburgcountync.gov), whose host and base path were
+  confirmed real via web search (two other real services indexed under
+  the same `/polarisv/rest/services/` path), but all 3 targeted guesses
+  at a parcel/assessment service name (`parcels`, `Parcels`,
+  `RealEstate`) returned the same generic application-level HTTP 500
+  "Internal Error" page as the bare root listing did in round 1 — not a
+  real ArcGIS error, a server-side fault on that specific path
+  regardless of the guessed name. See Open Handoffs below for the full
+  trail. Closed pending a human follow-up, same pattern as Santa
+  Clara/Hennepin/Denver/Clark/San Francisco. The next candidates below
+  Mecklenburg NC (39) in the facility-count priority list — Salt Lake
+  County UT (37), Multnomah County OR/Portland (36), Davidson County
+  TN/Nashville (34), Jackson County MO/Kansas City (34), Philadelphia PA
+  (32), Sacramento County CA (30), Cuyahoga County OH/Cleveland (29),
+  Wake County NC/Raleigh (28), Polk County IA/Des Moines (27) — have not
+  yet been investigated.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1304,6 +1321,57 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Remaining concerns: none — this handoff is closed.
 
 ## Open Handoffs
+
+- Item: Mecklenburg County, North Carolina (Charlotte) parcel data —
+  next target by facility count (39 in `facilities_index.json`, tied
+  with San Francisco CA) after Bexar County TX.
+- Current status: Open, not added. Investigated over two probe rounds,
+  run 2026-08-03 via GitHub Actions dispatch (this sandbox can't reach
+  charlottenc.gov/mecklenburgcountync.gov directly). Two independent GIS
+  hosts were checked, each real but each with a distinct problem.
+- Round 1: Charlotte's own GIS host, `gis.charlottenc.gov`, has a real,
+  live parcel layer at
+  `arcgis/rest/services/CountyData/Parcels/MapServer/0` — confirmed with
+  exactly the 13 fields a web search predicted (OBJECTID, MAP_BOOK,
+  MAP_PAGE, MAP_BLOCK, LOT_NUM, NC_PIN, PID, PARCEL_TYPE,
+  CONDO_TOWN_FLAG, Legal_From, Shape, Shape.STArea(),
+  Shape.STLength()). This is boundary/legal-reference only — no
+  address, owner, land use, or assessed-value fields at all, so at most
+  it could support parcel_id/pin (NC_PIN, PID), subdivision-adjacent
+  data (MAP_BOOK/PAGE/BLOCK, LOT_NUM), and county_fips — roughly 3-4 of
+  30 canonical fields. Round 1 also tried listing
+  `polaris3g.mecklenburgcountync.gov`'s services root
+  (`/polarisv/rest/services?f=json`), which is Mecklenburg County's own
+  (not Charlotte-city) GIS platform and the more likely home for a real
+  Assessor/Register-of-Deeds parcel service, but got a generic
+  application-level HTTP 500 "Internal Error" HTML page (custom CSS with
+  `--bg`/`--fg`/`--divider` variables) rather than a standard ArcGIS
+  JSON error — even though a web search had already indexed two other
+  real, correctly-structured services under that exact same host+path
+  (`basemap` and `basemap_aerial` MapServers), confirming the host and
+  path structure are real and reachable, just not the bare root listing.
+- Round 2 bypassed the broken root listing and guessed three plausible
+  parcel/assessment service names directly under that same confirmed
+  path: `parcels`, `Parcels`, `RealEstate`
+  (`.../polarisv/rest/services/<name>/MapServer?f=json`). All three
+  returned the identical generic 500 "Internal Error" page as the round
+  1 root listing — not a per-guess 404 or "service not found", the same
+  fault regardless of name. This suggests the issue is with how this
+  path segment (`/polarisv/rest/services/`) itself is served, not with
+  guessing the wrong service name — the real parcel service, if it
+  exists on POLARIS, likely lives under a different path structure not
+  yet identified.
+- Recommended next action: a human needs to either (a) browse
+  `polaris3g.mecklenburgcountync.gov` in an actual browser (not a raw
+  fetch) to find the real navigable path to its parcel/Assessor layer —
+  the site likely front-ends these services through a JS viewer whose
+  network requests would reveal the real REST path, which a plain
+  URL-guessing fetch loop cannot discover; or (b) accept
+  gis.charlottenc.gov's confirmed-real but thin 13-field boundary layer
+  as a partial add, honestly documented as legal-reference-only with no
+  owner/address/value data, consistent with how Travis County TX's thin
+  7-field layer was already handled.
+- Relevant files: `js/parcel/registry.js`.
 
 - Item: San Francisco County, California parcel data — next target by
   facility count (39 in `facilities_index.json`) after Bexar County TX.
