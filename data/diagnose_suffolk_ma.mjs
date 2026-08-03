@@ -1,15 +1,11 @@
-// Temporary diagnostic, round 1: Suffolk County MA (Boston metro)
+// Temporary diagnostic, round 2: Suffolk County MA (Boston metro)
 // parcel service.
 //
-// Next candidate in the facility-count priority queue after Washington
-// County OR (27 facilities, tied with Polk County IA and Hillsborough
-// County FL). Web search found MassGIS's official statewide
-// standardized "Level 3" assessors' parcel dataset (property
-// boundaries with assessor database information), covering all 351
-// Massachusetts cities/towns including Boston/Suffolk County, with a
-// real ArcGIS GeoServices REST distribution URL surfaced directly by
-// the search (not a guess). This round probes that URL directly for
-// its real field schema, description, and copyrightText.
+// Round 1's guessed FeatureServer name (L3_TAXPAR_POLY_ASSESS_gdb
+// under org hGdibHYSPO59RG1h) returned an ArcGIS "Invalid URL" error
+// -- a wrong guess. The same web search also surfaced an alternate,
+// state-hosted proxy service for the same statewide Level 3 parcels
+// dataset. This round probes that alternate URL directly.
 //
 // Deleted once Suffolk County MA is either added or documented as
 // unavailable.
@@ -57,13 +53,13 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/L3_TAXPAR_POLY_ASSESS_gdb/FeatureServer?f=json',
-  'MassGIS Level 3 statewide parcels FeatureServer - layer catalog'
+  'https://gisprpxy.itd.state.ma.us/arcgisserver/rest/services/AGOL/L3_Parcels_FeatureService_4326/FeatureServer?f=json',
+  'MA state-hosted proxy - L3_Parcels_FeatureService_4326 layer catalog'
 );
 
 await fetchText(
-  'https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/L3_TAXPAR_POLY_ASSESS_gdb/FeatureServer/0?f=json',
-  'MassGIS Level 3 statewide parcels FeatureServer - layer 0'
+  'https://gisprpxy.itd.state.ma.us/arcgisserver/rest/services/AGOL/L3_Parcels_FeatureService_4326/FeatureServer/0?f=json',
+  'MA state-hosted proxy - L3_Parcels_FeatureService_4326 layer 0'
 );
 
 console.log('\nDone.');
