@@ -133,10 +133,17 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   County Fiscal Officer) folder on the county's own GIS host, with 142
   fields and real Polygon geometry — one of the richest sources found
   this session (19 of 30 canonical fields mapped). See Recently
-  Completed below. Registry now covers 22 jurisdictions. The next
-  candidates below Cuyahoga County OH (29) in the facility-count
-  priority list — Wake County NC/Raleigh (28), Polk County IA/Des
-  Moines (27) — have not yet been investigated.
+  Completed below. Registry now covers 22 jurisdictions. Wake County
+  NC/Raleigh (28 facilities) was added next — another first-probe
+  success, with the DCAT catalog's own confirmed distribution URL for
+  the county's "Parcels" dataset exactly matching a direct guess at
+  maps.wake.gov, 60 fields, Polygon geometry, and the richest field
+  mapping of the session so far (20 of 30 canonical fields, including
+  the registry's first genuinely separate deed_book/deed_page fields).
+  See Recently Completed below. Registry now covers 23 jurisdictions.
+  The next candidate below Wake County NC (28) in the facility-count
+  priority list — Polk County IA/Des Moines (27) — has not yet been
+  investigated.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1150,6 +1157,53 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Wake County, North Carolina (FIPS 37183, 28 facilities) to
+  the parcel registry, in a single probe round.
+- Findings: Wake County's own open-data DCAT catalog listed a "Parcels"
+  dataset ("maintained by the Wake County GIS Property Mapping Team")
+  whose real ArcGIS GeoServices REST distribution URL
+  (maps.wake.gov/arcgis/rest/services/Property/Parcels/MapServer/0)
+  exactly matched a direct guess probed in the same round, confirmed
+  live: 60 fields, real Polygon geometry — the richest source found
+  this session.
+- Field mapping: 20 of 30 canonical fields mapped (parcel_id, pin,
+  address, owner, land_use_code, land_use_desc, area_sqft, area_acres,
+  building_count, year_built, gross_floor_area, assessed_value,
+  land_value, improvement_value, last_sale_date, last_sale_price,
+  deed_book, deed_page, legal_desc, county_fips). Wake County uses two
+  parallel identifier schemes — PIN_NUM (primary Property
+  Identification Number) mapped to parcel_id, REID (Real Estate ID)
+  mapped to pin. address maps to the source's own pre-combined
+  SITE_ADDRESS field rather than the split street-component fields.
+  area_sqft mapped to CALC_AREA: distinct from the separately-present
+  DEED_ACRES (mapped to area_acres) and the native SHAPE.AREA geometry
+  field, its naming strongly implies a GIS-calculated square-foot area
+  rather than acres. deed_book/deed_page map field-for-field — the
+  first county in this registry with two genuinely separate deed
+  reference fields rather than one combined string. owner_mailing left
+  unmapped: ADDR1/ADDR2/ADDR3 are pre-formatted mailing-address lines
+  with no single combined field, consistent with not concatenating
+  multi-line source data ourselves. No zoning field exists (only
+  land-use classification). No tax_year or tax_amount field exists
+  (billing data lives outside this GIS layer). The remaining 10 fields
+  recorded in `notProvidedBySource` — verified programmatically to
+  cover all 30 canonical fields with zero gaps and zero overlaps.
+- Licensing: Wake County's own GIS host (maps.wake.gov), found via the
+  county's own open data portal DCAT catalog. Standard "public
+  government data, verify terms before commercial redistribution"
+  caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 20 mapped fields plus "Not
+  published by this source" for the remaining 10, zero page errors.
+  Registry now covers 23 jurisdictions.
+- Temp files (`data/diagnose_wake.mjs`,
+  `.github/workflows/_diagnose_wake.yml`) deleted in the same commit
+  that added the registry entry.
+- Last updated: 2026-08-03
 
 - Date: 2026-08-03
 - Agent: Claude Code
