@@ -1,13 +1,12 @@
-// Temporary diagnostic, round 2: Harris County TX parcel service.
+// Temporary diagnostic, round 3: Harris County TX parcel service.
 //
-// Round 1's direct guesses failed, but a search scoped to the real,
-// authoritative "HarrisCountyGIS" ArcGIS owner (confirmed genuine by
-// other clearly-official layers from the same account: "Harris County",
-// "HC_Boundary", "City_Limits") found two strong candidates: "Harris
-// County Parcels" (ArcGIS Online hosted) and "HCAD Parcels Layer"
-// (self-hosted at hcusgis.hctx.net -- Harris County's own domain; HCAD
-// is the Harris County Appraisal District, likely the richer valuation
-// source). This fetches both real schemas to pick the best one.
+// Round 2 found: "Harris County Parcels" FeatureServer root is live and
+// confirms its actual layer is index 1 ("1:Harris County Parcels"), not
+// 0 as guessed -- that's why /0 404'd. The self-hosted "HCAD Parcels
+// Layer" at hcusgis.hctx.net failed at the connection level both times
+// ("fetch failed") -- likely unreachable from this network, not
+// confirmed dead by an HTTP response. This fetches the correct layer 1
+// definition.
 //
 // Deleted once Harris is either added or documented as unavailable.
 
@@ -36,7 +35,8 @@ async function fetchText(url, label) {
       }
       if (body.name) console.log('Layer name:', body.name);
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
-      if (body.layers) console.log('Sub-layers:', body.layers.map(l => `${l.id}:${l.name}`).join(', '));
+      if (body.description) console.log('description:', body.description);
+      if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -53,20 +53,16 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://services.arcgis.com/su8ic9KbA7PYVxPS/arcgis/rest/services/Harris_County_Parcels/FeatureServer?f=json',
-  'Harris County Parcels - FeatureServer root'
+  'https://services.arcgis.com/su8ic9KbA7PYVxPS/arcgis/rest/services/Harris_County_Parcels/FeatureServer/1?f=json',
+  'Harris County Parcels - layer 1 definition (correct layer id)'
 );
-await fetchText(
-  'https://services.arcgis.com/su8ic9KbA7PYVxPS/arcgis/rest/services/Harris_County_Parcels/FeatureServer/0?f=json',
-  'Harris County Parcels - layer 0 definition'
-);
+
+// Retry the self-hosted HCAD service once more with a longer implicit
+// wait via the runner's own DNS resolution, in case the prior failures
+// were transient rather than a genuine block.
 await fetchText(
   'https://hcusgis.hctx.net/hosting/rest/services/Hosted/HCAD_Parcels_Layer/FeatureServer?f=json',
-  'HCAD Parcels Layer - FeatureServer root'
-);
-await fetchText(
-  'https://hcusgis.hctx.net/hosting/rest/services/Hosted/HCAD_Parcels_Layer/FeatureServer/0?f=json',
-  'HCAD Parcels Layer - layer 0 definition'
+  'HCAD Parcels Layer - FeatureServer root (retry)'
 );
 
 console.log('\nDone.');
