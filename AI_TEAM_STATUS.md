@@ -42,9 +42,12 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   Denver — needed documentation as blocked/unavailable rather than a
   clean add) before researching further counties. User said to continue.
   New York County NY / Manhattan (52 facilities) was added next — see
-  Recently Completed below. Registry now covers 13 jurisdictions. The
-  next candidates below New York County (52) in the facility-count
-  priority list — Travis County TX/Austin (45), Clark County NV/Las
+  Recently Completed below. Registry now covers 13 jurisdictions. User
+  said "do what you think is best" — continuing the incremental
+  expansion autonomously. Travis County TX/Austin (45 facilities) was
+  added next over 2 probe rounds — see Recently Completed below.
+  Registry now covers 14 jurisdictions. The next candidates below Travis
+  TX (45) in the facility-count priority list — Clark County NV/Las
   Vegas (43), Miami-Dade FL (40), Bexar County TX/San Antonio (39), San
   Francisco CA (39), Mecklenburg County NC/Charlotte (39), Salt Lake
   County UT (37), Multnomah County OR/Portland (36), Davidson County
@@ -52,6 +55,44 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   (32), Sacramento County CA (30), Cuyahoga County OH/Cleveland (29),
   Wake County NC/Raleigh (28), Polk County IA/Des Moines (27) — have not
   yet been investigated.
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Travis County TX (Austin) to the parcel registry — the
+  next highest-priority market by facility count after New York County.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: `js/parcel/registry.js` now covers 14 jurisdictions (up from
+  13). Fetch-confirmed across 2 GitHub Actions-dispatched probe rounds
+  (this dev sandbox cannot reach traviscountytx.gov directly). Round 1's
+  blind subdomain guesses (gis.traviscad.org, maps.traviscad.org) failed
+  at DNS; gis.traviscountytx.gov resolved but 404'd at a guessed path.
+  Rather than keep guessing, round 2 used a web search, which surfaced
+  the real path structure (this host uses "server1", not "arcgis", in
+  its REST base path) and confirmed the "TCAD_public" layer live with a
+  real 21-field schema on the first specific URL tried.
+- Only 7 of 30 canonical fields mapped — the thinnest of any Texas
+  source in this registry. "TCAD_public"'s name and its field list
+  (situs address, legal description, acreage, no owner/valuation/zoning
+  at all) both indicate a deliberately limited public-facing boundary
+  layer, same pattern as this registry's Virginia counties: the fuller
+  CAMA record (owner, assessed value, sale history) lives behind TCAD's
+  own separate property-search portal, a third-party ProdigyCAD-hosted
+  system that isn't a general-purpose queryable service, not this
+  ArcGIS layer. Documented honestly as thin rather than padded with
+  guesses; two sibling layers at the same host (a plain "TCAD" MapServer
+  and "TCAD_Travis_County_Property") were checked and ruled out — the
+  latter turned out to be Travis-County-government-owned property only,
+  not general parcels.
+- Licensing: copyrightText identifies the source as "Travis Central
+  Appraisal District" — no redistribution restriction found, same as
+  every other county in this registry except Cook County IL.
+- Validated the same way as every prior addition: fieldMap +
+  notProvidedBySource cover all 30 canonical schema.js fields with zero
+  gaps/overlaps (verified via script); `tests/parcel.test.js` — 293/293
+  passing; live-tested via Playwright through the real
+  `window.PARCEL_PANEL.show()` rendering path — populated fields render
+  real values, gaps render "Not published by this source", no page
+  errors.
 
 - Date: 2026-08-03
 - Agent: Claude Code
