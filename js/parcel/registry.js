@@ -1379,6 +1379,99 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Multnomah County, Oregon ───────────────────────────────────────
+     * Live at services5.arcgis.com (Multnomah County's own hosted org),
+     * layer "Multnomah County Tax Parcels" — found via the county's own
+     * open data portal (gis-multco.opendata.arcgis.com) DCAT catalog
+     * after a web-search-guessed candidate at a different org
+     * (services3.arcgis.com/tNPgIZWOB0Efvm0g/.../Tax_Lots) turned out,
+     * on inspection of its own description/copyrightText, to be Umatilla
+     * County OR data — a wrong-county false positive despite that exact
+     * URL surfacing repeatedly in search results. Confirmed live
+     * 2026-08-03 via GitHub Actions dispatch (this sandbox's proxy
+     * returns HTTP 403 on arcgis.com directly) with a real 56-field
+     * schema, sourced from the county's own Department of Assessment,
+     * Recording and Taxation (a much richer layer than most recently
+     * added counties). MAPTAXLOT (Oregon's standard "map and taxlot"
+     * number) mapped to parcel_id; PROPID (a distinct account/property
+     * ID) mapped to pin — two genuinely distinct identifier fields, same
+     * convention as every other jurisdiction with two real ID fields.
+     * SITUSADDR used directly for address (a real composite field,
+     * alongside — but not built from — its own split components
+     * SITUSNUM/DIR/NAME/SUFFIX/...). NAME mapped to owner; no single
+     * composite mailing-address field exists (only split
+     * ADDR1/ADDR2/CITY/STATE/ZIP), so owner_mailing is left unmapped,
+     * same convention as every other split-address source here.
+     * PROPCLASS/IMPTYPE mapped to land_use_code/land_use_desc
+     * respectively. SIZESQFT/SIZEACRES have confirmed units (their names
+     * state sqft/acres) and map to area_sqft/area_acres directly.
+     * IMP_COUNT (Improvement Count) mapped to building_count. MAIN_SQFT
+     * (main building square footage, distinct from the parcel-area
+     * fields) mapped to gross_floor_area. Oregon's constitutional
+     * Measure 50 assessed value (ROLLM50) mapped to assessed_value —
+     * the correct "official" assessed-value concept for Oregon, distinct
+     * from real market value, which isn't separately exposed here;
+     * ROLLLAND/ROLLIMP mapped to land_value/improvement_value, ROLLYEAR
+     * to tax_year. SALE_DATE/SALE_PRICE mapped to
+     * last_sale_date/last_sale_price. deed_book/deed_page are left
+     * unmapped — Oregon's recording system uses instrument numbers
+     * (INST_NUM), a genuinely different identifier scheme than
+     * book/page, not a renamed equivalent. LEGAL (full legal description
+     * text) mapped to legal_desc; no separate subdivision-name field
+     * exists (TRACTLOT/BLOCK/ADDLEGAL are legal-description components,
+     * not a subdivision name), so subdivision is left unmapped.
+     * ─────────────────────────────────────────────────────────────────── */
+    '41051': {
+      id:          'or-multnomah-county',
+      name:        'Multnomah County, Oregon',
+      state:       'OR',
+      fips:        '41051',
+      connector:   'arcgis',
+      serviceUrl:  'https://services5.arcgis.com/x7DNZL1YqNQVNykA/arcgis/rest/services/Multnomah_County_Taxlot_Parcels/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'MAPTAXLOT',
+        pin:                 'PROPID',
+        address:             'SITUSADDR',
+        owner:               'NAME',
+        zoning_code:         'ZONING',
+        land_use_code:       'PROPCLASS',
+        land_use_desc:       'IMPTYPE',
+        area_sqft:           'SIZESQFT',
+        area_acres:          'SIZEACRES',
+        building_count:      'IMP_COUNT',
+        year_built:          'ACTYEARBUILT',
+        gross_floor_area:    'MAIN_SQFT',
+        assessed_value:      'ROLLM50',
+        land_value:          'ROLLLAND',
+        improvement_value:   'ROLLIMP',
+        tax_year:            'ROLLYEAR',
+        last_sale_date:      'SALE_DATE',
+        last_sale_price:     'SALE_PRICE',
+        legal_desc:          'LEGAL',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_desc', 'overlay_districts',
+        'lot_depth_ft', 'lot_width_ft', 'tax_amount', 'deed_book',
+        'deed_page', 'subdivision', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Multnomah County Department of Assessment, Recording and Taxation',
+        url:     'https://www.multco.us/assessment-taxation',
+        portal:  'https://gis-multco.opendata.arcgis.com/datasets/multco::multnomah-county-taxlot-parcels',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Portland metro — major Oregon data center market.',
+      },
+    },
+
   };
 
   function get(fips) {
