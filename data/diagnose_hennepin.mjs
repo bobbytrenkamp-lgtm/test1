@@ -1,8 +1,14 @@
-// Temporary diagnostic: find a live parcel service for Hennepin County MN
-// (#7 in the facility-count priority list, 63 facilities), the next
-// county after Los Angeles CA.
-// Deleted once this is either added to the registry or documented as
-// unavailable.
+// Temporary diagnostic, round 2: Hennepin County MN parcel service.
+//
+// Round 1's direct URL guesses (gis.hennepin.us, gis.metc.state.mn.us)
+// both 404'd, but an ArcGIS Online catalog search found the real thing:
+// the Metropolitan Council (Metro GIS) publishes a "Metropolitan 7-County
+// Parcel Polygons" dataset covering the whole Twin Cities metro
+// (including Hennepin), hosted at arcgis.metc.state.mn.us, owner
+// "commons_etl_user". This fetches the two most promising candidates'
+// real schemas: the unversioned/latest layer and the "Aggregate" layer.
+//
+// Deleted once Hennepin is either added or documented as unavailable.
 
 const TIMEOUT_MS = 25000;
 
@@ -30,12 +36,8 @@ async function fetchText(url, label) {
       if (body.name) console.log('Layer name:', body.name);
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
       if (body.layers) console.log('Sub-layers:', body.layers.map(l => `${l.id}:${l.name}`).join(', '));
-      if (Array.isArray(body.results)) {
-        console.log(`total: ${body.total}`);
-        for (const r of body.results.slice(0, 10)) {
-          console.log(`- id=${r.id} title="${r.title}" type="${r.type}" owner="${r.owner}" url="${r.url}"`);
-        }
-      }
+      if (body.description) console.log('description:', body.description);
+      if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -51,36 +53,23 @@ async function fetchText(url, label) {
   }
 }
 
-// Candidate 1: Hennepin County's own GIS Open Data ArcGIS Server
 await fetchText(
-  'https://gis.hennepin.us/arcgis/rest/services/Public/Parcels/MapServer?f=json',
-  'Hennepin County GIS - Public/Parcels MapServer root (guess)'
+  'https://arcgis.metc.state.mn.us/data1/rest/services/parcels/Parcels/FeatureServer?f=json',
+  'Metropolitan 7-County Parcel Polygons (unversioned) FeatureServer root'
 );
 await fetchText(
-  'https://gis.hennepin.us/arcgis/rest/services/Public/Parcels/MapServer/0?f=json',
-  'Hennepin County GIS - Public/Parcels layer 0 definition (guess)'
+  'https://arcgis.metc.state.mn.us/data1/rest/services/parcels/Parcels/FeatureServer/0?f=json',
+  'Metropolitan 7-County Parcel Polygons (unversioned) layer 0 definition'
 );
-
-// Candidate 2: Metro GIS / Metropolitan Council regional parcel dataset
-// (Minnesota's 7-county Twin Cities metro often publishes a shared
-// regional parcel layer via the Metropolitan Council)
 await fetchText(
-  'https://gis.metc.state.mn.us/arcgis/rest/services/Parcels/Parcels_2024/FeatureServer?f=json',
-  'Metropolitan Council regional parcels FeatureServer (guess)'
+  'https://arcgis.metc.state.mn.us/data1/rest/services/parcels/Parcels_Aggregate/FeatureServer/0?f=json',
+  'Metropolitan 7-County Parcel Polygons - Aggregate layer 0 definition'
 );
 
-// Candidate 3: ArcGIS Online catalog search, general + scoped to likely owners
+// Terms of use / licensing for the Metropolitan Council's open data.
 await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=Hennepin%20County%20parcels&f=json&num=10',
-  'ArcGIS Online catalog search for Hennepin County parcels'
-);
-await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=parcels%20AND%20owner:HennepinCounty&f=json&num=10',
-  'ArcGIS Online search scoped to HennepinCounty owner'
-);
-await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=parcels%20AND%20owner:Hennepin_GIO&f=json&num=10',
-  'ArcGIS Online search scoped to Hennepin_GIO owner'
+  'https://gisdata.mn.gov/dataset/us-mn-state-metc-plan-parcels-open',
+  'MN Geospatial Commons dataset page for the parcels-open dataset'
 );
 
 console.log('\nDone.');
