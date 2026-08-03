@@ -1,19 +1,25 @@
-// Temporary diagnostic, round 1: San Francisco County CA parcel service.
+// Temporary diagnostic, round 2: San Francisco County CA parcel service.
 //
-// Next candidate in the facility-count priority queue after Bexar
-// County TX (39). San Francisco (39 facilities, tied with Bexar) is a
-// consolidated city-county. A web search did NOT find a direct ArcGIS
-// FeatureServer URL this time (unlike Travis/Bexar/Miami-Dade) -- SF's
-// parcel data lives primarily on DataSF, a Socrata open-data portal
-// (data.sfgov.org), not an ArcGIS REST service. Two candidates:
-//   1. DataSF's "Parcels - Active and Retired" dataset (Socrata SODA
-//      API, dataset id acdm-wktn) -- Socrata supports a .geojson output
-//      format, which this app's 'geojson' connector type could
-//      potentially use directly.
-//   2. An ArcGIS Online item found via search
-//      (hub.arcgis.com/datasets/84008d4afef24dc3baabb2e73528a263) --
-//      resolving its real item metadata via the ArcGIS sharing API to
-//      find the actual backing FeatureServer URL, if any.
+// Round 1 found DataSF's "Parcels - Active and Retired" Socrata dataset
+// genuinely live with real fields (mapblklot/blklot, address components,
+// zoning_code, zoning_district, administrative districts) -- but zero
+// owner/value/legal fields, and no composite address field. A web
+// search after round 1 found the real reason: California state law
+// prohibits SF's Assessor-Recorder from posting ownership information
+// online at all (available only for purchase / in-person at the
+// office) -- this isn't a data gap, it's a legal restriction specific
+// to this source. Round 1's ArcGIS Online item lead was a dead end (a
+// Web Mapping Application, not a feature layer; its url field just
+// pointed back to the DataSF portal homepage).
+//
+// The same search found a second, more promising lead: "ASR Mapping",
+// an ArcGIS Online hub specifically for SF's Assessor-Recorder
+// (assessor-mapping-sfgov.hub.arcgis.com). The DataSF portal item from
+// round 1 was owned by ArcGIS Online user "sfgov_agofo" (likely the
+// Assessor-Recorder's own account -- "AGOFO" ~ Assessor-Recorder). This
+// round searches that user's public content for a real parcel/
+// assessment FeatureServer that might carry genuine valuation data
+// (even with ownership names legally excluded).
 //
 // Deleted once San Francisco County is either added or documented as
 // unavailable.
@@ -51,6 +57,12 @@ async function fetchText(url, label) {
           console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
         }
         if (body.features) console.log('Feature count:', body.features.length);
+        if (body.results) {
+          console.log('Search total:', body.total, '  results returned:', body.results.length);
+          for (const item of body.results) {
+            console.log(`  - [${item.type}] "${item.title}" owner=${item.owner} url=${item.url || '(none)'} id=${item.id}`);
+          }
+        }
       }
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
@@ -68,13 +80,13 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://data.sfgov.org/resource/acdm-wktn.json?$limit=1',
-  'DataSF Socrata SODA API - Parcels Active and Retired (sample record)'
+  'https://www.arcgis.com/sharing/rest/search?q=owner:sfgov_agofo&f=json&num=50',
+  "ArcGIS Online content search - items owned by sfgov_agofo (SF Assessor-Recorder's likely account)"
 );
 
 await fetchText(
-  'https://www.arcgis.com/sharing/rest/content/items/84008d4afef24dc3baabb2e73528a263?f=json',
-  'ArcGIS Online item metadata (San Francisco Open Data Portal parcels)'
+  'https://www.arcgis.com/sharing/rest/search?q=title:%22parcel%22+AND+owner:sfgov_agofo&f=json&num=25',
+  'ArcGIS Online content search - "parcel" items owned by sfgov_agofo'
 );
 
 console.log('\nDone.');
