@@ -1,4 +1,4 @@
-// Temporary diagnostic, round 3: New York County NY parcel service.
+// Temporary diagnostic, round 4: New York County NY parcel service.
 //
 // Round 1 confirmed the first guess was right: MAPPLUTO FeatureServer
 // at services5.arcgis.com/GfwWNkhOj9bNBqoJ/.../MAPPLUTO/FeatureServer is
@@ -11,9 +11,11 @@
 // MAPPLUTO is a citywide 5-borough dataset (Manhattan/Bronx/Brooklyn/
 // Queens/Staten Island all in one layer), so New York County (Manhattan)
 // needs a where-clause filter on Borough/BoroCode to stay scoped to the
-// right FIPS. This round fetches a couple of real sample records to
-// confirm the actual encoded value (e.g. 'MN' vs 'Manhattan' vs 1) rather
-// than guessing from memory of the well-known PLUTO data dictionary.
+// right FIPS. Round 3 tried to fetch sample records to confirm the
+// actual encoded Borough/BoroCode values, but the logging helper only
+// printed the query response's field *schema*, not the actual feature
+// attribute values -- a real bug, not a dead end. This round fixes that
+// by logging body.features[].attributes directly.
 //
 // Deleted once NYC is either added or documented as unavailable.
 
@@ -44,6 +46,12 @@ async function fetchText(url, label) {
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
       if (body.description) console.log('description:', body.description);
       if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
+      if (body.features) {
+        console.log('Feature count:', body.features.length);
+        for (const f of body.features) {
+          console.log('  attributes:', JSON.stringify(f.attributes));
+        }
+      }
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
