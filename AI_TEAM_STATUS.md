@@ -89,9 +89,11 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   real ArcGIS error, a server-side fault on that specific path
   regardless of the guessed name. See Open Handoffs below for the full
   trail. Closed pending a human follow-up, same pattern as Santa
-  Clara/Hennepin/Denver/Clark/San Francisco. The next candidates below
-  Mecklenburg NC (39) in the facility-count priority list — Salt Lake
-  County UT (37), Multnomah County OR/Portland (36), Davidson County
+  Clara/Hennepin/Denver/Clark/San Francisco. Salt Lake County UT (37
+  facilities) was added next — a first-probe success, see Recently
+  Completed below. Registry now covers 17 jurisdictions. The next
+  candidates below Salt Lake County UT (37) in the facility-count
+  priority list — Multnomah County OR/Portland (36), Davidson County
   TN/Nashville (34), Jackson County MO/Kansas City (34), Philadelphia PA
   (32), Sacramento County CA (30), Cuyahoga County OH/Cleveland (29),
   Wake County NC/Raleigh (28), Polk County IA/Des Moines (27) — have not
@@ -1109,6 +1111,61 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Salt Lake County, Utah (FIPS 49035, 37 facilities) to the
+  parcel registry — a first-probe success following the same web-
+  search-first discovery pattern as Miami-Dade/Bexar.
+- Findings: Web search found a specific, real candidate immediately:
+  UGRC (Utah Geospatial Resource Center) hosts a "Parcels_SaltLake_LIR"
+  FeatureServer layer, part of the statewide Land Information Record
+  (LIR) parcel program maintained in coordination with the county
+  Assessor and updated monthly. Confirmed live via GitHub Actions
+  dispatch (this sandbox's proxy returns HTTP 403 on arcgis.com
+  directly, confirmed via a direct curl test) with a real 30-field
+  schema: PARCEL_ID, SERIAL_NUM, PARCEL_ADD, PARCEL_CITY, PROP_CLASS,
+  PROP_TYPE, PARCEL_ACRES, BLDG_SQFT, HOUSE_CNT, BUILT_YR,
+  TOTAL_MKT_VALUE, LAND_MKT_VALUE, SUBDIV_NAME, plus admin/geometry
+  fields. No owner name field exists anywhere in this layer — UGRC's
+  statewide LIR program deliberately omits owner data (available only
+  through each county's own non-standardized assessor lookup app), a
+  structural gap, not a guess. Two fallback candidates were also probed
+  (the county's own open data portal DCAT catalog, and a guessed county
+  GIS host) but the UGRC layer's first-probe success made them
+  unnecessary to pursue further.
+- Field mapping: 13 of 30 canonical fields mapped (parcel_id, pin,
+  address, land_use_code, land_use_desc, area_acres, gross_floor_area,
+  building_count, year_built, assessed_value, land_value, subdivision,
+  county_fips); the remaining 17 (owner, owner_mailing, zoning_code,
+  zoning_desc, overlay_districts, area_sqft, lot_depth_ft, lot_width_ft,
+  improvement_value, tax_year, tax_amount, last_sale_date,
+  last_sale_price, deed_book, deed_page, legal_desc, census_tract)
+  recorded in `notProvidedBySource` — verified programmatically to
+  cover all 30 canonical fields with zero gaps and zero overlaps.
+  PARCEL_ID/SERIAL_NUM mapped separately to parcel_id/pin (two distinct
+  real identifier fields, standard for Utah county assessors). PARCEL_
+  ADD used directly for address, not concatenated with the separate
+  PARCEL_CITY field (no canonical "city" field exists). PARCEL_ACRES has
+  confirmed units (name states acres) and maps to area_acres; area_sqft
+  left unmapped since the only alternative, Shape__Area, has unconfirmed
+  units, same caution applied to every other ambiguous-unit area field
+  in this registry. BLDG_SQFT (a distinct building-square-footage field)
+  maps to gross_floor_area. TOTAL_MKT_VALUE/LAND_MKT_VALUE map to
+  assessed_value/land_value, matching how every other jurisdiction's
+  market-value concept is represented.
+- Licensing: UGRC is a Utah state government agency; the live service's
+  `description` field describes the public LIR parcel-sharing program
+  with no redistribution restriction found; standard "public government
+  data, verify terms before commercial redistribution" caveat applied,
+  consistent with every other jurisdiction in this registry.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 13 mapped fields plus "Not
+  published by this source" for all 17 unmapped fields, zero page
+  errors. Registry now covers 17 jurisdictions.
+- Shipped: PR #271 (registry addition, deletes the temporary diagnostic
+  script/workflow in the same commit).
 
 - Date: 2026-08-02
 - Agent: Claude (session continuing `claude/us-datacenter-restrictions-map-skooi7`)
