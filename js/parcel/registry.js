@@ -440,6 +440,194 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Maricopa County, Arizona ─────────────────────────────────────────
+     *
+     * Maricopa County (Phoenix metro) is the #2 target by facility count in
+     * this app's own dataset (123 in facilities_index.json) after Cook
+     * County IL, which is deliberately excluded — see that county's note in
+     * AI_TEAM_STATUS.md's Open Handoffs (its parcel data explicitly
+     * prohibits redistribution over a network without permission).
+     *
+     * 2026-08-03 — added via the same fetch-confirm-before-wiring process
+     * as the Maryland fix above: the Assessor's own MapServer (fetch-
+     * confirmed on a GitHub Actions runner; this dev sandbox cannot reach
+     * arcgis.com directly) is unusually rich for a single-service layer —
+     * 57 fields, including a real owner-name field (several jurisdictions
+     * in this registry redact it) and full assessed-value/sale/deed data.
+     * LAND_SIZE exists but its unit could not be confirmed from the schema
+     * alone (no companion units field, unlike Maryland's paired LUOM) — left
+     * unmapped rather than guessed, matching the Maryland LANDAREA decision.
+     * ─────────────────────────────────────────────────────────────────── */
+    '04013': {
+      id:          'az-maricopa-county',
+      name:        'Maricopa County, Arizona',
+      state:       'AZ',
+      fips:        '04013',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'APN',
+        pin:                 'APN',
+        address:             'PHYSICAL_ADDRESS',
+        owner:               'OWNER_NAME',
+        owner_mailing:       'MAIL_ADDRESS',
+        zoning_code:         'CITY_ZONING',
+        land_use_code:       'PUC',
+        year_built:          'CONST_YEAR',
+        gross_floor_area:    'LIVING_SPACE',
+        assessed_value:      'FCV_CUR',
+        tax_year:            'TAX_YR_CUR',
+        last_sale_date:      'SALE_DATE',
+        last_sale_price:     'SALE_PRICE',
+        deed_book:           'MCR_BOOK',
+        deed_page:           'MCR_PAGE',
+        subdivision:         'SUBNAME',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'zoning_desc', 'land_use_desc', 'overlay_districts', 'area_sqft',
+        'area_acres', 'lot_depth_ft', 'lot_width_ft', 'building_count',
+        'land_value', 'improvement_value', 'tax_amount', 'legal_desc',
+        'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Maricopa County Assessor',
+        url:     'https://mcassessor.maricopa.gov/',
+        portal:  'https://gis.mcassessor.maricopa.gov/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Phoenix metro — one of the largest and fastest-growing US data center markets.',
+      },
+    },
+
+    /* ── Dallas County, Texas ─────────────────────────────────────────────
+     *
+     * Dallas County — #3 by facility count (118) in this app's dataset.
+     *
+     * 2026-08-03 — fetch-confirmed. Two candidates were probed: Dallas
+     * Central Appraisal District's own service (maps.dcad.org) returned
+     * HTTP 404 at its expected REST path, so this uses the City of
+     * Dallas-hosted "Tax Parcels" basemap layer instead, which does return
+     * a valid layer. This is a lighter "basemap" layer (42 fields) than
+     * Maricopa's or Fulton's full appraisal-district layers — no zoning,
+     * assessed-value, or sale-history fields are present at all, only
+     * ownership, legal description, and land-use classification. Address
+     * components (ST_NUM/ST_DIR/ST_NAME/ST_TYPE) exist individually but not
+     * as one field; left unmapped rather than concatenated, matching this
+     * registry's existing convention (see Maryland's owner_mailing note).
+     * ─────────────────────────────────────────────────────────────────── */
+    '48113': {
+      id:          'tx-dallas-county',
+      name:        'Dallas County, Texas',
+      state:       'TX',
+      fips:        '48113',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis.dallascityhall.com/arcgis/rest/services/Basemap/DallasTaxParcels/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'ACCT',
+        pin:                 'ACCT',
+        owner:               'TAXPANAME1',
+        land_use_code:       'SPTBCODE',
+        land_use_desc:       'PROP_CL',
+        area_sqft:           'AREA_FEET',
+        tax_year:            'APPRAISALYEAR',
+        legal_desc:          'LEGAL_1',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'overlay_districts', 'area_acres', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'year_built', 'gross_floor_area', 'assessed_value',
+        'land_value', 'improvement_value', 'tax_amount', 'last_sale_date',
+        'last_sale_price', 'deed_book', 'deed_page', 'subdivision',
+        'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'City of Dallas GIS',
+        url:     'https://gis.dallascityhall.com/',
+        portal:  'https://dallas-county-open-data-hub-dallascountygis.hub.arcgis.com/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'DFW metro — major Texas data center market. Boundary/basic-attribute layer only: no zoning, valuation, or sale-history fields.',
+      },
+    },
+
+    /* ── Fulton County, Georgia ───────────────────────────────────────────
+     *
+     * Fulton County (Atlanta metro) — #5 by facility count (98) in this
+     * app's dataset, after Santa Clara County CA (#4, 108 facilities),
+     * which is still pending verification — its candidate service timed
+     * out on the first probe and needs a retry before it can be added.
+     *
+     * 2026-08-03 — fetch-confirmed via the county's PropertyMapViewer
+     * service, layer 11 ("Tax Parcel") of 38 layers in that MapServer.
+     * Georgia's assessment system publishes both an "Assess" value (the
+     * actual tax basis) and an "Appr" (appraised) value per component —
+     * this registry's single canonical assessed_value/land_value/
+     * improvement_value slots map to the Assess variants, since those are
+     * what the other jurisdictions' "assessed value" fields represent; the
+     * Appr fields aren't part of the canonical schema and are simply
+     * unused, not missing.
+     * ─────────────────────────────────────────────────────────────────── */
+    '13121': {
+      id:          'ga-fulton-county',
+      name:        'Fulton County, Georgia',
+      state:       'GA',
+      fips:        '13121',
+      connector:   'arcgis',
+      serviceUrl:  'https://gismaps.fultoncountyga.gov/arcgispub2/rest/services/PropertyMapViewer/PropertyMapViewer/MapServer/11',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'ParcelID',
+        pin:                 'ParcelID',
+        address:             'Address',
+        owner:               'Owner',
+        land_use_code:       'LUCode',
+        area_acres:          'LandAcres',
+        assessed_value:      'TotAssess',
+        land_value:          'LandAssess',
+        improvement_value:   'ImprAssess',
+        tax_year:            'TaxYear',
+        subdivision:         'Subdiv',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'land_use_desc',
+        'overlay_districts', 'area_sqft', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'year_built', 'gross_floor_area', 'tax_amount',
+        'last_sale_date', 'last_sale_price', 'deed_book', 'deed_page',
+        'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Fulton County GIS',
+        url:     'https://www.fultoncountyga.gov/maps',
+        portal:  'https://gisdata.fultoncountyga.gov/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Atlanta metro — major Southeast US data center market.',
+      },
+    },
+
   };
 
   function get(fips) {

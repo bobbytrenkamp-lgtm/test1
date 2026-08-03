@@ -2082,7 +2082,7 @@ function renderAboutPage() {
             <div class="roadmap-dot done"></div>
             <div class="roadmap-content">
               <div class="roadmap-title">Parcel Intelligence</div>
-              <div class="roadmap-desc">Live parcel data for 5 counties with DC feasibility scoring, zoning analysis, and proximity assessment.</div>
+              <div class="roadmap-desc">Live parcel data for ${window.PARCEL_REGISTRY ? window.PARCEL_REGISTRY.all().length : 5} counties with DC feasibility scoring, zoning analysis, and proximity assessment.</div>
             </div>
             <span class="roadmap-badge done">Live</span>
           </div>
