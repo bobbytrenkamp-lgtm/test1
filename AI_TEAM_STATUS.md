@@ -12,6 +12,56 @@ No active work in progress as of 2026-08-03.
 
 - Date: 2026-08-03
 - Agent: Claude Code
+- Task: Fixed the Maryland parcel endpoint outage (Howard 24027 +
+  Montgomery 24031), open since 2026-07-31 — the first step of a
+  user-requested effort to expand parcel coverage incrementally,
+  starting with fixing what was already broken before adding more
+  counties.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: the statewide endpoint didn't just have an extended outage —
+  Maryland migrated it to a different hostname. `geodata.md.gov` (the
+  old URL) now serves an explicit "Site Maintenance" HTML page (not a
+  generic error), confirming a deliberate move rather than a crash;
+  the identical service is live at `mdgeodata.md.gov`. Both MD
+  registry entries repointed there. While already re-verifying the
+  service, also fetched its real, complete 117-field schema and
+  corrected the *entire* fieldMap against it — the previous mapping
+  had been written without ever fetching the schema and got nearly
+  every non-boundary field wrong (`TOTAL_ASSESSED`, `ASSESSMENT_YEAR`,
+  `DEED_DATE`, `SALE_PRICE`, `SUBDIVISION`, `OWNER`: none of these
+  exist on the real service). Now 22 fields map correctly per county
+  (up from 17 mostly-invented ones), including 8 newly-available
+  canonical fields the old mapping never touched at all (lot
+  dimensions, year built, gross floor area, deed book/page, legal
+  description, census tract). No owner-name field exists anywhere in
+  the schema — Maryland's public layer appears to deliberately redact
+  it — recorded via `notProvidedBySource` (8 fields) rather than
+  guessed, so the parcel panel now explicitly says "Not published by
+  this source" for those (see the 2026-08-02 parcel-panel-wording fix)
+  instead of silently showing nothing, which is what MD's panel did
+  for every unmapped field before since it never had a
+  `notProvidedBySource` block at all.
+- Verified, not assumed: this sandbox cannot reach `arcgis.com`/
+  `*.md.gov` directly, so used the same technique as the earlier HIFLD
+  investigation — a temporary diagnostic script + workflow
+  (`_diagnose_md_parcels`, removed after use) dispatched on a GitHub
+  Actions runner with real network access. It directly fetched
+  `?f=json` from both the old and new hostnames (confirming the 200 vs.
+  "Site Maintenance" 503 split) and pulled the service's real field
+  list, rather than trusting a web search summary. Confirmed the new
+  fieldMap's 22 keys and 8 `notProvidedBySource` entries are all valid
+  canonical schema.js field IDs (no typos). Full `tests/run_all.sh`
+  176/176 and `tests/parcel.test.js` 293/293 passing.
+- Files changed: `js/parcel/registry.js`, this file.
+- Related systems: the parcel intelligence panel for both MD counties;
+  the monthly `check_parcel_services.yml` probe (will report `LIVE`
+  for both on its next run instead of the recorded `DEAD*`).
+- Next: per the user's request, continuing to add more counties
+  incrementally — see Open Handoffs below for the prioritization
+  approach.
+
+- Date: 2026-08-03
+- Agent: Claude Code
 - Task: After 4 survey-and-fix rounds this session (PRs #216-224) landed
   several subtle bugs — a race condition, a listener leak, an href
   scheme-validation gap — none of them had regression coverage, so they

@@ -293,23 +293,26 @@ window.PARCEL_REGISTRY = (function () {
      * Montgomery County MD (Silver Spring/Germantown/Gaithersburg) is the
      * dominant Maryland DC-metro data center market.
      *
-     * 2026-07 re-verification: the previous serviceUrl (services1.arcgis.com/
-     * hCTSlHgaGcpJyXBl/.../Montgomery_County_Parcels/FeatureServer/0) was
-     * confirmed dead by a live browser request — {"error":{"code":400,
-     * "message":"Invalid URL"}}. Multiple "Montgomery County Parcels"
-     * datasets exist across different ArcGIS orgs for the *other* Montgomery
-     * Counties (Pennsylvania's "montcopa", Texas's MCAD) — easy to grab the
-     * wrong state's data by name alone, so this fix uses Maryland's own
-     * statewide parcel service instead of a county-specific one:
-     *   https://geodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/0
-     * Published by the state (Dept. of Assessments & Taxation + Dept. of
-     * Planning), covers every MD county including this one and Howard below,
-     * and viewport-bounds filtering (already how this connector queries)
-     * naturally scopes results to whichever county is on screen. Confirmed
-     * fields: ACCTID, ADDRESS, STRTNUM/STRTDIR/STRTNAM/STRTTYP, LU (land use
-     * code), DESCLU (land use description) — richer than the VA counties'
-     * boundary-only layers, but owner name and assessed-value field names
-     * were not confirmed.
+     * 2026-08-03 re-verification: the statewide endpoint (geodata.md.gov)
+     * returned HTTP 503 on every probe since 2026-07-31 — long enough to
+     * stop assuming a transient outage. Fetch-confirmed (GitHub Actions
+     * runner; this dev sandbox cannot reach *.md.gov) that Maryland moved
+     * the service to a different hostname: geodata.md.gov now serves an
+     * explicit "Site Maintenance" page (not a generic error — this was a
+     * deliberate migration, not a crash), while the identical service is
+     * live at mdgeodata.md.gov. Every fieldMap entry below was ALSO
+     * corrected against this service's real, complete field list (117
+     * fields) — the previous mapping was written without ever fetching the
+     * schema and got most non-boundary fields wrong (TOTAL_ASSESSED,
+     * ASSESSMENT_YEAR, DEED_DATE, SALE_PRICE, SUBDIVISION, OWNER: none of
+     * these exist). This service is richer than the VA counties' boundary-
+     * only layers: real physical/valuation/transaction/legal fields exist
+     * and are now mapped correctly, with 8 additional canonical fields
+     * (lot_depth_ft, lot_width_ft, year_built, gross_floor_area, deed_book,
+     * deed_page, legal_desc, census_tract) newly available that weren't
+     * mapped at all before. No owner-name field exists anywhere in the 117
+     * — Maryland's public parcel layer appears to deliberately redact it;
+     * recorded in notProvidedBySource rather than guessed.
      * ─────────────────────────────────────────────────────────────────── */
     '24031': {
       id:          'md-montgomery-county',
@@ -317,21 +320,7 @@ window.PARCEL_REGISTRY = (function () {
       state:       'MD',
       fips:        '24031',
       connector:   'arcgis',
-      serviceUrl:  'https://geodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/0',
-
-      /* Maryland's statewide parcel endpoint has returned HTTP 503 on every
-         probe since 2026-07-31. Recorded so the checker can tell an ALREADY
-         KNOWN outage apart from a NEWLY broken service: without this, the
-         monthly run fails forever on the same known fact and the alert stops
-         meaning anything, which is how a genuinely new breakage gets ignored.
-         Delete this block the moment the endpoint recovers — the probe
-         reports RECOVERED when it does. Both MD counties share this one URL,
-         so they fail and recover together. */
-      knownUnavailable: {
-        since:  '2026-07-31',
-        status: 503,
-        note:   'Statewide MD_ParcelBoundaries endpoint returning 503. Not yet distinguishable from a long outage vs. a retired service; re-probe before replacing the URL.',
-      },
+      serviceUrl:  'https://mdgeodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/0',
 
       minZoom:     14,
       maxFeatures: 500,
@@ -340,21 +329,37 @@ window.PARCEL_REGISTRY = (function () {
         parcel_id:           'ACCTID',
         pin:                 'ACCTID',
         address:             'ADDRESS',
-        owner:               'OWNER',
         zoning_code:         'ZONING',
         land_use_code:       'LU',
         land_use_desc:       'DESCLU',
-        area_sqft:           'SHAPE_Area',
         area_acres:          'ACRES',
-        assessed_value:      'TOTAL_ASSESSED',
-        land_value:          'LAND_ASSESSED',
-        improvement_value:   'IMP_ASSESSED',
-        tax_year:            'ASSESSMENT_YEAR',
-        last_sale_date:      'DEED_DATE',
-        last_sale_price:     'SALE_PRICE',
-        subdivision:         'SUBDIVISION',
+        lot_depth_ft:        'DEPTH',
+        lot_width_ft:        'WIDTH',
+        year_built:          'YEARBLT',
+        gross_floor_area:    'SQFTSTRC',
+        assessed_value:      'NFMTTLVL',
+        land_value:          'NFMLNDVL',
+        improvement_value:   'NFMIMPVL',
+        last_sale_date:      'TRADATE',
+        last_sale_price:     'CONSIDR1',
+        deed_book:           'DR1LIBER',
+        deed_page:           'DR1FOLIO',
+        subdivision:         'DESCSUBD',
+        legal_desc:          'LEGAL1',
+        census_tract:        'CT2020',
         county_fips:         '__computed__',
       },
+
+      /* No field in this service's real 117-field list backs these —
+         confirmed absent, not guessed. area_sqft specifically: LANDAREA
+         exists but its unit varies per-record (see its companion LUOM
+         field), so mapping it directly would silently show wrong units
+         for some parcels; area_acres (ACRES, unambiguous) is mapped
+         instead. */
+      notProvidedBySource: [
+        'owner', 'owner_mailing', 'zoning_desc', 'overlay_districts',
+        'area_sqft', 'building_count', 'tax_year', 'tax_amount',
+      ],
 
       outFields: null,
 
@@ -373,17 +378,13 @@ window.PARCEL_REGISTRY = (function () {
      * Washington and is an emerging data center market, particularly along the
      * US-1 and MD-175 corridors.
      *
-     * 2026-07 re-verification: the previous serviceUrl (services3.arcgis.com/
-     * o7Q8tBgxZCKeQNEI/.../HCo_Parcels/FeatureServer/0) could not be confirmed
-     * via search at all (no evidence this org/service exists) and, per the
-     * same finding as Montgomery County above, no county-specific Howard
-     * County parcels ArcGIS service surfaced with confidence either. Rather
-     * than leave a very likely-fabricated URL in place, this now points at
-     * the same Maryland statewide parcel service used for Montgomery County
-     * MD (see that entry's comment for full detail and field-confirmation
-     * notes) — one authoritative source for every MD county, viewport-bounds
-     * filtering already scopes it to whichever county is on screen:
-     *   https://geodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/0
+     * 2026-08-03 re-verification: same statewide service as Montgomery
+     * County MD above (see that entry's comment for the full outage/
+     * migration/field-verification detail) — moved from geodata.md.gov
+     * (now serving a "Site Maintenance" page) to mdgeodata.md.gov, and
+     * every fieldMap entry corrected against the service's real,
+     * fetch-confirmed 117-field schema rather than left as an unverified
+     * guess.
      * ─────────────────────────────────────────────────────────────────── */
     '24027': {
       id:          'md-howard-county',
@@ -391,21 +392,7 @@ window.PARCEL_REGISTRY = (function () {
       state:       'MD',
       fips:        '24027',
       connector:   'arcgis',
-      serviceUrl:  'https://geodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/0',
-
-      /* Maryland's statewide parcel endpoint has returned HTTP 503 on every
-         probe since 2026-07-31. Recorded so the checker can tell an ALREADY
-         KNOWN outage apart from a NEWLY broken service: without this, the
-         monthly run fails forever on the same known fact and the alert stops
-         meaning anything, which is how a genuinely new breakage gets ignored.
-         Delete this block the moment the endpoint recovers — the probe
-         reports RECOVERED when it does. Both MD counties share this one URL,
-         so they fail and recover together. */
-      knownUnavailable: {
-        since:  '2026-07-31',
-        status: 503,
-        note:   'Statewide MD_ParcelBoundaries endpoint returning 503. Not yet distinguishable from a long outage vs. a retired service; re-probe before replacing the URL.',
-      },
+      serviceUrl:  'https://mdgeodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/0',
 
       minZoom:     14,
       maxFeatures: 500,
@@ -414,21 +401,33 @@ window.PARCEL_REGISTRY = (function () {
         parcel_id:           'ACCTID',
         pin:                 'ACCTID',
         address:             'ADDRESS',
-        owner:               'OWNER',
         zoning_code:         'ZONING',
         land_use_code:       'LU',
         land_use_desc:       'DESCLU',
-        area_sqft:           'SHAPE_Area',
         area_acres:          'ACRES',
-        assessed_value:      'ASSESSED_VALUE',
-        land_value:          'LAND_VALUE',
-        improvement_value:   'IMPROVEMENT_VALUE',
-        tax_year:            'ASSESSMENT_YEAR',
-        last_sale_date:      'DEED_DATE',
-        last_sale_price:     'SALE_PRICE',
-        subdivision:         'SUBDIVISION',
+        lot_depth_ft:        'DEPTH',
+        lot_width_ft:        'WIDTH',
+        year_built:          'YEARBLT',
+        gross_floor_area:    'SQFTSTRC',
+        assessed_value:      'NFMTTLVL',
+        land_value:          'NFMLNDVL',
+        improvement_value:   'NFMIMPVL',
+        last_sale_date:      'TRADATE',
+        last_sale_price:     'CONSIDR1',
+        deed_book:           'DR1LIBER',
+        deed_page:           'DR1FOLIO',
+        subdivision:         'DESCSUBD',
+        legal_desc:          'LEGAL1',
+        census_tract:        'CT2020',
         county_fips:         '__computed__',
       },
+
+      /* See Montgomery County MD's entry above — same service, same
+         confirmed-absent field list. */
+      notProvidedBySource: [
+        'owner', 'owner_mailing', 'zoning_desc', 'overlay_districts',
+        'area_sqft', 'building_count', 'tax_year', 'tax_amount',
+      ],
 
       outFields: null,
 

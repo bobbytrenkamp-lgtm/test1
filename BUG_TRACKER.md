@@ -7,6 +7,52 @@ replacement".
 
 ---
 
+Bug: Maryland's statewide parcel endpoint (Howard 24027 + Montgomery
+24031) down since 2026-07-31; nearly every non-boundary fieldMap entry
+also wrong
+Priority: Medium
+Affected Files: `js/parcel/registry.js`
+Root Cause: Two separate issues, found together while investigating
+the outage. (1) The endpoint wasn't experiencing an extended transient
+outage — Maryland migrated the service to a different hostname.
+`geodata.md.gov` (the old URL) now serves an explicit "Site
+Maintenance" HTML page, not a generic error, confirming a deliberate
+move; the identical service is live at `mdgeodata.md.gov`. (2) The
+existing fieldMap (written during an earlier pass that could not fetch
+the live schema, per its own comment) mapped most non-boundary
+canonical fields to invented names that don't exist on the real
+service: `TOTAL_ASSESSED`/`ASSESSED_VALUE`, `ASSESSMENT_YEAR`,
+`DEED_DATE`, `SALE_PRICE`, `SUBDIVISION`, `OWNER` — none of these are
+real fields. This service also had zero `notProvidedBySource` entries,
+so every unmapped field silently vanished from the parcel panel
+instead of explaining why, unlike the VA counties (fixed 2026-07-31)
+and unlike the "Not published by this source" treatment shipped
+2026-08-02 for exactly this situation.
+Fix: Repointed both `serviceUrl`s to `mdgeodata.md.gov`. Rebuilt the
+entire fieldMap against the service's real, fetch-confirmed 117-field
+schema — 22 fields now map correctly per county (up from 17 mostly-
+invented ones), including 8 canonical fields the old mapping never
+touched at all (lot depth/width, year built, gross floor area, deed
+book/page, legal description, census tract). Added a
+`notProvidedBySource` list (8 fields, including `owner` — no field
+backs a property owner's name anywhere in the 117, Maryland's public
+layer appears to deliberately redact it) so the panel now explains the
+gap instead of hiding it.
+Testing Performed: This sandbox cannot reach `arcgis.com`/`*.md.gov`
+directly, so used the same technique as the earlier HIFLD
+investigation: a temporary diagnostic script + workflow dispatched on
+a GitHub Actions runner with real network access (removed after use),
+which directly fetched `?f=json` from both hostnames (confirming the
+200 vs. "Site Maintenance" split) and the service's real field list —
+not a web-search summary taken on faith. Confirmed all 22 fieldMap
+keys and 8 `notProvidedBySource` entries per county are valid
+canonical `schema.js` field IDs. `tests/run_all.sh` 176/176 and
+`tests/parcel.test.js` 293/293 passing.
+Fixed By: Claude Code
+Date: 2026-08-03
+
+---
+
 Bug: `update_economic_data.py`'s county records stored a 3-digit
 county-only code in their `county_fips` field, not the full 5-digit FIPS
 Priority: Low
