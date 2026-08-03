@@ -855,6 +855,85 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Harris County, Texas ─────────────────────────────────────────────
+     *
+     * Harris County (Houston metro) — #9 by facility count (61) in this
+     * app's dataset.
+     *
+     * 2026-08-03 — fetch-confirmed on a GitHub Actions runner (this dev
+     * sandbox cannot reach arcgis.com/hctx.net directly). A search scoped
+     * to the county's real, authoritative "HarrisCountyGIS" ArcGIS owner
+     * (confirmed genuine via other clearly-official layers on the same
+     * account: "Harris County", "HC_Boundary", "City_Limits") found two
+     * candidates: this ArcGIS Online-hosted "Harris County Parcels"
+     * service, and a self-hosted "HCAD Parcels Layer" at hcusgis.hctx.net
+     * (Harris County's own domain) that failed at the connection level
+     * from this sandbox's network on every attempt — undetermined whether
+     * actually down or just unreachable from here, not confirmed dead.
+     * The ArcGIS Online service's own layer index is 1, not 0 as first
+     * guessed (confirmed via its FeatureServer root's sub-layer listing);
+     * a subsequent fetch of layer 1 itself then hit a transient network
+     * failure that cleared up on retry with a longer timeout — the
+     * service was live the whole time. Its copyrightText/description
+     * identify it as "Official Dataset... Parcel data received from HCAD"
+     * (Harris County Appraisal District), with no redistribution
+     * restriction found in either field — comparable to every other
+     * county in this registry, unlike Cook County IL's confirmed
+     * prohibition. 61 real fields, a richer HCAD appraisal-roll schema
+     * similar in kind to Franklin County OH's. No address, zoning, or
+     * year-built fields exist despite the rich field count — address is
+     * split across 8 component fields with no composite (same convention
+     * as every other split-address source in this registry: left
+     * unmapped rather than concatenated); zoning isn't published by the
+     * appraisal district (same as Franklin OH); no year-built field
+     * exists in this particular layer at all.
+     * ─────────────────────────────────────────────────────────────────── */
+    '48201': {
+      id:          'tx-harris-county',
+      name:        'Harris County, Texas',
+      state:       'TX',
+      fips:        '48201',
+      connector:   'arcgis',
+      serviceUrl:  'https://services.arcgis.com/su8ic9KbA7PYVxPS/arcgis/rest/services/Harris_County_Parcels/FeatureServer/1',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'HCAD_NUM',
+        pin:                 'acct_num',
+        owner:               'owner_name_1',
+        land_use_code:       'land_use',
+        area_sqft:           'land_sqft',
+        area_acres:          'acreage_1',
+        assessed_value:      'total_appraised_val',
+        land_value:          'land_value',
+        improvement_value:   'impr_value',
+        tax_year:            'tax_year',
+        last_sale_date:      'new_owner_date',
+        legal_desc:          'legal_dscr_1',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_desc', 'overlay_districts', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'year_built', 'gross_floor_area', 'tax_amount',
+        'last_sale_price', 'deed_book', 'deed_page', 'subdivision',
+        'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Harris County Appraisal District (HCAD)',
+        url:     'https://hcad.org/',
+        portal:  'https://hcad.org/pdata/pdata-property-search',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Houston metro — major Texas data center market.',
+      },
+    },
+
   };
 
   function get(fips) {

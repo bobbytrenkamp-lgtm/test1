@@ -33,10 +33,60 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   in it is a derived planning-analysis layer (building-size medians,
   middle-housing conversion studies), not a general-purpose parcel
   boundary/cadastral service — same pattern as Santa Clara CA, see Open
-  Handoffs. Continuing to work down the priority list: next candidate is
-  Harris TX (61), etc.
+  Handoffs. Harris County TX (61 facilities) was added after 4 diagnostic
+  rounds — a real service was found quickly but needed a layer-index
+  correction and then a transient-network-failure retry before it
+  resolved as live; see Recently Completed below. Registry now covers 12
+  jurisdictions. Paused here to check in with the user on the recent
+  pattern (3 of the last 4 counties investigated — Santa Clara, Hennepin,
+  Denver — needed documentation as blocked/unavailable rather than a
+  clean add) before researching further counties. The next candidates
+  below Harris TX (61) in the facility-count priority list have not yet
+  been investigated.
 
-## Recently Completed Work (continued)
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Harris County TX to the parcel registry — the next
+  highest-priority market by facility count after LA CA, following Santa
+  Clara CA / Hennepin MN / Denver CO being documented as blocked/needing
+  more research.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: `js/parcel/registry.js` now covers 12 jurisdictions (up from
+  11). Fetch-confirmed over 4 GitHub Actions-dispatched probe rounds
+  (this dev sandbox cannot reach arcgis.com/hctx.net directly) — more
+  rounds than any other county this session, but for a reassuring reason:
+  a real, authoritative service was found on the first owner-scoped
+  search (round 1), the remaining 3 rounds were purely mechanical fixes
+  (round 2: fetch real schemas for two real candidates; round 3:
+  discovered the correct layer index is 1, not 0; round 4: a transient
+  network failure on layer 1 cleared up on retry with a longer timeout —
+  the service was live the whole time, this sandbox's network just
+  couldn't reach it on that one attempt). 13 of 30 canonical fields
+  mapped from a rich 61-field HCAD (Harris County Appraisal District)
+  appraisal-roll schema — real land/improvement/total-appraised values,
+  tax year, legal description, and a genuine last-transfer date. No
+  address field (split across 8 unmapped components, same convention as
+  every other split-address source in this registry), no zoning, and no
+  year-built field exist in this particular layer.
+- The self-hosted "HCAD Parcels Layer" alternative at hcusgis.hctx.net
+  (Harris County's own domain) failed at the connection level from this
+  sandbox's network on every attempt across all 4 rounds — genuinely
+  undetermined whether it's down or just unreachable from here, not
+  confirmed dead. Not investigated further since the ArcGIS Online
+  service turned out live and sufficient.
+- Licensing: the service's own copyrightText/description identify it as
+  "Official Dataset... Parcel data received from HCAD," attributed to
+  "Harris County Appraisal District, GIS Division" with a physical
+  address — no redistribution restriction found in either field, a
+  cleaner and more direct confirmation than King County's (whose
+  terms-of-use page couldn't be fetched at all) since this service's own
+  metadata was directly readable.
+- Validated the same way as every prior addition: fieldMap +
+  notProvidedBySource cover all 30 canonical schema.js fields with zero
+  gaps/overlaps; live-tested via Playwright through the real
+  `window.PARCEL_PANEL.show()` rendering path — populated fields render
+  real values, gaps render "Not published by this source", no page
+  errors.
 
 - Date: 2026-08-03
 - Agent: Claude Code
