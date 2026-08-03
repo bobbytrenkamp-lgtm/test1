@@ -1,9 +1,15 @@
-// Temporary diagnostic: find a live parcel service for Denver County CO
-// (#8 in the facility-count priority list, 62 facilities), the next
-// county after Hennepin MN (blocked on a server-side error, see
-// AI_TEAM_STATUS.md Open Handoffs).
-// Deleted once this is either added to the registry or documented as
-// unavailable.
+// Temporary diagnostic, round 2: Denver County CO parcel service.
+//
+// Round 1's direct URL guesses both failed (invalid service ID / fetch
+// failed), and a general keyword search returned mostly noise: Aurora CO
+// (a different city, not Denver), Esri training sample data, and a
+// third-party aggregator. But it surfaced a real signal: the owner
+// "210919_geospatialDenver" on a Denver-published dataset (Middle
+// Housing Stock) — likely Denver's actual ArcGIS Online org account.
+// This searches scoped to that owner for parcels, plus Denver's open
+// data portal directly.
+//
+// Deleted once Denver is either added or documented as unavailable.
 
 const TIMEOUT_MS = 25000;
 
@@ -52,28 +58,13 @@ async function fetchText(url, label) {
   }
 }
 
-// Candidate 1: Denver's own GIS ArcGIS Server (city-county open data)
 await fetchText(
-  'https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_PARCEL_P/FeatureServer?f=json',
-  'Denver open data - ODC_PARCEL_P FeatureServer root (guess)'
+  'https://www.arcgis.com/sharing/rest/search?q=parcel%20AND%20owner:210919_geospatialDenver&f=json&num=10',
+  'ArcGIS Online search scoped to 210919_geospatialDenver owner (parcel)'
 );
 await fetchText(
-  'https://gis.denvergov.org/arcgis/rest/services/OpenData/OpenData_Property/MapServer?f=json',
-  'Denver GIS - OpenData_Property MapServer root (guess)'
-);
-
-// Candidate 2: ArcGIS Online catalog search, general + scoped to likely owners
-await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=Denver%20County%20parcels&f=json&num=10',
-  'ArcGIS Online catalog search for Denver County parcels'
-);
-await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=parcels%20AND%20owner:DenverGov&f=json&num=10',
-  'ArcGIS Online search scoped to DenverGov owner'
-);
-await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=parcels%20AND%20owner:CityofDenver&f=json&num=10',
-  'ArcGIS Online search scoped to CityofDenver owner'
+  'https://www.arcgis.com/sharing/rest/search?q=owner:210919_geospatialDenver&f=json&num=20',
+  'ArcGIS Online search scoped to 210919_geospatialDenver owner (all content)'
 );
 
 console.log('\nDone.');
