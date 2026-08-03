@@ -24,7 +24,7 @@ window.ArcGISParcelConnector = (function () {
         geometry: `${bounds.getWest()},${bounds.getSouth()},${bounds.getEast()},${bounds.getNorth()}`,
         geometryType:  'esriGeometryEnvelope',
         spatialRel:    'esriSpatialRelIntersects',
-        where:         '1=1',
+        where:         this._config.where || '1=1',
         resultRecordCount: this._config.maxFeatures || 500,
         signal,
       });
