@@ -1,9 +1,15 @@
-// Temporary diagnostic: find a live parcel service for Harris County TX
-// (#9 in the facility-count priority list, 61 facilities), the next
-// county after Denver CO (needs more research, see AI_TEAM_STATUS.md
-// Open Handoffs).
-// Deleted once this is either added to the registry or documented as
-// unavailable.
+// Temporary diagnostic, round 2: Harris County TX parcel service.
+//
+// Round 1's direct guesses failed, but a search scoped to the real,
+// authoritative "HarrisCountyGIS" ArcGIS owner (confirmed genuine by
+// other clearly-official layers from the same account: "Harris County",
+// "HC_Boundary", "City_Limits") found two strong candidates: "Harris
+// County Parcels" (ArcGIS Online hosted) and "HCAD Parcels Layer"
+// (self-hosted at hcusgis.hctx.net -- Harris County's own domain; HCAD
+// is the Harris County Appraisal District, likely the richer valuation
+// source). This fetches both real schemas to pick the best one.
+//
+// Deleted once Harris is either added or documented as unavailable.
 
 const TIMEOUT_MS = 25000;
 
@@ -31,12 +37,6 @@ async function fetchText(url, label) {
       if (body.name) console.log('Layer name:', body.name);
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
       if (body.layers) console.log('Sub-layers:', body.layers.map(l => `${l.id}:${l.name}`).join(', '));
-      if (Array.isArray(body.results)) {
-        console.log(`total: ${body.total}`);
-        for (const r of body.results.slice(0, 10)) {
-          console.log(`- id=${r.id} title="${r.title}" type="${r.type}" owner="${r.owner}" url="${r.url}"`);
-        }
-      }
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -52,34 +52,21 @@ async function fetchText(url, label) {
   }
 }
 
-// Candidate 1: Harris County's own GIS (HCAD - Harris County Appraisal District)
 await fetchText(
-  'https://arcgis.hcad.org/arcgis/rest/services/Public/Parcels/MapServer?f=json',
-  'HCAD - Public/Parcels MapServer root (guess)'
+  'https://services.arcgis.com/su8ic9KbA7PYVxPS/arcgis/rest/services/Harris_County_Parcels/FeatureServer?f=json',
+  'Harris County Parcels - FeatureServer root'
 );
 await fetchText(
-  'https://services.arcgis.com/su8ic9KbA7PYVxPS/arcgis/rest/services/Parcels/FeatureServer?f=json',
-  'Harris County GIS - Parcels FeatureServer root (guess)'
-);
-
-// Candidate 2: Harris County IT/GIS department open data
-await fetchText(
-  'https://gis-harriscounty.opendata.arcgis.com/datasets/parcels.geojson',
-  'Harris County Open Data - parcels.geojson (guess)'
-);
-
-// Candidate 3: ArcGIS Online catalog search, general + scoped to likely owners
-await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=Harris%20County%20Texas%20parcels&f=json&num=10',
-  'ArcGIS Online catalog search for Harris County TX parcels'
+  'https://services.arcgis.com/su8ic9KbA7PYVxPS/arcgis/rest/services/Harris_County_Parcels/FeatureServer/0?f=json',
+  'Harris County Parcels - layer 0 definition'
 );
 await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=parcels%20AND%20owner:HCAD&f=json&num=10',
-  'ArcGIS Online search scoped to HCAD owner'
+  'https://hcusgis.hctx.net/hosting/rest/services/Hosted/HCAD_Parcels_Layer/FeatureServer?f=json',
+  'HCAD Parcels Layer - FeatureServer root'
 );
 await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=parcels%20AND%20owner:HarrisCountyGIS&f=json&num=10',
-  'ArcGIS Online search scoped to HarrisCountyGIS owner'
+  'https://hcusgis.hctx.net/hosting/rest/services/Hosted/HCAD_Parcels_Layer/FeatureServer/0?f=json',
+  'HCAD Parcels Layer - layer 0 definition'
 );
 
 console.log('\nDone.');
