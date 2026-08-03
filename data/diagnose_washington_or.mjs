@@ -1,17 +1,15 @@
-// Temporary diagnostic, round 1: Washington County OR (Hillsboro/
+// Temporary diagnostic, round 2: Washington County OR (Hillsboro/
 // Portland metro) parcel service.
 //
-// Discovered as a gap in the facility-count priority queue: 36
-// facilities (more than Wake County NC's 28 or Cuyahoga County OH's
-// 29, both already added), never previously investigated. Home to a
-// major data center cluster (Hillsboro), adjacent to Multnomah County
-// OR (already added via its own Taxlot_Parcels FeatureServer).
-//
-// This round checks Washington County's own open-data portal DCAT
-// catalog for a "parcel"/"taxlot" dataset first (the pattern that has
-// reliably surfaced the real ArcGIS distribution URL directly for Salt
-// Lake, Multnomah, Philadelphia, Sacramento, Cuyahoga, and Wake), then
-// falls back to a couple of directly-guessed common service names.
+// Round 1's guessed county-hosted URLs all failed (wrong domains). A
+// web search found that Oregon Metro (the Portland tri-county regional
+// government covering Multnomah, Washington, and Clackamas) publishes
+// a standardized "Taxlots (Public)" dataset compiled from each
+// county assessor's own records, via its RLIS Discovery ArcGIS Hub
+// portal (rlisdiscovery.oregonmetro.gov, ArcGIS org namespace
+// "drcMetro"), item id 9d3c396ffad44649bc7451465aa300f0. This round
+// queries that item's own metadata via the ArcGIS sharing API to find
+// its real hosted FeatureServer URL, then probes that URL directly.
 //
 // Deleted once Washington County OR is either added or documented as
 // unavailable.
@@ -33,8 +31,10 @@ async function fetchText(url, label) {
     console.log(`URL: ${url}`);
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
-      console.log('Body (JSON keys):', Object.keys(body));
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
+      if (body.url) console.log('Item service url:', body.url);
+      if (body.title) console.log('Item title:', body.title);
+      if (body.type) console.log('Item type:', body.type);
       if (body.fields) {
         console.log('Field count:', body.fields.length);
         console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
@@ -43,8 +43,9 @@ async function fetchText(url, label) {
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
       if (body.description) console.log('description:', body.description.slice(0, 500));
       if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
+      if (body.layers) console.log('Layers:', body.layers.map(l => `${l.id}:${l.name}`).join(', '));
     } else {
-      console.log('Body (text, first 800 chars):', text.slice(0, 800));
+      console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
     return { ok: true, status, body, text };
   } catch (e) {
@@ -58,34 +59,14 @@ async function fetchText(url, label) {
   }
 }
 
-const dcat = await fetchText(
-  'https://data-washingtoncountyor.opendata.arcgis.com/api/feed/dcat-us/1.1.json',
-  'Washington County OR open-data portal DCAT catalog'
+const item = await fetchText(
+  'https://www.arcgis.com/sharing/rest/content/items/9d3c396ffad44649bc7451465aa300f0?f=json',
+  'Metro RLIS Discovery Taxlots (Public) - item metadata'
 );
 
-if (dcat.ok && dcat.body && Array.isArray(dcat.body.dataset)) {
-  const matches = dcat.body.dataset.filter(d =>
-    /parcel|taxlot/i.test(d.title || '') || /parcel|taxlot/i.test(d.description || '')
-  );
-  console.log(`\nDCAT datasets matching "parcel"/"taxlot": ${matches.length}`);
-  for (const d of matches) {
-    console.log(`\n--- ${d.title} ---`);
-    console.log('description:', (d.description || '').slice(0, 300));
-    const dist = (d.distribution || []).map(x => `${x.format}: ${x.accessURL || x.downloadURL}`);
-    console.log('distribution:', dist.join(' | '));
-  }
-} else {
-  console.log('\nDCAT catalog lookup failed or had no dataset array.');
+if (item.ok && item.body && item.body.url) {
+  await fetchText(`${item.body.url}?f=json`, 'Resolved service URL - layer root');
+  await fetchText(`${item.body.url}/0?f=json`, 'Resolved service URL - layer 0');
 }
-
-await fetchText(
-  'https://gis.co.washington.or.us/arcgis/rest/services/Public/Taxlots/MapServer/0?f=json',
-  'Guess - Washington County ArcGIS Server Public/Taxlots MapServer layer 0'
-);
-
-await fetchText(
-  'https://www.co.washington.or.us/arcgis/rest/services/Taxlots/MapServer/0?f=json',
-  'Guess - Washington County ArcGIS Server Taxlots MapServer layer 0 (alt host)'
-);
 
 console.log('\nDone.');
