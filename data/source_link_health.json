@@ -1,6 +1,6 @@
 {
  "_schema": "source_link_health_v1",
- "checked_at": "2026-07-30T03:48:00+00:00",
+ "checked_at": "2026-08-03T07:51:19+00:00",
  "counties_with_textual_only_citations": [
   "13097",
   "17031",
@@ -24,16 +24,23 @@
   "56021"
  ],
  "summary": {
-  "checked": 1952,
+  "checked": 1994,
   "counties_with_textual_only_citations": 20,
-  "reachable": 970,
-  "total_citation_urls": 1990,
-  "unreachable": 982,
-  "unreachable_pct": 50.3,
-  "unreachable_with_archive": 290,
-  "unreachable_with_suggested_replacement": 91
+  "reachable": 1038,
+  "total_citation_urls": 1994,
+  "unreachable": 956,
+  "unreachable_pct": 47.9,
+  "unreachable_with_archive": 292,
+  "unreachable_with_suggested_replacement": 62
  },
  "urls": {
+  "http://mississippi.org/doing-business/incentives/": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
+   "counties": 3,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "http://www.stardem.com/news/data_centers/dorchester-county-council-hopes-to-get-ahead-on-regulating-data-center-proposals/article_af7ff49c-f072-4e08-85e9-1cd10bf1ca33.html": {
    "checked_at": "2026-07-29T02:34:44+00:00",
    "counties": 1,
@@ -43,6 +50,13 @@
   },
   "https://abc11.com/post/apex-nc-leaders-hold-public-hearing-proposed-data-center-moratorium/18885810/": {
    "checked_at": "2026-07-30T03:11:00+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://abc11.com/post/data-centers-nc-cary-wake-county-is-latest-town-north-carolina-consider-temporary-halt-new-center/19194690/": {
+   "checked_at": "2026-08-03T07:51:06+00:00",
    "counties": 1,
    "error": null,
    "ok": true,
@@ -392,17 +406,19 @@
    "ok": false,
    "status": null
   },
-  "https://chamberscountytx.gov/economic-development": {
-   "checked_at": "2026-07-30T03:36:52+00:00",
+  "https://chamberscountytx.gov/197/Economic-Development": {
+   "checked_at": "2026-08-03T07:51:06+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://chamberscountytx.gov/197/Economic-Development"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://choosenj.com/key-industries/technology/": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://clintoniowa.us/": {
    "archive": {
@@ -472,17 +488,12 @@
    "ok": true,
    "status": 200
   },
-  "https://commerceri.com/incentives/rebuild-ri-tax-credit/": {
-   "checked_at": "2026-07-30T03:07:24+00:00",
+  "https://commerceri.com/financing/tax-credits/rebuild-rhode-island-tax-credit/": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://commerceri.com/financing/tax-credits/rebuild-rhode-island-tax-credit/"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://comptroller.texas.gov/economy/local/ch313/": {
    "checked_at": "2026-07-30T03:23:00+00:00",
@@ -556,6 +567,13 @@
    "ok": true,
    "status": 200
   },
+  "https://cryptobriefing.com/new-york-data-center-moratorium-crypto-mining-2/": {
+   "checked_at": "2026-08-03T07:50:46+00:00",
+   "counties": 3,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://cyrusone.com/data-centers/": {
    "checked_at": "2026-07-30T03:21:35+00:00",
    "counties": 1,
@@ -589,6 +607,13 @@
    "error": "HTTP 403",
    "ok": false,
    "status": 403
+  },
+  "https://dailymontanan.com/2026/07/10/counties-take-different-approaches-to-data-center-regulation/": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://dat.maryland.gov/businesses/Pages/data-center-credit.aspx": {
    "checked_at": "2026-07-30T03:06:38+00:00",
@@ -634,6 +659,13 @@
    "ok": true,
    "status": 200
   },
+  "https://dced.pa.gov/keystone-opportunity-zones-koz-map/": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
+   "counties": 3,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://dced.pa.gov/programs/data-center-investment-incentive/": {
    "checked_at": "2026-07-29T02:33:03+00:00",
    "counties": 1,
@@ -651,30 +683,6 @@
     "found_via": "sitemap",
     "score": 2,
     "url": "https://dced.pa.gov/newsroom/shapiro-administration-announces-new-airport-land-development-zone-program/"
-   }
-  },
-  "https://dced.pa.gov/programs/keystone-opportunity-zone-koz/": {
-   "checked_at": "2026-07-30T03:32:18+00:00",
-   "counties": 2,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://dced.pa.gov/keystone-opportunity-zones-koz-map/"
-   }
-  },
-  "https://dced.pa.gov/programs/keystone-opportunity-zone-kozkozekoi/": {
-   "checked_at": "2026-07-30T03:35:00+00:00",
-   "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://dced.pa.gov/keystone-opportunity-zones-koz-map/"
    }
   },
   "https://dced.pa.gov/programs/pennsylvania-industrial-development-authority-pida/": {
@@ -750,18 +758,6 @@
    "error": null,
    "ok": true,
    "status": 200
-  },
-  "https://deq.nc.gov/about/divisions/coastal-management/coastal-management-permits/cama-major-permits": {
-   "checked_at": "2026-07-30T03:08:17+00:00",
-   "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 7,
-    "url": "https://www.deq.nc.gov/about/divisions/coastal-management/coastal-management-permits/cama-major-permit-applications"
-   }
   },
   "https://deq.nc.gov/about/divisions/water-resources/water-rights": {
    "checked_at": "2026-07-30T03:36:44+00:00",
@@ -885,17 +881,12 @@
    "ok": true,
    "status": 200
   },
-  "https://dor.georgia.gov/data-center-exemptions": {
-   "checked_at": "2026-07-30T03:39:10+00:00",
+  "https://dor.georgia.gov/high-technology-data-center-bond-form": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
    "counties": 6,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://dor.georgia.gov/high-technology-data-center-bond-form"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://dor.georgia.gov/rural-zone-tax-credits": {
    "checked_at": "2026-07-29T02:13:06+00:00",
@@ -937,6 +928,13 @@
    "ok": false,
    "status": 404
   },
+  "https://douglaspud.org/": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://downeastmaine.com/": {
    "checked_at": "2026-07-30T03:18:22+00:00",
    "counties": 1,
@@ -977,17 +975,12 @@
    "ok": false,
    "status": 404
   },
-  "https://ecology.wa.gov/Water-Shorelines/Water-supply/Water-rights/Yakima-basin-water-rights": {
-   "checked_at": "2026-07-30T03:45:31+00:00",
+  "https://ecology.wa.gov/water-shorelines/water-supply/water-availability/yakima-basin": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 5,
-    "url": "https://ecology.wa.gov/water-shorelines/water-supply/water-availability/yakima-basin"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://edd.nm.gov/tax-incentives/data-centers": {
    "checked_at": "2026-07-30T03:22:19+00:00",
@@ -1024,17 +1017,12 @@
    "ok": true,
    "status": 200
   },
-  "https://epd.georgia.gov/watershed-protection-branch/water-supply-and-wastewater-permitting": {
-   "checked_at": "2026-07-30T03:28:16+00:00",
+  "https://epd.georgia.gov/forms-permits/watershed-protection-branch-forms-permits/water-withdrawal-permitting-forms": {
+   "checked_at": "2026-08-03T07:50:46+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 5,
-    "url": "https://epd.georgia.gov/forms-permits/watershed-protection-branch-forms-permits/water-withdrawal-permitting-forms"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://esd.ny.gov/": {
    "checked_at": "2026-07-30T03:44:32+00:00",
@@ -1160,6 +1148,13 @@
   },
   "https://gov.texas.gov/business/page/texas-enterprise-zone-program": {
    "checked_at": "2026-07-30T03:28:34+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://gradickcommunications.com/carroll-county-board-of-commissioners-approve-100-day-moratorium-on-data-centers-battery-energy-storage-systems/": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
    "counties": 1,
    "error": null,
    "ok": true,
@@ -1484,6 +1479,17 @@
    "ok": true,
    "status": 200
   },
+  "https://laruecountyky.gov/": {
+   "archive": {
+    "timestamp": "20260727085150",
+    "url": "http://web.archive.org/web/20260727085150/https://laruecountyky.gov/"
+   },
+   "checked_at": "2026-08-03T07:51:06+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
   "https://law.justia.com/codes/alabama/section-40-18-376/": {
    "checked_at": "2026-07-30T03:16:30+00:00",
    "counties": 3,
@@ -1542,6 +1548,13 @@
   },
   "https://leg.colorado.gov/bills/hb19-1166": {
    "checked_at": "2026-07-29T02:14:07+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://leg.colorado.gov/bills/sb26-189": {
+   "checked_at": "2026-08-03T07:51:06+00:00",
    "counties": 1,
    "error": null,
    "ok": true,
@@ -1785,6 +1798,14 @@
    "ok": false,
    "status": null
   },
+  "https://news.yahoo.com/madison-county-imposes-1-moratorium-090939100.html": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.yahoo.com/news/madison-county-imposes-1-moratorium-090939100.html",
+   "ok": true,
+   "status": 200
+  },
   "https://nezpercecounty.id.gov/": {
    "checked_at": "2026-07-29T02:22:35+00:00",
    "counties": 1,
@@ -1802,6 +1823,13 @@
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
    "ok": false,
    "status": null
+  },
+  "https://nsjonline.com/article/2026/05/chatham-county-faces-lawsuit-over-data-center-moratorium/": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://octo.dc.gov/": {
    "checked_at": "2026-07-29T02:30:59+00:00",
@@ -2124,6 +2152,13 @@
    "ok": false,
    "status": 403
   },
+  "https://royalexaminer.com/moving-data-center-regulations-and-permitting-forward-a-dominant-topic-of-conversation-for-countys-elected-officials/": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://sanfordlab.org/": {
    "checked_at": "2026-07-30T03:35:12+00:00",
    "counties": 1,
@@ -2146,17 +2181,12 @@
    "ok": true,
    "status": 200
   },
-  "https://sdgoed.com/why-sd/incentives/": {
-   "checked_at": "2026-07-30T03:33:00+00:00",
+  "https://sdgoed.com/financing-incentives/": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 1,
-    "url": "https://sdgoed.com/financing-incentives/"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://sdready.org": {
    "checked_at": "2026-07-29T02:19:10+00:00",
@@ -2321,17 +2351,12 @@
    "ok": false,
    "status": null
   },
-  "https://tax.idaho.gov/taxes/sales-use/exemptions/business/data-centers/": {
-   "checked_at": "2026-07-30T03:29:00+00:00",
+  "https://tax.idaho.gov/taxes/sales-use/exemptions/sales-and-use-taxes-business-exemptions/sales-and-use-taxes-exemptions-for-businesses/": {
+   "checked_at": "2026-08-03T07:51:19+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 4,
-    "url": "https://tax.idaho.gov/taxes/sales-use/exemptions/sales-and-use-taxes-business-exemptions/sales-and-use-taxes-exemptions-for-businesses/"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://tax.iowa.gov/businesses/data-center-exemptions": {
    "checked_at": "2026-07-30T03:44:32+00:00",
@@ -2375,6 +2400,13 @@
   },
   "https://thebaynet.com/after-hours-of-testimony-and-no-data-centers-chants-charles-county-planning-commission-recommends-denial-of-data-center-zoning-amendment/": {
    "checked_at": "2026-07-30T03:44:49+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://thenevadaindependent.com/article/reno-extends-its-data-center-moratorium-into-2027-heres-what-happens-next": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
    "counties": 1,
    "error": null,
    "ok": true,
@@ -2562,6 +2594,13 @@
   },
   "https://wsbt.com/news/local/marshall-county-approves-permanent-ban-on-data-centers-effective-immediately-data-centers-solar-farms-industrial-size-projects-development-county-council-regulations-counties-experts-industries-marshall-county-indiana": {
    "checked_at": "2026-07-30T03:07:38+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://wtaq.com/2026/04/29/manitowoc-county-board-votes-unanimously-to-impose-18-month-moratorium-on-data-centers/": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
    "counties": 1,
    "error": null,
    "ok": true,
@@ -2949,6 +2988,14 @@
    "ok": true,
    "status": 200
   },
+  "https://www.ameren.com/economic-development/missouri/large-load": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
+   "counties": 1,
+   "error": null,
+   "final_url": "https://www.ameren.com/economic-development/missouri",
+   "ok": true,
+   "status": 200
+  },
   "https://www.ameren.com/illinois": {
    "checked_at": "2026-07-30T03:24:02+00:00",
    "counties": 3,
@@ -2979,18 +3026,6 @@
    "final_url": "https://www.ameren.com/economic-development/missouri",
    "ok": true,
    "status": 200
-  },
-  "https://www.ameren.com/missouri/business/large-power": {
-   "checked_at": "2026-07-30T03:08:19+00:00",
-   "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.ameren.com/economic-development/missouri/large-load"
-   }
   },
   "https://www.amgen.com": {
    "checked_at": "2026-07-30T03:16:09+00:00",
@@ -3047,17 +3082,12 @@
    "ok": true,
    "status": 200
   },
-  "https://www.anokacounty.us/economic-development": {
-   "checked_at": "2026-07-30T03:14:53+00:00",
+  "https://www.anokacountymn.gov/1368/Economic-Development-Contacts": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.anokacountymn.gov/1368/Economic-Development-Contacts"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.antelopecounty.ne.gov": {
    "checked_at": "2026-07-30T03:09:40+00:00",
@@ -3263,6 +3293,13 @@
    "ok": false,
    "status": null
   },
+  "https://www.asotincountywa.gov/": {
+   "checked_at": "2026-08-03T07:51:19+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.assumptionla.com/": {
    "checked_at": "2026-07-30T03:29:28+00:00",
    "counties": 1,
@@ -3339,20 +3376,16 @@
    "ok": true,
    "status": 200
   },
-  "https://www.axios.com/local/phoenix/2025/12/18/ag-to-urban-alternative-water-designation-buckeye-queen-creek": {
-   "archive": {
-    "timestamp": "20260111185348",
-    "url": "http://web.archive.org/web/20260111185348/https://www.axios.com/local/phoenix/2025/12/18/ag-to-urban-alternative-water-designation-buckeye-queen-creek"
-   },
-   "checked_at": "2026-07-30T03:13:07+00:00",
+  "https://www.axios.com/local/phoenix/water": {
+   "checked_at": "2026-08-03T07:50:46+00:00",
    "counties": 1,
    "error": "HTTP 403",
    "ok": false,
    "status": 403,
    "suggested_replacement": {
     "found_via": "sitemap",
-    "score": 3,
-    "url": "https://www.axios.com/local/phoenix/water"
+    "score": 2,
+    "url": "https://www.axios.com/local/phoenix"
    }
   },
   "https://www.azcommerce.com/incentives/data-centers": {
@@ -3361,6 +3394,13 @@
    "error": "HTTP 403",
    "ok": false,
    "status": 403
+  },
+  "https://www.azfamily.com/2026/06/10/arizona-budget-deal-includes-3-year-pause-data-center-tax-exemptions/": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.azwater.gov/ama/tucson": {
    "checked_at": "2026-07-30T03:13:12+00:00",
@@ -4212,17 +4252,12 @@
    "ok": false,
    "status": 404
   },
-  "https://www.buttecounty.net/countyexecutiveoffice/economic-development": {
-   "checked_at": "2026-07-30T03:44:44+00:00",
+  "https://www.buttecounty.net/206/Economic-Development-Assistance-Committe": {
+   "checked_at": "2026-08-03T07:51:19+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.buttecounty.net/206/Economic-Development-Assistance-Committe"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.buttecountysd.gov/": {
    "checked_at": "2026-07-29T02:21:25+00:00",
@@ -4706,6 +4741,17 @@
    "ok": false,
    "status": null
   },
+  "https://www.chathamcountync.gov/Home/Components/News/News/17295/19": {
+   "archive": {
+    "timestamp": "20260429183406",
+    "url": "http://web.archive.org/web/20260429183406/https://www.chathamcountync.gov/Home/Components/News/News/17295/19"
+   },
+   "checked_at": "2026-08-03T07:50:45+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403
+  },
   "https://www.chautauquacountyks.com/": {
    "archive": {
     "timestamp": "20260128143853",
@@ -4802,18 +4848,6 @@
    "error": null,
    "ok": true,
    "status": 200
-  },
-  "https://www.choosenj.com/industries/technology/": {
-   "checked_at": "2026-07-30T03:24:59+00:00",
-   "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://choosenj.com/key-industries/technology/"
-   }
   },
   "https://www.ci.valdez.ak.us/": {
    "archive": {
@@ -4918,6 +4952,13 @@
    "counties": 1,
    "error": null,
    "final_url": "https://www.muncie.in.gov/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.cityofplattsburgh-ny.gov/boards-committees-commissions/common-council": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
+   "counties": 1,
+   "error": null,
    "ok": true,
    "status": 200
   },
@@ -5921,17 +5962,12 @@
    "ok": false,
    "status": null
   },
-  "https://www.co.sherburne.mn.us/economic-development": {
-   "checked_at": "2026-07-30T03:35:59+00:00",
+  "https://www.co.sherburne.mn.us/1411/Economic-Development": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.co.sherburne.mn.us/1411/Economic-Development"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.co.sherman.or.us/": {
    "checked_at": "2026-07-29T02:17:08+00:00",
@@ -6028,17 +6064,12 @@
    "ok": false,
    "status": 404
   },
-  "https://www.co.wallowa.or.us/planning/": {
-   "checked_at": "2026-07-30T03:33:38+00:00",
+  "https://www.co.wallowa.or.us/land-use-and-development/page/wallowa-county-planning-commission": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 1,
-    "url": "https://www.co.wallowa.or.us/land-use-and-development/page/wallowa-county-planning-commission"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.co.warren.ia.us/": {
    "archive": {
@@ -6251,8 +6282,29 @@
    "ok": false,
    "status": 403
   },
+  "https://www.commerce.nc.gov/documents/ncworks-business-services-programs-incentives-booklet": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
+   "counties": 2,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.commerce.nd.gov/": {
    "checked_at": "2026-07-29T02:20:46+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.community-news.com/stories/commissioners-address-data-center-concerns,170764": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
    "counties": 1,
    "error": null,
    "ok": true,
@@ -6637,6 +6689,13 @@
    "ok": true,
    "status": 200
   },
+  "https://www.datacenterdynamics.com/en/news/fauquier-county-approves-policy-curbing-data-centers-in-virginia/": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.datacenterdynamics.com/en/news/hood-river-county-oregon-bans-data-centers/": {
    "checked_at": "2026-07-30T03:07:53+00:00",
    "counties": 1,
@@ -6650,6 +6709,13 @@
    "error": "HTTP 404",
    "ok": false,
    "status": 404
+  },
+  "https://www.datacenterdynamics.com/en/news/prologis-data-center-proposal-in-kosciusko-county-indiana-denied/": {
+   "checked_at": "2026-08-03T07:51:19+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.davenportiowa.com/": {
    "checked_at": "2026-07-29T02:26:04+00:00",
@@ -6833,6 +6899,13 @@
   },
   "https://www.depts.ttu.edu/hpcc/": {
    "checked_at": "2026-07-30T03:31:12+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.deq.nc.gov/about/divisions/coastal-management/coastal-management-permits/cama-major-permit-applications": {
+   "checked_at": "2026-08-03T07:51:06+00:00",
    "counties": 1,
    "error": null,
    "ok": true,
@@ -7040,29 +7113,19 @@
    "ok": true,
    "status": 200
   },
-  "https://www.dteenergy.com/business/economic-development": {
-   "checked_at": "2026-07-30T03:27:02+00:00",
+  "https://www.dteenergy.com/us/en/business/billing-and-payments/cni-electric/electric-service.html": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 3,
-    "url": "https://www.dteenergy.com/us/en/business/service-request/community-development/economic-development.html"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
-  "https://www.dteenergy.com/us/en/business/products-and-services/electric/new-service.html": {
-   "checked_at": "2026-07-30T03:21:47+00:00",
+  "https://www.dteenergy.com/us/en/business/service-request/community-development/economic-development.html": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 3,
-    "url": "https://www.dteenergy.com/us/en/business/billing-and-payments/cni-electric/electric-service.html"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.dublinlaurensda.com/": {
    "checked_at": "2026-07-30T03:39:03+00:00",
@@ -7290,17 +7353,12 @@
    "ok": false,
    "status": null
   },
-  "https://www.effinghamcounty.org/planning": {
-   "checked_at": "2026-07-30T03:24:43+00:00",
+  "https://www.effinghamcounty.org/241/Planning-Zoning": {
+   "checked_at": "2026-08-03T07:51:19+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 1,
-    "url": "https://www.effinghamcounty.org/241/Planning-Zoning"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.effinghamil.com/economic-development": {
    "checked_at": "2026-07-29T02:18:35+00:00",
@@ -7434,17 +7492,12 @@
    "ok": false,
    "status": 404
   },
-  "https://www.entergy-texas.com/business/economic_development": {
-   "checked_at": "2026-07-30T03:20:28+00:00",
+  "https://www.entergytexas.com/economic-development": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.entergytexas.com/economic-development"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.entergytexas.com/our-company/rates-tariffs": {
    "checked_at": "2026-07-30T03:10:20+00:00",
@@ -7993,6 +8046,13 @@
    "ok": true,
    "status": 200
   },
+  "https://www.fredericksburgfreepress.com/2025/12/10/spotsylvania-board-of-supervisors-approves-data-center-design-standards-but-they-may-be-short-lived/": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.freestonecounty.org": {
    "archive": {
     "timestamp": "20120414111731",
@@ -8107,6 +8167,18 @@
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
    "ok": false,
    "status": null
+  },
+  "https://www.gatescountyindex.com/news/is-a-data-center-in-gates-countys-future-c8f66c53": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403,
+   "suggested_replacement": {
+    "found_via": "sitemap",
+    "score": 2,
+    "url": "https://www.gatescountyindex.com/news/hertford-gates-relay-for-life-set-for-sept-18-751a4b72"
+   }
   },
   "https://www.gci.com/business/network/data-center": {
    "checked_at": "2026-07-29T02:16:27+00:00",
@@ -8327,17 +8399,12 @@
    "ok": false,
    "status": 403
   },
-  "https://www.goochlandva.us/economic-development": {
-   "checked_at": "2026-07-30T03:09:33+00:00",
+  "https://www.goochlandva.us/1059/Economic-Development-and-Tourism": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.goochlandva.us/1059/Economic-Development-and-Tourism"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.goodfellow.af.mil/": {
    "archive": {
@@ -8630,17 +8697,12 @@
    "ok": true,
    "status": 200
   },
-  "https://www.hagerstownmd.org/economic-development": {
-   "checked_at": "2026-07-30T03:29:42+00:00",
+  "https://www.hagerstownmd.org/1827/Planning-Economic-Development": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.hagerstownmd.org/1827/Planning-Economic-Development"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.halifaxnc.com/": {
    "checked_at": "2026-07-30T03:09:21+00:00",
@@ -9174,17 +9236,12 @@
    "ok": true,
    "status": 200
   },
-  "https://www.ieua.org/about/planning/urban-water-management-plan/": {
-   "checked_at": "2026-07-30T03:33:59+00:00",
+  "https://www.ieua.org/member-agency-portal/urban-water-management-plan/": {
+   "checked_at": "2026-08-03T07:51:06+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 4,
-    "url": "https://www.ieua.org/member-agency-portal/urban-water-management-plan/"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.ilga.gov/": {
    "checked_at": "2026-07-29T02:30:57+00:00",
@@ -9688,6 +9745,20 @@
    "ok": false,
    "status": 404
   },
+  "https://www.kcrg.com/2026/05/20/dubuque-county-commission-recommends-data-center-moratorium/": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.kcrg.com/2026/05/26/dubuque-county-passes-12-month-moratorium-data-centers/": {
+   "checked_at": "2026-08-03T07:51:19+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.kcrg.com/2026/07/01/despite-putting-ordinance-place-linn-county-passes-data-center-moratorium/": {
    "checked_at": "2026-07-30T03:18:22+00:00",
    "counties": 1,
@@ -9992,6 +10063,18 @@
    "ok": false,
    "status": null
   },
+  "https://www.lagrangenews.com/news/commissioners-approve-data-center-ordinance-lift-moratorium-2b6e15ed": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403,
+   "suggested_replacement": {
+    "found_via": "sitemap",
+    "score": 5,
+    "url": "https://www.lagrangenews.com/news/commissioners-table-discussion-on-data-center-ordinance-50155bbf"
+   }
+  },
   "https://www.lakecountyfl.gov/departments/county_manager/economic_development.aspx": {
    "checked_at": "2026-07-30T03:34:49+00:00",
    "counties": 1,
@@ -10253,17 +10336,13 @@
    "ok": true,
    "status": 200
   },
-  "https://www.les.com/power-your-business/economic-development": {
-   "checked_at": "2026-07-30T03:38:14+00:00",
+  "https://www.les.com/les-market-energy-rate-economic-development-snapshot": {
+   "checked_at": "2026-08-03T07:50:46+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.les.com/les-market-energy-rate-economic-development-snapshot"
-   }
+   "error": null,
+   "final_url": "https://www.les.com/sites/default/files/resource-items/econ-dev-market-energy-rate.pdf",
+   "ok": true,
+   "status": 200
   },
   "https://www.lexingtoncountysc.gov/economic-development": {
    "checked_at": "2026-07-30T03:25:15+00:00",
@@ -10357,6 +10436,13 @@
   },
   "https://www.livingstonparishla.gov/": {
    "checked_at": "2026-07-30T03:07:06+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.local3news.com/local-news/update-hamilton-county-approves-one-year-moratorium-on-new-data-centers-in-unincorporated-areas/article_9ff722e4-a174-4361-95c3-0cce1db669bc.html": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
    "counties": 1,
    "error": null,
    "ok": true,
@@ -10659,17 +10745,12 @@
    "ok": false,
    "status": null
   },
-  "https://www.marshalltexas.net/economic-development": {
-   "checked_at": "2026-07-30T03:27:39+00:00",
+  "https://www.marshalltexas.net/588/Marshall-Economic-Development": {
+   "checked_at": "2026-08-03T07:51:19+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.marshalltexas.net/588/Marshall-Economic-Development"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.martin.fl.us/departments/growth-management/comprehensive-plan": {
    "checked_at": "2026-07-29T02:21:21+00:00",
@@ -10816,6 +10897,13 @@
    "counties": 1,
    "error": null,
    "final_url": "https://mchenrycountyedc.com/",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.mcguirewoods.com/client-resources/alerts/2024/1/fairfax-county-virginia-releases-updated-data-center-recommendations/": {
+   "checked_at": "2026-08-03T07:51:19+00:00",
+   "counties": 1,
+   "error": null,
    "ok": true,
    "status": 200
   },
@@ -11093,18 +11181,6 @@
    "ok": true,
    "status": 200
   },
-  "https://www.mississippi.org/incentives/": {
-   "checked_at": "2026-07-30T03:33:53+00:00",
-   "counties": 3,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 1,
-    "url": "http://mississippi.org/doing-business/incentives/"
-   }
-  },
   "https://www.mississippi.org/wp-content/uploads/2021/06/IncentivesGuide.pdf": {
    "checked_at": "2026-07-29T02:33:36+00:00",
    "counties": 2,
@@ -11193,6 +11269,13 @@
    "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
    "ok": false,
    "status": null
+  },
+  "https://www.monroems.com/": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.montagueCounty.org": {
    "archive": {
@@ -11294,6 +11377,13 @@
   },
   "https://www.mst.edu": {
    "checked_at": "2026-07-30T03:33:53+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.mtairynews.com/apg_sister_paper/stokes/stokes-county-paves-way-for-data-center-development/article_635770ce-b1e0-5c9f-a99a-9760f485409a.html": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
    "counties": 1,
    "error": null,
    "ok": true,
@@ -11511,30 +11601,6 @@
    "error": "HTTP 404",
    "ok": false,
    "status": 404
-  },
-  "https://www.nccommerce.com/business/tax-incentives": {
-   "checked_at": "2026-07-30T03:16:41+00:00",
-   "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.commerce.nc.gov/documents/ncworks-business-services-programs-incentives-booklet"
-   }
-  },
-  "https://www.nccommerce.com/grants-incentives/county-tiers": {
-   "checked_at": "2026-07-30T03:23:52+00:00",
-   "counties": 2,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 4,
-    "url": "https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers"
-   }
   },
   "https://www.nccommerce.com/grants-incentives/jdig": {
    "checked_at": "2026-07-29T02:25:51+00:00",
@@ -11958,6 +12024,13 @@
    "ok": false,
    "status": 403
   },
+  "https://www.nvdaily.com/nvdaily/warren-county-planners-recommend-supervisors-deny-data-center-rules/article_19a2068d-cd31-528b-8dd2-4fca310c57c9.html": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.nvenergy.com/": {
    "checked_at": "2026-07-30T03:08:12+00:00",
    "counties": 1,
@@ -12137,21 +12210,12 @@
    "ok": true,
    "status": 200
   },
-  "https://www.okanogancounty.org/commissioners/": {
-   "archive": {
-    "timestamp": "20201214011425",
-    "url": "http://web.archive.org/web/20201214011425/https://okanogancounty.org/Commissioners/"
-   },
-   "checked_at": "2026-07-30T03:28:52+00:00",
+  "https://www.okanogancounty.gov/175/County-Commissioners": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 1,
-    "url": "https://www.okanogancounty.gov/175/County-Commissioners"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.okanoganpud.org/": {
    "checked_at": "2026-07-30T03:36:49+00:00",
@@ -12500,17 +12564,12 @@
    "ok": true,
    "status": 200
   },
-  "https://www.outagamie.org/government/departments-f-o/economic-development": {
-   "checked_at": "2026-07-30T03:36:57+00:00",
+  "https://www.outagamie.gov/Meetings-Directory/Property-Airport-Recreation-and-Economic-Development-Committee": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.outagamie.gov/Meetings-Directory/Property-Airport-Recreation-and-Economic-Development-Committee"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.overtoncountygov.com": {
    "checked_at": "2026-07-29T02:30:38+00:00",
@@ -13016,6 +13075,13 @@
    "ok": true,
    "status": 200
   },
+  "https://www.pwcva.gov/department/planning-office/pw-digital-gateway": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.pxd.com/": {
    "checked_at": "2026-07-30T03:27:05+00:00",
    "counties": 1,
@@ -13172,6 +13238,13 @@
    "ok": true,
    "status": 200
   },
+  "https://www.resilience.org/stories/2026-06-16/the-data-center-showdown-in-lackawanna-county/": {
+   "checked_at": "2026-08-03T07:51:19+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.revenue.state.mn.us/businesses/sut/pages/sales-exemptions.aspx": {
    "checked_at": "2026-07-30T03:12:38+00:00",
    "counties": 1,
@@ -13180,17 +13253,12 @@
    "ok": true,
    "status": 200
   },
-  "https://www.revenue.state.mn.us/data-centers": {
-   "checked_at": "2026-07-30T03:16:57+00:00",
+  "https://www.revenue.state.mn.us/qualified-data-centers": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.revenue.state.mn.us/qualified-data-centers"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.revisor.mn.gov/": {
    "checked_at": "2026-07-30T03:32:20+00:00",
@@ -13449,6 +13517,13 @@
   },
   "https://www.salisburypost.com/2026/04/21/roco-passes-data-center-moratorium-over-100-residents-express-data-center-opposition/": {
    "checked_at": "2026-07-30T03:44:33+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.salisburypost.com/2026/07/26/op-ed-rowan-countys-data-center-rules-should-welcome-projects-like-flexential/": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
    "counties": 1,
    "error": null,
    "ok": true,
@@ -14282,6 +14357,13 @@
    "ok": true,
    "status": 200
   },
+  "https://www.theassemblync.com/news/business/person-county-microsoft-data-center-nondisclosure-agreements/": {
+   "checked_at": "2026-08-03T07:51:19+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.thomasvillechamber.com/": {
    "archive": {
     "timestamp": "20211206235804",
@@ -14661,6 +14743,13 @@
    "ok": false,
    "status": 404
   },
+  "https://www.uppermichiganssource.com/2026/01/19/data-centers-point-contention-up/": {
+   "checked_at": "2026-08-03T07:51:19+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.upstatecolorado.org": {
    "checked_at": "2026-07-30T03:13:23+00:00",
    "counties": 1,
@@ -14918,6 +15007,22 @@
    "ok": false,
    "status": 404
   },
+  "https://www.wane.com/top-stories/commissioners-reject-rezoning-plan-for-kosciusko-county-data-center/": {
+   "archive": {
+    "timestamp": "20250514145726",
+    "url": "http://web.archive.org/web/20250514145726/https://www.wane.com/top-stories/commissioners-reject-rezoning-plan-for-kosciusko-county-data-center/"
+   },
+   "checked_at": "2026-08-03T07:51:01+00:00",
+   "counties": 1,
+   "error": "HTTP 403",
+   "ok": false,
+   "status": 403,
+   "suggested_replacement": {
+    "found_via": "sitemap",
+    "score": 3,
+    "url": "https://www.wane.com/top-stories/allen-county-commissioners-officially-decide-to-sell-former-byron-health-property/"
+   }
+  },
   "https://www.warmsprings-nsn.gov/": {
    "checked_at": "2026-07-30T03:23:00+00:00",
    "counties": 1,
@@ -14969,17 +15074,12 @@
    "ok": false,
    "status": 404
   },
-  "https://www.washingtoncountytn.org/commission/": {
-   "checked_at": "2026-07-30T03:18:28+00:00",
+  "https://www.washingtoncountytn.org/208/County-Commission": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
    "counties": 1,
-   "error": "HTTP 404",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 1,
-    "url": "https://www.washingtoncountytn.org/208/County-Commission"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.wataugademocrat.com/news/county-commissioners-pass-a-one-year-data-center-moratorium-for-watauga-county/article_012ca886-b088-4aee-8321-6b0f851fcdca.html": {
    "checked_at": "2026-07-30T03:33:51+00:00",
@@ -15081,6 +15181,17 @@
    "ok": true,
    "status": 200
   },
+  "https://www.webstercountyms.org/": {
+   "archive": {
+    "timestamp": "20260718200720",
+    "url": "http://web.archive.org/web/20260718200720/http://www.webstercountyms.org/"
+   },
+   "checked_at": "2026-08-03T07:51:11+00:00",
+   "counties": 1,
+   "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.webstercountyms.org'. (_ssl.c:1016)>",
+   "ok": false,
+   "status": null
+  },
   "https://www.westbatonrouge.net": {
    "checked_at": "2026-07-30T03:10:33+00:00",
    "counties": 1,
@@ -15141,6 +15252,13 @@
    "counties": 1,
    "error": null,
    "final_url": "https://www.whatcomcounty.us/631/Fire-Codes",
+   "ok": true,
+   "status": 200
+  },
+  "https://www.wheelercountyoregon.com/": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
+   "counties": 1,
+   "error": null,
    "ok": true,
    "status": 200
   },
@@ -15407,6 +15525,13 @@
    "ok": true,
    "status": 200
   },
+  "https://www.wral.com/news/local/microsoft-person-county-woodsdale-data-center-permit-february-2026/": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.wrdw.com/2026/06/02/augustans-urge-city-leaders-put-data-centers-hold/": {
    "checked_at": "2026-07-30T03:20:20+00:00",
    "counties": 1,
@@ -15421,8 +15546,36 @@
    "ok": true,
    "status": 200
   },
+  "https://www.wsbtv.com/news/local/troup-county-approves-90-day-moratorium-data-center-applications/HOGHN6WZGNDGVBGK4TOGS4ZQP4/": {
+   "checked_at": "2026-08-03T07:51:11+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.wsmv.com/2026/07/22/metro-council-passes-first-data-center-regulations-nashville-heres-what-changes/": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.wthr.com/article/news/local/boone-county-commissioners-approve-moratorium-on-data-centers-indiana/531-9bf523f4-f328-4067-890b-ad4db4f72194": {
    "checked_at": "2026-07-30T03:15:40+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.wunc.org/2026-03-23/boone-approves-data-center-development-moratorium": {
+   "checked_at": "2026-08-03T07:51:13+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.wunc.org/environment/2026-04-22/orange-county-moratorium-data-centers": {
+   "checked_at": "2026-08-03T07:50:57+00:00",
    "counties": 1,
    "error": null,
    "ok": true,
@@ -15455,6 +15608,13 @@
   },
   "https://www.wvlt.tv/2026/06/16/anderson-county-commission-proposes-2-year-moratorium-local-data-centers/": {
    "checked_at": "2026-07-30T03:21:39+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.wvtf.org/news/2026-07-27/some-virginia-localities-are-ending-by-right-regulations-for-data-centers": {
+   "checked_at": "2026-08-03T07:51:19+00:00",
    "counties": 1,
    "error": null,
    "ok": true,
