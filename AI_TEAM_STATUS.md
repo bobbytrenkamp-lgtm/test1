@@ -57,15 +57,58 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   Equalization appeal-case index, not parcel boundary data; see Open
   Handoffs below for the full trail and untried candidates a human could
   follow up on. Closed as won't-fix pending a human follow-up, same
-  pattern as Santa Clara/Hennepin/Denver. The next candidates below
-  Clark NV (43) in the facility-count priority list — Miami-Dade FL
-  (40), Bexar County TX/San Antonio (39), San Francisco CA (39),
+  pattern as Santa Clara/Hennepin/Denver. Miami-Dade County FL (40
+  facilities) was added next — a rare first-probe success, see Recently
+  Completed below. Registry now covers 15 jurisdictions. The next
+  candidates below Miami-Dade FL (40) in the facility-count priority
+  list — Bexar County TX/San Antonio (39), San Francisco CA (39),
   Mecklenburg County NC/Charlotte (39), Salt Lake County UT (37),
   Multnomah County OR/Portland (36), Davidson County TN/Nashville (34),
   Jackson County MO/Kansas City (34), Philadelphia PA (32), Sacramento
   County CA (30), Cuyahoga County OH/Cleveland (29), Wake County
   NC/Raleigh (28), Polk County IA/Des Moines (27) — have not yet been
   investigated.
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Miami-Dade County FL to the parcel registry — the next
+  highest-priority market by facility count after Clark NV (confirmed
+  unavailable, see below).
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: `js/parcel/registry.js` now covers 15 jurisdictions (up from
+  14). Fetch-confirmed on a single GitHub Actions-dispatched probe round
+  (this dev sandbox cannot reach miamidade.gov directly) — a rare
+  first-try success: a web search surfaced a specific lead
+  (gisweb.miamidade.gov's "MD_LandInformation" MapServer layer 26,
+  described by a search result as having "44 confirmed fields") and it
+  resolved live on the first probe with 46 real fields, polygon
+  geometry, layer name "Parcels @ PaParcel" (Property Appraiser). One of
+  the richest sources in this registry: real owner names, full site/
+  mailing address components, Florida DOR land-use code AND
+  description, building characteristics, subdivision, and current land/
+  building/total assessed values. 16 of 30 canonical fields mapped.
+- FOLIO (Miami-Dade's real 13-digit parcel identifier) mapped to
+  parcel_id; PID (a distinct internal integer id) mapped to pin.
+  TRUE_OWNER1 used for owner (TRUE_OWNER2/3 exist for co-owners, same
+  primary-value convention as NYC's ZoneDist1). Mailing address is
+  genuinely split across 6 separate fields with no composite of its
+  own, so owner_mailing is correctly left unmapped rather than
+  concatenated. LOT_SIZE exists but has no accompanying unit-of-measure
+  field, so area_sqft/area_acres are left unmapped — same caution as
+  Maryland's LANDAREA/LUOM and Maricopa's LAND_SIZE precedent. No
+  sale-transaction or legal-description fields exist in this layer.
+- Licensing: no description/copyrightText found on this specific layer
+  (both fields present in the schema but empty) — hosted on the
+  county's own official gisweb subdomain, treated as standard public
+  government data like every other county in this registry except Cook
+  County IL.
+- Validated the same way as every prior addition: fieldMap +
+  notProvidedBySource cover all 30 canonical schema.js fields with zero
+  gaps/overlaps (verified via script); `tests/parcel.test.js` — 293/293
+  passing; live-tested via Playwright through the real
+  `window.PARCEL_PANEL.show()` rendering path — populated fields render
+  real values, gaps render "Not published by this source", no page
+  errors.
 
 - Date: 2026-08-03
 - Agent: Claude Code
