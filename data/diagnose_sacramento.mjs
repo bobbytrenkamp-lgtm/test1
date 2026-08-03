@@ -1,11 +1,12 @@
-// Temporary diagnostic, round 1: Sacramento County CA parcel service.
+// Temporary diagnostic, round 2: Sacramento County CA parcel service.
 //
-// Web search found Sacramento County's own official open data portal
-// (data-sacramentocounty.opendata.arcgis.com) hosting a "Parcels"
-// dataset and an "Assessor Parcel Viewer" dataset. This round fetches
-// the portal's own DCAT catalog to find the real FeatureServer
-// distribution URL directly -- the same pattern that worked for Salt
-// Lake County UT, Multnomah County OR, and Philadelphia PA.
+// Round 1's DCAT catalog search found the real dataset directly:
+// "Parcels", with a genuine ArcGIS GeoServices REST API distribution
+// URL on Sacramento County's own ArcGIS org (org id 5NARefyPVtAeuJPU,
+// the same org backing every other dataset in this portal, including
+// "Assessor Parcel Viewer"). This round probes that confirmed URL
+// directly to get its real field schema, description, and
+// copyrightText.
 //
 // Deleted once Sacramento County is either added or documented as
 // unavailable.
@@ -27,17 +28,16 @@ async function fetchText(url, label) {
     console.log(`URL: ${url}`);
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
-      if (body.dataset && Array.isArray(body.dataset)) {
-        const hits = body.dataset.filter(d => /\bparcel/i.test(d.title || ''));
-        console.log(`DCAT dataset count: ${body.dataset.length}, "parcel" title matches: ${hits.length}`);
-        for (const hit of hits) {
-          console.log('  DCAT match title:', hit.title);
-          console.log('  DCAT match distribution:', JSON.stringify((hit.distribution || []).map(d => ({ format: d.format, url: d.accessURL || d.downloadURL }))));
-        }
-      } else {
-        console.log('Body (JSON keys):', Object.keys(body));
-        if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
+      console.log('Body (JSON keys):', Object.keys(body));
+      if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
+      if (body.fields) {
+        console.log('Field count:', body.fields.length);
+        console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
       }
+      if (body.name) console.log('Layer name:', body.name);
+      if (body.geometryType) console.log('Geometry type:', body.geometryType);
+      if (body.description) console.log('description:', body.description.slice(0, 500));
+      if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -54,8 +54,8 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://data-sacramentocounty.opendata.arcgis.com/api/feed/dcat-us/1.1.json',
-  "Sacramento County's own open data portal - DCAT catalog, filtered for 'parcel'"
+  'https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/Parcels/FeatureServer/0?f=json',
+  'Confirmed real - Sacramento County Parcels FeatureServer layer 0'
 );
 
 console.log('\nDone.');
