@@ -1,6 +1,19 @@
 // Temporary diagnostic: find live parcel services for the next batch of
 // counties in the facility-count priority list: Franklin County OH (82
 // facilities) and King County WA (71 facilities).
+//
+// Round 1 (see AI_TEAM_STATUS.md / job logs) found real ArcGIS Online
+// catalog results but the guessed direct King County URL was a 404
+// (wrong service name), and the guessed Franklin County URL hit a bug in
+// this script's own fetch helper (double-read of the response body on a
+// JSON parse failure), not a real network signal.
+//
+// Round 2: fixes the fetch helper (read text once, then try JSON.parse),
+// and fetches the specific live Feature Service candidates the round-1
+// catalog search surfaced for King County (owner: KingCounty, org
+// Ej0PsM5Aw677QF1W), plus a scoped search for Franklin County's actual
+// auditor-owned parcel service.
+//
 // Deleted once these are either added to the registry or documented as
 // unavailable.
 
@@ -14,8 +27,9 @@ async function fetchJson(url, label) {
     const res = await fetch(url, { signal: controller.signal });
     const elapsed = Date.now() - start;
     const status = res.status;
+    const text = await res.text();
     let body;
-    try { body = await res.json(); } catch { body = await res.text(); }
+    try { body = JSON.parse(text); } catch { body = text; }
     console.log(`\n=== ${label} ===`);
     console.log(`URL: ${url}`);
     console.log(`HTTP ${status} in ${elapsed}ms`);
@@ -30,6 +44,7 @@ async function fetchJson(url, label) {
       }
       if (body.name) console.log('Layer name:', body.name);
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
+      if (body.layers) console.log('Sub-layers:', body.layers.map(l => `${l.id}:${l.name}`).join(', '));
       if (Array.isArray(body.results)) {
         console.log(`total: ${body.total}`);
         for (const r of body.results.slice(0, 10)) {
@@ -50,35 +65,37 @@ async function fetchJson(url, label) {
 }
 
 // --- Franklin County, OH (FIPS 39049) ---
-// Franklin County Auditor's real property GIS.
+// Fixed URL retry (round 1's failure was a script bug, not a real signal).
 await fetchJson(
   'https://apps.franklincountyauditor.com/GIS_ArcGIS/rest/services/Parcels/MapServer?f=json',
-  'Franklin County OH auditor GIS - Parcels service root'
+  'Franklin County OH auditor GIS - Parcels service root (retry)'
 );
+// Scoped catalog search for the auditor's own hosted service, since round 1's
+// general keyword search only surfaced a Web Map with no direct URL.
 await fetchJson(
-  'https://apps.franklincountyauditor.com/GIS_ArcGIS/rest/services/Parcels/MapServer/0?f=json',
-  'Franklin County OH auditor GIS - Parcels layer 0 definition'
-);
-// Ohio statewide OGRIP/Location Based Services parcel catalog, as a fallback
-// discovery route if the county's own service isn't reachable at that path.
-await fetchJson(
-  'https://www.arcgis.com/sharing/rest/search?q=Franklin%20County%20Ohio%20parcels&f=json&num=10',
-  'ArcGIS Online catalog search for Franklin County OH parcels'
+  'https://www.arcgis.com/sharing/rest/search?q=parcels%20AND%20owner:FranklinCountyAuditor&f=json&num=10',
+  'ArcGIS Online search scoped to FranklinCountyAuditor owner'
 );
 
 // --- King County, WA (FIPS 53033) ---
-// King County's official open data / GIS Feature Server.
+// Round 1 catalog search found these live, KingCounty-owned candidates.
+// Fetch each Feature Server root, then layer 0, of the two best general-
+// purpose candidates.
 await fetchJson(
-  'https://gismaps.kingcounty.gov/arcgis/rest/services/OpenDataPortal/property___parcel/MapServer?f=json',
-  'King County WA GIS - property/parcel service root'
+  'https://services.arcgis.com/Ej0PsM5Aw677QF1W/arcgis/rest/services/PUBLIC_PARCELS_AREA_2598/FeatureServer?f=json',
+  'King County WA - Public Parcels in King County (FeatureServer root)'
 );
 await fetchJson(
-  'https://gismaps.kingcounty.gov/arcgis/rest/services/OpenDataPortal/property___parcel/MapServer/0?f=json',
-  'King County WA GIS - property/parcel layer 0 definition'
+  'https://services.arcgis.com/Ej0PsM5Aw677QF1W/arcgis/rest/services/PUBLIC_PARCELS_AREA_2598/FeatureServer/0?f=json',
+  'King County WA - Public Parcels in King County (layer 0 definition)'
 );
 await fetchJson(
-  'https://www.arcgis.com/sharing/rest/search?q=King%20County%20Washington%20parcels&f=json&num=10',
-  'ArcGIS Online catalog search for King County WA parcels'
+  'https://services.arcgis.com/Ej0PsM5Aw677QF1W/arcgis/rest/services/PARCEL_ADDRESS_PUB_AREA_3069/FeatureServer?f=json',
+  'King County WA - Parcels with Address/Property/Ownership (Public) (FeatureServer root)'
+);
+await fetchJson(
+  'https://services.arcgis.com/Ej0PsM5Aw677QF1W/arcgis/rest/services/PARCEL_ADDRESS_PUB_AREA_3069/FeatureServer/0?f=json',
+  'King County WA - Parcels with Address/Property/Ownership (Public) (layer 0 definition)'
 );
 
 console.log('\nDone.');
