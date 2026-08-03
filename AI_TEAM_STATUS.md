@@ -101,11 +101,21 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   jurisdictions. Davidson County TN/Nashville (34 facilities) was added
   next — a first-probe success on Nashville's own MetroGIS host with a
   rich 58-field schema. See Recently Completed below. Registry now
-  covers 19 jurisdictions. The next candidates below Davidson County TN
-  (34) in the facility-count priority list — Jackson County MO/Kansas
-  City (34), Philadelphia PA (32), Sacramento County CA (30), Cuyahoga
-  County OH/Cleveland (29), Wake County NC/Raleigh (28), Polk County
-  IA/Des Moines (27) — have not yet been investigated.
+  covers 19 jurisdictions. Jackson County MO/Kansas City (34
+  facilities) was investigated over three probe rounds and confirmed
+  unavailable in its current form — every guessed service name either
+  didn't exist (real 404s) or turned out to be a CAD/survey layer with
+  no owner/value/address data, not a general parcel data service;
+  round 3's root directory listing revealed several unexplored folders
+  (ParcelViewer, Land_Records_Management, Internal_Parcel_Viewer,
+  Auditor) that are plausible leads for a human to follow up on, past
+  this investigation's 3-round budget. See Open Handoffs below for the
+  full trail. Closed pending a human follow-up, same pattern as Santa
+  Clara/Hennepin/Denver/Clark/San Francisco/Mecklenburg. The next
+  candidates below Jackson County MO (34) in the facility-count
+  priority list — Philadelphia PA (32), Sacramento County CA (30),
+  Cuyahoga County OH/Cleveland (29), Wake County NC/Raleigh (28), Polk
+  County IA/Des Moines (27) — have not yet been investigated.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1479,6 +1489,58 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Remaining concerns: none — this handoff is closed.
 
 ## Open Handoffs
+
+- Item: Jackson County, Missouri (Kansas City) parcel data — next
+  target by facility count (34 in `facilities_index.json`, tied with
+  Davidson County TN) after Davidson County TN.
+- Current status: Open, not added. Investigated over three probe
+  rounds, run 2026-08-03 via GitHub Actions dispatch (this sandbox
+  can't reach jacksongov.org directly). Jackson County's own GIS host,
+  `jcgis.jacksongov.org`, is genuinely live and reachable, but no
+  general-purpose parcel/assessor data service was found on it in three
+  rounds of investigation.
+- Round 1: two web-search-suggested candidates. `Cadastral/
+  ParcelsAndAddresses` returns a real ArcGIS 404 ("Service ... not
+  found") — the web search snippet describing it appears to have been
+  stale or referred to a service that no longer exists under that name.
+  `Cadastral/LotsAndDimensions/MapServer/0` is real and live, but
+  turned out to be "Builder Block Numbers" — a CAD text-annotation
+  layer (FontName/FontSize/Bold/TextString/MSLINK_DMRS fields indicate
+  a MicroStation/Bentley GIS annotation layer), not parcel polygons.
+- Round 2: listed `LotsAndDimensions`' full sub-layer set to find the
+  real parcel layer index. All 9 sub-layers turned out to be CAD/survey
+  elements (0:Builder Block Numbers, 1:Default, 2:Property Dimensions,
+  3:Default, 4:Lot Corners, 5:Lot Numbers, 6:Lot Annotation, 7:Default,
+  8:Lots) — the entire service is a surveying/plat layer, not a general
+  parcel data source with owner/value/address fields, even though it
+  does contain a layer literally named "Lots". Two more guessed service
+  names (`ParcelViewer/Parcels`, `Cadastral/Parcels`) both returned real
+  404s.
+- Round 3: listed the services root directory and the `Cadastral`
+  folder directly instead of guessing further names. The root directory
+  has folders for `Auditor`, `Cadastral`, `COMBAT`,
+  `Compliance_Certificate`, `ElectionAdministration`,
+  `GeoprocessingServices`, `Imagery`, `Internal_Parcel_Viewer`,
+  `Land_Records_Management`, `Locators`, `ParcelViewer`, `Parks_Rec`,
+  `TaxExemption`, `Utilities`, plus a few root-level services (`Auditor`
+  FeatureServer/MapServer, two geocoders, `Neighborhoods` MapServer).
+  The `Cadastral` folder itself only contains `LotsAndDimensions`
+  (already ruled out) and `PastYearParcels` (a historical-year variant
+  of the same lots/dimensions data, not yet checked for a different
+  field schema but named similarly to the already-ruled-out service).
+- Recommended next action: several unexplored folders are plausible
+  leads for a human to investigate past this session's 3-round budget:
+  `ParcelViewer` (the public-facing Parcel Viewer app at
+  jcgis.jacksongov.org/parcelviewer/ must query some real backing
+  service — this session's single guessed name `ParcelViewer/Parcels`
+  was wrong, but the correct service name is likely something else in
+  that folder), `Land_Records_Management` (the most promising name by
+  far for genuine deed/ownership/assessment data), `Auditor` (Missouri
+  counties' Auditor's office sometimes maintains parcel/tax data — the
+  root-level `Auditor` FeatureServer/MapServer services weren't probed
+  for field schema in this round), and `Internal_Parcel_Viewer` (name
+  suggests it may be access-restricted, lowest priority of the four).
+- Relevant files: `js/parcel/registry.js`.
 
 - Item: Mecklenburg County, North Carolina (Charlotte) parcel data —
   next target by facility count (39 in `facilities_index.json`, tied
