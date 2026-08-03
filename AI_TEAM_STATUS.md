@@ -98,12 +98,14 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   description/copyrightText), and round 1's DCAT-catalog fallback found
   the real service directly; round 2 confirmed it with a rich 56-field
   schema. See Recently Completed below. Registry now covers 18
-  jurisdictions. The next candidates below Multnomah County OR (36) in
-  the facility-count priority list — Davidson County TN/Nashville (34),
-  Jackson County MO/Kansas City (34), Philadelphia PA (32), Sacramento
-  County CA (30), Cuyahoga County OH/Cleveland (29), Wake County
-  NC/Raleigh (28), Polk County IA/Des Moines (27) — have not yet been
-  investigated.
+  jurisdictions. Davidson County TN/Nashville (34 facilities) was added
+  next — a first-probe success on Nashville's own MetroGIS host with a
+  rich 58-field schema. See Recently Completed below. Registry now
+  covers 19 jurisdictions. The next candidates below Davidson County TN
+  (34) in the facility-count priority list — Jackson County MO/Kansas
+  City (34), Philadelphia PA (32), Sacramento County CA (30), Cuyahoga
+  County OH/Cleveland (29), Wake County NC/Raleigh (28), Polk County
+  IA/Des Moines (27) — have not yet been investigated.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1117,6 +1119,52 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Davidson County, Tennessee (FIPS 47037, 34 facilities) to
+  the parcel registry — a first-probe success following the web-
+  search-first discovery pattern.
+- Findings: Web search found a specific, real candidate immediately on
+  Nashville's own MetroGIS host: `maps.nashville.gov/.../Cadastral/
+  Parcels/MapServer`, described directly as "Parcel Boundaries for
+  Nashville/Davidson County" with an "Ownership Parcels" layer.
+  Confirmed live via GitHub Actions dispatch (this sandbox's proxy
+  blocks similar hosts directly) with a real, rich 58-field schema;
+  `copyrightText: "MetroGIS"` confirmed it's genuinely Nashville's own
+  official platform (no wrong-county risk this time, unlike Multnomah).
+  A fallback candidate (`Parcels_SP`, a State Plane projection variant)
+  was checked and confirmed to not exist as a real service (a genuine
+  ArcGIS "Service ... not found" error, not a wrong guess needing
+  follow-up).
+- Field mapping: 18 of 30 canonical fields mapped — including real
+  owner name, a composite property address field, a clean land-use
+  code+description pair, lot width/depth (mapped from the classic CAMA
+  Front/Side fields), acreage (confirmed units), Tennessee's
+  assessment-ratio "assessed value" figures (kept consistently on the
+  assessed basis rather than mixed with the source's separate
+  "appraised" — 100%-of-market — figures), last sale date/price, legal
+  description, and census tract. The remaining 12 (owner_mailing,
+  zoning_desc, overlay_districts, area_sqft, building_count,
+  year_built, gross_floor_area, tax_year, tax_amount, deed_book,
+  deed_page, subdivision) recorded in `notProvidedBySource` — verified
+  programmatically to cover all 30 canonical fields with zero gaps and
+  zero overlaps. Notably, this layer has no year-built or
+  building-count field at all (it tracks land/ownership/valuation, not
+  building characteristics) — a genuine source gap, not an oversight.
+  `area_sqft` deliberately left unmapped since the only alternative,
+  `StatedArea`, has unconfirmed units, same caution applied to every
+  other ambiguous-unit area field in this registry.
+- Licensing: `copyrightText: "MetroGIS"` is Nashville/Davidson County's
+  own Metro Government GIS department; standard "public government
+  data, verify terms before commercial redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 18 mapped fields plus "Not
+  published by this source" for all 12 unmapped fields, zero page
+  errors. Registry now covers 19 jurisdictions.
+- Shipped: PR #276 (registry addition, deletes the temporary diagnostic
+  script/workflow in the same commit).
 
 - Date: 2026-08-03
 - Agent: Claude Code
