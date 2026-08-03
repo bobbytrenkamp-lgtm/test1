@@ -1032,6 +1032,87 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Travis County, Texas (Austin) ────────────────────────────────────
+     *
+     * Travis County — #14 by facility count (45) in this app's dataset.
+     *
+     * 2026-08-03 — fetch-confirmed across 2 GitHub Actions-dispatched probe
+     * rounds (this dev sandbox cannot reach traviscountytx.gov directly).
+     * Round 1's blind subdomain guesses (gis.traviscad.org, maps.traviscad.org)
+     * failed at DNS; gis.traviscountytx.gov resolved but 404'd at a guessed
+     * path. Round 2 used a web search instead of more blind guessing, which
+     * surfaced the real path structure (host uses "server1", not "arcgis",
+     * in its REST base path) and confirmed this exact layer live with a
+     * real 21-field schema. copyrightText: "Travis Central Appraisal
+     * District" — no redistribution restriction found, same as every other
+     * county in this registry except Cook County IL.
+     *
+     * This is the "TCAD_public" layer specifically (there's a sibling
+     * "TCAD" MapServer at the same host with an identical-looking parcel
+     * layer, and a separate "TCAD_Travis_County_Property" layer that turned
+     * out to be Travis-County-owned-property only, not general parcels) —
+     * its name and its thin field list (situs address, legal description,
+     * acreage, no owner/valuation/zoning at all) both indicate this is a
+     * deliberately limited public-facing boundary layer, same pattern as
+     * this registry's Virginia counties: the fuller CAMA record (owner,
+     * assessed value, sale history) lives behind TCAD's own separate
+     * property-search portal (traviscad.org/propertysearch, a third-party
+     * ProdigyCAD-hosted system, not a general-purpose queryable service),
+     * not this ArcGIS layer. Only 7 of 30 canonical fields map as a result
+     * — the thinnest of any Texas source in this registry, but real and
+     * honestly documented rather than padded with guesses.
+     *
+     * situs_address used directly for address (source provides it as a
+     * single composite field, alongside the individual situs_num/street/
+     * city/zip components — same convention as every other source here:
+     * prefer a provided composite over concatenating parts). geo_id used
+     * for pin as TCAD's second real identifier alongside PROP_ID. sub_dec
+     * mapped to subdivision (Texas CAD convention for "subdivision
+     * description"). tcad_acres is a real acreage field, unlike several
+     * other counties in this registry where only a raw, unit-unconfirmed
+     * Shape.STArea() exists (left unmapped here too, for the same reason).
+     * ─────────────────────────────────────────────────────────────────── */
+    '48453': {
+      id:          'tx-travis-county',
+      name:        'Travis County, Texas',
+      state:       'TX',
+      fips:        '48453',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis.traviscountytx.gov/server1/rest/services/Boundaries_and_Jurisdictions/TCAD_public/MapServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'PROP_ID',
+        pin:                 'geo_id',
+        address:             'situs_address',
+        area_acres:          'tcad_acres',
+        subdivision:         'sub_dec',
+        legal_desc:          'legal_desc',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_code', 'land_use_desc', 'overlay_districts', 'area_sqft',
+        'lot_depth_ft', 'lot_width_ft', 'building_count', 'year_built',
+        'gross_floor_area', 'assessed_value', 'land_value',
+        'improvement_value', 'tax_year', 'tax_amount', 'last_sale_date',
+        'last_sale_price', 'deed_book', 'deed_page', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Travis Central Appraisal District (TCAD)',
+        url:     'https://traviscad.org/',
+        portal:  'https://traviscad.org/propertysearch/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Austin — major Texas data center market.',
+      },
+    },
+
   };
 
   function get(fips) {
