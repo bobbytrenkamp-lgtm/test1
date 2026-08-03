@@ -1297,6 +1297,88 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Salt Lake County, Utah ─────────────────────────────────────────
+     * Live at services1.arcgis.com (Utah Geospatial Resource Center /
+     * UGRC's hosted org), layer "Parcels_SaltLake_LIR" — the statewide
+     * Land Information Record (LIR) parcel program, maintained in
+     * coordination with the county Assessor and updated monthly per
+     * UGRC's own documentation. Confirmed live 2026-08-03 via GitHub
+     * Actions dispatch (this sandbox's proxy returns HTTP 403 on
+     * arcgis.com directly) with a real 30-field schema. No owner name
+     * field exists anywhere in this layer — UGRC's LIR program
+     * deliberately omits owner data from its statewide parcel feed
+     * (available only through each county's own, non-standardized
+     * assessor lookup tools), a structural gap rather than a guess.
+     * PARCEL_ID and SERIAL_NUM are two distinct real identifier fields
+     * (Utah county assessors commonly expose a separate "serial number"
+     * from the parcel ID) mapped separately to parcel_id/pin, same
+     * convention as every other jurisdiction with two distinct ID
+     * fields. PARCEL_ADD used directly for address (a real field, not
+     * built from PARCEL_ADD + the separate PARCEL_CITY field — no
+     * canonical "city" field exists in this schema, so PARCEL_CITY is
+     * left unused rather than concatenated in, same convention as every
+     * other split-address source here). PROP_CLASS/PROP_TYPE mapped to
+     * land_use_code/land_use_desc respectively (a short classification
+     * code alongside a more descriptive property-type field). PARCEL_
+     * ACRES has confirmed units (its name states acres) and is mapped to
+     * area_acres; area_sqft is left unmapped since the only area-like
+     * alternative, Shape__Area, is a raw geometry-engine value with
+     * unconfirmed units, same caution as every other ambiguous-unit area
+     * field in this registry. BLDG_SQFT (building square footage, a
+     * distinct field from the parcel-area fields) mapped to
+     * gross_floor_area. HOUSE_CNT mapped to building_count. TOTAL_MKT_
+     * VALUE/LAND_MKT_VALUE mapped to assessed_value/land_value, matching
+     * how every other jurisdiction's market-value concept is
+     * represented. No improvement value, tax year/amount, sale history,
+     * deed references, legal description, or census tract fields exist
+     * in this parcel-boundary-focused layer.
+     * ─────────────────────────────────────────────────────────────────── */
+    '49035': {
+      id:          'ut-salt-lake-county',
+      name:        'Salt Lake County, Utah',
+      state:       'UT',
+      fips:        '49035',
+      connector:   'arcgis',
+      serviceUrl:  'https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_SaltLake_LIR/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'PARCEL_ID',
+        pin:                 'SERIAL_NUM',
+        address:             'PARCEL_ADD',
+        land_use_code:       'PROP_CLASS',
+        land_use_desc:       'PROP_TYPE',
+        area_acres:          'PARCEL_ACRES',
+        gross_floor_area:    'BLDG_SQFT',
+        building_count:      'HOUSE_CNT',
+        year_built:          'BUILT_YR',
+        assessed_value:      'TOTAL_MKT_VALUE',
+        land_value:          'LAND_MKT_VALUE',
+        subdivision:         'SUBDIV_NAME',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'overlay_districts', 'area_sqft', 'lot_depth_ft', 'lot_width_ft',
+        'improvement_value', 'tax_year', 'tax_amount', 'last_sale_date',
+        'last_sale_price', 'deed_book', 'deed_page', 'legal_desc',
+        'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Utah Geospatial Resource Center (UGRC) / Salt Lake County Assessor',
+        url:     'https://gis.utah.gov/products/sgid/cadastre/parcels/',
+        portal:  'https://opendata.gis.utah.gov/datasets/utah-salt-lake-county-parcels-lir/about',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Salt Lake City metro — major Utah data center market.',
+      },
+    },
+
   };
 
   function get(fips) {
