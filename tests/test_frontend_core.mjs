@@ -49,6 +49,24 @@ for (const banned of ['No Restrictions"', 'High Restrictions', 'Pro / Incentive'
   t(`no banned phrase: ${banned}`, allLabels.includes(banned), false);
 }
 
+/* ── constants.js: safeHref() ──
+   Regression coverage for the href scheme-validation gap fixed across
+   report.js/jurisdiction.js/stocks.js: escHtml()-family helpers encode
+   &<>" but never blocked a dangerous URL *scheme* in an href built from
+   scraper/RSS-adapter data. A real http(s) URL must always pass through
+   unchanged; anything else must reduce to the safe no-op "#". */
+const H = window.safeHref;
+t('safeHref https passes',        H('https://example.com/foo'), 'https://example.com/foo');
+t('safeHref http passes',         H('http://example.com/foo'),  'http://example.com/foo');
+t('safeHref case-insensitive',    H('HTTPS://example.com'),     'HTTPS://example.com');
+t('safeHref blocks javascript:',  H('javascript:alert(1)'),     '#');
+t('safeHref blocks data:',        H('data:text/html,<script>alert(1)</script>'), '#');
+t('safeHref blocks whitespace-padded javascript:', H('  javascript:alert(1)  '), '#');
+t('safeHref blocks relative path', H('/some/path'),             '#');
+t('safeHref blocks empty string', H(''),                        '#');
+t('safeHref blocks undefined',    H(undefined),                 '#');
+t('safeHref blocks null',         H(null),                      '#');
+
 /* ── router.js: build ── */
 const R = window.Router;
 t('build tab',         R.build('news', {}),                     '#news');
