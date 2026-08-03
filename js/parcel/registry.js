@@ -1563,6 +1563,87 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Philadelphia, Pennsylvania ─────────────────────────────────────
+     * Live at mapservices.pasda.psu.edu (PASDA, Pennsylvania's state
+     * university-hosted GIS clearinghouse), layer "Philadelphia DOR
+     * Parcels 202402" (CityPhilly/MapServer/14) — confirmed live
+     * 2026-08-03 via GitHub Actions dispatch (this sandbox's proxy
+     * returns HTTP 403 on similar hosts directly) with a real 25-field
+     * schema, sourced from the city's Department of Records deed/metes-
+     * and-bounds registry (weekly updates, description explicitly flags
+     * "Public= Y"). Found over 5 probe rounds: round 1 found a much
+     * richer 78-field dataset, OPA_PROPERTIES_PUBLIC (Office of
+     * Property Assessment) — real owner, address, market/taxable value,
+     * sale history, building characteristics — but its geometryType is
+     * esriGeometryPoint, not Polygon; this registry's Leaflet renderer
+     * (js/parcel/renderer.js) draws parcels via L.geoJSON with a
+     * polygon fillColor/weight style, so Point features would fall back
+     * to Leaflet's default marker rendering, the same architectural
+     * blocker that ruled out Clark County NV's BOE_Parcels earlier this
+     * session — see AI_TEAM_STATUS.md for the full trail and a human
+     * recommendation to consider extending the renderer to support
+     * point-geometry jurisdictions via a custom pointToLayer, which
+     * would unlock that much richer dataset. This entry uses the
+     * confirmed Polygon boundary layer instead — genuinely thinner (no
+     * assessed value or building characteristics; that data only exists
+     * in the point dataset), but still carries real owner and address
+     * fields, unlike a pure boundary-only add. PARCELID mapped to
+     * parcel_id; TENCODE (the deed registry's own ten-digit map/parcel
+     * code, described in the layer's own metadata) mapped to pin — two
+     * genuinely distinct identifier fields. OWNER1 mapped to owner; no
+     * owner_mailing field exists (OWNER2 is a second owner name, not a
+     * mailing address). BC_LANDUSE/BC_TYPE mapped to land_use_code/
+     * land_use_desc. IMPERV_ARE/IMP_ROOF/IMP_GROUND/IMP_TOTAL/
+     * NATURAL_GR/TOTAL_GROU are impervious-surface coverage metrics for
+     * the city's stormwater billing program (confirmed by the
+     * accompanying PROGRAM field), a different concept than parcel lot
+     * area — deliberately NOT mapped to area_sqft/area_acres rather
+     * than force-fit, same caution as every other ambiguous-field
+     * source in this registry. No value, building-count, year-built,
+     * sale-history, deed-book/page, or legal-description fields exist
+     * in this boundary-focused layer.
+     * ─────────────────────────────────────────────────────────────────── */
+    '42101': {
+      id:          'pa-philadelphia',
+      name:        'Philadelphia, Pennsylvania',
+      state:       'PA',
+      fips:        '42101',
+      connector:   'arcgis',
+      serviceUrl:  'https://mapservices.pasda.psu.edu/server/rest/services/pasda/CityPhilly/MapServer/14',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'PARCELID',
+        pin:                 'TENCODE',
+        address:             'ADDRESS',
+        owner:               'OWNER1',
+        land_use_code:       'BC_LANDUSE',
+        land_use_desc:       'BC_TYPE',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'overlay_districts',
+        'area_sqft', 'area_acres', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'year_built', 'gross_floor_area',
+        'assessed_value', 'land_value', 'improvement_value', 'tax_year',
+        'tax_amount', 'last_sale_date', 'last_sale_price', 'deed_book',
+        'deed_page', 'subdivision', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'City of Philadelphia Department of Records (via PASDA)',
+        url:     'https://www.phila.gov/departments/office-of-property-assessment/',
+        portal:  'https://www.pasda.psu.edu/uci/DataSummary.aspx?dataset=462',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Philadelphia metro — major Pennsylvania data center market.',
+      },
+    },
+
   };
 
   function get(fips) {

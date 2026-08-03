@@ -111,11 +111,20 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   Auditor) that are plausible leads for a human to follow up on, past
   this investigation's 3-round budget. See Open Handoffs below for the
   full trail. Closed pending a human follow-up, same pattern as Santa
-  Clara/Hennepin/Denver/Clark/San Francisco/Mecklenburg. The next
-  candidates below Jackson County MO (34) in the facility-count
-  priority list — Philadelphia PA (32), Sacramento County CA (30),
-  Cuyahoga County OH/Cleveland (29), Wake County NC/Raleigh (28), Polk
-  County IA/Des Moines (27) — have not yet been investigated.
+  Clara/Hennepin/Denver/Clark/San Francisco/Mecklenburg. Philadelphia PA
+  (32 facilities) was added next over 5 probe rounds — round 1 found an
+  exceptionally rich 78-field dataset (OPA_PROPERTIES_PUBLIC: owner,
+  address, market/taxable value, sale history, building
+  characteristics) but it turned out to be Point geometry, not Polygon,
+  a genuine architectural mismatch with this registry's polygon-only
+  Leaflet renderer (same blocker as Clark County NV's BOE_Parcels);
+  rounds 2-5 located and confirmed a real Polygon boundary layer
+  instead (Philadelphia DOR Parcels), thinner but with real owner/
+  address data. See Recently Completed below. Registry now covers 20
+  jurisdictions. The next candidates below Philadelphia PA (32) in the
+  facility-count priority list — Sacramento County CA (30), Cuyahoga
+  County OH/Cleveland (29), Wake County NC/Raleigh (28), Polk County
+  IA/Des Moines (27) — have not yet been investigated.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1129,6 +1138,72 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Philadelphia, Pennsylvania (FIPS 42101, 32 facilities) to
+  the parcel registry, over five probe rounds — the most rounds any
+  single county has needed this session, driven by a genuine
+  architectural finding rather than repeated wrong guesses.
+- Findings: Round 1's DCAT-catalog lookup (Philadelphia's own open data
+  portal, same successful pattern as Salt Lake/Multnomah) needed two
+  passes — a broad "property/parcel/opa" title regex returned 47
+  matches but missed the target within its print limit; round 2's
+  targeted "opa" title search found it directly: OPA_PROPERTIES_PUBLIC,
+  the Office of Property Assessment's public dataset. Round 3 confirmed
+  it live with an exceptionally rich 78-field schema — real owner name,
+  address, market/taxable value, full sale history, and building
+  characteristics, among the cleanest field naming of any source this
+  session (lowercase snake_case like `owner_1`, `market_value`,
+  `sale_date`) — but its `geometryType` is `esriGeometryPoint`, not
+  `Polygon`. This registry's Leaflet renderer (`js/parcel/renderer.js`)
+  draws parcels via `L.geoJSON` with a polygon fillColor/weight style;
+  Point features fall back to Leaflet's default marker rendering
+  instead, the same architectural blocker that ruled out Clark County
+  NV's `BOE_Parcels` earlier this session — a genuinely new kind of
+  finding, not a wrong guess, so the investigation continued past the
+  usual 2-3 round budget. Round 4 found PASDA's `CityPhilly` MapServer
+  (Pennsylvania's state-university-hosted GIS clearinghouse) had 33
+  sub-layers including one named directly "Philadelphia DOR Parcels
+  202402" (DOR = Department of Revenue). Round 5 confirmed that exact
+  layer live: real Polygon geometry, 25 fields, sourced from the city's
+  deed/metes-and-bounds registry, updated weekly, explicitly flagged
+  "Public= Y" in its own metadata.
+- Field mapping: 7 of 30 canonical fields mapped (parcel_id, pin,
+  address, owner, land_use_code, land_use_desc, county_fips) — thinner
+  than most recent additions, since this Polygon layer carries no
+  value, building-count, year-built, sale-history, or legal-description
+  data (all of that lives only in the point-geometry
+  OPA_PROPERTIES_PUBLIC dataset). The remaining 23 recorded in
+  `notProvidedBySource` — verified programmatically to cover all 30
+  canonical fields with zero gaps and zero overlaps.
+  IMPERV_ARE/IMP_ROOF/IMP_GROUND/IMP_TOTAL/NATURAL_GR/TOTAL_GROU are
+  impervious-surface coverage metrics for the city's stormwater billing
+  program (confirmed by an accompanying PROGRAM field), a different
+  concept than parcel lot area — deliberately left unmapped rather than
+  force-fit to area_sqft/area_acres, same caution applied to every
+  other ambiguous-field source in this registry.
+- Licensing: sourced through PASDA, a Pennsylvania state university
+  GIS clearinghouse redistributing the City of Philadelphia's own
+  Department of Records data; the layer's own description explicitly
+  flags "Public= Y"; standard "public government data, verify terms
+  before commercial redistribution" caveat applied.
+- Architecture note for follow-up: the much richer OPA_PROPERTIES_PUBLIC
+  point dataset (78 fields including owner, value, and sale history)
+  remains unused because this registry has no point-geometry rendering
+  path. A human could consider extending `js/parcel/renderer.js` with a
+  custom `pointToLayer` (e.g. small styled circle markers) to unlock
+  point-geometry jurisdictions like this one — worth flagging since
+  Philadelphia's dataset is unusually rich and this may not be the last
+  point-geometry-only source encountered as the priority list continues
+  down smaller markets.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 7 mapped fields plus "Not
+  published by this source" for all 23 unmapped fields, zero page
+  errors. Registry now covers 20 jurisdictions.
+- Shipped: PR #286 (registry addition, deletes the temporary diagnostic
+  script/workflow in the same commit).
 
 - Date: 2026-08-03
 - Agent: Claude Code
