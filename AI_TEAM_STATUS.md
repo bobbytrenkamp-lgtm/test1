@@ -40,9 +40,59 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   jurisdictions. Paused here to check in with the user on the recent
   pattern (3 of the last 4 counties investigated — Santa Clara, Hennepin,
   Denver — needed documentation as blocked/unavailable rather than a
-  clean add) before researching further counties. The next candidates
-  below Harris TX (61) in the facility-count priority list have not yet
-  been investigated.
+  clean add) before researching further counties. User said to continue.
+  New York County NY / Manhattan (52 facilities) was added next — see
+  Recently Completed below. Registry now covers 13 jurisdictions. The
+  next candidates below New York County (52) in the facility-count
+  priority list — Travis County TX/Austin (45), Clark County NV/Las
+  Vegas (43), Miami-Dade FL (40), Bexar County TX/San Antonio (39), San
+  Francisco CA (39), Mecklenburg County NC/Charlotte (39), Salt Lake
+  County UT (37), Multnomah County OR/Portland (36), Davidson County
+  TN/Nashville (34), Jackson County MO/Kansas City (34), Philadelphia PA
+  (32), Sacramento County CA (30), Cuyahoga County OH/Cleveland (29),
+  Wake County NC/Raleigh (28), Polk County IA/Des Moines (27) — have not
+  yet been investigated.
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added New York County NY (Manhattan) to the parcel registry —
+  the next highest-priority market by facility count after Harris TX.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: `js/parcel/registry.js` now covers 13 jurisdictions (up from
+  12). Fetch-confirmed across 4 GitHub Actions-dispatched probe rounds
+  (this dev sandbox cannot reach arcgis.com directly). Unusually clean
+  investigation: the first guess (MAPPLUTO, NYC Department of City
+  Planning's citywide parcel/land-use dataset) was right on round 1,
+  independently confirmed via ArcGIS Online catalog search as owned by
+  the real "DCP_GIS" account. Round 2 fetched its real 103-field schema.
+  Rounds 3-4 were needed to confirm the real encoded value of the
+  Borough field (round 3's own probe script had a bug — it logged the
+  query response's field schema instead of the actual returned feature
+  attributes, a false dead-end fixed in round 4, which confirmed
+  Borough='MN'/BoroCode=1 for Manhattan from real sample records).
+  17 of 30 canonical fields mapped — strong on zoning/land-use/physical
+  characteristics (this is a land-use dataset, not a tax roll), but no
+  improvement-value, tax-year/amount, or sale-history fields exist at
+  all, unlike an assessor's-office source.
+- MAPPLUTO covers all five NYC boroughs in one layer, each its own
+  county FIPS. This is the first jurisdiction in the registry where the
+  source service itself isn't already scoped to a single county, so a
+  new `where` config field was added to `js/parcel/connector-arcgis.js`
+  (defaults to `'1=1'`, zero behavior change for the other 12
+  jurisdictions) and set to `Borough = 'MN'` for this entry, so panning
+  near the Harlem River/Bronx border can't render a neighboring
+  borough's parcels under New York County's name.
+- Licensing: copyrightText identifies the source as "NYC Department of
+  City Planning, Information Technology Division" — no redistribution
+  restriction found, same as every other county in this registry except
+  Cook County IL.
+- Validated the same way as every prior addition: fieldMap +
+  notProvidedBySource cover all 30 canonical schema.js fields with zero
+  gaps/overlaps (verified via script); `tests/parcel.test.js` — 293/293
+  passing; live-tested via Playwright through the real
+  `window.PARCEL_PANEL.show()` rendering path — populated fields render
+  real values, gaps render "Not published by this source", no page
+  errors.
 
 - Date: 2026-08-03
 - Agent: Claude Code

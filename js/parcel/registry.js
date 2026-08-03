@@ -934,6 +934,104 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── New York County, New York (Manhattan) ───────────────────────────
+     *
+     * New York County — #13 by facility count (52) in this app's dataset.
+     *
+     * 2026-08-03 — fetch-confirmed across four rounds on a GitHub Actions
+     * runner (this dev sandbox cannot reach arcgis.com directly). The
+     * first guess was right first try: MAPPLUTO ("Primary Land Use Tax
+     * Lot Output"), NYC Department of City Planning's citywide parcel
+     * dataset, hosted at services5.arcgis.com/GfwWNkhOj9bNBqoJ/ and
+     * independently confirmed via ArcGIS Online catalog search as owned
+     * by the real "DCP_GIS" account. copyrightText identifies it as "NYC
+     * Department of City Planning, Information Technology Division" with
+     * no redistribution restriction found, same as every other county in
+     * this registry except Cook County IL. 103 real fields — a rich
+     * planning/zoning schema, unusually good for zoning_code, overlay,
+     * and physical-characteristics coverage compared to most assessor
+     * sources here, but MAPPLUTO is a land-use dataset, not a tax roll:
+     * it has no improvement/tax-year/tax-amount/sale-history fields at
+     * all, unlike an assessor's office source.
+     *
+     * MAPPLUTO covers all five NYC boroughs in one layer (Manhattan,
+     * Bronx, Brooklyn, Queens, Staten Island), each its own county FIPS —
+     * this entry is for New York County (Manhattan) only. Round 3's first
+     * attempt to confirm the Borough field's real encoded value came back
+     * empty-handed for a boring reason (its own logging helper printed
+     * the query response's field schema, not the actual feature
+     * attributes — fixed in round 4). Round 4 confirmed real sample
+     * records: Borough='MN', BoroCode=1, on BBL values beginning with
+     * "1" (e.g. 1000010100) — matching the well-documented PLUTO
+     * convention where BBL's leading digit is the borough code. `where`
+     * below scopes every query to Borough='MN' so panning near the
+     * Harlem River/Bronx border can't pull in a neighboring borough's
+     * parcels under this county's name — this is the first jurisdiction
+     * in the registry needing that, since every other source here is
+     * already single-county at the service level. Required adding
+     * optional config.where support to connector-arcgis.js (defaults to
+     * '1=1', no behavior change for the other 12 jurisdictions).
+     *
+     * ZoneDist1/Overlay1 used for zoning_code/overlay_districts (the
+     * primary designation) rather than concatenating with ZoneDist2-4/
+     * Overlay2, following this registry's standing convention against
+     * inventing composite fields. LotFront used for lot_width_ft — NYC's
+     * own convention for a lot's street frontage, equivalent to what
+     * other jurisdictions call lot width. No owner-mailing, zoning
+     * description text, area-in-acres, improvement-value, tax-year/
+     * amount, sale-history, subdivision, or legal-description fields
+     * exist in this dataset.
+     * ─────────────────────────────────────────────────────────────────── */
+    '36061': {
+      id:          'ny-new-york-county',
+      name:        'New York County, New York',
+      state:       'NY',
+      fips:        '36061',
+      connector:   'arcgis',
+      serviceUrl:  'https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0',
+      where:       "Borough = 'MN'",
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'BBL',
+        pin:                 'BBL',
+        address:             'Address',
+        owner:               'OwnerName',
+        zoning_code:         'ZoneDist1',
+        land_use_code:       'LandUse',
+        overlay_districts:   'Overlay1',
+        area_sqft:           'LotArea',
+        lot_depth_ft:        'LotDepth',
+        lot_width_ft:        'LotFront',
+        building_count:      'NumBldgs',
+        year_built:          'YearBuilt',
+        gross_floor_area:    'BldgArea',
+        assessed_value:      'AssessTot',
+        land_value:          'AssessLand',
+        census_tract:        'CT2010',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_desc', 'land_use_desc', 'area_acres',
+        'improvement_value', 'tax_year', 'tax_amount', 'last_sale_date',
+        'last_sale_price', 'deed_book', 'deed_page', 'subdivision',
+        'legal_desc',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'NYC Department of City Planning (MapPLUTO)',
+        url:     'https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page',
+        portal:  'https://www1.nyc.gov/site/planning/data-maps/open-data.page',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Manhattan — major Northeast data center market.',
+      },
+    },
+
   };
 
   function get(fips) {
