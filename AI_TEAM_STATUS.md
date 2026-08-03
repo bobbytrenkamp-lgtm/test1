@@ -12,12 +12,16 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   coverage beyond the initial 5-county pilot, prioritized by actual
   facility count in `facilities_index.json`. Fixed the 2 already-broken
   counties first (see below), then added the next 3 highest-priority
-  counties that verified cleanly. Two items still open: Santa Clara
-  County CA (#4 by facility count, 108) timed out on its first probe
-  and needs a retry with its candidate service before it can be added;
-  Cook County IL (#1, 130 facilities) is deliberately not being added —
-  see Open Handoffs below, it needs a licensing decision, not more
-  research. Continuing to work down the priority list.
+  counties that verified cleanly. Santa Clara County CA (#4 by facility
+  count, 108) was investigated over three probe rounds and confirmed
+  unavailable — its candidate service is genuinely dead and no
+  general-purpose county parcel layer could be found on its GIS org, see
+  Open Handoffs below for the full trail; closed as won't-fix pending a
+  human follow-up. Cook County IL (#1, 130 facilities) is deliberately
+  not being added — see Open Handoffs, it needs a licensing decision, not
+  more research. Continuing to work down the priority list: next
+  candidates are Franklin OH, King WA, LA CA, Hennepin MN, Denver CO,
+  Harris TX, etc.
 
 ## Recently Completed Work (continued)
 
@@ -65,11 +69,34 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Related systems: the parcel intelligence panel and map layer for the
   3 new counties; the About page's platform roadmap section.
 - Deliberately NOT done: did not add Santa Clara County CA (its
-  candidate service timed out on the first probe) or Cook County IL
-  (licensing) — see Open Handoffs and Active Work above.
+  candidate service timed out on the first probe, later confirmed dead —
+  see the follow-up entry below) or Cook County IL (licensing) — see Open
+  Handoffs and Active Work above.
 
 - Date: 2026-08-03
 - Agent: Claude Code
+- Task: Investigated Santa Clara County CA (#4 parcel-expansion target by
+  facility count) after its first probe timed out inconclusively. Result:
+  confirmed unavailable, not added.
+- Shipped: three rounds of GitHub Actions-dispatched probing (this
+  sandbox can't reach these hosts directly). Round 1 gave the original
+  candidate a longer timeout — it failed outright with a connection/DNS
+  "fetch failed" on two endpoints, confirming it's genuinely dead rather
+  than slow. Round 2 found the county's ArcGIS Hub site is live but
+  keyword search only returns a generic dataset listing. Round 3 drilled
+  into that listing plus a direct ArcGIS Online catalog search and found
+  the real, live Santa Clara County Planning Office ArcGIS org — but
+  every Feature Service it exposes is a narrow subset (open space
+  easements, Williamson Act agricultural parcels, land use designations),
+  not a general county-wide parcel boundary/assessor layer.
+- Deliberately NOT done: did not add Santa Clara to the registry — no
+  fieldMap was built because no general parcel service was found to
+  build one against. Did not keep trying further keyword-search
+  variations once the org's real content was enumerated and none of it
+  matched — see Open Handoffs for the recommended human follow-up.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Related systems: `js/parcel/registry.js` (no changes — this is a
+  negative-result investigation).
 - Task: Fixed the Maryland parcel endpoint outage (Howard 24027 +
   Montgomery 24031), open since 2026-07-31 — the first step of a
   user-requested effort to expand parcel coverage incrementally,
@@ -869,18 +896,32 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Relevant files: `js/parcel/registry.js`.
 
 - Item: Santa Clara County, California parcel data — #4 target by
-  facility count (108), candidate service not yet verified.
-- Current status: Open. The candidate service (`webgis.sccgov.org/gis/
-  rest/services/opendata/SCCGISHUBFeatureService/MapServer`) timed out
-  (10s+) on its only probe so far, run alongside the Maricopa/Dallas/
-  Fulton batch that did succeed — inconclusive, not confirmed dead.
-- Recommended next action: retry the probe (this sandbox can't reach
-  the service directly; needs a GitHub Actions runner dispatch like the
-  ones used for Maryland and the Maricopa/Dallas/Fulton batch). If it's
-  genuinely slow rather than actually down, a longer timeout may be all
-  that's needed; if it stays unreachable, look for an alternate hosted
-  version via Santa Clara's ArcGIS Hub site (`gisdata-sccplanning.hub.
-  arcgis.com`) the way Maryland's alternate hostname was found.
+  facility count (108).
+- Current status: Confirmed unavailable, closed as won't-fix for now (not
+  just inconclusive). Investigated over three probe rounds, run 2026-08-03
+  via GitHub Actions dispatch (this sandbox can't reach these hosts
+  directly): (1) the original candidate, `webgis.sccgov.org/gis/rest/
+  services/opendata/SCCGISHUBFeatureService/MapServer`, failed outright
+  with a connection/DNS-level "fetch failed" on two separate endpoints
+  even with a 25s timeout — genuinely dead, not just slow; (2) the
+  county's ArcGIS Hub site (`gisdata-sccplanning.hub.arcgis.com`) is live
+  but a keyword search for "parcel" only returns a generic OGC dataset
+  listing, not a schema; (3) drilling into that listing plus a direct
+  ArcGIS Online catalog search (`arcgis.com/sharing/rest/search`) found
+  the county Planning Office's real, live ArcGIS org
+  (`services2.arcgis.com/tcv2cMrq63AgvbHF/...`, owner `SCC.Planning.
+  Office`) — but every Feature Service it exposes is a narrow subset
+  (Open Space Easement Parcels, Williamson Act agricultural-contract
+  parcels, General Plan Land Use Designations), not a general county-wide
+  parcel boundary/assessor layer. No such layer was discoverable by
+  keyword search.
+- Recommended next action: none from this agent — further progress needs
+  a human to either browse `SCC.Planning.Office`'s full ArcGIS Online org
+  content directly (their catalog page, not keyword search, in case a
+  general parcels layer exists but isn't tagged "parcel") or contact
+  Santa Clara County directly to ask whether a public parcel-boundary
+  service exists at all. Don't keep retrying keyword-search variations —
+  that avenue is exhausted.
 - Relevant files: `js/parcel/registry.js`.
 
 - Item: Zoning / assessed value / sales data for the Virginia parcel counties.
