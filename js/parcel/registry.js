@@ -1113,6 +1113,97 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Miami-Dade County, Florida ───────────────────────────────────────
+     *
+     * Miami-Dade County — #15 by facility count (40) in this app's
+     * dataset.
+     *
+     * 2026-08-03 — fetch-confirmed on a GitHub Actions runner (this dev
+     * sandbox cannot reach miamidade.gov directly). A web search
+     * surfaced a specific, high-confidence lead instead of blind
+     * subdomain guessing — a search result described gisweb.miamidade.gov's
+     * "MD_LandInformation" MapServer layer 26 as having "44 confirmed
+     * fields" — and it resolved live on the very first probe: 46 real
+     * fields (44 attributes + Shape geometry fields), polygon geometry,
+     * layer name "Parcels @ PaParcel" (PA = Property Appraiser). One of
+     * the richest sources in this registry: real owner names, full
+     * site/mailing address components, Florida DOR (Department of
+     * Revenue) land-use code AND description, building characteristics
+     * (bedroom/bathroom/floor/unit counts, multiple building-area
+     * variants), subdivision, and current land/building/total assessed
+     * values. No description/copyrightText found on this specific layer
+     * (both fields present in the schema but empty) — hosted on the
+     * county's own official gisweb subdomain, treated as standard public
+     * government data like every other county in this registry except
+     * Cook County IL.
+     *
+     * FOLIO (Miami-Dade's real 13-digit parcel identifier, used
+     * everywhere in the county's own public-facing tools) mapped to
+     * parcel_id; PID (a distinct internal integer identifier) mapped to
+     * pin. TRUE_OWNER1 used for owner — TRUE_OWNER2/3 exist for
+     * co-owners but only one canonical owner slot exists, same
+     * primary-value convention as NYC's ZoneDist1. TRUE_SITE_ADDR used
+     * directly for address (a real composite field, not concatenated
+     * from parts). Mailing address is genuinely split across 6 separate
+     * fields (ADDR1-3/CITY/STATE/ZIP/COUNTRY) with no composite field of
+     * its own, so owner_mailing is correctly left unmapped rather than
+     * concatenated, per this registry's standing convention. LOT_SIZE
+     * exists but has no accompanying unit-of-measure field to confirm
+     * sqft vs. acres, so area_sqft/area_acres are left unmapped — same
+     * caution as Maryland's LANDAREA/LUOM and Maricopa's LAND_SIZE
+     * precedent, even though BUILDING_GROSS_AREA (a floor-area field,
+     * conventionally always sqft) was mapped without that hesitation.
+     * No sale-transaction or legal-description fields exist in this
+     * particular layer.
+     * ─────────────────────────────────────────────────────────────────── */
+    '12086': {
+      id:          'fl-miami-dade-county',
+      name:        'Miami-Dade County, Florida',
+      state:       'FL',
+      fips:        '12086',
+      connector:   'arcgis',
+      serviceUrl:  'https://gisweb.miamidade.gov/arcgis/rest/services/MD_LandInformation/MapServer/26',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'FOLIO',
+        pin:                 'PID',
+        address:             'TRUE_SITE_ADDR',
+        owner:               'TRUE_OWNER1',
+        zoning_code:         'PRIMARY_ZONE',
+        land_use_code:       'DOR_CODE_CUR',
+        land_use_desc:       'DOR_DESC',
+        building_count:      'BUILDING_COUNT',
+        year_built:          'YEAR_BUILT',
+        gross_floor_area:    'BUILDING_GROSS_AREA',
+        assessed_value:      'TOTAL_VAL_CUR',
+        land_value:          'LAND_VAL_CUR',
+        improvement_value:   'BUILDING_VAL_CUR',
+        tax_year:            'ASSESSMENT_YEAR_CUR',
+        subdivision:         'SUBDIVISION',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_desc', 'overlay_districts', 'area_sqft',
+        'area_acres', 'lot_depth_ft', 'lot_width_ft', 'tax_amount',
+        'last_sale_date', 'last_sale_price', 'deed_book', 'deed_page',
+        'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Miami-Dade County Property Appraiser',
+        url:     'https://www.miamidade.gov/pa/',
+        portal:  'https://www.miamidade.gov/Apps/PA/PropertySearch/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Miami — major Florida data center market.',
+      },
+    },
+
   };
 
   function get(fips) {
