@@ -1,11 +1,15 @@
-// Temporary diagnostic, round 2: Suffolk County MA (Boston metro)
+// Temporary diagnostic, round 3: Suffolk County MA (Boston metro)
 // parcel service.
 //
-// Round 1's guessed FeatureServer name (L3_TAXPAR_POLY_ASSESS_gdb
-// under org hGdibHYSPO59RG1h) returned an ArcGIS "Invalid URL" error
-// -- a wrong guess. The same web search also surfaced an alternate,
-// state-hosted proxy service for the same statewide Level 3 parcels
-// dataset. This round probes that alternate URL directly.
+// Round 1 guessed a FeatureServer name under the wrong ArcGIS org
+// (Invalid URL). Round 2's alternate state-hosted proxy URL
+// (gisprpxy.itd.state.ma.us) failed with a real DNS/connection error
+// -- likely an internal-only host not reachable from outside the
+// state network. This round checks MassGIS's own open-data portal DCAT
+// catalog directly (gis.data.mass.gov, an ArcGIS Hub site) for the
+// real "Level 3 Parcels" distribution URL, the same pattern that has
+// reliably surfaced the right ArcGIS REST URL for every county this
+// session with its own open-data portal.
 //
 // Deleted once Suffolk County MA is either added or documented as
 // unavailable.
@@ -28,15 +32,18 @@ async function fetchText(url, label) {
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
-      if (body.layers) console.log('Layers:', body.layers.map(l => `${l.id}:${l.name}`).join(', '));
-      if (body.fields) {
-        console.log('Field count:', body.fields.length);
-        console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
+      if (Array.isArray(body.dataset)) {
+        const matches = body.dataset.filter(d =>
+          /parcel/i.test(d.title || '') || /parcel/i.test(d.description || '')
+        );
+        console.log(`DCAT datasets matching "parcel": ${matches.length}`);
+        for (const d of matches) {
+          console.log(`\n--- ${d.title} ---`);
+          console.log('description:', (d.description || '').slice(0, 300));
+          const dist = (d.distribution || []).map(x => `${x.format}: ${x.accessURL || x.downloadURL}`);
+          console.log('distribution:', dist.join(' | '));
+        }
       }
-      if (body.name) console.log('Layer name:', body.name);
-      if (body.geometryType) console.log('Geometry type:', body.geometryType);
-      if (body.description) console.log('description:', body.description.slice(0, 500));
-      if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -53,13 +60,8 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://gisprpxy.itd.state.ma.us/arcgisserver/rest/services/AGOL/L3_Parcels_FeatureService_4326/FeatureServer?f=json',
-  'MA state-hosted proxy - L3_Parcels_FeatureService_4326 layer catalog'
-);
-
-await fetchText(
-  'https://gisprpxy.itd.state.ma.us/arcgisserver/rest/services/AGOL/L3_Parcels_FeatureService_4326/FeatureServer/0?f=json',
-  'MA state-hosted proxy - L3_Parcels_FeatureService_4326 layer 0'
+  'https://gis.data.mass.gov/api/feed/dcat-us/1.1.json',
+  'MassGIS Data Hub own DCAT catalog'
 );
 
 console.log('\nDone.');
