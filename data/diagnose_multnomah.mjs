@@ -1,15 +1,14 @@
-// Temporary diagnostic, round 1: Multnomah County OR (Portland) parcel
+// Temporary diagnostic, round 2: Multnomah County OR (Portland) parcel
 // service.
 //
-// Web search found Multnomah County's own open data portal
-// (gis-multco.opendata.arcgis.com) hosts a "Taxlot Parcels" dataset
-// sourced from the county's Department of Assessment, Recording and
-// Taxation, and repeatedly surfaced a specific candidate FeatureServer
-// URL (services3.arcgis.com/tNPgIZWOB0Efvm0g/.../Tax_Lots/FeatureServer)
-// across multiple searches. This round confirms that candidate's real
-// field schema directly, and also fetches the open data portal's own
-// DCAT catalog as a fallback source of the canonical dataset URL in
-// case the guessed org/service name is wrong.
+// Round 1's guessed candidate (services3.arcgis.com/tNPgIZWOB0Efvm0g/
+// .../Tax_Lots) was live but turned out to be the WRONG county entirely
+// -- its own description and copyrightText identify it as Umatilla
+// County, Oregon GIS data, not Multnomah. Round 1's DCAT-catalog
+// fallback (gis-multco.opendata.arcgis.com's own DCAT feed) found the
+// real answer directly: a dataset literally titled "Multnomah County
+// Taxlot Parcels" with a real ArcGIS GeoServices REST API distribution
+// URL. This round confirms that real URL's field schema.
 //
 // Deleted once Multnomah County is either added or documented as
 // unavailable.
@@ -33,26 +32,14 @@ async function fetchText(url, label) {
     if (body) {
       console.log('Body (JSON keys):', Object.keys(body));
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
-      if (body.folders) console.log('Folders:', body.folders.join(', '));
-      if (body.services) console.log('Services:', body.services.map(s => `${s.name} (${s.type})`).join(', '));
-      if (body.layers) console.log('Sub-layers:', body.layers.map(l => `${l.id}:${l.name}`).join(', '));
       if (body.fields) {
         console.log('Field count:', body.fields.length);
         console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
       }
       if (body.name) console.log('Layer name:', body.name);
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
-      if (body.description) console.log('description:', body.description.slice(0, 400));
+      if (body.description) console.log('description:', body.description.slice(0, 500));
       if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
-      if (body.dataset && Array.isArray(body.dataset)) {
-        const hit = body.dataset.find(d => /taxlot|parcel/i.test(d.title || ''));
-        if (hit) {
-          console.log('DCAT match title:', hit.title);
-          console.log('DCAT match distribution:', JSON.stringify((hit.distribution || []).map(d => ({ format: d.format, url: d.accessURL || d.downloadURL }))));
-        } else {
-          console.log('DCAT dataset count:', body.dataset.length, '(no taxlot/parcel title match)');
-        }
-      }
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -69,13 +56,8 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://services3.arcgis.com/tNPgIZWOB0Efvm0g/ArcGIS/rest/services/Tax_Lots/FeatureServer/0?f=json',
-  'Candidate - Tax_Lots FeatureServer layer 0'
-);
-
-await fetchText(
-  'https://gis-multco.opendata.arcgis.com/api/feed/dcat-us/1.1.json',
-  "Multnomah County's own open data portal - DCAT catalog"
+  'https://services5.arcgis.com/x7DNZL1YqNQVNykA/arcgis/rest/services/Multnomah_County_Taxlot_Parcels/FeatureServer/0?f=json',
+  'Confirmed real - Multnomah_County_Taxlot_Parcels FeatureServer layer 0'
 );
 
 console.log('\nDone.');
