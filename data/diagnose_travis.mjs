@@ -1,15 +1,22 @@
-// Temporary diagnostic, round 1: Travis County TX / Austin parcel service.
+// Temporary diagnostic, round 2: Travis County TX / Austin parcel service.
 //
-// Next candidate in the facility-count priority queue after New York
-// County NY (52). Travis County (45 facilities) is home to Austin, a
-// major Texas data center market. Candidates to check:
-//   1. Travis Central Appraisal District (TCAD) — the county's own
-//      appraisal district, likely GIS host for parcel/CAMA data.
-//   2. City of Austin's open data / GIS portal (data.austintexas.gov,
-//      austin ArcGIS Online org) — sometimes county-adjacent cities
-//      publish their own parcel layers.
-//   3. Travis County's own GIS (traviscountytx.gov / capcog.org regional
-//      GIS) as a fallback.
+// Round 1's blind subdomain guesses mostly failed: gis.traviscad.org and
+// maps.traviscad.org didn't even resolve (DNS failure), tnris.org and
+// data.austintexas.gov resolved but 404'd at the guessed paths. One real
+// signal: gis.traviscountytx.gov resolved with a normal IIS 404 (not a
+// DNS failure), meaning the host is real, just not at /arcgis/rest/services.
+//
+// A web search (this sandbox can search but can't fetch) surfaced the
+// real, specific candidates instead of more blind guessing:
+//   - gis.traviscountytx.gov/server1/rest/services/... (note "server1",
+//     not "arcgis" -- explains round 1's 404 on that host)
+//   - taxmaps.traviscountytx.gov/arcgis/rest/services/Parcels/MapServer
+//     (DBO.Parcels layer)
+//   - TCAD's own site is traviscad.org/maps and traviscad.org/propertysearch,
+//     which search results describe as a "prodigycad.com"-hosted map tool
+//     (travis.prodigycad.com/maps) -- a third-party CAMA vendor product,
+//     not a self-hosted ArcGIS REST service, so not probed here.
+// This round fetches the specific real endpoints found.
 //
 // Deleted once Travis County is either added or documented as unavailable.
 
@@ -64,33 +71,24 @@ async function fetchText(url, label) {
   }
 }
 
-// TCAD (Travis Central Appraisal District, traviscad.org) — common ArcGIS
-// hosting subdomain patterns for a county appraisal district.
 await fetchText(
-  'https://gis.traviscad.org/arcgis/rest/services?f=json',
-  'TCAD - services directory (gis.traviscad.org guess)'
+  'https://gis.traviscountytx.gov/server1/rest/services/Boundaries_and_Jurisdictions/TCAD_public/MapServer/0?f=json',
+  'TCAD_public layer 0 (search result: "Layer: TCAD Parcels")'
 );
 
 await fetchText(
-  'https://maps.traviscad.org/arcgis/rest/services?f=json',
-  'TCAD - services directory (maps.traviscad.org guess)'
-);
-
-// Travis County's own GIS.
-await fetchText(
-  'https://gis.traviscountytx.gov/arcgis/rest/services?f=json',
-  'Travis County GIS - services directory (guess)'
+  'https://gis.traviscountytx.gov/server1/rest/services/Boundaries_and_Jurisdictions/TCAD/MapServer?f=json',
+  'TCAD MapServer root'
 );
 
 await fetchText(
-  'https://tnris.org/arcgis/rest/services?f=json',
-  'TNRIS (Texas Natural Resources Info System) - services directory (guess)'
+  'https://gis.traviscountytx.gov/server1/rest/services/Boundaries_and_Jurisdictions/TCAD_Travis_County_Property/MapServer?f=json',
+  'TCAD_Travis_County_Property MapServer root'
 );
 
-// City of Austin's open data / GIS hub.
 await fetchText(
-  'https://data.austintexas.gov/resource/data.json',
-  'City of Austin open data portal - dataset catalog (Socrata, not ArcGIS)'
+  'https://taxmaps.traviscountytx.gov/arcgis/rest/services/Parcels/MapServer?f=json',
+  'taxmaps.traviscountytx.gov Parcels MapServer root'
 );
 
 console.log('\nDone.');
