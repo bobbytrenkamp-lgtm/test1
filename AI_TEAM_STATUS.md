@@ -20,9 +20,15 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   the full trail; closed as won't-fix pending a human follow-up. Cook
   County IL (#1, 130 facilities) is deliberately not being added — see
   Open Handoffs, it needs a licensing decision, not more research.
-  Registry now covers 11 jurisdictions. Continuing to work down the
-  priority list: next candidates are Hennepin MN (63), Denver CO (62),
-  Harris TX (61), etc.
+  Registry now covers 11 jurisdictions. Hennepin County MN (63
+  facilities) was investigated over two probe rounds: no county-specific
+  service exists, but the Metropolitan Council publishes a real regional
+  parcel dataset covering the 7-county Twin Cities metro (including
+  Hennepin) — its ArcGIS server is currently returning HTTP 500
+  "Application Error" on every candidate endpoint tried, a server-side
+  fault rather than a wrong URL guess; see Open Handoffs for the retry
+  recommendation. Continuing to work down the priority list: next
+  candidate is Denver CO (62), then Harris TX (61), etc.
 
 ## Recently Completed Work (continued)
 
@@ -959,6 +965,35 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Remaining concerns: none — this handoff is closed.
 
 ## Open Handoffs
+
+- Item: Hennepin County, Minnesota parcel data — #7 target by facility
+  count (63 in `facilities_index.json`).
+- Current status: Open, not added. Investigated over two probe rounds,
+  run 2026-08-03 via GitHub Actions dispatch (this sandbox can't reach
+  these hosts directly). Hennepin County has no county-specific public
+  GIS parcel service discoverable (round 1: direct URL guesses at
+  gis.hennepin.us all 404'd). Round 2 found the real thing via ArcGIS
+  Online catalog search: the Metropolitan Council (Metro GIS) publishes a
+  "Metropolitan 7-County Parcel Polygons" dataset covering the whole
+  Twin Cities metro, including Hennepin — real, catalog-confirmed URLs at
+  `arcgis.metc.state.mn.us/data1/rest/services/parcels/...` (both the
+  unversioned "Parcels" layer and the "Parcels_Aggregate" layer). All
+  three candidate REST endpoints returned `HTTP 500 "Application Error"`
+  from the ArcGIS Web Adaptor itself — a server-side fault, not a 404 or
+  wrong-URL guess like every other dead-end found so far this session.
+- Recommended next action: retry the same three URLs (see
+  `data/diagnose_hennepin.mjs` in the commit history — deleted from the
+  working tree but recoverable via git log — for the exact endpoints)
+  after some time has passed, in case this was a transient outage on the
+  Metropolitan Council's server. If it's still erroring, also worth
+  checking `gisdata.mn.gov/dataset/us-mn-state-metc-plan-parcels-open`
+  (the MN Geospatial Commons page for this dataset, confirmed reachable
+  with HTTP 200) for an alternate/updated resource link, since dataset
+  landing pages sometimes point to a different active endpoint than what
+  a catalog search indexes. If this dataset covers all 7 metro counties,
+  note it would also be the natural source for any future Twin Cities
+  counties added to this registry (e.g. Ramsey, Dakota, Anoka).
+- Relevant files: `js/parcel/registry.js`.
 
 - Item: The 3 Virginia counties in the parcel registry (Loudoun,
   Fairfax, Prince William) have stale `notProvidedBySource` lists.
