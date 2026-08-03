@@ -1,23 +1,18 @@
-// Temporary diagnostic, round 1: Mecklenburg County NC / Charlotte parcel service.
+// Temporary diagnostic, round 2: Mecklenburg County NC / Charlotte parcel service.
 //
-// Next candidate in the facility-count priority queue after San
-// Francisco CA (documented as blocked). Mecklenburg County (39
-// facilities) is home to Charlotte. A web search found two real leads
-// instead of blind subdomain guessing:
-//   1. gis.charlottenc.gov/arcgis/rest/services/CountyData/Parcels/
-//      MapServer/0 -- a search result cited its real field list: 13
-//      fields (OBJECTID, MAP_BOOK, MAP_PAGE, MAP_BLOCK, LOT_NUM, NC_PIN,
-//      PID, PARCEL_TYPE, CONDO_TOWN_FLAG, Legal_From, Shape) -- boundary/
-//      legal-reference data, explicitly noted as NOT exposing owner
-//      name or address on this public endpoint.
-//   2. polaris3g.mecklenburgcountync.gov/polarisv/rest/services --
-//      Mecklenburg County's own "POLARIS" real estate mapping platform
-//      (assessed values, sales, property info per its own description),
-//      hosting at least two known services (basemap, basemap_aerial).
-//      Probing its services root to find the real parcel/assessment
-//      service name, which could carry richer valuation data than the
-//      Charlotte-hosted layer even if owner names are also excluded
-//      there.
+// Round 1 confirmed gis.charlottenc.gov/CountyData/Parcels/MapServer/0
+// is LIVE exactly as a search result described: 13 real fields
+// (OBJECTID, MAP_BOOK, MAP_PAGE, MAP_BLOCK, LOT_NUM, NC_PIN, PID,
+// PARCEL_TYPE, CONDO_TOWN_FLAG, Legal_From, Shape) -- boundary/legal-
+// reference only, no owner/address/value. Round 1's attempt to list
+// polaris3g.mecklenburgcountync.gov's services root directory got a
+// generic app-level "Internal Error" page (not a standard ArcGIS JSON
+// error), even though a web search had already indexed two real,
+// correctly-structured service URLs under that same host+path
+// (.../polarisv/rest/services/basemap/MapServer and .../basemap_aerial/
+// MapServer) -- so the host and path structure are real, only the bare
+// root-listing request choked. This round guesses a plausible parcel-
+// named service directly under that same confirmed-real path instead.
 //
 // Deleted once Mecklenburg County is either added or documented as
 // unavailable.
@@ -68,13 +63,18 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://gis.charlottenc.gov/arcgis/rest/services/CountyData/Parcels/MapServer/0?f=json',
-  'gis.charlottenc.gov CountyData/Parcels - layer 0 field schema'
+  'https://polaris3g.mecklenburgcountync.gov/polarisv/rest/services/parcels/MapServer?f=json',
+  'POLARIS - "parcels" MapServer guess (lowercase)'
 );
 
 await fetchText(
-  'https://polaris3g.mecklenburgcountync.gov/polarisv/rest/services?f=json',
-  'polaris3g.mecklenburgcountync.gov - services root directory'
+  'https://polaris3g.mecklenburgcountync.gov/polarisv/rest/services/Parcels/MapServer?f=json',
+  'POLARIS - "Parcels" MapServer guess (capitalized)'
+);
+
+await fetchText(
+  'https://polaris3g.mecklenburgcountync.gov/polarisv/rest/services/RealEstate/MapServer?f=json',
+  'POLARIS - "RealEstate" MapServer guess'
 );
 
 console.log('\nDone.');
