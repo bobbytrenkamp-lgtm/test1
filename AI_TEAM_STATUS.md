@@ -27,8 +27,14 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   Hennepin) — its ArcGIS server is currently returning HTTP 500
   "Application Error" on every candidate endpoint tried, a server-side
   fault rather than a wrong URL guess; see Open Handoffs for the retry
-  recommendation. Continuing to work down the priority list: next
-  candidate is Denver CO (62), then Harris TX (61), etc.
+  recommendation. Denver County CO (62 facilities) was investigated over
+  two probe rounds: found the city-county's real ArcGIS org
+  (210919_geospatialDenver, 101 items) but every parcel-related dataset
+  in it is a derived planning-analysis layer (building-size medians,
+  middle-housing conversion studies), not a general-purpose parcel
+  boundary/cadastral service — same pattern as Santa Clara CA, see Open
+  Handoffs. Continuing to work down the priority list: next candidate is
+  Harris TX (61), etc.
 
 ## Recently Completed Work (continued)
 
@@ -965,6 +971,35 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Remaining concerns: none — this handoff is closed.
 
 ## Open Handoffs
+
+- Item: Denver County, Colorado parcel data — #8 target by facility
+  count (62 in `facilities_index.json`).
+- Current status: Open, not added. Investigated over two probe rounds,
+  run 2026-08-03 via GitHub Actions dispatch (this sandbox can't reach
+  denvergov.org / arcgis.com directly). Round 1's direct URL guesses at
+  Denver's GIS host failed outright. Round 2 found Denver's real ArcGIS
+  Online org (`210919_geospatialDenver` — confirmed genuine via a
+  correctly-attributed dataset found in round 1's general keyword
+  search) and enumerated its full content (101 items). Every
+  parcel-related dataset in it is a derived planning-department analysis
+  layer built from parcel data, not a general-purpose parcel boundary/
+  cadastral service — e.g. "Single Family Residential Parcels - Building
+  Size", "Parcels_BldgSize_Neighborhood_MEDIAN", middle-housing
+  zoning-conversion studies. None expose the standard owner/address/
+  land-use/value attributes this registry needs, and none is titled or
+  described as a general assessor/cadastral parcel layer. Same pattern
+  as Santa Clara County CA (see that entry, further down this section).
+- Recommended next action: a human with local knowledge could check
+  whether Denver publishes its base assessor/cadastral parcel layer
+  somewhere other than this ArcGIS Online org — e.g. a self-hosted GIS
+  server at gis.denvergov.org that this sandbox couldn't reach at all in
+  round 1 (that attempt returned a raw fetch failure, not a 404, so it's
+  unconfirmed whether that host exists and is just unreachable from
+  GitHub Actions' network, or is genuinely down) — or via Denver's Open
+  Data Catalog (a human-browsable data.denvergov.org page rather than a
+  programmatic search) rather than more `owner:` searches, which have
+  now enumerated this org's full content with no hit.
+- Relevant files: `js/parcel/registry.js`.
 
 - Item: Hennepin County, Minnesota parcel data — #7 target by facility
   count (63 in `facilities_index.json`).
