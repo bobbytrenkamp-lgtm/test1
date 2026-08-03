@@ -1,15 +1,13 @@
-// Temporary diagnostic, round 3: Washington County OR (Hillsboro/
+// Temporary diagnostic, round 4: Washington County OR (Hillsboro/
 // Portland metro) parcel service.
 //
-// Round 2 resolved the "Taxlots (Public) - Download" item, but it
-// turned out to be a static Shapefile download item (type: Shapefile),
-// not a live queryable ArcGIS REST service -- it has no `url` field.
-// The RLIS Discovery site itself mentioned "the original feature
-// layers" exist separately for viewing in ArcGIS Online. This round
-// checks the RLIS Discovery site's own DCAT catalog directly (ArcGIS
-// Hub sites expose this same feed pattern even on a custom domain,
-// not just *.opendata.arcgis.com) to find the real Feature Layer
-// distribution URL.
+// Round 3's DCAT catalog search on RLIS Discovery's own custom domain
+// found the real dataset directly: "Taxlots (Public)" (excludes
+// ownership info but includes standardized property data across all
+// three Portland-metro counties), with a genuine ArcGIS GeoServices
+// REST API distribution URL. This round probes that confirmed URL
+// directly to get its real field schema, description, and
+// copyrightText.
 //
 // Deleted once Washington County OR is either added or documented as
 // unavailable.
@@ -31,19 +29,8 @@ async function fetchText(url, label) {
     console.log(`URL: ${url}`);
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
+      console.log('Body (JSON keys):', Object.keys(body));
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
-      if (Array.isArray(body.dataset)) {
-        const matches = body.dataset.filter(d =>
-          /taxlot|parcel/i.test(d.title || '') || /taxlot|parcel/i.test(d.description || '')
-        );
-        console.log(`DCAT datasets matching "taxlot"/"parcel": ${matches.length}`);
-        for (const d of matches) {
-          console.log(`\n--- ${d.title} ---`);
-          console.log('description:', (d.description || '').slice(0, 300));
-          const dist = (d.distribution || []).map(x => `${x.format}: ${x.accessURL || x.downloadURL}`);
-          console.log('distribution:', dist.join(' | '));
-        }
-      }
       if (body.fields) {
         console.log('Field count:', body.fields.length);
         console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
@@ -51,6 +38,7 @@ async function fetchText(url, label) {
       if (body.name) console.log('Layer name:', body.name);
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
       if (body.description) console.log('description:', body.description.slice(0, 500));
+      if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -67,8 +55,8 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://rlisdiscovery.oregonmetro.gov/api/feed/dcat-us/1.1.json',
-  'RLIS Discovery own DCAT catalog (custom domain)'
+  'https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/Taxlots_(Public)/FeatureServer/3?f=json',
+  'Confirmed real - Metro RLIS Taxlots (Public) FeatureServer layer 3'
 );
 
 console.log('\nDone.');
