@@ -1,18 +1,12 @@
-// Temporary diagnostic, round 2: Clark County NV / Las Vegas parcel service.
+// Temporary diagnostic, round 3: Clark County NV / Las Vegas parcel service.
 //
 // Round 1 confirmed maps.clarkcountynv.gov is LIVE with a real Assessor
-// folder listing 25+ services. Two strong candidates for a general-
-// purpose parcel layer:
-//   - Assessor/Assessor_Base_Map (MapServer) -- per the web search that
-//     found this host, described as showing "Parcel Polygons, Easements,
-//     Lotlines, Subdivisions lines, and Right of Way"
-//   - Assessor/BOE_Parcels (FeatureServer + MapServer) -- name literally
-//     says "Parcels" (BOE likely = Board of Equalization)
-// (gisgate.co.clark.nv.us, the alternate/older host, failed at the
-// connection level on both attempts -- likely retired in favor of
-// maps.clarkcountynv.gov, not investigated further.)
-// This round fetches both candidates' MapServer roots to find the real
-// parcel sub-layer index and field schema.
+// folder listing 25+ services. Round 2 checked the two strongest
+// candidates: Assessor_Base_Map turned out to be a cached tile basemap
+// (singleFusedMapCache, no queryable sub-layers -- can't be used as an
+// attribute data source at all) and is ruled out. BOE_Parcels is a real
+// queryable FeatureServer with exactly one sub-layer, "0:BOE Parcels".
+// This round fetches that layer's real field schema.
 //
 // Deleted once Clark County is either added or documented as unavailable.
 
@@ -60,13 +54,8 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://maps.clarkcountynv.gov/arcgis/rest/services/Assessor/Assessor_Base_Map/MapServer?f=json',
-  'Assessor_Base_Map - MapServer root'
-);
-
-await fetchText(
-  'https://maps.clarkcountynv.gov/arcgis/rest/services/Assessor/BOE_Parcels/FeatureServer?f=json',
-  'BOE_Parcels - FeatureServer root'
+  'https://maps.clarkcountynv.gov/arcgis/rest/services/Assessor/BOE_Parcels/FeatureServer/0?f=json',
+  'BOE_Parcels - layer 0 field schema'
 );
 
 console.log('\nDone.');
