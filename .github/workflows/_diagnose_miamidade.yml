@@ -1,10 +1,10 @@
-name: (temp) Diagnose Clark County parcel service
+name: (temp) Diagnose Miami-Dade County parcel service
 
 # Temporary, workflow_dispatch-only diagnostic for the next parcel-
-# expansion candidate: Clark County NV / Las Vegas (43 facilities), the
+# expansion candidate: Miami-Dade County FL / Miami (40 facilities), the
 # next uninvestigated county in the facility-count priority list after
-# Travis County TX. Deleted once this is either added to the registry
-# or documented as unavailable.
+# Clark County NV (documented as blocked). Deleted once this is either
+# added to the registry or documented as unavailable.
 
 on:
   workflow_dispatch:
@@ -25,5 +25,5 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Probe Clark County candidates
-        run: node data/diagnose_clark.mjs
+      - name: Probe Miami-Dade County candidates
+        run: node data/diagnose_miamidade.mjs

@@ -46,15 +46,66 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   said "do what you think is best" — continuing the incremental
   expansion autonomously. Travis County TX/Austin (45 facilities) was
   added next over 2 probe rounds — see Recently Completed below.
-  Registry now covers 14 jurisdictions. The next candidates below Travis
-  TX (45) in the facility-count priority list — Clark County NV/Las
-  Vegas (43), Miami-Dade FL (40), Bexar County TX/San Antonio (39), San
-  Francisco CA (39), Mecklenburg County NC/Charlotte (39), Salt Lake
-  County UT (37), Multnomah County OR/Portland (36), Davidson County
-  TN/Nashville (34), Jackson County MO/Kansas City (34), Philadelphia PA
-  (32), Sacramento County CA (30), Cuyahoga County OH/Cleveland (29),
-  Wake County NC/Raleigh (28), Polk County IA/Des Moines (27) — have not
-  yet been investigated.
+  Registry now covers 14 jurisdictions. Clark County NV/Las Vegas (43
+  facilities) was investigated over 3 probe rounds and confirmed
+  unavailable — maps.clarkcountynv.gov is a genuinely live, rich GIS
+  host (25+ Assessor services) but the two most plausible candidates
+  both failed on inspection: Assessor_Base_Map is a cached-tile-only
+  basemap with no queryable attributes, and BOE_Parcels is real and
+  queryable but turned out to be POINT geometry with only 8 sparse
+  fields (no address/owner/value/legal-description) — a Board of
+  Equalization appeal-case index, not parcel boundary data; see Open
+  Handoffs below for the full trail and untried candidates a human could
+  follow up on. Closed as won't-fix pending a human follow-up, same
+  pattern as Santa Clara/Hennepin/Denver. The next candidates below
+  Clark NV (43) in the facility-count priority list — Miami-Dade FL
+  (40), Bexar County TX/San Antonio (39), San Francisco CA (39),
+  Mecklenburg County NC/Charlotte (39), Salt Lake County UT (37),
+  Multnomah County OR/Portland (36), Davidson County TN/Nashville (34),
+  Jackson County MO/Kansas City (34), Philadelphia PA (32), Sacramento
+  County CA (30), Cuyahoga County OH/Cleveland (29), Wake County
+  NC/Raleigh (28), Polk County IA/Des Moines (27) — have not yet been
+  investigated.
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Investigated Clark County NV (Las Vegas) for the parcel
+  registry — the next highest-priority market by facility count after
+  Travis TX. Confirmed unavailable after 3 probe rounds; not added.
+- Findings: `maps.clarkcountynv.gov` is genuinely live with a real
+  Assessor folder listing 25+ services (round 1) — this is not a
+  Santa-Clara-style dead-service case. Two named candidates were
+  checked in detail: `Assessor_Base_Map` (round 2) turned out to be a
+  `singleFusedMapCache` tile basemap with an empty sub-layers list — no
+  queryable attributes exist on it at all, ruled out structurally, not
+  by guesswork. `BOE_Parcels` (rounds 2-3) is a real, live, queryable
+  FeatureServer, but its one sub-layer has `esriGeometryPoint` geometry
+  (not polygon) and only 8 sparse fields (OBJECTID, parcel, prim_parcel,
+  id, parent_id, form, status, descr) — no address, owner, assessed
+  value, or legal description. "BOE" is Board of Equalization; the
+  field names (form/status) and point geometry both indicate this is an
+  appeal-case index pointing at parcels, not parcel boundary data
+  itself — genuinely the wrong layer, not a licensing or connectivity
+  problem.
+- Not investigated further (this session's established 2-3 round
+  budget): the Assessor folder lists ~20 more untried services —
+  `Assessor/added_current`, `Assessor/AOSubdivisions`,
+  `Assessor/CommonArea`, `Assessor/LandApp`, `Assessor/ParcelHistory`,
+  `Assessor/ParcelDrafter`, `Assessor/clarktrs_qq_p`, and the yearly
+  `Added_20XX`/`Cancelled_20XX` series — any of which could plausibly be
+  the real general-purpose parcel boundary layer this county surely has
+  somewhere, given how rich this GIS host otherwise is. A human
+  spot-checking that list directly (rather than guessing from service
+  names alone, the way this session's first two guesses did) is the
+  fastest path forward. `gisgate.co.clark.nv.us`, the alternate/older
+  host mentioned by search results, failed at the connection level on
+  both attempts in round 1 — likely retired in favor of
+  maps.clarkcountynv.gov, not worth retrying.
+- Closed as won't-fix pending a human follow-up, same pattern as Santa
+  Clara CA / Hennepin MN / Denver CO. Diagnostic files (`data/
+  diagnose_clark.mjs`, `.github/workflows/_diagnose_clark.yml`) deleted
+  in this commit — no permanent trace left in the codebase, all findings
+  preserved here instead.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1112,6 +1163,38 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Remaining concerns: none — this handoff is closed.
 
 ## Open Handoffs
+
+- Item: Clark County, Nevada (Las Vegas) parcel data — next target by
+  facility count (43 in `facilities_index.json`) after Travis County TX.
+- Current status: Open, not added. Investigated over three probe
+  rounds, run 2026-08-03 via GitHub Actions dispatch (this sandbox
+  can't reach clarkcountynv.gov directly). Unlike Santa Clara/Denver,
+  this is NOT a dead-GIS-host case: `maps.clarkcountynv.gov` is
+  genuinely live with a real Assessor folder listing 25+ services
+  (round 1). Two named candidates were checked in detail and both ruled
+  out on their actual structure/schema, not guesswork:
+  `Assessor_Base_Map` (round 2) is a `singleFusedMapCache` cached tile
+  basemap with an empty sub-layers list — no queryable attributes exist
+  on it at all. `BOE_Parcels` (rounds 2-3) is real and queryable, but
+  its one sub-layer is `esriGeometryPoint` geometry (not polygon) with
+  only 8 sparse fields (OBJECTID, parcel, prim_parcel, id, parent_id,
+  form, status, descr) — no address/owner/value/legal-description.
+  "BOE" is Board of Equalization; this is an appeal-case point index,
+  not parcel boundary data.
+- Recommended next action: the Assessor folder lists ~20 more untried
+  services worth a human's direct look — `Assessor/added_current`,
+  `Assessor/AOSubdivisions`, `Assessor/CommonArea`, `Assessor/LandApp`,
+  `Assessor/ParcelHistory`, `Assessor/ParcelDrafter`,
+  `Assessor/clarktrs_qq_p`, and yearly `Added_20XX`/`Cancelled_20XX`
+  series — full listing:
+  `https://maps.clarkcountynv.gov/arcgis/rest/services/Assessor?f=json`.
+  Given how rich this GIS host is, the general-purpose parcel boundary
+  layer almost certainly exists somewhere in that folder; it just wasn't
+  either of the two most plausibly-named candidates tried here.
+  `gisgate.co.clark.nv.us` (an alternate/older host mentioned by search
+  results) failed at the connection level on both attempts in round 1 —
+  likely retired, not worth retrying.
+- Relevant files: `js/parcel/registry.js`.
 
 - Item: Denver County, Colorado parcel data — #8 target by facility
   count (62 in `facilities_index.json`).

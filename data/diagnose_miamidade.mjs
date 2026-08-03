@@ -1,14 +1,19 @@
-// Temporary diagnostic, round 3: Clark County NV / Las Vegas parcel service.
+// Temporary diagnostic, round 1: Miami-Dade County FL parcel service.
 //
-// Round 1 confirmed maps.clarkcountynv.gov is LIVE with a real Assessor
-// folder listing 25+ services. Round 2 checked the two strongest
-// candidates: Assessor_Base_Map turned out to be a cached tile basemap
-// (singleFusedMapCache, no queryable sub-layers -- can't be used as an
-// attribute data source at all) and is ruled out. BOE_Parcels is a real
-// queryable FeatureServer with exactly one sub-layer, "0:BOE Parcels".
-// This round fetches that layer's real field schema.
+// Next candidate in the facility-count priority queue after Clark
+// County NV (documented as blocked). Miami-Dade County (40 facilities)
+// is home to Miami. A web search found a specific, high-confidence
+// lead instead of blind subdomain guessing: gisweb.miamidade.gov's
+// "MD_LandInformation" MapServer, layer 26, described by a search
+// result as having "44 confirmed fields" -- Miami-Dade uses a 13-digit
+// "folio number" as its parcel identifier (not an APN). Also checking
+// the county's official Open Data Hub (gis-mdc.opendata.arcgis.com),
+// which hosts a "Parcel" dataset described as "dozens of fields
+// including zoning, owners, and year built" -- likely richer than the
+// MD_LandInformation layer if its underlying FeatureServer can be found.
 //
-// Deleted once Clark County is either added or documented as unavailable.
+// Deleted once Miami-Dade County is either added or documented as
+// unavailable.
 
 const TIMEOUT_MS = 25000;
 
@@ -29,6 +34,8 @@ async function fetchText(url, label) {
     if (body) {
       console.log('Body (JSON keys):', Object.keys(body));
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
+      if (body.folders) console.log('Folders:', body.folders.join(', '));
+      if (body.services) console.log('Services:', body.services.map(s => `${s.name} (${s.type})`).join(', '));
       if (body.layers) console.log('Sub-layers:', body.layers.map(l => `${l.id}:${l.name}`).join(', '));
       if (body.fields) {
         console.log('Field count:', body.fields.length);
@@ -54,8 +61,13 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://maps.clarkcountynv.gov/arcgis/rest/services/Assessor/BOE_Parcels/FeatureServer/0?f=json',
-  'BOE_Parcels - layer 0 field schema'
+  'https://gisweb.miamidade.gov/arcgis/rest/services/MD_LandInformation/MapServer/26?f=json',
+  'MD_LandInformation - layer 26 field schema (search result: 44 fields)'
+);
+
+await fetchText(
+  'https://gisweb.miamidade.gov/arcgis/rest/services?f=json',
+  'gisweb.miamidade.gov - services root directory (fallback discovery)'
 );
 
 console.log('\nDone.');
