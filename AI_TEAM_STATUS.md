@@ -11,19 +11,79 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Task: Ongoing, user-requested incremental expansion of parcel data
   coverage beyond the initial 5-county pilot, prioritized by actual
   facility count in `facilities_index.json`. Fixed the 2 already-broken
-  counties first (see below), then added the next 3 highest-priority
-  counties that verified cleanly. Santa Clara County CA (#4 by facility
-  count, 108) was investigated over three probe rounds and confirmed
-  unavailable — its candidate service is genuinely dead and no
-  general-purpose county parcel layer could be found on its GIS org, see
-  Open Handoffs below for the full trail; closed as won't-fix pending a
-  human follow-up. Cook County IL (#1, 130 facilities) is deliberately
-  not being added — see Open Handoffs, it needs a licensing decision, not
-  more research. Continuing to work down the priority list: next
-  candidates are Franklin OH, King WA, LA CA, Hennepin MN, Denver CO,
-  Harris TX, etc.
+  counties first, then added Maricopa AZ / Dallas TX / Fulton GA, then
+  Franklin OH / King WA (see Recently Completed below for both). Santa
+  Clara County CA (#4 by facility count, 108) was investigated over three
+  probe rounds and confirmed unavailable — its candidate service is
+  genuinely dead and no general-purpose county parcel layer could be
+  found on its GIS org, see Open Handoffs below for the full trail;
+  closed as won't-fix pending a human follow-up. Cook County IL (#1, 130
+  facilities) is deliberately not being added — see Open Handoffs, it
+  needs a licensing decision, not more research. Registry now covers 10
+  jurisdictions. Continuing to work down the priority list: next
+  candidates are LA CA (64), Hennepin MN (63), Denver CO (62), Harris TX
+  (61), etc.
 
 ## Recently Completed Work (continued)
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Franklin County OH and King County WA to the parcel
+  registry — the next two highest-priority markets by facility count
+  after Santa Clara CA was confirmed unavailable (see Open Handoffs).
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: `js/parcel/registry.js` now covers 10 jurisdictions (up from
+  8). Both fetch-confirmed across multiple GitHub Actions-dispatched
+  probe rounds (this dev sandbox cannot reach either county's GIS host
+  directly): Franklin County's Auditor-hosted "Tax Parcel" layer (117
+  fields) is one of the few sources in this registry carrying genuine
+  sale-transaction data (SALEDATE/SALEPRICE) alongside ownership,
+  physical characteristics, and valuation — 18 of 30 canonical fields
+  mapped. King County's richer of two candidate services,
+  PARCEL_ADDRESS_PUB_AREA_3069 (69 fields), was chosen over the thinner
+  12-field PUBLIC_PARCELS_AREA_2598 — 15 of 30 canonical fields mapped,
+  including zoning, acreage, taxable land/improvement values (King County
+  publishes both "appraised" and "taxable" variants; taxable was used to
+  match how other jurisdictions' "assessed value" concept is used
+  elsewhere in this registry — no total field exists for either variant,
+  so assessed_value is correctly left unmapped rather than computed,
+  since this connector has no generic sum mechanism beyond the
+  `__computed__` special case for county_fips).
+- Every fieldMap entry verified against each service's real, live field
+  list (not guessed); every jurisdiction's fieldMap + notProvidedBySource
+  validated programmatically to cover all 30 canonical schema.js fields
+  with zero gaps and zero overlaps. Live-tested via Playwright against a
+  local static server with synthetic features run through the real
+  `window.PARCEL_PANEL.show()` rendering path — populated fields render
+  their real values, gap fields correctly render "Not published by this
+  source", no page errors.
+- Licensing: King County's service is hosted on the county's official
+  public "Open Data" ArcGIS Hub (gis-kingcounty.opendata.arcgis.com)
+  under owner "KingCounty" with a "_PUB" naming convention signaling
+  deliberate public release. The Hub's terms-of-use page is a
+  client-rendered app so its exact text could not be fetched directly by
+  a plain HTTP request, and the service's own copyrightText/description
+  fields are empty — but no redistribution restriction was found
+  anywhere reachable, unlike Cook County IL where an explicit prohibition
+  was found in the source's own documentation. Treated as standard public
+  government open data, consistent with every other county in this
+  registry; documented as a caveat rather than asserted as a definitively
+  confirmed clean license.
+- Found (not fixed) during this work: comprehensive validation of every
+  jurisdiction's fieldMap + notProvidedBySource against schema.js's 30
+  canonical fields (not just the 2 new ones) turned up a pre-existing gap
+  in the 3 Virginia counties (Loudoun, Fairfax, Prince William) — each is
+  missing several canonical fields from both fieldMap and
+  notProvidedBySource (e.g. legal_desc, census_tract, tax_amount,
+  owner_mailing, zoning_desc), meaning those fields silently render
+  nothing instead of the "Not published by this source" label. This
+  predates this session's changes — schema.js almost certainly grew new
+  canonical fields after the VA counties' notProvidedBySource lists were
+  last written. Not fixed here: it needs the same fetch-confirm rigor as
+  every other entry, not a guess made as a side effect of an unrelated
+  PR. New Open Handoffs entry added below.
+- Deliberately NOT done: did not attempt Los Angeles CA, Hennepin MN,
+  Denver CO, or Harris TX yet — next in the priority queue.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -866,6 +926,31 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Remaining concerns: none — this handoff is closed.
 
 ## Open Handoffs
+
+- Item: The 3 Virginia counties in the parcel registry (Loudoun,
+  Fairfax, Prince William) have stale `notProvidedBySource` lists.
+- Current status: Open, found (not fixed) 2026-08-03 during comprehensive
+  validation of every jurisdiction while adding Franklin OH / King WA.
+  Each VA county's `fieldMap` + `notProvidedBySource` union no longer
+  covers all 30 canonical fields in `js/parcel/schema.js` — missing
+  fields vary per county but include `legal_desc`, `census_tract`,
+  `tax_amount`, `owner_mailing`, `zoning_desc`, `overlay_districts`,
+  `lot_depth_ft`, `lot_width_ft`, and (Prince William only)
+  `area_sqft`/`building_count`/`year_built`. This predates this session's
+  changes — schema.js almost certainly grew new canonical fields after
+  these three entries were last verified. Effect: those fields render
+  nothing in the panel instead of the correct "Not published by this
+  source" label — a cosmetic/completeness gap, not incorrect data (no
+  field is mis-mapped).
+- Recommended next action: re-verify each of the 3 VA counties' live
+  field lists (the same fetch-confirm-before-wiring process used for
+  every other entry in this registry — GitHub Actions dispatch, since
+  this dev sandbox cannot reach these hosts directly) and add the
+  missing canonical field ids to each `notProvidedBySource` array. A
+  simple script comparing `Object.keys(fieldMap) ∪ notProvidedBySource`
+  against `PARCEL_SCHEMA.FIELDS` per jurisdiction (used to validate
+  Franklin/King in this session) will confirm the fix.
+- Relevant files: `js/parcel/registry.js`.
 
 - Item: Cook County, Illinois parcel data — #1 target by facility count
   (130 in `facilities_index.json`, the single highest of any county
