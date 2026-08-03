@@ -1,0 +1,30 @@
+name: (temp) Diagnose Washington County OR parcel service
+
+# Temporary, workflow_dispatch-only diagnostic for a gap discovered in
+# the facility-count priority queue: Washington County OR / Hillsboro
+# (36 facilities), never previously investigated despite ranking above
+# several already-covered counties.
+# Deleted once this is either added to the registry or documented as
+# unavailable.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe Washington County OR candidates
+        run: node data/diagnose_washington_or.mjs
