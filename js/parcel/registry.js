@@ -785,6 +785,76 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Los Angeles County, California ──────────────────────────────────
+     *
+     * Los Angeles County — #6 by facility count (64) in this app's dataset.
+     *
+     * 2026-08-03 — fetch-confirmed on a GitHub Actions runner (this dev
+     * sandbox cannot reach lacounty.gov directly); the county's own public
+     * GIS portal (public.gis.lacounty.gov) was the first candidate tried
+     * and returned a live, rich 92-field Assessor-roll layer. AIN
+     * (Assessor Identification Number) and APN (Assessor's Parcel Number)
+     * are both real, distinct fields — mapped to parcel_id and pin
+     * respectively rather than reusing one for both, unlike jurisdictions
+     * where only a single identifier concept exists. No owner-name or
+     * mailing-address field exists (LA County's public parcel viewer
+     * appears to deliberately omit it, same pattern as Maryland). No lot-
+     * size field exists either — Shape.STArea() is present but is a raw
+     * geometry-derived value with no confirmed real-world unit, so
+     * area_sqft/area_acres are left unmapped rather than guessed, matching
+     * the Maryland LANDAREA / Maricopa LAND_SIZE precedent. No sale-
+     * transaction fields exist (SpatialChangeDate/ParcelCreateDate are GIS
+     * record-keeping dates, not sale dates). The layer records up to 5
+     * separate structures per parcel (fields suffixed 1-5, e.g. YearBuilt1
+     * .. YearBuilt5); only the first structure's fields are mapped to this
+     * registry's single-value year_built/gross_floor_area slots, since
+     * there is no generic multi-structure aggregation mechanism here.
+     * ─────────────────────────────────────────────────────────────────── */
+    '06037': {
+      id:          'ca-los-angeles-county',
+      name:        'Los Angeles County, California',
+      state:       'CA',
+      fips:        '06037',
+      connector:   'arcgis',
+      serviceUrl:  'https://public.gis.lacounty.gov/public/rest/services/LACounty_Cache/LACounty_Parcel/MapServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'AIN',
+        pin:                 'APN',
+        address:             'SitusFullAddress',
+        land_use_code:       'UseCode',
+        land_use_desc:       'UseDescription',
+        year_built:          'YearBuilt1',
+        gross_floor_area:    'SQFTmain1',
+        land_value:          'Roll_LandValue',
+        improvement_value:   'Roll_ImpValue',
+        tax_year:            'Roll_Year',
+        legal_desc:          'LegalDescription',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'overlay_districts', 'area_sqft', 'area_acres', 'lot_depth_ft',
+        'lot_width_ft', 'building_count', 'assessed_value', 'tax_amount',
+        'last_sale_date', 'last_sale_price', 'deed_book', 'deed_page',
+        'subdivision', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Los Angeles County GIS / Assessor',
+        url:     'https://assessor.lacounty.gov/',
+        portal:  'https://egis-lacounty.hub.arcgis.com/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'LA metro — one of the largest US data center markets, including El Segundo and downtown LA carrier-hotel submarkets.',
+      },
+    },
+
   };
 
   function get(fips) {
