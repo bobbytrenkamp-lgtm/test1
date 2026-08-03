@@ -59,15 +59,60 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   follow up on. Closed as won't-fix pending a human follow-up, same
   pattern as Santa Clara/Hennepin/Denver. Miami-Dade County FL (40
   facilities) was added next — a rare first-probe success, see Recently
-  Completed below. Registry now covers 15 jurisdictions. The next
-  candidates below Miami-Dade FL (40) in the facility-count priority
-  list — Bexar County TX/San Antonio (39), San Francisco CA (39),
-  Mecklenburg County NC/Charlotte (39), Salt Lake County UT (37),
-  Multnomah County OR/Portland (36), Davidson County TN/Nashville (34),
-  Jackson County MO/Kansas City (34), Philadelphia PA (32), Sacramento
-  County CA (30), Cuyahoga County OH/Cleveland (29), Wake County
-  NC/Raleigh (28), Polk County IA/Des Moines (27) — have not yet been
-  investigated.
+  Completed below. Registry now covers 15 jurisdictions. Bexar County
+  TX/San Antonio (39 facilities) was added next — another first-probe
+  success — see Recently Completed below. Registry now covers 16
+  jurisdictions. The next candidates below Bexar TX (39) in the
+  facility-count priority list — San Francisco CA (39), Mecklenburg
+  County NC/Charlotte (39), Salt Lake County UT (37), Multnomah County
+  OR/Portland (36), Davidson County TN/Nashville (34), Jackson County
+  MO/Kansas City (34), Philadelphia PA (32), Sacramento County CA (30),
+  Cuyahoga County OH/Cleveland (29), Wake County NC/Raleigh (28), Polk
+  County IA/Des Moines (27) — have not yet been investigated.
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Bexar County TX (San Antonio) to the parcel registry —
+  the next highest-priority market by facility count after Miami-Dade
+  FL.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: `js/parcel/registry.js` now covers 16 jurisdictions (up from
+  15). Fetch-confirmed on the first GitHub Actions-dispatched probe
+  round (this dev sandbox cannot reach bexar.org/arcgis.com directly) —
+  another rare first-try success following Miami-Dade's: a web search
+  surfaced a specific lead (a search result titled "Layer: Bexar CAD
+  Parcels (ID:3)") that resolved live on the first probe, 38 real
+  fields, polygon geometry. This dataset is Bexar County Appraisal
+  District data as processed and redistributed through TxGIO (Texas
+  Geographic Information Office)'s statewide parcel pipeline
+  (description field cites "Date acquired by TxGIO: July 2025"), not a
+  Bexar-County-hosted service directly — noted honestly even though no
+  redistribution restriction was found in either metadata field. 14 of
+  30 canonical fields mapped.
+- Prop_ID mapped to parcel_id, GEO_ID (a distinct geographic/legal
+  parcel number) to pin — same two-distinct-identifiers pattern as LA
+  County's AIN/APN. SITUS_ADDR/MAIL_ADDR used directly for address/
+  owner_mailing (real composite fields, alongside their own split
+  component fields). MKT_VALUE used for assessed_value. DATE_ACQ (date
+  the current owner acquired the parcel) mapped to last_sale_date.
+  LEGAL_AREA/GIS_AREA both have accompanying unit-of-measure fields
+  (LGL_AREA_U/GIS_AREA_U) but this round didn't sample real feature data
+  to confirm their actual encoded units, so area_sqft/area_acres are
+  left unmapped rather than guessed — same caution as Maryland's
+  LANDAREA/LUOM precedent, though a confirming follow-up round could
+  plausibly close this specific gap later. STAT_LAND_ (State Land Use
+  code — field names in this source are truncated to 10 characters, a
+  shapefile/dbf convention) mapped to land_use_code; LOC_LAND_U (a
+  second, local land-use code, not free text) deliberately NOT mapped
+  to land_use_desc. No building characteristics (count, floor area)
+  exist in this parcel-focused layer.
+- Validated the same way as every prior addition: fieldMap +
+  notProvidedBySource cover all 30 canonical schema.js fields with zero
+  gaps/overlaps (verified via script); `tests/parcel.test.js` — 293/293
+  passing; live-tested via Playwright through the real
+  `window.PARCEL_PANEL.show()` rendering path — populated fields render
+  real values, gaps render "Not published by this source", no page
+  errors.
 
 - Date: 2026-08-03
 - Agent: Claude Code

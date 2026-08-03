@@ -1204,6 +1204,99 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Bexar County, Texas (San Antonio) ────────────────────────────────
+     *
+     * Bexar County — #16 by facility count (39) in this app's dataset.
+     *
+     * 2026-08-03 — fetch-confirmed on the first GitHub Actions-dispatched
+     * probe round (this dev sandbox cannot reach bexar.org/arcgis.com
+     * directly). A web search surfaced a specific lead instead of blind
+     * subdomain guessing — a search result titled "Layer: Bexar CAD
+     * Parcels (ID:3)" — and it resolved live immediately: 38 real
+     * fields, polygon geometry, layer name "Bexar CAD Parcels".
+     * copyrightText: "County Appraisal District / BIS Consultants" —
+     * this dataset is Bexar County Appraisal District data as processed
+     * and redistributed through TxGIO (Texas Geographic Information
+     * Office)'s statewide parcel pipeline (description field cites
+     * "Date acquired by TxGIO: July 2025"), not a Bexar-County-hosted
+     * service directly, worth noting even though no redistribution
+     * restriction was found in either metadata field — same standard
+     * public-data caveat as every other county in this registry except
+     * Cook County IL.
+     *
+     * Prop_ID (the CAD's internal property identifier) mapped to
+     * parcel_id; GEO_ID (a distinct geographic/legal parcel number)
+     * mapped to pin — same two-distinct-identifiers pattern as LA
+     * County's AIN/APN. SITUS_ADDR/MAIL_ADDR used directly for address/
+     * owner_mailing (real composite fields, alongside — but not built
+     * from — their own split component fields SITUS_NUM/STRE/... and
+     * MAIL_LINE1/2/CITY/..., same convention as every other split-
+     * address source in this registry). MKT_VALUE (market value) used
+     * for assessed_value, matching how every other jurisdiction's
+     * "total assessed value" concept is represented here. DATE_ACQ
+     * (date the current owner acquired the parcel) mapped to
+     * last_sale_date. LEGAL_AREA/GIS_AREA both have accompanying unit-
+     * of-measure fields (LGL_AREA_U/GIS_AREA_U) but this round didn't
+     * sample real feature data to confirm their actual encoded values,
+     * so area_sqft/area_acres are left unmapped rather than guessed —
+     * same caution as Maryland's LANDAREA/LUOM precedent, just with the
+     * added twist that a confirming follow-up round is plausible here
+     * if a future pass wants to close that specific gap. STAT_LAND_
+     * (State Land Use code) mapped to land_use_code; LOC_LAND_U (a
+     * second, local land-use code, not a text description — field
+     * names in this source are truncated to 10 characters, a shapefile/
+     * dbf convention, which is why several read oddly) is deliberately
+     * NOT mapped to land_use_desc, since it's a second code scheme, not
+     * free text. No building characteristics (count, floor area) exist
+     * in this parcel-focused layer.
+     * ─────────────────────────────────────────────────────────────────── */
+    '48029': {
+      id:          'tx-bexar-county',
+      name:        'Bexar County, Texas',
+      state:       'TX',
+      fips:        '48029',
+      connector:   'arcgis',
+      serviceUrl:  'https://services7.arcgis.com/BUFM2kw4MpxDUJVh/ArcGIS/rest/services/Bexar_CAD_Parcels/FeatureServer/3',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'Prop_ID',
+        pin:                 'GEO_ID',
+        address:             'SITUS_ADDR',
+        owner:               'OWNER_NAME',
+        owner_mailing:       'MAIL_ADDR',
+        land_use_code:       'STAT_LAND_',
+        year_built:          'YEAR_BUILT',
+        assessed_value:      'MKT_VALUE',
+        land_value:          'LAND_VALUE',
+        improvement_value:   'IMP_VALUE',
+        tax_year:            'TAX_YEAR',
+        last_sale_date:      'DATE_ACQ',
+        legal_desc:          'LEGAL_DESC',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'zoning_code', 'zoning_desc', 'land_use_desc', 'overlay_districts',
+        'area_sqft', 'area_acres', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'gross_floor_area', 'tax_amount',
+        'last_sale_price', 'deed_book', 'deed_page', 'subdivision',
+        'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Bexar County Appraisal District (via TxGIO)',
+        url:     'https://www.bcad.org/',
+        portal:  'https://www.bcad.org/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'San Antonio — major Texas data center market.',
+      },
+    },
+
   };
 
   function get(fips) {
