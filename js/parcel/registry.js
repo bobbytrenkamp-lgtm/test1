@@ -569,9 +569,10 @@ window.PARCEL_REGISTRY = (function () {
     /* ── Fulton County, Georgia ───────────────────────────────────────────
      *
      * Fulton County (Atlanta metro) — #5 by facility count (98) in this
-     * app's dataset, after Santa Clara County CA (#4, 108 facilities),
-     * which is still pending verification — its candidate service timed
-     * out on the first probe and needs a retry before it can be added.
+     * app's dataset. Santa Clara County CA (#4, 108 facilities) was
+     * investigated separately and confirmed unavailable — see
+     * AI_TEAM_STATUS.md Open Handoffs; no general-purpose parcel service
+     * could be found on the county's real GIS org after three probe rounds.
      *
      * 2026-08-03 — fetch-confirmed via the county's PropertyMapViewer
      * service, layer 11 ("Tax Parcel") of 38 layers in that MapServer.
@@ -625,6 +626,162 @@ window.PARCEL_REGISTRY = (function () {
         portal:  'https://gisdata.fultoncountyga.gov/',
         license: 'Public government data. Verify terms before commercial redistribution.',
         note:    'Atlanta metro — major Southeast US data center market.',
+      },
+    },
+
+    /* ── King County, Washington ─────────────────────────────────────────
+     *
+     * King County (Seattle metro) — #? by facility count (71) in this app's
+     * dataset, added after Franklin County OH and following Santa Clara
+     * County CA's confirmed-unavailable result (see that entry's note
+     * above and AI_TEAM_STATUS.md Open Handoffs).
+     *
+     * 2026-08-03 — fetch-confirmed across three probe rounds on a GitHub
+     * Actions runner (this dev sandbox cannot reach arcgis.com directly).
+     * Two candidates exist on King County's own ArcGIS org
+     * (services.arcgis.com/Ej0PsM5Aw677QF1W, owner "KingCounty"):
+     * PUBLIC_PARCELS_AREA_2598 (12 fields, address + taxpayer-mailing only)
+     * and PARCEL_ADDRESS_PUB_AREA_3069 (69 fields — zoning, acreage,
+     * appraised/taxable values, legal description, present-use, tax-payer
+     * mailing). This uses the richer of the two. King County distinguishes
+     * "appraised" (full market value, pre-adjustment) from "taxable"
+     * (post-exemption) land/improvement values; the taxable variants
+     * (TAX_LNDVAL/TAX_IMPR) are mapped as this registry's land_value/
+     * improvement_value, matching how other jurisdictions' "assessed
+     * value" concept is used elsewhere here — no total field exists for
+     * either variant, so assessed_value is left unmapped rather than
+     * computed (this connector has no generic sum mechanism). No true
+     * owner-name field exists; KCTP_ATTN (the tax-payer "attention" line)
+     * is the closest available and is used for owner. Licensing: this
+     * service is hosted on King County's official public "Open Data"
+     * ArcGIS Hub (gis-kingcounty.opendata.arcgis.com) under owner
+     * "KingCounty" with a "_PUB" naming convention signaling deliberate
+     * public release; the Hub's terms-of-use page is a client-rendered app
+     * so its exact text could not be fetched directly, and the service's
+     * own copyrightText/description fields are empty, but no redistribution
+     * restriction was found anywhere reachable — unlike Cook County IL,
+     * where an explicit prohibition was found. Treated as standard public
+     * open government GIS data, consistent with every other county in
+     * this registry.
+     * ─────────────────────────────────────────────────────────────────── */
+    '53033': {
+      id:          'wa-king-county',
+      name:        'King County, Washington',
+      state:       'WA',
+      fips:        '53033',
+      connector:   'arcgis',
+      serviceUrl:  'https://services.arcgis.com/Ej0PsM5Aw677QF1W/arcgis/rest/services/PARCEL_ADDRESS_PUB_AREA_3069/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'PIN',
+        pin:                 'PIN',
+        address:             'ADDR_FULL',
+        owner:               'KCTP_ATTN',
+        zoning_code:         'KCA_ZONING',
+        land_use_code:       'PREUSE_CODE',
+        land_use_desc:       'PREUSE_DESC',
+        area_sqft:           'LOTSQFT',
+        area_acres:          'KCA_ACRES',
+        land_value:          'TAX_LNDVAL',
+        improvement_value:   'TAX_IMPR',
+        tax_year:            'KCTP_TAXYR',
+        subdivision:         'PLAT_NAME',
+        legal_desc:          'LEGALDESC',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_desc', 'overlay_districts', 'lot_depth_ft',
+        'lot_width_ft', 'building_count', 'year_built', 'gross_floor_area',
+        'assessed_value', 'tax_amount', 'last_sale_date', 'last_sale_price',
+        'deed_book', 'deed_page', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'King County GIS',
+        url:     'https://gis-kingcounty.opendata.arcgis.com/',
+        portal:  'https://gis-kingcounty.opendata.arcgis.com/',
+        license: 'Public government open data. Verify terms before commercial redistribution.',
+        note:    'Seattle metro — major Pacific Northwest data center market.',
+      },
+    },
+
+    /* ── Franklin County, Ohio ────────────────────────────────────────────
+     *
+     * Franklin County (Columbus metro) — #? by facility count (82) in this
+     * app's dataset.
+     *
+     * 2026-08-03 — fetch-confirmed on a GitHub Actions runner (this dev
+     * sandbox cannot reach franklincountyohio.gov directly). The county
+     * Auditor's own hosted service (gis.franklincountyohio.gov) is a rich
+     * 117-field CAMA-style layer ("Tax Parcel") — one of the few sources in
+     * this registry that carries genuine sale-transaction data (SALEDATE/
+     * SALEPRICE) alongside ownership, physical characteristics, and
+     * valuation. CLASSDSCRP (the county's own property-class description)
+     * is used for land_use_desc since no separate zoning field exists —
+     * Ohio county auditors publish tax assessment data, not municipal
+     * zoning, which is set independently by each city/township; zoning_code
+     * and zoning_desc are correctly left unmapped rather than guessed.
+     * NOCARDS ("number of cards", the CAMA-system term for structures on a
+     * parcel) is used for building_count. PRPRTYDSCRP is one of three
+     * legal-description line fields (PRPRTYDSCRP/2/3); only the first line
+     * is mapped to legal_desc — per this registry's existing convention,
+     * multi-part fields are not concatenated, but a single real field
+     * (even a partial line) is still genuine, unaltered source data. No
+     * explicit tax_year or tax_amount field exists for the current values
+     * shown, so both are left unmapped rather than guessed.
+     * ─────────────────────────────────────────────────────────────────── */
+    '39049': {
+      id:          'oh-franklin-county',
+      name:        'Franklin County, Ohio',
+      state:       'OH',
+      fips:        '39049',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis.franklincountyohio.gov/hosting/rest/services/ParcelFeatures/Parcel_Features/MapServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'PARCELID',
+        pin:                 'PARCELID',
+        address:             'SITEADDRESS',
+        owner:               'OWNERNME1',
+        land_use_code:       'USECD',
+        land_use_desc:       'CLASSDSCRP',
+        area_sqft:           'STATEDAREA',
+        area_acres:          'ACRES',
+        building_count:      'NOCARDS',
+        year_built:          'RESYRBLT',
+        gross_floor_area:    'BLDGAREA',
+        assessed_value:      'TOTVALUEBASE',
+        land_value:          'LNDVALUEBASE',
+        improvement_value:   'BLDVALUEBASE',
+        last_sale_date:      'SALEDATE',
+        last_sale_price:     'SALEPRICE',
+        legal_desc:          'PRPRTYDSCRP',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'overlay_districts',
+        'lot_depth_ft', 'lot_width_ft', 'tax_year', 'tax_amount',
+        'deed_book', 'deed_page', 'subdivision', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Franklin County Auditor GIS',
+        url:     'https://www.franklincountyauditor.com/',
+        portal:  'https://gis.franklincountyohio.gov/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Columbus metro — growing Midwest data center market.',
       },
     },
 
