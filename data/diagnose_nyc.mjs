@@ -1,11 +1,14 @@
-// Temporary diagnostic: find a live parcel service for New York County NY
-// (Manhattan, FIPS 36061), #10 in the facility-count priority list not
-// yet handled (52 facilities) -- Cook County IL, Santa Clara CA,
-// Hennepin MN, and Denver CO are already documented/blocked.
-// NYC's well-known parcel dataset is "MapPLUTO", published by the NYC
-// Department of City Planning.
-// Deleted once this is either added to the registry or documented as
-// unavailable.
+// Temporary diagnostic, round 2: New York County NY parcel service.
+//
+// Round 1 confirmed the first guess was right: MAPPLUTO FeatureServer
+// at services5.arcgis.com/GfwWNkhOj9bNBqoJ/.../MAPPLUTO/FeatureServer is
+// LIVE, and independently confirmed by an ArcGIS Online catalog search
+// as the real official dataset owned by "DCP_GIS" (NYC Department of
+// City Planning's real GIS account). Sub-layers list showed "0:MAPPLUTO"
+// -- layer index 0, matching the guess. This fetches the real field
+// schema for layer 0.
+//
+// Deleted once NYC is either added or documented as unavailable.
 
 const TIMEOUT_MS = 25000;
 
@@ -32,13 +35,8 @@ async function fetchText(url, label) {
       }
       if (body.name) console.log('Layer name:', body.name);
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
-      if (body.layers) console.log('Sub-layers:', body.layers.map(l => `${l.id}:${l.name}`).join(', '));
-      if (Array.isArray(body.results)) {
-        console.log(`total: ${body.total}`);
-        for (const r of body.results.slice(0, 10)) {
-          console.log(`- id=${r.id} title="${r.title}" type="${r.type}" owner="${r.owner}" url="${r.url}"`);
-        }
-      }
+      if (body.description) console.log('description:', body.description);
+      if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -54,28 +52,9 @@ async function fetchText(url, label) {
   }
 }
 
-// Candidate 1: NYC DCP's own GIS ArcGIS server
 await fetchText(
-  'https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer?f=json',
-  'NYC DCP - MAPPLUTO FeatureServer root (guess)'
-);
-await fetchText(
-  'https://maps.nyc.gov/arcgis/rest/services/DCP/mappluto/MapServer?f=json',
-  'NYC maps.nyc.gov - DCP/mappluto MapServer root (guess)'
-);
-
-// Candidate 2: ArcGIS Online catalog search, general + scoped to likely owners
-await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=MapPLUTO&f=json&num=10',
-  'ArcGIS Online catalog search for MapPLUTO'
-);
-await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=parcels%20AND%20owner:NYC_DCP&f=json&num=10',
-  'ArcGIS Online search scoped to NYC_DCP owner'
-);
-await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=parcels%20AND%20owner:NYCDCP&f=json&num=10',
-  'ArcGIS Online search scoped to NYCDCP owner'
+  'https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0?f=json',
+  'MAPPLUTO - layer 0 definition'
 );
 
 console.log('\nDone.');
