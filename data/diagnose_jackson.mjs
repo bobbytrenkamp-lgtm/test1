@@ -1,18 +1,15 @@
-// Temporary diagnostic, round 2: Jackson County MO (Kansas City) parcel
+// Temporary diagnostic, round 3: Jackson County MO (Kansas City) parcel
 // service.
 //
-// Round 1 found two problems with its guesses: Cadastral/
-// ParcelsAndAddresses does not exist at all (a genuine ArcGIS 404, not
-// a guess-gone-wrong -- the web search snippet that suggested it was
-// stale/misleading). Cadastral/LotsAndDimensions/MapServer/0 is real
-// and live, but turned out to be "Builder Block Numbers" -- a CAD
-// text-annotation layer (FontName/FontSize/Bold/TextString/MSLINK_DMRS
-// fields indicate a MicroStation/Bentley GIS annotation layer), not
-// parcel polygons. This round lists LotsAndDimensions' actual
-// sub-layers to find the real parcel layer index, and also tries the
-// jcgis.jacksongov.org host's "ParcelViewer" app-backing service path
-// (the public Parcel Viewer at jcgis.jacksongov.org/parcelviewer/ must
-// query some real service).
+// Round 1+2 exhausted plausible guesses without finding a real
+// assessor/CAMA parcel service: Cadastral/ParcelsAndAddresses and
+// ParcelViewer/Parcels and Cadastral/Parcels all return real 404s;
+// Cadastral/LotsAndDimensions turned out to be entirely CAD/survey
+// layers (Builder Block Numbers, Property Dimensions, Lot Corners, Lot
+// Numbers, Lot Annotation, Lots) -- a surveying/plat service, not a
+// general parcel data layer with owner/value/address fields. Rather
+// than keep guessing names, this round lists the services root
+// directory directly to see the real folder/service structure.
 //
 // Deleted once Jackson County is either added or documented as
 // unavailable.
@@ -38,13 +35,11 @@ async function fetchText(url, label) {
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
       if (body.folders) console.log('Folders:', body.folders.join(', '));
       if (body.services) console.log('Services:', body.services.map(s => `${s.name} (${s.type})`).join(', '));
-      if (body.layers) console.log('Sub-layers:', body.layers.map(l => `${l.id}:${l.name}`).join(', '));
       if (body.fields) {
         console.log('Field count:', body.fields.length);
         console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
       }
       if (body.name) console.log('Layer name:', body.name);
-      if (body.geometryType) console.log('Geometry type:', body.geometryType);
       if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
@@ -62,18 +57,13 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://jcgis.jacksongov.org/arcgis/rest/services/Cadastral/LotsAndDimensions/MapServer?f=json',
-  'LotsAndDimensions - full sub-layer listing'
+  'https://jcgis.jacksongov.org/arcgis/rest/services?f=json',
+  'Root services directory listing'
 );
 
 await fetchText(
-  'https://jcgis.jacksongov.org/arcgis/rest/services/ParcelViewer/Parcels/MapServer?f=json',
-  'ParcelViewer/Parcels - sub-layer listing guess'
-);
-
-await fetchText(
-  'https://jcgis.jacksongov.org/arcgis/rest/services/Cadastral/Parcels/MapServer?f=json',
-  'Cadastral/Parcels - simple name guess'
+  'https://jcgis.jacksongov.org/arcgis/rest/services/Cadastral?f=json',
+  'Cadastral folder listing'
 );
 
 console.log('\nDone.');
