@@ -154,9 +154,23 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   Philadelphia's Point-geometry blocker), so only the thin boundary
   layer (2 real fields: parcel_id, pin) was added, with the richer
   schema documented as a follow-up opportunity below. See Recently
-  Completed below. Registry now covers 24 jurisdictions. The next
-  candidate below Polk County IA (27) in the facility-count priority
-  list has not yet been investigated.
+  Completed below. Registry now covers 24 jurisdictions. While checking
+  the facility-count priority list for the next candidate below Polk
+  County IA (27), a gap was discovered: Washington County OR/Hillsboro
+  has 36 facilities — more than several already-covered counties — but
+  had never been investigated. It was added next over 4 rounds: rounds
+  1-2 exhausted guessed county-hosted URLs and a resolved Oregon Metro
+  item that turned out to be a static Shapefile download rather than a
+  live service; round 3's DCAT catalog search on Metro's own RLIS
+  Discovery portal (a custom domain, not *.opendata.arcgis.com) found
+  the real regional "Taxlots (Public)" dataset directly; round 4
+  confirmed it live with 32 fields and real Polygon geometry, covering
+  Clackamas/Multnomah/Washington Counties with a `where` clause scoping
+  results to Washington County. See Recently Completed below. Registry
+  now covers 25 jurisdictions. The next candidate below Washington
+  County OR (36) — Polk County IA's tier (27 facilities, tied with
+  Suffolk County MA and Hillsborough County FL, neither investigated)
+  — has not yet been investigated.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1170,6 +1184,67 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Washington County, Oregon (FIPS 41067, 36 facilities) to
+  the parcel registry, over four probe rounds. Discovered as a gap
+  while checking the facility-count priority list after Polk County
+  IA: 36 facilities, ranked above several already-covered counties
+  (Wake NC's 28, Cuyahoga OH's 29) but never investigated.
+- Findings: Round 1's guessed county-hosted URLs (gis.co.washington.or.us,
+  www.co.washington.or.us) all failed real DNS/404 errors. A web search
+  found that Oregon Metro (the Portland tri-county regional government
+  covering Clackamas, Multnomah, and Washington) publishes a
+  standardized "Taxlots (Public)" dataset via its RLIS Discovery ArcGIS
+  Hub portal, compiled from each county assessor's own records. Round 2
+  resolved that item's metadata via the ArcGIS sharing API, but it
+  turned out to be a static Shapefile download (type: Shapefile, no
+  live service `url`), not a queryable REST service. Round 3 checked
+  RLIS Discovery's own DCAT catalog directly on its custom domain
+  (rlisdiscovery.oregonmetro.gov — not a *.opendata.arcgis.com host,
+  confirming ArcGIS Hub sites expose this same feed pattern on custom
+  domains too) and found the real "Taxlots (Public)" dataset directly,
+  with a genuine ArcGIS GeoServices REST distribution URL. Round 4
+  confirmed that URL live: 32 fields, real Polygon geometry, covering
+  all three counties with a per-feature COUNTY field.
+- Scope handling: this is a regional multi-county service. Multnomah
+  County OR (FIPS 41051) already has its own separate registry entry
+  using its own county-hosted service — this entry adds a `where`
+  clause (`COUNTY = 'Washington'`) so query results are always scoped
+  to Washington County regardless of viewport bounds near the county
+  line, on top of the connector's normal spatial-bounds filtering (the
+  same `where`-clause pattern already used for NYC's borough scoping).
+- Field mapping: 13 of 30 canonical fields mapped (parcel_id, pin,
+  address, land_use_code, land_use_desc, area_acres, year_built,
+  gross_floor_area, assessed_value, land_value, improvement_value,
+  last_sale_date, last_sale_price) plus county_fips (computed).
+  parcel_id maps to TLID (Tax Lot ID); pin to PRIMACCNUM (Primary
+  Account Number, the assessor's own distinct identifier — an
+  ALTACCNUM field also exists but only one identifier maps to pin).
+  owner and owner_mailing are left unmapped: the dataset's own
+  description explicitly states it excludes ownership information
+  (OWNERTYPE is a public/private classification, not an owner name).
+  area_acres maps to A_T_ACRES (the assessor's own total acreage)
+  rather than the separately-present GIS_ACRES (a GIS-calculated
+  value), preferring the authoritative source figure. No zoning, tax
+  year/amount, deed reference, subdivision, legal description, or
+  census tract fields exist. The remaining 16 fields recorded in
+  `notProvidedBySource` — verified programmatically to cover all 30
+  canonical fields with zero gaps and zero overlaps.
+- Licensing: Oregon Metro's own official RLIS Discovery portal,
+  compiling records from the county's own Department of Assessment &
+  Taxation. Standard "public government data, verify terms before
+  commercial redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 13 mapped fields plus "Not
+  published by this source" for the remaining 16, zero page errors.
+  Registry now covers 25 jurisdictions.
+- Temp files (`data/diagnose_washington_or.mjs`,
+  `.github/workflows/_diagnose_washington_or.yml`) deleted in the same
+  commit that added the registry entry.
+- Last updated: 2026-08-03
 
 - Date: 2026-08-03
 - Agent: Claude Code
