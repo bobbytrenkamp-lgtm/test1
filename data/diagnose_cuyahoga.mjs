@@ -1,14 +1,12 @@
-// Temporary diagnostic, round 1: Cuyahoga County OH (Cleveland) parcel
+// Temporary diagnostic, round 2: Cuyahoga County OH (Cleveland) parcel
 // service.
 //
-// Web search found Cuyahoga County's own open data portal
-// (data-cuyahoga.opendata.arcgis.com) plus a dedicated "Fiscal GIS Hub"
-// (fiscalhub.gis.cuyahogacounty.gov) explicitly for tax parcel and
-// property/sales information, run by the county Fiscal Officer. This
-// round fetches the general open data portal's DCAT catalog to find
-// the real FeatureServer distribution URL for a "Parcels" dataset
-// directly -- the same pattern that worked for Salt Lake County UT,
-// Multnomah County OR, Philadelphia PA, and Sacramento County CA.
+// Round 1's DCAT catalog search found the real dataset directly:
+// "Parcel Fabric Taxparcels", with a genuine ArcGIS GeoServices REST
+// API distribution URL under a "CCFO" (Cuyahoga County Fiscal Officer)
+// service folder -- exactly the right authority for tax parcel data.
+// This round probes that confirmed URL directly to get its real field
+// schema, description, and copyrightText.
 //
 // Deleted once Cuyahoga County is either added or documented as
 // unavailable.
@@ -30,17 +28,16 @@ async function fetchText(url, label) {
     console.log(`URL: ${url}`);
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
-      if (body.dataset && Array.isArray(body.dataset)) {
-        const hits = body.dataset.filter(d => /\bparcel/i.test(d.title || ''));
-        console.log(`DCAT dataset count: ${body.dataset.length}, "parcel" title matches: ${hits.length}`);
-        for (const hit of hits) {
-          console.log('  DCAT match title:', hit.title);
-          console.log('  DCAT match distribution:', JSON.stringify((hit.distribution || []).map(d => ({ format: d.format, url: d.accessURL || d.downloadURL }))));
-        }
-      } else {
-        console.log('Body (JSON keys):', Object.keys(body));
-        if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
+      console.log('Body (JSON keys):', Object.keys(body));
+      if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
+      if (body.fields) {
+        console.log('Field count:', body.fields.length);
+        console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
       }
+      if (body.name) console.log('Layer name:', body.name);
+      if (body.geometryType) console.log('Geometry type:', body.geometryType);
+      if (body.description) console.log('description:', body.description.slice(0, 500));
+      if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -57,8 +54,8 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://data-cuyahoga.opendata.arcgis.com/api/feed/dcat-us/1.1.json',
-  "Cuyahoga County's own open data portal - DCAT catalog, filtered for 'parcel'"
+  'https://gis.cuyahogacounty.gov/server/rest/services/CCFO/Parcel_Fabric_Taxparcels/FeatureServer/0?f=json',
+  'Confirmed real - CCFO Parcel_Fabric_Taxparcels FeatureServer layer 0'
 );
 
 console.log('\nDone.');
