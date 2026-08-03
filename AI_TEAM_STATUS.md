@@ -12,19 +12,52 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   coverage beyond the initial 5-county pilot, prioritized by actual
   facility count in `facilities_index.json`. Fixed the 2 already-broken
   counties first, then added Maricopa AZ / Dallas TX / Fulton GA, then
-  Franklin OH / King WA (see Recently Completed below for both). Santa
-  Clara County CA (#4 by facility count, 108) was investigated over three
-  probe rounds and confirmed unavailable — its candidate service is
-  genuinely dead and no general-purpose county parcel layer could be
-  found on its GIS org, see Open Handoffs below for the full trail;
-  closed as won't-fix pending a human follow-up. Cook County IL (#1, 130
-  facilities) is deliberately not being added — see Open Handoffs, it
-  needs a licensing decision, not more research. Registry now covers 10
-  jurisdictions. Continuing to work down the priority list: next
-  candidates are LA CA (64), Hennepin MN (63), Denver CO (62), Harris TX
-  (61), etc.
+  Franklin OH / King WA, then LA CA (see Recently Completed below for
+  all). Santa Clara County CA (#4 by facility count, 108) was
+  investigated over three probe rounds and confirmed unavailable — its
+  candidate service is genuinely dead and no general-purpose county
+  parcel layer could be found on its GIS org, see Open Handoffs below for
+  the full trail; closed as won't-fix pending a human follow-up. Cook
+  County IL (#1, 130 facilities) is deliberately not being added — see
+  Open Handoffs, it needs a licensing decision, not more research.
+  Registry now covers 11 jurisdictions. Continuing to work down the
+  priority list: next candidates are Hennepin MN (63), Denver CO (62),
+  Harris TX (61), etc.
 
 ## Recently Completed Work (continued)
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Los Angeles County CA to the parcel registry — the next
+  highest-priority market by facility count after Franklin OH / King WA.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped: `js/parcel/registry.js` now covers 11 jurisdictions (up from
+  10). Fetch-confirmed on a GitHub Actions runner (this dev sandbox
+  cannot reach lacounty.gov directly) — the county's own public GIS
+  portal (public.gis.lacounty.gov) was the first candidate tried and
+  returned a live, rich 92-field Assessor-roll layer on the first probe.
+  12 of 30 canonical fields mapped: AIN and APN are both real, distinct
+  identifier fields, mapped to parcel_id and pin respectively rather than
+  reusing one for both. No owner-name or mailing-address field exists
+  (same redaction pattern as Maryland). No lot-size field exists either —
+  Shape.STArea() is present but is a raw geometry-derived value with no
+  confirmed real-world unit, so area_sqft/area_acres are left unmapped
+  rather than guessed, matching the Maryland LANDAREA / Maricopa
+  LAND_SIZE precedent. No sale-transaction fields exist. The layer
+  records up to 5 separate structures per parcel (fields suffixed 1-5);
+  only the first structure's year-built/floor-area are mapped, since
+  there's no generic multi-structure aggregation mechanism.
+- Validated the same way as every prior addition: fieldMap +
+  notProvidedBySource cover all 30 canonical schema.js fields with zero
+  gaps/overlaps; live-tested via Playwright through the real
+  `window.PARCEL_PANEL.show()` rendering path — populated fields render
+  real values, gaps render "Not published by this source", no page
+  errors.
+- Licensing: hosted on the county's own "public" GIS subdomain
+  (public.gis.lacounty.gov, not a third-party ArcGIS Online org), under
+  the "LACounty_Cache" namespace — an official county-operated public
+  service. No redistribution restriction found. Treated as standard
+  public government data, same as every other county in this registry.
 
 - Date: 2026-08-03
 - Agent: Claude Code
