@@ -91,13 +91,19 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   trail. Closed pending a human follow-up, same pattern as Santa
   Clara/Hennepin/Denver/Clark/San Francisco. Salt Lake County UT (37
   facilities) was added next — a first-probe success, see Recently
-  Completed below. Registry now covers 17 jurisdictions. The next
-  candidates below Salt Lake County UT (37) in the facility-count
-  priority list — Multnomah County OR/Portland (36), Davidson County
-  TN/Nashville (34), Jackson County MO/Kansas City (34), Philadelphia PA
-  (32), Sacramento County CA (30), Cuyahoga County OH/Cleveland (29),
-  Wake County NC/Raleigh (28), Polk County IA/Des Moines (27) — have not
-  yet been investigated.
+  Completed below. Registry now covers 17 jurisdictions. Multnomah
+  County OR/Portland (36 facilities) was added next over 2 probe rounds
+  — round 1's web-search-guessed candidate was live but turned out to
+  be the wrong county entirely (Umatilla County OR, caught via its own
+  description/copyrightText), and round 1's DCAT-catalog fallback found
+  the real service directly; round 2 confirmed it with a rich 56-field
+  schema. See Recently Completed below. Registry now covers 18
+  jurisdictions. The next candidates below Multnomah County OR (36) in
+  the facility-count priority list — Davidson County TN/Nashville (34),
+  Jackson County MO/Kansas City (34), Philadelphia PA (32), Sacramento
+  County CA (30), Cuyahoga County OH/Cleveland (29), Wake County
+  NC/Raleigh (28), Polk County IA/Des Moines (27) — have not yet been
+  investigated.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1111,6 +1117,53 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Multnomah County, Oregon (FIPS 41051, 36 facilities) to
+  the parcel registry, over two probe rounds.
+- Findings: Round 1's web-search-guessed candidate
+  (`services3.arcgis.com/tNPgIZWOB0Efvm0g/.../Tax_Lots`) was live and
+  had appeared repeatedly across multiple web searches, but its own
+  `description` and `copyrightText` fields revealed it as **Umatilla
+  County, Oregon** GIS data, not Multnomah — a wrong-county false
+  positive caught by the standing practice of always checking
+  description/copyrightText, not just HTTP status. Round 1's DCAT
+  catalog fallback (Multnomah's own open data portal,
+  gis-multco.opendata.arcgis.com) found the real answer directly: a
+  dataset literally titled "Multnomah County Taxlot Parcels" with a
+  genuine ArcGIS REST distribution URL. Round 2 confirmed that URL live
+  with a real, rich 56-field schema — layer name "Multnomah County Tax
+  Parcels", sourced from the county's own Department of Assessment,
+  Recording and Taxation.
+- Field mapping: 20 of 30 canonical fields mapped — the richest of any
+  jurisdiction added this session — including owner name (real, unlike
+  Salt Lake's statewide feed), address, zoning code, land use,
+  area_sqft/acres (confirmed units), building count, year built, gross
+  floor area, Oregon's constitutional Measure 50 assessed value
+  (ROLLM50, the correct "official" assessed-value concept for Oregon)
+  plus land/improvement value breakdown, tax year, full sale history
+  (date + price), and legal description. The remaining 10
+  (owner_mailing, zoning_desc, overlay_districts, lot_depth_ft,
+  lot_width_ft, tax_amount, deed_book, deed_page, subdivision,
+  census_tract) recorded in `notProvidedBySource` — verified
+  programmatically to cover all 30 canonical fields with zero gaps and
+  zero overlaps. deed_book/deed_page deliberately left unmapped rather
+  than force-fit to the source's INST_NUM field, since Oregon's
+  recording system uses instrument numbers, a genuinely different
+  identifier scheme than book/page, not a renamed equivalent.
+- Licensing: found via the county's own official open data portal
+  listing (gis-multco.opendata.arcgis.com), sourced from the county
+  Department of Assessment, Recording and Taxation; standard "public
+  government data, verify terms before commercial redistribution"
+  caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 20 mapped fields plus "Not
+  published by this source" for all 10 unmapped fields, zero page
+  errors. Registry now covers 18 jurisdictions.
+- Shipped: PR #274 (registry addition, deletes the temporary diagnostic
+  script/workflow in the same commit).
 
 - Date: 2026-08-03
 - Agent: Claude Code
