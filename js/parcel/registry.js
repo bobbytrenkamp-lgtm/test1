@@ -1472,6 +1472,97 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Davidson County, Tennessee ─────────────────────────────────────
+     * Live at maps.nashville.gov (Nashville/Davidson County's own
+     * MetroGIS host), layer "Ownership Parcels"
+     * (Cadastral/Parcels/MapServer/0) — confirmed live 2026-08-03 via
+     * GitHub Actions dispatch (this sandbox's proxy returns HTTP 403 on
+     * similar hosts directly), first-probe success with a real 58-field
+     * schema. copyrightText "MetroGIS" confirms this is genuinely
+     * Nashville/Davidson County's own official platform (the county's
+     * State Plane variant, Parcels_SP, does not actually exist as a
+     * separate service — confirmed via a real "Service ... not found"
+     * ArcGIS error, not a guess gone wrong). APN (Assessor Parcel
+     * Number) mapped to parcel_id; STANPAR (a distinct standardized
+     * parcel-number field) mapped to pin — two genuinely distinct
+     * identifier fields, same convention as every other jurisdiction
+     * with two real ID fields. PropAddr used directly for address (a
+     * real composite field, alongside — but not built from — its own
+     * split components PropHouse/PropStreet/PropSuite/PropCity/...).
+     * Owner mapped to owner; no single composite mailing-address field
+     * exists (only split OwnAddr1/2/3/OwnCity/OwnState/OwnCountry/
+     * OwnZip), so owner_mailing is left unmapped, same convention as
+     * every other split-address source here. LUCode/LUDesc mapped
+     * directly to land_use_code/land_use_desc — a clean code+
+     * description pair, unlike several other jurisdictions' ambiguous
+     * single-code sources. Front/Side (classic CAMA lot-dimension
+     * fields) mapped to lot_width_ft/lot_depth_ft respectively. Acres
+     * has confirmed units (name states acres) and maps to area_acres;
+     * area_sqft is left unmapped since the only alternative, StatedArea,
+     * has unconfirmed units, same caution applied to every other
+     * ambiguous-unit area field in this registry. No year-built or
+     * building-count field exists in this parcel-focused layer (it
+     * tracks land/ownership/valuation, not building characteristics).
+     * TotlAssd/LandAssd/ImprAssd (the Tennessee assessment-ratio
+     * "assessed value" figures, distinct from the source's separate
+     * LandAppr/ImprAppr/TotlAppr "appraised" — 100%-of-market — figures)
+     * mapped to assessed_value/land_value/improvement_value, kept
+     * consistently on the assessed basis rather than mixing with
+     * appraised values. OwnDate (date the current owner acquired the
+     * parcel) mapped to last_sale_date; SalePrice to last_sale_price.
+     * LegalDesc mapped to legal_desc; Tract mapped to census_tract. No
+     * deed book/page (OwnInstr/PropInstr are instrument numbers, a
+     * different recording scheme) or subdivision-name field exists.
+     * ─────────────────────────────────────────────────────────────────── */
+    '47037': {
+      id:          'tn-davidson-county',
+      name:        'Davidson County, Tennessee',
+      state:       'TN',
+      fips:        '47037',
+      connector:   'arcgis',
+      serviceUrl:  'https://maps.nashville.gov/arcgis/rest/services/Cadastral/Parcels/MapServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'APN',
+        pin:                 'STANPAR',
+        address:             'PropAddr',
+        owner:               'Owner',
+        zoning_code:         'Zoning',
+        land_use_code:       'LUCode',
+        land_use_desc:       'LUDesc',
+        area_acres:          'Acres',
+        lot_depth_ft:        'Side',
+        lot_width_ft:        'Front',
+        assessed_value:      'TotlAssd',
+        land_value:          'LandAssd',
+        improvement_value:   'ImprAssd',
+        last_sale_date:      'OwnDate',
+        last_sale_price:     'SalePrice',
+        legal_desc:          'LegalDesc',
+        census_tract:        'Tract',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_desc', 'overlay_districts', 'area_sqft',
+        'building_count', 'year_built', 'gross_floor_area', 'tax_year',
+        'tax_amount', 'deed_book', 'deed_page', 'subdivision',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Metro Nashville & Davidson County (MetroGIS)',
+        url:     'https://www.nashville.gov/departments/planning/mapping-and-gis',
+        portal:  'https://maps.nashville.gov/ParcelViewer/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Nashville metro — major Tennessee data center market.',
+      },
+    },
+
   };
 
   function get(fips) {
