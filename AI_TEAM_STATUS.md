@@ -141,9 +141,22 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   mapping of the session so far (20 of 30 canonical fields, including
   the registry's first genuinely separate deed_book/deed_page fields).
   See Recently Completed below. Registry now covers 23 jurisdictions.
-  The next candidate below Wake County NC (28) in the facility-count
-  priority list — Polk County IA/Des Moines (27) — has not yet been
-  investigated.
+  Polk County IA/Des Moines (27 facilities) was investigated next over
+  4 rounds: rounds 1-2 located the county's own gis4.polkcountyiowa.gov
+  ArcGIS Server after two rounds of dead-end guesses, confirming a real
+  but thin 8-field "Cadastral Parcels" boundary layer; round 3 found
+  that the same FeatureServer also exposes four separate non-spatial
+  CAMA tables (legal description/deed, situs address, taxable/assessed
+  values, owner mailing) joinable by parcel number — a genuinely rich
+  dataset; round 4 confirmed those tables' real field schemas, but
+  js/parcel/connector-arcgis.js has no support for joining a boundary
+  layer to related tables (the same class of architectural gap as
+  Philadelphia's Point-geometry blocker), so only the thin boundary
+  layer (2 real fields: parcel_id, pin) was added, with the richer
+  schema documented as a follow-up opportunity below. See Recently
+  Completed below. Registry now covers 24 jurisdictions. The next
+  candidate below Polk County IA (27) in the facility-count priority
+  list has not yet been investigated.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1157,6 +1170,66 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Polk County, Iowa (FIPS 19153, 27 facilities) to the
+  parcel registry, over four probe rounds — a deliberately thin add.
+- Findings: Rounds 1-2 exhausted several wrong-domain guesses (two real
+  DNS failures, two real 404s) before a web search found the real host:
+  gis4.polkcountyiowa.gov, serving a Polk_County_Parcels
+  FeatureServer/MapServer with a "Cadastral Parcels" layer (id 1),
+  confirmed real, live, Polygon geometry — but only 8 fields (mostly
+  IDs and geometry metadata). Round 3 listed the FeatureServer's full
+  catalog and found four separate non-spatial tables also present:
+  Parcel (id 2 — legal description, deed book/page, acreage/sqft),
+  Situs Address (id 3 — full street-address components), Value (id 4 —
+  taxable and assessed land/building/dwelling/total values), and
+  Owners Mail (id 5 — owner name and full mailing address), all
+  joinable by a shared ParcelNumber field — a genuinely rich, standard
+  normalized CAMA schema. Round 4 confirmed each table's real field
+  schema (Parcel: 15 fields; Situs Address: 17 fields; Value: 22
+  fields; Owners Mail: 31 fields).
+- Architectural blocker: `js/parcel/connector-arcgis.js` fetches
+  attributes from a single configured `serviceUrl` via one `/query`
+  call (see `_buildQueryUrl`/`_execute`) and has no support for
+  resolving a boundary layer's geometry against related non-spatial
+  tables. This is the same class of gap as the Point-vs-Polygon issue
+  that blocked Philadelphia's OPA dataset and Clark County NV's
+  BOE_Parcels — the richer 4-table CAMA schema found here is real and
+  live but not usable without a connector enhancement.
+- Field mapping: only 2 of 30 canonical fields mapped from the boundary
+  layer itself (parcel_id → Parcel_Number, pin → Alternate_Parcel —
+  most likely a legacy/historical parcel-number cross-reference given
+  the Parcel table's own field naming, but still a genuine distinct
+  identifier), plus county_fips (computed) — the thinnest add this
+  session. address left unmapped: the boundary layer's HouseNo field is
+  a bare house number with no street name, not a usable site address.
+  The remaining 27 fields recorded in `notProvidedBySource` — verified
+  programmatically to cover all 30 canonical fields with zero gaps and
+  zero overlaps.
+- Licensing: Polk County's own GIS host (gis4.polkcountyiowa.gov),
+  confirmed via a web search and the service's own description text
+  ("Polk County Auditor... Contact Auditor by phone... or by email at
+  giswebmaster@polkcountyiowa.gov"). Standard "public government data,
+  verify terms before commercial redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of both mapped fields plus "Not published
+  by this source" for the remaining 27, zero page errors. Registry now
+  covers 24 jurisdictions.
+- Follow-up opportunity (not attempted this session): a human could
+  extend `js/parcel/connector-arcgis.js` to support resolving a
+  boundary layer's features against one or more related non-spatial
+  tables by a shared key field (here, ParcelNumber), which would
+  unlock genuinely rich owner/value/address/legal data for Polk County
+  and potentially other jurisdictions publishing a similar normalized
+  CAMA schema (separate boundary + attribute tables rather than one
+  flat layer).
+- Temp files (`data/diagnose_polk.mjs`,
+  `.github/workflows/_diagnose_polk.yml`) deleted in the same commit
+  that added the registry entry.
+- Last updated: 2026-08-03
 
 - Date: 2026-08-03
 - Agent: Claude Code
