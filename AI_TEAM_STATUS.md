@@ -126,9 +126,16 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   with no owner/value data (that lives in a separate, not-yet-confirmed
   Assessor Parcel Viewer app), accepted as a thin-but-real add rather
   than chasing a 3rd round. See Recently Completed below. Registry now
-  covers 21 jurisdictions. The next candidates below Sacramento County
-  CA (30) in the facility-count priority list — Cuyahoga County
-  OH/Cleveland (29), Wake County NC/Raleigh (28), Polk County IA/Des
+  covers 21 jurisdictions. Cuyahoga County OH/Cleveland (29 facilities)
+  was added next — a first-probe success, found directly via the
+  county's own open-data DCAT catalog rather than a guessed URL: the
+  "Parcel Fabric Taxparcels" dataset, served under a "CCFO" (Cuyahoga
+  County Fiscal Officer) folder on the county's own GIS host, with 142
+  fields and real Polygon geometry — one of the richest sources found
+  this session (19 of 30 canonical fields mapped). See Recently
+  Completed below. Registry now covers 22 jurisdictions. The next
+  candidates below Cuyahoga County OH (29) in the facility-count
+  priority list — Wake County NC/Raleigh (28), Polk County IA/Des
   Moines (27) — have not yet been investigated.
 
 - Date: 2026-08-03
@@ -1143,6 +1150,61 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Cuyahoga County, Ohio (FIPS 39035, 29 facilities) to the
+  parcel registry, over two probe rounds.
+- Findings: Web search found Cuyahoga County's own open data portal
+  plus a dedicated Fiscal GIS Hub run by the county Fiscal Officer.
+  Round 1's DCAT catalog search (same pattern as Salt Lake/Multnomah/
+  Philadelphia/Sacramento) found the real dataset directly: "Parcel
+  Fabric Taxparcels", with a genuine ArcGIS GeoServices REST
+  distribution URL under a "CCFO" (Cuyahoga County Fiscal Officer)
+  service folder on the county's own gis.cuyahogacounty.gov host —
+  exactly the right authority for tax parcel data. Round 2 confirmed
+  that URL live: Polygon geometry, 142 fields, one of the richest
+  sources found this session.
+- Field mapping: 19 of 30 canonical fields mapped (parcel_id, pin,
+  address, owner, zoning_code, zoning_desc, land_use_code,
+  land_use_desc, area_sqft, area_acres, assessed_value, land_value,
+  improvement_value, tax_year, tax_amount, last_sale_date,
+  last_sale_price, legal_desc, county_fips). parcel_id and zoning_code
+  match field-for-field; address maps to the source's own pre-combined
+  par_addr_all field (not concatenated by us). Land use has four
+  parallel LUC systems (tax/ext/abt/tif); tax_luc/tax_luc_description
+  chosen as the primary current tax land-use classification. Valuation
+  fields map to the current tax-roll assessed values, not the several
+  certified/prior-year variants also present. owner_mailing left
+  unmapped: the source splits it into five separate component fields
+  with no combined field, consistent with the established practice of
+  not concatenating multi-component source fields ourselves. deed_book
+  and deed_page also left unmapped: the source provides both as one
+  already-combined book_page string that can't be cleanly split without
+  fabricating a division. building_count, year_built, and
+  gross_floor_area left unmapped: the source splits building stats into
+  parallel residential and commercial variants with no unified total or
+  single year-built field. No subdivision, overlay_districts, lot
+  depth/width (only a combined frontage figure), or census_tract fields
+  exist. The remaining 11 fields recorded in `notProvidedBySource` —
+  verified programmatically to cover all 30 canonical fields with zero
+  gaps and zero overlaps.
+- Licensing: Cuyahoga County's own Fiscal Officer service, on the
+  county's own GIS domain, found via the county's own open data portal
+  DCAT catalog. No description or copyrightText was returned by the
+  service; treated as an official government platform rather than a red
+  flag, given the unambiguous own-domain/own-authority match. Standard
+  "public government data, verify terms before commercial
+  redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 19 mapped fields plus "Not
+  published by this source" for the remaining 11, zero page errors.
+  Registry now covers 22 jurisdictions.
+- Temp files (`data/diagnose_cuyahoga.mjs`,
+  `.github/workflows/_diagnose_cuyahoga.yml`) deleted in the same
+  commit that added the registry entry.
+- Last updated: 2026-08-03
 
 - Date: 2026-08-03
 - Agent: Claude Code
