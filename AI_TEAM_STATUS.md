@@ -121,10 +121,15 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   rounds 2-5 located and confirmed a real Polygon boundary layer
   instead (Philadelphia DOR Parcels), thinner but with real owner/
   address data. See Recently Completed below. Registry now covers 20
-  jurisdictions. The next candidates below Philadelphia PA (32) in the
-  facility-count priority list — Sacramento County CA (30), Cuyahoga
-  County OH/Cleveland (29), Wake County NC/Raleigh (28), Polk County
-  IA/Des Moines (27) — have not yet been investigated.
+  jurisdictions. Sacramento County CA (30 facilities) was added next
+  over 2 probe rounds — a real, live cadastral/land-use boundary layer
+  with no owner/value data (that lives in a separate, not-yet-confirmed
+  Assessor Parcel Viewer app), accepted as a thin-but-real add rather
+  than chasing a 3rd round. See Recently Completed below. Registry now
+  covers 21 jurisdictions. The next candidates below Sacramento County
+  CA (30) in the facility-count priority list — Cuyahoga County
+  OH/Cleveland (29), Wake County NC/Raleigh (28), Polk County IA/Des
+  Moines (27) — have not yet been investigated.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1138,6 +1143,47 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: Added Sacramento County, California (FIPS 06067, 30 facilities)
+  to the parcel registry, over two probe rounds.
+- Findings: Web search found Sacramento County's own official open
+  data portal (data-sacramentocounty.opendata.arcgis.com) hosting both
+  a "Parcels" dataset and a separate "Assessor Parcel Viewer" app.
+  Round 1's DCAT catalog search (same pattern as Salt Lake/Multnomah/
+  Philadelphia) found the real "Parcels" dataset directly, with a
+  genuine ArcGIS REST distribution URL on the county's own ArcGIS org.
+  Round 2 confirmed that URL live with a real 22-field schema — a
+  cadastral/land-use boundary layer (APN, a distinct internal parcel
+  key, a full land-use code hierarchy, subdivision name, lot size) but
+  with zero owner or assessed-value fields; that data likely lives in
+  the separate Assessor Parcel Viewer app
+  (assessorparcelviewer.saccounty.gov), whose own queryable ArcGIS
+  service was not confirmed. Accepted as a thin-but-real add rather
+  than spending a 3rd round chasing the Assessor app, same precedent as
+  Travis County TX and Philadelphia PA's boundary-only layers.
+- Field mapping: 6 of 30 canonical fields mapped (parcel_id, pin,
+  land_use_code, land_use_desc, subdivision, county_fips). No composite
+  address field exists (only split STREET_NBR/STREET_NAM, no unit, no
+  combined city/zip), so address is left unmapped rather than built
+  from parts, same convention as every other split-address source in
+  this registry. LOT_SIZE is left unmapped for both area_sqft and
+  area_acres since its unit isn't confirmed by the field name, same
+  caution as every other ambiguous-unit area field here. The remaining
+  24 fields recorded in `notProvidedBySource` — verified
+  programmatically to cover all 30 canonical fields with zero gaps and
+  zero overlaps.
+- Licensing: Sacramento County's own ArcGIS org, found via the county's
+  own open data portal DCAT catalog; standard "public government data,
+  verify terms before commercial redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 6 mapped fields plus "Not
+  published by this source" for all 24 unmapped fields, zero page
+  errors. Registry now covers 21 jurisdictions.
+- Shipped: PR #289 (registry addition, deletes the temporary diagnostic
+  script/workflow in the same commit).
 
 - Date: 2026-08-03
 - Agent: Claude Code

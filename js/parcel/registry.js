@@ -1644,6 +1644,76 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Sacramento County, California ──────────────────────────────────
+     * Live at services1.arcgis.com (Sacramento County's own hosted
+     * org), layer "Parcels" — found via the county's own open data
+     * portal (data-sacramentocounty.opendata.arcgis.com) DCAT catalog.
+     * Confirmed live 2026-08-03 via GitHub Actions dispatch (this
+     * sandbox's proxy returns HTTP 403 on arcgis.com directly) with a
+     * real 22-field schema. This is a cadastral/land-use boundary
+     * layer with no owner or assessed-value fields at all — that data
+     * lives in a separate "Assessor Parcel Viewer" app on the same
+     * portal (assessorparcelviewer.saccounty.gov), not yet confirmed to
+     * expose its own queryable ArcGIS service; accepted as a thin-but-
+     * real add rather than chasing a further round, same precedent as
+     * Travis County TX and Philadelphia PA's boundary-only layers. APN
+     * mapped to parcel_id; PRCL_KEY (a distinct internal parcel key,
+     * separate from the public-facing APN) mapped to pin. No composite
+     * address field exists (only split STREET_NBR/STREET_NAM, no unit,
+     * no combined city/zip), so address is left unmapped rather than
+     * built from parts, same convention as every other split-address
+     * source in this registry. LANDUSE/LU_GENERAL mapped to
+     * land_use_code/land_use_desc — the primary tier of a deeper
+     * land-use hierarchy (LU_SPECIF/LU_DETAIL/LU_USE/LU_SEC_USE exist
+     * but have no canonical home in this schema). LOT_SIZE is left
+     * unmapped for both area_sqft and area_acres since its unit isn't
+     * confirmed by the field name, same caution as every other
+     * ambiguous-unit area field here. SUBDIVISIO (Subdivision, a
+     * shapefile/dbf-truncated field name) mapped to subdivision. No
+     * value, building-characteristic, sale-history, deed-reference, or
+     * legal-description-text fields exist in this boundary-focused
+     * layer.
+     * ─────────────────────────────────────────────────────────────────── */
+    '06067': {
+      id:          'ca-sacramento-county',
+      name:        'Sacramento County, California',
+      state:       'CA',
+      fips:        '06067',
+      connector:   'arcgis',
+      serviceUrl:  'https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/Parcels/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'APN',
+        pin:                 'PRCL_KEY',
+        land_use_code:       'LANDUSE',
+        land_use_desc:       'LU_GENERAL',
+        subdivision:         'SUBDIVISIO',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'overlay_districts', 'area_sqft', 'area_acres', 'lot_depth_ft',
+        'lot_width_ft', 'building_count', 'year_built', 'gross_floor_area',
+        'assessed_value', 'land_value', 'improvement_value', 'tax_year',
+        'tax_amount', 'last_sale_date', 'last_sale_price', 'deed_book',
+        'deed_page', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Sacramento County GIS / Assessor',
+        url:     'https://assessor.saccounty.gov/',
+        portal:  'https://data-sacramentocounty.opendata.arcgis.com/datasets/sacramentocounty::parcels',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Sacramento metro — major California data center market.',
+      },
+    },
+
   };
 
   function get(fips) {
