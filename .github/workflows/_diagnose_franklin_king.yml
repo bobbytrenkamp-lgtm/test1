@@ -1,0 +1,30 @@
+name: (temp) Diagnose Franklin OH / King WA parcel services
+
+# Temporary, workflow_dispatch-only diagnostic for the next batch of
+# parcel-expansion candidates: Franklin County OH (82 facilities) and
+# King County WA (71 facilities), the next-highest priority counties by
+# facility count after Santa Clara CA was confirmed unavailable. Deleted
+# once these are either added to the registry or documented as
+# unavailable.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe Franklin OH / King WA candidates
+        run: node data/diagnose_franklin_king.mjs
