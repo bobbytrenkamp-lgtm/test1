@@ -1,12 +1,19 @@
-// Temporary diagnostic, round 2: New York County NY parcel service.
+// Temporary diagnostic, round 3: New York County NY parcel service.
 //
 // Round 1 confirmed the first guess was right: MAPPLUTO FeatureServer
 // at services5.arcgis.com/GfwWNkhOj9bNBqoJ/.../MAPPLUTO/FeatureServer is
 // LIVE, and independently confirmed by an ArcGIS Online catalog search
 // as the real official dataset owned by "DCP_GIS" (NYC Department of
 // City Planning's real GIS account). Sub-layers list showed "0:MAPPLUTO"
-// -- layer index 0, matching the guess. This fetches the real field
-// schema for layer 0.
+// -- layer index 0, matching the guess. Round 2 fetched the real field
+// schema for layer 0: 103 real fields including Borough, BoroCode, BBL,
+// Address, OwnerName, ZoneDist1, LandUse, LotArea, AssessTot, etc.
+// MAPPLUTO is a citywide 5-borough dataset (Manhattan/Bronx/Brooklyn/
+// Queens/Staten Island all in one layer), so New York County (Manhattan)
+// needs a where-clause filter on Borough/BoroCode to stay scoped to the
+// right FIPS. This round fetches a couple of real sample records to
+// confirm the actual encoded value (e.g. 'MN' vs 'Manhattan' vs 1) rather
+// than guessing from memory of the well-known PLUTO data dictionary.
 //
 // Deleted once NYC is either added or documented as unavailable.
 
@@ -53,8 +60,13 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0?f=json',
-  'MAPPLUTO - layer 0 definition'
+  'https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BoroCode%3D1&outFields=Borough,BoroCode,BBL,Address,ZoneDist1&resultRecordCount=3&f=json',
+  'MAPPLUTO - sample records where BoroCode=1'
+);
+
+await fetchText(
+  'https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=Borough%3D%27MN%27&outFields=Borough,BoroCode,BBL,Address&resultRecordCount=3&f=json',
+  "MAPPLUTO - sample records where Borough='MN'"
 );
 
 console.log('\nDone.');
