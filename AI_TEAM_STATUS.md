@@ -6,9 +6,57 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 
 ## Active Work
 
-No active work in progress as of 2026-08-02.
+No active work in progress as of 2026-08-03.
 
 ## Recently Completed Work (continued)
+
+- Date: 2026-08-03
+- Agent: Claude Code
+- Task: After 4 survey-and-fix rounds this session (PRs #216-224) landed
+  several subtle bugs — a race condition, a listener leak, an href
+  scheme-validation gap — none of them had regression coverage, so they
+  could silently reappear. Added tests for the two most likely to
+  regress silently rather than starting a 5th survey.
+- Branch: `claude/us-datacenter-restrictions-map-skooi7`
+- Shipped:
+  - `tests/test_frontend_core.mjs`: 10 new cases for `safeHref()`
+    (added in #221) — real `http`/`https` URLs pass through unchanged
+    (case-insensitively), `javascript:`/`data:`/whitespace-padded/
+    relative/empty/`null`/`undefined` all reduce to `"#"`.
+  - New `tests/test_economy_map_race.mjs`, wired into `run_all.sh`'s
+    always-run suite list (no jsdom needed — `economy-map.js` has no
+    module-scope DOM dependency, only function-scope, so a handful of
+    targeted mocks for `document.querySelector`/`window.ECONOMY`/
+    `window.layerStateRef` are enough). Drives the exact race #220
+    fixed with controllable, individually-resolvable promises (no real
+    network, no timing flakiness): toggle layer A on, toggle layer B
+    on before A's fetch resolves, resolve A's now-stale request first,
+    then B's — asserts the final active layer/checkbox state is
+    self-consistent.
+- Verified, not assumed: didn't just confirm the new test passes —
+  checked out `economy-map.js` as it stood immediately before #220 and
+  ran the new test against it specifically to confirm it fails there
+  (2 of 8 assertions fail, including a raw `TypeError` from the
+  pre-fix code never even calling `load()` a second time), then
+  restored the fixed version and confirmed all 8 pass again. A test
+  that can't fail proves nothing; this one demonstrably can.
+- Files changed: `tests/test_frontend_core.mjs` (new cases),
+  `tests/test_economy_map_race.mjs` (new file), `tests/run_all.sh`
+  (wired in), `AI_TEAM_STATUS.md`.
+- Related systems: the always-run (non-jsdom-gated) portion of the test
+  suite specifically, so this coverage can't be silently skipped the
+  way the jsdom-gated suites can be (see the 2026-08-02 `run_all.sh`
+  fix above).
+- Deliberately NOT done: did not add regression coverage for the
+  `economy-view.js` listener leak (#220) or the parcel-panel wording
+  fix (#222) — both live inside code that touches the real DOM/Leaflet
+  at a level this session's targeted-mock approach doesn't reach
+  cleanly (panel.js and the DOM-heavy parts of economy-view.js are
+  already deliberately excluded from the unit suite for this reason;
+  see parcel.test.js's own header comment). Live Playwright
+  verification was done for both at the time and is recorded in
+  BUG_TRACKER.md, but that verification wasn't captured as a
+  repeatable automated test in this pass.
 
 - Date: 2026-08-02
 - Agent: Claude Code
