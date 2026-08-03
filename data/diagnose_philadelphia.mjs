@@ -1,13 +1,10 @@
-// Temporary diagnostic, round 2: Philadelphia PA parcel service.
+// Temporary diagnostic, round 3: Philadelphia PA parcel service.
 //
-// Round 1's DCAT catalog fetch worked (848 datasets, 47 loose property/
-// parcel/opa title matches) but the broad regex match returned mostly
-// unrelated datasets (KOZ parcels, PWD test parcels, L&I property
-// history, etc.) within its first-8 print limit -- the specific "OPA
-// PROPERTIES PUBLIC" dataset wasn't among them. This round searches
-// specifically for "opa" in the dataset title with no result-count
-// limit, to find the real FeatureServer URL for the Office of Property
-// Assessment's public properties dataset directly.
+// Round 2's targeted "opa" title search found the real dataset
+// directly: "OPA PROPERTIES PUBLIC", with a genuine ArcGIS GeoServices
+// REST API distribution URL. This round probes that confirmed URL
+// directly to get its real field schema, description, and
+// copyrightText.
 //
 // Deleted once Philadelphia is either added or documented as
 // unavailable.
@@ -29,15 +26,16 @@ async function fetchText(url, label) {
     console.log(`URL: ${url}`);
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
-      if (body.dataset && Array.isArray(body.dataset)) {
-        const hits = body.dataset.filter(d => /\bopa\b/i.test(d.title || ''));
-        console.log(`DCAT dataset count: ${body.dataset.length}, "opa" title matches: ${hits.length}`);
-        for (const hit of hits) {
-          console.log('  DCAT match title:', hit.title);
-          console.log('  DCAT match description:', (hit.description || '').slice(0, 200));
-          console.log('  DCAT match distribution:', JSON.stringify((hit.distribution || []).map(d => ({ format: d.format, url: d.accessURL || d.downloadURL }))));
-        }
+      console.log('Body (JSON keys):', Object.keys(body));
+      if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
+      if (body.fields) {
+        console.log('Field count:', body.fields.length);
+        console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
       }
+      if (body.name) console.log('Layer name:', body.name);
+      if (body.geometryType) console.log('Geometry type:', body.geometryType);
+      if (body.description) console.log('description:', body.description.slice(0, 500));
+      if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -54,8 +52,8 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://data-phl.opendata.arcgis.com/api/feed/dcat-us/1.1.json',
-  "Philadelphia's own open data portal - DCAT catalog, filtered for 'opa'"
+  'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/OPA_PROPERTIES_PUBLIC/FeatureServer/0?f=json',
+  'Confirmed real - OPA_PROPERTIES_PUBLIC FeatureServer layer 0'
 );
 
 console.log('\nDone.');
