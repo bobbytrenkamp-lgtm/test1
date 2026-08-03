@@ -1887,6 +1887,75 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ───────────────────────────────────────────────────────────────────
+     * Polk County, Iowa (Des Moines) — a deliberately thin add. The
+     * county's own gis4.polkcountyiowa.gov ArcGIS Server exposes a
+     * genuinely rich normalized CAMA dataset via the Polk_County_Parcels
+     * FeatureServer: this "Cadastral Parcels" boundary layer (id 1,
+     * Polygon geometry) plus four separate non-spatial tables joinable
+     * by ParcelNumber — Parcel (legal description, deed book/page,
+     * acreage/sqft), Situs Address (full street-address components),
+     * Value (taxable/assessed land, building, dwelling, and total
+     * values), and Owners Mail (owner name and full mailing address).
+     * That richer data is NOT usable here: js/parcel/connector-arcgis.js
+     * fetches attributes from a single configured serviceUrl via one
+     * /query call and has no support for joining a boundary layer's
+     * geometry to related non-spatial tables — the same class of
+     * architectural gap that blocked Philadelphia's point-geometry OPA
+     * dataset and Clark County NV's BOE_Parcels, documented as a
+     * follow-up opportunity in AI_TEAM_STATUS.md (a human could extend
+     * the connector to resolve related tables by a shared parcel-number
+     * key). This entry uses only the boundary layer's own 8 fields:
+     * OBJECTID, Parcel_Number, Alternate_Parcel, HouseNo, GlobalID,
+     * last_edited_date, Shape__Area, Shape__Length. parcel_id maps to
+     * Parcel_Number. pin maps to Alternate_Parcel — most likely a
+     * legacy/historical parcel-number cross-reference given the
+     * "Parcel" table's own field naming (ParcelNumber alongside a
+     * separate AlternateParcel), but still a genuine distinct
+     * identifier value worth surfacing. address is left unmapped:
+     * HouseNo is a bare house number with no street name, not a usable
+     * site address. No land-use, value, owner, or legal-description
+     * data exists on this layer itself — only real, live, official
+     * Polk County Auditor boundary geometry plus two identifiers.
+     * ─────────────────────────────────────────────────────────────────── */
+    '19153': {
+      id:          'ia-polk-county',
+      name:        'Polk County, Iowa',
+      state:       'IA',
+      fips:        '19153',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis4.polkcountyiowa.gov/server/rest/services/Public/Polk_County_Parcels/FeatureServer/1',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:   'Parcel_Number',
+        pin:         'Alternate_Parcel',
+        county_fips: '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_code', 'land_use_desc', 'overlay_districts', 'area_sqft',
+        'area_acres', 'lot_depth_ft', 'lot_width_ft', 'building_count',
+        'year_built', 'gross_floor_area', 'assessed_value', 'land_value',
+        'improvement_value', 'tax_year', 'tax_amount', 'last_sale_date',
+        'last_sale_price', 'deed_book', 'deed_page', 'subdivision',
+        'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Polk County Auditor / GIS',
+        url:     'https://www.polkcountyiowa.gov/auditor/',
+        portal:  'https://gis4.polkcountyiowa.gov/server/rest/services/Public/Polk_County_Parcels/FeatureServer',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Des Moines metro — Iowa data center market. Only boundary/identifier data is exposed here; a richer joinable CAMA dataset exists but requires a connector enhancement (see AI_TEAM_STATUS.md).',
+      },
+    },
+
   };
 
   function get(fips) {
