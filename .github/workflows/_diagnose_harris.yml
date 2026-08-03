@@ -1,0 +1,29 @@
+name: (temp) Diagnose Harris County parcel service
+
+# Temporary, workflow_dispatch-only diagnostic for the next parcel-
+# expansion candidate: Harris County TX (61 facilities), the next county
+# in the facility-count priority list after Denver CO (needs more
+# research, see AI_TEAM_STATUS.md Open Handoffs). Deleted once this is
+# either added to the registry or documented as unavailable.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe Harris County candidates
+        run: node data/diagnose_harris.mjs
