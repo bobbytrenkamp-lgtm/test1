@@ -1956,6 +1956,84 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ───────────────────────────────────────────────────────────────────
+     * Washington County, Oregon (Hillsboro/Portland metro) — a gap
+     * discovered in the facility-count priority queue (36 facilities,
+     * ranked above several already-covered counties but never
+     * investigated). Found over 4 rounds: rounds 1-2 exhausted guessed
+     * county-hosted URLs and a resolved Metro item that turned out to
+     * be a static Shapefile download, not a live service; round 3's
+     * DCAT catalog search on Oregon Metro's own RLIS Discovery ArcGIS
+     * Hub portal (custom domain, not *.opendata.arcgis.com) found the
+     * real dataset directly: "Taxlots (Public)", a standardized
+     * regional layer compiled by Metro from Clackamas, Multnomah, and
+     * Washington Counties' own assessor records; round 4 confirmed it
+     * live with 32 fields and real Polygon geometry. This is a
+     * regional multi-county service — Multnomah County OR (FIPS 41051)
+     * already has its own separate entry above using its own county-
+     * hosted service; this entry adds a `where` clause
+     * (COUNTY = 'Washington') so query results are always scoped to
+     * Washington County regardless of viewport bounds near the county
+     * line, on top of the connector's normal spatial-bounds filtering.
+     * parcel_id maps to TLID (Tax Lot ID); pin to PRIMACCNUM (Primary
+     * Account Number, the assessor's own distinct account identifier;
+     * an ALTACCNUM field also exists but only one identifier maps to
+     * pin). owner and owner_mailing are left unmapped: the dataset's
+     * own description states it explicitly excludes ownership
+     * information (OWNERTYPE is a public/private classification, not
+     * an owner name). area_acres maps to A_T_ACRES (the assessor's own
+     * total acreage) rather than the separately-present GIS_ACRES (a
+     * GIS-calculated value), preferring the authoritative source
+     * figure. No zoning, tax year/amount, deed reference, subdivision,
+     * legal description, or census tract fields exist.
+     * ─────────────────────────────────────────────────────────────────── */
+    '41067': {
+      id:          'or-washington-county',
+      name:        'Washington County, Oregon',
+      state:       'OR',
+      fips:        '41067',
+      connector:   'arcgis',
+      serviceUrl:  "https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/Taxlots_(Public)/FeatureServer/3",
+      where:       "COUNTY = 'Washington'",
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'TLID',
+        pin:                'PRIMACCNUM',
+        address:            'SITEADDR',
+        land_use_code:      'PROP_CODE',
+        land_use_desc:      'LANDUSE',
+        area_acres:         'A_T_ACRES',
+        year_built:         'YEARBUILT',
+        gross_floor_area:   'BLDGSQFT',
+        assessed_value:     'ASSESSVAL',
+        land_value:         'LANDVAL',
+        improvement_value:  'BLDGVAL',
+        last_sale_date:     'SALEDATE',
+        last_sale_price:    'SALEPRICE',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner', 'owner_mailing', 'zoning_code', 'zoning_desc', 'overlay_districts',
+        'area_sqft', 'lot_depth_ft', 'lot_width_ft', 'building_count',
+        'tax_year', 'tax_amount', 'deed_book', 'deed_page', 'subdivision',
+        'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Oregon Metro RLIS (compiled from Washington County Assessment & Taxation)',
+        url:     'https://www.washingtoncountyor.gov/at',
+        portal:  'https://rlisdiscovery.oregonmetro.gov/datasets/drcMetro::taxlots-public',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Hillsboro/Portland metro — Oregon data center market. Regional dataset covering Clackamas, Multnomah, and Washington Counties; scoped here to Washington County via a where clause.',
+      },
+    },
+
   };
 
   function get(fips) {
