@@ -1,6 +1,14 @@
-// Temporary diagnostic: retry Santa Clara County CA parcel service candidates
-// with a longer timeout, plus probe an ArcGIS Hub alternate if the direct
-// service is genuinely unreachable rather than just slow.
+// Temporary diagnostic: find a live Santa Clara County CA parcel service.
+//
+// Round 1 (see AI_TEAM_STATUS.md) confirmed the direct service candidate
+// (webgis.sccgov.org) is genuinely dead -- "fetch failed" (connection/DNS
+// failure) on two endpoints even with a 25s timeout, not just slow.
+//
+// Round 2: the ArcGIS Hub site is reachable but a keyword search only
+// returns a generic dataset listing, not a schema. This drills into that
+// listing and the ArcGIS Online catalog to find an actual live Feature
+// Service URL, then fetches its real layer definition.
+//
 // Deleted once Santa Clara is either added or documented as unavailable.
 
 const TIMEOUT_MS = 25000;
@@ -18,18 +26,6 @@ async function fetchJson(url, label) {
     console.log(`\n=== ${label} ===`);
     console.log(`URL: ${url}`);
     console.log(`HTTP ${status} in ${elapsed}ms`);
-    if (typeof body === 'string') {
-      console.log('Body (text, first 500 chars):', body.slice(0, 500));
-    } else {
-      console.log('Body (JSON keys):', Object.keys(body));
-      if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
-      if (body.fields) {
-        console.log('Field count:', body.fields.length);
-        console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
-      }
-      if (body.name) console.log('Layer name:', body.name);
-      if (body.geometryType) console.log('Geometry type:', body.geometryType);
-    }
     return { ok: true, status, body };
   } catch (e) {
     const elapsed = Date.now() - start;
@@ -42,28 +38,45 @@ async function fetchJson(url, label) {
   }
 }
 
-// Candidate 1: original direct ArcGIS REST service (timed out on first probe)
-await fetchJson(
-  'https://webgis.sccgov.org/gis/rest/services/opendata/SCCGISHUBFeatureService/MapServer?f=json',
-  'Santa Clara direct service root (longer timeout retry)'
-);
-
-// Candidate 2: same service, layer 0 definition (skip if root failed, but try anyway)
-await fetchJson(
-  'https://webgis.sccgov.org/gis/rest/services/opendata/SCCGISHUBFeatureService/MapServer/0?f=json',
-  'Santa Clara direct service, layer 0 definition'
-);
-
-// Candidate 3: ArcGIS Hub open data search for Santa Clara parcels
-await fetchJson(
+// Round 2a: ArcGIS Hub OGC API - Features dataset search, but print the
+// actual feature list (titles + links) instead of just top-level keys.
+const hubSearch = await fetchJson(
   'https://gisdata-sccplanning.hub.arcgis.com/api/search/v1/collections/dataset/items?q=parcel',
-  'Santa Clara ArcGIS Hub dataset search'
+  'Santa Clara ArcGIS Hub dataset search (detail)'
 );
+if (hubSearch.ok && typeof hubSearch.body === 'object' && Array.isArray(hubSearch.body.features)) {
+  console.log(`numberMatched: ${hubSearch.body.numberMatched}, numberReturned: ${hubSearch.body.numberReturned}`);
+  for (const f of hubSearch.body.features.slice(0, 10)) {
+    const p = f.properties || {};
+    console.log(`- id=${f.id} title="${p.title}" type="${p.type}" url="${p.url || p.landingPage}"`);
+  }
+}
 
-// Candidate 4: statewide/countywide ArcGIS Online item search as fallback
-await fetchJson(
+// Round 2b: ArcGIS Online catalog search, print titles/ids/urls/types of
+// results instead of just top-level keys.
+const agoSearch = await fetchJson(
   'https://www.arcgis.com/sharing/rest/search?q=Santa%20Clara%20County%20parcels&f=json&num=10',
-  'ArcGIS Online catalog search for Santa Clara parcels'
+  'ArcGIS Online catalog search for Santa Clara parcels (detail)'
 );
+if (agoSearch.ok && typeof agoSearch.body === 'object' && Array.isArray(agoSearch.body.results)) {
+  console.log(`total: ${agoSearch.body.total}`);
+  for (const r of agoSearch.body.results) {
+    console.log(`- id=${r.id} title="${r.title}" type="${r.type}" owner="${r.owner}" url="${r.url}"`);
+  }
+}
+
+// Round 2c: the County's official open data ArcGIS Online org, searched
+// directly for a parcel Feature Service (owner org: SantaClaraCounty /
+// sccplanning per the Hub subdomain found in round 1).
+const orgSearch = await fetchJson(
+  'https://www.arcgis.com/sharing/rest/search?q=parcels%20AND%20owner:SCCPlanning&f=json&num=10',
+  'ArcGIS Online search scoped to SCCPlanning owner'
+);
+if (orgSearch.ok && typeof orgSearch.body === 'object' && Array.isArray(orgSearch.body.results)) {
+  console.log(`total: ${orgSearch.body.total}`);
+  for (const r of orgSearch.body.results) {
+    console.log(`- id=${r.id} title="${r.title}" type="${r.type}" owner="${r.owner}" url="${r.url}"`);
+  }
+}
 
 console.log('\nDone.');
