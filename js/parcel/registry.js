@@ -2034,6 +2034,77 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ───────────────────────────────────────────────────────────────────
+     * Suffolk County, Massachusetts (Boston metro) — a deliberately
+     * thin add, found over 6 rounds. Rounds 1-2 exhausted a wrong
+     * ArcGIS org guess and an unreachable state-hosted proxy host;
+     * round 3's DCAT catalog search on MassGIS's own open-data portal
+     * (gis.data.mass.gov) found the real statewide "Massachusetts
+     * Property Tax Parcels" service directly among 295 "parcel"
+     * matches; round 4 confirmed one of its layers (GISDATA.L3_ASSESS)
+     * is exceptionally rich — 41 fields including full owner name/
+     * mailing address, assessed/land/building values, sale history
+     * (date/price/book/page), and building characteristics — but it
+     * has no geometryType/extent/spatialReference at all: a non-spatial
+     * attribute table, not the boundary layer. js/parcel/
+     * connector-arcgis.js fetches from a single configured serviceUrl
+     * and cannot join a boundary layer to a related table — the same
+     * architectural gap already documented for Polk County IA's
+     * near-identical situation. Round 5 listed the service's full
+     * layer catalog and found the real boundary layer ("Tax Parcels",
+     * id 1, Polygon geometry); round 6 confirmed its own field schema:
+     * only 19 fields, almost entirely IDs and cartographic metadata
+     * (POLY_TYPE, MAP_NO, SOURCE, PLAN_ID, BND_CHK, SYM1/SYM2), with no
+     * address/owner/value/use-description data of its own. parcel_id
+     * maps to MAP_PAR_ID (the traditional assessor's map-and-lot
+     * identifier); pin maps to LOC_ID (MassGIS's standardized location
+     * ID — also the join key the rich GISDATA.L3_ASSESS table uses,
+     * confirming both tables describe the same real parcels even
+     * though they can't be combined here). land_use_code maps to
+     * LU_CODES. This is the county's own official Commonwealth of
+     * Massachusetts (MassGIS) data — real, live, and joinable to a
+     * genuinely rich dataset that a human could unlock by extending the
+     * connector, documented as a follow-up opportunity in
+     * AI_TEAM_STATUS.md alongside Polk County IA's identical case.
+     * ─────────────────────────────────────────────────────────────────── */
+    '25025': {
+      id:          'ma-suffolk-county',
+      name:        'Suffolk County, Massachusetts',
+      state:       'MA',
+      fips:        '25025',
+      connector:   'arcgis',
+      serviceUrl:  'https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/MassachusettsPropertyTaxParcels/FeatureServer/1',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:     'MAP_PAR_ID',
+        pin:           'LOC_ID',
+        land_use_code: 'LU_CODES',
+        county_fips:   '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_desc', 'overlay_districts', 'area_sqft', 'area_acres',
+        'lot_depth_ft', 'lot_width_ft', 'building_count', 'year_built',
+        'gross_floor_area', 'assessed_value', 'land_value', 'improvement_value',
+        'tax_year', 'tax_amount', 'last_sale_date', 'last_sale_price',
+        'deed_book', 'deed_page', 'subdivision', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'MassGIS (Commonwealth of Massachusetts Office of Geographic Information)',
+        url:     'https://www.mass.gov/orgs/massgis-bureau-of-geographic-information',
+        portal:  'https://gis.data.mass.gov/datasets/massgis::gisdata-l3-assess',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Boston metro — Massachusetts data center market. A much richer joinable assessors’ database table exists (GISDATA.L3_ASSESS) but requires a connector enhancement (see AI_TEAM_STATUS.md).',
+      },
+    },
+
   };
 
   function get(fips) {
