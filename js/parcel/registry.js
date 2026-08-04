@@ -2541,6 +2541,53 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '34023': {
+      id:          'nj-middlesex-county',
+      name:        'Middlesex County, New Jersey',
+      state:       'NJ',
+      fips:        '34023',
+      connector:   'arcgis',
+      serviceUrl:  'https://services.arcgis.com/BnY3izA2Kwu6jVHq/arcgis/rest/services/Middlesex_County_NJ_Parcel_data/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:        'PAMS_PIN',
+        pin:              'UNIQUEID',
+        owner:            'OwnersName',
+        address:          'PropLoc',
+        land_use_code:    'PropClass',
+        land_use_desc:    'LandDesc',
+        area_acres:       'Acreage',
+        year_built:       'YearBuilt',
+        gross_floor_area: 'SFLA',
+        assessed_value:   'NetValue',
+        last_sale_date:   'SalesDate',
+        last_sale_price:  'SalePrice',
+        deed_book:        'DeedBook',
+        deed_page:        'DeedPage',
+        county_fips:      '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'overlay_districts',
+        'area_sqft', 'lot_depth_ft', 'lot_width_ft', 'building_count',
+        'land_value', 'improvement_value', 'tax_year', 'tax_amount',
+        'subdivision', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Middlesex County, New Jersey (Civil Solutions / Middlesex County Office of Information Technology / NJ Office of GIS)',
+        url:     'https://www.middlesexcountynj.gov/',
+        portal:  'https://services.arcgis.com/BnY3izA2Kwu6jVHq/arcgis/rest/services/Middlesex_County_NJ_Parcel_data/FeatureServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Central New Jersey — significant Northeast data center market. Parcel boundaries and MOD-IV (NJ\'s statewide assessment database) attributes updated monthly, merged countywide from each municipality\'s data by Civil Solutions for the Middlesex County Office of Information Technology. A near-identical layer also exists on the county\'s own GIS portal (mcgisportal.co.middlesex.nj.us) but has 46 fields versus this service\'s 58 and is missing the owner-name field, so this richer ArcGIS Online copy was used instead. Owner mailing address (OwnerAddr1/OwnerAddr2/ZipCode) is split across multiple fields with no single combined field, so owner_mailing isn\'t mapped. NetValue is MOD-IV\'s single total net assessed value with no separate land/improvement split exposed.',
+      },
+    },
+
   };
 
   function get(fips) {
