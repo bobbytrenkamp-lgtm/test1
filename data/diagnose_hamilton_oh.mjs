@@ -1,13 +1,15 @@
-// Temporary diagnostic, round 2: Hamilton County OH (Cincinnati metro)
+// Temporary diagnostic, round 3: Hamilton County OH (Cincinnati metro)
 // parcel service.
 //
-// Round 1's CAGIS Open Data Hub DCAT catalog returned HTTP 403 "Feeds
-// have been disabled for this site" - the DCAT-catalog-first pattern
-// that has worked for most counties this session doesn't apply here.
-// Falls back to ArcGIS Online's public, unauthenticated item-search
-// REST API to find the "Hamilton County Parcel Polygons" item's real
-// service URL directly, plus a couple of directly-guessed common
-// service names on CAGIS's own ArcGIS Server as a second fallback.
+// Round 2's ArcGIS Online public search found several real candidates.
+// The most promising is "Hamilton County Parcel Polygons", owned by
+// the "CagisCoreLayers" AGOL account (CAGIS's own official core-layers
+// publishing account) and hosted on CAGIS's own ArcGIS Server
+// (cagisonline.hamilton-co.org) - not a third-party mirror. A second
+// official candidate, "Hamilton County Parcels - Open Data" (owner
+// cagisopendata, also an official CAGIS account), is layer 0 of the
+// Open_Data_Feature_Collection service. This round probes both
+// directly for field schema/geometryType/description/copyrightText.
 //
 // Deleted once Hamilton County OH is either added or documented as
 // unavailable.
@@ -29,23 +31,19 @@ async function fetchText(url, label) {
     console.log(`URL: ${url}`);
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
+      console.log('Body (JSON keys):', Object.keys(body));
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
-      if (body.results) {
-        console.log('Result count:', body.results.length);
-        for (const r of body.results.slice(0, 10)) {
-          console.log(`  - "${r.title}" type=${r.type} url=${r.url} owner=${r.owner}`);
-        }
-      }
       if (body.fields) {
         console.log('Field count:', body.fields.length);
         console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
       }
       if (body.name) console.log('Layer name:', body.name);
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
-      if (body.description) console.log('description:', body.description.slice(0, 500));
+      if (body.extent) console.log('extent:', JSON.stringify(body.extent));
+      if (body.description) console.log('description:', body.description.slice(0, 800));
       if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
-      console.log('Body (text, first 500 chars):', text.slice(0, 500));
+      console.log('Body (text, first 800 chars):', text.slice(0, 800));
     }
     return { ok: true, status, body, text };
   } catch (e) {
@@ -60,13 +58,13 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=' + encodeURIComponent('title:"Hamilton County Parcel Polygons"') + '&f=json',
-  'ArcGIS Online public search - Hamilton County Parcel Polygons'
+  'https://cagisonline.hamilton-co.org/arcgis/rest/services/HCE/Cadastral/MapServer/0?f=json',
+  'CAGIS own ArcGIS Server - HCE/Cadastral layer 0 (Hamilton County Parcel Polygons, owner CagisCoreLayers)'
 );
 
 await fetchText(
-  'https://www.arcgis.com/sharing/rest/search?q=' + encodeURIComponent('Hamilton County parcel Cincinnati CAGIS') + '&f=json&num=10',
-  'ArcGIS Online public search - broader Hamilton/CAGIS parcel query'
+  'https://services.arcgis.com/JyZag7oO4NteHGiq/arcgis/rest/services/Open_Data_Feature_Collection/FeatureServer/0?f=json',
+  'CAGIS Open Data Hub AGOL - Open_Data_Feature_Collection layer 0 (Hamilton County Parcels - Open Data, owner cagisopendata)'
 );
 
 console.log('\nDone.');
