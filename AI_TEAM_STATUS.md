@@ -181,9 +181,18 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   round 6 confirmed its own thin 19-field schema (mostly IDs and
   cartographic metadata). Added as a thin add (3 real fields), with the
   rich joinable table documented as a follow-up opportunity. See
-  Recently Completed below. Registry now covers 26 jurisdictions. The
-  next candidate — Hillsborough County FL (27 facilities, also tied) —
-  has not yet been investigated.
+  Recently Completed below. Registry now covers 26 jurisdictions.
+  Hillsborough County FL/Tampa (27 facilities, also tied) was added
+  next over 2 rounds: round 1's DCAT catalog search on the county's own
+  GeoHub found only Cities/Zoning/map-viewer layers (no parcel
+  FeatureServer), and a direct guess at the Property Appraiser's own
+  host 500'd; a web search surfaced the Tampa Hillsborough Planning
+  Commission's ArcGIS Server (tpcmaps.org), whose `Parcels/MapServer/2`
+  layer's own description and copyright text ("Hillsborough County
+  Property Appraiser's Parcel data ... Updated quarterly") confirmed it
+  as the real, official, county-wide dataset — 56 fields, real Polygon
+  geometry. Added with 17 real fields + computed county_fips (18/30).
+  See Recently Completed below. Registry now covers 27 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1197,6 +1206,58 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Hillsborough County, Florida (FIPS 12057, 27 facilities,
+  Tampa metro) to the parcel registry, over two probe rounds.
+- Findings: Round 1 checked the county's own GeoHub open-data portal's
+  DCAT catalog for "parcel" matches — it only exposed Cities/Zoning/
+  Map-viewer layers, no parcel FeatureServer — and a direct guess at
+  the Property Appraiser's own host (gis.hcpafl.org) returned an
+  ArcGIS 500 ("Service ... not found"). A web search surfaced the City
+  of Tampa's own ArcGIS Server (`arcgis.tampagov.net/.../TaxParcel`,
+  46 fields) and the Tampa Hillsborough Planning Commission's ArcGIS
+  Server (`gis.tpcmaps.org/.../Parcels/MapServer/2`, 56 fields); round
+  2 probed both directly. The Tampa city server's own description read
+  "Hillsborough County Property Appraiser Data (City & county
+  Parcels)" with copyrightText "City of Tampa: GIS" — ambiguous
+  city-vs-county scoping. The tpcmaps.org layer's own description read
+  "Hillsborough County Property Appraiser's Parcel data shows
+  ownership boundaries and data including addresses, DOR land usage
+  codes, legal descriptions, value and other various ownership
+  information. Updated quarterly." with copyrightText "Hillsborough
+  County Property Appraiser" — unambiguously the official, county-wide
+  source, hosted by the joint city-county planning commission. Used
+  the tpcmaps.org layer.
+- Field mapping: 17 of 30 canonical fields mapped directly (parcel_id →
+  FOLIO, pin → PIN, address → SITE_ADDR, owner → OWNER, land_use_code →
+  DOR_CODE, land_use_desc → DOR_DESC, area_acres → PAR_ACREAGE,
+  building_count → tBLDGS, year_built → ACT, gross_floor_area →
+  HEAT_AR, assessed_value → ASD_VAL, land_value → LAND,
+  improvement_value → BLDG, last_sale_date → S_DATE, last_sale_price →
+  S_AMT, subdivision → SUB, legal_desc → LEGAL1) plus county_fips
+  (computed) — 18/30. Not mapped: owner_mailing (source splits it
+  across ADDR_1/ADDR_2/CITY/STATE/ZIP with no single concatenated
+  field, and the connector only supports 1:1 field mapping),
+  zoning_code/zoning_desc/overlay_districts (no zoning field in this
+  parcel layer), area_sqft, lot_depth_ft, lot_width_ft, tax_year,
+  tax_amount, deed_book, deed_page, census_tract — recorded in
+  `notProvidedBySource`, verified programmatically to cover all 30
+  canonical fields with zero gaps and zero overlaps.
+- Licensing: official Hillsborough County Property Appraiser data,
+  confirmed via the layer's own copyrightText. Standard "public
+  government data, verify terms before commercial redistribution"
+  caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 17 mapped fields plus computed
+  county_fips, and "Not published by this source" for the remaining
+  12, zero page errors. Registry now covers 27 jurisdictions.
+- Temp files (`data/diagnose_hillsborough_fl.mjs`,
+  `.github/workflows/_diagnose_hillsborough_fl.yml`) deleted in the
+  same commit that added the registry entry.
+- Last updated: 2026-08-04
 
 - Date: 2026-08-04
 - Agent: Claude Code

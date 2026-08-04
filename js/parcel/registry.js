@@ -2105,6 +2105,55 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '12057': {
+      id:          'fl-hillsborough-county',
+      name:        'Hillsborough County, Florida',
+      state:       'FL',
+      fips:        '12057',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis.tpcmaps.org/arcgis/rest/services/Parcels/MapServer/2',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:         'FOLIO',
+        pin:                'PIN',
+        address:            'SITE_ADDR',
+        owner:              'OWNER',
+        land_use_code:      'DOR_CODE',
+        land_use_desc:      'DOR_DESC',
+        area_acres:         'PAR_ACREAGE',
+        building_count:     'tBLDGS',
+        year_built:         'ACT',
+        gross_floor_area:   'HEAT_AR',
+        assessed_value:     'ASD_VAL',
+        land_value:         'LAND',
+        improvement_value:  'BLDG',
+        last_sale_date:     'S_DATE',
+        last_sale_price:    'S_AMT',
+        subdivision:        'SUB',
+        legal_desc:         'LEGAL1',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'overlay_districts',
+        'area_sqft', 'lot_depth_ft', 'lot_width_ft', 'tax_year', 'tax_amount',
+        'deed_book', 'deed_page', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Hillsborough County Property Appraiser',
+        url:     'https://www.hcpafl.org/',
+        portal:  'https://gis.tpcmaps.org/arcgis/rest/services/Parcels/MapServer/2',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Tampa metro — Florida data center market. Hosted via the Tampa Hillsborough Planning Commission GIS (tpcmaps.org); official Hillsborough County Property Appraiser parcel data, updated quarterly.',
+      },
+    },
+
   };
 
   function get(fips) {
