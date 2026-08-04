@@ -2952,6 +2952,50 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '31055': {
+      id:          'ne-douglas-county',
+      name:        'Douglas County, Nebraska',
+      state:       'NE',
+      fips:        '31055',
+      connector:   'arcgis',
+      serviceUrl:  'https://services.arcgis.com/pDAi2YK0L0QxVJHj/arcgis/rest/services/Parcels_for_BOE/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'PIN',
+        owner:              'OWNER_NAME',
+        address:            'PROPERTY_A',
+        land_use_code:      'CLASS',
+        land_use_desc:      'DCAACCTYPE',
+        area_sqft:          'SQ_FEET',
+        area_acres:         'ACRES',
+        building_count:     'NUMBLDGS',
+        year_built:         'BLDG_YRBLT',
+        gross_floor_area:   'BLDG_SF',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'pin', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'overlay_districts', 'lot_depth_ft', 'lot_width_ft',
+        'assessed_value', 'land_value', 'improvement_value', 'tax_year',
+        'tax_amount', 'last_sale_date', 'last_sale_price', 'deed_book',
+        'deed_page', 'subdivision', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Douglas County, Nebraska GIS / Board of Equalization',
+        url:     'https://www.douglascounty-ne.gov/',
+        portal:  'https://services.arcgis.com/pDAi2YK0L0QxVJHj/arcgis/rest/services/Parcels_for_BOE/FeatureServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Omaha metro. Confirmed as the Nebraska Douglas County — not one of the many same-named counties in other states — via decisive signals: the same ArcGIS account (Nataliya2) that owns this parcels layer also owns "Douglas County, NE - Air Quality" (hosted at douglascountyairquality.com) and imagery/ortho layers explicitly named "Douglas_County_NE_2022_Imagery" and "Omaha_NE_1958_Imagery", all hosted on dcgis.org — the county\'s own confirmed ArcGIS Server. PROPERTY_A is a genuine pre-combined situs address string (confirmed against real sample data: "28233 WEST MAPLE RD" exactly matches the HOUSE+STREET_NAM+STREET_TYP components), so it maps directly to address without concatenation. OWNER_NAME is a single combined name field. The owner\'s mailing address (ADDRESS2/OWNER_CITY/OWNER_STAT/OWNER_ZIP) is split across 4 fields with no combined value, so owner_mailing isn\'t mapped. SQ_FEET is confirmed as lot size, not building size — cross-checked against a real sample (1.17 acres × 43,560 ≈ 50,965 sq ft, matching SQ_FEET exactly); BLDG_SF is the separate, much smaller building-footprint field, mapped to gross_floor_area. CLASS (single-letter code, e.g. "F") maps to land_use_code; DCAACCTYPE (descriptive text, e.g. "Rural Res <=20") maps to land_use_desc. ADDITION_N was NOT mapped to subdivision — real sample records show it as the generic value "LANDS" rather than an actual platted subdivision name. This layer (built "for BOE", the county Board of Equalization) has no assessed-value, sale-history, deed, or zoning fields at all — a separate assessor system (linked via the source\'s own ASSESSOR/TREASURER URL fields, not part of this schema) holds that data. Several source fields (board_members, district, Join_Count, TARGET_FID, etc.) come from a spatial join with a commissioner-districts layer and are not genuine parcel attributes, so none of them are mapped to anything.',
+      },
+    },
+
   };
 
   function get(fips) {
