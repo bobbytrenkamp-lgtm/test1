@@ -28,3 +28,6 @@ jobs:
 
       - name: Probe Washoe County NV candidates
         run: node data/diagnose_washoe_nv.mjs
+
+      - name: Probe Washoe County NV candidates (round 2)
+        run: node data/diagnose_washoe_nv_r2.mjs
