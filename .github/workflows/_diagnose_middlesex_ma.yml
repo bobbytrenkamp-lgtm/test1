@@ -1,0 +1,30 @@
+name: (temp) Diagnose Middlesex County MA parcel service
+
+# Temporary, workflow_dispatch-only diagnostic for the next parcel-
+# expansion candidate: Middlesex County MA / Cambridge-Boston suburbs
+# (26 facilities), the next uninvestigated county in the facility-count
+# priority list after Hillsborough County FL.
+# Deleted once this is either added to the registry or documented as
+# unavailable.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe Middlesex County MA candidates
+        run: node data/diagnose_middlesex_ma.mjs
