@@ -2326,6 +2326,56 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '48439': {
+      id:          'tx-tarrant-county',
+      name:        'Tarrant County, Texas',
+      state:       'TX',
+      fips:        '48439',
+      connector:   'arcgis',
+      serviceUrl:  'https://mapit.tarrantcounty.com/arcgis/rest/services/Tax/TCProperty/MapServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:         'TAXPIN',
+        pin:               'ACCOUNT',
+        address:           'SITUS_ADDR',
+        owner:             'OWNER_NAME',
+        land_use_code:     'PARCELTYPE',
+        land_use_desc:     'DESCR',
+        area_sqft:         'LAND_SQFT',
+        area_acres:        'LAND_ACRES',
+        year_built:        'YEAR_BUILT',
+        gross_floor_area:  'LIVING_ARE',
+        assessed_value:    'APPRAISEDV',
+        land_value:        'LAND_VALUE',
+        improvement_value: 'IMPR_VALUE',
+        last_sale_date:    'DEED_DATE',
+        deed_book:         'DEED_BOOK',
+        deed_page:         'DEED_PAGE',
+        subdivision:       'SubdivisionName',
+        legal_desc:        'LEGAL_1',
+        county_fips:       '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'overlay_districts',
+        'lot_depth_ft', 'lot_width_ft', 'building_count',
+        'tax_year', 'tax_amount', 'last_sale_price', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Tarrant County Tax Assessor-Collector / Tarrant Appraisal District',
+        url:     'https://www.tad.org/',
+        portal:  'https://mapit.tarrantcounty.com/arcgis/rest/services/Tax/TCProperty/MapServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Fort Worth metro — Texas data center market. Owner mailing address is split across separate line/city/zip fields with no single combined field, so owner_mailing isn’t mapped.',
+      },
+    },
+
   };
 
   function get(fips) {

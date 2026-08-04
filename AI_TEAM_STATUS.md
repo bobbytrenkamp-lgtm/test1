@@ -252,7 +252,23 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   legal description — no single combined address field exists (split
   across number/direction/street/suffix components), so address and
   owner_mailing aren't mapped. See Recently Completed below. Registry
-  now covers 31 jurisdictions.
+  now covers 31 jurisdictions. Tarrant County TX/Fort Worth (23
+  facilities) was added next in a single round — a first-probe
+  success: web search directly surfaced the county's own ArcGIS
+  Server (mapit.tarrantcounty.com) with a Tarrant Appraisal District
+  CAMA export layer explicitly named and described, confirmed real
+  with 57 fields, real Polygon geometry, and (unusually for this
+  session) a single combined site-address field. Added with 18 real
+  fields + computed county_fips (19/30) — the richest addition of this
+  stretch — including owner, address, land use, physical
+  characteristics, all three value tiers, deed book/page, sale date,
+  subdivision, and legal description. Also discovered mid-cycle (via
+  the project's own CI probe, unrelated to this addition) that Bexar
+  County TX's parcel service — added earlier this session — had gone
+  down; confirmed across 2 separate probe attempts and marked
+  `knownUnavailable` in the registry per the project's documented
+  pattern, with details in Open Handoffs. See Recently Completed
+  below. Registry now covers 32 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1266,6 +1282,61 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Tarrant County, Texas (FIPS 48439, 23 facilities, Fort
+  Worth metro) to the parcel registry, in a single probe round — a
+  first-probe success.
+- Findings: Web search directly surfaced the county's own ArcGIS
+  Server (mapit.tarrantcounty.com), with a "Tax/TCProperty" layer
+  explicitly named and described in search results as a Tarrant
+  Appraisal District CAMA export. Probed directly and confirmed: 57
+  fields, real Polygon geometry, description "Tarrant County parcels
+  derived from Tarrant Appraisal District parcel property feature
+  class", copyrightText "Tarrant County Tax Assessor-Collector,
+  Tarrant Appraisal District". Notably, unlike most other counties
+  this session, `SITUS_ADDR` is a single combined site-address field
+  rather than split across number/street/suffix components.
+- Field mapping: 18 of 30 canonical fields mapped (parcel_id → TAXPIN,
+  pin → ACCOUNT, address → SITUS_ADDR, owner → OWNER_NAME,
+  land_use_code → PARCELTYPE, land_use_desc → DESCR, area_sqft →
+  LAND_SQFT, area_acres → LAND_ACRES, year_built → YEAR_BUILT,
+  gross_floor_area → LIVING_ARE, assessed_value → APPRAISEDV,
+  land_value → LAND_VALUE, improvement_value → IMPR_VALUE,
+  last_sale_date → DEED_DATE, deed_book → DEED_BOOK, deed_page →
+  DEED_PAGE, subdivision → SubdivisionName, legal_desc → LEGAL_1) plus
+  county_fips (computed) — 19/30, the richest addition of this
+  stretch. Owner mailing address is split across separate line/city/
+  zip fields with no single combined field, so owner_mailing isn't
+  mapped. The remaining 11 fields recorded in `notProvidedBySource` —
+  verified programmatically to cover all 30 canonical fields with zero
+  gaps and zero overlaps.
+- Licensing: official Tarrant County Tax Assessor-Collector / Tarrant
+  Appraisal District data, confirmed via the layer's own copyrightText.
+  Standard "public government data, verify terms before commercial
+  redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 18 mapped fields plus computed
+  county_fips, and "Not published by this source" for the remaining
+  11, zero page errors. Registry now covers 32 jurisdictions.
+- Unrelated finding during this PR's CI cycle: `check_parcel_services`
+  flagged Bexar County TX's parcel service (added earlier this
+  session) as newly down. Confirmed across 2 separate probe attempts
+  a few minutes apart (Wake County NC and King County WA also flagged
+  alongside it on the first attempt, but both recovered on rerun —
+  only Bexar stayed down), so treated as a real outage rather than
+  flakiness and marked `knownUnavailable` in `js/parcel/registry.js`
+  per the project's own documented pattern (see
+  `data/check_parcel_services.mjs`'s comments), with a corresponding
+  Open Handoffs entry. This was unrelated to the Tarrant County
+  addition itself — just discovered incidentally while getting this
+  PR's CI green.
+- Temp files (`data/diagnose_tarrant_tx.mjs`,
+  `.github/workflows/_diagnose_tarrant_tx.yml`) deleted in the same
+  commit that added the registry entry.
+- Last updated: 2026-08-04
 
 - Date: 2026-08-04
 - Agent: Claude Code
