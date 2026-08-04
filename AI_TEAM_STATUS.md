@@ -193,6 +193,20 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   as the real, official, county-wide dataset — 56 fields, real Polygon
   geometry. Added with 17 real fields + computed county_fips (18/30).
   See Recently Completed below. Registry now covers 27 jurisdictions.
+  Middlesex County MA/Cambridge (26 facilities) was added next in a
+  single round: since Suffolk County MA is served by MassGIS's
+  statewide "Massachusetts Property Tax Parcels" service, this reused
+  the same layer directly. It has no county- or town-name field to
+  scope by (confirmed via its real 19-field schema — only a numeric
+  TOWN_ID, no COUNTY/CITY_TOWN/MUNI_ID), but since
+  `js/parcel/connector-arcgis.js` already restricts every fetch to the
+  current map viewport bounds via a geometry-intersects query, no
+  `where`-clause scoping is actually needed — the same unscoped service
+  Suffolk County already uses correctly returns real Middlesex parcels
+  when the map is centered there. Added as a thin add (3 real fields +
+  computed county_fips, identical richness to Suffolk since it's the
+  same source layer). See Recently Completed below. Registry now
+  covers 28 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1206,6 +1220,61 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Middlesex County, Massachusetts (FIPS 25017, 26
+  facilities, Cambridge/Boston suburbs) to the parcel registry, in a
+  single probe round.
+- Findings: Suffolk County MA is already served by MassGIS's statewide
+  "Massachusetts Property Tax Parcels" ArcGIS service
+  (arcgisserver.digital.mass.gov). This round re-probed that same
+  layer's field list to look for a county- or town-name field to scope
+  Middlesex by (following the `where`-clause pattern used for
+  Washington County OR / Oregon Metro's multi-county service and NYC's
+  multi-borough service). The real field list confirmed the layer has
+  only 19 fields — the same schema already found for Suffolk — with no
+  COUNTY, CITY_TOWN, or MUNI_ID field at all; the only town-related
+  field is a numeric TOWN_ID with no accompanying name lookup in this
+  layer, so several guessed where-clauses using string functions on
+  nonexistent/wrong-type fields returned generic ArcGIS "Unable to
+  perform query operation" errors. Rather than trying to source an
+  external MassGIS town-ID-to-county crosswalk (fragile, and this
+  layer is thin regardless), recognized that no scoping is actually
+  required: `js/parcel/connector-arcgis.js`'s `fetchViewport` already
+  restricts every fetch to the current map viewport via a
+  geometry-intersects query, and Suffolk County's own existing entry
+  already uses this exact service with no `where` clause at all
+  (defaulting to `1=1`). Adding Middlesex the same way — same
+  serviceUrl, no `where` clause — is architecturally identical to
+  Suffolk and correctly returns real Middlesex-area parcels because
+  the viewport bounds do the geographic scoping, not an attribute
+  filter.
+- Field mapping: identical to Suffolk County MA, since it's the same
+  source layer — 3 of 30 canonical fields mapped (parcel_id →
+  MAP_PAR_ID, pin → LOC_ID, land_use_code → LU_CODES) plus county_fips
+  (computed). The remaining 26 fields recorded in
+  `notProvidedBySource` — verified programmatically to cover all 30
+  canonical fields with zero gaps and zero overlaps.
+- Licensing: same as Suffolk County MA — MassGIS's own official
+  statewide service. Standard "public government data, verify terms
+  before commercial redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 3 mapped fields plus "Not
+  published by this source" for the remaining 26, zero page errors.
+  Registry now covers 28 jurisdictions.
+- Follow-up opportunity (not attempted this session): same as Polk
+  County IA and Suffolk County MA — a human could extend
+  `js/parcel/connector-arcgis.js` to support resolving a boundary
+  layer's features against a related non-spatial attribute table
+  (GISDATA.L3_ASSESS, joinable by LOC_ID), which would unlock genuinely
+  rich owner/value/sale/building data for all three MassGIS-schema
+  jurisdictions at once.
+- Temp files (`data/diagnose_middlesex_ma.mjs`,
+  `.github/workflows/_diagnose_middlesex_ma.yml`) deleted in the same
+  commit that added the registry entry.
+- Last updated: 2026-08-04
 
 - Date: 2026-08-04
 - Agent: Claude Code

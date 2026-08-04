@@ -2154,6 +2154,44 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '25017': {
+      id:          'ma-middlesex-county',
+      name:        'Middlesex County, Massachusetts',
+      state:       'MA',
+      fips:        '25017',
+      connector:   'arcgis',
+      serviceUrl:  'https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/MassachusettsPropertyTaxParcels/FeatureServer/1',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:     'MAP_PAR_ID',
+        pin:           'LOC_ID',
+        land_use_code: 'LU_CODES',
+        county_fips:   '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_desc', 'overlay_districts', 'area_sqft', 'area_acres',
+        'lot_depth_ft', 'lot_width_ft', 'building_count', 'year_built',
+        'gross_floor_area', 'assessed_value', 'land_value', 'improvement_value',
+        'tax_year', 'tax_amount', 'last_sale_date', 'last_sale_price',
+        'deed_book', 'deed_page', 'subdivision', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'MassGIS (Commonwealth of Massachusetts Office of Geographic Information)',
+        url:     'https://www.mass.gov/orgs/massgis-bureau-of-geographic-information',
+        portal:  'https://gis.data.mass.gov/datasets/massgis::gisdata-l3-assess',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Boston metro suburbs (incl. Cambridge) — Massachusetts data center market. Same statewide "Massachusetts Property Tax Parcels" service already used for Suffolk County; this boundary layer has no county- or town-name field to scope by, but the connector already filters by map viewport bounds on every fetch, so results are correctly restricted to Middlesex when the map is centered there. A much richer joinable assessors’ database table exists (GISDATA.L3_ASSESS) but requires a connector enhancement (see AI_TEAM_STATUS.md) — same architectural gap as Polk County IA and Suffolk County MA.',
+      },
+    },
+
   };
 
   function get(fips) {
