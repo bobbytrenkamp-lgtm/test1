@@ -377,6 +377,14 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   either the county or state level (RIGIS's real, 387-dataset
   statewide catalog has zero datasets titled "parcel"); see Open
   Handoffs for the full trail. Registry remains at 41 jurisdictions.
+  Shelby County TN/the Memphis metro (20 facilities) was investigated
+  next over 6 probe rounds — the most thorough of the session — and
+  also closed as unavailable: a real, live, statewide TN Comptroller
+  parcels service was found and confirmed genuine, but a decisive
+  LIKE-query check proved Shelby's own data is not included in it
+  (Shelby maintains an independent, non-federated assessor system);
+  see Open Handoffs for the full trail. Registry remains at 41
+  jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -2916,6 +2924,62 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   the City of Providence, using a specific verified-official live town
   service) rather than the full county if the product wants
   sub-county granularity in the future.
+
+- Item: Shelby County, Tennessee (FIPS 47157, Memphis metro, 20
+  facilities) parcel data — investigated 2026-08-04 over six probe
+  rounds via GitHub Actions dispatch, closed as unavailable.
+- Current status: Not added. The one real, live, statewide TN parcels
+  service found does not include Shelby County's data.
+- Round 1: City of Memphis's own open data portal DCAT catalog (69
+  datasets) has no real parcel/assessor data — its 3 "parcel-ish" hits
+  (HCD Property Investments, Memphis Jurisdiction Boundary) are
+  unrelated. ArcGIS Online searches surfaced "Certified Parcels"
+  (owner ColliervilleGIS — a single town within the county, too
+  narrow) and "Site & Structure Address Points" / "Shelby County
+  Boundary" (owner `shelbycounty911` — confirms a genuine Shelby
+  County government GIS presence, but these specific items are
+  address points and a boundary, not parcels).
+- Round 2: `tnmap.tn.gov`'s ArcGIS REST root has zero services and its
+  folder list (ADMINISTRATIVE_BOUNDARIES, BASEMAPS, COMMUNITY,
+  ELEVATION, ENVIRONMENTAL, HEALTH, HISTORICAL, PUBLIC_SAFETY, SAFETY,
+  STRUCTURES, TABLEAU, TRANSPORTATION, Utilities, etc.) has nothing
+  parcel/assessment-related. The `shelbycounty911` org's full 24-item
+  catalog was confirmed to contain zero parcels layers (only address
+  points, road centerlines, and 911/emergency infrastructure).
+  `gis.shelbycountytn.gov` is Cloudflare-blocked; `maps.shelbycountytn.gov`
+  doesn't resolve.
+- Round 3: Found the real candidate by searching items owned by
+  `tnmap_oir` (the "TN Property Viewer" web app's actual owner
+  account): **"Tennessee Property Boundaries Public Use"**, a
+  statewide feature service. Confirmed genuine via multiple
+  independent third-party items ("Decatur County Parcels", "Henderson
+  County Parcels", "Madison County Parcels") that all reference this
+  exact same FeatureServer URL.
+- Round 4: Confirmed the service is real and authoritative — owned by
+  the **TN Comptroller of the Treasury, Division of Property
+  Assessments**, description states coverage of "all 95 counties in
+  the state." 17-field schema confirmed (OWNER, ADDRESS, DEEDAC,
+  SUBDIV, PARCELID, GISLINK, COUNTY_NAME, etc.), with a genuine
+  populated sample record for Anderson County.
+- Round 5: Queried `COUNTY_NAME='Shelby'` (the correct field name,
+  found via the schema) — record count came back 0, a clean
+  (non-timeout) result.
+- Round 6 (final): Ruled out a spelling/case mismatch behind the
+  zero-count result with `LIKE '%hel%'` (lowercase) and `LIKE '%HEL%'`
+  (uppercase) queries — both returned count 0, meaning no county name
+  containing "hel" in any case exists anywhere in the dataset. Shelby
+  County is conclusively, genuinely absent from this layer.
+- Conclusion: the TN Comptroller's statewide parcels layer explicitly
+  claims "all 95 counties" but Shelby — Tennessee's most populous
+  county — appears to be the exception, consistent with rounds 1–2's
+  finding that Shelby maintains its own independent GIS/assessor
+  infrastructure (`shelbycounty911`, a separate Assessor of Property
+  office) rather than feeding into the state's shared CAMA system.
+  Recommend revisiting if Shelby County's own Assessor of Property
+  ever exposes a public ArcGIS parcels service (their current web
+  presence is a Cloudflare-protected portal with no discoverable REST
+  API), or if the TN Comptroller's statewide layer is ever expanded to
+  include Shelby.
 
 - Item (resolved): Bexar County, TX (FIPS 48029, San Antonio) parcel
   service outage — `services7.arcgis.com/BUFM2kw4MpxDUJVh/ArcGIS/
