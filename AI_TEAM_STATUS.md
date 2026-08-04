@@ -399,7 +399,15 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   10/30-field mapping (9 real fields) from a pure cadastral/ownership
   layer hosted on the county's own domain but owned by Delaware's
   official statewide FirstMap GIS account. Registry now covers 44
-  jurisdictions.
+  jurisdictions. DeKalb County GA/the Atlanta metro (18 facilities)
+  was added next within 2 probe rounds after confirming (via multiple
+  independent signals, since "DeKalb County" is a name shared by
+  counties in IL/IN/TN/MO/AL) that the real candidate was genuinely
+  Georgia — a 13/30-field mapping (12 real fields) from the county's
+  own official yearly-versioned Tax Parcels service, with a real
+  sample record's assessed/appraised ratio matching Georgia's
+  constitutionally mandated 40% assessment rate as independent
+  confirmation. Registry now covers 45 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1592,6 +1600,54 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   of all 9 mapped fields plus computed county_fips, and "Not published
   by this source" for the remaining 20, zero page errors. Registry now
   covers 44 jurisdictions.
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Continued down the facility-count priority queue after New
+  Castle County DE: investigated DeKalb County, Georgia (FIPS 13089,
+  Atlanta metro, 18 facilities). "DeKalb County" is a name shared by
+  counties in IL, IN, TN, MO, and AL, so extra geographic confirmation
+  was required before trusting any candidate.
+- Findings: Round 1 surfaced a strong candidate immediately, confirmed
+  as genuinely Georgia via multiple independent signals: search
+  results reference "Tucker" (a real DeKalb County GA city) and are
+  owned by "decatur_admin" (Decatur is DeKalb County GA's county
+  seat). The county's own official GIS admin account (DeKalbGISAdmin)
+  publishes yearly-versioned "Tax Parcels" feature services (2022,
+  2024, 2025). Round 2 confirmed the current 2025 vintage live with 35
+  fields and 246,602 records — and a real sample record's
+  ASSESSED_VALUE/APPRAISED_VALUE ratio (150,160/375,400 ≈ 0.40)
+  matched Georgia's constitutionally mandated 40% assessment ratio,
+  independent confirmation the data is genuine and correctly sourced.
+- Added: `ga-dekalb-county` with a 12-field mapping (parcel_id →
+  ParcelID, area_sqft → StatedArea, lot_depth_ft → DEPTH, lot_width_ft
+  → FRONTAGE, zoning_code → ZONING [confirmed via a real "R-100"
+  DeKalb-County-GA-specific zoning designation in sample data],
+  overlay_districts → OVERLAY_DIST, land_use_code → LANDUSECODE
+  [numeric], land_use_desc → LANDUSE [abbreviated text like "SUB"],
+  assessed_value → ASSESSED_VALUE, land_value → LAND_VALUE,
+  improvement_value → BLDG_VALUE, tax_year → TAXYR) plus county_fips
+  (computed) — 13/30. This layer carries rich zoning/land-use/
+  valuation data but has no owner-name or address fields in its
+  schema at all — not a mapping gap, just outside this particular
+  dataset's scope. No sale-history, deed, subdivision-name, or
+  combined legal-description fields are exposed either (the
+  LEGAL_LOT_NUMBER/LEGAL_BUILDING_NUMBER/LEGAL_UNIT_NUMBER components
+  have no combined string). The remaining 17 fields recorded in
+  `notProvidedBySource` — verified programmatically to cover all 30
+  canonical fields with zero gaps and zero overlaps.
+- Licensing: official DeKalb County, Georgia GIS/Tax Assessor data.
+  Standard "public government data, verify terms before commercial
+  redistribution" caveat applied.
+- Validation: field-mapping validation script confirmed zero
+  missing/extra/overlap against the 30 canonical fields. `node
+  tests/parcel.test.js` passes (293/293). Playwright live-test via
+  `window.PARCEL_PANEL.show()` with a synthetic feature based on a
+  real confirmed sample record (parcel 12 228 01 021, R-100 zoning,
+  11,831 sq ft) confirmed correct rendering of the populated mapped
+  fields plus computed county_fips, and "Not published by this
+  source" for the remaining fields, zero page errors. Registry now
+  covers 45 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
