@@ -315,6 +315,13 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   missing owner name). Added with 14 real fields + computed
   county_fips (15/30) — the richest addition since Tarrant County TX.
   See Recently Completed below. Registry now covers 37 jurisdictions.
+  Ada County ID/Boise (21 facilities) was added next over 3 probe
+  rounds: round 1 directly surfaced a genuinely Ada-County-specific
+  match, round 2 confirmed the service's one real Polygon layer, and
+  round 3 confirmed official Ada County Assessor's Office data with
+  32 fields including a rare single combined address field. Added
+  with 8 real fields + computed county_fips (9/30). See Recently
+  Completed below. Registry now covers 38 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1328,6 +1335,42 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Ada County, Idaho (FIPS 16001, 21 facilities, Boise) to
+  the parcel registry, over three probe rounds.
+- Findings: Round 1's ArcGIS Online item search directly surfaced
+  "Ada County Parcel Boundaries", hosted by the same organization
+  that also hosts "Ada County Address Points" and "Ada County Zoning
+  Districts" — a genuine match, not a same-name false positive. Round
+  2 confirmed the FeatureServer's one real layer (id 5, "Parcel",
+  esriGeometryPolygon), from a service described as "Elections and
+  Assessors layers". Round 3 probed layer 5 directly and confirmed
+  official Ada County Assessor's Office data: 32 fields, copyrightText
+  "Ada County Assessors Office", description confirming parcel
+  boundaries maintained by the Assessor's office from plats,
+  subdivisions, surveys, and deeds.
+- Field mapping: 8 of 30 canonical fields mapped (parcel_id → PARCEL,
+  address → ADDRESS [a single combined field, unusually not split],
+  land_use_code → PROPCODE, zoning_code → ZONING, area_acres → ACRES,
+  assessed_value → TOTALVALUE, tax_year → PROPYEAR, subdivision →
+  SUBNM) plus county_fips (computed) — 9/30. Legal description
+  (LEGAL1-5) is split across five fields with no single combined
+  field, so legal_desc isn't mapped; TOTALVALUE is the parcel's single
+  total assessed value with no separate land/improvement split
+  exposed. The remaining 21 fields recorded in `notProvidedBySource` —
+  verified programmatically to cover all 30 canonical fields with
+  zero gaps and zero overlaps.
+- Licensing: official Ada County Assessor's Office (Boise, Idaho)
+  government parcel data, hosted as an ArcGIS Online feature service.
+  Standard "public government data, verify terms before commercial
+  redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 8 mapped fields plus computed
+  county_fips, and "Not published by this source" for the remaining
+  21, zero page errors. Registry now covers 38 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
