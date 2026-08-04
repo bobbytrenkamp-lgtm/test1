@@ -31,3 +31,6 @@ jobs:
 
       - name: Probe DeKalb County GA candidates
         run: node data/diagnose_dekalb_ga.mjs
+
+      - name: Probe DeKalb County GA candidates (round 2)
+        run: node data/diagnose_dekalb_ga_r2.mjs
