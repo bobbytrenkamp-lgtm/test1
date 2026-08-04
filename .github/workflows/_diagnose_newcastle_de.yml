@@ -29,3 +29,6 @@ jobs:
 
       - name: Probe New Castle County DE candidates
         run: node data/diagnose_newcastle_de.mjs
+
+      - name: Probe New Castle County DE candidates (round 2)
+        run: node data/diagnose_newcastle_de_r2.mjs
