@@ -394,7 +394,12 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   real fields) from the county's own "Assessor Parcels" service,
   after deliberately avoiding a same-name false friend ("Cheyenne
   County" is a real, distinct county in NE/KS/CO, not WY). Registry
-  now covers 43 jurisdictions.
+  now covers 43 jurisdictions. New Castle County DE/the Wilmington
+  metro (18 facilities) was added next within 2 probe rounds — a
+  10/30-field mapping (9 real fields) from a pure cadastral/ownership
+  layer hosted on the county's own domain but owned by Delaware's
+  official statewide FirstMap GIS account. Registry now covers 44
+  jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1543,6 +1548,50 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   fields plus computed county_fips, and "Not published by this
   source" for the remaining 18, zero page errors. Registry now covers
   43 jurisdictions.
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Continued down the facility-count priority queue after Laramie
+  County WY: investigated New Castle County, Delaware (FIPS 10003,
+  Wilmington metro, 18 facilities).
+- Findings: Round 1 found the real candidate immediately — "Delaware
+  New Castle County Parcels", owned by FirstMap@De (Delaware's
+  official statewide FirstMap GIS program account) but hosted directly
+  on the county's own ArcGIS Server domain (gis.nccde.org).
+  Independently corroborated by two other third-party items
+  referencing the same layer as "Parcels", one owned by Delaware's
+  Dept of Natural Resources and Environmental Control (DNREC). Round
+  2 confirmed the service live with 42 fields and 203,811 records.
+- Added: `de-new-castle-county` with a 9-field mapping (parcel_id →
+  PRCLID, pin → PARCELNO, owner → CNTCTLAST [a single combined
+  owner/entity name field], address → ADDRESS [a single, already-
+  combined situs address field — unlike some other states' schemas
+  that split it across street-number/name/suffix], land_use_desc →
+  PROPCLASS [descriptive text like "RESIDENTIAL", not a short code],
+  area_acres → LOTSZ, lot_depth_ft → LOTDPTH, lot_width_ft →
+  LOTFRONTAG, subdivision → SUBDIV) plus county_fips (computed) —
+  10/30. AREA looked size-like by name but its value ("10003800") is
+  an administrative tax-area code, not square footage — deliberately
+  not mapped to area_sqft to avoid a misleading false-friend match; no
+  genuine lot-sqft field is exposed. The owner's mailing address
+  (OWNADDR/OWNADDR2/OWNCITY/OWNSTATE/OWNZIP) is split across 5 fields
+  with no combined value, so owner_mailing isn't mapped. This is a
+  pure cadastral/ownership GIS layer with no assessment data (values,
+  sale history, deed, zoning, or year-built) joined. The remaining 20
+  fields recorded in `notProvidedBySource` — verified programmatically
+  to cover all 30 canonical fields with zero gaps and zero overlaps.
+- Licensing: official New Castle County / Delaware FirstMap GIS data.
+  Standard "public government data, verify terms before commercial
+  redistribution" caveat applied.
+- Validation: field-mapping validation script confirmed zero
+  missing/extra/overlap against the 30 canonical fields. `node
+  tests/parcel.test.js` passes (293/293). Playwright live-test via
+  `window.PARCEL_PANEL.show()` with a synthetic feature based on a
+  real confirmed sample record (parcel 0600100003, owner GARDNER
+  WILLIAM W, Smith Bridge Rd, Wilmington) confirmed correct rendering
+  of all 9 mapped fields plus computed county_fips, and "Not published
+  by this source" for the remaining 20, zero page errors. Registry now
+  covers 44 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
