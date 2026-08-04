@@ -2730,6 +2730,45 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '15003': {
+      id:          'hi-honolulu-county',
+      name:        'Honolulu County, Hawaii',
+      state:       'HI',
+      fips:        '15003',
+      connector:   'arcgis',
+      serviceUrl:  'https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/11',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:   'tmk',
+        pin:         'tmk9txt',
+        area_acres:  'gisacres',
+        area_sqft:   'rec_area_sf',
+        county_fips: '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_code', 'land_use_desc', 'overlay_districts', 'lot_depth_ft',
+        'lot_width_ft', 'building_count', 'year_built', 'gross_floor_area',
+        'assessed_value', 'land_value', 'improvement_value', 'tax_year',
+        'tax_amount', 'last_sale_date', 'last_sale_price', 'deed_book',
+        'deed_page', 'subdivision', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Honolulu Land Information System (Holis), Department of Planning and Permitting, City and County of Honolulu — hosted via Hawaii\'s statewide GIS program',
+        url:     'https://www.honolulu.gov/dpp',
+        portal:  'https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/11',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'The entire island of Oahu — Honolulu County is legally coextensive with the island. The City and County of Honolulu\'s own open data portal DCAT feed returns HTTP 404, but Hawaii\'s statewide GIS program hosts a Honolulu-County-specific layer directly (title "Parcels - Honolulu County (Island of Oahu)", copyrightText "Honolulu Land Information System (Holis)... City and County of Honolulu"), part of a broader ParcelsZoning MapServer with sibling layers for Hawaii Statewide, Hawaii County, and TMK Zone/Section/Plat breakdowns. This is a pure cadastral/TMK boundary layer with no assessment data (owner, values, sales) joined — its "zone"/"section"/"plat" fields are components of the Tax Map Key numbering system, not real zoning designations, so they aren\'t mapped to zoning_code to avoid a misleading false-friend match. tmk is the standard 8-digit Tax Map Key (Hawaii\'s statewide parcel identifier); tmk9txt is a 9-digit padded variant.',
+      },
+    },
+
   };
 
   function get(fips) {

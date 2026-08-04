@@ -355,7 +355,22 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   Services parcel in Plano, assessed at $2.6M). Added with 18 real
   fields + computed county_fips (19/30) — the richest addition this
   session, surpassing Hudson County NJ. See Recently Completed below.
-  Registry now covers 40 jurisdictions.
+  Registry now covers 40 jurisdictions. Honolulu County HI/the island
+  of Oahu (20 facilities) was added next over 2 probe rounds: round 1
+  directly surfaced "Parcels - Honolulu County (Island of Oahu)"
+  hosted by Hawaii's own statewide GIS portal (geodata.hawaii.gov), an
+  unambiguous exact-title match with no false-positive risk; round 2
+  confirmed the layer live via its copyrightText ("Honolulu Land
+  Information System (Holis)... City and County of Honolulu") but
+  found it's a pure cadastral/TMK boundary layer with no assessment
+  data joined — its "zone"/"section"/"plat" fields are Tax Map Key
+  numbering components, not real zoning designations, so weren't
+  mapped to avoid a misleading false-friend match. Added with 4 real
+  fields (tmk, tmk9txt, gisacres, rec_area_sf) + computed county_fips
+  (5/30), a legitimate thin add consistent with this session's DC/
+  Jefferson KY precedent since round 1 already confirmed this as the
+  sole authoritative Honolulu-specific source. See Recently Completed
+  below. Registry now covers 41 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1369,6 +1384,50 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Honolulu County, Hawaii (FIPS 15003, 20 facilities, the
+  entire island of Oahu) to the parcel registry, over two probe
+  rounds.
+- Findings: Round 1's ArcGIS Online search directly and unambiguously
+  surfaced "Parcels - Honolulu County (Island of Oahu)" hosted by
+  Hawaii's own statewide GIS portal (geodata.hawaii.gov) — an exact
+  title match with no false-positive risk, unlike some prior counties'
+  investigations. The City and County of Honolulu's own open data
+  portal DCAT feed returns HTTP 404. Round 2 probed the layer directly
+  and confirmed it live and genuine via its own copyrightText
+  ("Honolulu Land Information System (Holis)... Department of
+  Planning and Permitting, City and County of Honolulu") and
+  description, part of a broader ParcelsZoning MapServer with sibling
+  layers for Hawaii Statewide, Hawaii County, and TMK Zone/Section/
+  Plat breakdowns. The layer turned out to be a pure cadastral/TMK
+  boundary file — no owner, address, or assessment data joined. Its
+  "zone", "section", and "plat" fields are components of Hawaii's Tax
+  Map Key numbering system, not real zoning designations; mapping
+  "zone" to the canonical zoning_code field would have been a
+  misleading false-friend match, so it was deliberately left unmapped.
+- Field mapping: 4 of 30 canonical fields mapped (parcel_id → tmk [the
+  standard 8-digit Tax Map Key, Hawaii's statewide parcel identifier],
+  pin → tmk9txt [a 9-digit padded variant], area_acres → gisacres,
+  area_sqft → rec_area_sf) plus county_fips (computed) — 5/30, a
+  legitimate thin add consistent with this session's DC (3 real
+  fields) and Jefferson KY (2 real fields) precedent, since round 1
+  already confirmed this is the sole authoritative Honolulu-specific
+  source with no richer alternative available. The remaining 25 fields
+  recorded in `notProvidedBySource` — verified programmatically to
+  cover all 30 canonical fields with zero gaps and zero overlaps.
+- Licensing: official Honolulu Land Information System (Holis) data
+  from the City and County of Honolulu's Department of Planning and
+  Permitting, republished via Hawaii's statewide GIS program as an
+  ArcGIS feature service. Standard "public government data, verify
+  terms before commercial redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  based on the real confirmed sample record confirmed correct
+  rendering of all 4 mapped fields plus computed county_fips, and "Not
+  published by this source" for the remaining 25, zero page errors.
+  Registry now covers 41 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
