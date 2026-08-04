@@ -1,15 +1,17 @@
-// Temporary diagnostic, round 4: Suffolk County MA (Boston metro)
+// Temporary diagnostic, round 5: Suffolk County MA (Boston metro)
 // parcel service.
 //
-// Round 3's DCAT catalog search on MassGIS's own open-data portal
-// found the real dataset directly among 295 "parcel" matches:
-// "GISDATA.L3 ASSESS" / "Massachusetts Property Tax Parcels" -- the
-// standardized statewide assessors' parcel mapping dataset, with a
-// genuine ArcGIS GeoServices REST distribution URL on a host neither
-// of the first two rounds' guesses used
-// (arcgisserver.digital.mass.gov). This round probes that confirmed
-// URL directly to get its real field schema, description, and
-// copyrightText.
+// Round 4 confirmed FeatureServer/4 ("GISDATA.L3_ASSESS") is real and
+// rich (41 fields, including full owner data) -- but its JSON response
+// has no geometryType/extent/spatialReference at all, meaning it's a
+// non-spatial table, not the boundary layer. The DCAT catalog's own
+// title for this service ("Massachusetts Property Tax Parcels (4
+// Layers)") confirms this is a multi-layer service. This round lists
+// the full FeatureServer catalog to find which layer (0-3) carries the
+// actual Polygon parcel boundaries, and whether it shares a common key
+// with the assessing table (PROP_ID/LOC_ID) for a possible where-based
+// scoping -- the same investigation pattern used for Polk County IA's
+// multi-table CAMA schema.
 //
 // Deleted once Suffolk County MA is either added or documented as
 // unavailable.
@@ -31,16 +33,16 @@ async function fetchText(url, label) {
     console.log(`URL: ${url}`);
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
-      console.log('Body (JSON keys):', Object.keys(body));
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
+      if (body.layers) console.log('Layers:', body.layers.map(l => `${l.id}:${l.name}(${l.type||'?'}, geom=${l.geometryType||'n/a'})`).join(', '));
+      if (body.tables) console.log('Tables:', body.tables.map(t => `${t.id}:${t.name}`).join(', '));
       if (body.fields) {
         console.log('Field count:', body.fields.length);
         console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
       }
       if (body.name) console.log('Layer name:', body.name);
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
-      if (body.description) console.log('description:', body.description.slice(0, 500));
-      if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
+      if (body.description) console.log('description:', body.description.slice(0, 300));
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -57,8 +59,8 @@ async function fetchText(url, label) {
 }
 
 await fetchText(
-  'https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/MassachusettsPropertyTaxParcels/FeatureServer/4?f=json',
-  'Confirmed real - Massachusetts Property Tax Parcels FeatureServer layer 4'
+  'https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/MassachusettsPropertyTaxParcels/FeatureServer?f=json',
+  'MassachusettsPropertyTaxParcels FeatureServer - full layer/table catalog'
 );
 
 console.log('\nDone.');
