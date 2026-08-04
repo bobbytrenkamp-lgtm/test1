@@ -2630,6 +2630,56 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '34017': {
+      id:          'nj-hudson-county',
+      name:        'Hudson County, New Jersey',
+      state:       'NJ',
+      fips:        '34017',
+      connector:   'arcgis',
+      serviceUrl:  'https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0',
+      where:       "COUNTY = 'HUDSON'",
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'PAMS_PIN',
+        pin:                'GIS_PIN',
+        owner:              'OWNER_NAME',
+        address:            'PROP_LOC',
+        land_use_code:      'PROP_CLASS',
+        area_acres:         'CALC_ACRE',
+        year_built:         'YR_CONSTR',
+        assessed_value:     'NET_VALUE',
+        land_value:         'LAND_VAL',
+        improvement_value:  'IMPRVT_VAL',
+        tax_amount:         'LAST_YR_TX',
+        last_sale_date:     'DEED_DATE',
+        last_sale_price:    'SALE_PRICE',
+        deed_book:          'DEED_BOOK',
+        deed_page:          'DEED_PAGE',
+        legal_desc:         'LAND_DESC',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'land_use_desc',
+        'overlay_districts', 'area_sqft', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'gross_floor_area', 'tax_year', 'subdivision',
+        'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'New Jersey Office of Information Technology, Office of GIS (NJOGIS) — statewide MOD-IV Composite, filtered to Hudson County',
+        url:     'https://www.hudsoncountynj.org/',
+        portal:  'https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Jersey City metro — Northeast data center market. Hudson County has no live DCAT feed of its own (data.hudsoncountynj.org is dead) and NJGIN\'s Hudson-specific distribution is only a static shapefile/fgdb .zip download. An ArcGIS Online layer named "NJ_Parcel_Boundaries_Simplified" turned out to be Hudson-County-specific despite its generic name (per its own description/copyrightText), but was too thin (13 fields, effectively just PAMS_PIN) to use. Instead this entry queries the state\'s own official statewide MOD-IV Composite service (compatible with the NJ Division of Taxation\'s MOD-IV assessment system) with a `where: COUNTY = \'HUDSON\'` filter, confirmed live with a real Bayonne City sample record. Owner mailing address (ST_ADDRESS/CITY_STATE/ZIP_CODE) is split across multiple fields with no single combined field, so owner_mailing isn\'t mapped. NET_VALUE is MOD-IV\'s single total net assessed value with no separate land/improvement split beyond LAND_VAL/IMPRVT_VAL (which are mapped). LAST_YR_TX is a tax amount, not a tax year, so it maps to tax_amount rather than tax_year (no tax year field is exposed).',
+      },
+    },
+
   };
 
   function get(fips) {

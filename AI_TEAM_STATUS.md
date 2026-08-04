@@ -321,7 +321,25 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   round 3 confirmed official Ada County Assessor's Office data with
   32 fields including a rare single combined address field. Added
   with 8 real fields + computed county_fips (9/30). See Recently
-  Completed below. Registry now covers 38 jurisdictions.
+  Completed below. Registry now covers 38 jurisdictions. Hudson County
+  NJ/Jersey City (21 facilities, tied with Ada ID) was added next over
+  3 probe rounds: round 1 found Hudson County's own DCAT feed dead and
+  NJGIN's Hudson-specific distribution was only a static shapefile/fgdb
+  download, not REST; round 2 found an ArcGIS Online layer
+  ("NJ_Parcel_Boundaries_Simplified") that turned out to be genuinely
+  Hudson-County-specific despite its generic statewide-sounding name
+  (confirmed via its own description/copyrightText), but too thin (13
+  fields, effectively just the parcel ID) to use on its own; round 3
+  instead probed NJ's official statewide MOD-IV Composite service
+  (hosted directly by the state at maps.nj.gov) and confirmed it live
+  with a real Bayonne City sample record via a `where: COUNTY =
+  'HUDSON'` filter — the connector already supports static `where`
+  clauses (used previously for NYC MAPPLUTO and a Washington County
+  taxlots layer), so a statewide service scoped to one county was a
+  legitimate option, not a fabrication. Added with 16 real fields +
+  computed county_fips (17/30) — richer than Middlesex County NJ, the
+  previous richest NJ addition. See Recently Completed below. Registry
+  now covers 39 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1335,6 +1353,62 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Hudson County, New Jersey (FIPS 34017, 21 facilities,
+  tied with Ada ID, Jersey City metro) to the parcel registry, over
+  three probe rounds.
+- Findings: Round 1 found Hudson County's own open data portal DCAT
+  feed dead (fetch failed), and NJGIN's Hudson-County-specific
+  distribution was only a static shapefile/fgdb `.zip` download, not a
+  REST service. Round 2 found an ArcGIS Online layer named
+  "NJ_Parcel_Boundaries_Simplified" that — despite its generic
+  statewide-sounding name — turned out to be genuinely Hudson-County-
+  specific, confirmed via its own description and copyrightText
+  ("Hudson County... NJ Office of Information Technology, Office of
+  GIS (NJOGIS)"). It was real and live but thin: only 13 fields
+  (PAMS_PIN, MUN, BLOCK, LOT, QCODE, LASTUPDATE, County, plus geology/
+  geometry fields), of which only PAMS_PIN mapped cleanly to a
+  canonical field. Round 2 also surfaced NJ's official statewide
+  MOD-IV Composite service, hosted directly by the state at
+  maps.nj.gov. Round 3 probed that service directly: confirmed live
+  with 46 fields (the same MOD-IV schema family already seen for
+  Middlesex County NJ, but richer), and confirmed a working
+  `WHERE COUNTY='HUDSON'` filter returns real data — a sample Bayonne
+  City parcel with genuine owner/value/sale/deed attributes. Since the
+  connector already supports a static `where` clause (used previously
+  for NYC's MAPPLUTO borough filter and a Washington County taxlots
+  layer), scoping this statewide, state-authoritative service to
+  Hudson County via `where: "COUNTY = 'HUDSON'"` was used instead of
+  the thin county-specific layer.
+- Field mapping: 16 of 30 canonical fields mapped (parcel_id →
+  PAMS_PIN, pin → GIS_PIN, owner → OWNER_NAME, address → PROP_LOC,
+  land_use_code → PROP_CLASS, area_acres → CALC_ACRE, year_built →
+  YR_CONSTR, assessed_value → NET_VALUE, land_value → LAND_VAL,
+  improvement_value → IMPRVT_VAL, tax_amount → LAST_YR_TX,
+  last_sale_date → DEED_DATE, last_sale_price → SALE_PRICE, deed_book
+  → DEED_BOOK, deed_page → DEED_PAGE, legal_desc → LAND_DESC) plus
+  county_fips (computed) — 17/30, richer than Middlesex County NJ (the
+  previous richest NJ addition at 15/30). Owner mailing address
+  (ST_ADDRESS/CITY_STATE/ZIP_CODE) is split across multiple fields
+  with no single combined field, so owner_mailing isn't mapped;
+  LAST_YR_TX is a tax amount, not a tax year, so it maps to tax_amount
+  rather than tax_year (no tax year field is exposed). The remaining
+  13 fields recorded in `notProvidedBySource` — verified
+  programmatically to cover all 30 canonical fields with zero gaps and
+  zero overlaps.
+- Licensing: official New Jersey Office of Information Technology,
+  Office of GIS (NJOGIS) statewide government parcel data, compatible
+  with the state's MOD-IV tax assessment system. Standard "public
+  government data, verify terms before commercial redistribution"
+  caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  based on the real confirmed Bayonne City sample record confirmed
+  correct rendering of all 16 mapped fields plus computed county_fips,
+  and "Not published by this source" for the remaining 13, zero page
+  errors. Registry now covers 39 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
