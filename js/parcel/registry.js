@@ -2769,6 +2769,56 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '32031': {
+      id:          'nv-washoe-county',
+      name:        'Washoe County, Nevada',
+      state:       'NV',
+      fips:        '32031',
+      connector:   'arcgis',
+      serviceUrl:  'https://services.arcgis.com/iCGWaR7ZHc5saRIl/arcgis/rest/services/Nightly_OpenData_Update/FeatureServer/1',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'APN',
+        pin:                'PIN',
+        owner:              'LASTNAME',
+        address:            'FullAddress',
+        zoning_code:        'Zoning',
+        land_use_code:      'LAND_USE',
+        area_acres:         'ACREAGE',
+        year_built:         'YEARBLT',
+        gross_floor_area:   'SQFEET',
+        assessed_value:     'TOTALASS',
+        land_value:         'LANDASS',
+        improvement_value:  'BUILDASS',
+        tax_year:           'TAXYEAR',
+        last_sale_date:     'SALEDATE',
+        last_sale_price:    'SALEPRICE',
+        deed_book:          'BOOK',
+        deed_page:          'PAGE',
+        subdivision:        'SUBNAME',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_desc', 'land_use_desc', 'overlay_districts',
+        'area_sqft', 'lot_depth_ft', 'lot_width_ft', 'building_count',
+        'tax_amount', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Washoe County GIS (Reno metro)',
+        url:     'https://www.washoecounty.gov/assessor/',
+        portal:  'https://services.arcgis.com/iCGWaR7ZHc5saRIl/arcgis/rest/services/Nightly_OpenData_Update/FeatureServer/1',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Reno/Sparks metro. Washoe County\'s own open data portal (opendata.washoecounty.gov) lists this "Parcels" layer directly, owned by the county\'s own ArcGIS org ("washoe"), part of a nightly-refreshed feature service (194,061 records confirmed live) — one of the richest sources found this session, with real assessed values, sale history, and zoning. Owner is split across FIRSTNAME/LASTNAME with no combined field; LASTNAME alone is mapped since it is a genuine (if sometimes partial, e.g. for individual owners) real name value, while owner_mailing is left unmapped since MAILING1 alone (no city/state/zip) isn\'t a usable address on its own. SQFEET is building square footage, so it maps to gross_floor_area rather than area_sqft (which pairs with area_acres for lot size — no lot-sqft field is exposed, only ACREAGE). TOTALASS/LANDASS/BUILDASS are the assessed-value triplet; LANDAPR/BUILDAPR/TOTALAPR (appraised values) exist too but assessed_value/land_value/improvement_value map to the assessed set as the closer semantic match. No tax-amount or legal-description fields are exposed in this schema.',
+      },
+    },
+
   };
 
   function get(fips) {
