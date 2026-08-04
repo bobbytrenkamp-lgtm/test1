@@ -2192,6 +2192,53 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '39061': {
+      id:          'oh-hamilton-county',
+      name:        'Hamilton County, Ohio',
+      state:       'OH',
+      fips:        '39061',
+      connector:   'arcgis',
+      serviceUrl:  'https://cagisonline.hamilton-co.org/arcgis/rest/services/HCE/Cadastral/MapServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:        'PARCELID',
+        pin:              'AUDPCLID',
+        owner:            'OWNNM1',
+        land_use_code:    'CLASS',
+        area_acres:       'ACREDEED',
+        lot_width_ft:     'FRONT_FOOTAGE',
+        assessed_value:   'MKT_TOTAL_VAL',
+        land_value:       'MKTLND',
+        improvement_value: 'MKTIMP',
+        tax_amount:       'ANNUAL_TAXES',
+        last_sale_date:   'SALDAT',
+        last_sale_price:  'SALAMT',
+        deed_book:        'BOOK',
+        deed_page:        'PAGE',
+        legal_desc:       'LGLDS1',
+        county_fips:      '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner_mailing', 'zoning_code', 'zoning_desc', 'land_use_desc',
+        'overlay_districts', 'area_sqft', 'lot_depth_ft', 'building_count',
+        'year_built', 'gross_floor_area', 'tax_year', 'subdivision', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'CAGIS (Cincinnati Area Geographic Information System)',
+        url:     'https://www.hamiltoncountyohio.gov/government/departments/planning_and_development/community_planning/maps_and_gis.php',
+        portal:  'https://cagisonline.hamilton-co.org/cagisonline/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Cincinnati metro — Ohio data center market. Site/mailing address fields are split into multiple components (number/street/suffix, or name/line1/line2/city/state/zip) with no single combined field, so address and owner_mailing aren’t mapped. assessed_value/land_value/improvement_value map to this layer’s MKT_* (market value) fields — Ohio’s statutory assessed value is a fixed 35% conversion of market value not separately exposed in this GIS layer.',
+      },
+    },
+
   };
 
   function get(fips) {

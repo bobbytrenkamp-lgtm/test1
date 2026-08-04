@@ -206,7 +206,25 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   when the map is centered there. Added as a thin add (3 real fields +
   computed county_fips, identical richness to Suffolk since it's the
   same source layer). See Recently Completed below. Registry now
-  covers 28 jurisdictions.
+  covers 28 jurisdictions. Hamilton County OH/Cincinnati (25
+  facilities, tied with Allegheny County PA) was added next over 3
+  rounds: round 1's DCAT-catalog-first approach failed outright — the
+  CAGIS (Cincinnati Area Geographic Information System) Open Data Hub
+  has disabled its DCAT feed entirely (HTTP 403 "Feeds have been
+  disabled for this site"); round 2 fell back to ArcGIS Online's
+  public, unauthenticated item-search API, which found several real
+  candidates including two hosted by official CAGIS accounts
+  (CagisCoreLayers and cagisopendata); round 3 confirmed both directly
+  — CAGIS's own ArcGIS Server layer (HCE/Cadastral, "CAGIS.Ham_Parcel
+  _Poly") has 99 fields and real Polygon geometry, the authoritative
+  source. Added with 15 real fields + computed county_fips (16/30),
+  including sale history, deed book/page, and value fields (mapped
+  from the layer's MKT_* market-value fields, with a note that Ohio's
+  statutory assessed value is a separate 35% conversion not exposed in
+  this GIS layer). Site/mailing address fields are split across
+  multiple components with no single combined field, so address and
+  owner_mailing aren't mapped. See Recently Completed below. Registry
+  now covers 29 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1220,6 +1238,59 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Hamilton County, Ohio (FIPS 39061, 25 facilities,
+  Cincinnati metro) to the parcel registry, over three probe rounds.
+- Findings: Round 1's usual DCAT-catalog-first approach failed outright
+  — CAGIS (Cincinnati Area Geographic Information System, the joint
+  city-county GIS authority) has disabled its Open Data Hub's DCAT feed
+  entirely, returning HTTP 403 "Feeds have been disabled for this
+  site." Round 2 fell back to ArcGIS Online's public, unauthenticated
+  item-search API (`www.arcgis.com/sharing/rest/search`), which
+  reliably surfaced several real candidates including two published by
+  official CAGIS accounts: "Hamilton County Parcel Polygons" (owner
+  CagisCoreLayers, CAGIS's own core-layers publishing account) hosted
+  on CAGIS's own ArcGIS Server, and "Hamilton County Parcels - Open
+  Data" (owner cagisopendata) hosted on ArcGIS Online. Round 3 probed
+  both directly: both are real, live, Polygon-geometry layers with
+  nearly identical ~98-99-field CAMA-style schemas. Used the CAGIS-
+  hosted one (`HCE/Cadastral/MapServer/0`, internal layer name
+  "CAGIS.Ham_Parcel_Poly") as the more directly authoritative source.
+- Field mapping: 15 of 30 canonical fields mapped (parcel_id →
+  PARCELID, pin → AUDPCLID, owner → OWNNM1, land_use_code → CLASS,
+  area_acres → ACREDEED, lot_width_ft → FRONT_FOOTAGE, assessed_value →
+  MKT_TOTAL_VAL, land_value → MKTLND, improvement_value → MKTIMP,
+  tax_amount → ANNUAL_TAXES, last_sale_date → SALDAT, last_sale_price →
+  SALAMT, deed_book → BOOK, deed_page → PAGE, legal_desc → LGLDS1) plus
+  county_fips (computed) — 16/30. Two notable honesty calls: (1)
+  site/mailing address fields are split into multiple components
+  (ADDRNO/ADDRST/ADDRSF for site address; OWNAD1/OWNAD1A/OWNAD2/
+  OWNADCITY/OWNADSTATE/OWNADZIP and a separate MLNM/MLADR set for
+  mailing) with no single combined field and the connector only
+  supports 1:1 field mapping, so address and owner_mailing are left
+  unmapped rather than guessing which component to use; (2)
+  assessed_value/land_value/improvement_value map to this layer's
+  MKT_* (market value) fields rather than a literal "assessed" field,
+  since Ohio's statutory assessed value is a fixed 35% conversion of
+  market value that isn't separately exposed in this GIS layer — noted
+  explicitly in the attribution rather than silently mislabeled. The
+  remaining 14 fields recorded in `notProvidedBySource` — verified
+  programmatically to cover all 30 canonical fields with zero gaps and
+  zero overlaps.
+- Licensing: CAGIS's own official data, confirmed via the AGOL item
+  ownership (CagisCoreLayers). Standard "public government data,
+  verify terms before commercial redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 15 mapped fields plus computed
+  county_fips, and "Not published by this source" for the remaining
+  14, zero page errors. Registry now covers 29 jurisdictions.
+- Temp files (`data/diagnose_hamilton_oh.mjs`,
+  `.github/workflows/_diagnose_hamilton_oh.yml`) deleted in the same
+  commit that added the registry entry.
+- Last updated: 2026-08-04
 
 - Date: 2026-08-04
 - Agent: Claude Code
