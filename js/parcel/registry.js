@@ -2864,6 +2864,49 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '10003': {
+      id:          'de-new-castle-county',
+      name:        'New Castle County, Delaware',
+      state:       'DE',
+      fips:        '10003',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis.nccde.org/agsserver/rest/services/BaseMaps/Base_Layers/MapServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:      'PRCLID',
+        pin:            'PARCELNO',
+        owner:          'CNTCTLAST',
+        address:        'ADDRESS',
+        land_use_desc:  'PROPCLASS',
+        area_acres:     'LOTSZ',
+        lot_depth_ft:   'LOTDPTH',
+        lot_width_ft:   'LOTFRONTAG',
+        subdivision:    'SUBDIV',
+        county_fips:    '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'land_use_code',
+        'overlay_districts', 'area_sqft', 'building_count', 'year_built',
+        'gross_floor_area', 'assessed_value', 'land_value', 'improvement_value',
+        'tax_year', 'tax_amount', 'last_sale_date', 'last_sale_price',
+        'deed_book', 'deed_page', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'New Castle County / Delaware FirstMap',
+        url:     'https://www.nccde.org/162/Land-Use',
+        portal:  'https://gis.nccde.org/agsserver/rest/services/BaseMaps/Base_Layers/MapServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Wilmington metro. This "Parcels" layer is owned by FirstMap@De (Delaware\'s official statewide FirstMap GIS program account) but hosted directly on the county\'s own ArcGIS Server domain (gis.nccde.org), confirmed live with 203,811 records. Independently corroborated by two third-party items referencing the same layer as "Parcels", one owned by Delaware\'s Dept of Natural Resources and Environmental Control (DNREC). ADDRESS is a single, already-combined situs address field (unlike some other states\' schemas that split it across street-number/name/suffix). CNTCTLAST is a single combined owner/entity name field. The owner\'s mailing address (OWNADDR/OWNADDR2/OWNCITY/OWNSTATE/OWNZIP) is split across 5 fields with no combined value, so owner_mailing isn\'t mapped, per this session\'s no-concatenation discipline. AREA looks name-like a size field but its value ("10003800") is an administrative tax-area code, not square footage — deliberately not mapped to area_sqft to avoid a misleading false-friend match; no genuine lot-sqft field is exposed, only LOTSZ (acres). This is a pure cadastral/ownership GIS layer with no assessment data (values, sale history, deed, zoning, or year-built) joined.',
+      },
+    },
+
   };
 
   function get(fips) {
