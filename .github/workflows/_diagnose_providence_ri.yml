@@ -27,3 +27,6 @@ jobs:
 
       - name: Probe Providence County RI candidates
         run: node data/diagnose_providence_ri.mjs
+
+      - name: Probe Providence County RI candidates (round 2)
+        run: node data/diagnose_providence_ri_r2.mjs
