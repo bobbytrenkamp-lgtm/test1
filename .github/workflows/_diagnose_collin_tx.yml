@@ -1,0 +1,30 @@
+name: (temp) Diagnose Collin County TX parcel service
+
+# Temporary, workflow_dispatch-only diagnostic for the next parcel-
+# expansion candidate: Collin County TX (21 facilities, Frisco/Plano/
+# McKinney metro), the next uninvestigated entry in the facility-count
+# priority list.
+# Deleted once this is either added to the registry or documented as
+# unavailable.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe Collin County TX candidates
+        run: node data/diagnose_collin_tx.mjs
