@@ -28,3 +28,6 @@ jobs:
 
       - name: Probe Shelby County TN candidates
         run: node data/diagnose_shelby_tn.mjs
+
+      - name: Probe Shelby County TN candidates (round 2)
+        run: node data/diagnose_shelby_tn_r2.mjs
