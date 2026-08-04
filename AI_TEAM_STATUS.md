@@ -298,7 +298,15 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   real candidate as a rich 76-field Duval County Property Appraiser
   CAMA export. Added with 12 real fields + computed county_fips
   (13/30). See Recently Completed below. Registry now covers 35
-  jurisdictions.
+  jurisdictions. Jefferson County KY/Louisville (22 facilities, tied
+  with Duval FL) was added next over 2 probe rounds: round 1's ArcGIS
+  Online search directly surfaced a genuine, verifiable match ("PVA"
+  in the URL confirming Kentucky's standard assessor terminology, not
+  a false positive this time), and round 2 confirmed real Polygon
+  geometry but a thin 9-field cadastral-only schema. Added with 2 real
+  fields + computed county_fips (3/30), consistent with the thin-add
+  precedent from Middlesex MA/Allegheny PA/DC. See Recently Completed
+  below. Registry now covers 36 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1312,6 +1320,41 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Jefferson County, Kentucky (FIPS 21111, 22 facilities,
+  Louisville) to the parcel registry, over two probe rounds.
+- Findings: Round 1's ArcGIS Online item search directly surfaced
+  "Jefferson County KY Parcels" on gis.lojic.org's `LojicSolutions/
+  OpenDataPVA` MapServer, layer 1 — a strong, verifiable match
+  confirmed by the URL itself: "PVA" (Property Valuation
+  Administrator) is Kentucky's standard county-assessor terminology,
+  and "LojicSolutions" matches LOJIC (Louisville/Jefferson County
+  Information Consortium), so this wasn't the kind of same-named
+  false positive the Duval County FL investigation hit. Round 2
+  probed it directly and confirmed real `esriGeometryPolygon`
+  geometry, but a thin 9-field schema (OBJECTID, PARCELID,
+  PARCEL_TYPE, LRSN, SHAPE, GLOBALID, SHAPE.AREA, SHAPE.LEN, PIN) —
+  a pure cadastral-geometry layer with no owner/address/value fields.
+- Field mapping: 2 of 30 canonical fields mapped (parcel_id →
+  PARCELID, pin → PIN) plus county_fips (computed) — 3/30, a thin add
+  consistent with the precedent set by Middlesex County MA, Allegheny
+  County PA, and District of Columbia this session. PARCEL_TYPE (an
+  internal type code) and LRSN (an internal record-sequence number)
+  have no confident canonical equivalent and are left unmapped. The
+  remaining 27 fields recorded in `notProvidedBySource` — verified
+  programmatically to cover all 30 canonical fields with zero gaps
+  and zero overlaps.
+- Licensing: official LOJIC / Jefferson County PVA government parcel
+  data, hosted on Louisville Metro's own ArcGIS Server. Standard
+  "public government data, verify terms before commercial
+  redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of both mapped fields plus computed
+  county_fips, and "Not published by this source" for the remaining
+  27, zero page errors. Registry now covers 36 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
