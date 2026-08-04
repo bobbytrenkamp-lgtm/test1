@@ -2588,6 +2588,48 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '16001': {
+      id:          'id-ada-county',
+      name:        'Ada County, Idaho',
+      state:       'ID',
+      fips:        '16001',
+      connector:   'arcgis',
+      serviceUrl:  'https://services2.arcgis.com/dgGjZc6xAH5m5JyP/arcgis/rest/services/Parcels/FeatureServer/5',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:      'PARCEL',
+        address:        'ADDRESS',
+        land_use_code:  'PROPCODE',
+        zoning_code:    'ZONING',
+        area_acres:     'ACRES',
+        assessed_value: 'TOTALVALUE',
+        tax_year:       'PROPYEAR',
+        subdivision:    'SUBNM',
+        county_fips:    '__computed__',
+      },
+
+      notProvidedBySource: [
+        'pin', 'owner', 'owner_mailing', 'zoning_desc', 'land_use_desc',
+        'overlay_districts', 'area_sqft', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'year_built', 'gross_floor_area', 'land_value',
+        'improvement_value', 'tax_amount', 'last_sale_date', 'last_sale_price',
+        'deed_book', 'deed_page', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Ada County Assessor\'s Office (Boise, Idaho)',
+        url:     'https://adacounty.id.gov/assessor/',
+        portal:  'https://services2.arcgis.com/dgGjZc6xAH5m5JyP/arcgis/rest/services/Parcels/FeatureServer/5',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Boise metro — Idaho data center market. Confirmed via the layer\'s own copyrightText ("Ada County Assessors Office") and description. Legal description (LEGAL1-5) is split across five fields with no single combined field, so legal_desc isn\'t mapped; TOTALVALUE is the parcel\'s single total assessed value with no separate land/improvement split exposed.',
+      },
+    },
+
   };
 
   function get(fips) {
