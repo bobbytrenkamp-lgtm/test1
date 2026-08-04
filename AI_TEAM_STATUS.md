@@ -224,7 +224,23 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   this GIS layer). Site/mailing address fields are split across
   multiple components with no single combined field, so address and
   owner_mailing aren't mapped. See Recently Completed below. Registry
-  now covers 29 jurisdictions.
+  now covers 29 jurisdictions. Allegheny County PA/Pittsburgh (25
+  facilities) was added next over 3 rounds: round 1's DCAT catalog
+  confirmed a real "Allegheny County Parcel Boundaries" dataset exists
+  but its distribution only points to a PASDA (Pennsylvania Spatial
+  Data Access, the state's official GIS clearinghouse) landing page,
+  not a direct REST URL; the county's own guessed ArcGIS Server
+  service (maps.pasda.psu.edu) returned a real ArcGIS 500 "not
+  started" (cold service); round 2 retried it twice with no change,
+  then listed the full 41-layer catalog of an alternate PASDA-hosted
+  MapServer and found layer 25, "Allegheny County Parcels 20260727" —
+  a live, currently-dated parcels layer; round 3 confirmed it directly
+  (13 fields, real Polygon geometry). Added as a thin add (3 real
+  fields + computed county_fips) — only boundary/PIN/acreage data is
+  exposed in this PASDA mirror; the county's own Real Estate/CAMA
+  assessment data (owner, value, sale history) lives in a separate,
+  not-yet-confirmed system. See Recently Completed below. Registry now
+  covers 30 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1238,6 +1254,57 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Allegheny County, Pennsylvania (FIPS 42003, 25
+  facilities, Pittsburgh metro) to the parcel registry, over three
+  probe rounds.
+- Findings: Round 1's DCAT catalog on the county's own GIS Open Data
+  portal confirmed a real "Allegheny County Parcel Boundaries" dataset
+  exists, but its distribution field only pointed to a PASDA
+  (Pennsylvania Spatial Data Access — Penn State's official statewide
+  GIS clearinghouse) landing page rather than a direct REST URL; a
+  direct guess at the county's own PASDA-hosted ArcGIS Server
+  (maps.pasda.psu.edu's AlleghenyCountyParcels service) returned a
+  real ArcGIS 500 "Service ... not started" — a cold/idle service
+  state. Round 2 retried that service twice (4s apart) with no change,
+  then listed the full layer catalog (41 layers) of an alternate
+  PASDA-hosted MapServer (mapservices.pasda.psu.edu's
+  pasda/AlleghenyCounty) and found layer 25, "Allegheny County Parcels
+  20260727" — a live, currently-dated parcels layer distinct from the
+  dead service. Round 3 confirmed it directly: 13 fields, real Polygon
+  geometry.
+- Field mapping: 3 of 30 canonical fields mapped (parcel_id → PIN, pin
+  → MAPBLOCKLO — the traditional Allegheny County Map-Block-Lot
+  identifier, area_acres → CALCACREAG) plus county_fips (computed) —
+  4/30. This PASDA mirror only exposes boundary/identifier/acreage
+  data; no owner, address, value, or sale fields exist in this layer,
+  and the layer catalog's other 40 layers (library/parks/streets/
+  hydrology/etc.) contained no CAMA or assessment attribute table to
+  join. The remaining 26 fields recorded in `notProvidedBySource` —
+  verified programmatically to cover all 30 canonical fields with zero
+  gaps and zero overlaps.
+- Licensing: Allegheny County's own official parcel boundary data,
+  mirrored through PASDA (the Commonwealth of Pennsylvania's official
+  GIS data-sharing partnership with Penn State). Standard "public
+  government data, verify terms before commercial redistribution"
+  caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of both mapped fields plus computed
+  county_fips, and "Not published by this source" for the remaining
+  26, zero page errors. Registry now covers 30 jurisdictions.
+- Follow-up opportunity (not attempted this session): Allegheny
+  County's own Real Estate/CAMA assessment website (owner, value, sale
+  history) is a separate system from this GIS boundary layer and was
+  not investigated — a human could look into whether it exposes a
+  queryable API or bulk data export that could be joined to this
+  boundary layer's PIN field.
+- Temp files (`data/diagnose_allegheny_pa.mjs`,
+  `.github/workflows/_diagnose_allegheny_pa.yml`) deleted in the same
+  commit that added the registry entry.
+- Last updated: 2026-08-04
 
 - Date: 2026-08-04
 - Agent: Claude Code
