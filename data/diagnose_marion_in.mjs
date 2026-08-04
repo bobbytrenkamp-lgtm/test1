@@ -1,17 +1,11 @@
-// Temporary diagnostic, round 1: Marion County IN (Indianapolis)
+// Temporary diagnostic, round 2: Marion County IN (Indianapolis)
 // parcel service.
 //
-// Next candidate in the facility-count priority queue after Allegheny
-// County PA (24 facilities). Indianapolis and Marion County have a
-// consolidated city-county government ("Unigov"); web search found
-// the "Open Indy Data Portal" (data-indygis.opendata.arcgis.com), an
-// ArcGIS Hub site with a "Parcels" dataset (IndyGIS::parcels,
-// ~348,321 records) directly in its own gallery listing.
-//
-// This round checks the portal's own DCAT catalog for a "parcel"
-// dataset distribution URL first (the pattern that has reliably
-// surfaced the real ArcGIS distribution URL directly for most
-// counties this session).
+// Round 1's DCAT catalog directly surfaced "Parcels w/ Owner
+// Information & Assessed Values" - a promising rich dataset - plus a
+// plainer "Parcels" (boundary + address only) dataset as a fallback.
+// This round probes both directly for field schema/geometryType/
+// description/copyrightText.
 //
 // Deleted once Marion County IN is either added or documented as
 // unavailable.
@@ -33,7 +27,6 @@ async function fetchText(url, label) {
     console.log(`URL: ${url}`);
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
-      console.log('Body (JSON keys):', Object.keys(body));
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
       if (body.fields) {
         console.log('Field count:', body.fields.length);
@@ -41,7 +34,7 @@ async function fetchText(url, label) {
       }
       if (body.name) console.log('Layer name:', body.name);
       if (body.geometryType) console.log('Geometry type:', body.geometryType);
-      if (body.description) console.log('description:', body.description.slice(0, 500));
+      if (body.description) console.log('description:', body.description.slice(0, 800));
       if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
@@ -58,24 +51,14 @@ async function fetchText(url, label) {
   }
 }
 
-const dcat = await fetchText(
-  'https://data-indygis.opendata.arcgis.com/api/feed/dcat-us/1.1.json',
-  'Open Indy Data Portal own DCAT catalog'
+await fetchText(
+  'https://gis.indy.gov/server/rest/services/MapIndy/MapIndyProperty/MapServer/10?f=json',
+  'MapIndyProperty layer 10 - Parcels w/ Owner Information & Assessed Values'
 );
 
-if (dcat.ok && dcat.body && Array.isArray(dcat.body.dataset)) {
-  const matches = dcat.body.dataset.filter(d =>
-    /parcel/i.test(d.title || '') || /parcel/i.test(d.description || '')
-  );
-  console.log(`\nDCAT datasets matching "parcel": ${matches.length}`);
-  for (const d of matches) {
-    console.log(`\n--- ${d.title} ---`);
-    console.log('description:', (d.description || '').slice(0, 300));
-    const dist = (d.distribution || []).map(x => `${x.format}: ${x.accessURL || x.downloadURL}`);
-    console.log('distribution:', dist.join(' | '));
-  }
-} else {
-  console.log('\nDCAT catalog lookup failed or had no dataset array.');
-}
+await fetchText(
+  'https://gis.indy.gov/server/rest/services/Accela/AGIS_INDIANAPOLIS/MapServer/15?f=json',
+  'AGIS_INDIANAPOLIS layer 15 - Parcels (boundary + address, fallback)'
+);
 
 console.log('\nDone.');
