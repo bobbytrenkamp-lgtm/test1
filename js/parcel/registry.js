@@ -2239,6 +2239,44 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '42003': {
+      id:          'pa-allegheny-county',
+      name:        'Allegheny County, Pennsylvania',
+      state:       'PA',
+      fips:        '42003',
+      connector:   'arcgis',
+      serviceUrl:  'https://mapservices.pasda.psu.edu/server/rest/services/pasda/AlleghenyCounty/MapServer/25',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:   'PIN',
+        pin:         'MAPBLOCKLO',
+        area_acres:  'CALCACREAG',
+        county_fips: '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_code', 'land_use_desc', 'overlay_districts', 'area_sqft',
+        'lot_depth_ft', 'lot_width_ft', 'building_count', 'year_built',
+        'gross_floor_area', 'assessed_value', 'land_value', 'improvement_value',
+        'tax_year', 'tax_amount', 'last_sale_date', 'last_sale_price',
+        'deed_book', 'deed_page', 'subdivision', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Allegheny County, PA (via PASDA — Pennsylvania Spatial Data Access)',
+        url:     'https://www.alleghenycounty.us/Government/Department-Directory/Geographic-Information-Systems-GIS',
+        portal:  'https://www.pasda.psu.edu/uci/DataSummary.aspx?dataset=1214',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Pittsburgh metro — Pennsylvania data center market. The county’s own ArcGIS Server (maps.pasda.psu.edu’s AlleghenyCountyParcels service) was unreachable (ArcGIS "not started" on repeated retries); this uses a currently-dated parcels layer found in PASDA’s own regional mirror instead. Only boundary/identifier data is exposed here; Allegheny County’s Real Estate/CAMA assessment data lives in a separate, not-yet-confirmed system.',
+      },
+    },
+
   };
 
   function get(fips) {
