@@ -339,7 +339,23 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   legitimate option, not a fabrication. Added with 16 real fields +
   computed county_fips (17/30) — richer than Middlesex County NJ, the
   previous richest NJ addition. See Recently Completed below. Registry
-  now covers 39 jurisdictions.
+  now covers 39 jurisdictions. Collin County TX/Frisco-Plano-McKinney
+  (21 facilities, tied with Ada ID and Hudson NJ) was added next over
+  4 probe rounds: round 1 found Collin County's own DCAT feed dead but
+  surfaced two genuinely Collin-County-specific candidates (the
+  county's own GIS server and a "CCAD" feature service); round 2 found
+  the county's own GIS server unreachable but confirmed CCAD (Collin
+  Central Appraisal District — Texas counties don't self-assess, the
+  separate CAD does, same architecture as Tarrant and Bexar counties
+  earlier this session) as genuinely official via its own
+  copyrightText and description; round 3 probed CCAD's "Parcels"
+  sub-layer directly and found a rich 114-field schema, but its first
+  sample record was a null placeholder; round 4 queried for populated
+  records and confirmed real, sensible values (a real HCA Health
+  Services parcel in Plano, assessed at $2.6M). Added with 18 real
+  fields + computed county_fips (19/30) — the richest addition this
+  session, surpassing Hudson County NJ. See Recently Completed below.
+  Registry now covers 40 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1353,6 +1369,65 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Collin County, Texas (FIPS 48085, 21 facilities, tied
+  with Ada ID and Hudson NJ, Frisco/Plano/McKinney metro) to the
+  parcel registry, over four probe rounds.
+- Findings: Round 1 found Collin County's own open data portal DCAT
+  feed dead, but ArcGIS Online searches surfaced two genuinely
+  Collin-County-specific candidates (not same-name false positives):
+  the county's own GIS server (gis.collincountytx.gov) hosting a
+  "Parcels (Collin County, TX)" layer, and "CCAD Parcel Feature Set"
+  (CCAD = Collin Central Appraisal District). Round 2 found the
+  county's own GIS server unreachable ("fetch failed") but confirmed
+  CCAD as genuinely official via its copyrightText ("Collin Central
+  Appraisal District") and description (nightly-refreshed appraisal
+  data joined to the parcel layer) — Texas counties don't perform
+  property assessment themselves, the separate Central Appraisal
+  District does, the same architecture already seen for Tarrant and
+  Bexar counties this session. CCAD's FeatureServer has sub-layers
+  including id 4, "Parcels". Round 3 probed that layer directly and
+  found a rich 114-field schema (copyrightText "Collin Central
+  Appraisal District / https://collincad.org", description "Parcel
+  polygons maintained by Collin Central Appraisal District"), but its
+  unfiltered first sample record (OBJECTID 1) came back with nearly
+  every attribute null — a placeholder feature, not real data. Round 4
+  queried specifically for records with a populated owner name and
+  confirmed real, sensible values: a genuine HCA Health Services of
+  Texas Inc. parcel in Plano, 1.13 acres, built 1989, assessed at
+  $2,600,000.
+- Field mapping: 18 of 30 canonical fields mapped (parcel_id → geoID
+  [the CAD's public account/parcel number], pin → PROP_ID [internal
+  numeric key], owner → ownerName, address → situsConcat [a single
+  combined site-address field, unusually not split], land_use_code →
+  propUseCode, area_sqft → landSizeSqft, area_acres → landSizeAcres,
+  year_built → imprvYearBuilt, gross_floor_area → imprvMainArea,
+  assessed_value → currValAssessed, land_value → currValLand,
+  improvement_value → currValImprv, tax_year → currValYear,
+  last_sale_date → deedFileDate, deed_book → deedBook, deed_page →
+  deedPage, subdivision → legalAbsSubName, legal_desc →
+  legalDescription) plus county_fips (computed) — 19/30, the richest
+  addition this session, surpassing Hudson County NJ's 17/30. Owner
+  mailing address (ownerAddrLine1/Line2/City/State/Zip/Country) is
+  split across six fields with no single combined field, so
+  owner_mailing isn't mapped. No sale-price or tax-amount fields are
+  exposed in this schema (consistent with Texas not requiring sale
+  price disclosure — the same pattern seen for other Texas CAD sources
+  this session). The remaining 11 fields recorded in
+  `notProvidedBySource` — verified programmatically to cover all 30
+  canonical fields with zero gaps and zero overlaps.
+- Licensing: official Collin Central Appraisal District (CCAD)
+  government parcel data, hosted as an ArcGIS Online feature service.
+  Standard "public government data, verify terms before commercial
+  redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  based on the real confirmed HCA Health Services sample record
+  confirmed correct rendering of all 18 mapped fields plus computed
+  county_fips, and "Not published by this source" for the remaining
+  11, zero page errors. Registry now covers 40 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
