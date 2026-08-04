@@ -2458,6 +2458,51 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '12031': {
+      id:          'fl-duval-county',
+      name:        'Duval County, Florida',
+      state:       'FL',
+      fips:        '12031',
+      connector:   'arcgis',
+      serviceUrl:  'https://services1.arcgis.com/CtMjdUqInecbPao9/arcgis/rest/services/Jacksonville_Parcels/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:         'RE',
+        pin:               'RE_NOSPACE',
+        owner:             'LNAMEOWNER',
+        land_use_code:     'PUSE',
+        land_use_desc:     'DESCPU',
+        zoning_code:       'ZON_LABEL',
+        area_acres:        'ACRES',
+        building_count:    'NBBLDGS',
+        assessed_value:    'CAMA_VAL',
+        land_value:        'TOT_LND_VA',
+        improvement_value: 'TOT_IMPR_V',
+        subdivision:       'SUB_BLK',
+        county_fips:       '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner_mailing', 'zoning_desc', 'overlay_districts',
+        'area_sqft', 'lot_depth_ft', 'lot_width_ft', 'year_built',
+        'gross_floor_area', 'tax_year', 'tax_amount', 'last_sale_date',
+        'last_sale_price', 'deed_book', 'deed_page', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Duval County Property Appraiser (City of Jacksonville, Florida)',
+        url:     'https://www.coj.net/departments/property-appraiser',
+        portal:  'https://services1.arcgis.com/CtMjdUqInecbPao9/arcgis/rest/services/Jacksonville_Parcels/FeatureServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Jacksonville metro — Florida data center market. Jacksonville and Duval County are a consolidated city-county government. A second ArcGIS Online candidate, "Jacksonville Interactive Parcel Map_WFL1", turned out to be a false positive for Jacksonville, Oregon (its layer names reference an Urban Growth Boundary, an Oregon-specific land-use planning term) and was not used. Site address (ST_DIR/ST_NAME/ST_TYPE/STREET_NO/ADDRCITY), owner mailing address (MAILADDR1-3/MAILCITY/MAILSTATE/MAILZIP), last sale date (SALESLYY/SALESLMM/SALESLDD as three separate numeric fields), and legal description (LEGAL1-6) are all split across multiple source fields with no single combined field, so none of those are mapped.',
+      },
+    },
+
   };
 
   function get(fips) {

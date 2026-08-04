@@ -289,7 +289,16 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   (4/30), with DC's much richer 218-field CAMA/ITSPE data logged as a
   follow-up connector-enhancement opportunity (SSL-joined, same gap as
   Suffolk MA/Polk IA). See Recently Completed below. Registry now
-  covers 34 jurisdictions.
+  covers 34 jurisdictions. Duval County FL/Jacksonville (22
+  facilities) was added next over 3 probe rounds: round 1's DCAT
+  attempt failed to resolve entirely, round 2's ArcGIS Online fallback
+  caught a false positive (a same-named "Jacksonville" candidate that
+  was actually Jacksonville, Oregon, identified via its Oregon-
+  specific Urban Growth Boundary layer), and round 3 confirmed the
+  real candidate as a rich 76-field Duval County Property Appraiser
+  CAMA export. Added with 12 real fields + computed county_fips
+  (13/30). See Recently Completed below. Registry now covers 35
+  jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1303,6 +1312,50 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Duval County, Florida (FIPS 12031, 22 facilities,
+  Jacksonville) to the parcel registry, over three probe rounds.
+- Findings: Round 1's DCAT catalog attempt on the City of
+  Jacksonville's open data portal (data.coj.net) failed to resolve
+  entirely (DNS/fetch failure), so the round fell back to ArcGIS
+  Online's public item-search API, which surfaced two named
+  candidates: "Jacksonville Parcels" and "Jacksonville Interactive
+  Parcel Map_WFL1". Round 2 probed both services' layer catalogs and
+  caught a subtle false positive: the "Interactive Parcel Map"
+  candidate's layer names (`Jville_UGB`, `Jville_Comp_Plan`,
+  `Jville_Zones`) referenced an Urban Growth Boundary — a term
+  specific to Oregon-style land-use planning — revealing it was
+  actually Jacksonville, **Oregon** (a small town in Jackson County,
+  OR), not Jacksonville, FL; it was discarded. "Jacksonville Parcels"
+  confirmed as the real candidate: one real Polygon layer, explicitly
+  named `jackonsville-fl-parcels` [sic, the source's own typo]. Round
+  3 probed it directly and confirmed a rich 76-field Duval County
+  Property Appraiser CAMA export with real Polygon geometry.
+- Field mapping: 12 of 30 canonical fields mapped (parcel_id → RE,
+  pin → RE_NOSPACE, owner → LNAMEOWNER, land_use_code → PUSE,
+  land_use_desc → DESCPU, zoning_code → ZON_LABEL, area_acres → ACRES,
+  building_count → NBBLDGS, assessed_value → CAMA_VAL, land_value →
+  TOT_LND_VA, improvement_value → TOT_IMPR_V, subdivision → SUB_BLK)
+  plus county_fips (computed) — 13/30. Site address
+  (ST_DIR/ST_NAME/ST_TYPE/STREET_NO/ADDRCITY), owner mailing address
+  (MAILADDR1-3/MAILCITY/MAILSTATE/MAILZIP), last sale date
+  (SALESLYY/SALESLMM/SALESLDD as three separate numeric fields), and
+  legal description (LEGAL1-6) are all split across multiple source
+  fields with no single combined field, so none of those are mapped.
+  The remaining 17 fields recorded in `notProvidedBySource` — verified
+  programmatically to cover all 30 canonical fields with zero gaps and
+  zero overlaps.
+- Licensing: official Duval County Property Appraiser (City of
+  Jacksonville, Florida) data, hosted as an ArcGIS Online feature
+  service. Standard "public government data, verify terms before
+  commercial redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 12 mapped fields plus computed
+  county_fips, and "Not published by this source" for the remaining
+  17, zero page errors. Registry now covers 35 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
