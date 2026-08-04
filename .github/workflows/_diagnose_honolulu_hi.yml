@@ -28,3 +28,6 @@ jobs:
 
       - name: Probe Honolulu County HI candidates
         run: node data/diagnose_honolulu_hi.mjs
+
+      - name: Probe Honolulu County HI candidates (round 2)
+        run: node data/diagnose_honolulu_hi_r2.mjs
