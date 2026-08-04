@@ -384,6 +384,11 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   LIKE-query check proved Shelby's own data is not included in it
   (Shelby maintains an independent, non-federated assessor system);
   see Open Handoffs for the full trail. Registry remains at 41
+  jurisdictions. Washoe County NV/the Reno metro (19 facilities) was
+  investigated next and added within 2 probe rounds — the county's own
+  ArcGIS org publishes a rich, nightly-refreshed 71-field parcels
+  service, yielding an 19/30-field mapping (18 real fields), one of
+  the richest additions this session. Registry now covers 42
   jurisdictions.
 
 - Date: 2026-08-03
@@ -1442,6 +1447,48 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   rendering of all 4 mapped fields plus computed county_fips, and "Not
   published by this source" for the remaining 25, zero page errors.
   Registry now covers 41 jurisdictions.
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: After Shelby County TN closed unavailable (see Open Handoffs),
+  investigated the next entry in the facility-count priority queue:
+  Washoe County, Nevada (FIPS 32031, Reno/Sparks metro, 19 facilities).
+- Findings: The real service was found immediately in round 1 —
+  Washoe County's own open data portal (opendata.washoecounty.gov)
+  lists a "Parcels" dataset owned directly by the county's own ArcGIS
+  org ("washoe"), confirmed independently via ArcGIS Online search.
+  Round 2 confirmed the service is live, rich, and well-maintained:
+  71 fields, 194,061 records, a genuine nightly-refreshed feature
+  service with real assessed values, sale history, and zoning.
+- Added: `nv-washoe-county` with an 18-field mapping (parcel_id →
+  APN, pin → PIN, owner → LASTNAME [split from FIRSTNAME with no
+  combined field, so incomplete for individual owners but a real,
+  non-fabricated value], address → FullAddress, zoning_code → Zoning,
+  land_use_code → LAND_USE, area_acres → ACREAGE, year_built →
+  YEARBLT, gross_floor_area → SQFEET [building square footage, not
+  lot size — no lot-sqft field exists, only ACREAGE], assessed_value
+  → TOTALASS, land_value → LANDASS, improvement_value → BUILDASS,
+  tax_year → TAXYEAR, last_sale_date → SALEDATE, last_sale_price →
+  SALEPRICE, deed_book → BOOK, deed_page → PAGE, subdivision →
+  SUBNAME) plus county_fips (computed) — 19/30, one of the richest
+  additions this session alongside Collin County TX. owner_mailing is
+  left unmapped since MAILING1 alone (no city/state/zip) isn't a
+  usable address by itself, matching the same-discipline decision
+  applied to Hudson NJ's split mailing address. The remaining 11
+  fields recorded in `notProvidedBySource` — verified programmatically
+  to cover all 30 canonical fields with zero gaps and zero overlaps.
+- Licensing: official Washoe County Assessor/GIS data, published
+  directly by the county's own ArcGIS organization. Standard "public
+  government data, verify terms before commercial redistribution"
+  caveat applied.
+- Validation: field-mapping validation script confirmed zero
+  missing/extra/overlap against the 30 canonical fields. Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  based on a real confirmed sample record (parcel 001-020-01, owner
+  MONTOYA, 3943 Kings Row, Reno) confirmed correct rendering of all 18
+  mapped fields plus computed county_fips, and "Not published by this
+  source" for the remaining 11, zero page errors. Registry now covers
+  42 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
