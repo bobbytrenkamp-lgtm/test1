@@ -28,3 +28,6 @@ jobs:
 
       - name: Probe Jefferson County KY candidates
         run: node data/diagnose_jefferson_ky.mjs
+
+      - name: Probe Jefferson County KY candidates (round 2)
+        run: node data/diagnose_jefferson_ky_r2.mjs
