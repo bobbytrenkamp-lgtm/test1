@@ -1,0 +1,30 @@
+name: (temp) Diagnose Washoe County NV parcel service
+
+# Temporary, workflow_dispatch-only diagnostic for the next parcel-
+# expansion candidate: Washoe County NV (19 facilities, Reno metro),
+# the next uninvestigated entry in the facility-count priority list
+# after Shelby County TN (closed unavailable, 20 facilities).
+# Deleted once this is either added to the registry or documented as
+# unavailable.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe Washoe County NV candidates
+        run: node data/diagnose_washoe_nv.mjs
