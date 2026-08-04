@@ -34,3 +34,6 @@ jobs:
 
       - name: Probe DC candidates (round 3)
         run: node data/diagnose_dc_r3.mjs
+
+      - name: Probe DC candidates (round 4)
+        run: node data/diagnose_dc_r4.mjs
