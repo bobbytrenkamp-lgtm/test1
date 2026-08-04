@@ -1,0 +1,31 @@
+name: (temp) Diagnose New Castle County DE parcel service
+
+# Temporary, workflow_dispatch-only diagnostic for the next parcel-
+# expansion candidate: New Castle County DE (18 facilities,
+# Wilmington metro), the next uninvestigated entry in the
+# facility-count priority list after Laramie County WY (added, 43
+# jurisdictions).
+# Deleted once this is either added to the registry or documented as
+# unavailable.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe New Castle County DE candidates
+        run: node data/diagnose_newcastle_de.mjs
