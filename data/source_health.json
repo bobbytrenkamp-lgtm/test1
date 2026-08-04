@@ -1,16 +1,16 @@
 {
   "meta": {
     "description": "Source URL health status from the most recent pipeline run. Tracks reachability, HTTP status, and consecutive failure counts.",
-    "last_run": "2026-08-03T10:34:35.657236+00:00"
+    "last_run": "2026-08-04T09:35:16.651778+00:00"
   },
   "sources": {
     "ca-arb": {
       "source_id": "ca-arb",
       "url": "https://ww2.arb.ca.gov/",
-      "last_checked": "2026-08-03T10:34:24.742455+00:00",
+      "last_checked": "2026-08-04T09:34:54.654422+00:00",
       "http_status": 202,
       "reachable": true,
-      "response_ms": 347,
+      "response_ms": 232,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -18,10 +18,10 @@
     "ca-legislature": {
       "source_id": "ca-legislature",
       "url": "https://leginfo.legislature.ca.gov/",
-      "last_checked": "2026-08-03T10:34:24.739484+00:00",
+      "last_checked": "2026-08-04T09:34:54.796011+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 345,
+      "response_ms": 374,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -29,21 +29,21 @@
     "az-water-resources": {
       "source_id": "az-water-resources",
       "url": "https://www.azwater.gov/assured-and-adequate-water-supply",
-      "last_checked": "2026-08-03T10:34:24.672921+00:00",
+      "last_checked": "2026-08-04T09:34:54.611485+00:00",
       "http_status": null,
       "reachable": false,
-      "response_ms": 279,
+      "response_ms": 190,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 24
+      "consecutive_failures": 25
     },
     "az-maricopa-board": {
       "source_id": "az-maricopa-board",
       "url": "https://www.maricopa.gov/224/Board-of-Supervisors",
-      "last_checked": "2026-08-03T10:34:25.491951+00:00",
+      "last_checked": "2026-08-04T09:34:55.455190+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 1098,
+      "response_ms": 1034,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -51,10 +51,10 @@
     "ca-alameda-planning": {
       "source_id": "ca-alameda-planning",
       "url": "https://www.acgov.org/cda/planning/generalplans/",
-      "last_checked": "2026-08-03T10:34:25.110272+00:00",
+      "last_checked": "2026-08-04T09:34:54.992305+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 436,
+      "response_ms": 379,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -62,21 +62,21 @@
     "ca-santaclara-oes": {
       "source_id": "ca-santaclara-oes",
       "url": "https://sustainability.santaclaracounty.gov/climate-change/climate-action-planning",
-      "last_checked": "2026-08-03T10:34:24.999321+00:00",
+      "last_checked": "2026-08-04T09:34:54.960878+00:00",
       "http_status": null,
       "reachable": false,
-      "response_ms": 175,
+      "response_ms": 163,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 24
+      "consecutive_failures": 25
     },
     "ca-sf-bos": {
       "source_id": "ca-sf-bos",
       "url": "https://sfbos.org/",
-      "last_checked": "2026-08-03T10:34:25.212701+00:00",
+      "last_checked": "2026-08-04T09:34:55.080164+00:00",
       "http_status": 202,
       "reachable": true,
-      "response_ms": 469,
+      "response_ms": 301,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -84,10 +84,10 @@
     "az-pima-board": {
       "source_id": "az-pima-board",
       "url": "https://www.pima.gov/1567/Board-of-Supervisors",
-      "last_checked": "2026-08-03T10:34:24.822338+00:00",
+      "last_checked": "2026-08-04T09:34:54.777798+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 428,
+      "response_ms": 356,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -95,10 +95,10 @@
     "az-pinal-board": {
       "source_id": "az-pinal-board",
       "url": "https://www.pinal.gov/374/Board-of-Supervisors",
-      "last_checked": "2026-08-03T10:34:25.023380+00:00",
+      "last_checked": "2026-08-04T09:34:55.232619+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 629,
+      "response_ms": 811,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -106,10 +106,10 @@
     "co-jefferson-board": {
       "source_id": "co-jefferson-board",
       "url": "https://www.jeffco.us/4864/Board-of-County-Commissioners",
-      "last_checked": "2026-08-03T10:34:26.024408+00:00",
+      "last_checked": "2026-08-04T09:34:56.164546+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 1000,
+      "response_ms": 1171,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -117,10 +117,10 @@
     "ca-cpuc": {
       "source_id": "ca-cpuc",
       "url": "https://www.cpuc.ca.gov/news-and-updates/all-news/cpuc-streamlines-electric-grid-connections-for-high-energy-users-like-data-centers-and-ev-chargers",
-      "last_checked": "2026-08-03T10:34:25.151828+00:00",
+      "last_checked": "2026-08-04T09:34:59.405853+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 756,
+      "response_ms": 4978,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -128,21 +128,21 @@
     "ct-legislature": {
       "source_id": "ct-legislature",
       "url": "https://www.cga.ct.gov/",
-      "last_checked": "2026-08-03T10:34:25.185664+00:00",
+      "last_checked": "2026-08-04T09:34:55.153206+00:00",
       "http_status": null,
       "reachable": false,
-      "response_ms": 74,
+      "response_ms": 72,
       "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
       "robots_allowed": true,
-      "consecutive_failures": 24
+      "consecutive_failures": 25
     },
     "ga-clayton-commissioners": {
       "source_id": "ga-clayton-commissioners",
       "url": "https://www.claytoncountyga.gov/government/board-of-commissioners",
-      "last_checked": "2026-08-03T10:34:25.544565+00:00",
+      "last_checked": "2026-08-04T09:34:55.636000+00:00",
       "http_status": 307,
       "reachable": true,
-      "response_ms": 228,
+      "response_ms": 221,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -150,10 +150,10 @@
     "co-denver-cpd": {
       "source_id": "co-denver-cpd",
       "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Community-Planning-and-Development",
-      "last_checked": "2026-08-03T10:34:25.800322+00:00",
+      "last_checked": "2026-08-04T09:34:55.779836+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 800,
+      "response_ms": 818,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -161,10 +161,10 @@
     "ga-legislature": {
       "source_id": "ga-legislature",
       "url": "https://www.legis.ga.gov/",
-      "last_checked": "2026-08-03T10:34:25.326967+00:00",
+      "last_checked": "2026-08-04T09:34:55.382975+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 140,
+      "response_ms": 149,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -172,10 +172,10 @@
     "ga-dekalb-commissioners": {
       "source_id": "ga-dekalb-commissioners",
       "url": "https://dekalbcountyga.gov/government/board-of-commissioners",
-      "last_checked": "2026-08-03T10:34:25.470628+00:00",
+      "last_checked": "2026-08-04T09:34:55.581008+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 142,
+      "response_ms": 124,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -183,10 +183,10 @@
     "ga-dor-datacenter": {
       "source_id": "ga-dor-datacenter",
       "url": "https://dor.georgia.gov/high-technology-data-center-equipment-exemption",
-      "last_checked": "2026-08-03T10:34:25.315453+00:00",
+      "last_checked": "2026-08-04T09:34:55.471199+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 101,
+      "response_ms": 87,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -194,10 +194,10 @@
     "az-legislature": {
       "source_id": "az-legislature",
       "url": "https://www.azleg.gov/",
-      "last_checked": "2026-08-03T10:34:25.848472+00:00",
+      "last_checked": "2026-08-04T09:34:55.598040+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 1456,
+      "response_ms": 1178,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -205,10 +205,10 @@
     "co-legislature": {
       "source_id": "co-legislature",
       "url": "https://leg.colorado.gov/",
-      "last_checked": "2026-08-03T10:34:25.384855+00:00",
+      "last_checked": "2026-08-04T09:34:55.413662+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 414,
+      "response_ms": 509,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -216,10 +216,10 @@
     "in-legislature": {
       "source_id": "in-legislature",
       "url": "https://iga.in.gov/",
-      "last_checked": "2026-08-03T10:34:25.750086+00:00",
+      "last_checked": "2026-08-04T09:34:55.810301+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 138,
+      "response_ms": 77,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -227,10 +227,10 @@
     "il-legislature": {
       "source_id": "il-legislature",
       "url": "https://www.ilga.gov/",
-      "last_checked": "2026-08-03T10:34:25.738223+00:00",
+      "last_checked": "2026-08-04T09:34:55.849787+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 192,
+      "response_ms": 212,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -238,10 +238,10 @@
     "ga-gwinnett-board": {
       "source_id": "ga-gwinnett-board",
       "url": "https://www.gwinnettcounty.com/web/gwinnett/departments/boardofcommissioners",
-      "last_checked": "2026-08-03T10:34:25.679034+00:00",
+      "last_checked": "2026-08-04T09:34:55.731867+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 186,
+      "response_ms": 133,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -249,10 +249,10 @@
     "ca-la-planning": {
       "source_id": "ca-la-planning",
       "url": "https://planning.lacounty.gov/long-range-planning/general-plan/",
-      "last_checked": "2026-08-03T10:34:24.969047+00:00",
+      "last_checked": "2026-08-04T09:34:54.903620+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 228,
+      "response_ms": 248,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -260,10 +260,10 @@
     "ga-troup-commission": {
       "source_id": "ga-troup-commission",
       "url": "https://www.troupcountyga.gov/",
-      "last_checked": "2026-08-03T10:34:25.610639+00:00",
+      "last_checked": "2026-08-04T09:34:55.666538+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 224,
+      "response_ms": 194,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -271,10 +271,10 @@
     "ia-dubuque-board": {
       "source_id": "ia-dubuque-board",
       "url": "https://www.dubuquecountyiowa.gov/290/Board-of-Supervisors",
-      "last_checked": "2026-08-03T10:34:26.436372+00:00",
+      "last_checked": "2026-08-04T09:34:56.305893+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 586,
+      "response_ms": 455,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -282,10 +282,10 @@
     "il-mclean-board": {
       "source_id": "il-mclean-board",
       "url": "https://www.mcleancountyil.gov/",
-      "last_checked": "2026-08-03T10:34:25.921429+00:00",
+      "last_checked": "2026-08-04T09:34:56.178517+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 333,
+      "response_ms": 510,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -293,10 +293,10 @@
     "ia-legislature": {
       "source_id": "ia-legislature",
       "url": "https://www.legis.iowa.gov/",
-      "last_checked": "2026-08-03T10:34:26.057721+00:00",
+      "last_checked": "2026-08-04T09:34:56.039330+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 306,
+      "response_ms": 258,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -304,10 +304,10 @@
     "in-marion-board": {
       "source_id": "in-marion-board",
       "url": "https://www.indy.gov/agency/city-county-council",
-      "last_checked": "2026-08-03T10:34:26.130762+00:00",
+      "last_checked": "2026-08-04T09:34:56.104007+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 391,
+      "response_ms": 363,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -315,10 +315,10 @@
     "in-iedc": {
       "source_id": "in-iedc",
       "url": "https://iedc.in.gov/",
-      "last_checked": "2026-08-03T10:34:25.909412+00:00",
+      "last_checked": "2026-08-04T09:34:55.930849+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 229,
+      "response_ms": 191,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -326,10 +326,10 @@
     "ia-datacenter-exemption": {
       "source_id": "ia-datacenter-exemption",
       "url": "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=423&session=90",
-      "last_checked": "2026-08-03T10:34:26.070659+00:00",
+      "last_checked": "2026-08-04T09:34:56.048015+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 269,
+      "response_ms": 236,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -337,10 +337,10 @@
     "la-legislature": {
       "source_id": "la-legislature",
       "url": "https://www.legis.la.gov/",
-      "last_checked": "2026-08-03T10:34:26.217113+00:00",
+      "last_checked": "2026-08-04T09:34:56.167000+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 306,
+      "response_ms": 234,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -348,10 +348,10 @@
     "la-led-itep": {
       "source_id": "la-led-itep",
       "url": "https://www.opportunitylouisiana.gov/business-incentives/industrial-tax-exemption",
-      "last_checked": "2026-08-03T10:34:26.310967+00:00",
+      "last_checked": "2026-08-04T09:34:56.636619+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 388,
+      "response_ms": 596,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -359,10 +359,10 @@
     "ga-fulton-board": {
       "source_id": "ga-fulton-board",
       "url": "https://fultoncountyga.gov/commissioners",
-      "last_checked": "2026-08-03T10:34:25.586427+00:00",
+      "last_checked": "2026-08-04T09:34:55.739802+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 114,
+      "response_ms": 157,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -370,10 +370,10 @@
     "md-legislature": {
       "source_id": "md-legislature",
       "url": "https://mgaleg.maryland.gov/",
-      "last_checked": "2026-08-03T10:34:26.100883+00:00",
+      "last_checked": "2026-08-04T09:34:56.175101+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 75,
+      "response_ms": 70,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -381,10 +381,10 @@
     "mi-kalamazoo-board": {
       "source_id": "mi-kalamazoo-board",
       "url": "https://www.kalcounty.gov/479/Board-of-Commissioners",
-      "last_checked": "2026-08-03T10:34:26.509250+00:00",
+      "last_checked": "2026-08-04T09:34:56.665767+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 407,
+      "response_ms": 486,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -392,282 +392,7 @@
     "md-montgomery-council": {
       "source_id": "md-montgomery-council",
       "url": "https://www.montgomerycountymd.gov/council/",
-      "last_checked": "2026-08-03T10:34:26.434837+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 382,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "ma-legislature": {
-      "source_id": "ma-legislature",
-      "url": "https://malegislature.gov/",
-      "last_checked": "2026-08-03T10:34:26.050885+00:00",
-      "http_status": 500,
-      "reachable": false,
-      "response_ms": 97,
-      "error": "HTTP Error 500: Internal Server Error",
-      "robots_allowed": true,
-      "consecutive_failures": 1
-    },
-    "mn-hennepin-council": {
-      "source_id": "mn-hennepin-council",
-      "url": "https://www.minneapolismn.gov/government/departments/clerk/legislative/",
-      "last_checked": "2026-08-03T10:34:26.488573+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 176,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "ct-opm": {
-      "source_id": "ct-opm",
-      "url": "https://portal.ct.gov/OPM",
-      "last_checked": "2026-08-03T10:34:25.952189+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 799,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "mi-mpsc": {
-      "source_id": "mi-mpsc",
-      "url": "https://www.michigan.gov/mpsc",
-      "last_checked": "2026-08-03T10:34:26.485630+00:00",
-      "http_status": null,
-      "reachable": false,
-      "response_ms": 266,
-      "error": "HTTP Error 403: Forbidden",
-      "robots_allowed": true,
-      "consecutive_failures": 24
-    },
-    "mn-legislature": {
-      "source_id": "mn-legislature",
-      "url": "https://www.revisor.mn.gov/",
-      "last_checked": "2026-08-03T10:34:26.519447+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 266,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "nv-legislature": {
-      "source_id": "nv-legislature",
-      "url": "https://www.leg.state.nv.us/",
-      "last_checked": "2026-08-03T10:34:26.679426+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 169,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "ne-legislature": {
-      "source_id": "ne-legislature",
-      "url": "https://nebraskalegislature.gov/",
-      "last_checked": "2026-08-03T10:34:27.342720+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 853,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "mi-washtenaw-board": {
-      "source_id": "mi-washtenaw-board",
-      "url": "https://www.washtenaw.org/gov/boc/",
-      "last_checked": "2026-08-03T10:34:26.771076+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 639,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "nv-washoe-commissioners": {
-      "source_id": "nv-washoe-commissioners",
-      "url": "https://www.washoecounty.gov/bcc/",
-      "last_checked": "2026-08-03T10:34:27.001888+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 321,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "nv-goed-datacenter": {
-      "source_id": "nv-goed-datacenter",
-      "url": "https://goed.nv.gov/incentives/",
-      "last_checked": "2026-08-03T10:34:27.077039+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 556,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "nj-dep": {
-      "source_id": "nj-dep",
-      "url": "https://www.nj.gov/dep/",
-      "last_checked": "2026-08-03T10:34:27.011023+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 122,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "nj-legislature": {
-      "source_id": "nj-legislature",
-      "url": "https://www.njleg.state.nj.us/",
-      "last_checked": "2026-08-03T10:34:26.887588+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 115,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "ny-senate": {
-      "source_id": "ny-senate",
-      "url": "https://www.nysenate.gov/",
-      "last_checked": "2026-08-03T10:34:27.259984+00:00",
-      "http_status": null,
-      "reachable": false,
-      "response_ms": 256,
-      "error": "HTTP Error 403: Forbidden",
-      "robots_allowed": true,
-      "consecutive_failures": 24
-    },
-    "ny-nyc-mocej": {
-      "source_id": "ny-nyc-mocej",
-      "url": "https://www.nyc.gov/site/mocej/index.page",
-      "last_checked": "2026-08-03T10:34:27.165530+00:00",
-      "http_status": null,
-      "reachable": false,
-      "response_ms": 86,
-      "error": "HTTP Error 403: Forbidden",
-      "robots_allowed": true,
-      "consecutive_failures": 24
-    },
-    "ny-local-law-97": {
-      "source_id": "ny-local-law-97",
-      "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page",
-      "last_checked": "2026-08-03T10:34:27.147000+00:00",
-      "http_status": null,
-      "reachable": false,
-      "response_ms": 134,
-      "error": "HTTP Error 403: Forbidden",
-      "robots_allowed": true,
-      "consecutive_failures": 24
-    },
-    "ny-climate-clcpa": {
-      "source_id": "ny-climate-clcpa",
-      "url": "https://www.nysenate.gov/legislation/bills/2019/S6599",
-      "last_checked": "2026-08-03T10:34:27.263903+00:00",
-      "http_status": null,
-      "reachable": false,
-      "response_ms": 96,
-      "error": "HTTP Error 403: Forbidden",
-      "robots_allowed": true,
-      "consecutive_failures": 24
-    },
-    "md-pgc-zoning": {
-      "source_id": "md-pgc-zoning",
-      "url": "https://www.pgplanning.org/",
-      "last_checked": "2026-08-03T10:34:27.903477+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 1844,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "nc-legislature": {
-      "source_id": "nc-legislature",
-      "url": "https://www.ncleg.gov/",
-      "last_checked": "2026-08-03T10:34:27.658994+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 397,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "nc-rowan-commissioners": {
-      "source_id": "nc-rowan-commissioners",
-      "url": "https://www.rowancountync.gov/511/Board-of-Commissioners",
-      "last_checked": "2026-08-03T10:34:28.011478+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 351,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "nc-orange-commissioners": {
-      "source_id": "nc-orange-commissioners",
-      "url": "https://www.orangecountync.gov/953/Board-of-County-Commissioners-BOCC",
-      "last_checked": "2026-08-03T10:34:27.734205+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 390,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "nc-chatham-commissioners": {
-      "source_id": "nc-chatham-commissioners",
-      "url": "https://www.chathamcountync.gov/government/board-of-commissioners",
-      "last_checked": "2026-08-03T10:34:27.785519+00:00",
-      "http_status": null,
-      "reachable": false,
-      "response_ms": 519,
-      "error": "HTTP Error 403: Forbidden",
-      "robots_allowed": true,
-      "consecutive_failures": 24
-    },
-    "ny-clinton-citycouncil": {
-      "source_id": "ny-clinton-citycouncil",
-      "url": "https://www.cityofplattsburgh-ny.gov/boards-committees-commissions/common-council",
-      "last_checked": "2026-08-03T10:34:31.238148+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 4090,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "nc-durham-commissioners": {
-      "source_id": "nc-durham-commissioners",
-      "url": "https://dconc.gov/Board-of-Commissioners",
-      "last_checked": "2026-08-03T10:34:27.943850+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 121,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "nc-mecklenburg-commissioners": {
-      "source_id": "nc-mecklenburg-commissioners",
-      "url": "https://bocc.mecknc.gov/",
-      "last_checked": "2026-08-03T10:34:27.821432+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 86,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "nc-wake-commissioners": {
-      "source_id": "nc-wake-commissioners",
-      "url": "https://www.wake.gov/departments-government/board-commissioners",
-      "last_checked": "2026-08-03T10:34:27.995589+00:00",
+      "last_checked": "2026-08-04T09:34:56.375240+00:00",
       "http_status": 200,
       "reachable": true,
       "response_ms": 209,
@@ -675,24 +400,299 @@
       "robots_allowed": true,
       "consecutive_failures": 0
     },
+    "ma-legislature": {
+      "source_id": "ma-legislature",
+      "url": "https://malegislature.gov/",
+      "last_checked": "2026-08-04T09:34:56.377412+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 328,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "mn-hennepin-council": {
+      "source_id": "mn-hennepin-council",
+      "url": "https://www.minneapolismn.gov/government/departments/clerk/legislative/",
+      "last_checked": "2026-08-04T09:34:56.484312+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 106,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "ct-opm": {
+      "source_id": "ct-opm",
+      "url": "https://portal.ct.gov/OPM",
+      "last_checked": "2026-08-04T09:34:55.738216+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 584,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "mi-mpsc": {
+      "source_id": "mi-mpsc",
+      "url": "https://www.michigan.gov/mpsc",
+      "last_checked": "2026-08-04T09:34:56.463417+00:00",
+      "http_status": null,
+      "reachable": false,
+      "response_ms": 119,
+      "error": "HTTP Error 403: Forbidden",
+      "robots_allowed": true,
+      "consecutive_failures": 25
+    },
+    "mn-legislature": {
+      "source_id": "mn-legislature",
+      "url": "https://www.revisor.mn.gov/",
+      "last_checked": "2026-08-04T09:34:56.617094+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 240,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "nv-legislature": {
+      "source_id": "nv-legislature",
+      "url": "https://www.leg.state.nv.us/",
+      "last_checked": "2026-08-04T09:34:56.796681+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 129,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "ne-legislature": {
+      "source_id": "ne-legislature",
+      "url": "https://nebraskalegislature.gov/",
+      "last_checked": "2026-08-04T09:34:57.536972+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 899,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "mi-washtenaw-board": {
+      "source_id": "mi-washtenaw-board",
+      "url": "https://www.washtenaw.org/gov/boc/",
+      "last_checked": "2026-08-04T09:34:57.110087+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 803,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "nv-washoe-commissioners": {
+      "source_id": "nv-washoe-commissioners",
+      "url": "https://www.washoecounty.gov/bcc/",
+      "last_checked": "2026-08-04T09:34:57.736254+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 625,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "nv-goed-datacenter": {
+      "source_id": "nv-goed-datacenter",
+      "url": "https://goed.nv.gov/incentives/",
+      "last_checked": "2026-08-04T09:34:57.792318+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 994,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "nj-dep": {
+      "source_id": "nj-dep",
+      "url": "https://www.nj.gov/dep/",
+      "last_checked": "2026-08-04T09:34:57.754544+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 74,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "nj-legislature": {
+      "source_id": "nj-legislature",
+      "url": "https://www.njleg.state.nj.us/",
+      "last_checked": "2026-08-04T09:34:57.678906+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 140,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "ny-senate": {
+      "source_id": "ny-senate",
+      "url": "https://www.nysenate.gov/",
+      "last_checked": "2026-08-04T09:34:57.881003+00:00",
+      "http_status": null,
+      "reachable": false,
+      "response_ms": 143,
+      "error": "HTTP Error 403: Forbidden",
+      "robots_allowed": true,
+      "consecutive_failures": 25
+    },
+    "ny-nyc-mocej": {
+      "source_id": "ny-nyc-mocej",
+      "url": "https://www.nyc.gov/site/mocej/index.page",
+      "last_checked": "2026-08-04T09:34:57.876994+00:00",
+      "http_status": null,
+      "reachable": false,
+      "response_ms": 104,
+      "error": "HTTP Error 403: Forbidden",
+      "robots_allowed": true,
+      "consecutive_failures": 25
+    },
+    "ny-local-law-97": {
+      "source_id": "ny-local-law-97",
+      "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page",
+      "last_checked": "2026-08-04T09:34:57.885997+00:00",
+      "http_status": null,
+      "reachable": false,
+      "response_ms": 129,
+      "error": "HTTP Error 403: Forbidden",
+      "robots_allowed": true,
+      "consecutive_failures": 25
+    },
+    "ny-climate-clcpa": {
+      "source_id": "ny-climate-clcpa",
+      "url": "https://www.nysenate.gov/legislation/bills/2019/S6599",
+      "last_checked": "2026-08-04T09:34:57.948786+00:00",
+      "http_status": null,
+      "reachable": false,
+      "response_ms": 70,
+      "error": "HTTP Error 403: Forbidden",
+      "robots_allowed": true,
+      "consecutive_failures": 25
+    },
+    "md-pgc-zoning": {
+      "source_id": "md-pgc-zoning",
+      "url": "https://www.pgplanning.org/",
+      "last_checked": "2026-08-04T09:34:58.230650+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 2062,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "nc-legislature": {
+      "source_id": "nc-legislature",
+      "url": "https://www.ncleg.gov/",
+      "last_checked": "2026-08-04T09:34:58.075908+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 193,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "nc-rowan-commissioners": {
+      "source_id": "nc-rowan-commissioners",
+      "url": "https://www.rowancountync.gov/511/Board-of-Commissioners",
+      "last_checked": "2026-08-04T09:34:58.389003+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 311,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "nc-orange-commissioners": {
+      "source_id": "nc-orange-commissioners",
+      "url": "https://www.orangecountync.gov/953/Board-of-County-Commissioners-BOCC",
+      "last_checked": "2026-08-04T09:34:58.387350+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 437,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "nc-chatham-commissioners": {
+      "source_id": "nc-chatham-commissioners",
+      "url": "https://www.chathamcountync.gov/government/board-of-commissioners",
+      "last_checked": "2026-08-04T09:34:58.150768+00:00",
+      "http_status": null,
+      "reachable": false,
+      "response_ms": 263,
+      "error": "HTTP Error 403: Forbidden",
+      "robots_allowed": true,
+      "consecutive_failures": 25
+    },
+    "ny-clinton-citycouncil": {
+      "source_id": "ny-clinton-citycouncil",
+      "url": "https://www.cityofplattsburgh-ny.gov/boards-committees-commissions/common-council",
+      "last_checked": "2026-08-04T09:34:59.630739+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 1837,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "nc-durham-commissioners": {
+      "source_id": "nc-durham-commissioners",
+      "url": "https://dconc.gov/Board-of-Commissioners",
+      "last_checked": "2026-08-04T09:34:58.383896+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 152,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "nc-mecklenburg-commissioners": {
+      "source_id": "nc-mecklenburg-commissioners",
+      "url": "https://bocc.mecknc.gov/",
+      "last_checked": "2026-08-04T09:34:58.217637+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 65,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "nc-wake-commissioners": {
+      "source_id": "nc-wake-commissioners",
+      "url": "https://www.wake.gov/departments-government/board-commissioners",
+      "last_checked": "2026-08-04T09:34:58.450325+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 231,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
     "oh-legislature": {
       "source_id": "oh-legislature",
       "url": "https://www.legislature.ohio.gov/",
-      "last_checked": "2026-08-03T10:34:28.082367+00:00",
+      "last_checked": "2026-08-04T09:34:58.606929+00:00",
       "http_status": null,
       "reachable": false,
-      "response_ms": 236,
+      "response_ms": 222,
       "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
       "robots_allowed": true,
-      "consecutive_failures": 24
+      "consecutive_failures": 25
     },
     "or-legislature": {
       "source_id": "or-legislature",
       "url": "https://www.oregonlegislature.gov/",
-      "last_checked": "2026-08-03T10:34:28.933257+00:00",
+      "last_checked": "2026-08-04T09:34:59.534252+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 988,
+      "response_ms": 1144,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -700,32 +700,32 @@
     "oh-development-datacenter": {
       "source_id": "oh-development-datacenter",
       "url": "https://development.ohio.gov/",
-      "last_checked": "2026-08-03T10:34:28.172952+00:00",
-      "http_status": 404,
-      "reachable": false,
-      "response_ms": 268,
-      "error": "HTTP Error 404: Not Found",
+      "last_checked": "2026-08-04T09:35:00.212238+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 1823,
+      "error": null,
       "robots_allowed": true,
-      "consecutive_failures": 1
+      "consecutive_failures": 0
     },
     "ferc-order-2023": {
       "source_id": "ferc-order-2023",
       "url": "https://www.ferc.gov/explainer-interconnection-final-rule",
-      "last_checked": "2026-08-03T10:34:28.300953+00:00",
+      "last_checked": "2026-08-04T09:34:59.468962+00:00",
       "http_status": null,
       "reachable": false,
-      "response_ms": 126,
+      "response_ms": 191,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 24
+      "consecutive_failures": 25
     },
     "ri-legislature": {
       "source_id": "ri-legislature",
       "url": "https://www.rilegislature.gov/",
-      "last_checked": "2026-08-03T10:34:28.679620+00:00",
+      "last_checked": "2026-08-04T09:34:59.703155+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 377,
+      "response_ms": 296,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -733,10 +733,10 @@
     "or-hoodriver-land-use": {
       "source_id": "or-hoodriver-land-use",
       "url": "https://www.hoodrivercounty.gov/boardofcommissioners",
-      "last_checked": "2026-08-03T10:34:28.328397+00:00",
+      "last_checked": "2026-08-04T09:34:58.765906+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 331,
+      "response_ms": 314,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -744,10 +744,10 @@
     "sc-legislature": {
       "source_id": "sc-legislature",
       "url": "https://www.scstatehouse.gov/",
-      "last_checked": "2026-08-03T10:34:28.733272+00:00",
+      "last_checked": "2026-08-04T09:34:59.620012+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 105,
+      "response_ms": 84,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -755,10 +755,10 @@
     "sc-dor-datacenter": {
       "source_id": "sc-dor-datacenter",
       "url": "https://dor.sc.gov/sales-use-tax-index/sales-tax-exemptions",
-      "last_checked": "2026-08-03T10:34:28.938741+00:00",
+      "last_checked": "2026-08-04T09:34:59.737837+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 257,
+      "response_ms": 116,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -766,10 +766,10 @@
     "tn-legislature": {
       "source_id": "tn-legislature",
       "url": "https://www.capitol.tn.gov/",
-      "last_checked": "2026-08-03T10:34:28.900624+00:00",
+      "last_checked": "2026-08-04T09:34:59.788672+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 166,
+      "response_ms": 157,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -777,21 +777,21 @@
     "ri-smithfield-council": {
       "source_id": "ri-smithfield-council",
       "url": "https://www.smithfieldri.gov/government/government-officials",
-      "last_checked": "2026-08-03T10:34:29.096448+00:00",
+      "last_checked": "2026-08-04T09:34:59.698983+00:00",
       "http_status": null,
       "reachable": false,
-      "response_ms": 765,
+      "response_ms": 228,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 24
+      "consecutive_failures": 25
     },
     "or-business-oregon": {
       "source_id": "or-business-oregon",
       "url": "https://www.oregon4biz.com/",
-      "last_checked": "2026-08-03T10:34:29.350502+00:00",
+      "last_checked": "2026-08-04T09:35:00.100968+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 1337,
+      "response_ms": 1493,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -799,10 +799,10 @@
     "tn-davidson-council": {
       "source_id": "tn-davidson-council",
       "url": "https://www.nashville.gov/departments/council",
-      "last_checked": "2026-08-03T10:34:29.132606+00:00",
+      "last_checked": "2026-08-04T09:35:00.050508+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 198,
+      "response_ms": 346,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -810,10 +810,10 @@
     "pa-legislature": {
       "source_id": "pa-legislature",
       "url": "https://www.legis.state.pa.us/",
-      "last_checked": "2026-08-03T10:34:28.626671+00:00",
+      "last_checked": "2026-08-04T09:34:59.275875+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 543,
+      "response_ms": 508,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -821,21 +821,21 @@
     "tx-legislature": {
       "source_id": "tx-legislature",
       "url": "https://capitol.texas.gov/",
-      "last_checked": "2026-08-03T10:34:29.418565+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 308,
-      "error": null,
+      "last_checked": "2026-08-04T09:35:00.148058+00:00",
+      "http_status": null,
+      "reachable": false,
+      "response_ms": 329,
+      "error": "<urlopen error [Errno 111] Connection refused>",
       "robots_allowed": true,
-      "consecutive_failures": 0
+      "consecutive_failures": 1
     },
     "tn-washington-commission": {
       "source_id": "tn-washington-commission",
       "url": "https://www.washingtoncountytn.org/208/County-Commission",
-      "last_checked": "2026-08-03T10:34:29.551095+00:00",
+      "last_checked": "2026-08-04T09:35:00.207288+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 453,
+      "response_ms": 417,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -843,95 +843,7 @@
     "tn-hamilton-commission": {
       "source_id": "tn-hamilton-commission",
       "url": "https://www.hamiltontn.gov/",
-      "last_checked": "2026-08-03T10:34:29.109390+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 169,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "tx-ercot": {
-      "source_id": "tx-ercot",
-      "url": "https://www.ercot.com/",
-      "last_checked": "2026-08-03T10:34:29.544399+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 410,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "tn-anderson-commission": {
-      "source_id": "tn-anderson-commission",
-      "url": "https://www.andersoncountytn.gov/",
-      "last_checked": "2026-08-03T10:34:30.291631+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 1390,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "tx-collin-commissioners": {
-      "source_id": "tx-collin-commissioners",
-      "url": "https://www.collincountytx.gov/government/commissioners-court",
-      "last_checked": "2026-08-03T10:34:29.542573+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 123,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "ut-legislature": {
-      "source_id": "ut-legislature",
-      "url": "https://le.utah.gov/",
-      "last_checked": "2026-08-03T10:34:29.836011+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 284,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "tx-travis-council": {
-      "source_id": "tx-travis-council",
-      "url": "https://www.austintexas.gov/department/city-council",
-      "last_checked": "2026-08-03T10:34:30.325212+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 779,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "ut-iron-commission": {
-      "source_id": "ut-iron-commission",
-      "url": "https://ironcountyut.gov/commission",
-      "last_checked": "2026-08-03T10:34:30.112871+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 275,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "tx-dallas-commissioners": {
-      "source_id": "tx-dallas-commissioners",
-      "url": "https://www.dallascounty.org/government/comcrt/",
-      "last_checked": "2026-08-03T10:34:29.959945+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 416,
-      "error": null,
-      "robots_allowed": true,
-      "consecutive_failures": 0
-    },
-    "va-legislature": {
-      "source_id": "va-legislature",
-      "url": "https://lis.virginia.gov/",
-      "last_checked": "2026-08-03T10:34:30.040067+00:00",
+      "last_checked": "2026-08-04T09:34:59.817914+00:00",
       "http_status": 200,
       "reachable": true,
       "response_ms": 79,
@@ -939,13 +851,101 @@
       "robots_allowed": true,
       "consecutive_failures": 0
     },
+    "tx-ercot": {
+      "source_id": "tx-ercot",
+      "url": "https://www.ercot.com/",
+      "last_checked": "2026-08-04T09:35:00.877543+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 826,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "tn-anderson-commission": {
+      "source_id": "tn-anderson-commission",
+      "url": "https://www.andersoncountytn.gov/",
+      "last_checked": "2026-08-04T09:35:00.972212+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 1272,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "tx-collin-commissioners": {
+      "source_id": "tx-collin-commissioners",
+      "url": "https://www.collincountytx.gov/government/commissioners-court",
+      "last_checked": "2026-08-04T09:35:00.707340+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 558,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "ut-legislature": {
+      "source_id": "ut-legislature",
+      "url": "https://le.utah.gov/",
+      "last_checked": "2026-08-04T09:35:00.542137+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 257,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "tx-travis-council": {
+      "source_id": "tx-travis-council",
+      "url": "https://www.austintexas.gov/department/city-council",
+      "last_checked": "2026-08-04T09:35:01.024426+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 811,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "ut-iron-commission": {
+      "source_id": "ut-iron-commission",
+      "url": "https://ironcountyut.gov/commission",
+      "last_checked": "2026-08-04T09:35:00.795800+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 252,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "tx-dallas-commissioners": {
+      "source_id": "tx-dallas-commissioners",
+      "url": "https://www.dallascounty.org/government/comcrt/",
+      "last_checked": "2026-08-04T09:35:00.641621+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 433,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
+    "va-legislature": {
+      "source_id": "va-legislature",
+      "url": "https://lis.virginia.gov/",
+      "last_checked": "2026-08-04T09:35:00.710509+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "response_ms": 67,
+      "error": null,
+      "robots_allowed": true,
+      "consecutive_failures": 0
+    },
     "va-fairfax-bos": {
       "source_id": "va-fairfax-bos",
       "url": "https://www.fairfaxcounty.gov/boardofsupervisors/",
-      "last_checked": "2026-08-03T10:34:30.217971+00:00",
+      "last_checked": "2026-08-04T09:35:00.801749+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 104,
+      "response_ms": 90,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -953,21 +953,21 @@
     "tx-gov-incentives": {
       "source_id": "tx-gov-incentives",
       "url": "https://gov.texas.gov/business/page/incentives",
-      "last_checked": "2026-08-03T10:34:31.257418+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 1905,
-      "error": null,
+      "last_checked": "2026-08-04T09:35:00.283611+00:00",
+      "http_status": null,
+      "reachable": false,
+      "response_ms": 181,
+      "error": "<urlopen error [Errno 111] Connection refused>",
       "robots_allowed": true,
-      "consecutive_failures": 0
+      "consecutive_failures": 1
     },
     "va-pwc-digital-gateway": {
       "source_id": "va-pwc-digital-gateway",
       "url": "https://www.pwcva.gov/department/planning-office/pw-digital-gateway",
-      "last_checked": "2026-08-03T10:34:30.592434+00:00",
+      "last_checked": "2026-08-04T09:35:00.979858+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 373,
+      "response_ms": 176,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -975,10 +975,10 @@
     "va-loudoun-datacenter": {
       "source_id": "va-loudoun-datacenter",
       "url": "https://www.loudoun.gov/5008/Data-Center-Policy",
-      "last_checked": "2026-08-03T10:34:30.953028+00:00",
+      "last_checked": "2026-08-04T09:35:01.558701+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 798,
+      "response_ms": 761,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -986,10 +986,10 @@
     "wa-legislature": {
       "source_id": "wa-legislature",
       "url": "https://leg.wa.gov/",
-      "last_checked": "2026-08-03T10:34:31.050743+00:00",
+      "last_checked": "2026-08-04T09:35:01.703421+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 723,
+      "response_ms": 824,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -997,10 +997,10 @@
     "va-fairfax-plan": {
       "source_id": "va-fairfax-plan",
       "url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
-      "last_checked": "2026-08-03T10:34:30.153098+00:00",
+      "last_checked": "2026-08-04T09:35:00.803620+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 111,
+      "response_ms": 94,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1008,10 +1008,10 @@
     "wa-utc": {
       "source_id": "wa-utc",
       "url": "https://www.utc.wa.gov/",
-      "last_checked": "2026-08-03T10:34:30.747586+00:00",
+      "last_checked": "2026-08-04T09:35:01.340064+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 302,
+      "response_ms": 382,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1019,7 +1019,7 @@
     "va-pwc-bos": {
       "source_id": "va-pwc-bos",
       "url": "https://www.pwcva.gov/department/board-county-supervisors",
-      "last_checked": "2026-08-03T10:34:30.443994+00:00",
+      "last_checked": "2026-08-04T09:35:00.956638+00:00",
       "http_status": 200,
       "reachable": true,
       "response_ms": 151,
@@ -1030,10 +1030,10 @@
     "wa-douglas-pud": {
       "source_id": "wa-douglas-pud",
       "url": "https://douglaspud.org/",
-      "last_checked": "2026-08-03T10:34:31.088272+00:00",
+      "last_checked": "2026-08-04T09:35:01.386159+00:00",
       "http_status": 202,
       "reachable": true,
-      "response_ms": 339,
+      "response_ms": 405,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1041,10 +1041,10 @@
     "wa-grant-pud": {
       "source_id": "wa-grant-pud",
       "url": "https://www.grantpud.org/",
-      "last_checked": "2026-08-03T10:34:31.258512+00:00",
+      "last_checked": "2026-08-04T09:35:01.361849+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 303,
+      "response_ms": 336,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1052,10 +1052,10 @@
     "wa-chelan-pud": {
       "source_id": "wa-chelan-pud",
       "url": "https://www.chelanpud.org/",
-      "last_checked": "2026-08-03T10:34:31.058653+00:00",
+      "last_checked": "2026-08-04T09:35:01.549760+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 465,
+      "response_ms": 576,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1063,10 +1063,10 @@
     "mt-lincoln-commissioners": {
       "source_id": "mt-lincoln-commissioners",
       "url": "https://www.lincolncountymt.us/",
-      "last_checked": "2026-08-03T10:34:31.214061+00:00",
+      "last_checked": "2026-08-04T09:35:08.973282+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 4727,
+      "response_ms": 12355,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1074,10 +1074,10 @@
     "wa-king-county": {
       "source_id": "wa-king-county",
       "url": "https://kingcounty.gov/en/dept/council",
-      "last_checked": "2026-08-03T10:34:31.532885+00:00",
+      "last_checked": "2026-08-04T09:35:01.821200+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 473,
+      "response_ms": 458,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1085,10 +1085,10 @@
     "wi-wedc": {
       "source_id": "wi-wedc",
       "url": "https://wedc.org/",
-      "last_checked": "2026-08-03T10:34:31.544492+00:00",
+      "last_checked": "2026-08-04T09:35:01.812726+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 305,
+      "response_ms": 253,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1096,10 +1096,10 @@
     "wa-okanogan-pud": {
       "source_id": "wa-okanogan-pud",
       "url": "https://www.okanoganpud.org/",
-      "last_checked": "2026-08-03T10:34:31.826976+00:00",
+      "last_checked": "2026-08-04T09:35:03.694371+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 775,
+      "response_ms": 2353,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1107,10 +1107,10 @@
     "wi-manitowoc-board": {
       "source_id": "wi-manitowoc-board",
       "url": "https://manitowoccountywi.gov/departments/county-board-of-supervisors/",
-      "last_checked": "2026-08-03T10:34:31.397044+00:00",
+      "last_checked": "2026-08-04T09:35:02.014561+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 137,
+      "response_ms": 200,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1118,21 +1118,21 @@
     "wi-legislature": {
       "source_id": "wi-legislature",
       "url": "https://legis.wisconsin.gov/",
-      "last_checked": "2026-08-03T10:34:31.395636+00:00",
-      "http_status": 200,
-      "reachable": true,
-      "response_ms": 180,
-      "error": null,
+      "last_checked": "2026-08-04T09:35:16.650691+00:00",
+      "http_status": null,
+      "reachable": false,
+      "response_ms": 15100,
+      "error": "<urlopen error timed out>",
       "robots_allowed": true,
-      "consecutive_failures": 0
+      "consecutive_failures": 1
     },
     "wy-legislature": {
       "source_id": "wy-legislature",
       "url": "https://www.wyoleg.gov/",
-      "last_checked": "2026-08-03T10:34:31.716660+00:00",
+      "last_checked": "2026-08-04T09:35:02.181647+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 320,
+      "response_ms": 359,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1140,10 +1140,10 @@
     "wa-okanogan-commissioners": {
       "source_id": "wa-okanogan-commissioners",
       "url": "https://www.okanogancounty.gov/175/County-Commissioners",
-      "last_checked": "2026-08-03T10:34:31.692153+00:00",
+      "last_checked": "2026-08-04T09:35:01.918842+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 603,
+      "response_ms": 531,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1151,10 +1151,10 @@
     "wi-dane-board": {
       "source_id": "wi-dane-board",
       "url": "https://board.countyofdane.com/",
-      "last_checked": "2026-08-03T10:34:31.916837+00:00",
+      "last_checked": "2026-08-04T09:35:02.248589+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 658,
+      "response_ms": 544,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1162,10 +1162,10 @@
     "mt-legislature": {
       "source_id": "mt-legislature",
       "url": "https://leg.mt.gov/",
-      "last_checked": "2026-08-03T10:34:35.655813+00:00",
+      "last_checked": "2026-08-04T09:35:05.663250+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 9220,
+      "response_ms": 9198,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1173,21 +1173,21 @@
     "mi-legislature": {
       "source_id": "mi-legislature",
       "url": "https://legislature.michigan.gov/Home",
-      "last_checked": "2026-08-03T10:34:26.252119+00:00",
+      "last_checked": "2026-08-04T09:34:56.342236+00:00",
       "http_status": null,
       "reachable": false,
-      "response_ms": 180,
+      "response_ms": 166,
       "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'legislature.michigan.gov'. (_ssl.c:1016)>",
       "robots_allowed": true,
-      "consecutive_failures": 19
+      "consecutive_failures": 20
     },
     "mt-flathead-commissioners": {
       "source_id": "mt-flathead-commissioners",
       "url": "https://flatheadcounty.gov/department-directory/commissioners-office",
-      "last_checked": "2026-08-03T10:34:27.844944+00:00",
+      "last_checked": "2026-08-04T09:34:57.770614+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 1407,
+      "response_ms": 1285,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
@@ -1195,10 +1195,10 @@
     "wy-laramie-commissioners": {
       "source_id": "wy-laramie-commissioners",
       "url": "https://www.laramiecountywy.gov/County-Government/Elected-Officials/County-Commissioners",
-      "last_checked": "2026-08-03T10:34:31.870250+00:00",
+      "last_checked": "2026-08-04T09:35:02.514672+00:00",
       "http_status": 200,
       "reachable": true,
-      "response_ms": 472,
+      "response_ms": 594,
       "error": null,
       "robots_allowed": true,
       "consecutive_failures": 0
