@@ -167,10 +167,23 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   confirmed it live with 32 fields and real Polygon geometry, covering
   Clackamas/Multnomah/Washington Counties with a `where` clause scoping
   results to Washington County. See Recently Completed below. Registry
-  now covers 25 jurisdictions. The next candidate below Washington
-  County OR (36) — Polk County IA's tier (27 facilities, tied with
-  Suffolk County MA and Hillsborough County FL, neither investigated)
-  — has not yet been investigated.
+  now covers 25 jurisdictions. Suffolk County MA/Boston (27 facilities)
+  was investigated next over 6 rounds: rounds 1-2 exhausted a wrong
+  ArcGIS org guess and an unreachable state-hosted proxy host; round
+  3's DCAT catalog search on MassGIS's own open-data portal found the
+  real statewide "Massachusetts Property Tax Parcels" service directly
+  among 295 "parcel" matches; round 4 confirmed one of its layers
+  (GISDATA.L3_ASSESS) is exceptionally rich (41 fields — full owner
+  data, values, sale history, building characteristics) but is a
+  non-spatial attribute table, the same architectural gap already
+  documented for Polk County IA; round 5 found the real Polygon
+  boundary layer ("Tax Parcels") in the same service's layer catalog;
+  round 6 confirmed its own thin 19-field schema (mostly IDs and
+  cartographic metadata). Added as a thin add (3 real fields), with the
+  rich joinable table documented as a follow-up opportunity. See
+  Recently Completed below. Registry now covers 26 jurisdictions. The
+  next candidate — Hillsborough County FL (27 facilities, also tied) —
+  has not yet been investigated.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1184,6 +1197,64 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Suffolk County, Massachusetts (FIPS 25025, 27 facilities)
+  to the parcel registry, over six probe rounds — a deliberately thin
+  add.
+- Findings: Rounds 1-2 exhausted a wrong ArcGIS org guess (Invalid URL
+  error) and an alternate state-hosted proxy URL that failed with a
+  real DNS/connection error (likely an internal-only host). Round 3
+  checked MassGIS's own open-data portal DCAT catalog directly
+  (gis.data.mass.gov, an ArcGIS Hub site) and found the real dataset
+  among 295 "parcel" matches: "GISDATA.L3 ASSESS" / "Massachusetts
+  Property Tax Parcels", the standardized statewide assessors' parcel
+  mapping dataset, on a host neither of the first two rounds' guesses
+  used (arcgisserver.digital.mass.gov). Round 4 confirmed that URL
+  live — but it turned out to be layer 4 of a 4-layer service, an
+  exceptionally rich 41-field non-spatial table (full owner name/
+  mailing address, assessed/land/building values, sale history with
+  book/page, building characteristics, TOWN_ID) with no geometryType at
+  all. Round 5 listed the service's full layer catalog and found the
+  real Polygon boundary layer: "Tax Parcels" (layer 1). Round 6
+  confirmed its own field schema: only 19 fields, almost entirely IDs
+  and cartographic metadata, with no address/owner/value data of its
+  own.
+- Architectural blocker: same as Polk County IA — `js/parcel/
+  connector-arcgis.js` fetches from a single configured `serviceUrl`
+  and cannot join the boundary layer to the related GISDATA.L3_ASSESS
+  attribute table by their shared LOC_ID key. The rich 41-field
+  dataset is real and live but not usable without a connector
+  enhancement.
+- Field mapping: 3 of 30 canonical fields mapped from the boundary
+  layer itself (parcel_id → MAP_PAR_ID, pin → LOC_ID — the same join
+  key the rich attribute table uses, confirming both describe the same
+  real parcels even though they can't be combined here — land_use_code
+  → LU_CODES) plus county_fips (computed). The remaining 26 fields
+  recorded in `notProvidedBySource` — verified programmatically to
+  cover all 30 canonical fields with zero gaps and zero overlaps.
+- Licensing: MassGIS (Commonwealth of Massachusetts Office of
+  Geographic Information)'s own official statewide service, confirmed
+  via its own copyrightText ("Commonwealth of Massachusetts Office of
+  Geographic Information (MassGIS)"). Standard "public government
+  data, verify terms before commercial redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 3 mapped fields plus "Not
+  published by this source" for the remaining 26, zero page errors.
+  Registry now covers 26 jurisdictions.
+- Follow-up opportunity (not attempted this session): same as Polk
+  County IA — a human could extend `js/parcel/connector-arcgis.js` to
+  support resolving a boundary layer's features against a related
+  non-spatial attribute table by a shared key (here, LOC_ID), which
+  would unlock genuinely rich owner/value/sale/building data for
+  Suffolk County MA (and Polk County IA, and potentially other
+  jurisdictions publishing a similar normalized MassGIS-style schema).
+- Temp files (`data/diagnose_suffolk_ma.mjs`,
+  `.github/workflows/_diagnose_suffolk_ma.yml`) deleted in the same
+  commit that added the registry entry.
+- Last updated: 2026-08-04
 
 - Date: 2026-08-03
 - Agent: Claude Code
