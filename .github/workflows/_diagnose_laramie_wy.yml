@@ -28,3 +28,6 @@ jobs:
 
       - name: Probe Laramie County WY candidates
         run: node data/diagnose_laramie_wy.mjs
+
+      - name: Probe Laramie County WY candidates (round 2)
+        run: node data/diagnose_laramie_wy_r2.mjs
