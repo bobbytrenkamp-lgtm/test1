@@ -407,7 +407,15 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   own official yearly-versioned Tax Parcels service, with a real
   sample record's assessed/appraised ratio matching Georgia's
   constitutionally mandated 40% assessment rate as independent
-  confirmation. Registry now covers 45 jurisdictions.
+  confirmation. Registry now covers 45 jurisdictions. Douglas County
+  NE/the Omaha metro (18 facilities) was investigated next over 3
+  probe rounds — "Douglas County" is shared by many states, confirmed
+  Nebraska via the same ArcGIS account also owning
+  douglascountyairquality.com and Omaha-imagery layers — and added
+  with an 11/30-field mapping (10 real fields) from the county's
+  "Parcels_for_BOE" (Board of Equalization) service, including a
+  cross-checked confirmation that SQ_FEET is lot size (not building
+  size) matching ACRES × 43,560. Registry now covers 46 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1648,6 +1656,58 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   fields plus computed county_fips, and "Not published by this
   source" for the remaining fields, zero page errors. Registry now
   covers 45 jurisdictions.
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Continued down the facility-count priority queue after DeKalb
+  County GA: investigated Douglas County, Nebraska (FIPS 31055, Omaha
+  metro, 18 facilities), over three probe rounds. "Douglas County" is
+  a name shared by many states (CO, KS, OR, WA, MN, WI, GA, MO, IL,
+  and others), so extra geographic confirmation was required before
+  trusting any candidate.
+- Findings: Rounds 1-2 surfaced a strong candidate, "Parcels_for_BOE"
+  (built for the county's Board of Equalization), and confirmed it as
+  genuinely Nebraska via a decisive signal: the same ArcGIS account
+  (Nataliya2) that owns this parcels layer also owns "Douglas County,
+  NE - Air Quality" (hosted at douglascountyairquality.com) and
+  imagery layers explicitly named "Douglas_County_NE_2022_Imagery"
+  and "Omaha_NE_1958_Imagery", all hosted on dcgis.org — the county's
+  own confirmed ArcGIS Server. Round 3 pulled a real sample record and
+  cross-checked SQ_FEET against ACRES × 43,560 (1.17 × 43,560 ≈
+  50,965, matching SQ_FEET exactly) to confirm it as lot size, not
+  building size — BLDG_SF is the separate, much smaller building-
+  footprint field.
+- Added: `ne-douglas-county` with an 10-field mapping (parcel_id →
+  PIN, owner → OWNER_NAME, address → PROPERTY_A [confirmed as a
+  genuine pre-combined situs address string, not a concatenation],
+  land_use_code → CLASS, land_use_desc → DCAACCTYPE, area_sqft →
+  SQ_FEET, area_acres → ACRES, building_count → NUMBLDGS, year_built
+  → BLDG_YRBLT, gross_floor_area → BLDG_SF) plus county_fips
+  (computed) — 11/30. This layer, built for the Board of Equalization,
+  has no assessed-value, sale-history, deed, or zoning fields at all —
+  a separate assessor system holds that data. The owner's mailing
+  address is split across four fields with no combined value, so
+  owner_mailing isn't mapped, and ADDITION_N wasn't mapped to
+  subdivision since real sample records show it as the generic value
+  "LANDS" rather than an actual platted subdivision name. Several
+  source fields (board_members, district, Join_Count, TARGET_FID,
+  etc.) are artifacts of a spatial join with a commissioner-districts
+  layer, not genuine parcel attributes, and were excluded entirely.
+  The remaining 18 fields recorded in `notProvidedBySource` — verified
+  programmatically to cover all 30 canonical fields with zero gaps and
+  zero overlaps.
+- Licensing: official Douglas County, Nebraska GIS / Board of
+  Equalization data. Standard "public government data, verify terms
+  before commercial redistribution" caveat applied.
+- Validation: field-mapping validation script confirmed zero
+  missing/extra/overlap against the 30 canonical fields. `node
+  tests/parcel.test.js` passes (293/293). Playwright live-test via
+  `window.PARCEL_PANEL.show()` with a synthetic feature based on a
+  real confirmed sample record (parcel 0100370012, owner RODRIGUES
+  ANTHONY T, 28215 West Maple Rd) confirmed correct rendering of all
+  10 mapped fields plus computed county_fips, and "Not published by
+  this source" for the remaining 18, zero page errors. Registry now
+  covers 46 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
