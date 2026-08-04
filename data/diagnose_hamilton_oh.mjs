@@ -1,20 +1,13 @@
-// Temporary diagnostic, round 1: Hamilton County OH (Cincinnati metro)
+// Temporary diagnostic, round 2: Hamilton County OH (Cincinnati metro)
 // parcel service.
 //
-// Next candidate in the facility-count priority queue after Middlesex
-// County MA (25 facilities, tied with Allegheny County PA). Web search
-// found the Cincinnati Area Geographic Information System (CAGIS) Open
-// Data Hub (data-cagisportal.opendata.arcgis.com), whose own map gallery
-// lists a "Hamilton County Parcel Polygons" item directly - CAGIS is
-// the joint city-county GIS authority for Hamilton County OH and
-// Cincinnati. NOTE: a same-named "HamCoParcelsPublic" service exists at
-// gis1.hamiltoncounty.in.gov, but that's Hamilton County, INDIANA - a
-// different state entirely, not a candidate here.
-//
-// This round checks CAGIS's own DCAT catalog for a "parcel" dataset
-// distribution URL first (the pattern that has reliably surfaced the
-// real ArcGIS distribution URL directly for most counties this
-// session).
+// Round 1's CAGIS Open Data Hub DCAT catalog returned HTTP 403 "Feeds
+// have been disabled for this site" - the DCAT-catalog-first pattern
+// that has worked for most counties this session doesn't apply here.
+// Falls back to ArcGIS Online's public, unauthenticated item-search
+// REST API to find the "Hamilton County Parcel Polygons" item's real
+// service URL directly, plus a couple of directly-guessed common
+// service names on CAGIS's own ArcGIS Server as a second fallback.
 //
 // Deleted once Hamilton County OH is either added or documented as
 // unavailable.
@@ -36,8 +29,13 @@ async function fetchText(url, label) {
     console.log(`URL: ${url}`);
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
-      console.log('Body (JSON keys):', Object.keys(body));
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
+      if (body.results) {
+        console.log('Result count:', body.results.length);
+        for (const r of body.results.slice(0, 10)) {
+          console.log(`  - "${r.title}" type=${r.type} url=${r.url} owner=${r.owner}`);
+        }
+      }
       if (body.fields) {
         console.log('Field count:', body.fields.length);
         console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
@@ -47,7 +45,7 @@ async function fetchText(url, label) {
       if (body.description) console.log('description:', body.description.slice(0, 500));
       if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
-      console.log('Body (text, first 800 chars):', text.slice(0, 800));
+      console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
     return { ok: true, status, body, text };
   } catch (e) {
@@ -61,24 +59,14 @@ async function fetchText(url, label) {
   }
 }
 
-const dcat = await fetchText(
-  'https://data-cagisportal.opendata.arcgis.com/api/feed/dcat-us/1.1.json',
-  'CAGIS Open Data Hub own DCAT catalog'
+await fetchText(
+  'https://www.arcgis.com/sharing/rest/search?q=' + encodeURIComponent('title:"Hamilton County Parcel Polygons"') + '&f=json',
+  'ArcGIS Online public search - Hamilton County Parcel Polygons'
 );
 
-if (dcat.ok && dcat.body && Array.isArray(dcat.body.dataset)) {
-  const matches = dcat.body.dataset.filter(d =>
-    /parcel/i.test(d.title || '') || /parcel/i.test(d.description || '')
-  );
-  console.log(`\nDCAT datasets matching "parcel": ${matches.length}`);
-  for (const d of matches) {
-    console.log(`\n--- ${d.title} ---`);
-    console.log('description:', (d.description || '').slice(0, 300));
-    const dist = (d.distribution || []).map(x => `${x.format}: ${x.accessURL || x.downloadURL}`);
-    console.log('distribution:', dist.join(' | '));
-  }
-} else {
-  console.log('\nDCAT catalog lookup failed or had no dataset array.');
-}
+await fetchText(
+  'https://www.arcgis.com/sharing/rest/search?q=' + encodeURIComponent('Hamilton County parcel Cincinnati CAGIS') + '&f=json&num=10',
+  'ArcGIS Online public search - broader Hamilton/CAGIS parcel query'
+);
 
 console.log('\nDone.');
