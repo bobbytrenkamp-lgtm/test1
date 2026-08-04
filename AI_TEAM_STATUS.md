@@ -268,7 +268,15 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   down; confirmed across 2 separate probe attempts and marked
   `knownUnavailable` in the registry per the project's documented
   pattern, with details in Open Handoffs. See Recently Completed
-  below. Registry now covers 32 jurisdictions.
+  below. Registry now covers 32 jurisdictions. Wayne County MI/Detroit
+  (23 facilities, tied with Tarrant TX) was added next over 2 probe
+  rounds: round 1's DCAT catalog found the real service URL directly,
+  round 2 hit a transient HTTP 503 that cleared on a single retry,
+  confirming a real 28-field parcel layer. Added with 15 real fields +
+  computed county_fips (16/30), including a rare fully-mapped
+  owner_mailing (single combined source field, unlike most other
+  counties this session). See Recently Completed below. Registry now
+  covers 33 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1282,6 +1290,47 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Wayne County, Michigan (FIPS 26163, 23 facilities, Detroit
+  metro) to the parcel registry, over two probe rounds.
+- Findings: Round 1's DCAT catalog on the county's own GIS portal
+  directly surfaced "WayneCo Parcels" with a real ArcGIS GeoServices
+  REST distribution URL (services6.arcgis.com, item WiOy9S7NUTWyXUe4).
+  Round 2 probed it directly and got HTTP 503 "The service is
+  unavailable" — treated as possibly transient given this session's
+  track record with brief ArcGIS Online outages, so the same probe was
+  re-run once rather than immediately writing it off. The re-run
+  returned HTTP 200 with 28 real fields, layer name
+  "parcel_joined_ExportFeatures", and real Polygon geometry — the 503
+  was transient, not a genuine outage.
+- Field mapping: 15 of 30 canonical fields mapped (parcel_id → Parcel,
+  pin → Parcel2, address → PPAddress, owner → PPOwner, owner_mailing →
+  PPOwnerAddress, land_use_code → PPClassCode, area_acres → PPAcres,
+  gross_floor_area → PPLivingArea, year_built → PPYearBuilt,
+  building_count → PPDwellCount, assessed_value → PPTotalValue,
+  land_value → PPLandValue, improvement_value → PPImprValue,
+  last_sale_date → PPSaleDate, last_sale_price → PPAmount) plus
+  county_fips (computed) — 16/30. Unusually for this session,
+  owner_mailing has a single combined source field (PPOwnerAddress) so
+  it could actually be mapped. The layer also carries a separate
+  PPTaxPayer/PPTaxPayerAddress pair (tax-payer-of-record, distinct from
+  owner-of-record) and a secondary PPClassNumber code, plus
+  PPGrade/PPCondition/PPHasCAUV — none have a canonical equivalent and
+  are left unmapped since PPOwner/PPOwnerAddress/PPClassCode already
+  cover the corresponding canonical fields. The remaining 14 fields
+  recorded in `notProvidedBySource` — verified programmatically to
+  cover all 30 canonical fields with zero gaps and zero overlaps.
+- Licensing: public Wayne County, Michigan government parcel data,
+  hosted as an ArcGIS Online feature service. Standard "public
+  government data, verify terms before commercial redistribution"
+  caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 15 mapped fields plus computed
+  county_fips, and "Not published by this source" for the remaining
+  14, zero page errors. Registry now covers 33 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
