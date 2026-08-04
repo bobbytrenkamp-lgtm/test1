@@ -2680,6 +2680,56 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '48085': {
+      id:          'tx-collin-county',
+      name:        'Collin County, Texas',
+      state:       'TX',
+      fips:        '48085',
+      connector:   'arcgis',
+      serviceUrl:  'https://services2.arcgis.com/uXyoacYrZTPTKD3R/arcgis/rest/services/CCAD_Parcel_Feature_Set/FeatureServer/4',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'geoID',
+        pin:                'PROP_ID',
+        owner:              'ownerName',
+        address:            'situsConcat',
+        land_use_code:      'propUseCode',
+        area_sqft:          'landSizeSqft',
+        area_acres:         'landSizeAcres',
+        year_built:         'imprvYearBuilt',
+        gross_floor_area:   'imprvMainArea',
+        assessed_value:     'currValAssessed',
+        land_value:         'currValLand',
+        improvement_value:  'currValImprv',
+        tax_year:           'currValYear',
+        last_sale_date:     'deedFileDate',
+        deed_book:          'deedBook',
+        deed_page:          'deedPage',
+        subdivision:        'legalAbsSubName',
+        legal_desc:         'legalDescription',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'land_use_desc',
+        'overlay_districts', 'lot_depth_ft', 'lot_width_ft', 'building_count',
+        'tax_amount', 'last_sale_price', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Collin Central Appraisal District (CCAD)',
+        url:     'https://www.collincad.org/',
+        portal:  'https://services2.arcgis.com/uXyoacYrZTPTKD3R/arcgis/rest/services/CCAD_Parcel_Feature_Set/FeatureServer/4',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Frisco/Plano/McKinney metro — DFW data center corridor. Collin County\'s own DCAT feed is dead and its GIS server (gis.collincountytx.gov) was unreachable during investigation, but CCAD — the Central Appraisal District, Texas\'s standard architecture for property assessment since counties themselves don\'t assess (same pattern as Tarrant and Bexar counties) — publishes a live, official ArcGIS feature service confirmed via its own copyrightText ("Collin Central Appraisal District / https://collincad.org") and layer description ("Parcel polygons maintained by Collin Central Appraisal District"). The layer\'s first (OBJECTID 1) record is a null placeholder; a filtered query confirmed real populated records with sensible values. Owner mailing address (ownerAddrLine1/Line2/City/State/Zip/Country) is split across six fields with no single combined field, so owner_mailing isn\'t mapped. No sale-price or tax-amount fields are exposed in this schema.',
+      },
+    },
+
   };
 
   function get(fips) {
