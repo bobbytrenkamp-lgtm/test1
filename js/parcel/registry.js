@@ -2420,6 +2420,44 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '11001': {
+      id:          'dc-district-of-columbia',
+      name:        'District of Columbia',
+      state:       'DC',
+      fips:        '11001',
+      connector:   'arcgis',
+      serviceUrl:  'https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land_WebMercator/FeatureServer/35',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:   'SSL',
+        pin:         'SQUARE',
+        area_sqft:   'CALCULATEDAREA',
+        county_fips: '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_code', 'land_use_desc', 'overlay_districts', 'area_acres',
+        'lot_depth_ft', 'lot_width_ft', 'building_count', 'year_built',
+        'gross_floor_area', 'assessed_value', 'land_value', 'improvement_value',
+        'tax_year', 'tax_amount', 'last_sale_date', 'last_sale_price',
+        'deed_book', 'deed_page', 'subdivision', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'District of Columbia Office of the Surveyor / DC GIS',
+        url:     'https://octo.dc.gov/page/dc-gis-service-center',
+        portal:  'https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land_WebMercator/FeatureServer/35',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Washington DC — significant East Coast data center market. This is the "Record Lots" layer: per its own description, a property must generally be a Record Lot before DC will issue it a building permit, making this the standard cadastral layer for ordinary developed properties (unlike the "Parcel Lots" layer, which covers only historically-unsubdivided residual land, or the "Tax Lots" layer, which exists only for tax-bill combine/split edge cases — both also live on this same FeatureServer but were not used for that reason). SSL (Square-Suffix-Lot) is DC\'s universal parcel identifier. Only cadastral geometry is exposed here; DC\'s much richer OCFO Integrated Tax System Public Extract (owner, mailing address, assessed land/improvement/total value, sale price/date — 218 fields) and CAMA tables live in separate non-spatial tables joined by SSL, which this connector cannot join — a follow-up connector-enhancement opportunity, same architectural gap as Suffolk County MA and Polk County IA.',
+      },
+    },
+
   };
 
   function get(fips) {

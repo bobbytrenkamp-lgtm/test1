@@ -276,7 +276,20 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   computed county_fips (16/30), including a rare fully-mapped
   owner_mailing (single combined source field, unlike most other
   counties this session). See Recently Completed below. Registry now
-  covers 33 jurisdictions.
+  covers 33 jurisdictions. District of Columbia (23 facilities, tied
+  with Wayne MI and Tarrant TX) was added next over 4 probe rounds —
+  the most of any jurisdiction this session: rounds 1-2 traced DC's
+  DCAT catalog to a 38-layer `Property_and_Land_WebMercator`
+  FeatureServer, round 3 found two real geometry layers that turned
+  out to be narrow edge cases per their own descriptions (unsubdivided
+  residual land; tax combine/split), and round 4 found the actual
+  general-purpose layer ("Record Lots" — required for any building
+  permit) after re-checking round 2's catalog for an unprobed
+  candidate. Added as a thin 3-field + computed county_fips add
+  (4/30), with DC's much richer 218-field CAMA/ITSPE data logged as a
+  follow-up connector-enhancement opportunity (SSL-joined, same gap as
+  Suffolk MA/Polk IA). See Recently Completed below. Registry now
+  covers 34 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1290,6 +1303,69 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added District of Columbia (FIPS 11001, 23 facilities, tied
+  with Wayne County MI and Tarrant County TX) to the parcel registry,
+  over four probe rounds — the most rounds any single jurisdiction has
+  taken this session.
+- Findings: Round 1's DCAT catalog on DC OCTO's open data portal
+  (opendata.dc.gov) surfaced a "Tax Exempt Properties" dataset
+  distributed from a `Property_and_Land_WebMercator` FeatureServer
+  (maps2.dcgis.dc.gov) — a strong signal its other layers carried DC's
+  real-property data. Round 2 listed that service's full 38-layer
+  catalog and found two real Polygon geometry layers ("Parcel Lots",
+  "Tax Lots") plus several likely CAMA/assessment layers via a
+  targeted DCAT keyword re-filter (integrated tax system, CAMA, real
+  property, assessment). Round 3 probed all of them directly: Parcel
+  Lots and Tax Lots both confirmed real `esriGeometryPolygon` geometry,
+  but each layer's own description reveals a narrow edge case —
+  Parcel Lots is land that was *never* subdivided into Record or Tax
+  Lots (a historical residual category), and Tax Lots exist only when
+  a property's tax lot diverges from its record lot (a "combine" or
+  "split" edge case). The CAMA layers (residential CAMA, property
+  sales CAMA) and a separate, much richer 218-field "ITSPE" (OCFO
+  Integrated Tax System Public Extract, a different ArcGIS org)
+  returned no `geometryType` — non-spatial tables joined to geometry
+  via DC's SSL (Square-Suffix-Lot) identifier, the same architectural
+  gap this session already hit with Suffolk County MA and Polk County
+  IA (the connector only does 1:1 field mapping on a single spatial
+  layer; it can't join a non-spatial CAMA table to a geometry layer).
+  Round 4 checked the one remaining candidate seen in round 2's layer
+  catalog but not yet probed: "Record Lots". Its own description
+  settled the choice: "a piece of property must be a Record Lot before
+  a building permit will be issued... normally when they are seeking a
+  building permit" — i.e., this is DC's standard cadastral layer for
+  ordinary developed properties (data center sites included), unlike
+  the other two edge-case layers. Confirmed real `esriGeometryPolygon`
+  geometry with 35 fields.
+- Field mapping: 3 of 30 canonical fields mapped (parcel_id → SSL,
+  pin → SQUARE, area_sqft → CALCULATEDAREA) plus county_fips
+  (computed) — 4/30, a thin add following the same precedent as
+  Middlesex County MA and Allegheny County PA, since Record Lots is a
+  pure cadastral-geometry layer with no owner/value/address fields.
+  The remaining 26 fields recorded in `notProvidedBySource` — verified
+  programmatically to cover all 30 canonical fields with zero gaps and
+  zero overlaps.
+- Follow-up opportunity: the OCFO Integrated Tax System Public Extract
+  (218 fields: OWNERNAME, ADDRESS1/ADDRESS2/CITYSTZIP, PREMISEADD,
+  NEWLAND/NEWIMPR/NEWTOTAL, SALEPRICE, SALEDATE, DEEDDATE, ASSESSMENT,
+  ANNUALTAX, USECODE, LANDAREA — joined by SSL) and the CAMA
+  residential/property-sales tables on the same
+  `Property_and_Land_WebMercator` service would make DC's parcel data
+  dramatically richer if the connector supported a non-spatial-table
+  join by a shared key field — the same connector-enhancement
+  opportunity already logged for Suffolk County MA and Polk County IA.
+- Licensing: official District of Columbia government parcel data
+  (Office of the Surveyor / DC GIS), confirmed via the layer's own
+  copyrightText ("District of Columbia"). Standard "public government
+  data, verify terms before commercial redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 3 mapped fields plus computed
+  county_fips, and "Not published by this source" for the remaining
+  26, zero page errors. Registry now covers 34 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
