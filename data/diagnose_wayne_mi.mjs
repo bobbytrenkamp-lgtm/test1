@@ -1,16 +1,10 @@
-// Temporary diagnostic, round 1: Wayne County MI (Detroit) parcel
+// Temporary diagnostic, round 2: Wayne County MI (Detroit) parcel
 // service.
 //
-// Next candidate in the facility-count priority queue after Tarrant
-// County TX (23 facilities, tied with DC). Web search found two
-// candidate open-data portals: the county Auditor's own GIS portal
-// (auditor-waynecountygis.opendata.arcgis.com, under Assessment &
-// Equalization / GIS Parcel Data) and a general county open-data site
-// (data-wayne.opendata.arcgis.com).
-//
-// This round checks the Auditor's own DCAT catalog first (most likely
-// to host the real parcel dataset given its department scope), then
-// falls back to the general county open-data portal's DCAT catalog.
+// Round 1's DCAT catalog on the county Auditor's own GIS portal
+// directly surfaced "WayneCo Parcels" with a real ArcGIS GeoServices
+// REST API distribution URL. This round probes it directly for field
+// schema, geometry type, description, and copyright text.
 //
 // Deleted once Wayne County MI is either added or documented as
 // unavailable.
@@ -32,8 +26,15 @@ async function fetchText(url, label) {
     console.log(`URL: ${url}`);
     console.log(`HTTP ${status} in ${elapsed}ms`);
     if (body) {
-      console.log('Body (JSON keys):', Object.keys(body));
       if (body.error) console.log('ArcGIS error:', JSON.stringify(body.error));
+      if (body.fields) {
+        console.log('Field count:', body.fields.length);
+        console.log('Fields:', body.fields.map(f => `${f.name}(${f.type})`).join(', '));
+      }
+      if (body.name) console.log('Layer name:', body.name);
+      if (body.geometryType) console.log('Geometry type:', body.geometryType);
+      if (body.description) console.log('description:', body.description.slice(0, 500));
+      if (body.copyrightText) console.log('copyrightText:', body.copyrightText);
     } else {
       console.log('Body (text, first 500 chars):', text.slice(0, 500));
     }
@@ -49,32 +50,9 @@ async function fetchText(url, label) {
   }
 }
 
-async function checkDcat(url, label) {
-  const dcat = await fetchText(url, label);
-  if (dcat.ok && dcat.body && Array.isArray(dcat.body.dataset)) {
-    const matches = dcat.body.dataset.filter(d =>
-      /parcel/i.test(d.title || '') || /parcel/i.test(d.description || '')
-    );
-    console.log(`\nDCAT datasets matching "parcel": ${matches.length}`);
-    for (const d of matches) {
-      console.log(`\n--- ${d.title} ---`);
-      console.log('description:', (d.description || '').slice(0, 300));
-      const dist = (d.distribution || []).map(x => `${x.format}: ${x.accessURL || x.downloadURL}`);
-      console.log('distribution:', dist.join(' | '));
-    }
-  } else {
-    console.log('\nDCAT catalog lookup failed or had no dataset array.');
-  }
-}
-
-await checkDcat(
-  'https://auditor-waynecountygis.opendata.arcgis.com/api/feed/dcat-us/1.1.json',
-  'Wayne County Auditor GIS own DCAT catalog'
-);
-
-await checkDcat(
-  'https://data-wayne.opendata.arcgis.com/api/feed/dcat-us/1.1.json',
-  'Wayne County general Open Data DCAT catalog'
+await fetchText(
+  'https://services6.arcgis.com/WiOy9S7NUTWyXUe4/arcgis/rest/services/WayneCo_Parcels/FeatureServer/0?f=json',
+  'Wayne County Auditor - WayneCo_Parcels layer 0'
 );
 
 console.log('\nDone.');
