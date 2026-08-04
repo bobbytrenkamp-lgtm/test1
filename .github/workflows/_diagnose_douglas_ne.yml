@@ -31,3 +31,6 @@ jobs:
 
       - name: Probe Douglas County NE candidates
         run: node data/diagnose_douglas_ne.mjs
+
+      - name: Probe Douglas County NE candidates (round 2)
+        run: node data/diagnose_douglas_ne_r2.mjs
