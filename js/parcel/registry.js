@@ -2819,6 +2819,51 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '56021': {
+      id:          'wy-laramie-county',
+      name:        'Laramie County, Wyoming',
+      state:       'WY',
+      fips:        '56021',
+      connector:   'arcgis',
+      serviceUrl:  'https://maps.laramiecounty.com/arcgis/rest/services/features/CountyBaseMapFeatures/MapServer/2',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'statepidn',
+        pin:                'accountno',
+        owner:              'name1',
+        land_use_desc:      'accttype',
+        area_sqft:          'netsf',
+        area_acres:         'netacres',
+        assessed_value:     'assessedv',
+        land_value:         'totallandv',
+        improvement_value:  'totalimpsv',
+        tax_year:           'taxyear',
+        legal_desc:         'legal',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_code', 'overlay_districts', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'year_built', 'gross_floor_area', 'tax_amount',
+        'last_sale_date', 'last_sale_price', 'deed_book', 'deed_page',
+        'subdivision', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Laramie County GIS Consortium (CLCGISC) / Assessor',
+        url:     'https://www.laramiecounty.com/departments/assessor',
+        portal:  'https://maps.laramiecounty.com/arcgis/rest/services/features/CountyBaseMapFeatures/MapServer/2',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Cheyenne metro (Wyoming\'s capital and largest city). Confirmed via a real sample record naming "CITY OF CHEYENNE" as an owner within the dataset, distinguishing this from the unrelated "Cheyenne County" (a real, distinct county in Nebraska/Kansas/Colorado — Cheyenne is only a city, not a county, in Wyoming) whose similarly-named ArcGIS layers were deliberately not used. Hosted directly on the county\'s own domain (maps.laramiecounty.com), owned by CLCGISC (Cheyenne-Laramie County GIS Consortium), confirmed live with 45,920 records. name1 is a single, already-combined owner/entity name field (not split, unlike some other states\' schemas). accttype holds descriptive land-use category text (e.g. "Res Vacant Land", "Agricultural", "Exempt") rather than a short code, so it maps to land_use_desc rather than land_use_code. netsf/netacres are a matched lot-size pair (cross-checked: netacres × 43,560 ≈ netsf in the sample records), not building size — no building/gross-floor-area field is exposed. Both the situs (property) address (split across streetno/streetdir/streetname/streetsuf with no combined field) and the owner\'s mailing address (address1/city/state/zipcode, confirmed as mailing rather than situs via the City of Cheyenne sample record, whose city-hall mailing address differs from its Roundtop Rd situs) are left unmapped per this session\'s no-concatenation discipline. No zoning, sale-history, deed, or subdivision-name fields are exposed in this schema.',
+      },
+    },
+
   };
 
   function get(fips) {
