@@ -1,0 +1,30 @@
+name: (temp) Diagnose District of Columbia parcel service
+
+# Temporary, workflow_dispatch-only diagnostic for the next parcel-
+# expansion candidate: District of Columbia (23 facilities, tied with
+# Wayne County MI and Tarrant County TX), the next uninvestigated
+# entry in the facility-count priority list.
+# Deleted once this is either added to the registry or documented as
+# unavailable.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe DC candidates
+        run: node data/diagnose_dc.mjs
