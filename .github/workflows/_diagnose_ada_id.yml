@@ -30,3 +30,6 @@ jobs:
 
       - name: Probe Ada County ID candidates (round 2)
         run: node data/diagnose_ada_id_r2.mjs
+
+      - name: Probe Ada County ID candidates (round 3)
+        run: node data/diagnose_ada_id_r3.mjs
