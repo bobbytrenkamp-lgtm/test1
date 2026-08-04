@@ -28,3 +28,6 @@ jobs:
 
       - name: Probe Collin County TX candidates
         run: node data/diagnose_collin_tx.mjs
+
+      - name: Probe Collin County TX candidates (round 2)
+        run: node data/diagnose_collin_tx_r2.mjs
