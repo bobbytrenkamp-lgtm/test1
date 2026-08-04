@@ -2503,6 +2503,44 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '21111': {
+      id:          'ky-jefferson-county',
+      name:        'Jefferson County, Kentucky',
+      state:       'KY',
+      fips:        '21111',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis.lojic.org/maps/rest/services/LojicSolutions/OpenDataPVA/MapServer/1',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:   'PARCELID',
+        pin:         'PIN',
+        county_fips: '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_code', 'land_use_desc', 'overlay_districts', 'area_sqft',
+        'area_acres', 'lot_depth_ft', 'lot_width_ft', 'building_count',
+        'year_built', 'gross_floor_area', 'assessed_value', 'land_value',
+        'improvement_value', 'tax_year', 'tax_amount', 'last_sale_date',
+        'last_sale_price', 'deed_book', 'deed_page', 'subdivision',
+        'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'LOJIC (Louisville/Jefferson County Information Consortium) / Jefferson County PVA',
+        url:     'https://www.lojic.org/',
+        portal:  'https://gis.lojic.org/maps/rest/services/LojicSolutions/OpenDataPVA/MapServer/1',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Louisville metro — Kentucky data center market. Louisville and Jefferson County are a consolidated city-county government ("Louisville Metro"). This is a pure cadastral-geometry layer (PARCELID, PIN, an internal PARCEL_TYPE code, and an LRSN record-sequence number) with no owner/address/value fields exposed — a thin add, consistent with the precedent set by Middlesex County MA, Allegheny County PA, and District of Columbia this session.',
+      },
+    },
+
   };
 
   function get(fips) {
