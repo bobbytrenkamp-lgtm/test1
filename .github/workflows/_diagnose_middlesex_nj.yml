@@ -28,3 +28,6 @@ jobs:
 
       - name: Probe Middlesex County NJ candidates
         run: node data/diagnose_middlesex_nj.mjs
+
+      - name: Probe Middlesex County NJ candidates (round 2)
+        run: node data/diagnose_middlesex_nj_r2.mjs
