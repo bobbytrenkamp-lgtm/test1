@@ -389,7 +389,12 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   ArcGIS org publishes a rich, nightly-refreshed 71-field parcels
   service, yielding an 19/30-field mapping (18 real fields), one of
   the richest additions this session. Registry now covers 42
-  jurisdictions.
+  jurisdictions. Laramie County WY/the Cheyenne metro (19 facilities)
+  was added next within 2 probe rounds — a 12/30-field mapping (11
+  real fields) from the county's own "Assessor Parcels" service,
+  after deliberately avoiding a same-name false friend ("Cheyenne
+  County" is a real, distinct county in NE/KS/CO, not WY). Registry
+  now covers 43 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1489,6 +1494,55 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   mapped fields plus computed county_fips, and "Not published by this
   source" for the remaining 11, zero page errors. Registry now covers
   42 jurisdictions.
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Continued down the facility-count priority queue after Washoe
+  County NV: investigated Laramie County, Wyoming (FIPS 56021,
+  Cheyenne metro, 19 facilities).
+- Findings: Round 1 found the real candidate quickly — "Assessor
+  Parcels", owner CLCGISC (Cheyenne-Laramie County GIS Consortium),
+  hosted directly on the county's own domain (maps.laramiecounty.com).
+  A same-name false friend was deliberately avoided: "CheyenneCO_
+  Parcel(s)" (owner CheyenneCounty) is a real, distinct county in
+  Nebraska/Kansas/Colorado, not Wyoming — Cheyenne is only a city
+  within Laramie County, WY, not a county of its own. Round 2 confirmed
+  the real service live with 34 fields and 45,920 records, including a
+  sample record naming "CITY OF CHEYENNE" as owner — solid
+  corroboration this is the correct Wyoming county.
+- Added: `wy-laramie-county` with an 11-field mapping (parcel_id →
+  statepidn, pin → accountno, owner → name1 [a single, already-
+  combined name field], land_use_desc → accttype [descriptive category
+  text like "Res Vacant Land"/"Agricultural", not a short code, so
+  mapped to land_use_desc rather than land_use_code], area_sqft →
+  netsf, area_acres → netacres [cross-checked as a matched lot-size
+  pair: netacres × 43,560 ≈ netsf in sample records — not building
+  size, so no gross_floor_area mapping], assessed_value → assessedv,
+  land_value → totallandv, improvement_value → totalimpsv, tax_year →
+  taxyear, legal_desc → legal) plus county_fips (computed) — 12/30.
+  Both the situs address (split across streetno/streetdir/streetname/
+  streetsuf with no combined field) and the owner's mailing address
+  (address1/city/state/zipcode, confirmed as mailing rather than situs
+  via the City of Cheyenne sample record, whose city-hall mailing
+  address differs from its actual Roundtop Rd situs) are left
+  unmapped per this session's no-concatenation discipline. No zoning,
+  sale-history, deed, or subdivision-name fields are exposed. The
+  remaining 18 fields recorded in `notProvidedBySource` — verified
+  programmatically to cover all 30 canonical fields with zero gaps and
+  zero overlaps.
+- Licensing: official Laramie County Assessor/GIS data, published
+  directly by the county's own GIS consortium. Standard "public
+  government data, verify terms before commercial redistribution"
+  caveat applied.
+- Validation: field-mapping validation script confirmed zero
+  missing/extra/overlap against the 30 canonical fields. `node
+  tests/parcel.test.js` passes (293/293). Playwright live-test via
+  `window.PARCEL_PANEL.show()` with a synthetic feature based on a
+  real confirmed sample record (Remount Ranch LLC, 106.35 acres,
+  assessed $11,164) confirmed correct rendering of all 11 mapped
+  fields plus computed county_fips, and "Not published by this
+  source" for the remaining 18, zero page errors. Registry now covers
+  43 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
