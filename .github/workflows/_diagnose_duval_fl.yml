@@ -28,3 +28,6 @@ jobs:
 
       - name: Probe Duval County FL candidates
         run: node data/diagnose_duval_fl.mjs
+
+      - name: Probe Duval County FL candidates (round 2)
+        run: node data/diagnose_duval_fl_r2.mjs
