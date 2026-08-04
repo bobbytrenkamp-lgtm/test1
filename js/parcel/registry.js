@@ -1257,6 +1257,10 @@ window.PARCEL_REGISTRY = (function () {
       fips:        '48029',
       connector:   'arcgis',
       serviceUrl:  'https://services7.arcgis.com/BUFM2kw4MpxDUJVh/ArcGIS/rest/services/Bexar_CAD_Parcels/FeatureServer/3',
+      knownUnavailable: {
+        since:  '2026-08-04',
+        status: 'timeout after 20000ms — consistent across 2 separate probe attempts a few minutes apart, unrelated to any recent registry change',
+      },
 
       minZoom:     14,
       maxFeatures: 500,
@@ -2274,6 +2278,51 @@ window.PARCEL_REGISTRY = (function () {
         portal:  'https://www.pasda.psu.edu/uci/DataSummary.aspx?dataset=1214',
         license: 'Public government data. Verify terms before commercial redistribution.',
         note:    'Pittsburgh metro — Pennsylvania data center market. The county’s own ArcGIS Server (maps.pasda.psu.edu’s AlleghenyCountyParcels service) was unreachable (ArcGIS "not started" on repeated retries); this uses a currently-dated parcels layer found in PASDA’s own regional mirror instead. Only boundary/identifier data is exposed here; Allegheny County’s Real Estate/CAMA assessment data lives in a separate, not-yet-confirmed system.',
+      },
+    },
+
+    '18097': {
+      id:          'in-marion-county',
+      name:        'Marion County, Indiana',
+      state:       'IN',
+      fips:        '18097',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis.indy.gov/server/rest/services/MapIndy/MapIndyProperty/MapServer/10',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:         'PARCEL_C',
+        pin:               'STATEPARCELNUMBER',
+        owner:             'FULLOWNERNAME',
+        land_use_code:     'PROPERTY_CLASS',
+        land_use_desc:     'PROPERTY_SUB_CLASS_DESCRIPTION',
+        area_sqft:         'ESTSQFT',
+        area_acres:        'ACREAGE',
+        assessed_value:    'ASSESSORYEAR_TOTALAV',
+        land_value:        'ASSESSORYEAR_LANDTOTAL',
+        improvement_value: 'ASSESSORYEAR_IMPTOTAL',
+        subdivision:       'SUBDIVNUM',
+        legal_desc:        'LEGAL_DESCRIPTION_',
+        county_fips:       '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner_mailing', 'zoning_code', 'zoning_desc', 'overlay_districts',
+        'lot_depth_ft', 'lot_width_ft', 'building_count', 'year_built', 'gross_floor_area',
+        'tax_year', 'tax_amount', 'last_sale_date', 'last_sale_price',
+        'deed_book', 'deed_page', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'IndyGIS (City of Indianapolis and Marion County, Indiana — consolidated "Unigov" government)',
+        url:     'https://maps.indy.gov/',
+        portal:  'https://data-indygis.opendata.arcgis.com/datasets/IndyGIS::parcels-w-owner-information-assessed-values',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Indianapolis metro — Indiana data center market. Site address is split across multiple component fields (number/prefix-direction/street name/suffix) with no single combined field, and owner mailing address is likewise split, so neither is mapped.',
       },
     },
 
