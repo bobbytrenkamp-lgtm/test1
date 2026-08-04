@@ -1257,10 +1257,6 @@ window.PARCEL_REGISTRY = (function () {
       fips:        '48029',
       connector:   'arcgis',
       serviceUrl:  'https://services7.arcgis.com/BUFM2kw4MpxDUJVh/ArcGIS/rest/services/Bexar_CAD_Parcels/FeatureServer/3',
-      knownUnavailable: {
-        since:  '2026-08-04',
-        status: 'timeout after 20000ms — consistent across 2 separate probe attempts a few minutes apart, unrelated to any recent registry change',
-      },
 
       minZoom:     14,
       maxFeatures: 500,

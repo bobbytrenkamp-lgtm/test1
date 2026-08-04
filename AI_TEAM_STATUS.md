@@ -2338,22 +2338,18 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 
 ## Open Handoffs
 
-- Item: Bexar County, TX (FIPS 48029, San Antonio) parcel service
-  outage — `services7.arcgis.com/BUFM2kw4MpxDUJVh/ArcGIS/rest/
-  services/Bexar_CAD_Parcels/FeatureServer/3`, added earlier this
-  session as a first-probe success, started timing out (20000ms) in
-  `check_parcel_services.yml` on 2026-08-04, discovered incidentally
-  while merging the Marion County IN PR (#327) — unrelated to that
-  diff. Confirmed across 2 separate probe attempts a few minutes
-  apart, so treated as a real (if possibly transient) outage rather
-  than one-off flakiness, and marked `knownUnavailable` in
-  `js/parcel/registry.js` per the project's documented pattern (see
-  `data/check_parcel_services.mjs`'s own comments) so the CI probe
-  check stops failing on a tracked, known fact. A human or future
-  session should periodically re-check whether this ArcGIS Online org
-  has recovered — `check_parcel_services.mjs` will report "RECOVERED"
-  automatically when it does, at which point the `knownUnavailable`
-  block should be removed from registry.js.
+- Item (resolved): Bexar County, TX (FIPS 48029, San Antonio) parcel
+  service outage — `services7.arcgis.com/BUFM2kw4MpxDUJVh/ArcGIS/
+  rest/services/Bexar_CAD_Parcels/FeatureServer/3` started timing out
+  (20000ms) in `check_parcel_services.yml` on 2026-08-04, discovered
+  incidentally while merging the Marion County IN PR (#327) —
+  unrelated to that diff. Confirmed across 2 separate probe attempts a
+  few minutes apart and marked `knownUnavailable` in
+  `js/parcel/registry.js` per the project's documented pattern. Less
+  than 20 minutes later, while merging the next PR (Tarrant County TX,
+  #329), `check_parcel_services.mjs` reported it RECOVERED — the
+  outage was real but brief. Removed the `knownUnavailable` block
+  accordingly; no further action needed.
 - Item: Jackson County, Missouri (Kansas City) parcel data — next
   target by facility count (34 in `facilities_index.json`, tied with
   Davidson County TN) after Davidson County TN.
