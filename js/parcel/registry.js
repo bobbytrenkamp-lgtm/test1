@@ -2907,6 +2907,51 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '13089': {
+      id:          'ga-dekalb-county',
+      name:        'DeKalb County, Georgia',
+      state:       'GA',
+      fips:        '13089',
+      connector:   'arcgis',
+      serviceUrl:  'https://services2.arcgis.com/IxVN2oUE9EYLSnPE/arcgis/rest/services/Tax_Parcels_2025/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'ParcelID',
+        area_sqft:          'StatedArea',
+        lot_depth_ft:       'DEPTH',
+        lot_width_ft:       'FRONTAGE',
+        zoning_code:        'ZONING',
+        overlay_districts:  'OVERLAY_DIST',
+        land_use_code:      'LANDUSECODE',
+        land_use_desc:      'LANDUSE',
+        assessed_value:     'ASSESSED_VALUE',
+        land_value:         'LAND_VALUE',
+        improvement_value:  'BLDG_VALUE',
+        tax_year:           'TAXYR',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'pin', 'address', 'owner', 'owner_mailing', 'zoning_desc',
+        'area_acres', 'building_count', 'year_built', 'gross_floor_area',
+        'tax_amount', 'last_sale_date', 'last_sale_price', 'deed_book',
+        'deed_page', 'subdivision', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'DeKalb County, Georgia GIS/Tax Assessor',
+        url:     'https://www.dekalbcountyga.gov/property-appraisal',
+        portal:  'https://services2.arcgis.com/IxVN2oUE9EYLSnPE/arcgis/rest/services/Tax_Parcels_2025/FeatureServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Atlanta metro (Decatur/Tucker/Chamblee/Stone Mountain area). Confirmed as the Georgia DeKalb County — not the same-named counties in Illinois, Indiana, Tennessee, Missouri, or Alabama — via multiple corroborating signals: search results reference "Tucker" (a real DeKalb County GA city) and are owned by "decatur_admin" (Decatur is DeKalb County GA\'s county seat); sample data shows ZONING "R-100", a real DeKalb County GA residential zoning designation; and the sample ASSESSED_VALUE/APPRAISED_VALUE ratio (150,160/375,400 ≈ 0.40) matches Georgia\'s constitutionally mandated 40% assessment ratio. Published directly by the county\'s own official GIS admin account (DeKalbGISAdmin), which maintains yearly-versioned "Tax Parcels" services (2022/2024/2025); this entry uses the current 2025 vintage, confirmed live with 246,602 records. This layer carries rich zoning/land-use/valuation data but no owner name or address fields at all — those aren\'t part of this particular dataset\'s schema. LANDUSECODE (numeric, e.g. "101") maps to land_use_code; LANDUSE (abbreviated text, e.g. "SUB") maps to land_use_desc. No sale-history, deed, subdivision-name, or legal-description fields are exposed (LEGAL_LOT_NUMBER/LEGAL_BUILDING_NUMBER/LEGAL_UNIT_NUMBER are split components with no combined string).',
+      },
+    },
+
   };
 
   function get(fips) {
