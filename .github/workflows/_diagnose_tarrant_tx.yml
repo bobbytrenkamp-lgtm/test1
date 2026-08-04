@@ -1,0 +1,30 @@
+name: (temp) Diagnose Tarrant County TX parcel service
+
+# Temporary, workflow_dispatch-only diagnostic for the next parcel-
+# expansion candidate: Tarrant County TX / Fort Worth (23 facilities),
+# the next uninvestigated county in the facility-count priority list
+# after Marion County IN.
+# Deleted once this is either added to the registry or documented as
+# unavailable.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe Tarrant County TX candidates
+        run: node data/diagnose_tarrant_tx.mjs
