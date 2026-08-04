@@ -240,7 +240,19 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   exposed in this PASDA mirror; the county's own Real Estate/CAMA
   assessment data (owner, value, sale history) lives in a separate,
   not-yet-confirmed system. See Recently Completed below. Registry now
-  covers 30 jurisdictions.
+  covers 30 jurisdictions. Marion County IN/Indianapolis (24
+  facilities) was added next over 2 rounds — Indianapolis and Marion
+  County share a consolidated "Unigov" city-county government: round
+  1's DCAT catalog on the Open Indy Data Portal directly surfaced
+  "Parcels w/ Owner Information & Assessed Values", a promising
+  CAMA-style dataset distinct from a plainer boundary-only fallback;
+  round 2 confirmed it directly (50 fields, real Polygon geometry).
+  Added with 12 real fields + computed county_fips (13/30), including
+  owner name, land/improvement/total assessed values, subdivision, and
+  legal description — no single combined address field exists (split
+  across number/direction/street/suffix components), so address and
+  owner_mailing aren't mapped. See Recently Completed below. Registry
+  now covers 31 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1254,6 +1266,47 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Marion County, Indiana (FIPS 18097, 24 facilities,
+  Indianapolis metro) to the parcel registry, over two probe rounds.
+- Findings: Indianapolis and Marion County share a consolidated
+  "Unigov" city-county government. Round 1's DCAT catalog on the Open
+  Indy Data Portal (data-indygis.opendata.arcgis.com) directly
+  surfaced a promising dataset — "Parcels w/ Owner Information &
+  Assessed Values" — alongside a plainer boundary-only fallback
+  ("Parcels"). Round 2 probed both directly: the richer candidate
+  (MapIndy/MapIndyProperty, layer 10, internal name "Parcel") is real,
+  live, 50 fields, real Polygon geometry — used it over the fallback
+  (25 fields, no owner/value data).
+- Field mapping: 12 of 30 canonical fields mapped (parcel_id →
+  PARCEL_C, pin → STATEPARCELNUMBER, owner → FULLOWNERNAME,
+  land_use_code → PROPERTY_CLASS, land_use_desc →
+  PROPERTY_SUB_CLASS_DESCRIPTION, area_sqft → ESTSQFT, area_acres →
+  ACREAGE, assessed_value → ASSESSORYEAR_TOTALAV, land_value →
+  ASSESSORYEAR_LANDTOTAL, improvement_value → ASSESSORYEAR_IMPTOTAL,
+  subdivision → SUBDIVNUM, legal_desc → LEGAL_DESCRIPTION_) plus
+  county_fips (computed) — 13/30. Site address is split across
+  multiple component fields (street number, prefix direction, street
+  name, suffix, suffix direction) with no single combined field, and
+  owner mailing address is likewise split (address line 1/2, city,
+  state, zip), so neither `address` nor `owner_mailing` is mapped —
+  the connector only supports 1:1 field mapping. The remaining 17
+  fields recorded in `notProvidedBySource` — verified programmatically
+  to cover all 30 canonical fields with zero gaps and zero overlaps.
+- Licensing: IndyGIS's own official data (the joint Indianapolis/
+  Marion County GIS department). Standard "public government data,
+  verify terms before commercial redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 12 mapped fields plus computed
+  county_fips, and "Not published by this source" for the remaining
+  17, zero page errors. Registry now covers 31 jurisdictions.
+- Temp files (`data/diagnose_marion_in.mjs`,
+  `.github/workflows/_diagnose_marion_in.yml`) deleted in the same
+  commit that added the registry entry.
+- Last updated: 2026-08-04
 
 - Date: 2026-08-04
 - Agent: Claude Code
