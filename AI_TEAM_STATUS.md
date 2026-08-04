@@ -306,7 +306,15 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   geometry but a thin 9-field cadastral-only schema. Added with 2 real
   fields + computed county_fips (3/30), consistent with the thin-add
   precedent from Middlesex MA/Allegheny PA/DC. See Recently Completed
-  below. Registry now covers 36 jurisdictions.
+  below. Registry now covers 36 jurisdictions. Middlesex County NJ (22
+  facilities, tied with Duval FL and Jefferson KY) was added next over
+  3 probe rounds: round 1 verified candidates were genuinely NJ-
+  specific (not a false-positive same name), round 2 found two live
+  candidates sharing the same NJ MOD-IV source data, and round 3
+  picked the richer of the two (58 fields incl. owner name, vs. 46
+  missing owner name). Added with 14 real fields + computed
+  county_fips (15/30) — the richest addition since Tarrant County TX.
+  See Recently Completed below. Registry now covers 37 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1320,6 +1328,50 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Last updated: 2026-07-31
 
 ## Recently Completed Work
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Added Middlesex County, New Jersey (FIPS 34023, 22 facilities,
+  tied with Duval FL and Jefferson KY) to the parcel registry, over
+  three probe rounds.
+- Findings: Round 1's ArcGIS Online item search surfaced three
+  genuinely NJ-specific candidates (verified against the risk of a
+  same-state or same-name false positive like Duval FL's Jacksonville-
+  Oregon mixup): the county's own GIS portal, an ArcGIS Online hosted
+  "Middlesex_County_NJ_Parcel_data" service, and a third candidate
+  that turned out to require an auth token (discarded). Round 2
+  confirmed both remaining candidates were real, live Polygon parcel
+  layers sharing the same underlying NJ MOD-IV (statewide assessment
+  database) source data, maintained by Civil Solutions for the
+  Middlesex County Office of Information Technology. Round 3 compared
+  their field schemas directly: the county's own portal exposes 46
+  fields but is missing an owner-name field, while the ArcGIS Online
+  copy exposes 58 fields including `OwnersName` — so the richer
+  ArcGIS Online copy was used.
+- Field mapping: 14 of 30 canonical fields mapped (parcel_id →
+  PAMS_PIN [NJ's statewide unique parcel ID], pin → UNIQUEID, owner →
+  OwnersName, address → PropLoc, land_use_code → PropClass,
+  land_use_desc → LandDesc, area_acres → Acreage, year_built →
+  YearBuilt, gross_floor_area → SFLA, assessed_value → NetValue,
+  last_sale_date → SalesDate, last_sale_price → SalePrice, deed_book →
+  DeedBook, deed_page → DeedPage) plus county_fips (computed) — 15/30,
+  the richest addition since Tarrant County TX this session. Owner
+  mailing address (OwnerAddr1/OwnerAddr2/ZipCode) is split across
+  multiple fields with no single combined field, so owner_mailing
+  isn't mapped; NetValue is MOD-IV's single total net assessed value
+  with no separate land/improvement split exposed. The remaining 15
+  fields recorded in `notProvidedBySource` — verified programmatically
+  to cover all 30 canonical fields with zero gaps and zero overlaps.
+- Licensing: official Middlesex County, New Jersey government parcel
+  data (Civil Solutions / Middlesex County Office of Information
+  Technology / NJ Office of GIS), hosted as an ArcGIS Online feature
+  service. Standard "public government data, verify terms before
+  commercial redistribution" caveat applied.
+- Validation: `node tests/parcel.test.js` passes (293/293). Playwright
+  live-test via `window.PARCEL_PANEL.show()` with a synthetic feature
+  confirmed correct rendering of all 14 mapped fields plus computed
+  county_fips, and "Not published by this source" for the remaining
+  15, zero page errors. Registry now covers 37 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
