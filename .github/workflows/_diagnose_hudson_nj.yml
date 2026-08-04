@@ -28,3 +28,6 @@ jobs:
 
       - name: Probe Hudson County NJ candidates
         run: node data/diagnose_hudson_nj.mjs
+
+      - name: Probe Hudson County NJ candidates (round 2)
+        run: node data/diagnose_hudson_nj_r2.mjs
