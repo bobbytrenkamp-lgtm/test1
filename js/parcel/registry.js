@@ -2372,6 +2372,54 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '26163': {
+      id:          'mi-wayne-county',
+      name:        'Wayne County, Michigan',
+      state:       'MI',
+      fips:        '26163',
+      connector:   'arcgis',
+      serviceUrl:  'https://services6.arcgis.com/WiOy9S7NUTWyXUe4/arcgis/rest/services/WayneCo_Parcels/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:         'Parcel',
+        pin:               'Parcel2',
+        address:           'PPAddress',
+        owner:             'PPOwner',
+        owner_mailing:     'PPOwnerAddress',
+        land_use_code:     'PPClassCode',
+        area_acres:        'PPAcres',
+        gross_floor_area:  'PPLivingArea',
+        year_built:        'PPYearBuilt',
+        building_count:    'PPDwellCount',
+        assessed_value:    'PPTotalValue',
+        land_value:        'PPLandValue',
+        improvement_value: 'PPImprValue',
+        last_sale_date:    'PPSaleDate',
+        last_sale_price:   'PPAmount',
+        county_fips:       '__computed__',
+      },
+
+      notProvidedBySource: [
+        'zoning_code', 'zoning_desc', 'land_use_desc', 'overlay_districts',
+        'area_sqft', 'lot_depth_ft', 'lot_width_ft',
+        'tax_year', 'tax_amount', 'deed_book', 'deed_page',
+        'subdivision', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Wayne County, Michigan',
+        url:     'https://www.waynecounty.com/',
+        portal:  'https://services6.arcgis.com/WiOy9S7NUTWyXUe4/arcgis/rest/services/WayneCo_Parcels/FeatureServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Detroit metro — Michigan data center market. Layer also exposes PPTaxPayer/PPTaxPayerAddress (a separate tax-payer-of-record pair distinct from PPOwner/PPOwnerAddress) which are left unmapped since owner/owner_mailing already have a direct match. PPClassNumber (a secondary class code) and PPGrade/PPCondition/PPHasCAUV have no canonical equivalent and are also left unmapped.',
+      },
+    },
+
   };
 
   function get(fips) {
