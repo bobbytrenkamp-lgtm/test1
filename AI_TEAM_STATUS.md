@@ -370,7 +370,13 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   (5/30), a legitimate thin add consistent with this session's DC/
   Jefferson KY precedent since round 1 already confirmed this as the
   sole authoritative Honolulu-specific source. See Recently Completed
-  below. Registry now covers 41 jurisdictions.
+  below. Registry now covers 41 jurisdictions. Providence County RI/
+  the Providence metro (20 facilities) was investigated next over 4
+  probe rounds and closed as unavailable — Rhode Island has no county
+  government and no live queryable parcel REST service was found at
+  either the county or state level (RIGIS's real, 387-dataset
+  statewide catalog has zero datasets titled "parcel"); see Open
+  Handoffs for the full trail. Registry remains at 41 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -2861,6 +2867,55 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 - Remaining concerns: none — this handoff is closed.
 
 ## Open Handoffs
+
+- Item: Providence County, Rhode Island (FIPS 44007, Providence metro,
+  20 facilities) parcel data — investigated 2026-08-04 over four probe
+  rounds via GitHub Actions dispatch, closed as unavailable.
+- Current status: Not added. No live, queryable, county-or-state-level
+  parcel REST service exists for Rhode Island.
+- Round 1: Rhode Island has no county government — counties are
+  census/judicial boundaries only, with no administrative or GIS
+  authority of their own. The City of Providence's own open data
+  portal DCAT feed returns HTTP 404. ArcGIS Online searches surfaced
+  only individual-town parcel layers ("City of Providence CT Parcels",
+  "East Providence CT Parcels", "Cranston CT Parcels" — the "CT" here
+  is a vendor naming convention, not Connecticut; all three are
+  genuine RI municipalities), confirming parcel data is published
+  town-by-town via vendors like AxisGIS rather than aggregated
+  anywhere.
+- Round 2: Searched specifically for a genuine RIGIS (Rhode Island
+  Geographic Information System, the state's official GIS program)
+  statewide parcels service. No such ArcGIS item was found by title or
+  owner search. Every live ArcGIS FeatureServer surfaced across this
+  and round 1 (Lincoln RI Parcels, RI_Parcels_Simple_2_SLE_SLR, RI
+  Parcels Add Accounts After Join Part1, RI_Parcel_Date_Range, several
+  Parcels_011224_*Split analysis layers) is hosted by individual
+  consultants or researchers (TigheBond, personal ArcGIS accounts),
+  not an authoritative statewide or county source. `rigis.org`'s own
+  DCAT feed did respond HTTP 200 (unlike Providence's portal), a
+  promising lead worth following up.
+- Round 3: Fetched RIGIS's DCAT feed raw and confirmed it's genuinely
+  real and substantial — 387 total datasets, proper DCAT-US structure
+  (`@context`, `@type`, `dataset` array). The first text match for
+  "parcel" was just a description mentioning "parcels of land" in an
+  unrelated "Local Conservation Lands 2026" dataset, not an actual
+  Parcels entry.
+- Round 4 (final): Filtered all 387 RIGIS datasets specifically for
+  "parcel" in the title — zero matches. RIGIS's real, substantial,
+  official catalog has no dataset titled anything containing
+  "parcel" at all.
+- Conclusion: across all four rounds, no authoritative county-wide or
+  statewide live parcel REST service was found for Rhode Island — not
+  from the City of Providence, not from RIGIS, and not from any of the
+  individually-hosted ArcGIS layers turned up (all single-town or
+  ad-hoc extracts). Using any one of those individual layers as a
+  stand-in for "Providence County" would misrepresent the FIPS-level
+  jurisdiction this app models, so none was added. Recommend
+  revisiting if RIGIS ever publishes a live statewide parcels REST
+  endpoint, or reconsidering this as a municipality-level entry (just
+  the City of Providence, using a specific verified-official live town
+  service) rather than the full county if the product wants
+  sub-county granularity in the future.
 
 - Item (resolved): Bexar County, TX (FIPS 48029, San Antonio) parcel
   service outage — `services7.arcgis.com/BUFM2kw4MpxDUJVh/ArcGIS/
