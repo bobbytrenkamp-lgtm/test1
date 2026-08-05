@@ -118,18 +118,29 @@ Add the source to `data/zoning/sources/source_registry.json` under the jurisdict
 }
 ```
 
+## Automated tooling (in progress)
+
+The manual steps above (1–6) are still how a jurisdiction actually gets added to `js/parcel/registry.js` today — there is no automated entry generator yet. Two pieces of tooling exist to make *finding what to work on next* less manual, though:
+
+- **`data/parcel_source_catalog.json`** — a machine-readable index of every parcel source investigated for this project, not just the ones that made it into the registry. Production jurisdictions (regenerated from the live registry by `node data/parcel_pipeline/seed_catalog_from_registry.mjs`, safe to re-run any time) sit alongside hand-transcribed candidate/blocked/rejected records for counties that were investigated but not added, each with a `notes` pointer back to the relevant `AI_TEAM_STATUS.md` line range for the full narrative trail. Validate it with `python3 data/validate_parcel_catalog.py`.
+- **`data/parcel_priority_queue.py --next N`** — ranks the next N jurisdictions worth investigating by facility count (from `data/facilities_index.json`), automatically excluding counties already in production and counties that are blocked/rejected without a due retry, and flags when a state already has a reusable statewide/regional service (via the `where`-clause pattern below) that might cover a new county just by changing the filter value.
+- **`data/parcel_field_synonyms.json`** — an exact-match seed corpus of every source attribute name already verified (by a human, against a real live service) to map to a given canonical field, extracted from every `fieldMap` currently in the registry via `node data/parcel_pipeline/extract_field_synonyms.mjs`. This is a reference lookup only — nothing consumes it automatically yet.
+
+Full discovery (searching for new candidate sources), scoring, and automated field-mapping/entry-generation are a planned later phase and don't exist yet — this tooling only helps you find and record what's already known.
+
 ## Connector types
 
-Currently supported: `arcgis` (ArcGIS FeatureServer via GeoJSON output).
+Currently supported and implemented: `arcgis` (ArcGIS FeatureServer/MapServer via GeoJSON output), `geojson` (static or dynamic GeoJSON download), `wfs` (OGC Web Feature Service 1.1.0/2.0.0). All 51 current registry entries use `arcgis`; `geojson` and `wfs` are implemented and ready but not yet used by any live jurisdiction.
 
 Planned:
-- `geojson` — static or dynamic GeoJSON download
-- `wfs` — OGC Web Feature Service
 - `ckan` — CKAN open data portal API
+- A multi-table-join connector, for jurisdictions that publish parcel boundaries and assessment/CAMA data as separate services joined by a shared identifier (PIN/APN/FOLIO/SSL)
 
 To implement a new connector type, create `js/parcel/connector-{type}.js` following the same interface as `ArcGISParcelConnector`:
 - `fetchViewport(bounds, signal)` → GeoJSON FeatureCollection (normalized)
 - `searchByQuery(whereClause, signal)` → GeoJSON FeatureCollection (normalized)
 - `fetchById(id, signal)` → GeoJSON FeatureCollection (normalized)
 
-Then update `js/parcel/renderer.js` to instantiate the correct connector class based on `config.connector`.
+Then update **both** `js/parcel/renderer.js`'s `_makeConnector()` factory (the map-rendering path) **and** `js/parcel/index.js`'s `search()` method (the search-bar path, which currently hardcodes `ArcGISParcelConnector` rather than dispatching by connector type) to instantiate the correct connector class based on `config.connector`. Also add the new type to the connector-enum check in `tests/parcel.test.js` (`['arcgis', 'geojson', 'wfs'].includes(cfg.connector)`) — every registry entry using an un-listed connector type fails that assertion.
+
+For a service that shares one dataset across multiple counties (a statewide or regional agency), scope it to one county with a `where` clause on the registry entry (e.g. `where: "COUNTY = 'HUDSON'"`) rather than adding a new connector — `connector-arcgis.js` already supports this (defaults to `'1=1'` when absent), and it's the pattern behind several existing entries (NJ MOD-IV, NYC MAPPLUTO, the Twin Cities metro regional service).
