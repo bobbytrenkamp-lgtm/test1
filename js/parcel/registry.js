@@ -440,6 +440,138 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Baltimore city, Maryland ─────────────────────────────────────────
+     *
+     * Same statewide MD_ParcelBoundaries service as Montgomery/Howard
+     * County above. A prior round's bounding-box query near the city
+     * boundary returned neighboring Anne Arundel County data instead
+     * (JURSCODE="ANNE") — the service's own JURSCODE field is the
+     * reliable way to scope a query to one jurisdiction, not geometry.
+     * 2026-08-05: confirmed via a distinct-values query returning all 24
+     * MD jurisdiction codes (23 counties + Baltimore City) — JURSCODE
+     * 'BACI' is Baltimore city (223,986 parcels, plausible for the
+     * city's known parcel count), and a sample query against it returned
+     * a real record with the service's full real attribute schema.
+     * ─────────────────────────────────────────────────────────────────── */
+    '24510': {
+      id:          'md-baltimore-city',
+      name:        'Baltimore city, Maryland',
+      state:       'MD',
+      fips:        '24510',
+      connector:   'arcgis',
+      serviceUrl:  'https://mdgeodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/0',
+      where:       "JURSCODE = 'BACI'",
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'ACCTID',
+        pin:                 'ACCTID',
+        address:             'ADDRESS',
+        zoning_code:         'ZONING',
+        land_use_code:       'LU',
+        land_use_desc:       'DESCLU',
+        area_acres:          'ACRES',
+        lot_depth_ft:        'DEPTH',
+        lot_width_ft:        'WIDTH',
+        year_built:          'YEARBLT',
+        gross_floor_area:    'SQFTSTRC',
+        assessed_value:      'NFMTTLVL',
+        land_value:          'NFMLNDVL',
+        improvement_value:   'NFMIMPVL',
+        last_sale_date:      'TRADATE',
+        last_sale_price:     'CONSIDR1',
+        deed_book:           'DR1LIBER',
+        deed_page:           'DR1FOLIO',
+        subdivision:         'DESCSUBD',
+        legal_desc:          'LEGAL1',
+        census_tract:        'CT2020',
+        county_fips:         '__computed__',
+      },
+
+      /* See Montgomery County MD's entry above — same service, same
+         confirmed-absent field list. */
+      notProvidedBySource: [
+        'owner', 'owner_mailing', 'zoning_desc', 'overlay_districts',
+        'area_sqft', 'building_count', 'tax_year', 'tax_amount',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Maryland Dept. of Planning / Dept. of Assessments & Taxation (MD iMAP)',
+        url:     'https://www.baltimorecity.gov/',
+        portal:  'https://data.imap.maryland.gov/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Served from Maryland’s statewide parcel layer, filtered to Baltimore city via JURSCODE=\'BACI\' (confirmed 2026-08-05 via a real distinct-values query, not a bounding-box guess).',
+      },
+    },
+
+    /* ── Prince George's County, Maryland ─────────────────────────────────
+     *
+     * Same statewide MD_ParcelBoundaries service and same JURSCODE
+     * scoping fix as Baltimore city above — a prior bounding-box query
+     * near the county boundary had returned Montgomery County data
+     * instead (JURSCODE="MONT"). 2026-08-05: confirmed JURSCODE 'PRIN'
+     * is Prince George's County (275,126 parcels) via the same
+     * distinct-values query, plus a real sample record.
+     * ─────────────────────────────────────────────────────────────────── */
+    '24033': {
+      id:          'md-prince-georges-county',
+      name:        "Prince George's County, Maryland",
+      state:       'MD',
+      fips:        '24033',
+      connector:   'arcgis',
+      serviceUrl:  'https://mdgeodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/0',
+      where:       "JURSCODE = 'PRIN'",
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'ACCTID',
+        pin:                 'ACCTID',
+        address:             'ADDRESS',
+        zoning_code:         'ZONING',
+        land_use_code:       'LU',
+        land_use_desc:       'DESCLU',
+        area_acres:          'ACRES',
+        lot_depth_ft:        'DEPTH',
+        lot_width_ft:        'WIDTH',
+        year_built:          'YEARBLT',
+        gross_floor_area:    'SQFTSTRC',
+        assessed_value:      'NFMTTLVL',
+        land_value:          'NFMLNDVL',
+        improvement_value:   'NFMIMPVL',
+        last_sale_date:      'TRADATE',
+        last_sale_price:     'CONSIDR1',
+        deed_book:           'DR1LIBER',
+        deed_page:           'DR1FOLIO',
+        subdivision:         'DESCSUBD',
+        legal_desc:          'LEGAL1',
+        census_tract:        'CT2020',
+        county_fips:         '__computed__',
+      },
+
+      /* See Montgomery County MD's entry above — same service, same
+         confirmed-absent field list. */
+      notProvidedBySource: [
+        'owner', 'owner_mailing', 'zoning_desc', 'overlay_districts',
+        'area_sqft', 'building_count', 'tax_year', 'tax_amount',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Maryland Dept. of Planning / Dept. of Assessments & Taxation (MD iMAP)',
+        url:     'https://www.princegeorgescountymd.gov/',
+        portal:  'https://data.imap.maryland.gov/',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Served from Maryland’s statewide parcel layer, filtered to Prince George’s County via JURSCODE=\'PRIN\' (confirmed 2026-08-05 via a real distinct-values query, not a bounding-box guess).',
+      },
+    },
+
     /* ── Maricopa County, Arizona ─────────────────────────────────────────
      *
      * Maricopa County (Phoenix metro) is the #2 target by facility count in

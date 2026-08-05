@@ -478,11 +478,15 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   covered. Resumed county-by-county expansion using the new priority
   queue, starting with Essex County NJ (reused Hudson County NJ's
   already-proven statewide service via a different `where` filter, zero
-  fresh discovery). Registry now covers 52 jurisdictions. This is
-  intended to continue indefinitely across many further rounds per the
-  user's explicit standing instruction — see Recently Completed Work
-  below for the ongoing detailed log, and Open Handoffs for anything
-  that gets stuck.
+  fresh discovery), then Baltimore City MD and Prince George's County
+  MD (reused Montgomery/Howard County MD's statewide service via a
+  `JURSCODE`-based `where` filter, once the exact codes were confirmed
+  via a real distinct-values query rather than the bounding-box guess
+  that had failed in the Essex NJ round). Registry now covers 54
+  jurisdictions. This is intended to continue indefinitely across many
+  further rounds per the user's explicit standing instruction — see
+  Recently Completed Work below for the ongoing detailed log, and Open
+  Handoffs for anything that gets stuck.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -2106,6 +2110,52 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   `totalJurisdictions: 52`. `data/parcel_source_catalog.json`
   regenerated via `seed_catalog_from_registry.mjs`. Registry now
   covers 52 jurisdictions.
+
+- Date: 2026-08-05
+- Agent: Claude Code
+- Task: Resolved the Baltimore City MD (24510) / Prince George's
+  County MD (24033) follow-up left open by the Essex NJ round above —
+  the prior bounding-box queries against the statewide
+  `MD_ParcelBoundaries` service had returned the wrong neighboring
+  county's data for both.
+- Findings: A distinct-values query on the service's `JURSCODE` field
+  (`groupByFieldsForStatistics` — the plain `returnDistinctValues`
+  form errored with an ArcGIS 500) returned all 24 Maryland
+  jurisdiction codes (23 counties + Baltimore City) in one call:
+  `JURSCODE='BACI'` (223,986 parcels) is Baltimore city and
+  `JURSCODE='PRIN'` (275,126 parcels) is Prince George's County — both
+  counts are plausible for each jurisdiction's real parcel volume, and
+  a follow-up sample query against each code returned a real record
+  with the service's full attribute schema. Dispatched via a temporary
+  `workflow_dispatch`-only workflow (`_diagnose_md_jurscode.yml`,
+  merged to main first since `workflow_dispatch` only registers
+  workflows already on the default branch, then dispatched and its
+  logs read — same two-step pattern the Essex NJ round's diagnostic
+  used).
+- Added: `md-baltimore-city` (FIPS 24510) and
+  `md-prince-georges-county` (FIPS 24033) — both an identical
+  22-real-field mapping to Montgomery/Howard County MD's existing
+  entries (parcel_id, pin, address, zoning_code, land_use_code,
+  land_use_desc, area_acres, lot_depth_ft, lot_width_ft, year_built,
+  gross_floor_area, assessed_value, land_value, improvement_value,
+  last_sale_date, last_sale_price, deed_book, deed_page, subdivision,
+  legal_desc, census_tract) plus computed county_fips, 22/30, each
+  scoped via `where: "JURSCODE = '<code>'"` instead of a bbox. Removed
+  the two now-resolved `requires-review` catalog entries.
+- Licensing: Maryland Dept. of Planning / Dept. of Assessments &
+  Taxation (MD iMAP), same source and license note as Montgomery and
+  Howard County MD's existing entries.
+- Validation: `node data/parcel_pipeline/check_registry_integrity.mjs`
+  and `python3 data/validate_parcel_catalog.py` both clean (61 catalog
+  entries, 0 warnings). `node tests/parcel.test.js` passes (293/293).
+  `node tests/test_parcel_field_mapper.mjs` ground-truth regression:
+  54 jurisdictions, 634 real mappings, 613 reproduced exactly, 21
+  correctly flagged as ambiguous, 0 confident wrong guesses.
+  `data/parcel_source_catalog.json` regenerated via
+  `seed_catalog_from_registry.mjs` (54 production entries). Deleted
+  the temporary diagnostic files
+  (`data/diagnose_md_jurscode.mjs`, `.github/workflows/_diagnose_md_jurscode.yml`)
+  once resolved. Registry now covers 54 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
