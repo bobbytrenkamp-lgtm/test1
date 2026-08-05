@@ -1,0 +1,2794 @@
+{
+  "meta": {
+    "description": "Exact-match seed corpus of verified source-field-name -> canonical-field synonyms, extracted from every fieldMap in js/parcel/registry.js. Every entry here has been human-verified against a real live service, not inferred. Consumed by a future tiered field-mapper (Phase 2) as its first, highest-confidence resolution tier, before normalized-name matching or sample-value inspection are attempted.",
+    "generated_by": "data/parcel_pipeline/extract_field_synonyms.mjs",
+    "generated_from": "js/parcel/registry.js",
+    "last_regenerated": "2026-08-05"
+  },
+  "synonyms": {
+    "address": [
+      {
+        "name": "ADDR_FULL",
+        "seen_in": [
+          "53033"
+        ]
+      },
+      {
+        "name": "ADDRESS",
+        "seen_in": [
+          "10003",
+          "13121",
+          "16001",
+          "24027",
+          "24031",
+          "36061",
+          "42101"
+        ]
+      },
+      {
+        "name": "FULLADDRESS",
+        "seen_in": [
+          "32031"
+        ]
+      },
+      {
+        "name": "PAR_ADDR_ALL",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "PARCEL_ADD",
+        "seen_in": [
+          "49035"
+        ]
+      },
+      {
+        "name": "PHYSICAL_ADDRESS",
+        "seen_in": [
+          "04013"
+        ]
+      },
+      {
+        "name": "PPADDRESS",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "PROP_LOC",
+        "seen_in": [
+          "34017"
+        ]
+      },
+      {
+        "name": "PROPADDR",
+        "seen_in": [
+          "47037"
+        ]
+      },
+      {
+        "name": "PROPERTY_A",
+        "seen_in": [
+          "31055"
+        ]
+      },
+      {
+        "name": "PROPERTY_ADDRESS",
+        "seen_in": [
+          "51683"
+        ]
+      },
+      {
+        "name": "PROPLOC",
+        "seen_in": [
+          "34023"
+        ]
+      },
+      {
+        "name": "SITE_ADDR",
+        "seen_in": [
+          "12057"
+        ]
+      },
+      {
+        "name": "SITE_ADDRESS",
+        "seen_in": [
+          "37183"
+        ]
+      },
+      {
+        "name": "SITEADDR",
+        "seen_in": [
+          "41067"
+        ]
+      },
+      {
+        "name": "SITEADDRESS",
+        "seen_in": [
+          "39049"
+        ]
+      },
+      {
+        "name": "SITUS_ADDR",
+        "seen_in": [
+          "48029",
+          "48439"
+        ]
+      },
+      {
+        "name": "SITUS_ADDRESS",
+        "seen_in": [
+          "48453"
+        ]
+      },
+      {
+        "name": "SITUSADDR",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "SITUSADDRESS",
+        "seen_in": [
+          "06001"
+        ]
+      },
+      {
+        "name": "SITUSCONCAT",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "SITUSFULLADDRESS",
+        "seen_in": [
+          "06037"
+        ]
+      },
+      {
+        "name": "TRUE_SITE_ADDR",
+        "seen_in": [
+          "12086"
+        ]
+      }
+    ],
+    "area_acres": [
+      {
+        "name": "A_T_ACRES",
+        "seen_in": [
+          "41067"
+        ]
+      },
+      {
+        "name": "ACREAGE",
+        "seen_in": [
+          "18097",
+          "32031",
+          "34023"
+        ]
+      },
+      {
+        "name": "ACREAGE_1",
+        "seen_in": [
+          "48201"
+        ]
+      },
+      {
+        "name": "ACREDEED",
+        "seen_in": [
+          "39061"
+        ]
+      },
+      {
+        "name": "ACRES",
+        "seen_in": [
+          "12031",
+          "16001",
+          "24027",
+          "24031",
+          "31055",
+          "39049",
+          "47037"
+        ]
+      },
+      {
+        "name": "ACRES_POLY",
+        "seen_in": [
+          "27053"
+        ]
+      },
+      {
+        "name": "CALC_ACRE",
+        "seen_in": [
+          "34017"
+        ]
+      },
+      {
+        "name": "CALCACREAG",
+        "seen_in": [
+          "42003"
+        ]
+      },
+      {
+        "name": "DEED_ACRES",
+        "seen_in": [
+          "37183"
+        ]
+      },
+      {
+        "name": "GISACRES",
+        "seen_in": [
+          "15003"
+        ]
+      },
+      {
+        "name": "GISPROD.VECTOR.PARCELS.DEED_ACREAGE",
+        "seen_in": [
+          "51153"
+        ]
+      },
+      {
+        "name": "KCA_ACRES",
+        "seen_in": [
+          "53033"
+        ]
+      },
+      {
+        "name": "LAND_ACRES",
+        "seen_in": [
+          "48439"
+        ]
+      },
+      {
+        "name": "LANDACRES",
+        "seen_in": [
+          "13121"
+        ]
+      },
+      {
+        "name": "LANDSIZEACRES",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "LOTSZ",
+        "seen_in": [
+          "10003"
+        ]
+      },
+      {
+        "name": "NETACRES",
+        "seen_in": [
+          "56021"
+        ]
+      },
+      {
+        "name": "PA_LEGAL_ACRE",
+        "seen_in": [
+          "51107"
+        ]
+      },
+      {
+        "name": "PAR_ACREAGE",
+        "seen_in": [
+          "12057"
+        ]
+      },
+      {
+        "name": "PARCEL_ACREAGE",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "PARCEL_ACRES",
+        "seen_in": [
+          "49035"
+        ]
+      },
+      {
+        "name": "PPACRES",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "SIZEACRES",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "TCAD_ACRES",
+        "seen_in": [
+          "48453"
+        ]
+      },
+      {
+        "name": "TOTAL_ACRES",
+        "seen_in": [
+          "51683"
+        ]
+      }
+    ],
+    "area_sqft": [
+      {
+        "name": "AREA_FEET",
+        "seen_in": [
+          "48113"
+        ]
+      },
+      {
+        "name": "CALC_AREA",
+        "seen_in": [
+          "37183"
+        ]
+      },
+      {
+        "name": "CALCULATEDAREA",
+        "seen_in": [
+          "11001"
+        ]
+      },
+      {
+        "name": "ESTSQFT",
+        "seen_in": [
+          "18097"
+        ]
+      },
+      {
+        "name": "LAND_SQFT",
+        "seen_in": [
+          "48201",
+          "48439"
+        ]
+      },
+      {
+        "name": "LANDSIZESQFT",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "LOTAREA",
+        "seen_in": [
+          "36061"
+        ]
+      },
+      {
+        "name": "LOTSQFT",
+        "seen_in": [
+          "53033"
+        ]
+      },
+      {
+        "name": "NETSF",
+        "seen_in": [
+          "56021"
+        ]
+      },
+      {
+        "name": "PA_LEGAL_SQFT",
+        "seen_in": [
+          "51107"
+        ]
+      },
+      {
+        "name": "PARCEL_LOT_SIZE",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "REC_AREA_SF",
+        "seen_in": [
+          "15003"
+        ]
+      },
+      {
+        "name": "SHAPE__AREA",
+        "seen_in": [
+          "51059"
+        ]
+      },
+      {
+        "name": "SIZESQFT",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "SQ_FEET",
+        "seen_in": [
+          "31055"
+        ]
+      },
+      {
+        "name": "STATEDAREA",
+        "seen_in": [
+          "13089",
+          "39049"
+        ]
+      }
+    ],
+    "assessed_value": [
+      {
+        "name": "APPRAISEDV",
+        "seen_in": [
+          "48439"
+        ]
+      },
+      {
+        "name": "ASD_VAL",
+        "seen_in": [
+          "12057"
+        ]
+      },
+      {
+        "name": "ASSESSED_VALUE",
+        "seen_in": [
+          "13089"
+        ]
+      },
+      {
+        "name": "ASSESSEDV",
+        "seen_in": [
+          "56021"
+        ]
+      },
+      {
+        "name": "ASSESSORYEAR_TOTALAV",
+        "seen_in": [
+          "18097"
+        ]
+      },
+      {
+        "name": "ASSESSTOT",
+        "seen_in": [
+          "36061"
+        ]
+      },
+      {
+        "name": "ASSESSVAL",
+        "seen_in": [
+          "41067"
+        ]
+      },
+      {
+        "name": "CAMA_VAL",
+        "seen_in": [
+          "12031"
+        ]
+      },
+      {
+        "name": "CURRVALASSESSED",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "EMV_TOTAL",
+        "seen_in": [
+          "27053"
+        ]
+      },
+      {
+        "name": "FCV_CUR",
+        "seen_in": [
+          "04013"
+        ]
+      },
+      {
+        "name": "MKT_TOTAL_VAL",
+        "seen_in": [
+          "39061"
+        ]
+      },
+      {
+        "name": "MKT_VALUE",
+        "seen_in": [
+          "48029"
+        ]
+      },
+      {
+        "name": "NET_VALUE",
+        "seen_in": [
+          "34017"
+        ]
+      },
+      {
+        "name": "NETVALUE",
+        "seen_in": [
+          "34023"
+        ]
+      },
+      {
+        "name": "NFMTTLVL",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "PPTOTALVALUE",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "ROLLM50",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "TAX_ASSESSED_TOTAL",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "TOTAL_APPRAISED_VAL",
+        "seen_in": [
+          "48201"
+        ]
+      },
+      {
+        "name": "TOTAL_ASSESSED_VALUE",
+        "seen_in": [
+          "51683"
+        ]
+      },
+      {
+        "name": "TOTAL_MKT_VALUE",
+        "seen_in": [
+          "49035"
+        ]
+      },
+      {
+        "name": "TOTAL_VAL_CUR",
+        "seen_in": [
+          "12086"
+        ]
+      },
+      {
+        "name": "TOTAL_VALUE_ASSD",
+        "seen_in": [
+          "37183"
+        ]
+      },
+      {
+        "name": "TOTALASS",
+        "seen_in": [
+          "32031"
+        ]
+      },
+      {
+        "name": "TOTALNETVALUE",
+        "seen_in": [
+          "06001"
+        ]
+      },
+      {
+        "name": "TOTALVALUE",
+        "seen_in": [
+          "16001"
+        ]
+      },
+      {
+        "name": "TOTASSESS",
+        "seen_in": [
+          "13121"
+        ]
+      },
+      {
+        "name": "TOTLASSD",
+        "seen_in": [
+          "47037"
+        ]
+      },
+      {
+        "name": "TOTVALUEBASE",
+        "seen_in": [
+          "39049"
+        ]
+      }
+    ],
+    "building_count": [
+      {
+        "name": "BUILDING_COUNT",
+        "seen_in": [
+          "12086"
+        ]
+      },
+      {
+        "name": "HOUSE_CNT",
+        "seen_in": [
+          "49035"
+        ]
+      },
+      {
+        "name": "IMP_COUNT",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "NBBLDGS",
+        "seen_in": [
+          "12031"
+        ]
+      },
+      {
+        "name": "NOCARDS",
+        "seen_in": [
+          "39049"
+        ]
+      },
+      {
+        "name": "NUMBLDGS",
+        "seen_in": [
+          "31055",
+          "36061"
+        ]
+      },
+      {
+        "name": "PPDWELLCOUNT",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "TBLDGS",
+        "seen_in": [
+          "12057"
+        ]
+      },
+      {
+        "name": "TOTSTRUCTS",
+        "seen_in": [
+          "37183"
+        ]
+      }
+    ],
+    "census_tract": [
+      {
+        "name": "CT2010",
+        "seen_in": [
+          "36061"
+        ]
+      },
+      {
+        "name": "CT2020",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "TRACT",
+        "seen_in": [
+          "47037"
+        ]
+      }
+    ],
+    "deed_book": [
+      {
+        "name": "BOOK",
+        "seen_in": [
+          "06001",
+          "32031",
+          "39061"
+        ]
+      },
+      {
+        "name": "DEED_BOOK",
+        "seen_in": [
+          "34017",
+          "37183",
+          "48439"
+        ]
+      },
+      {
+        "name": "DEEDBOOK",
+        "seen_in": [
+          "34023",
+          "48085"
+        ]
+      },
+      {
+        "name": "DR1LIBER",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "GISPROD.VECTOR.PARCELS.DEED_BOOK",
+        "seen_in": [
+          "51153"
+        ]
+      },
+      {
+        "name": "MCR_BOOK",
+        "seen_in": [
+          "04013"
+        ]
+      }
+    ],
+    "deed_page": [
+      {
+        "name": "DEED_PAGE",
+        "seen_in": [
+          "34017",
+          "37183",
+          "48439"
+        ]
+      },
+      {
+        "name": "DEEDPAGE",
+        "seen_in": [
+          "34023",
+          "48085"
+        ]
+      },
+      {
+        "name": "DR1FOLIO",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "GISPROD.VECTOR.PARCELS.DEED_PAGE",
+        "seen_in": [
+          "51153"
+        ]
+      },
+      {
+        "name": "MCR_PAGE",
+        "seen_in": [
+          "04013"
+        ]
+      },
+      {
+        "name": "PAGE",
+        "seen_in": [
+          "06001",
+          "32031",
+          "39061"
+        ]
+      }
+    ],
+    "gross_floor_area": [
+      {
+        "name": "BLDG_SF",
+        "seen_in": [
+          "31055"
+        ]
+      },
+      {
+        "name": "BLDG_SQFT",
+        "seen_in": [
+          "49035"
+        ]
+      },
+      {
+        "name": "BLDGAREA",
+        "seen_in": [
+          "36061",
+          "39049"
+        ]
+      },
+      {
+        "name": "BLDGSQFT",
+        "seen_in": [
+          "41067"
+        ]
+      },
+      {
+        "name": "BUILDING_GROSS_AREA",
+        "seen_in": [
+          "12086"
+        ]
+      },
+      {
+        "name": "FIN_SQ_FT",
+        "seen_in": [
+          "27053"
+        ]
+      },
+      {
+        "name": "GISPROD.VECTOR.CAMADATA.SQFTABV",
+        "seen_in": [
+          "51153"
+        ]
+      },
+      {
+        "name": "HEAT_AR",
+        "seen_in": [
+          "12057"
+        ]
+      },
+      {
+        "name": "HEATEDAREA",
+        "seen_in": [
+          "37183"
+        ]
+      },
+      {
+        "name": "IMPRVMAINAREA",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "LIVING_ARE",
+        "seen_in": [
+          "48439"
+        ]
+      },
+      {
+        "name": "LIVING_SPACE",
+        "seen_in": [
+          "04013"
+        ]
+      },
+      {
+        "name": "MAIN_SQFT",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "PPLIVINGAREA",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "SFLA",
+        "seen_in": [
+          "34023"
+        ]
+      },
+      {
+        "name": "SQFEET",
+        "seen_in": [
+          "32031"
+        ]
+      },
+      {
+        "name": "SQFTMAIN1",
+        "seen_in": [
+          "06037"
+        ]
+      },
+      {
+        "name": "SQFTSTRC",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      }
+    ],
+    "improvement_value": [
+      {
+        "name": "ASSESSORYEAR_IMPTOTAL",
+        "seen_in": [
+          "18097"
+        ]
+      },
+      {
+        "name": "BLDG",
+        "seen_in": [
+          "12057"
+        ]
+      },
+      {
+        "name": "BLDG_VAL",
+        "seen_in": [
+          "37183"
+        ]
+      },
+      {
+        "name": "BLDG_VALUE",
+        "seen_in": [
+          "13089"
+        ]
+      },
+      {
+        "name": "BLDGVAL",
+        "seen_in": [
+          "41067"
+        ]
+      },
+      {
+        "name": "BLDVALUEBASE",
+        "seen_in": [
+          "39049"
+        ]
+      },
+      {
+        "name": "BUILDASS",
+        "seen_in": [
+          "32031"
+        ]
+      },
+      {
+        "name": "BUILDING_VAL_CUR",
+        "seen_in": [
+          "12086"
+        ]
+      },
+      {
+        "name": "CURRVALIMPRV",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "EMV_BLDG",
+        "seen_in": [
+          "27053"
+        ]
+      },
+      {
+        "name": "IMP_VALUE",
+        "seen_in": [
+          "48029"
+        ]
+      },
+      {
+        "name": "IMPR_VALUE",
+        "seen_in": [
+          "48201",
+          "48439"
+        ]
+      },
+      {
+        "name": "IMPRASSD",
+        "seen_in": [
+          "47037"
+        ]
+      },
+      {
+        "name": "IMPRASSESS",
+        "seen_in": [
+          "13121"
+        ]
+      },
+      {
+        "name": "IMPROVEMENT_VALUE",
+        "seen_in": [
+          "51683"
+        ]
+      },
+      {
+        "name": "IMPRVT_VAL",
+        "seen_in": [
+          "34017"
+        ]
+      },
+      {
+        "name": "IMPS",
+        "seen_in": [
+          "06001"
+        ]
+      },
+      {
+        "name": "MKTIMP",
+        "seen_in": [
+          "39061"
+        ]
+      },
+      {
+        "name": "NFMIMPVL",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "PPIMPRVALUE",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "ROLL_IMPVALUE",
+        "seen_in": [
+          "06037"
+        ]
+      },
+      {
+        "name": "ROLLIMP",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "TAX_ASSESSED_IMPROVEMENT",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "TAX_IMPR",
+        "seen_in": [
+          "53033"
+        ]
+      },
+      {
+        "name": "TOT_IMPR_V",
+        "seen_in": [
+          "12031"
+        ]
+      },
+      {
+        "name": "TOTALIMPSV",
+        "seen_in": [
+          "56021"
+        ]
+      }
+    ],
+    "land_use_code": [
+      {
+        "name": "BC_LANDUSE",
+        "seen_in": [
+          "42101"
+        ]
+      },
+      {
+        "name": "CLASS",
+        "seen_in": [
+          "31055",
+          "39061"
+        ]
+      },
+      {
+        "name": "DOR_CODE",
+        "seen_in": [
+          "12057"
+        ]
+      },
+      {
+        "name": "DOR_CODE_CUR",
+        "seen_in": [
+          "12086"
+        ]
+      },
+      {
+        "name": "GISPROD.VECTOR.CAMADATA.USECODE",
+        "seen_in": [
+          "51153"
+        ]
+      },
+      {
+        "name": "LAND_USE",
+        "seen_in": [
+          "32031",
+          "48201"
+        ]
+      },
+      {
+        "name": "LANDUSE",
+        "seen_in": [
+          "06067",
+          "36061"
+        ]
+      },
+      {
+        "name": "LANDUSECODE",
+        "seen_in": [
+          "13089"
+        ]
+      },
+      {
+        "name": "LU",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "LU_CODES",
+        "seen_in": [
+          "25017",
+          "25025"
+        ]
+      },
+      {
+        "name": "LUCODE",
+        "seen_in": [
+          "13121",
+          "47037"
+        ]
+      },
+      {
+        "name": "PARCELTYPE",
+        "seen_in": [
+          "48439"
+        ]
+      },
+      {
+        "name": "PPCLASSCODE",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "PREUSE_CODE",
+        "seen_in": [
+          "53033"
+        ]
+      },
+      {
+        "name": "PROP_CLASS",
+        "seen_in": [
+          "34017",
+          "49035"
+        ]
+      },
+      {
+        "name": "PROP_CODE",
+        "seen_in": [
+          "41067"
+        ]
+      },
+      {
+        "name": "PROPCLASS",
+        "seen_in": [
+          "34023",
+          "41051"
+        ]
+      },
+      {
+        "name": "PROPCODE",
+        "seen_in": [
+          "16001"
+        ]
+      },
+      {
+        "name": "PROPERTY_CLASS",
+        "seen_in": [
+          "18097"
+        ]
+      },
+      {
+        "name": "PROPUSECODE",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "PUC",
+        "seen_in": [
+          "04013"
+        ]
+      },
+      {
+        "name": "PUSE",
+        "seen_in": [
+          "12031"
+        ]
+      },
+      {
+        "name": "SPTBCODE",
+        "seen_in": [
+          "48113"
+        ]
+      },
+      {
+        "name": "STAT_LAND_",
+        "seen_in": [
+          "48029"
+        ]
+      },
+      {
+        "name": "TAX_LUC",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "TYPE_AND_USE",
+        "seen_in": [
+          "37183"
+        ]
+      },
+      {
+        "name": "USECD",
+        "seen_in": [
+          "39049"
+        ]
+      },
+      {
+        "name": "USECLASS1",
+        "seen_in": [
+          "27053"
+        ]
+      },
+      {
+        "name": "USECODE",
+        "seen_in": [
+          "06001",
+          "06037"
+        ]
+      }
+    ],
+    "land_use_desc": [
+      {
+        "name": "ACCTTYPE",
+        "seen_in": [
+          "56021"
+        ]
+      },
+      {
+        "name": "BC_TYPE",
+        "seen_in": [
+          "42101"
+        ]
+      },
+      {
+        "name": "CLASSDSCRP",
+        "seen_in": [
+          "39049"
+        ]
+      },
+      {
+        "name": "DCAACCTYPE",
+        "seen_in": [
+          "31055"
+        ]
+      },
+      {
+        "name": "DESCLU",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "DESCPU",
+        "seen_in": [
+          "12031"
+        ]
+      },
+      {
+        "name": "DESCR",
+        "seen_in": [
+          "48439"
+        ]
+      },
+      {
+        "name": "DOR_DESC",
+        "seen_in": [
+          "12057",
+          "12086"
+        ]
+      },
+      {
+        "name": "IMPTYPE",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "LANDDESC",
+        "seen_in": [
+          "34023"
+        ]
+      },
+      {
+        "name": "LANDUSE",
+        "seen_in": [
+          "13089",
+          "41067"
+        ]
+      },
+      {
+        "name": "LU_GENERAL",
+        "seen_in": [
+          "06067"
+        ]
+      },
+      {
+        "name": "LUDESC",
+        "seen_in": [
+          "47037"
+        ]
+      },
+      {
+        "name": "PREUSE_DESC",
+        "seen_in": [
+          "53033"
+        ]
+      },
+      {
+        "name": "PROP_CL",
+        "seen_in": [
+          "48113"
+        ]
+      },
+      {
+        "name": "PROP_TYPE",
+        "seen_in": [
+          "49035"
+        ]
+      },
+      {
+        "name": "PROPCLASS",
+        "seen_in": [
+          "10003"
+        ]
+      },
+      {
+        "name": "PROPERTY_SUB_CLASS_DESCRIPTION",
+        "seen_in": [
+          "18097"
+        ]
+      },
+      {
+        "name": "TAX_LUC_DESCRIPTION",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "TYPE_USE_DECODE",
+        "seen_in": [
+          "37183"
+        ]
+      },
+      {
+        "name": "USEDESCRIPTION",
+        "seen_in": [
+          "06037"
+        ]
+      }
+    ],
+    "land_value": [
+      {
+        "name": "ASSESSLAND",
+        "seen_in": [
+          "36061"
+        ]
+      },
+      {
+        "name": "ASSESSORYEAR_LANDTOTAL",
+        "seen_in": [
+          "18097"
+        ]
+      },
+      {
+        "name": "CURRVALLAND",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "EMV_LAND",
+        "seen_in": [
+          "27053"
+        ]
+      },
+      {
+        "name": "LAND",
+        "seen_in": [
+          "06001",
+          "12057"
+        ]
+      },
+      {
+        "name": "LAND_MKT_VALUE",
+        "seen_in": [
+          "49035"
+        ]
+      },
+      {
+        "name": "LAND_VAL",
+        "seen_in": [
+          "34017",
+          "37183"
+        ]
+      },
+      {
+        "name": "LAND_VAL_CUR",
+        "seen_in": [
+          "12086"
+        ]
+      },
+      {
+        "name": "LAND_VALUE",
+        "seen_in": [
+          "13089",
+          "48029",
+          "48201",
+          "48439",
+          "51683"
+        ]
+      },
+      {
+        "name": "LANDASS",
+        "seen_in": [
+          "32031"
+        ]
+      },
+      {
+        "name": "LANDASSD",
+        "seen_in": [
+          "47037"
+        ]
+      },
+      {
+        "name": "LANDASSESS",
+        "seen_in": [
+          "13121"
+        ]
+      },
+      {
+        "name": "LANDVAL",
+        "seen_in": [
+          "41067"
+        ]
+      },
+      {
+        "name": "LNDVALUEBASE",
+        "seen_in": [
+          "39049"
+        ]
+      },
+      {
+        "name": "MKTLND",
+        "seen_in": [
+          "39061"
+        ]
+      },
+      {
+        "name": "NFMLNDVL",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "PPLANDVALUE",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "ROLL_LANDVALUE",
+        "seen_in": [
+          "06037"
+        ]
+      },
+      {
+        "name": "ROLLLAND",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "TAX_ASSESSED_LAND",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "TAX_LNDVAL",
+        "seen_in": [
+          "53033"
+        ]
+      },
+      {
+        "name": "TOT_LND_VA",
+        "seen_in": [
+          "12031"
+        ]
+      },
+      {
+        "name": "TOTALLANDV",
+        "seen_in": [
+          "56021"
+        ]
+      }
+    ],
+    "last_sale_date": [
+      {
+        "name": "DATE_ACQ",
+        "seen_in": [
+          "48029"
+        ]
+      },
+      {
+        "name": "DEED_DATE",
+        "seen_in": [
+          "34017",
+          "48439"
+        ]
+      },
+      {
+        "name": "DEEDFILEDATE",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "LAST_TRANSFER_DATE",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "LATESTDOCUMENTDATE",
+        "seen_in": [
+          "06001"
+        ]
+      },
+      {
+        "name": "NEW_OWNER_DATE",
+        "seen_in": [
+          "48201"
+        ]
+      },
+      {
+        "name": "OWNDATE",
+        "seen_in": [
+          "47037"
+        ]
+      },
+      {
+        "name": "PPSALEDATE",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "S_DATE",
+        "seen_in": [
+          "12057"
+        ]
+      },
+      {
+        "name": "SALDAT",
+        "seen_in": [
+          "39061"
+        ]
+      },
+      {
+        "name": "SALE_DATE",
+        "seen_in": [
+          "04013",
+          "27053",
+          "37183",
+          "41051",
+          "51683"
+        ]
+      },
+      {
+        "name": "SALEDATE",
+        "seen_in": [
+          "32031",
+          "39049",
+          "41067"
+        ]
+      },
+      {
+        "name": "SALESDATE",
+        "seen_in": [
+          "34023"
+        ]
+      },
+      {
+        "name": "TRADATE",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      }
+    ],
+    "last_sale_price": [
+      {
+        "name": "CONSIDR1",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "LAST_SALES_AMOUNT",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "PPAMOUNT",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "S_AMT",
+        "seen_in": [
+          "12057"
+        ]
+      },
+      {
+        "name": "SALAMT",
+        "seen_in": [
+          "39061"
+        ]
+      },
+      {
+        "name": "SALE_PRICE",
+        "seen_in": [
+          "04013",
+          "34017",
+          "41051",
+          "51683"
+        ]
+      },
+      {
+        "name": "SALE_VALUE",
+        "seen_in": [
+          "27053"
+        ]
+      },
+      {
+        "name": "SALEPRICE",
+        "seen_in": [
+          "32031",
+          "34023",
+          "39049",
+          "41067",
+          "47037"
+        ]
+      },
+      {
+        "name": "TOTSALPRICE",
+        "seen_in": [
+          "37183"
+        ]
+      }
+    ],
+    "legal_desc": [
+      {
+        "name": "ABB_LEGAL",
+        "seen_in": [
+          "27053"
+        ]
+      },
+      {
+        "name": "LAND_DESC",
+        "seen_in": [
+          "34017"
+        ]
+      },
+      {
+        "name": "LEGAL",
+        "seen_in": [
+          "41051",
+          "56021"
+        ]
+      },
+      {
+        "name": "LEGAL_1",
+        "seen_in": [
+          "48113",
+          "48439"
+        ]
+      },
+      {
+        "name": "LEGAL_DESC",
+        "seen_in": [
+          "48029",
+          "48453"
+        ]
+      },
+      {
+        "name": "LEGAL_DESCRIPTION",
+        "seen_in": [
+          "39035",
+          "51683"
+        ]
+      },
+      {
+        "name": "LEGAL_DESCRIPTION_",
+        "seen_in": [
+          "18097"
+        ]
+      },
+      {
+        "name": "LEGAL_DSCR_1",
+        "seen_in": [
+          "48201"
+        ]
+      },
+      {
+        "name": "LEGAL1",
+        "seen_in": [
+          "12057",
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "LEGALDESC",
+        "seen_in": [
+          "47037",
+          "53033"
+        ]
+      },
+      {
+        "name": "LEGALDESCRIPTION",
+        "seen_in": [
+          "06037",
+          "48085"
+        ]
+      },
+      {
+        "name": "LGLDS1",
+        "seen_in": [
+          "39061"
+        ]
+      },
+      {
+        "name": "PROPDESC",
+        "seen_in": [
+          "37183"
+        ]
+      },
+      {
+        "name": "PRPRTYDSCRP",
+        "seen_in": [
+          "39049"
+        ]
+      }
+    ],
+    "lot_depth_ft": [
+      {
+        "name": "DEPTH",
+        "seen_in": [
+          "13089",
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "LOTDEPTH",
+        "seen_in": [
+          "36061"
+        ]
+      },
+      {
+        "name": "LOTDPTH",
+        "seen_in": [
+          "10003"
+        ]
+      },
+      {
+        "name": "SIDE",
+        "seen_in": [
+          "47037"
+        ]
+      }
+    ],
+    "lot_width_ft": [
+      {
+        "name": "FRONT",
+        "seen_in": [
+          "47037"
+        ]
+      },
+      {
+        "name": "FRONT_FOOTAGE",
+        "seen_in": [
+          "39061"
+        ]
+      },
+      {
+        "name": "FRONTAGE",
+        "seen_in": [
+          "13089"
+        ]
+      },
+      {
+        "name": "LOTFRONT",
+        "seen_in": [
+          "36061"
+        ]
+      },
+      {
+        "name": "LOTFRONTAG",
+        "seen_in": [
+          "10003"
+        ]
+      },
+      {
+        "name": "WIDTH",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      }
+    ],
+    "overlay_districts": [
+      {
+        "name": "OVERLAY_DIST",
+        "seen_in": [
+          "13089"
+        ]
+      },
+      {
+        "name": "OVERLAY1",
+        "seen_in": [
+          "36061"
+        ]
+      }
+    ],
+    "owner": [
+      {
+        "name": "CNTCTLAST",
+        "seen_in": [
+          "10003"
+        ]
+      },
+      {
+        "name": "FULLOWNERNAME",
+        "seen_in": [
+          "18097"
+        ]
+      },
+      {
+        "name": "GISPROD.VECTOR.CAMADATA.OWNER_CUR",
+        "seen_in": [
+          "51153"
+        ]
+      },
+      {
+        "name": "KCTP_ATTN",
+        "seen_in": [
+          "53033"
+        ]
+      },
+      {
+        "name": "LASTNAME",
+        "seen_in": [
+          "32031"
+        ]
+      },
+      {
+        "name": "LNAMEOWNER",
+        "seen_in": [
+          "12031"
+        ]
+      },
+      {
+        "name": "NAME",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "NAME1",
+        "seen_in": [
+          "56021"
+        ]
+      },
+      {
+        "name": "OWNER",
+        "seen_in": [
+          "12057",
+          "13121",
+          "32003",
+          "37183",
+          "47037"
+        ]
+      },
+      {
+        "name": "OWNER_NAME",
+        "seen_in": [
+          "04013",
+          "27053",
+          "31055",
+          "34017",
+          "48029",
+          "48439",
+          "51683"
+        ]
+      },
+      {
+        "name": "OWNER_NAME_1",
+        "seen_in": [
+          "48201"
+        ]
+      },
+      {
+        "name": "OWNER1",
+        "seen_in": [
+          "42101"
+        ]
+      },
+      {
+        "name": "OWNERNAME",
+        "seen_in": [
+          "36061",
+          "48085"
+        ]
+      },
+      {
+        "name": "OWNERNME1",
+        "seen_in": [
+          "39049"
+        ]
+      },
+      {
+        "name": "OWNERSNAME",
+        "seen_in": [
+          "34023"
+        ]
+      },
+      {
+        "name": "OWNNM1",
+        "seen_in": [
+          "39061"
+        ]
+      },
+      {
+        "name": "PARCEL_OWNER",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "PPOWNER",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "TAXPANAME1",
+        "seen_in": [
+          "48113"
+        ]
+      },
+      {
+        "name": "TRUE_OWNER1",
+        "seen_in": [
+          "12086"
+        ]
+      }
+    ],
+    "owner_mailing": [
+      {
+        "name": "MAIL_ADDR",
+        "seen_in": [
+          "48029"
+        ]
+      },
+      {
+        "name": "MAIL_ADDRESS",
+        "seen_in": [
+          "04013"
+        ]
+      },
+      {
+        "name": "MAILINGADDRESS",
+        "seen_in": [
+          "06001"
+        ]
+      },
+      {
+        "name": "PPOWNERADDRESS",
+        "seen_in": [
+          "26163"
+        ]
+      }
+    ],
+    "parcel_id": [
+      {
+        "name": "ACCT",
+        "seen_in": [
+          "48113"
+        ]
+      },
+      {
+        "name": "ACCTID",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "AIN",
+        "seen_in": [
+          "06037"
+        ]
+      },
+      {
+        "name": "APN",
+        "seen_in": [
+          "04013",
+          "06001",
+          "06067",
+          "32003",
+          "32031",
+          "47037"
+        ]
+      },
+      {
+        "name": "BBL",
+        "seen_in": [
+          "36061"
+        ]
+      },
+      {
+        "name": "FOLIO",
+        "seen_in": [
+          "12057",
+          "12086"
+        ]
+      },
+      {
+        "name": "GEOID",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "GISPROD.VECTOR.PARCELS.OBJECTID",
+        "seen_in": [
+          "51153"
+        ]
+      },
+      {
+        "name": "HCAD_NUM",
+        "seen_in": [
+          "48201"
+        ]
+      },
+      {
+        "name": "MAP_PAR_ID",
+        "seen_in": [
+          "25017",
+          "25025"
+        ]
+      },
+      {
+        "name": "MAPBLKLOT",
+        "seen_in": [
+          "06075"
+        ]
+      },
+      {
+        "name": "MAPTAXLOT",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "PA_MCPI",
+        "seen_in": [
+          "51107"
+        ]
+      },
+      {
+        "name": "PAMS_PIN",
+        "seen_in": [
+          "34017",
+          "34023"
+        ]
+      },
+      {
+        "name": "PARCEL",
+        "seen_in": [
+          "16001",
+          "26163"
+        ]
+      },
+      {
+        "name": "PARCEL_C",
+        "seen_in": [
+          "18097"
+        ]
+      },
+      {
+        "name": "PARCEL_ID",
+        "seen_in": [
+          "39035",
+          "49035"
+        ]
+      },
+      {
+        "name": "PARCEL_KEY",
+        "seen_in": [
+          "51059"
+        ]
+      },
+      {
+        "name": "PARCEL_NUMBER",
+        "seen_in": [
+          "19153"
+        ]
+      },
+      {
+        "name": "PARCELID",
+        "seen_in": [
+          "13089",
+          "13121",
+          "21111",
+          "39049",
+          "39061",
+          "42101"
+        ]
+      },
+      {
+        "name": "PIN",
+        "seen_in": [
+          "27053",
+          "31055",
+          "42003",
+          "53033"
+        ]
+      },
+      {
+        "name": "PIN_NUM",
+        "seen_in": [
+          "37183"
+        ]
+      },
+      {
+        "name": "PRCLID",
+        "seen_in": [
+          "10003"
+        ]
+      },
+      {
+        "name": "PROP_ID",
+        "seen_in": [
+          "48029",
+          "48453"
+        ]
+      },
+      {
+        "name": "RE",
+        "seen_in": [
+          "12031"
+        ]
+      },
+      {
+        "name": "SSL",
+        "seen_in": [
+          "11001"
+        ]
+      },
+      {
+        "name": "STATEPIDN",
+        "seen_in": [
+          "56021"
+        ]
+      },
+      {
+        "name": "TAXMAP",
+        "seen_in": [
+          "51683"
+        ]
+      },
+      {
+        "name": "TAXPIN",
+        "seen_in": [
+          "48439"
+        ]
+      },
+      {
+        "name": "TLID",
+        "seen_in": [
+          "41067"
+        ]
+      },
+      {
+        "name": "TMK",
+        "seen_in": [
+          "15003"
+        ]
+      }
+    ],
+    "pin": [
+      {
+        "name": "ACCOUNT",
+        "seen_in": [
+          "48439"
+        ]
+      },
+      {
+        "name": "ACCOUNTNO",
+        "seen_in": [
+          "56021"
+        ]
+      },
+      {
+        "name": "ACCT",
+        "seen_in": [
+          "48113"
+        ]
+      },
+      {
+        "name": "ACCT_NUM",
+        "seen_in": [
+          "48201"
+        ]
+      },
+      {
+        "name": "ACCTID",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "ALTERNATE_PARCEL",
+        "seen_in": [
+          "19153"
+        ]
+      },
+      {
+        "name": "APN",
+        "seen_in": [
+          "04013",
+          "06037"
+        ]
+      },
+      {
+        "name": "AUDPCLID",
+        "seen_in": [
+          "39061"
+        ]
+      },
+      {
+        "name": "BBL",
+        "seen_in": [
+          "36061"
+        ]
+      },
+      {
+        "name": "BLKLOT",
+        "seen_in": [
+          "06075"
+        ]
+      },
+      {
+        "name": "COUNTY_PIN",
+        "seen_in": [
+          "27053"
+        ]
+      },
+      {
+        "name": "GEO_ID",
+        "seen_in": [
+          "48029",
+          "48453"
+        ]
+      },
+      {
+        "name": "GIS_PIN",
+        "seen_in": [
+          "34017"
+        ]
+      },
+      {
+        "name": "GIS_UID",
+        "seen_in": [
+          "51683"
+        ]
+      },
+      {
+        "name": "GISPROD.VECTOR.PARCELS.GPIN",
+        "seen_in": [
+          "51153"
+        ]
+      },
+      {
+        "name": "LOC_ID",
+        "seen_in": [
+          "25017",
+          "25025"
+        ]
+      },
+      {
+        "name": "MAPBLOCKLO",
+        "seen_in": [
+          "42003"
+        ]
+      },
+      {
+        "name": "PA_MCPI",
+        "seen_in": [
+          "51107"
+        ]
+      },
+      {
+        "name": "PARCEL2",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "PARCELID",
+        "seen_in": [
+          "13121",
+          "39049"
+        ]
+      },
+      {
+        "name": "PARCELNO",
+        "seen_in": [
+          "10003"
+        ]
+      },
+      {
+        "name": "PARCELPIN",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "PID",
+        "seen_in": [
+          "12086"
+        ]
+      },
+      {
+        "name": "PIN",
+        "seen_in": [
+          "12057",
+          "21111",
+          "32031",
+          "51059",
+          "53033"
+        ]
+      },
+      {
+        "name": "PRCL_KEY",
+        "seen_in": [
+          "06067"
+        ]
+      },
+      {
+        "name": "PRIMACCNUM",
+        "seen_in": [
+          "41067"
+        ]
+      },
+      {
+        "name": "PROP_ID",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "PROPID",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "RE_NOSPACE",
+        "seen_in": [
+          "12031"
+        ]
+      },
+      {
+        "name": "REID",
+        "seen_in": [
+          "37183"
+        ]
+      },
+      {
+        "name": "SERIAL_NUM",
+        "seen_in": [
+          "49035"
+        ]
+      },
+      {
+        "name": "SQUARE",
+        "seen_in": [
+          "11001"
+        ]
+      },
+      {
+        "name": "STANPAR",
+        "seen_in": [
+          "47037"
+        ]
+      },
+      {
+        "name": "STATEPARCELNUMBER",
+        "seen_in": [
+          "18097"
+        ]
+      },
+      {
+        "name": "TENCODE",
+        "seen_in": [
+          "42101"
+        ]
+      },
+      {
+        "name": "TMK9TXT",
+        "seen_in": [
+          "15003"
+        ]
+      },
+      {
+        "name": "UNIQUEID",
+        "seen_in": [
+          "34023"
+        ]
+      }
+    ],
+    "subdivision": [
+      {
+        "name": "DESCSUBD",
+        "seen_in": [
+          "24027",
+          "24031"
+        ]
+      },
+      {
+        "name": "GISPROD.VECTOR.PARCELS.SUBDIV_NAME",
+        "seen_in": [
+          "51153"
+        ]
+      },
+      {
+        "name": "LEGALABSSUBNAME",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "PA_SUBD_NAME",
+        "seen_in": [
+          "51107"
+        ]
+      },
+      {
+        "name": "PLAT_NAME",
+        "seen_in": [
+          "27053",
+          "53033"
+        ]
+      },
+      {
+        "name": "SUB",
+        "seen_in": [
+          "12057"
+        ]
+      },
+      {
+        "name": "SUB_BLK",
+        "seen_in": [
+          "12031"
+        ]
+      },
+      {
+        "name": "SUB_DEC",
+        "seen_in": [
+          "48453"
+        ]
+      },
+      {
+        "name": "SUBDIV",
+        "seen_in": [
+          "10003",
+          "13121"
+        ]
+      },
+      {
+        "name": "SUBDIV_NAME",
+        "seen_in": [
+          "49035"
+        ]
+      },
+      {
+        "name": "SUBDIVISIO",
+        "seen_in": [
+          "06067"
+        ]
+      },
+      {
+        "name": "SUBDIVISION",
+        "seen_in": [
+          "12086"
+        ]
+      },
+      {
+        "name": "SUBDIVISIONNAME",
+        "seen_in": [
+          "48439"
+        ]
+      },
+      {
+        "name": "SUBDIVNUM",
+        "seen_in": [
+          "18097"
+        ]
+      },
+      {
+        "name": "SUBNAME",
+        "seen_in": [
+          "04013",
+          "32031"
+        ]
+      },
+      {
+        "name": "SUBNM",
+        "seen_in": [
+          "16001"
+        ]
+      }
+    ],
+    "tax_amount": [
+      {
+        "name": "ANNUAL_TAXES",
+        "seen_in": [
+          "39061"
+        ]
+      },
+      {
+        "name": "LAST_YR_TX",
+        "seen_in": [
+          "34017"
+        ]
+      },
+      {
+        "name": "NET_TAX_TOTAL",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "TOTAL_TAX",
+        "seen_in": [
+          "27053"
+        ]
+      }
+    ],
+    "tax_year": [
+      {
+        "name": "APPRAISALYEAR",
+        "seen_in": [
+          "48113"
+        ]
+      },
+      {
+        "name": "ASSESSMENT_YEAR_CUR",
+        "seen_in": [
+          "12086"
+        ]
+      },
+      {
+        "name": "CUR_TAX_YEAR",
+        "seen_in": [
+          "39035"
+        ]
+      },
+      {
+        "name": "CURRVALYEAR",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "KCTP_TAXYR",
+        "seen_in": [
+          "53033"
+        ]
+      },
+      {
+        "name": "PROPYEAR",
+        "seen_in": [
+          "16001"
+        ]
+      },
+      {
+        "name": "ROLL_YEAR",
+        "seen_in": [
+          "06037"
+        ]
+      },
+      {
+        "name": "ROLLYEAR",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "TAX_YEAR",
+        "seen_in": [
+          "27053",
+          "48029",
+          "48201"
+        ]
+      },
+      {
+        "name": "TAX_YR_CUR",
+        "seen_in": [
+          "04013"
+        ]
+      },
+      {
+        "name": "TAXYEAR",
+        "seen_in": [
+          "13121",
+          "32031",
+          "56021"
+        ]
+      },
+      {
+        "name": "TAXYR",
+        "seen_in": [
+          "13089"
+        ]
+      }
+    ],
+    "year_built": [
+      {
+        "name": "ACT",
+        "seen_in": [
+          "12057"
+        ]
+      },
+      {
+        "name": "ACTYEARBUILT",
+        "seen_in": [
+          "41051"
+        ]
+      },
+      {
+        "name": "BLDG_YRBLT",
+        "seen_in": [
+          "31055"
+        ]
+      },
+      {
+        "name": "BUILT_YR",
+        "seen_in": [
+          "49035"
+        ]
+      },
+      {
+        "name": "CONST_YEAR",
+        "seen_in": [
+          "04013"
+        ]
+      },
+      {
+        "name": "IMPRVYEARBUILT",
+        "seen_in": [
+          "48085"
+        ]
+      },
+      {
+        "name": "PPYEARBUILT",
+        "seen_in": [
+          "26163"
+        ]
+      },
+      {
+        "name": "RESYRBLT",
+        "seen_in": [
+          "39049"
+        ]
+      },
+      {
+        "name": "YEAR_BUILT",
+        "seen_in": [
+          "12086",
+          "27053",
+          "37183",
+          "48029",
+          "48439"
+        ]
+      },
+      {
+        "name": "YEARBLT",
+        "seen_in": [
+          "24027",
+          "24031",
+          "32031"
+        ]
+      },
+      {
+        "name": "YEARBUILT",
+        "seen_in": [
+          "34023",
+          "36061",
+          "41067"
+        ]
+      },
+      {
+        "name": "YEARBUILT1",
+        "seen_in": [
+          "06037"
+        ]
+      },
+      {
+        "name": "YR_CONSTR",
+        "seen_in": [
+          "34017"
+        ]
+      }
+    ],
+    "zoning_code": [
+      {
+        "name": "CITY_ZONING",
+        "seen_in": [
+          "04013"
+        ]
+      },
+      {
+        "name": "KCA_ZONING",
+        "seen_in": [
+          "53033"
+        ]
+      },
+      {
+        "name": "PRIMARY_ZONE",
+        "seen_in": [
+          "12086"
+        ]
+      },
+      {
+        "name": "ZON_LABEL",
+        "seen_in": [
+          "12031"
+        ]
+      },
+      {
+        "name": "ZONEDIST1",
+        "seen_in": [
+          "36061"
+        ]
+      },
+      {
+        "name": "ZONING",
+        "seen_in": [
+          "13089",
+          "16001",
+          "24027",
+          "24031",
+          "32031",
+          "41051",
+          "47037",
+          "51683"
+        ]
+      },
+      {
+        "name": "ZONING_CODE",
+        "seen_in": [
+          "06075",
+          "39035"
+        ]
+      }
+    ],
+    "zoning_desc": [
+      {
+        "name": "ZONING_DISTRICT",
+        "seen_in": [
+          "06075"
+        ]
+      },
+      {
+        "name": "ZONING_USE",
+        "seen_in": [
+          "39035"
+        ]
+      }
+    ]
+  }
+}
