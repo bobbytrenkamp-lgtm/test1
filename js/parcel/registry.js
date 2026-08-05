@@ -2019,6 +2019,86 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Mecklenburg County, North Carolina (Charlotte) ───────────────────
+     *
+     * Mecklenburg County — 39 facilities, tied with San Francisco CA, one
+     * of the highest-value uncovered counties this session. Investigated
+     * over 4 probe rounds via GitHub Actions dispatch (this sandbox can't
+     * reach charlottenc.gov/mecklenburgcountync.gov directly).
+     *
+     * Round 1 found Charlotte city's own GIS host
+     * (gis.charlottenc.gov/.../CountyData/Parcels/MapServer/0) live but
+     * boundary/legal-reference only, and found Mecklenburg County's own
+     * platform (polaris3g.mecklenburgcountync.gov) returning a generic
+     * HTTP 500 at every guessed path. Round 2 abandoned more polaris3g
+     * path-guessing in favor of a targeted ArcGIS Online item search,
+     * which surfaced this exact service — owned by the `MecklenburgCoNC`
+     * account (the county government's own ArcGIS Online org, confirmed
+     * via accessInformation "Mecklenburg County GIS"), titled "Tax Parcel
+     * Boundaries". Round 3 fetch-confirmed its real 11-field schema and a
+     * live sample record.
+     *
+     * This is the SAME underlying boundary/legal-reference data model as
+     * Charlotte city's layer (identical field family: map_book/map_page/
+     * map_block/lot_num/nc_pin/pid/parcel_type/condo_town_flag/
+     * legal_from), just hosted on the county's own domain with lowercase
+     * field names — but with one addition Charlotte's layer lacks:
+     * `gisacres`, a real, named acreage field (Charlotte's layer only has
+     * an unnamed, unit-unconfirmed Shape.STArea()). That one extra field
+     * makes this the better of the two sources to use.
+     *
+     * Still genuinely thin — no owner, address, land use, or valuation
+     * fields exist in this dataset at all (this is a boundary/plat-index
+     * layer, not a CAMA/assessment record) — the fuller property record
+     * likely lives behind Mecklenburg's own separate property-search
+     * portal (not a general-purpose queryable REST service). Only 4 of 30
+     * canonical fields map, real and honestly documented rather than
+     * padded with guesses. legal_from is a plat-recording DATE, not a
+     * textual legal description, so it is not mapped to legal_desc.
+     * map_book/map_page/map_block/lot_num are a split-component legal
+     * reference (no single combined field) — not concatenated into
+     * anything, left absent per this registry's established
+     * anti-concatenation rule for split fields.
+     * ─────────────────────────────────────────────────────────────────── */
+    '37119': {
+      id:          'nc-mecklenburg-county',
+      name:        'Mecklenburg County, North Carolina',
+      state:       'NC',
+      fips:        '37119',
+      connector:   'arcgis',
+      serviceUrl:  'https://meckgis.mecklenburgcountync.gov/server/rest/services/TaxParcelBoundaries/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:           'nc_pin',
+        pin:                 'pid',
+        area_acres:          'gisacres',
+        county_fips:         '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner', 'owner_mailing', 'address', 'zoning_code', 'zoning_desc',
+        'land_use_code', 'land_use_desc', 'overlay_districts', 'area_sqft',
+        'lot_depth_ft', 'lot_width_ft', 'building_count', 'year_built',
+        'gross_floor_area', 'assessed_value', 'land_value',
+        'improvement_value', 'tax_year', 'tax_amount', 'last_sale_date',
+        'last_sale_price', 'deed_book', 'deed_page', 'subdivision',
+        'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Mecklenburg County GIS',
+        url:     'https://www.mecknc.gov/',
+        portal:  'https://www.arcgis.com/home/item.html?id=20527c3e7efc4c3d95d97898e72dd64b',
+        license: 'Public government data; the county’s licenseInfo disclaims warranty of accuracy/completeness and requires the user to bear responsibility for appropriate use. Verify terms before commercial redistribution.',
+        note:    'Charlotte metro — boundary/plat-index layer only (map book/page/block/lot, NC PIN, PID, acreage); no owner/address/land use/valuation data in this dataset.',
+      },
+    },
+
     /* ───────────────────────────────────────────────────────────────────
      * Polk County, Iowa (Des Moines) — a deliberately thin add. The
      * county's own gis4.polkcountyiowa.gov ArcGIS Server exposes a

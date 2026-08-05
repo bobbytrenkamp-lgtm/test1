@@ -482,11 +482,16 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   MD (reused Montgomery/Howard County MD's statewide service via a
   `JURSCODE`-based `where` filter, once the exact codes were confirmed
   via a real distinct-values query rather than the bounding-box guess
-  that had failed in the Essex NJ round). Registry now covers 54
-  jurisdictions. This is intended to continue indefinitely across many
-  further rounds per the user's explicit standing instruction — see
-  Recently Completed Work below for the ongoing detailed log, and Open
-  Handoffs for anything that gets stuck.
+  that had failed in the Essex NJ round), then Mecklenburg County NC
+  (found via a targeted ArcGIS Online item search after blind
+  subdomain guessing kept dead-ending — a pattern worth preferring
+  going forward for counties with their own ArcGIS Online org).
+  Denver CO and Jackson County MO remain open after further rounds
+  found nothing new; both left honestly documented rather than forced.
+  Registry now covers 55 jurisdictions. This is intended to continue
+  indefinitely across many further rounds per the user's explicit
+  standing instruction — see Recently Completed Work below for the
+  ongoing detailed log, and Open Handoffs for anything that gets stuck.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -2156,6 +2161,87 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   the temporary diagnostic files
   (`data/diagnose_md_jurscode.mjs`, `.github/workflows/_diagnose_md_jurscode.yml`)
   once resolved. Registry now covers 54 jurisdictions.
+
+- Date: 2026-08-05
+- Agent: Claude Code
+- Task: Investigated the top 3 uncovered counties by facility count
+  (Denver CO 62, Mecklenburg NC 39, Jackson MO 34) — all 3 already had
+  an open, partially-investigated trail from earlier this session.
+  Ran 2 further probe rounds via GitHub Actions dispatch (temporary
+  diagnostics, merged to main then dispatched then deleted, same
+  pattern used throughout this session) to either close them out or
+  find a new lead.
+- Findings — Jackson County MO (29095): round 2 ruled out the 3
+  remaining unexplored folder-name guesses from the prior round
+  (`ParcelViewer`, `Land_Records_Management`: clean ArcGIS 404s;
+  `Auditor`: a real MapServer, but its only layer is `OutsideAgencies`,
+  unrelated to parcels). Left as `candidate` with notes updated;
+  `Internal_Parcel_Viewer` and a proper ArcGIS Online item search
+  remain untried for a future round.
+- Findings — Mecklenburg County NC (37119): round 2's blind
+  `polaris3g` folder guesses (`Assessment`, `PropertyRecordCard`) both
+  hit the same generic HTTP 500 as prior rounds, but a targeted ArcGIS
+  Online item search (`"Mecklenburg" AND (CAMA OR "tax parcel" OR
+  assessor)`) surfaced a genuine, county-government-owned service —
+  "Tax Parcel Boundaries", owner `MecklenburgCoNC` (the county's own
+  ArcGIS Online org). Round 3 fetch-confirmed its real 11-field schema
+  and a live sample record: it's the same underlying boundary/
+  legal-reference data model as the previously-known Charlotte-city
+  layer (map_book/map_page/map_block/lot_num/nc_pin/pid/parcel_type/
+  condo_town_flag/legal_from), but with one addition the Charlotte
+  layer lacks — `gisacres`, a real, named acreage field — making this
+  the better of the two sources. Added as a deliberately thin entry
+  (4/30 real fields), same honesty precedent as Travis County TX.
+  Field-role choice for `parcel_id`/`pin` was genuinely ambiguous
+  (`pid` and `nc_pin` are both plausible identifiers) — resolved by
+  checking `data/parcel_field_synonyms.json`, which already had `PID`
+  verified as a real `pin` synonym from Miami-Dade County's usage
+  (FIPS 12086); an initial guess the other way round was caught by
+  `tests/test_parcel_field_mapper.mjs`'s ground-truth regression
+  (flagged as a "confident wrong guess", the dangerous case that test
+  exists to catch) and corrected to `parcel_id: nc_pin, pin: pid`
+  before landing. `data/parcel_field_synonyms.json` regenerated via
+  `extract_field_synonyms.mjs` afterward so `nc_pin`'s newly-verified
+  role is captured for future jurisdictions.
+- Findings — Denver County CO (08031): rounds 2 and 3 tried a Socrata
+  catalog discovery API call and a direct shapefile-download guess
+  (both returned the generic Socrata portal HTML app shell, not real
+  data — consistent with a client-side-rendered catalog this sandbox/
+  CI environment can't execute), a broad ArcGIS Online org listing
+  (hundreds of unrelated services, no obvious parcel match), and two
+  targeted item searches that surfaced only false positives (City of
+  Aurora CO's own parcels — a different, adjacent jurisdiction; a
+  City-Council-specific river-corridor parcel viewer; a childcare-
+  facility-only parcels layer). Left as `requires-review` with notes
+  updated recommending a human browse Denver's Socrata catalog
+  directly in a browser — automated search avenues are now exhausted
+  for this county.
+- Added: `nc-mecklenburg-county` (FIPS 37119) — parcel_id (nc_pin),
+  pin (pid), area_acres (gisacres), plus computed county_fips, 4/30.
+- Licensing: Mecklenburg County GIS, standard public-government-data
+  disclaimer (no warranty of accuracy/completeness, user bears
+  responsibility for appropriate use). Verify terms before commercial
+  redistribution.
+- Validation: `node data/parcel_pipeline/check_registry_integrity.mjs`
+  and `python3 data/validate_parcel_catalog.py` both clean (61 catalog
+  entries, 0 warnings). `node tests/parcel.test.js` passes (293/293).
+  `node tests/test_parcel_field_mapper.mjs` ground-truth regression:
+  55 jurisdictions, 637 real mappings, 616 reproduced exactly, 21
+  correctly flagged as ambiguous, 0 confident wrong guesses.
+  `./tests/run_all.sh` full suite green after updating one stale
+  hardcoded FIPS reference in `tests/test_parcel_priority_queue.py`
+  (its "a still-`candidate` FIPS" example was Mecklenburg itself,
+  now production — switched to Jackson County MO). Playwright
+  live-test confirmed correct rendering of all 4 mapped fields plus
+  computed county_fips, correct "Not published by this source" for
+  the remaining 26, zero page errors, `totalJurisdictions: 55`.
+  `data/parcel_source_catalog.json` regenerated via
+  `seed_catalog_from_registry.mjs` (55 production entries). Deleted
+  the temporary diagnostic files (`data/diagnose_batch_r2.mjs`,
+  `.github/workflows/_diagnose_batch_r2.yml`,
+  `data/diagnose_batch_r3.mjs`, `.github/workflows/_diagnose_batch_r3.yml`)
+  once each round's investigation was complete. Registry now covers
+  55 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
