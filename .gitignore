@@ -22,6 +22,11 @@ env/
 # see tests/e2e_smoke.mjs and AI_CONTEXT.md's Testing section for setup)
 node_modules/
 
+# Parcel pipeline generated drafts — data/parcel_pipeline/generate_entry.mjs
+# output, never auto-committed (see that file's header comment). Human
+# review copies the content into js/parcel/registry.js by hand.
+data/parcel_pipeline/drafts/
+
 # OS
 .DS_Store
 Thumbs.db

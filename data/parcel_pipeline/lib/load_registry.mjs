@@ -53,3 +53,13 @@ export function loadSchemaFieldIds() {
   }
   return schema.FIELDS.map(f => f.id);
 }
+
+/** Returns the canonical field ids schema.js marks required: true (today,
+ * only parcel_id — schema.js's own validate() hard-fails without it). */
+export function loadRequiredSchemaFieldIds() {
+  const schema = loadWindowScript(SCHEMA_PATH, 'PARCEL_SCHEMA');
+  if (!Array.isArray(schema.FIELDS)) {
+    throw new Error('schema.js did not define window.PARCEL_SCHEMA.FIELDS');
+  }
+  return schema.FIELDS.filter(f => f.required).map(f => f.id);
+}
