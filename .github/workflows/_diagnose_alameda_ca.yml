@@ -1,0 +1,33 @@
+name: (temp) Diagnose Alameda County CA parcel service
+
+# Temporary, workflow_dispatch-only diagnostic for the next parcel-
+# expansion candidate: Alameda County CA (17 facilities), the next
+# uninvestigated entry in the facility-count priority list after
+# Manassas city VA (added, 47 jurisdictions).
+# NOTE: "Alameda" is a common place name - any candidate must be
+# confirmed as genuinely Alameda County California (Oakland/Berkeley/
+# Fremont/Hayward area).
+# Deleted once this is either added to the registry or documented as
+# unavailable.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe Alameda County CA candidates
+        run: node data/diagnose_alameda_ca.mjs
