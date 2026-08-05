@@ -431,7 +431,14 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   in schema.js: the `date` formatter now converts ArcGIS epoch-
   millisecond date values to calendar dates instead of showing the
   raw integer, discovered while verifying this addition. Registry now
-  covers 48 jurisdictions.
+  covers 48 jurisdictions. Hennepin County MN/the Minneapolis metro (63
+  facilities) — previously an "Open, not added" Open Handoffs item
+  blocked on an HTTP 500 server error — was retried and resolved: the
+  outage was transient, and the county's real candidate (the
+  Metropolitan Council's regional 7-county parcels service, filtered
+  to Hennepin via a where clause) was added with a 17/30-field mapping
+  (16 real fields), one of the richest additions this session. Registry
+  now covers 49 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1833,6 +1840,64 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   corrected date formatting (2023-03-24) — and "Not published by this
   source" for the remaining 19, zero page errors. Registry now covers
   48 jurisdictions.
+
+- Date: 2026-08-05
+- Agent: Claude Code
+- Task: Retried Hennepin County, Minnesota (FIPS 27053, 63 facilities,
+  Minneapolis metro) after it had been left as an "Open, not added"
+  Open Handoffs item on 2026-08-03: a real, catalog-confirmed dataset
+  (the Metropolitan Council's regional Twin Cities metro parcels
+  service) had returned `HTTP 500 "Application Error"` from the ArcGIS
+  Web Adaptor on every endpoint, a server-side fault rather than a
+  wrong-URL guess, so it was worth retrying rather than starting a
+  fresh investigation elsewhere.
+- Findings: Round 3 retried the same previously-confirmed URLs — the
+  outage was transient and both endpoints are now live. The
+  unversioned "Parcels" layer turned out to be a naming trap: despite
+  its generic name, its own layer metadata reports it as "Anoka County
+  Parcels" specifically, not a metro-wide layer. The real candidate is
+  "Parcels_Aggregate" ("Metropolitan 7-County Parcels"), covering all 7
+  Twin Cities metro counties (Hennepin, Ramsey, Dakota, Anoka,
+  Washington, Carver, Scott) with a `CO_NAME` field for filtering to
+  one county — 95-field schema confirmed. Round 4 pulled a real
+  Hennepin-specific sample record (`CO_NAME='Hennepin'`, parcel
+  053-0102724110005, DRFC Metro LLC, Metro Office Park) whose `CO_CODE`
+  ("27053") exactly matches this county's FIPS code, and confirmed
+  EMV_LAND (1,172,000) + EMV_BLDG (777,000) = EMV_TOTAL (1,949,000),
+  confirming it as a genuine sum.
+- Added: `mn-hennepin-county` with a `where: "CO_NAME = 'Hennepin'"`
+  filter (this is a shared regional service, same pattern as 3 other
+  registry entries) and a 16-field mapping (parcel_id → PIN, pin →
+  COUNTY_PIN, owner → OWNER_NAME, land_use_code → USECLASS1, area_acres
+  → ACRES_POLY [ACRES_DEED was null for the real sample, ACRES_POLY was
+  populated], year_built → YEAR_BUILT, gross_floor_area → FIN_SQ_FT,
+  assessed_value → EMV_TOTAL, land_value → EMV_LAND, improvement_value
+  → EMV_BLDG, tax_year → TAX_YEAR, tax_amount → TOTAL_TAX, last_sale_date
+  → SALE_DATE, last_sale_price → SALE_VALUE, subdivision → PLAT_NAME,
+  legal_desc → ABB_LEGAL) plus county_fips (computed) — 17/30, one of
+  the richest additions this session. address and owner_mailing are
+  NOT mapped: the situs address is split across 9+ components with no
+  combined field anywhere in the schema, and the owner-mailing address
+  (OWN_ADD_L1-4) was entirely blank on the real sample record with no
+  combined value either (a separate TAX_ADD_L1/L2 tax-mailing pair was
+  populated instead, but isn't a canonical target). The remaining 13
+  fields recorded in `notProvidedBySource` — verified programmatically
+  to cover all 30 canonical fields with zero gaps and zero overlaps.
+- Licensing: official Metropolitan Council (Metro GIS), Minnesota
+  data. Standard "public government data, verify terms before
+  commercial redistribution" caveat applied.
+- Validation: field-mapping validation script confirmed zero
+  missing/extra/overlap against the 30 canonical fields. `node
+  tests/parcel.test.js` passes (293/293). Playwright live-test via
+  `window.PARCEL_PANEL.show()` with a synthetic feature based on the
+  real confirmed sample record confirmed correct rendering of all 15
+  populated mapped fields plus computed county_fips — including
+  correct calendar-date formatting for last_sale_date (2006-08-01) —
+  and "Not published by this source" for the remaining 13, zero page
+  errors. (tax_year and legal_desc were genuinely blank on this real
+  sample record, so correctly render no row rather than a value.)
+  Removed the now-resolved "Hennepin County, Minnesota" Open Handoffs
+  entry. Registry now covers 49 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
@@ -3592,35 +3657,6 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   Data Catalog (a human-browsable data.denvergov.org page rather than a
   programmatic search) rather than more `owner:` searches, which have
   now enumerated this org's full content with no hit.
-- Relevant files: `js/parcel/registry.js`.
-
-- Item: Hennepin County, Minnesota parcel data — #7 target by facility
-  count (63 in `facilities_index.json`).
-- Current status: Open, not added. Investigated over two probe rounds,
-  run 2026-08-03 via GitHub Actions dispatch (this sandbox can't reach
-  these hosts directly). Hennepin County has no county-specific public
-  GIS parcel service discoverable (round 1: direct URL guesses at
-  gis.hennepin.us all 404'd). Round 2 found the real thing via ArcGIS
-  Online catalog search: the Metropolitan Council (Metro GIS) publishes a
-  "Metropolitan 7-County Parcel Polygons" dataset covering the whole
-  Twin Cities metro, including Hennepin — real, catalog-confirmed URLs at
-  `arcgis.metc.state.mn.us/data1/rest/services/parcels/...` (both the
-  unversioned "Parcels" layer and the "Parcels_Aggregate" layer). All
-  three candidate REST endpoints returned `HTTP 500 "Application Error"`
-  from the ArcGIS Web Adaptor itself — a server-side fault, not a 404 or
-  wrong-URL guess like every other dead-end found so far this session.
-- Recommended next action: retry the same three URLs (see
-  `data/diagnose_hennepin.mjs` in the commit history — deleted from the
-  working tree but recoverable via git log — for the exact endpoints)
-  after some time has passed, in case this was a transient outage on the
-  Metropolitan Council's server. If it's still erroring, also worth
-  checking `gisdata.mn.gov/dataset/us-mn-state-metc-plan-parcels-open`
-  (the MN Geospatial Commons page for this dataset, confirmed reachable
-  with HTTP 200) for an alternate/updated resource link, since dataset
-  landing pages sometimes point to a different active endpoint than what
-  a catalog search indexes. If this dataset covers all 7 metro counties,
-  note it would also be the natural source for any future Twin Cities
-  counties added to this registry (e.g. Ramsey, Dakota, Anoka).
 - Relevant files: `js/parcel/registry.js`.
 
 - Item: The 3 Virginia counties in the parcel registry (Loudoun,

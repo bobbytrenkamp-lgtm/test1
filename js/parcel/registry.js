@@ -3086,6 +3086,56 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '27053': {
+      id:          'mn-hennepin-county',
+      name:        'Hennepin County, Minnesota',
+      state:       'MN',
+      fips:        '27053',
+      connector:   'arcgis',
+      serviceUrl:  'https://arcgis.metc.state.mn.us/data1/rest/services/parcels/Parcels_Aggregate/FeatureServer/0',
+      where:       "CO_NAME = 'Hennepin'",
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'PIN',
+        pin:                'COUNTY_PIN',
+        owner:              'OWNER_NAME',
+        land_use_code:      'USECLASS1',
+        area_acres:         'ACRES_POLY',
+        year_built:         'YEAR_BUILT',
+        gross_floor_area:   'FIN_SQ_FT',
+        assessed_value:     'EMV_TOTAL',
+        land_value:         'EMV_LAND',
+        improvement_value:  'EMV_BLDG',
+        tax_year:           'TAX_YEAR',
+        tax_amount:         'TOTAL_TAX',
+        last_sale_date:     'SALE_DATE',
+        last_sale_price:    'SALE_VALUE',
+        subdivision:        'PLAT_NAME',
+        legal_desc:         'ABB_LEGAL',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_desc', 'overlay_districts', 'area_sqft', 'lot_depth_ft',
+        'lot_width_ft', 'building_count', 'deed_book', 'deed_page',
+        'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Metropolitan Council (Metro GIS), Minnesota',
+        url:     'https://www.metrocouncil.org/',
+        portal:  'https://arcgis.metc.state.mn.us/data1/rest/services/parcels/Parcels_Aggregate/FeatureServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'This is a regional dataset ("Metropolitan 7-County Parcel Polygons") published by the Metropolitan Council covering the whole Twin Cities metro (Hennepin, Ramsey, Dakota, Anoka, Washington, Carver, and Scott counties), filtered to Hennepin alone via a where clause (CO_NAME = "Hennepin") — confirmed against a real sample record where CO_CODE ("27053") exactly matches this county\'s FIPS code. An earlier probe (2026-08-03) found every endpoint on this service returning HTTP 500 "Application Error"; a retry two days later (2026-08-05) found the outage was transient and the service fully live with a rich 95-field schema. The sibling unversioned "Parcels" layer at the same service root is a naming trap — despite its generic name, its own layer metadata reports it as "Anoka County Parcels" specifically, so it is NOT the right layer for Hennepin (or any other metro county); "Parcels_Aggregate" ("Metropolitan 7-County Parcels") is the correct multi-county one. address is NOT mapped: the situs address is split across 9+ components (ANUMBERPRE/ANUMBER/ANUMBERSUF/ST_PRE_MOD/ST_PRE_DIR/ST_PRE_TYP/ST_PRE_SEP/ST_NAME/ST_POS_TYP/ST_POS_DIR/ST_POS_MOD) with no single combined field anywhere in the schema. owner_mailing is NOT mapped: OWN_ADD_L1 through L4 are 4 separate lines with no combined field (a real sample record showed all 4 blank while the separate TAX_ADD_L1/L2 tax-mailing fields were populated, but those aren\'t a canonical owner_mailing target either). ACRES_POLY (GIS-computed) was used over ACRES_DEED (recorded/deed acreage) for area_acres because a real sample record had ACRES_DEED null while ACRES_POLY was populated (1.58). EMV_TOTAL was cross-checked against the same sample: EMV_LAND (1,172,000) + EMV_BLDG (777,000) = 1,949,000, exactly matching EMV_TOTAL, confirming it as a genuine sum. This same service is the natural future source for any other Twin Cities metro counties (Ramsey, Dakota, Anoka, Washington, Carver, Scott) if added later — just change the `where` clause.',
+      },
+    },
+
   };
 
   function get(fips) {
