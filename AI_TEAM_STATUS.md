@@ -416,6 +416,12 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   "Parcels_for_BOE" (Board of Equalization) service, including a
   cross-checked confirmation that SQ_FEET is lot size (not building
   size) matching ACRES × 43,560. Registry now covers 46 jurisdictions.
+  Manassas city VA (18 facilities) was added next over 3 probe
+  rounds — an independent city, not a county, distinct from the
+  separate Manassas Park city — with a 14/30-field mapping (13 real
+  fields) from the city's own official "Manassas_Parcels" service
+  after rejecting a token-gated alternate candidate. Registry now
+  covers 47 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1708,6 +1714,56 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   10 mapped fields plus computed county_fips, and "Not published by
   this source" for the remaining 18, zero page errors. Registry now
   covers 46 jurisdictions.
+
+- Date: 2026-08-04
+- Agent: Claude Code
+- Task: Continued down the facility-count priority queue after Douglas
+  County NE: investigated Manassas city, Virginia (FIPS 51683, 18
+  facilities), over three probe rounds. Manassas is an independent
+  city, not a county (VA has many independent cities that function as
+  their own GIS/assessor jurisdiction, the same precedent as DC and
+  Suffolk MA earlier this session), and distinct from the separately
+  incorporated city of Manassas Park and the surrounding, but
+  administratively separate, Prince William County.
+- Findings: Round 1 surfaced two Manassas-city-specific candidates
+  (correctly excluding a "Manassas Park City VA Parcels" layer as a
+  false friend): one from ArcGIS account "wharcgisdeveloper", one from
+  "manassas_gis". Round 2 found the wharcgisdeveloper layer requires
+  an authentication token ("499 Token Required" on every query, so
+  unusable) and confirmed the manassas_gis layer as the city's own
+  official data via description "City of Manassas Taxable Parcels"
+  and copyrightText "City of Manassas" — live with 26 fields. Round 3
+  pulled a real sample record (13,645 total parcels; owner LANE
+  GWENDOLYN A, 9300 Niki Pl #302) confirming sensible values
+  throughout.
+- Added: `va-manassas-city` with a 13-field mapping (parcel_id →
+  TAXMAP, pin → GIS_UID, address → PROPERTY_ADDRESS [confirmed as a
+  genuine pre-combined address string, not a concatenation],
+  owner → OWNER_NAME, zoning_code → ZONING, area_acres → TOTAL_ACRES,
+  assessed_value → TOTAL_ASSESSED_VALUE, land_value → LAND_VALUE,
+  improvement_value → IMPROVEMENT_VALUE, last_sale_date → SALE_DATE,
+  last_sale_price → SALE_PRICE, legal_desc → LEGAL_DESCRIPTION) plus
+  county_fips (computed) — 14/30. DEED_BOOK_PAGE is a single
+  pre-combined "book/page" string (e.g. "2478/1658") that cannot be
+  cleanly split into the separate deed_book/deed_page canonical
+  fields, so neither is mapped. MORE_ZONING_INFO was deliberately NOT
+  mapped to zoning_desc — it's a static link to the city's general
+  zoning-ordinance webpage, identical across every record, not a
+  per-parcel description. The remaining 17 fields recorded in
+  `notProvidedBySource` — verified programmatically to cover all 30
+  canonical fields with zero gaps and zero overlaps.
+- Licensing: official City of Manassas, Virginia GIS data. Standard
+  "public government data, verify terms before commercial
+  redistribution" caveat applied.
+- Validation: field-mapping validation script confirmed zero
+  missing/extra/overlap against the 30 canonical fields. `node
+  tests/parcel.test.js` passes (293/293). Playwright live-test via
+  `window.PARCEL_PANEL.show()` with a synthetic feature based on the
+  real confirmed sample record (Lane Gwendolyn A, 9300 Niki Pl #302,
+  assessed at $269,000) confirmed correct rendering of all 13 mapped
+  fields plus computed county_fips, and "Not published by this
+  source" for the remaining 17, zero page errors. Registry now covers
+  47 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
