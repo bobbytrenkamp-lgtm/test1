@@ -3475,6 +3475,96 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── DuPage County, Illinois (Chicago suburbs) ────────────────────────
+     *
+     * DuPage County — 16 facilities. Found via a targeted ArcGIS Online
+     * item search 2026-08-05 (multiple independent items — a web map, a
+     * map service, and a feature service under 3 different DuPage staff
+     * accounts — all pointing at this exact underlying service),
+     * fetch-confirmed live with a real 86-field schema and a real,
+     * populated sample record via GitHub Actions dispatch (this sandbox
+     * can't reach gis.dupageco.org directly).
+     *
+     * Genuinely rich, official source: "created and is maintained by the
+     * DuPage County Information Technology Department, GIS Division in
+     * conjunction with the DuPage County Clerk" (from the service's own
+     * description). PIN doubles as both parcel_id and pin (a single
+     * verified source field serving two canonical roles, same pattern as
+     * Loudoun County VA elsewhere in this registry).
+     *
+     * REA017_FCV_LAND (156,134) + REA017_FCV_IMP (121,469) =
+     * REA017_FCV_TOTAL (277,603) exactly in the real sample record,
+     * confirming this as the genuine land/improvement/total valuation
+     * triad — same cross-check pattern used for Hennepin MN and Essex NJ
+     * elsewhere in this registry. Used instead of the separate BILLVALUE
+     * field (269,603 in the same record — plausibly a prior year's
+     * certified billing value, a real but different number, not mapped
+     * to avoid conflating two distinct real fields under one canonical
+     * role). REA017_PROP_CLASS ("R" in the sample) is Illinois's real
+     * property-classification code, mapped to land_use_code.
+     *
+     * address uses the source's own pre-built PROPADDRL1 line-1 field
+     * ("363 E HUNTINGTON LN" in the real sample) rather than
+     * concatenating the granular PROPSTNUM/PROPSTDIR/
+     * PROPSTNAME/PROPAPT components (which were all null in the sample
+     * even though PROPADDRL1 was populated) — matches this registry's
+     * usual "address" convention of a bare street line, no
+     * city/state/zip. owner_mailing is NOT mapped even though a parallel
+     * BILLADDRL1/BILLADDRL2 pair exists: unlike address, this registry's
+     * owner_mailing convention expects a complete city/state/zip-
+     * inclusive string, which would require concatenating the two lines
+     * — not done, per this registry's established anti-concatenation
+     * rule for fields the source doesn't provide as one ready value.
+     * legal_desc uses LEGALDES1 only — the source has a genuine 9-slot
+     * repeating legal-description structure (LEGALDES1-9), but only slot
+     * 1 was populated in the real sample (2-9 were blank), so only slot
+     * 1 is mapped, not concatenated with the empty remainder.
+     * ─────────────────────────────────────────────────────────────────── */
+    '17043': {
+      id:          'il-dupage-county',
+      name:        'DuPage County, Illinois',
+      state:       'IL',
+      fips:        '17043',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis.dupageco.org/arcgis/rest/services/DuPage_County_IL/ParcelsWithRealEstateCC/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'PIN',
+        pin:                'PIN',
+        owner:              'BILLNAME',
+        address:            'PROPADDRL1',
+        area_acres:         'ACREAGE',
+        land_use_code:      'REA017_PROP_CLASS',
+        assessed_value:     'REA017_FCV_TOTAL',
+        land_value:         'REA017_FCV_LAND',
+        improvement_value:  'REA017_FCV_IMP',
+        tax_amount:         'TAXAMOUNT',
+        legal_desc:         'LEGALDES1',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'land_use_desc',
+        'overlay_districts', 'area_sqft', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'year_built', 'gross_floor_area', 'tax_year',
+        'last_sale_date', 'last_sale_price', 'deed_book', 'deed_page',
+        'subdivision', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'DuPage County Information Technology Department, GIS Division',
+        url:     'https://www.dupageco.org/',
+        portal:  'https://gis.dupageco.org/arcgis/rest/services/DuPage_County_IL/ParcelsWithRealEstateCC/FeatureServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Chicago western suburbs — DuPage County IT/Clerk-maintained assessment and real-estate parcel data.',
+      },
+    },
+
   };
 
   function get(fips) {

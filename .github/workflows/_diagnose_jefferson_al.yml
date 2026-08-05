@@ -1,0 +1,29 @@
+name: (temp) Diagnose Jefferson County AL - non-null sample record
+
+# Temporary, workflow_dispatch-only diagnostic re-querying Jefferson
+# County AL's Parcels service for a record with a real, non-null
+# OWNERNAME (round 6's default first record was an unrepresentative
+# sparse edge case with almost every field null). See
+# data/diagnose_jefferson_al.mjs. Deleted once resolved.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe Jefferson County AL for a non-null sample record
+        run: node data/diagnose_jefferson_al.mjs

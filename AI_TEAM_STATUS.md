@@ -488,8 +488,14 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   going forward for counties with their own ArcGIS Online org).
   Denver CO and Jackson County MO remain open after further rounds
   found nothing new; both left honestly documented rather than forced.
-  Registry now covers 55 jurisdictions. This is intended to continue
-  indefinitely across many further rounds per the user's explicit
+  Then DuPage County IL, found the same ArcGIS-Online-search way.
+  Arapahoe CO, Jefferson AL, Durham NC, and St. Louis city MO remain
+  open after this round — each with a specific documented reason
+  (sales-only data, an inconclusive sparse sample, exhausted search
+  avenues, and topic-specific-only results respectively) rather than
+  forced or guessed. Registry now covers 56 jurisdictions. This is
+  intended to continue indefinitely across many further rounds per
+  the user's explicit
   standing instruction — see Recently Completed Work below for the
   ongoing detailed log, and Open Handoffs for anything that gets stuck.
 
@@ -2242,6 +2248,79 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   `data/diagnose_batch_r3.mjs`, `.github/workflows/_diagnose_batch_r3.yml`)
   once each round's investigation was complete. Registry now covers
   55 jurisdictions.
+
+- Date: 2026-08-05
+- Agent: Claude Code
+- Task: Fresh discovery for 5 new priority-queue candidates — Arapahoe
+  County CO (08005, 17 facilities), DuPage County IL (17043, 16),
+  Jefferson County AL (01073, 16), St. Louis city MO (29510, 15),
+  Durham County NC (37063, 14) — using a targeted ArcGIS Online item
+  search as the primary discovery method (the approach that worked
+  well for Mecklenburg NC), across 6 probe rounds.
+- Findings — DuPage County IL: the strongest find. A search surfaced
+  the county's own ("DuPage County Information Technology Department,
+  GIS Division") `ParcelsWithRealEstateCC` service — real, live,
+  86-field schema fetch-confirmed with a real sample record.
+  REA017_FCV_LAND + REA017_FCV_IMP = REA017_FCV_TOTAL exactly in the
+  sample (156,134 + 121,469 = 277,603), the same land/improvement/
+  total cross-check pattern used for Hennepin MN and Essex NJ. A
+  separate BILLVALUE field (269,603) was a real but different number
+  — not mapped, to avoid conflating two distinct real value fields
+  under one canonical role.
+- Findings — Jefferson County AL: also a real, rich, county-owned
+  service (`jccgis.jccal.org`'s `Parcels`, 73 fields, copyright
+  "Jefferson County Commission; Information Technology Services - GIS
+  Division"), but the first sample record fetched came back with
+  nearly every field null (an unrepresentative sparse edge case at
+  OBJECTID=1) — genuinely inconclusive, not wired in this round. A
+  follow-up query filtering for non-null OWNERNAME was queued to get
+  real values before the next attempt.
+- Findings — Arapahoe County CO: the one real, county-owned
+  (`ArapahoeAdmin`) service found, `Parcel_Sales_2023_gdb`, turned out
+  to contain exactly one layer, `Assessor_Sales_2023` — a sales-
+  transaction dataset, not general parcel data. Rejected as a
+  substitute for general coverage; documented with the real reason.
+- Findings — Durham County NC: both a general search and an org-
+  scoped search of the real `Durham_GIS` government account found no
+  general current parcel dataset — only a narrow legacy-PIN lookup
+  app, a city-owned-only parcels layer, and third-party mirrors hosted
+  by neighboring Chapel Hill's GIS portal (not Durham's own
+  authoritative source). Left as `candidate` with the dead end
+  recorded.
+- Findings — St. Louis city MO: search found only topic-specific
+  research/analysis layers (a university race-covenants study, a
+  land-subsidence academic project, vacancy studies) — no general
+  government parcel service. Left as `candidate` with the dead end
+  recorded, noting it's a distinct jurisdiction from St. Louis
+  COUNTY (FIPS 29189, separately still uninvestigated).
+- Added: `il-dupage-county` (FIPS 17043) — parcel_id/pin (PIN), owner
+  (BILLNAME), address (PROPADDRL1), area_acres (ACREAGE), land_use_code
+  (REA017_PROP_CLASS), assessed_value/land_value/improvement_value
+  (REA017_FCV_TOTAL/LAND/IMP), tax_amount (TAXAMOUNT), legal_desc
+  (LEGALDES1), plus computed county_fips, 11/30. owner_mailing left
+  unmapped despite a parallel BILLADDRL1/BILLADDRL2 pair existing,
+  since this registry's owner_mailing convention expects a complete
+  city/state/zip-inclusive string and concatenating the two lines
+  isn't done per the established anti-concatenation rule.
+- Licensing: DuPage County Information Technology Department, GIS
+  Division.
+- Validation: `node data/parcel_pipeline/check_registry_integrity.mjs`
+  and `python3 data/validate_parcel_catalog.py` both clean (65 catalog
+  entries, 0 warnings). `node tests/parcel.test.js` passes (293/293).
+  `node tests/test_parcel_field_mapper.mjs` ground-truth regression:
+  56 jurisdictions, 648 real mappings, 627 reproduced exactly, 21
+  correctly flagged as ambiguous, 0 confident wrong guesses.
+  `./tests/run_all.sh` full suite green. Playwright live-test
+  confirmed correct rendering of all 11 mapped fields plus computed
+  county_fips for DuPage, correct "Not published by this source" for
+  the remaining 18, zero page errors, `totalJurisdictions: 56`.
+  `data/parcel_source_catalog.json` regenerated via
+  `seed_catalog_from_registry.mjs` (56 production entries) and
+  `data/parcel_field_synonyms.json` regenerated via
+  `extract_field_synonyms.mjs` (439 synonyms, 29 fields). Deleted the
+  temporary diagnostic files (`data/diagnose_batch_r4.mjs` through
+  `_r6.mjs` and matching workflows) once each round's investigation
+  was complete. Registry now covers 56 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code

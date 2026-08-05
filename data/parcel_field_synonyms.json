@@ -71,6 +71,12 @@
         ]
       },
       {
+        "name": "PROPADDRL1",
+        "seen_in": [
+          "17043"
+        ]
+      },
+      {
         "name": "PROPERTY_A",
         "seen_in": [
           "31055"
@@ -166,6 +172,7 @@
       {
         "name": "ACREAGE",
         "seen_in": [
+          "17043",
           "18097",
           "32031",
           "34023"
@@ -525,6 +532,12 @@
         "name": "PPTOTALVALUE",
         "seen_in": [
           "26163"
+        ]
+      },
+      {
+        "name": "REA017_FCV_TOTAL",
+        "seen_in": [
+          "17043"
         ]
       },
       {
@@ -1021,6 +1034,12 @@
         ]
       },
       {
+        "name": "REA017_FCV_IMP",
+        "seen_in": [
+          "17043"
+        ]
+      },
+      {
         "name": "ROLL_IMPVALUE",
         "seen_in": [
           "06037"
@@ -1199,6 +1218,12 @@
         "name": "PUSE",
         "seen_in": [
           "12031"
+        ]
+      },
+      {
+        "name": "REA017_PROP_CLASS",
+        "seen_in": [
+          "17043"
         ]
       },
       {
@@ -1492,6 +1517,12 @@
         ]
       },
       {
+        "name": "REA017_FCV_LAND",
+        "seen_in": [
+          "17043"
+        ]
+      },
+      {
         "name": "ROLL_LANDVALUE",
         "seen_in": [
           "06037"
@@ -1757,6 +1788,12 @@
         ]
       },
       {
+        "name": "LEGALDES1",
+        "seen_in": [
+          "17043"
+        ]
+      },
+      {
         "name": "LEGALDESC",
         "seen_in": [
           "47037",
@@ -1875,6 +1912,12 @@
       }
     ],
     "owner": [
+      {
+        "name": "BILLNAME",
+        "seen_in": [
+          "17043"
+        ]
+      },
       {
         "name": "CNTCTLAST",
         "seen_in": [
@@ -2183,6 +2226,7 @@
       {
         "name": "PIN",
         "seen_in": [
+          "17043",
           "27053",
           "31055",
           "42003",
@@ -2403,6 +2447,7 @@
         "name": "PIN",
         "seen_in": [
           "12057",
+          "17043",
           "21111",
           "32031",
           "51059",
@@ -2610,6 +2655,12 @@
         "name": "NET_TAX_TOTAL",
         "seen_in": [
           "39035"
+        ]
+      },
+      {
+        "name": "TAXAMOUNT",
+        "seen_in": [
+          "17043"
         ]
       },
       {
