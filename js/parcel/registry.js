@@ -3042,6 +3042,50 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '06001': {
+      id:          'ca-alameda-county',
+      name:        'Alameda County, California',
+      state:       'CA',
+      fips:        '06001',
+      connector:   'arcgis',
+      serviceUrl:  'https://services5.arcgis.com/ROBnTHSNjoZ2Wm1P/arcgis/rest/services/Parcels/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'APN',
+        address:            'SitusAddress',
+        owner_mailing:      'MailingAddress',
+        land_use_code:      'UseCode',
+        assessed_value:     'TotalNetValue',
+        land_value:         'Land',
+        improvement_value:  'Imps',
+        last_sale_date:     'LatestDocumentDate',
+        deed_book:          'BOOK',
+        deed_page:          'PAGE',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'pin', 'owner', 'zoning_code', 'zoning_desc', 'land_use_desc',
+        'overlay_districts', 'area_sqft', 'area_acres', 'lot_depth_ft',
+        'lot_width_ft', 'building_count', 'year_built', 'gross_floor_area',
+        'tax_year', 'tax_amount', 'last_sale_price', 'subdivision',
+        'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Alameda County, California Information Technology Department',
+        url:     'https://www.acgov.org/',
+        portal:  'https://services5.arcgis.com/ROBnTHSNjoZ2Wm1P/arcgis/rest/services/Parcels/FeatureServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    '"Alameda" is a common place name, so this was confirmed genuinely Alameda County CA (Oakland/Berkeley/Fremont metro) via decisive signals: the county\'s own official open-data DCAT catalog (data.acgov.org) directly lists this exact "Parcels" service, and the layer\'s own description reads "Alameda County Parcel Boundaries. Maintained by Alameda County Information Technology Department." Live with 42 fields. SitusAddress and MailingAddress are genuine pre-combined strings, confirmed against a real sample record (parcel 15-1338-24: "1049 61ST ST OAKLAND 94608" exactly matches SitusStreetNumber+SitusStreetName+SitusCity+SitusZip), so both map directly without concatenation; MailingAddress maps to owner_mailing even though no owner-name field exists anywhere in this schema (California county parcel-boundary feeds commonly omit owner names for privacy) — owner is left unmapped rather than guessed. TotalNetValue was cross-checked against the same sample: Land (467,989) + Imps (1,091,974) − HOEX (7,000 homeowner\'s exemption) = 1,552,963, exactly matching TotalNetValue, confirming it as the correct net assessed value (not a raw sum). CLCALand/CLCAImps are separate Williamson Act (California Land Conservation Act) alternate valuations, not general values, so land_value/improvement_value use Land/Imps instead. Shape__Area was deliberately left unmapped since its units were never confirmed as square feet — this service has no separate acreage/area field at all. TRAPrimary/TRASecondary are Tax Rate Area codes, not census tract, so not mapped. APN_SORT is a resortable reformatting of the same APN identifier, not a distinct PIN, so pin is left unmapped. LatestDocument_Prefix/LatestDocumentSeries belong to a separate modern document-number recording system distinct from the classic BOOK/PAGE fields used for deed_book/deed_page.',
+      },
+    },
+
   };
 
   function get(fips) {

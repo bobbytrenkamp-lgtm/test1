@@ -12,7 +12,17 @@ window.PARCEL_SCHEMA = (function () {
     sqft:     v => v == null ? '—' : Number(v).toLocaleString() + ' sq ft',
     currency: v => v == null ? '—' : '$' + Number(v).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 }),
     year:     v => v == null ? '—' : String(Math.round(v)),
-    date:     v => v == null ? '—' : String(v),
+    date:     v => {
+      if (v == null || v === '') return '—';
+      // ArcGIS esriFieldTypeDate fields return epoch milliseconds; format
+      // those as a calendar date instead of the raw integer. Pre-formatted
+      // date strings (e.g. "2018-06-15", "09/01/2021") pass through as-is.
+      if (typeof v === 'number' && Number.isFinite(v) && Math.abs(v) > 1e11) {
+        const d = new Date(v);
+        if (!isNaN(d.getTime())) return d.toISOString().slice(0, 10);
+      }
+      return String(v);
+    },
   };
 
   /* Canonical field registry.
