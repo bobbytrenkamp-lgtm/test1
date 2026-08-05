@@ -1,32 +1,46 @@
 name: Check Parcel Services
 
 # js/parcel/registry.js states plainly that none of its serviceUrl values has
-# ever been fetch-confirmed — they were plausible-looking guesses, later
-# re-derived from web search by a pass that also could not make outbound
-# requests. One (Montgomery County MD) had already proven to be a completely
-# invalid service ID. A dead service is close to invisible in the UI: the map
-# just shows a generic "Parcel data unavailable — service error" toast.
+# ever been fetch-confirmed: they were plausible-looking guesses, and a later
+# pass re-derived them from web search without being able to make outbound
+# requests either. One (Montgomery County MD) had already been found to be a
+# completely invalid org/service ID. That file names this exact check as its
+# single highest-value follow-up:
 #
-# This runs the probe that registry.js names as its own top follow-up, on a
-# runner that actually has internet. Read-only: it fetches each service's
-# ?f=json layer definition and reports. It never writes to the repo.
+#   "opening each serviceUrl + '?f=json' in a real browser and confirming it
+#    returns a valid layer definition (name + fields), not {"error":...}"
+#
+# A dead service is invisible in the UI beyond a generic "Parcel data
+# unavailable — service error" toast, so this turns a silent data gap into a
+# checkable, CI-runnable fact.
 #
 # Monthly, because these are third-party county/state GIS endpoints that
-# change on their own schedule, plus on demand and whenever the registry or
-# the probe itself is edited.
+# change on their own schedule, plus on demand.
+#
+# This workflow is now the FULL-REGISTRY sweep only — schedule and manual
+# dispatch, no pull_request trigger. A PR that touches js/parcel/registry.js
+# is instead covered by .github/workflows/parcel_pr_check.yml, which scopes
+# its probe to only the FIPS blocks that PR's diff actually changed (via
+# data/parcel_pipeline/changed_fips.mjs) instead of re-probing every one of
+# 50+ services on every single-county PR. Running both workflows on the same
+# PR would be redundant and exactly the unscoped-probing cost this
+# restructuring exists to remove — hence no path-filtered pull_request
+# trigger here anymore.
+#
+# Because this workflow only ever fires on schedule/dispatch now, its runs
+# are always safe to feed into data/parcel_health_history.json (--record-history)
+# and to open/update/close a tracking issue for a persistently-failing
+# service — a feature-branch PR run can never pollute either, since there is
+# no PR-triggered run of this workflow to begin with.
 
 on:
   schedule:
     - cron: "23 5 1 * *"        # 1st of the month, 05:23 UTC
   workflow_dispatch:
-  pull_request:
-    paths:
-      - 'js/parcel/registry.js'
-      - 'data/check_parcel_services.mjs'
-      - '.github/workflows/check_parcel_services.yml'
 
 permissions:
-  contents: read
+  contents: write # commits data/parcel_health_history.json updates back to the branch
+  issues: write   # opens/comments/closes "Parcel service down: <FIPS> <name>" issues below
 
 concurrency:
   group: check-parcel-services-${{ github.ref }}
@@ -39,23 +53,53 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        # Deliberately pinned to main regardless of how this run was
+        # triggered (including workflow_dispatch against a feature branch)
+        # — this workflow computes health history from, and pushes it back
+        # to, main, matching the same convention update_ai_news.yml already
+        # uses. The commit step below pushes to main to match, on purpose.
+        with:
+          ref: main
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: "22"
 
-      # Exit codes: 0 = all live, 1 = at least one genuinely dead,
+      # Exit codes: 0 = no new CONFIRMED failures (a single first-time
+      #   failure is logged as DEAD* and does not fail the job — see
+      #   isConfirmedDead in check_parcel_services.mjs),
+      # 1 = at least one service confirmed dead across multiple recorded
+      #   runs (or knownUnavailable already),
       # 2 = could not run (every probe failed identically -> no network).
       # 2 must not be reported as "all URLs dead" — see the script's guard.
       - name: Probe parcel services
         id: probe
         run: |
           set +e
-          node data/check_parcel_services.mjs | tee /tmp/parcel_probe.txt
+          node data/check_parcel_services.mjs --record-history | tee /tmp/parcel_probe.txt
           code=${PIPESTATUS[0]}
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit 0
+
+      - name: Commit updated health history
+        if: steps.probe.outputs.exit_code != '2'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/parcel_health_history.json
+          if git diff --staged --quiet; then
+            echo "No health-history changes to commit."
+          else
+            git commit -m "Update parcel service health history [skip ci]"
+            for attempt in 1 2 3 4 5; do
+              if git push origin HEAD:main; then break; fi
+              if [ "$attempt" = 5 ]; then echo "::error::Push failed after 5 attempts."; exit 1; fi
+              echo "Push rejected (attempt ${attempt}), rebasing and retrying..."
+              git fetch origin main && git rebase origin/main
+              sleep $((attempt * 5))
+            done
+          fi
 
       - name: Report
         run: |
@@ -72,19 +116,60 @@ jobs:
             echo "::warning::Probe could not run (no outbound network on this runner). No conclusion drawn about URL health."
             exit 0
           fi
-          # Exit 1 means a service failed that is NOT already recorded as
-          # knownUnavailable in registry.js. Services already known to be down
+          # Exit 1 means a service was CONFIRMED newly dead (see the script's
+          # multi-run comparison) or is already recorded as knownUnavailable
+          # with no confirmation needed. Services already known to be down,
+          # or failing for the first time with no confirming prior failure,
           # report as DEAD* and pass, deliberately: a job that fails every
           # month on the same known outage trains everyone to ignore it, and
           # the next genuinely new breakage then arrives looking like noise.
           if [ "$code" != "0" ]; then
-            echo "::error::A parcel service failed that is not already known-dead. That county silently shows no parcels in the UI."
+            echo "::error::A parcel service failed and was confirmed dead. That county silently shows no parcels in the UI."
             exit 1
           fi
           if grep -q '^  DEAD\*' /tmp/parcel_probe.txt; then
-            echo "::warning::$(grep -c '^  DEAD\*' /tmp/parcel_probe.txt) service(s) still down from a previously recorded outage — see summary."
+            echo "::warning::$(grep -c '^  DEAD\*' /tmp/parcel_probe.txt) service(s) still down (known outage or an unconfirmed first failure) — see summary."
           fi
           if grep -q 'RECOVERED' /tmp/parcel_probe.txt; then
             echo "::warning::A service marked knownUnavailable has recovered — remove that block from js/parcel/registry.js."
           fi
-          echo "No new parcel-service failures."
+          echo "No new confirmed parcel-service failures."
+
+      - name: Open/update/close tracking issues for confirmed failures
+        if: always() && steps.probe.outputs.exit_code != '2'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Confirmed-dead lines use the plain "DEAD  " prefix (no asterisk) —
+          # see check_parcel_services.mjs's summary.push calls. Each opens or
+          # updates an issue titled with a stable, greppable format so a
+          # repeat run finds the same issue instead of creating duplicates.
+          while IFS= read -r line; do
+            trimmed=$(echo "$line" | sed 's/^ *//')             # strip the 2-space report indent
+            reason=$(echo "$trimmed" | sed 's/.* — //')          # split on the LAST ' — ' (name never contains it)
+            left=$(echo "$trimmed" | sed 's/ — .*//')            # "DEAD  51107 County Name"
+            fips=$(echo "$left" | awk '{print $2}')
+            name=$(echo "$left" | sed -E 's/^DEAD +[0-9]+ //')
+            title="Parcel service down: $fips $name"
+
+            existing=$(gh issue list --state open --search "in:title \"$title\"" --json number,title \
+              --jq ".[] | select(.title == \"$title\") | .number" | head -n1)
+
+            if [ -n "$existing" ]; then
+              gh issue comment "$existing" --body "Still failing as of this run: $reason. See the workflow run for full details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            else
+              gh issue create --title "$title" \
+                --body "Confirmed dead across multiple recorded probe runs: $reason. See \`data/check_parcel_services.mjs\` and \`docs/PARCEL_ADD_JURISDICTION.md\`. Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            fi
+          done < <(grep '^  DEAD  ' /tmp/parcel_probe.txt || true)
+
+          # A RECOVERED line means a knownUnavailable-marked service came
+          # back — close any open tracking issue for it.
+          while IFS= read -r fips_name; do
+            fips=$(echo "$fips_name" | awk '{print $1}')
+            title_prefix="Parcel service down: $fips"
+            gh issue list --state open --search "in:title \"$title_prefix\"" --json number,title \
+              --jq '.[].number' | while read -r num; do
+                gh issue close "$num" --comment "Recovered — probe now reports this service live. Closing automatically."
+              done
+          done < <(sed -n '/^RECOVERED/,/^$/p' /tmp/parcel_probe.txt | tail -n +2)
