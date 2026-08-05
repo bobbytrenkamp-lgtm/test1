@@ -421,7 +421,17 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   separate Manassas Park city — with a 14/30-field mapping (13 real
   fields) from the city's own official "Manassas_Parcels" service
   after rejecting a token-gated alternate candidate. Registry now
-  covers 47 jurisdictions.
+  covers 47 jurisdictions. Alameda County CA (17 facilities, Oakland/
+  Berkeley metro) was added next over 3 probe rounds — confirmed via
+  the county's own DCAT catalog directly listing the winning service —
+  with a 10/30-field mapping (9 real fields; no owner-name field
+  exists in this schema at all) from the county's official "Parcels"
+  service, including a cross-checked confirmation that TotalNetValue =
+  Land + Imps − HOEX (homeowner's exemption). Also fixed a display bug
+  in schema.js: the `date` formatter now converts ArcGIS epoch-
+  millisecond date values to calendar dates instead of showing the
+  raw integer, discovered while verifying this addition. Registry now
+  covers 48 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1764,6 +1774,65 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   fields plus computed county_fips, and "Not published by this
   source" for the remaining 17, zero page errors. Registry now covers
   47 jurisdictions.
+
+- Date: 2026-08-05
+- Agent: Claude Code
+- Task: Continued down the facility-count priority queue after
+  Manassas city VA: investigated Alameda County, California (FIPS
+  06001, 17 facilities, Oakland/Berkeley/Fremont metro), over three
+  probe rounds. "Alameda" is a common place name, so extra geographic
+  confirmation was required before trusting any candidate.
+- Findings: Round 1 found a decisive candidate directly in the
+  county's own official open-data DCAT catalog (data.acgov.org),
+  which lists a "Parcels" dataset backed by an ArcGIS FeatureServer —
+  independently corroborated by an ArcGIS Online item search finding
+  the same service under two account names, one of which
+  ("thayes_cofgis") reads as "County of [Alameda] GIS". Round 2
+  confirmed it live with 42 fields and a description crediting
+  "Alameda County Information Technology Department". Round 3 pulled a
+  real sample record (parcel 15-1338-24, 1049 61st St, Oakland) and
+  cross-checked TotalNetValue against Land + Imps − HOEX (homeowner's
+  exemption): 467,989 + 1,091,974 − 7,000 = 1,552,963, exactly
+  matching — confirming it as the correct net assessed value rather
+  than a raw sum.
+- Added: `ca-alameda-county` with a 9-field mapping (parcel_id → APN,
+  address → SitusAddress [confirmed as a genuine pre-combined situs
+  address string], owner_mailing → MailingAddress [also pre-combined;
+  mapped despite no owner-name field existing anywhere in this
+  schema — common for CA county parcel-boundary feeds, which often
+  omit owner names for privacy], land_use_code → UseCode, assessed_value
+  → TotalNetValue, land_value → Land, improvement_value → Imps,
+  last_sale_date → LatestDocumentDate, deed_book → BOOK, deed_page →
+  PAGE) plus county_fips (computed) — 10/30. CLCALand/CLCAImps are
+  separate Williamson Act (California Land Conservation Act)
+  alternate valuations, not general values, so they weren't used for
+  land_value/improvement_value. Shape__Area was deliberately left
+  unmapped since its units were never confirmed as square feet (no
+  separate acreage field exists in this schema at all).
+  TRAPrimary/TRASecondary are Tax Rate Area codes, not census tract.
+  APN_SORT is a resortable reformatting of the same APN identifier,
+  not a distinct PIN. The remaining 19 fields recorded in
+  `notProvidedBySource` — verified programmatically to cover all 30
+  canonical fields with zero gaps and zero overlaps.
+- Also fixed: while Playwright-verifying this addition, discovered
+  `js/parcel/schema.js`'s `date` formatter displayed ArcGIS
+  epoch-millisecond date values (e.g. `LatestDocumentDate`) as a raw
+  integer instead of a calendar date. Fixed the formatter to detect
+  large numeric values and convert them via `Date`, while leaving
+  pre-formatted date strings from other sources unchanged.
+- Licensing: official Alameda County, California Information
+  Technology Department data. Standard "public government data,
+  verify terms before commercial redistribution" caveat applied.
+- Validation: field-mapping validation script confirmed zero
+  missing/extra/overlap against the 30 canonical fields. `node
+  tests/parcel.test.js` passes (293/293). Playwright live-test via
+  `window.PARCEL_PANEL.show()` with a synthetic feature based on the
+  real confirmed sample record (parcel 15-1338-24, 1049 61st St,
+  Oakland, assessed at $1,552,963) confirmed correct rendering of all
+  10 mapped fields plus computed county_fips — including the
+  corrected date formatting (2023-03-24) — and "Not published by this
+  source" for the remaining 19, zero page errors. Registry now covers
+  48 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
