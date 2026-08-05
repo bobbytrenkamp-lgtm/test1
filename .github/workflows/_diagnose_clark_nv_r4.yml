@@ -1,0 +1,32 @@
+name: (temp) Diagnose Clark County NV parcel service (round 4)
+
+# Temporary, workflow_dispatch-only diagnostic re-probing Clark County
+# NV (43 facilities, Las Vegas) after 3 rounds (2026-08-03) confirmed
+# maps.clarkcountynv.gov is genuinely live with a rich Assessor
+# folder, but the two most plausibly-named candidates tried
+# (Assessor_Base_Map, BOE_Parcels) both turned out to be the wrong
+# kind of layer. ~20 more untried services remain in that folder.
+# Deleted once this is either added to the registry or re-documented
+# as unavailable.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe Clark County NV candidates (round 4)
+        run: node data/diagnose_clark_nv_r4.mjs
