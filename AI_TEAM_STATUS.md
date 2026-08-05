@@ -3632,11 +3632,12 @@ scoped specifically to the zoning pilot and is not a substitute for this.
 
 - Item: Denver County, Colorado parcel data — #8 target by facility
   count (62 in `facilities_index.json`).
-- Current status: Open, not added. Investigated over two probe rounds,
-  run 2026-08-03 via GitHub Actions dispatch (this sandbox can't reach
-  denvergov.org / arcgis.com directly). Round 1's direct URL guesses at
-  Denver's GIS host failed outright. Round 2 found Denver's real ArcGIS
-  Online org (`210919_geospatialDenver` — confirmed genuine via a
+- Current status: Open, not added. Investigated over three probe
+  rounds (rounds 1-2: 2026-08-03; round 3: 2026-08-05), run via GitHub
+  Actions dispatch (this sandbox can't reach denvergov.org / arcgis.com
+  directly). Round 1's direct URL guesses at Denver's GIS host failed
+  outright. Round 2 found Denver's real ArcGIS Online org
+  (`210919_geospatialDenver` — confirmed genuine via a
   correctly-attributed dataset found in round 1's general keyword
   search) and enumerated its full content (101 items). Every
   parcel-related dataset in it is a derived planning-department analysis
@@ -3647,16 +3648,27 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   land-use/value attributes this registry needs, and none is titled or
   described as a general assessor/cadastral parcel layer. Same pattern
   as Santa Clara County CA (see that entry, further down this section).
+  Round 3 retried `gis.denvergov.org` directly (REST services root, two
+  folder guesses, and the bare host root) — all four requests failed
+  fast (7-441ms) with a raw "fetch failed" rather than a timeout,
+  consistent with the host not existing/resolving from GitHub Actions'
+  network rather than being merely overloaded. Also tried Denver's Open
+  Data Catalog DCAT feed at two URL patterns (`data.denvergov.org` and
+  `denvergov.org/opendata`) — both returned HTTP 200 but with the
+  generic Open Data Catalog landing-page HTML, not real DCAT JSON;
+  Denver's open-data portal is Socrata-based, not ArcGIS Hub, so the
+  `/api/feed/dcat-us/1.1.json` pattern used successfully for every
+  ArcGIS-Hub-based county this session simply doesn't apply here.
 - Recommended next action: a human with local knowledge could check
   whether Denver publishes its base assessor/cadastral parcel layer
-  somewhere other than this ArcGIS Online org — e.g. a self-hosted GIS
-  server at gis.denvergov.org that this sandbox couldn't reach at all in
-  round 1 (that attempt returned a raw fetch failure, not a 404, so it's
-  unconfirmed whether that host exists and is just unreachable from
-  GitHub Actions' network, or is genuinely down) — or via Denver's Open
-  Data Catalog (a human-browsable data.denvergov.org page rather than a
-  programmatic search) rather than more `owner:` searches, which have
-  now enumerated this org's full content with no hit.
+  somewhere other than the exhausted ArcGIS Online org — e.g. by
+  browsing Denver's Socrata catalog directly in a browser (its
+  programmatic DCAT endpoint isn't at the standard ArcGIS Hub path, and
+  guessing Socrata dataset IDs isn't productive without a human doing
+  the actual browsing) — or by confirming via a non-sandboxed network
+  whether `gis.denvergov.org` genuinely doesn't exist as a public host,
+  since three consecutive automated attempts across two days have all
+  failed identically.
 - Relevant files: `js/parcel/registry.js`.
 
 - Item: The 3 Virginia counties in the parcel registry (Loudoun,
