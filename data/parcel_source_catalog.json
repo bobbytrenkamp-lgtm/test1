@@ -2564,6 +2564,36 @@
       "retry_eligible": true,
       "retry_after_days": 30,
       "notes": "Round 1 (2026-08-05): a targeted ArcGIS Online item search (\"St. Louis\" AND city AND Missouri AND (parcel OR cadastral OR assessor OR \"tax parcel\")) found no general-purpose government parcel/cadastral service -- results were all topic-specific research/analysis layers built on top of parcel geometry (a university race-restrictive-covenants research project, a land-subsidence academic project, vacancy/vacant-property studies, a lead-risk assessment layer) or Wildwood MO's own subdivision data (a different, unrelated MO municipality). No hit for the City of St. Louis's own GIS/Assessor domain. Note: St. Louis city is an independent city, not part of St. Louis COUNTY (FIPS 29189, a separate, still-uninvestigated entry in this queue) -- searches must stay scoped to avoid conflating the two. Next step: try the city's own likely domain directly (e.g. stlouis-mo.gov GIS pages) or a narrower single-word \"parcel\" search scoped to an org, rather than repeating this exact compound query. Full trail: AI_TEAM_STATUS.md, Recently Completed Work entry dated 2026-08-05."
+    },
+    "37063": {
+      "id": null,
+      "name": "Durham County, North Carolina",
+      "state": "NC",
+      "fips": "37063",
+      "facility_count": 14,
+      "priority_rank": null,
+      "source_scope": "county",
+      "source_type": null,
+      "service_url": null,
+      "portal_url": "https://maps.durhamnc.gov/",
+      "official_publisher": null,
+      "geometry_type": null,
+      "query_support": null,
+      "record_count": null,
+      "available_fields": [],
+      "geographic_extent": "county",
+      "county_filter_field": null,
+      "county_filter_value": null,
+      "update_frequency": null,
+      "licensing_notes": null,
+      "confidence_score": null,
+      "field_coverage_score": null,
+      "status": "candidate",
+      "rejection_reason": null,
+      "last_verified": "2026-08-05",
+      "retry_eligible": true,
+      "retry_after_days": 30,
+      "notes": "Round 1 (2026-08-05): a general ArcGIS Online search (\"Durham County\" AND (parcel OR cadastral OR assessor OR \"tax parcel\")) found no general current parcel dataset -- hits were a small \"Historic Parcel Reference ID Lookup\" viewer app (for legacy/lost PINs, not a general dataset), and third-party mirrors hosted by neighboring Chapel Hill's GIS portal (gis-portal.townofchapelhill.org/.../DurhamCountyParcels/MapServer/0, owner ToCHadmin) -- real and live but not Durham County's own authoritative source, so not wired in without confirming it's a current, terms-compliant redistribution. Round 2 searched Durham's own real ArcGIS Online government account directly (owner:Durham_GIS) for \"parcel\" -- only 5 results, none a general current parcel dataset: the same Historic Parcel Lookup app, a narrow \"City Owned Parcels\" layer (only city-owned properties, not all parcels), and \"Durham Maps\" (a general portal link at maps.durhamnc.gov, not a directly queryable dataset). Durham_GIS's account appears to not publish its general parcel layer on ArcGIS Online at all -- it likely lives behind maps.durhamnc.gov's own web viewer instead. Next step: a human browsing maps.durhamnc.gov directly to find the real backing REST service URL (the automated search avenues tried here are exhausted), or revisiting the Chapel Hill mirror if its currency/terms can be confirmed. Full trail: AI_TEAM_STATUS.md, Recently Completed Work entry dated 2026-08-05."
     }
   }
 }
