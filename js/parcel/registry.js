@@ -3136,6 +3136,44 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '32003': {
+      id:          'nv-clark-county',
+      name:        'Clark County, Nevada',
+      state:       'NV',
+      fips:        '32003',
+      connector:   'arcgis',
+      serviceUrl:  'https://maps.clarkcountynv.gov/arcgis/rest/services/Assessor/ParcelHistory/MapServer/3',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:   'APN',
+        owner:       'OWNER',
+        county_fips: '__computed__',
+      },
+
+      notProvidedBySource: [
+        'pin', 'address', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_code', 'land_use_desc', 'overlay_districts', 'area_sqft',
+        'area_acres', 'lot_depth_ft', 'lot_width_ft', 'building_count',
+        'year_built', 'gross_floor_area', 'assessed_value', 'land_value',
+        'improvement_value', 'tax_year', 'tax_amount', 'last_sale_date',
+        'last_sale_price', 'deed_book', 'deed_page', 'subdivision',
+        'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Clark County, Nevada Assessor',
+        url:     'https://www.clarkcountynv.gov/government/departments/assessor/',
+        portal:  'https://maps.clarkcountynv.gov/arcgis/rest/services/Assessor/ParcelHistory/MapServer/3',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'This is the thinnest field mapping added this session, deliberately so rather than guessed richer: Clark County\'s public GIS host (maps.clarkcountynv.gov) is genuinely live with a rich Assessor folder (25+ services), but after six probe rounds exhausting essentially every named candidate, no service on this host exposes assessed-value, land-use, zoning, or sale-history data — only a shared canonical cadastral table named "ParcelPoly", reused (in varying field subsets) across several specialized tool-support services: a drafting/survey tool (ParcelDrafter), a land-valuation-analysis tool (LandApp), an HOA common-area tool (CommonArea), and a labeling/cartography service (Layers). ParcelHistory\'s copy of ParcelPoly is the richest variant found (16 fields, a superset of CommonArea\'s 11-field copy, confirming it as the canonical source), but even it only carries geometry, owner name, a split situs address, and a split legal description. Clark County\'s actual valuation/tax data almost certainly lives in a separate, non-GIS assessor database not exposed via this ArcGIS server. address is NOT mapped: the situs address is split across 6 components (LOC_STRNO/LOC_STRDIR/LOC_STRNAME/LOC_STRTYPE/LOC_STRUNIT/LOC_CITY) with no combined field. legal_desc is NOT mapped: LEGAL_DESCR1-3 are 3 free-text lines with no combined field (one real sample record\'s LEGAL_DESCR2 happened to contain the substring "PLAT BOOK 105 PAGE 53", but this is prose embedded in a legal description, not a structured book/page pair, so deed_book/deed_page are not parsed out of it). OWNER2 (secondary owner) has no canonical field. DOCNO is a single modern document-reference number (e.g. "20200115 00002243"), not a classic book/page pair, so it is not mapped to deed_book. Even at 2 real fields, a verified owner name and parcel ID from Clark County\'s own live government GIS source is more useful to a user than no coverage at all for the Las Vegas metro (43 facilities, #5 by facility count among counties this session).',
+      },
+    },
+
   };
 
   function get(fips) {
