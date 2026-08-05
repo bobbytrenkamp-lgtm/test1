@@ -438,7 +438,14 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   Metropolitan Council's regional 7-county parcels service, filtered
   to Hennepin via a where clause) was added with a 17/30-field mapping
   (16 real fields), one of the richest additions this session. Registry
-  now covers 49 jurisdictions.
+  now covers 49 jurisdictions. Clark County NV/the Las Vegas metro (43
+  facilities) — another "Open, not added" item, closed after 6 total
+  probe rounds — was added with the thinnest mapping this session
+  (3/30, 2 real fields: parcel_id and owner) after exhausting every
+  candidate on the county's genuinely live GIS host and finding none
+  expose value/zoning/sale-history data, only a shared canonical
+  cadastral table reused across several specialized tool services.
+  Registry now covers 50 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1898,6 +1905,55 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   sample record, so correctly render no row rather than a value.)
   Removed the now-resolved "Hennepin County, Minnesota" Open Handoffs
   entry. Registry now covers 49 jurisdictions.
+
+- Date: 2026-08-05
+- Agent: Claude Code
+- Task: Closed out Clark County, Nevada (FIPS 32003, 43 facilities,
+  Las Vegas metro), an "Open, not added" Open Handoffs item, after 6
+  total probe rounds (3 on 2026-08-03, 3 more this session).
+- Findings: Unlike most other "Open" items this session, Clark
+  County's public GIS host (maps.clarkcountynv.gov) is genuinely live
+  with a rich Assessor folder (25+ services) — this was never a
+  dead-host problem. Round 4 re-fetched the full folder listing and
+  found several `esriGeometryPolygon` candidates worth checking.
+  Round 5 found a layer named "ParcelPoly" appearing under both the
+  `CommonArea` (11 fields) and `ParcelHistory` (16 fields, a strict
+  superset) services — confirming it as a shared canonical Assessor
+  cadastral table reused across specialized tool services (a
+  drafting/survey tool, a land-valuation-analysis tool, an HOA
+  common-area tool). Round 6 confirmed the last untested candidate
+  (`Assessor/Layers` sub-layer "Parcels") was equally thin (only
+  acreage + APN, no owner/address/value), and pulled a real sample
+  record from ParcelHistory's ParcelPoly (APN 13808114027, owner
+  "American Homes 4 Rent Properties Three LLC") confirming genuine,
+  sensible data.
+- Added: `nv-clark-county` with the thinnest mapping this session —
+  parcel_id → APN, owner → OWNER — plus county_fips (computed), 3/30.
+  No service anywhere on this GIS host exposes assessed-value,
+  land-use, zoning, or sale-history data; Clark County's actual
+  valuation/tax data almost certainly lives in a separate, non-GIS
+  assessor database. address is NOT mapped (situs address split
+  across 6 components, no combined field). legal_desc is NOT mapped
+  (LEGAL_DESCR1-3 are 3 free-text lines; one sample's LEGAL_DESCR2
+  happened to contain the substring "PLAT BOOK 105 PAGE 53", but this
+  is prose inside a legal description, not a structured field, so it
+  was not parsed for deed_book/deed_page). OWNER2 has no canonical
+  field; DOCNO is a single modern document-reference number, not a
+  book/page pair, so neither is mapped. The remaining 27 fields
+  recorded in `notProvidedBySource` — verified programmatically to
+  cover all 30 canonical fields with zero gaps and zero overlaps.
+- Licensing: official Clark County, Nevada Assessor data. Standard
+  "public government data, verify terms before commercial
+  redistribution" caveat applied.
+- Validation: field-mapping validation script confirmed zero
+  missing/extra/overlap against the 30 canonical fields. `node
+  tests/parcel.test.js` passes (293/293). Playwright live-test via
+  `window.PARCEL_PANEL.show()` with a synthetic feature based on the
+  real confirmed sample record confirmed correct rendering of both
+  mapped fields plus computed county_fips, and "Not published by this
+  source" for the remaining 27, zero page errors. Removed the
+  now-resolved "Item: Clark County, Nevada (Las Vegas) parcel data"
+  Open Handoffs entry. Registry now covers 50 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
@@ -3597,38 +3653,6 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   out of the registry given the structural ownership-data restriction
   makes it categorically different from every other county here.
 - Relevant files: `js/parcel/registry.js`, `js/parcel/connector-geojson.js`.
-
-- Item: Clark County, Nevada (Las Vegas) parcel data — next target by
-  facility count (43 in `facilities_index.json`) after Travis County TX.
-- Current status: Open, not added. Investigated over three probe
-  rounds, run 2026-08-03 via GitHub Actions dispatch (this sandbox
-  can't reach clarkcountynv.gov directly). Unlike Santa Clara/Denver,
-  this is NOT a dead-GIS-host case: `maps.clarkcountynv.gov` is
-  genuinely live with a real Assessor folder listing 25+ services
-  (round 1). Two named candidates were checked in detail and both ruled
-  out on their actual structure/schema, not guesswork:
-  `Assessor_Base_Map` (round 2) is a `singleFusedMapCache` cached tile
-  basemap with an empty sub-layers list — no queryable attributes exist
-  on it at all. `BOE_Parcels` (rounds 2-3) is real and queryable, but
-  its one sub-layer is `esriGeometryPoint` geometry (not polygon) with
-  only 8 sparse fields (OBJECTID, parcel, prim_parcel, id, parent_id,
-  form, status, descr) — no address/owner/value/legal-description.
-  "BOE" is Board of Equalization; this is an appeal-case point index,
-  not parcel boundary data.
-- Recommended next action: the Assessor folder lists ~20 more untried
-  services worth a human's direct look — `Assessor/added_current`,
-  `Assessor/AOSubdivisions`, `Assessor/CommonArea`, `Assessor/LandApp`,
-  `Assessor/ParcelHistory`, `Assessor/ParcelDrafter`,
-  `Assessor/clarktrs_qq_p`, and yearly `Added_20XX`/`Cancelled_20XX`
-  series — full listing:
-  `https://maps.clarkcountynv.gov/arcgis/rest/services/Assessor?f=json`.
-  Given how rich this GIS host is, the general-purpose parcel boundary
-  layer almost certainly exists somewhere in that folder; it just wasn't
-  either of the two most plausibly-named candidates tried here.
-  `gisgate.co.clark.nv.us` (an alternate/older host mentioned by search
-  results) failed at the connection level on both attempts in round 1 —
-  likely retired, not worth retrying.
-- Relevant files: `js/parcel/registry.js`.
 
 - Item: Denver County, Colorado parcel data — #8 target by facility
   count (62 in `facilities_index.json`).
