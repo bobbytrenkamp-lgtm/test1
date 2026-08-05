@@ -34,3 +34,6 @@ jobs:
 
       - name: Probe Alameda County CA candidates (round 2)
         run: node data/diagnose_alameda_ca_r2.mjs
+
+      - name: Probe Alameda County CA candidates (round 3)
+        run: node data/diagnose_alameda_ca_r3.mjs
