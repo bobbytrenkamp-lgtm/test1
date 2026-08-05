@@ -488,13 +488,15 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   going forward for counties with their own ArcGIS Online org).
   Denver CO and Jackson County MO remain open after further rounds
   found nothing new; both left honestly documented rather than forced.
-  Then DuPage County IL, found the same ArcGIS-Online-search way.
-  Arapahoe CO, Jefferson AL, Durham NC, and St. Louis city MO remain
+  Then DuPage County IL and Jefferson County AL, both found the same
+  ArcGIS-Online-search way (Jefferson AL needed a follow-up query for
+  real, non-null sample values before its identifier field could be
+  disambiguated). Arapahoe CO, Durham NC, and St. Louis city MO remain
   open after this round — each with a specific documented reason
-  (sales-only data, an inconclusive sparse sample, exhausted search
-  avenues, and topic-specific-only results respectively) rather than
-  forced or guessed. Registry now covers 56 jurisdictions. This is
-  intended to continue indefinitely across many further rounds per
+  (sales-only data, exhausted search avenues, and topic-specific-only
+  results respectively) rather than forced or guessed. Registry now
+  covers 57 jurisdictions. This is intended to continue indefinitely
+  across many further rounds per
   the user's explicit
   standing instruction — see Recently Completed Work below for the
   ongoing detailed log, and Open Handoffs for anything that gets stuck.
@@ -2321,6 +2323,64 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   temporary diagnostic files (`data/diagnose_batch_r4.mjs` through
   `_r6.mjs` and matching workflows) once each round's investigation
   was complete. Registry now covers 56 jurisdictions.
+
+- Date: 2026-08-05
+- Agent: Claude Code
+- Task: Resolved the Jefferson County AL (01073, 16 facilities)
+  follow-up left open by the DuPage IL round above — the first sample
+  record fetched from its real, county-owned Parcels service
+  (jccgis.jccal.org) had come back with nearly every field null, an
+  unrepresentative sparse edge case (OBJECTID=1). Re-queried filtering
+  for real, non-null OWNERNAME values before deciding.
+- Findings: real sample records showed PID, PARCELID, and APP_PID all
+  carrying the exact same value (e.g. "0100193000002000") — genuinely
+  one identifier published three times under different field names,
+  not distinct IDs, so `pin` is left unmapped (no second, genuinely
+  distinct identifier exists in this schema; Unique_ID is a small
+  internal database surrogate key, not a public-facing parcel number).
+  ADDR_PSPR was chosen over the superficially similar ADDR_APR for
+  `address`: real samples showed ADDR_PSPR consistently matching the
+  parcel's own Bldg_Number/Street_Name/Street_Type, while ADDR_APR
+  mismatched in one real record (a different house number than the
+  parcel's own address). AssdValue cross-validates against real
+  Alabama property-tax assessment ratios: 2,220 / 11,100
+  (PrevParcelTotal) = 20% in one sample, 12,200 / 123,400 ≈ 10% in
+  another — both exactly matching Alabama's real Class II (20%) /
+  Class III-homestead (10%) assessment ratios, confirming AssdValue as
+  the genuine current tax-assessed value and PrevParcelLand/
+  PrevParcelImp (which do sum exactly to PrevParcelTotal in both
+  samples) as the last-certified full appraised land/improvement
+  breakdown, one certification cycle behind current. Sqft was 0 in
+  every real sample (an unused/placeholder field) — not mapped to
+  area_sqft, unlike GIS_ACRES which had real, sensible non-zero
+  values.
+- Added: `al-jefferson-county` (FIPS 01073) — parcel_id (PID), owner
+  (OWNERNAME), address (ADDR_PSPR), area_acres (GIS_ACRES),
+  land_use_code (Cls), assessed_value (AssdValue), land_value
+  (PrevParcelLand), improvement_value (PrevParcelImp), subdivision
+  (SUBDIV_NAME), legal_desc (Legal_Desc), plus computed county_fips,
+  11/30.
+- Licensing: Jefferson County Commission; Information Technology
+  Services - GIS Division.
+- Validation: `node data/parcel_pipeline/check_registry_integrity.mjs`
+  and `python3 data/validate_parcel_catalog.py` both clean (66 catalog
+  entries, 0 warnings). `node tests/parcel.test.js` passes (293/293).
+  `node tests/test_parcel_field_mapper.mjs` ground-truth regression:
+  57 jurisdictions, 658 real mappings, 635 reproduced exactly, 23
+  correctly flagged as ambiguous, 0 confident wrong guesses (no
+  collision with Miami-Dade's existing PID→pin synonym, since
+  Jefferson AL's own field vocabulary has no second, distinct field
+  competing for the pin role). `./tests/run_all.sh` full suite green.
+  Playwright live-test confirmed correct rendering of the mapped
+  fields plus computed county_fips, correct "Not published by this
+  source" for absent fields, zero page errors,
+  `totalJurisdictions: 57`. `data/parcel_source_catalog.json`
+  regenerated via `seed_catalog_from_registry.mjs` (57 production
+  entries) and `data/parcel_field_synonyms.json` regenerated via
+  `extract_field_synonyms.mjs` (446 synonyms). Deleted the temporary
+  diagnostic files (`data/diagnose_jefferson_al.mjs`,
+  `.github/workflows/_diagnose_jefferson_al.yml`) once resolved.
+  Registry now covers 57 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
