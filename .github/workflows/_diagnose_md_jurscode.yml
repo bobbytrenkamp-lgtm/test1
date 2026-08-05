@@ -1,0 +1,30 @@
+name: (temp) Diagnose Maryland JURSCODE - Baltimore City & Prince George's
+
+# Temporary, workflow_dispatch-only diagnostic finding the exact JURSCODE
+# values for Baltimore City (24510) and Prince George's County (24033) on
+# Maryland's statewide MD_ParcelBoundaries service. See
+# data/diagnose_md_jurscode.mjs for full rationale. Deleted once both
+# counties are either wired into the registry via a confirmed JURSCODE,
+# or documented as still unresolved.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe Maryland JURSCODE values
+        run: node data/diagnose_md_jurscode.mjs
