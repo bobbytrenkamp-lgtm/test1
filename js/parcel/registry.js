@@ -2996,6 +2996,52 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '51683': {
+      id:          'va-manassas-city',
+      name:        'Manassas city, Virginia',
+      state:       'VA',
+      fips:        '51683',
+      connector:   'arcgis',
+      serviceUrl:  'https://services1.arcgis.com/3wpOgOChiWXPeFWB/arcgis/rest/services/Manassas_Parcels/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'TAXMAP',
+        pin:                'GIS_UID',
+        address:            'PROPERTY_ADDRESS',
+        owner:              'OWNER_NAME',
+        zoning_code:        'ZONING',
+        area_acres:         'TOTAL_ACRES',
+        assessed_value:     'TOTAL_ASSESSED_VALUE',
+        land_value:         'LAND_VALUE',
+        improvement_value:  'IMPROVEMENT_VALUE',
+        last_sale_date:     'SALE_DATE',
+        last_sale_price:    'SALE_PRICE',
+        legal_desc:         'LEGAL_DESCRIPTION',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_desc', 'land_use_code', 'land_use_desc',
+        'overlay_districts', 'area_sqft', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'year_built', 'gross_floor_area', 'tax_year',
+        'tax_amount', 'deed_book', 'deed_page', 'subdivision',
+        'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'City of Manassas, Virginia GIS',
+        url:     'https://www.manassasva.gov/',
+        portal:  'https://services1.arcgis.com/3wpOgOChiWXPeFWB/arcgis/rest/services/Manassas_Parcels/FeatureServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Manassas is an independent city, not a county (same GIS/assessor-jurisdiction precedent as DC and Suffolk MA earlier in this session) — surrounded by, but administratively separate from, Prince William County, and distinct from the separately incorporated city of Manassas Park (an ArcGIS Online search under the same "wharcgisdeveloper" account also returned a "Manassas Park City VA Parcels" layer, correctly excluded). Two ArcGIS candidates were found: one from account "wharcgisdeveloper" that requires an authentication token ("499 Token Required" on every query, so unusable), and the winning one from account "manassas_gis" — confirmed as the city\'s own official data via description "City of Manassas Taxable Parcels" and copyrightText "City of Manassas". Live with 13,645 records. PROPERTY_ADDRESS is a genuine pre-combined address string (confirmed against a real sample: "9300 NIKI PL #302" exactly matches the ST_NUM+ST_NAME+ST_TYPE+UNIT_NUM components), so it maps directly without concatenation. DEED_BOOK_PAGE is a single pre-combined "book/page" string (e.g. "2478/1658") that cannot be cleanly split into the separate deed_book/deed_page canonical fields, so neither is mapped. MORE_ZONING_INFO is NOT a per-parcel zoning description — it is a static link to the city\'s general zoning-ordinance webpage, identical across records — so it is deliberately left unmapped rather than misrepresented as zoning_desc. TOTAL_ACRES is present but can be a very small decimal for condo/unit parcels (e.g. 0.000023), reflecting the source\'s own per-unit land allocation, not a data error.',
+      },
+    },
+
   };
 
   function get(fips) {
