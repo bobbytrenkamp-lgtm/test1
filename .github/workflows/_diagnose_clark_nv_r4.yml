@@ -33,3 +33,6 @@ jobs:
 
       - name: Probe Clark County NV candidates (round 5)
         run: node data/diagnose_clark_nv_r5.mjs
+
+      - name: Probe Clark County NV candidates (round 6)
+        run: node data/diagnose_clark_nv_r6.mjs
