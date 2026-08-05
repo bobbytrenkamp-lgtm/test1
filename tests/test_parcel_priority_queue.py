@@ -86,11 +86,11 @@ def test_production_fips_is_excluded():
 
 
 def test_candidate_status_fips_is_included():
-    # Mecklenburg County NC: status=candidate -- not yet covered, should
+    # Jackson County MO: status=candidate -- not yet covered, should
     # surface as something to keep working on.
     result = build_queue(next_n=5000)
     returned_fips = {c["fips"] for c in result["candidates"]}
-    assert "37119" in returned_fips
+    assert "29095" in returned_fips
 
 
 def test_uninvestigated_fips_is_included():
