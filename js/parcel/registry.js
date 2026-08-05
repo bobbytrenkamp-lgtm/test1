@@ -3136,6 +3136,45 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '06075': {
+      id:          'ca-san-francisco-county',
+      name:        'San Francisco County, California',
+      state:       'CA',
+      fips:        '06075',
+      connector:   'arcgis',
+      serviceUrl:  'https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Active_Parcels_from_DataSF_pulled_daily_/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:   'mapblklot',
+        pin:         'blklot',
+        zoning_code: 'zoning_code',
+        zoning_desc: 'zoning_district',
+        county_fips: '__computed__',
+      },
+
+      notProvidedBySource: [
+        'address', 'owner', 'owner_mailing', 'land_use_code', 'land_use_desc',
+        'overlay_districts', 'area_sqft', 'area_acres', 'lot_depth_ft',
+        'lot_width_ft', 'building_count', 'year_built', 'gross_floor_area',
+        'assessed_value', 'land_value', 'improvement_value', 'tax_year',
+        'tax_amount', 'last_sale_date', 'last_sale_price', 'deed_book',
+        'deed_page', 'subdivision', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'San Francisco Office of the Assessor-Recorder / DataSF',
+        url:     'https://data.sfgov.org/Housing-and-Buildings/Parcels-Active-and-Retired/acdm-wktn',
+        portal:  'https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Active_Parcels_from_DataSF_pulled_daily_/FeatureServer/0',
+        license: 'Public government data (DataSF open data terms). Verify terms before commercial redistribution.',
+        note:    'San Francisco is structurally different from every other county in this registry: California state law prohibits SF\'s Assessor-Recorder from posting ownership, assessed-value, or sale information online at all (confirmed via web search; available only for purchase or in person), so zero owner/value/legal fields exist for San Francisco from any source, not just this one. This service is not SF\'s primary GIS host directly — DataSF\'s own "Parcels - Active and Retired" dataset (data.sfgov.org, id acdm-wktn) is Socrata, and this registry\'s only Socrata-capable connector (connector-geojson.js) has never been used by any jurisdiction and has an unfinished pagination implementation (a documented `config.streaming` option that isn\'t actually implemented), which would be an unproven, likely-fragile first use at the scale of San Francisco\'s ~200k parcels. Instead this uses a third-party ArcGIS mirror (account vll_sfgis, "Active Parcels (from DataSF, pulled daily)") that pulls the same DataSF Socrata dataset into ArcGIS format daily — verified live 2026-08-05 with a `lastEditDate` of 2026-08-04 (within 1 day), letting San Francisco use this registry\'s proven, already-battle-tested arcgis connector instead. address is NOT mapped: the situs address is split across from_address_num/to_address_num/street_name/street_type with no combined field. pin (`blklot`) and parcel_id (`mapblklot`) are two genuinely distinct source fields (legacy Map+Block+Lot vs. current Block+Lot) even though they hold the same value for most modern parcels, including the verified sample record ("1038019" for both). zoning_district was mapped to zoning_desc, not zoning_code, because a real sample record confirmed it is a genuinely different human-readable description ("RESIDENTIAL- HOUSE, ONE FAMILY- DETACHED") distinct from the short code ("RH-1(D)") in zoning_code. area_sqft is NOT mapped to Shape__Area: the layer\'s spatialReference is Web Mercator (wkid 102100/3857), a projected system in meters (not feet) that also distorts area with latitude, so Shape__Area cannot be trusted as a real square-footage figure. San Francisco is the 39th-facility target that prompted this investigation, closing a previously "Open, not added" Open Handoffs item after 5 probe rounds across 2026-08-03 and 2026-08-05.',
+      },
+    },
+
     '32003': {
       id:          'nv-clark-county',
       name:        'Clark County, Nevada',

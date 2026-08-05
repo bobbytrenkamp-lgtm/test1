@@ -445,7 +445,15 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   candidate on the county's genuinely live GIS host and finding none
   expose value/zoning/sale-history data, only a shared canonical
   cadastral table reused across several specialized tool services.
-  Registry now covers 50 jurisdictions.
+  Registry now covers 50 jurisdictions. San Francisco County CA (39
+  facilities) — an "Open, not added" item blocked by California's law
+  against SF's Assessor-Recorder posting ownership data online — was
+  closed after 5 total probe rounds: a live third-party ArcGIS mirror
+  of DataSF's Socrata parcel dataset (pulled daily, verified fresh)
+  let it use the proven `arcgis` connector, added with a 5/30-field
+  mapping (4 real fields: parcel_id, pin, zoning_code, zoning_desc; no
+  owner/value/legal data exists for SF from any source). Registry now
+  covers 51 jurisdictions.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -1954,6 +1962,71 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   source" for the remaining 27, zero page errors. Removed the
   now-resolved "Item: Clark County, Nevada (Las Vegas) parcel data"
   Open Handoffs entry. Registry now covers 50 jurisdictions.
+
+- Date: 2026-08-05
+- Agent: Claude Code
+- Task: Closed out San Francisco County, California (FIPS 06075, 39
+  facilities), an "Open, not added" Open Handoffs item, after 5 total
+  probe rounds (2 on 2026-08-03, 3 more this session).
+- Findings: San Francisco is structurally different from every other
+  county investigated this session — not a dead host or a wrong URL
+  guess, but a real, live, well-documented dataset that's
+  categorically restricted: California state law prohibits SF's
+  Assessor-Recorder from posting ownership, assessed-value, or sale
+  information online at all (confirmed via web search; available only
+  for purchase or in person), so zero owner/value/legal fields exist
+  for San Francisco from any source. Round 3 searched for a genuine
+  ArcGIS-native SF Assessor-Recorder service — the "ASR Mapping" hub
+  turned out to be owned by account `david.josefovsky_asr`, whose
+  "_asr" suffix strongly suggested genuine Assessor-Recorder staff.
+  Round 4 searched that account's full 38-item list directly: every
+  item was a web map, story map, or hub page with no queryable
+  service URL — a dead end. Round 4 also found a promising second
+  lead: a Feature Service named "Active Parcels (from DataSF, pulled
+  daily)", owned by third-party account `vll_sfgis`, explicitly
+  mirroring DataSF's Socrata "Parcels - Active and Retired" dataset
+  (data.sfgov.org, id acdm-wktn) into ArcGIS format on a daily cron.
+  Round 5 verified it directly: `lastEditDate` was 2026-08-04 (within
+  1 day of verification, confirming the daily pull is genuinely
+  live), and a real sample record (mapblklot "1038019", a Presidio
+  Heights single-family lot) confirmed sensible values across all 39
+  fields. This mirror lets San Francisco use this registry's proven,
+  already-battle-tested `arcgis` connector instead of
+  `connector-geojson.js`, which no existing jurisdiction uses and
+  whose pagination is unfinished (a documented but unimplemented
+  `config.streaming` option) — avoiding an unproven first use of that
+  connector at the scale of San Francisco's ~200k parcels.
+- Added: `ca-san-francisco-county` — parcel_id → mapblklot, pin →
+  blklot, zoning_code → zoning_code, zoning_desc → zoning_district —
+  plus county_fips (computed), 5/30. pin and parcel_id are genuinely
+  distinct source fields (legacy Map+Block+Lot vs. current Block+Lot)
+  even though they held the same value ("1038019") in the verified
+  sample. zoning_district was mapped to zoning_desc rather than
+  zoning_code because the sample confirmed it's a real human-readable
+  description ("RESIDENTIAL- HOUSE, ONE FAMILY- DETACHED") distinct
+  from the short code ("RH-1(D)"). area_sqft was deliberately NOT
+  mapped to the layer's Shape__Area field despite it existing: the
+  layer's spatialReference is Web Mercator (wkid 102100/3857), a
+  projected system in meters (not feet) that also distorts area with
+  latitude, so it cannot be trusted as a real square-footage value.
+  address is NOT mapped (situs address split across from_address_num/
+  to_address_num/street_name/street_type, no combined field). The
+  remaining 25 fields recorded in `notProvidedBySource` — verified
+  programmatically to cover all 30 canonical fields with zero gaps
+  and zero overlaps.
+- Licensing: public DataSF open data (San Francisco Office of the
+  Assessor-Recorder as original source, mirrored to ArcGIS by a
+  third-party account). Standard "public government data, verify
+  terms before commercial redistribution" caveat applied.
+- Validation: field-mapping validation script confirmed zero
+  missing/extra/overlap against the 30 canonical fields. `node
+  tests/parcel.test.js` passes (293/293). Playwright live-test via
+  `window.PARCEL_PANEL.show()` with a synthetic feature based on the
+  real confirmed sample record confirmed correct rendering of all 4
+  mapped fields plus computed county_fips, and "Not published by this
+  source" for the remaining 25, zero page errors. Removed the
+  now-resolved "Item: San Francisco County, California parcel data"
+  Open Handoffs entry. Registry now covers 51 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
@@ -3607,52 +3680,6 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   owner/address/value data, consistent with how Travis County TX's thin
   7-field layer was already handled.
 - Relevant files: `js/parcel/registry.js`.
-
-- Item: San Francisco County, California parcel data — next target by
-  facility count (39 in `facilities_index.json`) after Bexar County TX.
-- Current status: Open, not added. Investigated over two probe rounds,
-  run 2026-08-03 via GitHub Actions dispatch (this sandbox can't reach
-  data.sfgov.org/arcgis.com directly). This is a different kind of
-  blocker than every other county documented here — not a dead host or
-  a wrong guess, but a real, live, well-documented dataset that's
-  structurally too thin. DataSF's "Parcels - Active and Retired" Socrata
-  dataset (data.sfgov.org, dataset id `acdm-wktn`) is confirmed live
-  with real fields (mapblklot/blklot parcel numbers, address components,
-  zoning_code, a genuinely descriptive zoning_district field,
-  administrative districts, real MultiPolygon geometry) but zero owner,
-  assessed-value, or legal-description fields — because California state
-  law prohibits SF's Assessor-Recorder from posting ownership
-  information online at all (confirmed via web search; available only
-  for purchase or in person). Round 2 searched the ArcGIS Online account
-  that owns SF's open-data portal listing (`sfgov_agofo`, 247 items) for
-  an Assessor-native alternative; it turned out to be a general citywide
-  GIS/analytics account, and its only "parcel" match
-  (`real_parcel_leases`) is the Real Estate Division's city-owned
-  leased-property dataset, unrelated to general parcels.
-- Also relevant: this registry's `connector: 'geojson'`
-  (`js/parcel/connector-geojson.js`) has never been used by any of the
-  16 existing jurisdictions (all use `'arcgis'`). It always fetches an
-  entire GeoJSON file into memory in one request — no real pagination or
-  bbox streaming despite the file's own header comment describing a
-  `config.streaming` option that isn't actually implemented in the
-  code. Even if DataSF's field coverage were sufficient, using it as-is
-  for a full ~200k-parcel city would be an unproven, likely-fragile
-  first use of that connector at real scale.
-- Recommended next action: a human needs to make a judgment call here,
-  not just do more searching — three options: (1) add San Francisco
-  anyway with the thin DataSF fields (parcel_id/pin, zoning_code,
-  zoning_desc, county_fips — roughly 5 of 30 canonical fields, no
-  owner/value/legal data), honestly documented as boundary/zoning-only,
-  which would require either fixing connector-geojson.js's pagination
-  first or confirming DataSF's full citywide response size is actually
-  fetchable in one request; (2) look for a genuine SF Assessor-Recorder
-  ArcGIS-native service under a different, not-yet-tried account (the
-  "ASR Mapping" hub at assessor-mapping-sfgov.hub.arcgis.com was the
-  original lead but wasn't confirmed to be `sfgov_agofo`'s account —
-  worth checking its actual owner directly); or (3) leave San Francisco
-  out of the registry given the structural ownership-data restriction
-  makes it categorically different from every other county here.
-- Relevant files: `js/parcel/registry.js`, `js/parcel/connector-geojson.js`.
 
 - Item: Denver County, Colorado parcel data — #8 target by facility
   count (62 in `facilities_index.json`).
