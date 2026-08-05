@@ -35,3 +35,6 @@ jobs:
 
       - name: Probe Manassas city VA candidates (round 2)
         run: node data/diagnose_manassas_va_r2.mjs
+
+      - name: Probe Manassas city VA candidates (round 3)
+        run: node data/diagnose_manassas_va_r3.mjs
