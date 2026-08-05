@@ -505,6 +505,10 @@ if (typeof window === 'undefined') {
       assert(window.PARCEL_REGISTRY.has(fips), `Registry has FIPS ${fips}`);
       const cfg = window.PARCEL_REGISTRY.get(fips);
       assert(cfg?.id?.length > 0, `${fips} has a non-empty id`);
+      // Keep this list in sync with ALLOWED_CONNECTORS in
+      // data/parcel_pipeline/check_registry_integrity.mjs — a new
+      // connector type must be added to both or entries using it pass one
+      // check and fail the other.
       assert(['arcgis', 'geojson', 'wfs'].includes(cfg?.connector), `${fips} has valid connector type`);
     });
     assert(window.PARCEL_REGISTRY.all().length >= 5, 'Registry has at least 5 jurisdictions');

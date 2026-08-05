@@ -43,6 +43,8 @@ run "economic output validation"  python3 data/update_economic_data.py --check
 run "no paid dependencies"        python3 tests/test_no_paid_dependencies.py
 run "parcel source catalog validator" python3 data/validate_parcel_catalog.py
 run "parcel catalog + priority queue tests" python3 -m pytest tests/test_parcel_catalog.py tests/test_parcel_priority_queue.py -q
+run "parcel registry integrity check" node data/parcel_pipeline/check_registry_integrity.mjs
+run "parcel changed-FIPS diff mapper" node tests/test_parcel_changed_fips.mjs
 run "frontend core (constants + router)" node tests/test_frontend_core.mjs
 run "economy core (readiness score, signals, stats)" node tests/test_economy_core.mjs
 run "economy map (layer-toggle race safety)" node tests/test_economy_map_race.mjs

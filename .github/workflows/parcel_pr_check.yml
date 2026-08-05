@@ -1,0 +1,101 @@
+name: Parcel PR Check
+
+# Fast, PR-scoped checks for js/parcel/registry.js changes, separate from
+# .github/workflows/check_parcel_services.yml's full-registry live-network
+# sweep (which runs on its own schedule + manual dispatch, and only touches
+# the network when this same path filter matches — see that file for why a
+# PR-triggered full sweep of 50+ services on every registry edit is more
+# cost/flakiness than a single-county PR needs).
+#
+# job "always" runs the fast, no-network structural checks every time this
+# workflow triggers: the JS unit suite, the source-catalog validator, and
+# the registry-integrity check (duplicate FIPS, invalid connector types,
+# key/fips mismatches).
+#
+# job "scoped-probe" only runs when the diff actually touches
+# js/parcel/registry.js. It computes exactly which FIPS blocks changed
+# (data/parcel_pipeline/changed_fips.mjs) and probes only those live
+# services — not the other 50, which nothing in this PR touched. If the
+# diff changed zero FIPS blocks (e.g. only the top-of-file comment), the
+# probe step is skipped entirely rather than falling back to probing
+# everything, which would defeat the point of scoping.
+
+on:
+  pull_request:
+    paths:
+      - 'js/parcel/registry.js'
+      - 'data/parcel_pipeline/**'
+      - 'data/check_parcel_services.mjs'
+      - 'data/validate_parcel_catalog.py'
+      - 'data/parcel_source_catalog.json'
+      - '.github/workflows/parcel_pr_check.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: parcel-pr-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  always:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Parcel unit tests
+        run: node tests/parcel.test.js
+
+      - name: Parcel source catalog validator
+        run: python3 data/validate_parcel_catalog.py
+
+      - name: Registry integrity check
+        run: node data/parcel_pipeline/check_registry_integrity.mjs
+
+  scoped-probe:
+    needs: always
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Determine changed FIPS blocks
+        id: changed
+        # changed_fips.mjs writes fips_csv= and has_changes= directly to
+        # $GITHUB_OUTPUT (already set by the runner for this step), in
+        # addition to printing the full JSON to stdout for the log. --head
+        # is deliberately omitted (defaults to 'HEAD') rather than passing
+        # github.sha, so this always diffs against whatever actions/checkout
+        # actually put in the working tree, regardless of which exact ref
+        # form (PR head vs. synthetic merge commit) that ends up being.
+        run: |
+          node data/parcel_pipeline/changed_fips.mjs \
+            --base "${{ github.event.pull_request.base.sha }}"
+
+      - name: Probe only the changed jurisdictions
+        if: steps.changed.outputs.has_changes == 'true'
+        run: node data/check_parcel_services.mjs --fips "${{ steps.changed.outputs.fips_csv }}"
+
+      - name: No jurisdiction blocks changed
+        if: steps.changed.outputs.has_changes != 'true'
+        run: echo "No js/parcel/registry.js FIPS blocks changed in this diff — nothing to probe."

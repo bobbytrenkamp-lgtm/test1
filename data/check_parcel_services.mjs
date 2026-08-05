@@ -1,6 +1,8 @@
 /* data/check_parcel_services.mjs — probe every parcel service in the registry.
  *
  *   node data/check_parcel_services.mjs
+ *   node data/check_parcel_services.mjs --fips 51107,24031    # scope to specific FIPS
+ *   node data/check_parcel_services.mjs --record-history       # append to health history
  *
  * WHY THIS EXISTS
  * js/parcel/registry.js carries an explicit warning that none of its
@@ -28,9 +30,32 @@
  * boundary services (geometry, but no owner/address/zoning). Comparing
  * fieldMap against the layer's real field list catches that class too.
  *
- * Exit codes: 0 = no NEW failures (live services, plus any already recorded
- *                 in registry.js as knownUnavailable).
- *             1 = a service failed that is not already known-dead.
+ * --fips <csv>: probes only the given FIPS codes instead of the whole
+ * registry. Used by .github/workflows/parcel_pr_check.yml to scope a PR's
+ * probe to only the jurisdictions that PR's diff actually touched (via
+ * data/parcel_pipeline/changed_fips.mjs), instead of re-probing 50+ services
+ * on every registry.js change. Omitted (the default) probes everything,
+ * exactly as before this flag existed.
+ *
+ * RETRY + MULTI-RUN CONFIRMATION. A single failed request no longer means a
+ * service is reported as newly dead. Transport-level failures (timeout, DNS,
+ * connection reset — never a clean HTTP error response, since retrying a
+ * real 404/403 wastes time and won't change the answer) get up to 2 retries
+ * with exponential backoff + jitter. If a jurisdiction still fails after
+ * retries and isn't already knownUnavailable, it's only treated as a
+ * CONFIRMED new failure (bad++, fails the job) if it also failed in at least
+ * one of its last 2 recorded runs in data/parcel_health_history.json — a
+ * single first-time failure is logged but does not fail the build. This
+ * needs --record-history passed on the runs that should feed that history
+ * (the scheduled/dispatch runs; PR-scoped runs read history for context but
+ * never write to it, so a feature-branch probe can't pollute it).
+ *
+ * Exit codes: 0 = no NEW confirmed failures (live services, plus any already
+ *                 recorded in registry.js as knownUnavailable, plus any
+ *                 not-yet-confirmed single failures).
+ *             1 = a service failed and was confirmed dead across multiple
+ *                 recorded runs (or is being probed for the first time ever
+ *                 with no history to consult — see isConfirmedDead below).
  *             2 = could not run at all (registry failed to load, or every
  *                 probe failed identically = this runner has no network).
  *
@@ -38,15 +63,30 @@
  * fires monthly on the same known fact stops being read, and the next real
  * breakage then looks exactly like the noise.
  * Network is required, so this cannot run in a sandbox — it is meant for CI
- * or a developer machine. See .github/workflows/check_parcel_services.yml.
+ * or a developer machine. See .github/workflows/check_parcel_services.yml
+ * and .github/workflows/parcel_pr_check.yml.
  */
 
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const TIMEOUT_MS = Number(process.env.TIMEOUT_MS || 20000);
+const MAX_RETRIES = 2;
+const HISTORY_PATH = join(ROOT, 'data/parcel_health_history.json');
+const HISTORY_RUNS_PER_FIPS = 6;
+const CONFIRMATION_WINDOW = 3; // this run + up to 2 prior recorded runs
+const CONFIRMATION_THRESHOLD = 2; // failures within that window needed to confirm
+
+function parseArgs(argv) {
+  const args = { fips: null, recordHistory: false };
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i] === '--fips') args.fips = argv[++i].split(',').map(s => s.trim()).filter(Boolean);
+    else if (argv[i] === '--record-history') args.recordHistory = true;
+  }
+  return args;
+}
 
 /* Load the registry the same way the browser does: it is a classic script
    that assigns to window, so give it a window to assign to. */
@@ -59,6 +99,10 @@ function loadRegistry() {
     throw new Error('registry.js did not define window.PARCEL_REGISTRY.all()');
   }
   return reg.all();
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function probe(url) {
@@ -75,29 +119,121 @@ async function probe(url) {
     return { httpStatus: res.status, body, raw: text.slice(0, 200) };
   } catch (e) {
     return { httpStatus: null, body: null, error: e.name === 'AbortError' ? `timeout after ${TIMEOUT_MS}ms` : e.message };
+  } finally {
+    clearTimeout(timer);
   }
 }
 
 /* ArcGIS returns HTTP 200 with an {"error":{...}} envelope for a bad service
-   ID, so the status code alone proves nothing — the body has to be read. */
+   ID, so the status code alone proves nothing — the body has to be read.
+   `transient` marks failures worth retrying: transport-level only (the fetch
+   itself never got a response). A real HTTP error response, or a 200 with a
+   malformed/error body, is a genuine answer from the server — retrying it
+   wastes time without changing the result. */
 function classify(r) {
-  if (r.error)                      return { ok: false, why: r.error };
-  if (r.httpStatus !== 200)         return { ok: false, why: `HTTP ${r.httpStatus}` };
-  if (!r.body)                      return { ok: false, why: `non-JSON response (${r.raw.replace(/\s+/g, ' ').slice(0, 80)})` };
+  if (r.error) {
+    let errorType = 'unknown';
+    if (/timeout after/.test(r.error)) errorType = 'timeout';
+    else if (/ENOTFOUND|EAI_AGAIN|getaddrinfo/i.test(r.error)) errorType = 'dns';
+    else if (/ECONNRESET|ECONNREFUSED|ECONNABORTED|EPIPE/i.test(r.error)) errorType = 'connection-reset';
+    return { ok: false, why: r.error, errorType, transient: true };
+  }
+  if (r.httpStatus !== 200) {
+    const errorType = r.httpStatus >= 500 ? 'http-5xx' : r.httpStatus >= 400 ? 'http-4xx' : 'unknown';
+    return { ok: false, why: `HTTP ${r.httpStatus}`, errorType, transient: false };
+  }
+  if (!r.body) {
+    return {
+      ok: false,
+      why: `non-JSON response (${r.raw.replace(/\s+/g, ' ').slice(0, 80)})`,
+      errorType: 'unknown', transient: false,
+    };
+  }
   if (r.body.error) {
     const e = r.body.error;
-    return { ok: false, why: `ArcGIS error ${e.code ?? '?'}: ${e.message || JSON.stringify(e).slice(0, 80)}` };
+    const errorType = (e.code === 499 || e.code === 498) ? 'auth' : 'unknown';
+    return { ok: false, why: `ArcGIS error ${e.code ?? '?'}: ${e.message || JSON.stringify(e).slice(0, 80)}`, errorType, transient: false };
   }
-  if (!Array.isArray(r.body.fields)) return { ok: false, why: 'JSON has no field list — not a layer endpoint' };
+  if (!Array.isArray(r.body.fields)) {
+    return { ok: false, why: 'JSON has no field list — not a layer endpoint', errorType: 'unknown', transient: false };
+  }
   return { ok: true, name: r.body.name || '(unnamed layer)', fields: r.body.fields.map(f => f.name) };
 }
 
-const jurisdictions = (() => {
+/* Retries only transient (transport-level) failures, exponential backoff
+   with jitter so a batch of simultaneously-retried requests doesn't all
+   collide on the same schedule. A clean HTTP error or malformed-body result
+   returns immediately — see classify()'s `transient` flag. */
+async function probeWithRetry(url) {
+  let attempt = 0;
+  while (true) {
+    const r = await probe(url);
+    const c = classify(r);
+    attempt++;
+    if (c.ok || !c.transient || attempt > MAX_RETRIES) {
+      return { c, attempts: attempt };
+    }
+    const backoff = 250 * 2 ** (attempt - 1) + Math.random() * 250;
+    await sleep(backoff);
+  }
+}
+
+function loadHistory() {
+  if (!existsSync(HISTORY_PATH)) return { meta: {}, history: {} };
+  try {
+    return JSON.parse(readFileSync(HISTORY_PATH, 'utf8'));
+  } catch {
+    return { meta: {}, history: {} };
+  }
+}
+
+function saveHistory(history) {
+  writeFileSync(HISTORY_PATH, JSON.stringify(history, null, 2) + '\n');
+}
+
+/* A jurisdiction failing THIS run is only "confirmed" newly dead (fails the
+   build) if it also failed in at least one of its last CONFIRMATION_WINDOW-1
+   recorded runs. With no history at all for a FIPS, there's nothing to
+   compare against — treated as confirmed immediately (fail-safe: a brand
+   new jurisdiction or a probe with history-recording never enabled
+   shouldn't get a free pass on a genuine failure). */
+function isConfirmedDead(fips, history) {
+  const priorRuns = (history.history && history.history[fips]) || [];
+  const recentPrior = priorRuns.slice(-(CONFIRMATION_WINDOW - 1));
+  if (recentPrior.length === 0) return true;
+  const priorFailures = recentPrior.filter(run => !run.ok).length;
+  return (priorFailures + 1) >= CONFIRMATION_THRESHOLD;
+}
+
+function appendHistory(history, fips, result) {
+  if (!history.history) history.history = {};
+  if (!history.history[fips]) history.history[fips] = [];
+  history.history[fips].push(result);
+  if (history.history[fips].length > HISTORY_RUNS_PER_FIPS) {
+    history.history[fips] = history.history[fips].slice(-HISTORY_RUNS_PER_FIPS);
+  }
+}
+
+const args = parseArgs(process.argv.slice(2));
+
+let jurisdictions = (() => {
   try { return loadRegistry(); }
   catch (e) { console.error('FATAL: ' + e.message); process.exit(2); }
 })();
 
-console.log(`Probing ${jurisdictions.length} parcel services (timeout ${TIMEOUT_MS}ms)\n`);
+if (args.fips) {
+  const wanted = new Set(args.fips);
+  jurisdictions = jurisdictions.filter(j => wanted.has(j.fips));
+  const missing = [...wanted].filter(f => !jurisdictions.some(j => j.fips === f));
+  if (missing.length) {
+    console.error(`WARNING: --fips requested ${missing.join(', ')} but not found in registry.js`);
+  }
+}
+
+console.log(`Probing ${jurisdictions.length} parcel service(s) (timeout ${TIMEOUT_MS}ms)` +
+  (args.fips ? ` [scoped to: ${args.fips.join(', ')}]` : '') + '\n');
+
+const history = loadHistory();
 
 let bad = 0;
 const summary = [];
@@ -105,8 +241,7 @@ const recovered = [];
 const deadReasons = [];   // raw failure reasons, for the broken-network guard
 
 for (const j of jurisdictions) {
-  const res = await probe(j.serviceUrl);
-  const c = classify(res);
+  const { c, attempts } = await probeWithRetry(j.serviceUrl);
   console.log(`── ${j.name}  [FIPS ${j.fips}]`);
   console.log(`   ${j.serviceUrl}`);
 
@@ -114,22 +249,36 @@ for (const j of jurisdictions) {
      alert that fires every month on the same known fact stops being read,
      and the next genuinely NEW breakage arrives looking identical to the
      noise. Known outages are reported and pass; anything not on the list
-     fails. Recovery is reported too, so the marker gets removed rather than
-     quietly outliving the outage it describes. */
+     is checked against recent history before it's allowed to fail the
+     build — see isConfirmedDead. Recovery is reported too, so the marker
+     gets removed rather than quietly outliving the outage it describes. */
   const known = j.knownUnavailable;
+  const attemptsNote = attempts > 1 ? ` (${attempts} attempts)` : '';
 
   if (!c.ok) {
+    if (args.recordHistory) {
+      appendHistory(history, j.fips, { timestamp: new Date().toISOString(), ok: false, errorType: c.errorType });
+    }
+
     if (known) {
-      console.log(`   STATUS: DEAD — ${c.why}  (KNOWN since ${known.since}, not a new failure)\n`);
+      console.log(`   STATUS: DEAD — ${c.why}${attemptsNote}  (KNOWN since ${known.since}, not a new failure)\n`);
       summary.push(`DEAD* ${j.fips} ${j.name} — ${c.why} (known since ${known.since})`);
       deadReasons.push(c.why);
-    } else {
+    } else if (isConfirmedDead(j.fips, history)) {
       bad++;
-      console.log(`   STATUS: DEAD — ${c.why}\n`);
+      console.log(`   STATUS: DEAD — ${c.why}${attemptsNote}  [${c.errorType}, confirmed across multiple runs]\n`);
       summary.push(`DEAD  ${j.fips} ${j.name} — ${c.why}`);
+      deadReasons.push(c.why);
+    } else {
+      console.log(`   STATUS: DEAD — ${c.why}${attemptsNote}  [${c.errorType}, first failure — not yet confirmed, will fail the build if this repeats]\n`);
+      summary.push(`DEAD* ${j.fips} ${j.name} — ${c.why} (first failure, not yet confirmed)`);
       deadReasons.push(c.why);
     }
     continue;
+  }
+
+  if (args.recordHistory) {
+    appendHistory(history, j.fips, { timestamp: new Date().toISOString(), ok: true, errorType: null });
   }
 
   if (known) {
@@ -160,7 +309,7 @@ for (const j of jurisdictions) {
     });
   });
 
-  console.log(`   STATUS: LIVE — layer "${c.name}", ${c.fields.length} fields`);
+  console.log(`   STATUS: LIVE — layer "${c.name}", ${c.fields.length} fields${attemptsNote}`);
   if (missing.length) {
     console.log(`   FIELD MAP: ${mapped.length - missing.length}/${mapped.length} resolve; ${missing.length} missing:`);
     for (const [k, v] of missing) console.log(`     - ${k} -> "${v}" not present`);
@@ -186,6 +335,18 @@ for (const j of jurisdictions) {
     console.log(`   NOW AVAILABLE: ${nowAvailable.join(', ')} <-- service has gained these; map them and drop from notProvidedBySource`);
   }
   console.log('');
+}
+
+if (args.recordHistory) {
+  history.meta = {
+    description: 'Rolling per-jurisdiction health history for data/check_parcel_services.mjs, ' +
+      `capped at the last ${HISTORY_RUNS_PER_FIPS} recorded scheduled/dispatch runs per FIPS. ` +
+      'Only written by non-PR-triggered runs (--record-history), so a feature-branch probe can ' +
+      'never pollute it. Used to require >=2 failures within a run window before a service is ' +
+      'reported as a confirmed new outage rather than a possible transient blip.',
+    last_updated: new Date().toISOString(),
+  };
+  saveHistory(history);
 }
 
 console.log('══ SUMMARY ══');
