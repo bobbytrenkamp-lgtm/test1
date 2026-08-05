@@ -31,3 +31,6 @@ jobs:
 
       - name: Probe San Francisco County CA candidates (round 3)
         run: node data/diagnose_sf_ca_r3.mjs
+
+      - name: Probe San Francisco County CA candidates (round 4)
+        run: node data/diagnose_sf_ca_r4.mjs
