@@ -2680,6 +2680,56 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '34013': {
+      id:          'nj-essex-county',
+      name:        'Essex County, New Jersey',
+      state:       'NJ',
+      fips:        '34013',
+      connector:   'arcgis',
+      serviceUrl:  'https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0',
+      where:       "COUNTY = 'ESSEX'",
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'PAMS_PIN',
+        pin:                'GIS_PIN',
+        owner:              'OWNER_NAME',
+        address:            'PROP_LOC',
+        land_use_code:      'PROP_CLASS',
+        area_acres:         'CALC_ACRE',
+        year_built:         'YR_CONSTR',
+        assessed_value:     'NET_VALUE',
+        land_value:         'LAND_VAL',
+        improvement_value:  'IMPRVT_VAL',
+        tax_amount:         'LAST_YR_TX',
+        last_sale_date:     'DEED_DATE',
+        last_sale_price:    'SALE_PRICE',
+        deed_book:          'DEED_BOOK',
+        deed_page:          'DEED_PAGE',
+        legal_desc:         'LAND_DESC',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'land_use_desc',
+        'overlay_districts', 'area_sqft', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'gross_floor_area', 'tax_year', 'subdivision',
+        'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'New Jersey Office of Information Technology, Office of GIS (NJOGIS) — statewide MOD-IV Composite, filtered to Essex County',
+        url:     'https://www.essexcountynj.org/',
+        portal:  'https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Newark metro — Northeast data center market, #22 by facility count among counties added this session. Reuses the exact same statewide MOD-IV Composite service already proven for Hudson County NJ (see that entry), just with `where: COUNTY = \'ESSEX\'` instead of \'HUDSON\' — required zero fresh discovery. Verified live 2026-08-05 with a real Caldwell Boro Twp sample record (PROP_LOC "35 HILLSIDE AVE", CITY_STATE "CALDWELL, NJ", ZIP_CODE "07006" — a genuine Essex County municipality/zip); LAND_VAL (272500) + IMPRVT_VAL (293900) = NET_VALUE (566400) exactly, confirming it as a genuine sum. Field schema is identical to Hudson\'s (same shared service), so the same fieldMap/notProvidedBySource split applies unchanged.',
+      },
+    },
+
     '48085': {
       id:          'tx-collin-county',
       name:        'Collin County, Texas',

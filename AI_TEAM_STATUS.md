@@ -453,7 +453,36 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   let it use the proven `arcgis` connector, added with a 5/30-field
   mapping (4 real fields: parcel_id, pin, zoning_code, zoning_desc; no
   owner/value/legal data exists for SF from any source). Registry now
-  covers 51 jurisdictions.
+  covers 51 jurisdictions. The user then asked for the ad hoc
+  county-by-county workflow to be replaced with a reusable, free-only
+  batch pipeline. Phase 1 shipped over two PRs (#413, #414):
+  `data/parcel_source_catalog.json` (a machine-readable index of every
+  investigated source — production, blocked, rejected, candidate),
+  `data/parcel_field_synonyms.json` (a seed corpus of verified
+  source-field synonyms extracted from the registry),
+  `data/parcel_priority_queue.py --next N` (ranks uncovered counties by
+  facility count, flags reusable statewide services), and a CI
+  restructure (scoped PR probing via a new changed-FIPS diff mapper,
+  retry/backoff/multi-run confirmation in the health probe, replacing
+  the old unscoped-on-every-PR sweep). Phase 2a shipped next (#415):
+  `data/parcel_pipeline/field_mapper.mjs`, a deterministic tiered
+  resolver validated against a ground-truth regression across all 51
+  production jurisdictions (576 real mappings, 0 confident wrong
+  guesses), plus a generalized mapping validator and a draft-only entry
+  generator. Full live discovery (Phase 2b) was explicitly not built —
+  it needs real network access this sandbox can't reliably provide, so
+  it stays on the GitHub-Actions-dispatch-and-read-logs pattern used
+  throughout this session. The user then asked whether all counties are
+  covered and to continue until they are — a coverage check found only
+  51 of 549 distinct counties with at least one facility actually
+  covered. Resumed county-by-county expansion using the new priority
+  queue, starting with Essex County NJ (reused Hudson County NJ's
+  already-proven statewide service via a different `where` filter, zero
+  fresh discovery). Registry now covers 52 jurisdictions. This is
+  intended to continue indefinitely across many further rounds per the
+  user's explicit standing instruction — see Recently Completed Work
+  below for the ongoing detailed log, and Open Handoffs for anything
+  that gets stuck.
 
 - Date: 2026-08-03
 - Agent: Claude Code
@@ -2027,6 +2056,56 @@ scoped specifically to the zoning pilot and is not a substitute for this.
   source" for the remaining 25, zero page errors. Removed the
   now-resolved "Item: San Francisco County, California parcel data"
   Open Handoffs entry. Registry now covers 51 jurisdictions.
+
+- Date: 2026-08-05
+- Agent: Claude Code
+- Task: Began a new phase of parcel-registry expansion — after Phase 1
+  (source catalog, priority queue, CI restructuring) and Phase 2a
+  (deterministic field mapper/generator) shipped, the user asked
+  whether all counties are covered and to continue until they are.
+  Coverage check: only 51 of 549 distinct counties with at least one
+  facility in `facilities_index.json` had parcel coverage. Resumed the
+  county-by-county expansion, now guided by
+  `data/parcel_priority_queue.py --next N` instead of ad hoc research.
+- Findings: The priority queue's reusable-statewide-source detection
+  correctly flagged Essex County NJ (FIPS 34013, 12 facilities) as
+  covered by the same statewide NJ MOD-IV Composite service already
+  proven for Hudson County NJ — confirmed live with a real Caldwell
+  Boro Twp sample record (PROP_LOC "35 HILLSIDE AVE", CITY_STATE
+  "CALDWELL, NJ", a genuine Essex County municipality), added by
+  copying Hudson's exact fieldMap with `where: COUNTY = 'ESSEX'`
+  instead of 'HUDSON' — zero fresh discovery needed. The same round
+  also tried Baltimore City MD (24510) and Prince George's County MD
+  (24033) against the statewide `MD_ParcelBoundaries` service already
+  proven for Montgomery/Howard County MD, using bounding-box queries —
+  but both bboxes returned neighboring counties' data instead (Anne
+  Arundel and Montgomery respectively, per the layer's own `JURSCODE`
+  field), a real methodological miss (a bbox near a county line can
+  return edge-adjacent parcels from either side). Left both as
+  candidates in the catalog for a follow-up round using `JURSCODE`
+  where-filtering instead of bbox geometry, once the exact codes for
+  those two jurisdictions are confirmed — not guessed.
+- Added: `nj-essex-county` (FIPS 34013) — identical 16-real-field
+  mapping to Hudson County NJ (parcel_id, pin, owner, address,
+  land_use_code, area_acres, year_built, assessed_value, land_value,
+  improvement_value, tax_amount, last_sale_date, last_sale_price,
+  deed_book, deed_page, legal_desc) plus computed county_fips, 17/30.
+  LAND_VAL (272,500) + IMPRVT_VAL (293,900) = NET_VALUE (566,400)
+  exactly, confirming it as a genuine sum, same cross-check pattern
+  used for Hennepin MN's EMV_TOTAL earlier this session.
+- Licensing: New Jersey Office of Information Technology (NJOGIS)
+  statewide MOD-IV Composite data, same source and license note as
+  Hudson County NJ's existing entry.
+- Validation: `node data/parcel_pipeline/check_registry_integrity.mjs`
+  and `python3 data/validate_parcel_catalog.py` both clean.
+  `node tests/parcel.test.js` passes (293/293).
+  `node tests/test_parcel_field_mapper.mjs` ground-truth regression:
+  52 jurisdictions, 592 real mappings, 0 confident wrong guesses.
+  Playwright live-test confirmed correct rendering of all 16 mapped
+  fields plus computed county_fips, zero page errors,
+  `totalJurisdictions: 52`. `data/parcel_source_catalog.json`
+  regenerated via `seed_catalog_from_registry.mjs`. Registry now
+  covers 52 jurisdictions.
 
 - Date: 2026-08-04
 - Agent: Claude Code
