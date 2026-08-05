@@ -1,0 +1,29 @@
+name: (temp) Diagnose batch round 2 - Denver CO, Mecklenburg NC, Jackson MO
+
+# Temporary, workflow_dispatch-only diagnostic taking one more probe
+# round at 3 already-partially-investigated high-value candidates. See
+# data/diagnose_batch_r2.mjs for the full rationale per county. Deleted
+# once this round's findings are wired into the registry or documented
+# as still unresolved.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Probe batch round 2 candidates
+        run: node data/diagnose_batch_r2.mjs
