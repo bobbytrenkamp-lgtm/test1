@@ -3565,6 +3565,94 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Jefferson County, Alabama (Birmingham) ───────────────────────────
+     *
+     * Jefferson County — 16 facilities. Found via a targeted ArcGIS
+     * Online item search 2026-08-05, fetch-confirmed live with a real
+     * 73-field schema. The service's own description: "generated
+     * nightly from the data owned and managed by the Jefferson County
+     * departments... contains property lines and attributes for owner
+     * and address information", copyright "Jefferson County Commission;
+     * Information Technology Services - GIS Division".
+     *
+     * The first sample record fetched (OBJECTID=1) was an
+     * unrepresentative sparse edge case with nearly every field null —
+     * a follow-up query filtering for real, populated records (real
+     * OWNERNAME) was needed before this entry could be built responsibly.
+     *
+     * PID, PARCELID, and APP_PID all carry the exact same value in
+     * every real sample record (e.g. "0100193000002000") — genuinely
+     * the same identifier published three times under different field
+     * names, not three distinct IDs. pin is NOT mapped: no second,
+     * genuinely distinct identifier exists in this schema (Unique_ID is
+     * a small internal database surrogate key, not a public-facing
+     * parcel number). address uses ADDR_PSPR, not ADDR_APR: real sample
+     * records showed ADDR_PSPR consistently matching Bldg_Number/
+     * Street_Name/Street_Type, while ADDR_APR mismatched in one real
+     * record (showed a different house number than the parcel's own
+     * Bldg_Number) — ADDR_APR is not reliable enough to use.
+     * assessed_value (AssdValue) cross-validates against real Alabama
+     * property-tax assessment ratios: 2,220 / 11,100 (PrevParcelTotal)
+     * = 20% in one sample, 12,200 / 123,400 = ~10% in another — both
+     * exactly matching Alabama's real Class II (20%) / Class III-
+     * homestead (10%) assessment ratios, confirming AssdValue as the
+     * genuine current tax-assessed value and PrevParcelLand/PrevParcelImp
+     * (which do sum exactly to PrevParcelTotal in both samples) as the
+     * last-certified full appraised land/improvement breakdown — real
+     * data, though one certification cycle behind the current
+     * assessment. Sqft was 0 in every real sample (an unused/placeholder
+     * field for this service) — not mapped to area_sqft, unlike
+     * GIS_ACRES which had real, sensible non-zero values. Plat_Book/
+     * Plat_Page are not mapped to deed_book/deed_page — they are
+     * subdivision plat references, a different real-world record type
+     * from a deed/transfer instrument. PROP_MAIL/CITYMAIL/ZIP_MAIL/
+     * STATE_Mail are split owner-mailing-address components with no
+     * combined field — not concatenated, left absent.
+     * ─────────────────────────────────────────────────────────────────── */
+    '01073': {
+      id:          'al-jefferson-county',
+      name:        'Jefferson County, Alabama',
+      state:       'AL',
+      fips:        '01073',
+      connector:   'arcgis',
+      serviceUrl:  'https://jccgis.jccal.org/server/rest/services/Basemap/Parcels/MapServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:          'PID',
+        owner:              'OWNERNAME',
+        address:            'ADDR_PSPR',
+        area_acres:         'GIS_ACRES',
+        land_use_code:      'Cls',
+        assessed_value:     'AssdValue',
+        land_value:         'PrevParcelLand',
+        improvement_value:  'PrevParcelImp',
+        subdivision:        'SUBDIV_NAME',
+        legal_desc:         'Legal_Desc',
+        county_fips:        '__computed__',
+      },
+
+      notProvidedBySource: [
+        'pin', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_desc', 'overlay_districts', 'area_sqft', 'lot_depth_ft',
+        'lot_width_ft', 'building_count', 'year_built', 'gross_floor_area',
+        'tax_year', 'tax_amount', 'last_sale_date', 'last_sale_price',
+        'deed_book', 'deed_page', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Jefferson County Commission; Information Technology Services - GIS Division',
+        url:     'https://www.jccal.org/',
+        portal:  'https://jccgis.jccal.org/server/rest/services/Basemap/Parcels/MapServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Birmingham metro — nightly-refreshed parcel layer generated from Jefferson County department records; land/improvement values are the last-certified appraisal breakdown, one cycle behind the current AssdValue tax-assessed figure.',
+      },
+    },
+
   };
 
   function get(fips) {
