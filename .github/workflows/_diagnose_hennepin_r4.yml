@@ -1,0 +1,30 @@
+name: (temp) Diagnose Hennepin County MN parcel service (round 4 sample)
+
+# Temporary, workflow_dispatch-only diagnostic pulling a real
+# Hennepin-specific sample record from the Metropolitan Council's
+# regional "Parcels_Aggregate" service, now confirmed live after a
+# transient outage (see round 3 / AI_TEAM_STATUS.md).
+# Deleted once this is either added to the registry or re-documented
+# as unavailable.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Fetch real Hennepin County MN sample record
+        run: node data/diagnose_hennepin_r4.mjs
