@@ -1,0 +1,26 @@
+{
+  "results": [
+    {
+      "resource": {
+        "id": "abcd-1234",
+        "name": "Example County Parcels",
+        "type": "map",
+        "tags": ["parcels", "cadastral"]
+      },
+      "permalink": "https://data.example.gov/d/abcd-1234",
+      "link": "https://data.example.gov/dataset/Example-County-Parcels/abcd-1234",
+      "metadata": { "domain": "data.example.gov" }
+    },
+    {
+      "resource": {
+        "id": "efgh-5678",
+        "name": "Example County Budget",
+        "type": "dataset",
+        "tags": ["budget"]
+      },
+      "permalink": "https://data.example.gov/d/efgh-5678",
+      "link": "https://data.example.gov/dataset/Example-County-Budget/efgh-5678",
+      "metadata": { "domain": "data.example.gov" }
+    }
+  ]
+}

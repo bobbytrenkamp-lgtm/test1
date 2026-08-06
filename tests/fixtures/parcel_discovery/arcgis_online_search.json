@@ -1,0 +1,34 @@
+{
+  "total": 3,
+  "results": [
+    {
+      "id": "abc123",
+      "title": "Example County Parcels",
+      "type": "Feature Service",
+      "owner": "examplecounty_gis",
+      "url": "https://services.arcgis.com/fake/arcgis/rest/services/Parcels/FeatureServer/0",
+      "tags": ["parcels", "cadastral"],
+      "accessInformation": "Example County GIS",
+      "licenseInfo": null
+    },
+    {
+      "id": "def456",
+      "title": "Example County Parcel Viewer (Web Map)",
+      "type": "Web Map",
+      "owner": "examplecounty_gis",
+      "tags": ["parcels"],
+      "accessInformation": null,
+      "licenseInfo": null
+    },
+    {
+      "id": "ghi789",
+      "title": "Regional Parcel Mirror (third party)",
+      "type": "Feature Service",
+      "owner": "some_hobbyist",
+      "url": "https://services.arcgis.com/fake/arcgis/rest/services/RegionalMirror/FeatureServer/0",
+      "tags": ["parcels"],
+      "accessInformation": null,
+      "licenseInfo": null
+    }
+  ]
+}

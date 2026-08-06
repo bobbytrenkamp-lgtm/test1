@@ -1,0 +1,35 @@
+{
+  "@type": "dcat:Catalog",
+  "dataset": [
+    {
+      "title": "County Parcels",
+      "description": "Cadastral parcel boundaries for Example County",
+      "publisher": { "name": "Example County GIS" },
+      "keyword": ["parcels", "cadastral"],
+      "license": "https://example.gov/open-data-license",
+      "distribution": [
+        {
+          "format": "ArcGIS GeoServices REST API",
+          "accessURL": "https://services.arcgis.com/fake/arcgis/rest/services/Parcels/FeatureServer/0"
+        },
+        {
+          "format": "Shapefile",
+          "downloadURL": "https://example.gov/data/parcels.zip"
+        },
+        {
+          "format": "CSV",
+          "downloadURL": "https://example.gov/data/parcels.csv"
+        }
+      ]
+    },
+    {
+      "title": "Street Centerlines",
+      "description": "Road centerline network",
+      "publisher": { "name": "Example County GIS" },
+      "keyword": ["roads"],
+      "distribution": [
+        { "format": "Shapefile", "downloadURL": "https://example.gov/data/roads.zip" }
+      ]
+    }
+  ]
+}

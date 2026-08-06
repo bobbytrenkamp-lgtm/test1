@@ -137,3 +137,40 @@ def test_no_hits_for_state_with_no_reusable_service():
     catalog = load_catalog()
     hits = find_reusable_state_coverage(catalog, "ZZ")
     assert hits == []
+
+
+# ---------------------------------------------------------------------------
+# --state filter (added for discover_batch.mjs's --state passthrough)
+# ---------------------------------------------------------------------------
+
+def test_state_filter_returns_only_that_state():
+    result = build_queue(next_n=10, state="IL")
+    assert result["candidates"], "expected at least one IL candidate to exist"
+    assert all(c["state"] == "IL" for c in result["candidates"])
+
+
+def test_state_filter_is_case_insensitive():
+    lower = build_queue(next_n=10, state="il")
+    upper = build_queue(next_n=10, state="IL")
+    assert [c["fips"] for c in lower["candidates"]] == [c["fips"] for c in upper["candidates"]]
+
+
+def test_state_filter_excludes_other_states_present_in_the_unfiltered_queue():
+    unfiltered = build_queue(next_n=200)
+    other_state_fips = {c["fips"] for c in unfiltered["candidates"] if c["state"] and c["state"] != "IL"}
+    assert other_state_fips, "expected the unfiltered queue to include non-IL candidates to test exclusion against"
+
+    filtered = build_queue(next_n=200, state="IL")
+    filtered_fips = {c["fips"] for c in filtered["candidates"]}
+    assert filtered_fips.isdisjoint(other_state_fips)
+
+
+def test_state_filter_with_no_matching_state_returns_empty():
+    result = build_queue(next_n=10, state="ZZ")
+    assert result["candidates"] == []
+
+
+def test_no_state_filter_returns_multiple_states():
+    result = build_queue(next_n=50)
+    states = {c["state"] for c in result["candidates"] if c["state"]}
+    assert len(states) > 1

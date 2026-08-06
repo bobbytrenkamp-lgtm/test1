@@ -91,7 +91,7 @@ def find_reusable_state_coverage(catalog, state):
     return hits
 
 
-def build_queue(next_n, today=None):
+def build_queue(next_n, today=None, state=None):
     today = today or date.today()
     counts, names, states = load_facility_counts()
     catalog = load_catalog()
@@ -105,10 +105,13 @@ def build_queue(next_n, today=None):
                 continue
             if status in ("blocked", "rejected") and not is_retry_due(rec, today):
                 continue
+        candidate_state = (rec.get("state") if rec else None) or states.get(fips)
+        if state and (candidate_state or "").upper() != state.upper():
+            continue
         candidates.append({
             "fips": fips,
             "name": (rec.get("name") if rec else None) or names.get(fips),
-            "state": (rec.get("state") if rec else None) or states.get(fips),
+            "state": candidate_state,
             "facility_count": count,
             "catalog_status": rec.get("status") if rec else "not-investigated",
         })
@@ -154,9 +157,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--next", type=int, default=25, help="how many jurisdictions to return")
     parser.add_argument("--json", action="store_true", help="emit JSON instead of a human-readable report")
+    parser.add_argument("--state", type=str, default=None, help="scope the candidate pool to one state (2-letter abbreviation) before ranking")
     args = parser.parse_args()
 
-    result = build_queue(args.next)
+    result = build_queue(args.next, state=args.state)
     if args.json:
         json.dump(result, sys.stdout, indent=2)
         print()
