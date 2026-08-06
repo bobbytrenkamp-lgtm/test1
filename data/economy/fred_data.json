@@ -27,7 +27,7 @@
    "label": "Energy & Power Costs"
   }
  ],
- "generated_at": "2026-08-05T09:10:17+00:00",
+ "generated_at": "2026-08-06T09:10:43+00:00",
  "history_start": "1990-01-01",
  "series": {
   "APU000072610": {
@@ -1805,7 +1805,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 0.196,
-   "retrieved_at": "2026-08-05T09:10:13+00:00",
+   "retrieved_at": "2026-08-06T09:10:39+00:00",
    "seasonal_adjustment": "Not Seasonally Adjusted",
    "seasonal_adjustment_short": "NSA",
    "series_id": "APU000072610",
@@ -1813,7 +1813,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Average Price Data",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "usd_precise",
    "units": "U.S. Dollars",
    "units_short": "U.S. $",
@@ -3594,7 +3594,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 2885.4008,
-   "retrieved_at": "2026-08-05T09:09:45+00:00",
+   "retrieved_at": "2026-08-06T09:10:16+00:00",
    "seasonal_adjustment": "Seasonally Adjusted",
    "seasonal_adjustment_short": "SA",
    "series_id": "BUSLOANS",
@@ -3602,7 +3602,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "H.8 Assets and Liabilities of Commercial Banks in the United States",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "billions_usd",
    "units": "Billions of U.S. Dollars",
    "units_short": "Bil. of U.S. $",
@@ -5383,7 +5383,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 333.979,
-   "retrieved_at": "2026-08-05T09:09:48+00:00",
+   "retrieved_at": "2026-08-06T09:10:19+00:00",
    "seasonal_adjustment": "Seasonally Adjusted",
    "seasonal_adjustment_short": "SA",
    "series_id": "CPIAUCSL",
@@ -5391,7 +5391,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Consumer Price Index",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "index",
    "units": "Index 1982-1984=100",
    "units_short": "Index 1982-1984=100",
@@ -6480,7 +6480,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 3103.5135,
-   "retrieved_at": "2026-08-05T09:09:47+00:00",
+   "retrieved_at": "2026-08-06T09:10:18+00:00",
    "seasonal_adjustment": "Not Seasonally Adjusted",
    "seasonal_adjustment_short": "NSA",
    "series_id": "CREACBM027NBOG",
@@ -6488,7 +6488,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "H.8 Assets and Liabilities of Commercial Banks in the United States",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "billions_usd",
    "units": "Billions of U.S. Dollars",
    "units_short": "Bil. of U.S. $",
@@ -8265,7 +8265,7 @@
    ],
    "previous_date": "2026-04-01",
    "previous_value": 332.984,
-   "retrieved_at": "2026-08-05T09:10:11+00:00",
+   "retrieved_at": "2026-08-06T09:10:38+00:00",
    "seasonal_adjustment": "Not Seasonally Adjusted",
    "seasonal_adjustment_short": "NSA",
    "series_id": "CSUSHPINSA",
@@ -8273,7 +8273,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "S&P Cotality Case-Shiller Home Price Indices",
    "stale": true,
-   "stale_days": 96,
+   "stale_days": 97,
    "unit_type": "index",
    "units": "Index Jan 2000=100",
    "units_short": "Index Jan 2000=100",
@@ -8288,16 +8288,16 @@
    "change_yoy_abs": -0.7,
    "change_yoy_pct": -16.17,
    "decimals": 2,
-   "fred_last_updated": "2026-08-04 15:16:28-05",
+   "fred_last_updated": "2026-08-05 15:16:19-05",
    "fred_notes": "Daily Federal Funds Rate from 1928-1954 (https://fred.stlouisfed.org/categories/33951).\n\nThe federal funds rate is the interest rate at which depository institutions trade federal funds (balances held at Federal Reserve Banks) with each other overnight. When a depository institution has surplus balances in its reserve account, it lends to other banks in need of larger balances. In simpler terms, a\u2026",
    "fred_title": "Federal Funds Effective Rate",
    "frequency": "Daily, 7-Day",
    "frequency_short": "D",
    "label": "Effective Federal Funds Rate",
-   "latest_date": "2026-08-03",
+   "latest_date": "2026-08-04",
    "latest_value": 3.63,
    "missing_count": 0,
-   "observation_count": 13364,
+   "observation_count": 13365,
    "observations": [
     [
      "1990-01-01",
@@ -61754,11 +61754,15 @@
     [
      "2026-08-03",
      3.63
+    ],
+    [
+     "2026-08-04",
+     3.63
     ]
    ],
-   "previous_date": "2026-08-02",
+   "previous_date": "2026-08-03",
    "previous_value": 3.63,
-   "retrieved_at": "2026-08-05T09:09:33+00:00",
+   "retrieved_at": "2026-08-06T09:10:04+00:00",
    "seasonal_adjustment": "Not Seasonally Adjusted",
    "seasonal_adjustment_short": "NSA",
    "series_id": "DFF",
@@ -61770,27 +61774,27 @@
    "unit_type": "percent",
    "units": "Percent",
    "units_short": "%",
-   "yoy_baseline_date": "2025-08-03"
+   "yoy_baseline_date": "2025-08-04"
   },
   "DGS10": {
    "category": "rates",
-   "change_abs": -0.05,
-   "change_mom_abs": 0.22,
-   "change_mom_pct": 4.91,
-   "change_pct": -1.05,
-   "change_yoy_abs": 0.47,
-   "change_yoy_pct": 11.11,
+   "change_abs": -0.07,
+   "change_mom_abs": 0.08,
+   "change_mom_pct": 1.76,
+   "change_pct": -1.49,
+   "change_yoy_abs": 0.41,
+   "change_yoy_pct": 9.72,
    "decimals": 2,
-   "fred_last_updated": "2026-08-04 15:16:25-05",
+   "fred_last_updated": "2026-08-05 15:16:16-05",
    "fred_notes": "H.15 Statistical Release (https://www.federalreserve.gov/releases/h15/current/h15.pdf) notes and Treasury Yield Curve Methodology (https://www.treasury.gov/resource-center/data-chart-center/interest-rates/Pages/yieldmethod.aspx).\n\nFor questions on the data, please contact the data source (https://www.federalreserve.gov/apps/ContactUs/feedback.aspx?refurl=/releases/h15/%). For questions on FRED fun\u2026",
    "fred_title": "Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity, Quoted on an Investment Basis",
    "frequency": "Daily",
    "frequency_short": "D",
    "label": "10-Year Treasury Constant Maturity Rate",
-   "latest_date": "2026-08-03",
-   "latest_value": 4.7,
+   "latest_date": "2026-08-04",
+   "latest_value": 4.63,
    "missing_count": 394,
-   "observation_count": 9546,
+   "observation_count": 9547,
    "observations": [
     [
      "1990-01-01",
@@ -99975,11 +99979,15 @@
     [
      "2026-08-03",
      4.7
+    ],
+    [
+     "2026-08-04",
+     4.63
     ]
    ],
-   "previous_date": "2026-07-31",
-   "previous_value": 4.75,
-   "retrieved_at": "2026-08-05T09:09:37+00:00",
+   "previous_date": "2026-08-03",
+   "previous_value": 4.7,
+   "retrieved_at": "2026-08-06T09:10:08+00:00",
    "seasonal_adjustment": "Not Seasonally Adjusted",
    "seasonal_adjustment_short": "NSA",
    "series_id": "DGS10",
@@ -99991,27 +99999,27 @@
    "unit_type": "percent",
    "units": "Percent",
    "units_short": "%",
-   "yoy_baseline_date": "2025-08-01"
+   "yoy_baseline_date": "2025-08-04"
   },
   "DGS2": {
    "category": "rates",
-   "change_abs": -0.03,
-   "change_mom_abs": 0.12,
-   "change_mom_pct": 2.91,
-   "change_pct": -0.7,
-   "change_yoy_abs": 0.56,
-   "change_yoy_pct": 15.18,
+   "change_abs": -0.05,
+   "change_mom_abs": 0.01,
+   "change_mom_pct": 0.24,
+   "change_pct": -1.18,
+   "change_yoy_abs": 0.51,
+   "change_yoy_pct": 13.82,
    "decimals": 2,
-   "fred_last_updated": "2026-08-04 15:16:26-05",
+   "fred_last_updated": "2026-08-05 15:16:21-05",
    "fred_notes": "H.15 Statistical Release notes (https://www.federalreserve.gov/releases/h15/default.htm) and the Treasury Yield Curve Methodology (https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics/treasury-yield-curve-methodology).\n\nFor questions on the data, please contact the data source (https://www.federalreserve.gov/apps/ContactUs/feedback.aspx?refurl=/releases/h15/%).\u2026",
    "fred_title": "Market Yield on U.S. Treasury Securities at 2-Year Constant Maturity, Quoted on an Investment Basis",
    "frequency": "Daily",
    "frequency_short": "D",
    "label": "2-Year Treasury Constant Maturity Rate",
-   "latest_date": "2026-08-03",
-   "latest_value": 4.25,
+   "latest_date": "2026-08-04",
+   "latest_value": 4.2,
    "missing_count": 394,
-   "observation_count": 9546,
+   "observation_count": 9547,
    "observations": [
     [
      "1990-01-01",
@@ -138196,11 +138204,15 @@
     [
      "2026-08-03",
      4.25
+    ],
+    [
+     "2026-08-04",
+     4.2
     ]
    ],
-   "previous_date": "2026-07-31",
-   "previous_value": 4.28,
-   "retrieved_at": "2026-08-05T09:09:35+00:00",
+   "previous_date": "2026-08-03",
+   "previous_value": 4.25,
+   "retrieved_at": "2026-08-06T09:10:06+00:00",
    "seasonal_adjustment": "Not Seasonally Adjusted",
    "seasonal_adjustment_short": "NSA",
    "series_id": "DGS2",
@@ -138212,27 +138224,27 @@
    "unit_type": "percent",
    "units": "Percent",
    "units_short": "%",
-   "yoy_baseline_date": "2025-08-01"
+   "yoy_baseline_date": "2025-08-04"
   },
   "DHHNGSP": {
    "category": "energy",
-   "change_abs": -0.24,
-   "change_mom_abs": -0.7,
-   "change_mom_pct": -21.02,
-   "change_pct": -8.36,
-   "change_yoy_abs": -0.47,
-   "change_yoy_pct": -15.16,
+   "change_abs": 0.22,
+   "change_mom_abs": -0.48,
+   "change_mom_pct": -14.59,
+   "change_pct": 8.49,
+   "change_yoy_abs": -0.19,
+   "change_yoy_pct": -6.33,
    "decimals": 2,
-   "fred_last_updated": "2026-07-29 12:32:10-05",
+   "fred_last_updated": "2026-08-05 12:32:20-05",
    "fred_notes": "More information about this series can be found at http://www.eia.gov/dnav/ng/TblDefs/ng_pri_fut_tbldef2.asp",
    "fred_title": "Henry Hub Natural Gas Spot Price",
    "frequency": "Daily",
    "frequency_short": "D",
    "label": "Henry Hub Natural Gas Spot Price",
-   "latest_date": "2026-07-27",
-   "latest_value": 2.63,
+   "latest_date": "2026-08-03",
+   "latest_value": 2.81,
    "missing_count": 290,
-   "observation_count": 7710,
+   "observation_count": 7715,
    "observations": [
     [
      "1997-01-07",
@@ -169073,11 +169085,31 @@
     [
      "2026-07-27",
      2.63
+    ],
+    [
+     "2026-07-28",
+     2.65
+    ],
+    [
+     "2026-07-29",
+     2.58
+    ],
+    [
+     "2026-07-30",
+     2.65
+    ],
+    [
+     "2026-07-31",
+     2.59
+    ],
+    [
+     "2026-08-03",
+     2.81
     ]
    ],
-   "previous_date": "2026-07-24",
-   "previous_value": 2.87,
-   "retrieved_at": "2026-08-05T09:10:17+00:00",
+   "previous_date": "2026-07-31",
+   "previous_value": 2.59,
+   "retrieved_at": "2026-08-06T09:10:43+00:00",
    "seasonal_adjustment": "Not Seasonally Adjusted",
    "seasonal_adjustment_short": "NSA",
    "series_id": "DHHNGSP",
@@ -169085,11 +169117,11 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Natural Gas Spot and Futures Prices (NYMEX)",
    "stale": false,
-   "stale_days": 9,
+   "stale_days": 3,
    "unit_type": "usd_precise",
    "units": "Dollars per Million BTU",
    "units_short": "$ Per Mil. BTU",
-   "yoy_baseline_date": "2025-07-25"
+   "yoy_baseline_date": "2025-08-01"
   },
   "GDPC1": {
    "category": "inflation",
@@ -169698,7 +169730,7 @@
    ],
    "previous_date": "2026-01-01",
    "previous_value": 24180.419,
-   "retrieved_at": "2026-08-05T09:09:52+00:00",
+   "retrieved_at": "2026-08-06T09:10:22+00:00",
    "seasonal_adjustment": "Seasonally Adjusted Annual Rate",
    "seasonal_adjustment_short": "SAAR",
    "series_id": "GDPC1",
@@ -169706,7 +169738,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Gross Domestic Product",
    "stale": false,
-   "stale_days": 126,
+   "stale_days": 127,
    "unit_type": "billions_usd",
    "units": "Billions of Chained 2017 Dollars",
    "units_short": "Bil. of Chn. 2017 $",
@@ -171487,7 +171519,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 1199.0,
-   "retrieved_at": "2026-08-05T09:10:07+00:00",
+   "retrieved_at": "2026-08-06T09:10:34+00:00",
    "seasonal_adjustment": "Seasonally Adjusted Annual Rate",
    "seasonal_adjustment_short": "SAAR",
    "series_id": "HOUST",
@@ -171495,7 +171527,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "New Residential Construction",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "thousands",
    "units": "Thousands of Units",
    "units_short": "Thous. of Units",
@@ -179156,7 +179188,7 @@
    ],
    "previous_date": "2026-07-18",
    "previous_value": 188000.0,
-   "retrieved_at": "2026-08-05T09:09:59+00:00",
+   "retrieved_at": "2026-08-06T09:10:29+00:00",
    "seasonal_adjustment": "Seasonally Adjusted",
    "seasonal_adjustment_short": "SA",
    "series_id": "ICSA",
@@ -179164,7 +179196,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Unemployment Insurance Weekly Claims Report",
    "stale": false,
-   "stale_days": 11,
+   "stale_days": 12,
    "unit_type": "count",
    "units": "Number",
    "units_short": "Number",
@@ -180945,7 +180977,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 102.5606,
-   "retrieved_at": "2026-08-05T09:09:54+00:00",
+   "retrieved_at": "2026-08-06T09:10:24+00:00",
    "seasonal_adjustment": "Seasonally Adjusted",
    "seasonal_adjustment_short": "SA",
    "series_id": "INDPRO",
@@ -180953,7 +180985,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "G.17 Industrial Production and Capacity Utilization",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "index",
    "units": "Index 2017=100",
    "units_short": "Index 2017=100",
@@ -182210,7 +182242,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 7537.0,
-   "retrieved_at": "2026-08-05T09:10:03+00:00",
+   "retrieved_at": "2026-08-06T09:10:31+00:00",
    "seasonal_adjustment": "Seasonally Adjusted",
    "seasonal_adjustment_short": "SA",
    "series_id": "JTSJOL",
@@ -182218,7 +182250,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Job Openings and Labor Turnover Survey",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "thousands",
    "units": "Level in Thousands",
    "units_short": "Level in Thous.",
@@ -189883,7 +189915,7 @@
    ],
    "previous_date": "2026-07-23",
    "previous_value": 6.58,
-   "retrieved_at": "2026-08-05T09:09:41+00:00",
+   "retrieved_at": "2026-08-06T09:10:12+00:00",
    "seasonal_adjustment": "Not Seasonally Adjusted",
    "seasonal_adjustment_short": "NSA",
    "series_id": "MORTGAGE30US",
@@ -189891,7 +189923,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Primary Mortgage Market Survey",
    "stale": false,
-   "stale_days": 6,
+   "stale_days": 7,
    "unit_type": "percent",
    "units": "Percent",
    "units_short": "%",
@@ -189899,23 +189931,23 @@
   },
   "NFCI": {
    "category": "rates",
-   "change_abs": -0.01,
-   "change_mom_abs": -0.044,
-   "change_mom_pct": -8.63,
-   "change_pct": -1.84,
-   "change_yoy_abs": -0.043,
-   "change_yoy_pct": -8.41,
+   "change_abs": 0.001,
+   "change_mom_abs": -0.012,
+   "change_mom_pct": -2.32,
+   "change_pct": 0.19,
+   "change_yoy_abs": -0.014,
+   "change_yoy_pct": -2.72,
    "decimals": 2,
-   "fred_last_updated": "2026-07-29 07:36:57-05",
+   "fred_last_updated": "2026-08-05 07:37:42-05",
    "fred_notes": "The Chicago Fed's National Financial Conditions Index (NFCI) provides a comprehensive weekly update on U.S. financial conditions in money markets, debt and equity markets and the traditional and \"shadow\" banking systems. Positive values of the NFCI indicate financial conditions that are tighter than average, while negative values indicate financial conditions that are looser than average.\n\nFor fur\u2026",
    "fred_title": "Chicago Fed National Financial Conditions Index",
    "frequency": "Weekly, Ending Friday",
    "frequency_short": "W",
    "label": "Chicago Fed National Financial Conditions Index",
-   "latest_date": "2026-07-24",
-   "latest_value": -0.554,
+   "latest_date": "2026-07-31",
+   "latest_value": -0.529,
    "missing_count": 0,
-   "observation_count": 1908,
+   "observation_count": 1909,
    "observations": [
     [
      "1990-01-05",
@@ -189923,11 +189955,11 @@
     ],
     [
      "1990-01-12",
-     0.047
+     0.048
     ],
     [
      "1990-01-19",
-     0.057
+     0.058
     ],
     [
      "1990-01-26",
@@ -189947,7 +189979,7 @@
     ],
     [
      "1990-02-23",
-     0.052
+     0.053
     ],
     [
      "1990-03-02",
@@ -189955,7 +189987,7 @@
     ],
     [
      "1990-03-09",
-     0.047
+     0.048
     ],
     [
      "1990-03-16",
@@ -189967,7 +189999,7 @@
     ],
     [
      "1990-03-30",
-     0.078
+     0.079
     ],
     [
      "1990-04-06",
@@ -189979,7 +190011,7 @@
     ],
     [
      "1990-04-20",
-     0.113
+     0.114
     ],
     [
      "1990-04-27",
@@ -189995,31 +190027,31 @@
     ],
     [
      "1990-05-18",
-     0.035
+     0.036
     ],
     [
      "1990-05-25",
-     -0.006
+     -0.005
     ],
     [
      "1990-06-01",
-     -0.049
+     -0.048
     ],
     [
      "1990-06-08",
-     -0.089
+     -0.088
     ],
     [
      "1990-06-15",
-     -0.122
+     -0.121
     ],
     [
      "1990-06-22",
-     -0.145
+     -0.144
     ],
     [
      "1990-06-29",
-     -0.155
+     -0.154
     ],
     [
      "1990-07-06",
@@ -190039,7 +190071,7 @@
     ],
     [
      "1990-08-03",
-     -0.028
+     -0.027
     ],
     [
      "1990-08-10",
@@ -190075,7 +190107,7 @@
     ],
     [
      "1990-10-05",
-     0.413
+     0.414
     ],
     [
      "1990-10-12",
@@ -190087,7 +190119,7 @@
     ],
     [
      "1990-10-26",
-     0.456
+     0.457
     ],
     [
      "1990-11-02",
@@ -190103,7 +190135,7 @@
     ],
     [
      "1990-11-23",
-     0.46
+     0.461
     ],
     [
      "1990-11-30",
@@ -190111,7 +190143,7 @@
     ],
     [
      "1990-12-07",
-     0.483
+     0.484
     ],
     [
      "1990-12-14",
@@ -190123,7 +190155,7 @@
     ],
     [
      "1990-12-28",
-     0.519
+     0.52
     ],
     [
      "1991-01-04",
@@ -190131,7 +190163,7 @@
     ],
     [
      "1991-01-11",
-     0.49
+     0.491
     ],
     [
      "1991-01-18",
@@ -190151,11 +190183,11 @@
     ],
     [
      "1991-02-15",
-     0.173
+     0.174
     ],
     [
      "1991-02-22",
-     0.102
+     0.103
     ],
     [
      "1991-03-01",
@@ -190163,7 +190195,7 @@
     ],
     [
      "1991-03-08",
-     -0.02
+     -0.019
     ],
     [
      "1991-03-15",
@@ -190179,15 +190211,15 @@
     ],
     [
      "1991-04-05",
-     -0.178
+     -0.177
     ],
     [
      "1991-04-12",
-     -0.202
+     -0.201
     ],
     [
      "1991-04-19",
-     -0.221
+     -0.22
     ],
     [
      "1991-04-26",
@@ -190195,19 +190227,19 @@
     ],
     [
      "1991-05-03",
-     -0.243
+     -0.242
     ],
     [
      "1991-05-10",
-     -0.246
-    ],
-    [
-     "1991-05-17",
      -0.245
     ],
     [
+     "1991-05-17",
+     -0.244
+    ],
+    [
      "1991-05-24",
-     -0.241
+     -0.24
     ],
     [
      "1991-05-31",
@@ -190231,7 +190263,7 @@
     ],
     [
      "1991-07-05",
-     -0.299
+     -0.298
     ],
     [
      "1991-07-12",
@@ -190247,11 +190279,11 @@
     ],
     [
      "1991-08-02",
-     -0.452
+     -0.451
     ],
     [
      "1991-08-09",
-     -0.484
+     -0.483
     ],
     [
      "1991-08-16",
@@ -190275,7 +190307,7 @@
     ],
     [
      "1991-09-20",
-     -0.557
+     -0.556
     ],
     [
      "1991-09-27",
@@ -190287,7 +190319,7 @@
     ],
     [
      "1991-10-11",
-     -0.568
+     -0.567
     ],
     [
      "1991-10-18",
@@ -190295,7 +190327,7 @@
     ],
     [
      "1991-10-25",
-     -0.581
+     -0.58
     ],
     [
      "1991-11-01",
@@ -190303,7 +190335,7 @@
     ],
     [
      "1991-11-08",
-     -0.599
+     -0.598
     ],
     [
      "1991-11-15",
@@ -190311,11 +190343,11 @@
     ],
     [
      "1991-11-22",
-     -0.618
+     -0.617
     ],
     [
      "1991-11-29",
-     -0.628
+     -0.627
     ],
     [
      "1991-12-06",
@@ -190331,11 +190363,11 @@
     ],
     [
      "1991-12-27",
-     -0.663
+     -0.662
     ],
     [
      "1992-01-03",
-     -0.665
+     -0.664
     ],
     [
      "1992-01-10",
@@ -190423,7 +190455,7 @@
     ],
     [
      "1992-06-05",
-     -0.874
+     -0.873
     ],
     [
      "1992-06-12",
@@ -190451,7 +190483,7 @@
     ],
     [
      "1992-07-24",
-     -0.938
+     -0.937
     ],
     [
      "1992-07-31",
@@ -190483,7 +190515,7 @@
     ],
     [
      "1992-09-18",
-     -0.833
+     -0.832
     ],
     [
      "1992-09-25",
@@ -190495,7 +190527,7 @@
     ],
     [
      "1992-10-09",
-     -0.743
+     -0.742
     ],
     [
      "1992-10-16",
@@ -190511,7 +190543,7 @@
     ],
     [
      "1992-11-06",
-     -0.681
+     -0.68
     ],
     [
      "1992-11-13",
@@ -190523,7 +190555,7 @@
     ],
     [
      "1992-11-27",
-     -0.735
+     -0.734
     ],
     [
      "1992-12-04",
@@ -190559,7 +190591,7 @@
     ],
     [
      "1993-01-29",
-     -0.957
+     -0.956
     ],
     [
      "1993-02-05",
@@ -190575,15 +190607,15 @@
     ],
     [
      "1993-02-26",
-     -0.956
+     -0.955
     ],
     [
      "1993-03-05",
-     -0.958
+     -0.957
     ],
     [
      "1993-03-12",
-     -0.962
+     -0.961
     ],
     [
      "1993-03-19",
@@ -190599,7 +190631,7 @@
     ],
     [
      "1993-04-09",
-     -0.988
+     -0.987
     ],
     [
      "1993-04-16",
@@ -190607,7 +190639,7 @@
     ],
     [
      "1993-04-23",
-     -0.994
+     -0.993
     ],
     [
      "1993-04-30",
@@ -190631,7 +190663,7 @@
     ],
     [
      "1993-06-04",
-     -0.984
+     -0.983
     ],
     [
      "1993-06-11",
@@ -190639,7 +190671,7 @@
     ],
     [
      "1993-06-18",
-     -1.004
+     -1.003
     ],
     [
      "1993-06-25",
@@ -190679,7 +190711,7 @@
     ],
     [
      "1993-08-27",
-     -1.09
+     -1.089
     ],
     [
      "1993-09-03",
@@ -190723,11 +190755,11 @@
     ],
     [
      "1993-11-12",
-     -0.94
+     -0.939
     ],
     [
      "1993-11-19",
-     -0.935
+     -0.934
     ],
     [
      "1993-11-26",
@@ -190751,11 +190783,11 @@
     ],
     [
      "1993-12-31",
-     -1.004
+     -1.003
     ],
     [
      "1994-01-07",
-     -1.014
+     -1.013
     ],
     [
      "1994-01-14",
@@ -190763,11 +190795,11 @@
     ],
     [
      "1994-01-21",
-     -1.019
+     -1.018
     ],
     [
      "1994-01-28",
-     -1.012
+     -1.011
     ],
     [
      "1994-02-04",
@@ -190791,7 +190823,7 @@
     ],
     [
      "1994-03-11",
-     -0.852
+     -0.851
     ],
     [
      "1994-03-18",
@@ -190815,7 +190847,7 @@
     ],
     [
      "1994-04-22",
-     -0.724
+     -0.723
     ],
     [
      "1994-04-29",
@@ -190855,7 +190887,7 @@
     ],
     [
      "1994-07-01",
-     -0.717
+     -0.718
     ],
     [
      "1994-07-08",
@@ -190879,7 +190911,7 @@
     ],
     [
      "1994-08-12",
-     -0.799
+     -0.8
     ],
     [
      "1994-08-19",
@@ -190891,7 +190923,7 @@
     ],
     [
      "1994-09-02",
-     -0.796
+     -0.797
     ],
     [
      "1994-09-09",
@@ -190967,7 +190999,7 @@
     ],
     [
      "1995-01-13",
-     -0.438
+     -0.439
     ],
     [
      "1995-01-20",
@@ -191039,7 +191071,7 @@
     ],
     [
      "1995-05-19",
-     -0.708
+     -0.707
     ],
     [
      "1995-05-26",
@@ -191079,7 +191111,7 @@
     ],
     [
      "1995-07-28",
-     -0.68
+     -0.679
     ],
     [
      "1995-08-04",
@@ -191087,7 +191119,7 @@
     ],
     [
      "1995-08-11",
-     -0.699
+     -0.698
     ],
     [
      "1995-08-18",
@@ -191099,11 +191131,11 @@
     ],
     [
      "1995-09-01",
-     -0.713
+     -0.712
     ],
     [
      "1995-09-08",
-     -0.711
+     -0.71
     ],
     [
      "1995-09-15",
@@ -191135,15 +191167,15 @@
     ],
     [
      "1995-11-03",
-     -0.725
+     -0.724
     ],
     [
      "1995-11-10",
-     -0.737
+     -0.736
     ],
     [
      "1995-11-17",
-     -0.746
+     -0.745
     ],
     [
      "1995-11-24",
@@ -191163,15 +191195,15 @@
     ],
     [
      "1995-12-22",
-     -0.744
+     -0.743
     ],
     [
      "1995-12-29",
-     -0.744
+     -0.743
     ],
     [
      "1996-01-05",
-     -0.75
+     -0.749
     ],
     [
      "1996-01-12",
@@ -191187,11 +191219,11 @@
     ],
     [
      "1996-02-02",
-     -0.809
+     -0.808
     ],
     [
      "1996-02-09",
-     -0.82
+     -0.819
     ],
     [
      "1996-02-16",
@@ -191199,7 +191231,7 @@
     ],
     [
      "1996-02-23",
-     -0.82
+     -0.819
     ],
     [
      "1996-03-01",
@@ -191211,7 +191243,7 @@
     ],
     [
      "1996-03-15",
-     -0.764
+     -0.763
     ],
     [
      "1996-03-22",
@@ -191223,11 +191255,11 @@
     ],
     [
      "1996-04-05",
-     -0.702
+     -0.701
     ],
     [
      "1996-04-12",
-     -0.69
+     -0.689
     ],
     [
      "1996-04-19",
@@ -191255,11 +191287,11 @@
     ],
     [
      "1996-05-31",
-     -0.717
+     -0.716
     ],
     [
      "1996-06-07",
-     -0.715
+     -0.714
     ],
     [
      "1996-06-14",
@@ -191271,7 +191303,7 @@
     ],
     [
      "1996-06-28",
-     -0.701
+     -0.7
     ],
     [
      "1996-07-05",
@@ -191327,7 +191359,7 @@
     ],
     [
      "1996-10-04",
-     -0.735
+     -0.734
     ],
     [
      "1996-10-11",
@@ -191335,7 +191367,7 @@
     ],
     [
      "1996-10-18",
-     -0.753
+     -0.752
     ],
     [
      "1996-10-25",
@@ -191347,15 +191379,15 @@
     ],
     [
      "1996-11-08",
-     -0.783
+     -0.782
     ],
     [
      "1996-11-15",
-     -0.785
+     -0.784
     ],
     [
      "1996-11-22",
-     -0.781
+     -0.78
     ],
     [
      "1996-11-29",
@@ -191363,7 +191395,7 @@
     ],
     [
      "1996-12-06",
-     -0.755
+     -0.754
     ],
     [
      "1996-12-13",
@@ -191383,7 +191415,7 @@
     ],
     [
      "1997-01-10",
-     -0.692
+     -0.691
     ],
     [
      "1997-01-17",
@@ -191503,7 +191535,7 @@
     ],
     [
      "1997-08-08",
-     -0.658
+     -0.657
     ],
     [
      "1997-08-15",
@@ -191587,7 +191619,7 @@
     ],
     [
      "1998-01-02",
-     -0.53
+     -0.529
     ],
     [
      "1998-01-09",
@@ -191599,7 +191631,7 @@
     ],
     [
      "1998-01-23",
-     -0.582
+     -0.581
     ],
     [
      "1998-01-30",
@@ -191623,7 +191655,7 @@
     ],
     [
      "1998-03-06",
-     -0.638
+     -0.637
     ],
     [
      "1998-03-13",
@@ -191635,7 +191667,7 @@
     ],
     [
      "1998-03-27",
-     -0.626
+     -0.625
     ],
     [
      "1998-04-03",
@@ -191679,7 +191711,7 @@
     ],
     [
      "1998-06-12",
-     -0.56
+     -0.559
     ],
     [
      "1998-06-19",
@@ -191695,7 +191727,7 @@
     ],
     [
      "1998-07-10",
-     -0.553
+     -0.552
     ],
     [
      "1998-07-17",
@@ -191703,7 +191735,7 @@
     ],
     [
      "1998-07-24",
-     -0.533
+     -0.532
     ],
     [
      "1998-07-31",
@@ -191827,7 +191859,7 @@
     ],
     [
      "1999-02-26",
-     -0.353
+     -0.352
     ],
     [
      "1999-03-05",
@@ -191871,7 +191903,7 @@
     ],
     [
      "1999-05-14",
-     -0.421
+     -0.42
     ],
     [
      "1999-05-21",
@@ -191903,7 +191935,7 @@
     ],
     [
      "1999-07-09",
-     -0.286
+     -0.285
     ],
     [
      "1999-07-16",
@@ -191923,11 +191955,11 @@
     ],
     [
      "1999-08-13",
-     -0.173
+     -0.172
     ],
     [
      "1999-08-20",
-     -0.16
+     -0.159
     ],
     [
      "1999-08-27",
@@ -191939,7 +191971,7 @@
     ],
     [
      "1999-09-10",
-     -0.125
+     -0.124
     ],
     [
      "1999-09-17",
@@ -191959,7 +191991,7 @@
     ],
     [
      "1999-10-15",
-     -0.086
+     -0.085
     ],
     [
      "1999-10-22",
@@ -191971,7 +192003,7 @@
     ],
     [
      "1999-11-05",
-     -0.128
+     -0.127
     ],
     [
      "1999-11-12",
@@ -191999,7 +192031,7 @@
     ],
     [
      "1999-12-24",
-     -0.168
+     -0.167
     ],
     [
      "1999-12-31",
@@ -192015,7 +192047,7 @@
     ],
     [
      "2000-01-21",
-     -0.203
+     -0.202
     ],
     [
      "2000-01-28",
@@ -192031,7 +192063,7 @@
     ],
     [
      "2000-02-18",
-     -0.202
+     -0.201
     ],
     [
      "2000-02-25",
@@ -192039,11 +192071,11 @@
     ],
     [
      "2000-03-03",
-     -0.173
+     -0.172
     ],
     [
      "2000-03-10",
-     -0.153
+     -0.152
     ],
     [
      "2000-03-17",
@@ -192071,7 +192103,7 @@
     ],
     [
      "2000-04-28",
-     -0.032
+     -0.031
     ],
     [
      "2000-05-05",
@@ -192095,7 +192127,7 @@
     ],
     [
      "2000-06-09",
-     0.034
+     0.033
     ],
     [
      "2000-06-16",
@@ -192139,7 +192171,7 @@
     ],
     [
      "2000-08-25",
-     -0.198
+     -0.197
     ],
     [
      "2000-09-01",
@@ -192243,11 +192275,11 @@
     ],
     [
      "2001-02-23",
-     -0.277
+     -0.276
     ],
     [
      "2001-03-02",
-     -0.271
+     -0.27
     ],
     [
      "2001-03-09",
@@ -192275,7 +192307,7 @@
     ],
     [
      "2001-04-20",
-     -0.306
+     -0.305
     ],
     [
      "2001-04-27",
@@ -192311,7 +192343,7 @@
     ],
     [
      "2001-06-22",
-     -0.452
+     -0.451
     ],
     [
      "2001-06-29",
@@ -192319,7 +192351,7 @@
     ],
     [
      "2001-07-06",
-     -0.468
+     -0.467
     ],
     [
      "2001-07-13",
@@ -192339,11 +192371,11 @@
     ],
     [
      "2001-08-10",
-     -0.498
+     -0.497
     ],
     [
      "2001-08-17",
-     -0.484
+     -0.483
     ],
     [
      "2001-08-24",
@@ -192367,15 +192399,15 @@
     ],
     [
      "2001-09-28",
-     -0.336
+     -0.335
     ],
     [
      "2001-10-05",
-     -0.338
+     -0.337
     ],
     [
      "2001-10-12",
-     -0.349
+     -0.348
     ],
     [
      "2001-10-19",
@@ -192387,7 +192419,7 @@
     ],
     [
      "2001-11-02",
-     -0.392
+     -0.391
     ],
     [
      "2001-11-09",
@@ -192399,7 +192431,7 @@
     ],
     [
      "2001-11-23",
-     -0.386
+     -0.385
     ],
     [
      "2001-11-30",
@@ -192407,7 +192439,7 @@
     ],
     [
      "2001-12-07",
-     -0.36
+     -0.359
     ],
     [
      "2001-12-14",
@@ -192415,19 +192447,19 @@
     ],
     [
      "2001-12-21",
-     -0.356
+     -0.355
     ],
     [
      "2001-12-28",
-     -0.369
+     -0.368
     ],
     [
      "2002-01-04",
-     -0.389
+     -0.388
     ],
     [
      "2002-01-11",
-     -0.414
+     -0.413
     ],
     [
      "2002-01-18",
@@ -192443,7 +192475,7 @@
     ],
     [
      "2002-02-08",
-     -0.485
+     -0.484
     ],
     [
      "2002-02-15",
@@ -192463,11 +192495,11 @@
     ],
     [
      "2002-03-15",
-     -0.489
+     -0.488
     ],
     [
      "2002-03-22",
-     -0.493
+     -0.492
     ],
     [
      "2002-03-29",
@@ -192475,7 +192507,7 @@
     ],
     [
      "2002-04-05",
-     -0.515
+     -0.514
     ],
     [
      "2002-04-12",
@@ -192503,11 +192535,11 @@
     ],
     [
      "2002-05-24",
-     -0.629
+     -0.628
     ],
     [
      "2002-05-31",
-     -0.623
+     -0.622
     ],
     [
      "2002-06-07",
@@ -192563,7 +192595,7 @@
     ],
     [
      "2002-09-06",
-     -0.377
+     -0.376
     ],
     [
      "2002-09-13",
@@ -192571,7 +192603,7 @@
     ],
     [
      "2002-09-20",
-     -0.357
+     -0.356
     ],
     [
      "2002-09-27",
@@ -192591,11 +192623,11 @@
     ],
     [
      "2002-10-25",
-     -0.384
+     -0.383
     ],
     [
      "2002-11-01",
-     -0.402
+     -0.401
     ],
     [
      "2002-11-08",
@@ -192603,7 +192635,7 @@
     ],
     [
      "2002-11-15",
-     -0.435
+     -0.434
     ],
     [
      "2002-11-22",
@@ -192611,11 +192643,11 @@
     ],
     [
      "2002-11-29",
-     -0.452
+     -0.451
     ],
     [
      "2002-12-06",
-     -0.455
+     -0.454
     ],
     [
      "2002-12-13",
@@ -192655,7 +192687,7 @@
     ],
     [
      "2003-02-14",
-     -0.529
+     -0.528
     ],
     [
      "2003-02-21",
@@ -192675,7 +192707,7 @@
     ],
     [
      "2003-03-21",
-     -0.567
+     -0.566
     ],
     [
      "2003-03-28",
@@ -192691,11 +192723,11 @@
     ],
     [
      "2003-04-18",
-     -0.66
+     -0.659
     ],
     [
      "2003-04-25",
-     -0.681
+     -0.68
     ],
     [
      "2003-05-02",
@@ -192703,7 +192735,7 @@
     ],
     [
      "2003-05-09",
-     -0.707
+     -0.706
     ],
     [
      "2003-05-16",
@@ -192711,7 +192743,7 @@
     ],
     [
      "2003-05-23",
-     -0.712
+     -0.711
     ],
     [
      "2003-05-30",
@@ -192727,7 +192759,7 @@
     ],
     [
      "2003-06-20",
-     -0.709
+     -0.708
     ],
     [
      "2003-06-27",
@@ -192739,7 +192771,7 @@
     ],
     [
      "2003-07-11",
-     -0.716
+     -0.715
     ],
     [
      "2003-07-18",
@@ -192751,11 +192783,11 @@
     ],
     [
      "2003-08-01",
-     -0.7
+     -0.699
     ],
     [
      "2003-08-08",
-     -0.69
+     -0.689
     ],
     [
      "2003-08-15",
@@ -192771,11 +192803,11 @@
     ],
     [
      "2003-09-05",
-     -0.666
+     -0.665
     ],
     [
      "2003-09-12",
-     -0.668
+     -0.667
     ],
     [
      "2003-09-19",
@@ -192783,7 +192815,7 @@
     ],
     [
      "2003-09-26",
-     -0.68
+     -0.679
     ],
     [
      "2003-10-03",
@@ -192791,11 +192823,11 @@
     ],
     [
      "2003-10-10",
-     -0.696
+     -0.695
     ],
     [
      "2003-10-17",
-     -0.704
+     -0.703
     ],
     [
      "2003-10-24",
@@ -192803,7 +192835,7 @@
     ],
     [
      "2003-10-31",
-     -0.714
+     -0.713
     ],
     [
      "2003-11-07",
@@ -192823,7 +192855,7 @@
     ],
     [
      "2003-12-05",
-     -0.712
+     -0.711
     ],
     [
      "2003-12-12",
@@ -192831,7 +192863,7 @@
     ],
     [
      "2003-12-19",
-     -0.716
+     -0.715
     ],
     [
      "2003-12-26",
@@ -192851,7 +192883,7 @@
     ],
     [
      "2004-01-23",
-     -0.773
+     -0.772
     ],
     [
      "2004-01-30",
@@ -192863,11 +192895,11 @@
     ],
     [
      "2004-02-13",
-     -0.804
+     -0.803
     ],
     [
      "2004-02-20",
-     -0.81
+     -0.809
     ],
     [
      "2004-02-27",
@@ -192883,7 +192915,7 @@
     ],
     [
      "2004-03-19",
-     -0.808
+     -0.807
     ],
     [
      "2004-03-26",
@@ -192923,7 +192955,7 @@
     ],
     [
      "2004-05-28",
-     -0.695
+     -0.694
     ],
     [
      "2004-06-04",
@@ -192947,7 +192979,7 @@
     ],
     [
      "2004-07-09",
-     -0.689
+     -0.688
     ],
     [
      "2004-07-16",
@@ -192967,7 +192999,7 @@
     ],
     [
      "2004-08-13",
-     -0.698
+     -0.697
     ],
     [
      "2004-08-20",
@@ -192983,7 +193015,7 @@
     ],
     [
      "2004-09-10",
-     -0.7
+     -0.699
     ],
     [
      "2004-09-17",
@@ -193155,7 +193187,7 @@
     ],
     [
      "2005-07-08",
-     -0.607
+     -0.606
     ],
     [
      "2005-07-15",
@@ -193191,7 +193223,7 @@
     ],
     [
      "2005-09-09",
-     -0.583
+     -0.582
     ],
     [
      "2005-09-16",
@@ -193423,11 +193455,11 @@
     ],
     [
      "2006-10-20",
-     -0.622
+     -0.621
     ],
     [
      "2006-10-27",
-     -0.628
+     -0.627
     ],
     [
      "2006-11-03",
@@ -193439,7 +193471,7 @@
     ],
     [
      "2006-11-17",
-     -0.631
+     -0.63
     ],
     [
      "2006-11-24",
@@ -193451,7 +193483,7 @@
     ],
     [
      "2006-12-08",
-     -0.62
+     -0.619
     ],
     [
      "2006-12-15",
@@ -193463,19 +193495,19 @@
     ],
     [
      "2006-12-29",
-     -0.633
+     -0.632
     ],
     [
      "2007-01-05",
-     -0.645
+     -0.644
     ],
     [
      "2007-01-12",
-     -0.658
+     -0.657
     ],
     [
      "2007-01-19",
-     -0.67
+     -0.669
     ],
     [
      "2007-01-26",
@@ -193487,7 +193519,7 @@
     ],
     [
      "2007-02-09",
-     -0.682
+     -0.681
     ],
     [
      "2007-02-16",
@@ -193511,7 +193543,7 @@
     ],
     [
      "2007-03-23",
-     -0.612
+     -0.611
     ],
     [
      "2007-03-30",
@@ -193659,7 +193691,7 @@
     ],
     [
      "2007-12-07",
-     0.544
+     0.545
     ],
     [
      "2007-12-14",
@@ -193671,7 +193703,7 @@
     ],
     [
      "2007-12-28",
-     0.523
+     0.524
     ],
     [
      "2008-01-04",
@@ -193687,7 +193719,7 @@
     ],
     [
      "2008-01-25",
-     0.417
+     0.418
     ],
     [
      "2008-02-01",
@@ -193727,7 +193759,7 @@
     ],
     [
      "2008-04-04",
-     0.895
+     0.896
     ],
     [
      "2008-04-11",
@@ -193743,7 +193775,7 @@
     ],
     [
      "2008-05-02",
-     0.576
+     0.577
     ],
     [
      "2008-05-09",
@@ -193763,7 +193795,7 @@
     ],
     [
      "2008-06-06",
-     0.552
+     0.553
     ],
     [
      "2008-06-13",
@@ -193807,7 +193839,7 @@
     ],
     [
      "2008-08-22",
-     0.735
+     0.736
     ],
     [
      "2008-08-29",
@@ -193823,7 +193855,7 @@
     ],
     [
      "2008-09-19",
-     1.512
+     1.513
     ],
     [
      "2008-09-26",
@@ -193839,47 +193871,47 @@
     ],
     [
      "2008-10-17",
-     2.522
+     2.523
     ],
     [
      "2008-10-24",
-     2.666
+     2.667
     ],
     [
      "2008-10-31",
-     2.79
+     2.791
     ],
     [
      "2008-11-07",
-     2.885
+     2.886
     ],
     [
      "2008-11-14",
-     2.967
+     2.968
     ],
     [
      "2008-11-21",
-     3.044
+     3.045
     ],
     [
      "2008-11-28",
-     3.071
+     3.072
     ],
     [
      "2008-12-05",
-     3.064
+     3.065
     ],
     [
      "2008-12-12",
-     3.0
+     3.001
     ],
     [
      "2008-12-19",
-     2.876
+     2.877
     ],
     [
      "2008-12-26",
-     2.717
+     2.718
     ],
     [
      "2009-01-02",
@@ -193887,39 +193919,39 @@
     ],
     [
      "2009-01-09",
-     2.412
+     2.413
     ],
     [
      "2009-01-16",
-     2.289
+     2.29
     ],
     [
      "2009-01-23",
-     2.2
+     2.201
     ],
     [
      "2009-01-30",
-     2.14
+     2.141
     ],
     [
      "2009-02-06",
-     2.111
-    ],
-    [
-     "2009-02-13",
      2.112
     ],
     [
+     "2009-02-13",
+     2.113
+    ],
+    [
      "2009-02-20",
-     2.129
+     2.13
     ],
     [
      "2009-02-27",
-     2.145
+     2.146
     ],
     [
      "2009-03-06",
-     2.149
+     2.15
     ],
     [
      "2009-03-13",
@@ -193927,15 +193959,15 @@
     ],
     [
      "2009-03-20",
-     2.039
+     2.04
     ],
     [
      "2009-03-27",
-     1.934
+     1.935
     ],
     [
      "2009-04-03",
-     1.809
+     1.81
     ],
     [
      "2009-04-10",
@@ -193943,11 +193975,11 @@
     ],
     [
      "2009-04-17",
-     1.526
+     1.527
     ],
     [
      "2009-04-24",
-     1.386
+     1.387
     ],
     [
      "2009-05-01",
@@ -193955,23 +193987,23 @@
     ],
     [
      "2009-05-08",
-     1.126
+     1.127
     ],
     [
      "2009-05-15",
-     1.025
+     1.026
     ],
     [
      "2009-05-22",
-     0.941
+     0.942
     ],
     [
      "2009-05-29",
-     0.881
+     0.882
     ],
     [
      "2009-06-05",
-     0.834
+     0.835
     ],
     [
      "2009-06-12",
@@ -193979,7 +194011,7 @@
     ],
     [
      "2009-06-19",
-     0.767
+     0.768
     ],
     [
      "2009-06-26",
@@ -193987,7 +194019,7 @@
     ],
     [
      "2009-07-03",
-     0.684
+     0.685
     ],
     [
      "2009-07-10",
@@ -194023,7 +194055,7 @@
     ],
     [
      "2009-09-04",
-     0.202
+     0.203
     ],
     [
      "2009-09-11",
@@ -194071,27 +194103,27 @@
     ],
     [
      "2009-11-27",
-     -0.028
+     -0.027
     ],
     [
      "2009-12-04",
-     -0.053
+     -0.052
     ],
     [
      "2009-12-11",
-     -0.084
+     -0.083
     ],
     [
      "2009-12-18",
-     -0.117
+     -0.116
     ],
     [
      "2009-12-25",
-     -0.148
+     -0.147
     ],
     [
      "2010-01-01",
-     -0.173
+     -0.172
     ],
     [
      "2010-01-08",
@@ -194191,7 +194223,7 @@
     ],
     [
      "2010-06-25",
-     -0.069
+     -0.068
     ],
     [
      "2010-07-02",
@@ -194259,11 +194291,11 @@
     ],
     [
      "2010-10-22",
-     -0.417
+     -0.416
     ],
     [
      "2010-10-29",
-     -0.431
+     -0.43
     ],
     [
      "2010-11-05",
@@ -194275,7 +194307,7 @@
     ],
     [
      "2010-11-19",
-     -0.446
+     -0.445
     ],
     [
      "2010-11-26",
@@ -194287,7 +194319,7 @@
     ],
     [
      "2010-12-10",
-     -0.466
+     -0.465
     ],
     [
      "2010-12-17",
@@ -194307,7 +194339,7 @@
     ],
     [
      "2011-01-14",
-     -0.564
+     -0.563
     ],
     [
      "2011-01-21",
@@ -194323,7 +194355,7 @@
     ],
     [
      "2011-02-11",
-     -0.597
+     -0.596
     ],
     [
      "2011-02-18",
@@ -194331,7 +194363,7 @@
     ],
     [
      "2011-02-25",
-     -0.573
+     -0.572
     ],
     [
      "2011-03-04",
@@ -194339,7 +194371,7 @@
     ],
     [
      "2011-03-11",
-     -0.549
+     -0.548
     ],
     [
      "2011-03-18",
@@ -194371,7 +194403,7 @@
     ],
     [
      "2011-05-06",
-     -0.596
+     -0.595
     ],
     [
      "2011-05-13",
@@ -194387,7 +194419,7 @@
     ],
     [
      "2011-06-03",
-     -0.547
+     -0.546
     ],
     [
      "2011-06-10",
@@ -194491,7 +194523,7 @@
     ],
     [
      "2011-12-02",
-     -0.07
+     -0.069
     ],
     [
      "2011-12-09",
@@ -194559,7 +194591,7 @@
     ],
     [
      "2012-03-30",
-     -0.435
+     -0.434
     ],
     [
      "2012-04-06",
@@ -194579,7 +194611,7 @@
     ],
     [
      "2012-05-04",
-     -0.351
+     -0.35
     ],
     [
      "2012-05-11",
@@ -194591,7 +194623,7 @@
     ],
     [
      "2012-05-25",
-     -0.26
+     -0.259
     ],
     [
      "2012-06-01",
@@ -194607,7 +194639,7 @@
     ],
     [
      "2012-06-22",
-     -0.255
+     -0.254
     ],
     [
      "2012-06-29",
@@ -194631,11 +194663,11 @@
     ],
     [
      "2012-08-03",
-     -0.388
+     -0.387
     ],
     [
      "2012-08-10",
-     -0.407
+     -0.406
     ],
     [
      "2012-08-17",
@@ -194751,7 +194783,7 @@
     ],
     [
      "2013-03-01",
-     -0.651
+     -0.65
     ],
     [
      "2013-03-08",
@@ -194823,7 +194855,7 @@
     ],
     [
      "2013-07-05",
-     -0.63
+     -0.629
     ],
     [
      "2013-07-12",
@@ -194835,7 +194867,7 @@
     ],
     [
      "2013-07-26",
-     -0.661
+     -0.66
     ],
     [
      "2013-08-02",
@@ -194859,7 +194891,7 @@
     ],
     [
      "2013-09-06",
-     -0.663
+     -0.662
     ],
     [
      "2013-09-13",
@@ -194871,7 +194903,7 @@
     ],
     [
      "2013-09-27",
-     -0.677
+     -0.676
     ],
     [
      "2013-10-04",
@@ -194879,11 +194911,11 @@
     ],
     [
      "2013-10-11",
-     -0.699
+     -0.698
     ],
     [
      "2013-10-18",
-     -0.713
+     -0.712
     ],
     [
      "2013-10-25",
@@ -194899,7 +194931,7 @@
     ],
     [
      "2013-11-15",
-     -0.758
+     -0.757
     ],
     [
      "2013-11-22",
@@ -194907,7 +194939,7 @@
     ],
     [
      "2013-11-29",
-     -0.77
+     -0.769
     ],
     [
      "2013-12-06",
@@ -194927,7 +194959,7 @@
     ],
     [
      "2014-01-03",
-     -0.777
+     -0.776
     ],
     [
      "2014-01-10",
@@ -195067,7 +195099,7 @@
     ],
     [
      "2014-09-05",
-     -0.716
+     -0.715
     ],
     [
      "2014-09-12",
@@ -195087,7 +195119,7 @@
     ],
     [
      "2014-10-10",
-     -0.645
+     -0.644
     ],
     [
      "2014-10-17",
@@ -195247,7 +195279,7 @@
     ],
     [
      "2015-07-17",
-     -0.529
+     -0.528
     ],
     [
      "2015-07-24",
@@ -195287,7 +195319,7 @@
     ],
     [
      "2015-09-25",
-     -0.396
+     -0.397
     ],
     [
      "2015-10-02",
@@ -195475,7 +195507,7 @@
     ],
     [
      "2016-08-19",
-     -0.369
+     -0.368
     ],
     [
      "2016-08-26",
@@ -195487,7 +195519,7 @@
     ],
     [
      "2016-09-09",
-     -0.35
+     -0.349
     ],
     [
      "2016-09-16",
@@ -195539,7 +195571,7 @@
     ],
     [
      "2016-12-09",
-     -0.455
+     -0.454
     ],
     [
      "2016-12-16",
@@ -195791,7 +195823,7 @@
     ],
     [
      "2018-02-23",
-     -0.546
+     -0.547
     ],
     [
      "2018-03-02",
@@ -195903,7 +195935,7 @@
     ],
     [
      "2018-09-07",
-     -0.6
+     -0.601
     ],
     [
      "2018-09-14",
@@ -196031,7 +196063,7 @@
     ],
     [
      "2019-04-19",
-     -0.612
+     -0.611
     ],
     [
      "2019-04-26",
@@ -196043,7 +196075,7 @@
     ],
     [
      "2019-05-10",
-     -0.601
+     -0.6
     ],
     [
      "2019-05-17",
@@ -196243,7 +196275,7 @@
     ],
     [
      "2020-04-24",
-     0.157
+     0.158
     ],
     [
      "2020-05-01",
@@ -196255,7 +196287,7 @@
     ],
     [
      "2020-05-15",
-     -0.128
+     -0.127
     ],
     [
      "2020-05-22",
@@ -196267,7 +196299,7 @@
     ],
     [
      "2020-06-05",
-     -0.315
+     -0.314
     ],
     [
      "2020-06-12",
@@ -196311,15 +196343,15 @@
     ],
     [
      "2020-08-21",
-     -0.505
+     -0.504
     ],
     [
      "2020-08-28",
-     -0.507
+     -0.506
     ],
     [
      "2020-09-04",
-     -0.505
+     -0.504
     ],
     [
      "2020-09-11",
@@ -196367,7 +196399,7 @@
     ],
     [
      "2020-11-27",
-     -0.567
+     -0.566
     ],
     [
      "2020-12-04",
@@ -196375,7 +196407,7 @@
     ],
     [
      "2020-12-11",
-     -0.59
+     -0.589
     ],
     [
      "2020-12-18",
@@ -196415,7 +196447,7 @@
     ],
     [
      "2021-02-19",
-     -0.624
+     -0.623
     ],
     [
      "2021-02-26",
@@ -196467,27 +196499,27 @@
     ],
     [
      "2021-05-21",
-     -0.69
+     -0.691
     ],
     [
      "2021-05-28",
-     -0.692
-    ],
-    [
-     "2021-06-04",
      -0.693
     ],
     [
+     "2021-06-04",
+     -0.694
+    ],
+    [
      "2021-06-11",
-     -0.692
+     -0.693
     ],
     [
      "2021-06-18",
-     -0.689
+     -0.69
     ],
     [
      "2021-06-25",
-     -0.685
+     -0.686
     ],
     [
      "2021-07-02",
@@ -196511,7 +196543,7 @@
     ],
     [
      "2021-08-06",
-     -0.649
+     -0.65
     ],
     [
      "2021-08-13",
@@ -196547,7 +196579,7 @@
     ],
     [
      "2021-10-08",
-     -0.65
+     -0.651
     ],
     [
      "2021-10-15",
@@ -196591,7 +196623,7 @@
     ],
     [
      "2021-12-24",
-     -0.546
+     -0.547
     ],
     [
      "2021-12-31",
@@ -196599,7 +196631,7 @@
     ],
     [
      "2022-01-07",
-     -0.56
+     -0.561
     ],
     [
      "2022-01-14",
@@ -196607,15 +196639,15 @@
     ],
     [
      "2022-01-21",
-     -0.553
+     -0.554
     ],
     [
      "2022-01-28",
-     -0.539
+     -0.54
     ],
     [
      "2022-02-04",
-     -0.52
+     -0.521
     ],
     [
      "2022-02-11",
@@ -196635,7 +196667,7 @@
     ],
     [
      "2022-03-11",
-     -0.389
+     -0.39
     ],
     [
      "2022-03-18",
@@ -196647,7 +196679,7 @@
     ],
     [
      "2022-04-01",
-     -0.369
+     -0.37
     ],
     [
      "2022-04-08",
@@ -196675,7 +196707,7 @@
     ],
     [
      "2022-05-20",
-     -0.278
+     -0.279
     ],
     [
      "2022-05-27",
@@ -196691,7 +196723,7 @@
     ],
     [
      "2022-06-17",
-     -0.185
+     -0.186
     ],
     [
      "2022-06-24",
@@ -196815,7 +196847,7 @@
     ],
     [
      "2023-01-20",
-     -0.289
+     -0.288
     ],
     [
      "2023-01-27",
@@ -196839,7 +196871,7 @@
     ],
     [
      "2023-03-03",
-     -0.238
+     -0.237
     ],
     [
      "2023-03-10",
@@ -196895,19 +196927,19 @@
     ],
     [
      "2023-06-09",
-     -0.215
+     -0.214
     ],
     [
      "2023-06-16",
-     -0.217
+     -0.216
     ],
     [
      "2023-06-23",
-     -0.221
+     -0.22
     ],
     [
      "2023-06-30",
-     -0.227
+     -0.226
     ],
     [
      "2023-07-07",
@@ -196919,7 +196951,7 @@
     ],
     [
      "2023-07-21",
-     -0.263
+     -0.262
     ],
     [
      "2023-07-28",
@@ -196927,7 +196959,7 @@
     ],
     [
      "2023-08-04",
-     -0.296
+     -0.295
     ],
     [
      "2023-08-11",
@@ -196947,7 +196979,7 @@
     ],
     [
      "2023-09-08",
-     -0.337
+     -0.336
     ],
     [
      "2023-09-15",
@@ -196959,7 +196991,7 @@
     ],
     [
      "2023-09-29",
-     -0.311
+     -0.31
     ],
     [
      "2023-10-06",
@@ -197011,7 +197043,7 @@
     ],
     [
      "2023-12-29",
-     -0.365
+     -0.364
     ],
     [
      "2024-01-05",
@@ -197103,7 +197135,7 @@
     ],
     [
      "2024-06-07",
-     -0.401
+     -0.4
     ],
     [
      "2024-06-14",
@@ -197179,7 +197211,7 @@
     ],
     [
      "2024-10-18",
-     -0.438
+     -0.437
     ],
     [
      "2024-10-25",
@@ -197187,11 +197219,11 @@
     ],
     [
      "2024-11-01",
-     -0.449
+     -0.448
     ],
     [
      "2024-11-08",
-     -0.457
+     -0.456
     ],
     [
      "2024-11-15",
@@ -197203,7 +197235,7 @@
     ],
     [
      "2024-11-29",
-     -0.473
+     -0.472
     ],
     [
      "2024-12-06",
@@ -197219,7 +197251,7 @@
     ],
     [
      "2024-12-27",
-     -0.482
+     -0.481
     ],
     [
      "2025-01-03",
@@ -197231,7 +197263,7 @@
     ],
     [
      "2025-01-17",
-     -0.498
+     -0.497
     ],
     [
      "2025-01-24",
@@ -197319,7 +197351,7 @@
     ],
     [
      "2025-06-20",
-     -0.487
+     -0.486
     ],
     [
      "2025-06-27",
@@ -197395,7 +197427,7 @@
     ],
     [
      "2025-10-31",
-     -0.51
+     -0.509
     ],
     [
      "2025-11-07",
@@ -197407,7 +197439,7 @@
     ],
     [
      "2025-11-21",
-     -0.504
+     -0.503
     ],
     [
      "2025-11-28",
@@ -197435,7 +197467,7 @@
     ],
     [
      "2026-01-09",
-     -0.556
+     -0.555
     ],
     [
      "2026-01-16",
@@ -197475,59 +197507,59 @@
     ],
     [
      "2026-03-20",
-     -0.458
-    ],
-    [
-     "2026-03-27",
-     -0.454
-    ],
-    [
-     "2026-04-03",
      -0.459
     ],
     [
+     "2026-03-27",
+     -0.456
+    ],
+    [
+     "2026-04-03",
+     -0.46
+    ],
+    [
      "2026-04-10",
-     -0.469
+     -0.47
     ],
     [
      "2026-04-17",
-     -0.48
+     -0.481
     ],
     [
      "2026-04-24",
-     -0.489
+     -0.491
     ],
     [
      "2026-05-01",
-     -0.496
-    ],
-    [
-     "2026-05-08",
-     -0.5
-    ],
-    [
-     "2026-05-15",
      -0.499
     ],
     [
+     "2026-05-08",
+     -0.503
+    ],
+    [
+     "2026-05-15",
+     -0.503
+    ],
+    [
      "2026-05-22",
-     -0.498
+     -0.502
     ],
     [
      "2026-05-29",
-     -0.495
+     -0.501
     ],
     [
      "2026-06-05",
-     -0.495
+     -0.501
     ],
     [
      "2026-06-12",
-     -0.497
+     -0.502
     ],
     [
      "2026-06-19",
-     -0.502
+     -0.505
     ],
     [
      "2026-06-26",
@@ -197535,24 +197567,28 @@
     ],
     [
      "2026-07-03",
-     -0.522
+     -0.517
     ],
     [
      "2026-07-10",
-     -0.534
+     -0.523
     ],
     [
      "2026-07-17",
-     -0.544
+     -0.527
     ],
     [
      "2026-07-24",
-     -0.554
+     -0.53
+    ],
+    [
+     "2026-07-31",
+     -0.529
     ]
    ],
-   "previous_date": "2026-07-17",
-   "previous_value": -0.544,
-   "retrieved_at": "2026-08-05T09:09:43+00:00",
+   "previous_date": "2026-07-24",
+   "previous_value": -0.53,
+   "retrieved_at": "2026-08-06T09:10:14+00:00",
    "seasonal_adjustment": "Not Seasonally Adjusted",
    "seasonal_adjustment_short": "NSA",
    "series_id": "NFCI",
@@ -197560,11 +197596,11 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Chicago Fed National Financial Conditions Index",
    "stale": false,
-   "stale_days": 12,
+   "stale_days": 6,
    "unit_type": "index",
    "units": "Index",
    "units_short": "Index",
-   "yoy_baseline_date": "2025-07-18"
+   "yoy_baseline_date": "2025-07-25"
   },
   "PAYEMS": {
    "category": "labor",
@@ -199341,7 +199377,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 158927.0,
-   "retrieved_at": "2026-08-05T09:09:58+00:00",
+   "retrieved_at": "2026-08-06T09:10:27+00:00",
    "seasonal_adjustment": "Seasonally Adjusted",
    "seasonal_adjustment_short": "SA",
    "series_id": "PAYEMS",
@@ -199349,7 +199385,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Employment Situation",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "thousands",
    "units": "Thousands of Persons",
    "units_short": "Thous. of Persons",
@@ -201130,7 +201166,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 131.535,
-   "retrieved_at": "2026-08-05T09:09:50+00:00",
+   "retrieved_at": "2026-08-06T09:10:21+00:00",
    "seasonal_adjustment": "Seasonally Adjusted",
    "seasonal_adjustment_short": "SA",
    "series_id": "PCEPI",
@@ -201138,7 +201174,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Personal Income and Outlays",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "index",
    "units": "Index 2017=100",
    "units_short": "Index 2017=100",
@@ -202251,7 +202287,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 164.625,
-   "retrieved_at": "2026-08-05T09:10:15+00:00",
+   "retrieved_at": "2026-08-06T09:10:41+00:00",
    "seasonal_adjustment": "Not Seasonally Adjusted",
    "seasonal_adjustment_short": "NSA",
    "series_id": "PCU2211102211104",
@@ -202259,7 +202295,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Producer Price Index",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "index",
    "units": "Index Dec 2003=100",
    "units_short": "Index Dec 2003=100",
@@ -204040,7 +204076,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 1410.0,
-   "retrieved_at": "2026-08-05T09:10:09+00:00",
+   "retrieved_at": "2026-08-06T09:10:36+00:00",
    "seasonal_adjustment": "Seasonally Adjusted Annual Rate",
    "seasonal_adjustment_short": "SAAR",
    "series_id": "PERMIT",
@@ -204048,7 +204084,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "New Residential Construction",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "thousands",
    "units": "Thousands of Units",
    "units_short": "Thous. of Units",
@@ -205733,7 +205769,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 766876.0,
-   "retrieved_at": "2026-08-05T09:10:05+00:00",
+   "retrieved_at": "2026-08-06T09:10:33+00:00",
    "seasonal_adjustment": "Seasonally Adjusted",
    "seasonal_adjustment_short": "SA",
    "series_id": "RSAFS",
@@ -205741,7 +205777,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Advance Monthly Sales for Retail and Food Services",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "millions_usd",
    "units": "Millions of Dollars",
    "units_short": "Mil. of $",
@@ -205749,23 +205785,23 @@
   },
   "T10Y2Y": {
    "category": "rates",
-   "change_abs": -0.02,
-   "change_mom_abs": 0.07,
-   "change_mom_pct": 19.44,
-   "change_pct": -4.44,
-   "change_yoy_abs": -0.1,
-   "change_yoy_pct": -18.87,
+   "change_abs": 0.02,
+   "change_mom_abs": 0.1,
+   "change_mom_pct": 28.57,
+   "change_pct": 4.65,
+   "change_yoy_abs": -0.05,
+   "change_yoy_pct": -10.0,
    "decimals": 2,
-   "fred_last_updated": "2026-08-04 16:03:24-05",
+   "fred_last_updated": "2026-08-05 16:03:20-05",
    "fred_notes": "Starting with the update on June 21, 2019, the Treasury bond data used in calculating interest rate spreads is obtained directly from the U.S. Treasury Department (https://www.treasury.gov/resource-center/data-chart-center/interest-rates/Pages/TextView.aspx?data=yield).\r\nSeries is calculated as the spread between 10-Year Treasury Constant Maturity (BC_10YEAR) and 2-Year Treasury Constant Maturity \u2026",
    "fred_title": "10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity",
    "frequency": "Daily",
    "frequency_short": "D",
    "label": "10-Year Treasury Minus 2-Year Treasury Spread",
-   "latest_date": "2026-08-04",
-   "latest_value": 0.43,
+   "latest_date": "2026-08-05",
+   "latest_value": 0.45,
    "missing_count": 394,
-   "observation_count": 9547,
+   "observation_count": 9548,
    "observations": [
     [
      "1990-01-01",
@@ -243954,11 +243990,15 @@
     [
      "2026-08-04",
      0.43
+    ],
+    [
+     "2026-08-05",
+     0.45
     ]
    ],
-   "previous_date": "2026-08-03",
-   "previous_value": 0.45,
-   "retrieved_at": "2026-08-05T09:09:39+00:00",
+   "previous_date": "2026-08-04",
+   "previous_value": 0.43,
+   "retrieved_at": "2026-08-06T09:10:10+00:00",
    "seasonal_adjustment": "Not Seasonally Adjusted",
    "seasonal_adjustment_short": "NSA",
    "series_id": "T10Y2Y",
@@ -243970,7 +244010,7 @@
    "unit_type": "percentage_points",
    "units": "Percent",
    "units_short": "%",
-   "yoy_baseline_date": "2025-08-04"
+   "yoy_baseline_date": "2025-08-05"
   },
   "UNRATE": {
    "category": "labor",
@@ -245747,7 +245787,7 @@
    ],
    "previous_date": "2026-05-01",
    "previous_value": 4.3,
-   "retrieved_at": "2026-08-05T09:09:56+00:00",
+   "retrieved_at": "2026-08-06T09:10:26+00:00",
    "seasonal_adjustment": "Seasonally Adjusted",
    "seasonal_adjustment_short": "SA",
    "series_id": "UNRATE",
@@ -245755,7 +245795,7 @@
    "source": "Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis",
    "source_agency": "Employment Situation",
    "stale": false,
-   "stale_days": 65,
+   "stale_days": 66,
    "unit_type": "percent",
    "units": "Percent",
    "units_short": "%",
