@@ -19,6 +19,14 @@ on:
         description: "Comma-separated FIPS codes to run discovery against"
         required: false
         default: "37063,29510"
+  # workflow_dispatch alone can't be triggered via the API until this file
+  # exists on the default branch. push-triggered runs use the workflow file
+  # as committed on the pushed branch itself, so this also fires directly on
+  # push to this scratch branch -- a genuine "disposable scratch-branch
+  # dispatch" per the plan, no merge to main required.
+  push:
+    branches:
+      - claude/us-datacenter-restrictions-map-skooi7
 
 permissions:
   contents: read
@@ -39,7 +47,7 @@ jobs:
       - name: Run discover_batch.mjs against real live endpoints
         run: |
           node data/parcel_pipeline/discover_batch.mjs \
-            --fips "${{ github.event.inputs.fips }}" \
+            --fips "${{ github.event.inputs.fips || '37063,29510' }}" \
             --max-candidates 6 \
             --concurrency 2
 
