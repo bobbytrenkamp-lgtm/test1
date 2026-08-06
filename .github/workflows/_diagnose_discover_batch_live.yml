@@ -59,3 +59,24 @@ jobs:
           path: data/parcel_pipeline/output/
           retention-days: 7
           if-no-files-found: warn
+
+      # Also dump the full per-target and per-candidate JSON straight to the
+      # job log. The artifact above is the real, permanent mechanism (PR C's
+      # design), but this run's blob-storage download happens to be blocked
+      # by this reviewing session's own outbound proxy policy, so the log
+      # dump is how THIS ONE-OFF verification gets inspected by hand.
+      - name: Dump full target + candidate JSON to the job log
+        if: always()
+        run: |
+          echo "===== TARGETS ====="
+          for f in data/parcel_pipeline/output/*/targets/*.json; do
+            echo "--- $f ---"
+            cat "$f"
+            echo
+          done
+          echo "===== CANDIDATES ====="
+          for f in data/parcel_pipeline/output/*/candidates/*.json; do
+            echo "--- $f ---"
+            cat "$f"
+            echo
+          done
