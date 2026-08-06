@@ -54,6 +54,8 @@ run "parcel discovery: adapters (pure parsers)" node tests/test_parcel_discovery
 run "parcel discovery: shared services registry" node tests/test_parcel_shared_services.mjs
 run "parcel discovery: mapping confidence tagging" node tests/test_parcel_mapping_confidence.mjs
 run "parcel discovery: discover_batch orchestration" node tests/test_parcel_discover_batch.mjs
+run "parcel batch: build_batch_drafts" node tests/test_parcel_build_batch_drafts.mjs
+run "parcel batch: promote_batch (safety gates)" node tests/test_parcel_promote_batch.mjs
 run "frontend core (constants + router)" node tests/test_frontend_core.mjs
 run "economy core (readiness score, signals, stats)" node tests/test_economy_core.mjs
 run "economy map (layer-toggle race safety)" node tests/test_economy_map_race.mjs
