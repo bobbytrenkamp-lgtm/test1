@@ -21,7 +21,7 @@ sys.path.insert(0, DATA_DIR)
 
 from parcel_priority_queue import (  # noqa: E402
     build_queue, is_retry_due, find_reusable_state_coverage, load_catalog,
-    FACILITIES_PATH,
+    already_attempted, FACILITIES_PATH,
 )
 
 
@@ -95,6 +95,51 @@ def test_candidate_status_fips_is_included():
 
 def test_uninvestigated_fips_is_included():
     result = build_queue(next_n=5000)
+    statuses = {c["fips"]: c["catalog_status"] for c in result["candidates"]}
+    assert any(status == "not-investigated" for status in statuses.values())
+
+
+# ---------------------------------------------------------------------------
+# --exclude-attempted: skip status=candidate/requires-review records
+# record_batch_results.mjs has already logged a real discover_batch.mjs
+# outcome for, so a batch runner doesn't re-select the same top-N forever
+# just because "candidate" status alone isn't exclusion-worthy.
+# ---------------------------------------------------------------------------
+
+def test_already_attempted_true_when_marker_present_in_notes():
+    rec = {"notes": "2026-08-07 automated discovery: found x, not promoted -- reason."}
+    assert already_attempted(rec) is True
+
+
+def test_already_attempted_false_for_hand_written_notes_without_the_marker():
+    rec = {"notes": "Round 1 (2026-08-05): manually reviewed the county GIS portal."}
+    assert already_attempted(rec) is False
+
+
+def test_already_attempted_false_for_empty_or_missing_notes():
+    assert already_attempted({"notes": ""}) is False
+    assert already_attempted({}) is False
+
+
+def test_exclude_attempted_default_still_includes_a_previously_attempted_fips():
+    # Jackson County MO (29095): status=candidate AND already has a real
+    # "automated discovery:" note from this session's batch 1 run. Without
+    # --exclude-attempted, status alone still governs -- it must surface.
+    result = build_queue(next_n=5000)
+    returned_fips = {c["fips"] for c in result["candidates"]}
+    assert "29095" in returned_fips
+
+
+def test_exclude_attempted_true_excludes_a_previously_attempted_fips():
+    result = build_queue(next_n=5000, exclude_attempted=True)
+    returned_fips = {c["fips"] for c in result["candidates"]}
+    assert "29095" not in returned_fips
+
+
+def test_exclude_attempted_true_still_includes_a_never_attempted_candidate():
+    # A genuinely never-investigated FIPS must not be swept up by
+    # --exclude-attempted -- only records carrying the real marker.
+    result = build_queue(next_n=5000, exclude_attempted=True)
     statuses = {c["fips"]: c["catalog_status"] for c in result["candidates"]}
     assert any(status == "not-investigated" for status in statuses.values())
 
