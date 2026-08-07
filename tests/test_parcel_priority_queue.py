@@ -21,7 +21,7 @@ sys.path.insert(0, DATA_DIR)
 
 from parcel_priority_queue import (  # noqa: E402
     build_queue, is_retry_due, find_reusable_state_coverage, load_catalog,
-    already_attempted, FACILITIES_PATH,
+    already_attempted, load_facility_counts, FACILITIES_PATH,
 )
 
 
@@ -57,6 +57,18 @@ def test_facility_counts_match_independent_reimplementation():
     # from the independent count entirely.
     all_counted_fips = set(independent_top_fips_by_facility_count(10_000))
     assert returned_fips <= all_counted_fips
+
+
+def test_null_named_facility_record_does_not_blank_out_a_real_name():
+    # Williamson County TX (48491): its facilities_index.json entries are
+    # unordered, and the first one for this FIPS ("Skybox - Hutto 2 Austin")
+    # has county=None/state_abbr=None -- a later record for the same FIPS
+    # ("Skybox - Hutto 3 Austin") has the real "Williamson County"/"TX".
+    # A plain dict.setdefault() locks onto whichever record is encountered
+    # first, even if null; this must instead prefer any real value.
+    _, names, states = load_facility_counts()
+    assert names.get("48491") == "Williamson County"
+    assert states.get("48491") == "TX"
 
 
 def test_results_are_sorted_descending_by_facility_count():

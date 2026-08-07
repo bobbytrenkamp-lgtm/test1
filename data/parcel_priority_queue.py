@@ -54,8 +54,16 @@ def load_facility_counts():
             continue
         fips = str(fips).zfill(5)
         counts[fips] += 1
-        names.setdefault(fips, fac.get("county"))
-        states.setdefault(fips, fac.get("state_abbr"))
+        # Not setdefault: some facility records have county/state_abbr
+        # blank even when county_fips is populated (e.g. an early Skybox
+        # Hutto TX entry with county=None, state_abbr=None), and grouping
+        # is unordered across records for the same FIPS -- always prefer a
+        # real value over one already-recorded null rather than locking in
+        # whichever record happened to be encountered first.
+        if fac.get("county") and not names.get(fips):
+            names[fips] = fac.get("county")
+        if fac.get("state_abbr") and not states.get(fips):
+            states[fips] = fac.get("state_abbr")
     return counts, names, states
 
 
