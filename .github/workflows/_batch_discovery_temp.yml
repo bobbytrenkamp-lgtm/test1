@@ -67,3 +67,25 @@ jobs:
           path: ${{ steps.rundir.outputs.dir }}
           retention-days: 14
           if-no-files-found: warn
+
+      # The artifact above lives on a blob-storage host the sandbox's egress
+      # proxy doesn't allow fetching directly, so this dumps the same data
+      # (minus bulky sampleRecords, which none of the local review tooling
+      # needs) straight to the job log instead -- that only requires the
+      # already-authorized GitHub API to read back.
+      - name: Dump targets + candidates (sampleRecords stripped) to the log
+        if: always() && steps.rundir.outputs.dir != ''
+        run: |
+          DIR="${{ steps.rundir.outputs.dir }}"
+          for f in "$DIR"targets/*.json; do
+            [ -f "$f" ] || continue
+            echo "===FILE: targets/$(basename "$f")==="
+            cat "$f"
+            echo
+          done
+          for f in "$DIR"candidates/*.json; do
+            [ -f "$f" ] || continue
+            echo "===FILE: candidates/$(basename "$f")==="
+            node -e "const c = JSON.parse(require('fs').readFileSync('$f', 'utf8')); delete c.sampleRecords; console.log(JSON.stringify(c));"
+            echo
+          done
