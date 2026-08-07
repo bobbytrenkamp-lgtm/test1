@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      BATCH_FIPS: "09003,02020,06059,12011,51013,48121,47187,42043,31153,45079,08041,41059,34003,36001,54039"
+      BATCH_FIPS: "13135,08035,08001,41049,42045,08059,17097,45045,04021,26161,48491,27123,38015,04019,34021"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
