@@ -151,6 +151,32 @@ function writeJsonIfEnabled(path, data, { dryRun }) {
   writeFileSync(path, JSON.stringify(data, null, 2) + '\n');
 }
 
+const JURISDICTION_TYPE_WORDS = new Set(['county', 'parish', 'borough']);
+
+/* Lowercases, strips punctuation, and drops generic locality-type words
+   (county/parish/borough) so "Lake County" and "Salt Lake County" don't
+   collapse to the same thing via a shared word -- see the word-array
+   comparison below for why that distinction matters. */
+function normalizeJurisdictionWords(str) {
+  return String(str || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter((w) => w && !JURISDICTION_TYPE_WORDS.has(w));
+}
+
+function arraysEqual(a, b) {
+  return a.length === b.length && a.every((w, i) => w === b[i]);
+}
+
+function containsWordSequence(haystack, needle) {
+  if (!needle.length || needle.length > haystack.length) return false;
+  for (let i = 0; i <= haystack.length - needle.length; i++) {
+    if (needle.every((w, j) => haystack[i + j] === w)) return true;
+  }
+  return false;
+}
+
 /* Pure-ish (only reads already-fetched candidate data, never fetches). A
    deliberately conservative heuristic — never trusts bbox/geometry-only
    evidence (the exact class of mistake the Baltimore City/PG County MD
@@ -159,10 +185,21 @@ function writeJsonIfEnabled(path, data, { dryRun }) {
    jurisdiction name match in the service's own title/owner/description; no
    evidence either way (unknown, never assumed positive). Evidence the
    service is for a different, wrong jurisdiction (e.g. sample records'
-   state field doesn't match) downgrades to 'wrong'. */
+   state field doesn't match) downgrades to 'wrong'.
+
+   The sample-record comparison is exact-word-sequence, not substring
+   containment: a live batch run matched "Utah Salt Lake County Parcels
+   LIR" (published by UtahAGRC for Salt Lake County, UT) as jurisdictionMatch
+   'exact' against a target named "Lake County" (IL, FIPS 17097) purely
+   because the sample records' own "COUNTY" field read "Salt Lake", and
+   "salt lake".includes("lake") is true. Comparing the full normalized word
+   sequence instead correctly treats that as evidence of the WRONG
+   jurisdiction, while a trailing state-abbreviation token (only the
+   target's own actual state, never an arbitrary word) is still tolerated
+   so formatting variants like "Lake, IL" keep matching. */
 export function determineJurisdictionMatch(candidate, jurisdiction, sampleRecords) {
-  const nameLower = String(jurisdiction.name || '').toLowerCase().replace(/\s+county$/, '').trim();
-  const stateAbbr = String(jurisdiction.state || '').toUpperCase();
+  const nameWords = normalizeJurisdictionWords(jurisdiction.name);
+  const stateAbbr = String(jurisdiction.state || '').toLowerCase();
 
   if (Array.isArray(sampleRecords) && sampleRecords.length) {
     for (const record of sampleRecords) {
@@ -171,18 +208,25 @@ export function determineJurisdictionMatch(candidate, jurisdiction, sampleRecord
         const keyLower = key.toLowerCase();
         const valueStr = String(value).toLowerCase();
         const looksLikeJurisdictionField = /county|jurisdiction|jurscode|fips|munic/i.test(keyLower);
-        if (!looksLikeJurisdictionField) continue;
-        if (nameLower && valueStr.includes(nameLower)) return 'exact';
+        if (!looksLikeJurisdictionField || !nameWords.length) continue;
+
+        let valueWords = normalizeJurisdictionWords(valueStr);
+        if (!valueWords.length) continue;
+        if (stateAbbr && valueWords[valueWords.length - 1] === stateAbbr) {
+          valueWords = valueWords.slice(0, -1);
+        }
+        if (arraysEqual(valueWords, nameWords)) return 'exact';
         // A jurisdiction-shaped field with a real, non-matching value is
         // real evidence of the WRONG jurisdiction, not just "no match yet".
-        if (nameLower && valueStr.length > 2 && !valueStr.includes(nameLower)) return 'wrong';
+        return 'wrong';
       }
     }
   }
 
-  const titleFields = [candidate.itemTitle, candidate.publisherName, candidate.accessInformation]
-    .filter(Boolean).join(' ').toLowerCase();
-  if (nameLower && titleFields.includes(nameLower)) return 'partial';
+  const titleWords = normalizeJurisdictionWords(
+    [candidate.itemTitle, candidate.publisherName, candidate.accessInformation].filter(Boolean).join(' ')
+  );
+  if (containsWordSequence(titleWords, nameWords)) return 'partial';
 
   return 'unknown';
 }
@@ -512,7 +556,7 @@ function loadPriorityQueue({ next, state }) {
   return JSON.parse(raw);
 }
 
-function buildFipsJurisdictions(fipsCsv) {
+export function buildFipsJurisdictions(fipsCsv) {
   const fipsList = fipsCsv.split(',').map(s => s.trim()).filter(Boolean);
   let facilityMeta = {};
   const facilitiesPath = join(ROOT, 'data', 'facilities_index.json');
@@ -521,7 +565,17 @@ function buildFipsJurisdictions(fipsCsv) {
     for (const fac of facilities) {
       const fips = String(fac.county_fips || '').padStart(5, '0');
       if (!fips || fips === '00000') continue;
-      if (!facilityMeta[fips]) facilityMeta[fips] = { name: fac.county, state: fac.state_abbr, count: 0 };
+      if (!facilityMeta[fips]) facilityMeta[fips] = { name: null, state: null, count: 0 };
+      // Not "first record for this FIPS wins": some facility records have
+      // county/state_abbr blank even when county_fips is populated (e.g.
+      // an early Skybox Hutto TX entry with county=null, state_abbr=null),
+      // and grouping is unordered across records for the same FIPS -- a
+      // real value should never be overwritten by a blank one encountered
+      // later, and a blank placeholder should always be replaceable by a
+      // real value found later. Same bug, independently, as
+      // parcel_priority_queue.py's load_facility_counts().
+      if (fac.county && !facilityMeta[fips].name) facilityMeta[fips].name = fac.county;
+      if (fac.state_abbr && !facilityMeta[fips].state) facilityMeta[fips].state = fac.state_abbr;
       facilityMeta[fips].count++;
     }
   }

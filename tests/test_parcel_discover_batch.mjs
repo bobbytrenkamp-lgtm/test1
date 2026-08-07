@@ -13,6 +13,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import {
   runDiscovery, determineJurisdictionMatch, buildSummaryMarkdown, DEFAULT_SOURCE_ORDER,
+  buildFipsJurisdictions, ROOT,
 } from '../data/parcel_pipeline/discover_batch.mjs';
 
 let pass = 0, fail = 0;
@@ -63,6 +64,27 @@ function candidateAdapter(source, overrides = {}) {
     determineJurisdictionMatch({ itemTitle: 'Example County Parcels' }, jurisdiction, [{ PIN: '123', OWNER: 'JOHN DOE' }]), 'partial');
   ok('geometry/bbox fields are never inspected -- passing a bbox-shaped candidate never wins on their own',
     determineJurisdictionMatch({ itemTitle: '', raw: { bbox: [0, 0, 1, 1] } }, jurisdiction, null) === 'unknown');
+}
+
+// ── determineJurisdictionMatch: compound-name false positives (real bug, live batch run) ──
+// A batch run matched "Utah Salt Lake County Parcels LIR" (published by
+// UtahAGRC for Salt Lake County, UT) as jurisdictionMatch 'exact' against
+// a target named "Lake County" (IL) -- a plain substring check treated
+// "salt lake".includes("lake") as a match. jurisdictionMatch === 'exact' is
+// the ONLY thing that lets promote_batch.mjs approve a promotion, so this
+// was a live path to promoting a completely wrong state's data.
+{
+  const jurisdiction = { fips: '17097', name: 'Lake County', state: 'IL' };
+  t('a compound name that merely contains the target name as a substring is WRONG, not exact (the Salt Lake / Lake IL case)',
+    determineJurisdictionMatch({}, jurisdiction, [{ COUNTY: 'Salt Lake' }]), 'wrong');
+  t('the real county name, unembellished, still matches exact',
+    determineJurisdictionMatch({}, jurisdiction, [{ COUNTY: 'Lake' }]), 'exact');
+  t('the county name plus its own "County" suffix still matches exact',
+    determineJurisdictionMatch({}, jurisdiction, [{ COUNTY: 'Lake County' }]), 'exact');
+  t('the county name plus a trailing state-abbreviation token still matches exact ("Lake, IL")',
+    determineJurisdictionMatch({}, jurisdiction, [{ COUNTY: 'Lake, IL' }]), 'exact');
+  t('a trailing token that is NOT the target\'s own state is not stripped, and does not match',
+    determineJurisdictionMatch({}, jurisdiction, [{ COUNTY: 'Lake, UT' }]), 'wrong');
 }
 
 // ── runDiscovery: source-precedence ordering + shortCircuit skips remaining sources ──
@@ -247,6 +269,24 @@ function candidateAdapter(source, overrides = {}) {
   ok('summary markdown includes a row per target', md.includes('| 11111 |') && md.includes('| 22222 |'));
   ok('summary markdown renders a missing score/band as a dash, not "null"', md.includes('| partial | - | - |'));
   ok('summary markdown includes status and band counts', md.includes('- complete: 1') && md.includes('- strong: 1'));
+}
+
+// ── buildFipsJurisdictions: null-name/state facility records must not shadow a real value ──
+// Williamson County TX (48491): its facilities_index.json entries are
+// unordered, and the first one for this FIPS ("Skybox - Hutto 2 Austin")
+// has county=null/state_abbr=null -- a later record for the same FIPS
+// ("Skybox - Hutto 3 Austin") has the real "Williamson County"/"TX". A
+// plain "first record wins" grouping locks onto whichever record is
+// encountered first, even if null; this must instead prefer any real
+// value. Same bug, independently, as parcel_priority_queue.py's
+// load_facility_counts() (test_parcel_priority_queue.py has the Python
+// twin of this test).
+if (existsSync(join(ROOT, 'data', 'facilities_index.json'))) {
+  const jurisdictions = buildFipsJurisdictions('48491');
+  t('a null-named facility record does not blank out a real name for the same FIPS',
+    jurisdictions[0].name, 'Williamson County');
+  t('a null-stated facility record does not blank out a real state for the same FIPS',
+    jurisdictions[0].state, 'TX');
 }
 
 console.log(`\n${pass} passed, ${fail} failed`);
