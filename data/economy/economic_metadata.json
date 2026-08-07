@@ -75,9 +75,9 @@
  "eia_state_count": 0,
  "fred_series_count": 23,
  "fred_skipped": [],
- "generated_at": "2026-08-06T09:10:44+00:00",
- "last_run_at": "2026-08-06T09:10:44+00:00",
- "latest_observation_date": "2026-08-05",
+ "generated_at": "2026-08-07T07:46:10+00:00",
+ "last_run_at": "2026-08-07T07:46:10+00:00",
+ "latest_observation_date": "2026-08-06",
  "nri_available": false,
  "nri_county_count": 0,
  "nri_last_successful_update": null,
@@ -86,7 +86,7 @@
  "permits_county_count": 0,
  "permits_last_successful_update": "2026-07-29T02:51:13+00:00",
  "pipeline_version": "1.0.0",
- "source_updated_at": "2026-08-05 16:03:20-05",
+ "source_updated_at": "2026-08-06 16:03:23-05",
  "sources": [
   {
    "id": "fred",
