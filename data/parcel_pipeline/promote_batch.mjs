@@ -84,11 +84,24 @@ export function evaluatePromotion(target, candidate, opts = {}) {
     };
   }
   const validation = candidate.mappingValidation;
-  if (!validation || !validation.ok) {
-    return { approved: false, reason: `mapping validation is not clean: ${JSON.stringify(validation?.missing || validation)}` };
-  }
-  if (validation.requiredMissing && validation.requiredMissing.length) {
+  // Checked before the generic ok/not-ok gate below: requiredMissing is the
+  // single most actionable reason (schema.js hard-rejects a record without
+  // it), so it must never get shadowed by a vaguer "not clean" message when
+  // it's the only real problem (an empty `missing` array is still truthy in
+  // JS, so `validation.missing || validation` previously always reported
+  // `missing` even when the actual failure was requiredMissing/extra/overlap).
+  if (validation?.requiredMissing?.length) {
     return { approved: false, reason: `required field(s) not mapped: ${validation.requiredMissing.join(', ')}` };
+  }
+  if (!validation || !validation.ok) {
+    const problems = [];
+    if (validation?.missing?.length) problems.push(`missing: ${validation.missing.join(', ')}`);
+    if (validation?.extra?.length) problems.push(`unrecognized: ${validation.extra.join(', ')}`);
+    if (validation?.overlap?.length) problems.push(`overlap: ${validation.overlap.join(', ')}`);
+    return {
+      approved: false,
+      reason: `mapping validation is not clean${problems.length ? ' (' + problems.join('; ') + ')' : ' (no mappingValidation present)'}`,
+    };
   }
   if (candidate.band === 'weak' && !allowWeak) {
     return { approved: false, reason: `best candidate band is 'weak' (score ${candidate.score}) -- pass --allow-weak to override (not recommended)` };

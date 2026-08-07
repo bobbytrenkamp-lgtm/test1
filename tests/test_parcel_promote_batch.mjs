@@ -97,6 +97,19 @@ t('mappingValidation.ok === false -> rejected',
 t('mappingValidation.requiredMissing non-empty -> rejected even if ok is somehow true',
   evaluatePromotion(cleanTarget, cleanCandidate({ mappingValidation: { ok: true, missing: [], extra: [], overlap: [], requiredMissing: ['parcel_id'] } }), { catalogRecord: cleanCatalogRecord }).approved, false);
 
+{
+  // Real scenario from batch 2 (Richmond city VA, FIPS 51760): ok=false
+  // because requiredMissing is non-empty, but missing/extra/overlap are
+  // all empty arrays -- `validation.missing || validation` used to report
+  // an uninformative "[]" here instead of the actual, actionable reason,
+  // since an empty array is truthy in JS.
+  const richmondLikeValidation = { ok: false, missing: [], extra: [], overlap: [], requiredMissing: ['parcel_id'] };
+  const evaluation = evaluatePromotion(cleanTarget, cleanCandidate({ mappingValidation: richmondLikeValidation }), { catalogRecord: cleanCatalogRecord });
+  ok('ok=false with only requiredMissing set -> rejected', evaluation.approved === false);
+  ok('reason names the actual missing required field, not an uninformative "[]"', evaluation.reason.includes('parcel_id'));
+  ok('reason does not contain a bare "[]"', !evaluation.reason.includes('[]'));
+}
+
 t('weak band without --allow-weak -> rejected',
   evaluatePromotion(cleanTarget, cleanCandidate({ band: 'weak', score: 44 }), { catalogRecord: cleanCatalogRecord }).approved, false);
 
