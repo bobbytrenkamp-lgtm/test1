@@ -195,6 +195,17 @@ window.PARCEL_GEO = (function () {
 
   const sqmToAcres = (sqm) => sqm / SQM_PER_ACRE;
 
+  /* Geodesic perimeter in metres, summed over every ring — including holes,
+     whose edges are real boundary that a setback applies to just as much as
+     the outer edge. */
+  function perimeterMeters(geometry) {
+    let total = 0;
+    for (const ring of ringsOf(geometry)) {
+      for (let i = 1; i < ring.length; i++) total += haversineKm(ring[i - 1], ring[i]) * 1000;
+    }
+    return total;
+  }
+
   /* Axis-aligned bounds [minLon, minLat, maxLon, maxLat], used to reject
      obviously-distant candidates before doing real segment math. */
   function bounds(geometry) {
@@ -229,7 +240,7 @@ window.PARCEL_GEO = (function () {
     EARTH_RADIUS_KM, KM_PER_MILE,
     haversineKm, kmToMiles, milesToKm,
     pointInPolygon, pointToPolygonKm, pointToSegmentKm, projector,
-    ringsOf, vertexCentroid, polygonAreaSqm, ringAreaSqm, sqmToAcres,
+    ringsOf, vertexCentroid, polygonAreaSqm, ringAreaSqm, sqmToAcres, perimeterMeters,
     bounds, pointToBoundsKm,
   };
 })();
