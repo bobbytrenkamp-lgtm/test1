@@ -1,0 +1,5140 @@
+{
+  "meta": {
+    "generatedBy": "data/parcel_pipeline/generate_coverage_metrics.mjs",
+    "generatedFrom": [
+      "js/parcel/registry.js",
+      "data/parcel_source_catalog.json",
+      "data/facilities_index.json"
+    ],
+    "qualityWeights": {
+      "identity": 10,
+      "area": 5,
+      "address": 10,
+      "ownership": 10,
+      "assessment": 15,
+      "sales": 15,
+      "zoning": 15,
+      "building": 10,
+      "land_use": 5,
+      "legal": 5,
+      "provenance": 5
+    },
+    "maxQualityScore": 105,
+    "tierDescriptions": {
+      "full-intelligence": "Geometry, ownership, assessment, sales, and zoning all wired up.",
+      "rich": "Geometry and identity plus ownership/address and valuation.",
+      "standard": "Geometry plus several useful attribute categories.",
+      "basic": "Geometry and identity plus limited attributes.",
+      "boundary-only": "Essentially polygons and an identifier.",
+      "degraded": "Normally supported, but one or more configured sources are currently failing.",
+      "blocked": "A known source problem prevents use.",
+      "unsupported": "No verified source yet."
+    },
+    "caveat": "These figures measure how many canonical fields each jurisdiction's configured sources are wired up to populate. They are an engineering signal, not a measure of data accuracy, freshness, or fitness for any real estate decision. A county can score 100 here while publishing values that are years stale."
+  },
+  "coverage": {
+    "productionJurisdictions": 58,
+    "facilityBearingJurisdictions": 549,
+    "jurisdictionCoveragePct": 10.6,
+    "cataloguedJurisdictions": 167,
+    "totalFacilities": 4321,
+    "facilitiesInCoveredJurisdictions": 2033,
+    "facilitiesUnattributed": 490,
+    "facilityWeightedCoveragePct": 53.1
+  },
+  "depth": {
+    "area": {
+      "jurisdictions": 45,
+      "jurisdictionPct": 77.6,
+      "facilityWeightedPct": 74
+    },
+    "identity": {
+      "jurisdictions": 58,
+      "jurisdictionPct": 100,
+      "facilityWeightedPct": 100
+    },
+    "address": {
+      "jurisdictions": 36,
+      "jurisdictionPct": 62.1,
+      "facilityWeightedPct": 57.9
+    },
+    "ownership": {
+      "jurisdictions": 35,
+      "jurisdictionPct": 60.3,
+      "facilityWeightedPct": 64.3
+    },
+    "assessment": {
+      "jurisdictions": 40,
+      "jurisdictionPct": 69,
+      "facilityWeightedPct": 69.6
+    },
+    "sales": {
+      "jurisdictions": 25,
+      "jurisdictionPct": 43.1,
+      "facilityWeightedPct": 39.1
+    },
+    "zoning": {
+      "jurisdictions": 17,
+      "jurisdictionPct": 29.3,
+      "facilityWeightedPct": 27.4
+    },
+    "building": {
+      "jurisdictions": 27,
+      "jurisdictionPct": 46.6,
+      "facilityWeightedPct": 42.2
+    },
+    "legal": {
+      "jurisdictions": 32,
+      "jurisdictionPct": 55.2,
+      "facilityWeightedPct": 54.9
+    },
+    "land_use": {
+      "jurisdictions": 46,
+      "jurisdictionPct": 79.3,
+      "facilityWeightedPct": 76.6
+    }
+  },
+  "tierDistribution": {
+    "full-intelligence": 6,
+    "rich": 33,
+    "standard": 5,
+    "basic": 6,
+    "boundary-only": 8,
+    "degraded": 0,
+    "blocked": 0,
+    "unsupported": 0
+  },
+  "qualityScore": {
+    "mean": 47.7,
+    "max": 105,
+    "best": 91.7,
+    "worst": 10
+  },
+  "jurisdictions": [
+    {
+      "fips": "51107",
+      "id": "va-loudoun-county",
+      "name": "Loudoun County, Virginia",
+      "state": "VA",
+      "connector": "arcgis",
+      "facilities": 129,
+      "tier": "boundary-only",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": false
+      },
+      "qualityScore": 15,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 17
+    },
+    {
+      "fips": "04013",
+      "id": "az-maricopa-county",
+      "name": "Maricopa County, Arizona",
+      "state": "AZ",
+      "connector": "arcgis",
+      "facilities": 123,
+      "tier": "full-intelligence",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": true,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 80,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.5,
+          "earned": 7.5
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.6666666666666666,
+          "earned": 6.7
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.6666666666666666,
+          "earned": 3.3
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 13
+    },
+    {
+      "fips": "48113",
+      "id": "tx-dallas-county",
+      "name": "Dallas County, Texas",
+      "state": "TX",
+      "connector": "arcgis",
+      "facilities": 118,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": true,
+        "assessment": true,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 27.9,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.25,
+          "earned": 3.8
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 21
+    },
+    {
+      "fips": "13121",
+      "id": "ga-fulton-county",
+      "name": "Fulton County, Georgia",
+      "state": "GA",
+      "connector": "arcgis",
+      "facilities": 98,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 45,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 18
+    },
+    {
+      "fips": "39049",
+      "id": "oh-franklin-county",
+      "name": "Franklin County, Ohio",
+      "state": "OH",
+      "connector": "arcgis",
+      "facilities": 82,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 72.9,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 12
+    },
+    {
+      "fips": "53033",
+      "id": "wa-king-county",
+      "name": "King County, Washington",
+      "state": "WA",
+      "connector": "arcgis",
+      "facilities": 71,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": false,
+        "zoning": true,
+        "building": false,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 62.9,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 15
+    },
+    {
+      "fips": "06037",
+      "id": "ca-los-angeles-county",
+      "name": "Los Angeles County, California",
+      "state": "CA",
+      "connector": "arcgis",
+      "facilities": 64,
+      "tier": "rich",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": true,
+        "ownership": false,
+        "assessment": true,
+        "sales": false,
+        "zoning": false,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 44.6,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.6666666666666666,
+          "earned": 6.7
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 18
+    },
+    {
+      "fips": "27053",
+      "id": "mn-hennepin-county",
+      "name": "Hennepin County, Minnesota",
+      "state": "MN",
+      "connector": "arcgis",
+      "facilities": 63,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 58.3,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.6666666666666666,
+          "earned": 6.7
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 13
+    },
+    {
+      "fips": "48201",
+      "id": "tx-harris-county",
+      "name": "Harris County, Texas",
+      "state": "TX",
+      "connector": "arcgis",
+      "facilities": 61,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": false,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 46.7,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0.5,
+          "earned": 7.5
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 17
+    },
+    {
+      "fips": "36061",
+      "id": "ny-new-york-county",
+      "name": "New York County, New York",
+      "state": "NY",
+      "connector": "arcgis",
+      "facilities": 52,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": false,
+        "zoning": true,
+        "building": true,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 62.5,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.5,
+          "earned": 7.5
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 13
+    },
+    {
+      "fips": "51059",
+      "id": "va-fairfax-county",
+      "name": "Fairfax County, Virginia",
+      "state": "VA",
+      "connector": "arcgis",
+      "facilities": 46,
+      "tier": "boundary-only",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": false
+      },
+      "qualityScore": 12.5,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 15
+    },
+    {
+      "fips": "48453",
+      "id": "tx-travis-county",
+      "name": "Travis County, Texas",
+      "state": "TX",
+      "connector": "arcgis",
+      "facilities": 45,
+      "tier": "basic",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": true,
+        "land_use": false
+      },
+      "qualityScore": 24.2,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 23
+    },
+    {
+      "fips": "32003",
+      "id": "nv-clark-county",
+      "name": "Clark County, Nevada",
+      "state": "NV",
+      "connector": "arcgis",
+      "facilities": 43,
+      "tier": "basic",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": false,
+        "ownership": true,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": false
+      },
+      "qualityScore": 10,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 27
+    },
+    {
+      "fips": "12086",
+      "id": "fl-miami-dade-county",
+      "name": "Miami-Dade County, Florida",
+      "state": "FL",
+      "connector": "arcgis",
+      "facilities": 40,
+      "tier": "rich",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": false,
+        "zoning": true,
+        "building": true,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 70,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 14
+    },
+    {
+      "fips": "06075",
+      "id": "ca-san-francisco-county",
+      "name": "San Francisco County, California",
+      "state": "CA",
+      "connector": "arcgis",
+      "facilities": 39,
+      "tier": "basic",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": true,
+        "building": false,
+        "legal": false,
+        "land_use": false
+      },
+      "qualityScore": 25,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 25
+    },
+    {
+      "fips": "37119",
+      "id": "nc-mecklenburg-county",
+      "name": "Mecklenburg County, North Carolina",
+      "state": "NC",
+      "connector": "arcgis",
+      "facilities": 39,
+      "tier": "boundary-only",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": false
+      },
+      "qualityScore": 12.5,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 26
+    },
+    {
+      "fips": "48029",
+      "id": "tx-bexar-county",
+      "name": "Bexar County, Texas",
+      "state": "TX",
+      "connector": "arcgis",
+      "facilities": 39,
+      "tier": "rich",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 60,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0.5,
+          "earned": 7.5
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.3333333333333333,
+          "earned": 3.3
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 16
+    },
+    {
+      "fips": "49035",
+      "id": "ut-salt-lake-county",
+      "name": "Salt Lake County, Utah",
+      "state": "UT",
+      "connector": "arcgis",
+      "facilities": 37,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": false,
+        "assessment": true,
+        "sales": false,
+        "zoning": false,
+        "building": true,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 45,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.5,
+          "earned": 7.5
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 17
+    },
+    {
+      "fips": "41067",
+      "id": "or-washington-county",
+      "name": "Washington County, Oregon",
+      "state": "OR",
+      "connector": "arcgis",
+      "facilities": 36,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": false,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": true,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 60.4,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.6666666666666666,
+          "earned": 6.7
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 16
+    },
+    {
+      "fips": "47037",
+      "id": "tn-davidson-county",
+      "name": "Davidson County, Tennessee",
+      "state": "TN",
+      "connector": "arcgis",
+      "facilities": 34,
+      "tier": "full-intelligence",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": true,
+        "building": false,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 75.4,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 12
+    },
+    {
+      "fips": "42101",
+      "id": "pa-philadelphia",
+      "name": "Philadelphia, Pennsylvania",
+      "state": "PA",
+      "connector": "arcgis",
+      "facilities": 32,
+      "tier": "standard",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 30,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 23
+    },
+    {
+      "fips": "06067",
+      "id": "ca-sacramento-county",
+      "name": "Sacramento County, California",
+      "state": "CA",
+      "connector": "arcgis",
+      "facilities": 30,
+      "tier": "basic",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 15,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 24
+    },
+    {
+      "fips": "39035",
+      "id": "oh-cuyahoga-county",
+      "name": "Cuyahoga County, Ohio",
+      "state": "OH",
+      "connector": "arcgis",
+      "facilities": 29,
+      "tier": "full-intelligence",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": true,
+        "building": false,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 81.7,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 11
+    },
+    {
+      "fips": "37183",
+      "id": "nc-wake-county",
+      "name": "Wake County, North Carolina",
+      "state": "NC",
+      "connector": "arcgis",
+      "facilities": 28,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 76.3,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 10
+    },
+    {
+      "fips": "12057",
+      "id": "fl-hillsborough-county",
+      "name": "Hillsborough County, Florida",
+      "state": "FL",
+      "connector": "arcgis",
+      "facilities": 27,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 70.4,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 12
+    },
+    {
+      "fips": "19153",
+      "id": "ia-polk-county",
+      "name": "Polk County, Iowa",
+      "state": "IA",
+      "connector": "arcgis",
+      "facilities": 27,
+      "tier": "boundary-only",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": false
+      },
+      "qualityScore": 10,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 27
+    },
+    {
+      "fips": "25025",
+      "id": "ma-suffolk-county",
+      "name": "Suffolk County, Massachusetts",
+      "state": "MA",
+      "connector": "arcgis",
+      "facilities": 27,
+      "tier": "basic",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 12.5,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 26
+    },
+    {
+      "fips": "25017",
+      "id": "ma-middlesex-county",
+      "name": "Middlesex County, Massachusetts",
+      "state": "MA",
+      "connector": "arcgis",
+      "facilities": 26,
+      "tier": "basic",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 12.5,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 26
+    },
+    {
+      "fips": "39061",
+      "id": "oh-hamilton-county",
+      "name": "Hamilton County, Ohio",
+      "state": "OH",
+      "connector": "arcgis",
+      "facilities": 25,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": false,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 51.3,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 14
+    },
+    {
+      "fips": "41051",
+      "id": "or-multnomah-county",
+      "name": "Multnomah County, Oregon",
+      "state": "OR",
+      "connector": "arcgis",
+      "facilities": 25,
+      "tier": "full-intelligence",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": true,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 91.7,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 10
+    },
+    {
+      "fips": "42003",
+      "id": "pa-allegheny-county",
+      "name": "Allegheny County, Pennsylvania",
+      "state": "PA",
+      "connector": "arcgis",
+      "facilities": 25,
+      "tier": "boundary-only",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": false
+      },
+      "qualityScore": 12.5,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 26
+    },
+    {
+      "fips": "18097",
+      "id": "in-marion-county",
+      "name": "Marion County, Indiana",
+      "state": "IN",
+      "connector": "arcgis",
+      "facilities": 24,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": true,
+        "assessment": true,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 37.9,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 17
+    },
+    {
+      "fips": "11001",
+      "id": "dc-district-of-columbia",
+      "name": "District of Columbia",
+      "state": "DC",
+      "connector": "arcgis",
+      "facilities": 23,
+      "tier": "boundary-only",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": false
+      },
+      "qualityScore": 12.5,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 26
+    },
+    {
+      "fips": "26163",
+      "id": "mi-wayne-county",
+      "name": "Wayne County, Michigan",
+      "state": "MI",
+      "connector": "arcgis",
+      "facilities": 23,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": true,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 71.3,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 14
+    },
+    {
+      "fips": "48439",
+      "id": "tx-tarrant-county",
+      "name": "Tarrant County, Texas",
+      "state": "TX",
+      "connector": "arcgis",
+      "facilities": 23,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 65.4,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0.5,
+          "earned": 7.5
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.6666666666666666,
+          "earned": 6.7
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 11
+    },
+    {
+      "fips": "12031",
+      "id": "fl-duval-county",
+      "name": "Duval County, Florida",
+      "state": "FL",
+      "connector": "arcgis",
+      "facilities": 22,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": true,
+        "assessment": true,
+        "sales": false,
+        "zoning": true,
+        "building": true,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 52.1,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.3333333333333333,
+          "earned": 3.3
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 17
+    },
+    {
+      "fips": "21111",
+      "id": "ky-jefferson-county",
+      "name": "Jefferson County, Kentucky",
+      "state": "KY",
+      "connector": "arcgis",
+      "facilities": 22,
+      "tier": "boundary-only",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": false
+      },
+      "qualityScore": 10,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 27
+    },
+    {
+      "fips": "34023",
+      "id": "nj-middlesex-county",
+      "name": "Middlesex County, New Jersey",
+      "state": "NJ",
+      "connector": "arcgis",
+      "facilities": 22,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 61.3,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.25,
+          "earned": 3.8
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.6666666666666666,
+          "earned": 6.7
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.6666666666666666,
+          "earned": 3.3
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 15
+    },
+    {
+      "fips": "16001",
+      "id": "id-ada-county",
+      "name": "Ada County, Idaho",
+      "state": "ID",
+      "connector": "arcgis",
+      "facilities": 21,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": false,
+        "assessment": true,
+        "sales": false,
+        "zoning": true,
+        "building": false,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 42.5,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.5,
+          "earned": 7.5
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 21
+    },
+    {
+      "fips": "34017",
+      "id": "nj-hudson-county",
+      "name": "Hudson County, New Jersey",
+      "state": "NJ",
+      "connector": "arcgis",
+      "facilities": 21,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 64.6,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.3333333333333333,
+          "earned": 3.3
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 13
+    },
+    {
+      "fips": "48085",
+      "id": "tx-collin-county",
+      "name": "Collin County, Texas",
+      "state": "TX",
+      "connector": "arcgis",
+      "facilities": 21,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 66.7,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0.5,
+          "earned": 7.5
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.6666666666666666,
+          "earned": 6.7
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 11
+    },
+    {
+      "fips": "15003",
+      "id": "hi-honolulu-county",
+      "name": "Honolulu County, Hawaii",
+      "state": "HI",
+      "connector": "arcgis",
+      "facilities": 20,
+      "tier": "boundary-only",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": false
+      },
+      "qualityScore": 15,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 25
+    },
+    {
+      "fips": "32031",
+      "id": "nv-washoe-county",
+      "name": "Washoe County, Nevada",
+      "state": "NV",
+      "connector": "arcgis",
+      "facilities": 19,
+      "tier": "full-intelligence",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": true,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 85,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.6666666666666666,
+          "earned": 6.7
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.6666666666666666,
+          "earned": 3.3
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 11
+    },
+    {
+      "fips": "56021",
+      "id": "wy-laramie-county",
+      "name": "Laramie County, Wyoming",
+      "state": "WY",
+      "connector": "arcgis",
+      "facilities": 19,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": true,
+        "assessment": true,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 39.2,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 18
+    },
+    {
+      "fips": "10003",
+      "id": "de-new-castle-county",
+      "name": "New Castle County, Delaware",
+      "state": "DE",
+      "connector": "arcgis",
+      "facilities": 18,
+      "tier": "standard",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 30,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 20
+    },
+    {
+      "fips": "13089",
+      "id": "ga-dekalb-county",
+      "name": "DeKalb County, Georgia",
+      "state": "GA",
+      "connector": "arcgis",
+      "facilities": 18,
+      "tier": "standard",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": false,
+        "assessment": true,
+        "sales": false,
+        "zoning": true,
+        "building": false,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 42.5,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 17
+    },
+    {
+      "fips": "31055",
+      "id": "ne-douglas-county",
+      "name": "Douglas County, Nebraska",
+      "state": "NE",
+      "connector": "arcgis",
+      "facilities": 18,
+      "tier": "standard",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": true,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 40,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 19
+    },
+    {
+      "fips": "51683",
+      "id": "va-manassas-city",
+      "name": "Manassas city, Virginia",
+      "state": "VA",
+      "connector": "arcgis",
+      "facilities": 18,
+      "tier": "full-intelligence",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": true,
+        "building": false,
+        "legal": true,
+        "land_use": false
+      },
+      "qualityScore": 70.4,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 17
+    },
+    {
+      "fips": "06001",
+      "id": "ca-alameda-county",
+      "name": "Alameda County, California",
+      "state": "CA",
+      "connector": "arcgis",
+      "facilities": 17,
+      "tier": "rich",
+      "categories": {
+        "area": false,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": false,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 44.6,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0.5,
+          "earned": 7.5
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.6666666666666666,
+          "earned": 3.3
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 19
+    },
+    {
+      "fips": "01073",
+      "id": "al-jefferson-county",
+      "name": "Jefferson County, Alabama",
+      "state": "AL",
+      "connector": "arcgis",
+      "facilities": 16,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 37.9,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 19
+    },
+    {
+      "fips": "17043",
+      "id": "il-dupage-county",
+      "name": "DuPage County, Illinois",
+      "state": "IL",
+      "connector": "arcgis",
+      "facilities": 16,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 42.9,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 18
+    },
+    {
+      "fips": "24510",
+      "id": "md-baltimore-city",
+      "name": "Baltimore city, Maryland",
+      "state": "MD",
+      "connector": "arcgis",
+      "facilities": 16,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": false,
+        "assessment": true,
+        "sales": true,
+        "zoning": true,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 80.4,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.6666666666666666,
+          "earned": 6.7
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 8
+    },
+    {
+      "fips": "24031",
+      "id": "md-montgomery-county",
+      "name": "Montgomery County, Maryland",
+      "state": "MD",
+      "connector": "arcgis",
+      "facilities": 14,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": false,
+        "assessment": true,
+        "sales": true,
+        "zoning": true,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 80.4,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.6666666666666666,
+          "earned": 6.7
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 8
+    },
+    {
+      "fips": "24033",
+      "id": "md-prince-georges-county",
+      "name": "Prince George's County, Maryland",
+      "state": "MD",
+      "connector": "arcgis",
+      "facilities": 12,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": false,
+        "assessment": true,
+        "sales": true,
+        "zoning": true,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 80.4,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.6666666666666666,
+          "earned": 6.7
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 8
+    },
+    {
+      "fips": "34013",
+      "id": "nj-essex-county",
+      "name": "Essex County, New Jersey",
+      "state": "NJ",
+      "connector": "arcgis",
+      "facilities": 12,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": true,
+        "zoning": false,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 64.6,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.3333333333333333,
+          "earned": 3.3
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 13
+    },
+    {
+      "fips": "51153",
+      "id": "va-prince-william-county",
+      "name": "Prince William County, Virginia",
+      "state": "VA",
+      "connector": "arcgis",
+      "facilities": 9,
+      "tier": "standard",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": false,
+        "ownership": true,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 26.7,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.3333333333333333,
+          "earned": 3.3
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.6666666666666666,
+          "earned": 3.3
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 9
+    },
+    {
+      "fips": "49049",
+      "id": "ut-utah-county",
+      "name": "Utah County",
+      "state": "UT",
+      "connector": "arcgis",
+      "facilities": 5,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": false,
+        "assessment": true,
+        "sales": false,
+        "zoning": false,
+        "building": true,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 45,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.5,
+          "earned": 7.5
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 17
+    },
+    {
+      "fips": "24027",
+      "id": "md-howard-county",
+      "name": "Howard County, Maryland",
+      "state": "MD",
+      "connector": "arcgis",
+      "facilities": 4,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": false,
+        "assessment": true,
+        "sales": true,
+        "zoning": true,
+        "building": true,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 80.4,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0.75,
+          "earned": 11.3
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0.6666666666666666,
+          "earned": 6.7
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 8
+    }
+  ],
+  "opportunities": [
+    {
+      "fips": "17031",
+      "name": "Cook County, Illinois",
+      "state": "IL",
+      "facilities": 130,
+      "status": "blocked",
+      "likelySource": "https://gis.cookcountyil.gov/",
+      "sourceType": "arcgis_other",
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "investigated, blocked"
+    },
+    {
+      "fips": "08031",
+      "name": "Denver County, Colorado",
+      "state": "CO",
+      "facilities": 62,
+      "status": "requires-review",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=3ef4450bb6e44087b05cec1e93c780dc",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "investigated, needs human review"
+    },
+    {
+      "fips": "29095",
+      "name": "Jackson County, Missouri",
+      "state": "MO",
+      "facilities": 34,
+      "status": "candidate",
+      "likelySource": "https://jcgis.jacksongov.org/",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "29510",
+      "name": "St. Louis city, Missouri",
+      "state": "MO",
+      "facilities": 15,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=d4760f0388d846b890ca457abfb8c886",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "05119",
+      "name": "Pulaski County",
+      "state": "AR",
+      "facilities": 14,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=fb7383782def4b329d5e238b06078ab1",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "09001",
+      "name": "Fairfield County",
+      "state": "CT",
+      "facilities": 14,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=6f491110439a494eac18c09162b0d3e7",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "35001",
+      "name": "Bernalillo County",
+      "state": "NM",
+      "facilities": 14,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=94e0349bc8294943966ab23de5204823",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "37063",
+      "name": "Durham County, North Carolina",
+      "state": "NC",
+      "facilities": 14,
+      "status": "candidate",
+      "likelySource": "https://maps.durhamnc.gov/",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "40109",
+      "name": "Oklahoma County",
+      "state": "OK",
+      "facilities": 14,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=244ff1c03cf34c459092e10142b13b01",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "40143",
+      "name": "Tulsa County",
+      "state": "OK",
+      "facilities": 14,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=c834ce2bad7a4034b3c3cbf611eba30d",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "46099",
+      "name": "Minnehaha County",
+      "state": "SD",
+      "facilities": 14,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=d57efdf717064169a21c70b8b380e387",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "06073",
+      "name": "San Diego County",
+      "state": "CA",
+      "facilities": 13,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=6abb7070168f432ca63c24d4ab8e4971",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "20091",
+      "name": "Johnson County",
+      "state": "KS",
+      "facilities": 13,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=7b78ff316d004de9aa5aecc2ad51d939",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "28049",
+      "name": "Hinds County",
+      "state": "MS",
+      "facilities": 13,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=d41166872ee344399f3576a30a41f970",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "29189",
+      "name": "St. Louis County",
+      "state": "MO",
+      "facilities": 13,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=092663e142ad43c699b829e3b9720df9",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "33011",
+      "name": "Hillsborough County",
+      "state": "NH",
+      "facilities": 13,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=64a6281f835c4b09a8abcc4e309230de",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "08013",
+      "name": "Boulder County",
+      "state": "CO",
+      "facilities": 12,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=893b9307917949c59bd928eccd7df9b1",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "12095",
+      "name": "Orange County",
+      "state": "FL",
+      "facilities": 12,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=21010852c8a94615942004ecc02a06fc",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "13097",
+      "name": "Douglas County",
+      "state": "GA",
+      "facilities": 12,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=c4479fa11a7246f5a3fb194b186e11c9",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "23005",
+      "name": "Cumberland County",
+      "state": "ME",
+      "facilities": 12,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=3381158754c44232961af0a074980bd5",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "50007",
+      "name": "Chittenden County",
+      "state": "VT",
+      "facilities": 12,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=697a3a4b4f10452e8b4c950fca2fd4a1",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "51760",
+      "name": "Richmond city",
+      "state": "VA",
+      "facilities": 12,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=bbd62ee91a4145c9937572f8d2d313ef",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "55079",
+      "name": "Milwaukee County",
+      "state": "WI",
+      "facilities": 12,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=333fe63428b54a19bc0821d46c1f4b53",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "06081",
+      "name": "San Mateo County",
+      "state": "CA",
+      "facilities": 11,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=39b353563c264c3dbd3eebc7c5d4b36a",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "22071",
+      "name": "Orleans Parish",
+      "state": "LA",
+      "facilities": 11,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=0b50ad877f9d4ddd828e4adef4516e3b",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    }
+  ]
+}
