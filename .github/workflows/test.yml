@@ -33,7 +33,24 @@ jobs:
           python-version: "3.11"
 
       - name: Install Python test dependencies
-        run: pip install pytest
+        # data/requirements.txt covers the real runtime deps the test suite
+        # exercises (e.g. requests, imported by
+        # data/parcel_pipeline/static_ingestion/download.py) -- installing
+        # only pytest left that module failing to import at collection time.
+        run: |
+          pip install -r data/requirements.txt
+          pip install pytest
+
+      # Installed here (not just in static_parcel_ingestion.yml) so the main
+      # gate actually exercises tests/test_static_ingestion.py against real
+      # GDAL on every push/PR. Without this, that suite's skipif silently
+      # skips it in the one workflow that runs on every change, and a broken
+      # static-ingestion pipeline would only be caught on the ingestion
+      # workflow's own weekly schedule.
+      - name: Install GDAL
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y --no-install-recommends gdal-bin
 
       - name: Set up Node
         uses: actions/setup-node@v4

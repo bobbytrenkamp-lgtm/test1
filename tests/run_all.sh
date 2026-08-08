@@ -26,7 +26,16 @@ run() {
   if [ "$rc" -ne 0 ]; then
     echo "  ^ FAILED"
     status=1
-  elif grep -q "^SKIP" "$tmp"; then
+  elif grep -q "^SKIP" "$tmp" || grep -qE "^[0-9]+ (passed, )?[0-9]+ skipped|^[0-9]+ skipped in" "$tmp"; then
+    # Two skip shapes to catch: this repo's own JS tests print a "SKIP ..."
+    # line (the original pattern this checked); pytest's own skipif marker
+    # instead prints a summary line like "30 skipped in 0.13s" or "5 passed,
+    # 2 skipped in 0.4s", never a line starting with "SKIP". Without this
+    # second pattern, a whole pytest module skipped by its own skipif (e.g.
+    # tests/test_static_ingestion.py without gdal-bin installed) would exit
+    # 0 and vanish from this summary entirely instead of being reported as
+    # not-fully-covered, the same transparency gap the jsdom-skip note below
+    # exists to prevent.
     skipped=$((skipped + 1))
     skipped_names+=("$name")
   fi
@@ -42,6 +51,7 @@ run "economic data pipeline"      python3 tests/test_economic_data.py
 run "economic output validation"  python3 data/update_economic_data.py --check
 run "no paid dependencies"        python3 tests/test_no_paid_dependencies.py
 run "fiber_network honesty guard" python3 -m pytest tests/test_fiber_network_honesty.py -q
+run "static parcel ingestion pipeline" python3 -m pytest tests/test_static_ingestion.py -q
 run "data catalog: generator + registry tests" python3 -m pytest tests/test_data_catalog.py -q
 # The generated data catalog must match current repository state -- same
 # staleness discipline as the parcel coverage metrics.

@@ -1,0 +1,102 @@
+name: Static Parcel Dataset Ingestion
+
+# Runs data/parcel_pipeline/static_ingestion against every source registered
+# in data/parcel_pipeline/static_ingestion/sources.json -- the download ->
+# verify -> convert -> chunk -> publish pipeline for jurisdictions that only
+# publish parcels as a downloadable file (Shapefile/GeoPackage/zipped
+# GeoJSON/CSV), not a queryable ArcGIS/WFS service.
+#
+# gdal-bin is installed here rather than assumed present, because it is not
+# part of the ubuntu-latest base image and the pipeline's own tests
+# (tests/test_static_ingestion.py) skip cleanly without it -- this is the
+# one place in the whole pipeline that actually needs it to be there.
+#
+# sources.json currently ships with ZERO entries: no static-download source
+# URL could be verified from this project's development sandbox (see
+# models.py's module docstring for why an entry requires that verification
+# before it's added). Until a human or an agent with real network access
+# adds one, this workflow's ingestion step has nothing to do and exits
+# immediately -- the workflow exists and is tested now specifically so that
+# adding the FIRST verified source is a data change to sources.json, not
+# also a pipeline-engineering task.
+
+on:
+  schedule:
+    # Static government datasets change slowly (annual/quarterly typically);
+    # weekly is a conservative default that costs nothing extra when a
+    # source is unchanged, since the pipeline's conditional-download check
+    # skips reprocessing before doing any real work.
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+    inputs:
+      source_id:
+        description: "Run one source by id (leave blank to run all registered sources)"
+        required: false
+      force_refresh:
+        description: "Reprocess even if the source appears unchanged"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: static-parcel-ingestion
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install GDAL + Python dependencies
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y --no-install-recommends gdal-bin
+          ogr2ogr --version
+          pip install -r data/requirements.txt
+          pip install pytest
+
+      # Offline guard first: if the pipeline logic itself is broken,
+      # spending a scheduled run's time downloading real government files
+      # only produces confusing failures further down.
+      - name: Unit tests (real GDAL, no network)
+        run: python3 -m pytest tests/test_static_ingestion.py -q
+
+      - name: Run ingestion
+        id: ingest
+        run: |
+          set -o pipefail
+          ARGS="--all"
+          if [ -n "${{ inputs.source_id }}" ]; then
+            ARGS="--source ${{ inputs.source_id }}"
+          fi
+          if [ "${{ inputs.force_refresh }}" = "true" ]; then
+            ARGS="$ARGS --force-refresh"
+          fi
+          python3 -m data.parcel_pipeline.static_ingestion.run_ingestion $ARGS
+
+      - name: Commit changes
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/generated/static_parcels/ \
+                  data/parcel_pipeline/static_ingestion/state/*.manifest.json \
+                  data/parcel_pipeline/static_ingestion/state/last_run_summary.json \
+                  2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Static parcel ingestion: automated update [skip ci]"
+            git push
+          fi
