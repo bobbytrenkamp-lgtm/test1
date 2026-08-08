@@ -52,6 +52,8 @@ run "economic output validation"  python3 data/update_economic_data.py --check
 run "no paid dependencies"        python3 tests/test_no_paid_dependencies.py
 run "fiber_network honesty guard" python3 -m pytest tests/test_fiber_network_honesty.py -q
 run "static parcel ingestion pipeline" python3 -m pytest tests/test_static_ingestion.py -q
+run "infrastructure asset schema (base model + type extensions)" python3 -m pytest tests/test_infrastructure_asset_schema.py -q
+run "infrastructure asset schema: JS/Python enum sync" node tests/test_infrastructure_asset_schema_sync.mjs
 run "data catalog: generator + registry tests" python3 -m pytest tests/test_data_catalog.py -q
 # The generated data catalog must match current repository state -- same
 # staleness discipline as the parcel coverage metrics.
