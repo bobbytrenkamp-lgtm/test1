@@ -256,3 +256,72 @@ missing-vs-zero, multi-feature shared keys, and keyless parcels.
 Wired into `tests/run_all.sh`. `check_registry_integrity.mjs` validates every
 enrichment block in CI using the same validator the runtime uses, rather than a
 second implementation that could drift.
+
+---
+
+## 6. The `arcgis-table` executor
+
+`js/parcel/enrichment-arcgis-table.js` registers the first real executor. It
+unlocks the split geometry/CAMA architecture the Virginia data center counties
+use: the parcel *boundary* service carries polygons and plat metadata, while
+ownership, valuation, land use, and building characteristics live in a
+separate non-spatial table on the same or a sibling ArcGIS server. Prince
+William's "Parcel CAMA Public" layer and Fairfax's Tax Administration Real
+Estate services are the canonical cases.
+
+An "ArcGIS table" here is any queryable layer fetched with
+`returnGeometry=false` — joining against a second *feature* layer by attribute
+works identically, and is often how a county actually publishes assessment
+data.
+
+### Additional per-source options
+
+| Option | Default | Purpose |
+|---|---|---|
+| `url` | required | The layer URL; `/query` is appended |
+| `numericJoin` | `false` | Emit unquoted numbers in `IN (…)` |
+| `batchSize` | 100 | Keys per request |
+| `resultRecordCount` | 1000 | ArcGIS page size |
+| `sourceUpdatedAt` | `null` | Publisher's declared vintage, if known |
+
+`numericJoin` matters more than it looks. Quoting a value against an integer
+column makes some ArcGIS/SQL Server backends fail outright and others silently
+return zero rows — which the engine would then correctly but unhelpfully
+report as `joined-none`. It is **declared, not guessed**: a purely
+numeric-looking parcel id stored as text (`'0012345'`) must still be quoted, or
+the leading zeros the county actually stores are lost.
+
+### Failure modes it handles
+
+- **ArcGIS errors inside a 200 body.** Bad field name, invalid `WHERE`, layer
+  not found — all returned as `{"error": …}` with HTTP 200. Not checking this
+  is how a misconfigured join looks like an empty result.
+- **HTML masquerading as data.** A retired county portal, or one moved behind
+  a login, answers 200 with a sign-in page. Reported as "non-JSON response (an
+  HTML error or login page?)" rather than a parser stack trace.
+- **Transient failures.** Up to 3 attempts with 400ms/1200ms backoff.
+  Deliberately short: enrichment is progressive enhancement behind an
+  already-rendered map and must not spend 30s retrying while the user pans.
+- **Aborts.** Propagate immediately without consuming retries — an abort is
+  the user panning away, not a service failure.
+- **SQL escaping.** Embedded apostrophes are doubled. Only ever used for
+  government identifiers, but a parcel id containing a quote would otherwise
+  break the query at best and inject SQL into a public endpoint at worst.
+- **Duplicate rows per parcel.** Assessment tables legitimately carry several
+  rows per parcel (one per building, one per owner of record). First row wins,
+  deterministically. Merging them would fabricate a parcel matching no single
+  official row; the multi-row cases that matter — sales history, building
+  lists — need array-valued handling rather than being flattened.
+
+### Raw vs normalized keys
+
+Normalization is lossy and therefore not reversible, so the engine passes
+executors `ctx.rawByKey` (normalized key → the original values that produced
+it). The `WHERE` clause is built from the **raw** values the server actually
+stores; responses are re-normalized with the source's own rules before
+indexing. That is what lets a county storing `0123-45-6789` on its parcel
+layer join to `0123456789` in its CAMA table.
+
+Tested in `tests/test_parcel_enrichment_arcgis.mjs` (47 assertions) with
+`global.fetch` stubbed throughout — no network access, and failure modes a
+live county server produces only intermittently are exercised every run.
