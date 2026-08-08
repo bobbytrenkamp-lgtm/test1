@@ -61,6 +61,7 @@ run "parcel multi-source enrichment (joins, provenance, health)" node tests/test
 run "parcel enrichment: arcgis-table join executor" node tests/test_parcel_enrichment_arcgis.mjs
 run "parcel geo + infrastructure proximity engine" node tests/test_parcel_proximity.mjs
 run "parcel environmental/development constraint intersections" node tests/test_parcel_constraints.mjs
+run "parcel conceptual buildable envelope" node tests/test_parcel_envelope.mjs
 run "parcel enrichment: CAMA join discovery + verification" node tests/test_parcel_enrichment_discovery.mjs
 run "parcel coverage: classification + metrics rules" node tests/test_parcel_coverage_metrics.mjs
 # The generated coverage artifacts must match what current repository data

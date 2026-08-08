@@ -214,6 +214,26 @@ window.PARCEL_FEASIBILITY = (function () {
     // Buildable envelope from zoning dimensional standards
     const envelope = _buildableEnvelope(props, district.standards);
 
+    /* Geometric envelope, when the caller has supplied parcel geometry and
+       (optionally) the constraint intersections from PARCEL_CONSTRAINTS.
+       This is the parcel polygon with mapped constraints actually subtracted
+       and setbacks eroded, rather than the acreage x lot-coverage arithmetic
+       above -- see js/parcel/envelope.js.
+
+       Added ALONGSIDE the existing `envelope` rather than replacing it. The
+       area-based figures are what the panel and report already render, and
+       swapping the meaning of an existing field out from under them would
+       change displayed numbers for every jurisdiction as a side effect of
+       adding a feature. Callers opt in by passing geometry. */
+    let geometricEnvelope = null;
+    if (props._geometry && window.PARCEL_ENVELOPE && window.polygonClipping) {
+      geometricEnvelope = window.PARCEL_ENVELOPE.build(
+        props._geometry,
+        props._constraintGeometries || [],
+        district.standards,
+      );
+    }
+
     // Composite development potential score (0–100)
     // Base factors always present; optional data-backed factors added when available
     const acres = Number(props.area_acres) || ((Number(props.area_sqft) || 0) / 43560);
@@ -260,6 +280,7 @@ window.PARCEL_FEASIBILITY = (function () {
       confidence,
       manualReviewRequired: dcUse?.manual_review_required ?? true,
       envelope,
+      geometricEnvelope,
       score:               compositeScore,
       factors,
       districtName:        district.district_name,
