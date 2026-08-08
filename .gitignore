@@ -32,6 +32,16 @@ data/parcel_pipeline/drafts/
 # here for CI-artifact upload, never committed.
 data/parcel_pipeline/output/
 
+# Static parcel ingestion raw downloads only — the ORIGINAL government
+# Shapefile/GeoPackage/ZIP a source resolves to, which can be tens of MB and
+# is fully reproducible from download_url. The small per-source
+# manifest.json files under this same state/ directory ARE committed (not
+# ignored) because the next scheduled run needs their etag/checksum on disk
+# to skip work when a source hasn't changed — see pipeline.py's
+# update-check-before-expensive-work discipline.
+data/parcel_pipeline/static_ingestion/state/raw/
+data/parcel_pipeline/static_ingestion/state/*.converted.geojson
+
 # OS
 .DS_Store
 Thumbs.db

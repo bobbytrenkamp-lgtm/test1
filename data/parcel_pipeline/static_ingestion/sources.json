@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "description": "Registry of verified static (download-only) parcel dataset sources. See models.py's module docstring for why an entry may only be added after a human (or an agent with real network access) has actually opened the download_url, confirmed the format and CRS, and identified the true parcel_id_field -- guessing any of those produces confidently-wrong data, the same failure mode js/parcel/registry.js already refuses for live services.",
+    "version": "1.0.0"
+  },
+  "sources": []
+}
