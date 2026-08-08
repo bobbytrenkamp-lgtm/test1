@@ -1,0 +1,88 @@
+name: Probe National Data Source (candidate investigation)
+
+# Read-only investigation of ONE candidate URL for a national (non-parcel)
+# dataset -- grid infrastructure, water/wastewater, environmental layers --
+# found via research but not yet verified. Downloads the URL for real,
+# inspects it with ogrinfo, and prints/uploads a JSON report. Never
+# registers anything, never commits, never writes to the repository --
+# registering a verified source into
+# data/parcel_pipeline/static_ingestion/sources.json (reused as-is for
+# national data; see data/national_data_ingestion/__init__.py for why) is
+# always a separate, deliberate follow-up step after this report is
+# reviewed.
+#
+# This is the same "verify before trusting" discipline
+# data/check_parcel_services.mjs and data/parcel_pipeline/discover_batch.mjs
+# already apply to parcel sources, applied here to grid/water/environmental
+# candidates -- this sandbox has no outbound network to third-party hosts,
+# so real verification can only happen from a GitHub Actions runner.
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Candidate download URL to investigate"
+        required: true
+      format:
+        description: "Expected format"
+        required: true
+        type: choice
+        options:
+          - shapefile
+          - geojson
+          - geopackage
+          - csv
+          - kml
+      is_zip:
+        description: "Is the URL a .zip archive?"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install GDAL + Python dependencies
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y --no-install-recommends gdal-bin
+          pip install -r data/requirements.txt
+
+      - name: Probe candidate source
+        env:
+          CANDIDATE_URL: ${{ inputs.url }}
+          CANDIDATE_FORMAT: ${{ inputs.format }}
+          CANDIDATE_IS_ZIP: ${{ inputs.is_zip }}
+        run: |
+          # Env vars, not string-interpolated shell args -- inputs.url is
+          # untrusted free text even on a manually-dispatched workflow, and
+          # must never be spliced directly into a command line.
+          ZIP_FLAG="--not-zip"
+          if [ "$CANDIDATE_IS_ZIP" = "true" ]; then
+            ZIP_FLAG="--is-zip"
+          fi
+          python3 -m data.national_data_ingestion.probe_source \
+            --url "$CANDIDATE_URL" --format "$CANDIDATE_FORMAT" $ZIP_FLAG \
+            --output probe_result.json | tee -a "$GITHUB_STEP_SUMMARY" || true
+          cat probe_result.json >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Upload probe result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: probe-result-${{ github.run_id }}
+          path: probe_result.json
+          retention-days: 30
