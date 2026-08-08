@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "description": "Compliance report: how many existing infrastructure records in data/sample_layers.json satisfy data/infrastructure_asset_schema.py's InfrastructureAsset contract. Low/zero compliance today is expected and honest -- these records predate the schema and were never assigned a real per-record source/evidence_tier. This is a report, not a gate.",
+    "generator": "data/validate_infrastructure_assets.py"
+  },
+  "categories": {
+    "fiber_network": {
+      "asset_type": "fiber_segment",
+      "duplicate_ids": [],
+      "most_common_gaps": [],
+      "non_compliant": 0,
+      "schema_compliant": 0,
+      "total": 0
+    },
+    "power_infrastructure": {
+      "asset_type": "substation",
+      "duplicate_ids": [
+        "sub-141107"
+      ],
+      "most_common_gaps": [
+        {
+          "count": 25,
+          "field": "evidence_tier"
+        },
+        {
+          "count": 25,
+          "field": "last_verified"
+        },
+        {
+          "count": 25,
+          "field": "source"
+        }
+      ],
+      "non_compliant": 25,
+      "schema_compliant": 0,
+      "total": 25
+    },
+    "transmission_lines": {
+      "asset_type": "transmission_line",
+      "duplicate_ids": [],
+      "most_common_gaps": [
+        {
+          "count": 1892,
+          "field": "evidence_tier"
+        },
+        {
+          "count": 1892,
+          "field": "last_verified"
+        },
+        {
+          "count": 1892,
+          "field": "source"
+        }
+      ],
+      "non_compliant": 1892,
+      "schema_compliant": 0,
+      "total": 1892
+    },
+    "utility_territories": {
+      "asset_type": "utility_territory",
+      "duplicate_ids": [],
+      "most_common_gaps": [
+        {
+          "count": 6,
+          "field": "evidence_tier"
+        },
+        {
+          "count": 6,
+          "field": "geometry"
+        },
+        {
+          "count": 6,
+          "field": "last_verified"
+        },
+        {
+          "count": 6,
+          "field": "source"
+        }
+      ],
+      "non_compliant": 6,
+      "schema_compliant": 0,
+      "total": 6
+    }
+  }
+}
