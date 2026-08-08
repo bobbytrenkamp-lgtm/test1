@@ -11,7 +11,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | | |
 |---|---|
 | Datasets catalogued | 26 |
-| Datasets with actual data (has_data) | 15 |
+| Datasets with actual data (has_data) | 14 |
 | Datasets wired into the production UI | 10 |
 | Datasets with dedicated CI coverage | 5 |
 | Datasets on an automated refresh workflow | 12 |
@@ -23,7 +23,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | ASSESSMENT | 1 | 0 | 0 | 0 | 0 |
 | DATA CENTERS | 2 | 2 | 4,329 | 1 | 1 |
 | ECONOMIC DATA | 2 | 2 | 14 | 0 | 0 |
-| FIBER | 2 | 1 | 3 | 1 | 1 |
+| FIBER | 2 | 0 | 0 | 1 | 1 |
 | FLOOD | 1 | 0 | 0 | 0 | 0 |
 | INTERCONNECTION QUEUES | 1 | 0 | 0 | 0 | 0 |
 | ISO/RTO | 1 | 0 | 0 | 0 | 0 |
@@ -114,18 +114,17 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 ### FIBER
 
-**Fiber routes (illustrative)** (fiber_network) — ✅ has data
+**Fiber routes (none — removed)** (fiber_network) — ⛔ no data
 
-- Records: 3
+- Records: 0
 - Source: Hand-authored, not sourced from any carrier or public fiber-route dataset
-- Geographic scope (declared): 3 hand-drawn named routes, not a coverage layer
+- Geographic scope (declared): None. The 3 fabricated entries this dataset used to hold were removed.
 - Update frequency (declared): manual
 - Authoritative: False
 - UI-consumed: True
 - CI-tested: False
 - Automated update workflow(s): update_data.yml, update_facilities.yml, update_infrastructure.yml
-- **Known coverage holes:** SEVERE HONESTY RISK, FLAGGED FOR REMEDIATION. 3 hardcoded named routes ("Zayo Northern Virginia Dark Fiber Ring", "Lumen/CenturyLink Iowa Backbone", "Zayo Pacific NW Fiber Route") with hand-typed coordinate paths. These are NOT sourced from Zayo, Lumen, or any public filing — they attribute a specific alignment to a specific named carrier with no evidence. The map tooltip does append 'Approximate route — exact alignment unverified', which mitigates but does not resolve the core problem: attributing an invented path to a real company by name. No free, reliable, nationwide fiber-route dataset is known to exist (see js/parcel/proximity-layers.js's fiber registerUnavailable() for the parcel engine's position on this, which correctly declines to guess).
-- **Known quality issues:** Recommend removing the carrier-name attribution or the layer entirely until a real source is found; do not extend this dataset with more invented routes.
+- **Known coverage holes:** REMEDIATED. This dataset used to hold 3 hardcoded named routes ("Zayo Northern Virginia Dark Fiber Ring", "Lumen/CenturyLink Iowa Backbone", "Zayo Pacific NW Fiber Route") with hand-typed coordinate paths attributed to real carriers with no evidence. They were removed rather than kept as "illustrative" -- attributing an invented path to a named company by name is a fabrication risk a map tooltip disclaimer does not resolve. No free, reliable, nationwide fiber-route dataset is known to exist (see js/parcel/proximity-layers.js's fiber registerUnavailable(), which this file now matches). data/validate_sources.py and tests/test_fiber_network_honesty.py now require any future entry to carry a real, checked source URL before it may name a carrier.
 
 **FCC broadband fiber availability by county** (fcc_broadband_fiber_pct) — ⛔ no data
 

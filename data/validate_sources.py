@@ -59,7 +59,7 @@ def collect_all_urls():
     try:
         with open(SAMPLE_LAYERS_PATH, encoding="utf-8") as f:
             sl = json.load(f)
-        for category in ("data_centers", "ai_campuses", "power_infrastructure"):
+        for category in ("data_centers", "ai_campuses", "power_infrastructure", "fiber_network"):
             for item in sl.get(category, []):
                 ctx = f"sample_layers.json / {category} / {item.get('id','?')} ({item.get('name','?')})"
                 for url, c in extract_urls_from_sources(item.get("sources", []), ctx):

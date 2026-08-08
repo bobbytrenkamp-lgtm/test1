@@ -41,6 +41,7 @@ run "source link move-suggestion logic" python3 -m pytest tests/test_check_sourc
 run "economic data pipeline"      python3 tests/test_economic_data.py
 run "economic output validation"  python3 data/update_economic_data.py --check
 run "no paid dependencies"        python3 tests/test_no_paid_dependencies.py
+run "fiber_network honesty guard" python3 -m pytest tests/test_fiber_network_honesty.py -q
 run "data catalog: generator + registry tests" python3 -m pytest tests/test_data_catalog.py -q
 # The generated data catalog must match current repository state -- same
 # staleness discipline as the parcel coverage metrics.
