@@ -67,7 +67,15 @@ window.PARCEL_ENRICHMENT = (function () {
        }>
      The executor is handed the already-normalized, de-duplicated key list
      and is responsible only for fetching; all joining, conflict resolution,
-     and provenance stays here so every source type behaves identically. */
+     and provenance stays here so every source type behaves identically.
+
+     ctx.rawByKey is a Map of normalizedKey -> array of the ORIGINAL,
+     un-normalized values that produced it. Normalization is deliberately
+     lossy (stripNonAlnum turns '0123-45-6789' into '0123456789') and
+     therefore not reversible, so an executor that has to name the value in a
+     query -- an ArcGIS `WHERE ... IN (...)` clause, say -- cannot
+     reconstruct what the server actually stores from the normalized form
+     alone. It must query on the raw values and re-normalize what comes back. */
   const EXECUTORS = Object.create(null);
 
   function registerExecutor(type, fn) {
@@ -389,7 +397,19 @@ window.PARCEL_ENRICHMENT = (function () {
 
         let sourceUpdatedAt = null;
         if (missing.length) {
-          const fetched = await EXECUTORS[source.type](source, missing, { signal, now, jurisdictionConfig });
+          // Executors that must name the key in a query need the original
+          // source-format value, not the lossy normalized one. Only the
+          // keys actually being fetched are included.
+          const rawByKey = new Map();
+          for (const key of missing) {
+            const raws = new Set();
+            for (const props of (byKey.get(key) || [])) {
+              const raw = props[source.baseField];
+              if (raw != null && String(raw).trim() !== '') raws.add(String(raw).trim());
+            }
+            rawByKey.set(key, Array.from(raws));
+          }
+          const fetched = await EXECUTORS[source.type](source, missing, { signal, now, jurisdictionConfig, rawByKey });
           if (signal && signal.aborted) { result.aborted = true; break; }
           const fetchedRecords = (fetched && fetched.records) || {};
           sourceUpdatedAt = (fetched && fetched.sourceUpdatedAt) || null;
