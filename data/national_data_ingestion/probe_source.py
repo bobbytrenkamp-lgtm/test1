@@ -81,10 +81,22 @@ def probe(url: str, fmt: str, *, is_zip: bool | None = None, layer: str | None =
             return {"ok": False, "stage": "ogrinfo", "why": f"ogrinfo timed out after {timeout_s}s", "url": url}
 
         if proc.returncode != 0:
+            # A GDAL-unreadable download is very often a live API's own
+            # error body (an ArcGIS service returning HTTP 200 with
+            # {"error":{"code":400,...}} for a bad `where`/outFields/layer
+            # id) rather than a corrupt file -- surfacing a content preview
+            # here means a bad query can be diagnosed and fixed from THIS
+            # dispatch's output, not a second one.
+            content_preview = None
+            try:
+                content_preview = Path(dest).read_bytes()[:1000].decode("utf-8", errors="replace")
+            except OSError:
+                pass
             return {
                 "ok": False, "stage": "ogrinfo",
                 "why": proc.stderr.strip()[:4000],
                 "url": url, "bytes_downloaded": dl.bytes_written, "sha256": dl.sha256,
+                "content_preview": content_preview,
             }
 
         layers = _parse_ogrinfo_layers(proc.stdout)

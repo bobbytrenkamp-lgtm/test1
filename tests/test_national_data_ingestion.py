@@ -178,6 +178,25 @@ def test_probe_reports_ogrinfo_failure_for_unparseable_download(tmp_path, monkey
     assert result["stage"] == "ogrinfo"
 
 
+def test_probe_ogrinfo_failure_includes_content_preview_for_debugging(tmp_path, monkeypatch):
+    # A live ArcGIS service returning HTTP 200 with an {"error": {...}} body
+    # for a bad query is exactly the case this preview exists to make
+    # diagnosable from a single dispatch's output.
+    import data.national_data_ingestion.probe_source as ps
+    error_body = b'{"error": {"code": 400, "message": "Invalid or missing input parameters."}}' * 4
+    sess = _FakeSession([_FakeResponse(200, error_body)])
+
+    def fake_download(url, dest, *, is_zip, timeout_s):
+        from data.parcel_pipeline.static_ingestion.download import download as real_download
+        return real_download(url, dest, is_zip=is_zip, timeout_s=timeout_s, session=sess)
+
+    monkeypatch.setattr(ps, "download", fake_download)
+    result = probe("https://example.gov/query?bad=1", "geojson", is_zip=False)
+    assert result["ok"] is False
+    assert result["stage"] == "ogrinfo"
+    assert "Invalid or missing input parameters" in result["content_preview"]
+
+
 def test_cli_never_writes_to_repository_files():
     # Structural guard: this module must never open any registry file for
     # writing -- it is investigation-only. Checks actual code lines (not the
