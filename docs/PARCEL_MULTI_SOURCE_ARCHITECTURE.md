@@ -325,3 +325,61 @@ layer join to `0123456789` in its CAMA table.
 Tested in `tests/test_parcel_enrichment_arcgis.mjs` (47 assertions) with
 `global.fetch` stubbed throughout — no network access, and failure modes a
 live county server produces only intermittently are exercised every run.
+
+---
+
+## 7. Finding enrichment sources: verified, not inferred
+
+`data/parcel_pipeline/discovery/enrichment_candidates.mjs` +
+`data/parcel_pipeline/discover_enrichment.mjs`.
+
+The rest of the discovery pipeline is careful never to guess a field name.
+This extends the same discipline to joins, where guessing is more dangerous: a
+wrong parcel-boundary field mapping renders a blank row, but a **wrong join**
+silently attributes one property's owner and assessed value to a different
+property — data that looks entirely plausible and is entirely wrong.
+
+So a candidate is never proposed on the strength of a promising layer name or
+a field called `PARCELID`. It is proposed only after the tool has:
+
+1. pulled a real sample of parcel ids from the jurisdiction's **live** parcel
+   layer,
+2. queried the candidate table with those exact ids, and
+3. measured what fraction actually came back.
+
+That measured match rate is the evidence. A candidate matching 3 of 25 sampled
+parcels is rejected however convincing its name was, and the rate travels with
+the draft so a reviewer sees the number rather than a verdict.
+
+### Guards
+
+| Guard | Why |
+|---|---|
+| `OBJECTID`/`FID`/`OID` can never be a join key | An ArcGIS row number, not parcel identity. Joining on it matches two unrelated tables with total confidence. |
+| Match counted by **distinct** key | CAMA tables carry several rows per parcel (one per building, one per owner of record). Counting rows would let 3 rows for 1 parcel report a 300% match rate. |
+| `MIN_MATCH_RATE = 0.80` | A genuine in-county parcel→CAMA join is near-total. The gap between "nearly all" and "most" is usually an unmodeled formatting mismatch, not a partial dataset. |
+| Name score must be earned before the table bonus | Otherwise every non-spatial table on the service (streetlight inventory, permit log) qualifies purely for being a table. |
+| Join column excluded from `fieldMap` | The key is machinery, not content. |
+| Only fields the base entry *lacks* are mapped | Proposing a secondary source for something the geometry layer already publishes adds a conflict for no gain. |
+| Three normalization variants probed separately | *Which* variant works is itself the finding — it becomes the source's `joinNormalize`. Merging them would lose that. |
+
+### Why it runs in GitHub Actions
+
+A proposed enrichment source cannot be written from a desk — its correctness
+rests entirely on the live measurement above. Development sandboxes routinely
+cannot reach county GIS hosts; Actions can.
+`.github/workflows/parcel_enrichment_discovery.yml` is `workflow_dispatch`
+only, never writes to main, never commits, and never opens a PR. It emits
+drafts; promotion into `registry.js` stays an explicitly human step, where
+`check_registry_integrity.mjs` validates the block.
+
+### Pilot targets
+
+`--dry-run` against the three Virginia data center counties confirms the gaps
+this is aimed at:
+
+| FIPS | Jurisdiction | Missing canonical fields |
+|---|---|---|
+| 51107 | Loudoun County VA | 15 |
+| 51153 | Prince William County VA | 10 |
+| 51059 | Fairfax County VA | 15 |

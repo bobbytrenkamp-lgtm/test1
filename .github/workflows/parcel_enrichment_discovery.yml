@@ -1,0 +1,109 @@
+name: Parcel Enrichment Discovery
+
+# Sibling of parcel_batch_discovery.yml. That workflow answers "which
+# jurisdictions have a parcel service at all"; this one answers "for the
+# jurisdictions we already serve, where does the rest of the data live" --
+# finding the separate CAMA/assessment table that carries the ownership,
+# valuation, and building fields the parcel boundary layer does not.
+#
+# WHY THIS RUNS IN ACTIONS RATHER THAN LOCALLY
+# A proposed enrichment source cannot be written from a desk. Its correctness
+# rests entirely on one empirical fact -- that the candidate table's
+# identifier refers to the same parcels as the geometry layer's -- and
+# establishing that means pulling real parcel ids from the live county
+# service and measuring how many come back. Development sandboxes routinely
+# cannot reach county GIS hosts; Actions can.
+#
+# Same safety posture as the batch workflow:
+#   - workflow_dispatch ONLY. Never on push/pull_request/schedule.
+#   - Never writes to main, never commits, never opens a PR.
+#   - Emits DRAFTS for human review. Promotion into js/parcel/registry.js
+#     stays a separate, explicitly human step, where
+#     check_registry_integrity.mjs validates the block.
+#
+# A draft is never a decision. Every proposal carries the measured join match
+# rate and sample size precisely so a reviewer can disagree with it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      fips:
+        description: 'Comma-separated FIPS to investigate (e.g. 51107,51153). Leave blank to use --gaps.'
+        required: false
+        type: string
+      gaps:
+        description: 'If no FIPS given: how many production jurisdictions with the largest data gaps to investigate.'
+        required: false
+        default: '5'
+        type: string
+      sample_size:
+        description: 'Parcel ids sampled from the base layer to measure the join against.'
+        required: false
+        default: '25'
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: parcel-enrichment-discovery
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Offline guard first: if the discovery logic itself is broken, probing
+      # live county servers only produces confusing results.
+      - name: Unit tests (no network)
+        run: node tests/test_parcel_enrichment_discovery.mjs
+
+      - name: Discover enrichment sources
+        id: discover
+        run: |
+          set -o pipefail
+          if [ -n "${{ inputs.fips }}" ]; then
+            node data/parcel_pipeline/discover_enrichment.mjs \
+              --fips "${{ inputs.fips }}" \
+              --sample-size "${{ inputs.sample_size }}" | tee /tmp/discover.log
+          else
+            node data/parcel_pipeline/discover_enrichment.mjs \
+              --gaps "${{ inputs.gaps }}" \
+              --sample-size "${{ inputs.sample_size }}" | tee /tmp/discover.log
+          fi
+
+      - name: Write run summary
+        if: always()
+        run: |
+          LATEST=$(ls -d data/parcel_pipeline/output/enrichment-* 2>/dev/null | sort | tail -1)
+          if [ -n "$LATEST" ] && [ -f "$LATEST/summary.md" ]; then
+            cat "$LATEST/summary.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo '## Enrichment discovery produced no summary' >> "$GITHUB_STEP_SUMMARY"
+            echo '' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Console output:' >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            tail -50 /tmp/discover.log 2>/dev/null || echo '(none)' >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # The full JSON is uploaded rather than printed: console output gets
+      # truncated exactly when a run is interesting enough to have a lot of it.
+      - name: Upload full results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enrichment-discovery-results
+          path: data/parcel_pipeline/output/enrichment-*/
+          if-no-files-found: warn
+          retention-days: 30

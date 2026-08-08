@@ -59,6 +59,7 @@ run "parcel batch: promote_batch (safety gates)" node tests/test_parcel_promote_
 run "parcel batch: record_batch_results" node tests/test_parcel_record_batch_results.mjs
 run "parcel multi-source enrichment (joins, provenance, health)" node tests/test_parcel_enrichment.mjs
 run "parcel enrichment: arcgis-table join executor" node tests/test_parcel_enrichment_arcgis.mjs
+run "parcel enrichment: CAMA join discovery + verification" node tests/test_parcel_enrichment_discovery.mjs
 run "frontend core (constants + router)" node tests/test_frontend_core.mjs
 run "economy core (readiness score, signals, stats)" node tests/test_economy_core.mjs
 run "economy map (layer-toggle race safety)" node tests/test_economy_map_race.mjs
