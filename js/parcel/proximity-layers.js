@@ -72,6 +72,77 @@
     return _facilitiesPromise;
   }
 
+  /* ── Electric substations + transmission lines (repository data) ─────────
+   *
+   * Both are already fetched weekly from HIFLD by data/fetch_infrastructure.py
+   * and rendered on the map (js/map.js reads the same file for its power/
+   * transmission layers) — they were simply never connected to the parcel
+   * proximity engine before. This is the "engine exists, data exists, but
+   * nothing wires them together" gap the data catalog audit surfaced; there
+   * is no new data source here, only a new consumer of one that already runs.
+   *
+   * SUBSTATION COVERAGE CAVEAT — READ BEFORE CHANGING THIS.
+   * The configured HIFLD substations endpoint is not the original national
+   * layer; it is a third-party mirror the original service's retirement
+   * forced a switch to, and it returns roughly 25 US substations after the
+   * >=69kV filter — not the tens of thousands the real HIFLD dataset has
+   * (see fetch_infrastructure.py's header comment and
+   * data/catalog/dataset_registry.json's "substations" entry for the full
+   * history). That is real, correctly-fetched data, not fabricated — but
+   * "no substation within 10 miles" from this layer is not strong evidence
+   * of anything, because most of the country simply has no record loaded.
+   * The label says so explicitly rather than reading like a confident
+   * distance measurement with normal national coverage. */
+  P.registerLayer({
+    id: 'substations',
+    category: 'power',
+    label: 'Electric substations',
+    measures: 'Straight-line distance to mapped substation locations, from a nationally ' +
+              'INCOMPLETE dataset (~25 US records after the voltage filter, not the full ' +
+              'HIFLD layer). Absence of a nearby result is not evidence there is no substation ' +
+              'nearby. Says nothing about available capacity.',
+    source: 'HIFLD Electric Substations via a third-party mirror (see fetch_infrastructure.py)',
+    provider: async () => {
+      const layers = await loadInfrastructureLayers();
+      return (layers.power_infrastructure || []).map(s => ({
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [s.lon, s.lat] },
+        properties: { name: s.name, voltageKv: s.voltage_kv, assetType: s.type, county_fips: s.county_fips },
+      }));
+    },
+  });
+
+  P.registerLayer({
+    id: 'transmission-lines',
+    category: 'power',
+    label: 'Transmission lines',
+    measures: 'Straight-line distance to the nearest mapped transmission line. Says nothing ' +
+              'about headroom, available capacity, or interconnect feasibility.',
+    source: 'HIFLD Electric Power Transmission Lines',
+    provider: async () => {
+      const layers = await loadInfrastructureLayers();
+      return (layers.transmission_lines || [])
+        .filter(t => Array.isArray(t.path) && t.path.length >= 2)
+        .map(t => ({
+          type: 'Feature',
+          geometry: { type: 'LineString', coordinates: t.path },
+          properties: { name: t.name, voltageKv: t.voltage_kv, owner: t.owner },
+        }));
+    },
+  });
+
+  let _infrastructurePromise = null;
+  function loadInfrastructureLayers() {
+    if (_infrastructurePromise) return _infrastructurePromise;
+    _infrastructurePromise = (async () => {
+      const res = await fetch('data/sample_layers.json');
+      if (!res.ok) throw new Error(`infrastructure layers HTTP ${res.status}`);
+      return res.json();
+    })();
+    _infrastructurePromise.catch(() => { _infrastructurePromise = null; });
+    return _infrastructurePromise;
+  }
+
   /* ── Deliberately unavailable ────────────────────────────────────────────
    *
    * These are recorded rather than omitted. A missing fiber row invites the
@@ -91,28 +162,20 @@
 
   /* ── Registered but pending endpoint verification ────────────────────────
    *
-   * Electric and transportation layers come from federal open data (HIFLD /
-   * BTS / USGS). Their service endpoints are NOT hardcoded here yet: this
-   * session could not reach external hosts to verify a single one, and an
-   * unverified URL that silently returns nothing looks identical to a site
-   * with no infrastructure nearby — the worst possible failure for a layer
-   * whose entire job is answering "is there power near here".
+   * Substations and transmission lines used to live in this list; they are
+   * wired to real (if incomplete, in the substation case) data above and
+   * removed from here. Roads/transit remain pending: no interstate/major-road
+   * dataset exists anywhere in the repository yet (confirmed by the
+   * data_catalog.json audit — "roads" has zero records), and an unverified
+   * URL that silently returns nothing looks identical to a site with no
+   * infrastructure nearby, the worst possible failure for a layer whose
+   * entire job is answering "how far to the interstate".
    *
-   * They are declared as configuration below with `provider: null` and are
-   * skipped by the engine until an endpoint is verified and attached, the
-   * same discipline the parcel registry already applies to county services.
+   * Declared as configuration with `provider: null` and skipped by the
+   * engine until a real dataset is attached, the same discipline the parcel
+   * registry already applies to county services.
    */
   const PENDING_VERIFICATION = [
-    {
-      id: 'substations', category: 'power', label: 'Electric substations',
-      measures: 'Straight-line distance to mapped substation locations. Says nothing about available capacity.',
-      candidateSource: 'HIFLD Electric Substations (public federal open data)',
-    },
-    {
-      id: 'transmission-lines', category: 'power', label: 'Transmission lines',
-      measures: 'Straight-line distance to the nearest mapped transmission line. Says nothing about headroom or interconnect feasibility.',
-      candidateSource: 'HIFLD Electric Power Transmission Lines (public federal open data)',
-    },
     {
       id: 'interstates', category: 'transportation', label: 'Interstate highways',
       measures: 'Straight-line distance to the interstate route, not drive time or the nearest interchange.',
@@ -123,5 +186,8 @@
   P.PENDING_VERIFICATION = PENDING_VERIFICATION;
 
   // Exported for tests.
-  window.PARCEL_PROXIMITY_LAYERS = { loadFacilities, PENDING_VERIFICATION, _resetCache() { _facilitiesPromise = null; } };
+  window.PARCEL_PROXIMITY_LAYERS = {
+    loadFacilities, loadInfrastructureLayers, PENDING_VERIFICATION,
+    _resetCache() { _facilitiesPromise = null; _infrastructurePromise = null; },
+  };
 })();
