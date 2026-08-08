@@ -1,0 +1,133 @@
+name: Parcel Batch Discovery
+
+# The permanent replacement for the one-temp-diagnostic-script-per-round
+# pattern (data/diagnose_batch_rN.mjs + .github/workflows/_diagnose_batch_rN.yml,
+# used across ~10 manual rounds before this workflow existed). Runs
+# data/parcel_pipeline/discover_batch.mjs against real third-party endpoints
+# on demand, uploads the full untruncated per-run JSON as an artifact (never
+# console-dumped -- that's exactly the truncated-output problem this
+# replaces), and writes a short table to the run's step summary so a human
+# can decide what to do next without downloading anything for a quick look.
+#
+# Deliberately workflow_dispatch ONLY:
+#   - Never runs on push/pull_request/schedule -- discovery is something a
+#     human (or an agent acting on explicit instruction) decides to kick off,
+#     not something that should fire automatically on every commit.
+#   - Never writes to main, never commits, never opens a PR. Draft
+#     generation (build_batch_drafts.mjs) and promotion (promote_batch.mjs,
+#     which is the only tool in this pipeline allowed to touch
+#     js/parcel/registry.js) are separate, explicitly human-invoked steps
+#     that happen after this workflow's artifact has been reviewed.
+#   - Never creates or dispatches any other workflow. If a jurisdiction needs
+#     genuinely unusual, one-off investigation this pipeline's adapters can't
+#     handle, that still goes through a disposable temp diagnostic script --
+#     this workflow is only for ordinary discovery.
+
+on:
+  workflow_dispatch:
+    inputs:
+      next:
+        description: "Pull the next N jurisdictions from the priority queue (mutually exclusive with fips)"
+        required: false
+        default: ""
+      fips:
+        description: "Comma-separated FIPS codes to discover directly (mutually exclusive with next)"
+        required: false
+        default: ""
+      state:
+        description: "Optional 2-letter state filter, only used with 'next'"
+        required: false
+        default: ""
+      max_candidates:
+        description: "Max candidates to keep per jurisdiction"
+        required: false
+        default: "8"
+      concurrency_limit:
+        description: "Max jurisdictions discovered in parallel"
+        required: false
+        default: "3"
+      refresh:
+        description: "Bypass the fetch cache and re-request every URL"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: parcel-batch-discovery-${{ github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate inputs
+        run: |
+          if [ -z "${{ inputs.next }}" ] && [ -z "${{ inputs.fips }}" ]; then
+            echo "::error::One of 'next' or 'fips' must be provided."
+            exit 1
+          fi
+          if [ -n "${{ inputs.next }}" ] && [ -n "${{ inputs.fips }}" ]; then
+            echo "::error::Provide only one of 'next' or 'fips', not both."
+            exit 1
+          fi
+
+      - name: Run discover_batch.mjs
+        run: |
+          ARGS=""
+          if [ -n "${{ inputs.next }}" ]; then
+            ARGS="--next ${{ inputs.next }}"
+            if [ -n "${{ inputs.state }}" ]; then
+              ARGS="$ARGS --state ${{ inputs.state }}"
+            fi
+          else
+            ARGS="--fips ${{ inputs.fips }}"
+          fi
+          ARGS="$ARGS --max-candidates ${{ inputs.max_candidates }} --concurrency ${{ inputs.concurrency_limit }}"
+          if [ "${{ inputs.refresh }}" = "true" ]; then
+            ARGS="$ARGS --refresh"
+          fi
+          echo "Running: node data/parcel_pipeline/discover_batch.mjs $ARGS"
+          node data/parcel_pipeline/discover_batch.mjs $ARGS
+
+      - name: Locate this run's output directory
+        id: rundir
+        if: always()
+        run: |
+          DIR=$(ls -td data/parcel_pipeline/output/*/ 2>/dev/null | head -n1)
+          echo "dir=$DIR" >> "$GITHUB_OUTPUT"
+
+      - name: Write step summary
+        if: always() && steps.rundir.outputs.dir != ''
+        run: |
+          SUMMARY="${{ steps.rundir.outputs.dir }}summary.md"
+          if [ -f "$SUMMARY" ]; then
+            cat "$SUMMARY" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No summary.md found at $SUMMARY" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload full run output as an artifact
+        if: always() && steps.rundir.outputs.dir != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: parcel-batch-discovery-${{ github.run_id }}
+          path: ${{ steps.rundir.outputs.dir }}
+          retention-days: 30
+          if-no-files-found: warn

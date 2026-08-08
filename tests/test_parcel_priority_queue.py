@@ -21,7 +21,7 @@ sys.path.insert(0, DATA_DIR)
 
 from parcel_priority_queue import (  # noqa: E402
     build_queue, is_retry_due, find_reusable_state_coverage, load_catalog,
-    FACILITIES_PATH,
+    already_attempted, load_facility_counts, FACILITIES_PATH,
 )
 
 
@@ -57,6 +57,18 @@ def test_facility_counts_match_independent_reimplementation():
     # from the independent count entirely.
     all_counted_fips = set(independent_top_fips_by_facility_count(10_000))
     assert returned_fips <= all_counted_fips
+
+
+def test_null_named_facility_record_does_not_blank_out_a_real_name():
+    # Williamson County TX (48491): its facilities_index.json entries are
+    # unordered, and the first one for this FIPS ("Skybox - Hutto 2 Austin")
+    # has county=None/state_abbr=None -- a later record for the same FIPS
+    # ("Skybox - Hutto 3 Austin") has the real "Williamson County"/"TX".
+    # A plain dict.setdefault() locks onto whichever record is encountered
+    # first, even if null; this must instead prefer any real value.
+    _, names, states = load_facility_counts()
+    assert names.get("48491") == "Williamson County"
+    assert states.get("48491") == "TX"
 
 
 def test_results_are_sorted_descending_by_facility_count():
@@ -100,6 +112,51 @@ def test_uninvestigated_fips_is_included():
 
 
 # ---------------------------------------------------------------------------
+# --exclude-attempted: skip status=candidate/requires-review records
+# record_batch_results.mjs has already logged a real discover_batch.mjs
+# outcome for, so a batch runner doesn't re-select the same top-N forever
+# just because "candidate" status alone isn't exclusion-worthy.
+# ---------------------------------------------------------------------------
+
+def test_already_attempted_true_when_marker_present_in_notes():
+    rec = {"notes": "2026-08-07 automated discovery: found x, not promoted -- reason."}
+    assert already_attempted(rec) is True
+
+
+def test_already_attempted_false_for_hand_written_notes_without_the_marker():
+    rec = {"notes": "Round 1 (2026-08-05): manually reviewed the county GIS portal."}
+    assert already_attempted(rec) is False
+
+
+def test_already_attempted_false_for_empty_or_missing_notes():
+    assert already_attempted({"notes": ""}) is False
+    assert already_attempted({}) is False
+
+
+def test_exclude_attempted_default_still_includes_a_previously_attempted_fips():
+    # Jackson County MO (29095): status=candidate AND already has a real
+    # "automated discovery:" note from this session's batch 1 run. Without
+    # --exclude-attempted, status alone still governs -- it must surface.
+    result = build_queue(next_n=5000)
+    returned_fips = {c["fips"] for c in result["candidates"]}
+    assert "29095" in returned_fips
+
+
+def test_exclude_attempted_true_excludes_a_previously_attempted_fips():
+    result = build_queue(next_n=5000, exclude_attempted=True)
+    returned_fips = {c["fips"] for c in result["candidates"]}
+    assert "29095" not in returned_fips
+
+
+def test_exclude_attempted_true_still_includes_a_never_attempted_candidate():
+    # A genuinely never-investigated FIPS must not be swept up by
+    # --exclude-attempted -- only records carrying the real marker.
+    result = build_queue(next_n=5000, exclude_attempted=True)
+    statuses = {c["fips"]: c["catalog_status"] for c in result["candidates"]}
+    assert any(status == "not-investigated" for status in statuses.values())
+
+
+# ---------------------------------------------------------------------------
 # Retry-due gating (pure function, no file I/O)
 # ---------------------------------------------------------------------------
 
@@ -137,3 +194,40 @@ def test_no_hits_for_state_with_no_reusable_service():
     catalog = load_catalog()
     hits = find_reusable_state_coverage(catalog, "ZZ")
     assert hits == []
+
+
+# ---------------------------------------------------------------------------
+# --state filter (added for discover_batch.mjs's --state passthrough)
+# ---------------------------------------------------------------------------
+
+def test_state_filter_returns_only_that_state():
+    result = build_queue(next_n=10, state="IL")
+    assert result["candidates"], "expected at least one IL candidate to exist"
+    assert all(c["state"] == "IL" for c in result["candidates"])
+
+
+def test_state_filter_is_case_insensitive():
+    lower = build_queue(next_n=10, state="il")
+    upper = build_queue(next_n=10, state="IL")
+    assert [c["fips"] for c in lower["candidates"]] == [c["fips"] for c in upper["candidates"]]
+
+
+def test_state_filter_excludes_other_states_present_in_the_unfiltered_queue():
+    unfiltered = build_queue(next_n=200)
+    other_state_fips = {c["fips"] for c in unfiltered["candidates"] if c["state"] and c["state"] != "IL"}
+    assert other_state_fips, "expected the unfiltered queue to include non-IL candidates to test exclusion against"
+
+    filtered = build_queue(next_n=200, state="IL")
+    filtered_fips = {c["fips"] for c in filtered["candidates"]}
+    assert filtered_fips.isdisjoint(other_state_fips)
+
+
+def test_state_filter_with_no_matching_state_returns_empty():
+    result = build_queue(next_n=10, state="ZZ")
+    assert result["candidates"] == []
+
+
+def test_no_state_filter_returns_multiple_states():
+    result = build_queue(next_n=50)
+    states = {c["state"] for c in result["candidates"] if c["state"]}
+    assert len(states) > 1

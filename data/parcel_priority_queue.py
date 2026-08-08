@@ -8,13 +8,27 @@ counties that are blocked/rejected without a due retry, ranks what's left by
 facility count, and groups the top N by state so a batch run can try
 existing statewide/regional coverage before starting fresh discovery.
 
-Read-only. No side effects, no network. This is the ranking half of a
-future `--next N` batch pipeline (Phase 2) — this script only answers
-"what should be looked at next and why," it does not investigate anything.
+Read-only. No side effects, no network. This is the ranking half of the
+`--next N` batch pipeline (data/parcel_pipeline/discover_batch.mjs +
+record_batch_results.mjs) -- this script only answers "what should be
+looked at next and why," it does not investigate anything.
+
+A record's status alone (candidate/requires-review/thin) does NOT exclude
+it here by design -- those statuses mean "a human should look at this,"
+not "done." But that means a county whose best automated-discovery
+candidate wasn't good enough to promote stays status=candidate and would
+otherwise resurface at the SAME rank on the very next --next N call,
+forever. --exclude-attempted breaks that loop: it additionally skips any
+record whose notes contain record_batch_results.mjs's standardized
+"automated discovery:" marker, i.e. a county this exact pipeline has
+already looked at (regardless of outcome) -- use it when picking the next
+batch to run through discover_batch.mjs; omit it for the plain "what's
+never been touched at all" view.
 
 Usage:
     python3 data/parcel_priority_queue.py --next 25
     python3 data/parcel_priority_queue.py --next 10 --json
+    python3 data/parcel_priority_queue.py --next 15 --exclude-attempted
 """
 import argparse
 import json
@@ -40,8 +54,16 @@ def load_facility_counts():
             continue
         fips = str(fips).zfill(5)
         counts[fips] += 1
-        names.setdefault(fips, fac.get("county"))
-        states.setdefault(fips, fac.get("state_abbr"))
+        # Not setdefault: some facility records have county/state_abbr
+        # blank even when county_fips is populated (e.g. an early Skybox
+        # Hutto TX entry with county=None, state_abbr=None), and grouping
+        # is unordered across records for the same FIPS -- always prefer a
+        # real value over one already-recorded null rather than locking in
+        # whichever record happened to be encountered first.
+        if fac.get("county") and not names.get(fips):
+            names[fips] = fac.get("county")
+        if fac.get("state_abbr") and not states.get(fips):
+            states[fips] = fac.get("state_abbr")
     return counts, names, states
 
 
@@ -91,7 +113,17 @@ def find_reusable_state_coverage(catalog, state):
     return hits
 
 
-def build_queue(next_n, today=None):
+ATTEMPTED_MARKER = "automated discovery:"
+
+
+def already_attempted(rec):
+    """True if record_batch_results.mjs has already logged a real
+    discover_batch.mjs outcome for this record, regardless of what that
+    outcome was."""
+    return ATTEMPTED_MARKER in (rec.get("notes") or "")
+
+
+def build_queue(next_n, today=None, state=None, exclude_attempted=False):
     today = today or date.today()
     counts, names, states = load_facility_counts()
     catalog = load_catalog()
@@ -105,10 +137,15 @@ def build_queue(next_n, today=None):
                 continue
             if status in ("blocked", "rejected") and not is_retry_due(rec, today):
                 continue
+            if exclude_attempted and already_attempted(rec):
+                continue
+        candidate_state = (rec.get("state") if rec else None) or states.get(fips)
+        if state and (candidate_state or "").upper() != state.upper():
+            continue
         candidates.append({
             "fips": fips,
             "name": (rec.get("name") if rec else None) or names.get(fips),
-            "state": (rec.get("state") if rec else None) or states.get(fips),
+            "state": candidate_state,
             "facility_count": count,
             "catalog_status": rec.get("status") if rec else "not-investigated",
         })
@@ -154,9 +191,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--next", type=int, default=25, help="how many jurisdictions to return")
     parser.add_argument("--json", action="store_true", help="emit JSON instead of a human-readable report")
+    parser.add_argument("--state", type=str, default=None, help="scope the candidate pool to one state (2-letter abbreviation) before ranking")
+    parser.add_argument("--exclude-attempted", action="store_true", help="also skip records record_batch_results.mjs has already logged a discover_batch.mjs outcome for, regardless of status")
     args = parser.parse_args()
 
-    result = build_queue(args.next)
+    result = build_queue(args.next, state=args.state, exclude_attempted=args.exclude_attempted)
     if args.json:
         json.dump(result, sys.stdout, indent=2)
         print()

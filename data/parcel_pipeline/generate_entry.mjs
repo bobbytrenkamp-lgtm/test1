@@ -46,18 +46,44 @@ function jsStringLiteral(value) {
   return value == null ? 'null' : `'${String(value).replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
 }
 
+// 8/6-space indentation here matches js/parcel/registry.js's own real
+// entries exactly (confirmed against e.g. Jefferson County AL's fieldMap/
+// notProvidedBySource block) so a promote_batch.mjs-inserted entry needs no
+// further re-indentation beyond buildEntryBody's key line.
 function formatFieldMap(fieldMap) {
-  const lines = Object.entries(fieldMap).map(([k, v]) => `    ${k}: ${jsStringLiteral(v)},`);
+  const lines = Object.entries(fieldMap).map(([k, v]) => `        ${k}: ${jsStringLiteral(v)},`);
   return lines.join('\n');
 }
 
 function formatNotProvided(list) {
-  if (!list.length) return '  ]';
+  if (!list.length) return '      ]';
   const lines = [];
   for (let i = 0; i < list.length; i += 4) {
-    lines.push('    ' + list.slice(i, i + 4).map(jsStringLiteral).join(', ') + ',');
+    lines.push('        ' + list.slice(i, i + 4).map(jsStringLiteral).join(', ') + ',');
   }
-  return lines.join('\n') + '\n  ]';
+  return lines.join('\n') + '\n      ]';
+}
+
+/* Derives the registry's `{state-lower}-{slugified-county-name}` id
+   convention (va-loudoun-county, md-montgomery-county, ut-salt-lake-county)
+   from a catalog record that has no explicit id yet.
+
+   promote_batch.mjs writes buildEntryBody()'s output DIRECTLY into
+   production js/parcel/registry.js, so the old `TODO-${fips}` fallback
+   shipped a literal "TODO-49049" id into live registry data the first time
+   a candidate actually cleared every promotion gate (Utah County UT). A
+   TODO placeholder is fine in a draft a human is about to hand-edit; it is
+   not fine in production. Falls back to the fips-suffixed form only when
+   name/state are genuinely missing, which the catalog validator already
+   rejects separately. */
+export function deriveRegistryId(catalogRecord) {
+  if (catalogRecord.id) return catalogRecord.id;
+  const state = String(catalogRecord.state || '').trim().toLowerCase();
+  const slug = String(catalogRecord.name || '').trim().toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  if (!state || !slug) return `unnamed-${catalogRecord.fips}`;
+  return `${state}-${slug}`;
 }
 
 function inferConnector(sourceType) {
@@ -101,8 +127,25 @@ export function buildDraft(catalogRecord, mapperResult, validation) {
  *   3. Pull one real sample record and sanity-check the mapped values.
  *   4. Run node tests/parcel.test.js and the catalog validator.
  */
-'${catalogRecord.fips}': {
-      id:          ${jsStringLiteral(catalogRecord.id || `TODO-${catalogRecord.fips}`)},
+${buildEntryBody(catalogRecord, mapperResult)}${reviewSection}
+`;
+}
+
+/* Pure. Formats just the registry.js-shaped entry body (the `'fips': {...},`
+   block, no surrounding DRAFT comment or review section) -- the exact text
+   both buildDraft() (wrapped with the human-facing draft header above) and
+   promote_batch.mjs (inserted directly into js/parcel/registry.js once a
+   candidate has cleared every promotion gate, including zero remaining
+   requiresReview items) need. Kept as one shared function so the two never
+   drift into producing subtly different entry shapes. */
+export function buildEntryBody(catalogRecord, mapperResult, attributionNote = 'DRAFT entry, not yet verified against a live sample record.') {
+  const connector = inferConnector(catalogRecord.source_type);
+  const whereClause = catalogRecord.county_filter_field && catalogRecord.county_filter_value
+    ? `\n      where:       "${catalogRecord.county_filter_field} = '${catalogRecord.county_filter_value}'",`
+    : '';
+
+  return `'${catalogRecord.fips}': {
+      id:          ${jsStringLiteral(deriveRegistryId(catalogRecord))},
       name:        ${jsStringLiteral(catalogRecord.name)},
       state:       ${jsStringLiteral(catalogRecord.state)},
       fips:        ${jsStringLiteral(catalogRecord.fips)},
@@ -126,10 +169,9 @@ ${formatNotProvided(mapperResult.notProvidedBySource)},
         url:     ${jsStringLiteral(catalogRecord.portal_url)},
         portal:  ${jsStringLiteral(catalogRecord.service_url)},
         license: ${jsStringLiteral(catalogRecord.licensing_notes || 'Public government data. Verify terms before commercial redistribution.')},
-        note:    'DRAFT entry, not yet verified against a live sample record.',
+        note:    ${jsStringLiteral(attributionNote)},
       },
-    },${reviewSection}
-`;
+    },`;
 }
 
 function main() {

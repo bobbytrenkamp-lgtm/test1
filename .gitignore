@@ -27,6 +27,11 @@ node_modules/
 # review copies the content into js/parcel/registry.js by hand.
 data/parcel_pipeline/drafts/
 
+# Parcel batch discovery run output — data/parcel_pipeline/discover_batch.mjs
+# writes full untruncated per-run JSON (targets/candidates/raw responses)
+# here for CI-artifact upload, never committed.
+data/parcel_pipeline/output/
+
 # OS
 .DS_Store
 Thumbs.db

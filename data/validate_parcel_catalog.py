@@ -54,7 +54,77 @@ def warn(msg):
     warnings.append(f"  WARN:  {msg}")
 
 
-def validate(catalog, registry_fips):
+SHARED_SERVICE_REQUIRED_KEYS = {
+    "service_id", "scope", "covered_states", "covered_fips", "service_url",
+    "layer_id", "county_filter_field", "known_filter_values", "geometry_type",
+    "publisher", "update_frequency", "canonical_mapping_template",
+    "attribution_template", "exclusions", "known_caveats", "last_verified",
+}
+
+
+def validate_shared_services(shared_services, jurisdictions, schema_field_ids=None):
+    """Pure — validates the data/parcel_source_catalog.json `shared_services`
+    section. Returns (errors, warnings), same convention as validate().
+    schema_field_ids: the real canonical field id list (from
+    export_schema_field_ids.mjs), or None to skip the canonical-id
+    cross-check (e.g. when Node isn't available)."""
+    local_errors = []
+    local_warnings = []
+
+    if not isinstance(shared_services, dict):
+        return [f"  ERROR: top-level 'shared_services' is not an object"], []
+
+    all_jurisdiction_fips = set(jurisdictions.keys()) if isinstance(jurisdictions, dict) else set()
+
+    for service_id, rec in shared_services.items():
+        if rec.get("service_id") != service_id:
+            local_errors.append(f"  ERROR: shared_services[{service_id!r}]: 'service_id' field "
+                                 f"({rec.get('service_id')!r}) does not match its object key")
+
+        missing_keys = SHARED_SERVICE_REQUIRED_KEYS - set(rec.keys())
+        if missing_keys:
+            local_errors.append(f"  ERROR: shared_services[{service_id!r}]: missing required "
+                                 f"key(s): {sorted(missing_keys)}")
+
+        covered_fips = rec.get("covered_fips", [])
+        for fips in covered_fips:
+            if not isinstance(fips, str) or len(fips) != 5 or not fips.isdigit():
+                local_errors.append(f"  ERROR: shared_services[{service_id!r}]: covered_fips "
+                                     f"entry {fips!r} is not a 5-digit FIPS string")
+
+        known_filter_values = rec.get("known_filter_values", {})
+        for fips in known_filter_values:
+            if fips not in covered_fips:
+                local_errors.append(f"  ERROR: shared_services[{service_id!r}]: "
+                                     f"known_filter_values has {fips!r} which is not in "
+                                     f"covered_fips")
+
+        if not rec.get("service_url"):
+            local_errors.append(f"  ERROR: shared_services[{service_id!r}]: 'service_url' is empty")
+
+        geometry_type = rec.get("geometry_type")
+        if geometry_type not in ("polygon", "point", "line", None):
+            local_warnings.append(f"  WARN:  shared_services[{service_id!r}]: unrecognized "
+                                   f"geometry_type {geometry_type!r}")
+
+        if schema_field_ids is not None:
+            template = rec.get("canonical_mapping_template", {})
+            unknown_ids = set(template.keys()) - set(schema_field_ids)
+            if unknown_ids:
+                local_errors.append(f"  ERROR: shared_services[{service_id!r}]: "
+                                     f"canonical_mapping_template references unknown canonical "
+                                     f"field id(s): {sorted(unknown_ids)}")
+
+        for fips in covered_fips:
+            if fips not in all_jurisdiction_fips:
+                local_warnings.append(f"  WARN:  shared_services[{service_id!r}]: covered_fips "
+                                       f"{fips!r} has no corresponding jurisdictions record "
+                                       f"(expected once that county is added to the registry)")
+
+    return local_errors, local_warnings
+
+
+def validate(catalog, registry_fips, schema_field_ids=None):
     """Runs every check against an in-memory catalog dict + a list of live
     registry FIPS codes (or None if the registry couldn't be loaded),
     returning (errors, warnings) freshly each call — the module-level
@@ -129,6 +199,11 @@ def validate(catalog, registry_fips):
     else:
         warn("skipping registry cross-consistency checks -- registry failed to load")
 
+    shared_services = catalog.get("shared_services", {})
+    ss_errors, ss_warnings = validate_shared_services(shared_services, jurisdictions, schema_field_ids)
+    errors.extend(ss_errors)
+    warnings.extend(ss_warnings)
+
     return list(errors), list(warnings)
 
 
@@ -159,12 +234,29 @@ def load_registry_fips():
     return json.loads(result.stdout)
 
 
+def load_schema_field_ids():
+    """Loads the real canonical field id list via
+    data/parcel_pipeline/lib/export_schema_field_ids.mjs, so
+    validate_shared_services()'s canonical-id cross-check never hand-
+    duplicates the 30-field list. Returns None (with a printed notice,
+    not a hard failure) if Node isn't available or the script errors."""
+    script_path = ROOT / "data" / "parcel_pipeline" / "lib" / "export_schema_field_ids.mjs"
+    result = subprocess.run(
+        ["node", str(script_path)], capture_output=True, text=True, cwd=ROOT
+    )
+    if result.returncode != 0:
+        print(f"  (could not load schema field ids via Node: {result.stderr.strip()})")
+        return None
+    return json.loads(result.stdout)
+
+
 def main():
     catalog = load_catalog()
     print(f"Validating {CATALOG_PATH.relative_to(ROOT)} ...")
 
     registry_fips = load_registry_fips()
-    found_errors, found_warnings = validate(catalog, registry_fips)
+    schema_field_ids = load_schema_field_ids()
+    found_errors, found_warnings = validate(catalog, registry_fips, schema_field_ids)
 
     if found_warnings:
         print("\nWarnings:")

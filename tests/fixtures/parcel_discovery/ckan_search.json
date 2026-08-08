@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "result": {
+    "count": 2,
+    "results": [
+      {
+        "title": "Example County Parcel Boundaries",
+        "organization": { "title": "Example County GIS" },
+        "license_title": "Public Domain",
+        "tags": [{ "name": "parcels" }, { "name": "cadastral" }],
+        "resources": [
+          {
+            "format": "GeoJSON",
+            "url": "https://example.gov/data/parcels.geojson"
+          },
+          {
+            "format": "Esri REST",
+            "url": "https://services.arcgis.com/fake/arcgis/rest/services/Parcels/FeatureServer/0"
+          }
+        ]
+      },
+      {
+        "title": "Zoning Districts",
+        "organization": { "title": "Example County Planning" },
+        "license_title": "Public Domain",
+        "tags": [{ "name": "zoning" }],
+        "resources": [
+          { "format": "Shapefile", "url": "https://example.gov/data/zoning.zip" }
+        ]
+      }
+    ]
+  }
+}
