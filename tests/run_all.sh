@@ -41,6 +41,10 @@ run "source link move-suggestion logic" python3 -m pytest tests/test_check_sourc
 run "economic data pipeline"      python3 tests/test_economic_data.py
 run "economic output validation"  python3 data/update_economic_data.py --check
 run "no paid dependencies"        python3 tests/test_no_paid_dependencies.py
+run "data catalog: generator + registry tests" python3 -m pytest tests/test_data_catalog.py -q
+# The generated data catalog must match current repository state -- same
+# staleness discipline as the parcel coverage metrics.
+run "data catalog: committed artifacts are current" python3 data/generate_data_catalog.py --check
 run "parcel source catalog validator" python3 data/validate_parcel_catalog.py
 run "parcel catalog + priority queue tests" python3 -m pytest tests/test_parcel_catalog.py tests/test_parcel_priority_queue.py -q
 run "parcel registry integrity check" node data/parcel_pipeline/check_registry_integrity.mjs
