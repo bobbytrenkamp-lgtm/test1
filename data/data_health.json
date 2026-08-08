@@ -1,0 +1,103 @@
+{
+  "_meta": {
+    "description": "Project-wide data health: is each pipeline's most recent automated run actually healthy right now, distinct from data_catalog.json's coverage/wiring question. NOT_YET_TRACKED is an honest 'we don't know', never silently reported as OK.",
+    "generator": "data/generate_data_health.py",
+    "health_states": [
+      "OK",
+      "SOURCE_DOWN",
+      "NETWORK_FAILURE",
+      "VALIDATION_FAILURE",
+      "SOURCE_CHANGED",
+      "SCHEMA_CHANGED",
+      "DATA_EMPTY",
+      "NOT_YET_TRACKED"
+    ]
+  },
+  "datasets_without_automated_health_tracking": [
+    "ai_news",
+    "data_centers",
+    "economic_census",
+    "facility_sources",
+    "fcc_broadband_fiber_pct",
+    "fema_flood",
+    "fiber_network",
+    "fred_data",
+    "interconnection_queues",
+    "iso_rto",
+    "nwi_wetlands",
+    "pad_us_protected_lands",
+    "parcel_assessment_sales_ownership",
+    "parcel_source_catalog",
+    "parcels_registry",
+    "political_risk",
+    "power_plants",
+    "rail",
+    "restrictions_raw",
+    "roads",
+    "substations",
+    "transmission_lines",
+    "utility_territories",
+    "wastewater",
+    "water_stress",
+    "zoning_jurisdictions"
+  ],
+  "pipelines": {
+    "county_page_citations": {
+      "health": "VALIDATION_FAILURE",
+      "last_checked": "2026-08-03T07:51:19+00:00",
+      "pipeline": "county_page_citations",
+      "total_urls_checked": 1994,
+      "unreachable": 956,
+      "unreachable_ratio": 0.4794
+    },
+    "map_data_citations": {
+      "health": "VALIDATION_FAILURE",
+      "last_checked": "2026-08-02T08:31:53.524671+00:00",
+      "pipeline": "map_data_citations",
+      "total_urls_checked": 2949,
+      "unreachable": 1242,
+      "unreachable_ratio": 0.4212
+    },
+    "policy_pipeline_sources": {
+      "health": "SOURCE_DOWN",
+      "last_checked": "2026-08-08T07:42:33.499010+00:00",
+      "persistently_down": [
+        "az-water-resources",
+        "ca-santaclara-oes",
+        "ct-legislature",
+        "ferc-order-2023",
+        "mi-legislature",
+        "mi-mpsc",
+        "nc-chatham-commissioners",
+        "ny-climate-clcpa",
+        "ny-local-law-97",
+        "ny-nyc-mocej",
+        "ny-senate",
+        "oh-legislature",
+        "ri-smithfield-council"
+      ],
+      "pipeline": "policy_pipeline_sources",
+      "total_sources": 109,
+      "transiently_unreachable": [
+        "tx-gov-incentives",
+        "tx-legislature",
+        "wa-douglas-pud",
+        "wi-legislature"
+      ]
+    },
+    "static_parcel_ingestion": {
+      "health": "NOT_YET_TRACKED",
+      "pipeline": "static_parcel_ingestion",
+      "why": "zero sources registered in sources.json -- pipeline is built and tested but has nothing to run yet (see docs/INFRASTRUCTURE_ASSET_SCHEMA.md-style honesty note in static_ingestion/models.py)"
+    }
+  },
+  "summary": {
+    "counts_by_health": {
+      "NOT_YET_TRACKED": 1,
+      "SOURCE_DOWN": 1,
+      "VALIDATION_FAILURE": 2
+    },
+    "datasets_without_tracking_count": 26,
+    "pipelines_tracked": 4
+  }
+}
