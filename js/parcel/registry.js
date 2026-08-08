@@ -3653,6 +3653,52 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    '49049': {
+      id:          'ut-utah-county',
+      name:        'Utah County',
+      state:       'UT',
+      fips:        '49049',
+      connector:   'arcgis',
+      serviceUrl:  'https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Parcels_Utah_LIR/FeatureServer/0',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id: 'PARCEL_ID',
+        pin: 'SERIAL_NUM',
+        address: 'PARCEL_ADD',
+        land_use_code: 'PROP_CLASS',
+        area_sqft: 'Shape__Area',
+        area_acres: 'PARCEL_ACRES',
+        building_count: 'HOUSE_CNT',
+        year_built: 'BUILT_YR',
+        gross_floor_area: 'BLDG_SQFT',
+        assessed_value: 'TOTAL_MKT_VALUE',
+        land_value: 'LAND_MKT_VALUE',
+        subdivision: 'SUBDIV_NAME',
+        county_fips: '__computed__',
+      },
+
+      notProvidedBySource: [
+        'owner', 'owner_mailing', 'zoning_code', 'zoning_desc',
+        'land_use_desc', 'overlay_districts', 'lot_depth_ft', 'lot_width_ft',
+        'improvement_value', 'tax_year', 'tax_amount', 'last_sale_date',
+        'last_sale_price', 'deed_book', 'deed_page', 'legal_desc',
+        'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'UtahAGRC',
+        url:     'https://www.arcgis.com/home/item.html?id=69477c1143924bc9990cdb930b033fb5',
+        portal:  'https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Parcels_Utah_LIR/FeatureServer/0',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Promoted via promote_batch.mjs on 2026-08-08 (score 61, band marginal; automated discovery + field mapping, not hand-verified).',
+      },
+    },
+
   };
 
   function get(fips) {

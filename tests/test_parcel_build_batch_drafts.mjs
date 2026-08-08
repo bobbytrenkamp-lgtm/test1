@@ -17,6 +17,7 @@
 import {
   buildCatalogRecordFromCandidate, evaluateTargetForDraft,
 } from '../data/parcel_pipeline/build_batch_drafts.mjs';
+import { deriveRegistryId, buildEntryBody } from '../data/parcel_pipeline/generate_entry.mjs';
 
 let pass = 0, fail = 0;
 function t(name, actual, expected) {
@@ -128,6 +129,35 @@ const durhamCandidate = {
   const strongCandidate = { ...durhamCandidate, band: 'strong', score: 90 };
   const evaluation = evaluateTargetForDraft(durhamTarget, strongCandidate, 'marginal');
   ok('a strong-band candidate is eligible at the default min-band', evaluation.eligible === true);
+}
+
+// ── deriveRegistryId: a TODO placeholder must never reach production registry.js ──
+// promote_batch.mjs writes buildEntryBody()'s output DIRECTLY into
+// js/parcel/registry.js. The old `TODO-${fips}` fallback shipped a literal
+// "TODO-49049" id into live registry data the first time a candidate
+// actually cleared every promotion gate (Utah County UT, batch 6) -- the
+// gates had never approved anything before, so the placeholder had never
+// been exercised on the production path.
+{
+  t('derives the {state}-{county-slug} registry id convention when the catalog record has none',
+    deriveRegistryId({ fips: '49049', name: 'Utah County', state: 'UT' }), 'ut-utah-county');
+  t('an explicit catalog id always wins over the derived one',
+    deriveRegistryId({ fips: '51107', name: 'Loudoun County', state: 'VA', id: 'va-loudoun-county' }),
+    'va-loudoun-county');
+  t('punctuation and multi-word names slugify cleanly',
+    deriveRegistryId({ fips: '27137', name: 'St. Louis County', state: 'MN' }), 'mn-st-louis-county');
+  t('a parish (not "County") keeps its own suffix',
+    deriveRegistryId({ fips: '22033', name: 'East Baton Rouge Parish', state: 'LA' }),
+    'la-east-baton-rouge-parish');
+  t('a record with no name/state degrades to a marked id, never a TODO',
+    deriveRegistryId({ fips: '99999' }), 'unnamed-99999');
+
+  const body = buildEntryBody(
+    { fips: '49049', name: 'Utah County', state: 'UT', source_type: 'arcgis_online', service_url: 'https://example.gov/x/0' },
+    { fieldMap: { parcel_id: 'PARCEL_ID' }, notProvidedBySource: [] },
+  );
+  ok('a generated entry body never contains a TODO- placeholder id', !body.includes('TODO-'));
+  ok('the generated entry body carries the derived id', body.includes("'ut-utah-county'"));
 }
 
 console.log(`\n${pass} passed, ${fail} failed`);

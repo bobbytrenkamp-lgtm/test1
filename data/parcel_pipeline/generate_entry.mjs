@@ -64,6 +64,28 @@ function formatNotProvided(list) {
   return lines.join('\n') + '\n      ]';
 }
 
+/* Derives the registry's `{state-lower}-{slugified-county-name}` id
+   convention (va-loudoun-county, md-montgomery-county, ut-salt-lake-county)
+   from a catalog record that has no explicit id yet.
+
+   promote_batch.mjs writes buildEntryBody()'s output DIRECTLY into
+   production js/parcel/registry.js, so the old `TODO-${fips}` fallback
+   shipped a literal "TODO-49049" id into live registry data the first time
+   a candidate actually cleared every promotion gate (Utah County UT). A
+   TODO placeholder is fine in a draft a human is about to hand-edit; it is
+   not fine in production. Falls back to the fips-suffixed form only when
+   name/state are genuinely missing, which the catalog validator already
+   rejects separately. */
+export function deriveRegistryId(catalogRecord) {
+  if (catalogRecord.id) return catalogRecord.id;
+  const state = String(catalogRecord.state || '').trim().toLowerCase();
+  const slug = String(catalogRecord.name || '').trim().toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  if (!state || !slug) return `unnamed-${catalogRecord.fips}`;
+  return `${state}-${slug}`;
+}
+
 function inferConnector(sourceType) {
   if (!sourceType) return 'arcgis';
   if (sourceType.startsWith('arcgis')) return 'arcgis';
@@ -123,7 +145,7 @@ export function buildEntryBody(catalogRecord, mapperResult, attributionNote = 'D
     : '';
 
   return `'${catalogRecord.fips}': {
-      id:          ${jsStringLiteral(catalogRecord.id || `TODO-${catalogRecord.fips}`)},
+      id:          ${jsStringLiteral(deriveRegistryId(catalogRecord))},
       name:        ${jsStringLiteral(catalogRecord.name)},
       state:       ${jsStringLiteral(catalogRecord.state)},
       fips:        ${jsStringLiteral(catalogRecord.fips)},
