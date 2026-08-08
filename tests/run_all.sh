@@ -65,6 +65,7 @@ run "parcel conceptual buildable envelope" node tests/test_parcel_envelope.mjs
 run "parcel assemblage + owner adjacency" node tests/test_parcel_assemblage.mjs
 run "parcel large-site discovery filters" node tests/test_parcel_site_search.mjs
 run "parcel site suitability score (explainable)" node tests/test_parcel_suitability.mjs
+run "parcel sales history + comparable transactions" node tests/test_parcel_sales.mjs
 run "parcel enrichment: CAMA join discovery + verification" node tests/test_parcel_enrichment_discovery.mjs
 run "parcel coverage: classification + metrics rules" node tests/test_parcel_coverage_metrics.mjs
 # The generated coverage artifacts must match what current repository data
