@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "Log of detected changes in monitored government sources. Used to track what the pipeline has found and acted on.",
-    "last_updated": "2026-08-01T09:02:33.253681+00:00"
+    "last_updated": "2026-08-08T07:43:59.944550+00:00"
   },
   "entries": [
     {
@@ -272,6 +272,15 @@
       "change_type": "new_document",
       "url": "https://dor.sc.gov/sales-use-tax-index/sales-tax-exemptions",
       "summary": "New candidate: Sales Tax Exemptions | SCDOR (South Carolina Department of Revenue)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260808T074359-0000",
+      "source_id": "ga-clayton-commissioners",
+      "detected_at": "2026-08-08T07:42:41.327859+00:00",
+      "change_type": "new_document",
+      "url": "https://www.claytoncountyga.gov/government/board-of-commissioners",
+      "summary": "New candidate: Board of Commissioners - Clayton County, Georgia (Clayton County)",
       "acted_on": false
     }
   ]
