@@ -9,7 +9,7 @@
 */
 import {
   computeSizeWhere, buildQueryUrl, centroidFromGeometry, normalizeFeature,
-  fetchJurisdictionRecords, buildIndex, DEFAULT_THRESHOLD_ACRES,
+  fetchJurisdictionRecords, buildIndex, structuralOutFields, DEFAULT_THRESHOLD_ACRES,
 } from '../data/parcel_pipeline/build_national_site_index.mjs';
 
 let pass = 0, fail = 0;
@@ -39,10 +39,22 @@ function ok(name, cond) {
   ok('no size field is marked NOT size-filtered', !neitherResult.sizeFiltered);
 }
 
+// ── structuralOutFields ──────────────────────────────────────────────────
+{
+  const fields = structuralOutFields({
+    parcel_id: 'PA_MCPI', area_acres: 'PA_LEGAL_ACRE', subdivision: 'PA_SUBD_NAME', county_fips: '__computed__',
+  });
+  t('only fields a structural CRITERION reads are requested, sorted for a stable assertion', [...fields].sort(),
+    ['PA_LEGAL_ACRE', 'PA_MCPI']);
+  ok('a __computed__ field is never sent as a real outField', !fields.includes('__computed__'));
+  ok('a canonical field this index does not use (subdivision) is not requested', !fields.includes('PA_SUBD_NAME'));
+  t('no fieldMap at all falls back to a defensive wildcard', structuralOutFields(undefined), ['*']);
+}
+
 // ── buildQueryUrl ────────────────────────────────────────────────────────
 {
   const url = buildQueryUrl(
-    { serviceUrl: 'https://example.gov/arcgis/rest/services/Parcels/MapServer/0', outFields: null },
+    { serviceUrl: 'https://example.gov/arcgis/rest/services/Parcels/MapServer/0', fieldMap: { parcel_id: 'PIN', area_acres: 'ACRES' } },
     { where: 'ACRES >= 5' }, 2000,
   );
   ok('query hits the jurisdiction service /query endpoint', url.startsWith('https://example.gov/arcgis/rest/services/Parcels/MapServer/0/query'));
@@ -50,6 +62,9 @@ function ok(name, cond) {
   ok('geojson output is requested', url.includes('f=geojson'));
   ok('geometry is requested (needed for centroid)', url.includes('returnGeometry=true'));
   ok('the cap is passed as resultRecordCount', url.includes('resultRecordCount=2000'));
+  ok('outFields is scoped to structural fields, not a wildcard', url.includes('outFields=PIN%2CACRES') || url.includes('outFields=PIN,ACRES'));
+  ok('geometry is requested at reduced precision, not full precision', url.includes('geometryPrecision=4'));
+  ok('the polygon is generalized/simplified server-side', url.includes('maxAllowableOffset=0.001'));
 }
 
 // ── centroidFromGeometry ─────────────────────────────────────────────────

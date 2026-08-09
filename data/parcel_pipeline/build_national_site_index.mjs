@@ -91,14 +91,49 @@ export function computeSizeWhere(fieldMap, thresholdAcres) {
   return { where: '1=1', sizeFiltered: false, filterField: null, filterUnit: null };
 }
 
+/* Pure: which raw source fields this index actually needs from a
+   jurisdiction, derived from its own fieldMap (canonical -> raw source
+   name) rather than requesting outFields=* (every attribute the service
+   carries). A first real live dispatch of this script requested '*' and
+   produced a 168MB file (GitHub's push limit is 100MB) across just 55
+   jurisdictions -- most of that from attributes this index has no use for
+   (legal descriptions, deed references, dozens of assessment fields no
+   PARCEL_SITE_SEARCH structural criterion reads). Only the fields the
+   structural (non-proximity/constraint) CRITERIA in js/parcel/site-search.js
+   can evaluate are requested. */
+const STRUCTURAL_CANONICAL_FIELDS = [
+  'parcel_id', 'pin', 'area_acres', 'area_sqft',
+  'zoning_code', 'land_use_code', 'owner', 'assessed_value',
+];
+
+export function structuralOutFields(fieldMap) {
+  const raw = new Set();
+  for (const canonical of STRUCTURAL_CANONICAL_FIELDS) {
+    const source = fieldMap && fieldMap[canonical];
+    if (source && source !== '__computed__') raw.add(source);
+  }
+  // Every production jurisdiction maps parcel_id or pin (schema.js requires
+  // parcel_id) -- an empty set here would mean a malformed registry entry,
+  // not a real jurisdiction; '*' is a defensive fallback, not the norm.
+  return raw.size ? [...raw] : ['*'];
+}
+
 /* Pure: mirrors js/parcel/connector-arcgis.js's _buildQueryUrl, but this is
-   a Node script with no DOM/browser fetch context to share it with. */
+   a Node script with no DOM/browser fetch context to share it with.
+   geometryPrecision + maxAllowableOffset deliberately request simplified,
+   low-precision geometry: centroidFromGeometry() below only needs a
+   bounding box, not the exact parcel boundary (a user gets the real,
+   precise geometry live when they open that specific parcel, same as
+   today) -- full-precision polygons were the other major contributor to
+   the 168MB first-run file alongside outFields=*. */
 export function buildQueryUrl(jurisdiction, whereInfo, cap) {
   const url = new URL(jurisdiction.serviceUrl + '/query');
   const p = url.searchParams;
   p.set('where', whereInfo.where);
-  p.set('outFields', jurisdiction.outFields ? jurisdiction.outFields.join(',') : '*');
+  p.set('outFields', structuralOutFields(jurisdiction.fieldMap).join(','));
   p.set('returnGeometry', 'true');
+  p.set('geometryPrecision', '4');       // ~11m at the equator -- ample for a centroid
+  p.set('maxAllowableOffset', '0.001');  // degrees; generalizes/simplifies the polygon
   p.set('inSR', '4326');
   p.set('outSR', '4326');
   p.set('resultRecordCount', String(cap));
