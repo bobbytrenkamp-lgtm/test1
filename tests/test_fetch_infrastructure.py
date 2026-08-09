@@ -190,3 +190,124 @@ def test_wastewater_permit_status_is_passed_through_not_filtered():
     assert len(result) == 1
     assert result[0]["permit_status_code"] == "TER"
     assert result[0]["permit_status_desc"] == "Terminated"
+
+
+# ── Water systems (partitioned by Primacy_Agency) ────────────────────────
+# fetch_water_systems() used to issue one unpartitioned query against a
+# 44,000+-feature layer and never finished in real dispatches (confirmed
+# empirically, documented in the function's own docstring). The fix
+# discovers real Primacy_Agency values live (never a hardcoded/guessed
+# list) and fetches each partition independently, so one bad partition
+# can't sink the whole run and the total is a real sum of real partitions.
+
+def _ws_feature(pwsid, lon, lat, **overrides):
+    attrs = {
+        "PWSID": pwsid, "PWS_Name": f"System {pwsid}", "Primacy_Agency": "VA",
+        "Population_Served_Count": 1000, "Service_Connections_Count": 400,
+        "Service_Area_Type": "Community", "Verification_Status": "Verified",
+        "Model_Method": "Parcel", "Area_SqKM": 12.5,
+    }
+    attrs.update(overrides)
+    return {"attributes": attrs, "centroid": {"x": lon, "y": lat}}
+
+
+def test_water_systems_discovers_partitions_before_fetching():
+    with patch.object(fi, "_arcgis_distinct_values", return_value=["VA", "MD"]) as mock_discover, \
+         patch.object(fi, "_arcgis_paginate", return_value=[]) as mock_paginate:
+        fi.fetch_water_systems()
+    mock_discover.assert_called_once_with(fi.WATER_SYSTEM_URL, "Primacy_Agency")
+    assert mock_paginate.call_count == 2
+
+
+def test_water_systems_no_partitions_discovered_aborts_cleanly():
+    with patch.object(fi, "_arcgis_distinct_values", return_value=[]), \
+         patch.object(fi, "_arcgis_paginate") as mock_paginate:
+        result = fi.fetch_water_systems()
+    assert result == []
+    mock_paginate.assert_not_called()
+
+
+def test_water_systems_partition_where_clause_is_scoped_and_escaped():
+    with patch.object(fi, "_arcgis_distinct_values", return_value=["O'Brien Rural Water"]), \
+         patch.object(fi, "_arcgis_paginate", return_value=[]) as mock_paginate:
+        fi.fetch_water_systems()
+    where = mock_paginate.call_args[0][1]
+    assert where == "Primacy_Agency = 'O''Brien Rural Water'"
+
+
+def test_water_systems_records_are_deduped_by_pwsid_across_partitions():
+    raw_va = [_ws_feature("VA0000001", -77.0, 39.0)]
+    raw_md = [_ws_feature("VA0000001", -77.0, 39.0), _ws_feature("MD0000002", -76.0, 39.5, Primacy_Agency="MD")]
+
+    def fake_paginate(url, where, out_fields, max_per_page=None, extra_params=None):
+        return raw_va if "VA" in where else raw_md
+
+    with patch.object(fi, "_arcgis_distinct_values", return_value=["VA", "MD"]), \
+         patch.object(fi, "_arcgis_paginate", side_effect=fake_paginate):
+        result = fi.fetch_water_systems()
+    assert len(result) == 2
+    assert {r["pwsid"] for r in result} == {"VA0000001", "MD0000002"}
+
+
+def test_water_systems_one_failed_partition_does_not_abort_the_batch():
+    def fake_paginate(url, where, out_fields, max_per_page=None, extra_params=None):
+        if "VA" in where:
+            raise RuntimeError("simulated transport failure")
+        return [_ws_feature("MD0000001", -76.0, 39.5, Primacy_Agency="MD")]
+
+    with patch.object(fi, "_arcgis_distinct_values", return_value=["VA", "MD"]), \
+         patch.object(fi, "_arcgis_paginate", side_effect=fake_paginate):
+        result = fi.fetch_water_systems()
+    assert len(result) == 1
+    assert result[0]["pwsid"] == "MD0000001"
+
+
+def test_water_systems_real_fields_are_mapped_correctly():
+    raw = [_ws_feature("VA0000003", -77.2, 39.2, PWS_Name="Test Water Co",
+                        Population_Served_Count=5000, Service_Connections_Count=1800,
+                        Service_Area_Type="Community", Verification_Status="Verified",
+                        Model_Method="Parcel", Area_SqKM=8.3)]
+    with patch.object(fi, "_arcgis_distinct_values", return_value=["VA"]), \
+         patch.object(fi, "_arcgis_paginate", return_value=raw):
+        result = fi.fetch_water_systems()
+    r = result[0]
+    assert r["name"] == "Test Water Co"
+    assert r["population_served"] == 5000
+    assert r["service_connections"] == 1800
+    assert r["service_area_type"] == "Community"
+    assert r["verification_status"] == "Verified"
+    assert r["area_sqkm"] == 8.3
+    assert r["state"] == "VA"  # inferred from the PWSID prefix, not Primacy_Agency
+    assert r["lon"] == -77.2
+    assert r["lat"] == 39.2
+
+
+def test_water_systems_records_missing_centroid_are_skipped_not_zeroed():
+    raw = [
+        {"attributes": {"PWSID": "VA0000004", "PWS_Name": "No Centroid"}, "centroid": {}},
+        _ws_feature("VA0000005", -77.3, 39.3),
+    ]
+    with patch.object(fi, "_arcgis_distinct_values", return_value=["VA"]), \
+         patch.object(fi, "_arcgis_paginate", return_value=raw):
+        result = fi.fetch_water_systems()
+    assert len(result) == 1
+    assert result[0]["pwsid"] == "VA0000005"
+
+
+def test_water_systems_records_missing_pwsid_are_skipped():
+    raw = [
+        {"attributes": {"PWS_Name": "No PWSID"}, "centroid": {"x": -77.4, "y": 39.4}},
+        _ws_feature("VA0000006", -77.5, 39.5),
+    ]
+    with patch.object(fi, "_arcgis_distinct_values", return_value=["VA"]), \
+         patch.object(fi, "_arcgis_paginate", return_value=raw):
+        result = fi.fetch_water_systems()
+    assert len(result) == 1
+    assert result[0]["pwsid"] == "VA0000006"
+
+
+def test_water_systems_empty_partition_response_does_not_error():
+    with patch.object(fi, "_arcgis_distinct_values", return_value=["VA"]), \
+         patch.object(fi, "_arcgis_paginate", return_value=[]):
+        result = fi.fetch_water_systems()
+    assert result == []

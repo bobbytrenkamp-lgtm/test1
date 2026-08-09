@@ -689,6 +689,35 @@ def fetch_iso_rto_regions() -> list[dict]:
 
 # ── Water systems (drinking water service areas) ─────────────────────────
 
+def _arcgis_distinct_values(url: str, field: str) -> list[str]:
+    """Discover the real partition keys for `field` via one lightweight
+    ArcGIS distinct-values query (returnDistinctValues=true, no geometry).
+
+    Used instead of a hardcoded guessed list of states/agencies, which could
+    silently drift from what the live service actually carries (a tribal
+    system administered directly by an EPA region, for instance, does not
+    use a plain 2-letter state code) -- the same "never guess, verify live"
+    rule this project applies everywhere else.
+    """
+    params = {
+        "where": "1=1",
+        "outFields": field,
+        "returnDistinctValues": "true",
+        "returnGeometry": "false",
+        "orderByFields": field,
+        "f": "json",
+    }
+    data = _get(url, params)
+    if not data or "error" in data:
+        return []
+    values = []
+    for feat in data.get("features", []):
+        v = feat.get("attributes", {}).get(field)
+        if v:
+            values.append(str(v))
+    return values
+
+
 def fetch_water_systems() -> list[dict]:
     """
     Fetch EPA Community Water System service areas as centroid points.
@@ -699,12 +728,28 @@ def fetch_water_systems() -> list[dict]:
     (one at full resolution, one with server-side geometry generalization
     via maxAllowableOffset) each ran past 15+ minutes with no sign of
     finishing against this 44,000+-feature layer and had to be cancelled --
-    confirmed empirically, not assumed. Every other layer in this file
-    (substations, power plants, wastewater) is already stored as points for
-    exactly this reason; service-area boundary precision was traded for a
-    fetch that actually completes. ArcGIS's own returnCentroid option
-    computes this server-side, so the centroid is a real (if approximate)
-    representation of the polygon, not a fabricated point.
+    confirmed empirically, not assumed. A later single-query attempt (this
+    function's earlier version), even after dropping to centroid-only
+    output at a 100-record page size, still hadn't finished after 15+
+    minutes -- also confirmed empirically. A 1-record query against this
+    same service returns in ~1s, so the service itself is not down or
+    outright rate-limiting; the cost appears to scale with the FULL
+    44,000+-feature dataset regardless of page size, not with the page
+    itself (plausibly because resultOffset pagination against this service
+    still evaluates from the start of the full result set each page).
+
+    THE FIX: partition the query by Primacy_Agency (a real field on this
+    layer, confirmed live) instead of paginating the whole table in one
+    query stream. Each partition is a small enough slice that it pages
+    normally, and per-partition failure isolation means one bad partition
+    (a timeout, a malformed response) does not sink the whole fetch --
+    it's logged and skipped, and the final summary says exactly which ones.
+    Every other layer in this file (substations, power plants, wastewater)
+    is already stored as points for the same completes-in-a-CI-job reason;
+    service-area boundary precision is traded for a fetch that actually
+    finishes. ArcGIS's own returnCentroid option computes the centroid
+    server-side from the real underlying polygon, so it is a real (if
+    approximate) representation, not a fabricated point.
 
     HONESTY NOTE: a centroid point is NOT the service-area boundary -- it
     marks roughly where the utility's territory is centered, not where it
@@ -715,62 +760,85 @@ def fetch_water_systems() -> list[dict]:
     layer was found in this pass). Never conflate "near a water system's
     centroid" with "water available."
     """
-    log.info("Fetching EPA Community Water System service areas (centroids)…")
-    # Even after dropping full geometry for centroids, real dispatches at
-    # the default 2000-record page size still hadn't finished after 15+
-    # minutes (confirmed empirically -- a single 1-record query against
-    # this same service returns in ~1s, so the service itself isn't down
-    # or rate-limiting outright). The likely cause: this layer's centroids
-    # are computed server-side from real underlying polygons, so per-page
-    # cost scales with how many polygons the server has to process in that
-    # request, not just response size. A much smaller page keeps each
-    # request comfortably inside the client's 60s timeout instead of
-    # risking a timeout-then-retry spiral that looks like a hang from the
-    # outside.
-    raw = _arcgis_paginate(WATER_SYSTEM_URL, "1=1",
-                           "PWSID,PWS_Name,Primacy_Agency,Population_Served_Count,"
-                           "Service_Connections_Count,Service_Area_Type,"
-                           "Verification_Status,Model_Method,Area_SqKM",
-                           max_per_page=100,
-                           extra_params={"returnGeometry": "false", "returnCentroid": "true"})
-    if not raw:
-        log.warning("No water system data returned.")
+    log.info("Discovering real Primacy_Agency partition values (never a guessed/hardcoded list)…")
+    partitions = _arcgis_distinct_values(WATER_SYSTEM_URL, "Primacy_Agency")
+    if not partitions:
+        log.warning("Could not discover Primacy_Agency partitions -- water systems fetch aborted "
+                    "rather than falling back to the single query already confirmed to hang.")
         return []
+    log.info("Discovered %d Primacy_Agency partitions: %s", len(partitions), partitions)
 
-    out = []
-    for feat in raw:
-        a = feat.get("attributes", {})
-        centroid = feat.get("centroid") or {}
-        lon, lat = centroid.get("x"), centroid.get("y")
-        if lon is None or lat is None:
+    out_fields = ("PWSID,PWS_Name,Primacy_Agency,Population_Served_Count,"
+                  "Service_Connections_Count,Service_Area_Type,"
+                  "Verification_Status,Model_Method,Area_SqKM")
+
+    by_pwsid: dict[str, dict] = {}
+    failed_partitions: list[str] = []
+    dup_count = 0
+
+    for i, agency in enumerate(partitions, 1):
+        escaped = agency.replace("'", "''")
+        log.info("[%d/%d] Fetching partition Primacy_Agency='%s'…", i, len(partitions), agency)
+        try:
+            raw = _arcgis_paginate(
+                WATER_SYSTEM_URL, f"Primacy_Agency = '{escaped}'", out_fields,
+                max_per_page=500,
+                extra_params={"returnGeometry": "false", "returnCentroid": "true"},
+            )
+        except Exception as exc:  # noqa: BLE001 -- one bad partition must not sink the batch
+            log.warning("  partition '%s' failed: %s -- skipped, not silently dropped from the summary below.",
+                        agency, exc)
+            failed_partitions.append(agency)
             continue
-        pwsid = str(a.get("PWSID") or "")
-        # EPA's own PWSID convention is a 2-letter state postal code
-        # prefix (e.g. "VA0000123") -- this is a documented EPA format
-        # rule, not an inferred/guessed value, but it has not been
-        # independently re-confirmed against real PWSID values from this
-        # specific layer (only the field name was confirmed live).
-        state_guess = pwsid[:2].upper() if len(pwsid) >= 2 and pwsid[:2].isalpha() else ""
-        out.append({
-            "id":                     f"ws-{pwsid or a.get('OBJECTID', len(out))}",
-            "pwsid":                  pwsid,
-            "name":                   a.get("PWS_Name") or "Unknown Water System",
-            "primacy_agency":         a.get("Primacy_Agency") or "",
-            "state":                  state_guess,
-            "population_served":      a.get("Population_Served_Count"),
-            "service_connections":    a.get("Service_Connections_Count"),
-            "service_area_type":      a.get("Service_Area_Type") or "",
-            "verification_status":    a.get("Verification_Status") or "",
-            "boundary_method":        a.get("Model_Method") or "",
-            "area_sqkm":              a.get("Area_SqKM"),
-            "lon":                    round(float(lon), 5),
-            "lat":                    round(float(lat), 5),
-        })
 
-    log.info("Water systems: %d records", len(out))
+        partition_count = 0
+        for feat in raw:
+            a = feat.get("attributes", {})
+            centroid = feat.get("centroid") or {}
+            lon, lat = centroid.get("x"), centroid.get("y")
+            if lon is None or lat is None:
+                continue
+            pwsid = str(a.get("PWSID") or "")
+            if not pwsid:
+                continue
+            # EPA's own PWSID convention is a 2-letter state postal code
+            # prefix (e.g. "VA0000123") -- this is a documented EPA format
+            # rule, not an inferred/guessed value, but it has not been
+            # independently re-confirmed against real PWSID values from
+            # this specific layer (only the field name was confirmed live).
+            state_guess = pwsid[:2].upper() if len(pwsid) >= 2 and pwsid[:2].isalpha() else ""
+            if pwsid in by_pwsid:
+                dup_count += 1
+            by_pwsid[pwsid] = {
+                "id":                     f"ws-{pwsid}",
+                "pwsid":                  pwsid,
+                "name":                   a.get("PWS_Name") or "Unknown Water System",
+                "primacy_agency":         a.get("Primacy_Agency") or agency,
+                "state":                  state_guess,
+                "population_served":      a.get("Population_Served_Count"),
+                "service_connections":    a.get("Service_Connections_Count"),
+                "service_area_type":      a.get("Service_Area_Type") or "",
+                "verification_status":    a.get("Verification_Status") or "",
+                "boundary_method":        a.get("Model_Method") or "",
+                "area_sqkm":              a.get("Area_SqKM"),
+                "lon":                    round(float(lon), 5),
+                "lat":                    round(float(lat), 5),
+            }
+            partition_count += 1
+        log.info("  partition '%s': %d record(s) (running total: %d)", agency, partition_count, len(by_pwsid))
+
+    out = list(by_pwsid.values())
+
+    log.info("═══ Water systems ingestion complete ═══")
+    log.info("Partitions attempted: %d, succeeded: %d, failed: %d",
+              len(partitions), len(partitions) - len(failed_partitions), len(failed_partitions))
+    if failed_partitions:
+        log.warning("Failed partitions (real gaps, not silently absorbed into the total below): %s",
+                     failed_partitions)
+    log.info("Total records: %d (PWSID collisions across partitions: %d)", len(out), dup_count)
     from collections import Counter
     state_counts = Counter(o["state"] for o in out if o["state"])
-    log.info("Water systems by inferred state (%d states represented): %s",
+    log.info("By inferred state (%d states represented): %s",
               len(state_counts), dict(sorted(state_counts.items())))
     return out
 

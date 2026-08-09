@@ -11,7 +11,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | | |
 |---|---|
 | Datasets catalogued | 29 |
-| Datasets with actual data (has_data) | 17 |
+| Datasets with actual data (has_data) | 18 |
 | Datasets wired into the production UI | 11 |
 | Datasets with dedicated CI coverage | 5 |
 | Datasets on an automated refresh workflow | 15 |
@@ -50,7 +50,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | UTILITY TERRITORIES | 1 | 1 | 6 | 1 | 1 |
 | WASTEWATER | 1 | 1 | 18,885 | 0 | 1 |
 | WATER | 1 | 1 | 79 | 1 | 1 |
-| WATER INFRASTRUCTURE | 1 | 0 | 0 | 0 | 0 |
+| WATER INFRASTRUCTURE | 1 | 1 | 44,612 | 0 | 0 |
 | WETLANDS | 1 | 0 | 0 | 0 | 0 |
 | ZONING | 1 | 1 | 1 | 1 | 1 |
 
@@ -458,20 +458,20 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 ### WATER INFRASTRUCTURE
 
-**Community water system service areas** (water_systems) — ⛔ no data
+**Community water system service areas** (water_systems) — ✅ has data
 
-- Records: n/a
+- Records: 44612
 - Source: EPA Community Water System Service Area Boundaries (national drinking-water dataset)
 - Source URL: https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Water_System_Boundaries/FeatureServer/0
-- Geographic scope (declared): United States -- source publishes 44,000+ community water systems, ~99% of the population served by community water systems, all 50 states + DC + tribal/territory systems (source's own claim, not yet independently re-verified against a completed fetch)
-- Update frequency (declared): weekly (update_infrastructure.yml, once ingestion succeeds)
+- Geographic scope (declared): United States -- 44,612 real community water systems ingested 2026-08-09, all 50 states + DC + PR + GU + MP + tribal/EPA-region-administered systems (numeric Primacy_Agency codes 1/4/5/6/8/9/10)
+- Update frequency (declared): weekly (update_infrastructure.yml)
 - Authoritative: True
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
 - Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
-- **Known coverage holes:** NOT YET INGESTED, but the source is real and confirmed live -- this is a found-but-blocked ingestion, not an unexplored gap. Real schema was confirmed via a live GitHub Actions probe (PWSID, PWS_Name, Primacy_Agency, Population_Served_Count, Service_Connections_Count, Service_Area_Type, Verification_Status, Area_SqKM), and a single-record query against this same service returns in about 1 second, ruling out the service being down or wholesale rate-limited. Four separate real dispatches of a full pagination fetch -- (1) full-resolution polygons, (2) server-side geometry-generalized polygons via maxAllowableOffset, (3) server-computed centroids only via returnCentroid with a 2000-record page size, (4) the same centroids at a 100-record page size -- each ran 15+ minutes with no sign of completing and had to be cancelled. The working theory: this layer's 44,000+ underlying polygons make deep offset-based pagination (`resultOffset`) progressively expensive server-side regardless of what's returned per page, a known failure mode for large hosted feature services. The fetcher code (fetch_water_systems() in fetch_infrastructure.py) is real and correct for a small/bounded query -- it is wired into update_infrastructure.yml's water_systems layer and will populate this dataset automatically once ingestion is restructured (most likely: per-state WHERE-filtered queries against Primacy_Agency instead of one unfiltered `where=1=1` scan, avoiding deep pagination entirely) rather than guessed at further in this pass.
-- **Known quality issues:** Not yet applicable -- no records ingested yet. Once ingested: a service-area boundary/centroid answers "which utility's territory reaches here," not whether that utility has spare capacity, and carries no main-size/location or treatment-plant-location data (see the wastewater dataset for the wastewater side of the picture).
+- **Known coverage holes:** RESOLVED 2026-08-09 (was NOT YET INGESTED -- found live but blocked by a pagination stall). Root cause confirmed: this layer's 44,000+ underlying polygons made deep offset-based pagination (`resultOffset`) progressively expensive server-side regardless of page size -- four earlier full-scan dispatches (full-resolution polygons, geometry-generalized polygons, centroids at 2000/page, centroids at 100/page) each ran 15+ minutes and had to be cancelled. Fix: fetch_water_systems() now discovers the real Primacy_Agency partition values live via a single distinct-values query (61 real values: 50 states + DC + PR/GU/MP + 7 numeric EPA-region/tribal codes -- never a hardcoded list), then fetches each partition independently with per-partition failure isolation and PWSID dedup. A real dispatch against this exact code (GitHub Actions run 31340008732, 2026-08-09) completed in ~90 seconds: 44,612 records, 61/61 partitions succeeded, 1 PWSID collision deduped, 54 states represented in the output (CA 2,798; TX 4,582; WA 2,123; NC 1,841 the largest).
+- **Known quality issues:** A service-area centroid/boundary answers "which utility's territory reaches here," not whether that utility has spare capacity, and carries no main-size/location or treatment-plant-location data (see the wastewater dataset for the wastewater side of the picture). State is inferred from the PWSID's 2-letter prefix (a documented EPA convention, not independently re-verified against every real PWSID in this specific layer).
 
 ### WETLANDS
 
