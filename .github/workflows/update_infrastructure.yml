@@ -39,11 +39,14 @@ jobs:
           fi
           python data/fetch_infrastructure.py --layers "$LAYERS"
 
+      - name: Split layers for browser lazy-loading
+        run: python data/split_sample_layers.py
+
       - name: Commit updated infrastructure data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/sample_layers.json
+          git add data/sample_layers.json data/layers/
           if git diff --cached --quiet; then
             echo "No infrastructure changes to commit"
           else

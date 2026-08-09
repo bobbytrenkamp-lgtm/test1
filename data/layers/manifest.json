@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-08-09T22:42:46Z",
+  "source_meta": {
+    "_disclaimer": "Facility locations are approximate (city-level accuracy). Capacity figures are publicly reported estimates and may not reflect current state. Sources listed per entry.",
+    "_facilities_exported_at": "2026-08-09T18:29:35Z",
+    "_last_updated": "2026-08-09T22:42:46Z",
+    "_fiber_network_note": "Empty by design. Earlier versions of this file hand-typed three named routes (\"Zayo Northern Virginia Dark Fiber Ring\", \"Lumen/CenturyLink Iowa Backbone\", \"Zayo Pacific NW Fiber Route\") with invented coordinate paths attributed to real carriers by name -- none were sourced from Zayo, Lumen, or any public filing. Attributing an invented path to a named company is a fabrication risk regardless of a map tooltip disclaimer, so they were removed rather than kept as \"illustrative\". No free, reliable, nationwide dataset of actual fiber routes is known to exist -- see js/parcel/proximity-layers.js's registerUnavailable('fiber', ...) for the parcel engine's position, which this file now matches. Only add entries here that carry a verified 'sources' array with a real URL, the same requirement data/validate_sources.py already enforces for data_centers/ai_campuses/power_infrastructure."
+  },
+  "layers": {
+    "water_stress": {
+      "file": "data/layers/core.json",
+      "record_count": 79,
+      "bytes": 948,
+      "eager": true
+    },
+    "tax_incentive_counties": {
+      "file": "data/layers/core.json",
+      "record_count": 22,
+      "bytes": 198,
+      "eager": true
+    },
+    "utility_territories": {
+      "file": "data/layers/core.json",
+      "record_count": 6,
+      "bytes": 810,
+      "eager": true
+    },
+    "data_centers": {
+      "file": "data/layers/data_centers.json",
+      "record_count": 4063,
+      "bytes": 1217692,
+      "eager": false
+    },
+    "ai_campuses": {
+      "file": "data/layers/ai_campuses.json",
+      "record_count": 381,
+      "bytes": 154946,
+      "eager": false
+    },
+    "power_infrastructure": {
+      "file": "data/layers/power_infrastructure.json",
+      "record_count": 53826,
+      "bytes": 9790457,
+      "eager": false
+    },
+    "transmission_lines": {
+      "file": "data/layers/transmission_lines.json",
+      "record_count": 1892,
+      "bytes": 398303,
+      "eager": false
+    },
+    "fiber_network": {
+      "file": "data/layers/fiber_network.json",
+      "record_count": 0,
+      "bytes": 2,
+      "eager": false
+    },
+    "power_plants": {
+      "file": "data/layers/power_plants.json",
+      "record_count": 1295,
+      "bytes": 299367,
+      "eager": false
+    },
+    "wastewater_facilities": {
+      "file": "data/layers/wastewater_facilities.json",
+      "record_count": 18885,
+      "bytes": 7379004,
+      "eager": false
+    },
+    "water_systems": {
+      "file": "data/layers/water_systems.json",
+      "record_count": 44612,
+      "bytes": 15033759,
+      "eager": false
+    }
+  }
+}
