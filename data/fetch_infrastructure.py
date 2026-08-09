@@ -9,11 +9,13 @@ Sources (all public, no authentication required):
   - EPA FRS/ICIS Wastewater     (NPDES-permitted wastewater treatment facilities)
   - FCC National Broadband Map  (county-level fiber coverage)
   - EPA WATERS / USGS           (county-level water availability proxy)
+  - EIA US Energy Atlas         (ISO/RTO region boundaries -- currently token-gated, see ISO_RTO_URL)
+  - EPA Community Water Systems (drinking-water service-area boundaries)
 
 Outputs: updates data/sample_layers.json with real infrastructure data.
 
 Usage:
-    python data/fetch_infrastructure.py [--layers substations,transmission,power,wastewater,fiber,water]
+    python data/fetch_infrastructure.py [--layers substations,transmission,power,wastewater,fiber,water,iso_rto,water_systems]
 """
 from __future__ import annotations
 
@@ -139,6 +141,21 @@ EPA_WATERS_URL  = "https://enviroatlas.epa.gov/arcgis/rest/services/Supplemental
 # the first live fetch, so attributes are passed through unfiltered rather
 # than guessing field names.
 ISO_RTO_URL = "https://services7.arcgis.com/FGr1D95XCGALKXqM/ArcGIS/rest/services/RTO_Regions/FeatureServer/0/query"
+
+# ── EPA Community Water System Service Area Boundaries ──────────────────
+# EPA's own national dataset of drinking-water service-area polygons for
+# 44,000+ community water systems (~99% of the population served by
+# community water systems nationwide), covering all 50 states + DC +
+# tribal/territory systems. Found via web search and confirmed live on a
+# real GitHub Actions probe dispatch: real schema includes PWSID, PWS_Name,
+# Primacy_Agency, Population_Served_Count, Service_Connections_Count,
+# Service_Area_Type, Verification_Status, Area_SqKM. This is WATER
+# INFRASTRUCTURE (a utility's known service territory) -- distinct from
+# water_stress (a scarcity index) and distinct from a capacity/main-size
+# claim, which this source does not carry. Service areas are drawn at
+# varying confidence (see Verification_Status/Model_Method) -- passed
+# through as reported, never upgraded to "confirmed" by this project.
+WATER_SYSTEM_URL = "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Water_System_Boundaries/FeatureServer/0/query"
 
 SESSION = requests.Session()
 SESSION.headers.update({"User-Agent": "USDataCenterPolicyTracker/1.0 (research; github.com/bobbytrenkamp-lgtm/test1)"})
@@ -661,6 +678,70 @@ def fetch_iso_rto_regions() -> list[dict]:
     return out
 
 
+# ── Water systems (drinking water service areas) ─────────────────────────
+
+def fetch_water_systems() -> list[dict]:
+    """
+    Fetch EPA Community Water System service-area boundaries.
+
+    Returns simplified polygon dicts, one per water system. Ring vertices
+    are downsampled for storage size -- these are detailed cartographic
+    service-area boundaries, and this is a national-overview layer, not a
+    parcel-precision one.
+
+    HONESTY NOTE: a service-area polygon says "this utility's known
+    territory reaches here" -- it does NOT say the utility has spare
+    capacity, does NOT give main size/location, and does NOT give a
+    treatment plant location (see fetch_wastewater_facilities() for the
+    wastewater side of that; no equivalent public EPA drinking-water
+    treatment-plant point layer was found in this pass). Never conflate
+    "inside a service area" with "water available."
+    """
+    log.info("Fetching EPA Community Water System service-area boundaries…")
+    raw = _arcgis_paginate(WATER_SYSTEM_URL, "1=1",
+                           "PWSID,PWS_Name,Primacy_Agency,Population_Served_Count,"
+                           "Service_Connections_Count,Service_Area_Type,"
+                           "Verification_Status,Model_Method,Area_SqKM")
+    if not raw:
+        log.warning("No water system data returned.")
+        return []
+
+    out = []
+    for feat in raw:
+        a = feat.get("attributes", {})
+        geom = feat.get("geometry", {})
+        rings = geom.get("rings", [])
+        sampled_rings = [ring[::8] for ring in rings if len(ring) > 1]
+        pwsid = str(a.get("PWSID") or "")
+        # EPA's own PWSID convention is a 2-letter state postal code
+        # prefix (e.g. "VA0000123") -- this is a documented EPA format
+        # rule, not an inferred/guessed value, but it has not been
+        # independently re-confirmed against real PWSID values from this
+        # specific layer (only the field name was confirmed live).
+        state_guess = pwsid[:2].upper() if len(pwsid) >= 2 and pwsid[:2].isalpha() else ""
+        out.append({
+            "id":                     f"ws-{pwsid or a.get('OBJECTID', len(out))}",
+            "pwsid":                  pwsid,
+            "name":                   a.get("PWS_Name") or "Unknown Water System",
+            "primacy_agency":         a.get("Primacy_Agency") or "",
+            "state":                  state_guess,
+            "population_served":      a.get("Population_Served_Count"),
+            "service_connections":    a.get("Service_Connections_Count"),
+            "service_area_type":      a.get("Service_Area_Type") or "",
+            "verification_status":    a.get("Verification_Status") or "",
+            "boundary_method":        a.get("Model_Method") or "",
+            "area_sqkm":              a.get("Area_SqKM"),
+            "rings": [[[round(p[0], 4), round(p[1], 4)] for p in ring] for ring in sampled_rings],
+        })
+
+    log.info("Water systems: %d records", len(out))
+    from collections import Counter
+    state_counts = Counter(o["state"] for o in out if o["state"])
+    log.info("Water systems by inferred state (%d states represented): %s",
+              len(state_counts), dict(sorted(state_counts.items())))
+    return out
+
+
 # ── Update sample_layers.json ─────────────────────────────────────────────────
 
 def update_layers(layers_path: str, updates: dict[str, Any]) -> None:
@@ -686,7 +767,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Fetch infrastructure data layers")
     parser.add_argument(
         "--layers",
-        default="substations,transmission,power,wastewater,fiber,water,iso_rto",
+        default="substations,transmission,power,wastewater,fiber,water,iso_rto,water_systems",
         help="Comma-separated list of layers to fetch",
     )
     args = parser.parse_args()
@@ -728,6 +809,11 @@ def main() -> None:
         regions = fetch_iso_rto_regions()
         if regions:
             updates["iso_rto_regions"] = regions
+
+    if "water_systems" in enabled:
+        systems = fetch_water_systems()
+        if systems:
+            updates["water_systems"] = systems
 
     if updates:
         update_layers(LAYERS_PATH, updates)
