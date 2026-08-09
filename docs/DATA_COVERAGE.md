@@ -10,7 +10,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 | | |
 |---|---|
-| Datasets catalogued | 26 |
+| Datasets catalogued | 27 |
 | Datasets with actual data (has_data) | 16 |
 | Datasets wired into the production UI | 11 |
 | Datasets with dedicated CI coverage | 5 |
@@ -24,7 +24,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | hourly | 1 |
 | monthly | 1 |
 | none | 1 |
-| not_automated | 12 |
+| not_automated | 13 |
 | weekly | 10 |
 
 ## By category
@@ -50,6 +50,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | UTILITY TERRITORIES | 1 | 1 | 6 | 1 | 1 |
 | WASTEWATER | 1 | 1 | 18,885 | 0 | 1 |
 | WATER | 1 | 1 | 79 | 1 | 1 |
+| WATER INFRASTRUCTURE | 1 | 0 | 0 | 0 | 0 |
 | WETLANDS | 1 | 0 | 0 | 0 | 0 |
 | ZONING | 1 | 1 | 1 | 1 | 1 |
 
@@ -423,6 +424,23 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - Actual refresh cadence (computed from the workflow's own cron schedule): weekly
 - **Known coverage holes:** Only 79 of ~3,000 US counties have a water stress value. This is an index/score (0–4 scale), not a water utility service territory, treatment plant, or main dataset — none of those exist in the repository yet.
 - **Known quality issues:** A single scalar stress index cannot answer utility capacity questions; the parcel suitability/proximity engines correctly treat proximity as distinct from capacity, but no water infrastructure PROXIMITY layer (mains, treatment plants, service areas) exists to feed that distinction yet.
+
+### WATER INFRASTRUCTURE
+
+**Community water system service areas** (water_systems) — ⛔ no data
+
+- Records: n/a
+- Source: EPA Community Water System Service Area Boundaries (national drinking-water dataset)
+- Source URL: https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Water_System_Boundaries/FeatureServer/0
+- Geographic scope (declared): United States -- source publishes 44,000+ community water systems, ~99% of the population served by community water systems, all 50 states + DC + tribal/territory systems (source's own claim, not yet independently re-verified against a completed fetch)
+- Update frequency (declared): weekly (update_infrastructure.yml, once ingestion succeeds)
+- Authoritative: True
+- UI-consumed: False
+- CI-tested: False
+- Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
+- **Known coverage holes:** NOT YET INGESTED, but the source is real and confirmed live -- this is a found-but-blocked ingestion, not an unexplored gap. Real schema was confirmed via a live GitHub Actions probe (PWSID, PWS_Name, Primacy_Agency, Population_Served_Count, Service_Connections_Count, Service_Area_Type, Verification_Status, Area_SqKM), and a single-record query against this same service returns in about 1 second, ruling out the service being down or wholesale rate-limited. Four separate real dispatches of a full pagination fetch -- (1) full-resolution polygons, (2) server-side geometry-generalized polygons via maxAllowableOffset, (3) server-computed centroids only via returnCentroid with a 2000-record page size, (4) the same centroids at a 100-record page size -- each ran 15+ minutes with no sign of completing and had to be cancelled. The working theory: this layer's 44,000+ underlying polygons make deep offset-based pagination (`resultOffset`) progressively expensive server-side regardless of what's returned per page, a known failure mode for large hosted feature services. The fetcher code (fetch_water_systems() in fetch_infrastructure.py) is real and correct for a small/bounded query -- it is wired into update_infrastructure.yml's water_systems layer and will populate this dataset automatically once ingestion is restructured (most likely: per-state WHERE-filtered queries against Primacy_Agency instead of one unfiltered `where=1=1` scan, avoiding deep pagination entirely) rather than guessed at further in this pass.
+- **Known quality issues:** Not yet applicable -- no records ingested yet. Once ingested: a service-area boundary/centroid answers "which utility's territory reaches here," not whether that utility has spare capacity, and carries no main-size/location or treatment-plant-location data (see the wastewater dataset for the wastewater side of the picture).
 
 ### WETLANDS
 
