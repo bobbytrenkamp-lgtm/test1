@@ -14,7 +14,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | Datasets with actual data (has_data) | 15 |
 | Datasets wired into the production UI | 11 |
 | Datasets with dedicated CI coverage | 5 |
-| Datasets on an automated refresh workflow | 13 |
+| Datasets on an automated refresh workflow | 14 |
 
 ## Refresh cadence (computed from each workflow's own cron schedule, not declared)
 
@@ -24,8 +24,8 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | hourly | 1 |
 | monthly | 1 |
 | none | 1 |
-| not_automated | 13 |
-| weekly | 9 |
+| not_automated | 12 |
+| weekly | 10 |
 
 ## By category
 
@@ -48,7 +48,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | SUBSTATIONS | 1 | 1 | 25 | 1 | 1 |
 | TRANSMISSION | 1 | 1 | 1,892 | 1 | 1 |
 | UTILITY TERRITORIES | 1 | 1 | 6 | 1 | 1 |
-| WASTEWATER | 1 | 0 | 0 | 0 | 0 |
+| WASTEWATER | 1 | 0 | 0 | 0 | 1 |
 | WATER | 1 | 1 | 79 | 1 | 1 |
 | WETLANDS | 1 | 0 | 0 | 0 | 0 |
 | ZONING | 1 | 1 | 1 | 1 | 1 |
@@ -393,16 +393,18 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 **Wastewater treatment infrastructure** (wastewater) — ⛔ no data
 
-- Records: 0
-- Source: _not applicable — no data_
-- Geographic scope (declared): _none_
-- Update frequency (declared): n/a — not implemented
-- Authoritative: False
+- Records: n/a
+- Source: EPA Office of Environmental Information (OEI) FRS/ICIS-NPDES
+- Source URL: https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_Wastewater/MapServer/1/query
+- Geographic scope (declared): US NPDES-permitted wastewater treatment facilities (live ArcGIS query, real count varies per fetch -- not a fixed dataset size)
+- Update frequency (declared): weekly (update_infrastructure.yml, fetch_wastewater_facilities())
+- Authoritative: True
 - UI-consumed: False
 - CI-tested: False
-- Automated update workflow(s): _none_
-- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
-- **Known coverage holes:** NOT IMPLEMENTED. EPA's Clean Watersheds Needs Survey and the EPA Facility Registry Service both publish free wastewater facility data that has not yet been evaluated.
+- Automated update workflow(s): update_data.yml, update_facilities.yml, update_infrastructure.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): weekly
+- **Known coverage holes:** No capacity/flow-rate field (capacity_mgd is always null, genuinely absent from this source -- see fetch_wastewater_facilities() docstring). Only records with real FAC_LAT/FAC_LONG are included. Permit status is passed through unfiltered since only the schema, not real CWP_PERMIT_STATUS_CODE enum values, was confirmed via live dispatch -- some records may be terminated/inactive permits, not just currently-operating plants.
+- **Known quality issues:** This layer indexes NPDES-permitted facilities (major/minor/other), not the EPA Clean Watersheds Needs Survey's broader treatment-plant inventory -- coverage may differ from CWNS totals, which have not been cross-checked.
 
 ### WATER
 

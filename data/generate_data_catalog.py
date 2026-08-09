@@ -128,7 +128,7 @@ RECORD_COUNT_RULES = {
     "fiber_network": lambda: _count_json_path("data/sample_layers.json", "fiber_network"),
     "fcc_broadband_fiber_pct": lambda: 0,
     "water_stress": lambda: _count_json_path("data/sample_layers.json", "water_stress"),
-    "wastewater": lambda: 0,
+    "wastewater": lambda: _count_json_path("data/sample_layers.json", "wastewater_facilities"),
     "roads": lambda: 0,
     "rail": lambda: 0,
     "fema_flood": lambda: 0,

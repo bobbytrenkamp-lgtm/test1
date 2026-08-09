@@ -5,14 +5,15 @@ Fetch infrastructure data relevant to data center site analysis.
 Sources (all public, no authentication required):
   - HIFLD Electric Substations  (ArcGIS REST, Homeland Infrastructure Foundation-Level Data)
   - HIFLD Electric Transmission Lines
-  - HIFLD Power Plants
+  - EPA FRS Power Plants        (EIA-860 generator data joined with FRS)
+  - EPA FRS/ICIS Wastewater     (NPDES-permitted wastewater treatment facilities)
   - FCC National Broadband Map  (county-level fiber coverage)
   - EPA WATERS / USGS           (county-level water availability proxy)
 
 Outputs: updates data/sample_layers.json with real infrastructure data.
 
 Usage:
-    python data/fetch_infrastructure.py [--layers substations,transmission,power,fiber,water]
+    python data/fetch_infrastructure.py [--layers substations,transmission,power,wastewater,fiber,water]
 """
 from __future__ import annotations
 
@@ -77,6 +78,24 @@ TRANSMISSION_URL= f"{HIFLD_BASE}/Electric_Power_Transmission_Lines/FeatureServer
 # identity/location/status/fuel-source data is real and usable; capacity_mw
 # is genuinely unknown from this source and is never fabricated here.
 POWER_PLANT_URL = "https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_PowerPlants/MapServer/12/query"
+
+# Verified live 2026-08-09 via a real GitHub Actions dispatch (workflow run
+# 31289722600, job 93184735924): the same EPA OEI namespace, this time layer
+# 1 ("Wastewater Treatment Plants — Major, Minor and Other/Nonclassified"),
+# combining FRS facility records with ICIS-NPDES permit data. Real confirmed
+# fields (from a live ogrinfo schema dump, not assumed): NPDES_ID,
+# REGISTRY_ID, CWP_NAME, CWP_STREET, CWP_CITY, CWP_STATE, CWP_ZIP,
+# CWP_COUNTY, FAC_DERIVED_FIPS, CWP_MAJOR_MINOR_STATUS,
+# CWP_PERMIT_STATUS_CODE, CWP_PERMIT_STATUS_DESC, CWP_FACILITY_TYPE_DESC,
+# CWP_CSO_FLAG, FAC_LAT, FAC_LONG. That dispatch only confirmed the SCHEMA
+# (ogrinfo -al -so is metadata-only), not real permit-status enum values —
+# so unlike power plants' STATUS='OP', this fetcher does not filter on
+# CWP_PERMIT_STATUS_CODE/DESC by guessing what "active" looks like. It
+# fetches every record with real coordinates and passes permit status
+# through as reported. NOTE: like power plants, this layer has NO capacity
+# field (no MGD/flow rate) — capacity_mgd is genuinely unknown and never
+# fabricated here.
+WASTEWATER_URL = "https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_Wastewater/MapServer/1/query"
 
 # ── FCC National Broadband Map ──────────────────────────────────────────────
 # NOT actually no-auth despite this file's original header claiming so: every
@@ -349,6 +368,69 @@ def fetch_power_plants() -> list[dict]:
     return out
 
 
+# ── Wastewater treatment facilities ─────────────────────────────────────────
+
+def fetch_wastewater_facilities() -> list[dict]:
+    """
+    Fetch NPDES-permitted wastewater treatment facilities from EPA's
+    FRS_Wastewater layer (FRS facility records joined with ICIS permit data).
+
+    HONESTY NOTE: like fetch_power_plants(), this layer carries facility
+    identity, location, county, and permit/facility-type classification --
+    all real, all usable. It does NOT carry a capacity/flow-rate field, so
+    `capacity_mgd` is explicitly None, never estimated or defaulted.
+    Permit status (CWP_PERMIT_STATUS_CODE/DESC) is passed through as
+    reported rather than filtered, since only the schema (not real status
+    values) was confirmed live -- see WASTEWATER_URL's comment.
+
+    Returns list of simplified point dicts, deduplicated by NPDES_ID.
+    """
+    log.info("Fetching EPA FRS/ICIS wastewater treatment facilities…")
+    where = "FAC_LAT IS NOT NULL AND FAC_LONG IS NOT NULL"
+    raw = _arcgis_paginate(WASTEWATER_URL, where,
+                           "NPDES_ID,REGISTRY_ID,CWP_NAME,CWP_STREET,CWP_CITY,CWP_STATE,"
+                           "CWP_COUNTY,FAC_DERIVED_FIPS,CWP_MAJOR_MINOR_STATUS,"
+                           "CWP_PERMIT_STATUS_CODE,CWP_PERMIT_STATUS_DESC,"
+                           "CWP_FACILITY_TYPE_DESC,CWP_CSO_FLAG,FAC_LAT,FAC_LONG")
+    if not raw:
+        log.warning("No wastewater facility data returned.")
+        return []
+
+    seen_npdes_ids: set[str] = set()
+    out = []
+    for feat in raw:
+        a = feat.get("attributes", {})
+        geom = feat.get("geometry", {})
+        npdes_id = str(a.get("NPDES_ID") or "")
+        if not npdes_id or npdes_id in seen_npdes_ids:
+            continue
+        lon = geom.get("x") or a.get("FAC_LONG")
+        lat = geom.get("y") or a.get("FAC_LAT")
+        if not lon or not lat:
+            continue
+        seen_npdes_ids.add(npdes_id)
+        county_fips = str(a.get("FAC_DERIVED_FIPS") or "").zfill(5)
+        out.append({
+            "id":                  f"ww-{npdes_id}",
+            "name":                a.get("CWP_NAME") or "Unknown Facility",
+            "registry_id":         a.get("REGISTRY_ID") or "",
+            "facility_type":       a.get("CWP_FACILITY_TYPE_DESC") or "",
+            "major_minor_status":  a.get("CWP_MAJOR_MINOR_STATUS") or "",
+            "permit_status_code":  a.get("CWP_PERMIT_STATUS_CODE") or "",
+            "permit_status_desc":  a.get("CWP_PERMIT_STATUS_DESC") or "",
+            "combined_sewer_outfall": a.get("CWP_CSO_FLAG") or "",
+            "capacity_mgd":        None,  # genuinely not in this source -- never fabricated
+            "county_fips":         county_fips,
+            "county_name":         a.get("CWP_COUNTY") or "",
+            "state":               a.get("CWP_STATE") or "",
+            "city":                a.get("CWP_CITY") or "",
+            "lon":                 round(float(lon), 5),
+            "lat":                 round(float(lat), 5),
+        })
+    log.info("Wastewater facilities: %d records (deduplicated by NPDES ID)", len(out))
+    return out
+
+
 # ── Fiber / broadband coverage ───────────────────────────────────────────────
 
 def fetch_fiber_coverage() -> dict[str, float]:
@@ -509,7 +591,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Fetch infrastructure data layers")
     parser.add_argument(
         "--layers",
-        default="substations,transmission,power,fiber,water",
+        default="substations,transmission,power,wastewater,fiber,water",
         help="Comma-separated list of layers to fetch",
     )
     args = parser.parse_args()
@@ -531,6 +613,11 @@ def main() -> None:
         plants = fetch_power_plants()
         if plants:
             updates["power_plants"] = plants
+
+    if "wastewater" in enabled:
+        wastewater = fetch_wastewater_facilities()
+        if wastewater:
+            updates["wastewater_facilities"] = wastewater
 
     if "fiber" in enabled:
         fiber = fetch_fiber_coverage()
