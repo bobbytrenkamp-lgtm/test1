@@ -24,7 +24,7 @@
       "category": "DATA CENTERS",
       "dataset_count": 2,
       "datasets_with_data": 2,
-      "total_records": 4329,
+      "total_records": 4463,
       "ui_consumed_count": 1,
       "automated_count": 1
     },
@@ -283,7 +283,7 @@
       "license": "Aggregates public sources; OSM contributions under ODbL where applicable.",
       "known_coverage_holes": "Below the ~6,000-facility target discussed for a comprehensive national census. No explicit campus\u2192building parent/child hierarchy yet \u2014 campus_total_mw and campus_size_acres exist as flat per-record fields, so a multi-building campus is not guaranteed to be modeled as one entity with children.",
       "known_quality_issues": "Locations are approximate (city-level accuracy per the dataset's own disclaimer); capacity figures are publicly reported estimates that may be stale.",
-      "record_count": 4321,
+      "record_count": 4455,
       "ui_consumed": true,
       "ci_tested": true,
       "automated_update_workflows": [

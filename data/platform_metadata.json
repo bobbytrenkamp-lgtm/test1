@@ -1,7 +1,7 @@
 {
   "_schema": "platform_metadata_v1",
   "_note": "Central source of truth for platform-wide statistics. Read by home.js, analytics.js, and map.js. Do NOT hardcode these numbers elsewhere — load this file instead. Update via process_data.py or manually when data changes.",
-  "_generated_at": "2026-08-02T06:54:47Z",
+  "_generated_at": "2026-08-09T18:29:40Z",
   "methodology_version": "1.0",
   "coverage": {
     "total_us_counties": 3143,
@@ -31,7 +31,7 @@
     "news_through": null,
     "news_update_frequency": "hourly-via-github-actions",
     "news_articles_in_feed": 6,
-    "facilities_total": 4321,
+    "facilities_total": 4455,
     "facilities_operational": 3395,
     "facilities_planned": 442,
     "facilities_note": "Facility data aggregated from public sources via automated pipeline. Not independently verified for every record. Some records may be duplicates or contain errors.",

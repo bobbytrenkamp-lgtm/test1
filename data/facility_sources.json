@@ -82,11 +82,11 @@
       "tier": 4,
       "adapter": "ferc_queue",
       "url": "https://www.ferc.gov/media/3423/download",
-      "active": true,
+      "active": false,
       "requires_auth": false,
       "auth_env_var": "",
       "rate_limit_rpm": 6,
-      "notes": "Federal Energy Regulatory Commission active interconnection request queue. Large power requests (>50 MW) may indicate planned data centers. All records are candidates \u2014 requires human review to verify that the project is a data center, not another industrial use. Run quarterly. Requires requests + openpyxl.",
+      "notes": "CONFIRMED DEAD as of 2026-08-09: a live GitHub Actions probe (workflow probe_national_source.yml) against this exact URL returned HTTP 404 (failure_type=source_down, \"HTTP 404 from source (not retried -- not a transient status)\"). FERC has since restructured how this queue dataset is published; the specific /media/3423/download document ID this adapter was built against no longer resolves. Disabled (active=false) rather than left silently failing. No replacement URL has been guessed or substituted -- per policy, only a verified real URL may replace this one. Historical notes: Federal Energy Regulatory Commission active interconnection request queue; large power requests (>50 MW) may indicate planned data centers; all records were candidates requiring human review to verify the project is a data center, not another industrial use.",
       "operator_filter": "",
       "confidence_override": 0.4
     },

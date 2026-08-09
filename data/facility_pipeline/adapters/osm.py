@@ -57,8 +57,29 @@ def _lat_lon(element: dict) -> tuple[float | None, float | None]:
     return element.get("lat"), element.get("lon")
 
 
-def _tags_to_record(element: dict, source_id: str) -> FacilityRecord:
+# The Overpass query box (24,-125,50,-66) below is NOT US-only -- it also
+# covers a wide swath of southern Canada (confirmed by hand-checking real
+# fetched records: Toronto/Markham/Brampton ON, Montreal/Gatineau/
+# Pointe-Claire/Baie-D'Urfe QC, Vancouver/Burnaby BC, and Winnipeg MB have
+# all come back from this exact query). FacilityRecord.country defaults to
+# "US" and this adapter never overrode it, so those records looked US-
+# tagged despite being Canadian. Reject anything whose OSM addr:country
+# tag is present and clearly not the US -- an explicit tag beats the
+# bounding box, which was only ever an approximation.
+_NON_US_COUNTRY_TAGS = {
+    "ca", "can", "canada", "mx", "mex", "mexico",
+}
+
+
+def _looks_non_us(tags: dict) -> bool:
+    country = (tags.get("addr:country") or "").strip().lower()
+    return country in _NON_US_COUNTRY_TAGS
+
+
+def _tags_to_record(element: dict, source_id: str) -> FacilityRecord | None:
     tags = element.get("tags", {})
+    if _looks_non_us(tags):
+        return None
     r = FacilityRecord()
 
     r.name = tags.get("name") or tags.get("operator") or ""
@@ -161,5 +182,7 @@ class OSMAdapter(BaseAdapter):
             if not tags.get("name") and not tags.get("operator"):
                 continue
             r = _tags_to_record(element, self.source_id)
+            if r is None:
+                continue  # explicitly tagged non-US (see _looks_non_us)
             yield self._stamp(r)
             time.sleep(0)  # yield control
