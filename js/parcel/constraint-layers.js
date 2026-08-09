@@ -19,37 +19,77 @@
     return;
   }
 
-  /* Each entry states what the dataset IS, because the caveat is as
-     important as the number. A user who sees "22% floodplain" and does not
-     know FEMA maps are often decades old will mis-weigh it, and a user who
-     sees "4% wetland" and thinks that is a delineation will be wrong in a
-     way that costs money.
+  /* Live ArcGIS REST query against a parcel's bounding box. Shared by every
+     verified polygon-constraint layer below so each one only has to state
+     its own service URL and output fields, not reimplement the query. Real
+     intersection is computed downstream by constraints.js's own clipper —
+     this only needs to fetch candidate features near the parcel, using the
+     envelope (not the exact parcel shape) as the spatial filter, same as
+     ArcGIS REST's own recommended pattern for a client too small to run a
+     full geometry-based query. */
+  async function queryArcGISPolygons(serviceUrl, parcelGeometry, outFields, extraWhere) {
+    const geo = window.PARCEL_GEO;
+    const box = geo && geo.bounds(parcelGeometry);
+    if (!box) return [];
+    const params = new URLSearchParams({
+      geometry: box.join(','),
+      geometryType: 'esriGeometryEnvelope',
+      inSR: '4326',
+      spatialRel: 'esriSpatialRelIntersects',
+      outFields: outFields,
+      outSR: '4326',
+      f: 'geojson',
+      where: extraWhere || '1=1',
+    });
+    const res = await fetch(`${serviceUrl}?${params.toString()}`);
+    if (!res.ok) throw new Error(`constraint query HTTP ${res.status}`);
+    const data = await res.json();
+    if (data && data.error) {
+      throw new Error(`constraint query error: ${(data.error.message) || JSON.stringify(data.error)}`);
+    }
+    return data.features || [];
+  }
 
-     `url` is deliberately null on every entry. This session's network policy
-     refused CONNECT to every external host, so not one of these endpoints
-     could be verified. An unverified constraint endpoint is worse than none:
-     a service that silently returns an empty FeatureCollection renders as
-     "0% floodplain — no flood risk mapped here", which is the single most
-     dangerous wrong answer this product could give. Layers without a
-     verified url are registered as unavailable, so the panel says "not
-     checked" rather than "clear".
+  /* FEMA National Flood Hazard Layer -- verified live 2026-08-08 via a real
+     GitHub Actions dispatch (this sandbox has no outbound network to
+     third-party/government hosts, so this was confirmed by an actual query,
+     not assumed). Real confirmed fields: FLD_ZONE, ZONE_SUBTY, SFHA_TF
+     (Special Flood Hazard Area true/false), STATIC_BFE (base flood
+     elevation), SOURCE_CIT. Layer 28 is the "Flood Hazard Zones" polygon
+     layer on FEMA's own hazards.fema.gov MapServer. */
+  const FEMA_NFHL_URL = 'https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query';
 
-     Verifying them is the same one-command job the parcel registry already
-     uses: probe the endpoint, confirm it returns a real layer definition and
-     polygons, then attach the url and a provider here. */
+  C.registerLayer({
+    id: 'fema-flood',
+    constraintClass: 'flood',
+    label: 'FEMA mapped floodplain',
+    source: 'FEMA National Flood Hazard Layer (NFHL)',
+    sourceUpdatedAt: null,  // FEMA panels are updated per-county on their own schedule; no single vintage applies
+    caveat:
+      'FEMA flood maps are regulatory products of varying age — many effective ' +
+      'panels are a decade or more old, and unmapped areas are not the same as ' +
+      'areas without flood risk. A mapped floodplain affects insurance and ' +
+      'permitting; its absence does not certify a site as dry.',
+    provider: async ({ parcelGeometry }) =>
+      queryArcGISPolygons(FEMA_NFHL_URL, parcelGeometry, 'FLD_ZONE,ZONE_SUBTY,SFHA_TF,STATIC_BFE,SOURCE_CIT'),
+  });
+
+  /* Each entry below states what the dataset IS, because the caveat is as
+     important as the number. A user who sees "4% wetland" and thinks that
+     is a delineation will be wrong in a way that costs money.
+
+     `url` is deliberately null on every remaining entry. Live-verifying an
+     ArcGIS service from a sandbox with no outbound network requires a real
+     GitHub Actions dispatch per candidate (the same process that verified
+     fema-flood above) -- NWI and PAD-US candidate URLs were dispatched but
+     returned errors (HTTP 400/502/timeout) rather than confirmed data, so
+     they remain unavailable rather than guessed-working. An unverified
+     constraint endpoint is worse than none: a service that silently returns
+     an empty FeatureCollection renders as "0% wetland — no wetlands mapped
+     here", which is the single most dangerous wrong answer this product
+     could give. Layers without a verified, working response are registered
+     as unavailable, so the panel says "not checked" rather than "clear". */
   const PENDING = [
-    {
-      id: 'fema-flood',
-      constraintClass: 'flood',
-      label: 'FEMA mapped floodplain',
-      source: 'FEMA National Flood Hazard Layer (NFHL)',
-      candidateService: 'FEMA NFHL public MapServer (hazard.fema.gov)',
-      caveat:
-        'FEMA flood maps are regulatory products of varying age — many effective ' +
-        'panels are a decade or more old, and unmapped areas are not the same as ' +
-        'areas without flood risk. A mapped floodplain affects insurance and ' +
-        'permitting; its absence does not certify a site as dry.',
-    },
     {
       id: 'nwi-wetlands',
       constraintClass: 'wetland',

@@ -49,7 +49,7 @@
       "dataset_count": 1,
       "datasets_with_data": 0,
       "total_records": 0,
-      "ui_consumed_count": 0,
+      "ui_consumed_count": 1,
       "automated_count": 0
     },
     {
@@ -98,7 +98,7 @@
       "datasets_with_data": 0,
       "total_records": 0,
       "ui_consumed_count": 0,
-      "automated_count": 0
+      "automated_count": 1
     },
     {
       "category": "PROTECTED LAND",
@@ -323,20 +323,24 @@
       "id": "power_plants",
       "category": "POWER PLANTS",
       "name": "Power generation facilities",
-      "file": null,
-      "source_org": "HIFLD (target; no working endpoint found)",
-      "source_url": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Power_Plants/FeatureServer/0",
+      "file": "data/sample_layers.json#power_plants",
+      "source_org": "EPA Facility Registry Service (EIA-860 generator data joined with FRS)",
+      "source_url": "https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_PowerPlants/MapServer/12",
       "geographic_scope_declared": "United States (target, not achieved)",
-      "update_frequency_declared": "n/a \u2014 not currently ingested",
-      "authoritative": false,
+      "update_frequency_declared": "weekly (update_infrastructure.yml, layers=power)",
+      "authoritative": true,
       "direct_or_derived": "direct",
-      "license": "Public federal open data (HIFLD), if a working endpoint is found.",
-      "known_coverage_holes": "NO DATA. The configured HIFLD Power_Plants endpoint returns HTTP 200 with an 'Invalid URL' error body (service retired). No live replacement has been found after searching both known HIFLD orgs and two DCAT catalog guesses. EIA's own generator-level dataset (Form EIA-860) is a plausible free alternative that has not yet been evaluated for this pipeline.",
-      "known_quality_issues": null,
-      "record_count": 0,
+      "license": "Public federal open data (EPA).",
+      "known_coverage_holes": "This source has NO nameplate-capacity field of any kind -- plant identity, location, operating status, and primary fuel source are real and populated; capacity_mw is always None, never fabricated. A capacity-bearing free source (e.g. a verified EIA-860 bulk download) has not yet been found/verified.",
+      "known_quality_issues": "Source is one row per GENERATOR, deduplicated to one record per PLANT_CODE by this pipeline -- a plant with many small generators and a plant with one large generator are indistinguishable without capacity data.",
+      "record_count": null,
       "ui_consumed": false,
       "ci_tested": false,
-      "automated_update_workflows": [],
+      "automated_update_workflows": [
+        "update_data.yml",
+        "update_facilities.yml",
+        "update_infrastructure.yml"
+      ],
       "has_data": false
     },
     {
@@ -535,18 +539,18 @@
       "id": "fema_flood",
       "category": "FLOOD",
       "name": "FEMA National Flood Hazard Layer",
-      "file": null,
+      "file": "js/parcel/constraint-layers.js#fema-flood",
       "source_org": "FEMA",
       "source_url": "https://hazards.fema.gov/gis/nfhl/rest/services",
       "geographic_scope_declared": "United States (target)",
-      "update_frequency_declared": "n/a \u2014 endpoint not yet verified",
+      "update_frequency_declared": "live (queried per-parcel bounding box at analysis time, no local cache)",
       "authoritative": true,
       "direct_or_derived": "direct",
       "license": "Public federal open data.",
-      "known_coverage_holes": "ENGINE EXISTS, NO DATA. js/parcel/constraint-layers.js registers 'fema-flood' as unavailable pending live endpoint verification \u2014 this sandbox's network policy blocked verification. The constraint intersection engine (js/parcel/constraints.js) is fully built and tested against synthetic geometry; it has never run against a real FEMA polygon.",
-      "known_quality_issues": null,
+      "known_coverage_holes": "ENGINE EXISTS, LIVE, WIRED (verified 2026-08-08 via a real GitHub Actions dispatch against hazards.fema.gov -- confirmed layer 28, real fields FLD_ZONE/ZONE_SUBTY/SFHA_TF/STATIC_BFE). No local record count applies -- this is a live per-parcel query, not stored data, so has_data is reported false even though the wiring is real (see data_catalog ALLOWED_WITH_NO_DATA). FEMA does not map 100% of US counties; an area with no mapped floodplain returns zero intersecting features honestly, indistinguishable at the API level from an area FEMA has simply never studied.",
+      "known_quality_issues": "FEMA flood panels are regulatory products of varying age -- many effective panels are a decade or more old. See the caveat text in constraint-layers.js.",
       "record_count": 0,
-      "ui_consumed": false,
+      "ui_consumed": true,
       "ci_tested": false,
       "automated_update_workflows": [],
       "has_data": false
@@ -745,8 +749,8 @@
   "totals": {
     "dataset_count": 26,
     "datasets_with_data": 14,
-    "datasets_ui_consumed": 10,
+    "datasets_ui_consumed": 11,
     "datasets_ci_tested": 5,
-    "datasets_automated": 12
+    "datasets_automated": 13
   }
 }
