@@ -110,16 +110,12 @@ def test_datasets_with_no_data_are_never_reported_as_ui_consumed_or_automated():
     # honestly false even though the wiring is real and automated_update_
     # workflows/ui_consumed are correctly true. power_plants and wastewater
     # no longer need this exception -- 1,295 and 18,885 real records
-    # landed 2026-08-09, respectively.
-    # national_site_search_index: build_site_search_index.yml cannot be
-    # workflow_dispatch'd until this PR's workflow file lands on main (a
-    # brand-new workflow is only registered once merged) -- data/parcel_
-    # pipeline/build_national_site_index.mjs itself is fully unit-tested
-    # against stubbed fetch (tests/test_build_national_site_index.mjs) but
-    # data/site_search_index.json genuinely has zero real records until the
-    # first post-merge dispatch runs. Remove this exception once that run
-    # lands (same pattern power_plants/wastewater already went through).
-    ALLOWED_WITH_NO_DATA = {"fiber_network", "fema_flood", "national_site_search_index"}
+    # landed 2026-08-09, respectively. national_site_search_index also no
+    # longer needs it -- 86,811 real parcels across 55/58 jurisdictions
+    # landed 2026-08-09 via the first real build_site_search_index.yml
+    # dispatch (a fix for an oversized first attempt shipped first; see
+    # data/parcel_pipeline/build_national_site_index.mjs's structuralOutFields).
+    ALLOWED_WITH_NO_DATA = {"fiber_network", "fema_flood"}
     for d in catalog["datasets"]:
         if not d["has_data"]:
             if d["ui_consumed"] or d["automated_update_workflows"]:
