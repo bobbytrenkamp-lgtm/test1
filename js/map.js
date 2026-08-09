@@ -1173,17 +1173,28 @@ function _fetchLazyLayerFile(fileKey) {
 }
 
 /* Substations rendered as clusters at low/mid zoom (see
-   js/map-point-clustering.js) instead of 53,826 raw markers -- even with
-   preferCanvas, drawing and hit-testing that many circles at once is real
+   js/map-point-clustering.js) instead of 53,826 raw markers -- even on
+   canvas, drawing and hit-testing that many circles at once is real
    per-frame cost, and at national zoom they are visually indistinguishable
    anyway. Individual markers still render once a user is zoomed in enough
    to tell them apart (clusterPoints' own singleThreshold). Re-clustered on
    zoomend (debounced), not every pan frame. */
 let _powerRawData = null;
 
+// Canvas renderer scoped to just this layer -- 53,826 substation points is
+// real per-frame SVG DOM cost, but the map as a whole must stay SVG (see
+// initLeafletMap()'s comment). Created lazily since L is only available
+// once vendor/leaflet.js has loaded, and reused across re-renders so
+// re-clustering on zoom doesn't allocate a new canvas each time.
+let _powerCanvasRenderer = null;
+function _getPowerRenderer() {
+  if (!_powerCanvasRenderer) _powerCanvasRenderer = L.canvas({ padding: 0.5 });
+  return _powerCanvasRenderer;
+}
+
 function _clusterMarkerStyle(count) {
   const r = window.MAP_POINT_CLUSTERING.clusterRadius(count);
-  return { radius: r, color: "#0b0d14", weight: 1, fillColor: "#059669", fillOpacity: 0.85 };
+  return { radius: r, color: "#0b0d14", weight: 1, fillColor: "#059669", fillOpacity: 0.85, renderer: _getPowerRenderer() };
 }
 
 function _renderPowerLayerAtCurrentZoom() {
@@ -1194,7 +1205,7 @@ function _renderPowerLayerAtCurrentZoom() {
   const { clusters, singles } = window.MAP_POINT_CLUSTERING.clusterPoints(_powerRawData, { zoom });
 
   singles.forEach(d => {
-    L.circleMarker([d.lat, d.lon], { radius: 5, color: "#0b0d14", weight: 0.8, fillColor: "#34d399", fillOpacity: 1 })
+    L.circleMarker([d.lat, d.lon], { radius: 5, color: "#0b0d14", weight: 0.8, fillColor: "#34d399", fillOpacity: 1, renderer: _getPowerRenderer() })
       .bindTooltip(d.name)
       .on("click", () => setDetailFacility(d, "power"))
       .addTo(group);
@@ -3160,12 +3171,15 @@ function initLeafletMap() {
     maxZoom:      18,
     minZoom:      3,
     zoomControl:  false,
-    // Canvas rendering draws every circleMarker onto one shared <canvas>
-    // element instead of one SVG DOM node per marker -- Leaflet's click/
-    // tooltip hit-testing still works identically (a standard, non-
-    // experimental Leaflet feature), but tens of thousands of markers no
-    // longer means tens of thousands of DOM nodes.
-    preferCanvas: true,
+    // NOT preferCanvas: true -- that flips every vector layer to canvas by
+    // default, including the county/state choropiles rendered via
+    // L.geoJSON(), which must stay SVG: .leaflet-interactive's CSS
+    // transitions (fill-opacity/stroke on hover+select, css/style.css line
+    // ~763) are SVG presentation-attribute transitions with no canvas
+    // equivalent, and e2e_smoke.mjs asserts on real `#leaflet-map path`
+    // DOM nodes for the county layer. Canvas is opted into per-layer
+    // instead, only for the substation layer's 53,826 points -- see
+    // _powerCanvasRenderer below.
   });
 
   L.control.zoom({ position: "bottomright" }).addTo(leafletMap);
