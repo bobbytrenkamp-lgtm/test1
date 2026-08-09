@@ -349,6 +349,21 @@
 .pp-action-draw:hover { background: #06b6d4; color: #fff; }
 .pp-action-draw.active { background: #06b6d4; color: #fff; }
 
+.pp-action-save {
+  background: none;
+  color: #f59e0b;
+  border: 1px solid #f59e0b;
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.12s, color 0.12s;
+}
+.pp-action-save:hover { background: #f59e0b; color: #fff; }
+.pp-action-save-active { background: #f59e0b; color: #fff; }
+
 .pp-action-report {
   background: none;
   color: var(--text-muted);
