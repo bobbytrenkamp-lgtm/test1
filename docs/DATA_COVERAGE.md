@@ -10,7 +10,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 | | |
 |---|---|
-| Datasets catalogued | 27 |
+| Datasets catalogued | 28 |
 | Datasets with actual data (has_data) | 16 |
 | Datasets wired into the production UI | 11 |
 | Datasets with dedicated CI coverage | 5 |
@@ -24,7 +24,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | hourly | 1 |
 | monthly | 1 |
 | none | 1 |
-| not_automated | 13 |
+| not_automated | 14 |
 | weekly | 10 |
 
 ## By category
@@ -34,7 +34,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | ASSESSMENT | 1 | 0 | 0 | 0 | 0 |
 | DATA CENTERS | 2 | 2 | 4,463 | 1 | 1 |
 | ECONOMIC DATA | 2 | 2 | 14 | 0 | 0 |
-| FIBER | 2 | 0 | 0 | 1 | 1 |
+| FIBER | 3 | 0 | 0 | 1 | 1 |
 | FLOOD | 1 | 0 | 0 | 1 | 0 |
 | INTERCONNECTION QUEUES | 1 | 0 | 0 | 0 | 0 |
 | ISO/RTO | 1 | 0 | 0 | 0 | 0 |
@@ -142,7 +142,22 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - CI-tested: False
 - Automated update workflow(s): update_data.yml, update_facilities.yml, update_infrastructure.yml
 - Actual refresh cadence (computed from the workflow's own cron schedule): weekly
-- **Known coverage holes:** REMEDIATED. This dataset used to hold 3 hardcoded named routes ("Zayo Northern Virginia Dark Fiber Ring", "Lumen/CenturyLink Iowa Backbone", "Zayo Pacific NW Fiber Route") with hand-typed coordinate paths attributed to real carriers with no evidence. They were removed rather than kept as "illustrative" -- attributing an invented path to a named company by name is a fabrication risk a map tooltip disclaimer does not resolve. No free, reliable, nationwide fiber-route dataset is known to exist (see js/parcel/proximity-layers.js's fiber registerUnavailable(), which this file now matches). data/validate_sources.py and tests/test_fiber_network_honesty.py now require any future entry to carry a real, checked source URL before it may name a carrier.
+- **Known coverage holes:** REMEDIATED. This dataset used to hold 3 hardcoded named routes ("Zayo Northern Virginia Dark Fiber Ring", "Lumen/CenturyLink Iowa Backbone", "Zayo Pacific NW Fiber Route") with hand-typed coordinate paths attributed to real carriers with no evidence. They were removed rather than kept as "illustrative" -- attributing an invented path to a named company by name is a fabrication risk a map tooltip disclaimer does not resolve. No free, reliable, NATIONWIDE fiber-route dataset is known to exist (see js/parcel/proximity-layers.js's fiber registerUnavailable(), which this file still matches). data/validate_sources.py and tests/test_fiber_network_honesty.py now require any future entry to carry a real, checked source URL before it may name a carrier.
+
+**California middle-mile broadband corridor alignment (SCAG region only)** (ca_middle_mile_corridor) — ⛔ no data
+
+- Records: 0
+- Source: California Public Utilities Commission (CPUC), republished by SCAG (Southern California Association of Governments)
+- Source URL: https://maps.scag.ca.gov/scaggis/rest/services/Broadband/Broadband/MapServer/2/query
+- Geographic scope (declared): REGIONAL ONLY — the SCAG six-county area (Los Angeles, Orange, Riverside, San Bernardino, Ventura, Imperial). No coverage anywhere else in the country.
+- Update frequency (declared): live (queried per-parcel bounding box at analysis time, no local cache)
+- Authoritative: True
+- UI-consumed: False
+- CI-tested: False
+- Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
+- **Known coverage holes:** ENGINE EXISTS, LIVE, WIRED (verified 2026-08-09 via a real GitHub Actions dispatch against maps.scag.ca.gov -- confirmed MapServer layer 2 ('CPUCAnchorBuilds') returns real polyline features with ROUTE/ROUTE_ID/ALIGNMENT/STATUS/MILES_GIS/BB4ALL_ID fields). This is the first regional (not nationwide) fiber-adjacent dataset in the repository, wired into js/parcel/proximity-layers.js as 'ca-middle-mile-corridor'. It does NOT replace the nationwide 'fiber' registerUnavailable() -- that stays unavailable because no free nationwide as-built fiber dataset exists; this is a narrower, honestly-scoped regional addition, not a broader claim. A same-tier Maryland candidate (OMBN, the state's own as-built inter-county fiber network, https://geodata.md.gov/appdata/rest/services/OMBN/MD_OneMarylandBroadbandNetwork/MapServer/0) was dispatched twice on a real GitHub Actions runner and returned HTTP 503 both times -- not wired in, left as an open candidate for re-probing later rather than guessed working.
+- **Known quality issues:** This is a PLANNED/SELECTED middle-mile corridor alignment (CPUC's own shapefile of where it intends to build, tied to the state's Federal Funding Account broadband initiative), not confirmed as-built, in-service lit fiber -- a materially weaker claim than 'fiber exists here', and the layer's own measures text says so explicitly. STATUS/YEAR field values were not individually decoded (no live sample-value inspection was performed, only field names/types via ogrinfo -so); a reader should treat STATUS as informational, not authoritative, without further confirmation from CPUC or the carrier.
 
 **FCC broadband fiber availability by county** (fcc_broadband_fiber_pct) — ⛔ no data
 

@@ -228,6 +228,83 @@
     },
   });
 
+  /* ── California middle-mile broadband corridor (SCAG/CPUC, live query) ───
+   *
+   * Verified live 2026-08-09 via a real GitHub Actions dispatch
+   * (probe_national_source.yml): SCAG's Broadband MapServer layer 2
+   * ("CPUCAnchorBuilds") returned real polyline features with ROUTE/
+   * ROUTE_ID/ALIGNMENT/STATUS/MILES_GIS/BB4ALL_ID fields. This is CPUC's
+   * own shapefile of proposed/selected middle-mile corridor alignments
+   * along the State Highway Network for California's Federal Funding
+   * Account broadband initiative, republished by SCAG (Southern
+   * California Association of Governments) for its member counties.
+   *
+   * TWO CAVEATS THAT MATTER MORE THAN THE DATA ITSELF:
+   * 1. REGIONAL ONLY. This service only carries SCAG's six-county area
+   *    (Los Angeles, Orange, Riverside, San Bernardino, Ventura,
+   *    Imperial). Everywhere else in the country this layer will
+   *    correctly return zero features -- that means "not covered by
+   *    this regional dataset", not "no middle-mile buildout planned
+   *    there". The label says so explicitly.
+   * 2. NOT LIT FIBER. The STATUS/YEAR fields describe a planning-stage
+   *    corridor alignment CPUC has selected to build along, not
+   *    as-built, in-service fiber a facility could take service from
+   *    today. That is a materially different (weaker) claim than the
+   *    nationwide `fiber` layer above stays unavailable for -- no free
+   *    as-built dataset exists anywhere, and conflating "planned
+   *    corridor" with "lit fiber" would be exactly the kind of overclaim
+   *    this project avoids.
+   *
+   * A same-tier Maryland candidate (OMBN, the state's own as-built
+   * inter-county fiber network) was dispatched twice against
+   * geodata.md.gov/appdata and returned HTTP 503 both times -- it is
+   * documented in data/catalog/dataset_registry.json but not wired in
+   * until it is confirmed reachable. */
+  const SCAG_MIDDLE_MILE_URL =
+    'https://maps.scag.ca.gov/scaggis/rest/services/Broadband/Broadband/MapServer/2/query';
+
+  P.registerLayer({
+    id: 'ca-middle-mile-corridor',
+    category: 'telecom',
+    label: 'CA middle-mile broadband corridor (SCAG region only)',
+    measures: 'Straight-line distance to the nearest CPUC-selected middle-mile broadband ' +
+              'corridor alignment. REGIONAL COVERAGE ONLY: Los Angeles, Orange, Riverside, ' +
+              'San Bernardino, Ventura, and Imperial counties (the SCAG region). A zero-result ' +
+              'answer elsewhere means "outside this regional dataset\'s coverage", not "no ' +
+              'corridor exists". This is a PLANNED/SELECTED corridor alignment, not confirmed ' +
+              'as-built lit fiber -- confirm with CPUC or the carrier before relying on it.',
+    source: 'California Public Utilities Commission middle-mile corridor shapefile, via SCAG',
+    provider: async ({ parcelGeometry }) => {
+      const geo = window.PARCEL_GEO;
+      const box = geo && geo.bounds(parcelGeometry);
+      if (!box) return [];
+      const [minLon, minLat, maxLon, maxLat] = box;
+      const centerLat = (minLat + maxLat) / 2;
+      const { latBuffer, lonBuffer } = milesToDegreeBuffer(P.MAX_SEARCH_MILES, centerLat);
+      const params = new URLSearchParams({
+        where: '1=1',
+        geometry: [minLon - lonBuffer, minLat - latBuffer, maxLon + lonBuffer, maxLat + latBuffer].join(','),
+        geometryType: 'esriGeometryEnvelope',
+        inSR: '4326',
+        spatialRel: 'esriSpatialRelIntersects',
+        outFields: 'ROUTE,ROUTE_ID,ALIGNMENT,STATUS,MILES_GIS,BB4ALL_ID,YEAR',
+        outSR: '4326',
+        f: 'geojson',
+        resultRecordCount: '500',
+      });
+      const res = await fetch(`${SCAG_MIDDLE_MILE_URL}?${params.toString()}`);
+      if (!res.ok) throw new Error(`middle-mile corridor query HTTP ${res.status}`);
+      const data = await res.json();
+      if (data && data.error) {
+        throw new Error(`middle-mile corridor query error: ${data.error.message || JSON.stringify(data.error)}`);
+      }
+      return (data.features || []).map(f => ({
+        ...f,
+        properties: { ...f.properties, name: f.properties && (f.properties.ROUTE || f.properties.ROUTE_ID) },
+      }));
+    },
+  });
+
   // Exported for tests.
   window.PARCEL_PROXIMITY_LAYERS = {
     loadFacilities, loadInfrastructureLayers,

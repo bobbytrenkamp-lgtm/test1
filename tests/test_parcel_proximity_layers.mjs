@@ -78,6 +78,13 @@ async function loadLayersModule() {
   const interstateLayer = P.getLayer('interstates');
   ok('interstates has a provider function', typeof interstateLayer.provider === 'function');
   ok('interstates is not marked unavailable', !interstateLayer.unavailable);
+  ok('fiber is still registered unavailable (no verified nationwide dataset)', P.getLayer('fiber').unavailable);
+  ok('ca-middle-mile-corridor is a real registered layer, not pending', ids.includes('ca-middle-mile-corridor'));
+  const midMileLayer = P.getLayer('ca-middle-mile-corridor');
+  ok('ca-middle-mile-corridor has a provider function', typeof midMileLayer.provider === 'function');
+  ok('ca-middle-mile-corridor is not marked unavailable', !midMileLayer.unavailable);
+  ok('ca-middle-mile-corridor states its regional scope', midMileLayer.measures.includes('REGIONAL COVERAGE ONLY'));
+  ok('ca-middle-mile-corridor states it is not lit fiber', midMileLayer.measures.includes('not confirmed'));
 }
 
 // ── Interstates: live query construction and RTTYP filtering ──────────────
@@ -109,6 +116,36 @@ async function loadLayersModule() {
   ok('query requests geojson output', capturedUrl && capturedUrl.includes('f=geojson'));
   ok('the interstate feature is found', r.nearest !== null);
   t('the feature name resolves from NAME', r.nearest.name, 'I- 66');
+}
+
+// ── CA middle-mile corridor: live query construction ───────────────────────
+{
+  let capturedUrl = null;
+  global.fetch = async (url) => {
+    capturedUrl = String(url);
+    return {
+      ok: true, status: 200,
+      json: async () => ({
+        type: 'FeatureCollection',
+        features: [{
+          type: 'Feature',
+          properties: { ROUTE: 'SR-91', ROUTE_ID: '91-A', STATUS: 'Selected', MILES_GIS: 4.2 },
+          geometry: { type: 'LineString', coordinates: [[-117.55, 33.90], [-117.45, 33.95]] },
+        }],
+      }),
+    };
+  };
+  await loadLayersModule();
+
+  const square = { type: 'Polygon', coordinates: [[[-117.50, 33.92], [-117.46, 33.92], [-117.46, 33.96], [-117.50, 33.96], [-117.50, 33.92]]] };
+  const res = await P.analyze(square, { layers: ['ca-middle-mile-corridor'] });
+  const r = res.results[0];
+
+  ok('query hits the real SCAG CPUC middle-mile MapServer layer 2 endpoint',
+    capturedUrl && capturedUrl.startsWith('https://maps.scag.ca.gov/scaggis/rest/services/Broadband/Broadband/MapServer/2/query'));
+  ok('query requests geojson output', capturedUrl && capturedUrl.includes('f=geojson'));
+  ok('the corridor feature is found', r.nearest !== null);
+  t('the feature name resolves from ROUTE', r.nearest.name, 'SR-91');
 }
 
 // ── Substation data flows through and the coverage caveat is present ──────
