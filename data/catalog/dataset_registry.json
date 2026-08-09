@@ -233,17 +233,17 @@
     {
       "id": "roads",
       "category": "ROADS",
-      "name": "Interstate/major road network for proximity analysis",
+      "name": "Interstate highways for proximity analysis",
       "file": null,
-      "source_org": "BTS National Highway Planning Network (target, not yet ingested)",
-      "source_url": null,
-      "geographic_scope_declared": "United States (target)",
-      "update_frequency_declared": "n/a \u2014 not implemented",
+      "source_org": "US Census Bureau (TIGERweb)",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer/2",
+      "geographic_scope_declared": "United States",
+      "update_frequency_declared": "live (queried per-parcel bounding box at analysis time, no local cache)",
       "authoritative": true,
       "direct_or_derived": "direct",
-      "license": "Public federal open data (BTS), if ingested.",
-      "known_coverage_holes": "NOT IMPLEMENTED as a dataset the proximity engine can query. js/parcel/proximity-layers.js declares 'interstates' as PENDING_VERIFICATION with no endpoint attached \u2014 the base map's road tiles (OSM basemap) are visual only and are not queryable for distance calculations.",
-      "known_quality_issues": null
+      "license": "Public federal open data (US Census Bureau).",
+      "known_coverage_holes": "ENGINE EXISTS, LIVE, WIRED (verified 2026-08-09 via a real GitHub Actions dispatch against tigerweb.geo.census.gov -- confirmed layer 2 'Primary Roads', real fields BASENAME/NAME/MTFCC/RTTYP). js/parcel/proximity-layers.js's 'interstates' layer queries this live, filtered server-side to RTTYP='I' so only interstates (not every primary/state road the layer also carries) are returned. No local record count applies -- this is a live per-parcel query, not stored data.",
+      "known_quality_issues": "Straight-line distance to the nearest interstate route only, not drive time or nearest interchange. Local/state highways and other road classes are not queried by this layer even though the same TIGERweb service also carries them."
     },
     {
       "id": "rail",
