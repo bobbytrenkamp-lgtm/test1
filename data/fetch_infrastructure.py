@@ -116,6 +116,20 @@ FCC_COUNTY_URL  = "https://broadbandmap.fcc.gov/api/public/map/listCountyAvailab
 # Watershed water stress via EPA EnviroAtlas
 EPA_WATERS_URL  = "https://enviroatlas.epa.gov/arcgis/rest/services/Supplemental/USACensus2010/MapServer/6/query"
 
+# ── EIA ISO/RTO regions ──────────────────────────────────────────────────
+# Real EIA-published boundary layer (US Energy Atlas, atlas.eia.gov),
+# found via web search and confirmed live on a real GitHub Actions runner.
+# This is EIA's own ArcGIS Hub hosting, not the HIFLD lineage substations/
+# transmission come from, so it is unaffected by the HIFLD Open shutdown.
+# Represents the 7 US RTO/ISO regions (PJM, MISO, ERCOT, CAISO, SPP, NYISO,
+# ISO-NE). EIA's own documentation notes these boundaries are illustrative
+# (RTOs don't have crisp legal borders the way states do, and shapes can
+# overlap or leave gaps) -- passed through as-is, never treated as more
+# precise than the source claims. Real field schema was not knowable before
+# the first live fetch, so attributes are passed through unfiltered rather
+# than guessing field names.
+ISO_RTO_URL = "https://services7.arcgis.com/FGr1D95XCGALKXqM/ArcGIS/rest/services/RTO_Regions/FeatureServer/0/query"
+
 SESSION = requests.Session()
 SESSION.headers.update({"User-Agent": "USDataCenterPolicyTracker/1.0 (research; github.com/bobbytrenkamp-lgtm/test1)"})
 
@@ -566,6 +580,62 @@ def fetch_water_stress() -> dict[str, float]:
     return result
 
 
+# ── ISO/RTO regions ──────────────────────────────────────────────────────
+
+def fetch_iso_rto_regions() -> list[dict]:
+    """
+    Fetch the US RTO/ISO region boundaries from EIA's US Energy Atlas.
+    Returns simplified polygon dicts (one per RTO/ISO). Ring vertices are
+    downsampled for storage size -- these are large, detailed cartographic
+    boundaries and a rough regional overlay doesn't need full resolution.
+
+    HONESTY NOTE: this is coverage-area evidence only, not a power
+    availability or interconnection-capacity claim. Being inside an
+    RTO/ISO boundary says nothing about whether the grid there has spare
+    capacity -- see interconnection queue data for that question.
+    """
+    log.info("Fetching EIA RTO/ISO region boundaries…")
+    data = _get(ISO_RTO_URL, {
+        "where":          "1=1",
+        "outFields":      "*",
+        "outSR":          "4326",
+        "f":              "json",
+        "returnGeometry": "true",
+    })
+    if not data:
+        log.warning("No ISO/RTO region data returned.")
+        return []
+    if "error" in data:
+        err = data["error"]
+        log.warning("ArcGIS query error from %s: %s", ISO_RTO_URL,
+                    err.get("message", err) if isinstance(err, dict) else err)
+        return []
+
+    features = data.get("features") or []
+    if features:
+        log.info("Sample ISO/RTO attributes (first feature): %s",
+                 features[0].get("attributes", {}))
+
+    out = []
+    for feat in features:
+        a = feat.get("attributes", {})
+        geom = feat.get("geometry", {})
+        rings = geom.get("rings", [])
+        sampled_rings = [ring[::5] for ring in rings if len(ring) > 1]
+        if not sampled_rings:
+            continue
+        name = (a.get("NAME") or a.get("RTO_NAME") or a.get("Name") or
+                a.get("ABBREV") or a.get("Region") or "Unknown RTO/ISO")
+        out.append({
+            "id":         f"rto-{name}".lower().replace(" ", "-").replace("/", "-"),
+            "name":       name,
+            "attributes": a,  # real field schema unconfirmed before first live fetch -- passed through unfiltered
+            "rings":      [[[round(p[0], 4), round(p[1], 4)] for p in ring] for ring in sampled_rings],
+        })
+    log.info("ISO/RTO regions: %d records", len(out))
+    return out
+
+
 # ── Update sample_layers.json ─────────────────────────────────────────────────
 
 def update_layers(layers_path: str, updates: dict[str, Any]) -> None:
@@ -591,7 +661,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Fetch infrastructure data layers")
     parser.add_argument(
         "--layers",
-        default="substations,transmission,power,wastewater,fiber,water",
+        default="substations,transmission,power,wastewater,fiber,water,iso_rto",
         help="Comma-separated list of layers to fetch",
     )
     args = parser.parse_args()
@@ -628,6 +698,11 @@ def main() -> None:
         water = fetch_water_stress()
         if water:
             updates["water_stress"] = water
+
+    if "iso_rto" in enabled:
+        regions = fetch_iso_rto_regions()
+        if regions:
+            updates["iso_rto_regions"] = regions
 
     if updates:
         update_layers(LAYERS_PATH, updates)
