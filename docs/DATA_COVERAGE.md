@@ -45,7 +45,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | PROTECTED LAND | 1 | 0 | 0 | 0 | 0 |
 | RAIL | 1 | 0 | 0 | 0 | 0 |
 | ROADS | 1 | 0 | 0 | 0 | 0 |
-| SUBSTATIONS | 1 | 1 | 25 | 1 | 1 |
+| SUBSTATIONS | 1 | 1 | 53,826 | 1 | 1 |
 | TRANSMISSION | 1 | 1 | 1,892 | 1 | 1 |
 | UTILITY TERRITORIES | 1 | 1 | 6 | 1 | 1 |
 | WASTEWATER | 1 | 1 | 18,885 | 0 | 1 |
@@ -343,18 +343,18 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 **Electric power substations** (substations) — ✅ has data
 
-- Records: 25
-- Source: HIFLD (via a third-party ArcGIS mirror after the original HIFLD org's service was retired)
-- Source URL: https://services.arcgis.com/G4S1dGvn7PIgYd6Y/ArcGIS/rest/services/HIFLD_electric_power_substations/FeatureServer/0
-- Geographic scope (declared): United States (nominal)
+- Records: 53826
+- Source: HIFLD Electric Substations, via a surviving third-party ArcGIS mirror (HDR Inc., an engineering firm) after DHS's HIFLD Open portal was shut down in August 2025
+- Source URL: https://services5.arcgis.com/HDRa0B57OVrv2E1q/arcgis/rest/services/Electric_Substations/FeatureServer/0
+- Geographic scope (declared): United States (all 50 states + DC + Puerto Rico confirmed; also touches Guam/N. Mariana Islands/US Virgin Islands but those had zero records surviving the >=69kV filter)
 - Update frequency (declared): weekly (update_infrastructure.yml)
 - Authoritative: False
 - UI-consumed: True
 - CI-tested: False
 - Automated update workflow(s): update_data.yml, update_facilities.yml, update_infrastructure.yml
 - Actual refresh cadence (computed from the workflow's own cron schedule): weekly
-- **Known coverage holes:** CONFIRMED SEVERE: this mirror returns only ~25 US substations after the >=69kV filter, nationwide. The real HIFLD substations dataset has tens of thousands of records. This is real, correctly-fetched data — not fabricated — but is NOT equivalent coverage to a full national substation layer. Documented in fetch_infrastructure.py and BUG_TRACKER.md; a full-coverage replacement has not been found.
-- **Known quality issues:** Schema differs from the original HIFLD org (MAX_VOLT/MIN_VOLT instead of one VOLTAGE field, COUNTYFIPS instead of COUNTY_FIPS) — handled in the adapter, but any future source swap must re-verify field names rather than assume the original schema.
+- **Known coverage holes:** RESOLVED 2026-08-09 (was CONFIRMED SEVERE, ~25 US records): switched from the dead G4S1dGvn7PIgYd6Y mirror to this HDR mirror, verified via a real live fetch (GitHub Actions run 31323117374) -- 74,922 raw US records, 53,826 kept after the >=69kV filter, across all 50 states + DC + PR. Real per-state counts (>=69kV): AK 133, AL 1822, AR 875, AZ 702, CA 1917, CO 1127, CT 249, DC 17, DE 138, FL 1985, GA 1874, GU 3, HI 67, IA 1043, ID 788, IL 1204, IN 1426, KS 919, KY 1856, LA 833, MA 490, MD 455, ME 178, MI 1079, MN 1855, MO 1315, MS 893, MT 1190, NC 1752, ND 653, NE 910, NH 117, NJ 208, NM 559, NV 296, NY 1465, OH 1204, OK 1831, OR 1321, PA 1339, PR 91, RI 94, SC 1845, SD 698, TN 1396, TX 4460, UT 1269, VA 987, VT 80, WA 1968, WI 1679, WV 455, WY 716. This is a strong, apparently-genuine national layer, not a subset -- but it is a static mirror of a dataset whose origin (HIFLD Open) no longer exists, so there is no confirmed ongoing update cadence behind it; real-world grid changes since the mirror's last refresh will not appear here, and that refresh date is unknown (SOURCEDATE/VAL_DATE fields exist on this mirror's schema but were not fetched by this pass -- a follow-up should pull them to know how stale this really is). ~46.8% of records carry a generic 'UnknownNNNNN'-pattern NAME (a real placeholder value in the source data itself, not fabricated by this pipeline, but it means visual/search identification by name will fail for roughly half of all substations).
+- **Known quality issues:** TYPE is passed through unfiltered and is NOT exclusively 'SUBSTATION' -- of the 53,826 kept records, 37,891 are TYPE=SUBSTATION, 15,349 are TYPE=TAP (a transmission-line branch point, not a switching facility), plus small counts of RISER/DEAD END/NOT AVAILABLE. Consumers wanting strictly substations, not taps, must filter on type themselves; this is not done in the fetcher because HIFLD's own convention includes TAP under this same layer and silently dropping it would itself be an undocumented coverage decision. STATUS is passed through as-reported (confirmed real enum on this mirror: IN SERVICE 51,786 / NOT AVAILABLE 2,031 / UNDER CONST 9) rather than filtered, since only the schema (not real values) was confirmed before the first live fetch. Schema differs from the original dead HIFLD org (MAX_VOLT/MIN_VOLT instead of one VOLTAGE field, COUNTYFIPS instead of COUNTY_FIPS) -- handled in the adapter, but any future source swap must re-verify field names rather than assume the original schema.
 
 ### TRANSMISSION
 

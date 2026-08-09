@@ -47,16 +47,26 @@ HIFLD_BASE = "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services
 # service listings and two DCAT catalog guesses; not guessing a URL
 # without verification (see the Maryland parcel decision in
 # BUG_TRACKER.md for why that's a real, previously-hit failure mode).
-SUBSTATION_URL  = "https://services.arcgis.com/G4S1dGvn7PIgYd6Y/ArcGIS/rest/services/HIFLD_electric_power_substations/FeatureServer/0/query"
-# CONFIRMED COVERAGE CAVEAT (live run, 2026-08-02): this mirror returned
-# only 55 raw US records nationwide (25 after the >=69kV filter). The real
-# HIFLD substations dataset has tens of thousands of records — this is a
-# small subset, not the full national layer, despite matching the expected
-# field schema exactly. It's genuinely correct data (no fabrication, no
-# errors) and strictly better than the 0 records this returned before, but
-# it is not equivalent coverage to what existed before the original service
-# died. Flagged in BUG_TRACKER.md; a full-coverage replacement still needs
-# to be found by a human with real search access.
+# The G4S1dGvn7PIgYd6Y mirror above (fetched historically) was itself a
+# degraded subset -- only 25 US substations nationwide after the >=69kV
+# filter, confirmed 2026-08-02. Root cause found 2026-08-09: DHS's HIFLD
+# Open portal (the origin for all of these mirrors) was shut down entirely
+# in August 2025. There is no single "official" replacement anymore --
+# only surviving third-party copies of the pre-shutdown dataset. This one
+# (HDR Inc., an engineering firm) was confirmed live via a real GitHub
+# Actions probe dispatch (probe_national_source.yml) to carry the
+# authentic HIFLD Electric Substations schema, including MAX_VOLT/MIN_VOLT
+# as directly-reported numeric fields (not inferred from connected lines,
+# unlike the Rutgers RenewableEnergy mirror's MAX_INFER/MIN_INFER, which
+# was also confirmed live but not chosen as primary for that reason).
+# Real national record count was NOT knowable from the probe tool (its
+# ogrinfo-based schema check never surfaces real attribute values, and
+# ArcGIS returnCountOnly queries are too small to pass this repo's
+# download-floor sanity check) -- so, per the standing "land real data,
+# not just more probing" instruction, that unknown is being resolved by
+# running this fetcher for real against a live ArcGIS Actions runner
+# rather than continuing to probe blind.
+SUBSTATION_URL  = "https://services5.arcgis.com/HDRa0B57OVrv2E1q/arcgis/rest/services/Electric_Substations/FeatureServer/0/query"
 #
 # Transmission's URL was never the problem — confirmed alive the whole
 # time. The WHERE clause below used to reference COUNTRY, a column this
@@ -182,23 +192,28 @@ def fetch_substations() -> list[dict]:
     Returns list of simplified point dicts for sample_layers.json.
     """
     log.info("Fetching HIFLD substations (>= 69 kV)…")
-    # This mirror's schema carries MAX_VOLT as its own numeric field (not a
-    # combined "115;230"-style VOLTAGE string like the original dead layer
-    # used), and COUNTRY is the 3-letter 'USA', not 'US' — both confirmed
-    # against live sample data, not assumed from the old schema.
-    where = ("STATUS = 'IN SERVICE' AND "
-             "COUNTRY = 'USA' AND "
-             "LONGITUDE IS NOT NULL AND LATITUDE IS NOT NULL")
+    # No STATUS filter: the probe that confirmed this mirror's schema was
+    # summary-only (ogrinfo -so never surfaces real attribute values), so
+    # the real enum values STATUS actually takes on THIS mirror are
+    # unconfirmed. Filtering on a guessed 'IN SERVICE' could silently drop
+    # most records if the real value differs even slightly (case, spacing,
+    # a different vocabulary entirely). STATUS is instead passed through
+    # as reported, same discipline already used for wastewater/power-plant
+    # permit status elsewhere in this file.
+    where = "COUNTRY = 'USA' AND LATITUDE IS NOT NULL AND LONGITUDE IS NOT NULL"
     raw = _arcgis_paginate(SUBSTATION_URL, where,
-                           "ID,NAME,TYPE,MAX_VOLT,COUNTY,STATE,COUNTYFIPS,LONGITUDE,LATITUDE")
+                           "ID,NAME,TYPE,STATUS,MAX_VOLT,MIN_VOLT,COUNTY,STATE,"
+                           "COUNTYFIPS,LONGITUDE,LATITUDE")
     if not raw:
         log.warning("No substation data returned.")
         return []
 
     out = []
+    all_states_seen: set[str] = set()
     for feat in raw:
         a = feat.get("attributes", {})
         geom = feat.get("geometry", {})
+        all_states_seen.add(str(a.get("STATE") or "").strip())
         try:
             max_v = float(a.get("MAX_VOLT") or 0)
         except (TypeError, ValueError):
@@ -214,13 +229,23 @@ def fetch_substations() -> list[dict]:
             "id":          f"sub-{a.get('ID','')}",
             "name":        (a.get("NAME") or "Unknown Substation").title(),
             "type":        a.get("TYPE", "substation"),
+            "status":      a.get("STATUS", ""),
             "voltage_kv":  int(max_v),
             "county_fips": county_fips,
             "state":       a.get("STATE", ""),
             "lon":         round(float(lon), 5),
             "lat":         round(float(lat), 5),
         })
-    log.info("Substations: %d records (>= 69 kV)", len(out))
+    log.info("Substations: %d raw records fetched, %d records (>= 69 kV) kept",
+              len(raw), len(out))
+    log.info("Raw fetch touched %d distinct STATE values (before voltage filter): %s",
+              len(all_states_seen), sorted(s for s in all_states_seen if s))
+
+    from collections import Counter
+    state_counts = Counter(o["state"] for o in out if o["state"])
+    log.info("Substations (>= 69 kV) by state (%d states represented): %s",
+              len(state_counts), dict(sorted(state_counts.items())))
+
     if len(out) < 500:
         # Real HIFLD coverage is tens of thousands of substations nationwide.
         # A low count here doesn't mean an error (the ArcGIS response was
