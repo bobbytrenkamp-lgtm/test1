@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       layers:
-        description: "Comma-separated layers to fetch (substations,transmission,power,wastewater,fiber,water)"
+        description: "Comma-separated layers to fetch (substations,transmission,power,wastewater,fiber,water,iso_rto)"
         required: false
-        default: "substations,transmission,power,wastewater,fiber,water"
+        default: "substations,transmission,power,wastewater,fiber,water,iso_rto"
 
 permissions:
   contents: write
@@ -35,7 +35,7 @@ jobs:
         run: |
           LAYERS="${{ github.event.inputs.layers }}"
           if [ -z "$LAYERS" ]; then
-            LAYERS="substations,transmission,power,wastewater,fiber,water"
+            LAYERS="substations,transmission,power,wastewater,fiber,water,iso_rto"
           fi
           python data/fetch_infrastructure.py --layers "$LAYERS"
 
