@@ -11,7 +11,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | | |
 |---|---|
 | Datasets catalogued | 26 |
-| Datasets with actual data (has_data) | 15 |
+| Datasets with actual data (has_data) | 16 |
 | Datasets wired into the production UI | 11 |
 | Datasets with dedicated CI coverage | 5 |
 | Datasets on an automated refresh workflow | 14 |
@@ -48,7 +48,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | SUBSTATIONS | 1 | 1 | 25 | 1 | 1 |
 | TRANSMISSION | 1 | 1 | 1,892 | 1 | 1 |
 | UTILITY TERRITORIES | 1 | 1 | 6 | 1 | 1 |
-| WASTEWATER | 1 | 0 | 0 | 0 | 1 |
+| WASTEWATER | 1 | 1 | 18,885 | 0 | 1 |
 | WATER | 1 | 1 | 79 | 1 | 1 |
 | WETLANDS | 1 | 0 | 0 | 0 | 0 |
 | ZONING | 1 | 1 | 1 | 1 | 1 |
@@ -391,12 +391,12 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 ### WASTEWATER
 
-**Wastewater treatment infrastructure** (wastewater) — ⛔ no data
+**Wastewater treatment infrastructure** (wastewater) — ✅ has data
 
-- Records: n/a
+- Records: 18885
 - Source: EPA Office of Environmental Information (OEI) FRS/ICIS-NPDES
 - Source URL: https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_Wastewater/MapServer/1/query
-- Geographic scope (declared): US NPDES-permitted wastewater treatment facilities (live ArcGIS query, real count varies per fetch -- not a fixed dataset size)
+- Geographic scope (declared): US NPDES-permitted wastewater treatment facilities -- 18,885 real records across 56 states/territories and 3,014 counties (as of 2026-08-09 dispatch; count varies per fetch since this queries the live service, not a fixed dataset)
 - Update frequency (declared): weekly (update_infrastructure.yml, fetch_wastewater_facilities())
 - Authoritative: True
 - UI-consumed: False

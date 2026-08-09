@@ -151,8 +151,8 @@
     {
       "category": "WASTEWATER",
       "dataset_count": 1,
-      "datasets_with_data": 0,
-      "total_records": 0,
+      "datasets_with_data": 1,
+      "total_records": 18885,
       "ui_consumed_count": 0,
       "automated_count": 1
     },
@@ -667,14 +667,14 @@
       "file": "data/sample_layers.json#wastewater_facilities",
       "source_org": "EPA Office of Environmental Information (OEI) FRS/ICIS-NPDES",
       "source_url": "https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_Wastewater/MapServer/1/query",
-      "geographic_scope_declared": "US NPDES-permitted wastewater treatment facilities (live ArcGIS query, real count varies per fetch -- not a fixed dataset size)",
+      "geographic_scope_declared": "US NPDES-permitted wastewater treatment facilities -- 18,885 real records across 56 states/territories and 3,014 counties (as of 2026-08-09 dispatch; count varies per fetch since this queries the live service, not a fixed dataset)",
       "update_frequency_declared": "weekly (update_infrastructure.yml, fetch_wastewater_facilities())",
       "authoritative": true,
       "direct_or_derived": "direct",
       "license": "Public domain (US federal government data).",
       "known_coverage_holes": "No capacity/flow-rate field (capacity_mgd is always null, genuinely absent from this source -- see fetch_wastewater_facilities() docstring). Only records with real FAC_LAT/FAC_LONG are included. Permit status is passed through unfiltered since only the schema, not real CWP_PERMIT_STATUS_CODE enum values, was confirmed via live dispatch -- some records may be terminated/inactive permits, not just currently-operating plants.",
       "known_quality_issues": "This layer indexes NPDES-permitted facilities (major/minor/other), not the EPA Clean Watersheds Needs Survey's broader treatment-plant inventory -- coverage may differ from CWNS totals, which have not been cross-checked.",
-      "record_count": null,
+      "record_count": 18885,
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [
@@ -705,7 +705,7 @@
           }
         }
       },
-      "has_data": false
+      "has_data": true
     },
     {
       "id": "roads",
@@ -1024,7 +1024,7 @@
   ],
   "totals": {
     "dataset_count": 26,
-    "datasets_with_data": 15,
+    "datasets_with_data": 16,
     "datasets_ui_consumed": 11,
     "datasets_ci_tested": 5,
     "datasets_automated": 14,
