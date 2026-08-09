@@ -8,9 +8,9 @@ Project-wide data health: is each pipeline's most recent automated run actually 
 
 | Pipeline | Health | Detail |
 |---|---|---|
-| policy_pipeline_sources | SOURCE_DOWN | 13 down / 4 transient / 109 total |
+| policy_pipeline_sources | SOURCE_DOWN | 13 down / 1 transient / 109 total |
 | county_page_citations | VALIDATION_FAILURE | 956/1994 unreachable (47.9%) |
-| map_data_citations | VALIDATION_FAILURE | 1242/2949 unreachable (42.1%) |
+| map_data_citations | VALIDATION_FAILURE | 1378/2949 unreachable (46.7%) |
 | static_parcel_ingestion | NOT_YET_TRACKED | zero sources registered in sources.json -- pipeline is built and tested but has nothing to run yet (see docs/INFRASTRUCTURE_ASSET_SCHEMA.md-style honesty note in static_ingestion/models.py) |
 
 ## Datasets with no automated health signal yet
