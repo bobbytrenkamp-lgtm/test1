@@ -1,0 +1,70 @@
+name: Build National Site Search Index
+
+# Rebuilds data/site_search_index.json -- a static, size-filtered,
+# multi-jurisdiction parcel index for js/parcel/find-sites.js's "All wired
+# jurisdictions (precomputed index)" search scope. See
+# data/parcel_pipeline/build_national_site_index.mjs's own header for why
+# this is a scheduled batch job, not a live query, and why it is filtered
+# to large parcels rather than every parcel.
+
+on:
+  schedule:
+    # Weekly, offset from the other Monday-04:00-UTC infrastructure refresh
+    # so the two scheduled jobs don't compete for the same free-tier runner
+    # window.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      threshold_acres:
+        description: "Minimum acreage for the server-side size filter"
+        required: false
+        default: "5"
+      cap:
+        description: "Max records fetched per jurisdiction"
+        required: false
+        default: "2000"
+
+permissions:
+  contents: write
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build the national site search index
+        run: |
+          THRESHOLD="${{ github.event.inputs.threshold_acres }}"
+          CAP="${{ github.event.inputs.cap }}"
+          if [ -z "$THRESHOLD" ]; then THRESHOLD="5"; fi
+          if [ -z "$CAP" ]; then CAP="2000"; fi
+          node data/parcel_pipeline/build_national_site_index.mjs \
+            --threshold-acres "$THRESHOLD" --cap "$CAP"
+
+      - name: Commit updated index
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/site_search_index.json
+          if git diff --cached --quiet; then
+            echo "No index changes to commit"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git commit -m "chore: rebuild national site search index [${TIMESTAMP}] [skip ci]"
+            for attempt in 1 2 3 4 5; do
+              if git push origin HEAD; then break; fi
+              if [ "$attempt" = 5 ]; then echo "::error::Push failed after 5 attempts."; exit 1; fi
+              echo "Push rejected (attempt ${attempt}), rebasing and retrying..."
+              git fetch origin "${GITHUB_REF_NAME}" && git rebase "origin/${GITHUB_REF_NAME}"
+              sleep $((attempt * 5))
+            done
+          fi

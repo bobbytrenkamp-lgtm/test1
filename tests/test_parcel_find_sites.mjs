@@ -109,6 +109,41 @@ function t(name, actual, expected) {
   global.window.PARCEL_SITE_SEARCH = savedEngine;
 }
 
+// ── runSearchNational ────────────────────────────────────────────────────
+{
+  const result = await FS.runSearchNational({});
+  ok('no criteria at all is rejected with a clear error, same as viewport scope',
+    result.error === 'Enter at least one search criterion.');
+}
+{
+  const savedIndex = global.window.PARCEL_SITE_SEARCH_INDEX;
+  delete global.window.PARCEL_SITE_SEARCH_INDEX;
+  const result = await FS.runSearchNational({ minAcres: '50' });
+  ok('missing PARCEL_SITE_SEARCH_INDEX is a clear error, not a silent crash',
+    result.error === 'National site index unavailable.');
+  global.window.PARCEL_SITE_SEARCH_INDEX = savedIndex;
+}
+{
+  global.window.PARCEL_SITE_SEARCH_INDEX = {
+    searchNational: async () => { throw new Error('HTTP 503'); },
+  };
+  const result = await FS.runSearchNational({ minAcres: '50' });
+  ok('an index load failure is surfaced as a readable error, not thrown',
+    typeof result.error === 'string' && result.error.includes('HTTP 503'));
+}
+{
+  global.window.PARCEL_SITE_SEARCH_INDEX = {
+    searchNational: async (criteria) => ({
+      matched: [], rejected: [], indeterminate: [], results: [],
+      counts: { evaluated: 3, matched: 1, rejected: 2, indeterminate: 0 },
+      meta: { generated_at: '2026-08-09T00:00:00Z', jurisdictions_ok: 2, caveat: 'index caveat text' },
+    }),
+  };
+  const result = await FS.runSearchNational({ minAcres: '50' });
+  t('runSearchNational delegates to PARCEL_SITE_SEARCH_INDEX.searchNational', result.counts.evaluated, 3);
+  ok('the index metadata flows through to the caller', !!result.meta);
+}
+
 // ── renderResults ────────────────────────────────────────────────────────
 {
   ok('null result shows a prompt to search, not an empty screen', FS.renderResults(null).includes('Enter search criteria'));
@@ -151,6 +186,26 @@ function t(name, actual, expected) {
     caveat: '1 parcel(s) could not be fully evaluated because the data needed for one or more criteria is not available for them. They are excluded from results, not silently treated as passing.',
   });
   ok('an indeterminate-parcel caveat is surfaced verbatim, not summarized away', html.includes('could not be fully evaluated'));
+}
+{
+  const html = FS.renderResults({
+    counts: { evaluated: 3, matched: 1, rejected: 2, indeterminate: 0 },
+    results: [], matched: [], rejected: [], indeterminate: [], caveat: null,
+    meta: { generated_at: '2026-08-09T00:00:00Z', jurisdictions_ok: 2, caveat: 'This index covers only wired jurisdictions.' },
+  });
+  ok('a national-index result describes the index, not "currently loaded on the map"',
+    html.includes('precomputed national index') && !html.includes('currently loaded on the map'));
+  ok('the index generation date is shown', html.includes('2026-08-09T00:00:00Z'));
+  ok('the jurisdiction count is shown', html.includes('2 jurisdiction'));
+  ok('the index metadata caveat is surfaced', html.includes('This index covers only wired jurisdictions.'));
+}
+{
+  const html = FS.renderResults({
+    counts: { evaluated: 0, matched: 0, rejected: 0, indeterminate: 0 }, results: [], matched: [], rejected: [], indeterminate: [],
+    meta: { generated_at: '2026-08-09T00:00:00Z', jurisdictions_ok: 2 },
+  });
+  ok('a zero-parcel national index result gets index-specific copy, not the viewport "pan/zoom" message',
+    html.includes('national index has no parcels') && !html.includes('Pan or zoom'));
 }
 {
   const hostile = { id: 'p1', properties: { address: '<img src=x onerror=alert(1)>' } };

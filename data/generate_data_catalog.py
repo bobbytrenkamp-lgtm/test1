@@ -132,6 +132,7 @@ RECORD_COUNT_RULES = {
     "wastewater": lambda: _count_json_path("data/sample_layers.json", "wastewater_facilities"),
     "roads": lambda: 0,
     "ca_middle_mile_corridor": lambda: 0,
+    "national_site_search_index": lambda: _count_json_path("data/site_search_index.json", "parcels"),
     "rail": lambda: 0,
     "fema_flood": lambda: 0,
     "nwi_wetlands": lambda: 0,

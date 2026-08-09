@@ -25,6 +25,7 @@
     "fred_data",
     "interconnection_queues",
     "iso_rto",
+    "national_site_search_index",
     "nwi_wetlands",
     "pad_us_protected_lands",
     "parcel_assessment_sales_ownership",
@@ -96,7 +97,7 @@
       "SOURCE_DOWN": 1,
       "VALIDATION_FAILURE": 2
     },
-    "datasets_without_tracking_count": 28,
+    "datasets_without_tracking_count": 29,
     "pipelines_tracked": 4
   }
 }
