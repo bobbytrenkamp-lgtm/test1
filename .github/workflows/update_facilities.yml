@@ -59,6 +59,14 @@ jobs:
           fi
           python data/run_facility_pipeline.py $ARGS
 
+      # Promotes the subset of pipeline candidates that are conservatively
+      # verifiable as distinct new facilities (see the module docstring for
+      # the exact rule) rather than leaving every review-required record to
+      # accumulate unreviewed indefinitely, which is what happened before
+      # this step existed (2,112 candidates had built up with zero review).
+      - name: Review and promote safe facility candidates
+        run: python data/review_facility_candidates.py
+
       - name: Export facilities to map layers
         run: python data/export_facilities_to_layers.py
 
