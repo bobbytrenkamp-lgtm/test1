@@ -768,8 +768,39 @@ window.PARCEL_PANEL = (function () {
       // null when 3D was never activated or is empty, in which case the
       // report renders exactly as it always has.
       const scene3d = window.SCENE3D?.getReportData?.() || null;
-      window.PARCEL_REPORT?.open(_lastFeature, _lastJurisId, scene3d);
+      window.PARCEL_REPORT?.open(_lastFeature, _lastJurisId, scene3d, _reportIntel(_lastFeature));
     }
+  }
+
+  /* Phase 14 (due-diligence export): folds the same Intelligence-tab data
+   * into the exported/printed report. Suitability and sales are cheap and
+   * synchronous, so they're always computed fresh. Proximity/constraints
+   * are live network queries -- this deliberately does NOT trigger a new
+   * fetch on Report click (that would add an unexplained delay to a button
+   * that has never been async before); it reuses _intelCache if the user
+   * already opened the Intelligence tab for this parcel, and simply omits
+   * that part of the section otherwise, the same "absent = no change"
+   * contract report.js's scene3d parameter already established. */
+  function _reportIntel(feature) {
+    const props = feature.properties || {};
+    const fips = props.county_fips;
+    const key = _parcelKey(props);
+    const cached = key ? _intelCache.get(key) : null;
+    const feasibility = window.PARCEL_FEASIBILITY?.assess(props, fips);
+    const ctx = {
+      properties: props, geometry: feature.geometry, acres: props.area_acres, fips,
+      envelope: feasibility?.envelope || null,
+      proximity: cached?.proximity?.results
+        ? Object.fromEntries(cached.proximity.results.map(r => [r.layerId, r]))
+        : undefined,
+      constraintSummary: cached?.constraints?.summary,
+    };
+    return {
+      suitability: window.PARCEL_SUITABILITY?.score(ctx) || null,
+      proximity: cached?.proximity || null,
+      constraints: cached?.constraints || null,
+      sales: window.PARCEL_SALES?.buildHistory(props) || null,
+    };
   }
 
   function _exportCSV() {
@@ -893,7 +924,7 @@ window.PARCEL_PANEL = (function () {
 
   return {
     show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh, _exportCSV, _openReport,
-    _toggleSave, _compareSaved, _unsave, _exportSavedCSV,
+    _toggleSave, _compareSaved, _unsave, _exportSavedCSV, _reportIntel,
     // Exposed for unit testing (pure functions: data in, HTML string out --
     // no DOM APIs used inside them), matching the existing pattern of
     // exposing "_"-prefixed internals above.

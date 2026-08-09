@@ -346,8 +346,63 @@ window.PARCEL_REPORT = (function () {
     </div>`;
   }
 
+  /* ── Site Intelligence section (Phase 14: due-diligence export) ──
+   * report.js predates the panel's Intelligence tab (js/parcel/panel.js) --
+   * confirmed by grepping this file for PARCEL_SUITABILITY/PARCEL_PROXIMITY/
+   * PARCEL_CONSTRAINTS/PARCEL_SALES before this change: zero matches. A
+   * printed/exported due-diligence report was silently missing everything
+   * the on-screen panel now shows. `intel` is an optional
+   * { suitability, proximity, constraints, sales } object -- same additive
+   * pattern as `scene3d` above: absent or empty, this returns '' and the
+   * report renders exactly as it did before this section existed. */
+  function _siteIntelligenceSectionHtml(intel) {
+    if (!intel) return '';
+    const { suitability, proximity, constraints, sales } = intel;
+    let inner = '';
+
+    if (suitability?.scorable) {
+      inner += `<div>
+        <strong>Screening score: ${suitability.overall}/100</strong>
+        <p>${esc(suitability.basis)}</p>
+        <ul>
+          ${suitability.components.map(c => `<li>${esc(c.label)}: ${c.score}/100 (weight ${c.weight}%)</li>`).join('')}
+          ${suitability.omitted.map(o => `<li>${esc(o.label)}: not scored — ${esc(o.why)}</li>`).join('')}
+        </ul>
+        <p class="report-disclaimer" style="margin:8px 0 0;">${esc(suitability.disclaimer)}</p>
+      </div>`;
+    } else if (suitability && !suitability.scorable) {
+      inner += `<p>${esc(suitability.why || 'Not enough data to score this parcel.')}</p>`;
+    }
+
+    if (proximity?.results?.length) {
+      const rows = proximity.results.filter(r => r.nearest && !r.error).map(r =>
+        `<tr><td>${esc(r.label)}</td><td>${esc(window.PARCEL_PROXIMITY?.formatDistance(r.nearest.distanceMiles) || `${r.nearest.distanceMiles} mi`)}</td></tr>`
+      ).join('');
+      if (rows) inner += `<table class="report-3d-table"><thead><tr><th>Infrastructure</th><th>Nearest distance</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+    if (constraints?.summary) {
+      const s = constraints.summary;
+      inner += `<p><strong>Environmental/development constraints:</strong> ${s.constrainedAcres} ac (${s.constrainedPct}% of parcel) inside mapped constraint layers checked.</p>`;
+      if (s.disclaimer) inner += `<p class="report-disclaimer" style="margin:4px 0 0;">${esc(s.disclaimer)}</p>`;
+    }
+
+    if (sales?.count) {
+      const rows = sales.sales.slice(0, 5).map(s =>
+        `<tr><td>${esc(s.sale_date || 'Unknown')}</td><td>${s.sale_price != null ? '$' + s.sale_price.toLocaleString() : '—'}</td><td>${esc(s.classification)}</td></tr>`
+      ).join('');
+      inner += `<table class="report-3d-table"><thead><tr><th>Sale date</th><th>Price</th><th>Classification</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+    if (!inner) return '';
+    return `<div class="report-section">
+      <div class="report-section-title">Site Intelligence</div>
+      ${inner}
+    </div>`;
+  }
+
   /* ── Build HTML report ── */
-  function html(feature, jurisdictionId, scene3d) {
+  function html(feature, jurisdictionId, scene3d, intel) {
     const props = feature.properties || {};
     const schema = window.PARCEL_SCHEMA;
     const fips   = props.county_fips;
@@ -500,6 +555,8 @@ window.PARCEL_REPORT = (function () {
 
     ${scene3dSectionHtml(scene3d)}
 
+    ${_siteIntelligenceSectionHtml(intel)}
+
     ${identityFields ? `<div class="report-section">
       <div class="report-section-title">Identification</div>
       <div class="report-grid">${identityFields}</div>
@@ -539,8 +596,8 @@ window.PARCEL_REPORT = (function () {
   }
 
   /* Open the report in a new browser tab */
-  function open(feature, jurisdictionId, scene3d) {
-    const reportHtml = html(feature, jurisdictionId, scene3d);
+  function open(feature, jurisdictionId, scene3d, intel) {
+    const reportHtml = html(feature, jurisdictionId, scene3d, intel);
     const blob       = new Blob([reportHtml], { type: 'text/html' });
     const url        = URL.createObjectURL(blob);
     const win        = window.open(url, '_blank', 'noopener');
@@ -549,5 +606,5 @@ window.PARCEL_REPORT = (function () {
     }
   }
 
-  return { html, open, scene3dSectionHtml };
+  return { html, open, scene3dSectionHtml, _siteIntelligenceSectionHtml };
 })();
