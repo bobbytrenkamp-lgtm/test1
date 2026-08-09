@@ -3058,6 +3058,22 @@ function initLeafletMap() {
   });
   new HomeControl().addTo(leafletMap);
 
+  // Find Sites button — toggles the Find Sites panel (js/parcel/find-sites.js)
+  const FindSitesControl = L.Control.extend({
+    options: { position: "bottomright" },
+    onAdd() {
+      const btn = L.DomUtil.create("button", "leaflet-bar leaflet-control map-find-sites-btn");
+      btn.title = "Find sites matching acreage/proximity criteria";
+      btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>`;
+      L.DomEvent.on(btn, "click", e => {
+        L.DomEvent.stopPropagation(e);
+        window.FIND_SITES?.toggle();
+      });
+      return btn;
+    },
+  });
+  new FindSitesControl().addTo(leafletMap);
+
   // Scale bar (imperial + metric) — standard GIS element
   L.control.scale({ imperial: true, metric: true, position: "bottomleft" }).addTo(leafletMap);
 

@@ -1095,3 +1095,114 @@ html[data-theme="light"] .pf-massing { background: rgba(72, 116, 232, 0.04); }
     max-width: none;
   }
 }
+
+/* ── Find Sites panel (js/parcel/find-sites.js) — same flex-sibling
+   width-transition pattern as #parcel-panel above ── */
+#find-sites-panel {
+  width: 0;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: width 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 13px;
+  min-width: 0;
+}
+
+#find-sites-panel.open {
+  width: 360px;
+}
+
+#find-sites-panel > * {
+  min-width: 360px;
+}
+
+.fs-header {
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fs-title { font-weight: 600; font-size: 15px; }
+
+.fs-scope-note {
+  padding: 10px 16px 0;
+  font-size: 12px;
+}
+
+.fs-form {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fs-field-row { display: flex; gap: 8px; }
+.fs-field-row label, .fs-field { flex: 1; display: flex; flex-direction: column; gap: 3px; font-size: 11px; color: var(--text-muted); }
+.fs-field-row input, .fs-field input {
+  font-size: 13px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.fs-search-btn { margin-top: 4px; }
+
+.fs-results { overflow-y: auto; flex: 1; padding: 12px 16px; }
+
+.fs-summary { font-size: 13px; margin-bottom: 8px; }
+
+.fs-results-list { list-style: none; margin: 0; padding: 0; }
+
+.fs-result-item {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+.fs-result-item:hover { border-color: var(--text-muted); }
+.fs-result-main { font-weight: 500; }
+.fs-result-sub { font-size: 12px; margin-top: 2px; }
+.fs-result-more { padding: 8px 10px; font-size: 12px; }
+
+@media (max-width: 767px) {
+  #find-sites-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100% !important;
+    height: 0;
+    max-height: 70vh;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    border-radius: 12px 12px 0 0;
+    z-index: 1200;
+    transition: height 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+    overflow: hidden;
+  }
+
+  #find-sites-panel.open {
+    height: 65vh;
+    width: 100% !important;
+  }
+
+  #find-sites-panel > * {
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #find-sites-panel { transition: none; }
+}

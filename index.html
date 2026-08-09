@@ -660,6 +660,33 @@
       <!-- Content rendered by js/parcel/panel.js -->
     </aside>
 
+    <!-- Find Sites Panel (searches parcels currently loaded on the map; toggled via the map control button) -->
+    <aside id="find-sites-panel" aria-label="Find sites" aria-hidden="true">
+      <div class="fs-header">
+        <div class="fs-title">Find Sites</div>
+        <button class="pp-close" onclick="window.FIND_SITES.close()" aria-label="Close find sites panel">✕</button>
+      </div>
+      <p class="pp-muted fs-scope-note">Searches parcels currently loaded on the map. Pan/zoom to a covered county to load its parcels first.</p>
+      <form id="fs-form" class="fs-form">
+        <div class="fs-field-row">
+          <label>Min acres <input type="number" name="minAcres" min="0" step="any"></label>
+          <label>Max acres <input type="number" name="maxAcres" min="0" step="any"></label>
+        </div>
+        <label class="fs-field">States (comma-separated) <input type="text" name="states" placeholder="VA, MD"></label>
+        <label class="fs-field">Zoning codes (comma-separated, prefix match) <input type="text" name="zoningCodes" placeholder="I, M"></label>
+        <div class="fs-field-row">
+          <label>Max mi. to transmission <input type="number" name="maxMilesToTransmission" min="0" step="any"></label>
+          <label>Max mi. to substation <input type="number" name="maxMilesToSubstation" min="0" step="any"></label>
+        </div>
+        <div class="fs-field-row">
+          <label>Max mi. to interstate <input type="number" name="maxMilesToInterstate" min="0" step="any"></label>
+          <label>Max floodplain % <input type="number" name="maxFloodplainPct" min="0" max="100" step="any"></label>
+        </div>
+        <button type="submit" class="pp-action-primary fs-search-btn">Search</button>
+      </form>
+      <div id="fs-results" class="fs-results"></div>
+    </aside>
+
   </div><!-- /map-area -->
 
   <!-- Parcel layer status bar (loading / count / error) -->
@@ -1105,6 +1132,7 @@ window.addEventListener('error', function(e) {
 <script src="js/parcel/report.js?v=20260721g" defer onload="window._track.ok.push('parcel-report')" onerror="window._track.fail.push('parcel-report')"></script>
 <script src="js/parcel/panel.js?v=20260721h" defer onload="window._track.ok.push('parcel-panel')" onerror="window._track.fail.push('parcel-panel')"></script>
 <script src="js/parcel/index.js?v=20260721g" defer onload="window._track.ok.push('parcel-index')" onerror="window._track.fail.push('parcel-index')"></script>
+<script src="js/parcel/find-sites.js?v=20260809a" defer onload="window._track.ok.push('parcel-find-sites')" onerror="window._track.fail.push('parcel-find-sites')"></script>
 <script src="js/workspace.js?v=20260719a" defer onload="window._track.ok.push('workspace')" onerror="window._track.fail.push('workspace')"></script>
 <!-- 3D terrain view. These stay dependency-free classic scripts; Three.js
      itself (vendor/three/*) is only lazy-loaded as an ES module by
