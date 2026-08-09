@@ -1,8 +1,11 @@
 /* js/parcel/panel.js
  * Parcel info panel — renders into #parcel-panel when a parcel is selected.
- * Four tabs: Details · Zoning · Valuation · Compare
+ * Five tabs: Details · Zoning · Valuation · Intelligence · Compare
  *
- * Depends on: PARCEL_SCHEMA, PARCEL_REGISTRY, PARCEL_SELECTION, ZONING (optional)
+ * Depends on: PARCEL_SCHEMA, PARCEL_REGISTRY, PARCEL_SELECTION, ZONING (optional),
+ *   PARCEL_SUITABILITY, PARCEL_SALES, PARCEL_PROXIMITY, PARCEL_CONSTRAINTS,
+ *   PARCEL_FEASIBILITY (all optional -- the Intelligence tab degrades per
+ *   missing module the same way it degrades per missing data)
  */
 window.PARCEL_PANEL = (function () {
   'use strict';
@@ -10,6 +13,18 @@ window.PARCEL_PANEL = (function () {
   let _activeTab = 'details';
   let _lastFeature = null;
   let _lastJurisId = null;
+
+  /* Proximity/constraint analysis is a live network query per parcel, so it
+     is fetched once per parcel_id and cached here rather than re-run on
+     every tab click or panel refresh. A placeholder ({}) is stored the
+     moment the fetch starts so a second call for the same parcel (e.g. the
+     user flips tabs and back before the fetch resolves) does not fire a
+     second, redundant round of queries. */
+  const _intelCache = new Map();
+
+  function _parcelKey(props) {
+    return props.parcel_id || props.pin || null;
+  }
 
   /* ── XSS-safe helper ── */
   function esc(s) {
@@ -274,6 +289,140 @@ window.PARCEL_PANEL = (function () {
     return `<div class="pp-group">${rows}</div>`;
   }
 
+  /* ── Tab: Intelligence (suitability score, proximity, constraints, sales) ──
+   * Surfaces the analysis engines (proximity.js, constraints.js,
+   * suitability.js, sales.js) that were already built and tested but had no
+   * UI consumer before this tab existed -- each renders synchronously from
+   * whatever is available and never invents a value for what it could not
+   * measure, matching the honesty rules those engines already enforce. */
+  function _tabIntelligence(props, feature) {
+    const fips = props.county_fips;
+    const key  = _parcelKey(props);
+    const cached = key ? _intelCache.get(key) : null;
+
+    const feasibility = window.PARCEL_FEASIBILITY?.assess(props, fips);
+    const ctx = {
+      properties: props,
+      geometry: feature.geometry,
+      acres: props.area_acres,
+      fips,
+      envelope: feasibility?.envelope || null,
+      proximity: cached?.proximity?.results
+        ? Object.fromEntries(cached.proximity.results.map(r => [r.layerId, r]))
+        : undefined,
+      constraintSummary: cached?.constraints?.summary,
+    };
+
+    let html = '';
+    html += _renderSuitability(window.PARCEL_SUITABILITY?.score(ctx));
+    html += _renderProximity(cached?.proximity);
+    html += _renderConstraints(cached?.constraints);
+    html += _renderSales(window.PARCEL_SALES?.buildHistory(props));
+
+    if (key && !cached && feature.geometry) {
+      _loadIntelligence(feature, key);
+    }
+
+    return html || '<p class="pp-empty">Site intelligence not available for this parcel.</p>';
+  }
+
+  function _renderSuitability(suit) {
+    if (!suit) return '';
+    if (!suit.scorable) {
+      return `<div class="pp-group pp-suitability">
+        <div class="pp-group-label">Site Suitability Screening</div>
+        <p class="pp-empty pp-muted">${esc(suit.why || 'Not enough data to score this parcel.')}</p>
+      </div>`;
+    }
+    const cls = suit.overall >= 75 ? 'pf-score-high' : suit.overall >= 50 ? 'pf-score-mod' : 'pf-score-low';
+    let html = `<div class="pp-group pp-suitability">
+      <div class="pp-group-label">Site Suitability Screening</div>
+      <div class="pf-score-row">
+        <div class="pf-score-label">Screening Score</div>
+        <div class="pf-score-bar-wrap"><div class="pf-score-bar ${esc(cls)}" style="width:${suit.overall}%"></div></div>
+        <div class="pf-score-value ${esc(cls)}">${suit.overall}</div>
+      </div>
+      <p class="pp-muted">${esc(suit.basis)}</p>
+      <details class="pf-conditions">
+        <summary>Component breakdown (${suit.components.length} scored, ${suit.omitted.length} omitted)</summary>
+        <ul class="pf-conditions-list">
+          ${suit.components.map(c => `<li>${esc(c.label)}: ${c.score}/100 (weight ${c.weight}%) — ${esc(c.rule)}</li>`).join('')}
+          ${suit.omitted.map(o => `<li class="pp-muted">${esc(o.label)}: not scored — ${esc(o.why)}</li>`).join('')}
+        </ul>
+      </details>
+      <p class="pf-disclaimer">${esc(suit.disclaimer)}</p>
+    </div>`;
+    return html;
+  }
+
+  function _renderProximity(proximity) {
+    let html = `<div class="pp-group pp-proximity"><div class="pp-group-label">Infrastructure Proximity</div>`;
+    if (!window.PARCEL_PROXIMITY) return '';
+    if (!proximity) {
+      return html + '<p class="pp-empty pp-muted">Loading proximity data…</p></div>';
+    }
+    const found = (proximity.results || []).filter(r => r.nearest && !r.error);
+    const errs  = (proximity.results || []).filter(r => r.error);
+    let rows = found.map(r => {
+      const dist = window.PARCEL_PROXIMITY.formatDistance(r.nearest.distanceMiles) || `${r.nearest.distanceMiles} mi`;
+      return _fieldRow(r.label, `${dist}${r.nearest.name ? ` (${esc(r.nearest.name)})` : ''}`);
+    }).join('');
+    rows += errs.map(r => `<div class="pp-field"><span class="pp-field-label">${esc(r.label)}</span><span class="pp-field-value pp-field-na">Unavailable — ${esc(r.error)}</span></div>`).join('');
+    rows += (proximity.unavailable || []).map(u => `<div class="pp-field"><span class="pp-field-label">${esc(u.layerId)}</span><span class="pp-field-value pp-field-na">${esc(u.reason)}</span></div>`).join('');
+    html += rows || '<p class="pp-empty pp-muted">No infrastructure found within the search radius.</p>';
+    html += `</div>`;
+    return html;
+  }
+
+  function _renderConstraints(constraints) {
+    let html = `<div class="pp-group pp-constraints"><div class="pp-group-label">Environmental &amp; Development Constraints</div>`;
+    if (!window.PARCEL_CONSTRAINTS) return '';
+    if (!constraints) {
+      return html + '<p class="pp-empty pp-muted">Loading constraint data…</p></div>';
+    }
+    const s = constraints.summary;
+    html += _fieldRow('Constrained area', `${s.constrainedAcres} ac (${s.constrainedPct}% of parcel)`);
+    html += _fieldRow('Unconstrained by checked layers', `${s.unconstrainedByCheckedLayersAcres} ac`);
+    const intersecting = (constraints.results || []).filter(r => r.intersects);
+    if (intersecting.length) {
+      html += `<ul class="pf-conditions-list">
+        ${intersecting.map(r => `<li>${esc(r.label)}: ${r.pctOfParcel}% of parcel${r.caveat ? ` — ${esc(r.caveat)}` : ''}</li>`).join('')}
+      </ul>`;
+    }
+    if (s.disclaimer) html += `<p class="pf-disclaimer">${esc(s.disclaimer)}</p>`;
+    html += `</div>`;
+    return html;
+  }
+
+  function _renderSales(sales) {
+    if (!sales || !sales.count) return '';
+    return `<div class="pp-group pp-sales">
+      <div class="pp-group-label">Sales History (${sales.count})</div>
+      ${sales.sales.slice(0, 5).map(s => _fieldRow(
+        s.sale_date || 'Unknown date',
+        `${s.sale_price != null ? '$' + s.sale_price.toLocaleString() : '—'}${s.classification !== 'market' ? ` (${esc(s.classification)})` : ''}`
+      )).join('')}
+    </div>`;
+  }
+
+  async function _loadIntelligence(feature, key) {
+    if (_intelCache.has(key)) return;
+    _intelCache.set(key, {});
+    try {
+      const [proximity, constraints] = await Promise.all([
+        window.PARCEL_PROXIMITY ? window.PARCEL_PROXIMITY.analyze(feature.geometry) : null,
+        window.PARCEL_CONSTRAINTS ? window.PARCEL_CONSTRAINTS.analyze(feature.geometry) : null,
+      ]);
+      _intelCache.set(key, { proximity, constraints });
+    } catch (_) {
+      _intelCache.delete(key);
+    }
+    // Only re-render if the user is still looking at this same parcel's
+    // Intelligence tab -- a slow query resolving after the user has moved
+    // on to a different parcel must not clobber what is now on screen.
+    if (_lastFeature === feature && _activeTab === 'intelligence') refresh();
+  }
+
   /* ── Tab: Compare ── */
   function _tabCompare() {
     const compared = window.PARCEL_SELECTION?.getCompared() || [];
@@ -415,18 +564,20 @@ window.PARCEL_PANEL = (function () {
     const compared = window.PARCEL_SELECTION?.getCompared() || [];
 
     const tabs = [
-      { id: 'details',   label: 'Details'   },
-      { id: 'zoning',    label: 'Zoning'    },
-      { id: 'valuation', label: 'Valuation' },
-      { id: 'compare',   label: `Compare${compared.length ? ` (${compared.length})` : ''}` },
+      { id: 'details',      label: 'Details'      },
+      { id: 'zoning',       label: 'Zoning'       },
+      { id: 'valuation',    label: 'Valuation'    },
+      { id: 'intelligence', label: 'Intelligence' },
+      { id: 'compare',      label: `Compare${compared.length ? ` (${compared.length})` : ''}` },
     ];
 
     const tabContent = (() => {
       switch (_activeTab) {
-        case 'zoning':    return _tabZoning(props);
-        case 'valuation': return _tabValuation(props);
-        case 'compare':   return _tabCompare();
-        default:          return _tabDetails(props);
+        case 'zoning':       return _tabZoning(props);
+        case 'valuation':    return _tabValuation(props);
+        case 'intelligence': return _tabIntelligence(props, feature);
+        case 'compare':      return _tabCompare();
+        default:             return _tabDetails(props);
       }
     })();
 
@@ -646,5 +797,11 @@ window.PARCEL_PANEL = (function () {
     }, { passive: true });
   })();
 
-  return { show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh, _exportCSV, _openReport };
+  return {
+    show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh, _exportCSV, _openReport,
+    // Exposed for unit testing (pure functions: data in, HTML string out --
+    // no DOM APIs used inside them), matching the existing pattern of
+    // exposing "_"-prefixed internals above.
+    _tabIntelligence, _renderSuitability, _renderProximity, _renderConstraints, _renderSales,
+  };
 })();
