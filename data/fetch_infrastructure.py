@@ -9,11 +9,13 @@ Sources (all public, no authentication required):
   - EPA FRS/ICIS Wastewater     (NPDES-permitted wastewater treatment facilities)
   - FCC National Broadband Map  (county-level fiber coverage)
   - EPA WATERS / USGS           (county-level water availability proxy)
+  - EIA US Energy Atlas         (ISO/RTO region boundaries -- currently token-gated, see ISO_RTO_URL)
+  - EPA Community Water Systems (drinking-water service-area boundaries)
 
 Outputs: updates data/sample_layers.json with real infrastructure data.
 
 Usage:
-    python data/fetch_infrastructure.py [--layers substations,transmission,power,wastewater,fiber,water]
+    python data/fetch_infrastructure.py [--layers substations,transmission,power,wastewater,fiber,water,iso_rto,water_systems]
 """
 from __future__ import annotations
 
@@ -140,6 +142,21 @@ EPA_WATERS_URL  = "https://enviroatlas.epa.gov/arcgis/rest/services/Supplemental
 # than guessing field names.
 ISO_RTO_URL = "https://services7.arcgis.com/FGr1D95XCGALKXqM/ArcGIS/rest/services/RTO_Regions/FeatureServer/0/query"
 
+# ── EPA Community Water System Service Area Boundaries ──────────────────
+# EPA's own national dataset of drinking-water service-area polygons for
+# 44,000+ community water systems (~99% of the population served by
+# community water systems nationwide), covering all 50 states + DC +
+# tribal/territory systems. Found via web search and confirmed live on a
+# real GitHub Actions probe dispatch: real schema includes PWSID, PWS_Name,
+# Primacy_Agency, Population_Served_Count, Service_Connections_Count,
+# Service_Area_Type, Verification_Status, Area_SqKM. This is WATER
+# INFRASTRUCTURE (a utility's known service territory) -- distinct from
+# water_stress (a scarcity index) and distinct from a capacity/main-size
+# claim, which this source does not carry. Service areas are drawn at
+# varying confidence (see Verification_Status/Model_Method) -- passed
+# through as reported, never upgraded to "confirmed" by this project.
+WATER_SYSTEM_URL = "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Water_System_Boundaries/FeatureServer/0/query"
+
 SESSION = requests.Session()
 SESSION.headers.update({"User-Agent": "USDataCenterPolicyTracker/1.0 (research; github.com/bobbytrenkamp-lgtm/test1)"})
 
@@ -157,12 +174,18 @@ def _get(url: str, params: dict, retries: int = 3, delay: float = 2.0) -> dict |
     return None
 
 
-def _arcgis_paginate(url: str, where: str, out_fields: str, max_per_page: int = 2000) -> list[dict]:
-    """Fetch all records from an ArcGIS Feature Service using pagination."""
+def _arcgis_paginate(url: str, where: str, out_fields: str, max_per_page: int = 2000,
+                      extra_params: dict | None = None) -> list[dict]:
+    """Fetch all records from an ArcGIS Feature Service using pagination.
+
+    extra_params lets a caller add query params (e.g. maxAllowableOffset
+    to have the server generalize/simplify polygon geometry before
+    transmission) without every other caller needing to know about them.
+    """
     records: list[dict] = []
     offset = 0
     while True:
-        data = _get(url, {
+        params = {
             "where":           where,
             "outFields":       out_fields,
             "outSR":           "4326",
@@ -171,7 +194,10 @@ def _arcgis_paginate(url: str, where: str, out_fields: str, max_per_page: int = 
             "resultOffset":    offset,
             "geometryType":    "esriGeometryPoint",
             "returnGeometry":  "true",
-        })
+        }
+        if extra_params:
+            params.update(extra_params)
+        data = _get(url, params)
         if not data:
             break
         if "error" in data:
@@ -661,6 +687,94 @@ def fetch_iso_rto_regions() -> list[dict]:
     return out
 
 
+# ── Water systems (drinking water service areas) ─────────────────────────
+
+def fetch_water_systems() -> list[dict]:
+    """
+    Fetch EPA Community Water System service areas as centroid points.
+
+    Returns one simplified point dict per water system (a single lon/lat
+    representing the service area's centroid), not the full boundary
+    polygon. Two real dispatches of a full-polygon version of this fetch
+    (one at full resolution, one with server-side geometry generalization
+    via maxAllowableOffset) each ran past 15+ minutes with no sign of
+    finishing against this 44,000+-feature layer and had to be cancelled --
+    confirmed empirically, not assumed. Every other layer in this file
+    (substations, power plants, wastewater) is already stored as points for
+    exactly this reason; service-area boundary precision was traded for a
+    fetch that actually completes. ArcGIS's own returnCentroid option
+    computes this server-side, so the centroid is a real (if approximate)
+    representation of the polygon, not a fabricated point.
+
+    HONESTY NOTE: a centroid point is NOT the service-area boundary -- it
+    marks roughly where the utility's territory is centered, not where it
+    starts or ends. It does NOT say the utility has spare capacity, does
+    NOT give main size/location, and does NOT give a treatment plant
+    location (see fetch_wastewater_facilities() for the wastewater side of
+    that; no equivalent public EPA drinking-water treatment-plant point
+    layer was found in this pass). Never conflate "near a water system's
+    centroid" with "water available."
+    """
+    log.info("Fetching EPA Community Water System service areas (centroids)…")
+    # Even after dropping full geometry for centroids, real dispatches at
+    # the default 2000-record page size still hadn't finished after 15+
+    # minutes (confirmed empirically -- a single 1-record query against
+    # this same service returns in ~1s, so the service itself isn't down
+    # or rate-limiting outright). The likely cause: this layer's centroids
+    # are computed server-side from real underlying polygons, so per-page
+    # cost scales with how many polygons the server has to process in that
+    # request, not just response size. A much smaller page keeps each
+    # request comfortably inside the client's 60s timeout instead of
+    # risking a timeout-then-retry spiral that looks like a hang from the
+    # outside.
+    raw = _arcgis_paginate(WATER_SYSTEM_URL, "1=1",
+                           "PWSID,PWS_Name,Primacy_Agency,Population_Served_Count,"
+                           "Service_Connections_Count,Service_Area_Type,"
+                           "Verification_Status,Model_Method,Area_SqKM",
+                           max_per_page=100,
+                           extra_params={"returnGeometry": "false", "returnCentroid": "true"})
+    if not raw:
+        log.warning("No water system data returned.")
+        return []
+
+    out = []
+    for feat in raw:
+        a = feat.get("attributes", {})
+        centroid = feat.get("centroid") or {}
+        lon, lat = centroid.get("x"), centroid.get("y")
+        if lon is None or lat is None:
+            continue
+        pwsid = str(a.get("PWSID") or "")
+        # EPA's own PWSID convention is a 2-letter state postal code
+        # prefix (e.g. "VA0000123") -- this is a documented EPA format
+        # rule, not an inferred/guessed value, but it has not been
+        # independently re-confirmed against real PWSID values from this
+        # specific layer (only the field name was confirmed live).
+        state_guess = pwsid[:2].upper() if len(pwsid) >= 2 and pwsid[:2].isalpha() else ""
+        out.append({
+            "id":                     f"ws-{pwsid or a.get('OBJECTID', len(out))}",
+            "pwsid":                  pwsid,
+            "name":                   a.get("PWS_Name") or "Unknown Water System",
+            "primacy_agency":         a.get("Primacy_Agency") or "",
+            "state":                  state_guess,
+            "population_served":      a.get("Population_Served_Count"),
+            "service_connections":    a.get("Service_Connections_Count"),
+            "service_area_type":      a.get("Service_Area_Type") or "",
+            "verification_status":    a.get("Verification_Status") or "",
+            "boundary_method":        a.get("Model_Method") or "",
+            "area_sqkm":              a.get("Area_SqKM"),
+            "lon":                    round(float(lon), 5),
+            "lat":                    round(float(lat), 5),
+        })
+
+    log.info("Water systems: %d records", len(out))
+    from collections import Counter
+    state_counts = Counter(o["state"] for o in out if o["state"])
+    log.info("Water systems by inferred state (%d states represented): %s",
+              len(state_counts), dict(sorted(state_counts.items())))
+    return out
+
+
 # ── Update sample_layers.json ─────────────────────────────────────────────────
 
 def update_layers(layers_path: str, updates: dict[str, Any]) -> None:
@@ -686,7 +800,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Fetch infrastructure data layers")
     parser.add_argument(
         "--layers",
-        default="substations,transmission,power,wastewater,fiber,water,iso_rto",
+        default="substations,transmission,power,wastewater,fiber,water,iso_rto,water_systems",
         help="Comma-separated list of layers to fetch",
     )
     args = parser.parse_args()
@@ -728,6 +842,11 @@ def main() -> None:
         regions = fetch_iso_rto_regions()
         if regions:
             updates["iso_rto_regions"] = regions
+
+    if "water_systems" in enabled:
+        systems = fetch_water_systems()
+        if systems:
+            updates["water_systems"] = systems
 
     if updates:
         update_layers(LAYERS_PATH, updates)

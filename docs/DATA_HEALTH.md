@@ -15,7 +15,7 @@ Project-wide data health: is each pipeline's most recent automated run actually 
 
 ## Datasets with no automated health signal yet
 
-26 of 26 datasets in data/catalog/dataset_registry.json have no per-dataset automated health check (they are hand-curated JSON or covered only indirectly by the pipeline signals above, not fetched/validated per dataset). Listed here, not defaulted to OK:
+27 of 27 datasets in data/catalog/dataset_registry.json have no per-dataset automated health check (they are hand-curated JSON or covered only indirectly by the pipeline signals above, not fetched/validated per dataset). Listed here, not defaulted to OK:
 
 - ai_news
 - data_centers
@@ -42,5 +42,6 @@ Project-wide data health: is each pipeline's most recent automated run actually 
 - utility_territories
 - wastewater
 - water_stress
+- water_systems
 - zoning_jurisdictions
 

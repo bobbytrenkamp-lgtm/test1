@@ -201,6 +201,21 @@
       "known_quality_issues": "A single scalar stress index cannot answer utility capacity questions; the parcel suitability/proximity engines correctly treat proximity as distinct from capacity, but no water infrastructure PROXIMITY layer (mains, treatment plants, service areas) exists to feed that distinction yet."
     },
     {
+      "id": "water_systems",
+      "category": "WATER INFRASTRUCTURE",
+      "name": "Community water system service areas",
+      "file": null,
+      "source_org": "EPA Community Water System Service Area Boundaries (national drinking-water dataset)",
+      "source_url": "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Water_System_Boundaries/FeatureServer/0",
+      "geographic_scope_declared": "United States -- source publishes 44,000+ community water systems, ~99% of the population served by community water systems, all 50 states + DC + tribal/territory systems (source's own claim, not yet independently re-verified against a completed fetch)",
+      "update_frequency_declared": "weekly (update_infrastructure.yml, once ingestion succeeds)",
+      "authoritative": true,
+      "direct_or_derived": "direct",
+      "license": "Public EPA open data.",
+      "known_coverage_holes": "NOT YET INGESTED, but the source is real and confirmed live -- this is a found-but-blocked ingestion, not an unexplored gap. Real schema was confirmed via a live GitHub Actions probe (PWSID, PWS_Name, Primacy_Agency, Population_Served_Count, Service_Connections_Count, Service_Area_Type, Verification_Status, Area_SqKM), and a single-record query against this same service returns in about 1 second, ruling out the service being down or wholesale rate-limited. Four separate real dispatches of a full pagination fetch -- (1) full-resolution polygons, (2) server-side geometry-generalized polygons via maxAllowableOffset, (3) server-computed centroids only via returnCentroid with a 2000-record page size, (4) the same centroids at a 100-record page size -- each ran 15+ minutes with no sign of completing and had to be cancelled. The working theory: this layer's 44,000+ underlying polygons make deep offset-based pagination (`resultOffset`) progressively expensive server-side regardless of what's returned per page, a known failure mode for large hosted feature services. The fetcher code (fetch_water_systems() in fetch_infrastructure.py) is real and correct for a small/bounded query -- it is wired into update_infrastructure.yml's water_systems layer and will populate this dataset automatically once ingestion is restructured (most likely: per-state WHERE-filtered queries against Primacy_Agency instead of one unfiltered `where=1=1` scan, avoiding deep pagination entirely) rather than guessed at further in this pass.",
+      "known_quality_issues": "Not yet applicable -- no records ingested yet. Once ingested: a service-area boundary/centroid answers \"which utility's territory reaches here,\" not whether that utility has spare capacity, and carries no main-size/location or treatment-plant-location data (see the wastewater dataset for the wastewater side of the picture)."
+    },
+    {
       "id": "wastewater",
       "category": "WASTEWATER",
       "name": "Wastewater treatment infrastructure",

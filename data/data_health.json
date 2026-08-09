@@ -39,6 +39,7 @@
     "utility_territories",
     "wastewater",
     "water_stress",
+    "water_systems",
     "zoning_jurisdictions"
   ],
   "pipelines": {
@@ -94,7 +95,7 @@
       "SOURCE_DOWN": 1,
       "VALIDATION_FAILURE": 2
     },
-    "datasets_without_tracking_count": 26,
+    "datasets_without_tracking_count": 27,
     "pipelines_tracked": 4
   }
 }
