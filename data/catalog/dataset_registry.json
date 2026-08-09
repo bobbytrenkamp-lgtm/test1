@@ -207,7 +207,7 @@
       "file": "data/sample_layers.json#wastewater_facilities",
       "source_org": "EPA Office of Environmental Information (OEI) FRS/ICIS-NPDES",
       "source_url": "https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_Wastewater/MapServer/1/query",
-      "geographic_scope_declared": "US NPDES-permitted wastewater treatment facilities (live ArcGIS query, real count varies per fetch -- not a fixed dataset size)",
+      "geographic_scope_declared": "US NPDES-permitted wastewater treatment facilities -- 18,885 real records across 56 states/territories and 3,014 counties (as of 2026-08-09 dispatch; count varies per fetch since this queries the live service, not a fixed dataset)",
       "update_frequency_declared": "weekly (update_infrastructure.yml, fetch_wastewater_facilities())",
       "authoritative": true,
       "direct_or_derived": "direct",
