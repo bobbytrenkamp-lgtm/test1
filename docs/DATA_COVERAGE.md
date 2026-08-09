@@ -16,6 +16,17 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | Datasets with dedicated CI coverage | 5 |
 | Datasets on an automated refresh workflow | 13 |
 
+## Refresh cadence (computed from each workflow's own cron schedule, not declared)
+
+| Cadence | Datasets |
+|---|---|
+| daily | 1 |
+| hourly | 1 |
+| monthly | 1 |
+| none | 1 |
+| not_automated | 13 |
+| weekly | 9 |
+
 ## By category
 
 | Category | Datasets | With data | Total records | UI-consumed | Automated |
@@ -58,6 +69,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 - **Known coverage holes:** ENGINE EXISTS, ZERO PRODUCTION DATA. js/parcel/enrichment.js and enrichment-arcgis-table.js are built and tested (89 + 47 assertions), and data/parcel_pipeline/discover_enrichment.mjs can find and empirically verify CAMA join candidates — but no registry.js entry has an enrichment block yet, because this session's sandbox could not reach county GIS hosts to run the discovery workflow. The pilot PR (Loudoun/Prince William/Fairfax VA) is unblocked but unexecuted.
 
 ### DATA CENTERS
@@ -72,6 +84,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: True
 - CI-tested: True
 - Automated update workflow(s): update_facilities.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): weekly
 - **Known coverage holes:** Below the ~6,000-facility target discussed for a comprehensive national census. No explicit campus→building parent/child hierarchy yet — campus_total_mw and campus_size_acres exist as flat per-record fields, so a multi-building campus is not guaranteed to be modeled as one entity with children.
 - **Known quality issues:** Locations are approximate (city-level accuracy per the dataset's own disclaimer); capacity figures are publicly reported estimates that may be stale.
 
@@ -85,6 +98,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 - **Known coverage holes:** Only 8 sources configured; no state PUC filings, no CBRE/JLL/Datacenter Dynamics market reports (paid or ToS-restricted).
 - **Known quality issues:** Confidence tiers are self-declared per source, not independently audited.
 
@@ -100,6 +114,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: True
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 
 **FRED macroeconomic series** (fred_data) — ✅ has data
 
@@ -111,6 +126,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: True
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 
 ### FIBER
 
@@ -124,6 +140,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: True
 - CI-tested: False
 - Automated update workflow(s): update_data.yml, update_facilities.yml, update_infrastructure.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): weekly
 - **Known coverage holes:** REMEDIATED. This dataset used to hold 3 hardcoded named routes ("Zayo Northern Virginia Dark Fiber Ring", "Lumen/CenturyLink Iowa Backbone", "Zayo Pacific NW Fiber Route") with hand-typed coordinate paths attributed to real carriers with no evidence. They were removed rather than kept as "illustrative" -- attributing an invented path to a named company by name is a fabrication risk a map tooltip disclaimer does not resolve. No free, reliable, nationwide fiber-route dataset is known to exist (see js/parcel/proximity-layers.js's fiber registerUnavailable(), which this file now matches). data/validate_sources.py and tests/test_fiber_network_honesty.py now require any future entry to carry a real, checked source URL before it may name a carrier.
 
 **FCC broadband fiber availability by county** (fcc_broadband_fiber_pct) — ⛔ no data
@@ -137,6 +154,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 - **Known coverage holes:** NOT CURRENTLY WORKING. fetch_infrastructure.py's fetch_fiber_coverage() targets an FCC county endpoint that now requires a registered API token this adapter does not send (HTTP 405/token error, documented in the script). Even if fixed, this measures MARKETED RESIDENTIAL BROADBAND AVAILABILITY, not physical long-haul/metro fiber routes or dark-fiber availability — the two must never be conflated, and this dataset should never be labeled as 'fiber infrastructure' if revived.
 
 ### FLOOD
@@ -152,6 +170,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: True
 - CI-tested: False
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 - **Known coverage holes:** ENGINE EXISTS, LIVE, WIRED (verified 2026-08-08 via a real GitHub Actions dispatch against hazards.fema.gov -- confirmed layer 28, real fields FLD_ZONE/ZONE_SUBTY/SFHA_TF/STATIC_BFE). No local record count applies -- this is a live per-parcel query, not stored data, so has_data is reported false even though the wiring is real (see data_catalog ALLOWED_WITH_NO_DATA). FEMA does not map 100% of US counties; an area with no mapped floodplain returns zero intersecting features honestly, indistinguishable at the API level from an area FEMA has simply never studied.
 - **Known quality issues:** FEMA flood panels are regulatory products of varying age -- many effective panels are a decade or more old. See the caveat text in constraint-layers.js.
 
@@ -168,6 +187,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 - **Known coverage holes:** The 'ferc_queue' facility source in facility_sources.json feeds the DATA CENTER pipeline (detecting large-load interconnection requests), not a standalone interconnection-queue dataset. LBNL's free public interconnection queue database (queues.lbl.gov) is a plausible richer source that has not been evaluated.
 
 ### ISO/RTO
@@ -182,6 +202,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 - **Known coverage holes:** NOT IMPLEMENTED. No ISO/RTO region layer exists anywhere in the repository. FERC and most ISOs (PJM, MISO, ERCOT, CAISO, SPP, ISO-NE, NYISO) publish free boundary maps/data; none are currently ingested.
 
 ### NEWS
@@ -196,6 +217,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: True
 - CI-tested: False
 - Automated update workflow(s): update_ai_news.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): hourly
 
 ### PARCELS
 
@@ -209,6 +231,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: True
 - CI-tested: True
 - Automated update workflow(s): check_parcel_services.yml, parcel_batch_discovery.yml, parcel_enrichment_discovery.yml, parcel_pr_check.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): monthly
 - **Known coverage holes:** Geometry coverage is 58 of ~3,000+ US counties. Most jurisdictions provide geometry + identity only; ownership/assessment/sales/zoning require the multi-source enrichment engine, which currently has zero production jurisdictions with a declared enrichment block.
 - **Known quality issues:** Field depth varies enormously by jurisdiction; see data/parcel_coverage_metrics.json for the per-category breakdown this file does not duplicate.
 
@@ -222,6 +245,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): parcel_pr_check.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): none
 - **Known coverage holes:** Candidate entries are catalogued but unverified until promoted to the registry; most entries are still 'candidate' status.
 - **Known quality issues:** A catalogued service's geographic coverage is not independently confirmed until a human promotes it — sample-matching a few parcels inside a county is not proof of full-county coverage (see BUG_TRACKER.md's Shorewood/Will County case).
 
@@ -237,6 +261,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: True
 - CI-tested: False
 - Automated update workflow(s): update_political_risk.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): weekly
 - **Known coverage holes:** 112 of ~3,000 counties. This is the index the parcel suitability score's 'policy' component reads.
 - **Known quality issues:** A forward-looking risk indicator, not a record of current law — already labeled as such everywhere it is consumed (see js/parcel/suitability.js's policy component rule text).
 
@@ -250,6 +275,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: True
 - Automated update workflow(s): update_data.yml, update_policy_sources.yml, update_regulations.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): daily
 
 ### POWER PLANTS
 
@@ -264,6 +290,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): update_data.yml, update_facilities.yml, update_infrastructure.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): weekly
 - **Known coverage holes:** ENGINE EXISTS, LIVE, WIRED, REAL DATA (1,295 records, 49 states, first populated 2026-08-09 via update_infrastructure.yml). This source has NO nameplate-capacity field of any kind -- plant identity, location, operating status, and primary fuel source are real and populated; capacity_mw is always None, never fabricated. Whether 1,295 represents the full national operating fleet or a curated subset of this FRS layer has not been independently cross-checked against EIA-860 totals.
 - **Known quality issues:** Source is one row per GENERATOR, deduplicated to one record per PLANT_CODE by this pipeline -- a plant with many small generators and a plant with one large generator are indistinguishable without capacity data.
 
@@ -279,6 +306,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 - **Known coverage holes:** ENGINE EXISTS, NO DATA. Same status as fema_flood.
 
 ### RAIL
@@ -293,6 +321,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 - **Known coverage holes:** NOT IMPLEMENTED. Deprioritized — rail is a lower-value signal for data center siting than power/fiber/water/road access; noted for completeness per the requested category list.
 
 ### ROADS
@@ -307,6 +336,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 - **Known coverage holes:** NOT IMPLEMENTED as a dataset the proximity engine can query. js/parcel/proximity-layers.js declares 'interstates' as PENDING_VERIFICATION with no endpoint attached — the base map's road tiles (OSM basemap) are visual only and are not queryable for distance calculations.
 
 ### SUBSTATIONS
@@ -322,6 +352,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: True
 - CI-tested: False
 - Automated update workflow(s): update_data.yml, update_facilities.yml, update_infrastructure.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): weekly
 - **Known coverage holes:** CONFIRMED SEVERE: this mirror returns only ~25 US substations after the >=69kV filter, nationwide. The real HIFLD substations dataset has tens of thousands of records. This is real, correctly-fetched data — not fabricated — but is NOT equivalent coverage to a full national substation layer. Documented in fetch_infrastructure.py and BUG_TRACKER.md; a full-coverage replacement has not been found.
 - **Known quality issues:** Schema differs from the original HIFLD org (MAX_VOLT/MIN_VOLT instead of one VOLTAGE field, COUNTYFIPS instead of COUNTY_FIPS) — handled in the adapter, but any future source swap must re-verify field names rather than assume the original schema.
 
@@ -338,6 +369,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: True
 - CI-tested: False
 - Automated update workflow(s): update_data.yml, update_facilities.yml, update_infrastructure.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): weekly
 - **Known coverage holes:** None documented beyond normal HIFLD reporting lag.
 - **Known quality issues:** None currently documented; this HIFLD endpoint has stayed live (see fetch_infrastructure.py header comment for the substations/power-plants endpoints that did not).
 
@@ -353,6 +385,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: True
 - CI-tested: False
 - Automated update workflow(s): update_data.yml, update_facilities.yml, update_infrastructure.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): weekly
 - **Known coverage holes:** NOT A REAL DATASET YET. 6 hand-typed FIPS-list entries (e.g. "Dominion Energy (Virginia)") stand in for what should be a real utility service-territory polygon layer. HIFLD publishes an Electric Retail Service Territories layer that has not yet been evaluated/ingested.
 - **Known quality issues:** Presented on the map without a distinct 'illustrative' visual treatment from verified layers — flagged as a UI honesty gap, see docs/DATA_COVERAGE.md.
 
@@ -368,6 +401,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 - **Known coverage holes:** NOT IMPLEMENTED. EPA's Clean Watersheds Needs Survey and the EPA Facility Registry Service both publish free wastewater facility data that has not yet been evaluated.
 
 ### WATER
@@ -382,6 +416,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: True
 - CI-tested: False
 - Automated update workflow(s): update_data.yml, update_facilities.yml, update_infrastructure.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): weekly
 - **Known coverage holes:** Only 79 of ~3,000 US counties have a water stress value. This is an index/score (0–4 scale), not a water utility service territory, treatment plant, or main dataset — none of those exist in the repository yet.
 - **Known quality issues:** A single scalar stress index cannot answer utility capacity questions; the parcel suitability/proximity engines correctly treat proximity as distinct from capacity, but no water infrastructure PROXIMITY layer (mains, treatment plants, service areas) exists to feed that distinction yet.
 
@@ -397,6 +432,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 - **Known coverage holes:** ENGINE EXISTS, NO DATA. Same status as fema_flood: registered unavailable pending endpoint verification in js/parcel/constraint-layers.js.
 
 ### ZONING
@@ -411,5 +447,6 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - UI-consumed: True
 - CI-tested: False
 - Automated update workflow(s): update_zoning.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): weekly
 - **Known coverage holes:** 1 of 58 production parcel jurisdictions has structured zoning district/setback/permitted-use data. This is the input the conceptual buildable envelope and suitability land-use scoring depend on for anything beyond the raw zoning_code string.
 - **Known quality issues:** Hand-transcription from ordinance text carries transcription-error risk; docs/ZONING_VERIFICATION.md documents the verification process for this one jurisdiction.

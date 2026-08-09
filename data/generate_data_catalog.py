@@ -227,6 +227,76 @@ def _ci_tested(dataset_id: str, test_labels: set[str]) -> bool:
 #      was reported instead. All matches are now collected, so the genuine
 #      one is never silently shadowed by a coincidental string match.
 
+# ── Update cadence classification (Phase 10: "classify refresh cadence per
+# dataset, check-before-expensive-work") ──────────────────────────────────
+#
+# Parsed from the workflow's own committed cron schedule via plain regex,
+# not a YAML parser -- PyYAML is not a declared dependency of
+# data/requirements.txt (it happens to be importable in some environments
+# incidentally, which would make this script silently work locally and
+# silently fail in CI). Cron text is simple and stable enough that a regex
+# match on `cron: "..."` is exactly the discipline check_registry_integrity.mjs's
+# own comment recommends: don't add a dependency a five-field string doesn't need.
+_CRON_LINE_RE = re.compile(r'cron:\s*"([^"]+)"')
+_SCHEDULE_BLOCK_RE = re.compile(r'^\s*schedule:\s*$', re.MULTILINE)
+
+# Ordered worst-to-best is irrelevant here; this is a lookup table used to
+# pick the MOST FREQUENT cadence when a workflow declares more than one cron
+# trigger (e.g. monitor_legislation.yml fires twice a week on different
+# days -- still "weekly" in effect, not two separate cadences).
+_CADENCE_FREQUENCY_RANK = {
+    "hourly": 0, "daily": 1, "weekly": 2, "monthly": 3, "custom": 4,
+    "manual-only": 5, "none": 6, "unknown": 7,
+}
+
+
+def _cron_cadence_label(cron_expr: str) -> str:
+    parts = cron_expr.split()
+    if len(parts) != 5:
+        return "unknown"
+    _minute, hour, dom, _month, dow = parts
+    if hour == "*":
+        return "hourly"
+    if dom != "*" and dow == "*":
+        return "monthly"
+    if dow != "*" and dom == "*":
+        return "weekly"
+    if dom == "*" and dow == "*":
+        return "daily"
+    return "custom"  # both day-of-month and day-of-week constrained -- rare, not worth a false label
+
+
+def _workflow_cadence(workflow_name: str) -> dict:
+    path = ROOT / ".github" / "workflows" / workflow_name
+    if not path.is_file():
+        return {"cadence": "unknown", "cron_expressions": []}
+    text = path.read_text()
+    crons = _CRON_LINE_RE.findall(text)
+    if crons:
+        labels = [_cron_cadence_label(c) for c in crons]
+        best = min(labels, key=lambda l: _CADENCE_FREQUENCY_RANK.get(l, 99))
+        return {"cadence": best, "cron_expressions": crons}
+    if "workflow_dispatch:" in text and not _SCHEDULE_BLOCK_RE.search(text):
+        return {"cadence": "manual-only", "cron_expressions": []}
+    return {"cadence": "none", "cron_expressions": []}
+
+
+def _dataset_cadence(workflow_names: list[str]) -> dict | None:
+    """Rolls up cadence across every workflow that touches this dataset --
+    a dataset refreshed by both a weekly and an hourly workflow is
+    effectively hourly. Returns None (not a fake 'none') when no workflow
+    touches the dataset at all, so a caller can distinguish "genuinely
+    never refreshed" from "refreshed, but only manually"."""
+    if not workflow_names:
+        return None
+    per_workflow = {wf: _workflow_cadence(wf) for wf in workflow_names}
+    best = min(
+        (v["cadence"] for v in per_workflow.values()),
+        key=lambda c: _CADENCE_FREQUENCY_RANK.get(c, 99),
+    )
+    return {"cadence": best, "per_workflow": per_workflow}
+
+
 def _automated_workflows(rel_path: str | None) -> list[str]:
     if not rel_path:
         return []
@@ -261,6 +331,7 @@ def build_catalog() -> dict:
             "ui_consumed": _ui_consumed(did),
             "ci_tested": _ci_tested(did, test_labels),
             "automated_update_workflows": automated,
+            "update_cadence": _dataset_cadence(automated),
             "has_data": bool(record_count),
         })
 
@@ -309,8 +380,17 @@ def build_catalog() -> dict:
             "datasets_ui_consumed": sum(1 for d in datasets if d["ui_consumed"]),
             "datasets_ci_tested": sum(1 for d in datasets if d["ci_tested"]),
             "datasets_automated": sum(1 for d in datasets if d["automated_update_workflows"]),
+            "datasets_by_cadence": _cadence_counts(datasets),
         },
     }
+
+
+def _cadence_counts(datasets: list[dict]) -> dict:
+    counts: dict[str, int] = {}
+    for d in datasets:
+        label = d["update_cadence"]["cadence"] if d["update_cadence"] else "not_automated"
+        counts[label] = counts.get(label, 0) + 1
+    return dict(sorted(counts.items()))
 
 
 def render_markdown(catalog: dict) -> str:
@@ -335,6 +415,14 @@ def render_markdown(catalog: dict) -> str:
     L.append(f"| Datasets wired into the production UI | {t['datasets_ui_consumed']} |")
     L.append(f"| Datasets with dedicated CI coverage | {t['datasets_ci_tested']} |")
     L.append(f"| Datasets on an automated refresh workflow | {t['datasets_automated']} |")
+    L.append("")
+
+    L.append("## Refresh cadence (computed from each workflow's own cron schedule, not declared)")
+    L.append("")
+    L.append("| Cadence | Datasets |")
+    L.append("|---|---|")
+    for label, count in t["datasets_by_cadence"].items():
+        L.append(f"| {label} | {count} |")
     L.append("")
 
     L.append("## By category")
@@ -370,6 +458,8 @@ def render_markdown(catalog: dict) -> str:
             L.append(f"- UI-consumed: {d['ui_consumed']}")
             L.append(f"- CI-tested: {d['ci_tested']}")
             L.append(f"- Automated update workflow(s): {', '.join(d['automated_update_workflows']) if d['automated_update_workflows'] else '_none_'}")
+            L.append(f"- Actual refresh cadence (computed from the workflow's own cron schedule): "
+                      f"{d['update_cadence']['cadence'] if d['update_cadence'] else '_not applicable — no automated workflow_'}")
             if d["known_coverage_holes"]:
                 L.append(f"- **Known coverage holes:** {d['known_coverage_holes']}")
             if d["known_quality_issues"]:

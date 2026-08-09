@@ -210,3 +210,110 @@ def test_check_mode_detects_staleness_and_matches_after_regeneration(tmp_path, m
         cwd=ROOT, capture_output=True, text=True,
     )
     assert result.returncode == 0, result.stdout
+
+
+# ── Update cadence classification (Phase 10) ─────────────────────────────
+
+def test_cron_cadence_label_hourly():
+    assert gdc._cron_cadence_label("17 * * * *") == "hourly"
+
+
+def test_cron_cadence_label_daily():
+    assert gdc._cron_cadence_label("20 6 * * *") == "daily"
+
+
+def test_cron_cadence_label_weekly():
+    assert gdc._cron_cadence_label("0 4 * * 1") == "weekly"
+
+
+def test_cron_cadence_label_monthly():
+    assert gdc._cron_cadence_label("23 5 1 * *") == "monthly"
+
+
+def test_cron_cadence_label_malformed_expression_is_unknown_not_guessed():
+    assert gdc._cron_cadence_label("not a cron string") == "unknown"
+
+
+def test_workflow_cadence_matches_real_committed_schedules():
+    # Cross-checked directly against the real, committed cron lines in each
+    # workflow file -- if someone changes a schedule without this test
+    # noticing, the whole point of computing cadence from the source of
+    # truth (rather than a hand-typed label) is defeated.
+    real_files_to_expected = {
+        "update_ai_news.yml": "hourly",
+        "update_economic_data.yml": "daily",
+        "update_infrastructure.yml": "weekly",
+        "check_parcel_services.yml": "monthly",
+    }
+    for wf, expected in real_files_to_expected.items():
+        path = gdc.ROOT / ".github" / "workflows" / wf
+        assert path.is_file(), f"{wf} no longer exists -- update this test's fixture"
+        result = gdc._workflow_cadence(wf)
+        assert result["cadence"] == expected, f"{wf}: got {result}"
+
+
+def test_workflow_cadence_dispatch_only_is_manual_not_none():
+    # probe_national_source.yml is workflow_dispatch-only by design (see its
+    # own header comment) -- it must never be reported as "none" (which
+    # would read as "nothing can trigger this"), since a human genuinely can
+    # dispatch it any time.
+    path = gdc.ROOT / ".github" / "workflows" / "probe_national_source.yml"
+    assert path.is_file()
+    result = gdc._workflow_cadence("probe_national_source.yml")
+    assert result["cadence"] == "manual-only"
+
+
+def test_workflow_cadence_pull_request_only_is_none_not_manual():
+    # parcel_pr_check.yml has neither a schedule nor a workflow_dispatch
+    # trigger -- it only runs on pull_request. That is a real, distinct
+    # third state from both "scheduled" and "dispatchable any time".
+    path = gdc.ROOT / ".github" / "workflows" / "parcel_pr_check.yml"
+    if not path.is_file():
+        return  # workflow renamed/removed; not this test's job to catch that
+    result = gdc._workflow_cadence("parcel_pr_check.yml")
+    assert result["cadence"] == "none"
+
+
+def test_workflow_cadence_multiple_crons_reports_the_most_frequent():
+    # monitor_legislation.yml fires twice a week on different days -- still
+    # weekly in effect, never reported as two separate cadences.
+    path = gdc.ROOT / ".github" / "workflows" / "monitor_legislation.yml"
+    if not path.is_file():
+        return
+    result = gdc._workflow_cadence("monitor_legislation.yml")
+    assert result["cadence"] == "weekly"
+    assert len(result["cron_expressions"]) >= 2
+
+
+def test_dataset_cadence_returns_none_for_zero_workflows():
+    assert gdc._dataset_cadence([]) is None
+
+
+def test_dataset_cadence_picks_the_most_frequent_across_multiple_workflows():
+    # A dataset touched by both a weekly-only and an hourly-only workflow is
+    # effectively hourly -- the rollup must not just report the first
+    # workflow's cadence.
+    result = gdc._dataset_cadence(["update_infrastructure.yml", "update_ai_news.yml"])
+    assert result["cadence"] == "hourly"
+    assert set(result["per_workflow"].keys()) == {"update_infrastructure.yml", "update_ai_news.yml"}
+
+
+def test_every_dataset_with_automation_has_a_computed_cadence():
+    catalog = gdc.build_catalog()
+    for d in catalog["datasets"]:
+        if d["automated_update_workflows"]:
+            assert d["update_cadence"] is not None, f"{d['id']} has workflows but no cadence computed"
+            assert d["update_cadence"]["cadence"] != "unknown", (
+                f"{d['id']}'s cadence could not be classified: {d['update_cadence']}"
+            )
+        else:
+            assert d["update_cadence"] is None, f"{d['id']} has no workflows but claims a cadence"
+
+
+def test_cadence_counts_rollup_matches_independent_recount():
+    catalog = gdc.build_catalog()
+    recount: dict = {}
+    for d in catalog["datasets"]:
+        label = d["update_cadence"]["cadence"] if d["update_cadence"] else "not_automated"
+        recount[label] = recount.get(label, 0) + 1
+    assert catalog["totals"]["datasets_by_cadence"] == dict(sorted(recount.items()))
