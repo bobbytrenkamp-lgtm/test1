@@ -34,9 +34,21 @@ class SyncState:
         return self._state.get(source_id, {}).get("last_modified")
 
     def update(self, source_id: str, **kwargs) -> None:
-        """Record that source_id was just synced.  Merges kwargs into its state entry."""
+        """Record that source_id was just synced successfully. Merges kwargs into
+        its state entry and clears any stale last_error/last_error_at from a
+        previous failed run -- otherwise a source that failed once and later
+        recovers keeps reporting that old error forever, since last_synced
+        advances but nothing ever removes the error fields (confirmed via a
+        real run: ferc_queue's facilities_sync_state.json entry still showed
+        a pre-2026-07-26 "openpyxl required" error on 2026-08-09 runs, long
+        after that bug was fixed, because the fetch had simply been
+        succeeding-with-zero-rows on every run since -- FERC's site being
+        unreachable from this sandbox, caught internally by the adapter and
+        never raised -- and nothing had cleared the stale field)."""
         entry = self._state.setdefault(source_id, {})
         entry["last_synced"] = utc_now()
+        entry.pop("last_error", None)
+        entry.pop("last_error_at", None)
         for k, v in kwargs.items():
             if v is not None:
                 entry[k] = v
