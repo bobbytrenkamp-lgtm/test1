@@ -36,7 +36,19 @@ from ..models import FacilityRecord, FacilitySource
 from ..normalize import normalize_record_fields, normalize_state
 from . import BaseAdapter
 
-# FERC master queue download — public Excel file, updated periodically
+# FERC master queue download — public Excel file, updated periodically.
+# CONFIRMED DEAD 2026-08-09 (real GitHub Actions dispatch of
+# update_facilities.yml, run 31290369969): this exact URL now returns
+# HTTP 404, not the openpyxl-missing failure this adapter used to hit
+# before 2026-07-26. The fetch/parse try/except at the bottom of
+# _fetch_ferc_master() catches this and returns [] (a real, visible log
+# line, not a silent empty result) rather than crashing the whole pipeline
+# run -- but it does mean this source has contributed zero real records
+# since at least then. A live replacement URL needs to be found by
+# searching ferc.gov's current interconnection-queue portal and verified
+# via a real dispatch (this sandbox has no outbound network to
+# third-party/government hosts) before being substituted in here --
+# not guessed.
 FERC_QUEUE_URL = (
     "https://www.ferc.gov/media/3423/download"
 )
