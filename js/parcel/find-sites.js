@@ -20,8 +20,25 @@
  * its unknown-data handling. See site-search.js's own header for why that
  * three-way split exists and must not be collapsed here.
  *
+ * A SECOND, SEPARATE SCOPE: THE PRECOMPUTED NATIONAL INDEX
+ * ----------------------------------------------------------
+ * runSearchNational() is a distinct, additive function -- not a change to
+ * runSearch() above, which keeps searching only what's on screen exactly as
+ * it always has. It hands off to window.PARCEL_SITE_SEARCH_INDEX, which
+ * runs the SAME PARCEL_SITE_SEARCH engine against a periodically-refreshed,
+ * size-filtered, multi-jurisdiction index instead of the map viewport (see
+ * data/parcel_pipeline/build_national_site_index.mjs and
+ * js/parcel/site-search-index.js). It is deliberately a separate function
+ * rather than a mode flag on runSearch(): that index load is asynchronous
+ * (a fetch), while the viewport search is synchronous, and giving one
+ * function two different return shapes depending on its arguments is worse
+ * than two small, honestly-named functions.
+ *
  * Depends on: PARCEL_SITE_SEARCH (required to actually search),
- *   PARCEL_RENDERER (candidate source), PARCEL (focusParcel, optional).
+ *   PARCEL_RENDERER (candidate source for runSearch),
+ *   PARCEL_SITE_SEARCH_INDEX (candidate source for runSearchNational,
+ *   optional -- only required if that scope is used),
+ *   PARCEL (focusParcel, optional).
  */
 window.FIND_SITES = (function () {
   'use strict';
@@ -107,23 +124,52 @@ window.FIND_SITES = (function () {
     return window.PARCEL_SITE_SEARCH.search(candidates, criteria, opts);
   }
 
+  /* ── Runs a search across the precomputed multi-jurisdiction index
+   * instead of the map viewport. Async (the index is fetched), unlike
+   * runSearch() -- see the header comment above for why this is a separate
+   * function rather than a mode flag. Mirrors runSearch()'s own error
+   * handling exactly, so renderResults() does not need to special-case
+   * which scope produced a given error result. */
+  async function runSearchNational(fields, opts) {
+    const { criteria, errors } = buildCriteriaFromForm(fields);
+    if (errors.length) return { error: errors.join('; '), ..._emptyResult() };
+    if (!Object.keys(criteria).length) {
+      return { error: 'Enter at least one search criterion.', ..._emptyResult() };
+    }
+    if (!window.PARCEL_SITE_SEARCH_INDEX) {
+      return { error: 'National site index unavailable.', ..._emptyResult() };
+    }
+    try {
+      return await window.PARCEL_SITE_SEARCH_INDEX.searchNational(criteria, opts);
+    } catch (e) {
+      return { error: `Could not load the national index: ${e.message}`, ..._emptyResult() };
+    }
+  }
+
   /* ── Pure: search result → results-list HTML ── */
   function renderResults(result) {
     if (!result) return '<p class="pp-empty">Enter search criteria above and click Search.</p>';
     if (result.error) return `<p class="pp-empty pp-field-na">${esc(result.error)}</p>`;
 
-    const { counts, caveat, results } = result;
+    const { counts, caveat, results, meta } = result;
+    const scopeLine = meta
+      ? `of ${counts.evaluated} parcel(s) in the precomputed national index ` +
+        `(as of ${esc(meta.generated_at || 'unknown date')}, ${meta.jurisdictions_ok ?? '?'} jurisdiction(s) covered)`
+      : `of ${counts.evaluated} parcel(s) currently loaded on the map`;
     let html = `<div class="fs-summary">
       <strong>${counts.matched}</strong> matched · ${counts.rejected} rejected
       ${counts.indeterminate ? `· ${counts.indeterminate} indeterminate` : ''}
-      <div class="pp-muted">of ${counts.evaluated} parcel(s) currently loaded on the map</div>
+      <div class="pp-muted">${scopeLine}</div>
     </div>`;
 
+    if (meta && meta.caveat) html += `<p class="pf-disclaimer">${esc(meta.caveat)}</p>`;
     if (caveat) html += `<p class="pf-disclaimer">${esc(caveat)}</p>`;
 
     if (!counts.evaluated) {
-      html += '<p class="pp-empty">No parcels are loaded on the map yet. Pan or zoom to a covered ' +
-              'county to load its parcel layer, then search again.</p>';
+      html += meta
+        ? '<p class="pp-empty">The national index has no parcels recorded yet.</p>'
+        : '<p class="pp-empty">No parcels are loaded on the map yet. Pan or zoom to a covered ' +
+          'county to load its parcel layer, then search again.</p>';
       return html;
     }
     if (!results.length) {
@@ -174,10 +220,15 @@ window.FIND_SITES = (function () {
 
   function toggle() { _open ? close() : open(); }
 
-  function _onSubmit(formEl) {
+  async function _onSubmit(formEl) {
     const fields = Object.fromEntries(new FormData(formEl).entries());
-    _lastResult = runSearch(fields, { unknownPolicy: 'exclude' });
+    const scope = fields.scope === 'national' ? 'national' : 'viewport';
+    delete fields.scope; // not a PARCEL_SITE_SEARCH criterion
     const results = document.getElementById('fs-results');
+    if (results) results.innerHTML = '<p class="pp-empty">Searching…</p>';
+    _lastResult = scope === 'national'
+      ? await runSearchNational(fields, { unknownPolicy: 'exclude' })
+      : runSearch(fields, { unknownPolicy: 'exclude' });
     if (results) results.innerHTML = renderResults(_lastResult);
   }
 
@@ -191,7 +242,7 @@ window.FIND_SITES = (function () {
     if (!panel) return;
     const form = document.getElementById('fs-form');
     if (form) {
-      form.addEventListener('submit', e => { e.preventDefault(); _onSubmit(form); });
+      form.addEventListener('submit', e => { e.preventDefault(); void _onSubmit(form); });
     }
     const results = document.getElementById('fs-results');
     if (results) {
@@ -209,6 +260,6 @@ window.FIND_SITES = (function () {
 
   return {
     init, open, close, toggle,
-    buildCriteriaFromForm, runSearch, renderResults,
+    buildCriteriaFromForm, runSearch, runSearchNational, renderResults,
   };
 })();
