@@ -64,8 +64,19 @@ SUBSTATION_URL  = "https://services.arcgis.com/G4S1dGvn7PIgYd6Y/ArcGIS/rest/serv
 # different, more specific ArcGIS error than "Invalid URL", which is what
 # gave this away.
 TRANSMISSION_URL= f"{HIFLD_BASE}/Electric_Power_Transmission_Lines/FeatureServer/0/query"
-# Still broken, no verified replacement — see fetch_power_plants().
-POWER_PLANT_URL = f"{HIFLD_BASE}/Power_Plants/FeatureServer/0/query"
+# Verified live 2026-08-08 via a real GitHub Actions dispatch (this
+# sandbox has no outbound network to third-party/government hosts, so this
+# was confirmed by an actual query, not assumed): EPA's own Facility
+# Registry Service MapServer, layer 12 ("All Powerplants"), which compiles
+# EIA-860 generator-level data joined with FRS facility records. Real
+# confirmed fields: PLANT_CODE, PLANT_NAME, STATE, COUNTY, STATUS,
+# OPERATING_MONTH/YEAR, ENERGY_SOURCE_1..6, SECTOR_NAME, PRIMARY_NAME,
+# LOCATION_ADDRESS, CITY_NAME, COUNTY_NAME, STATE_CODE, FIPS_CODE,
+# LATITUDE83, LONGITUDE83 — see fetch_power_plants() for the full mapping.
+# NOTE: this layer has NO nameplate-capacity field of any kind. Plant
+# identity/location/status/fuel-source data is real and usable; capacity_mw
+# is genuinely unknown from this source and is never fabricated here.
+POWER_PLANT_URL = "https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_PowerPlants/MapServer/12/query"
 
 # ── FCC National Broadband Map ──────────────────────────────────────────────
 # NOT actually no-auth despite this file's original header claiming so: every
@@ -283,46 +294,58 @@ def fetch_transmission_lines() -> list[dict]:
 
 def fetch_power_plants() -> list[dict]:
     """
-    Fetch major power plants (>= 100 MW nameplate capacity).
-    Returns list of simplified point dicts.
+    Fetch operating power plants from EPA's FRS_PowerPlants layer (EIA-860
+    generator data joined with FRS facility records).
+
+    HONESTY NOTE: this layer carries plant identity, location, operating
+    status, and fuel source (ENERGY_SOURCE_1) -- all real, all usable. It
+    does NOT carry a nameplate-capacity field. Every record's `capacity_mw`
+    is therefore explicitly None, never estimated or defaulted to 0 --
+    "unknown" and "zero megawatts" are not the same claim, and this project
+    never conflates them. A future source (e.g. EIA-860 proper, if a free
+    bulk download can be verified) may fill this gap later.
+
+    Returns list of simplified point dicts, deduplicated by PLANT_CODE
+    (this layer is one row per GENERATOR, so a multi-unit plant otherwise
+    appears many times).
     """
-    log.info("Fetching HIFLD power plants (>= 100 MW)…")
-    where = ("STATUS = 'OP' AND "
-             "COUNTRY = 'US' AND "
-             "LONGITUDE IS NOT NULL")
+    log.info("Fetching EPA FRS power plants (operating, US)…")
+    where = "STATUS = 'OP' AND LATITUDE83 IS NOT NULL"
     raw = _arcgis_paginate(POWER_PLANT_URL, where,
-                           "Plant_Code,Plant_Name,PrimSource,Install_MW,Total_MW,County,StateName,County_FIPS,LONGITUDE,LATITUDE")
+                           "PLANT_CODE,PLANT_NAME,PRIMARY_NAME,STATE_CODE,COUNTY_NAME,FIPS_CODE,"
+                           "STATUS,OPERATING_YEAR,ENERGY_SOURCE_1,SECTOR_NAME,LATITUDE83,LONGITUDE83")
     if not raw:
         log.warning("No power plant data returned.")
         return []
 
+    seen_plant_codes: set[str] = set()
     out = []
     for feat in raw:
         a = feat.get("attributes", {})
         geom = feat.get("geometry", {})
-        mw = a.get("Total_MW") or a.get("Install_MW") or 0
-        try:
-            mw = float(mw)
-        except (TypeError, ValueError):
-            mw = 0
-        if mw < 100:
-            continue
-        lon = geom.get("x") or a.get("LONGITUDE")
-        lat = geom.get("y") or a.get("LATITUDE")
+        plant_code = str(a.get("PLANT_CODE") or "")
+        if not plant_code or plant_code in seen_plant_codes:
+            continue  # one row per generator; keep the plant only once
+        lon = geom.get("x") or a.get("LONGITUDE83")
+        lat = geom.get("y") or a.get("LATITUDE83")
         if not lon or not lat:
             continue
-        county_fips = str(a.get("County_FIPS") or "").zfill(5)
+        seen_plant_codes.add(plant_code)
+        county_fips = str(a.get("FIPS_CODE") or "").zfill(5)
         out.append({
-            "id":           f"pp-{a.get('Plant_Code','')}",
-            "name":         a.get("Plant_Name", "Unknown Plant"),
-            "type":         a.get("PrimSource", "unknown"),
-            "capacity_mw":  round(mw, 1),
+            "id":           f"pp-{plant_code}",
+            "name":         a.get("PLANT_NAME") or a.get("PRIMARY_NAME") or "Unknown Plant",
+            "fuel_type":    a.get("ENERGY_SOURCE_1") or "unknown",
+            "sector":       a.get("SECTOR_NAME") or "",
+            "status":       a.get("STATUS") or "",
+            "operating_year": a.get("OPERATING_YEAR"),
+            "capacity_mw":  None,  # genuinely not in this source -- never fabricated
             "county_fips":  county_fips,
-            "state":        a.get("StateName", ""),
+            "state":        a.get("STATE_CODE", ""),
             "lon":          round(float(lon), 5),
             "lat":          round(float(lat), 5),
         })
-    log.info("Power plants: %d records (>= 100 MW)", len(out))
+    log.info("Power plants: %d records (deduplicated by plant code)", len(out))
     return out
 
 

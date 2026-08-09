@@ -12,9 +12,9 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 |---|---|
 | Datasets catalogued | 26 |
 | Datasets with actual data (has_data) | 14 |
-| Datasets wired into the production UI | 10 |
+| Datasets wired into the production UI | 11 |
 | Datasets with dedicated CI coverage | 5 |
-| Datasets on an automated refresh workflow | 12 |
+| Datasets on an automated refresh workflow | 13 |
 
 ## By category
 
@@ -24,13 +24,13 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | DATA CENTERS | 2 | 2 | 4,329 | 1 | 1 |
 | ECONOMIC DATA | 2 | 2 | 14 | 0 | 0 |
 | FIBER | 2 | 0 | 0 | 1 | 1 |
-| FLOOD | 1 | 0 | 0 | 0 | 0 |
+| FLOOD | 1 | 0 | 0 | 1 | 0 |
 | INTERCONNECTION QUEUES | 1 | 0 | 0 | 0 | 0 |
 | ISO/RTO | 1 | 0 | 0 | 0 | 0 |
 | NEWS | 1 | 1 | 600 | 1 | 1 |
 | PARCELS | 2 | 2 | 225 | 1 | 2 |
 | POLICY/REGULATION | 2 | 2 | 1,579 | 1 | 2 |
-| POWER PLANTS | 1 | 0 | 0 | 0 | 0 |
+| POWER PLANTS | 1 | 0 | 0 | 0 | 1 |
 | PROTECTED LAND | 1 | 0 | 0 | 0 | 0 |
 | RAIL | 1 | 0 | 0 | 0 | 0 |
 | ROADS | 1 | 0 | 0 | 0 | 0 |
@@ -147,12 +147,13 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - Source: FEMA
 - Source URL: https://hazards.fema.gov/gis/nfhl/rest/services
 - Geographic scope (declared): United States (target)
-- Update frequency (declared): n/a — endpoint not yet verified
+- Update frequency (declared): live (queried per-parcel bounding box at analysis time, no local cache)
 - Authoritative: True
-- UI-consumed: False
+- UI-consumed: True
 - CI-tested: False
 - Automated update workflow(s): _none_
-- **Known coverage holes:** ENGINE EXISTS, NO DATA. js/parcel/constraint-layers.js registers 'fema-flood' as unavailable pending live endpoint verification — this sandbox's network policy blocked verification. The constraint intersection engine (js/parcel/constraints.js) is fully built and tested against synthetic geometry; it has never run against a real FEMA polygon.
+- **Known coverage holes:** ENGINE EXISTS, LIVE, WIRED (verified 2026-08-08 via a real GitHub Actions dispatch against hazards.fema.gov -- confirmed layer 28, real fields FLD_ZONE/ZONE_SUBTY/SFHA_TF/STATIC_BFE). No local record count applies -- this is a live per-parcel query, not stored data, so has_data is reported false even though the wiring is real (see data_catalog ALLOWED_WITH_NO_DATA). FEMA does not map 100% of US counties; an area with no mapped floodplain returns zero intersecting features honestly, indistinguishable at the API level from an area FEMA has simply never studied.
+- **Known quality issues:** FEMA flood panels are regulatory products of varying age -- many effective panels are a decade or more old. See the caveat text in constraint-layers.js.
 
 ### INTERCONNECTION QUEUES
 
@@ -254,16 +255,17 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 **Power generation facilities** (power_plants) — ⛔ no data
 
-- Records: 0
-- Source: HIFLD (target; no working endpoint found)
-- Source URL: https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Power_Plants/FeatureServer/0
+- Records: n/a
+- Source: EPA Facility Registry Service (EIA-860 generator data joined with FRS)
+- Source URL: https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_PowerPlants/MapServer/12
 - Geographic scope (declared): United States (target, not achieved)
-- Update frequency (declared): n/a — not currently ingested
-- Authoritative: False
+- Update frequency (declared): weekly (update_infrastructure.yml, layers=power)
+- Authoritative: True
 - UI-consumed: False
 - CI-tested: False
-- Automated update workflow(s): _none_
-- **Known coverage holes:** NO DATA. The configured HIFLD Power_Plants endpoint returns HTTP 200 with an 'Invalid URL' error body (service retired). No live replacement has been found after searching both known HIFLD orgs and two DCAT catalog guesses. EIA's own generator-level dataset (Form EIA-860) is a plausible free alternative that has not yet been evaluated for this pipeline.
+- Automated update workflow(s): update_data.yml, update_facilities.yml, update_infrastructure.yml
+- **Known coverage holes:** This source has NO nameplate-capacity field of any kind -- plant identity, location, operating status, and primary fuel source are real and populated; capacity_mw is always None, never fabricated. A capacity-bearing free source (e.g. a verified EIA-860 bulk download) has not yet been found/verified.
+- **Known quality issues:** Source is one row per GENERATOR, deduplicated to one record per PLANT_CODE by this pipeline -- a plant with many small generators and a plant with one large generator are indistinguishable without capacity data.
 
 ### PROTECTED LAND
 

@@ -81,6 +81,7 @@ run "parcel enrichment: arcgis-table join executor" node tests/test_parcel_enric
 run "parcel geo + infrastructure proximity engine" node tests/test_parcel_proximity.mjs
 run "parcel proximity: real transmission/substation data wiring" node tests/test_parcel_proximity_layers.mjs
 run "parcel environmental/development constraint intersections" node tests/test_parcel_constraints.mjs
+run "parcel constraint layers: real FEMA flood wiring" node tests/test_parcel_constraint_layers.mjs
 run "parcel conceptual buildable envelope" node tests/test_parcel_envelope.mjs
 run "parcel assemblage + owner adjacency" node tests/test_parcel_assemblage.mjs
 run "parcel large-site discovery filters" node tests/test_parcel_site_search.mjs
