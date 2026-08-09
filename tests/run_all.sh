@@ -86,6 +86,7 @@ run "parcel constraint layers: real FEMA flood wiring" node tests/test_parcel_co
 run "parcel conceptual buildable envelope" node tests/test_parcel_envelope.mjs
 run "parcel assemblage + owner adjacency" node tests/test_parcel_assemblage.mjs
 run "parcel large-site discovery filters" node tests/test_parcel_site_search.mjs
+run "find sites panel: form/search/render wiring" node tests/test_parcel_find_sites.mjs
 run "parcel site suitability score (explainable)" node tests/test_parcel_suitability.mjs
 run "parcel sales history + comparable transactions" node tests/test_parcel_sales.mjs
 run "parcel site-intelligence export object (test3/test2 contract)" node tests/test_parcel_site_intelligence.mjs
