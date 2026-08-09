@@ -329,18 +329,20 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 ### ROADS
 
-**Interstate/major road network for proximity analysis** (roads) — ⛔ no data
+**Interstate highways for proximity analysis** (roads) — ⛔ no data
 
 - Records: 0
-- Source: BTS National Highway Planning Network (target, not yet ingested)
-- Geographic scope (declared): United States (target)
-- Update frequency (declared): n/a — not implemented
+- Source: US Census Bureau (TIGERweb)
+- Source URL: https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer/2
+- Geographic scope (declared): United States
+- Update frequency (declared): live (queried per-parcel bounding box at analysis time, no local cache)
 - Authoritative: True
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
 - Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
-- **Known coverage holes:** NOT IMPLEMENTED as a dataset the proximity engine can query. js/parcel/proximity-layers.js declares 'interstates' as PENDING_VERIFICATION with no endpoint attached — the base map's road tiles (OSM basemap) are visual only and are not queryable for distance calculations.
+- **Known coverage holes:** ENGINE EXISTS, LIVE, WIRED (verified 2026-08-09 via a real GitHub Actions dispatch against tigerweb.geo.census.gov -- confirmed layer 2 'Primary Roads', real fields BASENAME/NAME/MTFCC/RTTYP). js/parcel/proximity-layers.js's 'interstates' layer queries this live, filtered server-side to RTTYP='I' so only interstates (not every primary/state road the layer also carries) are returned. No local record count applies -- this is a live per-parcel query, not stored data.
+- **Known quality issues:** Straight-line distance to the nearest interstate route only, not drive time or nearest interchange. Local/state highways and other road classes are not queried by this layer even though the same TIGERweb service also carries them.
 
 ### SUBSTATIONS
 

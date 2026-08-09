@@ -160,34 +160,77 @@
     'public dataset, and cannot be inferred from proximity. Only the serving ' +
     'utility can answer it, through an interconnection study.');
 
-  /* ── Registered but pending endpoint verification ────────────────────────
+  /* ── Interstate highways (Census TIGERweb, live query) ───────────────────
    *
-   * Substations and transmission lines used to live in this list; they are
-   * wired to real (if incomplete, in the substation case) data above and
-   * removed from here. Roads/transit remain pending: no interstate/major-road
-   * dataset exists anywhere in the repository yet (confirmed by the
-   * data_catalog.json audit — "roads" has zero records), and an unverified
-   * URL that silently returns nothing looks identical to a site with no
-   * infrastructure nearby, the worst possible failure for a layer whose
-   * entire job is answering "how far to the interstate".
+   * Verified live 2026-08-09 via a real GitHub Actions dispatch
+   * (probe_national_source.yml): layer 2 ("Primary Roads") of the Census
+   * Bureau's own TIGERweb Transportation MapServer returned real LineString
+   * features with a confirmed RTTYP field ('I' = Interstate, matching the
+   * MAF/TIGER route-type code) plus BASENAME/NAME/MTFCC. Filtered
+   * server-side to RTTYP='I' so this layer only ever returns interstates,
+   * not every primary/state road the layer also carries.
    *
-   * Declared as configuration with `provider: null` and skipped by the
-   * engine until a real dataset is attached, the same discipline the parcel
-   * registry already applies to county services.
-   */
-  const PENDING_VERIFICATION = [
-    {
-      id: 'interstates', category: 'transportation', label: 'Interstate highways',
-      measures: 'Straight-line distance to the interstate route, not drive time or the nearest interchange.',
-      candidateSource: 'BTS National Highway Planning Network (public federal open data)',
-    },
-  ];
+   * The proximity engine's own MAX_SEARCH_MILES (50) is used to size the
+   * query bounding box around the parcel -- querying the whole country and
+   * filtering client-side would be enormously wasteful for a road network
+   * this dense. */
+  const TIGERWEB_PRIMARY_ROADS_URL =
+    'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer/2/query';
+  const INTERSTATE_SEARCH_MILES = 50;
 
-  P.PENDING_VERIFICATION = PENDING_VERIFICATION;
+  /* Degrees-per-mile is not constant (longitude degrees shrink toward the
+     poles), so the buffer is computed from the parcel's own latitude rather
+     than a single hardcoded constant. Deliberately generous (padded via
+     Math.ceil-free simple division, not a tight bound) -- a buffer slightly
+     larger than the true search radius only means a few extra features get
+     fetched and then correctly discarded by the engine's own maxKm filter;
+     a buffer too small would silently miss the actual nearest interstate. */
+  function milesToDegreeBuffer(miles, latDeg) {
+    const latBuffer = miles / 69;
+    const lonBuffer = miles / (69 * Math.max(0.15, Math.cos(latDeg * Math.PI / 180)));
+    return { latBuffer, lonBuffer };
+  }
+
+  P.registerLayer({
+    id: 'interstates',
+    category: 'transportation',
+    label: 'Interstate highways',
+    measures: 'Straight-line distance to the interstate route, not drive time or the nearest interchange.',
+    source: 'US Census Bureau TIGERweb (Primary Roads, filtered to RTTYP=Interstate)',
+    provider: async ({ parcelGeometry }) => {
+      const geo = window.PARCEL_GEO;
+      const box = geo && geo.bounds(parcelGeometry);
+      if (!box) return [];
+      const [minLon, minLat, maxLon, maxLat] = box;
+      const centerLat = (minLat + maxLat) / 2;
+      const { latBuffer, lonBuffer } = milesToDegreeBuffer(INTERSTATE_SEARCH_MILES, centerLat);
+      const params = new URLSearchParams({
+        where: "RTTYP='I'",
+        geometry: [minLon - lonBuffer, minLat - latBuffer, maxLon + lonBuffer, maxLat + latBuffer].join(','),
+        geometryType: 'esriGeometryEnvelope',
+        inSR: '4326',
+        spatialRel: 'esriSpatialRelIntersects',
+        outFields: 'BASENAME,NAME,RTTYP',
+        outSR: '4326',
+        f: 'geojson',
+        resultRecordCount: '500',
+      });
+      const res = await fetch(`${TIGERWEB_PRIMARY_ROADS_URL}?${params.toString()}`);
+      if (!res.ok) throw new Error(`interstates query HTTP ${res.status}`);
+      const data = await res.json();
+      if (data && data.error) {
+        throw new Error(`interstates query error: ${data.error.message || JSON.stringify(data.error)}`);
+      }
+      return (data.features || []).map(f => ({
+        ...f,
+        properties: { ...f.properties, name: f.properties && (f.properties.NAME || f.properties.BASENAME) },
+      }));
+    },
+  });
 
   // Exported for tests.
   window.PARCEL_PROXIMITY_LAYERS = {
-    loadFacilities, loadInfrastructureLayers, PENDING_VERIFICATION,
+    loadFacilities, loadInfrastructureLayers,
     _resetCache() { _facilitiesPromise = null; _infrastructurePromise = null; },
   };
 })();

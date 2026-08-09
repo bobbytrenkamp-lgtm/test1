@@ -74,12 +74,41 @@ async function loadLayersModule() {
   ok('substations is a real registered layer, not pending', ids.includes('substations'));
   ok('transmission-lines is a real registered layer, not pending', ids.includes('transmission-lines'));
   ok('data-centers is still registered', ids.includes('data-centers'));
+  ok('interstates is a real registered layer, not pending', ids.includes('interstates'));
+  const interstateLayer = P.getLayer('interstates');
+  ok('interstates has a provider function', typeof interstateLayer.provider === 'function');
+  ok('interstates is not marked unavailable', !interstateLayer.unavailable);
+}
 
-  const pendingIds = P.PENDING_VERIFICATION.map(p => p.id);
-  t('only interstates remains pending — substations/transmission were real gaps, not fabricated ones',
-    pendingIds, ['interstates']);
-  ok('substations is no longer listed as pending', !pendingIds.includes('substations'));
-  ok('transmission-lines is no longer listed as pending', !pendingIds.includes('transmission-lines'));
+// ── Interstates: live query construction and RTTYP filtering ──────────────
+{
+  let capturedUrl = null;
+  global.fetch = async (url) => {
+    capturedUrl = String(url);
+    return {
+      ok: true, status: 200,
+      json: async () => ({
+        type: 'FeatureCollection',
+        features: [{
+          type: 'Feature',
+          properties: { BASENAME: '66', NAME: 'I- 66', RTTYP: 'I' },
+          geometry: { type: 'LineString', coordinates: [[-77.55, 39.00], [-77.45, 39.05]] },
+        }],
+      }),
+    };
+  };
+  await loadLayersModule();
+
+  const square = { type: 'Polygon', coordinates: [[[-77.50, 39.02], [-77.46, 39.02], [-77.46, 39.06], [-77.50, 39.06], [-77.50, 39.02]]] };
+  const res = await P.analyze(square, { layers: ['interstates'] });
+  const r = res.results[0];
+
+  ok('query hits the real Census TIGERweb Primary Roads layer 2 endpoint',
+    capturedUrl && capturedUrl.startsWith('https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer/2/query'));
+  ok('query filters server-side to interstates only (RTTYP=I)', capturedUrl && capturedUrl.includes("RTTYP%3D%27I%27"));
+  ok('query requests geojson output', capturedUrl && capturedUrl.includes('f=geojson'));
+  ok('the interstate feature is found', r.nearest !== null);
+  t('the feature name resolves from NAME', r.nearest.name, 'I- 66');
 }
 
 // ── Substation data flows through and the coverage caveat is present ──────
