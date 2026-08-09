@@ -15,6 +15,7 @@
   },
   "datasets_without_automated_health_tracking": [
     "ai_news",
+    "ca_middle_mile_corridor",
     "data_centers",
     "economic_census",
     "facility_sources",
@@ -95,7 +96,7 @@
       "SOURCE_DOWN": 1,
       "VALIDATION_FAILURE": 2
     },
-    "datasets_without_tracking_count": 27,
+    "datasets_without_tracking_count": 28,
     "pipelines_tracked": 4
   }
 }
