@@ -716,10 +716,22 @@ def fetch_water_systems() -> list[dict]:
     centroid" with "water available."
     """
     log.info("Fetching EPA Community Water System service areas (centroids)…")
+    # Even after dropping full geometry for centroids, real dispatches at
+    # the default 2000-record page size still hadn't finished after 15+
+    # minutes (confirmed empirically -- a single 1-record query against
+    # this same service returns in ~1s, so the service itself isn't down
+    # or rate-limiting outright). The likely cause: this layer's centroids
+    # are computed server-side from real underlying polygons, so per-page
+    # cost scales with how many polygons the server has to process in that
+    # request, not just response size. A much smaller page keeps each
+    # request comfortably inside the client's 60s timeout instead of
+    # risking a timeout-then-retry spiral that looks like a hang from the
+    # outside.
     raw = _arcgis_paginate(WATER_SYSTEM_URL, "1=1",
                            "PWSID,PWS_Name,Primacy_Agency,Population_Served_Count,"
                            "Service_Connections_Count,Service_Area_Type,"
                            "Verification_Status,Model_Method,Area_SqKM",
+                           max_per_page=100,
                            extra_params={"returnGeometry": "false", "returnCentroid": "true"})
     if not raw:
         log.warning("No water system data returned.")
