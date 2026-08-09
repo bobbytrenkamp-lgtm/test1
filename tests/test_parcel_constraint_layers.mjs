@@ -2,10 +2,16 @@
 
    fema-flood was PENDING (registerUnavailable) until a real GitHub Actions
    dispatch verified FEMA's NFHL MapServer layer 28 is live with real fields
-   (FLD_ZONE, ZONE_SUBTY, SFHA_TF, STATIC_BFE). This tests that it is now a
-   real registered layer with a live-query provider, while nwi-wetlands and
-   protected-lands correctly remain unavailable (their candidate URLs were
-   dispatched too, but returned HTTP 400/502/timeout, not confirmed data).
+   (FLD_ZONE, ZONE_SUBTY, SFHA_TF, STATIC_BFE). nwi-wetlands got the same
+   treatment 2026-08-09: the FWS's own www.fws.gov/wetlands candidate
+   returned HTTP 404, but a USGS-hosted mirror
+   (fwspublicservices.wim.usgs.gov) is live with real Wetlands.ATTRIBUTE/
+   WETLAND_TYPE/ACRES fields. protected-lands (PAD-US) correctly remains
+   unavailable -- four real candidate URLs were dispatched (gis1.usgs.gov,
+   maps4.arcgisonline.com/DOI, and the Esri Living Atlas USA_Protected_
+   Areas_State FeatureServer tried twice) and every one returned an error
+   (HTTP 502/503, or a suspicious 103-byte response too small to be real
+   data) rather than confirmed data.
 
    Run:  node tests/test_parcel_constraint_layers.mjs
 */
@@ -64,8 +70,27 @@ const squareParcel = { type: 'Polygon', coordinates: [[[-77.5, 39.0], [-77.4, 39
   const femaLayer = C.getLayer('fema-flood');
   ok('fema-flood is not marked unavailable', !femaLayer.unavailable);
   ok('fema-flood has a provider function', typeof femaLayer.provider === 'function');
-  ok('nwi-wetlands is still registered unavailable (not confirmed live)', C.getLayer('nwi-wetlands').unavailable);
+  ok('nwi-wetlands is a real registered layer, not pending', ids.includes('nwi-wetlands'));
+  const nwiLayer = C.getLayer('nwi-wetlands');
+  ok('nwi-wetlands is not marked unavailable', !nwiLayer.unavailable);
+  ok('nwi-wetlands has a provider function', typeof nwiLayer.provider === 'function');
   ok('protected-lands is still registered unavailable (not confirmed live)', C.getLayer('protected-lands').unavailable);
+}
+
+// ── NWI live query construction ─────────────────────────────────────────
+{
+  let capturedUrl = null;
+  stubFetch((url) => {
+    capturedUrl = url;
+    return { body: { type: 'FeatureCollection', features: [] } };
+  });
+  loadLayersModule();
+
+  await C.analyze(squareParcel, { layers: ['nwi-wetlands'] });
+  ok('query hits the real USGS-hosted NWI Wetlands layer 0 endpoint',
+    capturedUrl && capturedUrl.startsWith('https://fwspublicservices.wim.usgs.gov/wetlandsmapservice/rest/services/Wetlands/MapServer/0/query'));
+  ok('query requests real confirmed fields (Wetlands.ATTRIBUTE)', capturedUrl && capturedUrl.includes('Wetlands.ATTRIBUTE'));
+  ok('query requests real confirmed fields (Wetlands.WETLAND_TYPE)', capturedUrl && capturedUrl.includes('Wetlands.WETLAND_TYPE'));
 }
 
 // ── Live query construction ─────────────────────────────────────────────

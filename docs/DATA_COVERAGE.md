@@ -310,7 +310,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - CI-tested: False
 - Automated update workflow(s): _none_
 - Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
-- **Known coverage holes:** ENGINE EXISTS, NO DATA. Same status as fema_flood.
+- **Known coverage holes:** ENGINE EXISTS, NO DATA. Registered unavailable in js/parcel/constraint-layers.js. Four real candidate URLs dispatched and confirmed dead/erroring as of 2026-08-09: gis1.usgs.gov/.../PAD_US_Fee_Topology (HTTP 502), maps4.arcgisonline.com/.../DOI/PAD-US_Land_and_Marine_Protected_Areas (HTTP 503), and the Esri Living Atlas services.arcgis.com/.../USA_Protected_Areas_State FeatureServer (tried with and without a spatial filter -- both times a suspicious ~103-byte response, too small to be real GeoJSON, likely a rejected query or an access restriction rather than a working anonymous endpoint). No replacement guessed.
 
 ### RAIL
 
@@ -447,15 +447,17 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 **USFWS National Wetlands Inventory** (nwi_wetlands) — ⛔ no data
 
 - Records: 0
-- Source: US Fish & Wildlife Service
+- Source: US Fish & Wildlife Service (USGS-hosted mirror)
+- Source URL: https://fwspublicservices.wim.usgs.gov/wetlandsmapservice/rest/services/Wetlands/MapServer/0
 - Geographic scope (declared): United States (target)
-- Update frequency (declared): n/a — endpoint not yet verified
+- Update frequency (declared): live (queried per-parcel bounding box at analysis time, no local cache)
 - Authoritative: True
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): _none_
 - Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
-- **Known coverage holes:** ENGINE EXISTS, NO DATA. Same status as fema_flood: registered unavailable pending endpoint verification in js/parcel/constraint-layers.js.
+- **Known coverage holes:** ENGINE EXISTS, LIVE, WIRED (verified 2026-08-09 via a real GitHub Actions dispatch -- confirmed layer 0, real fields Wetlands.ATTRIBUTE/WETLAND_TYPE/ACRES plus the joined NWI_Wetland_Codes lookup table). No local record count applies -- this is a live per-parcel query, not stored data. The FWS's own www.fws.gov/wetlands candidate returned HTTP 404 (retired/moved); this USGS-hosted mirror of the same NWI data is what's actually live.
+- **Known quality issues:** NWI is a mapping product, not a jurisdictional wetland determination. See the caveat text in constraint-layers.js.
 
 ### ZONING
 

@@ -74,6 +74,31 @@
       queryArcGISPolygons(FEMA_NFHL_URL, parcelGeometry, 'FLD_ZONE,ZONE_SUBTY,SFHA_TF,STATIC_BFE,SOURCE_CIT'),
   });
 
+  /* USFWS National Wetlands Inventory -- verified live 2026-08-09 via a real
+     GitHub Actions dispatch (probe_national_source.yml). The FWS's own
+     www.fws.gov/wetlands MapServer candidate returned HTTP 404 (retired/
+     moved), but this USGS-hosted mirror of the same NWI data is live and
+     confirmed: layer 0 returned real Polygon features with the expected
+     Wetlands.ATTRIBUTE/WETLAND_TYPE/ACRES fields plus the joined
+     NWI_Wetland_Codes lookup table (SYSTEM/CLASS/SUBCLASS/WATER_REGIME/
+     MODIFIER1/MODIFIER2). */
+  const NWI_URL = 'https://fwspublicservices.wim.usgs.gov/wetlandsmapservice/rest/services/Wetlands/MapServer/0/query';
+
+  C.registerLayer({
+    id: 'nwi-wetlands',
+    constraintClass: 'wetland',
+    label: 'Mapped wetlands',
+    source: 'USFWS National Wetlands Inventory (NWI)',
+    sourceUpdatedAt: null,  // NWI is updated on a rolling basis per-area, no single vintage applies
+    caveat:
+      'The National Wetlands Inventory is a mapping product, explicitly NOT a ' +
+      'jurisdictional determination. Only a delineation accepted by the Corps ' +
+      'establishes regulated wetland boundaries. NWI both misses small wetlands ' +
+      'and maps areas that are not jurisdictional.',
+    provider: async ({ parcelGeometry }) =>
+      queryArcGISPolygons(NWI_URL, parcelGeometry, 'Wetlands.ATTRIBUTE,Wetlands.WETLAND_TYPE,Wetlands.ACRES'),
+  });
+
   /* Each entry below states what the dataset IS, because the caveat is as
      important as the number. A user who sees "4% wetland" and thinks that
      is a delineation will be wrong in a way that costs money.
@@ -81,27 +106,16 @@
      `url` is deliberately null on every remaining entry. Live-verifying an
      ArcGIS service from a sandbox with no outbound network requires a real
      GitHub Actions dispatch per candidate (the same process that verified
-     fema-flood above) -- NWI and PAD-US candidate URLs were dispatched but
-     returned errors (HTTP 400/502/timeout) rather than confirmed data, so
-     they remain unavailable rather than guessed-working. An unverified
-     constraint endpoint is worse than none: a service that silently returns
-     an empty FeatureCollection renders as "0% wetland — no wetlands mapped
-     here", which is the single most dangerous wrong answer this product
-     could give. Layers without a verified, working response are registered
-     as unavailable, so the panel says "not checked" rather than "clear". */
+     fema-flood and nwi-wetlands above) -- every PAD-US candidate URL tried
+     so far (gis1.usgs.gov, maps4.arcgisonline.com/DOI) returned errors
+     (HTTP 502/503) rather than confirmed data, so it remains unavailable
+     rather than guessed-working. An unverified constraint endpoint is worse
+     than none: a service that silently returns an empty FeatureCollection
+     renders as "0% protected — no protected land mapped here", which is the
+     single most dangerous wrong answer this product could give. A layer
+     without a verified, working response is registered as unavailable, so
+     the panel says "not checked" rather than "clear". */
   const PENDING = [
-    {
-      id: 'nwi-wetlands',
-      constraintClass: 'wetland',
-      label: 'Mapped wetlands',
-      source: 'USFWS National Wetlands Inventory (NWI)',
-      candidateService: 'USFWS NWI public MapServer',
-      caveat:
-        'The National Wetlands Inventory is a mapping product, explicitly NOT a ' +
-        'jurisdictional determination. Only a delineation accepted by the Corps ' +
-        'establishes regulated wetland boundaries. NWI both misses small wetlands ' +
-        'and maps areas that are not jurisdictional.',
-    },
     {
       id: 'protected-lands',
       constraintClass: 'protected',
