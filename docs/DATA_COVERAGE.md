@@ -11,7 +11,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | | |
 |---|---|
 | Datasets catalogued | 29 |
-| Datasets with actual data (has_data) | 16 |
+| Datasets with actual data (has_data) | 17 |
 | Datasets wired into the production UI | 11 |
 | Datasets with dedicated CI coverage | 5 |
 | Datasets on an automated refresh workflow | 15 |
@@ -39,7 +39,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | INTERCONNECTION QUEUES | 1 | 0 | 0 | 0 | 0 |
 | ISO/RTO | 1 | 0 | 0 | 0 | 0 |
 | NEWS | 1 | 1 | 600 | 1 | 1 |
-| PARCELS | 3 | 2 | 225 | 1 | 3 |
+| PARCELS | 3 | 3 | 87,036 | 1 | 3 |
 | POLICY/REGULATION | 2 | 2 | 1,579 | 1 | 2 |
 | POWER PLANTS | 1 | 1 | 1,295 | 0 | 1 |
 | PROTECTED LAND | 1 | 0 | 0 | 0 | 0 |
@@ -253,9 +253,9 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - **Known coverage holes:** Geometry coverage is 58 of ~3,000+ US counties. Most jurisdictions provide geometry + identity only; ownership/assessment/sales/zoning require the multi-source enrichment engine, which currently has zero production jurisdictions with a declared enrichment block.
 - **Known quality issues:** Field depth varies enormously by jurisdiction; see data/parcel_coverage_metrics.json for the per-category breakdown this file does not duplicate.
 
-**National multi-jurisdiction site search index (large parcels only)** (national_site_search_index) — ⛔ no data
+**National multi-jurisdiction site search index (large parcels only)** (national_site_search_index) — ✅ has data
 
-- Records: n/a
+- Records: 86811
 - Source: The same 58 county/city GIS departments as parcels_registry, walked in one batch
 - Geographic scope (declared): The same 58 wired jurisdictions as parcels_registry -- not every US county, and explicitly labeled as such in the index's own meta.caveat field.
 - Update frequency (declared): weekly, scheduled (build_site_search_index.yml)
@@ -264,7 +264,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - CI-tested: False
 - Automated update workflow(s): build_site_search_index.yml
 - Actual refresh cadence (computed from the workflow's own cron schedule): weekly
-- **Known coverage holes:** ENGINE EXISTS, LIVE, WIRED. Closes the gap js/parcel/find-sites.js's own header long documented: Find Sites searched only whatever parcels were currently rendered on the map (one county at a time), with no way to search across all wired jurisdictions at once. data/parcel_pipeline/build_national_site_index.mjs walks all 58 registry jurisdictions and server-side-filters each to parcels at or above a configurable acreage threshold (default 5 acres) using each jurisdiction's own already-verified fieldMap.area_acres/area_sqft source field -- no new per-jurisdiction field investigation. 13 of 58 jurisdictions have neither field and are indexed as an unfiltered, capped SAMPLE instead, flagged sizeFiltered:false per-jurisdiction so a reader can tell 'every large parcel in this county' apart from 'an arbitrary sample of this county's parcels'. js/parcel/site-search-index.js loads the static index and reuses PARCEL_SITE_SEARCH.search() UNCHANGED -- no parallel evaluation logic.
+- **Known coverage holes:** ENGINE EXISTS, LIVE, WIRED (confirmed 2026-08-09 via the first real build_site_search_index.yml dispatch: 86,811 real parcels across 55/58 jurisdictions, 42.2MB; Marion County IN, Montgomery County MD, and Baltimore city MD failed that run and were isolated correctly, not silently dropped). Closes the gap js/parcel/find-sites.js's own header long documented: Find Sites searched only whatever parcels were currently rendered on the map (one county at a time), with no way to search across all wired jurisdictions at once. data/parcel_pipeline/build_national_site_index.mjs walks all 58 registry jurisdictions and server-side-filters each to parcels at or above a configurable acreage threshold (default 5 acres) using each jurisdiction's own already-verified fieldMap.area_acres/area_sqft source field -- no new per-jurisdiction field investigation. 13 of 58 jurisdictions have neither field and are indexed as an unfiltered, capped SAMPLE instead, flagged sizeFiltered:false per-jurisdiction so a reader can tell 'every large parcel in this county' apart from 'an arbitrary sample of this county's parcels'. js/parcel/site-search-index.js loads the static index and reuses PARCEL_SITE_SEARCH.search() UNCHANGED -- no parallel evaluation logic.
 - **Known quality issues:** Proximity (transmission/substation/interstate distance) and environmental-constraint (floodplain/wetland) criteria are NOT precomputed in this index -- running those live for every large parcel across 58 jurisdictions would be a far larger, slower live-network job than this one. PARCEL_SITE_SEARCH already answers 'this criterion's data is absent from this candidate' correctly (indeterminate, never a silent pass), so a national-scope search on those criteria returns every parcel as indeterminate rather than a wrong answer -- a user opens a specific matched parcel for live per-parcel proximity/constraint analysis, same as today. Record counts and truncation status per jurisdiction are in the index's own jurisdiction_summaries array, not duplicated here.
 
 **Parcel source catalog (candidates + production + rejected)** (parcel_source_catalog) — ✅ has data
