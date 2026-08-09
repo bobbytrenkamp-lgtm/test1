@@ -174,12 +174,18 @@ def _get(url: str, params: dict, retries: int = 3, delay: float = 2.0) -> dict |
     return None
 
 
-def _arcgis_paginate(url: str, where: str, out_fields: str, max_per_page: int = 2000) -> list[dict]:
-    """Fetch all records from an ArcGIS Feature Service using pagination."""
+def _arcgis_paginate(url: str, where: str, out_fields: str, max_per_page: int = 2000,
+                      extra_params: dict | None = None) -> list[dict]:
+    """Fetch all records from an ArcGIS Feature Service using pagination.
+
+    extra_params lets a caller add query params (e.g. maxAllowableOffset
+    to have the server generalize/simplify polygon geometry before
+    transmission) without every other caller needing to know about them.
+    """
     records: list[dict] = []
     offset = 0
     while True:
-        data = _get(url, {
+        params = {
             "where":           where,
             "outFields":       out_fields,
             "outSR":           "4326",
@@ -188,7 +194,10 @@ def _arcgis_paginate(url: str, where: str, out_fields: str, max_per_page: int = 
             "resultOffset":    offset,
             "geometryType":    "esriGeometryPoint",
             "returnGeometry":  "true",
-        })
+        }
+        if extra_params:
+            params.update(extra_params)
+        data = _get(url, params)
         if not data:
             break
         if "error" in data:
@@ -698,10 +707,22 @@ def fetch_water_systems() -> list[dict]:
     "inside a service area" with "water available."
     """
     log.info("Fetching EPA Community Water System service-area boundaries…")
+    # This layer's 44,000+ service-area polygons are cartographically
+    # detailed -- at full resolution, a handful of pages already produced
+    # response bodies large enough to make a real fetch dispatch run past
+    # 15 minutes with no sign of finishing (confirmed empirically, not
+    # assumed). maxAllowableOffset asks the server to generalize geometry
+    # to ~0.001 degrees (roughly 100m) before sending it, which is standard
+    # ArcGIS REST behavior, not a hack, and is appropriate precision for a
+    # national-overview layer (this project already downsamples rings
+    # client-side for the same reason). A smaller page size bounds any
+    # single response further.
     raw = _arcgis_paginate(WATER_SYSTEM_URL, "1=1",
                            "PWSID,PWS_Name,Primacy_Agency,Population_Served_Count,"
                            "Service_Connections_Count,Service_Area_Type,"
-                           "Verification_Status,Model_Method,Area_SqKM")
+                           "Verification_Status,Model_Method,Area_SqKM",
+                           max_per_page=500,
+                           extra_params={"maxAllowableOffset": "0.001"})
     if not raw:
         log.warning("No water system data returned.")
         return []
