@@ -154,7 +154,7 @@
       "datasets_with_data": 0,
       "total_records": 0,
       "ui_consumed_count": 0,
-      "automated_count": 0
+      "automated_count": 1
     },
     {
       "category": "WATER",
@@ -664,21 +664,47 @@
       "id": "wastewater",
       "category": "WASTEWATER",
       "name": "Wastewater treatment infrastructure",
-      "file": null,
-      "source_org": null,
-      "source_url": null,
-      "geographic_scope_declared": null,
-      "update_frequency_declared": "n/a \u2014 not implemented",
-      "authoritative": false,
-      "direct_or_derived": null,
-      "license": null,
-      "known_coverage_holes": "NOT IMPLEMENTED. EPA's Clean Watersheds Needs Survey and the EPA Facility Registry Service both publish free wastewater facility data that has not yet been evaluated.",
-      "known_quality_issues": null,
-      "record_count": 0,
+      "file": "data/sample_layers.json#wastewater_facilities",
+      "source_org": "EPA Office of Environmental Information (OEI) FRS/ICIS-NPDES",
+      "source_url": "https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_Wastewater/MapServer/1/query",
+      "geographic_scope_declared": "US NPDES-permitted wastewater treatment facilities (live ArcGIS query, real count varies per fetch -- not a fixed dataset size)",
+      "update_frequency_declared": "weekly (update_infrastructure.yml, fetch_wastewater_facilities())",
+      "authoritative": true,
+      "direct_or_derived": "direct",
+      "license": "Public domain (US federal government data).",
+      "known_coverage_holes": "No capacity/flow-rate field (capacity_mgd is always null, genuinely absent from this source -- see fetch_wastewater_facilities() docstring). Only records with real FAC_LAT/FAC_LONG are included. Permit status is passed through unfiltered since only the schema, not real CWP_PERMIT_STATUS_CODE enum values, was confirmed via live dispatch -- some records may be terminated/inactive permits, not just currently-operating plants.",
+      "known_quality_issues": "This layer indexes NPDES-permitted facilities (major/minor/other), not the EPA Clean Watersheds Needs Survey's broader treatment-plant inventory -- coverage may differ from CWNS totals, which have not been cross-checked.",
+      "record_count": null,
       "ui_consumed": false,
       "ci_tested": false,
-      "automated_update_workflows": [],
-      "update_cadence": null,
+      "automated_update_workflows": [
+        "update_data.yml",
+        "update_facilities.yml",
+        "update_infrastructure.yml"
+      ],
+      "update_cadence": {
+        "cadence": "weekly",
+        "per_workflow": {
+          "update_data.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 6 * * 0"
+            ]
+          },
+          "update_facilities.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 3 * * 0"
+            ]
+          },
+          "update_infrastructure.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 4 * * 1"
+            ]
+          }
+        }
+      },
       "has_data": false
     },
     {
@@ -1001,14 +1027,14 @@
     "datasets_with_data": 15,
     "datasets_ui_consumed": 11,
     "datasets_ci_tested": 5,
-    "datasets_automated": 13,
+    "datasets_automated": 14,
     "datasets_by_cadence": {
       "daily": 1,
       "hourly": 1,
       "monthly": 1,
       "none": 1,
-      "not_automated": 13,
-      "weekly": 9
+      "not_automated": 12,
+      "weekly": 10
     }
   }
 }
