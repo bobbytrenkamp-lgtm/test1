@@ -14,26 +14,28 @@
     },
     "power_infrastructure": {
       "asset_type": "substation",
-      "duplicate_ids": [
-        "sub-141107"
-      ],
+      "duplicate_ids": [],
       "most_common_gaps": [
         {
-          "count": 25,
+          "count": 53826,
           "field": "evidence_tier"
         },
         {
-          "count": 25,
+          "count": 53826,
           "field": "last_verified"
         },
         {
-          "count": 25,
+          "count": 53826,
           "field": "source"
+        },
+        {
+          "count": 53826,
+          "field": "status"
         }
       ],
-      "non_compliant": 25,
+      "non_compliant": 53826,
       "schema_compliant": 0,
-      "total": 25
+      "total": 53826
     },
     "transmission_lines": {
       "asset_type": "transmission_line",
