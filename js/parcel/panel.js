@@ -425,6 +425,75 @@ window.PARCEL_PANEL = (function () {
 
   /* ── Tab: Compare ── */
   function _tabCompare() {
+    return _renderSavedSites() + _tabCompareTray();
+  }
+
+  /* Pure: the user's persisted SAVED_SITES list, rendered above the
+   * ephemeral compare tray. Each entry can be added to the tray (for a
+   * side-by-side comparison) or removed from storage entirely -- these are
+   * two different actions on two different stores (SAVED_SITES persists
+   * across sessions; PARCEL_SELECTION's tray does not), and the UI keeps
+   * them visibly distinct rather than collapsing "saved" and "compared"
+   * into one concept. */
+  function _renderSavedSites() {
+    if (!window.SAVED_SITES) return '';
+    const saved = window.SAVED_SITES.list();
+    if (!saved.length) return '';
+
+    const items = saved.map(e => {
+      const p = e.properties || {};
+      const label = p.address || p.pin || e.parcel_id || 'Parcel';
+      const sub = [
+        p.area_acres != null ? `${Number(p.area_acres).toFixed(1)} ac` : null,
+        p.zoning_code || null,
+      ].filter(Boolean).join(' · ');
+      return `<div class="pp-suggest-item" data-saved-key="${esc(e.key)}">
+        <div class="pp-suggest-main">
+          <span class="pp-suggest-label">${esc(label)}</span>
+        </div>
+        ${sub ? `<div class="pp-suggest-sub">${esc(sub)}</div>` : ''}
+        <div class="fs-result-more">
+          <button class="pp-suggest-add" onclick="window.PARCEL_PANEL._compareSaved(${JSON.stringify(e.key)})">+ Compare</button>
+          <button class="pp-compare-remove" onclick="window.PARCEL_PANEL._unsave(${JSON.stringify(e.key)})" aria-label="Remove from saved sites">✕</button>
+        </div>
+      </div>`;
+    }).join('');
+
+    return `<div class="pp-group pp-saved-sites">
+      <div class="pp-group-label">Saved Sites (${saved.length})</div>
+      <div class="pp-suggest-list">${items}</div>
+      <button class="pp-compare-export" onclick="window.PARCEL_PANEL._exportSavedCSV()">⬇ Export Saved Sites CSV</button>
+    </div>`;
+  }
+
+  function _exportSavedCSV() {
+    const saved = window.SAVED_SITES?.list() || [];
+    if (!saved.length) return;
+    const csv  = window.SAVED_SITES.renderCSV(saved);
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = `saved-sites-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+  }
+
+  function _compareSaved(key) {
+    const entry = window.SAVED_SITES?.get(key);
+    if (!entry) return;
+    const feature = { type: 'Feature', properties: entry.properties, geometry: entry.geometry };
+    const added = window.PARCEL_SELECTION?.addToCompare(feature, entry.county_fips);
+    if (added) { window.PARCEL_RENDERER?.onCompareChanged(); refresh(); }
+  }
+
+  function _unsave(key) {
+    window.SAVED_SITES?.remove(key);
+    refresh();
+  }
+
+  function _tabCompareTray() {
     const compared = window.PARCEL_SELECTION?.getCompared() || [];
 
     // Suggest comparables when tray is empty but a parcel is selected
@@ -605,6 +674,7 @@ window.PARCEL_PANEL = (function () {
 
       <div class="pp-actions">
         <button class="pp-action-primary" onclick="window.PARCEL_PANEL._addToCompare()">+ Compare</button>
+        ${_saveButtonHtml(feature)}
         <button class="pp-action-draw" onclick="window.PARCEL_DRAW_TOOL?.activate()" title="Draw polygon to select multiple parcels">◻ Draw</button>
         <button class="pp-action-report" onclick="window.PARCEL_PANEL._openReport()" title="Open printable parcel report">⎙ Report</button>
         <button class="pp-action-secondary" onclick="window.PARCEL_PANEL.close()">Close</button>
@@ -641,6 +711,30 @@ window.PARCEL_PANEL = (function () {
   }
 
   /* ── Actions ── */
+
+  /* Pure: given the currently-shown feature, returns the Save button's
+   * HTML — filled star + "Saved" label when SAVED_SITES already has this
+   * parcel (keyed by county_fips + parcel_id/pin, since parcel_id alone is
+   * only unique within one jurisdiction), outline star + "Save" otherwise.
+   * Returns '' when SAVED_SITES was never loaded on the page or the
+   * feature has no stable key to save under, rather than a button that
+   * silently does nothing when clicked. */
+  function _saveButtonHtml(feature) {
+    if (!window.SAVED_SITES) return '';
+    const key = window.SAVED_SITES.keyFor(feature);
+    if (!key) return '';
+    const saved = window.SAVED_SITES.has(key);
+    return `<button class="pp-action-save${saved ? ' pp-action-save-active' : ''}"
+      onclick="window.PARCEL_PANEL._toggleSave()" aria-pressed="${saved}">
+      ${saved ? '★ Saved' : '☆ Save'}
+    </button>`;
+  }
+
+  function _toggleSave() {
+    if (!_lastFeature || !window.SAVED_SITES) return;
+    window.SAVED_SITES.toggle(_lastFeature);
+    refresh();
+  }
 
   function _addToCompare() {
     const sel = window.PARCEL_SELECTION?.getSelected();
@@ -799,9 +893,11 @@ window.PARCEL_PANEL = (function () {
 
   return {
     show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh, _exportCSV, _openReport,
+    _toggleSave, _compareSaved, _unsave, _exportSavedCSV,
     // Exposed for unit testing (pure functions: data in, HTML string out --
     // no DOM APIs used inside them), matching the existing pattern of
     // exposing "_"-prefixed internals above.
     _tabIntelligence, _renderSuitability, _renderProximity, _renderConstraints, _renderSales,
+    _saveButtonHtml, _renderSavedSites,
   };
 })();

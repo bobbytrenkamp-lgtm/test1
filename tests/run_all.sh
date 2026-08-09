@@ -91,6 +91,8 @@ run "parcel site suitability score (explainable)" node tests/test_parcel_suitabi
 run "parcel sales history + comparable transactions" node tests/test_parcel_sales.mjs
 run "parcel site-intelligence export object (test3/test2 contract)" node tests/test_parcel_site_intelligence.mjs
 run "parcel click panel: Intelligence tab (proximity/constraints/suitability/sales wiring)" node tests/test_parcel_panel_intelligence.mjs
+run "saved sites: persistent parcel bookmarks" node tests/test_parcel_saved_sites.mjs
+run "parcel click panel: Save button + Saved Sites section" node tests/test_parcel_panel_saved_sites.mjs
 run "parcel enrichment: CAMA join discovery + verification" node tests/test_parcel_enrichment_discovery.mjs
 run "parcel coverage: classification + metrics rules" node tests/test_parcel_coverage_metrics.mjs
 # The generated coverage artifacts must match what current repository data
