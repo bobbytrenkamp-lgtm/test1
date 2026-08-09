@@ -691,38 +691,36 @@ def fetch_iso_rto_regions() -> list[dict]:
 
 def fetch_water_systems() -> list[dict]:
     """
-    Fetch EPA Community Water System service-area boundaries.
+    Fetch EPA Community Water System service areas as centroid points.
 
-    Returns simplified polygon dicts, one per water system. Ring vertices
-    are downsampled for storage size -- these are detailed cartographic
-    service-area boundaries, and this is a national-overview layer, not a
-    parcel-precision one.
+    Returns one simplified point dict per water system (a single lon/lat
+    representing the service area's centroid), not the full boundary
+    polygon. Two real dispatches of a full-polygon version of this fetch
+    (one at full resolution, one with server-side geometry generalization
+    via maxAllowableOffset) each ran past 15+ minutes with no sign of
+    finishing against this 44,000+-feature layer and had to be cancelled --
+    confirmed empirically, not assumed. Every other layer in this file
+    (substations, power plants, wastewater) is already stored as points for
+    exactly this reason; service-area boundary precision was traded for a
+    fetch that actually completes. ArcGIS's own returnCentroid option
+    computes this server-side, so the centroid is a real (if approximate)
+    representation of the polygon, not a fabricated point.
 
-    HONESTY NOTE: a service-area polygon says "this utility's known
-    territory reaches here" -- it does NOT say the utility has spare
-    capacity, does NOT give main size/location, and does NOT give a
-    treatment plant location (see fetch_wastewater_facilities() for the
-    wastewater side of that; no equivalent public EPA drinking-water
-    treatment-plant point layer was found in this pass). Never conflate
-    "inside a service area" with "water available."
+    HONESTY NOTE: a centroid point is NOT the service-area boundary -- it
+    marks roughly where the utility's territory is centered, not where it
+    starts or ends. It does NOT say the utility has spare capacity, does
+    NOT give main size/location, and does NOT give a treatment plant
+    location (see fetch_wastewater_facilities() for the wastewater side of
+    that; no equivalent public EPA drinking-water treatment-plant point
+    layer was found in this pass). Never conflate "near a water system's
+    centroid" with "water available."
     """
-    log.info("Fetching EPA Community Water System service-area boundaries…")
-    # This layer's 44,000+ service-area polygons are cartographically
-    # detailed -- at full resolution, a handful of pages already produced
-    # response bodies large enough to make a real fetch dispatch run past
-    # 15 minutes with no sign of finishing (confirmed empirically, not
-    # assumed). maxAllowableOffset asks the server to generalize geometry
-    # to ~0.001 degrees (roughly 100m) before sending it, which is standard
-    # ArcGIS REST behavior, not a hack, and is appropriate precision for a
-    # national-overview layer (this project already downsamples rings
-    # client-side for the same reason). A smaller page size bounds any
-    # single response further.
+    log.info("Fetching EPA Community Water System service areas (centroids)…")
     raw = _arcgis_paginate(WATER_SYSTEM_URL, "1=1",
                            "PWSID,PWS_Name,Primacy_Agency,Population_Served_Count,"
                            "Service_Connections_Count,Service_Area_Type,"
                            "Verification_Status,Model_Method,Area_SqKM",
-                           max_per_page=500,
-                           extra_params={"maxAllowableOffset": "0.001"})
+                           extra_params={"returnGeometry": "false", "returnCentroid": "true"})
     if not raw:
         log.warning("No water system data returned.")
         return []
@@ -730,9 +728,10 @@ def fetch_water_systems() -> list[dict]:
     out = []
     for feat in raw:
         a = feat.get("attributes", {})
-        geom = feat.get("geometry", {})
-        rings = geom.get("rings", [])
-        sampled_rings = [ring[::8] for ring in rings if len(ring) > 1]
+        centroid = feat.get("centroid") or {}
+        lon, lat = centroid.get("x"), centroid.get("y")
+        if lon is None or lat is None:
+            continue
         pwsid = str(a.get("PWSID") or "")
         # EPA's own PWSID convention is a 2-letter state postal code
         # prefix (e.g. "VA0000123") -- this is a documented EPA format
@@ -752,7 +751,8 @@ def fetch_water_systems() -> list[dict]:
             "verification_status":    a.get("Verification_Status") or "",
             "boundary_method":        a.get("Model_Method") or "",
             "area_sqkm":              a.get("Area_SqKM"),
-            "rings": [[[round(p[0], 4), round(p[1], 4)] for p in ring] for ring in sampled_rings],
+            "lon":                    round(float(lon), 5),
+            "lat":                    round(float(lat), 5),
         })
 
     log.info("Water systems: %d records", len(out))
