@@ -96,7 +96,7 @@ def test_datasets_with_no_data_are_never_reported_as_ui_consumed_or_automated():
     # draw real routes if any were present, it simply holds none right now
     # after the fabricated placeholder entries were removed. That is a
     # meaningfully different fact from "no UI code path exists at all" (true
-    # of fema_flood, power_plants, etc.), and collapsing the two would hide
+    # of most zero-record datasets), and collapsing the two would hide
     # exactly the kind of half-finished wiring this catalog exists to surface.
     # Automation is allowed the same documented exception, for the same
     # underlying reason: fiber_network is one key inside sample_layers.json,
@@ -108,12 +108,9 @@ def test_datasets_with_no_data_are_never_reported_as_ui_consumed_or_automated():
     # js/parcel/constraint-layers.js) -- there is no local record count
     # concept for a live nationwide polygon service, so has_data is
     # honestly false even though the wiring is real and automated_update_
-    # workflows/ui_consumed are correctly true.
-    # power_plants: fetch_power_plants() was fixed to a real, verified live
-    # URL in the same change that added this rule, but no data has been
-    # fetched into sample_layers.json yet -- update_infrastructure.yml
-    # genuinely will populate it on its next scheduled/dispatched run.
-    ALLOWED_WITH_NO_DATA = {"fiber_network", "fema_flood", "power_plants"}
+    # workflows/ui_consumed are correctly true. power_plants no longer
+    # needs this exception -- 1,295 real records landed 2026-08-09.
+    ALLOWED_WITH_NO_DATA = {"fiber_network", "fema_flood"}
     for d in catalog["datasets"]:
         if not d["has_data"]:
             if d["ui_consumed"] or d["automated_update_workflows"]:

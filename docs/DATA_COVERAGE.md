@@ -11,7 +11,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | | |
 |---|---|
 | Datasets catalogued | 26 |
-| Datasets with actual data (has_data) | 14 |
+| Datasets with actual data (has_data) | 15 |
 | Datasets wired into the production UI | 11 |
 | Datasets with dedicated CI coverage | 5 |
 | Datasets on an automated refresh workflow | 13 |
@@ -30,7 +30,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | NEWS | 1 | 1 | 600 | 1 | 1 |
 | PARCELS | 2 | 2 | 225 | 1 | 2 |
 | POLICY/REGULATION | 2 | 2 | 1,579 | 1 | 2 |
-| POWER PLANTS | 1 | 0 | 0 | 0 | 1 |
+| POWER PLANTS | 1 | 1 | 1,295 | 0 | 1 |
 | PROTECTED LAND | 1 | 0 | 0 | 0 | 0 |
 | RAIL | 1 | 0 | 0 | 0 | 0 |
 | ROADS | 1 | 0 | 0 | 0 | 0 |
@@ -253,18 +253,18 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 ### POWER PLANTS
 
-**Power generation facilities** (power_plants) — ⛔ no data
+**Power generation facilities** (power_plants) — ✅ has data
 
-- Records: n/a
+- Records: 1295
 - Source: EPA Facility Registry Service (EIA-860 generator data joined with FRS)
 - Source URL: https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_PowerPlants/MapServer/12
-- Geographic scope (declared): United States (target, not achieved)
+- Geographic scope (declared): United States (1,295 operating plants across 49 states/territories, as of the first live fetch 2026-08-09; coverage relative to the full EIA-860 fleet has not been independently verified -- this may be a curated FRS subset rather than every operating generator)
 - Update frequency (declared): weekly (update_infrastructure.yml, layers=power)
 - Authoritative: True
 - UI-consumed: False
 - CI-tested: False
 - Automated update workflow(s): update_data.yml, update_facilities.yml, update_infrastructure.yml
-- **Known coverage holes:** This source has NO nameplate-capacity field of any kind -- plant identity, location, operating status, and primary fuel source are real and populated; capacity_mw is always None, never fabricated. A capacity-bearing free source (e.g. a verified EIA-860 bulk download) has not yet been found/verified.
+- **Known coverage holes:** ENGINE EXISTS, LIVE, WIRED, REAL DATA (1,295 records, 49 states, first populated 2026-08-09 via update_infrastructure.yml). This source has NO nameplate-capacity field of any kind -- plant identity, location, operating status, and primary fuel source are real and populated; capacity_mw is always None, never fabricated. Whether 1,295 represents the full national operating fleet or a curated subset of this FRS layer has not been independently cross-checked against EIA-860 totals.
 - **Known quality issues:** Source is one row per GENERATOR, deduplicated to one record per PLANT_CODE by this pipeline -- a plant with many small generators and a plant with one large generator are indistinguishable without capacity data.
 
 ### PROTECTED LAND
