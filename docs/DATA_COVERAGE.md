@@ -195,7 +195,8 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 **ISO/RTO regions** (iso_rto) — ⛔ no data
 
 - Records: 0
-- Source: _not applicable — no data_
+- Source: EIA (US Energy Atlas) -- candidate found, not yet ingestable
+- Source URL: https://services7.arcgis.com/FGr1D95XCGALKXqM/ArcGIS/rest/services/RTO_Regions/FeatureServer/0
 - Geographic scope (declared): _none_
 - Update frequency (declared): n/a — not implemented
 - Authoritative: False
@@ -203,7 +204,8 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - CI-tested: False
 - Automated update workflow(s): _none_
 - Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
-- **Known coverage holes:** NOT IMPLEMENTED. No ISO/RTO region layer exists anywhere in the repository. FERC and most ISOs (PJM, MISO, ERCOT, CAISO, SPP, ISO-NE, NYISO) publish free boundary maps/data; none are currently ingested.
+- **Known coverage holes:** STILL NOT IMPLEMENTED, but no longer un-investigated. EIA's US Energy Atlas publishes a 7-region RTO/ISO boundary layer (atlas.eia.gov/maps/eia::rto-regions), discovered via web search 2026-08-09. The underlying ArcGIS FeatureServer was dispatched twice on a real GitHub Actions runner (both /query with outFields=* and the bare layer-metadata endpoint) and both returned 'Token Required' -- this specific service requires an ArcGIS auth token this project does not have, despite being publicly discoverable and publicly downloadable through the Hub UI (which proxies its own token). fetch_iso_rto_regions() in fetch_infrastructure.py is written and wired into update_infrastructure.yml's 'iso_rto' layer, but currently returns zero records and logs the real auth error rather than faking data -- so this is scaffolding waiting on either (a) a public non-token-gated mirror of the same 7 regions, or (b) the Hub's public-download proxy endpoint (opendata.arcgis.com download API) being identified and wired in instead of the raw FeatureServer query.
+- **Known quality issues:** EIA's own documentation notes RTO/ISO boundaries are illustrative, not legally precise -- RTOs don't have crisp borders the way states do, and shapefiles can overlap or leave gaps. Not yet relevant since no data has been ingested.
 
 ### NEWS
 
