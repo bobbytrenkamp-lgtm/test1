@@ -205,6 +205,29 @@
         "parcel_enrichment_discovery.yml",
         "parcel_pr_check.yml"
       ],
+      "update_cadence": {
+        "cadence": "monthly",
+        "per_workflow": {
+          "check_parcel_services.yml": {
+            "cadence": "monthly",
+            "cron_expressions": [
+              "23 5 1 * *"
+            ]
+          },
+          "parcel_batch_discovery.yml": {
+            "cadence": "manual-only",
+            "cron_expressions": []
+          },
+          "parcel_enrichment_discovery.yml": {
+            "cadence": "manual-only",
+            "cron_expressions": []
+          },
+          "parcel_pr_check.yml": {
+            "cadence": "none",
+            "cron_expressions": []
+          }
+        }
+      },
       "has_data": true
     },
     {
@@ -227,6 +250,15 @@
       "automated_update_workflows": [
         "parcel_pr_check.yml"
       ],
+      "update_cadence": {
+        "cadence": "none",
+        "per_workflow": {
+          "parcel_pr_check.yml": {
+            "cadence": "none",
+            "cron_expressions": []
+          }
+        }
+      },
       "has_data": true
     },
     {
@@ -249,6 +281,17 @@
       "automated_update_workflows": [
         "update_facilities.yml"
       ],
+      "update_cadence": {
+        "cadence": "weekly",
+        "per_workflow": {
+          "update_facilities.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 3 * * 0"
+            ]
+          }
+        }
+      },
       "has_data": true
     },
     {
@@ -269,6 +312,7 @@
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": true
     },
     {
@@ -293,6 +337,29 @@
         "update_facilities.yml",
         "update_infrastructure.yml"
       ],
+      "update_cadence": {
+        "cadence": "weekly",
+        "per_workflow": {
+          "update_data.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 6 * * 0"
+            ]
+          },
+          "update_facilities.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 3 * * 0"
+            ]
+          },
+          "update_infrastructure.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 4 * * 1"
+            ]
+          }
+        }
+      },
       "has_data": true
     },
     {
@@ -317,6 +384,29 @@
         "update_facilities.yml",
         "update_infrastructure.yml"
       ],
+      "update_cadence": {
+        "cadence": "weekly",
+        "per_workflow": {
+          "update_data.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 6 * * 0"
+            ]
+          },
+          "update_facilities.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 3 * * 0"
+            ]
+          },
+          "update_infrastructure.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 4 * * 1"
+            ]
+          }
+        }
+      },
       "has_data": true
     },
     {
@@ -341,6 +431,29 @@
         "update_facilities.yml",
         "update_infrastructure.yml"
       ],
+      "update_cadence": {
+        "cadence": "weekly",
+        "per_workflow": {
+          "update_data.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 6 * * 0"
+            ]
+          },
+          "update_facilities.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 3 * * 0"
+            ]
+          },
+          "update_infrastructure.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 4 * * 1"
+            ]
+          }
+        }
+      },
       "has_data": true
     },
     {
@@ -365,6 +478,29 @@
         "update_facilities.yml",
         "update_infrastructure.yml"
       ],
+      "update_cadence": {
+        "cadence": "weekly",
+        "per_workflow": {
+          "update_data.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 6 * * 0"
+            ]
+          },
+          "update_facilities.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 3 * * 0"
+            ]
+          },
+          "update_infrastructure.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 4 * * 1"
+            ]
+          }
+        }
+      },
       "has_data": true
     },
     {
@@ -385,6 +521,7 @@
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": false
     },
     {
@@ -405,6 +542,7 @@
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": false
     },
     {
@@ -429,6 +567,29 @@
         "update_facilities.yml",
         "update_infrastructure.yml"
       ],
+      "update_cadence": {
+        "cadence": "weekly",
+        "per_workflow": {
+          "update_data.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 6 * * 0"
+            ]
+          },
+          "update_facilities.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 3 * * 0"
+            ]
+          },
+          "update_infrastructure.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 4 * * 1"
+            ]
+          }
+        }
+      },
       "has_data": false
     },
     {
@@ -449,6 +610,7 @@
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": false
     },
     {
@@ -473,6 +635,29 @@
         "update_facilities.yml",
         "update_infrastructure.yml"
       ],
+      "update_cadence": {
+        "cadence": "weekly",
+        "per_workflow": {
+          "update_data.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 6 * * 0"
+            ]
+          },
+          "update_facilities.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 3 * * 0"
+            ]
+          },
+          "update_infrastructure.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 4 * * 1"
+            ]
+          }
+        }
+      },
       "has_data": true
     },
     {
@@ -493,6 +678,7 @@
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": false
     },
     {
@@ -513,6 +699,7 @@
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": false
     },
     {
@@ -533,6 +720,7 @@
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": false
     },
     {
@@ -553,6 +741,7 @@
       "ui_consumed": true,
       "ci_tested": false,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": false
     },
     {
@@ -573,6 +762,7 @@
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": false
     },
     {
@@ -593,6 +783,7 @@
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": false
     },
     {
@@ -615,6 +806,17 @@
       "automated_update_workflows": [
         "update_zoning.yml"
       ],
+      "update_cadence": {
+        "cadence": "weekly",
+        "per_workflow": {
+          "update_zoning.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 5 * * 3"
+            ]
+          }
+        }
+      },
       "has_data": true
     },
     {
@@ -635,6 +837,7 @@
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": false
     },
     {
@@ -655,6 +858,7 @@
       "ui_consumed": false,
       "ci_tested": true,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": true
     },
     {
@@ -675,6 +879,7 @@
       "ui_consumed": false,
       "ci_tested": true,
       "automated_update_workflows": [],
+      "update_cadence": null,
       "has_data": true
     },
     {
@@ -697,6 +902,17 @@
       "automated_update_workflows": [
         "update_political_risk.yml"
       ],
+      "update_cadence": {
+        "cadence": "weekly",
+        "per_workflow": {
+          "update_political_risk.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 6 * * 1"
+            ]
+          }
+        }
+      },
       "has_data": true
     },
     {
@@ -721,6 +937,29 @@
         "update_policy_sources.yml",
         "update_regulations.yml"
       ],
+      "update_cadence": {
+        "cadence": "daily",
+        "per_workflow": {
+          "update_data.yml": {
+            "cadence": "weekly",
+            "cron_expressions": [
+              "0 6 * * 0"
+            ]
+          },
+          "update_policy_sources.yml": {
+            "cadence": "daily",
+            "cron_expressions": [
+              "0 7 * * *"
+            ]
+          },
+          "update_regulations.yml": {
+            "cadence": "monthly",
+            "cron_expressions": [
+              "0 8 1 * *"
+            ]
+          }
+        }
+      },
       "has_data": true
     },
     {
@@ -743,6 +982,17 @@
       "automated_update_workflows": [
         "update_ai_news.yml"
       ],
+      "update_cadence": {
+        "cadence": "hourly",
+        "per_workflow": {
+          "update_ai_news.yml": {
+            "cadence": "hourly",
+            "cron_expressions": [
+              "17 * * * *"
+            ]
+          }
+        }
+      },
       "has_data": true
     }
   ],
@@ -751,6 +1001,14 @@
     "datasets_with_data": 15,
     "datasets_ui_consumed": 11,
     "datasets_ci_tested": 5,
-    "datasets_automated": 13
+    "datasets_automated": 13,
+    "datasets_by_cadence": {
+      "daily": 1,
+      "hourly": 1,
+      "monthly": 1,
+      "none": 1,
+      "not_automated": 13,
+      "weekly": 9
+    }
   }
 }
