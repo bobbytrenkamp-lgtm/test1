@@ -1,16 +1,28 @@
 /* tests/test_data_loading.mjs — verifies the critical/deferred data split.
 
    Home previously waited on ~4.5 MB before it could paint, including four
-   map-only payloads (sample_layers.json alone is 1.4 MB). loadCoreData() now
-   fetches only what Home needs; loadSecondaryData() fetches the rest in
-   parallel without blocking first paint.
+   map-only payloads. loadCoreData() now fetches only what Home needs;
+   loadSecondaryData() fetches the rest in parallel without blocking first
+   paint.
 
-   This test extracts those two functions from js/map.js and runs them against
-   a stub fetch, asserting:
+   loadSecondaryData() itself used to fetch one monolithic
+   data/sample_layers.json (25MB+ and growing -- power_infrastructure alone
+   is 53,826 records). It now fetches three small split files instead
+   (data/layers/core.json, data/layers/data_centers.json,
+   data/layers/ai_campuses.json -- see data/split_sample_layers.py) for the
+   pieces county detail panels and the search index need unconditionally;
+   the genuinely heavy layers (power_infrastructure, transmission_lines,
+   fiber_network) are fetched separately and lazily, only when their map
+   toggle is switched on -- not covered by this test, which is specifically
+   about the eager critical/secondary split.
+
+   This test extracts loadCoreData/loadSecondaryData from js/map.js and runs
+   them against a stub fetch, asserting:
      - loadCoreData requests ONLY the critical files
      - loadSecondaryData requests the deferred ones and indexes them correctly
      - loadSecondaryData is memoized (the map tab and analytics tab both call it)
-     - a failing secondary fetch degrades to defaults instead of rejecting
+     - a failing secondary fetch degrades to defaults instead of rejecting,
+       file-by-file (a dead core.json no longer takes data_centers down with it)
 
    Run: node tests/test_data_loading.mjs
 */
@@ -59,7 +71,9 @@ function extractStatement(signature) {
 
 const CRITICAL = ['data/map_data.json', 'data/ai_news.json'];
 const DEFERRED = [
-  'data/sample_layers.json',
+  'data/layers/core.json',
+  'data/layers/data_centers.json',
+  'data/layers/ai_campuses.json',
   'data/state_regulations.json',
   'data/political_risk.json',
   'data/tax_incentives.json',
@@ -74,7 +88,9 @@ function makeEnv(opts) {
   const payloads = {
     'data/map_data.json': { counties: { '51107': { name: 'Loudoun County', level: 3 } } },
     'data/ai_news.json': { articles: [{ title: 'a' }] },
-    'data/sample_layers.json': { data_centers: [{ name: 'dc' }], water_stress: { '51107': 2 } },
+    'data/layers/core.json': { water_stress: { '51107': 2 }, tax_incentive_counties: [], utility_territories: [] },
+    'data/layers/data_centers.json': [{ name: 'dc' }],
+    'data/layers/ai_campuses.json': [],
     'data/state_regulations.json': { states: { '51': { name: 'Virginia' } } },
     'data/political_risk.json': { scores: [{ fips: '1107', risk: 4 }] },   // note: unpadded
     'data/tax_incentives.json': { tax_incentives: [{ id: 'p1', fips_list: ['51107', 1059] }] },
@@ -160,19 +176,28 @@ function makeEnv(opts) {
 
 /* ── A failing deferred fetch degrades rather than rejecting ── */
 {
-  const { api, win } = makeEnv({ failUrls: ['data/sample_layers.json', 'data/political_risk.json'] });
+  const { api, win } = makeEnv({ failUrls: ['data/layers/core.json', 'data/political_risk.json'] });
   let threw = false;
   let res;
   try { res = await api.loadSecondaryData(); } catch (_) { threw = true; }
 
   ok('secondary does not reject on partial failure', threw === false);
   ok('secondary still resolves truthy', !!res);
-  ok('missing sample layers degrades to empty water stress',
+  ok('missing core.json degrades to empty water stress',
      JSON.stringify(win.DC_WATER_STRESS) === '{}', JSON.stringify(win.DC_WATER_STRESS));
   ok('missing risk degrades to empty index',
      JSON.stringify(win.DC_RISK_BY_FIPS) === '{}', JSON.stringify(win.DC_RISK_BY_FIPS));
   ok('unaffected payloads still indexed',
      Array.isArray(win.DC_INCENTIVES_FIPS['51107']), JSON.stringify(win.DC_INCENTIVES_FIPS));
+  // A real improvement over the old monolithic sample_layers.json fetch:
+  // that used to be all-or-nothing (one failure -> sample = null -> every
+  // sample-derived value gone, including data_centers, which county detail
+  // panels and the search index depend on unconditionally). Splitting the
+  // fetch into three independent files means a dead core.json no longer
+  // takes data_centers.json/ai_campuses.json down with it.
+  ok('data_centers survives a core.json failure (per-file degradation, not all-or-nothing)',
+     Array.isArray(res.sample.data_centers) && res.sample.data_centers.length === 1,
+     JSON.stringify(res.sample));
 }
 
 /* ── Guard: the deferred files must not creep back into the critical path ── */

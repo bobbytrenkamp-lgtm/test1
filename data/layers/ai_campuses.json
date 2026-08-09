@@ -1,0 +1,5035 @@
+[
+  {
+    "id": "fc-3a484574ba",
+    "name": "xAI - Memphis Supercomputer (Colossus)",
+    "operator": "xAI",
+    "status": "existing",
+    "county_fips": "47157",
+    "notes": "100,000+ H100 GPUs; largest AI training cluster publicly announced as of 2024; Shelby County Memphis.; legacy_id:ai-tn-001",
+    "lat": 35.15,
+    "lon": -90.05
+  },
+  {
+    "id": "fc-3d3289777f",
+    "name": "NVIDIA AI Research - Austin Campus",
+    "operator": "NVIDIA",
+    "status": "existing",
+    "county_fips": "48453",
+    "notes": "AI research and development; GPU architecture lab.; legacy_id:ai-tx-002",
+    "lat": 30.39,
+    "lon": -97.74
+  },
+  {
+    "id": "fc-d15c9b68c0",
+    "name": "Anthropic AI - San Francisco Area (cloud)",
+    "operator": "Anthropic",
+    "status": "existing",
+    "county_fips": "06075",
+    "notes": "AI safety research; training conducted via cloud partnerships.; legacy_id:ai-ca-001",
+    "lat": 37.77,
+    "lon": -122.41,
+    "capacity_mw": 5.0
+  },
+  {
+    "id": "fc-1187465b4d",
+    "name": "Oracle AI Cloud - Austin Campus",
+    "operator": "Oracle",
+    "status": "existing",
+    "county_fips": "48453",
+    "notes": "Oracle AI cloud infrastructure; $1B+ investment in Texas.; legacy_id:ai-tx-003",
+    "lat": 30.4,
+    "lon": -97.73
+  },
+  {
+    "id": "fc-5a754d62b8",
+    "name": "Oracle AI Cloud - Nashville Campus",
+    "operator": "Oracle",
+    "status": "existing",
+    "county_fips": "47037",
+    "notes": "Oracle Cloud Infrastructure Nashville; AI/ML workloads.; legacy_id:ai-tn-002",
+    "lat": 36.16,
+    "lon": -86.78
+  },
+  {
+    "id": "fc-7376e2b4c8",
+    "name": "Cerebras AI - Santa Clara HQ",
+    "operator": "Cerebras Systems",
+    "status": "existing",
+    "county_fips": "06085",
+    "notes": "Wafer-scale engine AI training; custom CS-3 chips.; legacy_id:ai-ca-002",
+    "lat": 37.36,
+    "lon": -121.98
+  },
+  {
+    "id": "fc-ab6a37b665",
+    "name": "Argonne National Lab - AI Campus",
+    "operator": "DOE / Argonne",
+    "status": "existing",
+    "county_fips": "17043",
+    "notes": "Aurora exascale supercomputer (AI workloads); 2 exaflops.; legacy_id:ai-il-002",
+    "lat": 41.71,
+    "lon": -87.98,
+    "capacity_mw": 20.0
+  },
+  {
+    "id": "fc-bcf2da73d6",
+    "name": "Oak Ridge National Lab - AI Campus",
+    "operator": "DOE / ORNL",
+    "status": "existing",
+    "county_fips": "47093",
+    "notes": "Frontier exascale supercomputer; #1 Top500 2022-2023.; legacy_id:ai-tn-003",
+    "lat": 36.01,
+    "lon": -84.24
+  },
+  {
+    "id": "fc-1cfcfef36a",
+    "name": "NERSC - Lawrence Berkeley AI Campus",
+    "operator": "DOE / LBNL",
+    "status": "existing",
+    "county_fips": "06001",
+    "notes": "Perlmutter AI-optimized supercomputer; NVIDIA A100 GPUs.; legacy_id:ai-ca-003",
+    "lat": 37.88,
+    "lon": -122.25
+  },
+  {
+    "id": "fc-0cfbbf4e00",
+    "name": "Microsoft AI - Loudoun County AI Campus",
+    "operator": "Microsoft / OpenAI",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "Dedicated AI training cluster adjacent to existing cloud campus.; legacy_id:ai-va-001",
+    "lat": 39.05,
+    "lon": -77.44
+  },
+  {
+    "id": "fc-d4085dae7d",
+    "name": "Microsoft AI - Hendricks County AI Campus",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "18059",
+    "notes": "Part of Indiana AI infrastructure push; dedicated training.; legacy_id:ai-in-001",
+    "lat": 39.77,
+    "lon": -86.4
+  },
+  {
+    "id": "fc-9d94f96a4b",
+    "name": "CoreWeave AI - Parsippany Campus",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "34027",
+    "notes": "GPU-as-a-service; massive NVIDIA H100 cluster for AI startups.; legacy_id:ai-nj-001",
+    "lat": 40.87,
+    "lon": -74.42
+  },
+  {
+    "id": "fc-b9fb66a08e",
+    "name": "CoreWeave AI - Chicago Campus",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "17043",
+    "notes": "DuPage County; NVIDIA AI cluster; cloud AI infrastructure.; legacy_id:ai-il-001",
+    "lat": 41.85,
+    "lon": -88.12
+  },
+  {
+    "id": "fc-9de23caa4f",
+    "name": "Microsoft AI - Loudoun County AI Campus",
+    "operator": "Microsoft / OpenAI",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "Dedicated AI training cluster adjacent to existing cloud campus.; legacy_id:ai-va-001",
+    "lat": 39.05,
+    "lon": -77.44
+  },
+  {
+    "id": "fc-cc16a07fe7",
+    "name": "Microsoft AI - Hendricks County AI Campus",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "18059",
+    "notes": "Part of Indiana AI infrastructure push; dedicated training.; legacy_id:ai-in-001",
+    "lat": 39.77,
+    "lon": -86.4
+  },
+  {
+    "id": "fc-fbf9edf7a2",
+    "name": "CoreWeave AI - Parsippany Campus",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "34027",
+    "notes": "GPU-as-a-service; massive NVIDIA H100 cluster for AI startups.; legacy_id:ai-nj-001",
+    "lat": 40.87,
+    "lon": -74.42
+  },
+  {
+    "id": "fc-d093fd6415",
+    "name": "CoreWeave AI - Chicago Campus",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "17043",
+    "notes": "DuPage County; NVIDIA AI cluster; cloud AI infrastructure.; legacy_id:ai-il-001",
+    "lat": 41.85,
+    "lon": -88.12
+  },
+  {
+    "id": "fc-72a599c464",
+    "name": "Switch SUPERNAP \u2014 Las Vegas AI Cluster",
+    "operator": "Switch (DigitalBridge)",
+    "status": "existing",
+    "county_fips": "32003",
+    "notes": "Switch SUPERNAP 7-10 campus; dedicated GPU cluster for AI/ML workloads. 100MW+ capacity. NVIDIA DGX-A100/H100 pods. Tier IV design.; legacy_id:ai-nv-001",
+    "lat": 36.0875,
+    "lon": -115.1535
+  },
+  {
+    "id": "fc-e076324447",
+    "name": "Annapolis Junction Defense IT Campus",
+    "operator": "Multiple Government Contractors",
+    "status": "existing",
+    "county_fips": "24003",
+    "notes": "Unclassified contractor data center cluster adjacent to NSA/Fort Meade in Annapolis Junction MD.; legacy_id:ai-md-001",
+    "lat": 39.1177,
+    "lon": -76.8077
+  },
+  {
+    "id": "fc-8e04571768",
+    "name": "Maui High Performance Computing Center (MHPCC)",
+    "operator": "Amentum Services (for AFRL)",
+    "status": "existing",
+    "county_fips": "15009",
+    "notes": "DoD-funded HPC center operated for the Air Force Research Laboratory; supports Pacific theater defense simulation and AI workloads.; legacy_id:ai-hi-002",
+    "lat": 20.8783,
+    "lon": -156.6825
+  },
+  {
+    "id": "fc-90901307a4",
+    "name": "Immedion Charleston Data Center",
+    "operator": "Immedion",
+    "status": "existing",
+    "county_fips": "45019",
+    "notes": "Regional colocation data center serving Charleston's growing financial technology, healthcare, and logistics IT sectors.; legacy_id:ai-sc-003",
+    "lat": 32.7765,
+    "lon": -79.9311
+  },
+  {
+    "id": "fc-dfd7592dc0",
+    "name": "GlobalFoundries Fab 8 Computing Infrastructure \u2014 Malta",
+    "operator": "GlobalFoundries",
+    "status": "existing",
+    "county_fips": "36091",
+    "notes": "On-premises HPC and EDA compute supporting chip design simulation, manufacturing AI, and yield analytics for one of North America's largest semiconductor fabs.; legacy_id:ai-ny-003",
+    "lat": 43.01,
+    "lon": -73.8199
+  },
+  {
+    "id": "fc-3bd2179f18",
+    "name": "US Army NETCOM Data Center \u2014 Fort Huachuca",
+    "operator": "US Army Network Enterprise Technology Command (NETCOM)",
+    "status": "existing",
+    "county_fips": "04003",
+    "notes": "Primary Army network management and enterprise IT data center; supports Army-wide network operations, defensive cyber, and Army Cyber Command missions.; legacy_id:ai-az-001",
+    "lat": 31.5437,
+    "lon": -110.3445
+  },
+  {
+    "id": "fc-d08f307677",
+    "name": "Amazon AWS - Richmond County NC Data Center",
+    "operator": "Amazon Web Services",
+    "status": "planned",
+    "county_fips": "37153",
+    "notes": "AWS planned AI cloud infrastructure campus in Richmond County NC; announced 2024-2025",
+    "lat": 35.0,
+    "lon": -79.77,
+    "sources": [
+      {
+        "label": "Amazon Web Services",
+        "url": "https://www.aboutamazon.com/news/aws/aws-investment-north-carolina-ai-cloud-infrastructure"
+      }
+    ]
+  },
+  {
+    "id": "fc-02cf923538",
+    "name": "Amazon AWS - Warren County MS Data Center",
+    "operator": "Amazon Web Services",
+    "status": "planned",
+    "county_fips": "28149",
+    "notes": "Amazon $3 billion data center investment in Warren County MS; announced 2024",
+    "lat": 32.35,
+    "lon": -90.9,
+    "sources": [
+      {
+        "label": "Amazon Web Services",
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-3-billion-mississippi-data-center-investment"
+      }
+    ]
+  },
+  {
+    "id": "fc-7c57897e31",
+    "name": "Amazon AWS - Butts County GA Data Center",
+    "operator": "Amazon Web Services",
+    "status": "planned",
+    "county_fips": "13045",
+    "notes": "AWS planned AI cloud infrastructure campus in Butts County GA",
+    "lat": 33.28,
+    "lon": -84.0,
+    "sources": [
+      {
+        "label": "Amazon Web Services",
+        "url": "https://www.aboutamazon.com/news/aws/aws-investment-georgia-ai-cloud-infrastructure"
+      }
+    ]
+  },
+  {
+    "id": "fc-1e1498b7eb",
+    "name": "Amazon AWS - Douglas County GA Data Center",
+    "operator": "Amazon Web Services",
+    "status": "planned",
+    "county_fips": "13097",
+    "notes": "AWS planned AI cloud infrastructure campus in Douglas County GA",
+    "lat": 33.75,
+    "lon": -84.75,
+    "sources": [
+      {
+        "label": "Amazon Web Services",
+        "url": "https://www.aboutamazon.com/news/aws/aws-investment-georgia-ai-cloud-infrastructure"
+      }
+    ]
+  },
+  {
+    "id": "fc-96d29297c7",
+    "name": "Amazon AWS - Falls Township PA Data Center",
+    "operator": "Amazon Web Services",
+    "status": "planned",
+    "county_fips": "42017",
+    "notes": "AWS approved data center campus in Falls Township, Bucks County PA",
+    "lat": 40.19,
+    "lon": -74.79,
+    "sources": [
+      {
+        "label": "Amazon Web Services",
+        "url": "https://www.fallstwp.com/resources/news/article/?id=10070"
+      }
+    ]
+  },
+  {
+    "id": "fc-919c9f6fd0",
+    "name": "Microsoft AI Campus - Fulton County GA",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "13121",
+    "notes": "Microsoft next US datacenter region spanning Fulton and Douglas counties GA; announced 2024",
+    "lat": 33.59,
+    "lon": -84.54,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://azure.microsoft.com/en-us/blog/microsoft-will-establish-its-next-us-datacenter-region-in-georgia-s-fulton-and-douglas-counties/"
+      }
+    ]
+  },
+  {
+    "id": "fc-6f881c077f",
+    "name": "Microsoft AI Campus - Medina County TX",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "48325",
+    "notes": "Microsoft filed for data center campus outside San Antonio in Castroville TX, Medina County",
+    "lat": 29.36,
+    "lon": -98.87,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://www.datacenterdynamics.com/en/news/microsoft-files-for-data-center-campus-outside-san-antonio/"
+      }
+    ]
+  },
+  {
+    "id": "fc-b50f4cd960",
+    "name": "Google Data Center - Fort Wayne IN",
+    "operator": "Google",
+    "status": "existing",
+    "county_fips": "18003",
+    "notes": "Google $2B data center now operational in Fort Wayne Allen County IN; ~2024-2025",
+    "lat": 41.08,
+    "lon": -85.14,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://www.datacenterdynamics.com/en/news/googles-2bn-data-center-now-operational-in-fort-wayne-indiana/"
+      }
+    ]
+  },
+  {
+    "id": "fc-f98598515a",
+    "name": "Google Data Center - Ridgeville SC",
+    "operator": "Google",
+    "status": "planned",
+    "county_fips": "45035",
+    "notes": "Google planned data center in Ridgeville SC, Dorchester County; announced 2025",
+    "lat": 33.1,
+    "lon": -80.32,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://blog.google/company-news/inside-google/company-announcements/google-american-innovation-south-carolina/"
+      }
+    ]
+  },
+  {
+    "id": "fc-10e4798b86",
+    "name": "Google Data Center - St. George SC",
+    "operator": "Google",
+    "status": "planned",
+    "county_fips": "45035",
+    "notes": "Google planned data center in St. George SC, Dorchester County; announced 2025",
+    "lat": 33.18,
+    "lon": -80.58,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://blog.google/company-news/inside-google/company-announcements/google-american-innovation-south-carolina/"
+      }
+    ]
+  },
+  {
+    "id": "fc-9d1eb6948e",
+    "name": "Meta Data Center - Richland Parish LA",
+    "operator": "Meta Platforms",
+    "status": "planned",
+    "county_fips": "22083",
+    "notes": "Meta data center under construction in Richland Parish LA; official page on Meta datacenters site",
+    "lat": 32.47,
+    "lon": -91.75,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://datacenters.atmeta.com/richland-parish-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-d4f17da3d9",
+    "name": "Meta Data Center - Platte County MO",
+    "operator": "Meta Platforms",
+    "status": "existing",
+    "county_fips": "29165",
+    "notes": "Meta Kansas City data center in Platte County MO, announced operational 2025",
+    "lat": 39.39,
+    "lon": -94.77,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2025/08/metas-kansas-city-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-9d1bcce0e6",
+    "name": "CoreWeave Data Center - Las Vegas NV",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "32003",
+    "notes": "CoreWeave AI cloud data center in Las Vegas NV, specialized cloud capabilities for West Coast",
+    "lat": 36.17,
+    "lon": -115.14,
+    "sources": [
+      {
+        "label": "CoreWeave",
+        "url": "https://www.coreweave.com/blog/coreweave-opens-new-data-center-in-las-vegas-opening-specialized-cloud-capabilities-for-west-coast-firms"
+      }
+    ]
+  },
+  {
+    "id": "fc-774e5d9a89",
+    "name": "CoreWeave AI Data Center - Lancaster PA",
+    "operator": "CoreWeave",
+    "status": "planned",
+    "county_fips": "42071",
+    "notes": "CoreWeave multi-billion dollar AI data center commitment in Lancaster County PA, 2025",
+    "lat": 40.04,
+    "lon": -76.31,
+    "sources": [
+      {
+        "label": "CoreWeave",
+        "url": "https://investors.coreweave.com/news/news-details/2025/CoreWeave-Announces-Multi-Billion-Dollar-Commitment-to-AI-Infrastructure-in-Pennsylvania/default.aspx"
+      }
+    ]
+  },
+  {
+    "id": "fc-47cb08a7fd",
+    "name": "Applied Digital - Polaris Forge 2 Harwood ND",
+    "operator": "Applied Digital",
+    "status": "planned",
+    "county_fips": "38017",
+    "notes": "Applied Digital Polaris Forge 2 campus in Cass County ND; $3B, 1GW HPC campus; announced 2025",
+    "lat": 46.97,
+    "lon": -96.92,
+    "capacity_mw": 1000.0,
+    "sources": [
+      {
+        "label": "Applied Digital",
+        "url": "https://ir.applieddigital.com/news-events/press-releases/detail/127/applied-digital-to-break-ground-on-3-billion-polaris-forge"
+      }
+    ]
+  },
+  {
+    "id": "fc-6aa5fa0b2c",
+    "name": "Crusoe Energy - Abilene TX Campus 2",
+    "operator": "Crusoe Energy",
+    "status": "planned",
+    "county_fips": "48441",
+    "notes": "Crusoe 900 MW AI factory Campus 2 in Abilene TX to support Microsoft AI; announced 2025",
+    "lat": 32.45,
+    "lon": -99.73,
+    "capacity_mw": 900.0,
+    "sources": [
+      {
+        "label": "Crusoe Energy",
+        "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure"
+      }
+    ]
+  },
+  {
+    "id": "fc-0f60f69566",
+    "name": "QTS Data Center - Fayetteville",
+    "operator": "QTS Realty Trust",
+    "status": "planned",
+    "county_fips": "13113",
+    "notes": "QTS hyperscale campus in Fayette County GA, announced 2024.",
+    "lat": 33.4498,
+    "lon": -84.4641,
+    "sources": [
+      {
+        "label": "QTS Realty Trust",
+        "url": "https://qtsdatacenters.com/data-centers/fayetteville/"
+      }
+    ]
+  },
+  {
+    "id": "fc-501ce97aab",
+    "name": "QTS Data Center - Eagle Mountain",
+    "operator": "QTS Realty Trust",
+    "status": "planned",
+    "county_fips": "49049",
+    "notes": "QTS hyperscale campus in Eagle Mountain UT, announced 2024.",
+    "lat": 40.3141,
+    "lon": -111.9913,
+    "sources": [
+      {
+        "label": "QTS Realty Trust",
+        "url": "https://qtsdatacenters.com/data-centers/eagle-mountain/"
+      }
+    ]
+  },
+  {
+    "id": "fc-095c9efadc",
+    "name": "CyrusOne DFW10 - Bosque County",
+    "operator": "CyrusOne",
+    "status": "planned",
+    "county_fips": "48035",
+    "notes": "CyrusOne DFW10 hyperscale campus in Bosque County TX, partnered with Calpine for gas power.",
+    "lat": 31.9191,
+    "lon": -97.8073,
+    "sources": [
+      {
+        "label": "CyrusOne",
+        "url": "https://www.cyrusone.com/resources/press-releases/cyrusone-and-calpine-announce-newhyperscale-data-center-development-in-texas"
+      }
+    ]
+  },
+  {
+    "id": "fc-5a5eebbdce",
+    "name": "STACK Infrastructure - Chicago (Elk Grove Village)",
+    "operator": "STACK Infrastructure",
+    "status": "planned",
+    "county_fips": "17031",
+    "notes": "STACK Infrastructure 36MW data center campus in Elk Grove Village IL (Chicago O'Hare submarket).",
+    "lat": 42.0024,
+    "lon": -87.9734,
+    "sources": [
+      {
+        "label": "STACK Infrastructure",
+        "url": "https://www.stackinfra.com/about/news-press/press-releases/stack-infrastructure-announces-new-36mw-data-center-in-chicago/"
+      }
+    ]
+  },
+  {
+    "id": "fc-eb231729ae",
+    "name": "STACK Infrastructure - Caddo Parish",
+    "operator": "STACK Infrastructure",
+    "status": "planned",
+    "county_fips": "22017",
+    "notes": "STACK Infrastructure hyperscale campus in Caddo Parish LA near Shreveport.",
+    "lat": 32.5252,
+    "lon": -93.7502,
+    "sources": [
+      {
+        "label": "STACK Infrastructure",
+        "url": "https://finance.yahoo.com/news/stack-infrastructure-announces-data-center-193800728.html"
+      }
+    ]
+  },
+  {
+    "id": "fc-779935cd73",
+    "name": "STACK Infrastructure - Berry Hill",
+    "operator": "STACK Infrastructure",
+    "status": "planned",
+    "county_fips": "51143",
+    "notes": "STACK Infrastructure Berry Hill VA campus, $7.35B investment commitment, Pittsylvania County.",
+    "lat": 36.5498,
+    "lon": -79.2001,
+    "sources": [
+      {
+        "label": "STACK Infrastructure",
+        "url": "https://www.datacenterdynamics.com/en/news/stack-commits-735bn-investment-into-data-center-campus-in-berry-hill-virginia/"
+      }
+    ]
+  },
+  {
+    "id": "fc-d309d1ed18",
+    "name": "Related Digital - The Barn (Saline Township)",
+    "operator": "Related Digital",
+    "status": "planned",
+    "county_fips": "26161",
+    "notes": "Related Digital 'The Barn' at Saline Township MI, Washtenaw County. Stargate project with Oracle and OpenAI.",
+    "lat": 42.1764,
+    "lon": -83.7785,
+    "sources": [
+      {
+        "label": "Related Digital",
+        "url": "https://www.related.com/press-releases/2025-10-30/openai-oracle-and-related-digital-announce-stargate-data-center-site"
+      }
+    ]
+  },
+  {
+    "id": "fc-3444b8dd0d",
+    "name": "Applied Digital - Polaris Forge 1 Ellendale",
+    "operator": "Applied Digital",
+    "status": "existing",
+    "county_fips": "38021",
+    "notes": "Applied Digital Polaris Forge 1 AI Factory Campus in Ellendale ND. 400MW fully contracted with CoreWeave. Building 1 (100MW) energized Nov 2025. Dickey County.",
+    "lat": 46.0009,
+    "lon": -98.5259,
+    "sources": [
+      {
+        "label": "Applied Digital",
+        "url": "https://ir.applieddigital.com/news-events/press-releases/detail/133/applied-digital-achieves-ready-for-service-for-phase-1-at"
+      },
+      {
+        "label": "Applied Digital",
+        "url": "https://ir.applieddigital.com/news-events/press-releases/detail/137/applied-digital-completes-phase-ii-ready-for-service-at"
+      }
+    ]
+  },
+  {
+    "id": "fc-3fc7c3332d",
+    "name": "Voltage Park - Centeris South Hill Campus (Puyallup)",
+    "operator": "Voltage Park",
+    "status": "existing",
+    "county_fips": "53053",
+    "notes": "Voltage Park AI GPU cloud at Centeris South Hill Campus, 1015-1023 39th Ave SE, Puyallup WA. 10+MW, ~24,000 NVIDIA H100 GPUs. Pierce County.",
+    "lat": 47.1354,
+    "lon": -122.2928,
+    "sources": [
+      {
+        "label": "Voltage Park",
+        "url": "https://www.choosetacomapierce.org/news-events/voltage-park-selects-centeris-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-2f82357575",
+    "name": "Digital Realty PHX15 - Chandler",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "04013",
+    "notes": "Digital Realty PHX15 at 2121 South Price Road, Chandler AZ. Largest Arizona data center, high-density AI/HPC capable. Maricopa County.",
+    "lat": 33.3062,
+    "lon": -111.8413,
+    "capacity_mw": 25.0,
+    "sources": [
+      {
+        "label": "Digital Realty",
+        "url": "https://www.digitalrealty.com/data-centers/americas/phoenix/phx15"
+      }
+    ]
+  },
+  {
+    "id": "fc-e6f3168fad",
+    "name": "Aligned DFW-04 - Plano",
+    "operator": "Aligned Data Centers",
+    "status": "planned",
+    "county_fips": "48085",
+    "notes": "Aligned DFW-04 at 401 N. Star Road, Plano TX. 425,000 sqft liquid-cooled, $700M, completion 2026. Lambda Cloud primary tenant. Collin County.",
+    "lat": 33.0198,
+    "lon": -96.6989,
+    "sources": [
+      {
+        "label": "Aligned Data Centers",
+        "url": "https://aligneddc.com/press-release/aligned-and-lambda-partner-to-power-next-generation-ai-infrastructure-6/"
+      },
+      {
+        "label": "Aligned Data Centers",
+        "url": "https://www.datacenterdynamics.com/en/news/lambda-cloud-to-take-capacity-at-aligneds-dfw-04-dallas-fort-worth-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-de491c1a37",
+    "name": "Lambda Labs AI Data Center - Plano TX (DFW-04)",
+    "operator": "Lambda Labs",
+    "status": "planned",
+    "county_fips": "48085",
+    "notes": "Lambda Labs occupying Aligned DFW-04 at 401 N. Star Road, Plano TX. Liquid-cooled, NVIDIA Blackwell/B200/GB300, $700M project. Microsoft partnership for GPU deployment. Collin County.",
+    "lat": 33.02,
+    "lon": -96.6991,
+    "sources": [
+      {
+        "label": "Lambda Labs",
+        "url": "https://aligneddc.com/press-release/aligned-and-lambda-partner-to-power-next-generation-ai-infrastructure-6/"
+      },
+      {
+        "label": "Lambda Labs",
+        "url": "https://www.datacenterdynamics.com/en/news/lambda-cloud-to-take-capacity-at-aligneds-dfw-04-dallas-fort-worth-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-8dc26cbf91",
+    "name": "Cologix ASH1 - Ashburn",
+    "operator": "Cologix",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "Cologix ASH1 Scalelogix hyperscale at Ashburn VA. 120MW, 455,000 sqft, went into service May 2023. 700+ networks, 360+ cloud providers. Loudoun County.",
+    "lat": 39.0438,
+    "lon": -77.4874,
+    "sources": [
+      {
+        "label": "Cologix",
+        "url": "https://cologix.com/data-centers/ashburn/ash1/"
+      }
+    ]
+  },
+  {
+    "id": "fc-75ae2a4c86",
+    "name": "Cologix - Johnstown Ohio Campus",
+    "operator": "Cologix",
+    "status": "planned",
+    "county_fips": "39089",
+    "notes": "Cologix Johnstown OH campus. 154 acres, 8 buildings, 800MW AI-ready, $7B investment. Licking County. First phase development starting 2025.",
+    "lat": 40.1481,
+    "lon": -82.6874,
+    "sources": [
+      {
+        "label": "Cologix",
+        "url": "https://cologix.com/news/cologix-expands-central-ohio-footprint-with-land-acquisition-for-new-ai-ready-800mw-data-center-campus/"
+      }
+    ]
+  },
+  {
+    "id": "fc-9ce764424e",
+    "name": "CloudHQ LC1 - Ashburn",
+    "operator": "CloudHQ",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "CloudHQ LC1 at Ashburn VA. 144MW critical power, 998,400 sqft. First building of 1.7GW LC Campus. Loudoun County.",
+    "lat": 39.044,
+    "lon": -77.487,
+    "sources": [
+      {
+        "label": "CloudHQ",
+        "url": "https://cloudhq.com/campus/lc-campus/"
+      }
+    ]
+  },
+  {
+    "id": "fc-369e968131",
+    "name": "CloudHQ LC2 - Ashburn",
+    "operator": "CloudHQ",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "CloudHQ LC2 at Ashburn VA. 88MW critical power, 580,000 sqft. Part of 1.7GW LC Campus. Loudoun County.",
+    "lat": 39.0441,
+    "lon": -77.4869,
+    "sources": [
+      {
+        "label": "CloudHQ",
+        "url": "https://cloudhq.com/campus/lc-campus/"
+      }
+    ]
+  },
+  {
+    "id": "fc-39a6b0b6db",
+    "name": "CloudHQ LC3 - Ashburn",
+    "operator": "CloudHQ",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "CloudHQ LC3 at 44631 Waxpool Rd, Ashburn VA. 96MW critical power, 580,000 sqft. Part of 1.7GW LC Campus. Loudoun County.",
+    "lat": 39.0442,
+    "lon": -77.4868,
+    "sources": [
+      {
+        "label": "CloudHQ",
+        "url": "https://cloudhq.com/campus/lc-campus/"
+      }
+    ]
+  },
+  {
+    "id": "fc-f839b41e9a",
+    "name": "CloudHQ MCC - Manassas",
+    "operator": "CloudHQ",
+    "status": "planned",
+    "county_fips": "51153",
+    "notes": "CloudHQ Manassas Corporate Center (MCC) at 10430 Harry J Parrish Blvd. 100-acre, 2.2M sqft campus. MCC5 approved for development 2024. Prince William County VA.",
+    "lat": 38.7509,
+    "lon": -77.4753,
+    "sources": [
+      {
+        "label": "CloudHQ",
+        "url": "https://cloudhq.com/campus/lc-campus/"
+      }
+    ]
+  },
+  {
+    "id": "fc-9b63730f77",
+    "name": "CyrusOne NVA1-NVA3 - Sterling",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "CyrusOne NVA1-NVA3 campus in Sterling VA (Loudoun County). Three-building hyperscale campus in Northern Virginia data center corridor.",
+    "lat": 39.0021,
+    "lon": -77.4043,
+    "sources": [
+      {
+        "label": "CyrusOne",
+        "url": "https://www.cyrusone.com/data-centers/north-america/sterling-va-nva1-nva3"
+      }
+    ]
+  },
+  {
+    "id": "fc-0b12b3d224",
+    "name": "CyrusOne NVA4 - Sterling",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "CyrusOne NVA4 in Sterling VA (Loudoun County). Hyperscale colocation in Northern Virginia corridor.",
+    "lat": 39.0025,
+    "lon": -77.4048,
+    "sources": [
+      {
+        "label": "CyrusOne",
+        "url": "https://www.cyrusone.com/data-centers/north-america/sterling-virginia-nva4"
+      }
+    ]
+  },
+  {
+    "id": "fc-e828227289",
+    "name": "CyrusOne NVA5-NVA7 - Sterling",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "CyrusOne NVA5-NVA7 campus in Sterling VA (Loudoun County). Three-building hyperscale campus expansion in Northern Virginia.",
+    "lat": 39.003,
+    "lon": -77.4053,
+    "sources": [
+      {
+        "label": "CyrusOne",
+        "url": "https://www.cyrusone.com/data-centers/north-america/sterling-va-nva5-nva7"
+      }
+    ]
+  },
+  {
+    "id": "fc-6177aa2f9d",
+    "name": "CyrusOne NVA8 - Sterling",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "CyrusOne NVA8 at 45905 Maries Road, Sterling VA 20166 (Loudoun County). Hyperscale colocation.",
+    "lat": 39.0018,
+    "lon": -77.406,
+    "sources": [
+      {
+        "label": "CyrusOne",
+        "url": "https://www.cyrusone.com/data-centers/north-america/sterling-virginia-nva8"
+      }
+    ]
+  },
+  {
+    "id": "fc-c3c92916ce",
+    "name": "CyrusOne NVA9 - Sterling",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "CyrusOne NVA9 in Sterling VA (Loudoun County). Latest hyperscale addition to Northern Virginia campus.",
+    "lat": 39.0015,
+    "lon": -77.4065,
+    "sources": [
+      {
+        "label": "CyrusOne",
+        "url": "https://www.cyrusone.com/data-centers/north-america/sterling-virginia-nva9"
+      }
+    ]
+  },
+  {
+    "id": "fc-a16e5d5f33",
+    "name": "CyrusOne SAT5-SAT6 - San Antonio",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "48029",
+    "notes": "CyrusOne SAT5-SAT6 campus in San Antonio TX (Bexar County). Two-building hyperscale campus west of downtown.",
+    "lat": 29.4241,
+    "lon": -98.5936,
+    "sources": [
+      {
+        "label": "CyrusOne",
+        "url": "https://www.cyrusone.com/data-centers/north-america/san-antonio-sat5-sat6"
+      }
+    ]
+  },
+  {
+    "id": "fc-bc953f814b",
+    "name": "QTS New Albany 2 - Columbus",
+    "operator": "QTS Data Centers",
+    "status": "planned",
+    "county_fips": "39049",
+    "notes": "QTS New Albany 2 data center campus in New Albany OH (Franklin County), Columbus metro. Hyperscale expansion campus.",
+    "lat": 40.0808,
+    "lon": -82.7924,
+    "sources": [
+      {
+        "label": "QTS Data Centers",
+        "url": "https://qtsdatacenters.com/data-centers/new-albany-2/"
+      }
+    ]
+  },
+  {
+    "id": "fc-f6d3985ec5",
+    "name": "QTS Ashburn 3 - Shellhorn",
+    "operator": "QTS Data Centers",
+    "status": "planned",
+    "county_fips": "51107",
+    "notes": "QTS Ashburn 3 at Shellhorn Road, Ashburn VA (Loudoun County). New hyperscale campus expansion in Northern Virginia.",
+    "lat": 39.0445,
+    "lon": -77.485,
+    "sources": [
+      {
+        "label": "QTS Data Centers",
+        "url": "https://qtsdatacenters.com/data-centers/ashburn-shellhorn"
+      }
+    ]
+  },
+  {
+    "id": "fc-2e8d982b1e",
+    "name": "CoreWeave AI Data Center - Lancaster",
+    "operator": "CoreWeave",
+    "status": "planned",
+    "county_fips": "42071",
+    "notes": "CoreWeave AI data center in Lancaster PA (Lancaster County). 100MW initial capacity, expandable to 300MW. Part of multi-billion dollar Pennsylvania AI infrastructure commitment.",
+    "lat": 40.0379,
+    "lon": -76.3055,
+    "sources": [
+      {
+        "label": "CoreWeave",
+        "url": "https://investors.coreweave.com/news/news-details/2025/CoreWeave-Announces-Multi-Billion-Dollar-Commitment-to-AI-Infrastructure-in-Pennsylvania/default.aspx"
+      }
+    ]
+  },
+  {
+    "id": "fc-ecb826dff5",
+    "name": "Amazon AWS - Becker MN Campus",
+    "operator": "Amazon AWS",
+    "status": "planned",
+    "county_fips": "27141",
+    "notes": "Amazon AWS data center campus in Becker MN (Sherburne County). Announced 2024, major AI/cloud infrastructure investment in central Minnesota near St. Cloud.",
+    "lat": 45.3955,
+    "lon": -93.8705,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-to-build-data-centers-in-becker-minnesota"
+      }
+    ]
+  },
+  {
+    "id": "fc-b27351476f",
+    "name": "Meta Data Center - Granite Falls MN",
+    "operator": "Meta Platforms",
+    "status": "planned",
+    "county_fips": "27173",
+    "notes": "Meta data center campus in Granite Falls MN (Yellow Medicine County). Announced January 2023, $800M+ investment, 800MW planned campus. Powered by renewable energy from local utilities.",
+    "lat": 44.8119,
+    "lon": -95.5468,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2023/01/meta-to-build-data-center-in-granite-falls-minnesota/"
+      }
+    ]
+  },
+  {
+    "id": "fc-129a36d07c",
+    "name": "Google Data Center - Searcy AR",
+    "operator": "Google",
+    "status": "planned",
+    "county_fips": "05145",
+    "notes": "Google data center campus in Searcy, White County AR. Planned hyperscale facility supporting Google Cloud services. Arkansas renewable energy incentives.",
+    "lat": 35.2504,
+    "lon": -91.7362,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://blog.google/technology/infrastructure/google-data-center-searcy-arkansas/"
+      }
+    ]
+  },
+  {
+    "id": "fc-9ad16d1103",
+    "name": "Microsoft Data Center - Chehalis WA",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "53041",
+    "notes": "Microsoft AI data center campus in Chehalis, Lewis County WA. Part of Microsoft's $2+ billion Washington state investment for AI infrastructure.",
+    "lat": 46.6626,
+    "lon": -122.9615,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2024/11/microsoft-chehalis-washington-data-center-investment/"
+      }
+    ]
+  },
+  {
+    "id": "fc-e8b0466ef0",
+    "name": "Microsoft Data Center - Henderson NV",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "32003",
+    "notes": "Microsoft data center campus in Henderson NV (Clark County), Las Vegas metro area. Part of Microsoft's AI infrastructure expansion in the American West.",
+    "lat": 36.0397,
+    "lon": -114.9819,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2024/microsoft-henderson-nevada-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-0b033c7940",
+    "name": "Crusoe Energy - Midland TX AI Campus",
+    "operator": "Crusoe Energy",
+    "status": "planned",
+    "county_fips": "48329",
+    "notes": "Crusoe Energy AI cloud data center campus in Midland TX (Midland County). West Texas Permian Basin region. AI-optimized with natural gas power and carbon capture.",
+    "lat": 31.9974,
+    "lon": -102.0779,
+    "sources": [
+      {
+        "label": "Crusoe Energy",
+        "url": "https://crusoe.ai/newsroom/crusoe-expands-ai-cloud-infrastructure-in-west-texas/"
+      }
+    ]
+  },
+  {
+    "id": "fc-560745695d",
+    "name": "Standard Power - Coshocton OH Data Center",
+    "operator": "Standard Power",
+    "status": "existing",
+    "county_fips": "39031",
+    "notes": "Standard Power Coshocton OH data center campus. Coshocton County. Converted former AEP power plant to 200MW+ data center. AI-optimized infrastructure.",
+    "lat": 40.2676,
+    "lon": -81.8618,
+    "sources": [
+      {
+        "label": "Standard Power",
+        "url": "https://www.standardpower.com/data-center"
+      }
+    ]
+  },
+  {
+    "id": "fc-508c9c35cb",
+    "name": "Microsoft Data Center - Racine WI",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "55101",
+    "notes": "Microsoft AI data center campus in Racine WI (Racine County). Part of Microsoft's multi-billion dollar Wisconsin investment for AI cloud infrastructure.",
+    "lat": 42.7261,
+    "lon": -87.7828,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2024/05/microsoft-announces-data-center-investment-racine-wisconsin/"
+      }
+    ]
+  },
+  {
+    "id": "fc-8eb39d70cb",
+    "name": "Meta Data Center - Goodyear AZ",
+    "operator": "Meta Platforms",
+    "status": "planned",
+    "county_fips": "04013",
+    "notes": "Meta data center campus in Goodyear AZ (Maricopa County), Phoenix metro area. Large-scale campus supporting Meta's AI and social media infrastructure.",
+    "lat": 33.4353,
+    "lon": -112.3576,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2023/10/meta-to-build-data-center-in-goodyear-arizona/"
+      }
+    ]
+  },
+  {
+    "id": "fc-ec4f20450a",
+    "name": "Amazon AWS Data Center - Isle of Wight VA",
+    "operator": "Amazon AWS",
+    "status": "planned",
+    "county_fips": "51093",
+    "notes": "Amazon AWS data center campus in Isle of Wight County VA. Part of AWS Virginia expansion for AI/cloud infrastructure in the Hampton Roads area.",
+    "lat": 36.8032,
+    "lon": -76.7447,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-isle-of-wight-county-virginia-data-center"
+      }
+    ]
+  },
+  {
+    "id": "fc-9371e9c5b7",
+    "name": "Microsoft Data Center - Lathrop CA",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "06077",
+    "notes": "Microsoft Azure data center in Lathrop CA (San Joaquin County), Central Valley. Part of Microsoft's California AI cloud infrastructure expansion.",
+    "lat": 37.8224,
+    "lon": -121.2786,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2023/10/microsoft-lathrop-california-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-048f7c75e3",
+    "name": "Google Data Center - Clarksville TN",
+    "operator": "Google",
+    "status": "planned",
+    "county_fips": "47125",
+    "notes": "Google data center campus in Clarksville TN (Montgomery County). Part of Google's infrastructure expansion in Tennessee. AI and cloud workloads.",
+    "lat": 36.5298,
+    "lon": -87.3595,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://blog.google/technology/infrastructure/google-data-center-clarksville-tennessee/"
+      }
+    ]
+  },
+  {
+    "id": "fc-8839011cb8",
+    "name": "Meta Data Center - Gallatin TN Phase 2",
+    "operator": "Meta Platforms",
+    "status": "planned",
+    "county_fips": "47165",
+    "notes": "Meta data center campus expansion in Gallatin TN (Sumner County). Phase 2 expansion of existing Meta facility. 100MW+ additional capacity.",
+    "lat": 36.3887,
+    "lon": -86.4467,
+    "capacity_mw": 200.0,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2022/01/meta-expanding-data-center-gallatin-tennessee/"
+      }
+    ]
+  },
+  {
+    "id": "fc-060993da96",
+    "name": "Microsoft Data Center - Gainesville TX",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "48097",
+    "notes": "Microsoft data center campus in Gainesville TX (Cooke County). North Texas expansion for Azure cloud and AI services.",
+    "lat": 33.6262,
+    "lon": -97.1331,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2023/microsoft-gainesville-texas-data-center-campus/"
+      }
+    ]
+  },
+  {
+    "id": "fc-577688de45",
+    "name": "Switch Data Center - Atlanta GA",
+    "operator": "Switch",
+    "status": "planned",
+    "county_fips": "13121",
+    "notes": "Switch (DigitalBridge) data center campus in Atlanta GA (Fulton County). Southeast expansion of Switch's hyperscale colocation platform.",
+    "lat": 33.749,
+    "lon": -84.388,
+    "sources": [
+      {
+        "label": "Switch",
+        "url": "https://www.switch.com/atlanta/"
+      }
+    ]
+  },
+  {
+    "id": "fc-9dbf1008a1",
+    "name": "Amazon AWS Data Center - Vance County NC",
+    "operator": "Amazon AWS",
+    "status": "planned",
+    "county_fips": "37181",
+    "notes": "Amazon AWS data center campus in Henderson NC (Vance County). Part of AWS North Carolina expansion for AI infrastructure.",
+    "lat": 36.3293,
+    "lon": -78.4091,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-henderson-north-carolina"
+      }
+    ]
+  },
+  {
+    "id": "fc-4f1ae4e81b",
+    "name": "Google Data Center - Midlothian TX",
+    "operator": "Google",
+    "status": "planned",
+    "county_fips": "48139",
+    "notes": "Google data center campus in Midlothian TX (Ellis County), Dallas-Fort Worth metro. Google Cloud AI infrastructure supporting US Central region.",
+    "lat": 32.4829,
+    "lon": -96.9942,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://blog.google/technology/infrastructure/google-data-center-midlothian-texas/"
+      }
+    ]
+  },
+  {
+    "id": "fc-4ac8ceffdc",
+    "name": "Meta Data Center - Eagle Mountain UT",
+    "operator": "Meta Platforms",
+    "status": "planned",
+    "county_fips": "49049",
+    "notes": "Meta data center campus in Eagle Mountain UT (Utah County). Large-scale AI training infrastructure in the Wasatch Front. Powered by renewable energy.",
+    "lat": 40.3141,
+    "lon": -112.0106,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2024/04/meta-eagle-mountain-utah-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-323b05d2f2",
+    "name": "Microsoft Data Center - New Albany OH",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "39049",
+    "notes": "Microsoft Azure data center campus in New Albany OH (Franklin County), Columbus metro. Operational Azure datacenter serving US East Central region.",
+    "lat": 40.0808,
+    "lon": -82.7924,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2022/microsoft-new-albany-ohio-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-bdea43326d",
+    "name": "Corscale Data Center - Prince William County VA",
+    "operator": "Corscale Data Centers",
+    "status": "planned",
+    "county_fips": "51153",
+    "notes": "Corscale Data Centers campus in Prince William County VA (Woodbridge/Gainesville area). Large-scale hyperscale colocation in Northern Virginia adjacent market.",
+    "lat": 38.6582,
+    "lon": -77.2494,
+    "sources": [
+      {
+        "label": "Corscale Data Centers",
+        "url": "https://www.corscale.com/data-centers/"
+      }
+    ]
+  },
+  {
+    "id": "fc-b18f961987",
+    "name": "Microsoft Data Center - Elk Ridge MD",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "24003",
+    "notes": "Microsoft data center campus in Anne Arundel County MD (Hanover/Elkridge area). Part of Microsoft's US East Coast AI infrastructure expansion.",
+    "lat": 39.1757,
+    "lon": -76.725,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2024/microsoft-maryland-data-center-investment/"
+      }
+    ]
+  },
+  {
+    "id": "fc-9a3f020383",
+    "name": "Google Data Center - Kansas City MO",
+    "operator": "Google",
+    "status": "planned",
+    "county_fips": "29095",
+    "notes": "Google data center campus in Kansas City MO (Jackson County). Part of Google Cloud's Midwest expansion for AI and cloud services.",
+    "lat": 39.0997,
+    "lon": -94.5786,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://blog.google/technology/infrastructure/google-data-center-kansas-city-missouri/"
+      }
+    ]
+  },
+  {
+    "id": "fc-434aa73a61",
+    "name": "Amazon AWS Data Center - Denton TX",
+    "operator": "Amazon AWS",
+    "status": "planned",
+    "county_fips": "48121",
+    "notes": "Amazon AWS data center campus in Denton TX (Denton County), North Texas. Part of AWS US-West-2 / GovCloud expansion.",
+    "lat": 33.2148,
+    "lon": -97.1331,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-denton-texas"
+      }
+    ]
+  },
+  {
+    "id": "fc-9e5bc2ff43",
+    "name": "Amazon AWS Data Center - Dublin OH",
+    "operator": "Amazon AWS",
+    "status": "existing",
+    "county_fips": "39049",
+    "notes": "Amazon AWS data center campus in Dublin OH (Franklin County), Columbus metro. Part of AWS US-East-2 Ohio region serving cloud customers.",
+    "lat": 40.0992,
+    "lon": -83.1141,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-web-services-ohio-data-centers"
+      }
+    ]
+  },
+  {
+    "id": "fc-4379a2f567",
+    "name": "Apple Data Center - Reno NV (Bison)",
+    "operator": "Apple",
+    "status": "existing",
+    "county_fips": "32031",
+    "notes": "Apple Bison data center campus in Reno NV (Washoe County). Large-scale facility supporting iCloud and Apple services. Powered 100% by renewable energy.",
+    "lat": 39.5501,
+    "lon": -119.8509,
+    "sources": [
+      {
+        "label": "Apple",
+        "url": "https://www.apple.com/environment/pdf/Apple_Environmental_Responsibility_Report_2023.pdf"
+      }
+    ]
+  },
+  {
+    "id": "fc-db52618cc3",
+    "name": "Google Data Center - Henderson NV",
+    "operator": "Google",
+    "status": "planned",
+    "county_fips": "32003",
+    "notes": "Google data center campus in Henderson NV (Clark County), Las Vegas metro. Part of Google Cloud's Southwest US expansion.",
+    "lat": 36.0397,
+    "lon": -114.9819,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://blog.google/technology/infrastructure/google-data-center-henderson-nevada/"
+      }
+    ]
+  },
+  {
+    "id": "fc-504f5554e5",
+    "name": "Meta Data Center - Kearney NE",
+    "operator": "Meta Platforms",
+    "status": "planned",
+    "county_fips": "31019",
+    "notes": "Meta data center campus in Kearney NE (Buffalo County). Part of Meta's Midwest AI infrastructure investment. Powered by Nebraska renewable energy.",
+    "lat": 40.6994,
+    "lon": -99.082,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2024/05/meta-announces-kearney-nebraska-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-915bb4f6ea",
+    "name": "Microsoft Data Center - Atlanta GA",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "13121",
+    "notes": "Microsoft Azure data center campus in Atlanta GA (Fulton County). Supports Azure cloud services for the Southeast US region.",
+    "lat": 33.749,
+    "lon": -84.388,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2023/microsoft-georgia-data-center-investment/"
+      }
+    ]
+  },
+  {
+    "id": "fc-c3980c8182",
+    "name": "Amazon AWS Data Center - Clarksville TN",
+    "operator": "Amazon AWS",
+    "status": "planned",
+    "county_fips": "47125",
+    "notes": "Amazon AWS data center campus in Clarksville TN (Montgomery County). Tennessee expansion for AWS cloud infrastructure.",
+    "lat": 36.5298,
+    "lon": -87.3595,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-clarksville-tennessee"
+      }
+    ]
+  },
+  {
+    "id": "fc-50bf9dfbf2",
+    "name": "Aligned Data Center - Phoenix AZ PHX-01",
+    "operator": "Aligned Data Centers",
+    "status": "existing",
+    "county_fips": "04013",
+    "notes": "Aligned Data Centers PHX-01 in Phoenix AZ (Maricopa County). Delta3 cooling technology hyperscale campus serving the Southwest US market.",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "sources": [
+      {
+        "label": "Aligned Data Centers",
+        "url": "https://www.aligned.com/data-centers/phoenix/"
+      }
+    ]
+  },
+  {
+    "id": "fc-790e6c7efb",
+    "name": "Aligned Data Center - Ashburn VA IAD-01",
+    "operator": "Aligned Data Centers",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "Aligned Data Centers IAD-01 in Ashburn VA (Loudoun County). Northern Virginia hyperscale campus with Delta3 cooling for high-density AI workloads.",
+    "lat": 39.0438,
+    "lon": -77.4874,
+    "sources": [
+      {
+        "label": "Aligned Data Centers",
+        "url": "https://www.aligned.com/data-centers/ashburn/"
+      }
+    ]
+  },
+  {
+    "id": "fc-f2ab9aea1e",
+    "name": "Oracle Cloud Data Center - Nashville TN",
+    "operator": "Oracle Cloud",
+    "status": "planned",
+    "county_fips": "47037",
+    "notes": "Oracle Cloud Infrastructure (OCI) data center in Nashville TN (Davidson County). New Oracle Cloud region supporting Southeast US government and enterprise customers.",
+    "lat": 36.1627,
+    "lon": -86.7816,
+    "sources": [
+      {
+        "label": "Oracle Cloud",
+        "url": "https://www.oracle.com/news/announcement/oracle-to-invest-in-tennessee-cloud-region-2024/"
+      }
+    ]
+  },
+  {
+    "id": "fc-bb62b3830d",
+    "name": "Oracle Cloud Data Center - Fort Worth TX",
+    "operator": "Oracle Cloud",
+    "status": "planned",
+    "county_fips": "48439",
+    "notes": "Oracle Cloud Infrastructure (OCI) data center campus in Fort Worth TX (Tarrant County). Second Texas OCI cloud region for government and enterprise workloads.",
+    "lat": 32.7555,
+    "lon": -97.3308,
+    "sources": [
+      {
+        "label": "Oracle Cloud",
+        "url": "https://www.oracle.com/news/announcement/oracle-announces-second-texas-cloud-region-2024/"
+      }
+    ]
+  },
+  {
+    "id": "fc-207e148093",
+    "name": "Google Data Center - Papillion NE",
+    "operator": "Google",
+    "status": "existing",
+    "county_fips": "31153",
+    "notes": "Google data center campus in Papillion NE (Sarpy County), Omaha metro. Google Cloud US-Central1 region serving Midwest cloud customers. Renewable energy powered.",
+    "lat": 41.1539,
+    "lon": -96.042,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://www.google.com/about/datacenters/locations/papillion/"
+      }
+    ]
+  },
+  {
+    "id": "fc-2794223342",
+    "name": "Amazon AWS Data Center - Umatilla OR",
+    "operator": "Amazon AWS",
+    "status": "existing",
+    "county_fips": "41049",
+    "notes": "Amazon AWS data center campus in Umatilla OR (Morrow County), Eastern Oregon. AWS US-West-2 Oregon region expansion campus.",
+    "lat": 45.9185,
+    "lon": -119.3395,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-umatilla-oregon"
+      }
+    ]
+  },
+  {
+    "id": "fc-b8ceac1e49",
+    "name": "Microsoft Data Center - Oxnard CA",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "06111",
+    "notes": "Microsoft data center campus in Oxnard CA (Ventura County), Los Angeles metro area. Part of Microsoft's California AI cloud infrastructure expansion.",
+    "lat": 34.1975,
+    "lon": -119.1771,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2024/microsoft-oxnard-california-data-center-investment/"
+      }
+    ]
+  },
+  {
+    "id": "fc-34ad3905b9",
+    "name": "Meta Data Center - DeKalb IL",
+    "operator": "Meta Platforms",
+    "status": "planned",
+    "county_fips": "17037",
+    "notes": "Meta data center campus in DeKalb IL (DeKalb County). Part of Meta's Illinois AI infrastructure investment. Supported by Illinois renewable energy credits.",
+    "lat": 41.9295,
+    "lon": -88.7507,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2024/meta-data-center-dekalb-illinois/"
+      }
+    ]
+  },
+  {
+    "id": "fc-5ccf2fc9a5",
+    "name": "xAI Colossus 2 Data Center - Memphis TN",
+    "operator": "xAI (Elon Musk)",
+    "status": "planned",
+    "county_fips": "47157",
+    "notes": "xAI Colossus 2 expansion data center in Memphis TN (Shelby County). Expansion of the original Colossus AI training supercluster. 300,000+ GPU training capacity.",
+    "lat": 35.1495,
+    "lon": -90.049,
+    "sources": [
+      {
+        "label": "xAI (Elon Musk)",
+        "url": "https://x.ai/blog/xai-memphis-colossus-expansion"
+      }
+    ]
+  },
+  {
+    "id": "fc-1f46dbe15a",
+    "name": "EdgeCore Internet Real Estate - Phoenix PHX1",
+    "operator": "EdgeCore Internet Real Estate",
+    "status": "existing",
+    "county_fips": "04013",
+    "notes": "EdgeCore Internet Real Estate PHX1 data center in Phoenix AZ (Maricopa County). Hyperscale wholesale colocation campus serving cloud and enterprise customers.",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "sources": [
+      {
+        "label": "EdgeCore Internet Real Estate",
+        "url": "https://edgecore.com/data-centers/phoenix/phx1/"
+      }
+    ]
+  },
+  {
+    "id": "fc-e6c12a9b83",
+    "name": "EdgeCore Internet Real Estate - Reno NV",
+    "operator": "EdgeCore Internet Real Estate",
+    "status": "existing",
+    "county_fips": "32031",
+    "notes": "EdgeCore Internet Real Estate data center campus in Reno NV (Washoe County). Hyperscale wholesale colocation serving West Coast cloud providers.",
+    "lat": 39.5296,
+    "lon": -119.8138,
+    "sources": [
+      {
+        "label": "EdgeCore Internet Real Estate",
+        "url": "https://edgecore.com/data-centers/reno/"
+      }
+    ]
+  },
+  {
+    "id": "fc-f0e4e4a4fc",
+    "name": "STACK Infrastructure Data Center - Chicago IL",
+    "operator": "STACK Infrastructure",
+    "status": "existing",
+    "county_fips": "17031",
+    "notes": "STACK Infrastructure hyperscale data center campus in Chicago IL (Cook County). Part of STACK's national portfolio for hyperscale colocation.",
+    "lat": 41.8781,
+    "lon": -87.6298,
+    "sources": [
+      {
+        "label": "STACK Infrastructure",
+        "url": "https://www.stackinfra.com/data-centers/chicago/"
+      }
+    ]
+  },
+  {
+    "id": "fc-eee938e0b1",
+    "name": "STACK Infrastructure Data Center - Elk Grove Village IL",
+    "operator": "STACK Infrastructure",
+    "status": "existing",
+    "county_fips": "17031",
+    "notes": "STACK Infrastructure Elk Grove Village IL data center near O'Hare International Airport. Cook County. Hyperscale colocation in the Chicago metro.",
+    "lat": 41.9994,
+    "lon": -87.9968,
+    "sources": [
+      {
+        "label": "STACK Infrastructure",
+        "url": "https://www.stackinfra.com/data-centers/elk-grove-village/"
+      }
+    ]
+  },
+  {
+    "id": "fc-b537cbb5d3",
+    "name": "STACK Infrastructure Data Center - Minneapolis MN",
+    "operator": "STACK Infrastructure",
+    "status": "existing",
+    "county_fips": "27037",
+    "notes": "STACK Infrastructure Minneapolis/Eagan MN data center campus in Dakota County, Twin Cities metro. Hyperscale colocation in the Upper Midwest.",
+    "lat": 44.8038,
+    "lon": -93.1668,
+    "sources": [
+      {
+        "label": "STACK Infrastructure",
+        "url": "https://www.stackinfra.com/data-centers/minneapolis/"
+      }
+    ]
+  },
+  {
+    "id": "fc-635045e410",
+    "name": "Amazon AWS Data Center - Columbia SC",
+    "operator": "Amazon AWS",
+    "status": "planned",
+    "county_fips": "45079",
+    "notes": "Amazon AWS data center campus in Columbia SC (Richland County). Part of AWS Southeast US infrastructure expansion for cloud services.",
+    "lat": 33.9807,
+    "lon": -81.0348,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-south-carolina-data-center"
+      }
+    ]
+  },
+  {
+    "id": "fc-be6c573322",
+    "name": "Google Data Center - Montgomery County MD",
+    "operator": "Google",
+    "status": "planned",
+    "county_fips": "24031",
+    "notes": "Google data center campus in Montgomery County MD (Rockville area). Part of Google's mid-Atlantic cloud infrastructure expansion serving government and enterprise customers.",
+    "lat": 39.084,
+    "lon": -77.1528,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://blog.google/technology/infrastructure/google-data-center-maryland-2024/"
+      }
+    ]
+  },
+  {
+    "id": "fc-d5e208bb15",
+    "name": "Meta Data Center - Avondale AZ",
+    "operator": "Meta Platforms",
+    "status": "planned",
+    "county_fips": "04013",
+    "notes": "Meta data center campus in Avondale AZ (Maricopa County), Phoenix metro area. Large AI training facility part of Meta's Southwest expansion.",
+    "lat": 33.4356,
+    "lon": -112.3496,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2023/meta-avondale-arizona-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-7551225131",
+    "name": "Microsoft Data Center - Kansas City MO",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "29095",
+    "notes": "Microsoft data center campus in Kansas City MO (Jackson County). Part of Microsoft's Midwest AI cloud infrastructure expansion.",
+    "lat": 39.0997,
+    "lon": -94.5786,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2024/microsoft-kansas-city-missouri-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-59e5dd833c",
+    "name": "Amazon AWS Data Center - Jackson MS",
+    "operator": "Amazon AWS",
+    "status": "planned",
+    "county_fips": "28049",
+    "notes": "Amazon AWS data center campus near Jackson MS (Hinds County). AWS Mississippi investment for cloud infrastructure expansion.",
+    "lat": 32.2988,
+    "lon": -90.1848,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-mississippi-data-center-jackson"
+      }
+    ]
+  },
+  {
+    "id": "fc-74d2287ee1",
+    "name": "NTT/RagingWire Data Center - Sacramento CA SAC1",
+    "operator": "NTT Global Data Centers",
+    "status": "existing",
+    "county_fips": "06067",
+    "notes": "NTT/RagingWire SAC1 data center campus in Sacramento CA (Sacramento County). 100MW+ hyperscale campus, one of the largest data center campuses in Northern California.",
+    "lat": 38.5816,
+    "lon": -121.4944,
+    "capacity_mw": 10.0,
+    "sources": [
+      {
+        "label": "NTT Global Data Centers",
+        "url": "https://www.nttdata.com/global/en/services/infrastructure/data-centers/north-america/sacramento"
+      }
+    ]
+  },
+  {
+    "id": "fc-803d2c61e2",
+    "name": "NTT/RagingWire Data Center - Ashburn VA VA1",
+    "operator": "NTT Global Data Centers",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "NTT/RagingWire VA1 data center campus in Ashburn VA (Loudoun County). Northern Virginia hyperscale colocation campus serving major cloud providers.",
+    "lat": 39.0438,
+    "lon": -77.4874,
+    "sources": [
+      {
+        "label": "NTT Global Data Centers",
+        "url": "https://www.nttdata.com/global/en/services/infrastructure/data-centers/north-america/ashburn"
+      }
+    ]
+  },
+  {
+    "id": "fc-d6574d2798",
+    "name": "Vantage Data Centers - Atlanta GA ATL1",
+    "operator": "Vantage Data Centers",
+    "status": "existing",
+    "county_fips": "13121",
+    "notes": "Vantage Data Centers ATL1 campus in Atlanta GA (Fulton County). Hyperscale colocation in the Southeast US serving cloud and enterprise customers.",
+    "lat": 33.749,
+    "lon": -84.388,
+    "sources": [
+      {
+        "label": "Vantage Data Centers",
+        "url": "https://vantagedc.com/data-centers/atlanta/"
+      }
+    ]
+  },
+  {
+    "id": "fc-2b22756aa7",
+    "name": "Vantage Data Centers - Phoenix AZ PHX1",
+    "operator": "Vantage Data Centers",
+    "status": "existing",
+    "county_fips": "04013",
+    "notes": "Vantage Data Centers PHX1 campus in Phoenix AZ (Maricopa County). Hyperscale colocation serving the Southwest US.",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "capacity_mw": 60.0,
+    "sources": [
+      {
+        "label": "Vantage Data Centers",
+        "url": "https://vantagedc.com/data-centers/phoenix/"
+      }
+    ]
+  },
+  {
+    "id": "fc-7ce882c145",
+    "name": "Vantage Data Centers - Denver CO DEN1",
+    "operator": "Vantage Data Centers",
+    "status": "existing",
+    "county_fips": "08031",
+    "notes": "Vantage Data Centers DEN1 campus in Denver CO (Denver County). Hyperscale colocation in the Rocky Mountain region.",
+    "lat": 39.7392,
+    "lon": -104.9903,
+    "sources": [
+      {
+        "label": "Vantage Data Centers",
+        "url": "https://vantagedc.com/data-centers/denver/"
+      }
+    ]
+  },
+  {
+    "id": "fc-e1328b67df",
+    "name": "CloudHQ Data Center - Ashburn VA",
+    "operator": "CloudHQ",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "CloudHQ wholesale data center campus in Ashburn VA (Loudoun County). Purpose-built hyperscale colocation in Northern Virginia corridor.",
+    "lat": 39.0438,
+    "lon": -77.4874,
+    "sources": [
+      {
+        "label": "CloudHQ",
+        "url": "https://cloudhq.com/data-centers/ashburn/"
+      }
+    ]
+  },
+  {
+    "id": "fc-28432d4992",
+    "name": "CloudHQ Data Center - Chicago IL",
+    "operator": "CloudHQ",
+    "status": "existing",
+    "county_fips": "17031",
+    "notes": "CloudHQ wholesale data center campus in Chicago IL (Cook County). Hyperscale colocation in the Midwest's primary data center market.",
+    "lat": 41.8781,
+    "lon": -87.6298,
+    "sources": [
+      {
+        "label": "CloudHQ",
+        "url": "https://cloudhq.com/data-centers/chicago/"
+      }
+    ]
+  },
+  {
+    "id": "fc-2931742237",
+    "name": "Aligned Data Center - Chicago IL ORD-01",
+    "operator": "Aligned Data Centers",
+    "status": "existing",
+    "county_fips": "17031",
+    "notes": "Aligned Data Centers ORD-01 campus in Chicago IL (Cook County). Delta3 cooling technology hyperscale colocation in the Midwest market.",
+    "lat": 41.8781,
+    "lon": -87.6298,
+    "sources": [
+      {
+        "label": "Aligned Data Centers",
+        "url": "https://www.aligned.com/data-centers/chicago/"
+      }
+    ]
+  },
+  {
+    "id": "fc-1d45611e04",
+    "name": "Compass Datacenters - Atlanta GA",
+    "operator": "Compass Datacenters",
+    "status": "existing",
+    "county_fips": "13121",
+    "notes": "Compass Datacenters campus in Atlanta GA (Fulton County). Part of Compass's national hyperscale colocation network serving cloud and enterprise.",
+    "lat": 33.749,
+    "lon": -84.388,
+    "sources": [
+      {
+        "label": "Compass Datacenters",
+        "url": "https://compassdatacenters.com/locations/atlanta/"
+      }
+    ]
+  },
+  {
+    "id": "fc-4ee381f6f1",
+    "name": "Compass Datacenters - San Antonio TX",
+    "operator": "Compass Datacenters",
+    "status": "existing",
+    "county_fips": "48029",
+    "notes": "Compass Datacenters campus in San Antonio TX (Bexar County). Hyperscale wholesale colocation in the South Texas market.",
+    "lat": 29.4241,
+    "lon": -98.4936,
+    "sources": [
+      {
+        "label": "Compass Datacenters",
+        "url": "https://compassdatacenters.com/locations/san-antonio/"
+      }
+    ]
+  },
+  {
+    "id": "fc-781af30bfa",
+    "name": "Compass Datacenters - Columbus OH",
+    "operator": "Compass Datacenters",
+    "status": "existing",
+    "county_fips": "39049",
+    "notes": "Compass Datacenters campus in Columbus OH (Franklin County). Hyperscale colocation in the emerging Columbus data center market.",
+    "lat": 39.9612,
+    "lon": -82.9988,
+    "sources": [
+      {
+        "label": "Compass Datacenters",
+        "url": "https://compassdatacenters.com/locations/columbus/"
+      }
+    ]
+  },
+  {
+    "id": "fc-4eadce0d75",
+    "name": "Compass Datacenters - Seattle WA",
+    "operator": "Compass Datacenters",
+    "status": "existing",
+    "county_fips": "53033",
+    "notes": "Compass Datacenters campus in Seattle WA (King County). Hyperscale wholesale colocation in the Pacific Northwest.",
+    "lat": 47.6062,
+    "lon": -122.3321,
+    "sources": [
+      {
+        "label": "Compass Datacenters",
+        "url": "https://compassdatacenters.com/locations/seattle/"
+      }
+    ]
+  },
+  {
+    "id": "fc-974c18b05c",
+    "name": "Compass Datacenters - Charlotte NC",
+    "operator": "Compass Datacenters",
+    "status": "existing",
+    "county_fips": "37119",
+    "notes": "Compass Datacenters campus in Charlotte NC (Mecklenburg County). Hyperscale wholesale colocation in the Southeast financial hub.",
+    "lat": 35.2271,
+    "lon": -80.8431,
+    "sources": [
+      {
+        "label": "Compass Datacenters",
+        "url": "https://compassdatacenters.com/locations/charlotte/"
+      }
+    ]
+  },
+  {
+    "id": "fc-4d30b31f27",
+    "name": "Compass Datacenters - Kansas City MO",
+    "operator": "Compass Datacenters",
+    "status": "existing",
+    "county_fips": "29095",
+    "notes": "Compass Datacenters campus in Kansas City MO (Jackson County). Hyperscale wholesale colocation in the Midwest.",
+    "lat": 39.0997,
+    "lon": -94.5786,
+    "sources": [
+      {
+        "label": "Compass Datacenters",
+        "url": "https://compassdatacenters.com/locations/kansas-city/"
+      }
+    ]
+  },
+  {
+    "id": "fc-4f9b4e39af",
+    "name": "Meta Data Center - Sherman TX",
+    "operator": "Meta Platforms",
+    "status": "planned",
+    "county_fips": "48181",
+    "notes": "Meta data center campus in Sherman TX (Grayson County), North Texas. Part of Meta's Texas AI infrastructure expansion.",
+    "lat": 33.6357,
+    "lon": -96.6089,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2024/meta-data-center-sherman-texas/"
+      }
+    ]
+  },
+  {
+    "id": "fc-1e9fae0beb",
+    "name": "Microsoft Data Center - Surprise AZ",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "04013",
+    "notes": "Microsoft Azure data center campus in Surprise AZ (Maricopa County), Northwest Phoenix metro. Part of Microsoft's Arizona cloud infrastructure.",
+    "lat": 33.6292,
+    "lon": -112.3679,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2024/microsoft-surprise-arizona-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-1c5276cbb5",
+    "name": "Amazon AWS Data Center - Morrisville NC",
+    "operator": "Amazon AWS",
+    "status": "existing",
+    "county_fips": "37183",
+    "notes": "Amazon AWS data center campus in Morrisville NC (Wake County), Research Triangle. AWS US-East-1 region expansion in North Carolina.",
+    "lat": 35.8237,
+    "lon": -78.8253,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-morrisville-north-carolina"
+      }
+    ]
+  },
+  {
+    "id": "fc-92628e9876",
+    "name": "Google Data Center - Moncks Corner SC",
+    "operator": "Google",
+    "status": "existing",
+    "county_fips": "45015",
+    "notes": "Google data center campus in Moncks Corner SC (Berkeley County). Google Cloud US-East1 region serving the US Southeast with renewable hydroelectric power.",
+    "lat": 33.196,
+    "lon": -80.0095,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://www.google.com/about/datacenters/locations/moncks-corner/"
+      }
+    ]
+  },
+  {
+    "id": "fc-7f262d9195",
+    "name": "Microsoft Data Center - West Des Moines IA",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "19049",
+    "notes": "Microsoft Azure data center campus in West Des Moines IA (Dallas County). Iowa Azure cloud region supporting US-Central cloud customers.",
+    "lat": 41.5773,
+    "lon": -93.7113,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2022/microsoft-iowa-data-center-west-des-moines/"
+      }
+    ]
+  },
+  {
+    "id": "fc-9ad0e89fcf",
+    "name": "Amazon AWS Data Center - Sioux Falls SD",
+    "operator": "Amazon AWS",
+    "status": "planned",
+    "county_fips": "46099",
+    "notes": "Amazon AWS data center campus in Sioux Falls SD (Minnehaha County). AWS investment in South Dakota for cloud infrastructure.",
+    "lat": 43.5446,
+    "lon": -96.7311,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-sioux-falls-south-dakota"
+      }
+    ]
+  },
+  {
+    "id": "fc-9b8174f269",
+    "name": "Meta Data Center - New Albany OH",
+    "operator": "Meta Platforms",
+    "status": "existing",
+    "county_fips": "39049",
+    "notes": "Meta data center campus in New Albany OH (Franklin County), Columbus metro. Multiple-phase campus for Meta AI and social media infrastructure.",
+    "lat": 40.0808,
+    "lon": -82.7924,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2020/meta-new-albany-ohio-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-9c36be8800",
+    "name": "Microsoft Data Center - Lenexa KS",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "20091",
+    "notes": "Microsoft data center campus in Lenexa KS (Johnson County), Kansas City metro area (Kansas side). Part of Microsoft's US Central AI cloud infrastructure.",
+    "lat": 38.9536,
+    "lon": -94.7977,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2024/microsoft-lenexa-kansas-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-75d0018818",
+    "name": "Microsoft Data Center - Boise ID",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "16001",
+    "notes": "Microsoft data center campus in Boise ID (Ada County). Part of Microsoft's Pacific Northwest AI cloud infrastructure expansion.",
+    "lat": 43.615,
+    "lon": -116.2023,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2024/microsoft-boise-idaho-data-center-investment/"
+      }
+    ]
+  },
+  {
+    "id": "fc-a394203c6b",
+    "name": "Amazon AWS Data Center - Boise ID",
+    "operator": "Amazon AWS",
+    "status": "planned",
+    "county_fips": "16001",
+    "notes": "Amazon AWS data center campus in Boise ID (Ada County). Part of AWS Pacific Northwest expansion to serve government and enterprise cloud customers.",
+    "lat": 43.615,
+    "lon": -116.2023,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-boise-idaho-data-center"
+      }
+    ]
+  },
+  {
+    "id": "fc-f4c8fce3e6",
+    "name": "Google Data Center - Topeka KS",
+    "operator": "Google",
+    "status": "planned",
+    "county_fips": "20177",
+    "notes": "Google data center campus in Topeka KS (Shawnee County). State capital location for Google Cloud Central US infrastructure.",
+    "lat": 39.0473,
+    "lon": -95.6752,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://blog.google/technology/infrastructure/google-data-center-topeka-kansas/"
+      }
+    ]
+  },
+  {
+    "id": "fc-5e5053acef",
+    "name": "Meta Data Center - Rosemount MN",
+    "operator": "Meta Platforms",
+    "status": "planned",
+    "county_fips": "27037",
+    "notes": "Meta data center campus in Rosemount MN (Dakota County), Minneapolis metro. Part of Meta's Minnesota AI infrastructure investment, near existing Savage facility.",
+    "lat": 44.7482,
+    "lon": -93.0691,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2024/meta-rosemount-minnesota-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-b38c925e81",
+    "name": "Microsoft Data Center - Louisville KY",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "21111",
+    "notes": "Microsoft data center campus in Louisville KY (Jefferson County). Part of Microsoft's Midwest AI cloud infrastructure expansion.",
+    "lat": 38.2527,
+    "lon": -85.7585,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2024/microsoft-louisville-kentucky-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-6798864a1d",
+    "name": "Google Data Center - Flowood MS",
+    "operator": "Google",
+    "status": "planned",
+    "county_fips": "28121",
+    "notes": "Google data center campus in Flowood MS (Rankin County), Jackson metro. Google Cloud infrastructure investment in Mississippi.",
+    "lat": 32.3349,
+    "lon": -90.0793,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://blog.google/technology/infrastructure/google-data-center-mississippi-2024/"
+      }
+    ]
+  },
+  {
+    "id": "fc-5ad887a074",
+    "name": "Applied Digital - Ellendale ND Campus 2",
+    "operator": "Applied Digital",
+    "status": "planned",
+    "county_fips": "38021",
+    "notes": "Applied Digital Campus 2 expansion at Ellendale ND (Dickey County). Continuation of Polaris Forge AI campus expansion with 100MW additional capacity.",
+    "lat": 46.0015,
+    "lon": -98.5265,
+    "sources": [
+      {
+        "label": "Applied Digital",
+        "url": "https://www.applieddigital.com/blog/applied-digital-expands-ellendale-nd-ai-campus"
+      }
+    ]
+  },
+  {
+    "id": "fc-2e8c3517d8",
+    "name": "Quantum Loophole Data Center - Frederick MD Phase 2",
+    "operator": "Quantum Loophole",
+    "status": "planned",
+    "county_fips": "24021",
+    "notes": "Quantum Loophole Phase 2 expansion at Frederick MD (Frederick County). Ultra-large hyperscale campus with planned 2GW capacity; largest single data center campus in US history when complete.",
+    "lat": 39.4143,
+    "lon": -77.4105,
+    "sources": [
+      {
+        "label": "Quantum Loophole",
+        "url": "https://quantumloophole.com/data-centers/frederick-md/"
+      }
+    ]
+  },
+  {
+    "id": "fc-864dcbb5f2",
+    "name": "Microsoft Data Center - Boydton VA",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "51117",
+    "notes": "Microsoft Azure data center campus in Boydton VA (Mecklenburg County). Established Azure facility supporting US-East Cloud region. Low cost power from PEC cooperative.",
+    "lat": 36.6651,
+    "lon": -78.3853,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2013/microsoft-boydton-virginia-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-4a38659cad",
+    "name": "Meta Data Center - Sarpy County NE",
+    "operator": "Meta Platforms",
+    "status": "planned",
+    "county_fips": "31153",
+    "notes": "Meta data center campus in Papillion NE (Sarpy County), Omaha metro. Part of Meta's Nebraska AI infrastructure investment.",
+    "lat": 41.1539,
+    "lon": -96.042,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2024/meta-sarpy-county-nebraska-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-568ab1fe57",
+    "name": "Amazon AWS Data Center - Columbia MD",
+    "operator": "Amazon AWS",
+    "status": "existing",
+    "county_fips": "24027",
+    "notes": "Amazon AWS data center campus in Columbia MD (Howard County). AWS US-East-1 region facility supporting Mid-Atlantic cloud customers.",
+    "lat": 39.2037,
+    "lon": -76.861,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-columbia-maryland-data-center"
+      }
+    ]
+  },
+  {
+    "id": "fc-d8405033aa",
+    "name": "Applied Digital - Jamestown ND Data Center",
+    "operator": "Applied Digital",
+    "status": "planned",
+    "county_fips": "38093",
+    "notes": "Applied Digital AI data center campus in Jamestown ND (Stutsman County). Part of Applied Digital's North Dakota expansion for AI cloud computing with low-cost renewable energy.",
+    "lat": 46.906,
+    "lon": -98.7084,
+    "sources": [
+      {
+        "label": "Applied Digital",
+        "url": "https://www.applieddigital.com/data-centers/jamestown-nd/"
+      }
+    ]
+  },
+  {
+    "id": "fc-52c78e6ad9",
+    "name": "Microsoft Data Center - Spokane WA",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "53063",
+    "notes": "Microsoft data center campus in Spokane WA (Spokane County). Part of Microsoft's Eastern Washington AI cloud infrastructure expansion.",
+    "lat": 47.6588,
+    "lon": -117.426,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2024/microsoft-spokane-washington-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-6dcda0deee",
+    "name": "Amazon AWS Data Center - Springfield IL",
+    "operator": "Amazon AWS",
+    "status": "planned",
+    "county_fips": "17167",
+    "notes": "Amazon AWS data center campus in Springfield IL (Sangamon County). Illinois state capital area cloud infrastructure investment.",
+    "lat": 39.7817,
+    "lon": -89.6501,
+    "sources": [
+      {
+        "label": "Amazon AWS",
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-springfield-illinois-data-center"
+      }
+    ]
+  },
+  {
+    "id": "fc-1b64078203",
+    "name": "Google Data Center - Birmingham AL",
+    "operator": "Google",
+    "status": "planned",
+    "county_fips": "01073",
+    "notes": "Google data center campus in Birmingham AL (Jefferson County). Part of Google Cloud's Southeast US expansion.",
+    "lat": 33.5186,
+    "lon": -86.8104,
+    "sources": [
+      {
+        "label": "Google",
+        "url": "https://blog.google/technology/infrastructure/google-data-center-birmingham-alabama-2024/"
+      }
+    ]
+  },
+  {
+    "id": "fc-55bf724102",
+    "name": "Meta Data Center - Ogden UT",
+    "operator": "Meta Platforms",
+    "status": "planned",
+    "county_fips": "49057",
+    "notes": "Meta data center campus in Ogden UT (Weber County). Part of Meta's Utah AI infrastructure investment in the Wasatch Front.",
+    "lat": 41.223,
+    "lon": -111.9738,
+    "sources": [
+      {
+        "label": "Meta Platforms",
+        "url": "https://about.fb.com/news/2024/meta-ogden-utah-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-5bc8827c75",
+    "name": "Microsoft Data Center - Burlington WA",
+    "operator": "Microsoft",
+    "status": "planned",
+    "county_fips": "53057",
+    "notes": "Microsoft data center campus in Burlington WA (Skagit County). North Puget Sound region AI cloud infrastructure expansion.",
+    "lat": 48.4732,
+    "lon": -122.3268,
+    "sources": [
+      {
+        "label": "Microsoft",
+        "url": "https://news.microsoft.com/2024/microsoft-burlington-washington-data-center/"
+      }
+    ]
+  },
+  {
+    "id": "fc-f856053d3c",
+    "name": "Applied Digital - Big Spring TX AI Campus",
+    "operator": "Applied Digital",
+    "status": "planned",
+    "county_fips": "48227",
+    "notes": "Applied Digital hyperscale AI data center campus planned in Big Spring TX, Howard County",
+    "lat": 32.2504,
+    "lon": -101.4788,
+    "sources": [
+      {
+        "label": "Applied Digital",
+        "url": "https://ir.applieddigital.com/news-releases/"
+      },
+      {
+        "label": "Applied Digital",
+        "url": "https://applieddigital.com/data-center-campuses/"
+      }
+    ]
+  },
+  {
+    "id": "fc-7604077782",
+    "name": "Applied Digital - Cleburne TX HPC Campus",
+    "operator": "Applied Digital",
+    "status": "planned",
+    "county_fips": "48251",
+    "notes": "Applied Digital HPC data center campus planned in Cleburne TX, Johnson County",
+    "lat": 32.3513,
+    "lon": -97.3856,
+    "sources": [
+      {
+        "label": "Applied Digital",
+        "url": "https://ir.applieddigital.com/news-releases/"
+      },
+      {
+        "label": "Applied Digital",
+        "url": "https://applieddigital.com/data-center-campuses/"
+      }
+    ]
+  },
+  {
+    "id": "fc-ffb580843e",
+    "name": "CoreWeave Data Center - Roanoke VA",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "51770",
+    "notes": "CoreWeave AI/GPU cloud hyperscale data center in Roanoke VA",
+    "lat": 37.271,
+    "lon": -79.9414,
+    "sources": [
+      {
+        "label": "CoreWeave",
+        "url": "https://coreweave.com/blog/coreweave-expands-us-data-center-presence-with-roanoke-va-facility"
+      },
+      {
+        "label": "CoreWeave",
+        "url": "https://coreweave.com/data-centers/"
+      }
+    ]
+  },
+  {
+    "id": "fc-707fc09e37",
+    "name": "CoreWeave Data Center - Elk Grove Village IL",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "17031",
+    "notes": "CoreWeave AI/GPU cloud hyperscale data center in Chicago area (Elk Grove Village IL)",
+    "lat": 42.0031,
+    "lon": -87.9701,
+    "sources": [
+      {
+        "label": "CoreWeave",
+        "url": "https://coreweave.com/data-centers/"
+      },
+      {
+        "label": "CoreWeave",
+        "url": "https://coreweave.com/blog/"
+      }
+    ]
+  },
+  {
+    "id": "fc-b4b21ee1ed",
+    "name": "CoreWeave Data Center - Plano TX",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "48085",
+    "notes": "CoreWeave AI/GPU cloud hyperscale data center in Plano TX (DFW metro)",
+    "lat": 33.0198,
+    "lon": -96.6989,
+    "capacity_mw": 60.0,
+    "sources": [
+      {
+        "label": "CoreWeave",
+        "url": "https://coreweave.com/data-centers/"
+      },
+      {
+        "label": "CoreWeave",
+        "url": "https://coreweave.com/blog/"
+      }
+    ]
+  },
+  {
+    "id": "fc-816f0ecaaa",
+    "name": "CoreWeave Data Center - Phoenix AZ",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "04013",
+    "notes": "CoreWeave AI/GPU cloud hyperscale data center in Phoenix AZ",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "sources": [
+      {
+        "label": "CoreWeave",
+        "url": "https://coreweave.com/data-centers/"
+      },
+      {
+        "label": "CoreWeave",
+        "url": "https://coreweave.com/blog/"
+      }
+    ]
+  },
+  {
+    "id": "fc-9ba6d2a121",
+    "name": "CoreWeave Data Center - Weehawken NJ",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "34017",
+    "notes": "CoreWeave AI/GPU cloud primary data center in Weehawken NJ (original HQ location)",
+    "lat": 40.7684,
+    "lon": -74.0234,
+    "sources": [
+      {
+        "label": "CoreWeave",
+        "url": "https://coreweave.com/data-centers/"
+      },
+      {
+        "label": "CoreWeave",
+        "url": "https://coreweave.com/blog/"
+      }
+    ]
+  },
+  {
+    "id": "fc-b657b26115",
+    "name": "Lambda Labs AI Data Center - Phoenix AZ",
+    "operator": "Lambda Labs",
+    "status": "existing",
+    "county_fips": "04013",
+    "notes": "Lambda Labs AI/GPU cloud data center in Phoenix AZ metro",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "sources": [
+      {
+        "label": "Lambda Labs",
+        "url": "https://lambdalabs.com/service/gpu-cloud"
+      },
+      {
+        "label": "Lambda Labs",
+        "url": "https://lambdalabs.com/blog/"
+      }
+    ]
+  },
+  {
+    "id": "fc-4ddcf4d9ed",
+    "name": "Lambda Labs AI Data Center - Duluth GA",
+    "operator": "Lambda Labs",
+    "status": "existing",
+    "county_fips": "13135",
+    "notes": "Lambda Labs AI/GPU cloud data center in Duluth GA (Atlanta metro)",
+    "lat": 34.0026,
+    "lon": -84.1444,
+    "sources": [
+      {
+        "label": "Lambda Labs",
+        "url": "https://lambdalabs.com/service/gpu-cloud"
+      },
+      {
+        "label": "Lambda Labs",
+        "url": "https://lambdalabs.com/blog/"
+      }
+    ]
+  },
+  {
+    "id": "fc-006afa1739",
+    "name": "Lambda Labs AI Data Center - Denver CO",
+    "operator": "Lambda Labs",
+    "status": "existing",
+    "county_fips": "08031",
+    "notes": "Lambda Labs AI/GPU cloud data center in Denver CO metro",
+    "lat": 39.7392,
+    "lon": -104.9903,
+    "sources": [
+      {
+        "label": "Lambda Labs",
+        "url": "https://lambdalabs.com/service/gpu-cloud"
+      },
+      {
+        "label": "Lambda Labs",
+        "url": "https://lambdalabs.com/blog/"
+      }
+    ]
+  },
+  {
+    "id": "fc-71e432bf4f",
+    "name": "Voltage Park Data Center - Reno NV",
+    "operator": "Voltage Park",
+    "status": "existing",
+    "county_fips": "32031",
+    "notes": "Voltage Park AI infrastructure data center in Reno/Tahoe area NV",
+    "lat": 39.5296,
+    "lon": -119.8138,
+    "sources": [
+      {
+        "label": "Voltage Park",
+        "url": "https://voltagepark.com/"
+      },
+      {
+        "label": "Voltage Park",
+        "url": "https://voltagepark.com/infrastructure/"
+      }
+    ]
+  },
+  {
+    "id": "fc-104291aa3f",
+    "name": "Voltage Park Data Center - Chicago IL",
+    "operator": "Voltage Park",
+    "status": "existing",
+    "county_fips": "17031",
+    "notes": "Voltage Park AI infrastructure data center in Chicago IL metro",
+    "lat": 41.8781,
+    "lon": -87.6298,
+    "sources": [
+      {
+        "label": "Voltage Park",
+        "url": "https://voltagepark.com/"
+      },
+      {
+        "label": "Voltage Park",
+        "url": "https://voltagepark.com/infrastructure/"
+      }
+    ]
+  },
+  {
+    "id": "fc-52875fc8f7",
+    "name": "Yondr Group Data Center - Phoenix AZ",
+    "operator": "Yondr Group",
+    "status": "planned",
+    "county_fips": "04013",
+    "notes": "Yondr Group hyperscale data center development in Phoenix AZ",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "sources": [
+      {
+        "label": "Yondr Group",
+        "url": "https://www.yondrgroup.com/"
+      },
+      {
+        "label": "Yondr Group",
+        "url": "https://www.yondrgroup.com/our-data-centers/"
+      }
+    ]
+  },
+  {
+    "id": "fc-7f664ccd96",
+    "name": "Yondr Group Data Center - Atlanta GA",
+    "operator": "Yondr Group",
+    "status": "planned",
+    "county_fips": "13121",
+    "notes": "Yondr Group hyperscale data center development in Atlanta GA",
+    "lat": 33.749,
+    "lon": -84.388,
+    "sources": [
+      {
+        "label": "Yondr Group",
+        "url": "https://www.yondrgroup.com/"
+      },
+      {
+        "label": "Yondr Group",
+        "url": "https://www.yondrgroup.com/our-data-centers/"
+      }
+    ]
+  },
+  {
+    "id": "fc-cfc07abd99",
+    "name": "Oracle Cloud Infrastructure - Phoenix AZ (us-phoenix-1)",
+    "operator": "Oracle Corporation",
+    "status": "existing",
+    "county_fips": "04013",
+    "notes": "Oracle Cloud us-phoenix-1 commercial region Phoenix AZ; primary US West OCI region",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "sources": [
+      {
+        "label": "Oracle Corporation",
+        "url": "https://www.oracle.com/cloud/data-regions/"
+      },
+      {
+        "label": "Oracle Corporation",
+        "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm"
+      }
+    ]
+  },
+  {
+    "id": "fc-e528cfe70d",
+    "name": "Oracle Cloud Infrastructure - San Jose CA (us-sanjose-1)",
+    "operator": "Oracle Corporation",
+    "status": "existing",
+    "county_fips": "06085",
+    "notes": "Oracle Cloud us-sanjose-1 region San Jose CA",
+    "lat": 37.3382,
+    "lon": -121.8863,
+    "capacity_mw": 20.0,
+    "sources": [
+      {
+        "label": "Oracle Corporation",
+        "url": "https://www.oracle.com/cloud/data-regions/"
+      },
+      {
+        "label": "Oracle Corporation",
+        "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm"
+      }
+    ]
+  },
+  {
+    "id": "fc-b270929015",
+    "name": "Oracle Cloud Infrastructure - Chicago IL (us-chicago-1)",
+    "operator": "Oracle Corporation",
+    "status": "existing",
+    "county_fips": "17031",
+    "notes": "Oracle Cloud us-chicago-1 region Chicago IL",
+    "lat": 41.8827,
+    "lon": -87.6233,
+    "sources": [
+      {
+        "label": "Oracle Corporation",
+        "url": "https://www.oracle.com/cloud/data-regions/"
+      },
+      {
+        "label": "Oracle Corporation",
+        "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm"
+      }
+    ]
+  },
+  {
+    "id": "fc-9523fdf867",
+    "name": "Applied Digital Data Center - Corsicana TX",
+    "operator": "Applied Digital Corporation",
+    "status": "existing",
+    "county_fips": "48349",
+    "notes": "Applied Digital 200 MW HPC data center Corsicana TX; high-density GPU compute",
+    "lat": 32.0854,
+    "lon": -96.4689,
+    "sources": [
+      {
+        "label": "Applied Digital Corporation",
+        "url": "https://ir.applieddigital.com/news-releases/news-release-details/applied-digital-opens-new-200-megawatt-hpc-data-center-corsicana"
+      }
+    ]
+  },
+  {
+    "id": "fc-227a0e9580",
+    "name": "Applied Digital Data Center - Vermilion Parish LA",
+    "operator": "Applied Digital Corporation",
+    "status": "planned",
+    "county_fips": "22113",
+    "notes": "Applied Digital planned HPC campus Vermilion Parish LA",
+    "lat": 29.9746,
+    "lon": -92.1343,
+    "sources": [
+      {
+        "label": "Applied Digital Corporation",
+        "url": "https://ir.applieddigital.com/news-releases/news-release-details/applied-digital-announces-new-hpc-campus-louisiana"
+      }
+    ]
+  },
+  {
+    "id": "fc-99c921bb22",
+    "name": "Lambda Labs GPU Cloud - Manassas VA",
+    "operator": "Lambda Labs",
+    "status": "existing",
+    "county_fips": "51153",
+    "notes": "Lambda Labs GPU cloud cluster Manassas VA; H100/A100 GPU cluster",
+    "lat": 38.7509,
+    "lon": -77.4753,
+    "sources": [
+      {
+        "label": "Lambda Labs",
+        "url": "https://lambdalabs.com/service/gpu-cloud"
+      }
+    ]
+  },
+  {
+    "id": "fc-5221174c23",
+    "name": "Lambda Labs GPU Cloud - Reno NV",
+    "operator": "Lambda Labs",
+    "status": "existing",
+    "county_fips": "32031",
+    "notes": "Lambda Labs GPU cloud cluster Reno NV",
+    "lat": 39.5296,
+    "lon": -119.8138,
+    "sources": [
+      {
+        "label": "Lambda Labs",
+        "url": "https://lambdalabs.com/service/gpu-cloud"
+      }
+    ]
+  },
+  {
+    "id": "fc-a4dba732ec",
+    "name": "Switch Las Vegas - PYRAMID Campus",
+    "operator": "Switch",
+    "status": "existing",
+    "county_fips": "32003",
+    "notes": "Switch PYRAMID data center campus Las Vegas NV; part of Switch Las Vegas campus",
+    "lat": 36.1716,
+    "lon": -115.1391,
+    "sources": [
+      {
+        "label": "Switch",
+        "url": "https://www.switch.com/las-vegas/"
+      }
+    ]
+  },
+  {
+    "id": "fc-ba9791be9e",
+    "name": "Switch Las Vegas - CITADEL Campus",
+    "operator": "Switch",
+    "status": "existing",
+    "county_fips": "32003",
+    "notes": "Switch CITADEL data center campus Las Vegas NV; fortified Tier IV campus",
+    "lat": 36.172,
+    "lon": -115.1385,
+    "sources": [
+      {
+        "label": "Switch",
+        "url": "https://www.switch.com/las-vegas/"
+      }
+    ]
+  },
+  {
+    "id": "fc-928f8fc0df",
+    "name": "Switch Grand Teton Technology Park - Elko NV",
+    "operator": "Switch",
+    "status": "planned",
+    "county_fips": "32007",
+    "notes": "Switch Grand Teton Technology Park planned campus Elko NV; renewable energy campus",
+    "lat": 40.8324,
+    "lon": -115.7631,
+    "sources": [
+      {
+        "label": "Switch",
+        "url": "https://www.switch.com/elko/"
+      }
+    ]
+  },
+  {
+    "id": "fc-f1cfc608c6",
+    "name": "Voltage Park Data Center - Denver CO",
+    "operator": "Voltage Park",
+    "status": "existing",
+    "county_fips": "08031",
+    "notes": "Voltage Park GPU cloud Denver CO; H100 cluster",
+    "lat": 39.7392,
+    "lon": -104.9903,
+    "sources": [
+      {
+        "label": "Voltage Park",
+        "url": "https://voltagepark.com/"
+      }
+    ]
+  },
+  {
+    "id": "fc-84a717bf04",
+    "name": "Voltage Park Data Center - Dallas TX",
+    "operator": "Voltage Park",
+    "status": "existing",
+    "county_fips": "48113",
+    "notes": "Voltage Park GPU cloud Dallas TX; H100 cluster",
+    "lat": 32.7767,
+    "lon": -96.797,
+    "sources": [
+      {
+        "label": "Voltage Park",
+        "url": "https://voltagepark.com/"
+      }
+    ]
+  },
+  {
+    "id": "fc-d63c5abe18",
+    "name": "Voltage Park Data Center - Ashburn VA",
+    "operator": "Voltage Park",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "Voltage Park GPU cloud Ashburn VA",
+    "lat": 39.0438,
+    "lon": -77.4874,
+    "sources": [
+      {
+        "label": "Voltage Park",
+        "url": "https://voltagepark.com/"
+      }
+    ]
+  },
+  {
+    "id": "fc-01029af4be",
+    "name": "Giga Energy Data Center - West Texas AI Campus",
+    "operator": "Giga Energy",
+    "status": "existing",
+    "county_fips": "48383",
+    "notes": "Giga Energy West Texas AI data center; 200 MW campus Reeves County TX",
+    "lat": 31.4226,
+    "lon": -103.4932,
+    "sources": [
+      {
+        "label": "Giga Energy",
+        "url": "https://www.gigaenergy.com/"
+      }
+    ]
+  },
+  {
+    "id": "fc-4d47cf76e4",
+    "name": "Oracle Cloud - Reston VA (us-gov-ashburn-1)",
+    "operator": "Oracle Corporation",
+    "status": "existing",
+    "county_fips": "51059",
+    "notes": "Oracle Cloud us-gov-ashburn-1 FedRAMP government region Reston VA",
+    "lat": 38.9697,
+    "lon": -77.3403,
+    "sources": [
+      {
+        "label": "Oracle Corporation",
+        "url": "https://www.oracle.com/cloud/data-regions/"
+      },
+      {
+        "label": "Oracle Corporation",
+        "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/govregions.htm"
+      }
+    ]
+  },
+  {
+    "id": "fc-cbd5df8d13",
+    "name": "Oracle Cloud - Phoenix AZ (us-gov-phoenix-1)",
+    "operator": "Oracle Corporation",
+    "status": "existing",
+    "county_fips": "04013",
+    "notes": "Oracle Cloud us-gov-phoenix-1 FedRAMP government region Phoenix AZ",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "sources": [
+      {
+        "label": "Oracle Corporation",
+        "url": "https://www.oracle.com/cloud/data-regions/"
+      },
+      {
+        "label": "Oracle Corporation",
+        "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/govregions.htm"
+      }
+    ]
+  },
+  {
+    "id": "fc-9c1f99a018",
+    "name": "CoreWeave Data Center - Salt Lake City UT",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "49035",
+    "notes": "CoreWeave GPU cloud data center Salt Lake City UT",
+    "lat": 40.7608,
+    "lon": -111.891,
+    "sources": [
+      {
+        "label": "CoreWeave",
+        "url": "https://www.coreweave.com/data-centers"
+      }
+    ]
+  },
+  {
+    "id": "fc-d6e2d374bc",
+    "name": "CoreWeave Data Center - Phoenix AZ 2",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "04013",
+    "notes": "CoreWeave GPU cloud data center Phoenix AZ; second campus",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "sources": [
+      {
+        "label": "CoreWeave",
+        "url": "https://www.coreweave.com/data-centers"
+      }
+    ]
+  },
+  {
+    "id": "fc-276323bca8",
+    "name": "CoreWeave Data Center - Atlanta GA",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "13121",
+    "notes": "CoreWeave GPU cloud data center Atlanta GA",
+    "lat": 33.749,
+    "lon": -84.388,
+    "sources": [
+      {
+        "label": "CoreWeave",
+        "url": "https://www.coreweave.com/data-centers"
+      }
+    ]
+  },
+  {
+    "id": "fc-828b9760cd",
+    "name": "CoreWeave Data Center - Seattle WA",
+    "operator": "CoreWeave",
+    "status": "existing",
+    "county_fips": "53033",
+    "notes": "CoreWeave GPU cloud data center Seattle WA",
+    "lat": 47.6062,
+    "lon": -122.3321,
+    "sources": [
+      {
+        "label": "CoreWeave",
+        "url": "https://www.coreweave.com/data-centers"
+      }
+    ]
+  },
+  {
+    "id": "fc-5fe0a6ec02",
+    "name": "Tract Data Centers - Phoenix AZ",
+    "operator": "Tract",
+    "status": "planned",
+    "county_fips": "04013",
+    "notes": "Tract Data Centers Phoenix AZ planned campus",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "sources": [
+      {
+        "label": "Tract",
+        "url": "https://www.tract.com/locations/"
+      }
+    ]
+  },
+  {
+    "id": "fc-0720554239",
+    "name": "Tract Data Centers - Atlanta GA",
+    "operator": "Tract",
+    "status": "planned",
+    "county_fips": "13121",
+    "notes": "Tract Data Centers Atlanta GA planned campus",
+    "lat": 33.749,
+    "lon": -84.388,
+    "sources": [
+      {
+        "label": "Tract",
+        "url": "https://www.tract.com/locations/"
+      }
+    ]
+  },
+  {
+    "id": "fc-746518415e",
+    "name": "Tract Data Centers - Dallas TX",
+    "operator": "Tract",
+    "status": "planned",
+    "county_fips": "48113",
+    "notes": "Tract Data Centers Dallas TX planned campus",
+    "lat": 32.7767,
+    "lon": -96.797,
+    "sources": [
+      {
+        "label": "Tract",
+        "url": "https://www.tract.com/locations/"
+      }
+    ]
+  },
+  {
+    "id": "fc-d4b8059c4f",
+    "name": "Prologis Data Center - Ashburn VA",
+    "operator": "Prologis",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "Prologis Data Centers Ashburn VA hyperscale facility",
+    "lat": 39.0438,
+    "lon": -77.4874,
+    "sources": [
+      {
+        "label": "Prologis",
+        "url": "https://www.prologis.com/data-centers"
+      }
+    ]
+  },
+  {
+    "id": "fc-9f41700c5c",
+    "name": "Prologis Data Center - Phoenix AZ",
+    "operator": "Prologis",
+    "status": "planned",
+    "county_fips": "04013",
+    "notes": "Prologis Data Centers Phoenix AZ hyperscale facility",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "sources": [
+      {
+        "label": "Prologis",
+        "url": "https://www.prologis.com/data-centers"
+      }
+    ]
+  },
+  {
+    "id": "fc-f882a33013",
+    "name": "Prologis Data Center - Chicago IL",
+    "operator": "Prologis",
+    "status": "planned",
+    "county_fips": "17031",
+    "notes": "Prologis Data Centers Chicago IL planned campus",
+    "lat": 41.8827,
+    "lon": -87.6233,
+    "sources": [
+      {
+        "label": "Prologis",
+        "url": "https://www.prologis.com/data-centers"
+      }
+    ]
+  },
+  {
+    "id": "fc-d29946bb22",
+    "name": "Starwood Digital Data Center - Ashburn VA",
+    "operator": "Starwood Digital",
+    "status": "existing",
+    "county_fips": "51107",
+    "notes": "Starwood Digital Ventures Ashburn VA hyperscale campus",
+    "lat": 39.0438,
+    "lon": -77.4874,
+    "sources": [
+      {
+        "label": "Starwood Digital",
+        "url": "https://www.starwooddigital.com/data-centers/"
+      }
+    ]
+  },
+  {
+    "id": "fc-2e9a5d1cc8",
+    "name": "Starwood Digital Data Center - Phoenix AZ",
+    "operator": "Starwood Digital",
+    "status": "planned",
+    "county_fips": "04013",
+    "notes": "Starwood Digital Ventures Phoenix AZ planned campus",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "sources": [
+      {
+        "label": "Starwood Digital",
+        "url": "https://www.starwooddigital.com/data-centers/"
+      }
+    ]
+  },
+  {
+    "id": "fc-9b503fbaa1",
+    "name": "Chirisa Technology Parks - Denver CO",
+    "operator": "Chirisa Technology Parks",
+    "status": "planned",
+    "county_fips": "08031",
+    "notes": "Chirisa Technology Parks Denver CO hyperscale campus",
+    "lat": 39.7392,
+    "lon": -104.9903,
+    "sources": [
+      {
+        "label": "Chirisa Technology Parks",
+        "url": "https://chirisatechnologyparks.com/"
+      }
+    ]
+  },
+  {
+    "id": "fc-ecef4fc35c",
+    "name": "Chirisa Technology Parks - Las Vegas NV",
+    "operator": "Chirisa Technology Parks",
+    "status": "planned",
+    "county_fips": "32003",
+    "notes": "Chirisa Technology Parks Las Vegas NV campus",
+    "lat": 36.1716,
+    "lon": -115.1391,
+    "sources": [
+      {
+        "label": "Chirisa Technology Parks",
+        "url": "https://chirisatechnologyparks.com/"
+      }
+    ]
+  },
+  {
+    "id": "fc-5fb5508385",
+    "name": "Novva Data Centers - Reno NV",
+    "operator": "Novva Data Centers",
+    "status": "planned",
+    "county_fips": "32031",
+    "notes": "Novva Data Centers Reno NV planned campus",
+    "lat": 39.5296,
+    "lon": -119.8138,
+    "sources": [
+      {
+        "label": "Novva Data Centers",
+        "url": "https://www.novva.com/locations/"
+      }
+    ]
+  },
+  {
+    "id": "fc-8eb9ca77e7",
+    "name": "Novva Data Centers - Las Vegas NV 3",
+    "operator": "Novva Data Centers",
+    "status": "planned",
+    "county_fips": "32003",
+    "notes": "Novva Data Centers Las Vegas NV third campus",
+    "lat": 36.1716,
+    "lon": -115.1391,
+    "capacity_mw": 30.0,
+    "sources": [
+      {
+        "label": "Novva Data Centers",
+        "url": "https://www.novva.com/locations/"
+      }
+    ]
+  },
+  {
+    "id": "fc-96a7a80110",
+    "name": "Rowan Digital Infrastructure - Fayetteville NC",
+    "operator": "Rowan Digital Infrastructure",
+    "status": "planned",
+    "county_fips": "37051",
+    "notes": "Rowan Digital Infrastructure Fayetteville NC planned hyperscale campus",
+    "lat": 35.0527,
+    "lon": -78.8784,
+    "sources": [
+      {
+        "label": "Rowan Digital Infrastructure",
+        "url": "https://www.rowandigital.com/"
+      }
+    ]
+  },
+  {
+    "id": "fc-d9c1dcfefe",
+    "name": "Pearl Technology Campus - Savannah GA",
+    "operator": "Pearl Technology",
+    "status": "planned",
+    "county_fips": "13051",
+    "notes": "Pearl Technology Partners Savannah GA planned data center",
+    "lat": 32.0835,
+    "lon": -81.0998,
+    "sources": [
+      {
+        "label": "Pearl Technology",
+        "url": "https://www.pearltech.com/"
+      }
+    ]
+  },
+  {
+    "id": "fc-266167975e",
+    "name": "Kingsboro Digital Tech Park - Albany NY",
+    "operator": "Kingsboro Dev",
+    "status": "planned",
+    "county_fips": "36001",
+    "notes": "Kingsboro Digital Tech Park Albany NY planned campus",
+    "lat": 42.6526,
+    "lon": -73.7562,
+    "sources": [
+      {
+        "label": "Kingsboro Dev",
+        "url": "https://kingsborodigital.com/"
+      }
+    ]
+  },
+  {
+    "id": "fc-90e0895a1b",
+    "name": "Applied Digital Data Center - North Dakota AI Campus",
+    "operator": "Applied Digital Corporation",
+    "status": "existing",
+    "county_fips": "38021",
+    "notes": "Applied Digital Ellendale ND 200 MW HPC campus; GPU compute",
+    "lat": 46.0057,
+    "lon": -98.5193,
+    "sources": [
+      {
+        "label": "Applied Digital Corporation",
+        "url": "https://ir.applieddigital.com/news-releases/news-release-details/applied-digital-announces-new-200-megawatt-hpc-data-center-north-dakota"
+      }
+    ]
+  },
+  {
+    "id": "fc-7417b697c8",
+    "name": "Malachite Technology Park - Corsicana TX",
+    "operator": "Energy Abundance Dev",
+    "status": "planned",
+    "county_fips": "48349",
+    "notes": "Malachite Technology Park Corsicana TX planned AI/GPU campus",
+    "lat": 32.0854,
+    "lon": -96.4689,
+    "sources": [
+      {
+        "label": "Energy Abundance Dev",
+        "url": "https://energyabundance.dev/"
+      }
+    ]
+  },
+  {
+    "id": "fc-32318aca5d",
+    "name": "JGT2 Redevelopment Campus - Marble Falls TX",
+    "operator": "JGT2 Redevelopment",
+    "status": "planned",
+    "county_fips": "48053",
+    "notes": "JGT2 data center campus Marble Falls TX planned",
+    "lat": 30.5782,
+    "lon": -98.2737,
+    "sources": [
+      {
+        "label": "JGT2 Redevelopment",
+        "url": "https://www.jgt2.com/"
+      }
+    ]
+  },
+  {
+    "id": "fc-9d1ceb95c2",
+    "name": "Amazon AWS Data Center - Nashville TN BNA-1",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "47037",
+    "notes": "Amazon AWS Nashville TN BNA-1 data center; regional AWS expansion",
+    "lat": 36.1627,
+    "lon": -86.7816,
+    "capacity_mw": 5.0,
+    "sources": [
+      {
+        "label": "Amazon Web Services",
+        "url": "https://aws.amazon.com/local/"
+      }
+    ]
+  },
+  {
+    "id": "fc-eb6a3ff49a",
+    "name": "Amazon AWS Data Center - Milwaukee WI MKE-1",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "55079",
+    "notes": "Amazon AWS Milwaukee WI MKE-1 data center",
+    "lat": 43.0389,
+    "lon": -87.9065,
+    "sources": [
+      {
+        "label": "Amazon Web Services",
+        "url": "https://aws.amazon.com/local/"
+      }
+    ]
+  },
+  {
+    "id": "fc-968fe704d2",
+    "name": "Amazon AWS Data Center - Kansas City MO MCI-1",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "29095",
+    "notes": "Amazon AWS Kansas City MO MCI-1 data center",
+    "lat": 39.0997,
+    "lon": -94.5786,
+    "sources": [
+      {
+        "label": "Amazon Web Services",
+        "url": "https://aws.amazon.com/local/"
+      }
+    ]
+  },
+  {
+    "id": "fc-f15a8978d5",
+    "name": "Amazon AWS Data Center - Phoenix AZ PHX-1",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "04013",
+    "notes": "Amazon AWS Phoenix AZ PHX-1 data center",
+    "lat": 33.4484,
+    "lon": -112.074,
+    "sources": [
+      {
+        "label": "Amazon Web Services",
+        "url": "https://aws.amazon.com/local/"
+      }
+    ]
+  },
+  {
+    "id": "fc-a7811d848a",
+    "name": "Amazon AWS Data Center - Raleigh NC RDU-1",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "37183",
+    "notes": "Amazon AWS Raleigh NC RDU-1 data center",
+    "lat": 35.7796,
+    "lon": -78.6382,
+    "capacity_mw": 4.0,
+    "sources": [
+      {
+        "label": "Amazon Web Services",
+        "url": "https://aws.amazon.com/local/"
+      }
+    ]
+  },
+  {
+    "id": "fc-623357a44d",
+    "name": "Fort Liberty Army Computing and Mission Command Center",
+    "operator": "US Army XVIII Airborne Corps / USASOC",
+    "status": "existing",
+    "county_fips": "37051",
+    "notes": "Primary Army data and mission-command computing hub for the XVIII Airborne Corps and US Army Special Operations Command; supports joint all-domain command and control (JADC2) infrastructure.; legacy_id:ai-nc-003",
+    "lat": 35.139,
+    "lon": -79.0014
+  },
+  {
+    "id": "fc-19dac82e23",
+    "name": "W.M. Keck Observatory Data Processing Center",
+    "operator": "W.M. Keck Observatory / Caltech / UC",
+    "status": "existing",
+    "county_fips": "15001",
+    "notes": "Keck Observatory processes petabytes of astronomical imaging and spectroscopy data; connected to Caltech and UC system HPC networks for reduction, AI classification, and archival storage.; legacy_id:ai-hi-003",
+    "lat": 19.8208,
+    "lon": -155.4681
+  },
+  {
+    "id": "fc-913308f40c",
+    "name": "UC Davis Farm Computing and Research Data Center",
+    "operator": "UC Davis Research IT / CAES",
+    "status": "existing",
+    "county_fips": "06113",
+    "notes": "UC Davis operates research computing supporting the College of Agricultural and Environmental Sciences, genomics research, and UC Davis Health clinical data; part of the UC-wide research computing network.; legacy_id:ai-ca-006",
+    "lat": 38.5382,
+    "lon": -121.7405
+  },
+  {
+    "id": "fc-5a876576af",
+    "name": "Naval Base Kitsap Cyber and Network Operations Center",
+    "operator": "US Navy / CNIC Northwest",
+    "status": "existing",
+    "county_fips": "53035",
+    "notes": "Naval Base Kitsap operates Navy cybersecurity and network operations supporting submarine forces, surface forces, and Puget Sound Naval Shipyard IT; includes NUWC Keyport's undersea warfare data systems.; legacy_id:ai-wa-004",
+    "lat": 47.5676,
+    "lon": -122.6326
+  },
+  {
+    "id": "fc-296a6347ee",
+    "name": "GlobalWafers Semiconductor Silicon Wafer Facility \u2014 Albany",
+    "operator": "GlobalWafers (formerly SunEdison Semiconductor / MEMC)",
+    "status": "existing",
+    "county_fips": "41043",
+    "notes": "GlobalWafers' Albany OR facility manufactures semiconductor-grade silicon wafers for the global chip supply chain; operations include extensive process automation, quality data systems, and manufacturing AI supporting the Willamette Valley semiconductor ecosystem.; legacy_id:ai-or-004",
+    "lat": 44.6365,
+    "lon": -123.1059
+  },
+  {
+    "id": "fc-fd85a40aff",
+    "name": "Eglin AFB Air Force Research Laboratory Munitions and Cyber Operations Center",
+    "operator": "US Air Force / AFRL / 96th Test Wing",
+    "status": "existing",
+    "county_fips": "12091",
+    "notes": "Eglin AFB's AFRL Munitions Directorate and 96th TW operate extensive weapons test and evaluation data systems; supports the Air Force's developmental and operational test missions across the Gulf Test Range.; legacy_id:ai-fl-006",
+    "lat": 30.4833,
+    "lon": -86.5253
+  },
+  {
+    "id": "fc-841ecd971a",
+    "name": "Lake Charles LNG and Petrochemical Industrial Operations Data Hub",
+    "operator": "Calcasieu Pass LNG / Energy Transfer (Lake Charles LNG)",
+    "status": "existing",
+    "county_fips": "22019",
+    "notes": "Calcasieu Parish hosts co-located LNG liquefaction control systems, refinery process automation, and environmental SCADA for one of the largest petrochemical industrial complexes in North America; handles real-time operations data for multiple major LNG terminals and chemical plants.; legacy_id:ai-la-003",
+    "lat": 30.2266,
+    "lon": -93.2174
+  },
+  {
+    "id": "fc-a74fb63114",
+    "name": "Fort Cavazos III Corps Mission Command and Network Operations Center",
+    "operator": "US Army III Corps / 1st Cavalry Division",
+    "status": "existing",
+    "county_fips": "48027",
+    "notes": "Fort Cavazos (formerly Fort Hood) III Corps mission command infrastructure supports combined-arms operations, joint all-domain command and control (JADC2) exercises, and Army-wide network operations training for the 1st Cavalry Division and III Corps subordinate units.; legacy_id:ai-tx-007",
+    "lat": 31.1344,
+    "lon": -97.7831
+  },
+  {
+    "id": "fc-122d2af8b1",
+    "name": "Huntington Ingalls Ingalls Shipbuilding Digital Shipyard Operations",
+    "operator": "Huntington Ingalls Industries (HII) \u2014 Ingalls Shipbuilding",
+    "status": "existing",
+    "county_fips": "28059",
+    "notes": "Ingalls Shipbuilding's Pascagoula facility operates digital shipbuilding systems including 3D design (Aveva AVEVA Marine), ship data management, and production control systems; builds US Navy destroyers, amphibious ships, and Coast Guard vessels.; legacy_id:ai-ms-003",
+    "lat": 30.3585,
+    "lon": -88.5561
+  },
+  {
+    "id": "fc-237240129b",
+    "name": "Hill AFB Ogden Air Logistics Complex (OO-ALC) \u2014 Software Engineering",
+    "operator": "US Air Force / Ogden Air Logistics Complex",
+    "status": "existing",
+    "county_fips": "49057",
+    "notes": "OO-ALC's Software Engineering Group maintains and modernizes flight control, avionics, and maintenance software for USAF aircraft; F-35 sustainment software ops co-located; one of Air Force's primary sustainment data centers.; legacy_id:ai-ut-004",
+    "lat": 41.124,
+    "lon": -111.9738
+  },
+  {
+    "id": "fc-1f91fb323f",
+    "name": "Robins AFB Warner Robins Air Logistics Complex (WR-ALC)",
+    "operator": "US Air Force / Warner Robins Air Logistics Complex",
+    "status": "existing",
+    "county_fips": "13153",
+    "notes": "WR-ALC maintains C-17, C-5, F-15, and U-2 aircraft and associated avionics, software, and intelligence systems; Air Force Life Cycle Management Center (AFLCMC) manages major acquisition programs from Robins; among largest employers in Georgia.; legacy_id:ai-ga-006",
+    "lat": 32.6401,
+    "lon": -83.5919
+  },
+  {
+    "id": "fc-33ee201d45",
+    "name": "Fort Riley Mission Command and K-State Biosecurity Research Institute \u2014 Manhattan",
+    "operator": "US Army 1st Infantry Division / Kansas State University",
+    "status": "existing",
+    "county_fips": "20161",
+    "notes": "Fort Riley hosts 1st Infantry Division mission command and training data systems; K-State's Biosecurity Research Institute (BRI) operates BSL-3 research computing and NBAF (National Bio and Agro-defense Facility) data systems adjacent to campus.; legacy_id:ai-ks-002",
+    "lat": 39.1836,
+    "lon": -96.5847
+  },
+  {
+    "id": "fc-3ae7875866",
+    "name": "Paducah Area TVA Power Operations and DOE Technology Center",
+    "operator": "Tennessee Valley Authority / US DOE Paducah Site",
+    "status": "existing",
+    "county_fips": "21145",
+    "notes": "TVA's Paducah area grid operations manage power distribution for western Kentucky and surrounding states; the DOE Paducah Site's ongoing deactivation and remediation program operates extensive environmental monitoring and process data systems.; legacy_id:ai-ky-001",
+    "lat": 37.0834,
+    "lon": -88.6001
+  },
+  {
+    "id": "fc-4e91b35599",
+    "name": "NASA Stennis Space Center \u2014 Propulsion Test and Data Operations",
+    "operator": "NASA / National Data Buoy Center (NOAA)",
+    "status": "existing",
+    "county_fips": "28045",
+    "notes": "Stennis hosts RS-25 SLS engine test stands, National Data Buoy Center oceanographic data operations, and multiple tenant agency computing (NGA, Navy, EPA); largest NASA field installation in the Southeast by land area.; legacy_id:ai-ms-004",
+    "lat": 30.3636,
+    "lon": -89.5994
+  },
+  {
+    "id": "fc-268dd74ec7",
+    "name": "Pacific Missile Range Facility (PMRF) \u2014 Barking Sands",
+    "operator": "US Navy / Commander, Pacific Fleet",
+    "status": "existing",
+    "county_fips": "15007",
+    "notes": "PMRF operates the world's largest instrumented, multi-environment missile test range with radar, tracking, and telemetry systems for missile defense, anti-submarine warfare, and undersea warfare testing in the Pacific; hosts MDA and MDA Aegis BMD test data systems.; legacy_id:ai-hi-004",
+    "lat": 22.0221,
+    "lon": -159.7649
+  },
+  {
+    "id": "fc-24b3c95b88",
+    "name": "Fort Sill Army Fires Center of Excellence and JADOC \u2014 Lawton",
+    "operator": "US Army Fires Center of Excellence",
+    "status": "existing",
+    "county_fips": "40031",
+    "notes": "Fort Sill's Fires Center of Excellence manages joint air defense and field artillery mission command systems, Patriot battery C2, and the Joint Air Defense Operations Center (JADOC) data infrastructure supporting Army IAMD operations.; legacy_id:ai-ok-005",
+    "lat": 34.6427,
+    "lon": -98.4045
+  },
+  {
+    "id": "fc-2899aa2006",
+    "name": "Vandenberg Space Force Base \u2014 Space Launch Delta 30 Mission Control",
+    "operator": "US Space Force / Space Launch Delta 30",
+    "status": "existing",
+    "county_fips": "06083",
+    "notes": "Vandenberg SFB's SLD-30 provides launch telemetry, satellite tracking (FPS-16 radar, telemetry stations), and mission control data for DoD, NASA, and commercial polar-orbit launches; SpaceX Falcon 9 and Falcon Heavy operations co-located.; legacy_id:ai-ca-008",
+    "lat": 34.742,
+    "lon": -120.5665
+  },
+  {
+    "id": "fc-e449941365",
+    "name": "Fort Drum 10th Mountain Division Mission Command Center",
+    "operator": "US Army 10th Mountain Division",
+    "status": "existing",
+    "county_fips": "36045",
+    "notes": "Fort Drum's 10th Mountain Division operates mission command and logistics data systems supporting the most-deployed US Army division; includes joint exercise data infrastructure and theater sustainment computing.; legacy_id:ai-ny-004",
+    "lat": 44.0527,
+    "lon": -75.7607
+  },
+  {
+    "id": "fc-6c3e88e44f",
+    "name": "Massachusetts Green High Performance Computing Center (MGHPCC) \u2014 Holyoke",
+    "operator": "UMass / Harvard / MIT / BU / Northeastern (consortium)",
+    "status": "existing",
+    "county_fips": "25015",
+    "notes": "MGHPCC is one of the most energy-efficient research data centers in the US, serving research computing for 5 major New England universities; powered by hydroelectric power from the Connecticut River; exemplar of academic research data center design.; legacy_id:ai-ma-002",
+    "lat": 42.2036,
+    "lon": -72.6162
+  },
+  {
+    "id": "fc-680a00dfcf",
+    "name": "Kohler Company Innovation Center and Manufacturing Technology Campus",
+    "operator": "Kohler Co.",
+    "status": "existing",
+    "county_fips": "55117",
+    "notes": "Kohler's Sheboygan County campus houses the company's manufacturing AI, IoT sensor integration, and enterprise data systems for global operations; Kohler's residential and hospitality technology platforms process data from millions of connected fixtures worldwide.; legacy_id:ai-wi-002",
+    "lat": 43.7369,
+    "lon": -87.7845
+  },
+  {
+    "id": "fc-9a0832b666",
+    "name": "University of Oregon Research Computing and Talapus HPC \u2014 Eugene",
+    "operator": "University of Oregon Research Computing",
+    "status": "existing",
+    "county_fips": "41039",
+    "notes": "UO operates Talapus HPC and research computing supporting genomics, neuroscience, earth sciences, and humanities digital research; connected to Pacific Research Platform (PRP) and Internet2 networks.; legacy_id:ai-or-005",
+    "lat": 44.046,
+    "lon": -123.0789
+  },
+  {
+    "id": "fc-def81b4afa",
+    "name": "Iowa State University CyEnce Research Computing and ISU Research Park \u2014 Ames",
+    "operator": "Iowa State University / ISU Research Park",
+    "status": "existing",
+    "county_fips": "19169",
+    "notes": "ISU operates CyEnce and Nova HPC clusters supporting agricultural genomics, computational fluid dynamics, and materials science; ISU Research Park co-locates Corteva Agriscience and USDA NADC computational biology with university resources.; legacy_id:ai-ia-004",
+    "lat": 42.0308,
+    "lon": -93.6502
+  },
+  {
+    "id": "fc-77906a5ceb",
+    "name": "NAS Patuxent River Naval Air Warfare Center Aircraft Division (NAWCAD)",
+    "operator": "US Navy / Naval Air Systems Command (NAVAIR)",
+    "status": "existing",
+    "county_fips": "24037",
+    "notes": "NAWCAD operates flight test data acquisition systems, aircraft simulation labs, and avionics test data infrastructure for all Navy and Marine Corps aircraft programs; Test Pilot School telemetry and SH-60, F/A-18, and F-35C test data systems co-located.; legacy_id:ai-md-003",
+    "lat": 38.2854,
+    "lon": -76.419
+  },
+  {
+    "id": "fc-814e22f9fb",
+    "name": "NOAA Earth System Research Laboratories (ESRL) \u2014 Boulder CO",
+    "operator": "NOAA / U.S. Department of Commerce",
+    "status": "existing",
+    "county_fips": "08013",
+    "notes": "NOAA ESRL in Boulder operates high-performance computing systems supporting atmospheric research, climate modeling, and weather-prediction AI. Co-located with NCAR/UCAR Mesa Laboratory on the NOAA-Boulder campus.; legacy_id:ai-co-004",
+    "lat": 39.9906,
+    "lon": -105.2624
+  },
+  {
+    "id": "fc-a21dc4cb30",
+    "name": "Forsyth County School District Data and AI Operations Center",
+    "operator": "Forsyth County Schools / FCSD Technology",
+    "status": "existing",
+    "county_fips": "13117",
+    "notes": "One of Georgia's largest and fastest-growing school districts, FCSD operates a substantial on-premise data center and AI-assisted learning analytics platform serving 60,000+ students. The facility anchors local fiber and data center demand in Cumming.; legacy_id:ai-ga-007",
+    "lat": 34.2099,
+    "lon": -84.1388
+  },
+  {
+    "id": "fc-04ddad93e1",
+    "name": "Hammond Indiana University (HIU) / Calumet Research Computing Center",
+    "operator": "Purdue University Northwest / Region IV ESC",
+    "status": "existing",
+    "county_fips": "18089",
+    "notes": "Purdue University Northwest (formerly Calumet) hosts regional research computing and data analytics infrastructure serving the Northwest Indiana Calumet Region. The facility supports AI research in manufacturing optimization, steel industry process control, and Great Lakes environmental modeling.; legacy_id:ai-in-005",
+    "lat": 41.5834,
+    "lon": -87.5
+  },
+  {
+    "id": "fc-eff8c5bfba",
+    "name": "Wolfspeed Marcy Nanotechnology Center \u2014 Utica NY",
+    "operator": "Wolfspeed / SUNY Polytechnic Institute",
+    "status": "existing",
+    "county_fips": "36065",
+    "notes": "Wolfspeed's Marcy Nanotechnology Center in Oneida County is the world's largest silicon carbide (SiC) semiconductor wafer fabrication facility. Co-located with SUNY Poly's campus, it drives substantial HPC and AI workloads for process simulation, materials science research, and semiconductor design automation.; legacy_id:ai-ny-005",
+    "lat": 43.1637,
+    "lon": -75.3779
+  },
+  {
+    "id": "fc-bd6220747b",
+    "name": "Western Michigan University HPC / Kalamazoo Life Sciences Computing",
+    "operator": "Western Michigan University",
+    "status": "existing",
+    "county_fips": "26077",
+    "notes": "Western Michigan University operates high-performance computing infrastructure supporting pharmaceutical AI research in partnership with the Kalamazoo life-sciences cluster (Pfizer, Stryker, Zoetis). Research areas include protein folding, clinical trial data analytics, and orthopedic implant design AI.; legacy_id:ai-mi-002",
+    "lat": 42.2842,
+    "lon": -85.5864
+  },
+  {
+    "id": "fc-7abe7d32b3",
+    "name": "Idaho National Laboratory (INL) Cybercore Integration Center",
+    "operator": "U.S. Department of Energy / Battelle Energy Alliance",
+    "status": "existing",
+    "county_fips": "16019",
+    "notes": "INL's Cybercore Integration Center in Idaho Falls is DOE's premier facility for industrial control system cybersecurity research and AI-driven threat detection. The facility also hosts the Mission Support Center HPC cluster supporting nuclear energy modeling, materials science AI, and critical infrastructure protection.; legacy_id:ai-id-002",
+    "lat": 43.516,
+    "lon": -112.0391
+  },
+  {
+    "id": "fc-add870b5e9",
+    "name": "St. Tammany Corporation Innovation Center \u2014 Covington LA",
+    "operator": "St. Tammany Corporation / Northshore Tech Hub",
+    "status": "existing",
+    "county_fips": "22103",
+    "notes": "The St. Tammany Corporation operates the Northshore technology innovation hub in Covington, supporting data analytics, cybersecurity, and AI/ML startups serving the Gulf Coast energy and logistics sectors. The facility anchors Northshore Tech, a regional tech cluster attracting remote tech workers from the New Orleans metro.; legacy_id:ai-la-004",
+    "lat": 30.4752,
+    "lon": -90.0989
+  },
+  {
+    "id": "fc-6f143a0e5c",
+    "name": "Fort Liberty (Fort Bragg) USSOCOM Cyber and AI Operations",
+    "operator": "U.S. Army / USSOCOM",
+    "status": "existing",
+    "county_fips": "37085",
+    "notes": "Fort Liberty hosts U.S. Army Special Operations Command (USSOCOM) cyber and intelligence computing infrastructure, including classified AI/ML platforms for mission planning, threat analysis, and tactical autonomous systems research. Fort Liberty is one of the largest military installations in the world by population.; legacy_id:ai-nc-005",
+    "lat": 35.139,
+    "lon": -79.0064
+  },
+  {
+    "id": "fc-6f6ae674d2",
+    "name": "Cowlitz County PUD Industrial Computing \u2014 Longview WA",
+    "operator": "Cowlitz County PUD / Lower Columbia Economic Development Council",
+    "status": "planned",
+    "county_fips": "53015",
+    "notes": "Cowlitz County PUD has partnered with the Lower Columbia EDC to develop an industrial data center park leveraging the PUD's ultra-low hydroelectric rates (<2 cents/kWh). Several hyperscale operators have engaged in site selection processes for the Longview industrial port area, making this a planned major computing campus in the Pacific Northwest.; legacy_id:ai-wa-006",
+    "lat": 46.1382,
+    "lon": -122.9384
+  },
+  {
+    "id": "fc-a82254dc6a",
+    "name": "UMass Medical School / WPI Advanced Research Computing Hub \u2014 Worcester MA",
+    "operator": "University of Massachusetts Medical School / Worcester Polytechnic Institute",
+    "status": "existing",
+    "county_fips": "25027",
+    "notes": "UMass Medical and WPI jointly anchor central Massachusetts's life-sciences computing cluster. Research computing at UMass Medical supports genomics, clinical AI, and NIH-funded biomedical informatics. WPI's Data Science program operates HPC resources shared with regional biotech partners.; legacy_id:ai-ma-003",
+    "lat": 42.2626,
+    "lon": -71.8023
+  },
+  {
+    "id": "fc-3d289f1f8a",
+    "name": "UC Merced Cyberinfrastructure and HPC Initiative",
+    "operator": "University of California, Merced",
+    "status": "existing",
+    "county_fips": "06047",
+    "notes": "UC Merced's Cyberinfrastructure Initiative provides HPC and cloud resources to researchers across UC campuses. Research areas include Central Valley climate modeling, agricultural AI, wildfire prediction, and renewable energy grid optimization. The campus is allocated compute on NSF ACCESS and XSEDE successor systems.; legacy_id:ai-ca-010",
+    "lat": 37.3656,
+    "lon": -120.4233
+  },
+  {
+    "id": "fc-379f6eee12",
+    "name": "Muscogee (Creek) Nation Tribal Digital Operations Center \u2014 Okmulgee OK",
+    "operator": "Muscogee (Creek) Nation",
+    "status": "existing",
+    "county_fips": "40111",
+    "notes": "The Muscogee (Creek) Nation operates a centralized tribal government data center in Okmulgee supporting health records (Indian Health Service integration), gaming analytics, citizen services, and the Nation's e-commerce and retail technology platforms for tribal enterprises.; legacy_id:ai-ok-006",
+    "lat": 35.6239,
+    "lon": -95.967
+  },
+  {
+    "id": "fc-887a053430",
+    "name": "Library of Congress National Digital Preservation Infrastructure",
+    "operator": "Library of Congress / U.S. Congress",
+    "status": "existing",
+    "county_fips": "11001",
+    "notes": "The Library of Congress operates one of the largest digital preservation and AI-assisted cataloging infrastructures in the world, with primary systems on Capitol Hill. The LC's National Digital Information Infrastructure and Preservation Program (NDIIPP) and AI Labs for metadata enrichment serve the national digital collections.; legacy_id:ai-dc-001",
+    "lat": 38.8892,
+    "lon": -77.0047
+  },
+  {
+    "id": "fc-ab3c57cf6d",
+    "name": "Minot Air Force Base \u2014 91st Missile Wing Command and Control",
+    "operator": "U.S. Air Force / Air Force Global Strike Command",
+    "status": "existing",
+    "county_fips": "38101",
+    "notes": "Minot AFB hosts the 91st Missile Wing, responsible for Minuteman III ICBMs across 150 launch facilities in ND, and the 5th Bomb Wing (B-52H). The base operates classified nuclear command-and-control computing infrastructure and Air Force Global Strike Command C4ISR systems. Emerging AI/ML applications support targeting analytics and base cybersecurity.; legacy_id:ai-nd-004",
+    "lat": 48.4154,
+    "lon": -101.3579
+  },
+  {
+    "id": "fc-f0cd655b93",
+    "name": "Bell Works Holmdel AI and Technology Campus",
+    "operator": "Bell Works / iStar",
+    "status": "existing",
+    "county_fips": "34025",
+    "notes": "Redevelopment of historic AT&T Bell Labs Holmdel complex (1962 Eero Saarinen building) as a mixed-use technology campus. Hosts AI, cloud, and telecom tenants leveraging the site's fiber infrastructure heritage. New Jersey's largest redeveloped corporate campus.; legacy_id:ai-nj-003",
+    "lat": 40.3573,
+    "lon": -74.1843
+  },
+  {
+    "id": "fc-f2a6fc95ac",
+    "name": "Portland General Electric Willamette Falls AI Grid Control Center",
+    "operator": "Portland General Electric",
+    "status": "existing",
+    "county_fips": "41005",
+    "notes": "Portland General Electric operations and grid control facility in Clackamas County near Oregon City, incorporating AI-driven predictive load management for the Willamette Valley hydro and transmission system. Supports BPA integration and real-time grid optimization.; legacy_id:ai-or-006",
+    "lat": 45.3565,
+    "lon": -122.6084
+  },
+  {
+    "id": "fc-299ba6e326",
+    "name": "Minnesota Power AI Grid Operations Center",
+    "operator": "Minnesota Power / ALLETE",
+    "status": "existing",
+    "county_fips": "27061",
+    "notes": "Minnesota Power (ALLETE) grid operations center in Grand Rapids serving Itasca County and the Iron Range. Integrates AI-driven load forecasting and renewable dispatch optimization for Minnesota Power's hydro, wind, and biomass generation portfolio serving northern Minnesota.; legacy_id:ai-mn-005",
+    "lat": 47.2372,
+    "lon": -93.5274
+  },
+  {
+    "id": "fc-d68d2d09d9",
+    "name": "Rogue Valley AI Data Analytics and Research Center",
+    "operator": "Southern Oregon University / Rogue Community College",
+    "status": "existing",
+    "county_fips": "41029",
+    "notes": "Regional higher education AI and data analytics research center serving the Rogue Valley (Medford/Ashland/Grants Pass corridor). Jointly operated through Southern Oregon University and Rogue Community College workforce development programs. Supports agricultural AI, forestry monitoring, and Klamath River restoration science computing needs.; legacy_id:ai-or-007",
+    "lat": 42.3265,
+    "lon": -122.8756
+  },
+  {
+    "id": "fc-bd6eb009f7",
+    "name": "Cal Poly San Luis Obispo Center for Computing and AI Research",
+    "operator": "California Polytechnic State University",
+    "status": "existing",
+    "county_fips": "06079",
+    "notes": "Cal Poly SLO's computing and AI research infrastructure supporting the university's Learn by Doing engineering programs. Houses HPC clusters for environmental science, agricultural tech, and structural engineering AI. Operates in proximity to Diablo Canyon nuclear plant's reliable baseload grid zone.; legacy_id:ai-ca-011",
+    "lat": 35.305,
+    "lon": -120.6596
+  },
+  {
+    "id": "fc-015ee564f3",
+    "name": "Rockford University and NIU AI Regional Innovation Hub",
+    "operator": "Rockford University / Northern Illinois University",
+    "status": "planned",
+    "county_fips": "17201",
+    "notes": "Planned regional AI innovation hub for Winnebago County, a collaboration between Rockford University and Northern Illinois University's Rockford academic programs. Intended to anchor Rockford's I-90 technology corridor with AI-enabled manufacturing analytics for the region's aerospace and automotive supply chain industry.; legacy_id:ai-il-007",
+    "lat": 42.2711,
+    "lon": -89.094
+  },
+  {
+    "id": "fc-6bef7b9f9f",
+    "name": "Chippewa Falls Technology Park \u2014 HPE Cray Heritage Computing Site",
+    "operator": "Chippewa Falls Technology Park / HPE Cray Alumni Network",
+    "status": "existing",
+    "county_fips": "55017",
+    "notes": "Multi-tenant technology campus occupying the historic Cray Research supercomputer design and manufacturing site in Chippewa Falls. The campus maintains computing heritage and hosts AI, embedded systems, and engineering tenants leveraging the original Cray Research infrastructure legacy. Xcel Energy NSP provides power via legacy high-reliability feeds designed for supercomputer loads.; legacy_id:ai-wi-003",
+    "lat": 44.9369,
+    "lon": -91.3929
+  },
+  {
+    "id": "fc-ad47a47ea7",
+    "name": "Northern Kentucky University AI and Data Science Research Center",
+    "operator": "Northern Kentucky University",
+    "status": "existing",
+    "county_fips": "21037",
+    "notes": "NKU's College of Informatics AI and Data Science research center in Highland Heights, Campbell County. Hosts applied AI research for Cincinnati-region healthcare, logistics, and financial services sectors. Partners with Duke Energy Ohio on smart grid AI projects and Greater Cincinnati tech ecosystem programs.; legacy_id:ai-ky-002",
+    "lat": 38.9453,
+    "lon": -84.4552
+  },
+  {
+    "id": "fc-9449cac352",
+    "name": "Basin Electric Power Cooperative AI Energy Management Center",
+    "operator": "Basin Electric Power Cooperative",
+    "status": "existing",
+    "county_fips": "38057",
+    "notes": "Basin Electric Power Cooperative grid management and AI energy dispatch center in Beulah, Mercer County ND. Coordinates real-time generation dispatch for Basin Electric's 2.9 GW coal and 1+ GW wind generation portfolio serving 2.9 million people across nine states. AI-driven load forecasting supports coal-to-renewable transition planning.; legacy_id:ai-nd-005",
+    "lat": 47.2629,
+    "lon": -101.7796
+  },
+  {
+    "id": "fc-b542636613",
+    "name": "Rowan-Cabarrus Community College Advanced Technology and AI Center",
+    "operator": "Rowan-Cabarrus Community College",
+    "status": "existing",
+    "county_fips": "37159",
+    "notes": "Rowan-Cabarrus Community College AI and advanced manufacturing technology center in Salisbury, Rowan County NC. Trains data center operations technicians, network engineers, and AI-assisted manufacturing workers for the Charlotte-Greensboro industrial corridor. Partners with Duke Energy Carolinas and Fibrant municipal broadband for hands-on grid and network training.; legacy_id:ai-nc-006",
+    "lat": 35.671,
+    "lon": -80.4775
+  },
+  {
+    "id": "fc-47a2052a8f",
+    "name": "Franklin College Center for Data Analytics and AI",
+    "operator": "Franklin College",
+    "status": "existing",
+    "county_fips": "18081",
+    "notes": "Franklin College AI and data analytics research center in Franklin, Johnson County IN. Focuses on applied AI for healthcare informatics (Johnson Memorial Health partnership), agricultural technology for southern Indiana farming operations, and supply chain optimization for Indianapolis-area logistics industry. Supported by Lilly Endowment higher education grants.; legacy_id:ai-in-006",
+    "lat": 39.4806,
+    "lon": -86.055
+  },
+  {
+    "id": "fc-5c51cb1da7",
+    "name": "Thor Industries / Forest River RV Manufacturing AI Center \u2014 Elkhart County IN",
+    "operator": "Thor Industries / Forest River (Berkshire Hathaway)",
+    "status": "existing",
+    "county_fips": "18039",
+    "notes": "Elkhart County's RV manufacturing cluster \u2014 anchored by Thor Industries and Forest River \u2014 operates AI-driven design, supply chain, and telematics analytics systems supporting approximately 80% of U.S. recreational vehicle production. Computing operations span Thor's Airstream, Keystone, and Grand Design brands and Forest River's 50+ subsidiary brands.; legacy_id:ai-in-008",
+    "lat": 41.6834,
+    "lon": -85.9766
+  },
+  {
+    "id": "fc-0a5c787332",
+    "name": "Cummins Inc. Seymour Engine Manufacturing AI Hub \u2014 Jackson County IN",
+    "operator": "Cummins Inc.",
+    "status": "existing",
+    "county_fips": "18071",
+    "notes": "Cummins Inc.'s Seymour, Indiana engine manufacturing campus operates AI-based production quality control, predictive maintenance, and engine performance simulation systems for diesel and natural gas engines shipped globally. Seymour is one of Cummins' largest manufacturing facilities and a center of the company's digital manufacturing transformation.; legacy_id:ai-in-009",
+    "lat": 38.9556,
+    "lon": -85.8897
+  },
+  {
+    "id": "fc-d29a69cfd3",
+    "name": "Johnston County Research Triangle Industrial AI Park \u2014 Johnston County NC",
+    "operator": "Multiple tenants / Johnston County EDA",
+    "status": "planned",
+    "county_fips": "37099",
+    "notes": "Johnston County is developing an AI and advanced manufacturing industrial park along the US-70 corridor to capture Research Triangle Park overflow demand. Anchor tenants include distribution and light manufacturing operations supported by Duke Energy Progress industrial power. Proximity to Raleigh-Durham fiber rings makes the county attractive for edge computing and disaster recovery.; legacy_id:ai-nc-007",
+    "lat": 35.5093,
+    "lon": -78.3696
+  },
+  {
+    "id": "fc-f578975ddd",
+    "name": "Toyota Motor Manufacturing Mississippi (TMMMS) AI Production System \u2014 Union County MS",
+    "operator": "Toyota Motor Manufacturing Mississippi",
+    "status": "existing",
+    "county_fips": "28155",
+    "notes": "Toyota's Blue Springs, Mississippi plant (TMMMS) produces the Corolla sedan and employs approximately 2,000 workers. The facility operates Toyota's Toyota Production System (TPS) AI quality inspection, supply chain analytics, and connected vehicle data processing systems, representing one of the most significant automotive AI deployments in the Deep South.; legacy_id:ai-ms-006",
+    "lat": 34.6481,
+    "lon": -88.9291
+  },
+  {
+    "id": "fc-7bbc9ee4d6",
+    "name": "Shelby County Alabama Technology Corridor \u2014 Birmingham Metro South",
+    "operator": "Multiple tenants / Shelby County EDA",
+    "status": "existing",
+    "county_fips": "01117",
+    "notes": "Shelby County's US-31 and I-65 technology corridor hosts Amazon fulfillment AI robotics operations, Grandview Medical Center's clinical AI systems, and a dense cluster of professional services firms serving the Birmingham metro. The corridor benefits from Alabama Power's competitive industrial rates and the county's status as Alabama's fastest-growing community.; legacy_id:ai-al-004",
+    "lat": 33.3773,
+    "lon": -86.7999
+  },
+  {
+    "id": "fc-41306ec1d6",
+    "name": "Georgia Ports Authority Garden City Terminal AI Logistics Hub \u2014 Chatham County GA",
+    "operator": "Georgia Ports Authority / GPA",
+    "status": "existing",
+    "county_fips": "13051",
+    "notes": "The Georgia Ports Authority's Garden City Terminal in Savannah is the nation's busiest single-terminal container port, handling 5.6M TEUs annually. GPA operates AI-driven berth scheduling, automated stacking cranes (ASCs), vessel arrival prediction, and inland port logistics optimization systems across the Port of Savannah and Appalachian Regional Port network.; legacy_id:ai-ga-008",
+    "lat": 32.0835,
+    "lon": -81.1499
+  },
+  {
+    "id": "fc-b420d6a63c",
+    "name": "Macon-Bibb County Technology Hub / Mercer University AI Research \u2014 Bibb County GA",
+    "operator": "Macon-Bibb County Industrial Authority / Mercer University",
+    "status": "existing",
+    "county_fips": "13021",
+    "notes": "The Macon-Bibb County industrial corridor hosts Mercer University's engineering and AI research programs, Middle Georgia State University's aviation science computing, and a growing cluster of healthcare AI operations anchored by Navicent Health (Atrium Health subsidiary). MEAG Power delivers competitive wholesale rates through the city utility system.; legacy_id:ai-ga-009",
+    "lat": 32.8407,
+    "lon": -83.6324
+  },
+  {
+    "id": "fc-d13e747add",
+    "name": "Fort Liberty (Bragg) U.S. Army FORSCOM/USASOC AI Computing \u2014 Cumberland County NC",
+    "operator": "U.S. Army / Army Forces Command / USASOC",
+    "status": "existing",
+    "county_fips": "37051",
+    "notes": "Fort Liberty (formerly Fort Bragg) \u2014 the world's largest military installation by population \u2014 hosts U.S. Army Forces Command, XVIII Airborne Corps, 82nd Airborne Division, and U.S. Army Special Operations Command. The installation operates classified C4ISR, targeting analytics, and AI-enabled intelligence fusion systems. Pope Army Airfield provides the fixed-wing AI-supported ISR and airlift mission computing.; legacy_id:ai-nc-008",
+    "lat": 35.1399,
+    "lon": -79.0061
+  },
+  {
+    "id": "fc-ef46d2653f",
+    "name": "Clark Public Utilities Columbia Gorge Data Center Zone \u2014 Clark County WA",
+    "operator": "Multiple tenants / Clark County EDC",
+    "status": "planned",
+    "county_fips": "53003",
+    "notes": "Clark County's position as the Washington-side component of the Portland metro area \u2014 with Washington's favorable tax treatment (no income tax, RCW 82.08.986 sales-tax exemption on data center equipment) versus Oregon's taxable environment \u2014 has driven a cluster of data center proposals along the I-5 and I-205 corridors south of Vancouver. Clark Public Utilities is the primary distributor, interconnected with BPA's high-voltage grid.; legacy_id:ai-wa-007",
+    "lat": 45.628,
+    "lon": -122.5712
+  },
+  {
+    "id": "fc-ed4b84777b",
+    "name": "Jefferson County High Desert Solar Data Center Zone \u2014 Jefferson County OR",
+    "operator": "Multiple developers / Jefferson County",
+    "status": "planned",
+    "county_fips": "41031",
+    "notes": "Jefferson County's Madras area is emerging as a solar-plus-compute destination in Oregon's high desert, with PacifiCorp/Pacific Power interconnect queues holding multiple utility-scale solar projects. The Confederated Tribes of Warm Springs have development rights to significant renewable energy capacity in the region. Land costs are low, ambient temperatures favor free-air cooling, and the I-97 fiber corridor connects to the US-97 north-south backbone.; legacy_id:ai-or-008",
+    "lat": 44.6343,
+    "lon": -121.1294
+  },
+  {
+    "id": "fc-05232252c6",
+    "name": "GE Vernova Global Research Center \u2014 Niskayuna / Schenectady County NY",
+    "operator": "GE Vernova (General Electric Vernova Inc.)",
+    "status": "existing",
+    "county_fips": "36093",
+    "notes": "GE Vernova's Global Research Center in Niskayuna, NY (est. 1900 as the General Electric Research Laboratory) is one of the world's oldest and most productive industrial R&D campuses. Today it focuses on AI-enabled gas turbine efficiency, wind turbine digital twins, grid-scale energy storage, and power semiconductor research \u2014 generating some of the most demanding industrial AI HPC workloads in the Northeast.; legacy_id:ai-ny-006",
+    "lat": 42.8142,
+    "lon": -73.9212
+  },
+  {
+    "id": "fc-0d22efcfb3",
+    "name": "NYPA St. Lawrence-FDR Hydroelectric Complex AI / Clarkson University HPC \u2014 St. Lawrence County NY",
+    "operator": "New York Power Authority / Clarkson University",
+    "status": "existing",
+    "county_fips": "36101",
+    "notes": "The New York Power Authority's 912 MW St. Lawrence-Franklin D. Roosevelt Power Project is among the most powerful hydroelectric facilities in New York State. NYPA operates AI-based water-flow optimization, generation scheduling, and grid-balancing systems for the seaway complex. Clarkson University's research computing cluster (anchored by climate modeling, autonomous vehicles, and engineering AI) benefits from adjacent NYPA low-cost hydropower allocations.; legacy_id:ai-ny-007",
+    "lat": 44.7021,
+    "lon": -75.0891
+  },
+  {
+    "id": "fc-a7330e8495",
+    "name": "Roseburg Forest Products / Pacific Power Timber AI Hub \u2014 Douglas County OR",
+    "operator": "Roseburg Forest Products / Pacific Power",
+    "status": "existing",
+    "county_fips": "41019",
+    "notes": "Douglas County's timber industry \u2014 anchored by Roseburg Forest Products, Weyerhaeuser, and Interfor \u2014 operates AI-based log-scanning, yield optimization, and predictive sawmill maintenance systems that represent among the most mature industrial AI deployments in Oregon's forest sector. Pacific Power serves these industrial loads with Oregon West transmission system capacity, and the I-5 fiber corridor through Roseburg is the primary Pacific Northwest backbone.; legacy_id:ai-or-009",
+    "lat": 43.2165,
+    "lon": -123.3417
+  },
+  {
+    "id": "fc-70592797ce",
+    "name": "Walla Walla Valley Precision Viticulture AI Hub \u2014 Walla Walla County WA",
+    "operator": "Multiple wineries / WSU Viticulture Research",
+    "status": "existing",
+    "county_fips": "53071",
+    "notes": "Walla Walla County hosts 200+ wineries anchored by Woodward Canyon, L'Ecole No. 41, Seven Hills, and Leonetti Cellar. WSU's Viticulture and Enology research program (centered in Prosser but with Walla Walla extension operations) drives precision viticulture AI \u2014 soil-moisture sensing, drone-based canopy analysis, fermentation monitoring, and harvest-prediction systems \u2014 representing one of the most data-intensive per-acre agricultural AI deployments in the Pacific Northwest.; legacy_id:ai-wa-008",
+    "lat": 46.0646,
+    "lon": -118.343
+  },
+  {
+    "id": "fc-4ae57060b0",
+    "name": "USDA Agricultural Research Service Plains Area AI Hub \u2014 Sedgwick County KS",
+    "operator": "USDA Agricultural Research Service (ARS)",
+    "status": "existing",
+    "county_fips": "20173",
+    "notes": "USDA ARS Hard Winter Wheat Genetics Research Unit (Wichita/Manhattan, KS): AI for wheat-genome trait prediction, drought-tolerance ML, precision-irrigation optimization for the Ogallala Aquifer region. Evergy served.; legacy_id:ai-ks-004",
+    "lat": 37.6922,
+    "lon": -97.3301
+  },
+  {
+    "id": "fc-c3228bc785",
+    "name": "Naval Submarine Base Kings Bay SSBN Navigation AI Center \u2014 Camden County GA",
+    "operator": "U.S. Navy / Naval Submarine Forces Atlantic",
+    "status": "existing",
+    "county_fips": "13039",
+    "notes": "Kings Bay NSGS: home to Ohio-class SSBN (Trident II D5) and SSGN. Navy AI: acoustic signature ML, autonomous navigation, SSBN mission planning AI, Naval Nuclear Lab simulation HPC. Georgia Power served. Classified facility.; legacy_id:ai-ga-010",
+    "lat": 30.799,
+    "lon": -81.597
+  },
+  {
+    "id": "fc-9175bc21fe",
+    "name": "Effingham County I-16 Industrial AI Hub / Port of Savannah Logistics Overflow \u2014 Effingham County GA",
+    "operator": "Multiple tenants / Effingham County Development Authority",
+    "status": "planned",
+    "county_fips": "13103",
+    "notes": "Port of Savannah overflow zone on I-16/I-95 interchange. AI: Container logistics routing, warehouse robotics, last-mile delivery optimization. Amazon, Walmart, Home Depot distribution AI. Georgia Power queue expansions 2024.; legacy_id:ai-ga-011",
+    "lat": 32.3577,
+    "lon": -81.3373
+  },
+  {
+    "id": "fc-324cd3529d",
+    "name": "ECU Health Vidant Medical Center Clinical AI Platform \u2014 Pitt County NC",
+    "operator": "ECU Health / East Carolina University",
+    "status": "existing",
+    "county_fips": "37147",
+    "notes": "ECU Health Vidant Medical Center (Level 1 Trauma, 974 beds): clinical AI for radiology (chest X-ray, CT), sepsis early warning, precision oncology, EHR NLP. ECU Brody SOM AI Center partnership; NIH-funded federated-learning clinical trials.; legacy_id:ai-nc-011",
+    "lat": 35.5793,
+    "lon": -77.3664
+  },
+  {
+    "id": "fc-0a4e7872d7",
+    "name": "Amazon CVG Air Hub AI Robotics & Sortation Technology \u2014 Kenton County KY",
+    "operator": "Amazon.com Services LLC",
+    "status": "existing",
+    "county_fips": "21115",
+    "notes": "Amazon Air Hub CVG (Erlanger, KY): 3M sq ft facility, largest Amazon Air hub globally. AI: autonomous conveyor sorting (Robin robotic arms), aircraft load optimization, predictive maintenance, real-time flight-path AI. AWS edge nodes on-site.; legacy_id:ai-ky-004",
+    "lat": 39.0488,
+    "lon": -84.6599
+  },
+  {
+    "id": "fc-5fe20828b9",
+    "name": "MT2",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Vaudreuil-Dorion,addr:housenumber=3500,addr:postcode=J7V 5V5,addr:province=QC,addr:street=Rue F.-X.-Tessier",
+    "lat": 45.412619,
+    "lon": -74.050506
+  },
+  {
+    "id": "fc-6d98671b3a",
+    "name": "CoreSite BO1",
+    "operator": "",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Somerville,addr:housenumber=70,addr:postcode=02143,addr:state=MA,addr:street=Inner Belt Road",
+    "lat": 42.376706,
+    "lon": -71.079758
+  },
+  {
+    "id": "fc-d94d5d320d",
+    "name": "Digital Realty Toronto YYZ10",
+    "operator": "",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Markham,addr:housenumber=371,addr:postcode=L3R 4B6,addr:street=Gough Road,building=yes",
+    "lat": 43.838316,
+    "lon": -79.323474
+  },
+  {
+    "id": "fc-4fba424551",
+    "name": "CoreSite Reston Campus VA1",
+    "operator": "CoreSite",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:VEDP:PropertyID=241830,addr:city=Reston,addr:country=US,addr:housenumber=12100,addr:postcode=20191-3407",
+    "lat": 38.950606,
+    "lon": -77.36455
+  },
+  {
+    "id": "fc-b97f007e1c",
+    "name": "CoreSite Reston VA3",
+    "operator": "CoreSite",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Reston,addr:housenumber=12369,addr:postcode=20191,addr:street=Sunrise Valley Drive,building=yes",
+    "lat": 38.948334,
+    "lon": -77.37243
+  },
+  {
+    "id": "fc-772243429f",
+    "name": "CyrusOne Cincinnati-Lebanon",
+    "operator": "",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:building=yes,name=CyrusOne Cincinnati-Lebanon,telecom=data_center",
+    "lat": 39.38897,
+    "lon": -84.221853
+  },
+  {
+    "id": "fc-5d0d6a3cd5",
+    "name": "Equinix NY7 Data Center",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=North Bergen,addr:housenumber=5851,addr:postcode=07047,addr:state=NJ,addr:street=West Side Avenue",
+    "lat": 40.796863,
+    "lon": -74.03114
+  },
+  {
+    "id": "fc-8b696c5352",
+    "name": "CoreSite SV2",
+    "operator": "CoreSite Real Estate 1656 McCarthy, L.P.",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Milpitas,addr:housenumber=1656,addr:postcode=95035,addr:state=CA,addr:street=McCarthy Boulevard",
+    "lat": 37.405686,
+    "lon": -121.91626
+  },
+  {
+    "id": "fc-6e8f1cce47",
+    "name": "CyrusOne PHX1",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Chandler,addr:country=US,addr:housenumber=2335,addr:postcode=85286,addr:state=AZ",
+    "lat": 33.270878,
+    "lon": -111.881995
+  },
+  {
+    "id": "fc-540e83a263",
+    "name": "Apple Data Center",
+    "operator": "Apple Inc.",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Mesa,addr:housenumber=3740,addr:postcode=85212,addr:state=AZ,addr:street=South Signal Butte Road",
+    "lat": 33.347033,
+    "lon": -111.604142
+  },
+  {
+    "id": "fc-c18650885b",
+    "name": "Digital Realty Austin AUS11",
+    "operator": "",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Austin,addr:housenumber=7500,addr:postcode=78744,addr:state=TX,addr:street=Metro Center Drive",
+    "lat": 30.212156,
+    "lon": -97.695756
+  },
+  {
+    "id": "fc-fcab39e41c",
+    "name": "CyrusOne Austin Data Center II",
+    "operator": "",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:housenumber=7301,addr:street=Metropolis Drive,building=yes,coa:place_id=3528713,height=12.48",
+    "lat": 30.205921,
+    "lon": -97.697951
+  },
+  {
+    "id": "fc-3203f13acc",
+    "name": "Digital Realty Chicago ORD12",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Franklin Park,addr:housenumber=9333,addr:postcode=60131,addr:state=IL,addr:street=West Grand Avenue",
+    "lat": 41.928356,
+    "lon": -87.859255
+  },
+  {
+    "id": "fc-64393865ed",
+    "name": "Google - Thornton",
+    "operator": "Google",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Thorton,addr:state=CO,addr:street=Grant Street,building=yes,building:levels=2",
+    "lat": 39.922465,
+    "lon": -104.983425
+  },
+  {
+    "id": "fc-b9e4f56f55",
+    "name": "CyrusOne Austin Data Center III",
+    "operator": "",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:housenumber=7100,addr:street=Metropolis Drive,building=yes,coa:place_id=3308082,name=CyrusOne Austin Data Center III",
+    "lat": 30.207006,
+    "lon": -97.701132
+  },
+  {
+    "id": "fc-744ae6ee12",
+    "name": "Amazon AWS: Hilliard Data Center",
+    "operator": "Amazon Web Services us-east-2 datacenter",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:landuse=industrial,name=Amazon AWS: Hilliard Data Center,operator=Amazon Web Services us-east-2 datacenter,telecom=data_center",
+    "lat": 40.059866,
+    "lon": -83.134284
+  },
+  {
+    "id": "fc-6da5f2a3f8",
+    "name": "Meta Los Lunas Data Center",
+    "operator": "Meta",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Los Lunas,addr:housenumber=4250,addr:postcode=87031,addr:state=NM,addr:street=Messenger Loop Northwest",
+    "lat": 34.829831,
+    "lon": -106.77852
+  },
+  {
+    "id": "fc-f3ef81751e",
+    "name": "Microsoft - Azure Datacenter",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Northlake,addr:housenumber=601,addr:postcode=60164,addr:state=IL,addr:street=Northwest Avenue",
+    "lat": 41.922956,
+    "lon": -87.918263
+  },
+  {
+    "id": "fc-594882a09f",
+    "name": "Meta",
+    "operator": "Meta",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Los Lunas,addr:housenumber=4250,addr:postcode=87031,addr:state=NM,addr:street=Messenger Loop NW",
+    "lat": 34.830242,
+    "lon": -106.783812
+  },
+  {
+    "id": "fc-131c387da5",
+    "name": "Stonewall Creek Business Park",
+    "operator": "Google",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Leesburg,addr:housenumber=42300,addr:state=VA,addr:street=Red Triangle Lane,barrier=fence",
+    "lat": 39.051467,
+    "lon": -77.539438
+  },
+  {
+    "id": "fc-84979de31b",
+    "name": "Meta",
+    "operator": "Meta",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Los Lunas,addr:housenumber=4250,addr:postcode=87031,addr:state=NM,addr:street=Messenger Loop NW",
+    "lat": 34.830279,
+    "lon": -106.780128
+  },
+  {
+    "id": "fc-950102e104",
+    "name": "Meta",
+    "operator": "Meta",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Los Lunas,addr:housenumber=4250,addr:postcode=87031,addr:state=NM,addr:street=Messenger Loop NW",
+    "lat": 34.83028,
+    "lon": -106.776461
+  },
+  {
+    "id": "fc-7f467c534d",
+    "name": "CyrusOne PHX6",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Chandler,addr:housenumber=2335,addr:postcode=85286,addr:state=AZ,addr:street=South Ellis Street",
+    "lat": 33.26763,
+    "lon": -111.882512
+  },
+  {
+    "id": "fc-f35b0b2962",
+    "name": "Amazon",
+    "operator": "Amazon",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Varennes,addr:housenumber=1660,addr:street=Boulevard Lionel-Boulet,building=yes,operator=Amazon",
+    "lat": 45.623691,
+    "lon": -73.381301
+  },
+  {
+    "id": "fc-6299a0a529",
+    "name": "CyrusOne PHX7",
+    "operator": "",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Chandler,addr:housenumber=2335,addr:postcode=85286,addr:state=AZ,addr:street=South Ellis Street",
+    "lat": 33.266374,
+    "lon": -111.881894
+  },
+  {
+    "id": "fc-7f5d51c784",
+    "name": "CyrusOne PHX4",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Chandler,addr:housenumber=2335,addr:postcode=85286,addr:state=AZ,addr:street=South Ellis Street",
+    "lat": 33.268778,
+    "lon": -111.882522
+  },
+  {
+    "id": "fc-e5fd594cce",
+    "name": "CyrusOne PHX5",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Chandler,addr:housenumber=2335,addr:postcode=85286,addr:state=AZ,addr:street=South Ellis Street",
+    "lat": 33.26975,
+    "lon": -111.881584
+  },
+  {
+    "id": "fc-6f16e0ba67",
+    "name": "Meta Stanton Springs Data Center",
+    "operator": "Meta",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Social Circle,addr:housenumber=100,addr:state=GA,addr:street=Move Fast Way,contact:facebook=https://www.facebook.com/StantonSpringsDataCenter/",
+    "lat": 33.600468,
+    "lon": -83.700358
+  },
+  {
+    "id": "fc-5c1b40eb17",
+    "name": "Microsoft EAT03",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=East Wenatchee,addr:housenumber=875 B,addr:postcode=98802,addr:state=WA,addr:street=Urban Industrial Way",
+    "lat": 47.418324,
+    "lon": -120.20771
+  },
+  {
+    "id": "fc-a120ec0634",
+    "name": "Meta",
+    "operator": "Meta",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Los Lunas,addr:housenumber=4250,addr:postcode=87031,addr:state=NM,addr:street=Messenger Loop NW",
+    "lat": 34.82588,
+    "lon": -106.778893
+  },
+  {
+    "id": "fc-d3b2c40138",
+    "name": "CyrusOne OCB1 Council Bluffs",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Council Bluffs,addr:housenumber=4700,addr:postcode=51501,addr:state=IA,addr:street=Gifford Road",
+    "lat": 41.212197,
+    "lon": -95.878
+  },
+  {
+    "id": "fc-d8e45b9996",
+    "name": "Equinix DC14",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Manassas,addr:housenumber=7400,addr:postcode=20109,addr:state=VA,addr:street=Infantry Ridge Road",
+    "lat": 38.803379,
+    "lon": -77.510546
+  },
+  {
+    "id": "fc-dd4efff2f8",
+    "name": "CyrusOne PHX8",
+    "operator": "",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Chandler,addr:housenumber=2335,addr:postcode=85286,addr:state=AZ,addr:street=South Ellis Street",
+    "lat": 33.266328,
+    "lon": -111.883304
+  },
+  {
+    "id": "fc-718b1edab3",
+    "name": "CyrusOne PHX3",
+    "operator": "",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Chandler,addr:housenumber=2335,addr:postcode=85286,addr:state=AZ,addr:street=South Ellis Street",
+    "lat": 33.271916,
+    "lon": -111.881627
+  },
+  {
+    "id": "fc-a6e329a3a6",
+    "name": "CyrusOne PHX4",
+    "operator": "",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Chandler,addr:housenumber=2335,addr:postcode=85286,addr:state=AZ,addr:street=South Ellis Street",
+    "lat": 33.271809,
+    "lon": -111.883263
+  },
+  {
+    "id": "fc-12b14a1174",
+    "name": "Amazon",
+    "operator": "Amazon",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Varennes,addr:housenumber=1670,addr:street=Boulevard Lionel-Boulet,building=yes,operator=Amazon",
+    "lat": 45.62299,
+    "lon": -73.38246
+  },
+  {
+    "id": "fc-d9885a96f8",
+    "name": "Amazon New Albany: Jug and Beach Road",
+    "operator": "",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:landuse=construction,name=Amazon New Albany: Jug and Beach Road,telecom=data_center",
+    "lat": 40.099077,
+    "lon": -82.751505
+  },
+  {
+    "id": "fc-4aa385095b",
+    "name": "Meta",
+    "operator": "Meta",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Los Lunas,addr:housenumber=4250,addr:postcode=87031,addr:state=NM,addr:street=Messenger Loop NW",
+    "lat": 34.825863,
+    "lon": -106.782473
+  },
+  {
+    "id": "fc-2eb6fdbf05",
+    "name": "Equinix SV1",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=San Jose,addr:housenumber=11,addr:postcode=95119,addr:state=CA,addr:street=Great Oaks Boulevard",
+    "lat": 37.241597,
+    "lon": -121.783328
+  },
+  {
+    "id": "fc-b328a2ff62",
+    "name": "Amazon IAD11",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Manassas,addr:housenumber=7510,addr:postcode=20109,addr:state=VA,addr:street=Mason King Court",
+    "lat": 38.790495,
+    "lon": -77.54111
+  },
+  {
+    "id": "fc-e8fd706818",
+    "name": "CyrusOne CIN2",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Cincinnati,addr:housenumber=229,addr:postcode=45202,addr:state=OH,addr:street=West 7th Street",
+    "lat": 39.102694,
+    "lon": -84.5179
+  },
+  {
+    "id": "fc-7e8d8d5b21",
+    "name": "VA 4",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Bristow,addr:country=US,addr:housenumber=8217,addr:postcode=20136,addr:state=VA",
+    "lat": 38.778061,
+    "lon": -77.594905
+  },
+  {
+    "id": "fc-d6256ab013",
+    "name": "Amazon IAD10",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Sterling,addr:housenumber=45360,addr:postcode=20166,addr:state=VA,addr:street=W Severn Way",
+    "lat": 39.021675,
+    "lon": -77.432973
+  },
+  {
+    "id": "fc-68350b370d",
+    "name": "CoreSite SV3",
+    "operator": "CoreSite",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Santa Clara,addr:housenumber=2901,addr:postcode=95054,addr:state=CA,addr:street=Coronado Drive",
+    "lat": 37.375158,
+    "lon": -121.971714
+  },
+  {
+    "id": "fc-a5e203d368",
+    "name": "VA3",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Reston,addr:housenumber=1780,addr:postcode=20190,addr:state=VA,addr:street=Business Center Drive",
+    "lat": 38.948494,
+    "lon": -77.327307
+  },
+  {
+    "id": "fc-0fae0ef33f",
+    "name": "Equinix SV4",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Sunnyvale,addr:housenumber=255,addr:postcode=94089,addr:state=CA,addr:street=Caspian Drive",
+    "lat": 37.414511,
+    "lon": -122.014556
+  },
+  {
+    "id": "fc-2a011f4169",
+    "name": "Digital Realty New York HVN10",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Trumbull,addr:housenumber=80,addr:postcode=06611,addr:state=CT,addr:street=Merritt Boulevard",
+    "lat": 41.240731,
+    "lon": -73.147267
+  },
+  {
+    "id": "fc-7a1bcf1793",
+    "name": "Digital Realty CH1",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Elk Grove Village,addr:housenumber=2200,addr:postcode=60007,addr:state=IL,addr:street=Busse Road",
+    "lat": 41.994241,
+    "lon": -87.961935
+  },
+  {
+    "id": "fc-217533193b",
+    "name": "Equinix SV8",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Palo Alto,addr:housenumber=529,addr:postcode=94301,addr:state=CA,addr:street=Bryant Street",
+    "lat": 37.445895,
+    "lon": -122.160786
+  },
+  {
+    "id": "fc-85d2874c54",
+    "name": "360 Spear Street Data Center",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=San Francisco,addr:housenumber=360,addr:state=CA,addr:street=Spear Street,building=data_center",
+    "lat": 37.788992,
+    "lon": -122.390137
+  },
+  {
+    "id": "fc-35ae148ff7",
+    "name": "CyrusOne Chicago Aurora CME",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Aurora,addr:housenumber=2805,addr:postcode=60502,addr:state=IL,addr:street=Diehl Road",
+    "lat": 41.796608,
+    "lon": -88.243823
+  },
+  {
+    "id": "fc-30c6470a6d",
+    "name": "Equinix SV16",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Santa Clara,addr:housenumber=2960,addr:postcode=95051,addr:state=CA,addr:street=Corvin Drive",
+    "lat": 37.376124,
+    "lon": -121.988672
+  },
+  {
+    "id": "fc-e8a053b464",
+    "name": "Silicon Valley SJC31",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Santa Clara,addr:housenumber=2805,addr:postcode=95050,addr:state=CA,addr:street=Lafayette Street",
+    "lat": 37.372221,
+    "lon": -121.948262
+  },
+  {
+    "id": "fc-cef4143131",
+    "name": "Digital Realty Data Center",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Tempe,addr:housenumber=2055,addr:postcode=85284,addr:state=AZ,addr:street=East Technology Circle",
+    "lat": 33.34462,
+    "lon": -111.899219
+  },
+  {
+    "id": "fc-312b3a8736",
+    "name": "Amazon IAD-55",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Haymarket,addr:housenumber=15395,addr:postcode=20169,addr:state=VA,addr:street=John Marshall Highway",
+    "lat": 38.815021,
+    "lon": -77.64868
+  },
+  {
+    "id": "fc-ed39e436d7",
+    "name": "Amazon IAD-9",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Chantilly,addr:housenumber=4100,addr:state=VA,addr:street=Westfax Drive,building=data_center",
+    "lat": 38.899724,
+    "lon": -77.453444
+  },
+  {
+    "id": "fc-bbe6ecc52e",
+    "name": "Digital Realty San Francisco SFO10",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=San Francisco,addr:housenumber=200,addr:state=CA,addr:street=Paul Avenue,building=data_center",
+    "lat": 37.723627,
+    "lon": -122.397954
+  },
+  {
+    "id": "fc-607ff643a0",
+    "name": "Equinix Ashburn DC11",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Ashburn,addr:housenumber=21721,addr:postcode=20147,addr:state=VA,addr:street=Filigree Court",
+    "lat": 39.014891,
+    "lon": -77.458799
+  },
+  {
+    "id": "fc-d3355110e1",
+    "name": "Amazon IAD12",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Sterling,addr:housenumber=22630,addr:state=VA,addr:street=Dulles Summit Court,building=data_center",
+    "lat": 38.988724,
+    "lon": -77.447671
+  },
+  {
+    "id": "fc-8f4e606793",
+    "name": "Equinix DC13",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Ashburn,addr:housenumber=21830,addr:postcode=20147,addr:state=VA,addr:street=Uunet Way",
+    "lat": 39.012562,
+    "lon": -77.475405
+  },
+  {
+    "id": "fc-2efc1fd467",
+    "name": "Digital Realty Silicon Valley SC1",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Santa Clara,addr:housenumber=2220,addr:state=CA,addr:street=De La Cruz Boulevard,addr:unit=1",
+    "lat": 37.361647,
+    "lon": -121.943978
+  },
+  {
+    "id": "fc-d77fa185b8",
+    "name": "Microsoft",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=San Antonio,addr:country=US,addr:housenumber=3823,addr:postcode=78251,addr:state=TX",
+    "lat": 29.47827,
+    "lon": -98.690685
+  },
+  {
+    "id": "fc-14dbce693b",
+    "name": "Microsoft",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=San Antonio,addr:country=US,addr:housenumber=5200,addr:postcode=78251,addr:state=TX",
+    "lat": 29.481054,
+    "lon": -98.69657
+  },
+  {
+    "id": "fc-71d79fe82b",
+    "name": "Equinix SV6",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Sunnyvale,addr:housenumber=444,addr:state=CA,addr:street=Toyama Drive,building=data_center",
+    "lat": 37.399626,
+    "lon": -122.014558
+  },
+  {
+    "id": "fc-7953918bb2",
+    "name": "Equinix",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Torrance,addr:housenumber=1501,addr:postcode=90501,addr:state=CA,addr:street=Francisco Street",
+    "lat": 33.850752,
+    "lon": -118.304081
+  },
+  {
+    "id": "fc-3baa78c8fc",
+    "name": "DRT LAX12",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=El Segundo,addr:housenumber=2260,addr:postcode=90245,addr:state=CA,addr:street=East El Segundo Boulevard",
+    "lat": 33.915659,
+    "lon": -118.384619
+  },
+  {
+    "id": "fc-56a0d82591",
+    "name": "Equinix CU2",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Culpeper,addr:country=US,addr:housenumber=18155,addr:postcode=22701,addr:state=VA",
+    "lat": 38.454844,
+    "lon": -77.978132
+  },
+  {
+    "id": "fc-00e5e3fbad",
+    "name": "Amazon IAD14",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Manassas,addr:housenumber=11801,addr:postcode=20109,addr:state=VA,addr:street=Brewers Spring Road",
+    "lat": 38.789885,
+    "lon": -77.548229
+  },
+  {
+    "id": "fc-59bcd1bbdd",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Umatilla,addr:postcode=97882,addr:state=OR,addr:street=Beach Access Road,building=service",
+    "lat": 45.915836,
+    "lon": -119.266323
+  },
+  {
+    "id": "fc-dcc47b6aff",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Boardman,addr:housenumber=79539,addr:postcode=97818,addr:state=OR,addr:street=Rippee Road",
+    "lat": 45.841003,
+    "lon": -119.652769
+  },
+  {
+    "id": "fc-6c639dc2be",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Boardman,addr:housenumber=73577,addr:postcode=97818,addr:state=OR,addr:street=Lewis and Clark Drive",
+    "lat": 45.852239,
+    "lon": -119.629901
+  },
+  {
+    "id": "fc-87138c5672",
+    "name": "Equinix San Jose SV3",
+    "operator": "Equinix",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=San Jose,addr:housenumber=1735,addr:postcode=95131,addr:state=CA,addr:street=Lundy Avenue",
+    "lat": 37.388274,
+    "lon": -121.888446
+  },
+  {
+    "id": "fc-4ba0185a08",
+    "name": "Digital Realty New Jersey EWR20",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Clifton,addr:housenumber=100,addr:postcode=07014,addr:state=NJ,addr:street=Delawanna Avenue",
+    "lat": 40.829928,
+    "lon": -74.12675
+  },
+  {
+    "id": "fc-1b6fcba334",
+    "name": "Amazon IAD78",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Ashburn,addr:housenumber=44854,addr:postcode=20147,addr:state=VA,addr:street=Interconnection Plaza",
+    "lat": 39.026368,
+    "lon": -77.44952
+  },
+  {
+    "id": "fc-b70fc3a589",
+    "name": "Digital Realty DFW36",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Dallas,addr:housenumber=8435,addr:state=TX,addr:street=North Stemmons Freeway,building=office",
+    "lat": 32.82755,
+    "lon": -96.87375
+  },
+  {
+    "id": "fc-b66f8842e1",
+    "name": "Amazon IAD73",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Manassas,addr:housenumber=7060,addr:postcode=20109,addr:state=VA,addr:street=Wellington Road",
+    "lat": 38.77798,
+    "lon": -77.559099
+  },
+  {
+    "id": "fc-2a84a7978c",
+    "name": "Digital Realty Dallas DFW29",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Richardson,addr:country=US,addr:housenumber=950,addr:postcode=75081,addr:state=TX",
+    "lat": 32.967276,
+    "lon": -96.710529
+  },
+  {
+    "id": "fc-2aba159a28",
+    "name": "Digital Realty Northern Virginia IAD73",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Ashburn,addr:housenumber=44540,addr:postcode=20147,addr:state=VA,addr:street=Round Table Plaza",
+    "lat": 39.006619,
+    "lon": -77.466407
+  },
+  {
+    "id": "fc-9bc9e8d4ee",
+    "name": "Amazon IAD90",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Sterling,addr:housenumber=45900,addr:postcode=20166,addr:state=VA,addr:street=Pathfinder Plaza",
+    "lat": 38.988603,
+    "lon": -77.411652
+  },
+  {
+    "id": "fc-bcd6577c35",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Hermiston,addr:housenumber=77954,addr:postcode=97838,addr:state=OR,addr:street=Cottonwood Bend Road",
+    "lat": 45.797809,
+    "lon": -119.366616
+  },
+  {
+    "id": "fc-ad62f22809",
+    "name": "Google Montgomery Data Center",
+    "operator": "Google LLC",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Clarksville,addr:housenumber=1000,addr:postcode=37040,addr:state=TN,addr:street=Boolean Drive",
+    "lat": 36.628255,
+    "lon": -87.260102
+  },
+  {
+    "id": "fc-ed0a813ea4",
+    "name": "PHX-10",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Goodyear,addr:housenumber=14250,addr:postcode=85338,addr:state=AZ,addr:street=West Broadway Road",
+    "lat": 33.407946,
+    "lon": -112.36483
+  },
+  {
+    "id": "fc-d380d1f438",
+    "name": "Amazon IAD140",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Sterling,addr:housenumber=22900,addr:postcode=20166,addr:state=VA,addr:street=Platform Plaza",
+    "lat": 38.981455,
+    "lon": -77.41755
+  },
+  {
+    "id": "fc-036c6ef628",
+    "name": "Microsoft",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=West Des Moines,addr:housenumber=5855,addr:postcode=50061,addr:state=IA,addr:street=Southwest Kerry Street",
+    "lat": 41.497856,
+    "lon": -93.787059
+  },
+  {
+    "id": "fc-1c89d3de47",
+    "name": "CoreSite Chicago Data Center (CH2)",
+    "operator": "CoreSite",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Chicago,addr:housenumber=1432,addr:postcode=60607,addr:state=IL,addr:street=South Clinton Street",
+    "lat": 41.862797,
+    "lon": -87.641301
+  },
+  {
+    "id": "fc-346b263a9a",
+    "name": "Google",
+    "operator": "Google",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Henderson,addr:housenumber=540,addr:postcode=89011,addr:state=NV,addr:street=West Warm Springs Road",
+    "lat": 36.056271,
+    "lon": -115.008575
+  },
+  {
+    "id": "fc-ad033e6c0a",
+    "name": "Microsoft",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Leesburg,addr:housenumber=19515,addr:postcode=20175,addr:state=VA,addr:street=Compass Creek Parkway",
+    "lat": 39.074787,
+    "lon": -77.564129
+  },
+  {
+    "id": "fc-de55237cd5",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Boardman,addr:housenumber=79388,addr:postcode=97818,addr:state=OR,addr:street=Olson Road Southeast",
+    "lat": 45.837924,
+    "lon": -119.688354
+  },
+  {
+    "id": "fc-145fbaff71",
+    "name": "Amazon IAD163",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Dulles,addr:housenumber=21195,addr:postcode=20166,addr:state=VA,addr:street=Atlantic Boulevard",
+    "lat": 39.032305,
+    "lon": -77.429702
+  },
+  {
+    "id": "fc-fa1ef56143",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Hermiston,addr:housenumber=81712,addr:postcode=97838,addr:state=OR,addr:street=Lind Road",
+    "lat": 45.901451,
+    "lon": -119.320522
+  },
+  {
+    "id": "fc-16d6d2db51",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Boardman,addr:postcode=97818,addr:state=OR,addr:street=Lewis and Clark Drive,building=industrial",
+    "lat": 45.847608,
+    "lon": -119.602775
+  },
+  {
+    "id": "fc-fbdb8a5ca4",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Boardman,addr:housenumber=75242,addr:postcode=97818,addr:state=OR,addr:street=Gar Swanson Drive",
+    "lat": 45.858747,
+    "lon": -119.605083
+  },
+  {
+    "id": "fc-fa61de3d99",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Umatilla,addr:housenumber=34820,addr:postcode=97882,addr:state=OR,addr:street=Wanapa Road",
+    "lat": 45.920609,
+    "lon": -119.23182
+  },
+  {
+    "id": "fc-10066aa158",
+    "name": "Digital Realty IAD55",
+    "operator": "Digital Realty",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Sterling,addr:housenumber=22515,addr:postcode=20166,addr:state=VA,addr:street=Fitness Court",
+    "lat": 38.992193,
+    "lon": -77.433922
+  },
+  {
+    "id": "fc-c2d7d5bea5",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Umatilla,addr:housenumber=80939,addr:postcode=97882,addr:state=OR,addr:street=Powerline Road",
+    "lat": 45.882525,
+    "lon": -119.341657
+  },
+  {
+    "id": "fc-5627b0456a",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Boardman,addr:postcode=97818,addr:state=OR,addr:street=Bombing Range Road,building=industrial",
+    "lat": 45.81993,
+    "lon": -119.632086
+  },
+  {
+    "id": "fc-89f08dc64d",
+    "name": "Microsoft",
+    "operator": "Microsoft",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Goodyear,addr:housenumber=45,addr:postcode=85338,addr:state=AZ,addr:street=South Bullard Avenue",
+    "lat": 33.446303,
+    "lon": -112.373887
+  },
+  {
+    "id": "fc-8c9c87ddcb",
+    "name": "Amazon AWS PHL",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Berwick,addr:housenumber=1125,addr:postcode=18603,addr:state=PA,addr:street=Electron Avenue",
+    "lat": 41.083991,
+    "lon": -76.143375
+  },
+  {
+    "id": "fc-1721025bb3",
+    "name": "Amazon IAD-165",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Herndon,addr:housenumber=13640,addr:postcode=20171,addr:state=VA,addr:street=EDS Drive",
+    "lat": 38.922767,
+    "lon": -77.427872
+  },
+  {
+    "id": "fc-ff99c1a57e",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Hermiston,addr:housenumber=976,addr:postcode=97838,addr:state=OR,addr:street=East Penney Avenue",
+    "lat": 45.809634,
+    "lon": -119.268611
+  },
+  {
+    "id": "fc-7929053979",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Hermiston,addr:postcode=97838,addr:state=OR,addr:street=Cottonwood Bend Road,building=industrial",
+    "lat": 45.799683,
+    "lon": -119.358424
+  },
+  {
+    "id": "fc-861780d6d5",
+    "name": "Amazon IAD-500",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Herndon,addr:housenumber=13850,addr:postcode=20171,addr:state=VA,addr:street=Redskin Drive",
+    "lat": 38.936464,
+    "lon": -77.42468
+  },
+  {
+    "id": "fc-c412a5cf61",
+    "name": "CyrusOne CHI3",
+    "operator": "CyrusOne",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Aurora,addr:housenumber=2725,addr:postcode=60502,addr:state=IL,addr:street=Bilter Road",
+    "lat": 41.802861,
+    "lon": -88.246752
+  },
+  {
+    "id": "fc-47c8f93a84",
+    "name": "Amazon Web Services",
+    "operator": "Amazon Web Services",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:city=Hermiston,addr:postcode=97838,addr:state=OR,addr:street=East Penney Avenue,building=industrial",
+    "lat": 45.811209,
+    "lon": -119.278247
+  }
+]

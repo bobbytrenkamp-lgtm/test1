@@ -714,14 +714,33 @@ async function loadCoreData() {
    paint. The Map tab awaits this; Home renders without it and re-renders when
    it lands. Every consumer already guards with `window.DC_X || {}` or a null
    check on `sampleLayers`, so a not-yet-loaded state renders as "no data"
-   rather than throwing. */
+   rather than throwing.
+
+   `sample` used to come from one fetch of data/sample_layers.json -- 25MB+
+   and growing (power_infrastructure alone is 53,826 records / ~9.3MB,
+   water_systems 44,612 / ~14.7MB), downloaded and parsed on every Map tab
+   open regardless of which layers a user actually wanted. data/layers/
+   (built by data/split_sample_layers.py) splits that file by key. Only the
+   pieces something reads UNCONDITIONALLY -- data_centers and ai_campuses
+   feed county detail panels and the site search index, not just a layer
+   toggle, confirmed by grep before this split -- are fetched here. The
+   large layers with no consumer besides their own map toggle
+   (power_infrastructure, transmission_lines, fiber_network) are fetched
+   lazily, only when that toggle is switched on for the first time -- see
+   the lazy layer builders below renderSampleMarkerLayers(). Three files
+   fetched independently (rather than one combined one) so a single dead
+   file degrades to an empty default for just that piece, not all of them. */
 let _secondaryPromise = null;
 
 function loadSecondaryData() {
   if (_secondaryPromise) return _secondaryPromise;
 
   _secondaryPromise = Promise.all([
-    _fetchJSON("data/sample_layers.json").catch(() => null),
+    Promise.all([
+      _fetchJSON("data/layers/core.json").catch(() => ({ water_stress: {}, tax_incentive_counties: [], utility_territories: [] })),
+      _fetchJSON("data/layers/data_centers.json").catch(() => []),
+      _fetchJSON("data/layers/ai_campuses.json").catch(() => []),
+    ]).then(([core, dataCenters, aiCampuses]) => ({ ...core, data_centers: dataCenters, ai_campuses: aiCampuses })),
     _fetchJSON("data/state_regulations.json").catch(() => ({ states: {} })),
     _fetchJSON("data/political_risk.json").catch(() => ({ scores: [] })),
     _fetchJSON("data/tax_incentives.json").catch(() => ({ tax_incentives: [] })),
@@ -1131,43 +1150,129 @@ function addAnnotations(countiesGeoJSON) {
   syncAnnotationVisibility();
 }
 
-/* ── Sample overlay layers ── */
-function renderSampleMarkerLayers(countiesGeoJSON) {
-  if (!sampleLayers) return;
+/* ── Lazy-loaded heavy layers ─────────────────────────────────────────────
+   power_infrastructure (53,826 records / ~9.3MB), transmission_lines
+   (1,892 / ~389KB), and fiber_network have no consumer besides their own
+   map-layer toggle (confirmed by grep -- unlike data_centers/ai_campuses,
+   which also feed county detail panels and the site search index, so those
+   stay in loadSecondaryData's eager fetch). Every one of these toggles
+   defaults to OFF (see layerState above), so building 50,000+ Leaflet
+   objects and downloading their megabytes-large source file on every Map
+   tab open, before a user has asked to see any of them, was pure waste.
+   Each is fetched at most once -- the first time its toggle is switched on
+   -- and the built LayerGroup is cached in leafletLayerGroups exactly like
+   the eager layers, so toggling off/on again after the first load is free. */
+const _lazyLayerDataCache  = {};   // fileKey -> raw parsed JSON (array)
+const _lazyLayerBuildCache = {};   // toggle id -> Promise<L.LayerGroup>
 
-  const project = ([lng, lat]) => [lat, lng];
+function _fetchLazyLayerFile(fileKey) {
+  if (_lazyLayerDataCache[fileKey]) return Promise.resolve(_lazyLayerDataCache[fileKey]);
+  return _fetchJSON(`data/layers/${fileKey}.json`)
+    .then(data => { _lazyLayerDataCache[fileKey] = data; return data; })
+    .catch(() => []);
+}
 
-  // Transmission lines
-  const transmissionGroup = L.layerGroup();
-  (sampleLayers.transmission_lines || []).forEach(d => {
-    L.polyline(d.path.map(project), {
-      color: "#fbbf24", weight: 1.1, opacity: 0.85, dashArray: "4,2",
-    })
-      .bindTooltip(`${d.name} (${d.voltage_kv} kV) — ${SAMPLE_DISCLAIMER}`)
-      .addTo(transmissionGroup);
-  });
-  leafletLayerGroups.transmission = transmissionGroup;
+/* Substations rendered as clusters at low/mid zoom (see
+   js/map-point-clustering.js) instead of 53,826 raw markers -- even with
+   preferCanvas, drawing and hit-testing that many circles at once is real
+   per-frame cost, and at national zoom they are visually indistinguishable
+   anyway. Individual markers still render once a user is zoomed in enough
+   to tell them apart (clusterPoints' own singleThreshold). Re-clustered on
+   zoomend (debounced), not every pan frame. */
+let _powerRawData = null;
 
-  // Fiber
-  const fiberGroup = L.layerGroup();
-  (sampleLayers.fiber_network || []).forEach(d => {
-    L.polyline(d.path.map(project), {
-      color: "#60a5fa", weight: 1, opacity: 0.85, dashArray: "1,2",
-    })
-      .bindTooltip(`${d.name} — ${SAMPLE_DISCLAIMER}`)
-      .addTo(fiberGroup);
-  });
-  leafletLayerGroups.fiber = fiberGroup;
+function _clusterMarkerStyle(count) {
+  const r = window.MAP_POINT_CLUSTERING.clusterRadius(count);
+  return { radius: r, color: "#0b0d14", weight: 1, fillColor: "#059669", fillOpacity: 0.85 };
+}
 
-  // Power infrastructure
-  const powerGroup = L.layerGroup();
-  (sampleLayers.power_infrastructure || []).forEach(d => {
+function _renderPowerLayerAtCurrentZoom() {
+  const group = leafletLayerGroups.power;
+  if (!group || !_powerRawData) return;
+  group.clearLayers();
+  const zoom = leafletMap.getZoom();
+  const { clusters, singles } = window.MAP_POINT_CLUSTERING.clusterPoints(_powerRawData, { zoom });
+
+  singles.forEach(d => {
     L.circleMarker([d.lat, d.lon], { radius: 5, color: "#0b0d14", weight: 0.8, fillColor: "#34d399", fillOpacity: 1 })
       .bindTooltip(d.name)
       .on("click", () => setDetailFacility(d, "power"))
-      .addTo(powerGroup);
+      .addTo(group);
   });
-  leafletLayerGroups.power = powerGroup;
+  clusters.forEach(c => {
+    L.circleMarker([c.lat, c.lon], _clusterMarkerStyle(c.count))
+      .bindTooltip(`${c.count} substations`)
+      .on("click", () => leafletMap.setView([c.lat, c.lon], Math.min(18, zoom + 3)))
+      .addTo(group);
+  });
+}
+
+let _powerZoomDebounce = null;
+function _schedulePowerRerenderOnZoom() {
+  if (_powerZoomDebounce) clearTimeout(_powerZoomDebounce);
+  _powerZoomDebounce = setTimeout(() => {
+    _powerZoomDebounce = null;
+    if (layerState.power) _renderPowerLayerAtCurrentZoom();
+  }, 150);
+}
+
+function _buildPowerLayer() {
+  if (_lazyLayerBuildCache.power) return _lazyLayerBuildCache.power;
+  _lazyLayerBuildCache.power = _fetchLazyLayerFile("power_infrastructure").then(data => {
+    _powerRawData = data || [];
+    const group = L.layerGroup();
+    leafletLayerGroups.power = group;
+    _renderPowerLayerAtCurrentZoom();
+    if (!_buildPowerLayer._zoomWired) {
+      leafletMap.on("zoomend", _schedulePowerRerenderOnZoom);
+      _buildPowerLayer._zoomWired = true;
+    }
+    return group;
+  });
+  return _lazyLayerBuildCache.power;
+}
+
+function _buildTransmissionLayer() {
+  if (_lazyLayerBuildCache.transmission) return _lazyLayerBuildCache.transmission;
+  const project = ([lng, lat]) => [lat, lng];
+  _lazyLayerBuildCache.transmission = _fetchLazyLayerFile("transmission_lines").then(data => {
+    const group = L.layerGroup();
+    (data || []).forEach(d => {
+      L.polyline(d.path.map(project), {
+        color: "#fbbf24", weight: 1.1, opacity: 0.85, dashArray: "4,2",
+      })
+        .bindTooltip(`${d.name} (${d.voltage_kv} kV) — ${SAMPLE_DISCLAIMER}`)
+        .addTo(group);
+    });
+    leafletLayerGroups.transmission = group;
+    return group;
+  });
+  return _lazyLayerBuildCache.transmission;
+}
+
+function _buildFiberLayer() {
+  if (_lazyLayerBuildCache.fiber) return _lazyLayerBuildCache.fiber;
+  const project = ([lng, lat]) => [lat, lng];
+  _lazyLayerBuildCache.fiber = _fetchLazyLayerFile("fiber_network").then(data => {
+    const group = L.layerGroup();
+    (data || []).forEach(d => {
+      L.polyline(d.path.map(project), {
+        color: "#60a5fa", weight: 1, opacity: 0.85, dashArray: "1,2",
+      })
+        .bindTooltip(`${d.name} — ${SAMPLE_DISCLAIMER}`)
+        .addTo(group);
+    });
+    leafletLayerGroups.fiber = group;
+    return group;
+  });
+  return _lazyLayerBuildCache.fiber;
+}
+
+const LAZY_LAYER_BUILDERS = { power: _buildPowerLayer, transmission: _buildTransmissionLayer, fiber: _buildFiberLayer };
+
+/* ── Sample overlay layers (eager -- small, or needed unconditionally) ── */
+function renderSampleMarkerLayers(countiesGeoJSON) {
+  if (!sampleLayers) return;
 
   // AI campuses
   const aiGroup = L.layerGroup();
@@ -1313,6 +1418,25 @@ function setLayerVisible(id, visible, syncUI = false) {
     // ECONOMY_MAP restyles the county layer and refreshes the legend itself,
     // because activation is async (the county file is lazy-loaded).
     window.ECONOMY_MAP.onLayerToggle(id, visible);
+  } else if (LAZY_LAYER_BUILDERS[id]) {
+    // power/transmission/fiber: not fetched at map init (see the lazy layer
+    // builders above renderSampleMarkerLayers) -- the same async-activation
+    // pattern ECONOMY_MAP/PARCEL/ZONING_MAP already use above, applied to
+    // these three. First toggle-on triggers the fetch+build and awaits it
+    // before adding to the map; every toggle after that is instant, since
+    // the builder returns its already-resolved cached promise.
+    if (visible) {
+      LAZY_LAYER_BUILDERS[id]().then(group => {
+        // The user may have toggled back off again before the fetch
+        // resolved -- re-check current state rather than trusting the
+        // `visible` this call captured, so a fast double-click can't leave
+        // a layer on the map that the user asked to hide.
+        if (layerState[id]) group.addTo(leafletMap);
+      });
+    } else {
+      const group = leafletLayerGroups[id];
+      if (group) leafletMap.removeLayer(group);
+    }
   } else {
     const group = leafletLayerGroups[id];
     if (group) {
@@ -3036,7 +3160,12 @@ function initLeafletMap() {
     maxZoom:      18,
     minZoom:      3,
     zoomControl:  false,
-    preferCanvas: false,
+    // Canvas rendering draws every circleMarker onto one shared <canvas>
+    // element instead of one SVG DOM node per marker -- Leaflet's click/
+    // tooltip hit-testing still works identically (a standard, non-
+    // experimental Leaflet feature), but tens of thousands of markers no
+    // longer means tens of thousands of DOM nodes.
+    preferCanvas: true,
   });
 
   L.control.zoom({ position: "bottomright" }).addTo(leafletMap);

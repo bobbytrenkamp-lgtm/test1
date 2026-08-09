@@ -61,6 +61,8 @@ run "data health dashboard: generator + honesty tests" python3 -m pytest tests/t
 # The generated data catalog must match current repository state -- same
 # staleness discipline as the parcel coverage metrics.
 run "data catalog: committed artifacts are current" python3 data/generate_data_catalog.py --check
+run "sample_layers split: generator tests" python3 -m pytest tests/test_split_sample_layers.py -q
+run "sample_layers split: committed artifacts are current" python3 data/split_sample_layers.py --check
 run "parcel source catalog validator" python3 data/validate_parcel_catalog.py
 run "parcel catalog + priority queue tests" python3 -m pytest tests/test_parcel_catalog.py tests/test_parcel_priority_queue.py -q
 run "parcel registry integrity check" node data/parcel_pipeline/check_registry_integrity.mjs
@@ -107,6 +109,7 @@ run "economy map (layer-toggle race safety)" node tests/test_economy_map_race.mj
 run "jurisdiction page (DOM)"     node tests/test_jurisdiction.mjs
 run "watchlist (migration + alerts)" node tests/test_watchlist.mjs
 run "data loading (critical/deferred)" node tests/test_data_loading.mjs
+run "map point clustering (grid clustering for large point layers)" node tests/test_map_point_clustering.mjs
 run "pipeline (windowing + a11y)"   node tests/test_pipeline.mjs
 run "parcel intelligence (schema, connectors, registry)" node tests/parcel.test.js
 run "3D terrain view (tile math, decode, cache, scene state)" node tests/scene3d.test.js
