@@ -1,58 +1,65 @@
-/* TEMP diagnostic script, round 2 -- uses the REAL build script's own
- * functions (computeSizeWhere/buildQueryUrl/fetchJurisdictionRecords)
- * against the 4 currently-failing jurisdictions, instead of a simplified
- * hand-rolled query. Round 1 (f=json, outFields=*, resultRecordCount=1)
- * showed misleading "it works" results for jurisdictions where the REAL
- * script's f=geojson + restricted outFields + resultRecordCount=2000 +
- * returnGeometry=true + no-pagination-at-all behaves differently. Deleted
- * once the real root cause is found and fixed.
- *
- * Run only in CI (this sandbox has no outbound access to these domains).
+/* TEMP diagnostic script, round 3 -- isolates exactly which query parameter
+ * is causing "Failed to execute query." for New Castle County DE and Clark
+ * County NV, which both fail identically with the real build script's
+ * query (restricted outFields + geometryPrecision=4 + maxAllowableOffset=
+ * 0.001 + f=geojson) but succeeded in round 1 with outFields=*/no geometry
+ * simplification/f=json. Tests each parameter removed one at a time.
+ * Deleted once the real root cause is found and fixed.
  */
-import { loadRegistry } from './lib/load_registry.mjs';
-import {
-  computeSizeWhere, buildQueryUrl, fetchJurisdictionRecords,
-  DEFAULT_THRESHOLD_ACRES, DEFAULT_CAP_PER_JURISDICTION,
-} from './build_national_site_index.mjs';
+const TARGETS = [
+  { fips: '10003', name: 'New Castle County, DE', serviceUrl: 'https://gis.nccde.org/agsserver/rest/services/BaseMaps/Base_Layers/MapServer/0', where: 'LOTSZ >= 5', outFields: 'PRCLID,PARCELNO,LOTSZ,CNTCTLAST' },
+  { fips: '32003', name: 'Clark County, NV', serviceUrl: 'https://maps.clarkcountynv.gov/arcgis/rest/services/Assessor/ParcelHistory/MapServer/3', where: '1=1', outFields: 'APN,OWNER' },
+];
 
-const TARGET_FIPS = ['24031', '18097', '10003', '32003'];
-
-const registry = loadRegistry();
-const byFips = new Map(registry.all().map(j => [j.fips, j]));
-
-for (const fips of TARGET_FIPS) {
-  const j = byFips.get(fips);
-  console.log(`\n${'='.repeat(70)}\n${fips}  ${j ? j.name : 'NOT FOUND IN REGISTRY'}\n${'='.repeat(70)}`);
-  if (!j) continue;
-
-  const whereInfo = computeSizeWhere(j.fieldMap, DEFAULT_THRESHOLD_ACRES);
-  const url = buildQueryUrl(j, whereInfo, DEFAULT_CAP_PER_JURISDICTION);
-  console.log('REAL query URL:', url);
-
+async function tryQuery(label, url) {
   const t0 = Date.now();
-  const result = await fetchJurisdictionRecords(j, { thresholdAcres: DEFAULT_THRESHOLD_ACRES, cap: DEFAULT_CAP_PER_JURISDICTION });
-  const elapsed = Date.now() - t0;
-  console.log(`elapsed: ${elapsed}ms`);
-  console.log('ok:', result.ok);
-  if (result.ok) {
-    console.log('records:', result.records.length, ' truncated:', result.truncated, ' sizeFiltered:', result.sizeFiltered);
-  } else {
-    console.log('error:', result.error);
-  }
-
-  // Also try the exact same query but with f=json instead of f=geojson,
-  // to isolate whether the geojson output format itself is the problem.
-  const urlJson = new URL(url);
-  urlJson.searchParams.set('f', 'json');
-  console.log('\n-- same query, f=json instead of f=geojson --');
-  const t1 = Date.now();
   try {
-    const res = await fetch(urlJson.toString());
+    const res = await fetch(url);
     const body = await res.json();
-    console.log(`elapsed: ${Date.now() - t1}ms  HTTP ${res.status}`);
-    if (body.error) console.log('ERROR (full):', JSON.stringify(body.error, null, 2));
-    else console.log('features:', (body.features || []).length, ' exceededTransferLimit:', body.exceededTransferLimit);
+    const elapsed = Date.now() - t0;
+    if (body.error) {
+      console.log(`  ${label}: FAILED (${elapsed}ms) — ${JSON.stringify(body.error)}`);
+    } else {
+      console.log(`  ${label}: OK (${elapsed}ms) — ${(body.features || []).length} features`);
+    }
   } catch (e) {
-    console.log('fetch threw:', e.message);
+    console.log(`  ${label}: THREW (${Date.now() - t0}ms) — ${e.message}`);
   }
+}
+
+for (const t of TARGETS) {
+  console.log(`\n${'='.repeat(70)}\n${t.fips}  ${t.name}\n${'='.repeat(70)}`);
+  const base = `${t.serviceUrl}/query`;
+
+  const full = new URL(base);
+  full.searchParams.set('where', t.where);
+  full.searchParams.set('outFields', t.outFields);
+  full.searchParams.set('returnGeometry', 'true');
+  full.searchParams.set('geometryPrecision', '4');
+  full.searchParams.set('maxAllowableOffset', '0.001');
+  full.searchParams.set('inSR', '4326');
+  full.searchParams.set('outSR', '4326');
+  full.searchParams.set('resultRecordCount', '2000');
+  full.searchParams.set('f', 'json');
+  await tryQuery('A: exact real query (restricted outFields + geom simplification), f=json', full.toString());
+
+  const noGeomSimplify = new URL(full);
+  noGeomSimplify.searchParams.delete('geometryPrecision');
+  noGeomSimplify.searchParams.delete('maxAllowableOffset');
+  await tryQuery('B: restricted outFields, NO geometryPrecision/maxAllowableOffset', noGeomSimplify.toString());
+
+  const starFields = new URL(full);
+  starFields.searchParams.set('outFields', '*');
+  await tryQuery('C: outFields=*, WITH geometryPrecision/maxAllowableOffset', starFields.toString());
+
+  const noReturnGeom = new URL(full);
+  noReturnGeom.searchParams.set('returnGeometry', 'false');
+  noReturnGeom.searchParams.delete('geometryPrecision');
+  noReturnGeom.searchParams.delete('maxAllowableOffset');
+  await tryQuery('D: restricted outFields, returnGeometry=false (no geometry params at all)', noReturnGeom.toString());
+
+  const noInOutSR = new URL(full);
+  noInOutSR.searchParams.delete('inSR');
+  noInOutSR.searchParams.delete('outSR');
+  await tryQuery('E: restricted outFields + geom simplification, NO inSR/outSR', noInOutSR.toString());
 }
