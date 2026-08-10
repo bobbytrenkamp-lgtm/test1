@@ -1,0 +1,1137 @@
+{
+  "version": "2026-08-09T21:46:23.395Z",
+  "source_generated_at": "2026-08-09T21:46:23.395Z",
+  "threshold_acres": 5,
+  "total_parcels": 86811,
+  "total_states": 31,
+  "jurisdictions_attempted": 58,
+  "jurisdictions_ok": 55,
+  "jurisdictions_failed": 3,
+  "caveat": "This index covers only this project's wired jurisdictions (see js/parcel/registry.js), not every US county, and was built by a scheduled batch job, not a live query. jurisdictions_unfiltered_sample entries are a capped SAMPLE of parcels (not filtered by size) because that jurisdiction publishes no acreage/sqft field this pipeline could filter on server-side -- see jurisdiction_summaries for which. Proximity and environmental-constraint criteria cannot be evaluated from this index; open a specific matched parcel for live per-parcel analysis.",
+  "known_limitations": {
+    "unattributed_parcels": 0,
+    "unattributed_jurisdictions": []
+  },
+  "jurisdiction_summaries": [
+    {
+      "fips": "10003",
+      "name": "New Castle County, Delaware",
+      "status": "failed",
+      "error": "Failed to execute query."
+    },
+    {
+      "fips": "11001",
+      "name": "District of Columbia",
+      "status": "ok",
+      "recordCount": 174,
+      "sizeFiltered": true,
+      "filterField": "CALCULATEDAREA",
+      "truncated": false
+    },
+    {
+      "fips": "12031",
+      "name": "Duval County, Florida",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "ACRES",
+      "truncated": true
+    },
+    {
+      "fips": "12057",
+      "name": "Hillsborough County, Florida",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "PAR_ACREAGE",
+      "truncated": true
+    },
+    {
+      "fips": "12086",
+      "name": "Miami-Dade County, Florida",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": false
+    },
+    {
+      "fips": "13089",
+      "name": "DeKalb County, Georgia",
+      "status": "ok",
+      "recordCount": 1463,
+      "sizeFiltered": true,
+      "filterField": "StatedArea",
+      "truncated": false
+    },
+    {
+      "fips": "13121",
+      "name": "Fulton County, Georgia",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "LandAcres",
+      "truncated": true
+    },
+    {
+      "fips": "15003",
+      "name": "Honolulu County, Hawaii",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "gisacres",
+      "truncated": false
+    },
+    {
+      "fips": "16001",
+      "name": "Ada County, Idaho",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "ACRES",
+      "truncated": true
+    },
+    {
+      "fips": "17043",
+      "name": "DuPage County, Illinois",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "ACREAGE",
+      "truncated": false
+    },
+    {
+      "fips": "18097",
+      "name": "Marion County, Indiana",
+      "status": "failed",
+      "error": "Pagination is not supported."
+    },
+    {
+      "fips": "19153",
+      "name": "Polk County, Iowa",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": true
+    },
+    {
+      "fips": "21111",
+      "name": "Jefferson County, Kentucky",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": true
+    },
+    {
+      "fips": "24027",
+      "name": "Howard County, Maryland",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "ACRES",
+      "truncated": false
+    },
+    {
+      "fips": "24031",
+      "name": "Montgomery County, Maryland",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "ACRES",
+      "truncated": false
+    },
+    {
+      "fips": "24033",
+      "name": "Prince George's County, Maryland",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "ACRES",
+      "truncated": false
+    },
+    {
+      "fips": "24510",
+      "name": "Baltimore city, Maryland",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "ACRES",
+      "truncated": false
+    },
+    {
+      "fips": "25017",
+      "name": "Middlesex County, Massachusetts",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": true
+    },
+    {
+      "fips": "25025",
+      "name": "Suffolk County, Massachusetts",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": true
+    },
+    {
+      "fips": "26163",
+      "name": "Wayne County, Michigan",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "PPAcres",
+      "truncated": true
+    },
+    {
+      "fips": "27053",
+      "name": "Hennepin County, Minnesota",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "ACRES_POLY",
+      "truncated": true
+    },
+    {
+      "fips": "31055",
+      "name": "Douglas County, Nebraska",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "ACRES",
+      "truncated": true
+    },
+    {
+      "fips": "32003",
+      "name": "Clark County, Nevada",
+      "status": "failed",
+      "error": "Failed to execute query."
+    },
+    {
+      "fips": "32031",
+      "name": "Washoe County, Nevada",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "ACREAGE",
+      "truncated": true
+    },
+    {
+      "fips": "34013",
+      "name": "Essex County, New Jersey",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "CALC_ACRE",
+      "truncated": false
+    },
+    {
+      "fips": "34017",
+      "name": "Hudson County, New Jersey",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "CALC_ACRE",
+      "truncated": false
+    },
+    {
+      "fips": "34023",
+      "name": "Middlesex County, New Jersey",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "Acreage",
+      "truncated": true
+    },
+    {
+      "fips": "36061",
+      "name": "New York County, New York",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "LotArea",
+      "truncated": true
+    },
+    {
+      "fips": "37119",
+      "name": "Mecklenburg County, North Carolina",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "gisacres",
+      "truncated": true
+    },
+    {
+      "fips": "37183",
+      "name": "Wake County, North Carolina",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "DEED_ACRES",
+      "truncated": true
+    },
+    {
+      "fips": "39035",
+      "name": "Cuyahoga County, Ohio",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "parcel_acreage",
+      "truncated": true
+    },
+    {
+      "fips": "39049",
+      "name": "Franklin County, Ohio",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "ACRES",
+      "truncated": true
+    },
+    {
+      "fips": "39061",
+      "name": "Hamilton County, Ohio",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "ACREDEED",
+      "truncated": false
+    },
+    {
+      "fips": "41051",
+      "name": "Multnomah County, Oregon",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "SIZEACRES",
+      "truncated": true
+    },
+    {
+      "fips": "41067",
+      "name": "Washington County, Oregon",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "A_T_ACRES",
+      "truncated": true
+    },
+    {
+      "fips": "42003",
+      "name": "Allegheny County, Pennsylvania",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "CALCACREAG",
+      "truncated": false
+    },
+    {
+      "fips": "42101",
+      "name": "Philadelphia, Pennsylvania",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": false
+    },
+    {
+      "fips": "47037",
+      "name": "Davidson County, Tennessee",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "Acres",
+      "truncated": true
+    },
+    {
+      "fips": "48029",
+      "name": "Bexar County, Texas",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": true
+    },
+    {
+      "fips": "48085",
+      "name": "Collin County, Texas",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "landSizeAcres",
+      "truncated": true
+    },
+    {
+      "fips": "48113",
+      "name": "Dallas County, Texas",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "AREA_FEET",
+      "truncated": true
+    },
+    {
+      "fips": "48201",
+      "name": "Harris County, Texas",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "acreage_1",
+      "truncated": true
+    },
+    {
+      "fips": "48439",
+      "name": "Tarrant County, Texas",
+      "status": "ok",
+      "recordCount": 28,
+      "sizeFiltered": true,
+      "filterField": "LAND_ACRES",
+      "truncated": false
+    },
+    {
+      "fips": "48453",
+      "name": "Travis County, Texas",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "tcad_acres",
+      "truncated": true
+    },
+    {
+      "fips": "49035",
+      "name": "Salt Lake County, Utah",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "PARCEL_ACRES",
+      "truncated": true
+    },
+    {
+      "fips": "49049",
+      "name": "Utah County",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "PARCEL_ACRES",
+      "truncated": true
+    },
+    {
+      "fips": "51059",
+      "name": "Fairfax County, Virginia",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "Shape__Area",
+      "truncated": false
+    },
+    {
+      "fips": "51107",
+      "name": "Loudoun County, Virginia",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "PA_LEGAL_ACRE",
+      "truncated": true
+    },
+    {
+      "fips": "51153",
+      "name": "Prince William County, Virginia",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "GISPROD.VECTOR.Parcels.DEED_ACREAGE",
+      "truncated": false
+    },
+    {
+      "fips": "51683",
+      "name": "Manassas city, Virginia",
+      "status": "ok",
+      "recordCount": 146,
+      "sizeFiltered": true,
+      "filterField": "TOTAL_ACRES",
+      "truncated": false
+    },
+    {
+      "fips": "53033",
+      "name": "King County, Washington",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "KCA_ACRES",
+      "truncated": false
+    },
+    {
+      "fips": "56021",
+      "name": "Laramie County, Wyoming",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "netacres",
+      "truncated": true
+    },
+    {
+      "fips": "04013",
+      "name": "Maricopa County, Arizona",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": false
+    },
+    {
+      "fips": "06037",
+      "name": "Los Angeles County, California",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": false
+    },
+    {
+      "fips": "06067",
+      "name": "Sacramento County, California",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": true
+    },
+    {
+      "fips": "06001",
+      "name": "Alameda County, California",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": true
+    },
+    {
+      "fips": "06075",
+      "name": "San Francisco County, California",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": true
+    },
+    {
+      "fips": "01073",
+      "name": "Jefferson County, Alabama",
+      "status": "ok",
+      "recordCount": 2000,
+      "sizeFiltered": true,
+      "filterField": "GIS_ACRES",
+      "truncated": true
+    }
+  ],
+  "states": {
+    "AL": {
+      "file": "states/AL.json",
+      "record_count": 2000,
+      "byte_size": 1431533,
+      "checksum": "sha256:4b6875eb247f9741",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "01073"
+      ],
+      "size_filtered_fips": [
+        "01073"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "01073"
+      ],
+      "failed_fips": []
+    },
+    "AZ": {
+      "file": "states/AZ.json",
+      "record_count": 1000,
+      "byte_size": 537662,
+      "checksum": "sha256:d22e633972b98bf3",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "04013"
+      ],
+      "size_filtered_fips": [],
+      "unfiltered_sample_fips": [
+        "04013"
+      ],
+      "truncated_fips": [],
+      "failed_fips": []
+    },
+    "CA": {
+      "file": "states/CA.json",
+      "record_count": 7000,
+      "byte_size": 2800644,
+      "checksum": "sha256:b3f34cad525eace4",
+      "jurisdiction_count": 4,
+      "supported_fips": [
+        "06001",
+        "06037",
+        "06067",
+        "06075"
+      ],
+      "size_filtered_fips": [],
+      "unfiltered_sample_fips": [
+        "06001",
+        "06037",
+        "06067",
+        "06075"
+      ],
+      "truncated_fips": [
+        "06001",
+        "06067",
+        "06075"
+      ],
+      "failed_fips": []
+    },
+    "DC": {
+      "file": "states/DC.json",
+      "record_count": 174,
+      "byte_size": 69104,
+      "checksum": "sha256:78da6b52f55f5b66",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "11001"
+      ],
+      "size_filtered_fips": [
+        "11001"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [],
+      "failed_fips": []
+    },
+    "DE": {
+      "file": "states/DE.json",
+      "record_count": 0,
+      "byte_size": 111,
+      "checksum": "sha256:ae07069c168c8954",
+      "jurisdiction_count": 0,
+      "supported_fips": [],
+      "size_filtered_fips": [],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [],
+      "failed_fips": [
+        "10003"
+      ]
+    },
+    "FL": {
+      "file": "states/FL.json",
+      "record_count": 5000,
+      "byte_size": 2647604,
+      "checksum": "sha256:72811af485960057",
+      "jurisdiction_count": 3,
+      "supported_fips": [
+        "12031",
+        "12057",
+        "12086"
+      ],
+      "size_filtered_fips": [
+        "12031",
+        "12057"
+      ],
+      "unfiltered_sample_fips": [
+        "12086"
+      ],
+      "truncated_fips": [
+        "12031",
+        "12057"
+      ],
+      "failed_fips": []
+    },
+    "GA": {
+      "file": "states/GA.json",
+      "record_count": 3463,
+      "byte_size": 1732328,
+      "checksum": "sha256:a29beeccf4672051",
+      "jurisdiction_count": 2,
+      "supported_fips": [
+        "13089",
+        "13121"
+      ],
+      "size_filtered_fips": [
+        "13089",
+        "13121"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "13121"
+      ],
+      "failed_fips": []
+    },
+    "HI": {
+      "file": "states/HI.json",
+      "record_count": 1000,
+      "byte_size": 427789,
+      "checksum": "sha256:52f955847d72ff3d",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "15003"
+      ],
+      "size_filtered_fips": [
+        "15003"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [],
+      "failed_fips": []
+    },
+    "IA": {
+      "file": "states/IA.json",
+      "record_count": 2000,
+      "byte_size": 754233,
+      "checksum": "sha256:44717341bf5ed373",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "19153"
+      ],
+      "size_filtered_fips": [],
+      "unfiltered_sample_fips": [
+        "19153"
+      ],
+      "truncated_fips": [
+        "19153"
+      ],
+      "failed_fips": []
+    },
+    "ID": {
+      "file": "states/ID.json",
+      "record_count": 2000,
+      "byte_size": 927708,
+      "checksum": "sha256:11821cb60cb56d52",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "16001"
+      ],
+      "size_filtered_fips": [
+        "16001"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "16001"
+      ],
+      "failed_fips": []
+    },
+    "IL": {
+      "file": "states/IL.json",
+      "record_count": 1000,
+      "byte_size": 503357,
+      "checksum": "sha256:0a393e25fac320eb",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "17043"
+      ],
+      "size_filtered_fips": [
+        "17043"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [],
+      "failed_fips": []
+    },
+    "IN": {
+      "file": "states/IN.json",
+      "record_count": 0,
+      "byte_size": 111,
+      "checksum": "sha256:7a0aaa2d5e859271",
+      "jurisdiction_count": 0,
+      "supported_fips": [],
+      "size_filtered_fips": [],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [],
+      "failed_fips": [
+        "18097"
+      ]
+    },
+    "KY": {
+      "file": "states/KY.json",
+      "record_count": 2000,
+      "byte_size": 728248,
+      "checksum": "sha256:4ffbfbc9a0a3e6fc",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "21111"
+      ],
+      "size_filtered_fips": [],
+      "unfiltered_sample_fips": [
+        "21111"
+      ],
+      "truncated_fips": [
+        "21111"
+      ],
+      "failed_fips": []
+    },
+    "MA": {
+      "file": "states/MA.json",
+      "record_count": 4000,
+      "byte_size": 1611996,
+      "checksum": "sha256:268a7220b9b32295",
+      "jurisdiction_count": 2,
+      "supported_fips": [
+        "25017",
+        "25025"
+      ],
+      "size_filtered_fips": [],
+      "unfiltered_sample_fips": [
+        "25017",
+        "25025"
+      ],
+      "truncated_fips": [
+        "25017",
+        "25025"
+      ],
+      "failed_fips": []
+    },
+    "MD": {
+      "file": "states/MD.json",
+      "record_count": 4000,
+      "byte_size": 1953132,
+      "checksum": "sha256:9fb2070d1b02c689",
+      "jurisdiction_count": 4,
+      "supported_fips": [
+        "24027",
+        "24031",
+        "24033",
+        "24510"
+      ],
+      "size_filtered_fips": [
+        "24027",
+        "24031",
+        "24033",
+        "24510"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [],
+      "failed_fips": []
+    },
+    "MI": {
+      "file": "states/MI.json",
+      "record_count": 2000,
+      "byte_size": 1022345,
+      "checksum": "sha256:d496bb9f233b0f5d",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "26163"
+      ],
+      "size_filtered_fips": [
+        "26163"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "26163"
+      ],
+      "failed_fips": []
+    },
+    "MN": {
+      "file": "states/MN.json",
+      "record_count": 2000,
+      "byte_size": 1084854,
+      "checksum": "sha256:ec66ccd7fcf38d86",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "27053"
+      ],
+      "size_filtered_fips": [
+        "27053"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "27053"
+      ],
+      "failed_fips": []
+    },
+    "NC": {
+      "file": "states/NC.json",
+      "record_count": 4000,
+      "byte_size": 1890659,
+      "checksum": "sha256:02e352fef9a922ed",
+      "jurisdiction_count": 2,
+      "supported_fips": [
+        "37119",
+        "37183"
+      ],
+      "size_filtered_fips": [
+        "37119",
+        "37183"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "37119",
+        "37183"
+      ],
+      "failed_fips": []
+    },
+    "NE": {
+      "file": "states/NE.json",
+      "record_count": 2000,
+      "byte_size": 938764,
+      "checksum": "sha256:099a71f3c5cd6956",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "31055"
+      ],
+      "size_filtered_fips": [
+        "31055"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "31055"
+      ],
+      "failed_fips": []
+    },
+    "NJ": {
+      "file": "states/NJ.json",
+      "record_count": 4000,
+      "byte_size": 2070822,
+      "checksum": "sha256:7ba714281c530e88",
+      "jurisdiction_count": 3,
+      "supported_fips": [
+        "34013",
+        "34017",
+        "34023"
+      ],
+      "size_filtered_fips": [
+        "34013",
+        "34017",
+        "34023"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "34023"
+      ],
+      "failed_fips": []
+    },
+    "NV": {
+      "file": "states/NV.json",
+      "record_count": 2000,
+      "byte_size": 1065278,
+      "checksum": "sha256:05411110831e5c80",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "32031"
+      ],
+      "size_filtered_fips": [
+        "32031"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "32031"
+      ],
+      "failed_fips": [
+        "32003"
+      ]
+    },
+    "NY": {
+      "file": "states/NY.json",
+      "record_count": 2000,
+      "byte_size": 1078625,
+      "checksum": "sha256:e6f062712e03d481",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "36061"
+      ],
+      "size_filtered_fips": [
+        "36061"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "36061"
+      ],
+      "failed_fips": []
+    },
+    "OH": {
+      "file": "states/OH.json",
+      "record_count": 5000,
+      "byte_size": 2707078,
+      "checksum": "sha256:d2a2d7a9a90796aa",
+      "jurisdiction_count": 3,
+      "supported_fips": [
+        "39035",
+        "39049",
+        "39061"
+      ],
+      "size_filtered_fips": [
+        "39035",
+        "39049",
+        "39061"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "39035",
+        "39049"
+      ],
+      "failed_fips": []
+    },
+    "OR": {
+      "file": "states/OR.json",
+      "record_count": 4000,
+      "byte_size": 2076863,
+      "checksum": "sha256:6f2fb3043327485e",
+      "jurisdiction_count": 2,
+      "supported_fips": [
+        "41051",
+        "41067"
+      ],
+      "size_filtered_fips": [
+        "41051",
+        "41067"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "41051",
+        "41067"
+      ],
+      "failed_fips": []
+    },
+    "PA": {
+      "file": "states/PA.json",
+      "record_count": 2000,
+      "byte_size": 839248,
+      "checksum": "sha256:1b724961e5bdc079",
+      "jurisdiction_count": 2,
+      "supported_fips": [
+        "42003",
+        "42101"
+      ],
+      "size_filtered_fips": [
+        "42003"
+      ],
+      "unfiltered_sample_fips": [
+        "42101"
+      ],
+      "truncated_fips": [],
+      "failed_fips": []
+    },
+    "TN": {
+      "file": "states/TN.json",
+      "record_count": 2000,
+      "byte_size": 1084436,
+      "checksum": "sha256:41b28b77239c9ab4",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "47037"
+      ],
+      "size_filtered_fips": [
+        "47037"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "47037"
+      ],
+      "failed_fips": []
+    },
+    "TX": {
+      "file": "states/TX.json",
+      "record_count": 10028,
+      "byte_size": 4896700,
+      "checksum": "sha256:bbd4c73959584188",
+      "jurisdiction_count": 6,
+      "supported_fips": [
+        "48029",
+        "48085",
+        "48113",
+        "48201",
+        "48439",
+        "48453"
+      ],
+      "size_filtered_fips": [
+        "48085",
+        "48113",
+        "48201",
+        "48439",
+        "48453"
+      ],
+      "unfiltered_sample_fips": [
+        "48029"
+      ],
+      "truncated_fips": [
+        "48029",
+        "48085",
+        "48113",
+        "48201",
+        "48453"
+      ],
+      "failed_fips": []
+    },
+    "UT": {
+      "file": "states/UT.json",
+      "record_count": 4000,
+      "byte_size": 1967270,
+      "checksum": "sha256:ff3160680c79d8f5",
+      "jurisdiction_count": 2,
+      "supported_fips": [
+        "49035",
+        "49049"
+      ],
+      "size_filtered_fips": [
+        "49035",
+        "49049"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "49035",
+        "49049"
+      ],
+      "failed_fips": []
+    },
+    "VA": {
+      "file": "states/VA.json",
+      "record_count": 4146,
+      "byte_size": 1781565,
+      "checksum": "sha256:967730094c6e7615",
+      "jurisdiction_count": 4,
+      "supported_fips": [
+        "51059",
+        "51107",
+        "51153",
+        "51683"
+      ],
+      "size_filtered_fips": [
+        "51059",
+        "51107",
+        "51153",
+        "51683"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "51107"
+      ],
+      "failed_fips": []
+    },
+    "WA": {
+      "file": "states/WA.json",
+      "record_count": 1000,
+      "byte_size": 543025,
+      "checksum": "sha256:96ce986cd4080068",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "53033"
+      ],
+      "size_filtered_fips": [
+        "53033"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [],
+      "failed_fips": []
+    },
+    "WY": {
+      "file": "states/WY.json",
+      "record_count": 2000,
+      "byte_size": 1020516,
+      "checksum": "sha256:d0f41f6eaaeb23a0",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "56021"
+      ],
+      "size_filtered_fips": [
+        "56021"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [
+        "56021"
+      ],
+      "failed_fips": []
+    }
+  }
+}

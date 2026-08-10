@@ -89,7 +89,9 @@ run "parcel conceptual buildable envelope" node tests/test_parcel_envelope.mjs
 run "parcel assemblage + owner adjacency" node tests/test_parcel_assemblage.mjs
 run "parcel large-site discovery filters" node tests/test_parcel_site_search.mjs
 run "national site index: build script (WHERE filters, centroid, normalization, orchestration)" node tests/test_build_national_site_index.mjs
-run "national site index: browser loader/wrapper around PARCEL_SITE_SEARCH" node tests/test_parcel_site_search_index.mjs
+run "national site index: state-partition split (manifest, no loss/dup, --check)" node tests/test_split_site_search_index.mjs
+run "national site index: state-partition split committed artifacts are current" node data/parcel_pipeline/split_site_search_index.mjs --check
+run "national site index: browser loader/wrapper around PARCEL_SITE_SEARCH (partitioned fetch, cache, concurrency, abort)" node tests/test_parcel_site_search_index.mjs
 run "find sites panel: form/search/render wiring" node tests/test_parcel_find_sites.mjs
 run "parcel site suitability score (explainable)" node tests/test_parcel_suitability.mjs
 run "parcel sales history + comparable transactions" node tests/test_parcel_sales.mjs
