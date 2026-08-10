@@ -125,12 +125,21 @@ export function structuralOutFields(fieldMap) {
    bounding box, not the exact parcel boundary (a user gets the real,
    precise geometry live when they open that specific parcel, same as
    today) -- full-precision polygons were the other major contributor to
-   the 168MB first-run file alongside outFields=*. */
-export function buildQueryUrl(jurisdiction, whereInfo, cap) {
+   the 168MB first-run file alongside outFields=*.
+
+   opts.outFieldsOverride bypasses structuralOutFields() entirely -- see
+   fetchJurisdictionRecords()'s fallback below for why this exists: live-
+   probed against the real registry (2026-08-10), New Castle County DE and
+   Clark County NV both reject a restricted outFields list with a generic
+   "Failed to execute query." even though every named field is confirmed
+   present in the service's own metadata, while outFields=* against the
+   IDENTICAL where clause succeeds. This is a live ArcGIS Server backend
+   quirk, not a bug in how the field list is built. */
+export function buildQueryUrl(jurisdiction, whereInfo, cap, opts = {}) {
   const url = new URL(jurisdiction.serviceUrl + '/query');
   const p = url.searchParams;
   p.set('where', whereInfo.where);
-  p.set('outFields', structuralOutFields(jurisdiction.fieldMap).join(','));
+  p.set('outFields', opts.outFieldsOverride || structuralOutFields(jurisdiction.fieldMap).join(','));
   p.set('returnGeometry', 'true');
   p.set('geometryPrecision', '4');       // ~11m at the equator -- ample for a centroid
   p.set('maxAllowableOffset', '0.001');  // degrees; generalizes/simplifies the polygon
@@ -195,37 +204,36 @@ export function normalizeFeature(feature, jurisdiction) {
   };
 }
 
-/* One jurisdiction's live query. Network/JSON errors are returned as a
-   result, never thrown -- one dead service must not abort the whole batch
-   (same principle as check_parcel_services.mjs). */
-export async function fetchJurisdictionRecords(jurisdiction, opts = {}) {
-  const fetchImpl = opts.fetchImpl || fetch;
-  const thresholdAcres = opts.thresholdAcres ?? DEFAULT_THRESHOLD_ACRES;
-  const cap = opts.cap ?? DEFAULT_CAP_PER_JURISDICTION;
-
-  const whereInfo = computeSizeWhere(jurisdiction.fieldMap, thresholdAcres);
-  const url = buildQueryUrl(jurisdiction, whereInfo, cap);
+/* One attempt at one jurisdiction's live query. Network/JSON errors come
+   back as a result, never thrown -- one dead service must not abort the
+   whole batch (same principle as check_parcel_services.mjs). `retryable`
+   is set only for an in-body ArcGIS query error (the service responded and
+   specifically rejected THIS query) -- a transport failure, HTTP error, or
+   malformed body means retrying with different query params would not
+   plausibly help, so those are never retried. */
+async function _runQuery(jurisdiction, whereInfo, cap, fetchImpl, queryOpts = {}) {
+  const url = buildQueryUrl(jurisdiction, whereInfo, cap, queryOpts);
 
   let res;
   try {
     res = await fetchImpl(url);
   } catch (e) {
-    return { ok: false, fips: jurisdiction.fips, name: jurisdiction.name, error: e.message, sizeFiltered: whereInfo.sizeFiltered, records: [] };
+    return { ok: false, fips: jurisdiction.fips, name: jurisdiction.name, error: e.message, sizeFiltered: whereInfo.sizeFiltered, records: [], retryable: false };
   }
   if (!res.ok) {
-    return { ok: false, fips: jurisdiction.fips, name: jurisdiction.name, error: `HTTP ${res.status}`, sizeFiltered: whereInfo.sizeFiltered, records: [] };
+    return { ok: false, fips: jurisdiction.fips, name: jurisdiction.name, error: `HTTP ${res.status}`, sizeFiltered: whereInfo.sizeFiltered, records: [], retryable: false };
   }
   let json;
   try {
     json = await res.json();
   } catch {
-    return { ok: false, fips: jurisdiction.fips, name: jurisdiction.name, error: 'non-JSON response', sizeFiltered: whereInfo.sizeFiltered, records: [] };
+    return { ok: false, fips: jurisdiction.fips, name: jurisdiction.name, error: 'non-JSON response', sizeFiltered: whereInfo.sizeFiltered, records: [], retryable: false };
   }
   if (json && json.error) {
     return {
       ok: false, fips: jurisdiction.fips, name: jurisdiction.name,
       error: json.error.message || JSON.stringify(json.error),
-      sizeFiltered: whereInfo.sizeFiltered, records: [],
+      sizeFiltered: whereInfo.sizeFiltered, records: [], retryable: true,
     };
   }
   const features = json.features || [];
@@ -235,6 +243,47 @@ export async function fetchJurisdictionRecords(jurisdiction, opts = {}) {
     records: features.map(f => normalizeFeature(f, jurisdiction)),
     truncated: features.length >= cap,
   };
+}
+
+/* One jurisdiction's live query, with one automatic fallback retry.
+ *
+ * Live-probed against the real registry (2026-08-10): New Castle County DE
+ * and Clark County NV both reject the primary query (restricted outFields
+ * + size-filtered where) with a generic ArcGIS "Failed to execute query.",
+ * but outFields=* against the SAME where clause succeeds -- confirmed by
+ * testing every other query parameter (geometryPrecision, maxAllowableOffset,
+ * inSR/outSR, returnGeometry) in isolation; only the restricted outFields
+ * list reproduces the failure. Marion County IN fails differently: its
+ * ACREAGE field exists (confirmed via live service metadata) but cannot be
+ * numerically compared with `>=` at all -- "Unable to complete operation."
+ * on ANY where clause that filters it, even though a bare where=1=1 count
+ * query against the same service succeeds -- the classic signature of a
+ * field stored as text despite holding numeric-looking values.
+ *
+ * A single fallback (outFields=*, where=1=1) covers both failure classes
+ * without needing to diagnose which one a given jurisdiction hit: it is
+ * exactly the same sizeFiltered:false/capped-sample treatment the 13
+ * jurisdictions with no area field mapped at all already receive (see this
+ * file's own module docstring) -- a jurisdiction whose primary query fails
+ * just discovers that fallback dynamically instead of being flagged for it
+ * ahead of time via an absent fieldMap entry. If the fallback ALSO fails,
+ * the PRIMARY error is reported, since it describes the actually-intended
+ * query, not the fallback's. */
+export async function fetchJurisdictionRecords(jurisdiction, opts = {}) {
+  const fetchImpl = opts.fetchImpl || fetch;
+  const thresholdAcres = opts.thresholdAcres ?? DEFAULT_THRESHOLD_ACRES;
+  const cap = opts.cap ?? DEFAULT_CAP_PER_JURISDICTION;
+
+  const whereInfo = computeSizeWhere(jurisdiction.fieldMap, thresholdAcres);
+  const primary = await _runQuery(jurisdiction, whereInfo, cap, fetchImpl);
+  if (primary.ok || !primary.retryable) return primary;
+
+  const fallbackWhere = { where: '1=1', sizeFiltered: false, filterField: null, filterUnit: null };
+  const fallback = await _runQuery(jurisdiction, fallbackWhere, cap, fetchImpl, { outFieldsOverride: '*' });
+  if (fallback.ok) {
+    return { ...fallback, fallbackApplied: true, primaryError: primary.error };
+  }
+  return primary;
 }
 
 /* Orchestrates the batch with bounded concurrency (polite to free government
@@ -276,6 +325,7 @@ export async function buildIndex(jurisdictions, opts = {}) {
       fips: r.fips, name: r.name, status: 'ok',
       recordCount: r.records.length, sizeFiltered: r.sizeFiltered,
       filterField: r.filterField || null, truncated: !!r.truncated,
+      fallbackApplied: !!r.fallbackApplied,
     });
   }
 
