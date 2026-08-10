@@ -2,8 +2,9 @@
  * is causing "Failed to execute query." for New Castle County DE and Clark
  * County NV, which both fail identically with the real build script's
  * query (restricted outFields + geometryPrecision=4 + maxAllowableOffset=
- * 0.001 + f=geojson) but succeeded in round 1 with outFields=*/no geometry
- * simplification/f=json. Tests each parameter removed one at a time.
+ * 0.001 + f=geojson) but succeeded in round 1 with outFields set to a
+ * wildcard, no geometry simplification, and f=json. Tests each parameter
+ * removed one at a time.
  * Deleted once the real root cause is found and fixed.
  */
 const TARGETS = [
