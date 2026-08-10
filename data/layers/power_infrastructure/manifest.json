@@ -1,0 +1,643 @@
+{
+  "source_layer": "power_infrastructure",
+  "total_records": 53826,
+  "total_states": 53,
+  "states": {
+    "AK": {
+      "file": "data/layers/power_infrastructure/states/AK.json",
+      "record_count": 133,
+      "byte_size": 29970,
+      "checksum": "sha256:ded930cfdbf0dcda",
+      "bbox": [
+        -152.89422,
+        55.35723,
+        -131.35572,
+        65.00661
+      ]
+    },
+    "AL": {
+      "file": "data/layers/power_infrastructure/states/AL.json",
+      "record_count": 1822,
+      "byte_size": 406066,
+      "checksum": "sha256:de3dd74b7939120b",
+      "bbox": [
+        -88.39458,
+        30.24677,
+        -84.98955,
+        34.97024
+      ]
+    },
+    "AR": {
+      "file": "data/layers/power_infrastructure/states/AR.json",
+      "record_count": 875,
+      "byte_size": 197192,
+      "checksum": "sha256:dcab4f445865c9a2",
+      "bbox": [
+        -94.53381,
+        33.01151,
+        -89.71875,
+        36.49767
+      ]
+    },
+    "AZ": {
+      "file": "data/layers/power_infrastructure/states/AZ.json",
+      "record_count": 702,
+      "byte_size": 157890,
+      "checksum": "sha256:8ef82c65c651ed59",
+      "bbox": [
+        -114.76041,
+        31.36323,
+        -109.05397,
+        36.97229
+      ]
+    },
+    "CA": {
+      "file": "data/layers/power_infrastructure/states/CA.json",
+      "record_count": 1917,
+      "byte_size": 431336,
+      "checksum": "sha256:5ab7ed069c743543",
+      "bbox": [
+        -124.21019,
+        32.56218,
+        -114.1417,
+        41.98542
+      ]
+    },
+    "CO": {
+      "file": "data/layers/power_infrastructure/states/CO.json",
+      "record_count": 1127,
+      "byte_size": 253300,
+      "checksum": "sha256:a4d64a3b04a4f1e4",
+      "bbox": [
+        -109.01381,
+        37.00668,
+        -102.10915,
+        41.00167
+      ]
+    },
+    "CT": {
+      "file": "data/layers/power_infrastructure/states/CT.json",
+      "record_count": 249,
+      "byte_size": 55426,
+      "checksum": "sha256:3d9db4b1bf0c5300",
+      "bbox": [
+        -73.59783,
+        41.02903,
+        -71.84668,
+        42.02105
+      ]
+    },
+    "DC": {
+      "file": "data/layers/power_infrastructure/states/DC.json",
+      "record_count": 17,
+      "byte_size": 3828,
+      "checksum": "sha256:7e73e59a9eb83439",
+      "bbox": [
+        -77.08444,
+        38.81679,
+        -76.95249,
+        38.96152
+      ]
+    },
+    "DE": {
+      "file": "data/layers/power_infrastructure/states/DE.json",
+      "record_count": 138,
+      "byte_size": 30935,
+      "checksum": "sha256:5eec58a93e69a4d3",
+      "bbox": [
+        -75.77151,
+        38.4655,
+        -75.06464,
+        39.81169
+      ]
+    },
+    "FL": {
+      "file": "data/layers/power_infrastructure/states/FL.json",
+      "record_count": 1985,
+      "byte_size": 444357,
+      "checksum": "sha256:c815d7ef4decebe6",
+      "bbox": [
+        -87.45412,
+        24.56385,
+        -80.05313,
+        30.97114
+      ]
+    },
+    "GA": {
+      "file": "data/layers/power_infrastructure/states/GA.json",
+      "record_count": 1874,
+      "byte_size": 421566,
+      "checksum": "sha256:233c77a5b5ec957a",
+      "bbox": [
+        -85.53531,
+        30.52308,
+        -80.96923,
+        34.98502
+      ]
+    },
+    "GU": {
+      "file": "data/layers/power_infrastructure/states/GU.json",
+      "record_count": 3,
+      "byte_size": 664,
+      "checksum": "sha256:08d788090d259e5a",
+      "bbox": [
+        144.68632,
+        13.46241,
+        144.8194,
+        13.52292
+      ]
+    },
+    "HI": {
+      "file": "data/layers/power_infrastructure/states/HI.json",
+      "record_count": 67,
+      "byte_size": 15088,
+      "checksum": "sha256:47717ebd0a26b747",
+      "bbox": [
+        -158.12817,
+        18.97928,
+        -154.89097,
+        21.49253
+      ]
+    },
+    "IA": {
+      "file": "data/layers/power_infrastructure/states/IA.json",
+      "record_count": 1043,
+      "byte_size": 232931,
+      "checksum": "sha256:3c89688cb4d4f75e",
+      "bbox": [
+        -96.56048,
+        40.3845,
+        -90.20145,
+        43.49969
+      ]
+    },
+    "ID": {
+      "file": "data/layers/power_infrastructure/states/ID.json",
+      "record_count": 788,
+      "byte_size": 175543,
+      "checksum": "sha256:3e77ac0ec9fcdb1e",
+      "bbox": [
+        -117.21489,
+        42.0121,
+        -111.04491,
+        48.96013
+      ]
+    },
+    "IL": {
+      "file": "data/layers/power_infrastructure/states/IL.json",
+      "record_count": 1204,
+      "byte_size": 268909,
+      "checksum": "sha256:f9409aa87dcdd93d",
+      "bbox": [
+        -91.4302,
+        37.21006,
+        -87.53688,
+        42.4944
+      ]
+    },
+    "IN": {
+      "file": "data/layers/power_infrastructure/states/IN.json",
+      "record_count": 1426,
+      "byte_size": 319136,
+      "checksum": "sha256:28cf592e569c7c8f",
+      "bbox": [
+        -87.9471,
+        37.89191,
+        -84.81576,
+        41.75685
+      ]
+    },
+    "KS": {
+      "file": "data/layers/power_infrastructure/states/KS.json",
+      "record_count": 919,
+      "byte_size": 206531,
+      "checksum": "sha256:60dcc38fb5122e26",
+      "bbox": [
+        -101.91239,
+        36.99943,
+        -94.59805,
+        39.89963
+      ]
+    },
+    "KY": {
+      "file": "data/layers/power_infrastructure/states/KY.json",
+      "record_count": 1856,
+      "byte_size": 413509,
+      "checksum": "sha256:eebd0afa1ebb74af",
+      "bbox": [
+        -89.17719,
+        36.50272,
+        -82.13437,
+        39.10866
+      ]
+    },
+    "LA": {
+      "file": "data/layers/power_infrastructure/states/LA.json",
+      "record_count": 833,
+      "byte_size": 186772,
+      "checksum": "sha256:93d13456e253a6a2",
+      "bbox": [
+        -93.99387,
+        29.38168,
+        -89.72805,
+        33.00387
+      ]
+    },
+    "MA": {
+      "file": "data/layers/power_infrastructure/states/MA.json",
+      "record_count": 490,
+      "byte_size": 109166,
+      "checksum": "sha256:a2e461be48b91575",
+      "bbox": [
+        -73.28763,
+        41.56369,
+        -69.999,
+        42.83295
+      ]
+    },
+    "MD": {
+      "file": "data/layers/power_infrastructure/states/MD.json",
+      "record_count": 455,
+      "byte_size": 101612,
+      "checksum": "sha256:44165fd6b7166e94",
+      "bbox": [
+        -79.45346,
+        37.99401,
+        -75.10572,
+        39.71772
+      ]
+    },
+    "ME": {
+      "file": "data/layers/power_infrastructure/states/ME.json",
+      "record_count": 178,
+      "byte_size": 39919,
+      "checksum": "sha256:124d3c80e9f0b82f",
+      "bbox": [
+        -70.88847,
+        43.16764,
+        -67.54623,
+        47.27855
+      ]
+    },
+    "MI": {
+      "file": "data/layers/power_infrastructure/states/MI.json",
+      "record_count": 1079,
+      "byte_size": 241388,
+      "checksum": "sha256:851d91ff01bad210",
+      "bbox": [
+        -90.16693,
+        41.79021,
+        -82.46093,
+        47.3687
+      ]
+    },
+    "MN": {
+      "file": "data/layers/power_infrastructure/states/MN.json",
+      "record_count": 1855,
+      "byte_size": 413058,
+      "checksum": "sha256:d5226e98a48b12aa",
+      "bbox": [
+        -97.13785,
+        43.52044,
+        -90.3509,
+        48.91656
+      ]
+    },
+    "MO": {
+      "file": "data/layers/power_infrastructure/states/MO.json",
+      "record_count": 1315,
+      "byte_size": 295355,
+      "checksum": "sha256:164732e69cf20b95",
+      "bbox": [
+        -95.59481,
+        36.21876,
+        -89.21109,
+        40.56653
+      ]
+    },
+    "MS": {
+      "file": "data/layers/power_infrastructure/states/MS.json",
+      "record_count": 893,
+      "byte_size": 200001,
+      "checksum": "sha256:64593e85294e94fb",
+      "bbox": [
+        -91.43394,
+        30.21399,
+        -88.17189,
+        34.99375
+      ]
+    },
+    "MT": {
+      "file": "data/layers/power_infrastructure/states/MT.json",
+      "record_count": 1190,
+      "byte_size": 266538,
+      "checksum": "sha256:9062e26ab025df10",
+      "bbox": [
+        -115.98767,
+        44.66739,
+        -104.04992,
+        48.98649
+      ]
+    },
+    "NC": {
+      "file": "data/layers/power_infrastructure/states/NC.json",
+      "record_count": 1752,
+      "byte_size": 392077,
+      "checksum": "sha256:fe67858f474bc0f0",
+      "bbox": [
+        -84.17724,
+        33.94266,
+        -75.46734,
+        36.53403
+      ]
+    },
+    "ND": {
+      "file": "data/layers/power_infrastructure/states/ND.json",
+      "record_count": 653,
+      "byte_size": 146716,
+      "checksum": "sha256:ea7eb683b245ed7a",
+      "bbox": [
+        -104.04441,
+        45.95352,
+        -96.59596,
+        48.97233
+      ]
+    },
+    "NE": {
+      "file": "data/layers/power_infrastructure/states/NE.json",
+      "record_count": 910,
+      "byte_size": 203797,
+      "checksum": "sha256:a8fc113398d52f35",
+      "bbox": [
+        -104.03794,
+        40.00142,
+        -95.60433,
+        42.99722
+      ]
+    },
+    "NH": {
+      "file": "data/layers/power_infrastructure/states/NH.json",
+      "record_count": 117,
+      "byte_size": 26231,
+      "checksum": "sha256:d79c124f5baa87b1",
+      "bbox": [
+        -72.55066,
+        42.7324,
+        -70.77868,
+        44.70383
+      ]
+    },
+    "NJ": {
+      "file": "data/layers/power_infrastructure/states/NJ.json",
+      "record_count": 208,
+      "byte_size": 46873,
+      "checksum": "sha256:702b8b371ed92712",
+      "bbox": [
+        -75.53392,
+        39.19162,
+        -73.99161,
+        41.19424
+      ]
+    },
+    "NM": {
+      "file": "data/layers/power_infrastructure/states/NM.json",
+      "record_count": 559,
+      "byte_size": 125866,
+      "checksum": "sha256:1ddfce0de1ee85e6",
+      "bbox": [
+        -109.03231,
+        31.76345,
+        -103.05878,
+        36.9666
+      ]
+    },
+    "NV": {
+      "file": "data/layers/power_infrastructure/states/NV.json",
+      "record_count": 296,
+      "byte_size": 67032,
+      "checksum": "sha256:e7ea26d71de2b580",
+      "bbox": [
+        -119.98063,
+        35.12673,
+        -114.04122,
+        41.74429
+      ]
+    },
+    "NY": {
+      "file": "data/layers/power_infrastructure/states/NY.json",
+      "record_count": 1465,
+      "byte_size": 326380,
+      "checksum": "sha256:197ca92eafb994e5",
+      "bbox": [
+        -79.75965,
+        40.61046,
+        -72.13181,
+        45.00408
+      ]
+    },
+    "OH": {
+      "file": "data/layers/power_infrastructure/states/OH.json",
+      "record_count": 1204,
+      "byte_size": 269550,
+      "checksum": "sha256:59673b9a391845f3",
+      "bbox": [
+        -84.80599,
+        38.41366,
+        -80.52029,
+        41.96519
+      ]
+    },
+    "OK": {
+      "file": "data/layers/power_infrastructure/states/OK.json",
+      "record_count": 1831,
+      "byte_size": 409494,
+      "checksum": "sha256:d3a57f1151b6fbef",
+      "bbox": [
+        -102.78637,
+        33.80867,
+        -94.43245,
+        36.99866
+      ]
+    },
+    "OR": {
+      "file": "data/layers/power_infrastructure/states/OR.json",
+      "record_count": 1321,
+      "byte_size": 295061,
+      "checksum": "sha256:be8c5bb20a1e4d09",
+      "bbox": [
+        -124.46595,
+        41.99895,
+        -116.85002,
+        46.17813
+      ]
+    },
+    "PA": {
+      "file": "data/layers/power_infrastructure/states/PA.json",
+      "record_count": 1339,
+      "byte_size": 298645,
+      "checksum": "sha256:fef83695839f673e",
+      "bbox": [
+        -80.51701,
+        39.72115,
+        -74.74259,
+        42.16575
+      ]
+    },
+    "PR": {
+      "file": "data/layers/power_infrastructure/states/PR.json",
+      "record_count": 91,
+      "byte_size": 20727,
+      "checksum": "sha256:35709c5910e3c665",
+      "bbox": [
+        -67.16004,
+        17.94739,
+        -65.646,
+        18.46911
+      ]
+    },
+    "RI": {
+      "file": "data/layers/power_infrastructure/states/RI.json",
+      "record_count": 94,
+      "byte_size": 20875,
+      "checksum": "sha256:0df4f07ee30a4eed",
+      "bbox": [
+        -71.76973,
+        41.4126,
+        -71.17082,
+        42.00995
+      ]
+    },
+    "SC": {
+      "file": "data/layers/power_infrastructure/states/SC.json",
+      "record_count": 1845,
+      "byte_size": 411466,
+      "checksum": "sha256:9a67924d08c4f029",
+      "bbox": [
+        -83.08538,
+        32.1316,
+        -78.62662,
+        35.16367
+      ]
+    },
+    "SD": {
+      "file": "data/layers/power_infrastructure/states/SD.json",
+      "record_count": 698,
+      "byte_size": 154966,
+      "checksum": "sha256:ac54eebcd96a1d5f",
+      "bbox": [
+        -103.89048,
+        42.51184,
+        -96.47822,
+        45.93913
+      ]
+    },
+    "TN": {
+      "file": "data/layers/power_infrastructure/states/TN.json",
+      "record_count": 1396,
+      "byte_size": 309602,
+      "checksum": "sha256:96201ffcf5bccb96",
+      "bbox": [
+        -90.16458,
+        34.99628,
+        -81.80298,
+        36.63352
+      ]
+    },
+    "TX": {
+      "file": "data/layers/power_infrastructure/states/TX.json",
+      "record_count": 4460,
+      "byte_size": 1008301,
+      "checksum": "sha256:f826229ee96c2da4",
+      "bbox": [
+        -106.59781,
+        25.88847,
+        -93.56465,
+        36.49632
+      ]
+    },
+    "UT": {
+      "file": "data/layers/power_infrastructure/states/UT.json",
+      "record_count": 1269,
+      "byte_size": 284115,
+      "checksum": "sha256:52f8e77039daaced",
+      "bbox": [
+        -113.90329,
+        37.00217,
+        -109.09858,
+        41.99478
+      ]
+    },
+    "VA": {
+      "file": "data/layers/power_infrastructure/states/VA.json",
+      "record_count": 987,
+      "byte_size": 220665,
+      "checksum": "sha256:34ba52bea7cc36aa",
+      "bbox": [
+        -83.38244,
+        36.54888,
+        -75.37815,
+        39.29543
+      ]
+    },
+    "VT": {
+      "file": "data/layers/power_infrastructure/states/VT.json",
+      "record_count": 80,
+      "byte_size": 17900,
+      "checksum": "sha256:03b2bcb3a7654810",
+      "bbox": [
+        -73.35099,
+        42.75736,
+        -71.87356,
+        44.97836
+      ]
+    },
+    "WA": {
+      "file": "data/layers/power_infrastructure/states/WA.json",
+      "record_count": 1968,
+      "byte_size": 441144,
+      "checksum": "sha256:7dfaf1eafbf72b7f",
+      "bbox": [
+        -124.61138,
+        45.57657,
+        -117.04,
+        48.99232
+      ]
+    },
+    "WI": {
+      "file": "data/layers/power_infrastructure/states/WI.json",
+      "record_count": 1679,
+      "byte_size": 373245,
+      "checksum": "sha256:5e4229d4c26c51d2",
+      "bbox": [
+        -92.79406,
+        42.50508,
+        -87.13341,
+        46.73042
+      ]
+    },
+    "WV": {
+      "file": "data/layers/power_infrastructure/states/WV.json",
+      "record_count": 455,
+      "byte_size": 102011,
+      "checksum": "sha256:0d3f9bca6593c1c4",
+      "bbox": [
+        -82.59532,
+        37.20854,
+        -77.78767,
+        40.45427
+      ]
+    },
+    "WY": {
+      "file": "data/layers/power_infrastructure/states/WY.json",
+      "record_count": 716,
+      "byte_size": 160583,
+      "checksum": "sha256:86d1dc35bd4c25f0",
+      "bbox": [
+        -111.04543,
+        41.00287,
+        -104.07077,
+        44.99474
+      ]
+    }
+  }
+}

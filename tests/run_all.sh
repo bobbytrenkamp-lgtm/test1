@@ -63,6 +63,9 @@ run "data health dashboard: generator + honesty tests" python3 -m pytest tests/t
 run "data catalog: committed artifacts are current" python3 data/generate_data_catalog.py --check
 run "sample_layers split: generator tests" python3 -m pytest tests/test_split_sample_layers.py -q
 run "sample_layers split: committed artifacts are current" python3 data/split_sample_layers.py --check
+run "power layer geo-partitioning: generator tests" python3 -m pytest tests/test_split_layer_by_state.py -q
+run "power layer geo-partitioning: committed artifacts are current" python3 data/split_layer_by_state.py --check
+run "power layer viewport-aware loading (bbox intersection, cache, concurrency)" node tests/test_map_power_viewport.mjs
 run "parcel source catalog validator" python3 data/validate_parcel_catalog.py
 run "parcel catalog + priority queue tests" python3 -m pytest tests/test_parcel_catalog.py tests/test_parcel_priority_queue.py -q
 run "parcel registry integrity check" node data/parcel_pipeline/check_registry_integrity.mjs
