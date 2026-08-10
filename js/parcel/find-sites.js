@@ -146,6 +146,21 @@ window.FIND_SITES = (function () {
     }
   }
 
+  /* ── Pure: partition load summary → honest "N/M states searched" line.
+   * A failed state partition never silently drops out of the result count
+   * -- it is named, with a reason, so "11/12 state partitions searched"
+   * reads as a real coverage statement, not a rounding error. */
+  function renderPartitionSummary(ps) {
+    if (!ps || !ps.requested) return '';
+    const failedList = (ps.failed || []).map(f =>
+      `${esc(f.state)} (${esc(f.reason === 'not-covered' ? 'not covered by the index' : (f.error || 'unavailable'))})`
+    ).join(', ');
+    return `<p class="pp-muted fs-partition-summary">${ps.loaded}/${ps.requested} state partition(s) searched` +
+      (failedList ? ` — unavailable: ${failedList}` : '') +
+      (ps.aborted ? ' — superseded by a newer search before finishing' : '') +
+      `</p>`;
+  }
+
   /* ── Pure: search result → results-list HTML ── */
   function renderResults(result) {
     if (!result) return '<p class="pp-empty">Enter search criteria above and click Search.</p>';
@@ -164,6 +179,8 @@ window.FIND_SITES = (function () {
 
     if (meta && meta.caveat) html += `<p class="pf-disclaimer">${esc(meta.caveat)}</p>`;
     if (caveat) html += `<p class="pf-disclaimer">${esc(caveat)}</p>`;
+
+    if (result.partitionSummary) html += renderPartitionSummary(result.partitionSummary);
 
     if (!counts.evaluated) {
       html += meta
@@ -220,15 +237,48 @@ window.FIND_SITES = (function () {
 
   function toggle() { _open ? close() : open(); }
 
+  // A national search fetches state partitions over the network and can
+  // take real, visible time (see js/parcel/site-search-index.js). Two
+  // pieces of state track that: _searchSeq is a monotonic token so a
+  // search that is still in flight when a newer one starts can detect it
+  // has been superseded and must not overwrite the newer search's
+  // rendered results; _currentAbortController lets a newer search actually
+  // cancel the older one's outstanding partition fetches rather than just
+  // ignoring their result once they land.
+  let _searchSeq = 0;
+  let _currentAbortController = null;
+
   async function _onSubmit(formEl) {
     const fields = Object.fromEntries(new FormData(formEl).entries());
     const scope = fields.scope === 'national' ? 'national' : 'viewport';
     delete fields.scope; // not a PARCEL_SITE_SEARCH criterion
     const results = document.getElementById('fs-results');
+
+    if (_currentAbortController) _currentAbortController.abort();
+    const controller = new AbortController();
+    _currentAbortController = controller;
+    const token = ++_searchSeq;
+
     if (results) results.innerHTML = '<p class="pp-empty">Searching…</p>';
-    _lastResult = scope === 'national'
-      ? await runSearchNational(fields, { unknownPolicy: 'exclude' })
-      : runSearch(fields, { unknownPolicy: 'exclude' });
+
+    let result;
+    if (scope === 'national') {
+      result = await runSearchNational(fields, {
+        unknownPolicy: 'exclude',
+        signal: controller.signal,
+        onProgress: (p) => {
+          if (token !== _searchSeq || !results) return; // a newer search has already started
+          const noun = p.total === 1 ? 'state' : 'states';
+          const trouble = p.ok === false ? ` — ${esc(p.state)} unavailable` : '';
+          results.innerHTML = `<p class="pp-empty">Searching ${p.total} ${noun}… ${p.loaded} / ${p.total} loaded${trouble}</p>`;
+        },
+      });
+    } else {
+      result = runSearch(fields, { unknownPolicy: 'exclude' });
+    }
+
+    if (token !== _searchSeq) return; // superseded by a newer search; do not overwrite its results
+    _lastResult = result;
     if (results) results.innerHTML = renderResults(_lastResult);
   }
 
@@ -260,6 +310,6 @@ window.FIND_SITES = (function () {
 
   return {
     init, open, close, toggle,
-    buildCriteriaFromForm, runSearch, runSearchNational, renderResults,
+    buildCriteriaFromForm, runSearch, runSearchNational, renderResults, renderPartitionSummary,
   };
 })();

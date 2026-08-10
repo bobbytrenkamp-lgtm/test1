@@ -217,5 +217,52 @@ function t(name, actual, expected) {
   ok('a hostile address value is escaped, not injected as markup', !html.includes('<img src=x'));
 }
 
+// ── renderPartitionSummary (state-partitioned national search) ──────────
+{
+  ok('no partitionSummary at all renders nothing', FS.renderPartitionSummary(null) === '');
+  ok('a partitionSummary with requested:0 renders nothing (viewport-scope results carry no partitionSummary)',
+    FS.renderPartitionSummary({ requested: 0 }) === '');
+}
+{
+  const html = FS.renderPartitionSummary({ requested: 12, loaded: 12, failed: [], aborted: false });
+  ok('a fully-successful multi-state search reports N/N searched', html.includes('12/12 state partition(s) searched'));
+  ok('no failure list is shown when nothing failed', !html.includes('unavailable'));
+}
+{
+  const html = FS.renderPartitionSummary({
+    requested: 12, loaded: 11,
+    failed: [{ state: 'AZ', reason: 'fetch-error', error: 'HTTP 503' }],
+    aborted: false,
+  });
+  ok('a partial failure reports the real loaded/requested counts, not silently rounded up',
+    html.includes('11/12 state partition(s) searched'));
+  ok('the failed state is named', html.includes('AZ'));
+  ok('the failure reason is shown', html.includes('HTTP 503'));
+}
+{
+  const html = FS.renderPartitionSummary({
+    requested: 2, loaded: 1,
+    failed: [{ state: 'ZZ', reason: 'not-covered', error: null }],
+    aborted: false,
+  });
+  ok('a state absent from the index gets a coverage-gap message, not a generic fetch error',
+    html.includes('not covered by the index'));
+}
+{
+  const html = FS.renderPartitionSummary({ requested: 3, loaded: 1, failed: [], aborted: true });
+  ok('an aborted (superseded) search says so rather than presenting a silently incomplete result',
+    html.includes('superseded'));
+}
+{
+  const html = FS.renderResults({
+    counts: { evaluated: 2, matched: 1, rejected: 1, indeterminate: 0 },
+    results: [], matched: [], rejected: [], indeterminate: [], caveat: null,
+    meta: { generated_at: '2026-08-09T00:00:00Z', jurisdictions_ok: 2 },
+    partitionSummary: { requested: 2, loaded: 1, failed: [{ state: 'NC', reason: 'fetch-error', error: 'HTTP 500' }], aborted: false },
+  });
+  ok('renderResults surfaces the partition summary for a national search', html.includes('1/2 state partition(s) searched'));
+  ok('renderResults names the failed state from partitionSummary', html.includes('NC'));
+}
+
 console.log(`\n${pass} passed, ${fail} failed`);
 if (fail > 0) process.exit(1);
