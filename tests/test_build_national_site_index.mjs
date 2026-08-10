@@ -12,6 +12,8 @@ import {
   fetchJurisdictionRecords, buildIndex, structuralOutFields, DEFAULT_THRESHOLD_ACRES,
 } from '../data/parcel_pipeline/build_national_site_index.mjs';
 
+const arcgisError = (message) => ({ ok: true, json: async () => ({ error: { code: 400, message } }) });
+
 let pass = 0, fail = 0;
 function t(name, actual, expected) {
   const ok = JSON.stringify(actual) === JSON.stringify(expected);
@@ -136,6 +138,75 @@ function ok(name, cond) {
     fetchImpl: async () => ({ ok: true, json: async () => twoFeatures }), cap: 2,
   });
   ok('truncated flag is set when feature count hits the cap', truncated.truncated);
+}
+
+// ── fetchJurisdictionRecords: outFields=*/where=1=1 fallback retry ──────
+// Live-probed against the real registry (2026-08-10): New Castle County DE
+// and Clark County NV both reject a restricted outFields list with a
+// generic ArcGIS error, but outFields=* against the same where clause
+// succeeds; Marion County IN's ACREAGE field cannot be numerically
+// compared with `>=` at all. A single fallback (outFields=*, where=1=1)
+// covers both failure classes.
+{
+  const jurisdiction = {
+    fips: '10003', name: 'New Castle County', serviceUrl: 'https://example.gov/arcgis/rest/services/Parcels/MapServer/0',
+    fieldMap: { parcel_id: 'PRCLID', area_acres: 'LOTSZ' },
+  };
+  const calls = [];
+  const fetchImpl = async (url) => {
+    calls.push(url);
+    const u = new URL(url);
+    if (u.searchParams.get('outFields') === '*') {
+      return { ok: true, json: async () => ({ features: [{ type: 'Feature', properties: { PRCLID: 'X', LOTSZ: 12 }, geometry: null }] }) };
+    }
+    return arcgisError('Failed to execute query.');
+  };
+  const result = await fetchJurisdictionRecords(jurisdiction, { fetchImpl });
+
+  t('exactly two requests are made (primary, then fallback)', calls.length, 2);
+  ok('the primary request uses the restricted, size-filtered query', calls[0].includes('LOTSZ') && !calls[0].includes('outFields=%2A'));
+  ok('the fallback request uses outFields=*', new URL(calls[1]).searchParams.get('outFields') === '*');
+  ok('the fallback request uses an unfiltered where clause', new URL(calls[1]).searchParams.get('where') === '1=1');
+  ok('the fallback succeeding is reported as an overall success', result.ok === true);
+  ok('a successful fallback is flagged so it is distinguishable from a real size-filtered result', result.fallbackApplied === true);
+  ok('the primary (real, intended) query error is preserved even though the fallback succeeded', result.primaryError.includes('Failed to execute query'));
+  ok('the fallback result is honestly reported as NOT size-filtered', result.sizeFiltered === false);
+  t('the fallback record is still normalized correctly', result.records.length, 1);
+}
+{
+  // Both primary AND fallback fail -- the ORIGINAL (primary) error must be
+  // what's reported, since it describes the actually-intended query, not
+  // the fallback's.
+  const jurisdiction = {
+    fips: '99999', name: 'Truly Dead County', serviceUrl: 'https://example.gov/arcgis/rest/services/Parcels/MapServer/0',
+    fieldMap: { parcel_id: 'PIN', area_acres: 'ACRES' },
+  };
+  const calls = [];
+  const fetchImpl = async (url) => { calls.push(url); return arcgisError('Invalid query parameters.'); };
+  const result = await fetchJurisdictionRecords(jurisdiction, { fetchImpl });
+
+  t('both the primary and the fallback are attempted', calls.length, 2);
+  ok('the overall result is still a failure when the fallback also fails', result.ok === false);
+  ok('the PRIMARY error is reported, not a fallback-specific one', result.error.includes('Invalid query parameters'));
+  ok('a doubly-failed result is not mislabeled as a successful fallback', !result.fallbackApplied);
+}
+{
+  // Non-retryable failures (transport error, HTTP error, malformed body)
+  // must NOT trigger a second request -- retrying a different query shape
+  // cannot plausibly fix a dead service or a network failure.
+  const jurisdiction = { fips: '00001', name: 'X', serviceUrl: 'https://example.gov/arcgis/rest/services/Parcels/MapServer/0', fieldMap: {} };
+
+  let httpCalls = 0;
+  await fetchJurisdictionRecords(jurisdiction, { fetchImpl: async () => { httpCalls++; return { ok: false, status: 503 }; } });
+  t('an HTTP failure makes exactly one request, no fallback retry', httpCalls, 1);
+
+  let throwCalls = 0;
+  await fetchJurisdictionRecords(jurisdiction, { fetchImpl: async () => { throwCalls++; throw new Error('network down'); } });
+  t('a transport-level throw makes exactly one request, no fallback retry', throwCalls, 1);
+
+  let malformedCalls = 0;
+  await fetchJurisdictionRecords(jurisdiction, { fetchImpl: async () => { malformedCalls++; return { ok: true, json: async () => { throw new Error('bad json'); } }; } });
+  t('a malformed response body makes exactly one request, no fallback retry', malformedCalls, 1);
 }
 
 // ── buildIndex: orchestration, per-jurisdiction isolation, summary stats ──
