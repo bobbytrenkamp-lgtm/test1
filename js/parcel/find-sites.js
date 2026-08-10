@@ -46,6 +46,20 @@ window.FIND_SITES = (function () {
   let _lastResult = null;
   let _open = false;
 
+  // ── Result virtualization ──────────────────────────────────────────────
+  // A national search can return thousands of matches (the precomputed
+  // index alone holds 85,000+ candidate records -- see
+  // js/parcel/site-search-index.js). Rendering every result row up front
+  // used to mean a hard cutoff at 200 with the rest thrown away behind a
+  // "…and N more, narrow your search" message -- the user could never
+  // actually see result #201 without changing their criteria. Results now
+  // stream into the DOM a page at a time as the user scrolls #fs-results
+  // (which is already the panel's overflow:auto container), the same
+  // pattern js/pipeline.js already uses for its facility table.
+  const PAGE_SIZE = 150;
+  let _renderedResults = [];   // the full results[] array for the current search
+  let _renderedCount = 0;      // how many of _renderedResults are in the DOM
+
   function esc(s) {
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;')
@@ -194,25 +208,39 @@ window.FIND_SITES = (function () {
       return html;
     }
 
-    html += '<ul class="fs-results-list">';
-    results.slice(0, 200).forEach((entry, i) => {
-      const p = (entry.candidate && entry.candidate.properties) || {};
-      const label = p.address || p.pin || entry.id || 'Parcel';
-      const sub = [
-        entry.acres != null ? `${entry.acres.toFixed(1)} ac` : null,
-        p.zoning_code || null,
-        entry.outcome === 'indeterminate' ? 'partially evaluated — see below' : null,
-      ].filter(Boolean).join(' · ');
-      html += `<li class="fs-result-item" data-fs-idx="${i}">
+    const firstPage = results.slice(0, PAGE_SIZE);
+    html += `<ul class="fs-results-list" id="fs-results-list">${firstPage.map(renderResultRow).join('')}</ul>`;
+    html += renderLoadMoreStatus(firstPage.length, results.length);
+    return html;
+  }
+
+  /* ── Pure: one result entry → its <li> markup. Shared by renderResults()'s
+   * initial page and _appendResultRows()'s scroll-triggered pages, so a
+   * result row has exactly one template regardless of which page it lands
+   * on. `i` is the entry's index in the FULL results[] array (not the page),
+   * since data-fs-idx drives click-to-focus against _lastResult.results. */
+  function renderResultRow(entry, i) {
+    const p = (entry.candidate && entry.candidate.properties) || {};
+    const label = p.address || p.pin || entry.id || 'Parcel';
+    const sub = [
+      entry.acres != null ? `${entry.acres.toFixed(1)} ac` : null,
+      p.zoning_code || null,
+      entry.outcome === 'indeterminate' ? 'partially evaluated — see below' : null,
+    ].filter(Boolean).join(' · ');
+    return `<li class="fs-result-item" data-fs-idx="${i}">
         <div class="fs-result-main">${esc(label)}</div>
         ${sub ? `<div class="fs-result-sub pp-muted">${esc(sub)}</div>` : ''}
       </li>`;
-    });
-    if (results.length > 200) {
-      html += `<li class="pp-muted fs-result-more">…and ${results.length - 200} more. Narrow the search to see the rest.</li>`;
-    }
-    html += '</ul>';
-    return html;
+  }
+
+  /* ── Pure: rendered-count + total → the trailing status line. Unlike the
+   * old hard "…and N more, narrow the search" dead end, this describes a
+   * still-scrollable list -- every result is reachable, just not all in the
+   * DOM yet. Returns '' once everything is rendered, so the indicator
+   * disappears rather than lingering as "Showing 340 of 340". */
+  function renderLoadMoreStatus(renderedCount, total) {
+    if (renderedCount >= total) return '';
+    return `<p class="pp-muted fs-result-more" id="fs-load-more">Showing ${renderedCount} of ${total} — scroll for more.</p>`;
   }
 
   /* ── DOM wiring (untested directly, same convention as panel.js's show()) ── */
@@ -280,11 +308,47 @@ window.FIND_SITES = (function () {
     if (token !== _searchSeq) return; // superseded by a newer search; do not overwrite its results
     _lastResult = result;
     if (results) results.innerHTML = renderResults(_lastResult);
+    _renderedResults = (result && result.results) || [];
+    _renderedCount = Math.min(PAGE_SIZE, _renderedResults.length);
   }
 
   function _focusResult(idx) {
     const entry = _lastResult && _lastResult.results && _lastResult.results[idx];
     if (entry && entry.candidate) window.PARCEL?.focusParcel(entry.candidate);
+  }
+
+  /* Appends the next page of already-computed results to the DOM and
+   * refreshes/removes the "Showing X of Y" status line. Reuses
+   * renderResultRow() -- the exact template renderResults() used for the
+   * first page -- so a row looks identical regardless of which page it
+   * arrived on. */
+  function _appendResultRows() {
+    const list = document.getElementById('fs-results-list');
+    if (!list || _renderedCount >= _renderedResults.length) return;
+    const nextEnd = Math.min(_renderedCount + PAGE_SIZE, _renderedResults.length);
+    let html = '';
+    for (let i = _renderedCount; i < nextEnd; i++) html += renderResultRow(_renderedResults[i], i);
+    list.insertAdjacentHTML('beforeend', html);
+    _renderedCount = nextEnd;
+
+    const status = document.getElementById('fs-load-more');
+    const statusHTML = renderLoadMoreStatus(_renderedCount, _renderedResults.length);
+    if (!statusHTML) { if (status) status.remove(); }
+    else if (status) status.outerHTML = statusHTML;
+    else list.insertAdjacentHTML('afterend', statusHTML);
+  }
+
+  /* Wired once (guarded like js/pipeline.js's own _wireInfiniteScroll) since
+   * #fs-results is a static element that persists across searches -- only
+   * its inner content is replaced each search, not the container itself. */
+  function _wireResultScroll() {
+    const wrap = document.getElementById('fs-results');
+    if (!wrap || wrap.dataset.scrollWired === '1') return;
+    wrap.dataset.scrollWired = '1';
+    wrap.addEventListener('scroll', () => {
+      if (_renderedCount >= _renderedResults.length) return;
+      if (wrap.scrollTop + wrap.clientHeight >= wrap.scrollHeight - 400) _appendResultRows();
+    }, { passive: true });
   }
 
   function init() {
@@ -301,6 +365,7 @@ window.FIND_SITES = (function () {
         if (item) _focusResult(Number(item.dataset.fsIdx));
       });
       results.innerHTML = renderResults(null);
+      _wireResultScroll();
     }
   }
 
@@ -311,5 +376,6 @@ window.FIND_SITES = (function () {
   return {
     init, open, close, toggle,
     buildCriteriaFromForm, runSearch, runSearchNational, renderResults, renderPartitionSummary,
+    renderResultRow, renderLoadMoreStatus, PAGE_SIZE,
   };
 })();

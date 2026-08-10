@@ -95,7 +95,9 @@ run "national site index: build script (WHERE filters, centroid, normalization, 
 run "national site index: state-partition split (manifest, no loss/dup, --check)" node tests/test_split_site_search_index.mjs
 run "national site index: state-partition split committed artifacts are current" node data/parcel_pipeline/split_site_search_index.mjs --check
 run "national site index: browser loader/wrapper around PARCEL_SITE_SEARCH (partitioned fetch, cache, concurrency, abort)" node tests/test_parcel_site_search_index.mjs
+run "national site index: Web Worker dispatch layer (id routing, progress, abort, crash fallback)" node tests/test_parcel_site_search_worker_dispatch.mjs
 run "find sites panel: form/search/render wiring" node tests/test_parcel_find_sites.mjs
+run "find sites panel: result virtualization (windowed scroll-append)" node tests/test_find_sites_virtualization.mjs
 run "parcel site suitability score (explainable)" node tests/test_parcel_suitability.mjs
 run "parcel sales history + comparable transactions" node tests/test_parcel_sales.mjs
 run "parcel site-intelligence export object (test3/test2 contract)" node tests/test_parcel_site_intelligence.mjs

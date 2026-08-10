@@ -188,7 +188,7 @@ window.PARCEL_SITE_SEARCH_INDEX = (function () {
    * call) so a caller can render an honest "as of <date>, covering N
    * jurisdictions" caveat rather than presenting this as a live, complete
    * national search. */
-  async function searchNational(criteria, opts) {
+  async function _searchNationalDirect(criteria, opts) {
     const engine = window.PARCEL_SITE_SEARCH;
     if (!engine) throw new Error('PARCEL_SITE_SEARCH_INDEX requires window.PARCEL_SITE_SEARCH to be loaded first');
 
@@ -237,8 +237,93 @@ window.PARCEL_SITE_SEARCH_INDEX = (function () {
 
   function _resetCache() { _manifestPromise = null; _partitionCache.clear(); }
 
+  /* ── Worker dispatch ─────────────────────────────────────────────────
+   * A nationwide search evaluates 85,000+ index records; measured at
+   * ~680ms of blocking main-thread execution (see
+   * js/parcel/site-search-worker.js's header). When Worker is available,
+   * searchNational() hands the whole fetch+evaluate pipeline to
+   * site-search-worker.js -- which reuses _searchNationalDirect() above
+   * unmodified via importScripts() -- and only ever sends `criteria`/
+   * `opts` across the boundary, never the candidate array itself. One
+   * worker is created lazily and reused across searches rather than
+   * spun up per search (avoiding repeated script-parse cost); a worker
+   * that errors out (e.g. the script 404s) is dropped so the next search
+   * gets a fresh instance instead of reusing a dead one. */
+  const WORKER_URL = 'js/parcel/site-search-worker.js';
+  const WORKERS_SUPPORTED = typeof Worker !== 'undefined';
+
+  let _worker = null;
+  let _workerReqSeq = 0;
+  const _pending = new Map(); // request id -> {resolve, reject, onProgress}
+
+  function _getWorker() {
+    if (_worker) return _worker;
+    _worker = new Worker(WORKER_URL);
+    _worker.onmessage = (e) => {
+      const msg = e.data || {};
+      const p = _pending.get(msg.id);
+      if (!p) return; // a stale/aborted request's late message -- ignore
+      if (msg.type === 'progress') { p.onProgress(msg.progress); return; }
+      _pending.delete(msg.id);
+      if (msg.type === 'result') p.resolve(msg.result);
+      else p.reject(new Error(msg.error || 'national search worker failed'));
+    };
+    _worker.onerror = (e) => {
+      // The worker itself crashed (e.g. importScripts couldn't load) --
+      // reject everything in flight rather than leaving callers hanging
+      // forever, and drop the dead instance so the NEXT search creates a
+      // fresh worker instead of reusing a broken one.
+      for (const p of _pending.values()) p.reject(new Error((e && e.message) || 'national search worker error'));
+      _pending.clear();
+      _worker = null;
+    };
+    return _worker;
+  }
+
+  function _searchNationalInWorker(criteria, opts) {
+    const o = opts || {};
+    return new Promise((resolve, reject) => {
+      const id = ++_workerReqSeq;
+      const worker = _getWorker();
+      _pending.set(id, {
+        resolve,
+        reject,
+        onProgress: typeof o.onProgress === 'function' ? o.onProgress : () => {},
+      });
+      if (o.signal) {
+        if (o.signal.aborted) worker.postMessage({ type: 'abort', id });
+        else o.signal.addEventListener('abort', () => worker.postMessage({ type: 'abort', id }), { once: true });
+      }
+      worker.postMessage({
+        type: 'search', id, criteria,
+        opts: { unknownPolicy: o.unknownPolicy, concurrency: o.concurrency },
+      });
+    });
+  }
+
+  /* Public entry point. Same signature and return shape as
+   * _searchNationalDirect() -- callers (js/parcel/find-sites.js and its
+   * tests) never need to know or care whether a given search ran on the
+   * main thread or in a worker. Falls back to the main thread when Worker
+   * isn't available at all (older browsers, and every current test
+   * environment: neither Node nor jsdom implements Worker) or when the
+   * worker path itself fails (e.g. the script fails to load) -- a search
+   * must still work in a browser that supports Worker but hits some
+   * worker-specific edge case, not silently return nothing. */
+  async function searchNational(criteria, opts) {
+    if (WORKERS_SUPPORTED) {
+      try {
+        return await _searchNationalInWorker(criteria, opts);
+      } catch (e) {
+        // fall through to the main thread below
+      }
+    }
+    return _searchNationalDirect(criteria, opts);
+  }
+
   return {
     loadManifest, loadStatePartition, loadStates, searchNational, _resetCache,
-    MANIFEST_URL,
+    _searchNationalDirect, _searchNationalInWorker, _getWorker,
+    MANIFEST_URL, WORKER_URL, WORKERS_SUPPORTED,
   };
 })();
