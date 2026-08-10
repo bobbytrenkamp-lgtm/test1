@@ -80,7 +80,7 @@
       "category": "PARCELS",
       "dataset_count": 3,
       "datasets_with_data": 3,
-      "total_records": 87036,
+      "total_records": 86036,
       "ui_consumed_count": 1,
       "automated_count": 3
     },
@@ -96,7 +96,7 @@
       "category": "POWER PLANTS",
       "dataset_count": 1,
       "datasets_with_data": 1,
-      "total_records": 1295,
+      "total_records": 1290,
       "ui_consumed_count": 0,
       "automated_count": 1
     },
@@ -252,7 +252,7 @@
       "license": "Public government open data; per-service terms vary and are not separately tracked here (same as parcels_registry).",
       "known_coverage_holes": "ENGINE EXISTS, LIVE, WIRED (confirmed 2026-08-09 via the first real build_site_search_index.yml dispatch: 86,811 real parcels across 55/58 jurisdictions, 42.2MB; Marion County IN, Montgomery County MD, and Baltimore city MD failed that run and were isolated correctly, not silently dropped). Closes the gap js/parcel/find-sites.js's own header long documented: Find Sites searched only whatever parcels were currently rendered on the map (one county at a time), with no way to search across all wired jurisdictions at once. data/parcel_pipeline/build_national_site_index.mjs walks all 58 registry jurisdictions and server-side-filters each to parcels at or above a configurable acreage threshold (default 5 acres) using each jurisdiction's own already-verified fieldMap.area_acres/area_sqft source field -- no new per-jurisdiction field investigation. 13 of 58 jurisdictions have neither field and are indexed as an unfiltered, capped SAMPLE instead, flagged sizeFiltered:false per-jurisdiction so a reader can tell 'every large parcel in this county' apart from 'an arbitrary sample of this county's parcels'. As of 2026-08-10, data/parcel_pipeline/split_site_search_index.mjs derives data/site_search/manifest.json + data/site_search/states/<ST>.json (31 state partitions) from this same file -- both stay committed (STORE EVERYTHING), but js/parcel/site-search-index.js now fetches only the state(s) a search actually needs instead of this whole 42MB file, with bounded concurrency, an in-memory LRU cache, progress reporting, and AbortController-based cancellation of a superseded search. js/parcel/site-search-index.js reuses PARCEL_SITE_SEARCH.search() UNCHANGED -- no parallel evaluation logic.",
       "known_quality_issues": "Proximity (transmission/substation/interstate distance) and environmental-constraint (floodplain/wetland) criteria are NOT precomputed in this index -- running those live for every large parcel across 58 jurisdictions would be a far larger, slower live-network job than this one. PARCEL_SITE_SEARCH already answers 'this criterion's data is absent from this candidate' correctly (indeterminate, never a silent pass), so a national-scope search on those criteria returns every parcel as indeterminate rather than a wrong answer -- a user opens a specific matched parcel for live per-parcel proximity/constraint analysis, same as today. Record counts and truncation status per jurisdiction are in the index's own jurisdiction_summaries array, not duplicated here.",
-      "record_count": 86811,
+      "record_count": 85811,
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [
@@ -464,7 +464,7 @@
       "license": "Public federal open data (EPA).",
       "known_coverage_holes": "ENGINE EXISTS, LIVE, WIRED, REAL DATA (1,295 records, 49 states, first populated 2026-08-09 via update_infrastructure.yml). This source has NO nameplate-capacity field of any kind -- plant identity, location, operating status, and primary fuel source are real and populated; capacity_mw is always None, never fabricated. Whether 1,295 represents the full national operating fleet or a curated subset of this FRS layer has not been independently cross-checked against EIA-860 totals.",
       "known_quality_issues": "Source is one row per GENERATOR, deduplicated to one record per PLANT_CODE by this pipeline -- a plant with many small generators and a plant with one large generator are indistinguishable without capacity data.",
-      "record_count": 1295,
+      "record_count": 1290,
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [

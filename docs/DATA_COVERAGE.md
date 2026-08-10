@@ -39,9 +39,9 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | INTERCONNECTION QUEUES | 1 | 0 | 0 | 0 | 0 |
 | ISO/RTO | 1 | 0 | 0 | 0 | 0 |
 | NEWS | 1 | 1 | 600 | 1 | 1 |
-| PARCELS | 3 | 3 | 87,036 | 1 | 3 |
+| PARCELS | 3 | 3 | 86,036 | 1 | 3 |
 | POLICY/REGULATION | 2 | 2 | 1,579 | 1 | 2 |
-| POWER PLANTS | 1 | 1 | 1,295 | 0 | 1 |
+| POWER PLANTS | 1 | 1 | 1,290 | 0 | 1 |
 | PROTECTED LAND | 1 | 0 | 0 | 0 | 0 |
 | RAIL | 1 | 0 | 0 | 0 | 0 |
 | ROADS | 1 | 0 | 0 | 0 | 0 |
@@ -255,7 +255,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 **National multi-jurisdiction site search index (large parcels only)** (national_site_search_index) — ✅ has data
 
-- Records: 86811
+- Records: 85811
 - Source: The same 58 county/city GIS departments as parcels_registry, walked in one batch
 - Geographic scope (declared): The same 58 wired jurisdictions as parcels_registry -- not every US county, and explicitly labeled as such in the index's own meta.caveat field.
 - Update frequency (declared): weekly, scheduled (build_site_search_index.yml)
@@ -313,7 +313,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 **Power generation facilities** (power_plants) — ✅ has data
 
-- Records: 1295
+- Records: 1290
 - Source: EPA Facility Registry Service (EIA-860 generator data joined with FRS)
 - Source URL: https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_PowerPlants/MapServer/12
 - Geographic scope (declared): United States (1,295 operating plants across 49 states/territories, as of the first live fetch 2026-08-09; coverage relative to the full EIA-860 fleet has not been independently verified -- this may be a curated FRS subset rather than every operating generator)
