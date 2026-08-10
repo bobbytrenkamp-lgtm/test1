@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-09T22:42:46Z",
+  "generated_at": "2026-08-10T05:20:27Z",
   "source_meta": {
     "_disclaimer": "Facility locations are approximate (city-level accuracy). Capacity figures are publicly reported estimates and may not reflect current state. Sources listed per entry.",
     "_facilities_exported_at": "2026-08-09T18:29:35Z",
-    "_last_updated": "2026-08-09T22:42:46Z",
+    "_last_updated": "2026-08-10T05:20:27Z",
     "_fiber_network_note": "Empty by design. Earlier versions of this file hand-typed three named routes (\"Zayo Northern Virginia Dark Fiber Ring\", \"Lumen/CenturyLink Iowa Backbone\", \"Zayo Pacific NW Fiber Route\") with invented coordinate paths attributed to real carriers by name -- none were sourced from Zayo, Lumen, or any public filing. Attributing an invented path to a named company is a fabrication risk regardless of a map tooltip disclaimer, so they were removed rather than kept as \"illustrative\". No free, reliable, nationwide dataset of actual fiber routes is known to exist -- see js/parcel/proximity-layers.js's registerUnavailable('fiber', ...) for the parcel engine's position, which this file now matches. Only add entries here that carry a verified 'sources' array with a real URL, the same requirement data/validate_sources.py already enforces for data_centers/ai_campuses/power_infrastructure."
   },
   "layers": {
@@ -57,8 +57,8 @@
     },
     "power_plants": {
       "file": "data/layers/power_plants.json",
-      "record_count": 1295,
-      "bytes": 299367,
+      "record_count": 1290,
+      "bytes": 298236,
       "eager": false
     },
     "wastewater_facilities": {
