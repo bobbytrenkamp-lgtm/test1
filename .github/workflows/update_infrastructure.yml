@@ -42,6 +42,9 @@ jobs:
       - name: Split layers for browser lazy-loading
         run: python data/split_sample_layers.py
 
+      - name: Geo-partition the power layer by state for viewport-aware loading
+        run: python data/split_layer_by_state.py
+
       - name: Commit updated infrastructure data
         run: |
           git config user.name "github-actions[bot]"

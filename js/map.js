@@ -1178,7 +1178,21 @@ function _fetchLazyLayerFile(fileKey) {
    per-frame cost, and at national zoom they are visually indistinguishable
    anyway. Individual markers still render once a user is zoomed in enough
    to tell them apart (clusterPoints' own singleThreshold). Re-clustered on
-   zoomend (debounced), not every pan frame. */
+   zoomend (debounced), not every pan frame.
+
+   VIEWPORT-AWARE PARTITIONED LOADING (data/split_layer_by_state.py)
+   -------------------------------------------------------------------
+   Even lazy-loaded, the single 11.5MB power_infrastructure.json meant
+   toggling "power" on while looking at one state downloaded all 53,826 US
+   substations. data/layers/power_infrastructure/manifest.json +
+   states/<ST>.json (one file per state, each carrying a bbox) lets this
+   fetch only the state(s) whose bbox intersects the current map view.
+   Panning further loads newly-intersecting states; a bounded LRU cache
+   (_powerStateCache) means re-panning back to an already-seen state is
+   free. Only power_infrastructure is geo-partitioned this way -- see
+   data/split_layer_by_state.py's own header for why transmission/fiber
+   and the other layers are not (no bbox-scoped consumer / measured to be
+   not worth it yet). */
 let _powerRawData = null;
 
 // Canvas renderer scoped to just this layer -- 53,826 substation points is
@@ -1190,6 +1204,90 @@ let _powerCanvasRenderer = null;
 function _getPowerRenderer() {
   if (!_powerCanvasRenderer) _powerCanvasRenderer = L.canvas({ padding: 0.5 });
   return _powerCanvasRenderer;
+}
+
+const POWER_MANIFEST_URL = "data/layers/power_infrastructure/manifest.json";
+const POWER_STATE_MAX_CACHE = 15; // bounded LRU -- a long pan-heavy session should not keep every state forever
+const POWER_STATE_CONCURRENCY = 8;
+
+let _powerManifestPromise = null;
+function _loadPowerManifest() {
+  if (_powerManifestPromise) return _powerManifestPromise;
+  _powerManifestPromise = _fetchJSON(POWER_MANIFEST_URL).catch(() => null);
+  return _powerManifestPromise;
+}
+
+// state -> records[] ; Map preserves insertion order, used as LRU recency
+// (re-set on access = most recent), same pattern as
+// js/parcel/site-search-index.js's partition cache.
+const _powerStateCache = new Map();
+function _touchPowerStateCache(state, records) {
+  _powerStateCache.delete(state);
+  _powerStateCache.set(state, records);
+  while (_powerStateCache.size > POWER_STATE_MAX_CACHE) {
+    const oldest = _powerStateCache.keys().next().value;
+    _powerStateCache.delete(oldest);
+  }
+}
+
+function _bboxIntersectsBounds(bbox, bounds) {
+  if (!bbox) return false;
+  const [minLon, minLat, maxLon, maxLat] = bbox;
+  return minLon <= bounds.getEast() && maxLon >= bounds.getWest() &&
+    minLat <= bounds.getNorth() && maxLat >= bounds.getSouth();
+}
+
+/* States whose bbox intersects the current viewport, per the loaded
+   manifest. Falls back to every state in the manifest if bounds aren't
+   available yet (e.g. called before the map has a size) -- a safe
+   over-fetch rather than rendering nothing. */
+function _statesInView(manifest, bounds) {
+  if (!manifest || !manifest.states) return [];
+  const all = Object.keys(manifest.states);
+  if (!bounds) return all;
+  return all.filter(st => _bboxIntersectsBounds(manifest.states[st].bbox, bounds));
+}
+
+async function _fetchPowerStatePartition(manifest, state) {
+  if (_powerStateCache.has(state)) {
+    const records = _powerStateCache.get(state);
+    _touchPowerStateCache(state, records); // bump recency
+    return records;
+  }
+  const entry = manifest.states[state];
+  if (!entry) return [];
+  const records = await _fetchJSON(entry.file).catch(() => []);
+  _touchPowerStateCache(state, records);
+  return records;
+}
+
+/* Fetches every not-yet-cached state intersecting the viewport, bounded
+   concurrency (never fires POWER_STATE_MAX_CACHE+ requests at once for a
+   view spanning many small states), then rebuilds _powerRawData from the
+   union of currently-in-view cached states. Safe to call repeatedly (on
+   toggle-on and on every debounced moveend) -- already-cached states
+   resolve instantly with no network call. */
+async function _loadPowerDataForCurrentView() {
+  const manifest = await _loadPowerManifest();
+  if (!manifest) { _powerRawData = _powerRawData || []; return; }
+
+  const bounds = leafletMap.getBounds();
+  const states = _statesInView(manifest, bounds);
+  const toFetch = states.filter(st => !_powerStateCache.has(st));
+
+  let next = 0;
+  async function worker() {
+    while (next < toFetch.length) {
+      const state = toFetch[next++];
+      await _fetchPowerStatePartition(manifest, state);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(POWER_STATE_CONCURRENCY, toFetch.length) }, worker));
+
+  // Recompute the render set from the CURRENT view (not every ever-cached
+  // state) -- data for a state panned away from stays cached for a fast
+  // return trip, but isn't drawn while off-screen.
+  _powerRawData = states.flatMap(st => _powerStateCache.get(st) || []);
 }
 
 function _clusterMarkerStyle(count) {
@@ -1227,16 +1325,26 @@ function _schedulePowerRerenderOnZoom() {
   }, 150);
 }
 
+let _powerMoveDebounce = null;
+function _schedulePowerRerenderOnMove() {
+  if (_powerMoveDebounce) clearTimeout(_powerMoveDebounce);
+  _powerMoveDebounce = setTimeout(() => {
+    _powerMoveDebounce = null;
+    if (!layerState.power) return;
+    _loadPowerDataForCurrentView().then(_renderPowerLayerAtCurrentZoom);
+  }, 250);
+}
+
 function _buildPowerLayer() {
   if (_lazyLayerBuildCache.power) return _lazyLayerBuildCache.power;
-  _lazyLayerBuildCache.power = _fetchLazyLayerFile("power_infrastructure").then(data => {
-    _powerRawData = data || [];
+  _lazyLayerBuildCache.power = _loadPowerDataForCurrentView().then(() => {
     const group = L.layerGroup();
     leafletLayerGroups.power = group;
     _renderPowerLayerAtCurrentZoom();
-    if (!_buildPowerLayer._zoomWired) {
+    if (!_buildPowerLayer._listenersWired) {
       leafletMap.on("zoomend", _schedulePowerRerenderOnZoom);
-      _buildPowerLayer._zoomWired = true;
+      leafletMap.on("moveend", _schedulePowerRerenderOnMove);
+      _buildPowerLayer._listenersWired = true;
     }
     return group;
   });

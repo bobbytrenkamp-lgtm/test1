@@ -63,7 +63,7 @@
     },
     "policy_pipeline_sources": {
       "health": "SOURCE_DOWN",
-      "last_checked": "2026-08-09T07:47:14.937694+00:00",
+      "last_checked": "2026-08-10T08:22:39.938435+00:00",
       "persistently_down": [
         "az-water-resources",
         "ca-santaclara-oes",
@@ -82,7 +82,7 @@
       "pipeline": "policy_pipeline_sources",
       "total_sources": 109,
       "transiently_unreachable": [
-        "wa-douglas-pud"
+        "wi-legislature"
       ]
     },
     "static_parcel_ingestion": {
