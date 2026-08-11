@@ -59,6 +59,8 @@ def _load_adapter(name: str):
         from data.facility_pipeline.adapters.datacentermap import DataCenterMapAdapter
         from data.facility_pipeline.adapters.equinix import EquinixAdapter
         from data.facility_pipeline.adapters.digital_realty import DigitalRealtyAdapter
+        from data.facility_pipeline.adapters.qts import QTSAdapter
+        from data.facility_pipeline.adapters.cyrusone import CyrusOneAdapter
         from data.facility_pipeline.adapters.ferc_queue import FERCQueueAdapter
         from data.facility_pipeline.adapters.sec_edgar import SECEdgarAdapter
         from data.facility_pipeline.adapters.hyperscale_press import HyperscalePressAdapter
@@ -68,6 +70,8 @@ def _load_adapter(name: str):
             "datacentermap": DataCenterMapAdapter,
             "equinix": EquinixAdapter,
             "digital_realty": DigitalRealtyAdapter,
+            "qts": QTSAdapter,
+            "cyrusone": CyrusOneAdapter,
             "ferc_queue": FERCQueueAdapter,
             "sec_edgar": SECEdgarAdapter,
             "hyperscale_press": HyperscalePressAdapter,
