@@ -13,8 +13,8 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | Datasets catalogued | 29 |
 | Datasets with actual data (has_data) | 18 |
 | Datasets wired into the production UI | 11 |
-| Datasets with dedicated CI coverage | 5 |
-| Datasets on an automated refresh workflow | 15 |
+| Datasets with dedicated CI coverage | 6 |
+| Datasets on an automated refresh workflow | 16 |
 
 ## Refresh cadence (computed from each workflow's own cron schedule, not declared)
 
@@ -22,9 +22,9 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 |---|---|
 | daily | 1 |
 | hourly | 1 |
-| monthly | 1 |
+| monthly | 2 |
 | none | 1 |
-| not_automated | 14 |
+| not_automated | 13 |
 | weekly | 11 |
 
 ## By category
@@ -36,7 +36,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | ECONOMIC DATA | 2 | 2 | 14 | 0 | 0 |
 | FIBER | 3 | 0 | 0 | 1 | 1 |
 | FLOOD | 1 | 0 | 0 | 1 | 0 |
-| INTERCONNECTION QUEUES | 1 | 0 | 0 | 0 | 0 |
+| INTERCONNECTION QUEUES | 1 | 0 | 0 | 0 | 1 |
 | ISO/RTO | 1 | 0 | 0 | 0 | 0 |
 | NEWS | 1 | 1 | 600 | 1 | 1 |
 | PARCELS | 3 | 3 | 86,036 | 1 | 3 |
@@ -194,17 +194,18 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 **Generator interconnection queue positions** (interconnection_queues) — ⛔ no data
 
-- Records: 0
-- Source: FERC (registered as a facility-pipeline source, not yet feeding a dedicated dataset)
-- Source URL: https://www.ferc.gov/media/3423/download
-- Geographic scope (declared): _none_
-- Update frequency (declared): n/a — registered as a facility source only
+- Records: n/a
+- Source: Lawrence Berkeley National Laboratory (LBNL) "Queued Up" -- compiled from 7 ISO/RTOs and 50+ non-ISO balancing areas, ~98% of US generating capacity
+- Source URL: https://emp.lbl.gov/queues
+- Geographic scope (declared): National
+- Update frequency (declared): Monthly (data/national_data_ingestion/interconnection_queue.py via update_interconnection_queue.yml)
 - Authoritative: True
 - UI-consumed: False
-- CI-tested: False
-- Automated update workflow(s): _none_
-- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
-- **Known coverage holes:** The 'ferc_queue' facility source in facility_sources.json feeds the DATA CENTER pipeline (detecting large-load interconnection requests), not a standalone interconnection-queue dataset. LBNL's free public interconnection queue database (queues.lbl.gov) is a plausible richer source that has not been evaluated.
+- CI-tested: True
+- Automated update workflow(s): update_interconnection_queue.yml
+- Actual refresh cadence (computed from the workflow's own cron schedule): monthly
+- **Known coverage holes:** The 'ferc_queue' facility source in facility_sources.json still separately feeds the DATA CENTER pipeline (detecting large-load interconnection requests) -- distinct from this dataset. LBNL publishes county + state text only, never per-project coordinates, so every record's location is a county-level bbox centroid (evidence_tier=MODELED), not the true project site. Records whose county cannot be resolved to a real FIPS centroid are excluded and counted in the output's meta.excluded_no_resolvable_county_location, never silently dropped. The source is behind Cloudflare's managed challenge, so ingestion requires a real headless-browser download (see data/national_data_ingestion/interconnection_queue_download.mjs) rather than a plain HTTP fetch.
+- **Known quality issues:** queue_status uses the source's own vocabulary (e.g. active/withdrawn/operational), intentionally distinct from InfrastructureAsset's generic existing/planned/retired status field -- withdrawn (never built) and retired (built, then decommissioned) are different facts.
 
 ### ISO/RTO
 

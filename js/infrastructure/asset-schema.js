@@ -22,6 +22,7 @@ window.INFRA_ASSET_SCHEMA = (function () {
     'water_facility',
     'wastewater_facility',
     'utility_territory',
+    'interconnection_queue_entry',
   ];
 
   const EVIDENCE_TIERS = ['OBSERVED', 'MODELED', 'UNKNOWN'];

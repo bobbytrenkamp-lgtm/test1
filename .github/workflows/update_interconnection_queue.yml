@@ -1,0 +1,65 @@
+name: Update Interconnection Queue Data
+
+on:
+  schedule:
+    # Run monthly on the 1st at 05:00 UTC -- LBNL's "Queued Up" workbook is
+    # published periodically (not daily), so a monthly cadence matches the
+    # source's real update frequency.
+    - cron: "0 5 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-interconnection-queue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: pip install -r data/requirements.txt
+
+      - name: Install Playwright + Chromium
+        run: |
+          npm init -y > /dev/null
+          npm install playwright
+          npx playwright install --with-deps chromium
+
+      - name: Download LBNL "Queued Up" workbook (real browser -- Cloudflare-protected)
+        run: node data/national_data_ingestion/interconnection_queue_download.mjs /tmp/lbnl_queue.xlsx
+
+      - name: Parse workbook into InfrastructureAsset records
+        run: python3 data/national_data_ingestion/interconnection_queue.py /tmp/lbnl_queue.xlsx
+
+      - name: Commit updated interconnection queue data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/interconnection_queue.json
+          if git diff --cached --quiet; then
+            echo "No interconnection queue changes to commit"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git commit -m "chore: update interconnection queue data [${TIMESTAMP}] [skip ci]"
+            for attempt in 1 2 3 4 5; do
+              if git push origin HEAD; then break; fi
+              if [ "$attempt" = 5 ]; then echo "::error::Push failed after 5 attempts."; exit 1; fi
+              echo "Push rejected (attempt ${attempt}), rebasing and retrying..."
+              git fetch origin "${GITHUB_REF_NAME}" && git rebase "origin/${GITHUB_REF_NAME}"
+              sleep $((attempt * 5))
+            done
+          fi
