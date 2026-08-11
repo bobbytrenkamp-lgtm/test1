@@ -59,6 +59,36 @@ def fetch(url, label, params=None):
 
 
 def main():
+    # ROUND 2: item 754d7d17e94d40f4957754371cbaec03 ("RTO Regions", owner
+    # BernZachS, access=public, type=Feature Service, tags include EIA) was
+    # found in round 1's Online search. Round 1's "Item metadata" call
+    # forgot f=json and got the HTML portal directory back -- redo it with
+    # f=json to get the item's real 'url' (its actual FeatureServer
+    # endpoint, which may differ from the token-gated services7.arcgis.com
+    # one EIA's own atlas.eia.gov Hub page consumes), then query that
+    # service directly.
+    status, body = fetch(
+        "https://www.arcgis.com/sharing/rest/content/items/754d7d17e94d40f4957754371cbaec03",
+        "ROUND 2: real item metadata (f=json)", {"f": "json"})
+    real_service_url = None
+    if body:
+        try:
+            item = json.loads(body)
+            real_service_url = item.get("url")
+            print(f"  item.url={real_service_url!r} access={item.get('access')} "
+                  f"owner={item.get('owner')} type={item.get('type')}")
+        except json.JSONDecodeError:
+            print("  (not JSON)")
+
+    if real_service_url:
+        fetch(f"{real_service_url}/0?f=json", "ROUND 2: real service layer 0 metadata (no token)")
+        fetch(f"{real_service_url}/0/query", "ROUND 2: real service layer 0 query, no geometry (no token)", {
+            "where": "1=1", "outFields": "*", "returnGeometry": "false", "f": "json",
+        })
+        fetch(f"{real_service_url}/0/query", "ROUND 2: real service layer 0 query WITH geometry (no token)", {
+            "where": "1=1", "outFields": "*", "outSR": "4326", "returnGeometry": "true", "f": "json",
+        })
+
     # Step 1: public ArcGIS Online item search (no auth needed for public items)
     status, body = fetch(
         "https://www.arcgis.com/sharing/rest/search",
