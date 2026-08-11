@@ -3,7 +3,7 @@
     "description": "Exact-match seed corpus of verified source-field-name -> canonical-field synonyms, extracted from every fieldMap in js/parcel/registry.js. Every entry here has been human-verified against a real live service, not inferred. Consumed by a future tiered field-mapper (Phase 2) as its first, highest-confidence resolution tier, before normalized-name matching or sample-value inspection are attempted.",
     "generated_by": "data/parcel_pipeline/extract_field_synonyms.mjs",
     "generated_from": "js/parcel/registry.js",
-    "last_regenerated": "2026-08-05"
+    "last_regenerated": "2026-08-11"
   },
   "synonyms": {
     "address": [
@@ -30,7 +30,8 @@
           "24033",
           "24510",
           "36061",
-          "42101"
+          "42101",
+          "46099"
         ]
       },
       {
@@ -48,7 +49,8 @@
       {
         "name": "PARCEL_ADD",
         "seen_in": [
-          "49035"
+          "49035",
+          "49049"
         ]
       },
       {
@@ -181,7 +183,8 @@
           "17043",
           "18097",
           "32031",
-          "34023"
+          "34023",
+          "46099"
         ]
       },
       {
@@ -311,7 +314,8 @@
       {
         "name": "PARCEL_ACRES",
         "seen_in": [
-          "49035"
+          "49035",
+          "49049"
         ]
       },
       {
@@ -416,6 +420,7 @@
       {
         "name": "SHAPE__AREA",
         "seen_in": [
+          "49049",
           "51059"
         ]
       },
@@ -429,6 +434,12 @@
         "name": "SQ_FEET",
         "seen_in": [
           "31055"
+        ]
+      },
+      {
+        "name": "SQFT",
+        "seen_in": [
+          "46099"
         ]
       },
       {
@@ -585,7 +596,8 @@
       {
         "name": "TOTAL_MKT_VALUE",
         "seen_in": [
-          "49035"
+          "49035",
+          "49049"
         ]
       },
       {
@@ -647,7 +659,8 @@
       {
         "name": "HOUSE_CNT",
         "seen_in": [
-          "49035"
+          "49035",
+          "49049"
         ]
       },
       {
@@ -821,7 +834,8 @@
       {
         "name": "BLDG_SQFT",
         "seen_in": [
-          "49035"
+          "49035",
+          "49049"
         ]
       },
       {
@@ -1149,7 +1163,8 @@
         "name": "LANDUSE",
         "seen_in": [
           "06067",
-          "36061"
+          "36061",
+          "46099"
         ]
       },
       {
@@ -1204,7 +1219,8 @@
         "seen_in": [
           "34013",
           "34017",
-          "49035"
+          "49035",
+          "49049"
         ]
       },
       {
@@ -1468,7 +1484,8 @@
       {
         "name": "LAND_MKT_VALUE",
         "seen_in": [
-          "49035"
+          "49035",
+          "49049"
         ]
       },
       {
@@ -1777,6 +1794,7 @@
         "name": "LEGAL",
         "seen_in": [
           "41051",
+          "46099",
           "56021"
         ]
       },
@@ -2059,6 +2077,12 @@
         ]
       },
       {
+        "name": "OWNNAME1",
+        "seen_in": [
+          "46099"
+        ]
+      },
+      {
         "name": "OWNNM1",
         "seen_in": [
           "39061"
@@ -2235,7 +2259,8 @@
         "name": "PARCEL_ID",
         "seen_in": [
           "39035",
-          "49035"
+          "49035",
+          "49049"
         ]
       },
       {
@@ -2312,6 +2337,12 @@
         "name": "STATEPIDN",
         "seen_in": [
           "56021"
+        ]
+      },
+      {
+        "name": "TAG",
+        "seen_in": [
+          "46099"
         ]
       },
       {
@@ -2537,7 +2568,8 @@
       {
         "name": "SERIAL_NUM",
         "seen_in": [
-          "49035"
+          "49035",
+          "49049"
         ]
       },
       {
@@ -2556,6 +2588,12 @@
         "name": "STATEPARCELNUMBER",
         "seen_in": [
           "18097"
+        ]
+      },
+      {
+        "name": "TAG",
+        "seen_in": [
+          "46099"
         ]
       },
       {
@@ -2578,6 +2616,12 @@
       }
     ],
     "subdivision": [
+      {
+        "name": "ADDITION",
+        "seen_in": [
+          "46099"
+        ]
+      },
       {
         "name": "DESCSUBD",
         "seen_in": [
@@ -2641,7 +2685,8 @@
         "name": "SUBDIV_NAME",
         "seen_in": [
           "01073",
-          "49035"
+          "49035",
+          "49049"
         ]
       },
       {
@@ -2815,7 +2860,8 @@
       {
         "name": "BUILT_YR",
         "seen_in": [
-          "49035"
+          "49035",
+          "49049"
         ]
       },
       {

@@ -9,12 +9,12 @@ Run `node data/parcel_pipeline/generate_coverage_metrics.mjs` to regenerate.
 
 | | |
 |---|---|
-| Production jurisdictions | 58 |
+| Production jurisdictions | 59 |
 | Facility-bearing jurisdictions | 549 |
-| Jurisdiction coverage | 10.6% |
-| **Facility-weighted coverage** | **53.1%** |
+| Jurisdiction coverage | 10.7% |
+| **Facility-weighted coverage** | **53.4%** |
 | Known facilities | 4455 |
-| Facilities in covered jurisdictions | 2033 |
+| Facilities in covered jurisdictions | 2047 |
 | Facilities with no county FIPS (unattributable) | 624 |
 
 Facility-weighted coverage is the number worth watching. Plain jurisdiction
@@ -29,16 +29,16 @@ counties have it?
 
 | Category | Jurisdictions | Facility-weighted |
 |---|---|---|
-| area | 45 (77.6%) | 74% |
-| identity | 58 (100%) | 100% |
-| address | 36 (62.1%) | 57.9% |
-| ownership | 35 (60.3%) | 64.3% |
-| assessment | 40 (69%) | 69.6% |
-| sales | 25 (43.1%) | 39.1% |
-| zoning | 17 (29.3%) | 27.4% |
-| building | 27 (46.6%) | 42.2% |
-| legal | 32 (55.2%) | 54.9% |
-| land_use | 46 (79.3%) | 76.6% |
+| area | 46 (78%) | 74.2% |
+| identity | 59 (100%) | 100% |
+| address | 37 (62.7%) | 58.2% |
+| ownership | 36 (61%) | 64.6% |
+| assessment | 40 (67.8%) | 69.1% |
+| sales | 25 (42.4%) | 38.8% |
+| zoning | 17 (28.8%) | 27.2% |
+| building | 27 (45.8%) | 41.9% |
+| legal | 33 (55.9%) | 55.3% |
+| land_use | 47 (79.7%) | 76.7% |
 
 ## Quality distribution
 
@@ -46,11 +46,11 @@ counties have it?
 |---|---|---|
 | full-intelligence | 6 | Geometry, ownership, assessment, sales, and zoning all wired up. |
 | rich | 33 | Geometry and identity plus ownership/address and valuation. |
-| standard | 5 | Geometry plus several useful attribute categories. |
+| standard | 6 | Geometry plus several useful attribute categories. |
 | basic | 6 | Geometry and identity plus limited attributes. |
 | boundary-only | 8 | Essentially polygons and an identifier. |
 
-Quality score: mean **47.7** / 105 (best 91.7, worst 10).
+Quality score: mean **47.4** / 105 (best 91.7, worst 10).
 
 The score is a plain weighted sum with every weight visible in
 `data/parcel_pipeline/coverage_rules.mjs`, and each component is reported
@@ -78,7 +78,6 @@ Facility-bearing jurisdictions not yet in production, ranked by facility count.
 | 37063 | Durham County, North Carolina | 14 | catalogued, not yet promoted | high | 0 | no |
 | 40109 | Oklahoma County | 14 | catalogued, not yet promoted | high | 0 | no |
 | 40143 | Tulsa County | 14 | catalogued, not yet promoted | high | 0 | no |
-| 46099 | Minnehaha County | 14 | catalogued, not yet promoted | high | 0 | no |
 | 06073 | San Diego County | 13 | catalogued, not yet promoted | high | 0 | no |
 | 20091 | Johnson County | 13 | catalogued, not yet promoted | high | 0 | no |
 | 28049 | Hinds County | 13 | catalogued, not yet promoted | high | 0 | no |
@@ -88,6 +87,7 @@ Facility-bearing jurisdictions not yet in production, ranked by facility count.
 | 12095 | Orange County | 12 | catalogued, not yet promoted | high | 0 | no |
 | 13097 | Douglas County | 12 | catalogued, not yet promoted | high | 0 | no |
 | 23005 | Cumberland County | 12 | catalogued, not yet promoted | high | 0 | no |
+| 50007 | Chittenden County | 12 | catalogued, not yet promoted | high | 0 | no |
 
 ## Covered jurisdictions
 
@@ -146,6 +146,7 @@ Facility-bearing jurisdictions not yet in production, ranked by facility count.
 | 17043 | DuPage County, Illinois | 16 | rich | 42.9 |
 | 24510 | Baltimore city, Maryland | 16 | rich | 80.4 |
 | 24031 | Montgomery County, Maryland | 14 | rich | 80.4 |
+| 46099 | Minnehaha County | 14 | standard | 34.2 |
 | 24033 | Prince George's County, Maryland | 12 | rich | 80.4 |
 | 34013 | Essex County, New Jersey | 12 | rich | 64.6 |
 | 51153 | Prince William County, Virginia | 9 | standard | 26.7 |

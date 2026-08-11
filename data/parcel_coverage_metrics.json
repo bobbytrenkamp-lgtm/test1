@@ -33,71 +33,71 @@
     "caveat": "These figures measure how many canonical fields each jurisdiction's configured sources are wired up to populate. They are an engineering signal, not a measure of data accuracy, freshness, or fitness for any real estate decision. A county can score 100 here while publishing values that are years stale."
   },
   "coverage": {
-    "productionJurisdictions": 58,
+    "productionJurisdictions": 59,
     "facilityBearingJurisdictions": 549,
-    "jurisdictionCoveragePct": 10.6,
+    "jurisdictionCoveragePct": 10.7,
     "cataloguedJurisdictions": 167,
     "totalFacilities": 4455,
-    "facilitiesInCoveredJurisdictions": 2033,
+    "facilitiesInCoveredJurisdictions": 2047,
     "facilitiesUnattributed": 624,
-    "facilityWeightedCoveragePct": 53.1
+    "facilityWeightedCoveragePct": 53.4
   },
   "depth": {
     "area": {
-      "jurisdictions": 45,
-      "jurisdictionPct": 77.6,
-      "facilityWeightedPct": 74
+      "jurisdictions": 46,
+      "jurisdictionPct": 78,
+      "facilityWeightedPct": 74.2
     },
     "identity": {
-      "jurisdictions": 58,
+      "jurisdictions": 59,
       "jurisdictionPct": 100,
       "facilityWeightedPct": 100
     },
     "address": {
-      "jurisdictions": 36,
-      "jurisdictionPct": 62.1,
-      "facilityWeightedPct": 57.9
+      "jurisdictions": 37,
+      "jurisdictionPct": 62.7,
+      "facilityWeightedPct": 58.2
     },
     "ownership": {
-      "jurisdictions": 35,
-      "jurisdictionPct": 60.3,
-      "facilityWeightedPct": 64.3
+      "jurisdictions": 36,
+      "jurisdictionPct": 61,
+      "facilityWeightedPct": 64.6
     },
     "assessment": {
       "jurisdictions": 40,
-      "jurisdictionPct": 69,
-      "facilityWeightedPct": 69.6
+      "jurisdictionPct": 67.8,
+      "facilityWeightedPct": 69.1
     },
     "sales": {
       "jurisdictions": 25,
-      "jurisdictionPct": 43.1,
-      "facilityWeightedPct": 39.1
+      "jurisdictionPct": 42.4,
+      "facilityWeightedPct": 38.8
     },
     "zoning": {
       "jurisdictions": 17,
-      "jurisdictionPct": 29.3,
-      "facilityWeightedPct": 27.4
+      "jurisdictionPct": 28.8,
+      "facilityWeightedPct": 27.2
     },
     "building": {
       "jurisdictions": 27,
-      "jurisdictionPct": 46.6,
-      "facilityWeightedPct": 42.2
+      "jurisdictionPct": 45.8,
+      "facilityWeightedPct": 41.9
     },
     "legal": {
-      "jurisdictions": 32,
-      "jurisdictionPct": 55.2,
-      "facilityWeightedPct": 54.9
+      "jurisdictions": 33,
+      "jurisdictionPct": 55.9,
+      "facilityWeightedPct": 55.3
     },
     "land_use": {
-      "jurisdictions": 46,
-      "jurisdictionPct": 79.3,
-      "facilityWeightedPct": 76.6
+      "jurisdictions": 47,
+      "jurisdictionPct": 79.7,
+      "facilityWeightedPct": 76.7
     }
   },
   "tierDistribution": {
     "full-intelligence": 6,
     "rich": 33,
-    "standard": 5,
+    "standard": 6,
     "basic": 6,
     "boundary-only": 8,
     "degraded": 0,
@@ -105,7 +105,7 @@
     "unsupported": 0
   },
   "qualityScore": {
-    "mean": 47.7,
+    "mean": 47.4,
     "max": 105,
     "best": 91.7,
     "worst": 10
@@ -4405,6 +4405,87 @@
       "declaredGaps": 8
     },
     {
+      "fips": "46099",
+      "id": "sd-minnehaha-county",
+      "name": "Minnehaha County",
+      "state": "SD",
+      "connector": "arcgis",
+      "facilities": 14,
+      "tier": "standard",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": false,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": true,
+        "land_use": true
+      },
+      "qualityScore": 34.2,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 1,
+          "earned": 5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0.3333333333333333,
+          "earned": 1.7
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 20
+    },
+    {
       "fips": "24033",
       "id": "md-prince-georges-county",
       "name": "Prince George's County, Maryland",
@@ -4942,19 +5023,6 @@
       "previousInvestigation": "catalogued, not yet promoted"
     },
     {
-      "fips": "46099",
-      "name": "Minnehaha County",
-      "state": "SD",
-      "facilities": 14,
-      "status": "candidate",
-      "likelySource": "https://www.arcgis.com/home/item.html?id=d57efdf717064169a21c70b8b380e387",
-      "sourceType": null,
-      "sharedService": false,
-      "fieldsAvailable": 0,
-      "effort": "high",
-      "previousInvestigation": "catalogued, not yet promoted"
-    },
-    {
       "fips": "06073",
       "name": "San Diego County",
       "state": "CA",
@@ -5130,6 +5198,19 @@
       "facilities": 11,
       "status": "candidate",
       "likelySource": "https://www.arcgis.com/home/item.html?id=0b50ad877f9d4ddd828e4adef4516e3b",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "39089",
+      "name": "Licking County",
+      "state": "OH",
+      "facilities": 11,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=7f456edec3494165b70ce26e9a9b3e4c",
       "sourceType": null,
       "sharedService": false,
       "fieldsAvailable": 0,
