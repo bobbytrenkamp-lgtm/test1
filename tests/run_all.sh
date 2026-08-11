@@ -56,6 +56,8 @@ run "static parcel ingestion pipeline" python3 -m pytest tests/test_static_inges
 run "national data ingestion: candidate source prober" python3 -m pytest tests/test_national_data_ingestion.py -q
 run "infrastructure asset schema (base model + type extensions)" python3 -m pytest tests/test_infrastructure_asset_schema.py -q
 run "infrastructure asset schema: JS/Python enum sync" node tests/test_infrastructure_asset_schema_sync.mjs
+run "county geometry: TopoJSON bbox-centroid decoder" python3 -m pytest tests/test_county_geometry.py -q
+run "interconnection queue ingestion (LBNL Queued Up parser)" python3 -m pytest tests/test_interconnection_queue.py -q
 run "data catalog: generator + registry tests" python3 -m pytest tests/test_data_catalog.py -q
 run "data health dashboard: generator + honesty tests" python3 -m pytest tests/test_data_health.py -q
 # The generated data catalog must match current repository state -- same

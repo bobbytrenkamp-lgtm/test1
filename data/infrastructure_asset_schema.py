@@ -67,6 +67,7 @@ ASSET_TYPES = (
     "water_facility",
     "wastewater_facility",
     "utility_territory",
+    "interconnection_queue_entry",
 )
 
 # General-purpose evidence tier for most asset types: is this a directly
@@ -191,6 +192,22 @@ TYPE_SCHEMAS = {
             "fips_list": lambda v: isinstance(v, list) and len(v) > 0,
         },
         "optional": set(),
+    },
+    "interconnection_queue_entry": {
+        # queue_status uses the source's own vocabulary (e.g. "active",
+        # "withdrawn", "operational"), not this schema's generic
+        # existing/planned/retired STATUS_VALUES -- "withdrawn" (never
+        # built) and "retired" (built, then decommissioned) are not the
+        # same fact, and forcing one into the other would misrepresent
+        # real project history. The base `status` field is left unset for
+        # this type rather than mapped lossily.
+        "required": {"queue_status": _is_nonempty_str},
+        "optional": {
+            "capacity_mw", "technology", "utility", "point_of_interconnection",
+            "queue_id", "developer", "queue_date", "proposed_online_date",
+            "withdrawn_date", "interconnection_agreement_date", "service_type",
+            "balancing_authority_region",
+        },
     },
 }
 

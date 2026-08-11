@@ -115,7 +115,14 @@ def test_datasets_with_no_data_are_never_reported_as_ui_consumed_or_automated():
     # landed 2026-08-09 via the first real build_site_search_index.yml
     # dispatch (a fix for an oversized first attempt shipped first; see
     # data/parcel_pipeline/build_national_site_index.mjs's structuralOutFields).
-    ALLOWED_WITH_NO_DATA = {"fiber_network", "fema_flood"}
+    # interconnection_queues: the LBNL "Queued Up" ingestion pipeline
+    # (data/national_data_ingestion/interconnection_queue.py + its Playwright
+    # downloader) is real and update_interconnection_queue.yml is wired to
+    # run it monthly, but the download requires a real headless browser to
+    # clear emp.lbl.gov's Cloudflare managed challenge -- something this
+    # sandbox cannot do (no outbound network). data/interconnection_queue.json
+    # lands the first time the scheduled/dispatched workflow actually runs.
+    ALLOWED_WITH_NO_DATA = {"fiber_network", "fema_flood", "interconnection_queues"}
     for d in catalog["datasets"]:
         if not d["has_data"]:
             if d["ui_consumed"] or d["automated_update_workflows"]:

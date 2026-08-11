@@ -58,7 +58,7 @@
       "datasets_with_data": 0,
       "total_records": 0,
       "ui_consumed_count": 0,
-      "automated_count": 0
+      "automated_count": 1
     },
     {
       "category": "ISO/RTO",
@@ -569,21 +569,33 @@
       "id": "interconnection_queues",
       "category": "INTERCONNECTION QUEUES",
       "name": "Generator interconnection queue positions",
-      "file": null,
-      "source_org": "FERC (registered as a facility-pipeline source, not yet feeding a dedicated dataset)",
-      "source_url": "https://www.ferc.gov/media/3423/download",
-      "geographic_scope_declared": null,
-      "update_frequency_declared": "n/a \u2014 registered as a facility source only",
+      "file": "data/interconnection_queue.json",
+      "source_org": "Lawrence Berkeley National Laboratory (LBNL) \"Queued Up\" -- compiled from 7 ISO/RTOs and 50+ non-ISO balancing areas, ~98% of US generating capacity",
+      "source_url": "https://emp.lbl.gov/queues",
+      "geographic_scope_declared": "National",
+      "update_frequency_declared": "Monthly (data/national_data_ingestion/interconnection_queue.py via update_interconnection_queue.yml)",
       "authoritative": true,
       "direct_or_derived": "direct",
-      "license": "Public federal filing.",
-      "known_coverage_holes": "The 'ferc_queue' facility source in facility_sources.json feeds the DATA CENTER pipeline (detecting large-load interconnection requests), not a standalone interconnection-queue dataset. LBNL's free public interconnection queue database (queues.lbl.gov) is a plausible richer source that has not been evaluated.",
-      "known_quality_issues": null,
-      "record_count": 0,
+      "license": "Public LBNL research data.",
+      "known_coverage_holes": "The 'ferc_queue' facility source in facility_sources.json still separately feeds the DATA CENTER pipeline (detecting large-load interconnection requests) -- distinct from this dataset. LBNL publishes county + state text only, never per-project coordinates, so every record's location is a county-level bbox centroid (evidence_tier=MODELED), not the true project site. Records whose county cannot be resolved to a real FIPS centroid are excluded and counted in the output's meta.excluded_no_resolvable_county_location, never silently dropped. The source is behind Cloudflare's managed challenge, so ingestion requires a real headless-browser download (see data/national_data_ingestion/interconnection_queue_download.mjs) rather than a plain HTTP fetch.",
+      "known_quality_issues": "queue_status uses the source's own vocabulary (e.g. active/withdrawn/operational), intentionally distinct from InfrastructureAsset's generic existing/planned/retired status field -- withdrawn (never built) and retired (built, then decommissioned) are different facts.",
+      "record_count": null,
       "ui_consumed": false,
-      "ci_tested": false,
-      "automated_update_workflows": [],
-      "update_cadence": null,
+      "ci_tested": true,
+      "automated_update_workflows": [
+        "update_interconnection_queue.yml"
+      ],
+      "update_cadence": {
+        "cadence": "monthly",
+        "per_workflow": {
+          "update_interconnection_queue.yml": {
+            "cadence": "monthly",
+            "cron_expressions": [
+              "0 5 1 * *"
+            ]
+          }
+        }
+      },
       "has_data": false
     },
     {
@@ -1109,14 +1121,14 @@
     "dataset_count": 29,
     "datasets_with_data": 18,
     "datasets_ui_consumed": 11,
-    "datasets_ci_tested": 5,
-    "datasets_automated": 15,
+    "datasets_ci_tested": 6,
+    "datasets_automated": 16,
     "datasets_by_cadence": {
       "daily": 1,
       "hourly": 1,
-      "monthly": 1,
+      "monthly": 2,
       "none": 1,
-      "not_automated": 14,
+      "not_automated": 13,
       "weekly": 11
     }
   }

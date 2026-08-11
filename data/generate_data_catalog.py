@@ -124,7 +124,7 @@ RECORD_COUNT_RULES = {
     "power_plants": lambda: _count_json_path("data/sample_layers.json", "power_plants"),
     "utility_territories": lambda: _count_json_path("data/sample_layers.json", "utility_territories"),
     "iso_rto": lambda: 0,
-    "interconnection_queues": lambda: 0,
+    "interconnection_queues": lambda: _count_json_path("data/interconnection_queue.json", "assets"),
     "fiber_network": lambda: _count_json_path("data/sample_layers.json", "fiber_network"),
     "fcc_broadband_fiber_pct": lambda: 0,
     "water_stress": lambda: _count_json_path("data/sample_layers.json", "water_stress"),
@@ -201,6 +201,7 @@ CI_TEST_LABEL_KEYWORDS = {
     "political_risk": None,  # no dedicated CI test currently
     "restrictions_raw": "policy pipeline",
     "ai_news": None,
+    "interconnection_queues": "interconnection queue",
 }
 
 
