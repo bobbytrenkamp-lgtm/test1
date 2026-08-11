@@ -123,7 +123,7 @@ RECORD_COUNT_RULES = {
     "substations": lambda: _count_json_path("data/sample_layers.json", "power_infrastructure"),
     "power_plants": lambda: _count_json_path("data/sample_layers.json", "power_plants"),
     "utility_territories": lambda: _count_json_path("data/sample_layers.json", "utility_territories"),
-    "iso_rto": lambda: 0,
+    "iso_rto": lambda: _count_json_path("data/sample_layers.json", "iso_rto_regions"),
     "interconnection_queues": lambda: _count_json_path("data/interconnection_queue.json", "assets"),
     "fiber_network": lambda: _count_json_path("data/sample_layers.json", "fiber_network"),
     "fcc_broadband_fiber_pct": lambda: 0,

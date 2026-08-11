@@ -9,7 +9,7 @@ Sources (all public, no authentication required):
   - EPA FRS/ICIS Wastewater     (NPDES-permitted wastewater treatment facilities)
   - FCC National Broadband Map  (county-level fiber coverage)
   - EPA WATERS / USGS           (county-level water availability proxy)
-  - EIA US Energy Atlas         (ISO/RTO region boundaries -- currently token-gated, see ISO_RTO_URL)
+  - HIFLD Electric Planning Areas (ISO/RTO + utility balancing-authority boundaries)
   - EPA Community Water Systems (drinking-water service-area boundaries)
 
 Outputs: updates data/sample_layers.json with real infrastructure data.
@@ -128,19 +128,28 @@ FCC_COUNTY_URL  = "https://broadbandmap.fcc.gov/api/public/map/listCountyAvailab
 # Watershed water stress via EPA EnviroAtlas
 EPA_WATERS_URL  = "https://enviroatlas.epa.gov/arcgis/rest/services/Supplemental/USACensus2010/MapServer/6/query"
 
-# ── EIA ISO/RTO regions ──────────────────────────────────────────────────
-# Real EIA-published boundary layer (US Energy Atlas, atlas.eia.gov),
-# found via web search and confirmed live on a real GitHub Actions runner.
-# This is EIA's own ArcGIS Hub hosting, not the HIFLD lineage substations/
-# transmission come from, so it is unaffected by the HIFLD Open shutdown.
-# Represents the 7 US RTO/ISO regions (PJM, MISO, ERCOT, CAISO, SPP, NYISO,
-# ISO-NE). EIA's own documentation notes these boundaries are illustrative
-# (RTOs don't have crisp legal borders the way states do, and shapes can
-# overlap or leave gaps) -- passed through as-is, never treated as more
-# precise than the source claims. Real field schema was not knowable before
-# the first live fetch, so attributes are passed through unfiltered rather
-# than guessing field names.
-ISO_RTO_URL = "https://services7.arcgis.com/FGr1D95XCGALKXqM/ArcGIS/rest/services/RTO_Regions/FeatureServer/0/query"
+# ── HIFLD Electric Planning Areas (ISO/RTO + balancing-authority regions) ──
+# EIA's own US Energy Atlas RTO_Regions FeatureServer (services7.arcgis.com/
+# FGr1D95XCGALKXqM) requires an ArcGIS token even for bare layer metadata
+# ("Token Required", error code 499) -- confirmed dead-end via 6 rounds of
+# live GitHub Actions dispatch probing (2026-08-11): a public AGOL search
+# for "RTO Regions" surfaces an item that LOOKS public (access=public) but
+# its own 'url' field points at that same token-gated service, so being
+# discoverable in search does not mean the underlying service is open.
+# The real, no-token replacement is HIFLD's "Electric Planning Areas" layer
+# (FERC 714 / EIA-860 / EIA-861 / Census TIGER-sourced), found on the SAME
+# HDR Inc. HIFLD mirror this module already uses for substations/
+# transmission/power plants (see SUBSTATION_URL above) -- confirmed live
+# with a real query (count=94, no auth error). This is a superset of the 7
+# major RTOs/ISOs: every electric planning authority nationwide (RTOs, ISOs,
+# and individual utility/municipal/co-op balancing areas), which is more
+# useful for site selection than the 7-region layer alone -- knowing which
+# specific planning authority governs a candidate site's interconnection is
+# the actionable fact, not just which of 7 super-regions it falls in.
+# Real field schema confirmed via live query, not guessed: ID, NAME,
+# COUNTRY, NAICS_CODE, NAICS_DESC, SOURCE, SOURCEDATE, VAL_METHOD, VAL_DATE,
+# WEBSITE, ABBRV, YEAR, PEAK_LOAD, PEAK_RANGE (+ OBJECTID/Shape_* fields).
+ISO_RTO_URL = "https://services5.arcgis.com/HDRa0B57OVrv2E1q/arcgis/rest/services/Electric_Planning_Areas/FeatureServer/0/query"
 
 # ── EPA Community Water System Service Area Boundaries ──────────────────
 # EPA's own national dataset of drinking-water service-area polygons for
@@ -635,17 +644,21 @@ def fetch_water_stress() -> dict[str, float]:
 
 def fetch_iso_rto_regions() -> list[dict]:
     """
-    Fetch the US RTO/ISO region boundaries from EIA's US Energy Atlas.
-    Returns simplified polygon dicts (one per RTO/ISO). Ring vertices are
-    downsampled for storage size -- these are large, detailed cartographic
-    boundaries and a rough regional overlay doesn't need full resolution.
+    Fetch US electric planning-authority boundaries (RTOs, ISOs, and
+    individual utility/municipal/co-op balancing areas) from HIFLD's
+    Electric Planning Areas layer. Returns simplified polygon dicts, one
+    per authority. Ring vertices are downsampled for storage size -- these
+    are large, detailed cartographic boundaries and a rough regional
+    overlay doesn't need full resolution.
 
     HONESTY NOTE: this is coverage-area evidence only, not a power
-    availability or interconnection-capacity claim. Being inside an
-    RTO/ISO boundary says nothing about whether the grid there has spare
-    capacity -- see interconnection queue data for that question.
+    availability or interconnection-capacity claim. Being inside a
+    planning authority's boundary says nothing about whether the grid
+    there has spare capacity -- see interconnection queue data for that
+    question. PEAK_LOAD/PEAK_RANGE are the authority's own historical
+    system-wide peak (MW), not a per-site capacity figure.
     """
-    log.info("Fetching EIA RTO/ISO region boundaries…")
+    log.info("Fetching HIFLD electric planning-area boundaries…")
     data = _get(ISO_RTO_URL, {
         "where":          "1=1",
         "outFields":      "*",
@@ -675,13 +688,20 @@ def fetch_iso_rto_regions() -> list[dict]:
         sampled_rings = [ring[::5] for ring in rings if len(ring) > 1]
         if not sampled_rings:
             continue
-        name = (a.get("NAME") or a.get("RTO_NAME") or a.get("Name") or
-                a.get("ABBREV") or a.get("Region") or "Unknown RTO/ISO")
+        record_id = a.get("ID")
+        name = a.get("NAME") or "Unknown planning authority"
         out.append({
-            "id":         f"rto-{name}".lower().replace(" ", "-").replace("/", "-"),
-            "name":       name,
-            "attributes": a,  # real field schema unconfirmed before first live fetch -- passed through unfiltered
-            "rings":      [[[round(p[0], 4), round(p[1], 4)] for p in ring] for ring in sampled_rings],
+            "id":          f"epa-{record_id}" if record_id else
+                            f"rto-{name}".lower().replace(" ", "-").replace("/", "-"),
+            "name":        name,
+            "abbreviation": a.get("ABBRV"),
+            "country":     a.get("COUNTRY"),
+            "naics_desc":  a.get("NAICS_DESC"),
+            "source":      a.get("SOURCE"),
+            "year":        a.get("YEAR"),
+            "peak_load_mw": a.get("PEAK_LOAD"),
+            "website":     a.get("WEBSITE") if a.get("WEBSITE") not in (None, "NOT AVAILABLE") else None,
+            "rings":       [[[round(p[0], 4), round(p[1], 4)] for p in ring] for ring in sampled_rings],
         })
     log.info("ISO/RTO regions: %d records", len(out))
     return out

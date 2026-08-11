@@ -122,7 +122,13 @@ def test_datasets_with_no_data_are_never_reported_as_ui_consumed_or_automated():
     # clear emp.lbl.gov's Cloudflare managed challenge -- something this
     # sandbox cannot do (no outbound network). data/interconnection_queue.json
     # lands the first time the scheduled/dispatched workflow actually runs.
-    ALLOWED_WITH_NO_DATA = {"fiber_network", "fema_flood", "interconnection_queues"}
+    # iso_rto: fetch_iso_rto_regions() now hits a real, live-verified,
+    # no-token HIFLD Electric Planning Areas layer (see fetch_infrastructure
+    # .py's ISO_RTO_URL comment) and update_infrastructure.yml already
+    # includes it in its default --layers list, but this sandbox has no
+    # outbound network to actually run the fetch -- data/sample_layers.json's
+    # iso_rto_regions key lands on the next real scheduled/dispatched run.
+    ALLOWED_WITH_NO_DATA = {"fiber_network", "fema_flood", "interconnection_queues", "iso_rto"}
     for d in catalog["datasets"]:
         if not d["has_data"]:
             if d["ui_consumed"] or d["automated_update_workflows"]:

@@ -143,17 +143,17 @@
     {
       "id": "iso_rto",
       "category": "ISO/RTO",
-      "name": "ISO/RTO regions",
-      "file": null,
-      "source_org": "EIA (US Energy Atlas) -- candidate found, not yet ingestable",
-      "source_url": "https://services7.arcgis.com/FGr1D95XCGALKXqM/ArcGIS/rest/services/RTO_Regions/FeatureServer/0",
-      "geographic_scope_declared": null,
-      "update_frequency_declared": "n/a \u2014 not implemented",
-      "authoritative": false,
-      "direct_or_derived": null,
-      "license": null,
-      "known_coverage_holes": "STILL NOT IMPLEMENTED, but no longer un-investigated. EIA's US Energy Atlas publishes a 7-region RTO/ISO boundary layer (atlas.eia.gov/maps/eia::rto-regions), discovered via web search 2026-08-09. The underlying ArcGIS FeatureServer was dispatched twice on a real GitHub Actions runner (both /query with outFields=* and the bare layer-metadata endpoint) and both returned 'Token Required' -- this specific service requires an ArcGIS auth token this project does not have, despite being publicly discoverable and publicly downloadable through the Hub UI (which proxies its own token). fetch_iso_rto_regions() in fetch_infrastructure.py is written and wired into update_infrastructure.yml's 'iso_rto' layer, but currently returns zero records and logs the real auth error rather than faking data -- so this is scaffolding waiting on either (a) a public non-token-gated mirror of the same 7 regions, or (b) the Hub's public-download proxy endpoint (opendata.arcgis.com download API) being identified and wired in instead of the raw FeatureServer query.",
-      "known_quality_issues": "EIA's own documentation notes RTO/ISO boundaries are illustrative, not legally precise -- RTOs don't have crisp borders the way states do, and shapefiles can overlap or leave gaps. Not yet relevant since no data has been ingested."
+      "name": "Electric planning-authority regions (ISO/RTO + utility balancing areas)",
+      "file": "data/sample_layers.json#iso_rto_regions",
+      "source_org": "HIFLD Electric Planning Areas (FERC 714 / EIA-860 / EIA-861 / Census TIGER-sourced), via a verified no-token HDR Inc. mirror of the pre-shutdown HIFLD Open dataset",
+      "source_url": "https://services5.arcgis.com/HDRa0B57OVrv2E1q/arcgis/rest/services/Electric_Planning_Areas/FeatureServer/0",
+      "geographic_scope_declared": "National (94 planning authorities: the 7 major RTOs/ISOs plus every individual utility/municipal/co-op balancing authority)",
+      "update_frequency_declared": "Weekly (data/fetch_infrastructure.py --layers iso_rto via update_infrastructure.yml)",
+      "authoritative": true,
+      "direct_or_derived": "direct",
+      "license": "Public HIFLD-lineage data.",
+      "known_coverage_holes": "RESOLVED 2026-08-11. EIA's own US Energy Atlas RTO_Regions FeatureServer (services7.arcgis.com/FGr1D95XCGALKXqM) was confirmed dead-end via 6 rounds of live GitHub Actions dispatch: it returns 'Token Required' (ArcGIS error 499) for every access path, including a publicly-discoverable AGOL search result whose own 'url' field points at the same token-gated service -- being discoverable in search does not mean the underlying service is open. The real replacement is HIFLD's 'Electric Planning Areas' layer, found on the SAME no-token HDR Inc. mirror this project already uses for substations/transmission/power plants, confirmed live with a real query (count=94, real field schema: ID/NAME/ABBRV/COUNTRY/NAICS_DESC/SOURCE/YEAR/PEAK_LOAD/PEAK_RANGE/WEBSITE). This is a superset of the 7-region layer originally sought -- every electric planning authority nationwide, not just the 7 largest RTOs/ISOs -- which is more directly useful for site selection (knowing the specific planning authority governing a candidate site's interconnection, not just which of 7 super-regions it falls in).",
+      "known_quality_issues": "PEAK_LOAD/PEAK_RANGE are each authority's own historical system-wide peak (MW), not a per-site available-capacity figure -- being inside a planning authority's boundary says nothing about whether the grid there currently has spare interconnection capacity (see the interconnection queue dataset for that question). Boundaries are the authority's own reported service territory, not always legally precise -- some can overlap or leave small gaps."
     },
     {
       "id": "interconnection_queues",
