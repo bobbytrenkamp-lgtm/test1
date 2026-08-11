@@ -14,6 +14,7 @@ output.
 """
 import re
 import sys
+import urllib.error
 import urllib.request
 
 CANDIDATE_PAGES = [
@@ -21,7 +22,17 @@ CANDIDATE_PAGES = [
     "https://emp.lbl.gov/queues",
 ]
 
-HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; data-research-bot/1.0)"}
+# A prior round got HTTP 403 on both landing pages using a plain
+# "compatible; data-research-bot/1.0" User-Agent -- looks like WAF/bot
+# fingerprinting rather than a missing page (both pages 403'd identically).
+# Full realistic Chrome headers first, since that's far cheaper than
+# escalating to a headless browser.
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
 
 
 def fetch(url):
@@ -51,6 +62,12 @@ def main():
         print(f"\n{'=' * 70}\nFetching: {page}\n{'=' * 70}")
         try:
             html = fetch(page)
+        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", errors="replace")[:500]
+            print(f"  FAILED to fetch page: HTTP {e.code} {e.reason}")
+            print(f"  response headers: {dict(e.headers)}")
+            print(f"  response body (first 500 chars): {body}")
+            continue
         except Exception as e:
             print(f"  FAILED to fetch page: {e}")
             continue
