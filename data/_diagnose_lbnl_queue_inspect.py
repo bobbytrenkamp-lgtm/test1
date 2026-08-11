@@ -10,7 +10,12 @@ import openpyxl
 wb = openpyxl.load_workbook("/tmp/queued_up.xlsx", read_only=True, data_only=True)
 print(f"\nsheet names ({len(wb.sheetnames)}): {wb.sheetnames}")
 
-candidates = [s for s in wb.sheetnames if re.search(r"data|queue|project", s, re.IGNORECASE)]
+# Round 4 revealed the real sheet list: '02. Data Sample by Region' is a
+# small summary tab that also happens to match a loose "data" regex, while
+# '03. Complete Queue Data' is the actual project-level record sheet.
+# Prefer an exact/near match on "complete queue data" first.
+exact = [s for s in wb.sheetnames if re.search(r"complete.*queue.*data", s, re.IGNORECASE)]
+candidates = exact or [s for s in wb.sheetnames if re.search(r"data|queue|project", s, re.IGNORECASE)]
 sheet_name = candidates[0] if candidates else wb.sheetnames[0]
 print(f"inspecting sheet: {sheet_name!r}")
 ws = wb[sheet_name]
@@ -20,9 +25,9 @@ header = next(rows_iter, None)
 print(f"\nheader row ({len(header) if header else 0} columns):")
 print(header)
 
-print("\nfirst 3 data rows:")
+print("\nfirst 5 data rows:")
 for i, row in enumerate(rows_iter):
-    if i >= 3:
+    if i >= 5:
         break
     print(row)
 
