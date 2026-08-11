@@ -51,6 +51,17 @@ async function passOne(fips) {
   console.log(JSON.stringify(report, null, 2));
 }
 
+let _mapFields = null;
+let _synonyms = null;
+async function loadMapperDeps() {
+  if (!_mapFields) _mapFields = (await import('./parcel_pipeline/field_mapper.mjs')).mapFields;
+  if (!_synonyms) {
+    const fs = await import('node:fs/promises');
+    _synonyms = JSON.parse(await fs.readFile('data/parcel_field_synonyms.json', 'utf8')).synonyms;
+  }
+  return { mapFields: _mapFields, synonyms: _synonyms };
+}
+
 async function evalManualCandidate(fips, baseJoinSourceField, candidateUrl, label) {
   const entry = registry.get(fips);
   console.log(`\n\n########## PASS 2 (named cross-service candidate): ${fips} ${entry.name} -- ${label} ##########`);
@@ -70,14 +81,15 @@ async function evalManualCandidate(fips, baseJoinSourceField, candidateUrl, labe
   }
   console.log(`  sampled ${sample.keys.length} real ${baseJoinSourceField} values from the base layer: ${sample.keys.slice(0, 5).join(', ')}...`);
 
+  const { mapFields, synonyms } = await loadMapperDeps();
   const candidate = { id: null, name: svc.name || label, fields: svc.fields, geometryType: svc.geometryType };
   const evaluated = await evaluateCandidate(candidate, {
     candidateUrl,
     baseJoinSourceField,
     sampleKeys: sample.keys,
     missingCanonicalFields: missingFieldsFor(entry),
-    mapFieldsFn: (await import('./parcel_pipeline/field_mapper.mjs')).mapFields,
-    synonyms: JSON.parse(await (await import('node:fs/promises')).readFile('data/parcel_field_synonyms.json', 'utf8')),
+    mapFieldsFn: mapFields,
+    synonyms,
   }, {});
   console.log(JSON.stringify(evaluated, null, 2));
 }
@@ -88,18 +100,41 @@ async function browseLoudounServices() {
   await fetchJson('https://logis.loudoun.gov/gis/rest/services/COL?f=json', 'COL folder');
 }
 
+async function browseFairfaxOrgServices() {
+  console.log(`\n\n########## Fairfax: browsing the ioennV6PpG5Xodq0 ArcGIS Online org's real service list ##########`);
+  // The registry.js comment's OpenData_A5=Sales / OpenData_A6=Assessed-Values
+  // guess turned out wrong on live data (A6 = "Questionable Split Parcels",
+  // A5 = "Common Areas") -- so enumerate the org's actual services rather
+  // than trusting the layer-number guess further.
+  const list = await fetchJson(
+    'https://services1.arcgis.com/ioennV6PpG5Xodq0/arcgis/rest/services?f=json',
+    '51059 ioennV6PpG5Xodq0 org -- service list');
+  if (list && Array.isArray(list.services)) {
+    console.log(`  services (${list.services.length}): ${list.services.map(s => `${s.name} (${s.type})`).join(', ')}`);
+    return list.services;
+  }
+  return [];
+}
+
 async function main() {
   await passOne('51107'); // Loudoun
   await passOne('51153'); // Prince William
   await passOne('51059'); // Fairfax
 
-  // Fairfax's two named Tax Administration services (registry.js:243-245)
-  await evalManualCandidate('51059', 'PARCEL_KEY',
-    'https://services1.arcgis.com/ioennV6PpG5Xodq0/arcgis/rest/services/OpenData_A6/FeatureServer/0',
-    'OpenData_A6 (Assessed Values)');
-  await evalManualCandidate('51059', 'PARCEL_KEY',
-    'https://services1.arcgis.com/ioennV6PpG5Xodq0/arcgis/rest/services/OpenData_A5/FeatureServer/0',
-    'OpenData_A5 (Sales)');
+  const fairfaxServices = await browseFairfaxOrgServices();
+  const salesOrAssessedLike = fairfaxServices.filter(s =>
+    /sale|assess|value|tax|cama|real.?estate/i.test(s.name));
+  console.log(`  name-filtered candidates: ${salesOrAssessedLike.map(s => s.name).join(', ') || '(none)'}`);
+  for (const s of salesOrAssessedLike.slice(0, 6)) {
+    const root = `https://services1.arcgis.com/ioennV6PpG5Xodq0/arcgis/rest/services/${s.name}/${s.type}`;
+    const info = await fetchJson(`${root}?f=json`, `Fairfax candidate service ${s.name}`);
+    const layers = (info && (info.layers || (info.type ? [{ id: 0, name: info.name }] : []))) || [];
+    for (const l of (Array.isArray(layers) ? layers : [])) {
+      await evalManualCandidate('51059', 'PARCEL_KEY',
+        `${root}/${l.id != null ? l.id : 0}`,
+        `${s.name} layer ${l.id != null ? l.id : 0} (${l.name || ''})`);
+    }
+  }
 
   // Prince William's named "Parcel CAMA Public" service root (registry.js:165-167)
   const pwcCamaSvc = await fetchJson(
