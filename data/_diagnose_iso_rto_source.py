@@ -59,6 +59,27 @@ def fetch(url, label, params=None):
 
 
 def main():
+    # ROUND 5: round 4's service-catalog listing of the HDR Inc. HIFLD
+    # mirror (services5.arcgis.com/HDRa0B57OVrv2E1q -- already proven live
+    # and no-token for Electric_Substations/Electric_Power_Transmission_
+    # Lines/Power_Plants in fetch_infrastructure.py) surfaced two real
+    # candidates: "Electric_Planning_Areas" (HIFLD's actual name for
+    # RTO/ISO/balancing-authority planning-area boundaries, sourced from
+    # EIA-861) and "Control_Areas" (an older/alternate HIFLD name for a
+    # closely related concept). Query both for real schema + a sample
+    # feature, no token, to confirm which one is the right match.
+    MIRROR = "https://services5.arcgis.com/HDRa0B57OVrv2E1q/arcgis/rest/services"
+    for layer_name in ("Electric_Planning_Areas", "Control_Areas"):
+        base = f"{MIRROR}/{layer_name}/FeatureServer/0"
+        fetch(f"{base}?f=json", f"ROUND 5: {layer_name} layer metadata (no token)")
+        fetch(f"{base}/query", f"ROUND 5: {layer_name} sample query (1 feature, with geometry)", {
+            "where": "1=1", "outFields": "*", "outSR": "4326",
+            "returnGeometry": "true", "resultRecordCount": "1", "f": "json",
+        })
+        fetch(f"{base}/query", f"ROUND 5: {layer_name} count", {
+            "where": "1=1", "returnCountOnly": "true", "f": "json",
+        })
+
     # ROUND 4: round 3's blind AGOL/Hub keyword search surfaced only noise
     # (unrelated third-party items). This repo's OWN fetch_infrastructure.py
     # already discovered and verified two real, no-token HIFLD-lineage
