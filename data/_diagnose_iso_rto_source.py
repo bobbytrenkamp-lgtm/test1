@@ -59,6 +59,38 @@ def fetch(url, label, params=None):
 
 
 def main():
+    # ROUND 4: round 3's blind AGOL/Hub keyword search surfaced only noise
+    # (unrelated third-party items). This repo's OWN fetch_infrastructure.py
+    # already discovered and verified two real, no-token HIFLD-lineage
+    # ArcGIS orgs for substations/transmission (services1.arcgis.com/
+    # Hp6G80Pky0om7QvQ -- the original HIFLD org, transmission lines still
+    # live there -- and services5.arcgis.com/HDRa0B57OVrv2E1q -- an HDR Inc.
+    # mirror carrying the authentic HIFLD substations schema after DHS's
+    # HIFLD Open portal was shut down in August 2025). If either org also
+    # mirrors an RTO/ISO boundary layer, it would very likely be public/
+    # no-token like their other services. List each org's full service
+    # catalog (a public, no-auth endpoint) and look for RTO/ISO/Regional_
+    # Transmission by name, rather than guessing a URL.
+    for org_label, org_base in [
+        ("original HIFLD org (Hp6G80Pky0om7QvQ)",
+         "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services"),
+        ("HDR Inc. HIFLD mirror (HDRa0B57OVrv2E1q)",
+         "https://services5.arcgis.com/HDRa0B57OVrv2E1q/arcgis/rest/services"),
+    ]:
+        status, body = fetch(org_base, f"ROUND 4: service catalog for {org_label}", {"f": "json"})
+        if not body:
+            continue
+        try:
+            data = json.loads(body)
+        except json.JSONDecodeError:
+            continue
+        names = [s.get("name") for s in data.get("services", [])]
+        print(f"  {len(names)} services total")
+        matches = [n for n in names if n and any(
+            kw in n.upper() for kw in ("RTO", "ISO", "REGIONAL_TRANSMISSION", "BALANCING_AUTHORITY"))]
+        print(f"  RTO/ISO-like matches: {matches}")
+        print(f"  all service names: {names}")
+
     # ROUND 3: round 2 proved the "RTO Regions" AGOL item (public search
     # result, access=public) just points its 'url' field at the SAME
     # token-gated services7.arcgis.com FeatureServer -- being publicly
