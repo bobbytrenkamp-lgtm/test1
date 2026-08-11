@@ -3699,6 +3699,67 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Minnehaha County, South Dakota ───────────────────────────────────
+     *
+     * discover_batch.mjs found this service on 2026-08-07 (score 57, band
+     * marginal) but did not auto-promote it (2 unresolved requiresReview
+     * fields — resolved by hand below). Jurisdiction match confirmed via a
+     * live query, 2026-08-11: every sample record carries COUNTY:"MINNEHAHA"
+     * directly as an attribute value, not merely inferred from the hosting
+     * domain (gis.siouxfalls.gov — the county seat's city GIS hosts the
+     * county's parcel data, a common arrangement, confirmed 66,889 real
+     * records via a live returnCountOnly query).
+     * ─────────────────────────────────────────────────────────────────── */
+    '46099': {
+      id:          'sd-minnehaha-county',
+      name:        'Minnehaha County',
+      state:       'SD',
+      fips:        '46099',
+      connector:   'arcgis',
+      serviceUrl:  'https://gis.siouxfalls.gov/arcgis/rest/services/Data/Property/MapServer/1',
+
+      minZoom:     14,
+      maxFeatures: 500,
+
+      fieldMap: {
+        parcel_id:     'TAG',
+        pin:           'TAG',
+        address:       'ADDRESS',
+        owner:         'OWNNAME1',
+        legal_desc:    'LEGAL',
+        land_use_code: 'LANDUSE',
+        area_sqft:     'SQFT',
+        area_acres:    'ACREAGE',
+        subdivision:   'ADDITION',
+        county_fips:   '__computed__',
+      },
+
+      /* owner_mailing is split across 4 separate fields (OWNADDRESS,
+         OWNCITY, OWNSTATE, OWNZIP) with no single combined field — never
+         concatenated (see this project's split-address-field precedent).
+         zoning/assessment/sale/deed fields are not present in this schema
+         at all (this is an assessor property/ownership layer, not a
+         zoning or CAMA valuation layer). */
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'land_use_desc',
+        'overlay_districts', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'year_built', 'gross_floor_area',
+        'assessed_value', 'land_value', 'improvement_value', 'tax_year',
+        'tax_amount', 'last_sale_date', 'last_sale_price', 'deed_book',
+        'deed_page', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'City of Sioux Falls GIS (Minnehaha County property data)',
+        url:     'https://gis.siouxfalls.gov/arcgis/rest/services/Data/Property/MapServer/1',
+        portal:  'https://www.siouxfalls.gov/city-government/gis',
+        license: 'Public government data. Verify terms before commercial redistribution.',
+        note:    'Jurisdiction and schema confirmed via a live query, 2026-08-11 (COUNTY field = "MINNEHAHA" on real sample records; 66,889 total records).',
+      },
+    },
+
   };
 
   function get(fips) {
