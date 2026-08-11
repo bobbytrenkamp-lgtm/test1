@@ -311,3 +311,101 @@ def test_water_systems_empty_partition_response_does_not_error():
          patch.object(fi, "_arcgis_paginate", return_value=[]):
         result = fi.fetch_water_systems()
     assert result == []
+
+
+# ── ISO/RTO / electric planning areas ───────────────────────────────────
+#
+# fetch_iso_rto_regions() -- EIA's own US Energy Atlas RTO_Regions
+# FeatureServer requires an ArcGIS token even for bare layer metadata (a
+# real, live-confirmed dead end, see ISO_RTO_URL's comment). The real
+# no-token replacement is HIFLD's "Electric Planning Areas" layer on the
+# same HDR Inc. mirror already used for substations/transmission/power
+# plants, confirmed live 2026-08-11 (count=94, real field schema below).
+
+def _rto_feature(record_id, name, ring, **overrides):
+    attrs = {
+        "ID": record_id, "NAME": name, "COUNTRY": "USA", "NAICS_CODE": "2211",
+        "NAICS_DESC": "ELECTRIC POWER GENERATION, TRANSMISSION AND DISTRIBUTION",
+        "SOURCE": "FERC 714, EIA 860, EIA 861, TIGER/Line Shapefiles - U.S. Census",
+        "ABBRV": None, "YEAR": "2018", "PEAK_LOAD": 11989.0, "PEAK_RANGE": 6038.0,
+        "WEBSITE": "NOT AVAILABLE",
+    }
+    attrs.update(overrides)
+    return {"attributes": attrs, "geometry": {"rings": [ring]}}
+
+
+_SQUARE_RING = [[-90.0, 30.0], [-90.0, 31.0], [-89.0, 31.0], [-89.0, 30.0], [-90.0, 30.0]]
+
+
+def test_iso_rto_real_fields_are_mapped_correctly():
+    raw = {"features": [_rto_feature(
+        "2775", "CALIFORNIA INDEPENDENT SYSTEM OPERATOR", _SQUARE_RING,
+        ABBRV="CAISO", PEAK_LOAD=45000.0,
+    )]}
+    with patch.object(fi, "_get", return_value=raw):
+        result = fi.fetch_iso_rto_regions()
+    assert len(result) == 1
+    r = result[0]
+    assert r["id"] == "epa-2775"
+    assert r["name"] == "CALIFORNIA INDEPENDENT SYSTEM OPERATOR"
+    assert r["abbreviation"] == "CAISO"
+    assert r["country"] == "USA"
+    assert r["peak_load_mw"] == 45000.0
+    assert r["website"] is None  # "NOT AVAILABLE" is a real sentinel, not a real URL
+
+
+def test_iso_rto_website_not_available_sentinel_becomes_none():
+    raw = {"features": [_rto_feature("195", "ALABAMA POWER COMPANY", _SQUARE_RING,
+                                      WEBSITE="NOT AVAILABLE")]}
+    with patch.object(fi, "_get", return_value=raw):
+        result = fi.fetch_iso_rto_regions()
+    assert result[0]["website"] is None
+
+
+def test_iso_rto_real_website_is_passed_through():
+    raw = {"features": [_rto_feature("13501", "NEW YORK INDEPENDENT SYSTEM OPERATOR",
+                                      _SQUARE_RING, WEBSITE="https://www.nyiso.com")]}
+    with patch.object(fi, "_get", return_value=raw):
+        result = fi.fetch_iso_rto_regions()
+    assert result[0]["website"] == "https://www.nyiso.com"
+
+
+def test_iso_rto_records_with_no_rings_are_skipped():
+    raw = {"features": [
+        {"attributes": {"ID": "1", "NAME": "No Geometry"}, "geometry": {}},
+        _rto_feature("2", "Has Geometry", _SQUARE_RING),
+    ]}
+    with patch.object(fi, "_get", return_value=raw):
+        result = fi.fetch_iso_rto_regions()
+    assert len(result) == 1
+    assert result[0]["id"] == "epa-2"
+
+
+def test_iso_rto_empty_upstream_response_returns_empty_list_not_error():
+    with patch.object(fi, "_get", return_value={"features": []}):
+        result = fi.fetch_iso_rto_regions()
+    assert result == []
+
+
+def test_iso_rto_none_response_returns_empty_list_not_error():
+    with patch.object(fi, "_get", return_value=None):
+        result = fi.fetch_iso_rto_regions()
+    assert result == []
+
+
+def test_iso_rto_arcgis_error_response_returns_empty_list_not_error():
+    # The real "Token Required" failure mode this source used to hit --
+    # must degrade to an empty list, never raise or return garbage.
+    with patch.object(fi, "_get", return_value={"error": {"code": 499, "message": "Token Required"}}):
+        result = fi.fetch_iso_rto_regions()
+    assert result == []
+
+
+def test_iso_rto_rings_are_downsampled_and_rounded():
+    long_ring = [[-90.0 + i * 0.001, 30.0] for i in range(20)]
+    raw = {"features": [_rto_feature("3", "Long Ring", long_ring)]}
+    with patch.object(fi, "_get", return_value=raw):
+        result = fi.fetch_iso_rto_regions()
+    ring = result[0]["rings"][0]
+    assert len(ring) < len(long_ring)  # downsampled, not the full vertex count
+    assert all(len(str(p[0]).split(".")[-1]) <= 4 for p in ring)  # rounded to 4dp
