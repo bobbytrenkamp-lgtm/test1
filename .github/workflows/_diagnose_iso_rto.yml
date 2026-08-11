@@ -1,0 +1,20 @@
+name: TEMP diagnose ISO/RTO region source
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Probe candidate no-token ISO/RTO sources
+        run: python3 data/_diagnose_iso_rto_source.py
