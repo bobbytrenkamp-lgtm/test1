@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""TEMP diagnostic round 2: inspect a real QTS facility detail page's
-JSON-LD (round 1 confirmed 1 ld+json script present on the listing page,
-need to confirm it's also on detail pages) and a real CyrusOne facility
-detail page's HTML structure (round 1 found 0 ld+json scripts there, so
-CyrusOne needs a pure-HTML address extraction strategy -- must see real
-markup before writing a parser).
+"""TEMP diagnostic round 3: QTS's ld+json is generic WordPress/Yoast SEO
+markup (WebPage/Organization/BreadcrumbList), not a PostalAddress/geo
+schema like Equinix/Digital Realty -- round 2 confirmed this. Need to find
+where the real city/state/address text actually lives on the page (meta
+description, a visible address block, or a Google Maps embed link with
+lat/long) before writing a parser.
 """
 import re
 import time
@@ -27,9 +27,8 @@ def fetch(url, label):
             print(f"status={resp.status} content-length={len(body)}")
             return resp.status, body
     except urllib.error.HTTPError as e:
-        body = e.read()
         print(f"HTTPError status={e.code}")
-        return e.code, body
+        return e.code, e.read()
     except Exception as e:
         print(f"EXCEPTION: {type(e).__name__}: {e}")
         return None, None
@@ -38,40 +37,36 @@ def fetch(url, label):
 
 
 def main():
-    # QTS Ashburn-1 detail page: dump the full ld+json block(s)
     status, body = fetch("https://www.qtsdatacenters.com/data-centers/ashburn-1/",
-                          "QTS: Ashburn-1 detail page")
-    if body:
-        text = body.decode("utf-8", errors="replace")
-        for m in re.finditer(
-            r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', text, re.DOTALL
-        ):
-            print("--- ld+json block ---")
-            print(m.group(1).strip()[:2000])
-        h1 = re.search(r"<h1[^>]*>(.*?)</h1>", text, re.DOTALL)
-        print(f"h1: {h1.group(1).strip() if h1 else None}")
+                          "QTS: Ashburn-1 detail page (round 3)")
+    if not body:
+        return
+    text = body.decode("utf-8", errors="replace")
 
-    # CyrusOne Chandler-Arizona detail page: dump text around address-like content
-    status, body = fetch(
-        "https://cyrusone.com/data-centers/north-america/chandler-arizona",
-        "CyrusOne: Chandler-Arizona detail page",
-    )
-    if body:
-        text = body.decode("utf-8", errors="replace")
-        # Any structured data at all (meta tags, schema.org microdata)?
-        og_locality = re.findall(r'<meta[^>]+property="og:[^"]*"[^>]*content="([^"]*)"', text)
-        print(f"og: meta content values (sample): {og_locality[:10]}")
-        itemprop_matches = re.findall(r'itemprop="([^"]+)"', text)
-        print(f"itemprop attributes found: {sorted(set(itemprop_matches))}")
-        addr_hits = re.findall(r'"streetAddress"\s*:\s*"([^"]*)"', text)
-        print(f"streetAddress JSON hits: {addr_hits[:5]}")
-        # Look for a visible address block near "AZ" or a zip code pattern
-        zip_ctx = re.findall(r'.{80}\b\d{5}(?:-\d{4})?\b.{20}', text)
-        print(f"context around 5-digit numbers (first 5): {zip_ctx[:5]}")
-        h1 = re.search(r"<h1[^>]*>(.*?)</h1>", text, re.DOTALL)
-        print(f"h1: {h1.group(1).strip() if h1 else None}")
-        title = re.search(r"<title[^>]*>(.*?)</title>", text, re.DOTALL)
-        print(f"title: {title.group(1).strip() if title else None}")
+    # meta description
+    desc = re.search(r'<meta[^>]+name="description"[^>]+content="([^"]*)"', text)
+    print(f"meta description: {desc.group(1) if desc else None}")
+    og_desc = re.search(r'<meta[^>]+property="og:description"[^>]+content="([^"]*)"', text)
+    print(f"og:description: {og_desc.group(1) if og_desc else None}")
+
+    # Google Maps embed / link with lat,lng
+    maps_links = re.findall(r'(?:google\.com/maps[^"\'\s]*|maps\.google[^"\'\s]*)', text)
+    print(f"google maps links (first 5): {maps_links[:5]}")
+    latlng = re.findall(r'[-+]?\d{1,3}\.\d{3,},\s*[-+]?\d{1,3}\.\d{3,}', text)
+    print(f"lat,lng-shaped strings (first 5): {latlng[:5]}")
+
+    # Visible state abbreviation context (e.g. ", VA " near an address)
+    addr_ctx = re.findall(r'.{40}\b[A-Z][a-z]+,\s*(?:VA|Virginia)\b.{20}', text)
+    print(f"context around 'City, VA' pattern (first 5): {addr_ctx[:5]}")
+
+    # Any data-* attributes carrying lat/lng (common in JS-driven map widgets)
+    data_lat = re.findall(r'data-lat(?:itude)?="([^"]+)"', text, re.IGNORECASE)
+    data_lng = re.findall(r'data-lng|data-lon(?:gitude)?="([^"]+)"', text, re.IGNORECASE)
+    print(f"data-lat attrs: {data_lat[:5]}  data-lng attrs: {data_lng[:5]}")
+
+    # Address block near "Address" label
+    addr_label_ctx = re.findall(r'.{20}[Aa]ddress.{120}', text)
+    print(f"context around the word 'Address' (first 3): {addr_label_ctx[:3]}")
 
 
 if __name__ == "__main__":
