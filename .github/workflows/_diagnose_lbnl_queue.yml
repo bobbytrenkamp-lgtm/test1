@@ -1,0 +1,23 @@
+name: TEMP diagnose LBNL interconnection queue source
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install openpyxl
+        run: pip install openpyxl
+
+      - name: Find and inspect the real LBNL Queued Up dataset
+        run: python3 data/_diagnose_lbnl_queue_source.py
