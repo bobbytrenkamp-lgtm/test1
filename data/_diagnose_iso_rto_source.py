@@ -59,6 +59,46 @@ def fetch(url, label, params=None):
 
 
 def main():
+    # ROUND 3: round 2 proved the "RTO Regions" AGOL item (public search
+    # result, access=public) just points its 'url' field at the SAME
+    # token-gated services7.arcgis.com FeatureServer -- being publicly
+    # discoverable in search does not mean the underlying service is open.
+    # Dead end. HIFLD (Homeland Infrastructure Foundation-Level Data)
+    # separately publishes an "Independent System Operator (ISO) and
+    # Regional Transmission Organization (RTO) Areas" layer on its own
+    # public ArcGIS Hub (hifld-geoplatform.hub.arcgis.com / geoplatform1
+    # services), which is typically openly downloadable (no token) via the
+    # opendata.arcgis.com Hub download proxy or the Hub's own item search.
+    # Try both search paths and the Hub v3 download proxy for whatever
+    # item id(s) come back.
+    for label, url, params in [
+        ("HIFLD AGOL search: ISO RTO", "https://www.arcgis.com/sharing/rest/search",
+         {"q": "ISO RTO title:HIFLD", "f": "json", "num": 10}),
+        ("HIFLD AGOL search: Regional Transmission Organizations",
+         "https://www.arcgis.com/sharing/rest/search",
+         {"q": "Regional Transmission Organizations RTO Areas", "f": "json", "num": 10}),
+        ("HIFLD Hub search: ISO RTO Areas",
+         "https://hub.arcgis.com/api/search/v1/collections/dataset/items",
+         {"q": "Independent System Operator Regional Transmission Organization Areas"}),
+    ]:
+        status, body = fetch(url, label, params)
+        if not body:
+            continue
+        try:
+            data = json.loads(body)
+        except json.JSONDecodeError:
+            continue
+        results = data.get("results") or data.get("features") or []
+        for r in results[:10]:
+            rid = r.get("id")
+            title = (r.get("title") if "title" in r else
+                     (r.get("properties") or {}).get("name"))
+            owner = r.get("owner") or (r.get("properties") or {}).get("orgId")
+            print(f"  candidate: id={rid} title={title!r} owner={owner}")
+            if rid:
+                fetch(f"https://www.arcgis.com/sharing/rest/content/items/{rid}",
+                      f"  -> item metadata for {rid}", {"f": "json"})
+
     # ROUND 2: item 754d7d17e94d40f4957754371cbaec03 ("RTO Regions", owner
     # BernZachS, access=public, type=Feature Service, tags include EIA) was
     # found in round 1's Online search. Round 1's "Item metadata" call
