@@ -45,6 +45,7 @@ run() {
 run "facilities index freshness" python3 data/build_facilities_index.py --check
 run "platform metadata validator" python3 data/validate_platform_metadata.py
 run "facility pipeline sync state (stale error clearing)" python3 -m pytest tests/test_facility_sync_state.py -q
+run "facility pipeline: QTS/CyrusOne operator adapters" python3 -m pytest tests/test_facility_pipeline_operator_adapters.py -q
 run "AI companies validator"      python3 data/validate_ai_companies.py
 run "policy pipeline unit tests"  python3 -m pytest tests/test_policy_pipeline.py -q
 run "source link move-suggestion logic" python3 -m pytest tests/test_check_source_links.py -q

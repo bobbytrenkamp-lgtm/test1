@@ -77,6 +77,34 @@
       "confidence_override": 0.92
     },
     {
+      "id": "qts",
+      "name": "QTS Data Centers Locations (Official Website)",
+      "tier": 1,
+      "adapter": "qts",
+      "url": "https://www.qtsdatacenters.com/data-centers",
+      "active": true,
+      "requires_auth": false,
+      "auth_env_var": "",
+      "rate_limit_rpm": 30,
+      "notes": "QTS's own published data center location pages. Tier-1 source. Location comes from templated og:description text (no structured PostalAddress/geo schema on this site, confirmed via live probe 2026-08-11), so confidence is set below Equinix/Digital Realty's 0.92. Run monthly. Requires requests + beautifulsoup4.",
+      "operator_filter": "QTS Data Centers",
+      "confidence_override": 0.85
+    },
+    {
+      "id": "cyrusone",
+      "name": "CyrusOne Locations (Official Website)",
+      "tier": 1,
+      "adapter": "cyrusone",
+      "url": "https://cyrusone.com/data-centers/",
+      "active": true,
+      "requires_auth": false,
+      "auth_env_var": "",
+      "rate_limit_rpm": 30,
+      "notes": "CyrusOne's own published data center location pages. Tier-1 source. Location is parsed from the page's <h1>/title text (no structured PostalAddress/geo schema on this site, confirmed via live probe 2026-08-11), so confidence is set below Equinix/Digital Realty's 0.92. Run monthly. Requires requests + beautifulsoup4.",
+      "operator_filter": "CyrusOne",
+      "confidence_override": 0.85
+    },
+    {
       "id": "ferc_queue",
       "name": "FERC Interconnection Queue (Active Requests)",
       "tier": 4,

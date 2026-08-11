@@ -32,7 +32,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | Category | Datasets | With data | Total records | UI-consumed | Automated |
 |---|---|---|---|---|---|
 | ASSESSMENT | 1 | 0 | 0 | 0 | 0 |
-| DATA CENTERS | 2 | 2 | 4,463 | 1 | 1 |
+| DATA CENTERS | 2 | 2 | 4,465 | 1 | 1 |
 | ECONOMIC DATA | 2 | 2 | 14 | 0 | 0 |
 | FIBER | 3 | 0 | 0 | 1 | 1 |
 | FLOOD | 1 | 0 | 0 | 1 | 0 |
@@ -91,7 +91,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 **Facility pipeline source registry** (facility_sources) — ✅ has data
 
-- Records: 8
+- Records: 10
 - Source: OSM Overpass, DataCenterMap, Equinix, Digital Realty, FERC, SEC EDGAR, hyperscaler press feeds
 - Geographic scope (declared): United States
 - Update frequency (declared): weekly, per-source

@@ -24,7 +24,7 @@
       "category": "DATA CENTERS",
       "dataset_count": 2,
       "datasets_with_data": 2,
-      "total_records": 4463,
+      "total_records": 4465,
       "ui_consumed_count": 1,
       "automated_count": 1
     },
@@ -349,7 +349,7 @@
       "license": "Public web sources; scraping ToS not independently reviewed per source.",
       "known_coverage_holes": "Only 8 sources configured; no state PUC filings, no CBRE/JLL/Datacenter Dynamics market reports (paid or ToS-restricted).",
       "known_quality_issues": "Confidence tiers are self-declared per source, not independently audited.",
-      "record_count": 8,
+      "record_count": 10,
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [],
