@@ -199,6 +199,48 @@ def test_water_facility_capacity_is_optional_capacity_unknown_is_not_zero():
     assert validate_asset(asset).ok
 
 
+def test_interconnection_queue_entry_requires_queue_status():
+    asset = {
+        "id": "iq-1", "asset_type": "interconnection_queue_entry", "name": "Test Solar Project",
+        "geometry": {"type": "Point", "coordinates": [-112.05, 35.63]},
+        "source": {"publisher": "LBNL", "url": "https://emp.lbl.gov/queues", "retrieved_at": "2026-08-11"},
+        "evidence_tier": "MODELED", "last_verified": "2026-08-11",
+    }
+    result = validate_asset(asset)
+    assert not result.ok
+    assert any("queue_status" in e for e in result.errors)
+
+    asset["queue_status"] = "active"
+    assert validate_asset(asset).ok
+
+
+def test_interconnection_queue_entry_does_not_borrow_generic_status_vocabulary():
+    # "withdrawn" (never built) and "retired" (built, then decommissioned)
+    # are different facts -- the base status field's existing/planned/
+    # retired/... vocabulary must not be required or implied for this type.
+    asset = {
+        "id": "iq-1", "asset_type": "interconnection_queue_entry", "name": "Test Project",
+        "geometry": {"type": "Point", "coordinates": [0, 0]},
+        "source": {"publisher": "LBNL", "url": "https://emp.lbl.gov/queues", "retrieved_at": "2026-08-11"},
+        "evidence_tier": "MODELED", "last_verified": "2026-08-11",
+        "queue_status": "withdrawn",
+    }
+    assert validate_asset(asset).ok
+    assert "status" not in asset
+
+
+def test_interconnection_queue_entry_capacity_is_optional_missing_is_not_zero():
+    asset = {
+        "id": "iq-1", "asset_type": "interconnection_queue_entry", "name": "Test Project",
+        "geometry": {"type": "Point", "coordinates": [0, 0]},
+        "source": {"publisher": "LBNL", "url": "https://emp.lbl.gov/queues", "retrieved_at": "2026-08-11"},
+        "evidence_tier": "MODELED", "last_verified": "2026-08-11",
+        "queue_status": "active",
+    }
+    assert validate_asset(asset).ok
+    assert "capacity_mw" not in asset
+
+
 def test_every_asset_type_has_a_type_schema_entry():
     for t in ASSET_TYPES:
         assert t in TYPE_SCHEMAS, f"{t} has no TYPE_SCHEMAS entry"
