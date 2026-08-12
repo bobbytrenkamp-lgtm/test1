@@ -1,9 +1,9 @@
 {
   "meta": {
     "description": "Policy signals discovered by the pipeline awaiting human review. Do NOT copy entries here directly to restrictions_raw.json without verification.",
-    "last_updated": "2026-08-08T07:43:59.943738+00:00",
-    "total": 31,
-    "pending": 31
+    "last_updated": "2026-08-12T08:11:34.843379+00:00",
+    "total": 32,
+    "pending": 32
   },
   "candidates": [
     {
@@ -676,6 +676,29 @@
       "confidence": 0.5,
       "evidence": "\u2026table a{text-decoration:underline!important;color:#034575!important} Agendas &amp; Livestream Services Alzheimer\u2019s Service Center Apply for a Job Bids/RFPs Board of Commissioners Live Streaming and Recorded Minutes Electronic Minutes Resolutions and Ordinances Building Inspection Request Business License Clayton Cares Directory Courts Department of Family and Children Services GIS Viewer Inmate Search Libraries ONEClayton Online Services Property Records Search Register CPR Classes Parks Class ",
       "existing_fips_match": "13063",
+      "review_status": "pending",
+      "reviewer_notes": ""
+    },
+    {
+      "candidate_id": "co-legislature-0af116864795",
+      "source_id": "co-legislature",
+      "discovered_at": "2026-08-12T08:10:56.948461+00:00",
+      "jurisdiction_name": "Colorado General Assembly",
+      "state": "Colorado",
+      "state_abbr": "CO",
+      "fips": null,
+      "title": "Bills | Colorado General Assembly",
+      "description": "\u2026he State Auditor Schedule Visit & Learn Find My Legislator Watch & Listen Bills, Resolutions, & Memorials Search All Bills Most Accessed Bills SB26-189 Automated Decision-Making Technology SB26-131 Sports Betting Protections HB26-1263 Conversational Artificial Intelligence Service Operator Requirements Browse by Subject Agriculture Business &amp; Economic Development Capital Construction Children &amp; Domestic Matters Civil Law Courts &amp; Judicial Crimes, Corrections, &amp; Enforcement Educa",
+      "signal_url": "https://leg.colorado.gov/bills?field_subjects_tid=All&field_bill_type_value=All&search_api_views_fulltext=data+center&per_page=20",
+      "lifecycle_stage": "effective",
+      "policy_types": [
+        "ai",
+        "energy",
+        "water"
+      ],
+      "confidence": 0.75,
+      "evidence": "\u2026he State Auditor Schedule Visit & Learn Find My Legislator Watch & Listen Bills, Resolutions, & Memorials Search All Bills Most Accessed Bills SB26-189 Automated Decision-Making Technology SB26-131 Sports Betting Protections HB26-1263 Conversational Artificial Intelligence Service Operator Requirements Browse by Subject Agriculture Business &amp; Economic Development Capital Construction Children &amp; Domestic Matters Civil Law Courts &amp; Judicial Crimes, Corrections, &amp; Enforcement Educa",
+      "existing_fips_match": null,
       "review_status": "pending",
       "reviewer_notes": ""
     }

@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "Log of detected changes in monitored government sources. Used to track what the pipeline has found and acted on.",
-    "last_updated": "2026-08-08T07:43:59.944550+00:00"
+    "last_updated": "2026-08-12T08:11:34.844412+00:00"
   },
   "entries": [
     {
@@ -281,6 +281,15 @@
       "change_type": "new_document",
       "url": "https://www.claytoncountyga.gov/government/board-of-commissioners",
       "summary": "New candidate: Board of Commissioners - Clayton County, Georgia (Clayton County)",
+      "acted_on": false
+    },
+    {
+      "log_id": "run-20260812T081134-0000",
+      "source_id": "co-legislature",
+      "detected_at": "2026-08-12T08:10:56.948461+00:00",
+      "change_type": "new_document",
+      "url": "https://leg.colorado.gov/bills?field_subjects_tid=All&field_bill_type_value=All&search_api_views_fulltext=data+center&per_page=20",
+      "summary": "New candidate: Bills | Colorado General Assembly (Colorado General Assembly)",
       "acted_on": false
     }
   ]
