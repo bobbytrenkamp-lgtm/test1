@@ -417,6 +417,7 @@ window.JURISDICTION = (function () {
             </div>
             <div class="juris-col juris-col-side">
               ${renderContext(fips, county)}
+              <div id="juris-grid-readiness-card"></div>
               <div id="juris-economy-card"></div>
               ${renderNotes(fips)}
               ${renderNewsSection(county)}
@@ -424,12 +425,72 @@ window.JURISDICTION = (function () {
           </div>
         </div>`;
       _wire(view);
+      _renderGridReadinessCard(fips);
       _renderEconomyCard(fips);
     };
 
     paint();
     if (!_facilities) loadFacilities().then(paint);
     if (!_linkHealth) loadLinkHealth().then(paint);
+  }
+
+  /* ── Grid Readiness card ───────────────────────────────────────────────────
+     County-level companion to the parcel-level suitability score above
+     (js/parcel/suitability.js) — see data/generate_grid_readiness.py for
+     full methodology. Rendered after paint, same reasoning as the economy
+     card just below: the underlying file covers every scored county's full
+     component breakdown and must not block this page. */
+  function _renderGridReadinessCard(fips) {
+    const host = document.getElementById("juris-grid-readiness-card");
+    if (!host || !window.GRID_READINESS) return;
+
+    window.GRID_READINESS.getByFips(fips).then(rec => {
+      if (_currentFips !== fips) return;   // navigated away mid-fetch
+      const target = document.getElementById("juris-grid-readiness-card");
+      if (!target) return;
+
+      if (!rec || rec.overall == null) {
+        target.innerHTML = `
+          <section class="juris-card">
+            <h2 class="juris-h2">Grid Readiness</h2>
+            <p class="juris-empty-inline">No mapped substation or interconnection-queue
+              activity found for this county in this platform's data. This is an absence
+              of data, not a measurement of poor grid access.</p>
+          </section>`;
+        return;
+      }
+
+      const rows = rec.components.map(c => `
+        <li class="juris-grid-readiness-factor">
+          <span class="juris-grid-readiness-factor-label">${esc(c.label)}</span>
+          <span class="juris-grid-readiness-factor-bar"><span style="width:${c.score}%"></span></span>
+          <span class="juris-grid-readiness-factor-pct">${esc(c.score)}</span>
+        </li>`).join("");
+      const omittedRows = (rec.omitted || []).map(o => `
+        <li class="juris-grid-readiness-omitted">
+          <strong>${esc(o.label)}</strong> not scored — ${esc(o.why)}
+        </li>`).join("");
+
+      target.innerHTML = `
+        <section class="juris-card">
+          <h2 class="juris-h2">Grid Readiness</h2>
+          <div class="juris-score">
+            <div class="juris-score-grade">${esc(rec.confidence || "")}</div>
+            <div>
+              <div class="juris-score-n">${esc(rec.overall)}<span>/100</span></div>
+              <div class="juris-score-l">Grid readiness score</div>
+            </div>
+          </div>
+          <p class="juris-source-note">${esc(rec.basis)}</p>
+          <details class="juris-grid-readiness-more">
+            <summary>What's driving this score</summary>
+            <ul class="juris-grid-readiness-breakdown">${rows}${omittedRows}</ul>
+          </details>
+        </section>`;
+    }).catch(() => {
+      const target = document.getElementById("juris-grid-readiness-card");
+      if (target) target.innerHTML = "";   // fail silent, never block the page
+    });
   }
 
   /* ── Economy card ───────────────────────────────────────────────────────────
